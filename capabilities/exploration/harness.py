@@ -65,3 +65,17 @@ class Harness:
             self.write(state)
             save(self.scope(str(root),session_id),{'id':state['id']})
             return state
+
+    def begin(self,task_id,hypothesis):
+        if not isinstance(hypothesis,str) or not 1<=len(hypothesis.strip())<=4000: raise ValueError('hypothesis required')
+        with self.lock():
+            state=self.read(task_id)
+            if state['phase']=='working': return state
+            if state['phase']!='ready': raise ValueError('task is not ready')
+            if time.time()>=state['deadline'] or state['iterations']>=state['max_iterations']:
+                state.update(phase='budget_exhausted',last_error='iteration or wall budget exhausted')
+                return self.write(state)
+            state['iterations']+=1
+            state['attempts'].append({'iteration':state['iterations'],'hypothesis':hypothesis,'evaluation':None})
+            state['phase']='working'
+            return self.write(state)
