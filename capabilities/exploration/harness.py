@@ -136,3 +136,24 @@ class Harness:
             state['last_hook_progress']=marker
             self.write(state)
             return True
+
+    def pause(self,task_id,reason):
+        if not isinstance(reason,str) or not 1<=len(reason)<=1000: raise ValueError('pause reason required')
+        with self.lock():
+            state=self.read(task_id)
+            if state['phase'] not in ('complete','budget_exhausted','blocked'):
+                state.update(phase='paused',last_error=reason)
+                self.write(state)
+            return state
+
+    def resume(self,task_id):
+        with self.lock():
+            state=self.read(task_id)
+            if state['phase']!='paused': raise ValueError('only a user-paused task can resume')
+            if time.time()>=state['deadline'] or state['iterations']>=state['max_iterations']:
+                state['phase']='budget_exhausted'
+            else:
+                state['phase']='working' if state['attempts'] and state['attempts'][-1]['evaluation'] is None else 'ready'
+                state['last_error']=None
+                state['last_hook_progress']=None
+            return self.write(state)

@@ -19,6 +19,9 @@ def handle(harness,payload):
     workspace,session_id=payload.get('cwd'),payload.get('session_id')
     if not isinstance(workspace,str) or not isinstance(session_id,str): return {}
     state=harness.active(workspace,session_id)
+    if event=='Interrupt' and state:
+        harness.pause(state['id'],'user interrupted the Codex turn')
+        return {}
     if event=='SessionStart':
         context=GUIDANCE+' Current session_id='+session_id+'.'
         if state: context+=' Existing task: '+json.dumps(summary(state))

@@ -15,7 +15,9 @@ TOOLS=[
      {'task_id':S,'hypothesis':S},['task_id','hypothesis']),
     ('exploration_verify','Execute the previously frozen local verifier with OS process permissions; cannot accept a claimed success.',
      {'task_id':S},['task_id']),
-    ('exploration_status','Read task state and most recent measured feedback.',{'task_id':S},['task_id'])]
+    ('exploration_status','Read task state and most recent measured feedback.',{'task_id':S},['task_id']),
+    ('exploration_pause','Pause on user request or required external input.',{'task_id':S,'reason':S},['task_id','reason']),
+    ('exploration_resume','Resume a paused task only when the user explicitly resumes it; never resets budgets.',{'task_id':S},['task_id'])]
 
 
 def inventory():
@@ -51,6 +53,8 @@ def invoke(harness,name,arguments):
     if name=='exploration_start': state=harness.start(**arguments)
     elif name=='exploration_next': state=harness.begin(arguments['task_id'],arguments['hypothesis'])
     elif name=='exploration_verify': state=harness.verify(arguments['task_id'])
+    elif name=='exploration_pause': state=harness.pause(arguments['task_id'],arguments['reason'])
+    elif name=='exploration_resume': state=harness.resume(arguments['task_id'])
     else: state=harness.read(arguments['task_id'])
     return summary(state)
 
