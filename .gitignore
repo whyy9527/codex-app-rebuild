@@ -19,3 +19,8 @@ artifacts/
 *.mp3
 *.safetensors
 *.gguf
+
+# Per-project generated local registration and task state
+.codex/config.toml
+.codex/hooks.json
+.codex/exploration-lab/

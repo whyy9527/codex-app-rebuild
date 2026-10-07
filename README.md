@@ -1,80 +1,35 @@
 # Codex Exploration Lab
 
-面向 Codex 的可审计探索工具。借鉴 Dream-RSI 的历史回放与探索策略选择，以及 Cordis 的组件依赖与生命周期管理。
+帮助当前 Codex 完成有界的无监督迭代：保存任务进度，执行真实验收，根据失败反馈继续，到达预算或用户暂停时停止。
 
-**当前状态：已接入 Codex 的探索工具原型。** 六个 MCP 工具负责持久任务、尝试预留、真实验证、状态查询和暂停恢复；SessionStart、Stop、UserPromptSubmit Hook 负责发现、有限续跑请求和显式暂停。已在本机注册并通过原生 `/hooks` 审查信任，保留既有设置。
-
-最新[十轮接入报告](projects/harness/REPORT.md)包含十组固定验收的 fail→pass、源码到提交审计和 71 项回归测试。实际 Codex app-server 调用注册工具，经历失败反馈后修复了应用自己的预算边界错误。自动 Stop 驱动的完整模型闭环尚未实测；不将注册成功等同于无人值守可靠性。
-
-从[宿主工作流](workflows/harness/WORKFLOW.md)开始。历史论文实验保留用于研究，不代表本次工具的实际任务收益或论文完整复现。
-
-最新结果见 [第二阶段报告](projects/paper-v2/REPORT.md)：一次策略被采用，六次持平、三次退步。单组训练任务对照最佳得分相同，候选执行次数为 4 与 1；其中相同请求复用模型回包，不是独立模型实验。
-
-## 运行
-
-需要 Python 3.11+、Git 和 POSIX 系统；已在 macOS / Python 3.14.3 验证。无需安装第三方 Python 包。从仓库根执行：
-
-```bash
-python3 -m unittest discover -v
-python3 -m workflows.self_improve.cycle --out artifacts/my-policy-run --rounds 10
+```text
+用户目标 → Codex 修改 → MCP 验收 → 反馈 → 下一次修改
+                       ↑
+                项目 Hook 检查是否继续
 ```
 
-输出目录必须不存在。演示会实际生成并执行简单线性函数代码，回放已记录结果，写出策略代码和报告。生成器是确定性小程序，不是 LLM。
+唯一运行链：Codex + 六个 MCP 工具 + 三个短 Hook + 一个任务状态核心。没有独立模型服务、策略池、论文回放或演示任务。
 
-第二阶段交互式实验入口：
+## 在目标项目启用
 
-```bash
-python3 -m workflows.paper.experiment --input projects/paper-v2/packing-input --out artifacts/my-paper-run --iterations 10 --max-calls 4
-python3 -m workflows.paper.requests --directory artifacts/my-paper-run/requests
-```
-
-程序在需要模型源码时等待，不会自行伪造回包。按 [交接步骤](projects/paper-v2/REPORT.md#复核与续跑)提交绑定实际请求的源码，再执行 experiment 继续。CLI 适配器要求显式传入已实测可调用的模型，不自动选择模型。
-
-记录自己项目的实际验收命令：
+从本工具仓库根执行：
 
 ```bash
-python3 -m workflows.self_improve --root . --db artifacts/my-experiment.sqlite run \
-  --id candidate-001 --round 1 --phase baseline \
-  --hypothesis 'Verify the explicit acceptance command' \
-  -- python3 -m unittest discover -v
-python3 -m workflows.self_improve --db artifacts/my-experiment.sqlite verify
-python3 -m workflows.self_improve --db artifacts/my-experiment.sqlite export \
-  --out artifacts/my-receipts.json
+python3 -m workflows.harness.install --repo . --workspace <目标项目目录>
 ```
 
-失败、超时、执行器不可用或源码变化会产生非通过记录，CLI 返回非零。原始记录与源码快照保存在本地；导出投影会遮盖常见本地绝对路径并保留原记录摘要。导出并非秘密检测器，提交前仍需检查内容。
+只在目标项目的 `.codex/` 写入 MCP 配置、Hook、启动器和状态。重启该项目的 Codex 会话，按原生机制信任项目及审查本工具 Hook。工具源码继续位于安装时指定的仓库，不需要复制到每个项目。
 
-## 能力
+然后告诉 Codex：
 
-- SQLite 持久化、父子关系验证、追加记录和完整性核验。
-- 显式验收命令、进程组超时清理、源码快照与变化检测。
-- 从父工作目录生成隔离候选，记录实际评价、调用次数和耗时。
-- 冻结回放、前缀观察、root/leaf 动作、原子批次、预算及超出支持范围处理。
-- 论文公式 (1) 的质量／调用成本目标、五个预算偏好、全部历史上的策略比较与原策略保留。
-- 组件依赖启动、停用、恢复、逆序清理和启动失败回滚。
-- 项目内 [Codex 使用 skill](.codex/skills/exploration-lab/SKILL.md)。
+> 使用 exploration-lab 无监督迭代，目标是……；验收命令是……；最多尝试 10 次、30 分钟，失败后根据实测反馈调整。
 
-这些是可信本地 Python 适配器，**不是不可信代码沙箱**。命令评估器有超时；在线生成与策略函数须自行保证终止。未计量 token 与模型费用均为 null，不等于零。
+MCP 提供操作，任务指令启动迭代；Stop Hook 用于在 Codex 提前结束时请求继续。仅启用 MCP 不会自行开始任务。[工作流](workflows/harness/WORKFLOW.md)包含工具调用协议。
 
-## 已验证结果
+## 验证与限制
 
-第二阶段的 [完整提示与源码](projects/paper-v2/experiment.json)、[回执](projects/paper-v2/receipts.json)与 [重新执行审计](projects/paper-v2/audit.json)分别记录工程和策略实验。十轮工程均有 fail→pass；其中第 2 轮有一处默认模型配置与提交不一致，已保留当时实际源码快照，未声称全部源码均与提交一致。
+Python 3.11+、POSIX、Codex CLI；无第三方 Python 依赖。运行 `python3 -m unittest discover -v`。项目级发现与隔离由真实 app-server 测试；注册、信任、Hook 执行和完整模型续跑分别报告。
 
-以下是第一阶段的确定性协议验证结果，保留以区分历史实验：
+验收命令是可信本地代码，具有宿主权限。通过只代表约定验收通过；本工具无法自行判断美学质量。验证进程崩溃恢复及完整自动 Stop 模型续跑仍待验证。
 
-十轮源码修改均保留了同一轮内不变的验收条件，修改前失败、修改后通过，源码哈希与对应 Git 提交匹配。不同轮验收规则不同，因此不计算整体质量提升百分比。
-
-十次确定性策略闭环实际选择过一次新策略，后九次保持不变。总计 32 次生成器调用，包含最终的两次对照运行。在另一个目标参数的简单任务上，固定策略与选中策略最佳得分均为 1/3，调用数分别为 6 和 2。这是单个小任务的协议验证，不能外推到模型科研能力、视频质量或一般任务效率。
-
-- [十轮复核报告](projects/self-improvement/REPORT.md)
-- [机器可读汇总](projects/self-improvement/summary.json)
-- [原型边界与论文差异](docs/ARCHITECTURE.md)
-- [当前路线](docs/ROADMAP.md)
-- [任务完成条件](GOAL.md)
-
-## 来源
-
-- [Dream-RSI 论文](https://arxiv.org/abs/2609.14858)与[官方仓库](https://github.com/zhengkid/Dream-RSI)：截至 2026-10-07，完整代码仍标注准备发布。
-- [Cordis 论文](https://arxiv.org/abs/2608.25512)、[实现](https://github.com/cordiverse/cordis)及 [DSH 官方说明](https://deepseek-harness.github.io/deepseek-harness/reference/cordis-primer)。
-
-本项目独立设计，默认保持私有，不包含用户媒体、模型权重或凭证。
+仓库保持私有。本轮删除的研究代码和历史实验可从 Git 提交 `2ad5175` 找回，不再成为当前运行依赖。[架构](docs/ARCHITECTURE.md)说明保留机制。

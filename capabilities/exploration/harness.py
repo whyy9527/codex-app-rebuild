@@ -8,8 +8,8 @@ import re
 import time
 import tempfile
 import uuid
-from capabilities.exploration.ledger import digest
-from capabilities.exploration.session import save
+from capabilities.exploration.storage import digest
+from capabilities.exploration.storage import save
 from runtime.runner import evaluate,manifest
 
 TERMINAL={'complete','blocked','budget_exhausted','paused'}

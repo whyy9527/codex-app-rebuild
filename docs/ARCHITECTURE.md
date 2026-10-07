@@ -1,83 +1,21 @@
-# 原型架构与边界
+# 架构
 
-## 当前 Codex harness 接入
+目标只有一个：帮助当前 Codex 完成更可靠的有界无监督迭代。
 
-`capabilities/exploration/harness.py` 是任务状态与预算的唯一所有者。`runtime/harness_mcp.py` 提供六个工具；Codex 使用自己的编辑和执行工具完成动作，再调用冻结验证。`runtime/harness_hooks.py` 只做短提示、续跑条件检查和暂停，不执行长验证或调用模型。`runtime/codex_host.py` 用真实 app-server 检查发现与工具调用。
-
-注册由 `workflows/harness/install.py` 管理本项目的启动器、MCP 表和 Hook；全局配置和本机路径留在本机，备份不入库。原生审查负责信任。当前本机支持三种已注册 Hook；Interrupt 不在实际清单中，故使用显式暂停提示及工具，不能声称所有 UI 中断已覆盖。
-
-同一会话与工作目录绑定任务，尝试幂等预留，验证器及测试清单冻结。失败次数、总尝试数、墙钟时间、重复 Stop 及无实测进展均有限制；暂停恢复不重置预算。可信验证命令具有宿主权限，没有 OS 沙箱；验证进程崩溃后停留在 verifying 的恢复尚未实现。详见 [接入工作流](../workflows/harness/WORKFLOW.md)和[实测报告](../projects/harness/REPORT.md)。以下阶段文字保留历史状态。
-
-## 第三阶段补充
-
-`capabilities/exploration/pool.py` 对所有历史策略源码在全部完成世界重新选择；开发器传递完整池，在线部署能接受旧策略胜出。反馈包含池源码，audit 可重建选择；旧实验报告保持原样。
-
-请求 broker 支持 scope，实验各运行使用不同 scope，回包复用次数单独记录。不同组不自动共享回包，但宿主上下文仍不隔离。CodexWorker 可持久保存失败；`workflows/paper/preflight.py` 通过真实有界请求检查可用性，本机预检仍失败。
-
-`capabilities/exploration/benchmark.py` 生成可复现不重叠实例；validation 工作流执行冻结算法，stage_report 核对十轮工程来源和逐题差异，reselect 重选上阶段实际历史。均不将验证结果用于新策略选择。
-
-OnlineSession 先登记待准备候选，目录通过临时副本原子发布，构造与推进均使用运行锁。仅目录准备阶段的中断恢复已测试，不承诺整个模型费用和调用的恰好一次语义。
-
-第三阶段实测与剩余边界见 [报告](../projects/paper-v3/REPORT.md)。以下各阶段描述保留其历史状态。
-
-## 第二阶段补充
-
-`runtime/codex_worker.py` 提供显式模型 CLI 契约与运行声明校验；账号拒绝调用时不返回伪提案。`runtime/request_broker.py` 保存实际 prompt 与绑定回包，`workflows/paper/requests.py` 负责显式交接。相同绑定复用回包，所以响应数与候选尝试数分别计量；该接口不能认证外部模型。
-
-`runtime/discovery.py` 根据父代码、已见前缀与已完成历史请求可执行源码。`runtime/packing.py` 固定装箱可行性与质量评价；`runtime/policy_runtime.py` 用 AST 限制和子进程超时执行策略，公开接口仅含前缀和运行预算，不提供宿主历史文件。
-
-`capabilities/exploration/development.py` 根据冻结回放反馈合成新策略，比较原策略与提案，持平保留原策略。被拒提案持久保存，但尚未在新世界上重选完整提案池。`capabilities/exploration/session.py` 保存模型交接待处理状态，单次推进使用进程锁；任意崩溃点的事务恢复仍待完成。
-
-`workflows/paper/experiment.py` 串起在线→五次开发→再部署→五次开发→对照。`workflows/paper/audit.py` 核对原始反馈、请求摘要、回包源码、实际候选产物和执行计数，并可重新运行十次策略回放。
-
-回放默认保留第一阶段 `strict` 模式；第二阶段显式采用 `paper` 模式，缺少后续节点的动作不揭示候选、仍消耗一轮。CLI 实验是单工作者，固定评价规则与生成指令；主会话模型配置无法独立认证，对照范围和证据偏差见 [报告](../projects/paper-v2/REPORT.md)。
-
-以下描述第一阶段接口及其历史限制；第二阶段覆盖的部分以上述补充为准。
-
-## 已实现的职责
-
-| 文件 | 职责 |
+| 组件 | 职责 |
 | --- | --- |
-| `capabilities/exploration/ledger.py` | 原子追加、父子关系、回执及前缀完整性核验 |
-| `capabilities/exploration/export.py` | 带原始摘要的路径脱敏投影，不修改原始记录 |
-| `runtime/runner.py` | 显式命令、超时和进程清理、源码快照、输出回执 |
-| `capabilities/exploration/online.py` | 父工作目录复制、可信生成器／评估器、并发批次、真实候选树 |
-| `capabilities/exploration/replay.py` | 冻结世界、前缀观察、合法动作与预算 |
-| `capabilities/exploration/objective.py` | 公式 (1)、五档预算偏好、全部历史策略比较 |
-| `runtime/components.py` | 独立的依赖与作用域生命周期库 |
-| `workflows/self_improve/cycle.py` | 在线执行、冻结、比较、选择和下轮部署的闭环演示 |
-| `workflows/self_improve/report.py` | 将每轮回执源码与精确 Git 提交核对 |
+| `runtime/harness_mcp.py` | 六个工具的参数和协议适配 |
+| `runtime/harness_hooks.py` | SessionStart 提示、Stop 续跑条件、UserPromptSubmit 暂停 |
+| `capabilities/exploration/harness.py` | 唯一任务状态、会话作用域、预算、冻结验收及状态迁移 |
+| `capabilities/exploration/storage.py` | 原子 JSON 写入与摘要辅助函数 |
+| `runtime/runner.py` | 真实命令、输出、源码完整性及超时清理 |
+| `workflows/harness/install.py` | 在目标项目 `.codex/` 注册并保留已有配置 |
+| `runtime/codex_host.py`、`workflows/harness/diagnose.py` | 原生宿主集成验证；线上循环不依赖诊断客户端 |
 
-生命周期库与在线循环可分别调用；尚未提供 DSH/Cordis 或 Codex 原生插件适配器。
+MCP 与 Hook 共用 Harness 状态。Codex 负责思考、编辑和选择下一步；工具不启动另一个模型。状态为 ready → working → verifying → complete；失败可返回 ready 或进入 blocked/budget_exhausted；用户可暂停并显式恢复。文件锁协调 Hook 和 MCP 写入。
 
-## Dream-RSI 对应关系
+项目配置仅对受信任项目生效；Hook 另需原生审查。一个工具仓库可为多个项目安装，每个项目拥有独立配置和状态。工作目录和会话 ID 绑定当前任务；新会话不会自动继承其他会话的 active 任务。
 
-实现 root 与当前叶节点可选、每批唯一父节点和宽度限制、根节点按创建顺序揭示新分支、非根线性继续、相同前缀接口、固定历史、调用与轮数预算、五档 rho、质量归一化超体积与并行惩罚，以及包含原策略的全历史选择。
+已移除策略池、回放、独立模型适配器、装箱与线性函数演示、组件容器、SQLite 实验账本和历史实验工作流。旧账本的摘要与旧会话模块的原子保存函数提取到 storage；其余无活跃调用者。源码副本快照、媒体标签和未知模型费用字段也已删除，保留实际反馈所需摘要。
 
-完整历史的最好得分只用于回放评价，不传给策略函数。策略收到已观察节点与公开的运行预算；无法揭示结果时返回 unsupported，不虚构新得分。本原型会使包含 unsupported 的候选整体失去获选资格，比论文正文的无后续节点语义更保守。
-
-生成器和评价器在十次演示中固定。开发者自行编写代码候选，演示中的策略候选来自有限模板组合，自动部署获选的真实可执行代码。**没有 LLM 自主策略代码合成，没有九项基准复现，没有一般任务上的统计结论。**
-
-十轮工程修改由 Codex 执行、项目内部工具记录和验证；它们与十次自动策略闭环分别计数。每轮工程验收条件在修改前固定，但不同轮测试不同。不能把不断增加的验收项目当成统一固定基准上的提升。
-
-## 证据与成本
-
-每条执行回执保存源码清单、验收命令、测试摘要、输出摘要、状态和耗时。测试摘要在同一轮前后核对，完整源码清单与 Git 提交核对。源码快照记录来源，不是所有依赖与系统工具的可重现环境锁。
-
-原始 SQLite 与快照在忽略的 artifacts 中。第 4 轮开始增加完整性封印；此前 8 条原始记录没有创建时封印，随后首次封印绑定了当时的历史前缀。导出的全部投影重新封印，并携带原始记录摘要。哈希用于损坏检测，不是第三方签名或防本机恶意改写的证明。
-
-计量区分生成适配器调用数、墙钟耗时及未知的 token/模型费用。在线并发存在时，各候选耗时不能相加冒充实际总历时。命令输出最多保留前 64 KiB，截断会明确标记。
-
-## Cordis 借鉴与运行边界
-
-组件显式声明依赖，提供服务后激活等待者；卸载提供者先关闭依赖者；挂载失败会回滚此次新启动的服务；清理按逆序执行并收集错误。未满足的依赖保留等待，不提供完整的循环依赖诊断。
-
-这是小型 Python 生命周期库，没有导入 Cordis，也不具备论文的形式化保证。卸载只能清理已登记资源，不能撤销外部文件写入、消息或费用。前缀接口不是抵御恶意 Python 插件的隔离边界。
-
-在线生成器、评价器和策略是可信函数，须自行实现阻塞调用的终止控制；内置命令评估器会终止整个进程组。尚无跨进程工作锁、在线任务崩溃恢复或全局墙钟预算，生产长任务仍待完善。
-
-## 视频任务的接入点
-
-未来由显式适配器连接现有视频仓库的拉片与审查工具，不把固定目录写成默认输入，不复制私人素材。观察记录须区分抽帧、字幕、声音与连续视听范围。
-
-本次没有恢复暂停的视频任务，没有运行实际视频视听评审。音画质量一直标记 unavailable；参考学习记录不能替代剪辑候选评价，已删除的旧成片不能由复盘文字重建成真实回放历史。
+限制：冻结测试只覆盖当前 manifest 的 Python tests 文件和验证命令，不能保证任意项目的验收充分性。可信验证具有 OS 权限；验证中进程崩溃恢复、UI 中断覆盖和完整自动模型续跑尚未验证。

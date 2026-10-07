@@ -20,9 +20,6 @@ def handle(harness,payload):
     workspace,session_id=payload.get('cwd'),payload.get('session_id')
     if not isinstance(workspace,str) or not isinstance(session_id,str): return {}
     state=harness.active(workspace,session_id)
-    if event=='Interrupt' and state:
-        harness.pause(state['id'],'user interrupted the Codex turn')
-        return {}
     if event=='UserPromptSubmit' and state:
         prompt=payload.get('prompt','')
         if isinstance(prompt,str) and re.match(r'^\s*(?:(?:先)?(?:暂停|停一下|停止|别继续|不用继续|取消)|/exploration\s+pause\b|stop\b|pause\b|cancel\b)',prompt,re.I):

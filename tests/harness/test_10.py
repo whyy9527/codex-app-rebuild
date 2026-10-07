@@ -1,6 +1,7 @@
 from pathlib import Path
 import tempfile
 import unittest
+import json
 from runtime.codex_host import CodexHost
 from workflows.harness.install import install
 
@@ -12,7 +13,9 @@ class NativeVerificationLoop(unittest.TestCase):
             workspace.mkdir()
             (workspace/'tests').mkdir()
             home=root/'codex'
-            install(home,Path.cwd())
+            home.mkdir()
+            (home/'config.toml').write_text('[projects.'+json.dumps(str(workspace))+']\ntrust_level = \"trusted\"\n')
+            install(workspace,Path.cwd())
             with CodexHost(codex_home=home) as host:
                 thread=host.request('thread/start',{'cwd':str(workspace),'ephemeral':True})['thread']['id']
                 host.request('mcpServerStatus/list',{'threadId':thread})

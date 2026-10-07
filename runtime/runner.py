@@ -7,7 +7,7 @@ import subprocess
 import tempfile
 import time
 from pathlib import Path
-from capabilities.exploration.ledger import digest
+from capabilities.exploration.storage import digest
 
 
 def manifest(root):
@@ -30,16 +30,6 @@ def evaluate(root, command, timeout=30, environment=None):
     if not root.is_dir():
         raise ValueError("workspace must be an existing directory")
     files = manifest(root)
-    snapshot = Path("artifacts/snapshots") / digest(files)
-    for name, expected in files.items():
-        destination = root / snapshot / name
-        destination.parent.mkdir(parents=True, exist_ok=True)
-        content = (root / name).read_bytes()
-        if hashlib.sha256(content).hexdigest() != expected:
-            raise ValueError("source changed during snapshot")
-        if destination.exists() and destination.read_bytes() != content:
-            raise ValueError("snapshot was modified")
-        destination.write_bytes(content)
     started = time.monotonic()
     exit_code, status = None, "unavailable"
     with tempfile.TemporaryFile() as stream:
@@ -72,7 +62,6 @@ def evaluate(root, command, timeout=30, environment=None):
         "command": command,
         "source_files": files,
         "source_digest": digest(files),
-        "snapshot": snapshot.as_posix(),
         "integrity": integrity,
         "evaluator_digest": digest({"command": command, "tests": {k: v for k, v in files.items() if k.startswith("tests/")}}),
         "exit_code": exit_code,
@@ -82,7 +71,4 @@ def evaluate(root, command, timeout=30, environment=None):
         "output_truncated": output_bytes > 65536,
         "output_sha256": hashlib.sha256(output.encode()).hexdigest(),
         "wall_seconds": round(time.monotonic() - started, 6),
-        "model_tokens": None,
-        "model_cost": None,
-        "audiovisual": "unavailable",
     }
