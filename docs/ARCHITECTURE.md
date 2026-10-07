@@ -1,5 +1,19 @@
 # 原型架构与边界
 
+## 第二阶段补充
+
+`runtime/codex_worker.py` 提供显式模型 CLI 契约与运行声明校验；账号拒绝调用时不返回伪提案。`runtime/request_broker.py` 保存实际 prompt 与绑定回包，`workflows/paper/requests.py` 负责显式交接。相同绑定复用回包，所以响应数与候选尝试数分别计量；该接口不能认证外部模型。
+
+`runtime/discovery.py` 根据父代码、已见前缀与已完成历史请求可执行源码。`runtime/packing.py` 固定装箱可行性与质量评价；`runtime/policy_runtime.py` 用 AST 限制和子进程超时执行策略，公开接口仅含前缀和运行预算，不提供宿主历史文件。
+
+`capabilities/exploration/development.py` 根据冻结回放反馈合成新策略，比较原策略与提案，持平保留原策略。被拒提案持久保存，但尚未在新世界上重选完整提案池。`capabilities/exploration/session.py` 保存模型交接待处理状态，单次推进使用进程锁；任意崩溃点的事务恢复仍待完成。
+
+`workflows/paper/experiment.py` 串起在线→五次开发→再部署→五次开发→对照。`workflows/paper/audit.py` 核对原始反馈、请求摘要、回包源码、实际候选产物和执行计数，并可重新运行十次策略回放。
+
+回放默认保留第一阶段 `strict` 模式；第二阶段显式采用 `paper` 模式，缺少后续节点的动作不揭示候选、仍消耗一轮。CLI 实验是单工作者，固定评价规则与生成指令；主会话模型配置无法独立认证，对照范围和证据偏差见 [报告](../projects/paper-v2/REPORT.md)。
+
+以下描述第一阶段接口及其历史限制；第二阶段覆盖的部分以上述补充为准。
+
 ## 已实现的职责
 
 | 文件 | 职责 |

@@ -37,7 +37,7 @@ def parse_attestation(stderr, model, effort):
 
 
 class CodexWorker:
-    def __init__(self, model='gpt-6.1-sol', effort='medium', timeout=180):
+    def __init__(self, *, model, effort='medium', timeout=180):
         self.model, self.effort, self.timeout = model, effort, timeout
         self.receipts = []
 

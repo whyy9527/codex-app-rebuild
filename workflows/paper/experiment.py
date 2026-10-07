@@ -95,12 +95,18 @@ class Experiment:
             if response.exists():
                 request=json.loads(path.read_text())
                 requests.append({'request_digest':request['request_digest'],'role':request['role'],
+                                 'prompt':request['prompt'],
                                  'response':json.loads(response.read_text())})
         programs={}
         for path in sorted(self.output.glob('*/n*/pack.py')):
             programs[path.relative_to(self.output).as_posix()]=path.read_text()
+        runs={name:json.loads((self.output/name/'state.json').read_text())
+              for name in ('online-1','online-2','control-fixed','control-updated')}
+        call_count=sum(len(run['nodes']) for run in runs.values())
         result=redact({'config':state['config'],'developments':state['developments'], 'worlds':state['worlds'],
-                       'comparison':state['comparison'],'requests':requests,'programs':programs,
+                       'comparison':state['comparison'],'requests':requests,'programs':programs,'online_runs':runs,
+                       'generation_attempts':call_count,
+                       'reused_discovery_responses':call_count-sum(r['role']=='discovery-generation' for r in requests),
                        'policy_responses':sum(r['role']=='policy-development' for r in requests),
                        'discovery_responses':sum(r['role']=='discovery-generation' for r in requests),
                        'selected_updates':sum(d['selected']=='proposal' for d in state['developments']),
@@ -108,8 +114,11 @@ class Experiment:
                        'runtime_model':None,'model_tokens':None,'model_cost':None,
                        'limitations':['interactive main-session synthesis, not unattended CLI execution',
                                       'host model context is not isolated between experiment arms',
+                                      'identical prompt bindings reuse response artifacts; generation attempts are not independent model calls',
                                       'model identity and token cost not independently attested',
                                       'packing workload is not one of the paper benchmark reproductions',
+                                      'comparison uses the same training cases, not held-out tasks',
+                                      'developer revises the selected incumbent; rejected candidates are retained as evidence but not reselected on later worlds',
                                       'one paired run is not a statistical efficiency claim']})
         save(self.output/'report.json',result)
         return result

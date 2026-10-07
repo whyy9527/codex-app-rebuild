@@ -2,7 +2,9 @@
 
 面向 Codex 的可审计探索工具。借鉴 Dream-RSI 的历史回放与探索策略选择，以及 Cordis 的组件依赖与生命周期管理。
 
-**当前状态：可运行的 Python 标准库原型。** 已完成十轮工程修改，并实际运行十次「在线执行 → 冻结历史 → 策略比较 → 部署」闭环。没有付费模型接入、完整论文复现、Codex 插件安装或实际视听评审能力。
+**当前状态：可运行的 Python 标准库原型。** 第二阶段已完成十轮工程修改和十次主会话驱动的策略源码修订，串起真实候选执行、冻结回放、选择与再部署。CLI 模型调用被账号拒绝，采用显式请求/回包；模型身份、token 与费用未独立计量。没有完整论文复现或实际视听评审能力。
+
+最新结果见 [第二阶段报告](projects/paper-v2/REPORT.md)：一次策略被采用，六次持平、三次退步。单组训练任务对照最佳得分相同，候选执行次数为 4 与 1；其中相同请求复用模型回包，不是独立模型实验。
 
 ## 运行
 
@@ -14,6 +16,15 @@ python3 -m workflows.self_improve.cycle --out artifacts/my-policy-run --rounds 1
 ```
 
 输出目录必须不存在。演示会实际生成并执行简单线性函数代码，回放已记录结果，写出策略代码和报告。生成器是确定性小程序，不是 LLM。
+
+第二阶段交互式实验入口：
+
+```bash
+python3 -m workflows.paper.experiment --input projects/paper-v2/packing-input --out artifacts/my-paper-run --iterations 10 --max-calls 4
+python3 -m workflows.paper.requests --directory artifacts/my-paper-run/requests
+```
+
+程序在需要模型源码时等待，不会自行伪造回包。按 [交接步骤](projects/paper-v2/REPORT.md#复核与续跑)提交绑定实际请求的源码，再执行 experiment 继续。CLI 适配器要求显式传入已实测可调用的模型，不自动选择模型。
 
 记录自己项目的实际验收命令：
 
@@ -42,6 +53,10 @@ python3 -m workflows.self_improve --db artifacts/my-experiment.sqlite export \
 这些是可信本地 Python 适配器，**不是不可信代码沙箱**。命令评估器有超时；在线生成与策略函数须自行保证终止。未计量 token 与模型费用均为 null，不等于零。
 
 ## 已验证结果
+
+第二阶段的 [完整提示与源码](projects/paper-v2/experiment.json)、[回执](projects/paper-v2/receipts.json)与 [重新执行审计](projects/paper-v2/audit.json)分别记录工程和策略实验。十轮工程均有 fail→pass；其中第 2 轮有一处默认模型配置与提交不一致，已保留当时实际源码快照，未声称全部源码均与提交一致。
+
+以下是第一阶段的确定性协议验证结果，保留以区分历史实验：
 
 十轮源码修改均保留了同一轮内不变的验收条件，修改前失败、修改后通过，源码哈希与对应 Git 提交匹配。不同轮验收规则不同，因此不计算整体质量提升百分比。
 

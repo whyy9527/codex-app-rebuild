@@ -1,0 +1,251 @@
+{
+  "engineering_rounds": [
+    {
+      "round": 1,
+      "commit": "d3aa8cb9783b55e1f89619415915e586c45d3446",
+      "before": "fail",
+      "after": "pass",
+      "evaluator_digest": "391696e16d5b161cd9388eea8b76313bddc0bd13592b9db84bbe3bae77329bc6",
+      "source_mismatches": [],
+      "preserved_executed_snapshots": {},
+      "record_ids": [
+        "p01-before",
+        "p01-after"
+      ]
+    },
+    {
+      "round": 2,
+      "commit": "52a6cfab20f56811ff20efefbbe7e445228945eb",
+      "before": "fail",
+      "after": "pass",
+      "evaluator_digest": "216fe7f547a9dc26750d485ab30daa9bbb277734b8bea0f6f264006e2e595049",
+      "source_mismatches": [
+        "runtime/codex_worker.py"
+      ],
+      "preserved_executed_snapshots": {
+        "runtime/codex_worker.py": "projects/paper-v2/round-02-worker-snapshot.py.txt"
+      },
+      "record_ids": [
+        "p02-before",
+        "p02-after"
+      ]
+    },
+    {
+      "round": 3,
+      "commit": "b8271e870c5d47078d9d2871f09ad6e294162590",
+      "before": "fail",
+      "after": "pass",
+      "evaluator_digest": "188125d2255c59ae853cb0ec59aac4106511fcb235893bddbc378c332bf62ce4",
+      "source_mismatches": [],
+      "preserved_executed_snapshots": {},
+      "record_ids": [
+        "p03-before",
+        "p03-after"
+      ]
+    },
+    {
+      "round": 4,
+      "commit": "f1956a4d4a5a912f889d8adead1538b142195e57",
+      "before": "fail",
+      "after": "pass",
+      "evaluator_digest": "86c7efea940151f665c3cbe7af543a9690051302d2ed18d43cd057bd35a24453",
+      "source_mismatches": [],
+      "preserved_executed_snapshots": {},
+      "record_ids": [
+        "p04-before",
+        "p04-after"
+      ]
+    },
+    {
+      "round": 5,
+      "commit": "c5544b04f7a27b3f6f99e62bba4683aa463cefee",
+      "before": "fail",
+      "after": "pass",
+      "evaluator_digest": "45bccb35de9b39a44f8804d8019f18883e9e777c5ffa4e1cf629c9c7cd11df31",
+      "source_mismatches": [],
+      "preserved_executed_snapshots": {},
+      "record_ids": [
+        "p05-before",
+        "p05-after"
+      ]
+    },
+    {
+      "round": 6,
+      "commit": "ee7d031bec107e9921e34af9cf217a4d5d45660a",
+      "before": "fail",
+      "after": "pass",
+      "evaluator_digest": "08099a1b53863168f7ca1c296e668180459c5cb5c276b717130143f1a228c6be",
+      "source_mismatches": [],
+      "preserved_executed_snapshots": {},
+      "record_ids": [
+        "p06-before",
+        "p06-after"
+      ]
+    },
+    {
+      "round": 7,
+      "commit": "f86c33913062ace48a6bc5fc76f8457e34459150",
+      "before": "fail",
+      "after": "pass",
+      "evaluator_digest": "98ac1defc6732cc9f1f60fb0ef316ed41abb655a5646ca0df2e1a23203a6778f",
+      "source_mismatches": [],
+      "preserved_executed_snapshots": {},
+      "record_ids": [
+        "p07-before",
+        "p07-after"
+      ]
+    },
+    {
+      "round": 8,
+      "commit": "0f570a7bf6730e859f1b71a312561622279f3635",
+      "before": "fail",
+      "after": "pass",
+      "evaluator_digest": "e82cd7bab8f4d5aaf1f8ff34ad583b259daf4df66eea4a37fe2e7b683dc11305",
+      "source_mismatches": [],
+      "preserved_executed_snapshots": {},
+      "record_ids": [
+        "p08-before",
+        "p08-after"
+      ]
+    },
+    {
+      "round": 9,
+      "commit": "e31a1533d8a1fba7f6cd5f79a78c3fb7b8283ddd",
+      "before": "fail",
+      "after": "pass",
+      "evaluator_digest": "1c981baee55a64958ac01bbd2d8c745117bc6a4eeaec8a38c9db2a5fcdf25c12",
+      "source_mismatches": [],
+      "preserved_executed_snapshots": {},
+      "record_ids": [
+        "p09-before",
+        "p09-after"
+      ]
+    },
+    {
+      "round": 10,
+      "commit": "f1b2f01f825d2f06e36db95a7f40495a87b9a75d",
+      "before": "fail",
+      "after": "pass",
+      "evaluator_digest": "05d7755ac291c6e90efaf23ae302221279806726c2d0d2021f688c1d89f66dfd",
+      "source_mismatches": [],
+      "preserved_executed_snapshots": {},
+      "record_ids": [
+        "p10-before",
+        "p10-after"
+      ]
+    }
+  ],
+  "policy_revision_audit": [
+    {
+      "iteration": 1,
+      "request_digest": "dabb10a420b9da9459f8bc89a77971ecdfdd6027c84e20118054d2913723ef97",
+      "feedback_verified": true,
+      "source_verified": true,
+      "replayed": true,
+      "selected": "proposal"
+    },
+    {
+      "iteration": 2,
+      "request_digest": "a8f427ff8642880ae896a98bc86e413b7a833c04a07fc57ca9e8fd03cf6e9e39",
+      "feedback_verified": true,
+      "source_verified": true,
+      "replayed": true,
+      "selected": "incumbent"
+    },
+    {
+      "iteration": 3,
+      "request_digest": "0a23500361cad3677bb3e71e71fac24a0cc32b467fb10ae84345f366f819a82f",
+      "feedback_verified": true,
+      "source_verified": true,
+      "replayed": true,
+      "selected": "incumbent"
+    },
+    {
+      "iteration": 4,
+      "request_digest": "b7197441825a49ee55f3af88564413ffda486bb9bd4bff40e774e0af1fbd160d",
+      "feedback_verified": true,
+      "source_verified": true,
+      "replayed": true,
+      "selected": "incumbent"
+    },
+    {
+      "iteration": 5,
+      "request_digest": "ebbfe03327e2247110e4f663ff40fa815baf0df04d23ed31a244e0d322860c74",
+      "feedback_verified": true,
+      "source_verified": true,
+      "replayed": true,
+      "selected": "incumbent"
+    },
+    {
+      "iteration": 6,
+      "request_digest": "7d7e28ba30953042f919f0211ef35c3aff0da4c9440ea89411bb85d3912502f6",
+      "feedback_verified": true,
+      "source_verified": true,
+      "replayed": true,
+      "selected": "incumbent"
+    },
+    {
+      "iteration": 7,
+      "request_digest": "815e00532c07cef3f9e49379591554d77f8576fef8df7e63d31fa2f249b8e38a",
+      "feedback_verified": true,
+      "source_verified": true,
+      "replayed": true,
+      "selected": "incumbent"
+    },
+    {
+      "iteration": 8,
+      "request_digest": "acb8a2f18b708ba3edd3609d910f2e50864af7cdc201b89ff0e53d2bd0ef9224",
+      "feedback_verified": true,
+      "source_verified": true,
+      "replayed": true,
+      "selected": "incumbent"
+    },
+    {
+      "iteration": 9,
+      "request_digest": "24cdac9122428ac39d92a82502221dbf91dedd66feb10accfde025e8feb7a033",
+      "feedback_verified": true,
+      "source_verified": true,
+      "replayed": true,
+      "selected": "incumbent"
+    },
+    {
+      "iteration": 10,
+      "request_digest": "e9c34c3c17183b2b477bcbcb8a4b323859251f52028aeee24edf8ef8da8ce814",
+      "feedback_verified": true,
+      "source_verified": true,
+      "replayed": true,
+      "selected": "incumbent"
+    }
+  ],
+  "policy_responses": 10,
+  "discovery_responses": 9,
+  "selected_updates": 1,
+  "structural_proposals": 10,
+  "comparison": {
+    "control_status": "partial_model_unattested",
+    "protocol_digest": "17e403627e74899dab8cf26e9108a8a7343ec694ec672b6cd35e4672d13d0d45",
+    "generator_protocol": "2f25c12f65fc6a867aa30bffcd292024bb805d3fefa57b16a996613628daf08b",
+    "model_cost": null,
+    "interpretation": "observed pair only; not statistical replication",
+    "fixed": {
+      "generation_calls": 4,
+      "best_score": 1.0,
+      "failed_attempts": 0
+    },
+    "updated": {
+      "generation_calls": 1,
+      "best_score": 1.0,
+      "failed_attempts": 0
+    }
+  },
+  "limitations": [
+    "interactive main-session synthesis, not unattended CLI execution",
+    "host model context is not isolated between experiment arms",
+    "identical prompt bindings reuse response artifacts; generation attempts are not independent model calls",
+    "model identity and token cost not independently attested",
+    "packing workload is not one of the paper benchmark reproductions",
+    "comparison uses the same training cases, not held-out tasks",
+    "developer revises the selected incumbent; rejected candidates are retained as evidence but not reselected on later worlds",
+    "one paired run is not a statistical efficiency claim"
+  ]
+}
