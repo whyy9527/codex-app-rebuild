@@ -65,11 +65,17 @@ class CodexWorker:
                     pass
             if process.returncode:
                 # Raw CLI output remains local to caller; never treat a failed call as a proposal.
-                raise RuntimeError('Codex worker failed: ' + stderr[-1500:])
+                self.receipts.append({'role': role, 'status': 'fail', 'exit_code': process.returncode,
+                                      'requested_model': self.model, 'requested_effort': self.effort,
+                                      'prompt_sha256': hashlib.sha256(prompt.encode()).hexdigest(),
+                                      'stderr_sha256': hashlib.sha256(stderr.encode()).hexdigest(),
+                                      'wall_seconds': round(time.monotonic() - started, 6),
+                                      'model_tokens': None, 'model_cost': None})
+                raise RuntimeError('Codex worker failed; diagnostic digest retained')
             attestation = parse_attestation(stderr, self.model, self.effort)
             reply = validate_reply(json.loads((root / 'reply.json').read_text()))
             tokens = re.search(r'tokens used\s*\n\s*([\d,]+)', stdout + '\n' + stderr)
-            receipt = {'role': role, 'attestation': attestation,
+            receipt = {'role': role, 'status': 'pass', 'attestation': attestation,
                        'prompt_sha256': hashlib.sha256(prompt.encode()).hexdigest(),
                        'source_sha256': hashlib.sha256(reply['source'].encode()).hexdigest(),
                        'wall_seconds': round(time.monotonic() - started, 6),

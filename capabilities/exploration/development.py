@@ -19,7 +19,7 @@ def develop_policy(worker, worlds, current_source, *, previous_feedback=None, wi
                    max_calls=6, max_rounds=6, penalty=.05):
     incumbent = RestrictedPolicy(current_source)
     baseline = select_policy(worlds, {'incumbent': incumbent}, incumbent='incumbent', width=width,
-                             max_calls=max_calls, max_rounds=max_rounds, penalty=penalty)
+                             max_calls=max_calls, max_rounds=max_rounds, penalty=penalty, semantics='paper')
     feedback = {'current_replay': baseline, 'previous_feedback': previous_feedback,
                 'completed_worlds': worlds, 'current_source': current_source}
     prompt = ('You are the policy-development agent in a Dream-RSI experiment. Revise executable Python '
@@ -38,17 +38,18 @@ def develop_policy(worker, worlds, current_source, *, previous_feedback=None, wi
     result = {'source': source, 'rationale': reply['rationale'], 'model_receipt': reply['receipt'],
               'feedback_digest': digest(feedback), 'previous_feedback_digest': digest(previous_feedback),
               'incumbent_source_digest': hashlib.sha256(current_source.encode()).hexdigest(),
-              'source_changed': source != current_source, 'structure_changed': shape(source) != shape(current_source),
+              'source_changed': source != current_source, 'structure_changed': None,
               'selected': 'incumbent'}
     try:
         tree = validate_source(source)
+        result['structure_changed'] = shape(source) != shape(current_source)
         if any(isinstance(node, ast.Constant) and isinstance(node.value, str)
                and re.fullmatch(r'n\d{4,}', node.value) for node in ast.walk(tree)):
             raise ValueError('hardcoded historical node identifier')
         proposal = RestrictedPolicy(source)
         selection = select_policy(worlds, {'incumbent': incumbent, 'proposal': proposal},
                                   incumbent='incumbent', width=width, max_calls=max_calls,
-                                  max_rounds=max_rounds, penalty=penalty)
+                                  max_rounds=max_rounds, penalty=penalty, semantics='paper')
         result.update(status='evaluated', selection=selection, selected=selection['selected'])
     except (ValueError, SyntaxError) as error:
         result.update(status='rejected', rejection=str(error), selection=baseline)
