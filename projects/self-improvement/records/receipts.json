@@ -150,5 +150,109 @@
       "prefix": "7bb9861dda3cdc1d0f9e8c6811c874993197fd39aaa522b2a6265b0dcd940670",
       "content": "2a9774fe281549be5954fb7302e98017546cb830dc97154f4216c9ada2732bbf"
     }
+  },
+  {
+    "evaluation": {
+      "audiovisual": "unavailable",
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "tests.test_round02",
+        "-v"
+      ],
+      "evaluator_digest": "b1171a3b09f88488c5cb10a4230942e34d26544a037f632743605c2295f0f97e",
+      "exit_code": 1,
+      "model_cost": null,
+      "model_tokens": null,
+      "output": "test_rejects_ambiguous_or_noncausal_worlds (tests.test_round02.WorldValidation.test_rejects_ambiguous_or_noncausal_worlds) ... \n  test_rejects_ambiguous_or_noncausal_worlds (tests.test_round02.WorldValidation.test_rejects_ambiguous_or_noncausal_worlds) (world=[{'id': 'a', 'parent': 'root', 'score': nan}]) ... FAIL\n  test_rejects_ambiguous_or_noncausal_worlds (tests.test_round02.WorldValidation.test_rejects_ambiguous_or_noncausal_worlds) (world=[{'id': 'a', 'parent': 'root', 'score': inf}]) ... FAIL\n  test_rejects_ambiguous_or_noncausal_worlds (tests.test_round02.WorldValidation.test_rejects_ambiguous_or_noncausal_worlds) (world=[{'id': 'a', 'parent': 'root', 'score': True}]) ... FAIL\n  test_rejects_ambiguous_or_noncausal_worlds (tests.test_round02.WorldValidation.test_rejects_ambiguous_or_noncausal_worlds) (world=[{'id': 'a', 'parent': 'root', 'score': -1}]) ... FAIL\n  test_rejects_ambiguous_or_noncausal_worlds (tests.test_round02.WorldValidation.test_rejects_ambiguous_or_noncausal_worlds) (world=[{'id': 'a', 'parent': 'missing', 'score': 1}]) ... FAIL\n  test_rejects_ambiguous_or_noncausal_worlds (tests.test_round02.WorldValidation.test_rejects_ambiguous_or_noncausal_worlds) (world=[{'id': 'root', 'parent': 'root', 'score': 1}]) ... FAIL\n  test_rejects_ambiguous_or_noncausal_worlds (tests.test_round02.WorldValidation.test_rejects_ambiguous_or_noncausal_worlds) (world=[{'id': 'a', 'parent': 'root', 'score': 1}, {'id': 'a', 'parent': 'root', 'score': 2}]) ... FAIL\n  test_rejects_ambiguous_or_noncausal_worlds (tests.test_round02.WorldValidation.test_rejects_ambiguous_or_noncausal_worlds) (world=[{'id': 'a', 'parent': 'root', 'score': 1}, {'id': 'b', 'parent': 'a', 'score': 1}, {'id': 'c', 'parent': 'a', 'score': 2}]) ... FAIL\ntest_root_can_open_multiple_chronological_branches (tests.test_round02.WorldValidation.test_root_can_open_multiple_chronological_branches) ... ok\n\n======================================================================\nFAIL: test_rejects_ambiguous_or_noncausal_worlds (tests.test_round02.WorldValidation.test_rejects_ambiguous_or_noncausal_worlds) (world=[{'id': 'a', 'parent': 'root', 'score': nan}])\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"<workspace>/tests/test_round02.py\", line 20, in test_rejects_ambiguous_or_noncausal_worlds\n    with self.subTest(world=world), self.assertRaises(ValueError):\n                                    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^\nAssertionError: ValueError not raised\n\n======================================================================\nFAIL: test_rejects_ambiguous_or_noncausal_worlds (tests.test_round02.WorldValidation.test_rejects_ambiguous_or_noncausal_worlds) (world=[{'id': 'a', 'parent': 'root', 'score': inf}])\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"<workspace>/tests/test_round02.py\", line 20, in test_rejects_ambiguous_or_noncausal_worlds\n    with self.subTest(world=world), self.assertRaises(ValueError):\n                                    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^\nAssertionError: ValueError not raised\n\n======================================================================\nFAIL: test_rejects_ambiguous_or_noncausal_worlds (tests.test_round02.WorldValidation.test_rejects_ambiguous_or_noncausal_worlds) (world=[{'id': 'a', 'parent': 'root', 'score': True}])\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"<workspace>/tests/test_round02.py\", line 20, in test_rejects_ambiguous_or_noncausal_worlds\n    with self.subTest(world=world), self.assertRaises(ValueError):\n                                    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^\nAssertionError: ValueError not raised\n\n======================================================================\nFAIL: test_rejects_ambiguous_or_noncausal_worlds (tests.test_round02.WorldValidation.test_rejects_ambiguous_or_noncausal_worlds) (world=[{'id': 'a', 'parent': 'root', 'score': -1}])\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"<workspace>/tests/test_round02.py\", line 20, in test_rejects_ambiguous_or_noncausal_worlds\n    with self.subTest(world=world), self.assertRaises(ValueError):\n                                    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^\nAssertionError: ValueError not raised\n\n======================================================================\nFAIL: test_rejects_ambiguous_or_noncausal_worlds (tests.test_round02.WorldValidation.test_rejects_ambiguous_or_noncausal_worlds) (world=[{'id': 'a', 'parent': 'missing', 'score': 1}])\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"<workspace>/tests/test_round02.py\", line 20, in test_rejects_ambiguous_or_noncausal_worlds\n    with self.subTest(world=world), self.assertRaises(ValueError):\n                                    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^\nAssertionError: ValueError not raised\n\n======================================================================\nFAIL: test_rejects_ambiguous_or_noncausal_worlds (tests.test_round02.WorldValidation.test_rejects_ambiguous_or_noncausal_worlds) (world=[{'id': 'root', 'parent': 'root', 'score': 1}])\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"<workspace>/tests/test_round02.py\", line 20, in test_rejects_ambiguous_or_noncausal_worlds\n    with self.subTest(world=world), self.assertRaises(ValueError):\n                                    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^\nAssertionError: ValueError not raised\n\n======================================================================\nFAIL: test_rejects_ambiguous_or_noncausal_worlds (tests.test_round02.WorldValidation.test_rejects_ambiguous_or_noncausal_worlds) (world=[{'id': 'a', 'parent': 'root', 'score': 1}, {'id': 'a', 'parent': 'root', 'score': 2}])\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"<workspace>/tests/test_round02.py\", line 20, in test_rejects_ambiguous_or_noncausal_worlds\n    with self.subTest(world=world), self.assertRaises(ValueError):\n                                    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^\nAssertionError: ValueError not raised\n\n======================================================================\nFAIL: test_rejects_ambiguous_or_noncausal_worlds (tests.test_round02.WorldValidation.test_rejects_ambiguous_or_noncausal_worlds) (world=[{'id': 'a', 'parent': 'root', 'score': 1}, {'id': 'b', 'parent': 'a', 'score': 1}, {'id': 'c', 'parent': 'a', 'score': 2}])\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"<workspace>/tests/test_round02.py\", line 20, in test_rejects_ambiguous_or_noncausal_worlds\n    with self.subTest(world=world), self.assertRaises(ValueError):\n                                    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^\nAssertionError: ValueError not raised\n\n----------------------------------------------------------------------\nRan 2 tests in 0.001s\n\nFAILED (failures=8)\n",
+      "output_sha256": "ddabe7578192246efb6cb02595a30d3c841539222896b70bd9f4f8946d7b8613",
+      "source_digest": "6de59d70917d5ef4f6cf67d3452a1eb7f12605145ebcd406b51fe8f803f31d57",
+      "source_files": {
+        "capabilities/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "capabilities/exploration/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "capabilities/exploration/ledger.py": "0b5c85140277e20174d446e63360c94524cdd4fb7a524aab34f73710e5dffe28",
+        "capabilities/exploration/replay.py": "cbacb1ac8ff590da3292e669db97eaf16aa3dbd29ebc557e70cafc23acc4d9b2",
+        "runtime/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "runtime/runner.py": "43f926b1e129dd9ab041bf0bbb466d45ea6037d52051aee7dc0751f97bb816bc",
+        "tests/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "tests/test_baseline.py": "3a6a931ccf2a9158bc680ffe4d5fc50c1932a43b4cc403214134221d6f9a4bf5",
+        "tests/test_round01.py": "9669a33f2f9d1867c1f181383c31a70494b66055e934bdfeb92cf79f23fa77d5",
+        "tests/test_round02.py": "b89123a8742f0e17c77688acbb3eba11c0f33b21da74032d841880bb253d3c59",
+        "workflows/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "workflows/self_improve/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "workflows/self_improve/__main__.py": "bcc2338036f30f43bb052d21386be419f1f18600d185f476fd6221915bd3c26d"
+      },
+      "status": "fail",
+      "wall_seconds": 0.032713,
+      "output_scope": "path-redacted projection; output_bytes refers to raw execution"
+    },
+    "hypothesis": "Frozen trees require finite scores causal parents unique ids and linear nonroot branches",
+    "id": "r02-before",
+    "parent": "r01-after",
+    "phase": "before",
+    "round": 2,
+    "export_provenance": {
+      "raw_record_digest": "f29f1560584d1069af91556097c86fb95d57416f2790264208f2b263ca890feb",
+      "projection": "local-path-redacted-v1",
+      "raw_output_sha256": "ddabe7578192246efb6cb02595a30d3c841539222896b70bd9f4f8946d7b8613",
+      "raw_evaluator_digest": "b1171a3b09f88488c5cb10a4230942e34d26544a037f632743605c2295f0f97e"
+    },
+    "_integrity": {
+      "prefix": "1b0f50ecfa1c3834389400989201ea6de204fcc44de77c518ed3db90614fcd97",
+      "content": "51c6e54fa96c9a951d58a50cd80114b54057ebc8f732de7b006d9ce0b95425a4"
+    }
+  },
+  {
+    "evaluation": {
+      "audiovisual": "unavailable",
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "tests.test_round02",
+        "-v"
+      ],
+      "evaluator_digest": "b1171a3b09f88488c5cb10a4230942e34d26544a037f632743605c2295f0f97e",
+      "exit_code": 0,
+      "model_cost": null,
+      "model_tokens": null,
+      "output": "test_rejects_ambiguous_or_noncausal_worlds (tests.test_round02.WorldValidation.test_rejects_ambiguous_or_noncausal_worlds) ... ok\ntest_root_can_open_multiple_chronological_branches (tests.test_round02.WorldValidation.test_root_can_open_multiple_chronological_branches) ... ok\n\n----------------------------------------------------------------------\nRan 2 tests in 0.000s\n\nOK\n",
+      "output_sha256": "0289da9929cbb958290dd0e9b66fb292c93457515681b36abf920415a9145ccf",
+      "source_digest": "a69bcecca653fec1e66f1efe6df4519806bde31a6407014952d0d14dd4168d1c",
+      "source_files": {
+        "capabilities/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "capabilities/exploration/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "capabilities/exploration/ledger.py": "0b5c85140277e20174d446e63360c94524cdd4fb7a524aab34f73710e5dffe28",
+        "capabilities/exploration/replay.py": "0e669d015448c92b6e683c25b0c0b0bdbc2d673b075a475680c004736d3a6c2d",
+        "runtime/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "runtime/runner.py": "43f926b1e129dd9ab041bf0bbb466d45ea6037d52051aee7dc0751f97bb816bc",
+        "tests/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "tests/test_baseline.py": "3a6a931ccf2a9158bc680ffe4d5fc50c1932a43b4cc403214134221d6f9a4bf5",
+        "tests/test_round01.py": "9669a33f2f9d1867c1f181383c31a70494b66055e934bdfeb92cf79f23fa77d5",
+        "tests/test_round02.py": "b89123a8742f0e17c77688acbb3eba11c0f33b21da74032d841880bb253d3c59",
+        "workflows/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "workflows/self_improve/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "workflows/self_improve/__main__.py": "bcc2338036f30f43bb052d21386be419f1f18600d185f476fd6221915bd3c26d"
+      },
+      "status": "pass",
+      "wall_seconds": 0.033183,
+      "output_scope": "path-redacted projection; output_bytes refers to raw execution"
+    },
+    "hypothesis": "Frozen trees require finite scores causal parents unique ids and linear nonroot branches",
+    "id": "r02-after",
+    "parent": "r02-before",
+    "phase": "after",
+    "round": 2,
+    "export_provenance": {
+      "raw_record_digest": "f4b4779ed0cdb06b1a0f8054cba41df8dac8c333285fe25092376cff78ea5d9b",
+      "projection": "local-path-redacted-v1",
+      "raw_output_sha256": "0289da9929cbb958290dd0e9b66fb292c93457515681b36abf920415a9145ccf",
+      "raw_evaluator_digest": "b1171a3b09f88488c5cb10a4230942e34d26544a037f632743605c2295f0f97e"
+    },
+    "_integrity": {
+      "prefix": "f7fc1baf88e2360400f00632393138922053ad8cd1b5b8837636dcdc1edbba62",
+      "content": "013e788c53c1f16ea73eb104cce298825c400380c6b30a680b18e39de913a129"
+    }
   }
 ]
