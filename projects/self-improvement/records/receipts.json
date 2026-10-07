@@ -1,0 +1,52 @@
+[
+  {
+    "evaluation": {
+      "audiovisual": "unavailable",
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-v"
+      ],
+      "evaluator_digest": "54b1a9a1b04ad908c51824297733c1534d1fba75f78079a1d0fb20aae49e0d9f",
+      "exit_code": 0,
+      "model_cost": null,
+      "model_tokens": null,
+      "output": "test_persistence (tests.test_baseline.Baseline.test_persistence) ... ok\ntest_prefix_and_frozen_input (tests.test_baseline.Baseline.test_prefix_and_frozen_input) ... ok\n\n----------------------------------------------------------------------\nRan 2 tests in 0.001s\n\nOK\n",
+      "output_sha256": "fb9f9890126050e369e0afa8b54833caaf138ae0abb5c1285b336ce7185bab42",
+      "source_digest": "c15f25ece77d934653ca95361d14c4b79396d50f94fd3aad8506e7185e6167e0",
+      "source_files": {
+        "capabilities/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "capabilities/exploration/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "capabilities/exploration/ledger.py": "c676af230bdf567d0a00bd408531e2b11dead036d0b9756c9f50a007ba0640f2",
+        "capabilities/exploration/replay.py": "cbacb1ac8ff590da3292e669db97eaf16aa3dbd29ebc557e70cafc23acc4d9b2",
+        "runtime/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "runtime/runner.py": "43f926b1e129dd9ab041bf0bbb466d45ea6037d52051aee7dc0751f97bb816bc",
+        "tests/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "tests/test_baseline.py": "3a6a931ccf2a9158bc680ffe4d5fc50c1932a43b4cc403214134221d6f9a4bf5",
+        "workflows/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "workflows/self_improve/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "workflows/self_improve/__main__.py": "bcc2338036f30f43bb052d21386be419f1f18600d185f476fd6221915bd3c26d"
+      },
+      "status": "pass",
+      "wall_seconds": 0.043615,
+      "output_scope": "path-redacted projection; output_bytes refers to raw execution"
+    },
+    "hypothesis": "Persistent evaluator receipts and prefix-only recorded observations work",
+    "id": "baseline",
+    "parent": null,
+    "phase": "baseline",
+    "round": 0,
+    "export_provenance": {
+      "raw_record_digest": "7e82811763775ee2b722f5992100f3bf6e737b6de0609b4a274a286814f4d416",
+      "projection": "local-path-redacted-v1",
+      "raw_output_sha256": "fb9f9890126050e369e0afa8b54833caaf138ae0abb5c1285b336ce7185bab42",
+      "raw_evaluator_digest": "54b1a9a1b04ad908c51824297733c1534d1fba75f78079a1d0fb20aae49e0d9f"
+    },
+    "_integrity": {
+      "prefix": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "content": "9d3b3c2a06978495c47c586d5362570ee9d0fa9b3eccde854d9ec17d1aa876f3"
+    }
+  }
+]
