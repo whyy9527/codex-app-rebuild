@@ -9,6 +9,7 @@ from capabilities.exploration.ledger import verify_records
 from capabilities.exploration.ledger import digest
 from capabilities.exploration.objective import select_policy
 from runtime.policy_runtime import RestrictedPolicy
+from capabilities.exploration.pool import select_pool
 
 
 def engineering_audit(records):
@@ -76,6 +77,10 @@ def experiment_audit(experiment, *, replay=False):
                                   'proposal':RestrictedPolicy(source)},incumbent='incumbent',
                                  width=settings['width'],max_calls=settings['max_calls'],
                                  max_rounds=settings['max_rounds'],penalty=settings['penalty'],semantics=settings['semantics'])
+            if feedback.get('candidate_sources'):
+                result=select_pool(feedback['completed_worlds'],feedback['current_source'],feedback['candidate_sources'],
+                                   proposal_source=source,width=settings['width'],max_calls=settings['max_calls'],
+                                   max_rounds=settings['max_rounds'],penalty=settings['penalty'])
             if result!=development['selection']:
                 # JSON projects tuples as lists.
                 if json.loads(json.dumps(result))!=development['selection']:

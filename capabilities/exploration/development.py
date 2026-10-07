@@ -26,6 +26,7 @@ def develop_policy(worker, worlds, current_source, *, previous_feedback=None, wi
                              max_rounds=max_rounds,penalty=penalty)
     feedback = {'current_replay': baseline, 'previous_feedback': previous_feedback,
                 'completed_worlds': worlds, 'current_source': current_source}
+    if candidate_sources: feedback['candidate_sources']=list(candidate_sources)
     prompt = ('You are the policy-development agent in a Dream-RSI experiment. Revise executable Python '
               'policy(observed, context) based on the frozen replay feedback below. Propose new code, not a template name. '
               'The deployed policy sees ONLY observed nodes and public context: width, remaining_calls, remaining_rounds, '
