@@ -38,6 +38,8 @@ def replay_score(runs, *, total_calls, best_recorded, penalty=.05):
 
 
 def policy_digest(policy):
+    if isinstance(getattr(policy, 'source', None), str):
+        return hashlib.sha256(policy.source.encode()).hexdigest()
     try:
         source = inspect.getsource(policy)
     except (OSError, TypeError):
