@@ -21,7 +21,10 @@ def validate_world(nodes):
 
 
 class Replay:
-    def __init__(self, nodes):
+    def __init__(self, nodes, width=1):
+        if isinstance(width, bool) or not isinstance(width, int) or width < 1:
+            raise ValueError("width must be a positive integer")
+        self.width = width
         self._nodes = validate_world(nodes)
         self._seen = [{"id": "root", "parent": None, "score": 0.0}]
         self.rounds = 0
@@ -29,7 +32,19 @@ class Replay:
     def observation(self):
         return deepcopy(self._seen)
 
+    def legal_actions(self):
+        parents = {n["parent"] for n in self._seen}
+        return [n["id"] for n in self._seen if n["id"] == "root" or n["id"] not in parents]
+
     def step(self, parents):
+        if not isinstance(parents, (list, tuple)) or any(not isinstance(p, str) for p in parents):
+            raise ValueError("action must be a batch of parent identifiers")
+        if len(parents) > self.width or len(set(parents)) != len(parents):
+            raise ValueError("duplicate or overwide batch")
+        if any(parent not in self.legal_actions() for parent in parents):
+            raise ValueError("action refers to unseen or nonleaf node")
+        if not parents:
+            return {"status": "stopped", "revealed": []}
         seen = {n["id"] for n in self._seen}
         additions = []
         for parent in parents:

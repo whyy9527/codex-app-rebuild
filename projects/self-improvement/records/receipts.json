@@ -476,5 +476,123 @@
       "prefix": "b103a09e5dfe23ddaef831334d1b94ba240c2d5770f69cf6c4f68fc0d677c3dc",
       "content": "6bb25bcd96c435bc560004b70bca121bbe0641e9f8ff7b5b8076e233fce24f27"
     }
+  },
+  {
+    "evaluation": {
+      "audiovisual": "unavailable",
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "tests.test_round05",
+        "-v"
+      ],
+      "evaluator_digest": "77dba44d0598f340a0b64ba4eb8d8e5e0e128b60b1915b36ab4e290c4fd2b8b5",
+      "exit_code": 1,
+      "integrity": "verified",
+      "model_cost": null,
+      "model_tokens": null,
+      "output": "test_atomic_unsupported_batch (tests.test_round05.LegalReplay.test_atomic_unsupported_batch) ... ERROR\ntest_duplicate_unseen_nonleaf_and_overwide_rejected (tests.test_round05.LegalReplay.test_duplicate_unseen_nonleaf_and_overwide_rejected) ... ERROR\ntest_parallel_batch_stop_and_view_isolation (tests.test_round05.LegalReplay.test_parallel_batch_stop_and_view_isolation) ... ERROR\n\n======================================================================\nERROR: test_atomic_unsupported_batch (tests.test_round05.LegalReplay.test_atomic_unsupported_batch)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"<workspace>/tests/test_round05.py\", line 22, in test_atomic_unsupported_batch\n    replay = Replay(WORLD, width=2)\nTypeError: Replay.__init__() got an unexpected keyword argument 'width'\n\n======================================================================\nERROR: test_duplicate_unseen_nonleaf_and_overwide_rejected (tests.test_round05.LegalReplay.test_duplicate_unseen_nonleaf_and_overwide_rejected)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"<workspace>/tests/test_round05.py\", line 11, in test_duplicate_unseen_nonleaf_and_overwide_rejected\n    replay = Replay(WORLD, width=2)\nTypeError: Replay.__init__() got an unexpected keyword argument 'width'\n\n======================================================================\nERROR: test_parallel_batch_stop_and_view_isolation (tests.test_round05.LegalReplay.test_parallel_batch_stop_and_view_isolation)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"<workspace>/tests/test_round05.py\", line 31, in test_parallel_batch_stop_and_view_isolation\n    replay = Replay(WORLD, width=2)\nTypeError: Replay.__init__() got an unexpected keyword argument 'width'\n\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nFAILED (errors=3)\n",
+      "output_bytes": 2123,
+      "output_sha256": "f7292d42cffcc96bf257c600eeda6e8c3598ff8e63c180e0b808a3dceaf6740d",
+      "output_truncated": false,
+      "snapshot": "artifacts/snapshots/7ad6d3ec365feaa7524ce5cb090d7377c647c4d098a692d12b4fc39492458143",
+      "source_digest": "7ad6d3ec365feaa7524ce5cb090d7377c647c4d098a692d12b4fc39492458143",
+      "source_files": {
+        "capabilities/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "capabilities/exploration/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "capabilities/exploration/ledger.py": "d607d7dcf7944f92532abea41f27c4e1f8a8102bbe632334fffda6de7c7e8569",
+        "capabilities/exploration/replay.py": "0e669d015448c92b6e683c25b0c0b0bdbc2d673b075a475680c004736d3a6c2d",
+        "runtime/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "runtime/runner.py": "8c7bf794c40ebb786ee3eb23f4cd3dc1de5df633e702349a05767f9939e4e12a",
+        "tests/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "tests/test_baseline.py": "3a6a931ccf2a9158bc680ffe4d5fc50c1932a43b4cc403214134221d6f9a4bf5",
+        "tests/test_round01.py": "9669a33f2f9d1867c1f181383c31a70494b66055e934bdfeb92cf79f23fa77d5",
+        "tests/test_round02.py": "b89123a8742f0e17c77688acbb3eba11c0f33b21da74032d841880bb253d3c59",
+        "tests/test_round03.py": "3f20347ddf54babb6a84dfd6b4a0492d95384f90191434b4687d31b74bf6dff3",
+        "tests/test_round04.py": "0e1edeed1785afa1dbeeec81c574787a045edd7cf79650064a2f93a642037891",
+        "tests/test_round05.py": "a14ac7c826c9a005e6690d379b2419c2c48d472376d34b07c282b362d4b77adb",
+        "workflows/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "workflows/self_improve/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "workflows/self_improve/__main__.py": "8fe2d6bdca45b14617476246583262dda2e08bd1869fab1fbf5143c7c400bd43"
+      },
+      "status": "fail",
+      "wall_seconds": 0.041418,
+      "output_scope": "path-redacted projection; output_bytes refers to raw execution"
+    },
+    "hypothesis": "Enforce prefix-legal atomic bounded batches and stop actions without leaking continuation availability",
+    "id": "r05-before",
+    "parent": "r04-after",
+    "phase": "before",
+    "round": 5,
+    "export_provenance": {
+      "raw_record_digest": "d88da19c6319140a7ba1b174c7f15887434d5a6d961efad58e91cc4021401016",
+      "projection": "local-path-redacted-v1",
+      "raw_output_sha256": "f7292d42cffcc96bf257c600eeda6e8c3598ff8e63c180e0b808a3dceaf6740d",
+      "raw_evaluator_digest": "77dba44d0598f340a0b64ba4eb8d8e5e0e128b60b1915b36ab4e290c4fd2b8b5"
+    },
+    "_integrity": {
+      "prefix": "b8c5a687702e956e009c8ef960b017e0a6071b34401d151a7589baabd5badbe7",
+      "content": "8ae5951473550a5f6d5e9463faeff98587a1a7eb8589ebd64a6da17678a04c4d"
+    }
+  },
+  {
+    "evaluation": {
+      "audiovisual": "unavailable",
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "tests.test_round05",
+        "-v"
+      ],
+      "evaluator_digest": "77dba44d0598f340a0b64ba4eb8d8e5e0e128b60b1915b36ab4e290c4fd2b8b5",
+      "exit_code": 0,
+      "integrity": "verified",
+      "model_cost": null,
+      "model_tokens": null,
+      "output": "test_atomic_unsupported_batch (tests.test_round05.LegalReplay.test_atomic_unsupported_batch) ... ok\ntest_duplicate_unseen_nonleaf_and_overwide_rejected (tests.test_round05.LegalReplay.test_duplicate_unseen_nonleaf_and_overwide_rejected) ... ok\ntest_parallel_batch_stop_and_view_isolation (tests.test_round05.LegalReplay.test_parallel_batch_stop_and_view_isolation) ... ok\n\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n",
+      "output_bytes": 470,
+      "output_sha256": "607deda0f007cdffd976b01dcd8a329177510d4dc34c56e05b77de09c1f5717d",
+      "output_truncated": false,
+      "snapshot": "artifacts/snapshots/9bae375f83819f774179ebd65f1e231e99f842374037b28719dc45d9fd80bc08",
+      "source_digest": "9bae375f83819f774179ebd65f1e231e99f842374037b28719dc45d9fd80bc08",
+      "source_files": {
+        "capabilities/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "capabilities/exploration/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "capabilities/exploration/ledger.py": "d607d7dcf7944f92532abea41f27c4e1f8a8102bbe632334fffda6de7c7e8569",
+        "capabilities/exploration/replay.py": "bf449895549d5b7307790dfc8e11f2bd2deb99e5ef13b0ecd37f4d19dad823c0",
+        "runtime/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "runtime/runner.py": "8c7bf794c40ebb786ee3eb23f4cd3dc1de5df633e702349a05767f9939e4e12a",
+        "tests/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "tests/test_baseline.py": "3a6a931ccf2a9158bc680ffe4d5fc50c1932a43b4cc403214134221d6f9a4bf5",
+        "tests/test_round01.py": "9669a33f2f9d1867c1f181383c31a70494b66055e934bdfeb92cf79f23fa77d5",
+        "tests/test_round02.py": "b89123a8742f0e17c77688acbb3eba11c0f33b21da74032d841880bb253d3c59",
+        "tests/test_round03.py": "3f20347ddf54babb6a84dfd6b4a0492d95384f90191434b4687d31b74bf6dff3",
+        "tests/test_round04.py": "0e1edeed1785afa1dbeeec81c574787a045edd7cf79650064a2f93a642037891",
+        "tests/test_round05.py": "a14ac7c826c9a005e6690d379b2419c2c48d472376d34b07c282b362d4b77adb",
+        "workflows/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "workflows/self_improve/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "workflows/self_improve/__main__.py": "8fe2d6bdca45b14617476246583262dda2e08bd1869fab1fbf5143c7c400bd43"
+      },
+      "status": "pass",
+      "wall_seconds": 0.041275,
+      "output_scope": "path-redacted projection; output_bytes refers to raw execution"
+    },
+    "hypothesis": "Enforce prefix-legal atomic bounded batches and stop actions without leaking continuation availability",
+    "id": "r05-after",
+    "parent": "r05-before",
+    "phase": "after",
+    "round": 5,
+    "export_provenance": {
+      "raw_record_digest": "6a933d50dd22bc6bb227e20c861c2b3d86e552f17936077f5bb3ba06b7f57ec7",
+      "projection": "local-path-redacted-v1",
+      "raw_output_sha256": "607deda0f007cdffd976b01dcd8a329177510d4dc34c56e05b77de09c1f5717d",
+      "raw_evaluator_digest": "77dba44d0598f340a0b64ba4eb8d8e5e0e128b60b1915b36ab4e290c4fd2b8b5"
+    },
+    "_integrity": {
+      "prefix": "faa95ca4200184e81cb1db6a7d27641641c936dd11bf78f97f575e7425a700c9",
+      "content": "dfc3a258545fde33cf0892ad304cc94493ce2547300b9ccd179d10f59713edcd"
+    }
   }
 ]
