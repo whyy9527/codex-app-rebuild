@@ -75,7 +75,7 @@ class Harness:
             state=self.read(task_id)
             if state['phase']=='working': return state
             if state['phase']!='ready': raise ValueError('task is not ready')
-            if time.time()>=state['deadline'] or state['iterations']>=state['max_iterations']:
+            if time.time()>=state['deadline']:
                 state.update(phase='budget_exhausted',last_error='iteration or wall budget exhausted')
                 return self.write(state)
             state['iterations']+=1

@@ -1,0 +1,267 @@
+{
+  "kind": "mechanism_ablation_not_model_effectiveness",
+  "score": "10 fixed checks, 10 points each",
+  "baseline_commit": "2ad51758f0398f607f9164b4f0fd1672ecc07db3",
+  "candidate_commit": "57190bf106d19e18b7c64670c4df983dd752cd63",
+  "push_verified": true,
+  "suite_digest": "2cd322ab848324cd88d97921eaf7c3b0382760b4cbb0fddf88987f8be853728b",
+  "checks": [
+    "tests.harness.test_01",
+    "tests.harness.test_02",
+    "tests.harness.test_03",
+    "tests.harness.test_04",
+    "tests.harness.test_05",
+    "tests.harness.test_06",
+    "tests.harness.test_07",
+    "tests.harness.test_resume_reserved",
+    "tests.harness.test_contracts"
+  ],
+  "results": [
+    {
+      "checks": 10,
+      "passed": 10,
+      "failures": [],
+      "errors": [],
+      "name": "原版基线",
+      "commit": "2ad51758f0398f607f9164b4f0fd1672ecc07db3",
+      "score": 100,
+      "source_digest": "d7253d44e791e0afee52fcefd45d903c770e6b490ac15fd13679b122796ce595",
+      "output_sha256": "9caa39383a0f9efd5c6bf1dd3716970d4d74d0abe700199ab67570db0a1d30bf"
+    },
+    {
+      "checks": 10,
+      "passed": 10,
+      "failures": [],
+      "errors": [],
+      "name": "精简版",
+      "commit": "57190bf106d19e18b7c64670c4df983dd752cd63",
+      "score": 100,
+      "source_digest": "32b313415f6b6bc4d0f6a490c90803840993a5da827b75dc4a3e785d0d3f380d",
+      "output_sha256": "2abc2b615836958f3e10b08a19afde9f42e8c24398c9ba8ef03b84e626c50976"
+    },
+    {
+      "checks": 10,
+      "passed": 9,
+      "failures": [
+        "tests.harness.test_01.SessionTasks.test_task_survives_restart_without_cross_session_activation"
+      ],
+      "errors": [],
+      "name": "去会话隔离",
+      "commit": "57190bf106d19e18b7c64670c4df983dd752cd63",
+      "score": 90,
+      "source_digest": "4ce4fc1d4652c9c55b66462e927dfd7299f28067ee72db7def87ec6c9dd9eba6",
+      "output_sha256": "a7cc2469266dc5272845174eca19762e4766209e2fd46e25d4d23234e8f6191c"
+    },
+    {
+      "checks": 10,
+      "passed": 8,
+      "failures": [
+        "tests.harness.test_03.RealVerifier.test_failure_then_repair_and_no_self_certified_success",
+        "tests.harness.test_contracts.Contracts.test_failed_last_attempt_stops_at_budget"
+      ],
+      "errors": [],
+      "name": "去真实验收",
+      "commit": "57190bf106d19e18b7c64670c4df983dd752cd63",
+      "score": 80,
+      "source_digest": "4d9021049313b7b1a09fcb08a95131e574802ca3d1ea06cae06369578c1b077d",
+      "output_sha256": "2d72794bdb5d148d59a22465a7b8ff71ed3867dc028010edd2fdb0a0eb4bd444"
+    },
+    {
+      "checks": 10,
+      "passed": 10,
+      "failures": [],
+      "errors": [],
+      "name": "去入口次数检查",
+      "commit": "57190bf106d19e18b7c64670c4df983dd752cd63",
+      "score": 100,
+      "source_digest": "085d6b4fd6ec693e93f6b9f51e3fc0c65bf058b3f59992a221a97b477033e662",
+      "output_sha256": "9caa39383a0f9efd5c6bf1dd3716970d4d74d0abe700199ab67570db0a1d30bf"
+    },
+    {
+      "checks": 10,
+      "passed": 9,
+      "failures": [
+        "tests.harness.test_contracts.Contracts.test_failed_last_attempt_stops_at_budget"
+      ],
+      "errors": [],
+      "name": "去全部次数预算",
+      "commit": "57190bf106d19e18b7c64670c4df983dd752cd63",
+      "score": 90,
+      "source_digest": "4cad9d682e89cb6bf9d4c412bb691d78b3415735f0c4c148e34f6b1d618d51f9",
+      "output_sha256": "80f0854256d579ceee97cbc3e417d8249508a2b3a5b27c1b0be018abb6f72ce3"
+    },
+    {
+      "checks": 10,
+      "passed": 9,
+      "failures": [
+        "tests.harness.test_contracts.Contracts.test_changed_acceptance_cannot_complete_task"
+      ],
+      "errors": [],
+      "name": "去冻结验收",
+      "commit": "57190bf106d19e18b7c64670c4df983dd752cd63",
+      "score": 90,
+      "source_digest": "a1df09b44ef9a830b057f58dc38bf4894a3ed531f4de5a9f8e63ce3d8b696d98",
+      "output_sha256": "3ddecbc4526a05a074d0e4892f87aa64e62d6ac322ac423fad28eed12915fbb2"
+    },
+    {
+      "checks": 10,
+      "passed": 8,
+      "failures": [],
+      "errors": [
+        "tests.harness.test_05.LifecycleHooks.test_hooks_only_continue_an_explicitly_started_scoped_task",
+        "tests.harness.test_06.BoundedContinuation.test_duplicate_stop_does_not_spawn_again_and_stagnation_stops"
+      ],
+      "name": "去Stop请求",
+      "commit": "57190bf106d19e18b7c64670c4df983dd752cd63",
+      "score": 80,
+      "source_digest": "c98bb8f04f4c4c642c60e5d3e9a29ae53ef0aa0624f8cb887efc4d89a766f45e",
+      "output_sha256": "e8da8f34b4b8e69c5cb265590e93779c6711f1d77612fa604dbc922574251eae"
+    },
+    {
+      "checks": 10,
+      "passed": 9,
+      "failures": [
+        "tests.harness.test_06.BoundedContinuation.test_duplicate_stop_does_not_spawn_again_and_stagnation_stops"
+      ],
+      "errors": [],
+      "name": "去无进展停止",
+      "commit": "57190bf106d19e18b7c64670c4df983dd752cd63",
+      "score": 90,
+      "source_digest": "f092a4a3e723585c576c915e4097f321aac7d3008da64e42d6f4558d9f9958da",
+      "output_sha256": "a9db08877c62382dfa4804b5b492e7c4cc9abbeaae3583bb85e5873c05d0571a"
+    },
+    {
+      "checks": 10,
+      "passed": 9,
+      "failures": [
+        "tests.harness.test_07.UserInterrupt.test_explicit_pause_and_only_explicit_resume_reactivates"
+      ],
+      "errors": [],
+      "name": "去暂停捕获",
+      "commit": "57190bf106d19e18b7c64670c4df983dd752cd63",
+      "score": 90,
+      "source_digest": "6fe0f4c4bdbc086110fd831ed3a7c973c98ffd7950fe9e6495ec2f1d2c5be100",
+      "output_sha256": "ef09c81973728d2ec9a24a685787e01cb998592f61683d7b9c29d224cd3e79cc"
+    }
+  ],
+  "scope": "Deterministic control contracts only. No independent model calls, no unattended model success-rate experiment.",
+  "mutation_definitions": {
+    "去会话隔离": "Scope key ignores session_id.",
+    "去真实验收": "Verifier executes true rather than the frozen acceptance command; deliberate invalid control.",
+    "去入口次数检查": "Remove only the iteration guard in begin; keep wall time, verification and resume guards.",
+    "去全部次数预算": "Remove iteration checks in begin, verify and resume; preserve wall and failure budgets.",
+    "去冻结验收": "Disable test-manifest equality checks before and after evaluation.",
+    "去Stop请求": "Disable the Stop branch.",
+    "去无进展停止": "Disable the repeated progress-marker branch.",
+    "去暂停捕获": "Disable the UserPromptSubmit pause branch."
+  },
+  "earlier_measurements": [
+    {
+      "scope_correction": "First budget mutation removed begin and resume checks, but retained verify guard. Label was too broad; not full budget removal.",
+      "suite_digest": "2cd322ab848324cd88d97921eaf7c3b0382760b4cbb0fddf88987f8be853728b",
+      "results": [
+        {
+          "name": "原版基线",
+          "score": 100,
+          "source_digest": "d7253d44e791e0afee52fcefd45d903c770e6b490ac15fd13679b122796ce595"
+        },
+        {
+          "name": "精简版",
+          "score": 100,
+          "source_digest": "32b313415f6b6bc4d0f6a490c90803840993a5da827b75dc4a3e785d0d3f380d"
+        },
+        {
+          "name": "去会话隔离",
+          "score": 90,
+          "source_digest": "4ce4fc1d4652c9c55b66462e927dfd7299f28067ee72db7def87ec6c9dd9eba6"
+        },
+        {
+          "name": "去真实验收",
+          "score": 80,
+          "source_digest": "4d9021049313b7b1a09fcb08a95131e574802ca3d1ea06cae06369578c1b077d"
+        },
+        {
+          "name": "去次数预算",
+          "score": 100,
+          "source_digest": "2753e6c61122e2a4e36b409e3bcd11b996766345a6272461b78083a350c9e42b"
+        },
+        {
+          "name": "去冻结验收",
+          "score": 90,
+          "source_digest": "a1df09b44ef9a830b057f58dc38bf4894a3ed531f4de5a9f8e63ce3d8b696d98"
+        },
+        {
+          "name": "去Stop请求",
+          "score": 80,
+          "source_digest": "c98bb8f04f4c4c642c60e5d3e9a29ae53ef0aa0624f8cb887efc4d89a766f45e"
+        },
+        {
+          "name": "去无进展停止",
+          "score": 90,
+          "source_digest": "f092a4a3e723585c576c915e4097f321aac7d3008da64e42d6f4558d9f9958da"
+        },
+        {
+          "name": "去暂停捕获",
+          "score": 90,
+          "source_digest": "6fe0f4c4bdbc086110fd831ed3a7c973c98ffd7950fe9e6495ec2f1d2c5be100"
+        }
+      ]
+    },
+    {
+      "scope_correction": "Budget-entry mutation still removed both begin and resume checks; final run isolates begin only.",
+      "suite_digest": "2cd322ab848324cd88d97921eaf7c3b0382760b4cbb0fddf88987f8be853728b",
+      "results": [
+        {
+          "name": "原版基线",
+          "score": 100,
+          "source_digest": "d7253d44e791e0afee52fcefd45d903c770e6b490ac15fd13679b122796ce595"
+        },
+        {
+          "name": "精简版",
+          "score": 100,
+          "source_digest": "32b313415f6b6bc4d0f6a490c90803840993a5da827b75dc4a3e785d0d3f380d"
+        },
+        {
+          "name": "去会话隔离",
+          "score": 90,
+          "source_digest": "4ce4fc1d4652c9c55b66462e927dfd7299f28067ee72db7def87ec6c9dd9eba6"
+        },
+        {
+          "name": "去真实验收",
+          "score": 80,
+          "source_digest": "4d9021049313b7b1a09fcb08a95131e574802ca3d1ea06cae06369578c1b077d"
+        },
+        {
+          "name": "去入口次数检查",
+          "score": 100,
+          "source_digest": "2753e6c61122e2a4e36b409e3bcd11b996766345a6272461b78083a350c9e42b"
+        },
+        {
+          "name": "去全部次数预算",
+          "score": 90,
+          "source_digest": "67b3930ea7caf30208383cc061f20ca9681db06c9b41837eed1f8cd36037ef45"
+        },
+        {
+          "name": "去冻结验收",
+          "score": 90,
+          "source_digest": "a1df09b44ef9a830b057f58dc38bf4894a3ed531f4de5a9f8e63ce3d8b696d98"
+        },
+        {
+          "name": "去Stop请求",
+          "score": 80,
+          "source_digest": "c98bb8f04f4c4c642c60e5d3e9a29ae53ef0aa0624f8cb887efc4d89a766f45e"
+        },
+        {
+          "name": "去无进展停止",
+          "score": 90,
+          "source_digest": "f092a4a3e723585c576c915e4097f321aac7d3008da64e42d6f4558d9f9958da"
+        },
+        {
+          "name": "去暂停捕获",
+          "score": 90,
+          "source_digest": "6fe0f4c4bdbc086110fd831ed3a7c973c98ffd7950fe9e6495ec2f1d2c5be100"
+        }
+      ]
+    }
+  ]
+}
