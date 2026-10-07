@@ -115,3 +115,24 @@ class Harness:
             elif time.time()>=current['deadline'] or current['iterations']>=current['max_iterations']: current['phase']='budget_exhausted'
             else: current['phase']='ready'
             return self.write(current)
+
+    def continuation(self,task_id,turn_id):
+        if not isinstance(turn_id,str) or not turn_id: return False
+        with self.lock():
+            state=self.read(task_id)
+            if state['phase'] not in ('ready','working'): return False
+            key=digest([state['session_id'],turn_id,'Stop'])
+            if key in state['hook_events']: return False
+            state['hook_events'].append(key)
+            marker=[state['iterations'],sum(a['evaluation'] is not None for a in state['attempts']),state['phase']]
+            if time.time()>=state['deadline'] or len(state['hook_events'])>state['max_iterations']*2+1:
+                state.update(phase='budget_exhausted',last_error='continuation or wall budget exhausted')
+                self.write(state)
+                return False
+            if state.get('last_hook_progress')==marker:
+                state.update(phase='blocked',last_error='no measured progress after continuation')
+                self.write(state)
+                return False
+            state['last_hook_progress']=marker
+            self.write(state)
+            return True

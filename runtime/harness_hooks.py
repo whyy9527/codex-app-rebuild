@@ -24,6 +24,7 @@ def handle(harness,payload):
         if state: context+=' Existing task: '+json.dumps(summary(state))
         return {'hookSpecificOutput':{'hookEventName':event,'additionalContext':context}}
     if event=='Stop' and state and state['phase'] in ('ready','working'):
+        if not harness.continuation(state['id'],payload.get('turn_id')): return {}
         return {'decision':'block','reason':('Continue the explicitly requested exploration task '+state['id']+'. '
                 'Read exploration_status. If working, run exploration_verify with the frozen verifier; '
                 'if ready, read measured feedback and reserve the next attempt with exploration_next, then act and verify. '
