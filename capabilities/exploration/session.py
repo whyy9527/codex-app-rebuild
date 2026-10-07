@@ -4,6 +4,7 @@ import fcntl
 import json
 import math
 from pathlib import Path
+import shutil
 import time
 from capabilities.exploration.ledger import digest
 from capabilities.exploration.online import copy_workspace, workspace_manifest
@@ -14,6 +15,18 @@ def save(path, value):
     temporary = path.with_suffix('.tmp')
     temporary.write_text(json.dumps(value, indent=2, ensure_ascii=False) + '\n')
     temporary.replace(path)
+
+
+def prepare(parent, destination):
+    """Publish a completed copy atomically; interrupted staging copies may be retried."""
+    if destination.exists():
+        if workspace_manifest(destination)!=workspace_manifest(parent):
+            raise ValueError('prepared workspace differs from parent')
+        return
+    staging=destination.with_name(destination.name+'.preparing')
+    if staging.exists(): shutil.rmtree(staging)
+    copy_workspace(parent,staging)
+    staging.replace(destination)
 
 
 class OnlineSession:
@@ -28,12 +41,14 @@ class OnlineSession:
         self.path = self.output/'state.json'
         self.config = {'input_digest':digest(workspace_manifest(self.source)),
                        'policy_digest':digest(policy_source), 'max_calls':max_calls, 'width':1}
-        if self.path.exists():
-            if self.read()['config'] != self.config:
-                raise ValueError('resume configuration differs from frozen run')
-        else:
-            copy_workspace(self.source, self.output/'root')
-            save(self.path, {'config':self.config, 'nodes':[], 'pending':None, 'done':False, 'rounds':0})
+        with (self.output/'lock').open('a') as lock:
+            fcntl.flock(lock,fcntl.LOCK_EX | fcntl.LOCK_NB)
+            if self.path.exists():
+                if self.read()['config'] != self.config:
+                    raise ValueError('resume configuration differs from frozen run')
+            else:
+                prepare(self.source,self.output/'root')
+                save(self.path, {'config':self.config, 'nodes':[], 'pending':None, 'done':False, 'rounds':0})
 
     def read(self):
         return json.loads(self.path.read_text())
@@ -65,11 +80,16 @@ class OnlineSession:
                 save(self.path,state)
                 return state
             identifier, parent = f'n{len(state["nodes"])+1:04}', action[0]
-            copy_workspace(self.output/parent, self.output/identifier)
-            state['pending'] = {'id':identifier,'parent':parent}
+            state['pending'] = {'id':identifier,'parent':parent,'prepared':False}
             save(self.path,state)
         pending = state['pending']
         work = self.output/pending['id']
+        if not pending.get('prepared',True):
+            if pending['id']!=f'n{len(state["nodes"])+1:04}' or pending['parent'] not in legal:
+                raise ValueError('invalid pending candidate')
+            prepare(self.output/pending['parent'],work)
+            pending['prepared']=True
+            save(self.path,state)
         began = time.monotonic()
         try:
             generation = agent(work, observed, {**context,'parent':pending['parent']})
@@ -80,7 +100,7 @@ class OnlineSession:
             if evaluation['status']!='pass': score=0.0
         except Exception as error:
             generation, evaluation, score = None, {'status':'error','error_type':type(error).__name__}, 0.0
-        node = {**pending,'score':score,'observation':evaluation,'generation':generation,
+        node = {'id':pending['id'],'parent':pending['parent'],'score':score,'observation':evaluation,'generation':generation,
                 'workspace_digest':digest(workspace_manifest(work)),
                 'cost':{'generation_calls':1,'active_wall_seconds':round(time.monotonic()-began,6),
                         'model_tokens':None,'model_cost':None}}
