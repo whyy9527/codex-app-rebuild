@@ -24,7 +24,9 @@ Run `python3 -m workflows.paper.experiment --input <explicit-input> --out artifa
 
 Audit the exported experiment with `python3 -m workflows.paper.audit --receipts <receipts> --experiment <experiment-report> --replay --out artifacts/<audit>.json`. This checks feedback chains, response source and executed artifacts, and reruns policy selection. Identical request bindings reuse responses: distinguish unique response count, generation attempts, evaluated candidates and selected policy updates. A cached shared response is not an independent model call or statistical control.
 
-If source-to-commit audit differs, preserve the executed snapshot and state the mismatch; never rewrite a receipt to fit the commit. See `projects/paper-v2/REPORT.md` for verified command usage and the narrow benchmark limitations. Rejected proposals are retained but the current driver does not reselect the complete proposal pool after new worlds; ties or unexercised branches do not establish new capability.
+If source-to-commit audit differs, preserve the executed snapshot and state the mismatch; never rewrite a receipt to fit the commit. The current driver reselects the complete policy pool and audit reconstructs it from feedback. See `projects/paper-v3/REPORT.md` for verified commands and limitations. Frozen-history reselection is not new-task validation; ties or unexercised branches do not establish new capability.
+
+For availability use `workflows.paper.preflight --model <explicit-model> --out <result>`; failure stays unavailable for experimentation. For independent algorithm validation use `workflows.paper.validation` with explicit program workspaces and seeds. Keep a tied validation set instead of replacing it until improvement appears. Request scopes separate experiment arms; response-use counters do not attest independent host context or concurrent billing. Workspace preparation recovery was tested, but model-return-to-state-commit recovery is still incomplete.
 
 ## Interpretation and boundaries
 

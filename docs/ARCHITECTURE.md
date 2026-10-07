@@ -1,5 +1,17 @@
 # 原型架构与边界
 
+## 第三阶段补充
+
+`capabilities/exploration/pool.py` 对所有历史策略源码在全部完成世界重新选择；开发器传递完整池，在线部署能接受旧策略胜出。反馈包含池源码，audit 可重建选择；旧实验报告保持原样。
+
+请求 broker 支持 scope，实验各运行使用不同 scope，回包复用次数单独记录。不同组不自动共享回包，但宿主上下文仍不隔离。CodexWorker 可持久保存失败；`workflows/paper/preflight.py` 通过真实有界请求检查可用性，本机预检仍失败。
+
+`capabilities/exploration/benchmark.py` 生成可复现不重叠实例；validation 工作流执行冻结算法，stage_report 核对十轮工程来源和逐题差异，reselect 重选上阶段实际历史。均不将验证结果用于新策略选择。
+
+OnlineSession 先登记待准备候选，目录通过临时副本原子发布，构造与推进均使用运行锁。仅目录准备阶段的中断恢复已测试，不承诺整个模型费用和调用的恰好一次语义。
+
+第三阶段实测与剩余边界见 [报告](../projects/paper-v3/REPORT.md)。以下各阶段描述保留其历史状态。
+
 ## 第二阶段补充
 
 `runtime/codex_worker.py` 提供显式模型 CLI 契约与运行声明校验；账号拒绝调用时不返回伪提案。`runtime/request_broker.py` 保存实际 prompt 与绑定回包，`workflows/paper/requests.py` 负责显式交接。相同绑定复用回包，所以响应数与候选尝试数分别计量；该接口不能认证外部模型。

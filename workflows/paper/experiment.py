@@ -113,7 +113,7 @@ class Experiment:
                        'reused_discovery_responses':call_count-sum(r['role']=='discovery-generation' for r in requests),
                        'policy_responses':sum(r['role']=='policy-development' for r in requests),
                        'discovery_responses':sum(r['role']=='discovery-generation' for r in requests),
-                       'selected_updates':sum(d['selected']=='proposal' for d in state['developments']),
+                       'selected_updates':sum(d['selected']!='incumbent' for d in state['developments']),
                        'structural_proposals':sum(d['structure_changed'] is True for d in state['developments']),
                        'runtime_model':None,'model_tokens':None,'model_cost':None,
                        'limitations':['interactive main-session synthesis, not unattended CLI execution',
@@ -122,7 +122,7 @@ class Experiment:
                                       'model identity and token cost not independently attested',
                                       'packing workload is not one of the paper benchmark reproductions',
                                       'comparison uses the same training cases, not held-out tasks',
-                                      'developer revises the selected incumbent; rejected candidates are retained as evidence but not reselected on later worlds',
+                                      'frozen-history full-pool reselection does not establish new-task gains',
                                       'one paired run is not a statistical efficiency claim']})
         save(self.output/'report.json',result)
         return result
