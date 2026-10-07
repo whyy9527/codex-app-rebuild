@@ -714,5 +714,128 @@
       "prefix": "b03c8f54e7ea4768fa18fabd3a971c43a78e4de16488c7a2e33f120eead6df01",
       "content": "5de28da8dd2fde0b3b1fca8e26a112360bcaf351b86225abbf1dcef2521cfde7"
     }
+  },
+  {
+    "evaluation": {
+      "audiovisual": "unavailable",
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "tests.test_round07",
+        "-v"
+      ],
+      "evaluator_digest": "87810fd18dfe22f3cb48c71b6d65545d04f230dc4c98fe228fe6e4df5614d47c",
+      "exit_code": 1,
+      "integrity": "verified",
+      "model_cost": null,
+      "model_tokens": null,
+      "output": "test_round07 (unittest.loader._FailedTest.test_round07) ... ERROR\n\n======================================================================\nERROR: test_round07 (unittest.loader._FailedTest.test_round07)\n----------------------------------------------------------------------\nImportError: Failed to import test module: test_round07\nTraceback (most recent call last):\n  File \"<local-path>\", line 137, in loadTestsFromName\n    module = __import__(module_name)\n  File \"<workspace>/tests/test_round07.py\", line 2, in <module>\n    from capabilities.exploration.objective import replay_score, select_policy\nModuleNotFoundError: No module named 'capabilities.exploration.objective'\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nFAILED (errors=1)\n",
+      "output_bytes": 924,
+      "output_sha256": "28d38bc093dde9e045ec9058173b2f8efb919a2e8352759c5e7cbdb76fe3d773",
+      "output_truncated": false,
+      "snapshot": "artifacts/snapshots/6592aaecd7456d4b2ea4af21db9edbdffe8afbb80803800453450ff6c0b80bbe",
+      "source_digest": "6592aaecd7456d4b2ea4af21db9edbdffe8afbb80803800453450ff6c0b80bbe",
+      "source_files": {
+        "capabilities/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "capabilities/exploration/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "capabilities/exploration/ledger.py": "d607d7dcf7944f92532abea41f27c4e1f8a8102bbe632334fffda6de7c7e8569",
+        "capabilities/exploration/replay.py": "681762ac7d027574ec0618cb0e504036a029edfc6d2fb093df411db94b6b29ad",
+        "runtime/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "runtime/runner.py": "8c7bf794c40ebb786ee3eb23f4cd3dc1de5df633e702349a05767f9939e4e12a",
+        "tests/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "tests/test_baseline.py": "3a6a931ccf2a9158bc680ffe4d5fc50c1932a43b4cc403214134221d6f9a4bf5",
+        "tests/test_round01.py": "9669a33f2f9d1867c1f181383c31a70494b66055e934bdfeb92cf79f23fa77d5",
+        "tests/test_round02.py": "b89123a8742f0e17c77688acbb3eba11c0f33b21da74032d841880bb253d3c59",
+        "tests/test_round03.py": "3f20347ddf54babb6a84dfd6b4a0492d95384f90191434b4687d31b74bf6dff3",
+        "tests/test_round04.py": "0e1edeed1785afa1dbeeec81c574787a045edd7cf79650064a2f93a642037891",
+        "tests/test_round05.py": "a14ac7c826c9a005e6690d379b2419c2c48d472376d34b07c282b362d4b77adb",
+        "tests/test_round06.py": "f2a9a5f4d313012f6417e929ef9ba52e44f38818aa64678683ea28c14a469d87",
+        "tests/test_round07.py": "3351b94212cb49700c46067b64085b064dde1c0a731ed6969b95988e06284515",
+        "workflows/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "workflows/self_improve/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "workflows/self_improve/__main__.py": "8fe2d6bdca45b14617476246583262dda2e08bd1869fab1fbf5143c7c400bd43"
+      },
+      "status": "fail",
+      "wall_seconds": 0.078238,
+      "output_scope": "path-redacted projection; output_bytes refers to raw execution"
+    },
+    "hypothesis": "Implement paper equation 1 and compare policy candidates on every frozen world with incumbent protection",
+    "id": "r07-before",
+    "parent": "r06-after",
+    "phase": "before",
+    "round": 7,
+    "export_provenance": {
+      "raw_record_digest": "9b521552d26716dbc330c50996b0c6b011f7bd92438aca305e478bd3ca4b83c1",
+      "projection": "local-path-redacted-v1",
+      "raw_output_sha256": "997fccb40e4479e120afb6803e64603490b0293270cd2e7dafa4789e275aeb67",
+      "raw_evaluator_digest": "87810fd18dfe22f3cb48c71b6d65545d04f230dc4c98fe228fe6e4df5614d47c"
+    },
+    "_integrity": {
+      "prefix": "58d09c055a51cc5ff35eaa8463279eb3637f2aa3b791cf1e861a50f025a25b14",
+      "content": "cac1e7df3bfe78f70e70f7eff0feccbcc67c68243b6f7ffbc866d942b9029b74"
+    }
+  },
+  {
+    "evaluation": {
+      "audiovisual": "unavailable",
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "tests.test_round07",
+        "-v"
+      ],
+      "evaluator_digest": "87810fd18dfe22f3cb48c71b6d65545d04f230dc4c98fe228fe6e4df5614d47c",
+      "exit_code": 0,
+      "integrity": "verified",
+      "model_cost": null,
+      "model_tokens": null,
+      "output": "test_incumbent_is_retained_and_all_worlds_evaluated (tests.test_round07.ReplayObjective.test_incumbent_is_retained_and_all_worlds_evaluated) ... ok\ntest_paper_hypervolume_and_parallel_penalty_by_hand (tests.test_round07.ReplayObjective.test_paper_hypervolume_and_parallel_penalty_by_hand) ... ok\ntest_unsupported_policy_is_ineligible_and_ties_keep_incumbent (tests.test_round07.ReplayObjective.test_unsupported_policy_is_ineligible_and_ties_keep_incumbent) ... ok\n\n----------------------------------------------------------------------\nRan 3 tests in 0.001s\n\nOK\n",
+      "output_bytes": 562,
+      "output_sha256": "2d6c9ec206569951d0261f1dbebbb67c027d346ba10e5fb1c7936c54b6237b3d",
+      "output_truncated": false,
+      "snapshot": "artifacts/snapshots/0f778892b8ca34aac95d08e7ce102e7c4f9a5ad785b73a054acca73518620ea7",
+      "source_digest": "0f778892b8ca34aac95d08e7ce102e7c4f9a5ad785b73a054acca73518620ea7",
+      "source_files": {
+        "capabilities/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "capabilities/exploration/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "capabilities/exploration/ledger.py": "d607d7dcf7944f92532abea41f27c4e1f8a8102bbe632334fffda6de7c7e8569",
+        "capabilities/exploration/objective.py": "1bece841e6e6d37df9215e9ab9a9a0d03873735c96df007209b8cffb11ace709",
+        "capabilities/exploration/replay.py": "681762ac7d027574ec0618cb0e504036a029edfc6d2fb093df411db94b6b29ad",
+        "runtime/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "runtime/runner.py": "8c7bf794c40ebb786ee3eb23f4cd3dc1de5df633e702349a05767f9939e4e12a",
+        "tests/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "tests/test_baseline.py": "3a6a931ccf2a9158bc680ffe4d5fc50c1932a43b4cc403214134221d6f9a4bf5",
+        "tests/test_round01.py": "9669a33f2f9d1867c1f181383c31a70494b66055e934bdfeb92cf79f23fa77d5",
+        "tests/test_round02.py": "b89123a8742f0e17c77688acbb3eba11c0f33b21da74032d841880bb253d3c59",
+        "tests/test_round03.py": "3f20347ddf54babb6a84dfd6b4a0492d95384f90191434b4687d31b74bf6dff3",
+        "tests/test_round04.py": "0e1edeed1785afa1dbeeec81c574787a045edd7cf79650064a2f93a642037891",
+        "tests/test_round05.py": "a14ac7c826c9a005e6690d379b2419c2c48d472376d34b07c282b362d4b77adb",
+        "tests/test_round06.py": "f2a9a5f4d313012f6417e929ef9ba52e44f38818aa64678683ea28c14a469d87",
+        "tests/test_round07.py": "3351b94212cb49700c46067b64085b064dde1c0a731ed6969b95988e06284515",
+        "workflows/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "workflows/self_improve/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "workflows/self_improve/__main__.py": "8fe2d6bdca45b14617476246583262dda2e08bd1869fab1fbf5143c7c400bd43"
+      },
+      "status": "pass",
+      "wall_seconds": 0.041498,
+      "output_scope": "path-redacted projection; output_bytes refers to raw execution"
+    },
+    "hypothesis": "Implement paper equation 1 and compare policy candidates on every frozen world with incumbent protection",
+    "id": "r07-after",
+    "parent": "r07-before",
+    "phase": "after",
+    "round": 7,
+    "export_provenance": {
+      "raw_record_digest": "527d418a50c6b53057de4c41a6434f2cb5cf881bd756d6f3dc8473066fcc1b76",
+      "projection": "local-path-redacted-v1",
+      "raw_output_sha256": "2d6c9ec206569951d0261f1dbebbb67c027d346ba10e5fb1c7936c54b6237b3d",
+      "raw_evaluator_digest": "87810fd18dfe22f3cb48c71b6d65545d04f230dc4c98fe228fe6e4df5614d47c"
+    },
+    "_integrity": {
+      "prefix": "b7dcb9b1987e2d18013cecdf75cb1e7b453e90aee04092d2ee3523ec5464f3d6",
+      "content": "da241ad379739c5bc36b2863be7008074b544b106c040b32c9e3f496a28c9f95"
+    }
   }
 ]
