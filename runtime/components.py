@@ -35,10 +35,15 @@ class Context:
         if name in self._specs or name in requires or not name:
             raise ValueError('duplicate or self-dependent component')
         self._specs[name] = (start, tuple(requires))
+        previously_active = set(self._services)
         try:
             self._activate()
-        except Exception:
+        except Exception as error:
             self._specs.pop(name, None)
+            try:
+                self._stop(set(self._services) - previously_active)
+            except Exception as cleanup:
+                raise ExceptionGroup("activation and rollback failed", [error, cleanup]) from None
             raise
 
     def _activate(self):

@@ -4,6 +4,7 @@ import json
 import sys
 from pathlib import Path
 from capabilities.exploration.ledger import Ledger
+from capabilities.exploration.export import portable_records
 from runtime.runner import evaluate
 
 
@@ -43,7 +44,7 @@ def main():
             ledger.verify()
             out = Path(args.out)
             out.parent.mkdir(parents=True, exist_ok=True)
-            out.write_text(json.dumps(ledger.records(), indent=2, ensure_ascii=False) + "\n")
+            out.write_text(json.dumps(portable_records(ledger.records()), indent=2, ensure_ascii=False) + "\n")
     finally:
         ledger.close()
 

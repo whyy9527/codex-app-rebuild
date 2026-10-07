@@ -27,6 +27,8 @@ def evaluate(root, command, timeout=30):
     if not command or not math.isfinite(timeout) or timeout <= 0:
         raise ValueError("explicit command and positive finite timeout required")
     root = Path(root).resolve()
+    if not root.is_dir():
+        raise ValueError("workspace must be an existing directory")
     files = manifest(root)
     snapshot = Path("artifacts/snapshots") / digest(files)
     for name, expected in files.items():
