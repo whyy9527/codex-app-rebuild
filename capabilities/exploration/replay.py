@@ -55,3 +55,42 @@ class Replay:
         self._seen.extend(deepcopy(additions))
         self.rounds += bool(parents)
         return {"status": "ok", "revealed": deepcopy(additions)}
+
+
+def run_replay(nodes, policy, *, width=1, max_rounds=100, max_calls=100, rho=0):
+    for value in (max_rounds, max_calls):
+        if isinstance(value, bool) or not isinstance(value, int) or value < 0:
+            raise ValueError('budgets must be nonnegative integers')
+    if isinstance(rho, bool) or not isinstance(rho, (int, float)) or not math.isfinite(rho) or not 0 <= rho <= 1:
+        raise ValueError('rho must lie in [0, 1]')
+    replay = Replay(nodes, width=width)
+    trajectory, calls, reason, valid = [], 0, 'complete', True
+    while len(replay.observation()) - 1 < len(nodes):
+        if calls >= max_calls:
+            reason = 'call_budget'
+            break
+        if replay.rounds >= max_rounds:
+            reason = 'round_budget'
+            break
+        context = {'width': width, 'remaining_calls': max_calls - calls,
+                   'remaining_rounds': max_rounds - replay.rounds, 'rho': rho,
+                   'legal_parents': replay.legal_actions()}
+        try:
+            action = policy(replay.observation(), deepcopy(context))
+            if isinstance(action, (list, tuple)) and len(action) > max_calls - calls:
+                reason, valid = 'over_budget', False
+                break
+            result = replay.step(action)
+        except Exception as error:
+            reason, valid = 'policy_error', False
+            trajectory.append({'error_type': type(error).__name__})
+            break
+        trajectory.append({'action': list(action), **result})
+        if result['status'] != 'ok':
+            reason = result['status']
+            valid = reason == 'stopped'
+            break
+        calls += len(result['revealed'])
+    return {'valid': valid, 'reason': reason, 'calls': calls, 'rounds': replay.rounds,
+            'best_score': max(n['score'] for n in replay.observation()) if valid else 0,
+            'observed': replay.observation(), 'trajectory': trajectory, 'rho': rho}

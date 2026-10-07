@@ -594,5 +594,125 @@
       "prefix": "faa95ca4200184e81cb1db6a7d27641641c936dd11bf78f97f575e7425a700c9",
       "content": "dfc3a258545fde33cf0892ad304cc94493ce2547300b9ccd179d10f59713edcd"
     }
+  },
+  {
+    "evaluation": {
+      "audiovisual": "unavailable",
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "tests.test_round06",
+        "-v"
+      ],
+      "evaluator_digest": "b41ca5af3de350ee553546b06e39e82d660c5f68f0de1c6ecdfd5ae0a909af60",
+      "exit_code": 1,
+      "integrity": "verified",
+      "model_cost": null,
+      "model_tokens": null,
+      "output": "test_round06 (unittest.loader._FailedTest.test_round06) ... ERROR\n\n======================================================================\nERROR: test_round06 (unittest.loader._FailedTest.test_round06)\n----------------------------------------------------------------------\nImportError: Failed to import test module: test_round06\nTraceback (most recent call last):\n  File \"<local-path>\", line 137, in loadTestsFromName\n    module = __import__(module_name)\n  File \"<workspace>/tests/test_round06.py\", line 2, in <module>\n    from capabilities.exploration.replay import run_replay\nImportError: cannot import name 'run_replay' from 'capabilities.exploration.replay' (<workspace>/capabilities/exploration/replay.py)\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nFAILED (errors=1)\n",
+      "output_bytes": 998,
+      "output_sha256": "27405fbe0881023ff6a79adc8586c2f8aef130c37c16bad8e1a338f3778a7ad4",
+      "output_truncated": false,
+      "snapshot": "artifacts/snapshots/6ebc898fd92c87048faab9a4f16c71b3aeebf3217fc28f13d28346e7f6a8e4a6",
+      "source_digest": "6ebc898fd92c87048faab9a4f16c71b3aeebf3217fc28f13d28346e7f6a8e4a6",
+      "source_files": {
+        "capabilities/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "capabilities/exploration/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "capabilities/exploration/ledger.py": "d607d7dcf7944f92532abea41f27c4e1f8a8102bbe632334fffda6de7c7e8569",
+        "capabilities/exploration/replay.py": "bf449895549d5b7307790dfc8e11f2bd2deb99e5ef13b0ecd37f4d19dad823c0",
+        "runtime/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "runtime/runner.py": "8c7bf794c40ebb786ee3eb23f4cd3dc1de5df633e702349a05767f9939e4e12a",
+        "tests/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "tests/test_baseline.py": "3a6a931ccf2a9158bc680ffe4d5fc50c1932a43b4cc403214134221d6f9a4bf5",
+        "tests/test_round01.py": "9669a33f2f9d1867c1f181383c31a70494b66055e934bdfeb92cf79f23fa77d5",
+        "tests/test_round02.py": "b89123a8742f0e17c77688acbb3eba11c0f33b21da74032d841880bb253d3c59",
+        "tests/test_round03.py": "3f20347ddf54babb6a84dfd6b4a0492d95384f90191434b4687d31b74bf6dff3",
+        "tests/test_round04.py": "0e1edeed1785afa1dbeeec81c574787a045edd7cf79650064a2f93a642037891",
+        "tests/test_round05.py": "a14ac7c826c9a005e6690d379b2419c2c48d472376d34b07c282b362d4b77adb",
+        "tests/test_round06.py": "f2a9a5f4d313012f6417e929ef9ba52e44f38818aa64678683ea28c14a469d87",
+        "workflows/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "workflows/self_improve/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "workflows/self_improve/__main__.py": "8fe2d6bdca45b14617476246583262dda2e08bd1869fab1fbf5143c7c400bd43"
+      },
+      "status": "fail",
+      "wall_seconds": 0.041289,
+      "output_scope": "path-redacted projection; output_bytes refers to raw execution"
+    },
+    "hypothesis": "Replay policies see only prefixes; call and round budgets stop execution; unsupported worlds earn no reward",
+    "id": "r06-before",
+    "parent": "r05-after",
+    "phase": "before",
+    "round": 6,
+    "export_provenance": {
+      "raw_record_digest": "8f5a5c65c3914e64ed6601eb9d21b0b877c4cdb71dc72e50046b1da53fa40d1d",
+      "projection": "local-path-redacted-v1",
+      "raw_output_sha256": "9e5906a469ae73ea388e014851825fbe0dd38f8099cd801f5e4cd5688b8688c4",
+      "raw_evaluator_digest": "b41ca5af3de350ee553546b06e39e82d660c5f68f0de1c6ecdfd5ae0a909af60"
+    },
+    "_integrity": {
+      "prefix": "802439919d3f44736aee58a1841bac14936f57e69ee665b96d1b3c4a837b3608",
+      "content": "b88a3e9f48cbd53ebf09f60045c5bec6600434a183fb51c806f6050742270e18"
+    }
+  },
+  {
+    "evaluation": {
+      "audiovisual": "unavailable",
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "tests.test_round06",
+        "-v"
+      ],
+      "evaluator_digest": "b41ca5af3de350ee553546b06e39e82d660c5f68f0de1c6ecdfd5ae0a909af60",
+      "exit_code": 0,
+      "integrity": "verified",
+      "model_cost": null,
+      "model_tokens": null,
+      "output": "test_call_and_round_budgets (tests.test_round06.ReplayBudget.test_call_and_round_budgets) ... ok\ntest_policy_only_receives_prefix_and_public_budget (tests.test_round06.ReplayBudget.test_policy_only_receives_prefix_and_public_budget) ... ok\ntest_unsupported_and_overbudget_do_not_earn_reward (tests.test_round06.ReplayBudget.test_unsupported_and_overbudget_do_not_earn_reward) ... ok\n\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n",
+      "output_bytes": 481,
+      "output_sha256": "15584abdb5ed93a9586c3bb665b90e8792602bb5eeff387ba8b15ab0ac9c8f93",
+      "output_truncated": false,
+      "snapshot": "artifacts/snapshots/d4e20cd8f32dc67b44fdeaf28e2c0b59a42919a5ebdfabbee6582bf4192f3bac",
+      "source_digest": "d4e20cd8f32dc67b44fdeaf28e2c0b59a42919a5ebdfabbee6582bf4192f3bac",
+      "source_files": {
+        "capabilities/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "capabilities/exploration/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "capabilities/exploration/ledger.py": "d607d7dcf7944f92532abea41f27c4e1f8a8102bbe632334fffda6de7c7e8569",
+        "capabilities/exploration/replay.py": "681762ac7d027574ec0618cb0e504036a029edfc6d2fb093df411db94b6b29ad",
+        "runtime/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "runtime/runner.py": "8c7bf794c40ebb786ee3eb23f4cd3dc1de5df633e702349a05767f9939e4e12a",
+        "tests/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "tests/test_baseline.py": "3a6a931ccf2a9158bc680ffe4d5fc50c1932a43b4cc403214134221d6f9a4bf5",
+        "tests/test_round01.py": "9669a33f2f9d1867c1f181383c31a70494b66055e934bdfeb92cf79f23fa77d5",
+        "tests/test_round02.py": "b89123a8742f0e17c77688acbb3eba11c0f33b21da74032d841880bb253d3c59",
+        "tests/test_round03.py": "3f20347ddf54babb6a84dfd6b4a0492d95384f90191434b4687d31b74bf6dff3",
+        "tests/test_round04.py": "0e1edeed1785afa1dbeeec81c574787a045edd7cf79650064a2f93a642037891",
+        "tests/test_round05.py": "a14ac7c826c9a005e6690d379b2419c2c48d472376d34b07c282b362d4b77adb",
+        "tests/test_round06.py": "f2a9a5f4d313012f6417e929ef9ba52e44f38818aa64678683ea28c14a469d87",
+        "workflows/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "workflows/self_improve/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "workflows/self_improve/__main__.py": "8fe2d6bdca45b14617476246583262dda2e08bd1869fab1fbf5143c7c400bd43"
+      },
+      "status": "pass",
+      "wall_seconds": 0.04117,
+      "output_scope": "path-redacted projection; output_bytes refers to raw execution"
+    },
+    "hypothesis": "Replay policies see only prefixes; call and round budgets stop execution; unsupported worlds earn no reward",
+    "id": "r06-after",
+    "parent": "r06-before",
+    "phase": "after",
+    "round": 6,
+    "export_provenance": {
+      "raw_record_digest": "c29fa9836ba163dc9c5e4edf0bced88848c80f47c4df583889dabcc0f4c6fff2",
+      "projection": "local-path-redacted-v1",
+      "raw_output_sha256": "15584abdb5ed93a9586c3bb665b90e8792602bb5eeff387ba8b15ab0ac9c8f93",
+      "raw_evaluator_digest": "b41ca5af3de350ee553546b06e39e82d660c5f68f0de1c6ecdfd5ae0a909af60"
+    },
+    "_integrity": {
+      "prefix": "b03c8f54e7ea4768fa18fabd3a971c43a78e4de16488c7a2e33f120eead6df01",
+      "content": "5de28da8dd2fde0b3b1fca8e26a112360bcaf351b86225abbf1dcef2521cfde7"
+    }
   }
 ]
