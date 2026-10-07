@@ -36,6 +36,7 @@ def main():
             ledger.append(record)
             print(json.dumps({"id": record["id"], "status": record["evaluation"]["status"],
                               "exit_code": record["evaluation"]["exit_code"]}))
+            return 0 if record["evaluation"]["status"] == "pass" else 1
         elif args.action == "verify":
             print(json.dumps(ledger.verify()))
         else:
@@ -48,4 +49,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())

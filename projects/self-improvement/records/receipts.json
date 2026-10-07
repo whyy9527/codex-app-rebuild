@@ -1095,5 +1095,142 @@
       "prefix": "1b37dcef8f0b24adccd3d6fbf3549ee4cf0130a4a5cc9916a3b960a0235fd4e0",
       "content": "b4b61611baba64188fe8eb9b6339e1a48e891afb7d43a1c719c59339121600ca"
     }
+  },
+  {
+    "evaluation": {
+      "audiovisual": "unavailable",
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "tests.test_round10",
+        "-v"
+      ],
+      "evaluator_digest": "2a8107eccb52a989f9a84f8c9478407043a9fc733386d2c961ec4ce021ab9f0e",
+      "exit_code": 1,
+      "integrity": "verified",
+      "model_cost": null,
+      "model_tokens": null,
+      "output": "test_round10 (unittest.loader._FailedTest.test_round10) ... ERROR\n\n======================================================================\nERROR: test_round10 (unittest.loader._FailedTest.test_round10)\n----------------------------------------------------------------------\nImportError: Failed to import test module: test_round10\nTraceback (most recent call last):\n  File \"<local-path>\", line 137, in loadTestsFromName\n    module = __import__(module_name)\n  File \"<workspace>/tests/test_round10.py\", line 6, in <module>\n    from workflows.self_improve.cycle import run_cycles\nModuleNotFoundError: No module named 'workflows.self_improve.cycle'\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nFAILED (errors=1)\n",
+      "output_bytes": 895,
+      "output_sha256": "c64cb924b3d80b96dc6a3838d475b94e2c8c3fa503c6a91e9fd52afc560f05a1",
+      "output_truncated": false,
+      "snapshot": "artifacts/snapshots/78a588c6333103e2fefab3920e3f8ccb0881d279b8006c9ce93c5ebe283f53fe",
+      "source_digest": "78a588c6333103e2fefab3920e3f8ccb0881d279b8006c9ce93c5ebe283f53fe",
+      "source_files": {
+        "capabilities/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "capabilities/exploration/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "capabilities/exploration/ledger.py": "d607d7dcf7944f92532abea41f27c4e1f8a8102bbe632334fffda6de7c7e8569",
+        "capabilities/exploration/objective.py": "1bece841e6e6d37df9215e9ab9a9a0d03873735c96df007209b8cffb11ace709",
+        "capabilities/exploration/online.py": "f5f307da1208f37047194ab8c8d5b9d91428ecfd667069b045ca01e20a0c23d4",
+        "capabilities/exploration/replay.py": "681762ac7d027574ec0618cb0e504036a029edfc6d2fb093df411db94b6b29ad",
+        "runtime/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "runtime/components.py": "cbcbde3789b54de2f4a4d27f932a4c0c82acada1ce1ea53c49f08c89ec546fe4",
+        "runtime/runner.py": "8c7bf794c40ebb786ee3eb23f4cd3dc1de5df633e702349a05767f9939e4e12a",
+        "tests/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "tests/test_baseline.py": "3a6a931ccf2a9158bc680ffe4d5fc50c1932a43b4cc403214134221d6f9a4bf5",
+        "tests/test_round01.py": "9669a33f2f9d1867c1f181383c31a70494b66055e934bdfeb92cf79f23fa77d5",
+        "tests/test_round02.py": "b89123a8742f0e17c77688acbb3eba11c0f33b21da74032d841880bb253d3c59",
+        "tests/test_round03.py": "3f20347ddf54babb6a84dfd6b4a0492d95384f90191434b4687d31b74bf6dff3",
+        "tests/test_round04.py": "0e1edeed1785afa1dbeeec81c574787a045edd7cf79650064a2f93a642037891",
+        "tests/test_round05.py": "a14ac7c826c9a005e6690d379b2419c2c48d472376d34b07c282b362d4b77adb",
+        "tests/test_round06.py": "f2a9a5f4d313012f6417e929ef9ba52e44f38818aa64678683ea28c14a469d87",
+        "tests/test_round07.py": "3351b94212cb49700c46067b64085b064dde1c0a731ed6969b95988e06284515",
+        "tests/test_round08.py": "2a7cad93bdb07274e3ae86a0968c23e24e49a9e4587646ea8f3219ba12a773bb",
+        "tests/test_round09.py": "73edc80bb84796d4fc6b9a354914129c1cef2a9e13fb08a7405467e8de7414fc",
+        "tests/test_round10.py": "02c897021901c0ee5456e2b5ff5f1e0d9b96ac65d4a67b11fd5d9a0d47c5edaf",
+        "workflows/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "workflows/self_improve/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "workflows/self_improve/__main__.py": "8fe2d6bdca45b14617476246583262dda2e08bd1869fab1fbf5143c7c400bd43"
+      },
+      "status": "fail",
+      "wall_seconds": 0.041569,
+      "output_scope": "path-redacted projection; output_bytes refers to raw execution"
+    },
+    "hypothesis": "Close online-record-replay-select-redeploy loop with real generated policy sources and truthful CLI failure codes",
+    "id": "r10-before",
+    "parent": "r09-after",
+    "phase": "before",
+    "round": 10,
+    "export_provenance": {
+      "raw_record_digest": "285722742c0faee6f2efd8d99e2c8356063422c230558b06c3a29442d9b3615a",
+      "projection": "local-path-redacted-v1",
+      "raw_output_sha256": "67f21427c4bc8ca0d93acaa30bf164253ca6af54646178e99e9817fcb001925a",
+      "raw_evaluator_digest": "2a8107eccb52a989f9a84f8c9478407043a9fc733386d2c961ec4ce021ab9f0e"
+    },
+    "_integrity": {
+      "prefix": "321a7bffad29980a65550d6650c18f3e7bb9417faef2b759c0d8ddd47bb6f8b7",
+      "content": "e5c7d0c7da34e6fa5492192c227f6412888a1356e504b95e4bf828b228c609ab"
+    }
+  },
+  {
+    "evaluation": {
+      "audiovisual": "unavailable",
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "tests.test_round10",
+        "-v"
+      ],
+      "evaluator_digest": "2a8107eccb52a989f9a84f8c9478407043a9fc733386d2c961ec4ce021ab9f0e",
+      "exit_code": 0,
+      "integrity": "verified",
+      "model_cost": null,
+      "model_tokens": null,
+      "output": "test_cli_preserves_evaluator_failure_exit_status (tests.test_round10.IntegratedCycle.test_cli_preserves_evaluator_failure_exit_status) ... ok\ntest_two_real_cycles_expand_world_pool_and_redeploy_source (tests.test_round10.IntegratedCycle.test_two_real_cycles_expand_world_pool_and_redeploy_source) ... ok\n\n----------------------------------------------------------------------\nRan 2 tests in 0.685s\n\nOK\n",
+      "output_bytes": 402,
+      "output_sha256": "34cda391c309455fad5780fe6aef2ebe50388141d1463f2902bf8dfd537b7c1b",
+      "output_truncated": false,
+      "snapshot": "artifacts/snapshots/ff5f05ff59e7c7aacd7d2e1d171e75ac0d8faa41679e4cfeccc4bbc603f10345",
+      "source_digest": "ff5f05ff59e7c7aacd7d2e1d171e75ac0d8faa41679e4cfeccc4bbc603f10345",
+      "source_files": {
+        "capabilities/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "capabilities/exploration/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "capabilities/exploration/ledger.py": "d607d7dcf7944f92532abea41f27c4e1f8a8102bbe632334fffda6de7c7e8569",
+        "capabilities/exploration/objective.py": "1bece841e6e6d37df9215e9ab9a9a0d03873735c96df007209b8cffb11ace709",
+        "capabilities/exploration/online.py": "b7f89568e582743b05b08ef298e232951687ed7c26199ee5dabeee6194e43df6",
+        "capabilities/exploration/replay.py": "681762ac7d027574ec0618cb0e504036a029edfc6d2fb093df411db94b6b29ad",
+        "pyproject.toml": "98c86a486979b3f8649583d3925bbe69c96282b85f7250ed1c62ca852df0b9cf",
+        "runtime/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "runtime/components.py": "cbcbde3789b54de2f4a4d27f932a4c0c82acada1ce1ea53c49f08c89ec546fe4",
+        "runtime/runner.py": "298389b724a55a35cb1eee4ca13d8e87003e7474e005947dd7111f57472fee71",
+        "runtime/toy.py": "5476d4376bc6d86b4fc125c9632fb5383531cdb4419c0f1e13bd528d32a9ab08",
+        "tests/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "tests/test_baseline.py": "3a6a931ccf2a9158bc680ffe4d5fc50c1932a43b4cc403214134221d6f9a4bf5",
+        "tests/test_round01.py": "9669a33f2f9d1867c1f181383c31a70494b66055e934bdfeb92cf79f23fa77d5",
+        "tests/test_round02.py": "b89123a8742f0e17c77688acbb3eba11c0f33b21da74032d841880bb253d3c59",
+        "tests/test_round03.py": "3f20347ddf54babb6a84dfd6b4a0492d95384f90191434b4687d31b74bf6dff3",
+        "tests/test_round04.py": "0e1edeed1785afa1dbeeec81c574787a045edd7cf79650064a2f93a642037891",
+        "tests/test_round05.py": "a14ac7c826c9a005e6690d379b2419c2c48d472376d34b07c282b362d4b77adb",
+        "tests/test_round06.py": "f2a9a5f4d313012f6417e929ef9ba52e44f38818aa64678683ea28c14a469d87",
+        "tests/test_round07.py": "3351b94212cb49700c46067b64085b064dde1c0a731ed6969b95988e06284515",
+        "tests/test_round08.py": "2a7cad93bdb07274e3ae86a0968c23e24e49a9e4587646ea8f3219ba12a773bb",
+        "tests/test_round09.py": "73edc80bb84796d4fc6b9a354914129c1cef2a9e13fb08a7405467e8de7414fc",
+        "tests/test_round10.py": "02c897021901c0ee5456e2b5ff5f1e0d9b96ac65d4a67b11fd5d9a0d47c5edaf",
+        "workflows/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "workflows/self_improve/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "workflows/self_improve/__main__.py": "381a8d684eb34bb9cfdad74ff215a8b43ec62382a58ec372aeaa80b4cc891a7f",
+        "workflows/self_improve/cycle.py": "85ae4acc32f60286b937b31bb7ff5a3bf40a5042a49248d66f9e4a726a99d2bb"
+      },
+      "status": "pass",
+      "wall_seconds": 0.780104,
+      "output_scope": "path-redacted projection; output_bytes refers to raw execution"
+    },
+    "hypothesis": "Close online-record-replay-select-redeploy loop with real generated policy sources and truthful CLI failure codes",
+    "id": "r10-after",
+    "parent": "r10-before",
+    "phase": "after",
+    "round": 10,
+    "export_provenance": {
+      "raw_record_digest": "ea5839f60187bb9e5b7b5a7cbb937a29d9f4177d201322bd38ca1f02ea87fe01",
+      "projection": "local-path-redacted-v1",
+      "raw_output_sha256": "34cda391c309455fad5780fe6aef2ebe50388141d1463f2902bf8dfd537b7c1b",
+      "raw_evaluator_digest": "2a8107eccb52a989f9a84f8c9478407043a9fc733386d2c961ec4ce021ab9f0e"
+    },
+    "_integrity": {
+      "prefix": "5ed5a199e13b1b7754a20c4b8e450f3942b767cba8dc4b275729147a3e31c9cd",
+      "content": "c89d49528f144e5a6b329277f2c5e226d68cc34aa177cedeb6865ed93cf49c82"
+    }
   }
 ]

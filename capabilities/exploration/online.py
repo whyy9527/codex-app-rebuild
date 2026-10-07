@@ -58,7 +58,7 @@ def online_rollout(root, destination, agent, evaluator, policy, *, width=1, max_
         began = time.monotonic()
         copy_workspace(destination / parent, workspace)
         try:
-            agent(workspace, deepcopy(prefix), deepcopy(context))
+            agent(workspace, deepcopy(prefix), {**deepcopy(context), "parent": parent})
             evaluation = evaluator(workspace)
             score = evaluation['score']
             if isinstance(score, bool) or not isinstance(score, (int, float)) or not math.isfinite(score) or score < 0:

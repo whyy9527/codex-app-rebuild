@@ -13,6 +13,10 @@ from capabilities.exploration.ledger import digest
 def manifest(root):
     root = Path(root).resolve()
     files = {}
+    for path in sorted(root.glob("*.py")):
+        files[path.name] = hashlib.sha256(path.read_bytes()).hexdigest()
+    if (root / "pyproject.toml").exists():
+        files["pyproject.toml"] = hashlib.sha256((root / "pyproject.toml").read_bytes()).hexdigest()
     for directory in ("capabilities", "runtime", "workflows", "tests"):
         for path in sorted((root / directory).rglob("*.py")):
             files[path.relative_to(root).as_posix()] = hashlib.sha256(path.read_bytes()).hexdigest()
