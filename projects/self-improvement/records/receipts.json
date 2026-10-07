@@ -964,5 +964,136 @@
       "prefix": "b5bc97558f71ea75ced7fe4f4b540eb467e22517846d2d18057a5dc24f2546e4",
       "content": "7b26d6055d8eacf58246ec0f978055aaf53788f89dd2fa0d3b0206d1ebe2b651"
     }
+  },
+  {
+    "evaluation": {
+      "audiovisual": "unavailable",
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "tests.test_round09",
+        "-v"
+      ],
+      "evaluator_digest": "443a3d1d782a0c36aeae932f4e7ee5e46dfeaf6f91237b1cede9e1c9ff02147e",
+      "exit_code": 1,
+      "integrity": "verified",
+      "model_cost": null,
+      "model_tokens": null,
+      "output": "test_round09 (unittest.loader._FailedTest.test_round09) ... ERROR\n\n======================================================================\nERROR: test_round09 (unittest.loader._FailedTest.test_round09)\n----------------------------------------------------------------------\nImportError: Failed to import test module: test_round09\nTraceback (most recent call last):\n  File \"<local-path>\", line 137, in loadTestsFromName\n    module = __import__(module_name)\n  File \"<workspace>/tests/test_round09.py\", line 4, in <module>\n    from capabilities.exploration.online import online_rollout\nModuleNotFoundError: No module named 'capabilities.exploration.online'\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nFAILED (errors=1)\n",
+      "output_bytes": 905,
+      "output_sha256": "b4d9f5064f6215d3105724e5ca6ce734ec062928fea44f58f0351f2290c21461",
+      "output_truncated": false,
+      "snapshot": "artifacts/snapshots/299ae124cfb9e1fcf84c008d4bdeae347df7f83bd389ae1be8d295a07b256b4f",
+      "source_digest": "299ae124cfb9e1fcf84c008d4bdeae347df7f83bd389ae1be8d295a07b256b4f",
+      "source_files": {
+        "capabilities/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "capabilities/exploration/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "capabilities/exploration/ledger.py": "d607d7dcf7944f92532abea41f27c4e1f8a8102bbe632334fffda6de7c7e8569",
+        "capabilities/exploration/objective.py": "1bece841e6e6d37df9215e9ab9a9a0d03873735c96df007209b8cffb11ace709",
+        "capabilities/exploration/replay.py": "681762ac7d027574ec0618cb0e504036a029edfc6d2fb093df411db94b6b29ad",
+        "runtime/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "runtime/components.py": "cbcbde3789b54de2f4a4d27f932a4c0c82acada1ce1ea53c49f08c89ec546fe4",
+        "runtime/runner.py": "8c7bf794c40ebb786ee3eb23f4cd3dc1de5df633e702349a05767f9939e4e12a",
+        "tests/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "tests/test_baseline.py": "3a6a931ccf2a9158bc680ffe4d5fc50c1932a43b4cc403214134221d6f9a4bf5",
+        "tests/test_round01.py": "9669a33f2f9d1867c1f181383c31a70494b66055e934bdfeb92cf79f23fa77d5",
+        "tests/test_round02.py": "b89123a8742f0e17c77688acbb3eba11c0f33b21da74032d841880bb253d3c59",
+        "tests/test_round03.py": "3f20347ddf54babb6a84dfd6b4a0492d95384f90191434b4687d31b74bf6dff3",
+        "tests/test_round04.py": "0e1edeed1785afa1dbeeec81c574787a045edd7cf79650064a2f93a642037891",
+        "tests/test_round05.py": "a14ac7c826c9a005e6690d379b2419c2c48d472376d34b07c282b362d4b77adb",
+        "tests/test_round06.py": "f2a9a5f4d313012f6417e929ef9ba52e44f38818aa64678683ea28c14a469d87",
+        "tests/test_round07.py": "3351b94212cb49700c46067b64085b064dde1c0a731ed6969b95988e06284515",
+        "tests/test_round08.py": "2a7cad93bdb07274e3ae86a0968c23e24e49a9e4587646ea8f3219ba12a773bb",
+        "tests/test_round09.py": "73edc80bb84796d4fc6b9a354914129c1cef2a9e13fb08a7405467e8de7414fc",
+        "workflows/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "workflows/self_improve/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "workflows/self_improve/__main__.py": "8fe2d6bdca45b14617476246583262dda2e08bd1869fab1fbf5143c7c400bd43"
+      },
+      "status": "fail",
+      "wall_seconds": 0.041465,
+      "output_scope": "path-redacted projection; output_bytes refers to raw execution"
+    },
+    "hypothesis": "Online attempts execute in isolated parent snapshots with fixed evaluators and real call receipts",
+    "id": "r09-before",
+    "parent": "r08-after",
+    "phase": "before",
+    "round": 9,
+    "export_provenance": {
+      "raw_record_digest": "175fad305115534ef2d964149107dcf9c77fd9de55f47fa5bc9589ab76d7925a",
+      "projection": "local-path-redacted-v1",
+      "raw_output_sha256": "db1b08071c996251a5ea3da1109de01d4cdd37f661870b9913557514e57a4615",
+      "raw_evaluator_digest": "443a3d1d782a0c36aeae932f4e7ee5e46dfeaf6f91237b1cede9e1c9ff02147e"
+    },
+    "_integrity": {
+      "prefix": "ce464e7897499825978ba7919b7d98755080a685850c3bc950b0139540ca6b1f",
+      "content": "c26eca728f27a59b3409dce36e21f249e796a2899cbb28b7fb95b5a8e803f0b6"
+    }
+  },
+  {
+    "evaluation": {
+      "audiovisual": "unavailable",
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "tests.test_round09",
+        "-v"
+      ],
+      "evaluator_digest": "443a3d1d782a0c36aeae932f4e7ee5e46dfeaf6f91237b1cede9e1c9ff02147e",
+      "exit_code": 0,
+      "integrity": "verified",
+      "model_cost": null,
+      "model_tokens": null,
+      "output": "test_destination_cannot_overlap_input (tests.test_round09.OnlineExecution.test_destination_cannot_overlap_input) ... ok\ntest_real_candidates_resume_parent_snapshots (tests.test_round09.OnlineExecution.test_real_candidates_resume_parent_snapshots) ... ok\ntest_worker_failure_is_a_zero_score_observation (tests.test_round09.OnlineExecution.test_worker_failure_is_a_zero_score_observation) ... ok\n\n----------------------------------------------------------------------\nRan 3 tests in 0.004s\n\nOK\n",
+      "output_bytes": 492,
+      "output_sha256": "ab3c66eea5bc2123fdd8f11616b7c8d51a3aff2cd600b4bda7528c016c202eab",
+      "output_truncated": false,
+      "snapshot": "artifacts/snapshots/304121ffd91fbf45e72531c4cd01d412e70aaf572874d45f59c1d8ff6d9e1791",
+      "source_digest": "304121ffd91fbf45e72531c4cd01d412e70aaf572874d45f59c1d8ff6d9e1791",
+      "source_files": {
+        "capabilities/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "capabilities/exploration/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "capabilities/exploration/ledger.py": "d607d7dcf7944f92532abea41f27c4e1f8a8102bbe632334fffda6de7c7e8569",
+        "capabilities/exploration/objective.py": "1bece841e6e6d37df9215e9ab9a9a0d03873735c96df007209b8cffb11ace709",
+        "capabilities/exploration/online.py": "f5f307da1208f37047194ab8c8d5b9d91428ecfd667069b045ca01e20a0c23d4",
+        "capabilities/exploration/replay.py": "681762ac7d027574ec0618cb0e504036a029edfc6d2fb093df411db94b6b29ad",
+        "runtime/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "runtime/components.py": "cbcbde3789b54de2f4a4d27f932a4c0c82acada1ce1ea53c49f08c89ec546fe4",
+        "runtime/runner.py": "8c7bf794c40ebb786ee3eb23f4cd3dc1de5df633e702349a05767f9939e4e12a",
+        "tests/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "tests/test_baseline.py": "3a6a931ccf2a9158bc680ffe4d5fc50c1932a43b4cc403214134221d6f9a4bf5",
+        "tests/test_round01.py": "9669a33f2f9d1867c1f181383c31a70494b66055e934bdfeb92cf79f23fa77d5",
+        "tests/test_round02.py": "b89123a8742f0e17c77688acbb3eba11c0f33b21da74032d841880bb253d3c59",
+        "tests/test_round03.py": "3f20347ddf54babb6a84dfd6b4a0492d95384f90191434b4687d31b74bf6dff3",
+        "tests/test_round04.py": "0e1edeed1785afa1dbeeec81c574787a045edd7cf79650064a2f93a642037891",
+        "tests/test_round05.py": "a14ac7c826c9a005e6690d379b2419c2c48d472376d34b07c282b362d4b77adb",
+        "tests/test_round06.py": "f2a9a5f4d313012f6417e929ef9ba52e44f38818aa64678683ea28c14a469d87",
+        "tests/test_round07.py": "3351b94212cb49700c46067b64085b064dde1c0a731ed6969b95988e06284515",
+        "tests/test_round08.py": "2a7cad93bdb07274e3ae86a0968c23e24e49a9e4587646ea8f3219ba12a773bb",
+        "tests/test_round09.py": "73edc80bb84796d4fc6b9a354914129c1cef2a9e13fb08a7405467e8de7414fc",
+        "workflows/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "workflows/self_improve/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "workflows/self_improve/__main__.py": "8fe2d6bdca45b14617476246583262dda2e08bd1869fab1fbf5143c7c400bd43"
+      },
+      "status": "pass",
+      "wall_seconds": 0.074864,
+      "output_scope": "path-redacted projection; output_bytes refers to raw execution"
+    },
+    "hypothesis": "Online attempts execute in isolated parent snapshots with fixed evaluators and real call receipts",
+    "id": "r09-after",
+    "parent": "r09-before",
+    "phase": "after",
+    "round": 9,
+    "export_provenance": {
+      "raw_record_digest": "9846c90128126879539b29b1ad066d12e4adffcb90195686dff506136c94cfd2",
+      "projection": "local-path-redacted-v1",
+      "raw_output_sha256": "ab3c66eea5bc2123fdd8f11616b7c8d51a3aff2cd600b4bda7528c016c202eab",
+      "raw_evaluator_digest": "443a3d1d782a0c36aeae932f4e7ee5e46dfeaf6f91237b1cede9e1c9ff02147e"
+    },
+    "_integrity": {
+      "prefix": "1b37dcef8f0b24adccd3d6fbf3549ee4cf0130a4a5cc9916a3b960a0235fd4e0",
+      "content": "b4b61611baba64188fe8eb9b6339e1a48e891afb7d43a1c719c59339121600ca"
+    }
   }
 ]
