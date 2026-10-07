@@ -48,5 +48,107 @@
       "prefix": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
       "content": "9d3b3c2a06978495c47c586d5362570ee9d0fa9b3eccde854d9ec17d1aa876f3"
     }
+  },
+  {
+    "evaluation": {
+      "audiovisual": "unavailable",
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "tests.test_round01",
+        "-v"
+      ],
+      "evaluator_digest": "c76d62e73e133a20bb92b8d7ec6643d768b682b30785f6f09fb71bc1a9c0388e",
+      "exit_code": 1,
+      "model_cost": null,
+      "model_tokens": null,
+      "output": "test_identifiers_and_existing_parent (tests.test_round01.LedgerIntegrity.test_identifiers_and_existing_parent) ... FAIL\ntest_unknown_parent_rejected_without_partial_write (tests.test_round01.LedgerIntegrity.test_unknown_parent_rejected_without_partial_write) ... FAIL\n\n======================================================================\nFAIL: test_identifiers_and_existing_parent (tests.test_round01.LedgerIntegrity.test_identifiers_and_existing_parent)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"<workspace>/tests/test_round01.py\", line 22, in test_identifiers_and_existing_parent\n    with self.assertRaises(ValueError):\n         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^\nAssertionError: ValueError not raised\n\n======================================================================\nFAIL: test_unknown_parent_rejected_without_partial_write (tests.test_round01.LedgerIntegrity.test_unknown_parent_rejected_without_partial_write)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"<workspace>/tests/test_round01.py\", line 12, in test_unknown_parent_rejected_without_partial_write\n    with self.assertRaises(ValueError):\n         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^\nAssertionError: ValueError not raised\n\n----------------------------------------------------------------------\nRan 2 tests in 0.002s\n\nFAILED (failures=2)\n",
+      "output_sha256": "e0a1acc8e19f8988008d4cbf5b53c15df35d1c80755e26adce4581039a6452e0",
+      "source_digest": "9fc55124318c634dd71d243dfbe8d49300ae26074e67f996800024e6ec1ea7a8",
+      "source_files": {
+        "capabilities/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "capabilities/exploration/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "capabilities/exploration/ledger.py": "c676af230bdf567d0a00bd408531e2b11dead036d0b9756c9f50a007ba0640f2",
+        "capabilities/exploration/replay.py": "cbacb1ac8ff590da3292e669db97eaf16aa3dbd29ebc557e70cafc23acc4d9b2",
+        "runtime/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "runtime/runner.py": "43f926b1e129dd9ab041bf0bbb466d45ea6037d52051aee7dc0751f97bb816bc",
+        "tests/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "tests/test_baseline.py": "3a6a931ccf2a9158bc680ffe4d5fc50c1932a43b4cc403214134221d6f9a4bf5",
+        "tests/test_round01.py": "9669a33f2f9d1867c1f181383c31a70494b66055e934bdfeb92cf79f23fa77d5",
+        "workflows/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "workflows/self_improve/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "workflows/self_improve/__main__.py": "bcc2338036f30f43bb052d21386be419f1f18600d185f476fd6221915bd3c26d"
+      },
+      "status": "fail",
+      "wall_seconds": 0.041855,
+      "output_scope": "path-redacted projection; output_bytes refers to raw execution"
+    },
+    "hypothesis": "Reject orphaned or invalid candidate identifiers atomically",
+    "id": "r01-before",
+    "parent": "baseline",
+    "phase": "before",
+    "round": 1,
+    "export_provenance": {
+      "raw_record_digest": "6a40d87d59bcc9fae32b3e53cdd3129404f741864d2b3351951fbeff7e44d4b9",
+      "projection": "local-path-redacted-v1",
+      "raw_output_sha256": "e0a1acc8e19f8988008d4cbf5b53c15df35d1c80755e26adce4581039a6452e0",
+      "raw_evaluator_digest": "c76d62e73e133a20bb92b8d7ec6643d768b682b30785f6f09fb71bc1a9c0388e"
+    },
+    "_integrity": {
+      "prefix": "98fc337b64e8267df4a515adbda15b04f56490bb8b148712101c64f347ef3b29",
+      "content": "e8799b1d8e746fbc7c839e0f9be4bc76572bf6db718f72743cb360566be5f48c"
+    }
+  },
+  {
+    "evaluation": {
+      "audiovisual": "unavailable",
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "tests.test_round01",
+        "-v"
+      ],
+      "evaluator_digest": "c76d62e73e133a20bb92b8d7ec6643d768b682b30785f6f09fb71bc1a9c0388e",
+      "exit_code": 0,
+      "model_cost": null,
+      "model_tokens": null,
+      "output": "test_identifiers_and_existing_parent (tests.test_round01.LedgerIntegrity.test_identifiers_and_existing_parent) ... ok\ntest_unknown_parent_rejected_without_partial_write (tests.test_round01.LedgerIntegrity.test_unknown_parent_rejected_without_partial_write) ... ok\n\n----------------------------------------------------------------------\nRan 2 tests in 0.002s\n\nOK\n",
+      "output_sha256": "fb229fcd84b203bf6a22363ed1d6633c5dc0801fde24d20d1b96dcf907746cfe",
+      "source_digest": "a6b76b9a590a1c2dd6e42519c72838d94662e1725ab5bc227b2ea0249a056940",
+      "source_files": {
+        "capabilities/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "capabilities/exploration/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "capabilities/exploration/ledger.py": "0b5c85140277e20174d446e63360c94524cdd4fb7a524aab34f73710e5dffe28",
+        "capabilities/exploration/replay.py": "cbacb1ac8ff590da3292e669db97eaf16aa3dbd29ebc557e70cafc23acc4d9b2",
+        "runtime/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "runtime/runner.py": "43f926b1e129dd9ab041bf0bbb466d45ea6037d52051aee7dc0751f97bb816bc",
+        "tests/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "tests/test_baseline.py": "3a6a931ccf2a9158bc680ffe4d5fc50c1932a43b4cc403214134221d6f9a4bf5",
+        "tests/test_round01.py": "9669a33f2f9d1867c1f181383c31a70494b66055e934bdfeb92cf79f23fa77d5",
+        "workflows/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "workflows/self_improve/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "workflows/self_improve/__main__.py": "bcc2338036f30f43bb052d21386be419f1f18600d185f476fd6221915bd3c26d"
+      },
+      "status": "pass",
+      "wall_seconds": 0.042041,
+      "output_scope": "path-redacted projection; output_bytes refers to raw execution"
+    },
+    "hypothesis": "Reject orphaned or invalid candidate identifiers atomically",
+    "id": "r01-after",
+    "parent": "r01-before",
+    "phase": "after",
+    "round": 1,
+    "export_provenance": {
+      "raw_record_digest": "419a45d53d068220ffe44047282c3a871f9b18455df3c11735a11061034ec7be",
+      "projection": "local-path-redacted-v1",
+      "raw_output_sha256": "fb229fcd84b203bf6a22363ed1d6633c5dc0801fde24d20d1b96dcf907746cfe",
+      "raw_evaluator_digest": "c76d62e73e133a20bb92b8d7ec6643d768b682b30785f6f09fb71bc1a9c0388e"
+    },
+    "_integrity": {
+      "prefix": "7bb9861dda3cdc1d0f9e8c6811c874993197fd39aaa522b2a6265b0dcd940670",
+      "content": "2a9774fe281549be5954fb7302e98017546cb830dc97154f4216c9ada2732bbf"
+    }
   }
 ]

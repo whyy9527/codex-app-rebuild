@@ -21,8 +21,18 @@ class Ledger:
         self.db.execute("CREATE TABLE IF NOT EXISTS records (id TEXT PRIMARY KEY, payload TEXT NOT NULL)")
 
     def append(self, record):
+        if not isinstance(record.get("id"), str) or not record["id"].strip():
+            raise ValueError("record id must be a nonempty string")
+        parent = record.get("parent")
+        if parent is not None and (not isinstance(parent, str) or parent == record["id"]):
+            raise ValueError("invalid parent")
         payload = canonical(record)
         with self.db:
+            self.db.execute("BEGIN IMMEDIATE")
+            if parent is not None and not self.db.execute(
+                "SELECT 1 FROM records WHERE id = ?", (parent,)
+            ).fetchone():
+                raise ValueError("parent must already exist")
             self.db.execute("INSERT INTO records VALUES (?, ?)", (record["id"], payload))
         return record
 
