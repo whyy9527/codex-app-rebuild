@@ -254,5 +254,113 @@
       "prefix": "f7fc1baf88e2360400f00632393138922053ad8cd1b5b8837636dcdc1edbba62",
       "content": "013e788c53c1f16ea73eb104cce298825c400380c6b30a680b18e39de913a129"
     }
+  },
+  {
+    "evaluation": {
+      "audiovisual": "unavailable",
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "tests.test_round03",
+        "-v"
+      ],
+      "evaluator_digest": "e48092407ed6c320a6d9abd32492e666e660c3fa9a34203eaf15830ecaf7491d",
+      "exit_code": 1,
+      "model_cost": null,
+      "model_tokens": null,
+      "output": "test_timeout_cleans_descendant_processes (tests.test_round03.BoundedExecution.test_timeout_cleans_descendant_processes) ... ERROR\ntest_timeout_is_evidence_not_an_exception (tests.test_round03.BoundedExecution.test_timeout_is_evidence_not_an_exception) ... ERROR\ntest_unavailable_and_invalid_budget (tests.test_round03.BoundedExecution.test_unavailable_and_invalid_budget) ... ERROR\n\n======================================================================\nERROR: test_timeout_cleans_descendant_processes (tests.test_round03.BoundedExecution.test_timeout_cleans_descendant_processes)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"<workspace>/tests/test_round03.py\", line 21, in test_timeout_cleans_descendant_processes\n    evaluate('.', [sys.executable, '-c', parent], timeout=.1)\n    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<workspace>/runtime/runner.py\", line 22, in evaluate\n    result = subprocess.run(command, cwd=root, capture_output=True, text=True, timeout=timeout)\n  File \"<local-path>\", line 556, in run\n    stdout, stderr = process.communicate(input, timeout=timeout)\n                     ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<local-path>\", line 1220, in communicate\n    stdout, stderr = self._communicate(input, endtime, timeout)\n                     ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<local-path>\", line 2153, in _communicate\n    self._check_timeout(endtime, orig_timeout, stdout, stderr)\n    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<local-path>\", line 1267, in _check_timeout\n    raise TimeoutExpired(\n    ...<2 lines>...\n            stderr=b''.join(stderr_seq) if stderr_seq else None)\nsubprocess.TimeoutExpired: Command '['<local-path>', '-c', 'import subprocess, sys, time; subprocess.Popen([sys.executable, \\'-c\\', \"import time; from pathlib import Path; time.sleep(.35); Path(\\'<local-path>\\').touch()\"]); time.sleep(5)']' timed out after 0.1 seconds\n\n======================================================================\nERROR: test_timeout_is_evidence_not_an_exception (tests.test_round03.BoundedExecution.test_timeout_is_evidence_not_an_exception)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"<workspace>/tests/test_round03.py\", line 11, in test_timeout_is_evidence_not_an_exception\n    result = evaluate('.', [sys.executable, '-c', 'import time; time.sleep(5)'], timeout=.05)\n  File \"<workspace>/runtime/runner.py\", line 22, in evaluate\n    result = subprocess.run(command, cwd=root, capture_output=True, text=True, timeout=timeout)\n  File \"<local-path>\", line 556, in run\n    stdout, stderr = process.communicate(input, timeout=timeout)\n                     ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<local-path>\", line 1220, in communicate\n    stdout, stderr = self._communicate(input, endtime, timeout)\n                     ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<local-path>\", line 2153, in _communicate\n    self._check_timeout(endtime, orig_timeout, stdout, stderr)\n    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<local-path>\", line 1267, in _check_timeout\n    raise TimeoutExpired(\n    ...<2 lines>...\n            stderr=b''.join(stderr_seq) if stderr_seq else None)\nsubprocess.TimeoutExpired: Command '['<local-path>', '-c', 'import time; time.sleep(5)']' timed out after 0.05 seconds\n\n======================================================================\nERROR: test_unavailable_and_invalid_budget (tests.test_round03.BoundedExecution.test_unavailable_and_invalid_budget)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"<workspace>/tests/test_round03.py\", line 26, in test_unavailable_and_invalid_budget\n    self.assertEqual(evaluate('.', ['nonexistent-exploration-evaluator'])['status'], 'unavailable')\n                     ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<workspace>/runtime/runner.py\", line 22, in evaluate\n    result = subprocess.run(command, cwd=root, capture_output=True, text=True, timeout=timeout)\n  File \"<local-path>\", line 554, in run\n    with Popen(*popenargs, **kwargs) as process:\n         ~~~~~^^^^^^^^^^^^^^^^^^^^^^\n  File \"<local-path>\", line 1038, in __init__\n    self._execute_child(args, executable, preexec_fn, close_fds,\n    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n                        pass_fds, cwd, env,\n                        ^^^^^^^^^^^^^^^^^^^\n    ...<5 lines>...\n                        gid, gids, uid, umask,\n                        ^^^^^^^^^^^^^^^^^^^^^^\n                        start_new_session, process_group)\n                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<local-path>\", line 1989, in _execute_child\n    raise child_exception_type(errno_num, err_msg, err_filename)\nFileNotFoundError: [Errno 2] No such file or directory: 'nonexistent-exploration-evaluator'\n\n----------------------------------------------------------------------\nRan 3 tests in 0.165s\n\nFAILED (errors=3)\n",
+      "output_sha256": "f6585f9d39166cb2edacd04099cf7cb044ee868391b03d39e19e857249ac007f",
+      "source_digest": "5ac286ae5a8b0b73ac843af4252469d56ba726dfc92c6cecdf70ecc1c22b26d9",
+      "source_files": {
+        "capabilities/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "capabilities/exploration/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "capabilities/exploration/ledger.py": "0b5c85140277e20174d446e63360c94524cdd4fb7a524aab34f73710e5dffe28",
+        "capabilities/exploration/replay.py": "0e669d015448c92b6e683c25b0c0b0bdbc2d673b075a475680c004736d3a6c2d",
+        "runtime/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "runtime/runner.py": "43f926b1e129dd9ab041bf0bbb466d45ea6037d52051aee7dc0751f97bb816bc",
+        "tests/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "tests/test_baseline.py": "3a6a931ccf2a9158bc680ffe4d5fc50c1932a43b4cc403214134221d6f9a4bf5",
+        "tests/test_round01.py": "9669a33f2f9d1867c1f181383c31a70494b66055e934bdfeb92cf79f23fa77d5",
+        "tests/test_round02.py": "b89123a8742f0e17c77688acbb3eba11c0f33b21da74032d841880bb253d3c59",
+        "tests/test_round03.py": "3f20347ddf54babb6a84dfd6b4a0492d95384f90191434b4687d31b74bf6dff3",
+        "workflows/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "workflows/self_improve/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "workflows/self_improve/__main__.py": "bcc2338036f30f43bb052d21386be419f1f18600d185f476fd6221915bd3c26d"
+      },
+      "status": "fail",
+      "wall_seconds": 0.205181,
+      "output_scope": "path-redacted projection; output_bytes refers to raw execution"
+    },
+    "hypothesis": "Timeout and unavailable evaluators produce receipts and terminate descendant processes",
+    "id": "r03-before",
+    "parent": "r02-after",
+    "phase": "before",
+    "round": 3,
+    "export_provenance": {
+      "raw_record_digest": "9688d6a26462c7d236177167af17a4726fabdcacf8d409475852cf9acd1d5867",
+      "projection": "local-path-redacted-v1",
+      "raw_output_sha256": "06b8354bd932ce6418d830806c398bf7d9ec0104d7246064bb4e1897502995db",
+      "raw_evaluator_digest": "e48092407ed6c320a6d9abd32492e666e660c3fa9a34203eaf15830ecaf7491d"
+    },
+    "_integrity": {
+      "prefix": "c0e9a9b11e33b887df6507f3050abb996e96d95ce0178f10c9f4a0c795a01dab",
+      "content": "769fb1b7caeefe95c9ee25e9435ba184f302e3d7de562ceada853ad9d9275503"
+    }
+  },
+  {
+    "evaluation": {
+      "audiovisual": "unavailable",
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "tests.test_round03",
+        "-v"
+      ],
+      "evaluator_digest": "e48092407ed6c320a6d9abd32492e666e660c3fa9a34203eaf15830ecaf7491d",
+      "exit_code": 0,
+      "model_cost": null,
+      "model_tokens": null,
+      "output": "test_timeout_cleans_descendant_processes (tests.test_round03.BoundedExecution.test_timeout_cleans_descendant_processes) ... ok\ntest_timeout_is_evidence_not_an_exception (tests.test_round03.BoundedExecution.test_timeout_is_evidence_not_an_exception) ... ok\ntest_unavailable_and_invalid_budget (tests.test_round03.BoundedExecution.test_unavailable_and_invalid_budget) ... ok\n\n----------------------------------------------------------------------\nRan 3 tests in 0.627s\n\nOK\n",
+      "output_bytes": 471,
+      "output_sha256": "5d60b9932b492b08efdc95ffcb94b2f40084c1e384afe8acb4a242cadf67ba20",
+      "output_truncated": false,
+      "source_digest": "c952ce5858357f15e5e03931e40596111aaed4ccac21dcd9ada819b733cf3f46",
+      "source_files": {
+        "capabilities/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "capabilities/exploration/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "capabilities/exploration/ledger.py": "0b5c85140277e20174d446e63360c94524cdd4fb7a524aab34f73710e5dffe28",
+        "capabilities/exploration/replay.py": "0e669d015448c92b6e683c25b0c0b0bdbc2d673b075a475680c004736d3a6c2d",
+        "runtime/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "runtime/runner.py": "cf6e311cce203f92b623b3d1202375dd025afec95ea487c24bf7cef7e847cb80",
+        "tests/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "tests/test_baseline.py": "3a6a931ccf2a9158bc680ffe4d5fc50c1932a43b4cc403214134221d6f9a4bf5",
+        "tests/test_round01.py": "9669a33f2f9d1867c1f181383c31a70494b66055e934bdfeb92cf79f23fa77d5",
+        "tests/test_round02.py": "b89123a8742f0e17c77688acbb3eba11c0f33b21da74032d841880bb253d3c59",
+        "tests/test_round03.py": "3f20347ddf54babb6a84dfd6b4a0492d95384f90191434b4687d31b74bf6dff3",
+        "workflows/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "workflows/self_improve/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "workflows/self_improve/__main__.py": "bcc2338036f30f43bb052d21386be419f1f18600d185f476fd6221915bd3c26d"
+      },
+      "status": "pass",
+      "wall_seconds": 0.725185,
+      "output_scope": "path-redacted projection; output_bytes refers to raw execution"
+    },
+    "hypothesis": "Timeout and unavailable evaluators produce receipts and terminate descendant processes",
+    "id": "r03-after",
+    "parent": "r03-before",
+    "phase": "after",
+    "round": 3,
+    "export_provenance": {
+      "raw_record_digest": "66b9378320f4d3afa1286304e9cd5ee755c8ec3a48306d20d3b9a09b78d99a5e",
+      "projection": "local-path-redacted-v1",
+      "raw_output_sha256": "5d60b9932b492b08efdc95ffcb94b2f40084c1e384afe8acb4a242cadf67ba20",
+      "raw_evaluator_digest": "e48092407ed6c320a6d9abd32492e666e660c3fa9a34203eaf15830ecaf7491d"
+    },
+    "_integrity": {
+      "prefix": "ebe7d4b0d40e371e4ca8f6752b828f2ce9b3a2817a898595a78c31b5de9b2650",
+      "content": "1969670b075ac826e0eecba4f42f26ace124d825bdacea6d9751deea5055f9d4"
+    }
   }
 ]
