@@ -6,9 +6,11 @@ import math
 from pathlib import Path
 import re
 import time
+import tempfile
 import uuid
 from capabilities.exploration.ledger import digest
 from capabilities.exploration.session import save
+from runtime.runner import evaluate,manifest
 
 TERMINAL={'complete','blocked','budget_exhausted','paused'}
 
@@ -62,6 +64,7 @@ class Harness:
                    'verifier':verifier,'verifier_digest':digest(verifier),'phase':'ready','iterations':0,
                    'max_iterations':max_iterations,'max_failures':max_failures,'failures':0,
                    'deadline':time.time()+max_seconds,'attempts':[],'last_error':None,'hook_events':[]}
+            state['acceptance_files']={k:v for k,v in manifest(root).items() if k.startswith('tests/')}
             self.write(state)
             save(self.scope(str(root),session_id),{'id':state['id']})
             return state
@@ -79,3 +82,36 @@ class Harness:
             state['attempts'].append({'iteration':state['iterations'],'hypothesis':hypothesis,'evaluation':None})
             state['phase']='working'
             return self.write(state)
+
+    def verify(self,task_id):
+        with self.lock():
+            state=self.read(task_id)
+            if state['phase']=='verifying': return state
+            if state['phase']!='working': raise ValueError('begin an attempt before verification')
+            state['phase']='verifying'
+            self.write(state)
+            remaining=state['deadline']-time.time()
+        root=Path(state['workspace'])
+        acceptance={k:v for k,v in manifest(root).items() if k.startswith('tests/')}
+        if acceptance!=state['acceptance_files'] or digest(state['verifier'])!=state['verifier_digest']:
+            result={'status':'invalid','output':'Frozen acceptance changed','wall_seconds':0}
+        elif remaining<=0:
+            result={'status':'timeout','output':'Wall budget exhausted','wall_seconds':0}
+        else:
+            with tempfile.TemporaryDirectory(prefix='harness-bytecode-') as cache:
+                result=evaluate(root,state['verifier'],timeout=min(30,remaining),
+                                environment={'PYTHONPYCACHEPREFIX':cache,'PYTHONDONTWRITEBYTECODE':'1'})
+            result['python_cache']='fresh isolated prefix, bytecode writes disabled'
+            after={k:v for k,v in manifest(root).items() if k.startswith('tests/')}
+            if after!=state['acceptance_files']: result['status']='invalid'
+        with self.lock():
+            current=self.read(task_id)
+            current['attempts'][-1]['evaluation']=result
+            current['last_error']=None if result['status']=='pass' else result['status']
+            current['failures']=0 if result['status']=='pass' else current['failures']+1
+            if current['phase']=='paused': return self.write(current)
+            if result['status']=='pass': current['phase']='complete'
+            elif result['status'] in ('invalid','unavailable') or current['failures']>=current['max_failures']: current['phase']='blocked'
+            elif time.time()>=current['deadline'] or current['iterations']>=current['max_iterations']: current['phase']='budget_exhausted'
+            else: current['phase']='ready'
+            return self.write(current)
