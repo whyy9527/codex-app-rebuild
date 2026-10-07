@@ -1,0 +1,35 @@
+{
+  "mcp_registered": true,
+  "tools": [
+    "exploration_next",
+    "exploration_pause",
+    "exploration_resume",
+    "exploration_start",
+    "exploration_status",
+    "exploration_verify"
+  ],
+  "native_hooks": [
+    {
+      "eventName": "sessionStart",
+      "trustStatus": "trusted",
+      "enabled": true,
+      "currentHash": "sha256:058426cc74f4293d8447edbfa117dc325a10b6390cc0d1b854bd09a6f7d8f6e4"
+    },
+    {
+      "eventName": "userPromptSubmit",
+      "trustStatus": "trusted",
+      "enabled": true,
+      "currentHash": "sha256:dd61241386d636e62c1c82a6b7d46aea762631732a35a2289026bfa5d8b541cf"
+    },
+    {
+      "eventName": "stop",
+      "trustStatus": "trusted",
+      "enabled": true,
+      "currentHash": "sha256:528d7b10a8b56314fee92f7d720ed381a3112c08b0b07ceb97a3d80b87b1c442"
+    }
+  ],
+  "hook_errors": 0,
+  "all_hooks_trusted": true,
+  "automatic_stop_continuation": "not_yet_measured",
+  "model_calls": 0
+}

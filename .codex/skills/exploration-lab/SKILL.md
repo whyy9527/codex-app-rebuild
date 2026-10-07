@@ -1,11 +1,22 @@
 ---
 name: exploration-lab
-description: Run and audit codex-exploration-lab experiments, frozen-world policy replay, and evidence-backed self-iteration; use when repeated versions need verified before/after results or Dream-RSI protocol checks.
+description: Use codex-exploration-lab MCP tools and hooks for bounded Codex iteration; audit fixed acceptance feedback, native host registration, or historical Dream-RSI experiments.
 ---
 
 # Exploration Lab
 
 Use this project to separate actual candidate execution from historical replay. Resolve the repository root and read `GOAL.md` and `docs/ARCHITECTURE.md` before choosing an adapter.
+
+## Codex harness workflow
+
+For registered-tool iteration, read [the canonical harness workflow](../../../workflows/harness/WORKFLOW.md). Follow its explicit session scope, frozen verifier, bounded attempts and user pause behavior. Historical paper adapters below remain separate.
+
+Native inventory and trust are separate from execution: verify with `workflows.harness.diagnose`, then require actual hook output or host-driven continuation evidence before claiming automation. Do not bypass native trust or count a protocol fixture as a model run. Current host does not list Interrupt; do not infer support from documentation or configuration alone.
+
+Verified failure mechanisms:
+
+- Fast same-size Python source edits can hit stale timestamp-based bytecode and give false feedback. `Harness.verify` uses a fresh `PYTHONPYCACHEPREFIX` and disables writes for each evaluation. Keep the original failed receipt; never modify acceptance to conceal a cache problem. A generic `-B` alone does not prevent reading existing caches.
+- Native `codex mcp add` can normalize unrelated existing server definitions. The project installer appends only its owned table, rejects a name collision, backs up originals, and checks pre-existing semantic settings. Use that owner rather than rewriting the whole user config; never restore backups indiscriminately over subsequent user edits.
 
 ## Verified workflow
 
@@ -36,4 +47,4 @@ Replay only stored outcomes, expose prefixes, and reject unsupported candidates.
 
 Missing audiovisual review remains unavailable. Do not label frame sampling as continuous viewing, reconstruct deleted outputs from summaries, or convert technical checks into aesthetic scores.
 
-Use trusted adapters only. Generation and policy functions must control their own blocking work. Do not install global hooks, resume unrelated paused tasks or trigger paid model runs merely to demonstrate this skill.
+Use trusted adapters only. Generation and policy functions must control their own blocking work. Register global hooks only within the user-authorized integration scope and follow native review. Do not resume unrelated paused tasks or trigger paid model runs merely to demonstrate this skill.

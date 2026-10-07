@@ -153,10 +153,11 @@ class Harness:
         with self.lock():
             state=self.read(task_id)
             if state['phase']!='paused': raise ValueError('only a user-paused task can resume')
-            if time.time()>=state['deadline'] or state['iterations']>=state['max_iterations']:
+            unfinished=bool(state['attempts'] and state['attempts'][-1]['evaluation'] is None)
+            if time.time()>=state['deadline'] or (state['iterations']>=state['max_iterations'] and not unfinished):
                 state['phase']='budget_exhausted'
             else:
-                state['phase']='working' if state['attempts'] and state['attempts'][-1]['evaluation'] is None else 'ready'
+                state['phase']='working' if unfinished else 'ready'
                 state['last_error']=None
                 state['last_hook_progress']=None
             return self.write(state)

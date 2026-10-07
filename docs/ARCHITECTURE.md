@@ -1,5 +1,13 @@
 # 原型架构与边界
 
+## 当前 Codex harness 接入
+
+`capabilities/exploration/harness.py` 是任务状态与预算的唯一所有者。`runtime/harness_mcp.py` 提供六个工具；Codex 使用自己的编辑和执行工具完成动作，再调用冻结验证。`runtime/harness_hooks.py` 只做短提示、续跑条件检查和暂停，不执行长验证或调用模型。`runtime/codex_host.py` 用真实 app-server 检查发现与工具调用。
+
+注册由 `workflows/harness/install.py` 管理本项目的启动器、MCP 表和 Hook；全局配置和本机路径留在本机，备份不入库。原生审查负责信任。当前本机支持三种已注册 Hook；Interrupt 不在实际清单中，故使用显式暂停提示及工具，不能声称所有 UI 中断已覆盖。
+
+同一会话与工作目录绑定任务，尝试幂等预留，验证器及测试清单冻结。失败次数、总尝试数、墙钟时间、重复 Stop 及无实测进展均有限制；暂停恢复不重置预算。可信验证命令具有宿主权限，没有 OS 沙箱；验证进程崩溃后停留在 verifying 的恢复尚未实现。详见 [接入工作流](../workflows/harness/WORKFLOW.md)和[实测报告](../projects/harness/REPORT.md)。以下阶段文字保留历史状态。
+
 ## 第三阶段补充
 
 `capabilities/exploration/pool.py` 对所有历史策略源码在全部完成世界重新选择；开发器传递完整池，在线部署能接受旧策略胜出。反馈包含池源码，audit 可重建选择；旧实验报告保持原样。
