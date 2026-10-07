@@ -37,11 +37,32 @@ def parse_attestation(stderr, model, effort):
 
 
 class CodexWorker:
-    def __init__(self, *, model, effort='medium', timeout=180):
+    def __init__(self, *, model, effort='medium', timeout=180, receipt_path=None):
         self.model, self.effort, self.timeout = model, effort, timeout
         self.receipts = []
+        self.receipt_path=Path(receipt_path) if receipt_path is not None else None
 
     def generate(self, prompt, *, role):
+        began=time.monotonic()
+        count=len(self.receipts)
+        try:
+            return self._generate(prompt,role=role)
+        except BaseException as error:
+            if len(self.receipts)==count:
+                status='unavailable' if isinstance(error,OSError) else 'timeout' if isinstance(error,subprocess.TimeoutExpired) else 'invalid'
+                self.receipts.append({'role':role,'status':status,'error_type':type(error).__name__,
+                                      'requested_model':self.model,'requested_effort':self.effort,
+                                      'prompt_sha256':hashlib.sha256(prompt.encode()).hexdigest(),
+                                      'wall_seconds':round(time.monotonic()-began,6),
+                                      'model_tokens':None,'model_cost':None})
+            raise
+        finally:
+            if self.receipt_path is not None and len(self.receipts)>count:
+                self.receipt_path.parent.mkdir(parents=True,exist_ok=True)
+                with self.receipt_path.open('a') as stream:
+                    for receipt in self.receipts[count:]: stream.write(json.dumps(receipt)+'\n')
+
+    def _generate(self, prompt, *, role):
         started = time.monotonic()
         with tempfile.TemporaryDirectory(prefix='exploration-worker-') as folder:
             root = Path(folder)
