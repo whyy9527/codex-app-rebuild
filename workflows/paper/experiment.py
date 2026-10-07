@@ -72,11 +72,12 @@ class Experiment:
             previous = state['developments'][-1] if state['developments'] else None
             development = develop_policy(self.worker,state['worlds'],state['active_source'],
                                          previous_feedback=previous,width=1,
+                                         candidate_sources=[d['source'] for d in state['developments'] if d['status']=='evaluated'],
                                          max_calls=self.config['max_calls'],max_rounds=self.config['max_calls'])
             development['iteration']=len(state['developments'])+1
             development['history_worlds']=len(state['worlds'])
             state['developments'].append(development)
-            if development['selected']=='proposal': state['active_source']=development['source']
+            state['active_source']=development['selected_source']
             count = len(state['developments'])
             if count >= self.config['iterations']: state['phase']='control-fixed'
             elif count==(self.config['iterations']+1)//2:

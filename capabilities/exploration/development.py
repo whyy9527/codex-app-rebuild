@@ -5,6 +5,7 @@ import re
 from capabilities.exploration.ledger import canonical, digest
 from capabilities.exploration.objective import select_policy
 from runtime.policy_runtime import RestrictedPolicy, validate_source
+from capabilities.exploration.pool import select_pool
 
 
 def shape(source):
@@ -16,10 +17,13 @@ def shape(source):
 
 
 def develop_policy(worker, worlds, current_source, *, previous_feedback=None, width=2,
-                   max_calls=6, max_rounds=6, penalty=.05):
+                   max_calls=6, max_rounds=6, penalty=.05, candidate_sources=()):
     incumbent = RestrictedPolicy(current_source)
     baseline = select_policy(worlds, {'incumbent': incumbent}, incumbent='incumbent', width=width,
                              max_calls=max_calls, max_rounds=max_rounds, penalty=penalty, semantics='paper')
+    if candidate_sources:
+        baseline=select_pool(worlds,current_source,candidate_sources,width=width,max_calls=max_calls,
+                             max_rounds=max_rounds,penalty=penalty)
     feedback = {'current_replay': baseline, 'previous_feedback': previous_feedback,
                 'completed_worlds': worlds, 'current_source': current_source}
     prompt = ('You are the policy-development agent in a Dream-RSI experiment. Revise executable Python '
@@ -39,7 +43,7 @@ def develop_policy(worker, worlds, current_source, *, previous_feedback=None, wi
               'feedback_digest': digest(feedback), 'previous_feedback_digest': digest(previous_feedback),
               'incumbent_source_digest': hashlib.sha256(current_source.encode()).hexdigest(),
               'source_changed': source != current_source, 'structure_changed': None,
-              'selected': 'incumbent'}
+              'selected': baseline['selected'], 'selected_source':baseline.get('selected_source',current_source)}
     try:
         tree = validate_source(source)
         result['structure_changed'] = shape(source) != shape(current_source)
@@ -50,7 +54,11 @@ def develop_policy(worker, worlds, current_source, *, previous_feedback=None, wi
         selection = select_policy(worlds, {'incumbent': incumbent, 'proposal': proposal},
                                   incumbent='incumbent', width=width, max_calls=max_calls,
                                   max_rounds=max_rounds, penalty=penalty, semantics='paper')
-        result.update(status='evaluated', selection=selection, selected=selection['selected'])
+        if candidate_sources:
+            selection=select_pool(worlds,current_source,candidate_sources,proposal_source=source,
+                                  width=width,max_calls=max_calls,max_rounds=max_rounds,penalty=penalty)
+        result.update(status='evaluated', selection=selection, selected=selection['selected'],
+                      selected_source=selection.get('selected_source',source if selection['selected']=='proposal' else current_source))
     except (ValueError, SyntaxError) as error:
         result.update(status='rejected', rejection=str(error), selection=baseline)
     return result
