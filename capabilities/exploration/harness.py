@@ -102,6 +102,9 @@ class Harness:
                 result=evaluate(root,state['verifier'],timeout=min(30,remaining),
                                 environment={'PYTHONPYCACHEPREFIX':cache,'PYTHONDONTWRITEBYTECODE':'1'})
             result['python_cache']='fresh isolated prefix, bytecode writes disabled'
+            if 'unittest' in state['verifier'] and re.search(r'\bRan 0 tests\b',result['output']):
+                result['status']='invalid'
+                result['output']+='\nHarness: empty unittest discovery is not an acceptance signal.\n'
             after={k:v for k,v in manifest(root).items() if k.startswith('tests/')}
             if after!=state['acceptance_files']: result['status']='invalid'
         with self.lock():
