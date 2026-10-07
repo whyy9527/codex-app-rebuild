@@ -56,7 +56,8 @@ class Experiment:
             name = f'online-{state["online_cycle"]}' if phase=='online' else phase
             source = SEED if phase=='control-fixed' else state['active_source']
             session = OnlineSession(self.source,self.output/name,source,max_calls=self.config['max_calls'])
-            result = session.advance(ModelDiscovery(self.worker,history=state['worlds']),evaluate_packing)
+            worker=FileWorker(self.output/'requests',scope=name)
+            result = session.advance(ModelDiscovery(worker,history=state['worlds']),evaluate_packing)
             if result['done']:
                 if phase=='online':
                     if not result['nodes'] or max(n['score'] for n in result['nodes'])<=0:
@@ -70,7 +71,8 @@ class Experiment:
                     state.update(done=True,phase='complete')
         elif phase=='dream':
             previous = state['developments'][-1] if state['developments'] else None
-            development = develop_policy(self.worker,state['worlds'],state['active_source'],
+            worker=FileWorker(self.output/'requests',scope=f'development-{len(state["developments"])+1}')
+            development = develop_policy(worker,state['worlds'],state['active_source'],
                                          previous_feedback=previous,width=1,
                                          candidate_sources=[d['source'] for d in state['developments'] if d['status']=='evaluated'],
                                          max_calls=self.config['max_calls'],max_rounds=self.config['max_calls'])
@@ -97,6 +99,7 @@ class Experiment:
                 request=json.loads(path.read_text())
                 requests.append({'request_digest':request['request_digest'],'role':request['role'],
                                  'prompt':request['prompt'],
+                                 **({'scope':request['scope']} if 'scope' in request else {}),
                                  'response':json.loads(response.read_text())})
         programs={}
         for path in sorted(self.output.glob('*/n*/pack.py')):

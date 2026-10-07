@@ -48,7 +48,9 @@ def engineering_audit(records):
 def experiment_audit(experiment, *, replay=False):
     requests={}
     for request in experiment['requests']:
-        identifier=digest({'role':request['role'],'prompt':request['prompt']})
+        binding={'role':request['role'],'prompt':request['prompt']}
+        if 'scope' in request: binding['scope']=request['scope']
+        identifier=digest(binding)
         if identifier!=request['request_digest'] or request['response']['request_digest']!=identifier:
             raise ValueError('request response binding mismatch')
         if identifier in requests: raise ValueError('duplicate request')

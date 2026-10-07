@@ -13,13 +13,17 @@ class NeedsResponse(BaseException):
 
 
 class FileWorker:
-    def __init__(self, directory):
+    def __init__(self, directory, *, scope=None):
         self.directory = Path(directory)
         self.directory.mkdir(parents=True, exist_ok=True)
         self.receipts = []
+        if scope is not None and (not isinstance(scope,str) or not scope.strip()):
+            raise ValueError('nonempty request scope required')
+        self.scope=scope
 
     def generate(self, prompt, *, role):
         binding = {'prompt': prompt, 'role': role}
+        if self.scope is not None: binding['scope']=self.scope
         identifier = digest(binding)
         request = {**binding, 'request_digest': identifier,
                    'transport': 'interactive-codex-main-session'}
@@ -35,7 +39,13 @@ class FileWorker:
         if value.pop('request_digest', None) != identifier:
             raise ValueError('response does not bind to requested feedback')
         reply = validate_reply(value)
+        usage=self.directory/'usage'
+        usage.mkdir(exist_ok=True)
+        counter=usage/(identifier+'.json')
+        count=json.loads(counter.read_text())['uses'] if counter.exists() else 0
+        counter.write_text(json.dumps({'uses':count+1})+'\n')
         receipt = {'role': role, 'request_digest': identifier,
+                   'response_reused':count>0, 'response_use_number':count+1, 'scope':self.scope,
                    'source_sha256': hashlib.sha256(reply['source'].encode()).hexdigest(),
                    'transport': 'interactive-codex-main-session', 'runtime_model': None,
                    'model_tokens': None, 'model_cost': None,
