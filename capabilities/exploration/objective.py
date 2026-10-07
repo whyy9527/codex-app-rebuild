@@ -19,7 +19,7 @@ def replay_score(runs, *, total_calls, best_recorded, penalty=.05):
     for run in runs:
         calls, rounds, score = run['calls'], run['rounds'], run['best_score']
         if (not isinstance(calls, int) or isinstance(calls, bool) or not 0 <= calls <= total_calls
-                or not isinstance(rounds, int) or isinstance(rounds, bool) or not 0 <= rounds <= calls
+                or not isinstance(rounds, int) or isinstance(rounds, bool) or rounds < 0
                 or not math.isfinite(score) or score < 0 or (calls == 0 and score != 0)):
             raise ValueError('invalid replay result')
         points.append((calls, min(score / best_recorded, 1)))
@@ -48,7 +48,7 @@ def policy_digest(policy):
 
 
 def select_policy(worlds, candidates, *, incumbent, width=1, max_rounds=100, max_calls=100,
-                  penalty=.05):
+                  penalty=.05, semantics='strict'):
     if incumbent not in candidates or not worlds:
         raise ValueError('include incumbent and at least one world')
     worlds = [validate_world(world) for world in worlds]
@@ -59,7 +59,7 @@ def select_policy(worlds, candidates, *, incumbent, width=1, max_rounds=100, max
         scores, evidence = [], []
         for world in worlds:
             runs = [run_replay(world, policy, width=width, max_rounds=max_rounds,
-                               max_calls=max_calls, rho=rho) for rho in RHOS]
+                               max_calls=max_calls, rho=rho, semantics=semantics) for rho in RHOS]
             value = replay_score(runs, total_calls=len(world),
                                  best_recorded=max(node['score'] for node in world), penalty=penalty)
             scores.append(value)
@@ -73,6 +73,6 @@ def select_policy(worlds, candidates, *, incumbent, width=1, max_rounds=100, max
         if report['score'] is not None and report['score'] > reports[selected]['score']:
             selected = name
     return {'selected': selected, 'incumbent': incumbent, 'candidates': reports,
-            'evaluation': {'rhos': RHOS, 'penalty': penalty, 'width': width,
+            'evaluation': {'rhos': RHOS, 'penalty': penalty, 'width': width, 'semantics': semantics,
                            'max_rounds': max_rounds, 'max_calls': max_calls},
             'scope': 'frozen-history score only; new-task improvement unverified'}

@@ -21,10 +21,13 @@ def validate_world(nodes):
 
 
 class Replay:
-    def __init__(self, nodes, width=1):
+    def __init__(self, nodes, width=1, semantics='strict'):
         if isinstance(width, bool) or not isinstance(width, int) or width < 1:
             raise ValueError("width must be a positive integer")
         self.width = width
+        if semantics not in ('strict', 'paper'):
+            raise ValueError('unknown replay semantics')
+        self.semantics = semantics
         self._nodes = validate_world(nodes)
         self._seen = [{"id": "root", "parent": None, "score": 0.0}]
         self.rounds = 0
@@ -50,20 +53,22 @@ class Replay:
         for parent in parents:
             options = [n for n in self._nodes if n["parent"] == parent and n["id"] not in seen]
             if not options:
-                return {"status": "unsupported", "revealed": []}
+                if self.semantics == 'strict':
+                    return {"status": "unsupported", "revealed": []}
+                continue
             additions.append(options[0])
         self._seen.extend(deepcopy(additions))
         self.rounds += bool(parents)
         return {"status": "ok", "revealed": deepcopy(additions)}
 
 
-def run_replay(nodes, policy, *, width=1, max_rounds=100, max_calls=100, rho=0):
+def run_replay(nodes, policy, *, width=1, max_rounds=100, max_calls=100, rho=0, semantics='strict'):
     for value in (max_rounds, max_calls):
         if isinstance(value, bool) or not isinstance(value, int) or value < 0:
             raise ValueError('budgets must be nonnegative integers')
     if isinstance(rho, bool) or not isinstance(rho, (int, float)) or not math.isfinite(rho) or not 0 <= rho <= 1:
         raise ValueError('rho must lie in [0, 1]')
-    replay = Replay(nodes, width=width)
+    replay = Replay(nodes, width=width, semantics=semantics)
     trajectory, calls, reason, valid = [], 0, 'complete', True
     while len(replay.observation()) - 1 < len(nodes):
         if calls >= max_calls:
