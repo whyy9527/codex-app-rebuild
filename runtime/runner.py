@@ -24,6 +24,16 @@ def evaluate(root, command, timeout=30):
         raise ValueError("explicit command and positive finite timeout required")
     root = Path(root).resolve()
     files = manifest(root)
+    snapshot = Path("artifacts/snapshots") / digest(files)
+    for name, expected in files.items():
+        destination = root / snapshot / name
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        content = (root / name).read_bytes()
+        if hashlib.sha256(content).hexdigest() != expected:
+            raise ValueError("source changed during snapshot")
+        if destination.exists() and destination.read_bytes() != content:
+            raise ValueError("snapshot was modified")
+        destination.write_bytes(content)
     started = time.monotonic()
     exit_code, status = None, "unavailable"
     with tempfile.TemporaryFile() as stream:
@@ -48,10 +58,15 @@ def evaluate(root, command, timeout=30):
         output_bytes = stream.tell()
         stream.seek(0)
         output = stream.read(65536).decode(errors="replace").replace(str(root), "<workspace>")
+    integrity = "verified" if manifest(root) == files else "source_changed"
+    if integrity != "verified":
+        status = "invalid"
     return {
         "command": command,
         "source_files": files,
         "source_digest": digest(files),
+        "snapshot": snapshot.as_posix(),
+        "integrity": integrity,
         "evaluator_digest": digest({"command": command, "tests": {k: v for k, v in files.items() if k.startswith("tests/")}}),
         "exit_code": exit_code,
         "status": status,

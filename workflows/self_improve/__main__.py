@@ -22,6 +22,7 @@ def main():
     run.add_argument("command", nargs=argparse.REMAINDER)
     export = sub.add_parser("export")
     export.add_argument("--out", required=True)
+    sub.add_parser("verify")
     args = parser.parse_args()
     ledger = Ledger(args.db)
     try:
@@ -35,7 +36,10 @@ def main():
             ledger.append(record)
             print(json.dumps({"id": record["id"], "status": record["evaluation"]["status"],
                               "exit_code": record["evaluation"]["exit_code"]}))
+        elif args.action == "verify":
+            print(json.dumps(ledger.verify()))
         else:
+            ledger.verify()
             out = Path(args.out)
             out.parent.mkdir(parents=True, exist_ok=True)
             out.write_text(json.dumps(ledger.records(), indent=2, ensure_ascii=False) + "\n")

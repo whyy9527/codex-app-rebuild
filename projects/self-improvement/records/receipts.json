@@ -362,5 +362,119 @@
       "prefix": "ebe7d4b0d40e371e4ca8f6752b828f2ce9b3a2817a898595a78c31b5de9b2650",
       "content": "1969670b075ac826e0eecba4f42f26ace124d825bdacea6d9751deea5055f9d4"
     }
+  },
+  {
+    "evaluation": {
+      "audiovisual": "unavailable",
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "tests.test_round04",
+        "-v"
+      ],
+      "evaluator_digest": "791722e4467ffc9bc65d801bc37b29a7e37ea0e69a773136df57bc6674d54fce",
+      "exit_code": 1,
+      "model_cost": null,
+      "model_tokens": null,
+      "output": "test_modified_receipt_and_deleted_prefix_detected (tests.test_round04.EvidenceIntegrity.test_modified_receipt_and_deleted_prefix_detected) ... ERROR\ntest_mutating_evaluator_cannot_report_pass (tests.test_round04.EvidenceIntegrity.test_mutating_evaluator_cannot_report_pass) ... FAIL\n\n======================================================================\nERROR: test_modified_receipt_and_deleted_prefix_detected (tests.test_round04.EvidenceIntegrity.test_modified_receipt_and_deleted_prefix_detected)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"<workspace>/tests/test_round04.py\", line 16, in test_modified_receipt_and_deleted_prefix_detected\n    self.assertEqual(ledger.verify()['records'], 2)\n                     ^^^^^^^^^^^^^\nAttributeError: 'Ledger' object has no attribute 'verify'\n\n======================================================================\nFAIL: test_mutating_evaluator_cannot_report_pass (tests.test_round04.EvidenceIntegrity.test_mutating_evaluator_cannot_report_pass)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"<workspace>/tests/test_round04.py\", line 31, in test_mutating_evaluator_cannot_report_pass\n    self.assertEqual(result['status'], 'invalid')\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'pass' != 'invalid'\n- pass\n+ invalid\n\n\n----------------------------------------------------------------------\nRan 2 tests in 0.043s\n\nFAILED (failures=1, errors=1)\n",
+      "output_bytes": 1615,
+      "output_sha256": "4dd9460c292cad947442e5aaf99e6c1dff3d1a8dc1b73bb7efd418f78b822981",
+      "output_truncated": false,
+      "source_digest": "c72fc63a4a45e52defdf7329cdb740533cc2993f411e1d6e88f695edc3b6f31a",
+      "source_files": {
+        "capabilities/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "capabilities/exploration/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "capabilities/exploration/ledger.py": "0b5c85140277e20174d446e63360c94524cdd4fb7a524aab34f73710e5dffe28",
+        "capabilities/exploration/replay.py": "0e669d015448c92b6e683c25b0c0b0bdbc2d673b075a475680c004736d3a6c2d",
+        "runtime/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "runtime/runner.py": "cf6e311cce203f92b623b3d1202375dd025afec95ea487c24bf7cef7e847cb80",
+        "tests/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "tests/test_baseline.py": "3a6a931ccf2a9158bc680ffe4d5fc50c1932a43b4cc403214134221d6f9a4bf5",
+        "tests/test_round01.py": "9669a33f2f9d1867c1f181383c31a70494b66055e934bdfeb92cf79f23fa77d5",
+        "tests/test_round02.py": "b89123a8742f0e17c77688acbb3eba11c0f33b21da74032d841880bb253d3c59",
+        "tests/test_round03.py": "3f20347ddf54babb6a84dfd6b4a0492d95384f90191434b4687d31b74bf6dff3",
+        "tests/test_round04.py": "0e1edeed1785afa1dbeeec81c574787a045edd7cf79650064a2f93a642037891",
+        "workflows/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "workflows/self_improve/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "workflows/self_improve/__main__.py": "bcc2338036f30f43bb052d21386be419f1f18600d185f476fd6221915bd3c26d"
+      },
+      "status": "fail",
+      "wall_seconds": 0.130088,
+      "output_scope": "path-redacted projection; output_bytes refers to raw execution"
+    },
+    "hypothesis": "Detect tampered receipts and retain source snapshots; source mutation invalidates evaluation",
+    "id": "r04-before",
+    "parent": "r03-after",
+    "phase": "before",
+    "round": 4,
+    "export_provenance": {
+      "raw_record_digest": "8a931b07a535b81420e67cc1b10f7c033074e16cb7c56a48109eda059b8ae9b4",
+      "projection": "local-path-redacted-v1",
+      "raw_output_sha256": "4dd9460c292cad947442e5aaf99e6c1dff3d1a8dc1b73bb7efd418f78b822981",
+      "raw_evaluator_digest": "791722e4467ffc9bc65d801bc37b29a7e37ea0e69a773136df57bc6674d54fce"
+    },
+    "_integrity": {
+      "prefix": "a44c8d2b6d30328e721469ef29ae8e06ec0b0431a946276478a1896fd9c67600",
+      "content": "665c877dc3772fb39671ccbde101a15a61326f76baa5e7ec3b7cb1ed24311b25"
+    }
+  },
+  {
+    "evaluation": {
+      "audiovisual": "unavailable",
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "tests.test_round04",
+        "-v"
+      ],
+      "evaluator_digest": "791722e4467ffc9bc65d801bc37b29a7e37ea0e69a773136df57bc6674d54fce",
+      "exit_code": 0,
+      "integrity": "verified",
+      "model_cost": null,
+      "model_tokens": null,
+      "output": "test_modified_receipt_and_deleted_prefix_detected (tests.test_round04.EvidenceIntegrity.test_modified_receipt_and_deleted_prefix_detected) ... ok\ntest_mutating_evaluator_cannot_report_pass (tests.test_round04.EvidenceIntegrity.test_mutating_evaluator_cannot_report_pass) ... ok\n\n----------------------------------------------------------------------\nRan 2 tests in 0.024s\n\nOK\n",
+      "output_bytes": 376,
+      "output_sha256": "2168d2b0ffd4583194fdec030b7312961b8e493d382f2ee4e0fbb933aaaf3988",
+      "output_truncated": false,
+      "snapshot": "artifacts/snapshots/2a0316f7da6998c7f92f5a80ce921daed17193d888bf3c80cd8a518fabffca1d",
+      "source_digest": "2a0316f7da6998c7f92f5a80ce921daed17193d888bf3c80cd8a518fabffca1d",
+      "source_files": {
+        "capabilities/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "capabilities/exploration/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "capabilities/exploration/ledger.py": "d607d7dcf7944f92532abea41f27c4e1f8a8102bbe632334fffda6de7c7e8569",
+        "capabilities/exploration/replay.py": "0e669d015448c92b6e683c25b0c0b0bdbc2d673b075a475680c004736d3a6c2d",
+        "runtime/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "runtime/runner.py": "8c7bf794c40ebb786ee3eb23f4cd3dc1de5df633e702349a05767f9939e4e12a",
+        "tests/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "tests/test_baseline.py": "3a6a931ccf2a9158bc680ffe4d5fc50c1932a43b4cc403214134221d6f9a4bf5",
+        "tests/test_round01.py": "9669a33f2f9d1867c1f181383c31a70494b66055e934bdfeb92cf79f23fa77d5",
+        "tests/test_round02.py": "b89123a8742f0e17c77688acbb3eba11c0f33b21da74032d841880bb253d3c59",
+        "tests/test_round03.py": "3f20347ddf54babb6a84dfd6b4a0492d95384f90191434b4687d31b74bf6dff3",
+        "tests/test_round04.py": "0e1edeed1785afa1dbeeec81c574787a045edd7cf79650064a2f93a642037891",
+        "workflows/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "workflows/self_improve/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "workflows/self_improve/__main__.py": "8fe2d6bdca45b14617476246583262dda2e08bd1869fab1fbf5143c7c400bd43"
+      },
+      "status": "pass",
+      "wall_seconds": 0.076852,
+      "output_scope": "path-redacted projection; output_bytes refers to raw execution"
+    },
+    "hypothesis": "Detect tampered receipts and retain source snapshots; source mutation invalidates evaluation",
+    "id": "r04-after",
+    "parent": "r04-before",
+    "phase": "after",
+    "round": 4,
+    "export_provenance": {
+      "raw_record_digest": "3309f4aa6929e70e5045210facbaae9ce3172eea0fe124547bbaae6e402144bb",
+      "projection": "local-path-redacted-v1",
+      "raw_output_sha256": "2168d2b0ffd4583194fdec030b7312961b8e493d382f2ee4e0fbb933aaaf3988",
+      "raw_evaluator_digest": "791722e4467ffc9bc65d801bc37b29a7e37ea0e69a773136df57bc6674d54fce"
+    },
+    "_integrity": {
+      "prefix": "b103a09e5dfe23ddaef831334d1b94ba240c2d5770f69cf6c4f68fc0d677c3dc",
+      "content": "6bb25bcd96c435bc560004b70bca121bbe0641e9f8ff7b5b8076e233fce24f27"
+    }
   }
 ]
