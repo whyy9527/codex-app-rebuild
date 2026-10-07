@@ -1,6 +1,7 @@
 """Short Codex lifecycle adapter. No model calls and no verifier execution in hooks."""
 import argparse
 import json
+import re
 from pathlib import Path
 import sys
 import time
@@ -22,6 +23,11 @@ def handle(harness,payload):
     if event=='Interrupt' and state:
         harness.pause(state['id'],'user interrupted the Codex turn')
         return {}
+    if event=='UserPromptSubmit' and state:
+        prompt=payload.get('prompt','')
+        if isinstance(prompt,str) and re.match(r'^\s*(?:(?:先)?(?:暂停|停一下|停止|别继续|不用继续|取消)|/exploration\s+pause\b|stop\b|pause\b|cancel\b)',prompt,re.I):
+            harness.pause(state['id'],'explicit user pause instruction')
+            return {'hookSpecificOutput':{'hookEventName':event,'additionalContext':'Exploration task paused by the user. Do not resume it unless the user resumes.'}}
     if event=='SessionStart':
         context=GUIDANCE+' Current session_id='+session_id+'.'
         if state: context+=' Existing task: '+json.dumps(summary(state))

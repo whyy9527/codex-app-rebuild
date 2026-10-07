@@ -42,13 +42,19 @@ def install(codex_home,repo_root):
         target.write_text(content)
         target.chmod(0o700)
     command=shlex.quote(str(package/'hook.sh'))
-    for event in ('SessionStart','Stop','Interrupt'):
+    for event in ('SessionStart','Stop','Interrupt','UserPromptSubmit'):
         entries=hooks['hooks'].setdefault(event,[])
         if not any(any(h.get('command')==command for h in entry.get('hooks',[])) for entry in entries):
             entries.append({'hooks':[{'type':'command','command':command,'timeout':3,'statusMessage':'Exploration Lab'}]})
-    result=subprocess.run(['codex','mcp','add',NAME,'--',str(launcher)],capture_output=True,text=True,timeout=10,
-                          env={**os.environ,'CODEX_HOME':str(home)})
-    if result.returncode: raise RuntimeError('native Codex MCP registration failed')
+    # Native CLI rewriting can normalize unrelated server definitions. Append only
+    # this owned TOML table, preserving every existing byte and semantic value.
+    if old is None:
+        original=config_path.read_bytes() if config_path.exists() else b''
+        table='\n\n[mcp_servers.exploration-lab]\ncommand = '+json.dumps(str(launcher))+'\nargs = []\n'
+        temporary=config_path.with_suffix('.exploration.tmp')
+        temporary.write_bytes(original+table.encode())
+        temporary.chmod(config_path.stat().st_mode & 0o777 if config_path.exists() else 0o600)
+        temporary.replace(config_path)
     save(hook_path,hooks)
     after=tomllib.loads(config_path.read_text())
     for key,value in config.items():
@@ -56,7 +62,7 @@ def install(codex_home,repo_root):
             for server,settings in value.items():
                 if server!=NAME and after['mcp_servers'].get(server)!=settings: raise ValueError('unrelated MCP settings changed')
         elif after.get(key)!=value: raise ValueError('unrelated Codex configuration changed')
-    return {'mcp_server':NAME,'registered':True,'events':['SessionStart','Stop','Interrupt'],
+    return {'mcp_server':NAME,'registered':True,'events':['SessionStart','Stop','Interrupt','UserPromptSubmit'],
             'hook_trust':'requires_native_review','state_directory':str(state),'backup_directory':str(backup)}
 
 
