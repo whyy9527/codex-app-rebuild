@@ -837,5 +837,132 @@
       "prefix": "b7dcb9b1987e2d18013cecdf75cb1e7b453e90aee04092d2ee3523ec5464f3d6",
       "content": "da241ad379739c5bc36b2863be7008074b544b106c040b32c9e3f496a28c9f95"
     }
+  },
+  {
+    "evaluation": {
+      "audiovisual": "unavailable",
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "tests.test_round08",
+        "-v"
+      ],
+      "evaluator_digest": "e56ad06673811302ae26211cc7aaad62de7c5f101917426f06fb4c0d4114d534",
+      "exit_code": 1,
+      "integrity": "verified",
+      "model_cost": null,
+      "model_tokens": null,
+      "output": "test_round08 (unittest.loader._FailedTest.test_round08) ... ERROR\n\n======================================================================\nERROR: test_round08 (unittest.loader._FailedTest.test_round08)\n----------------------------------------------------------------------\nImportError: Failed to import test module: test_round08\nTraceback (most recent call last):\n  File \"<local-path>\", line 137, in loadTestsFromName\n    module = __import__(module_name)\n  File \"<workspace>/tests/test_round08.py\", line 2, in <module>\n    from runtime.components import Context\nModuleNotFoundError: No module named 'runtime.components'\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nFAILED (errors=1)\n",
+      "output_bytes": 872,
+      "output_sha256": "8b0b7378ff6c71f61c5158190a30a755377ffcd5d4a33e83280c5865b43242c8",
+      "output_truncated": false,
+      "snapshot": "artifacts/snapshots/ebad4a273e113ca3a520c549667adbfb36904ff047e7f2cdb8c8ecd72439377f",
+      "source_digest": "ebad4a273e113ca3a520c549667adbfb36904ff047e7f2cdb8c8ecd72439377f",
+      "source_files": {
+        "capabilities/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "capabilities/exploration/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "capabilities/exploration/ledger.py": "d607d7dcf7944f92532abea41f27c4e1f8a8102bbe632334fffda6de7c7e8569",
+        "capabilities/exploration/objective.py": "1bece841e6e6d37df9215e9ab9a9a0d03873735c96df007209b8cffb11ace709",
+        "capabilities/exploration/replay.py": "681762ac7d027574ec0618cb0e504036a029edfc6d2fb093df411db94b6b29ad",
+        "runtime/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "runtime/runner.py": "8c7bf794c40ebb786ee3eb23f4cd3dc1de5df633e702349a05767f9939e4e12a",
+        "tests/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "tests/test_baseline.py": "3a6a931ccf2a9158bc680ffe4d5fc50c1932a43b4cc403214134221d6f9a4bf5",
+        "tests/test_round01.py": "9669a33f2f9d1867c1f181383c31a70494b66055e934bdfeb92cf79f23fa77d5",
+        "tests/test_round02.py": "b89123a8742f0e17c77688acbb3eba11c0f33b21da74032d841880bb253d3c59",
+        "tests/test_round03.py": "3f20347ddf54babb6a84dfd6b4a0492d95384f90191434b4687d31b74bf6dff3",
+        "tests/test_round04.py": "0e1edeed1785afa1dbeeec81c574787a045edd7cf79650064a2f93a642037891",
+        "tests/test_round05.py": "a14ac7c826c9a005e6690d379b2419c2c48d472376d34b07c282b362d4b77adb",
+        "tests/test_round06.py": "f2a9a5f4d313012f6417e929ef9ba52e44f38818aa64678683ea28c14a469d87",
+        "tests/test_round07.py": "3351b94212cb49700c46067b64085b064dde1c0a731ed6969b95988e06284515",
+        "tests/test_round08.py": "2a7cad93bdb07274e3ae86a0968c23e24e49a9e4587646ea8f3219ba12a773bb",
+        "workflows/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "workflows/self_improve/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "workflows/self_improve/__main__.py": "8fe2d6bdca45b14617476246583262dda2e08bd1869fab1fbf5143c7c400bd43"
+      },
+      "status": "fail",
+      "wall_seconds": 0.041165,
+      "output_scope": "path-redacted projection; output_bytes refers to raw execution"
+    },
+    "hypothesis": "Declared dependencies control component activation and cleanup runs in reverse order even after failures",
+    "id": "r08-before",
+    "parent": "r07-after",
+    "phase": "before",
+    "round": 8,
+    "export_provenance": {
+      "raw_record_digest": "9330259bc876db1c79daedb3199a350317fdc90b5f83251b82e935942aa0c337",
+      "projection": "local-path-redacted-v1",
+      "raw_output_sha256": "c76d7aa4f209128fb553dd777e9932e8f217bbb3f3f222759290fdd34179ae10",
+      "raw_evaluator_digest": "e56ad06673811302ae26211cc7aaad62de7c5f101917426f06fb4c0d4114d534"
+    },
+    "_integrity": {
+      "prefix": "7b93ecaa31e481d0af6aae91e22c7346708f8f9216df80d270ecde359fcad604",
+      "content": "c3d6d2441bda1eb6c44cd1e8d42e448d5ffb072c329fcd811a4635dc2c1f652a"
+    }
+  },
+  {
+    "evaluation": {
+      "audiovisual": "unavailable",
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "tests.test_round08",
+        "-v"
+      ],
+      "evaluator_digest": "e56ad06673811302ae26211cc7aaad62de7c5f101917426f06fb4c0d4114d534",
+      "exit_code": 0,
+      "integrity": "verified",
+      "model_cost": null,
+      "model_tokens": null,
+      "output": "test_cleanup_failures_do_not_skip_other_resources (tests.test_round08.ComponentLifecycle.test_cleanup_failures_do_not_skip_other_resources) ... ok\ntest_dependencies_deactivate_and_reactivate_without_residue (tests.test_round08.ComponentLifecycle.test_dependencies_deactivate_and_reactivate_without_residue) ... ok\ntest_start_failure_rolls_back_registered_resources (tests.test_round08.ComponentLifecycle.test_start_failure_rolls_back_registered_resources) ... ok\n\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n",
+      "output_bytes": 561,
+      "output_sha256": "bebd711da37f4ce3226ce7d23c09b75824fe4da9e70b3cd739bb43e8dbc53725",
+      "output_truncated": false,
+      "snapshot": "artifacts/snapshots/c6040ebef6fbe5f16312d4e4ee98cc1a8f613564e1c2b1f29bc6c757bcd8aba2",
+      "source_digest": "c6040ebef6fbe5f16312d4e4ee98cc1a8f613564e1c2b1f29bc6c757bcd8aba2",
+      "source_files": {
+        "capabilities/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "capabilities/exploration/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "capabilities/exploration/ledger.py": "d607d7dcf7944f92532abea41f27c4e1f8a8102bbe632334fffda6de7c7e8569",
+        "capabilities/exploration/objective.py": "1bece841e6e6d37df9215e9ab9a9a0d03873735c96df007209b8cffb11ace709",
+        "capabilities/exploration/replay.py": "681762ac7d027574ec0618cb0e504036a029edfc6d2fb093df411db94b6b29ad",
+        "runtime/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "runtime/components.py": "cbcbde3789b54de2f4a4d27f932a4c0c82acada1ce1ea53c49f08c89ec546fe4",
+        "runtime/runner.py": "8c7bf794c40ebb786ee3eb23f4cd3dc1de5df633e702349a05767f9939e4e12a",
+        "tests/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "tests/test_baseline.py": "3a6a931ccf2a9158bc680ffe4d5fc50c1932a43b4cc403214134221d6f9a4bf5",
+        "tests/test_round01.py": "9669a33f2f9d1867c1f181383c31a70494b66055e934bdfeb92cf79f23fa77d5",
+        "tests/test_round02.py": "b89123a8742f0e17c77688acbb3eba11c0f33b21da74032d841880bb253d3c59",
+        "tests/test_round03.py": "3f20347ddf54babb6a84dfd6b4a0492d95384f90191434b4687d31b74bf6dff3",
+        "tests/test_round04.py": "0e1edeed1785afa1dbeeec81c574787a045edd7cf79650064a2f93a642037891",
+        "tests/test_round05.py": "a14ac7c826c9a005e6690d379b2419c2c48d472376d34b07c282b362d4b77adb",
+        "tests/test_round06.py": "f2a9a5f4d313012f6417e929ef9ba52e44f38818aa64678683ea28c14a469d87",
+        "tests/test_round07.py": "3351b94212cb49700c46067b64085b064dde1c0a731ed6969b95988e06284515",
+        "tests/test_round08.py": "2a7cad93bdb07274e3ae86a0968c23e24e49a9e4587646ea8f3219ba12a773bb",
+        "workflows/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "workflows/self_improve/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "workflows/self_improve/__main__.py": "8fe2d6bdca45b14617476246583262dda2e08bd1869fab1fbf5143c7c400bd43"
+      },
+      "status": "pass",
+      "wall_seconds": 0.039586,
+      "output_scope": "path-redacted projection; output_bytes refers to raw execution"
+    },
+    "hypothesis": "Declared dependencies control component activation and cleanup runs in reverse order even after failures",
+    "id": "r08-after",
+    "parent": "r08-before",
+    "phase": "after",
+    "round": 8,
+    "export_provenance": {
+      "raw_record_digest": "e00fe17cd3ca4c8e760a0362d478da12b08eea9e1d00b592fee4ee6ed8452ae1",
+      "projection": "local-path-redacted-v1",
+      "raw_output_sha256": "bebd711da37f4ce3226ce7d23c09b75824fe4da9e70b3cd739bb43e8dbc53725",
+      "raw_evaluator_digest": "e56ad06673811302ae26211cc7aaad62de7c5f101917426f06fb4c0d4114d534"
+    },
+    "_integrity": {
+      "prefix": "b5bc97558f71ea75ced7fe4f4b540eb467e22517846d2d18057a5dc24f2546e4",
+      "content": "7b26d6055d8eacf58246ec0f978055aaf53788f89dd2fa0d3b0206d1ebe2b651"
+    }
   }
 ]
