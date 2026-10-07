@@ -15,13 +15,13 @@ METHODS = {'get', 'items', 'keys', 'values', 'append', 'extend', 'sort', 'index'
 MATH = {'ceil', 'floor', 'sqrt', 'log', 'exp', 'isfinite', 'fabs'}
 
 
-def validate_source(source):
+def validate_source(source, entry='policy'):
     if not isinstance(source, str) or len(source) > 40000:
         raise ValueError('invalid policy source')
     tree = ast.parse(source)
-    definitions = [node for node in tree.body if isinstance(node, ast.FunctionDef) and node.name == 'policy']
+    definitions = [node for node in tree.body if isinstance(node, ast.FunctionDef) and node.name == entry]
     if len(definitions) != 1 or len(definitions[0].args.args) != 2:
-        raise ValueError('define policy(observed, context) exactly once')
+        raise ValueError('define the two-argument entry function exactly once')
     for top in tree.body:
         if isinstance(top, ast.FunctionDef):
             if top.decorator_list or top.args.defaults or top.args.kw_defaults:
@@ -75,10 +75,12 @@ def main():
     resource.setrlimit(resource.RLIMIT_CPU, (2, 2))
     resource.setrlimit(resource.RLIMIT_FSIZE, (65536, 65536))
     value = json.load(sys.stdin)
-    tree = validate_source(value['source'])
+    entry = value.get('entry', 'policy')
+    tree = validate_source(value['source'], entry=entry)
     namespace = {'__builtins__': SAFE_BUILTINS, 'math': math}
     exec(compile(tree, '<policy>', 'exec'), namespace)
-    print(json.dumps(namespace['policy'](value['observed'], value['context']), allow_nan=False))
+    arguments = value.get('args', [value.get('observed'), value.get('context')])
+    print(json.dumps(namespace[entry](*arguments), allow_nan=False))
 
 
 if __name__ == '__main__':
