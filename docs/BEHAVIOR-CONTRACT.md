@@ -64,7 +64,7 @@ python3 -m workflows.rebuild.cli coverage --workspace <项目> --spec spec.json 
 
 每个已知行为前重置，全部场景后再次重置并检查初始状态，最后 stop。参考端全部已知行为通过且输入、实现未变，才能冻结。candidate 验收必须引用冻结批次，保护期间发现任何验收输入变化均拒绝。未知行为仍在报告中，不计作通过；只有 unknown 的清单不能完成。
 
-`--timeout` 控制每次适配命令，完整批次还应由 Harness 的总预算约束。进程组超时清理由执行器负责；适配器自己启动的独立服务需要 stop 管理。项目运行数据和回执应写在 artifacts，避免混入源码完整性清单。
+`--timeout` 控制每次适配命令，`--max-seconds` 控制整个业务批次，Pipeline 还传入持久 deadline。总预算耗尽后不再启动新动作；stop 保留最多5秒的独立清理额度。外层 Harness 的总预算继续生效。进程组超时清理由执行器负责；适配器自己启动的独立服务需要 stop 管理。项目运行数据和回执应写在 artifacts，避免混入源码完整性清单。
 
 `--out` 不覆盖旧文件；每次尝试使用独立路径，保留失败证据。输出还可省略并交给 Harness 捕获；正式实验须持久保存原始回执。退出码 0 为已执行的通过，1 为实际验收未通过，2 为输入/协议使用错误。
 
@@ -74,4 +74,4 @@ python3 -m workflows.rebuild.cli coverage --workspace <项目> --spec spec.json 
 
 报告分离 discovery 和执行 status：unknown、observed、decision 表示知识来源；not_run、pass、fail、invalid、unavailable、timeout 表示执行状态。保存规格/配置/输入/源码摘要、动作观察、差异、生命周期、命令输出和耗时。源码或规格变化后，旧回执仍是历史证据，但不能作为当前通过状态。
 
-本层尚不提供自动业务发现、原生 UI 驱动、跨会话任务迁移或完整阶段自动续跑。当前测试在临时目录运行真实子进程和明确的状态机替身，证明协议与断言机制，不证明 Duolingo 覆盖或模型收益。
+本层尚不提供自动业务发现或原生 UI 驱动。阶段控制与显式任务接续已接入，完整实际模型自动续跑仍待验证。当前测试在临时目录运行真实子进程和明确的状态机替身，证明协议与断言机制，不证明 Duolingo 覆盖或模型收益。

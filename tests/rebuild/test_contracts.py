@@ -4,6 +4,7 @@ from pathlib import Path
 import sys
 import subprocess
 import tempfile
+import time
 import unittest
 
 from capabilities.exploration.storage import digest
@@ -183,6 +184,16 @@ class SharedBusinessContracts(unittest.TestCase):
         result = verify(self.root, contract, 'reference')
         self.assertEqual(result['behaviors'][0]['status'], 'invalid')
         self.assertEqual(result['behaviors'][0]['reason'], 'scenario precondition was not established')
+
+    def test_batch_deadline_stops_new_actions_and_retains_bounded_cleanup(self):
+        (self.root/'driver.py').write_text('import time\ntime.sleep(0.15)\n'+DRIVER)
+        contract = self.write()
+        result = verify(self.root, contract, 'reference', timeout=1, deadline=time.time()+0.03)
+        self.assertEqual(result['status'], 'fail')
+        self.assertEqual(result['lifecycle'][0]['receipt']['status'], 'timeout')
+        self.assertIn('Not executed',result['lifecycle'][-2]['receipt']['output'])
+        self.assertEqual(result['lifecycle'][-1]['operation'], 'stop')
+        self.assertEqual(result['lifecycle'][-1]['receipt']['status'], 'pass')
 
     def test_cli_persists_actual_failure_then_repair_without_overwriting_receipts(self):
         def run(operation, *arguments):

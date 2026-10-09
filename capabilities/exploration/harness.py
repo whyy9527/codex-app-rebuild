@@ -45,7 +45,9 @@ class Harness:
     def active(self,workspace,session_id):
         pointer=self.scope(workspace,session_id)
         if not pointer.exists(): return None
-        return self.read(json.loads(pointer.read_text())['id'])
+        state=self.read(json.loads(pointer.read_text())['id'])
+        if state['session_id']!=session_id or state['workspace']!=str(Path(workspace).resolve()): return None
+        return state
 
     def start(self,*,workspace,session_id,objective,verifier,max_iterations=10,max_failures=3,max_seconds=1800,
               acceptance_paths=None,verify_seconds=30):
@@ -95,6 +97,7 @@ class Harness:
             if state['phase']=='verifying': return state
             if state['phase']!='working': raise ValueError('begin an attempt before verification')
             state['phase']='verifying'
+            state['verification_in_flight']=True
             self.write(state)
             remaining=state['deadline']-time.time()
         root=Path(state['workspace'])
@@ -121,6 +124,7 @@ class Harness:
             if after!=state['acceptance_files']: result['status']='invalid'
         with self.lock():
             current=self.read(task_id)
+            current['verification_in_flight']=False
             current['attempts'][-1]['evaluation']=result
             current['last_error']=None if result['status']=='pass' else result['status']
             current['failures']=0 if result['status']=='pass' else current['failures']+1
@@ -171,7 +175,15 @@ class Harness:
         with self.lock():
             state=self.read(task_id)
             if state['phase']!='paused': raise ValueError('only a user-paused task can resume')
+            if state.get('verification_in_flight'): raise ValueError('verification must finish before resume')
             unfinished=bool(state['attempts'] and state['attempts'][-1]['evaluation'] is None)
+            result=state['attempts'][-1]['evaluation'] if state['attempts'] and not unfinished else None
+            if result and result['status']=='pass':
+                state.update(phase='complete',last_error=None)
+                return self.write(state)
+            if result and (result['status'] in ('invalid','unavailable') or state['failures']>=state['max_failures']):
+                state.update(phase='blocked',last_error=result['status'])
+                return self.write(state)
             if time.time()>=state['deadline'] or (state['iterations']>=state['max_iterations'] and not unfinished):
                 state['phase']='budget_exhausted'
             else:
@@ -179,3 +191,26 @@ class Harness:
                 state['last_error']=None
                 state['last_hook_progress']=None
             return self.write(state)
+
+    def adopt(self,task_id,workspace,session_id):
+        """Explicit transfer of a paused task; never resets budget or auto-resumes."""
+        if not isinstance(session_id,str) or not 1<=len(session_id)<=128:
+            raise ValueError('explicit destination session required')
+        with self.lock():
+            state=self.read(task_id)
+            if state['workspace']!=str(Path(workspace).resolve()):
+                raise ValueError('task belongs to another workspace')
+            if state['phase']!='paused' or state.get('verification_in_flight'):
+                raise ValueError('only paused tasks without in-flight verification can transfer')
+            if state['session_id']==session_id: return state
+            other=self.active(workspace,session_id)
+            if other and other['id']!=task_id and other['phase'] in {'ready','working','verifying','paused'}:
+                raise ValueError('destination session already owns an unfinished task')
+            old_pointer=self.scope(workspace,state['session_id'])
+            state.setdefault('ownership_history',[]).append({'from':state['session_id'],'to':session_id,'at':time.time()})
+            state['session_id']=session_id
+            self.write(state)
+            save(self.scope(workspace,session_id),{'id':task_id})
+            if old_pointer.exists() and json.loads(old_pointer.read_text())['id']==task_id:
+                old_pointer.unlink()
+            return state

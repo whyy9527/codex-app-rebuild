@@ -4,6 +4,7 @@ Local trusted adapters execute real browser/native actions. Their protocol is no
 attestation: a test double exercises this module, but cannot prove UI behavior.
 """
 import json
+import math
 from pathlib import Path
 import re
 import time
@@ -146,8 +147,10 @@ def call(root, target, request, timeout):
     return receipt, response
 
 
-def verify(root, contract, target_name, timeout=30, frozen=None):
+def verify(root, contract, target_name, timeout=30, frozen=None, deadline=None):
     root = Path(root).resolve()
+    if not math.isfinite(timeout) or timeout <= 0 or (deadline is not None and not math.isfinite(deadline)):
+        raise ValueError('finite positive adapter timeout and finite deadline required')
     if input_manifest(root, contract['paths']) != contract['inputs']:
         raise ValueError('contract inputs changed after loading')
     if target_name not in contract['targets']['targets']:
@@ -166,8 +169,15 @@ def verify(root, contract, target_name, timeout=30, frozen=None):
               'spec_digest': contract['spec_digest'], 'targets_digest': contract['targets_digest'],
               'source_digest': digest(manifest(root)),
               'inputs': contract['inputs'], 'behaviors': [], 'lifecycle': [], 'created_at': time.time()}
+    def execute(request, cleanup=False):
+        remaining = timeout if deadline is None else min(timeout, deadline-time.time())
+        if cleanup:
+            remaining = min(timeout, 5)  # Explicit bounded cleanup allowance, even after task deadline.
+        if remaining <= 0:
+            return {'status': 'timeout', 'output': 'Not executed: batch deadline exhausted', 'wall_seconds': 0}, None
+        return call(root, target, request, remaining)
     def operation(name, **fields):
-        result, response = call(root, target, {'operation': name, 'fixture': contract['fixture'], **fields}, timeout)
+        result, response = execute({'operation': name, 'fixture': contract['fixture'], **fields}, cleanup=name == 'stop')
         report['lifecycle'].append({'operation': name, 'receipt': result})
         return result, response
     try:
@@ -187,7 +197,7 @@ def verify(root, contract, target_name, timeout=30, frozen=None):
                 continue
             request = {'operation': 'scenario', 'fixture': contract['fixture'], 'scenario_id': behavior['id'],
                        'precondition': behavior['precondition'], 'actions': [s['action'] for s in behavior['steps']]}
-            result, response = call(root, target, request, timeout)
+            result, response = execute(request)
             item.update(status=result['status'], receipt=result)
             if response is None:
                 continue

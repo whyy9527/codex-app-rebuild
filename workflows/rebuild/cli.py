@@ -1,8 +1,10 @@
 """Explicit local entry point; never creates a public artifact or edits a test."""
 import argparse
 import json
+import math
 from pathlib import Path
 import sys
+import time
 
 from capabilities.rebuild.contracts import coverage, freeze, load, local_file, verify
 
@@ -15,6 +17,7 @@ def main():
     parser.add_argument('--targets', required=True)
     parser.add_argument('--target', choices=['reference', 'candidate'])
     parser.add_argument('--timeout', type=float, default=30)
+    parser.add_argument('--max-seconds', type=float, default=1800)
     parser.add_argument('--frozen')
     parser.add_argument('--receipt')
     parser.add_argument('--parent')
@@ -43,7 +46,9 @@ def main():
         else:
             if not args.target:
                 raise ValueError('verify requires --target')
-            result = verify(root, contract, args.target, args.timeout, read(args.frozen))
+            if not math.isfinite(args.max_seconds) or args.max_seconds <= 0:
+                raise ValueError('positive finite batch budget required')
+            result = verify(root, contract, args.target, args.timeout, read(args.frozen), deadline=time.time()+args.max_seconds)
         if args.out:
             output.parent.mkdir(parents=True, exist_ok=True)
             # Do not overwrite a prior failed attempt or frozen batch.

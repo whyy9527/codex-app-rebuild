@@ -7,7 +7,7 @@ description: Use exploration-lab MCP and project hooks for bounded Codex iterati
 
 Use when the user requests repeated repair or unattended iteration in an explicit project. Read [the workflow](../../../workflows/harness/WORKFLOW.md); it owns the protocol. Codex performs the reasoning and edits; the tool manages measured feedback and bounded state.
 
-Preserve actual failed results. Registration and trust do not prove Hook execution or automatic model continuation. Do not change acceptance merely to make verification pass, bypass native Hook trust, resume another session's task, or start a separate paid model to demonstrate the tool.
+Preserve actual failed results. Registration and trust do not prove Hook execution or automatic model continuation. Do not change acceptance merely to make verification pass, bypass native Hook trust, resume another session's task without explicit paused-task adoption, or start a separate paid model to demonstrate the tool.
 
 Fast same-size Python edits can read stale timestamp bytecode. Harness.verify uses a fresh PYTHONPYCACHEPREFIX per evaluation and disables writes; -B alone does not prevent cache reads.
 

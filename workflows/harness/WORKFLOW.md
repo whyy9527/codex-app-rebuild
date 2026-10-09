@@ -10,6 +10,8 @@
 4. `exploration_status`：读取当前任务及反馈。Stop 仅对当前任务请求有限继续；重复事件和无进展受限，不运行长验证或模型。
 5. `exploration_pause` / `exploration_resume`：用户暂停或需要外部输入时暂停，用户明确恢复后继续，不重置预算。UserPromptSubmit 也捕获明确暂停提示。
 
+6. `exploration_adopt`：仅在用户明确选择暂停任务时转交到同工作目录的新 session_id，保留反馈和预算，然后等待/执行用户明确恢复。正在验收、异工作目录或目标已有未完成任务均拒绝；旧会话不能继续它。
+
 SessionStart 提供工具协议和当前 session_id。无任务的普通会话不启循环。工具不会替代权限审批、真人验收或美学评价。
 
 运行 `python3 -m workflows.harness.diagnose --workspace <项目> --out artifacts/host.json` 检查原生清单。信任与清单不证明 Hook 已执行；需要实际日志和模型续跑证据。运行 `python3 -m unittest discover -v` 检查实现。
