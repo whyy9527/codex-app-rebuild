@@ -1,5 +1,6 @@
 """Reproduce the preregistered dependency ablations; no model calls."""
 import argparse
+from datetime import datetime, timezone
 import hashlib
 import io
 import json
@@ -38,7 +39,12 @@ def manifest(root, prefixes):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--historical-baseline', action='store_true', help='Explicitly replay the recorded baseline after newer remote commits.')
+    parser.add_argument('--output', type=Path, help='New output directory; existing result files are never replaced.')
     args = parser.parse_args()
+    output = args.output.resolve() if args.output else OUT
+    if any((output / name).exists() for name in ['results.json', *[arm + '.log' for arm in ARMS]]):
+        raise SystemExit('Result files already exist; choose a fresh --output directory.')
+    output.mkdir(parents=True, exist_ok=True)
     remote = subprocess.check_output(['git', 'ls-remote', 'origin', 'refs/heads/main'], cwd=ROOT, text=True).split()[0]
     if remote != BASELINE:
         if not args.historical_baseline:
@@ -49,7 +55,8 @@ def main():
     report = {'baseline': BASELINE, 'remote_verified': remote, 'python': sys.version,
               'codex_cli': subprocess.check_output(['codex', '--version'], text=True).strip(),
               'driver_sha256': digest(Path(__file__).read_bytes()), 'repetitions': 1,
-              'model': None, 'tokens': None, 'cost': None, 'arms': {}}
+              'model': None, 'tokens': None, 'cost': None, 'arms': {},
+              'started_at': datetime.now(timezone.utc).isoformat(), 'historical_replay': args.historical_baseline}
     baseline_ids = None
     for name, mutation in ARMS.items():
         with tempfile.TemporaryDirectory(prefix='rebuild-ablation-') as directory:
@@ -82,14 +89,14 @@ def main():
                 baseline_ids = ids
             count = re.search(r'Ran (\d+) tests?', clean)
             valid = ids == baseline_ids and len(entries) == 36 and count is not None and int(count.group(1)) == 36
-            log = OUT / f'{name}.log'
+            log = output / f'{name}.log'
             log.write_text(clean)
             report['arms'][name] = {'valid': valid, 'elapsed_seconds': round(elapsed, 3),
                 'returncode': result.returncode, 'tests': entries, 'passed': sum(e['status'] == 'ok' for e in entries),
                 'raw_log_sha256': digest(raw.encode()), 'sanitized_log_sha256': digest(clean.encode()),
                 'log': log.name, 'mutation': mutation, 'source_after': manifest(root, ['runtime', 'capabilities', 'workflows']),
                 'frozen_tests_unchanged': tests == manifest(root, ['tests']), 'human_interventions': 0}
-            (OUT / 'results.json').write_text(json.dumps(report, indent=2) + '\n')
+            (output / 'results.json').write_text(json.dumps(report, indent=2) + '\n')
             print(name, valid, report['arms'][name]['passed'], result.returncode, flush=True)
     if not all(arm['valid'] and arm['frozen_tests_unchanged'] for arm in report['arms'].values()):
         raise SystemExit('Invalid arm; inspect results instead of scoring it.')

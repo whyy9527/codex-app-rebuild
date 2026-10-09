@@ -1,0 +1,796 @@
+{
+  "baseline": "b0b31c9024385c758c0c253d11e67d78611001e8",
+  "remote_verified": "77ca25966934b2f06ab5a10f35a51d7cab08ce32",
+  "python": "3.14.3 (main, Feb  3 2026, 15:32:20) [Clang 17.0.0 (clang-1700.6.3.2)]",
+  "codex_cli": "codex-cli 0.139.0",
+  "driver_sha256": "d2dff4b80737b5ebebceafe5c35cd5a4da6832a55a85d4528a42d92038c2dbbc",
+  "repetitions": 1,
+  "model": null,
+  "tokens": null,
+  "cost": null,
+  "arms": {
+    "full": {
+      "valid": true,
+      "elapsed_seconds": 12.138,
+      "returncode": 0,
+      "tests": [
+        {
+          "test": "test_task_survives_restart_without_cross_session_activation (tests.harness.test_01.SessionTasks.test_task_survives_restart_without_cross_session_activation)",
+          "status": "ok"
+        },
+        {
+          "test": "test_begin_is_idempotent_and_cannot_bypass_budget (tests.harness.test_02.IterationReservation.test_begin_is_idempotent_and_cannot_bypass_budget)",
+          "status": "ok"
+        },
+        {
+          "test": "test_failure_then_repair_and_no_self_certified_success (tests.harness.test_03.RealVerifier.test_failure_then_repair_and_no_self_certified_success)",
+          "status": "ok"
+        },
+        {
+          "test": "test_stdio_discovery_and_error_are_real_protocol_messages (tests.harness.test_04.McpProtocol.test_stdio_discovery_and_error_are_real_protocol_messages)",
+          "status": "ok"
+        },
+        {
+          "test": "test_hooks_only_continue_an_explicitly_started_scoped_task (tests.harness.test_05.LifecycleHooks.test_hooks_only_continue_an_explicitly_started_scoped_task)",
+          "status": "ok"
+        },
+        {
+          "test": "test_duplicate_stop_does_not_spawn_again_and_stagnation_stops (tests.harness.test_06.BoundedContinuation.test_duplicate_stop_does_not_spawn_again_and_stagnation_stops)",
+          "status": "ok"
+        },
+        {
+          "test": "test_explicit_pause_and_only_explicit_resume_reactivates (tests.harness.test_07.UserInterrupt.test_explicit_pause_and_only_explicit_resume_reactivates)",
+          "status": "ok"
+        },
+        {
+          "test": "test_registration_preserves_other_hooks_and_mcp_servers (tests.harness.test_08.PreserveConfiguration.test_registration_preserves_other_hooks_and_mcp_servers)",
+          "status": "ok"
+        },
+        {
+          "test": "test_real_host_discovers_registered_tools_and_hook_trust (tests.harness.test_09.NativeCodexDiscovery.test_real_host_discovers_registered_tools_and_hook_trust)",
+          "status": "ok"
+        },
+        {
+          "test": "test_native_tool_verification_rejects_empty_test_success (tests.harness.test_10.NativeVerificationLoop.test_native_tool_verification_rejects_empty_test_success)",
+          "status": "ok"
+        },
+        {
+          "test": "test_declared_directory_detects_new_test_and_missing_fixture (tests.harness.test_acceptance_inputs.AcceptanceInputs.test_declared_directory_detects_new_test_and_missing_fixture)",
+          "status": "ok"
+        },
+        {
+          "test": "test_explicit_timeout_is_executed_and_total_budget_still_bounds_it (tests.harness.test_acceptance_inputs.AcceptanceInputs.test_explicit_timeout_is_executed_and_total_budget_still_bounds_it)",
+          "status": "ok"
+        },
+        {
+          "test": "test_paths_cannot_escape_workspace (tests.harness.test_acceptance_inputs.AcceptanceInputs.test_paths_cannot_escape_workspace)",
+          "status": "ok"
+        },
+        {
+          "test": "test_source_repair_allowed_while_acceptance_stays_fixed (tests.harness.test_acceptance_inputs.AcceptanceInputs.test_source_repair_allowed_while_acceptance_stays_fixed)",
+          "status": "ok"
+        },
+        {
+          "test": "test_ts_swift_and_fixture_changes_block_success (tests.harness.test_acceptance_inputs.AcceptanceInputs.test_ts_swift_and_fixture_changes_block_success)",
+          "status": "ok"
+        },
+        {
+          "test": "test_active_cross_workspace_and_destination_tasks_cannot_be_taken_over (tests.harness.test_adoption.ExplicitAdoption.test_active_cross_workspace_and_destination_tasks_cannot_be_taken_over)",
+          "status": "ok"
+        },
+        {
+          "test": "test_paused_verification_cannot_be_resumed_or_transferred_while_in_flight (tests.harness.test_adoption.ExplicitAdoption.test_paused_verification_cannot_be_resumed_or_transferred_while_in_flight)",
+          "status": "ok"
+        },
+        {
+          "test": "test_reopened_session_keeps_feedback_and_budget_and_old_hook_loses_scope (tests.harness.test_adoption.ExplicitAdoption.test_reopened_session_keeps_feedback_and_budget_and_old_hook_loses_scope)",
+          "status": "ok"
+        },
+        {
+          "test": "test_changed_acceptance_cannot_complete_task (tests.harness.test_contracts.Contracts.test_changed_acceptance_cannot_complete_task)",
+          "status": "ok"
+        },
+        {
+          "test": "test_failed_last_attempt_stops_at_budget (tests.harness.test_contracts.Contracts.test_failed_last_attempt_stops_at_budget)",
+          "status": "ok"
+        },
+        {
+          "test": "test_last_reserved_attempt_can_resume_without_new_iteration (tests.harness.test_resume_reserved.ReservedAttemptResume.test_last_reserved_attempt_can_resume_without_new_iteration)",
+          "status": "ok"
+        },
+        {
+          "test": "test_batch_deadline_stops_new_actions_and_retains_bounded_cleanup (tests.rebuild.test_contracts.SharedBusinessContracts.test_batch_deadline_stops_new_actions_and_retains_bounded_cleanup)",
+          "status": "ok"
+        },
+        {
+          "test": "test_cli_persists_actual_failure_then_repair_without_overwriting_receipts (tests.rebuild.test_contracts.SharedBusinessContracts.test_cli_persists_actual_failure_then_repair_without_overwriting_receipts)",
+          "status": "ok"
+        },
+        {
+          "test": "test_coverage_separates_unknown_observed_and_not_run_and_rejects_stale_results (tests.rebuild.test_contracts.SharedBusinessContracts.test_coverage_separates_unknown_observed_and_not_run_and_rejects_stale_results)",
+          "status": "ok"
+        },
+        {
+          "test": "test_discovery_new_batch_preserves_old_acceptance_and_parent_identity (tests.rebuild.test_contracts.SharedBusinessContracts.test_discovery_new_batch_preserves_old_acceptance_and_parent_identity)",
+          "status": "ok"
+        },
+        {
+          "test": "test_driver_never_receives_expectations_and_zero_steps_cannot_pass (tests.rebuild.test_contracts.SharedBusinessContracts.test_driver_never_receives_expectations_and_zero_steps_cannot_pass)",
+          "status": "ok"
+        },
+        {
+          "test": "test_empty_suite_missing_evidence_and_lying_online_identity_are_rejected (tests.rebuild.test_contracts.SharedBusinessContracts.test_empty_suite_missing_evidence_and_lying_online_identity_are_rejected)",
+          "status": "ok"
+        },
+        {
+          "test": "test_freeze_requires_matching_reference_and_protects_fixtures (tests.rebuild.test_contracts.SharedBusinessContracts.test_freeze_requires_matching_reference_and_protects_fixtures)",
+          "status": "ok"
+        },
+        {
+          "test": "test_shared_assertions_detect_candidate_bug_and_accept_real_repair (tests.rebuild.test_contracts.SharedBusinessContracts.test_shared_assertions_detect_candidate_bug_and_accept_real_repair)",
+          "status": "ok"
+        },
+        {
+          "test": "test_type_strict_assertions_cannot_confuse_true_with_one (tests.rebuild.test_contracts.SharedBusinessContracts.test_type_strict_assertions_cannot_confuse_true_with_one)",
+          "status": "ok"
+        },
+        {
+          "test": "test_unavailable_driver_cannot_be_misreported_as_business_success (tests.rebuild.test_contracts.SharedBusinessContracts.test_unavailable_driver_cannot_be_misreported_as_business_success)",
+          "status": "ok"
+        },
+        {
+          "test": "test_wrong_precondition_cannot_pass_even_when_final_assertions_match (tests.rebuild.test_contracts.SharedBusinessContracts.test_wrong_precondition_cannot_pass_even_when_final_assertions_match)",
+          "status": "ok"
+        },
+        {
+          "test": "test_budget_is_not_reset_by_reopening_pipeline (tests.rebuild.test_pipeline.EvidenceGatedPipeline.test_budget_is_not_reset_by_reopening_pipeline)",
+          "status": "ok"
+        },
+        {
+          "test": "test_decisions_alone_cannot_claim_reference_exploration (tests.rebuild.test_pipeline.EvidenceGatedPipeline.test_decisions_alone_cannot_claim_reference_exploration)",
+          "status": "ok"
+        },
+        {
+          "test": "test_real_commands_fail_repair_discover_reconfirm_and_complete_then_reject_stale_source (tests.rebuild.test_pipeline.EvidenceGatedPipeline.test_real_commands_fail_repair_discover_reconfirm_and_complete_then_reject_stale_source)",
+          "status": "ok"
+        },
+        {
+          "test": "test_specification_revision_returns_to_exploration_without_resetting_budget (tests.rebuild.test_pipeline.EvidenceGatedPipeline.test_specification_revision_returns_to_exploration_without_resetting_budget)",
+          "status": "ok"
+        }
+      ],
+      "passed": 36,
+      "raw_log_sha256": "2885855337f9466ac04e7021228637fe93a2a077497a7a52d5716ae2eaedfd8e",
+      "sanitized_log_sha256": "2885855337f9466ac04e7021228637fe93a2a077497a7a52d5716ae2eaedfd8e",
+      "log": "full.log",
+      "mutation": null,
+      "source_after": {
+        "runtime/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "runtime/codex_host.py": "a29d020f415514cb73248d1c1a6c6cfe98e15a6702a3455fca0d8c339e275113",
+        "runtime/harness_hooks.py": "7e20d4208720caf407df38723e8ac99a09361a29159353c1bf8e8e0a82c4c5ae",
+        "runtime/harness_mcp.py": "3081c673509cea8176a17ed85699c9096578175a1b5defe8a9c653bce046982f",
+        "runtime/runner.py": "ec0ed2cd2fd6edad2fef00b50c2ed6a493e65a35e8dd4ef7d9ac5290f8375d56",
+        "capabilities/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "capabilities/exploration/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "capabilities/exploration/harness.py": "df60c3edb3d47c51816a59c01c38fd1fd9bacd97c3a91fa5c9994ee539764bb7",
+        "capabilities/exploration/storage.py": "e4a94f22e0c207c48a18cc0b3607b50f7efb28d44f163a8c457a478f42631544",
+        "capabilities/rebuild/__init__.py": "3eb3f25aa1a14b3598a488ec66f95bdf70398080c5c5ed2500503686ba0195fc",
+        "capabilities/rebuild/contracts.py": "6889a93faa7f64c2494283083ca422bd80c304006f0ab4682440bcb2b6ce0099",
+        "capabilities/rebuild/pipeline.py": "c2e60255b7d615e2ba0a76937ea4c34569239bab9336af8d52c1d1a949c9620f",
+        "workflows/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "workflows/harness/WORKFLOW.md": "bb9020abfb666f22f78db41bb23f8ddee86032b4381c789f612fbad6c73703bd",
+        "workflows/harness/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "workflows/harness/diagnose.py": "d4060e8c68f36d68d011adb8f3f2e06a6cecb2b651abdb5b669aacaf14735cb6",
+        "workflows/harness/install.py": "76eb57fb3b73f6095bcb03b2bf685a74176e0ae4790837848c1389e04bb3060f",
+        "workflows/rebuild/WORKFLOW.md": "ac1f45c9fec7f4f92b0c58a224102503465c4cb7eb2309a496d4ab2d176b2a55",
+        "workflows/rebuild/__init__.py": "e0319affeafae527246b2e57d6a07f6efb6f3f81c07fd55310f989ee3af0632f",
+        "workflows/rebuild/cli.py": "3bde511173065d29cd8a95f471308f0ea6f027f3540bdc825c23fdb3510ef079",
+        "workflows/rebuild/pipeline.py": "e02d6af7aa30e7a37ce7b6c5dd370542322ce76f793d957c948a79db90a361ce"
+      },
+      "frozen_tests_unchanged": true,
+      "human_interventions": 0
+    },
+    "no_behavior_progress": {
+      "valid": true,
+      "elapsed_seconds": 9.745,
+      "returncode": 1,
+      "tests": [
+        {
+          "test": "test_task_survives_restart_without_cross_session_activation (tests.harness.test_01.SessionTasks.test_task_survives_restart_without_cross_session_activation)",
+          "status": "ok"
+        },
+        {
+          "test": "test_begin_is_idempotent_and_cannot_bypass_budget (tests.harness.test_02.IterationReservation.test_begin_is_idempotent_and_cannot_bypass_budget)",
+          "status": "ok"
+        },
+        {
+          "test": "test_failure_then_repair_and_no_self_certified_success (tests.harness.test_03.RealVerifier.test_failure_then_repair_and_no_self_certified_success)",
+          "status": "ok"
+        },
+        {
+          "test": "test_stdio_discovery_and_error_are_real_protocol_messages (tests.harness.test_04.McpProtocol.test_stdio_discovery_and_error_are_real_protocol_messages)",
+          "status": "ok"
+        },
+        {
+          "test": "test_hooks_only_continue_an_explicitly_started_scoped_task (tests.harness.test_05.LifecycleHooks.test_hooks_only_continue_an_explicitly_started_scoped_task)",
+          "status": "ok"
+        },
+        {
+          "test": "test_duplicate_stop_does_not_spawn_again_and_stagnation_stops (tests.harness.test_06.BoundedContinuation.test_duplicate_stop_does_not_spawn_again_and_stagnation_stops)",
+          "status": "ok"
+        },
+        {
+          "test": "test_explicit_pause_and_only_explicit_resume_reactivates (tests.harness.test_07.UserInterrupt.test_explicit_pause_and_only_explicit_resume_reactivates)",
+          "status": "ok"
+        },
+        {
+          "test": "test_registration_preserves_other_hooks_and_mcp_servers (tests.harness.test_08.PreserveConfiguration.test_registration_preserves_other_hooks_and_mcp_servers)",
+          "status": "ok"
+        },
+        {
+          "test": "test_real_host_discovers_registered_tools_and_hook_trust (tests.harness.test_09.NativeCodexDiscovery.test_real_host_discovers_registered_tools_and_hook_trust)",
+          "status": "ok"
+        },
+        {
+          "test": "test_native_tool_verification_rejects_empty_test_success (tests.harness.test_10.NativeVerificationLoop.test_native_tool_verification_rejects_empty_test_success)",
+          "status": "ok"
+        },
+        {
+          "test": "test_declared_directory_detects_new_test_and_missing_fixture (tests.harness.test_acceptance_inputs.AcceptanceInputs.test_declared_directory_detects_new_test_and_missing_fixture)",
+          "status": "ok"
+        },
+        {
+          "test": "test_explicit_timeout_is_executed_and_total_budget_still_bounds_it (tests.harness.test_acceptance_inputs.AcceptanceInputs.test_explicit_timeout_is_executed_and_total_budget_still_bounds_it)",
+          "status": "ok"
+        },
+        {
+          "test": "test_paths_cannot_escape_workspace (tests.harness.test_acceptance_inputs.AcceptanceInputs.test_paths_cannot_escape_workspace)",
+          "status": "ok"
+        },
+        {
+          "test": "test_source_repair_allowed_while_acceptance_stays_fixed (tests.harness.test_acceptance_inputs.AcceptanceInputs.test_source_repair_allowed_while_acceptance_stays_fixed)",
+          "status": "ok"
+        },
+        {
+          "test": "test_ts_swift_and_fixture_changes_block_success (tests.harness.test_acceptance_inputs.AcceptanceInputs.test_ts_swift_and_fixture_changes_block_success)",
+          "status": "ok"
+        },
+        {
+          "test": "test_active_cross_workspace_and_destination_tasks_cannot_be_taken_over (tests.harness.test_adoption.ExplicitAdoption.test_active_cross_workspace_and_destination_tasks_cannot_be_taken_over)",
+          "status": "ok"
+        },
+        {
+          "test": "test_paused_verification_cannot_be_resumed_or_transferred_while_in_flight (tests.harness.test_adoption.ExplicitAdoption.test_paused_verification_cannot_be_resumed_or_transferred_while_in_flight)",
+          "status": "ok"
+        },
+        {
+          "test": "test_reopened_session_keeps_feedback_and_budget_and_old_hook_loses_scope (tests.harness.test_adoption.ExplicitAdoption.test_reopened_session_keeps_feedback_and_budget_and_old_hook_loses_scope)",
+          "status": "ok"
+        },
+        {
+          "test": "test_changed_acceptance_cannot_complete_task (tests.harness.test_contracts.Contracts.test_changed_acceptance_cannot_complete_task)",
+          "status": "ok"
+        },
+        {
+          "test": "test_failed_last_attempt_stops_at_budget (tests.harness.test_contracts.Contracts.test_failed_last_attempt_stops_at_budget)",
+          "status": "ok"
+        },
+        {
+          "test": "test_last_reserved_attempt_can_resume_without_new_iteration (tests.harness.test_resume_reserved.ReservedAttemptResume.test_last_reserved_attempt_can_resume_without_new_iteration)",
+          "status": "ok"
+        },
+        {
+          "test": "test_batch_deadline_stops_new_actions_and_retains_bounded_cleanup (tests.rebuild.test_contracts.SharedBusinessContracts.test_batch_deadline_stops_new_actions_and_retains_bounded_cleanup)",
+          "status": "ok"
+        },
+        {
+          "test": "test_cli_persists_actual_failure_then_repair_without_overwriting_receipts (tests.rebuild.test_contracts.SharedBusinessContracts.test_cli_persists_actual_failure_then_repair_without_overwriting_receipts)",
+          "status": "ok"
+        },
+        {
+          "test": "test_coverage_separates_unknown_observed_and_not_run_and_rejects_stale_results (tests.rebuild.test_contracts.SharedBusinessContracts.test_coverage_separates_unknown_observed_and_not_run_and_rejects_stale_results)",
+          "status": "ok"
+        },
+        {
+          "test": "test_discovery_new_batch_preserves_old_acceptance_and_parent_identity (tests.rebuild.test_contracts.SharedBusinessContracts.test_discovery_new_batch_preserves_old_acceptance_and_parent_identity)",
+          "status": "ok"
+        },
+        {
+          "test": "test_driver_never_receives_expectations_and_zero_steps_cannot_pass (tests.rebuild.test_contracts.SharedBusinessContracts.test_driver_never_receives_expectations_and_zero_steps_cannot_pass)",
+          "status": "ok"
+        },
+        {
+          "test": "test_empty_suite_missing_evidence_and_lying_online_identity_are_rejected (tests.rebuild.test_contracts.SharedBusinessContracts.test_empty_suite_missing_evidence_and_lying_online_identity_are_rejected)",
+          "status": "ok"
+        },
+        {
+          "test": "test_freeze_requires_matching_reference_and_protects_fixtures (tests.rebuild.test_contracts.SharedBusinessContracts.test_freeze_requires_matching_reference_and_protects_fixtures)",
+          "status": "ok"
+        },
+        {
+          "test": "test_shared_assertions_detect_candidate_bug_and_accept_real_repair (tests.rebuild.test_contracts.SharedBusinessContracts.test_shared_assertions_detect_candidate_bug_and_accept_real_repair)",
+          "status": "ok"
+        },
+        {
+          "test": "test_type_strict_assertions_cannot_confuse_true_with_one (tests.rebuild.test_contracts.SharedBusinessContracts.test_type_strict_assertions_cannot_confuse_true_with_one)",
+          "status": "ok"
+        },
+        {
+          "test": "test_unavailable_driver_cannot_be_misreported_as_business_success (tests.rebuild.test_contracts.SharedBusinessContracts.test_unavailable_driver_cannot_be_misreported_as_business_success)",
+          "status": "ok"
+        },
+        {
+          "test": "test_wrong_precondition_cannot_pass_even_when_final_assertions_match (tests.rebuild.test_contracts.SharedBusinessContracts.test_wrong_precondition_cannot_pass_even_when_final_assertions_match)",
+          "status": "ok"
+        },
+        {
+          "test": "test_budget_is_not_reset_by_reopening_pipeline (tests.rebuild.test_pipeline.EvidenceGatedPipeline.test_budget_is_not_reset_by_reopening_pipeline)",
+          "status": "ok"
+        },
+        {
+          "test": "test_decisions_alone_cannot_claim_reference_exploration (tests.rebuild.test_pipeline.EvidenceGatedPipeline.test_decisions_alone_cannot_claim_reference_exploration)",
+          "status": "ok"
+        },
+        {
+          "test": "test_real_commands_fail_repair_discover_reconfirm_and_complete_then_reject_stale_source (tests.rebuild.test_pipeline.EvidenceGatedPipeline.test_real_commands_fail_repair_discover_reconfirm_and_complete_then_reject_stale_source)",
+          "status": "FAIL"
+        },
+        {
+          "test": "test_specification_revision_returns_to_exploration_without_resetting_budget (tests.rebuild.test_pipeline.EvidenceGatedPipeline.test_specification_revision_returns_to_exploration_without_resetting_budget)",
+          "status": "ok"
+        }
+      ],
+      "passed": 35,
+      "raw_log_sha256": "10009c8901f8d572b20de0f3f81c491b64f576ca060a58c73f937750021869dc",
+      "sanitized_log_sha256": "633d107f0804a96b7cc3375eca595febd1db6b9643157e8d7de248fe8021f449",
+      "log": "no_behavior_progress.log",
+      "mutation": [
+        "capabilities/rebuild/pipeline.py",
+        "            state['events'].append(event)\n            save(self.path(run_id), state)",
+        "            state['events'].append(event)\n            save(self.path(run_id), {**state, 'reference_receipt': None, 'candidate_receipt': None})"
+      ],
+      "source_after": {
+        "runtime/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "runtime/codex_host.py": "a29d020f415514cb73248d1c1a6c6cfe98e15a6702a3455fca0d8c339e275113",
+        "runtime/harness_hooks.py": "7e20d4208720caf407df38723e8ac99a09361a29159353c1bf8e8e0a82c4c5ae",
+        "runtime/harness_mcp.py": "3081c673509cea8176a17ed85699c9096578175a1b5defe8a9c653bce046982f",
+        "runtime/runner.py": "ec0ed2cd2fd6edad2fef00b50c2ed6a493e65a35e8dd4ef7d9ac5290f8375d56",
+        "capabilities/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "capabilities/exploration/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "capabilities/exploration/harness.py": "df60c3edb3d47c51816a59c01c38fd1fd9bacd97c3a91fa5c9994ee539764bb7",
+        "capabilities/exploration/storage.py": "e4a94f22e0c207c48a18cc0b3607b50f7efb28d44f163a8c457a478f42631544",
+        "capabilities/rebuild/__init__.py": "3eb3f25aa1a14b3598a488ec66f95bdf70398080c5c5ed2500503686ba0195fc",
+        "capabilities/rebuild/contracts.py": "6889a93faa7f64c2494283083ca422bd80c304006f0ab4682440bcb2b6ce0099",
+        "capabilities/rebuild/pipeline.py": "4147672a7eff4a4801b7dab656ab8a339d7f2275204e62ef921d5f3e3b3e59a0",
+        "workflows/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "workflows/harness/WORKFLOW.md": "bb9020abfb666f22f78db41bb23f8ddee86032b4381c789f612fbad6c73703bd",
+        "workflows/harness/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "workflows/harness/diagnose.py": "d4060e8c68f36d68d011adb8f3f2e06a6cecb2b651abdb5b669aacaf14735cb6",
+        "workflows/harness/install.py": "76eb57fb3b73f6095bcb03b2bf685a74176e0ae4790837848c1389e04bb3060f",
+        "workflows/rebuild/WORKFLOW.md": "ac1f45c9fec7f4f92b0c58a224102503465c4cb7eb2309a496d4ab2d176b2a55",
+        "workflows/rebuild/__init__.py": "e0319affeafae527246b2e57d6a07f6efb6f3f81c07fd55310f989ee3af0632f",
+        "workflows/rebuild/cli.py": "3bde511173065d29cd8a95f471308f0ea6f027f3540bdc825c23fdb3510ef079",
+        "workflows/rebuild/pipeline.py": "e02d6af7aa30e7a37ce7b6c5dd370542322ce76f793d957c948a79db90a361ce"
+      },
+      "frozen_tests_unchanged": true,
+      "human_interventions": 0
+    },
+    "no_stop_feedback": {
+      "valid": true,
+      "elapsed_seconds": 11.768,
+      "returncode": 1,
+      "tests": [
+        {
+          "test": "test_task_survives_restart_without_cross_session_activation (tests.harness.test_01.SessionTasks.test_task_survives_restart_without_cross_session_activation)",
+          "status": "ok"
+        },
+        {
+          "test": "test_begin_is_idempotent_and_cannot_bypass_budget (tests.harness.test_02.IterationReservation.test_begin_is_idempotent_and_cannot_bypass_budget)",
+          "status": "ok"
+        },
+        {
+          "test": "test_failure_then_repair_and_no_self_certified_success (tests.harness.test_03.RealVerifier.test_failure_then_repair_and_no_self_certified_success)",
+          "status": "ok"
+        },
+        {
+          "test": "test_stdio_discovery_and_error_are_real_protocol_messages (tests.harness.test_04.McpProtocol.test_stdio_discovery_and_error_are_real_protocol_messages)",
+          "status": "ok"
+        },
+        {
+          "test": "test_hooks_only_continue_an_explicitly_started_scoped_task (tests.harness.test_05.LifecycleHooks.test_hooks_only_continue_an_explicitly_started_scoped_task)",
+          "status": "ERROR"
+        },
+        {
+          "test": "test_duplicate_stop_does_not_spawn_again_and_stagnation_stops (tests.harness.test_06.BoundedContinuation.test_duplicate_stop_does_not_spawn_again_and_stagnation_stops)",
+          "status": "ERROR"
+        },
+        {
+          "test": "test_explicit_pause_and_only_explicit_resume_reactivates (tests.harness.test_07.UserInterrupt.test_explicit_pause_and_only_explicit_resume_reactivates)",
+          "status": "ok"
+        },
+        {
+          "test": "test_registration_preserves_other_hooks_and_mcp_servers (tests.harness.test_08.PreserveConfiguration.test_registration_preserves_other_hooks_and_mcp_servers)",
+          "status": "ok"
+        },
+        {
+          "test": "test_real_host_discovers_registered_tools_and_hook_trust (tests.harness.test_09.NativeCodexDiscovery.test_real_host_discovers_registered_tools_and_hook_trust)",
+          "status": "ok"
+        },
+        {
+          "test": "test_native_tool_verification_rejects_empty_test_success (tests.harness.test_10.NativeVerificationLoop.test_native_tool_verification_rejects_empty_test_success)",
+          "status": "ok"
+        },
+        {
+          "test": "test_declared_directory_detects_new_test_and_missing_fixture (tests.harness.test_acceptance_inputs.AcceptanceInputs.test_declared_directory_detects_new_test_and_missing_fixture)",
+          "status": "ok"
+        },
+        {
+          "test": "test_explicit_timeout_is_executed_and_total_budget_still_bounds_it (tests.harness.test_acceptance_inputs.AcceptanceInputs.test_explicit_timeout_is_executed_and_total_budget_still_bounds_it)",
+          "status": "ok"
+        },
+        {
+          "test": "test_paths_cannot_escape_workspace (tests.harness.test_acceptance_inputs.AcceptanceInputs.test_paths_cannot_escape_workspace)",
+          "status": "ok"
+        },
+        {
+          "test": "test_source_repair_allowed_while_acceptance_stays_fixed (tests.harness.test_acceptance_inputs.AcceptanceInputs.test_source_repair_allowed_while_acceptance_stays_fixed)",
+          "status": "ok"
+        },
+        {
+          "test": "test_ts_swift_and_fixture_changes_block_success (tests.harness.test_acceptance_inputs.AcceptanceInputs.test_ts_swift_and_fixture_changes_block_success)",
+          "status": "ok"
+        },
+        {
+          "test": "test_active_cross_workspace_and_destination_tasks_cannot_be_taken_over (tests.harness.test_adoption.ExplicitAdoption.test_active_cross_workspace_and_destination_tasks_cannot_be_taken_over)",
+          "status": "ok"
+        },
+        {
+          "test": "test_paused_verification_cannot_be_resumed_or_transferred_while_in_flight (tests.harness.test_adoption.ExplicitAdoption.test_paused_verification_cannot_be_resumed_or_transferred_while_in_flight)",
+          "status": "ok"
+        },
+        {
+          "test": "test_reopened_session_keeps_feedback_and_budget_and_old_hook_loses_scope (tests.harness.test_adoption.ExplicitAdoption.test_reopened_session_keeps_feedback_and_budget_and_old_hook_loses_scope)",
+          "status": "ERROR"
+        },
+        {
+          "test": "test_changed_acceptance_cannot_complete_task (tests.harness.test_contracts.Contracts.test_changed_acceptance_cannot_complete_task)",
+          "status": "ok"
+        },
+        {
+          "test": "test_failed_last_attempt_stops_at_budget (tests.harness.test_contracts.Contracts.test_failed_last_attempt_stops_at_budget)",
+          "status": "ok"
+        },
+        {
+          "test": "test_last_reserved_attempt_can_resume_without_new_iteration (tests.harness.test_resume_reserved.ReservedAttemptResume.test_last_reserved_attempt_can_resume_without_new_iteration)",
+          "status": "ok"
+        },
+        {
+          "test": "test_batch_deadline_stops_new_actions_and_retains_bounded_cleanup (tests.rebuild.test_contracts.SharedBusinessContracts.test_batch_deadline_stops_new_actions_and_retains_bounded_cleanup)",
+          "status": "ok"
+        },
+        {
+          "test": "test_cli_persists_actual_failure_then_repair_without_overwriting_receipts (tests.rebuild.test_contracts.SharedBusinessContracts.test_cli_persists_actual_failure_then_repair_without_overwriting_receipts)",
+          "status": "ok"
+        },
+        {
+          "test": "test_coverage_separates_unknown_observed_and_not_run_and_rejects_stale_results (tests.rebuild.test_contracts.SharedBusinessContracts.test_coverage_separates_unknown_observed_and_not_run_and_rejects_stale_results)",
+          "status": "ok"
+        },
+        {
+          "test": "test_discovery_new_batch_preserves_old_acceptance_and_parent_identity (tests.rebuild.test_contracts.SharedBusinessContracts.test_discovery_new_batch_preserves_old_acceptance_and_parent_identity)",
+          "status": "ok"
+        },
+        {
+          "test": "test_driver_never_receives_expectations_and_zero_steps_cannot_pass (tests.rebuild.test_contracts.SharedBusinessContracts.test_driver_never_receives_expectations_and_zero_steps_cannot_pass)",
+          "status": "ok"
+        },
+        {
+          "test": "test_empty_suite_missing_evidence_and_lying_online_identity_are_rejected (tests.rebuild.test_contracts.SharedBusinessContracts.test_empty_suite_missing_evidence_and_lying_online_identity_are_rejected)",
+          "status": "ok"
+        },
+        {
+          "test": "test_freeze_requires_matching_reference_and_protects_fixtures (tests.rebuild.test_contracts.SharedBusinessContracts.test_freeze_requires_matching_reference_and_protects_fixtures)",
+          "status": "ok"
+        },
+        {
+          "test": "test_shared_assertions_detect_candidate_bug_and_accept_real_repair (tests.rebuild.test_contracts.SharedBusinessContracts.test_shared_assertions_detect_candidate_bug_and_accept_real_repair)",
+          "status": "ok"
+        },
+        {
+          "test": "test_type_strict_assertions_cannot_confuse_true_with_one (tests.rebuild.test_contracts.SharedBusinessContracts.test_type_strict_assertions_cannot_confuse_true_with_one)",
+          "status": "ok"
+        },
+        {
+          "test": "test_unavailable_driver_cannot_be_misreported_as_business_success (tests.rebuild.test_contracts.SharedBusinessContracts.test_unavailable_driver_cannot_be_misreported_as_business_success)",
+          "status": "ok"
+        },
+        {
+          "test": "test_wrong_precondition_cannot_pass_even_when_final_assertions_match (tests.rebuild.test_contracts.SharedBusinessContracts.test_wrong_precondition_cannot_pass_even_when_final_assertions_match)",
+          "status": "ok"
+        },
+        {
+          "test": "test_budget_is_not_reset_by_reopening_pipeline (tests.rebuild.test_pipeline.EvidenceGatedPipeline.test_budget_is_not_reset_by_reopening_pipeline)",
+          "status": "ok"
+        },
+        {
+          "test": "test_decisions_alone_cannot_claim_reference_exploration (tests.rebuild.test_pipeline.EvidenceGatedPipeline.test_decisions_alone_cannot_claim_reference_exploration)",
+          "status": "ok"
+        },
+        {
+          "test": "test_real_commands_fail_repair_discover_reconfirm_and_complete_then_reject_stale_source (tests.rebuild.test_pipeline.EvidenceGatedPipeline.test_real_commands_fail_repair_discover_reconfirm_and_complete_then_reject_stale_source)",
+          "status": "ok"
+        },
+        {
+          "test": "test_specification_revision_returns_to_exploration_without_resetting_budget (tests.rebuild.test_pipeline.EvidenceGatedPipeline.test_specification_revision_returns_to_exploration_without_resetting_budget)",
+          "status": "ok"
+        }
+      ],
+      "passed": 33,
+      "raw_log_sha256": "823d28b888729b743b1519b5d6087e9347ddff92368ec550f68ff22cf8315de5",
+      "sanitized_log_sha256": "95765397896e3ff4f97acf634ab655a0c698c8cddf0590de66c224a2e425af1b",
+      "log": "no_stop_feedback.log",
+      "mutation": [
+        "runtime/harness_hooks.py",
+        "    if event=='Stop' and state and state['phase'] in ('ready','working'):",
+        "    if False and event=='Stop' and state and state['phase'] in ('ready','working'):"
+      ],
+      "source_after": {
+        "runtime/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "runtime/codex_host.py": "a29d020f415514cb73248d1c1a6c6cfe98e15a6702a3455fca0d8c339e275113",
+        "runtime/harness_hooks.py": "d6c21888c683c5088cf5767bf2e6019e5cf97caab5f70563ee5d6ff6c83d9fd7",
+        "runtime/harness_mcp.py": "3081c673509cea8176a17ed85699c9096578175a1b5defe8a9c653bce046982f",
+        "runtime/runner.py": "ec0ed2cd2fd6edad2fef00b50c2ed6a493e65a35e8dd4ef7d9ac5290f8375d56",
+        "capabilities/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "capabilities/exploration/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "capabilities/exploration/harness.py": "df60c3edb3d47c51816a59c01c38fd1fd9bacd97c3a91fa5c9994ee539764bb7",
+        "capabilities/exploration/storage.py": "e4a94f22e0c207c48a18cc0b3607b50f7efb28d44f163a8c457a478f42631544",
+        "capabilities/rebuild/__init__.py": "3eb3f25aa1a14b3598a488ec66f95bdf70398080c5c5ed2500503686ba0195fc",
+        "capabilities/rebuild/contracts.py": "6889a93faa7f64c2494283083ca422bd80c304006f0ab4682440bcb2b6ce0099",
+        "capabilities/rebuild/pipeline.py": "c2e60255b7d615e2ba0a76937ea4c34569239bab9336af8d52c1d1a949c9620f",
+        "workflows/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "workflows/harness/WORKFLOW.md": "bb9020abfb666f22f78db41bb23f8ddee86032b4381c789f612fbad6c73703bd",
+        "workflows/harness/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "workflows/harness/diagnose.py": "d4060e8c68f36d68d011adb8f3f2e06a6cecb2b651abdb5b669aacaf14735cb6",
+        "workflows/harness/install.py": "76eb57fb3b73f6095bcb03b2bf685a74176e0ae4790837848c1389e04bb3060f",
+        "workflows/rebuild/WORKFLOW.md": "ac1f45c9fec7f4f92b0c58a224102503465c4cb7eb2309a496d4ab2d176b2a55",
+        "workflows/rebuild/__init__.py": "e0319affeafae527246b2e57d6a07f6efb6f3f81c07fd55310f989ee3af0632f",
+        "workflows/rebuild/cli.py": "3bde511173065d29cd8a95f471308f0ea6f027f3540bdc825c23fdb3510ef079",
+        "workflows/rebuild/pipeline.py": "e02d6af7aa30e7a37ce7b6c5dd370542322ce76f793d957c948a79db90a361ce"
+      },
+      "frozen_tests_unchanged": true,
+      "human_interventions": 0
+    },
+    "no_supplemental_discovery": {
+      "valid": true,
+      "elapsed_seconds": 10.636,
+      "returncode": 1,
+      "tests": [
+        {
+          "test": "test_task_survives_restart_without_cross_session_activation (tests.harness.test_01.SessionTasks.test_task_survives_restart_without_cross_session_activation)",
+          "status": "ok"
+        },
+        {
+          "test": "test_begin_is_idempotent_and_cannot_bypass_budget (tests.harness.test_02.IterationReservation.test_begin_is_idempotent_and_cannot_bypass_budget)",
+          "status": "ok"
+        },
+        {
+          "test": "test_failure_then_repair_and_no_self_certified_success (tests.harness.test_03.RealVerifier.test_failure_then_repair_and_no_self_certified_success)",
+          "status": "ok"
+        },
+        {
+          "test": "test_stdio_discovery_and_error_are_real_protocol_messages (tests.harness.test_04.McpProtocol.test_stdio_discovery_and_error_are_real_protocol_messages)",
+          "status": "ok"
+        },
+        {
+          "test": "test_hooks_only_continue_an_explicitly_started_scoped_task (tests.harness.test_05.LifecycleHooks.test_hooks_only_continue_an_explicitly_started_scoped_task)",
+          "status": "ok"
+        },
+        {
+          "test": "test_duplicate_stop_does_not_spawn_again_and_stagnation_stops (tests.harness.test_06.BoundedContinuation.test_duplicate_stop_does_not_spawn_again_and_stagnation_stops)",
+          "status": "ok"
+        },
+        {
+          "test": "test_explicit_pause_and_only_explicit_resume_reactivates (tests.harness.test_07.UserInterrupt.test_explicit_pause_and_only_explicit_resume_reactivates)",
+          "status": "ok"
+        },
+        {
+          "test": "test_registration_preserves_other_hooks_and_mcp_servers (tests.harness.test_08.PreserveConfiguration.test_registration_preserves_other_hooks_and_mcp_servers)",
+          "status": "ok"
+        },
+        {
+          "test": "test_real_host_discovers_registered_tools_and_hook_trust (tests.harness.test_09.NativeCodexDiscovery.test_real_host_discovers_registered_tools_and_hook_trust)",
+          "status": "ok"
+        },
+        {
+          "test": "test_native_tool_verification_rejects_empty_test_success (tests.harness.test_10.NativeVerificationLoop.test_native_tool_verification_rejects_empty_test_success)",
+          "status": "ok"
+        },
+        {
+          "test": "test_declared_directory_detects_new_test_and_missing_fixture (tests.harness.test_acceptance_inputs.AcceptanceInputs.test_declared_directory_detects_new_test_and_missing_fixture)",
+          "status": "ok"
+        },
+        {
+          "test": "test_explicit_timeout_is_executed_and_total_budget_still_bounds_it (tests.harness.test_acceptance_inputs.AcceptanceInputs.test_explicit_timeout_is_executed_and_total_budget_still_bounds_it)",
+          "status": "ok"
+        },
+        {
+          "test": "test_paths_cannot_escape_workspace (tests.harness.test_acceptance_inputs.AcceptanceInputs.test_paths_cannot_escape_workspace)",
+          "status": "ok"
+        },
+        {
+          "test": "test_source_repair_allowed_while_acceptance_stays_fixed (tests.harness.test_acceptance_inputs.AcceptanceInputs.test_source_repair_allowed_while_acceptance_stays_fixed)",
+          "status": "ok"
+        },
+        {
+          "test": "test_ts_swift_and_fixture_changes_block_success (tests.harness.test_acceptance_inputs.AcceptanceInputs.test_ts_swift_and_fixture_changes_block_success)",
+          "status": "ok"
+        },
+        {
+          "test": "test_active_cross_workspace_and_destination_tasks_cannot_be_taken_over (tests.harness.test_adoption.ExplicitAdoption.test_active_cross_workspace_and_destination_tasks_cannot_be_taken_over)",
+          "status": "ok"
+        },
+        {
+          "test": "test_paused_verification_cannot_be_resumed_or_transferred_while_in_flight (tests.harness.test_adoption.ExplicitAdoption.test_paused_verification_cannot_be_resumed_or_transferred_while_in_flight)",
+          "status": "ok"
+        },
+        {
+          "test": "test_reopened_session_keeps_feedback_and_budget_and_old_hook_loses_scope (tests.harness.test_adoption.ExplicitAdoption.test_reopened_session_keeps_feedback_and_budget_and_old_hook_loses_scope)",
+          "status": "ok"
+        },
+        {
+          "test": "test_changed_acceptance_cannot_complete_task (tests.harness.test_contracts.Contracts.test_changed_acceptance_cannot_complete_task)",
+          "status": "ok"
+        },
+        {
+          "test": "test_failed_last_attempt_stops_at_budget (tests.harness.test_contracts.Contracts.test_failed_last_attempt_stops_at_budget)",
+          "status": "ok"
+        },
+        {
+          "test": "test_last_reserved_attempt_can_resume_without_new_iteration (tests.harness.test_resume_reserved.ReservedAttemptResume.test_last_reserved_attempt_can_resume_without_new_iteration)",
+          "status": "ok"
+        },
+        {
+          "test": "test_batch_deadline_stops_new_actions_and_retains_bounded_cleanup (tests.rebuild.test_contracts.SharedBusinessContracts.test_batch_deadline_stops_new_actions_and_retains_bounded_cleanup)",
+          "status": "ok"
+        },
+        {
+          "test": "test_cli_persists_actual_failure_then_repair_without_overwriting_receipts (tests.rebuild.test_contracts.SharedBusinessContracts.test_cli_persists_actual_failure_then_repair_without_overwriting_receipts)",
+          "status": "ok"
+        },
+        {
+          "test": "test_coverage_separates_unknown_observed_and_not_run_and_rejects_stale_results (tests.rebuild.test_contracts.SharedBusinessContracts.test_coverage_separates_unknown_observed_and_not_run_and_rejects_stale_results)",
+          "status": "ok"
+        },
+        {
+          "test": "test_discovery_new_batch_preserves_old_acceptance_and_parent_identity (tests.rebuild.test_contracts.SharedBusinessContracts.test_discovery_new_batch_preserves_old_acceptance_and_parent_identity)",
+          "status": "ok"
+        },
+        {
+          "test": "test_driver_never_receives_expectations_and_zero_steps_cannot_pass (tests.rebuild.test_contracts.SharedBusinessContracts.test_driver_never_receives_expectations_and_zero_steps_cannot_pass)",
+          "status": "ok"
+        },
+        {
+          "test": "test_empty_suite_missing_evidence_and_lying_online_identity_are_rejected (tests.rebuild.test_contracts.SharedBusinessContracts.test_empty_suite_missing_evidence_and_lying_online_identity_are_rejected)",
+          "status": "ok"
+        },
+        {
+          "test": "test_freeze_requires_matching_reference_and_protects_fixtures (tests.rebuild.test_contracts.SharedBusinessContracts.test_freeze_requires_matching_reference_and_protects_fixtures)",
+          "status": "ok"
+        },
+        {
+          "test": "test_shared_assertions_detect_candidate_bug_and_accept_real_repair (tests.rebuild.test_contracts.SharedBusinessContracts.test_shared_assertions_detect_candidate_bug_and_accept_real_repair)",
+          "status": "ok"
+        },
+        {
+          "test": "test_type_strict_assertions_cannot_confuse_true_with_one (tests.rebuild.test_contracts.SharedBusinessContracts.test_type_strict_assertions_cannot_confuse_true_with_one)",
+          "status": "ok"
+        },
+        {
+          "test": "test_unavailable_driver_cannot_be_misreported_as_business_success (tests.rebuild.test_contracts.SharedBusinessContracts.test_unavailable_driver_cannot_be_misreported_as_business_success)",
+          "status": "ok"
+        },
+        {
+          "test": "test_wrong_precondition_cannot_pass_even_when_final_assertions_match (tests.rebuild.test_contracts.SharedBusinessContracts.test_wrong_precondition_cannot_pass_even_when_final_assertions_match)",
+          "status": "ok"
+        },
+        {
+          "test": "test_budget_is_not_reset_by_reopening_pipeline (tests.rebuild.test_pipeline.EvidenceGatedPipeline.test_budget_is_not_reset_by_reopening_pipeline)",
+          "status": "ok"
+        },
+        {
+          "test": "test_decisions_alone_cannot_claim_reference_exploration (tests.rebuild.test_pipeline.EvidenceGatedPipeline.test_decisions_alone_cannot_claim_reference_exploration)",
+          "status": "ok"
+        },
+        {
+          "test": "test_real_commands_fail_repair_discover_reconfirm_and_complete_then_reject_stale_source (tests.rebuild.test_pipeline.EvidenceGatedPipeline.test_real_commands_fail_repair_discover_reconfirm_and_complete_then_reject_stale_source)",
+          "status": "FAIL"
+        },
+        {
+          "test": "test_specification_revision_returns_to_exploration_without_resetting_budget (tests.rebuild.test_pipeline.EvidenceGatedPipeline.test_specification_revision_returns_to_exploration_without_resetting_budget)",
+          "status": "ok"
+        }
+      ],
+      "passed": 35,
+      "raw_log_sha256": "91d32e984910a41f01e763c1e3b8253b5da4c2896385e546649b3a67e3d2ee67",
+      "sanitized_log_sha256": "8c6a09f4a88eb84c2e0885e6216910a2f6ebdc42b55c33200788d685a4d10dad",
+      "log": "no_supplemental_discovery.log",
+      "mutation": [
+        "capabilities/rebuild/pipeline.py",
+        "                    state['stage'] = 'review' if state['discovery_completed'] else 'discover'",
+        "                    state['stage'] = 'review'"
+      ],
+      "source_after": {
+        "runtime/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "runtime/codex_host.py": "a29d020f415514cb73248d1c1a6c6cfe98e15a6702a3455fca0d8c339e275113",
+        "runtime/harness_hooks.py": "7e20d4208720caf407df38723e8ac99a09361a29159353c1bf8e8e0a82c4c5ae",
+        "runtime/harness_mcp.py": "3081c673509cea8176a17ed85699c9096578175a1b5defe8a9c653bce046982f",
+        "runtime/runner.py": "ec0ed2cd2fd6edad2fef00b50c2ed6a493e65a35e8dd4ef7d9ac5290f8375d56",
+        "capabilities/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "capabilities/exploration/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "capabilities/exploration/harness.py": "df60c3edb3d47c51816a59c01c38fd1fd9bacd97c3a91fa5c9994ee539764bb7",
+        "capabilities/exploration/storage.py": "e4a94f22e0c207c48a18cc0b3607b50f7efb28d44f163a8c457a478f42631544",
+        "capabilities/rebuild/__init__.py": "3eb3f25aa1a14b3598a488ec66f95bdf70398080c5c5ed2500503686ba0195fc",
+        "capabilities/rebuild/contracts.py": "6889a93faa7f64c2494283083ca422bd80c304006f0ab4682440bcb2b6ce0099",
+        "capabilities/rebuild/pipeline.py": "4f2288859e1be07b4683e0d2a1c19e0aced047536fbe51fa7fd90fae3981559b",
+        "workflows/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "workflows/harness/WORKFLOW.md": "bb9020abfb666f22f78db41bb23f8ddee86032b4381c789f612fbad6c73703bd",
+        "workflows/harness/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "workflows/harness/diagnose.py": "d4060e8c68f36d68d011adb8f3f2e06a6cecb2b651abdb5b669aacaf14735cb6",
+        "workflows/harness/install.py": "76eb57fb3b73f6095bcb03b2bf685a74176e0ae4790837848c1389e04bb3060f",
+        "workflows/rebuild/WORKFLOW.md": "ac1f45c9fec7f4f92b0c58a224102503465c4cb7eb2309a496d4ab2d176b2a55",
+        "workflows/rebuild/__init__.py": "e0319affeafae527246b2e57d6a07f6efb6f3f81c07fd55310f989ee3af0632f",
+        "workflows/rebuild/cli.py": "3bde511173065d29cd8a95f471308f0ea6f027f3540bdc825c23fdb3510ef079",
+        "workflows/rebuild/pipeline.py": "e02d6af7aa30e7a37ce7b6c5dd370542322ce76f793d957c948a79db90a361ce"
+      },
+      "frozen_tests_unchanged": true,
+      "human_interventions": 0
+    }
+  },
+  "started_at": "2026-10-09T17:31:39.642910+00:00",
+  "historical_replay": true,
+  "tests": {
+    "tests/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tests/harness/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tests/harness/test_01.py": "14c3d07dbca78cb142d58e5c59c76e09020967bc2549e28c520b6d355676367e",
+    "tests/harness/test_02.py": "3bbe28396ca2794b4e7f9a802e2a04d30a611be949bacf792658cb8cc763cb8e",
+    "tests/harness/test_03.py": "3d99ae15e9f0ba87d7799005386e705c7c178b3612ea76bb1219614eea00a81a",
+    "tests/harness/test_04.py": "e536ac32df584ac4ad4a96768285a2761148c71fabaf078140a423d3420a9262",
+    "tests/harness/test_05.py": "fe4e58e2ea8a5546d9c5b9723b8b7a58e1b3f9d07726d60eb9cb9a01f0a70d36",
+    "tests/harness/test_06.py": "79c5b8258705b8b7148738b733cb2cffbf2be5eabe31d561ad6265b6aafcca79",
+    "tests/harness/test_07.py": "6c4a1b8f298ef269252726cd8cfbf30596bc0c579d082c048acb0457654cf0fe",
+    "tests/harness/test_08.py": "6457c3fdfc2865dfda8d81a5034a836f72b7208007f6253007719e3a22da5fb5",
+    "tests/harness/test_09.py": "246db75a19065276391532f87a652f5e6195453b545ed4a4468ae473836a09fc",
+    "tests/harness/test_10.py": "4f48c6837821da91a9147ea7f61734d84f8896d160e7b2c89b4d3c8fa12c53c4",
+    "tests/harness/test_acceptance_inputs.py": "0cd49e10c98beec4e45a332fc4bac24f6beacc3de3ac2623c9e34da8f8d56ba7",
+    "tests/harness/test_adoption.py": "8b3882514a7b92d7eef64ae7f3f4b149465834753b3afadf1621d7abf8f8f935",
+    "tests/harness/test_contracts.py": "9292de8c416026fa592f20a62a3b8d374afc176a84ec85908cf7a7595910f1d2",
+    "tests/harness/test_resume_reserved.py": "1bb42c5962f4fe8ee7ffe54f7d3b8bc41e6013b94493597c0f6fab3d980dfe09",
+    "tests/rebuild/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tests/rebuild/test_contracts.py": "01f0b46e43df69c243edc5e9e560fa6e76d89548a51f353f39fe2333d0ba9747",
+    "tests/rebuild/test_pipeline.py": "01111b52600367ca9550f5084969d749ad5c42c1fcb5eb2e614ee7ed8d0c3b08"
+  },
+  "source": {
+    "runtime/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runtime/codex_host.py": "a29d020f415514cb73248d1c1a6c6cfe98e15a6702a3455fca0d8c339e275113",
+    "runtime/harness_hooks.py": "7e20d4208720caf407df38723e8ac99a09361a29159353c1bf8e8e0a82c4c5ae",
+    "runtime/harness_mcp.py": "3081c673509cea8176a17ed85699c9096578175a1b5defe8a9c653bce046982f",
+    "runtime/runner.py": "ec0ed2cd2fd6edad2fef00b50c2ed6a493e65a35e8dd4ef7d9ac5290f8375d56",
+    "capabilities/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "capabilities/exploration/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "capabilities/exploration/harness.py": "df60c3edb3d47c51816a59c01c38fd1fd9bacd97c3a91fa5c9994ee539764bb7",
+    "capabilities/exploration/storage.py": "e4a94f22e0c207c48a18cc0b3607b50f7efb28d44f163a8c457a478f42631544",
+    "capabilities/rebuild/__init__.py": "3eb3f25aa1a14b3598a488ec66f95bdf70398080c5c5ed2500503686ba0195fc",
+    "capabilities/rebuild/contracts.py": "6889a93faa7f64c2494283083ca422bd80c304006f0ab4682440bcb2b6ce0099",
+    "capabilities/rebuild/pipeline.py": "c2e60255b7d615e2ba0a76937ea4c34569239bab9336af8d52c1d1a949c9620f",
+    "workflows/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "workflows/harness/WORKFLOW.md": "bb9020abfb666f22f78db41bb23f8ddee86032b4381c789f612fbad6c73703bd",
+    "workflows/harness/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "workflows/harness/diagnose.py": "d4060e8c68f36d68d011adb8f3f2e06a6cecb2b651abdb5b669aacaf14735cb6",
+    "workflows/harness/install.py": "76eb57fb3b73f6095bcb03b2bf685a74176e0ae4790837848c1389e04bb3060f",
+    "workflows/rebuild/WORKFLOW.md": "ac1f45c9fec7f4f92b0c58a224102503465c4cb7eb2309a496d4ab2d176b2a55",
+    "workflows/rebuild/__init__.py": "e0319affeafae527246b2e57d6a07f6efb6f3f81c07fd55310f989ee3af0632f",
+    "workflows/rebuild/cli.py": "3bde511173065d29cd8a95f471308f0ea6f027f3540bdc825c23fdb3510ef079",
+    "workflows/rebuild/pipeline.py": "e02d6af7aa30e7a37ce7b6c5dd370542322ce76f793d957c948a79db90a361ce"
+  },
+  "protocol_sha256": "546114bab802fd8abbcd630e1428e79d286f52e1906e48dd07697311d8417056"
+}
