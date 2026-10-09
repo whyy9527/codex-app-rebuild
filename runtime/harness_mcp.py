@@ -4,12 +4,14 @@ import json
 from pathlib import Path
 import sys
 from capabilities.exploration.harness import Harness
+from capabilities.exploration.storage import digest
 
 S={'type':'string','minLength':1}
 TOOLS=[
     ('exploration_start','Start an explicitly requested bounded task. Freeze verifier argv and test files; Codex performs edits.',
      {'workspace':S,'session_id':S,'objective':S,'verifier':{'type':'array','items':S,'minItems':1},
-      'max_iterations':{'type':'integer'},'max_failures':{'type':'integer'},'max_seconds':{'type':'number'}},
+      'max_iterations':{'type':'integer'},'max_failures':{'type':'integer'},'max_seconds':{'type':'number'},
+      'acceptance_paths':{'type':'array','items':S,'minItems':1},'verify_seconds':{'type':'number'}},
      ['workspace','session_id','objective','verifier']),
     ('exploration_next','Reserve one attempt after reading feedback. Do the actual work with native Codex tools, then verify.',
      {'task_id':S,'hypothesis':S},['task_id','hypothesis']),
@@ -34,6 +36,7 @@ def summary(state):
     return {'task_id':state['id'],'objective':state['objective'],'phase':state['phase'],
             'iterations':state['iterations'],'remaining_iterations':max(0,state['max_iterations']-state['iterations']),
             'verifier':state['verifier'],'last_error':state['last_error'],
+            'verify_seconds':state.get('verify_seconds',30),'acceptance_digest':digest(state['acceptance_files']),
             'feedback':({k:feedback[k] for k in ('status','exit_code','source_digest','integrity') if k in feedback}
                         | {'output':feedback.get('output','')[:4096]} if feedback else None)}
 

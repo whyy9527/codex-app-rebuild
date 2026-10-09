@@ -10,9 +10,10 @@ import tempfile
 import uuid
 from capabilities.exploration.storage import digest
 from capabilities.exploration.storage import save
-from runtime.runner import evaluate,manifest
+from runtime.runner import evaluate,manifest,input_manifest
 
 TERMINAL={'complete','blocked','budget_exhausted','paused'}
+DEFAULT_ACCEPTANCE=['tests','Tests','e2e','playwright.config.ts','playwright.config.js','Package.swift','package.json','package-lock.json']
 
 
 class Harness:
@@ -46,7 +47,8 @@ class Harness:
         if not pointer.exists(): return None
         return self.read(json.loads(pointer.read_text())['id'])
 
-    def start(self,*,workspace,session_id,objective,verifier,max_iterations=10,max_failures=3,max_seconds=1800):
+    def start(self,*,workspace,session_id,objective,verifier,max_iterations=10,max_failures=3,max_seconds=1800,
+              acceptance_paths=None,verify_seconds=30):
         root=Path(workspace).resolve()
         if not root.is_dir(): raise ValueError('explicit existing workspace required')
         if not isinstance(session_id,str) or not 1<=len(session_id)<=128: raise ValueError('session id required')
@@ -57,6 +59,10 @@ class Harness:
             if isinstance(value,bool) or not isinstance(value,int) or not 1<=value<=100: raise ValueError('iteration and failure bounds in [1,100] required')
         if isinstance(max_seconds,bool) or not isinstance(max_seconds,(int,float)) or not math.isfinite(max_seconds) or not 1<=max_seconds<=86400:
             raise ValueError('finite wall budget in [1,86400] required')
+        if isinstance(verify_seconds,bool) or not isinstance(verify_seconds,(int,float)) or not math.isfinite(verify_seconds) or not 0<verify_seconds<=86400:
+            raise ValueError('finite positive verifier timeout up to 86400 seconds required')
+        paths=list(DEFAULT_ACCEPTANCE) if acceptance_paths is None else acceptance_paths
+        acceptance=input_manifest(root,paths)
         with self.lock():
             active=self.active(str(root),session_id)
             if active and active['phase'] not in TERMINAL: raise ValueError('an active task already exists; resume or pause it')
@@ -64,7 +70,7 @@ class Harness:
                    'verifier':verifier,'verifier_digest':digest(verifier),'phase':'ready','iterations':0,
                    'max_iterations':max_iterations,'max_failures':max_failures,'failures':0,
                    'deadline':time.time()+max_seconds,'attempts':[],'last_error':None,'hook_events':[]}
-            state['acceptance_files']={k:v for k,v in manifest(root).items() if k.startswith('tests/')}
+            state.update(acceptance_paths=paths,acceptance_files=acceptance,verify_seconds=verify_seconds)
             self.write(state)
             save(self.scope(str(root),session_id),{'id':state['id']})
             return state
@@ -92,20 +98,26 @@ class Harness:
             self.write(state)
             remaining=state['deadline']-time.time()
         root=Path(state['workspace'])
-        acceptance={k:v for k,v in manifest(root).items() if k.startswith('tests/')}
+        try:
+            acceptance=self.acceptance(state)
+        except ValueError:
+            acceptance=None
         if acceptance!=state['acceptance_files'] or digest(state['verifier'])!=state['verifier_digest']:
             result={'status':'invalid','output':'Frozen acceptance changed','wall_seconds':0}
         elif remaining<=0:
             result={'status':'timeout','output':'Wall budget exhausted','wall_seconds':0}
         else:
             with tempfile.TemporaryDirectory(prefix='harness-bytecode-') as cache:
-                result=evaluate(root,state['verifier'],timeout=min(30,remaining),
+                result=evaluate(root,state['verifier'],timeout=min(state.get('verify_seconds',30),remaining),
                                 environment={'PYTHONPYCACHEPREFIX':cache,'PYTHONDONTWRITEBYTECODE':'1'})
             result['python_cache']='fresh isolated prefix, bytecode writes disabled'
             if 'unittest' in state['verifier'] and re.search(r'\bRan 0 tests\b',result['output']):
                 result['status']='invalid'
                 result['output']+='\nHarness: empty unittest discovery is not an acceptance signal.\n'
-            after={k:v for k,v in manifest(root).items() if k.startswith('tests/')}
+            try:
+                after=self.acceptance(state)
+            except ValueError:
+                after=None
             if after!=state['acceptance_files']: result['status']='invalid'
         with self.lock():
             current=self.read(task_id)
@@ -118,6 +130,12 @@ class Harness:
             elif time.time()>=current['deadline'] or current['iterations']>=current['max_iterations']: current['phase']='budget_exhausted'
             else: current['phase']='ready'
             return self.write(current)
+
+    def acceptance(self,state):
+        if 'acceptance_paths' in state:
+            return input_manifest(state['workspace'],state['acceptance_paths'])
+        # Existing paused tasks retain the exact old acceptance contract.
+        return {k:v for k,v in manifest(state['workspace']).items() if k.startswith('tests/') and k.endswith('.py')}
 
     def continuation(self,task_id,turn_id):
         if not isinstance(turn_id,str) or not turn_id: return False

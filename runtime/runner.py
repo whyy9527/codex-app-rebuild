@@ -10,16 +10,51 @@ from pathlib import Path
 from capabilities.exploration.storage import digest
 
 
+IGNORED = {'.git', '.codex', '.build', '.venv', 'venv', 'node_modules', '__pycache__',
+           'artifacts', 'test-results', 'playwright-report', 'dist', 'build', '.pytest_cache', '.mypy_cache', '.ruff_cache'}
+SOURCE_SUFFIXES = {'.py', '.swift', '.ts', '.tsx', '.js', '.mjs', '.toml', '.html', '.css'}
+
+
+def input_manifest(root, paths):
+    """Hash declared files/directories, including fixtures; never follow outside links."""
+    root = Path(root).resolve()
+    if not isinstance(paths, list) or not paths or any(not isinstance(p, str) or not p for p in paths):
+        raise ValueError('nonempty relative acceptance paths required')
+    files = {}
+    for name in paths:
+        relative = Path(name)
+        if relative.is_absolute() or '..' in relative.parts or name == '.':
+            raise ValueError('acceptance paths must be relative and inside workspace')
+        selected = root / relative
+        if not selected.resolve().is_relative_to(root):
+            raise ValueError('acceptance link escapes workspace')
+        if selected.is_symlink() and selected.is_dir():
+            raise ValueError('declare the real acceptance directory instead of a directory link')
+        if not selected.exists():
+            files[relative.as_posix()] = None  # Detect later creation/deletion too.
+            continue
+        candidates = selected.rglob('*') if selected.is_dir() else [selected]
+        for path in sorted(candidates):
+            if '__pycache__' in path.relative_to(root).parts or path.suffix in {'.pyc', '.pyo'} or path.name == '.DS_Store':
+                continue
+            if not path.resolve().is_relative_to(root):
+                raise ValueError('acceptance link escapes workspace')
+            if path.is_symlink() and path.is_dir():
+                raise ValueError('declare the real acceptance directory instead of a directory link')
+            if path.is_file():
+                files[path.relative_to(root).as_posix()] = hashlib.sha256(path.read_bytes()).hexdigest()
+    return files
+
+
 def manifest(root):
     root = Path(root).resolve()
     files = {}
-    for path in sorted(root.glob("*.py")):
-        files[path.name] = hashlib.sha256(path.read_bytes()).hexdigest()
-    if (root / "pyproject.toml").exists():
-        files["pyproject.toml"] = hashlib.sha256((root / "pyproject.toml").read_bytes()).hexdigest()
-    for directory in ("capabilities", "runtime", "workflows", "tests"):
-        for path in sorted((root / directory).rglob("*.py")):
-            files[path.relative_to(root).as_posix()] = hashlib.sha256(path.read_bytes()).hexdigest()
+    for directory, subdirs, names in os.walk(root, followlinks=False):
+        subdirs[:] = sorted(name for name in subdirs if name not in IGNORED and not (Path(directory) / name).is_symlink())
+        for name in sorted(names):
+            path = Path(directory) / name
+            if (path.suffix in SOURCE_SUFFIXES or name in {'package.json', 'package-lock.json'}) and path.resolve().is_relative_to(root):
+                files[path.relative_to(root).as_posix()] = hashlib.sha256(path.read_bytes()).hexdigest()
     return files
 
 

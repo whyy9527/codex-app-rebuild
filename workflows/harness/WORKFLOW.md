@@ -4,7 +4,7 @@
 
 给 Codex 一个明确目标、可执行验收和有限预算。仅启用 MCP 不会启动任务。
 
-1. `exploration_start`：传入工作目录、当前 session_id、目标、verifier argv 及次数/失败/时间预算。冻结测试与验证命令。
+1. `exploration_start`：传入工作目录、当前 session_id、目标、verifier argv 及次数/失败/时间预算。可传 `acceptance_paths`（相对文件/目录列表）保护场景、配置、夹具和适配器；`verify_seconds` 控制单次验收时长，仍受总时间预算限制。省略路径时冻结默认 tests、Tests、e2e 及常见配置。冻结测试与验证命令。
 2. `exploration_next`：记录本次基于反馈的假设，预留一次尝试。Codex 使用自己的工具修改。
 3. `exploration_verify`：执行真实验收，返回输出和状态；通过完成，失败读取反馈后再尝试。不能改冻结测试绕过验收。
 4. `exploration_status`：读取当前任务及反馈。Stop 仅对当前任务请求有限继续；重复事件和无进展受限，不运行长验证或模型。
