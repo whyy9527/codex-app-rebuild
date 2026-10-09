@@ -1,0 +1,18 @@
+{
+  "protocol_commit": "9aeebb78caa13e85ececdf54d6c62b035b33fa7b",
+  "product_baseline": "21dbe64bfea93bf7ef2633ae0152021cad24fc81",
+  "input_manifest_sha256": "398cecde024802b5b67f92a3be255e734e2587594942946774344d06402299cf",
+  "reviews": {
+    "folder": 1,
+    "project_hooks": 3,
+    "global_hooks_changed": false
+  },
+  "setup_only_tui_session": "01a12249-07ad-7470-bf3f-ee88f8b677a9",
+  "model_session1": "01a1224a-b598-7a93-93e9-925b72d5c1a5",
+  "observed_denial": "MCP tool call requires approval, but approval policy is never",
+  "recovery": "same session via native TUI approval review; no hook trust bypass or budget reset",
+  "limitations": [
+    "Full multi-stage outcome still unproven",
+    "Not business ablation"
+  ]
+}

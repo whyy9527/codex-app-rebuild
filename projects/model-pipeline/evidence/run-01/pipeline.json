@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "id": "b2b372eb6734493eb329631286d1248e",
+  "stage": "reference",
+  "specification": "active-spec.json",
+  "targets": "targets.json",
+  "deadline": 1791582241.76771,
+  "max_steps": 30,
+  "steps": 2,
+  "events": [
+    {
+      "step": 1,
+      "stage": "explore",
+      "at": 1791576841.76813,
+      "status": "pass",
+      "next_stage": "specify",
+      "spec_digest": "fe2622765576ac016e9c534bdb02b313654de840afc9ad43f1f1a99a2e81dc63"
+    },
+    {
+      "step": 2,
+      "stage": "specify",
+      "at": 1791576852.98211,
+      "status": "pass",
+      "next_stage": "reference",
+      "spec_digest": "fe2622765576ac016e9c534bdb02b313654de840afc9ad43f1f1a99a2e81dc63"
+    }
+  ],
+  "batch": null,
+  "parent": null,
+  "reference_receipt": null,
+  "candidate_receipt": null,
+  "discovery_completed": false,
+  "discovered_ids": [],
+  "last_error": null,
+  "inventory_digest": "fe2622765576ac016e9c534bdb02b313654de840afc9ad43f1f1a99a2e81dc63"
+}

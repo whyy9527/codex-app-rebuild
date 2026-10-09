@@ -16,6 +16,8 @@ Codex 使用原生工具观察和修改；MCP 提供七个任务操作；短 Hoo
 
 现有状态：ready → working → verifying → complete；失败返回 ready 或进入 blocked / budget_exhausted；用户可暂停并显式恢复。锁协调 MCP 和 Hook。新会话不自动激活其他会话任务。
 
+Stop 去重绑定会话、原生 turn ID 和实际尝试/验收/阶段检查点。同一检查点的重复通知不继续，已有新进展可在同一原生 turn 内再次继续；没有进展或超出预算则停止。真实多阶段宿主试跑发现并修复了旧版按整个 turn 去重的问题，失败记录与后续复验协议见 `projects/model-pipeline`；修复的机制检查不能代替宿主复验。
+
 ## 重建结构与当前范围
 
 `capabilities/rebuild/contracts.py` 已拥有行为 ID、前置状态、动作、期望与证据清单，分离 unknown/observed/decision 和 not_run/pass/fail/invalid/unavailable/timeout。它对两端动作适配器执行统一断言，检查 start/reset/scenario/reset/stop，并在输入与源码变化后拒绝旧结果。参考端通过后才能冻结；增量批次必须关联真实父批次并保留旧场景。

@@ -50,6 +50,7 @@ def main():
         result=handle(harness,payload)
         with (harness.directory/'hook-events.jsonl').open('a') as stream:
             stream.write(json.dumps({'event':payload.get('hook_event_name'),'session_id':payload.get('session_id'),
+                                    'turn_id':payload.get('turn_id'),'decision':result.get('decision'),
                                     'output_fields':sorted(result),'time':time.time()})+'\n')
     except Exception:
         result={}

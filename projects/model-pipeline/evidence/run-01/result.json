@@ -1,0 +1,51 @@
+{
+  "status": "fail",
+  "scope": "actual multi-stage host feasibility, not business ablation",
+  "protocol_commit": "9aeebb78caa13e85ececdf54d6c62b035b33fa7b",
+  "session_id": "01a1224a-b598-7a93-93e9-925b72d5c1a5",
+  "task_id": "1701d57941af4f91b46002ce1fcabd55",
+  "run_id": "b2b372eb6734493eb329631286d1248e",
+  "stage_reached": "reference",
+  "stage_receipts_passed": [
+    "explore",
+    "specify"
+  ],
+  "reference_executed": false,
+  "native_candidate_executed": false,
+  "measured_attempts": 2,
+  "previous_hook_progress": [
+    1,
+    1,
+    "ready"
+  ],
+  "actual_checkpoint_progress": [
+    2,
+    2,
+    "ready"
+  ],
+  "saved_turn_key_matches_native_turn": true,
+  "initial_approval_denial_preserved": true,
+  "interventions": {
+    "folder_review": 1,
+    "project_hook_reviews": 3,
+    "session_scoped_verifier_review": 1,
+    "manual_capability_resume_prompt": 1,
+    "manual_pause_after_failure_prompt": 1,
+    "product_edits": 0
+  },
+  "diagnosis": "Native hook continuation retained one host turn ID. Old key deduplicated the whole turn before comparing new measured progress, so second checkpoint got no continuation.",
+  "raw_rollout_sha256": "9f25e24bcf92b50adeab842d6d223ee3a6ebfee84b7c278b2dcef0ad948c8004",
+  "curated_native_events_sha256": "72cfa842c5a9f36718b93e4c66d7933a2b77e7894fe94483f4506d5db8d5ac1b",
+  "native_reported_token_usage": {
+    "input_tokens": 658832,
+    "cached_input_tokens": 592768,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 1968,
+    "reasoning_output_tokens": 10,
+    "total_tokens": 660800
+  },
+  "cost": null,
+  "repair_status": "New regression failed on old code; progress-aware key and legacy receipt compatibility pass mechanism checks; actual corrected-host run still pending.",
+  "elapsed_native_rollout_seconds": 226.973,
+  "curated_native_tool_calls": 9
+}

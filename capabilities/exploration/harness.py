@@ -146,10 +146,14 @@ class Harness:
         with self.lock():
             state=self.read(task_id)
             if state['phase'] not in ('ready','working'): return False
-            key=digest([state['session_id'],turn_id,'Stop'])
-            if key in state['hook_events']: return False
-            state['hook_events'].append(key)
             marker=[state['iterations'],sum(a['evaluation'] is not None for a in state['attempts']),state['phase']]
+            # A native hook continuation can retain its host turn ID. Deduplicate
+            # the checkpoint, not the entire turn, while retaining old receipts.
+            legacy_key=digest([state['session_id'],turn_id,'Stop'])
+            key=digest([state['session_id'],turn_id,'Stop',marker])
+            if key in state['hook_events'] or (legacy_key in state['hook_events'] and state.get('last_hook_progress')==marker):
+                return False
+            state['hook_events'].append(key)
             if time.time()>=state['deadline'] or len(state['hook_events'])>state['max_iterations']*2+1:
                 state.update(phase='budget_exhausted',last_error='continuation or wall budget exhausted')
                 self.write(state)

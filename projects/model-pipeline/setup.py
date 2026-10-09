@@ -15,7 +15,7 @@ from workflows.harness.install import install
 PRODUCT_BASELINE = "21dbe64bfea93bf7ef2633ae0152021cad24fc81"
 
 
-def prepare():
+def prepare(protocol="PROTOCOL.md"):
     workspace = Path(tempfile.mkdtemp(prefix="codex-rebuild-host-flow-"))
     for name in ["capabilities", "runtime", "workflows"]:
         shutil.copytree(ROOT / name, workspace / name, ignore=shutil.ignore_patterns("__pycache__"))
@@ -46,7 +46,9 @@ def prepare():
     (workspace / "expanded-template.json").write_text(json.dumps(expanded, indent=2) + "\n")
     shutil.copy2(ROOT / case / "targets-v2.json", workspace / "targets.json")
     shutil.copy2(ROOT / "projects/model-pipeline/run-stage.py", workspace / "run-stage.py")
-    shutil.copy2(ROOT / "projects/model-pipeline/PROTOCOL.md", workspace / "PROTOCOL.md")
+    shutil.copy2(ROOT / "projects/model-pipeline" / protocol, workspace / "PROTOCOL.md")
+    if protocol != "PROTOCOL.md":
+        shutil.copy2(ROOT / "projects/model-pipeline/PROTOCOL.md", workspace / "PROTOCOL-original.md")
     (workspace / "AGENTS.md").write_text("""# Registered actual-host feasibility run
 Work only in this explicit temporary workspace. Do not read the finished product or another repository. No Git, publishing, login, payment or account changes. Use the installed project exploration MCP and native Hooks. Do not bypass sandbox, trust or approval checks.
 
@@ -66,8 +68,9 @@ The fixed verifier advances exactly one real Pipeline stage and only returns0 at
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--out", required=True)
+    parser.add_argument("--protocol", choices=["PROTOCOL.md", "PROTOCOL-v2.md"], default="PROTOCOL.md")
     args = parser.parse_args()
-    result = prepare()
+    result = prepare(args.protocol)
     Path(args.out).parent.mkdir(parents=True, exist_ok=True)
     Path(args.out).write_text(json.dumps(result, indent=2) + "\n")
     print(json.dumps({"workspace": result["workspace"], "input_files": result["input_files"]}))
