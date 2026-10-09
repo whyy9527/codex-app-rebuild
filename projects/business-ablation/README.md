@@ -18,3 +18,9 @@ python3 projects/business-ablation/publish-reference.py --control <publisher-dir
 ```
 
 After registering its frozen receipts and exact hashes, prepare each arm from that same publisher with `setup.py --master <publisher-directory> --arm <registered-arm> --out <private-registration.json>`. The parent launches native Codex with the fixed session1 prompt, reviews owned project registration and verifies actual host configuration. `handoff.py` records the single transfer after actual Stop; the fresh session uses prompt-session2.txt and explicit adopt/resume. `score.py` seals product Sources after final Stop and performs the two parent-only score batches. These scripts never launch an additional model or silently retry a failed preparation. Each model run still requires actual host/Stop/usage/intervention records; passing the control tests is not that evidence.
+
+## Reference publisher01 ready
+
+[Registration and frozen inputs](evidence/registration-01/registration.json) preserve actual online initial4/4, expanded12/12, and holdout2/2 plus1 unknown. All three are frozen; expanded preserves the initial batch. [Pre-model amendment](evidence/registration-01/protocol-amendment-01.json) records the final common prompt/protocol hashes and restricts every arm to supplied observation replay. No formal model had started at this registration. Original and exported receipt byte hashes are recorded separately.
+
+The unchanged historical Swift baseline actually displayed Course unavailable; its native driver timed out waiting for the registered entry state. Parent-only calibration reports expanded0 pass /12 unavailable and holdout0 pass /2 unavailable /1 unknown, not assertion failures or injected defects. These records are the common starting point, not a formal model arm. Formal group results remain pending.

@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "kind": "frozen_batch",
+  "revision": "duolingo-prospective-holdout-01",
+  "spec_digest": "52e1c064207e2e7114da8ca6c572a1b632cc796d1ddb35c4ecb2b9a1895a0428",
+  "targets_digest": "182496c6cee4d8aee5960a15f322a0a19fde14eabb9c4bce1044823e41b0f5b1",
+  "inputs": {
+    "candidate-entry.py": "d5384419fc2bac5570c5827eedda920024a735f34a642024786b466973c3ac53",
+    "controller.py": "85d8cea945d57d567997b272d3d6c7d182a46f65e2bff4a017a42d40592ec19d",
+    "experiment-runtime.py": "3a991438cb981c38ba0dc177c60f85ad7cc02a2cb1e8518d8441380acfcabd78",
+    "projects/business-ablation/evidence/correct-exit-continue-original-01.json": "23f887b9c5d1609ca00b89bdf2c74a9946e565ad77a96185508ac519ab9ddab0",
+    "projects/business-ablation/evidence/undo-all-words-original-01.json": "4e129056496f6d3bcb19d213f0eb9d5364d092bbe8be3c60c315ec65106c8927",
+    "projects/duolingo-web/original-adapter-v2.mjs": "dcaef55e187e213fa4128b57d91dedf32fd5b46ab0dae92920617af2d77f18b4",
+    "projects/duolingo-web/package-lock.json": "68603815aa0e350616d954e499d26a7f5050976835fdf0ee1cc4b12580a36f5f",
+    "projects/duolingo-web/package.json": "94e5266ded14092acc68f405483a2e0b18f3fd557cb05eaa40d16d447ff69e46",
+    "spec-holdout.json": "39f0e097776a285a33e3542989683f45bb4bcd993add655cb276e0e9ecfbde37",
+    "targets.json": "292f751699bd01bdb9664c73cefbb4972aae8b217df98d1ffe9f403229206909",
+    "worker/projects/duolingo-web/build-native.py": "afbcd31ac4ed06592f005a9b9230c90115d2b62accba155de8945ef44912c7fd",
+    "worker/projects/duolingo-web/fixture-v2.json": "cfd33ce0404f4c566446415cf8e5a4275d56e97013a6a07572954785243fb112",
+    "worker/projects/duolingo-web/native-adapter-v3.swift": "3805f45728d86f6fca110f464aa2e71764470f8604f17a21576f85781f49ddfb",
+    "worker/projects/education-swift/Package.swift": "69c107cdd891cdadd83dca370c1618c002fd85fcba63c76391b6b5cc279a0cd1",
+    "worker/projects/education-swift/Tests/LearningCoreTests/LearningCoreTests.swift": "46c5fa7de5f6f1153339eececc2613e2373daca8a530008444b3ba75b76a4129"
+  },
+  "reference_receipt_digest": "527a09ed28508a76696b2307a91404cf7162013e776a59bfb3c1baa413716fed",
+  "reference_kind": "original_online",
+  "reference_layer": "browser_ui",
+  "parent_digest": null,
+  "scenario_digests": {
+    "correct-exit-continue": "0eca42184a4309820347b1baca664bd01276310eb782072ade0ea035a4a1c084",
+    "undo-all-words": "6d84c36a9f65eb9e9c270131f0eee4998ddb299fb5fb0f13025aef747deaf776"
+  },
+  "created_at": 1791580902.845901
+}

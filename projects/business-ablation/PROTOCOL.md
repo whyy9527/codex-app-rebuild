@@ -17,7 +17,7 @@ The first contrast removes only model-visible persisted per-behavior receipt/cov
 
 The second contrast disables only the native Stop continuation decision in the experiment consumer; SessionStart, prompt handling, tools, real verification and ordinary within-turn iteration remain. No one-attempt-per-turn instruction and no manually repeating prompts to make this control finish. Remaining budget can legitimately be unused.
 
-The third contrast withholds supplemental observation replay and its eight additional public assertions. It retains the same two-lesson content and complete product brief, so models may implement those features themselves. Discovery-enabled groups receive those eight existing observations after initial four-case success, forming a parent-linked twelve-case batch. This is structured replay of observed behavior, not autonomous discovery of unknown rules. No full-flow efficacy claim follows from a single run.
+The third contrast withholds supplemental observation replay and its eight additional public assertions. It retains the same two-lesson content and complete product brief, so models may implement those features themselves. Discovery-enabled groups receive those eight existing observations after initial four-case success, forming a parent-linked twelve-case batch. This is structured replay of observed behavior, not autonomous discovery of unknown rules. Every group is restricted to the supplied public specification, permitted observations and common course fixture; independent live browsing, web/network tools or additional observation collection are disallowed, so a control cannot substitute an unregistered discovery stage. No full-flow efficacy claim follows from a single run.
 
 ## Model, budget, sessions and interventions
 

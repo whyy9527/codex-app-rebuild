@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "kind": "behavior_verification",
+  "target": "candidate",
+  "target_kind": "candidate",
+  "layer": "native_ui",
+  "revision": "duolingo-prospective-holdout-01",
+  "spec_digest": "52e1c064207e2e7114da8ca6c572a1b632cc796d1ddb35c4ecb2b9a1895a0428",
+  "targets_digest": "182496c6cee4d8aee5960a15f322a0a19fde14eabb9c4bce1044823e41b0f5b1",
+  "source_digest": "c0bb334162e68aaf4c02058a01dc9a5f812a26c2b39ba68808a0dd88ebc4c13a",
+  "inputs": {
+    "candidate-entry.py": "d5384419fc2bac5570c5827eedda920024a735f34a642024786b466973c3ac53",
+    "controller.py": "85d8cea945d57d567997b272d3d6c7d182a46f65e2bff4a017a42d40592ec19d",
+    "experiment-runtime.py": "3a991438cb981c38ba0dc177c60f85ad7cc02a2cb1e8518d8441380acfcabd78",
+    "projects/business-ablation/evidence/correct-exit-continue-original-01.json": "23f887b9c5d1609ca00b89bdf2c74a9946e565ad77a96185508ac519ab9ddab0",
+    "projects/business-ablation/evidence/undo-all-words-original-01.json": "4e129056496f6d3bcb19d213f0eb9d5364d092bbe8be3c60c315ec65106c8927",
+    "projects/duolingo-web/original-adapter-v2.mjs": "dcaef55e187e213fa4128b57d91dedf32fd5b46ab0dae92920617af2d77f18b4",
+    "projects/duolingo-web/package-lock.json": "68603815aa0e350616d954e499d26a7f5050976835fdf0ee1cc4b12580a36f5f",
+    "projects/duolingo-web/package.json": "94e5266ded14092acc68f405483a2e0b18f3fd557cb05eaa40d16d447ff69e46",
+    "spec-holdout.json": "39f0e097776a285a33e3542989683f45bb4bcd993add655cb276e0e9ecfbde37",
+    "targets.json": "292f751699bd01bdb9664c73cefbb4972aae8b217df98d1ffe9f403229206909",
+    "worker/projects/duolingo-web/build-native.py": "afbcd31ac4ed06592f005a9b9230c90115d2b62accba155de8945ef44912c7fd",
+    "worker/projects/duolingo-web/fixture-v2.json": "cfd33ce0404f4c566446415cf8e5a4275d56e97013a6a07572954785243fb112",
+    "worker/projects/duolingo-web/native-adapter-v3.swift": "3805f45728d86f6fca110f464aa2e71764470f8604f17a21576f85781f49ddfb",
+    "worker/projects/education-swift/Package.swift": "69c107cdd891cdadd83dca370c1618c002fd85fcba63c76391b6b5cc279a0cd1",
+    "worker/projects/education-swift/Tests/LearningCoreTests/LearningCoreTests.swift": "46c5fa7de5f6f1153339eececc2613e2373daca8a530008444b3ba75b76a4129"
+  },
+  "behaviors": [
+    {
+      "id": "correct-exit-continue",
+      "discovery": "observed",
+      "status": "unavailable",
+      "reason": "target startup failed"
+    },
+    {
+      "id": "reselect-wrong-exit",
+      "discovery": "unknown",
+      "status": "unknown"
+    },
+    {
+      "id": "undo-all-words",
+      "discovery": "observed",
+      "status": "unavailable",
+      "reason": "target startup failed"
+    }
+  ],
+  "lifecycle": [
+    {
+      "operation": "start",
+      "receipt": {
+        "command": [
+          "python3",
+          "candidate-entry.py"
+        ],
+        "source_digest": "c0bb334162e68aaf4c02058a01dc9a5f812a26c2b39ba68808a0dd88ebc4c13a",
+        "integrity": "verified",
+        "evaluator_digest": "3b393451d210440429c7d459974a8f3746433ffdad4d84834caea338695c70e0",
+        "exit_code": 0,
+        "status": "unavailable",
+        "output": "APP_REBUILD_RESULT {\"operation\": \"start\", \"preparation\": [], \"reason\": \"Native UI transition timed out\", \"status\": \"unavailable\", \"ui_observation\": {\"answer_selected\": false, \"authenticated\": false, \"check_enabled\": false, \"completed_lessons\": null, \"continue_enabled\": false, \"current_lesson_index\": null, \"feedback\": \"none\", \"hearts\": null, \"initial_question_revisited\": false, \"lesson_index\": 0, \"matching_complete\": false, \"next_lesson_enabled\": false, \"options_locked\": false, \"question_changed\": false, \"question_kind\": null, \"reviewing\": false, \"screen\": \"other\", \"selected_word_count\": 0, \"ui_snapshot\": [{\"description\": \"\", \"enabled\": false, \"id\": \"SwiftUI._ConditionalContent<LingoSeed.LearningView, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1\", \"role\": \"AXWindow\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": false, \"id\": \"\", \"role\": \"AXGroup\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"Course unavailable\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"Unable to open the course or saved progress. Check the supplied files before restarting.\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": false, \"id\": \"\", \"role\": \"AXGroup\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": false, \"id\": \"\", \"role\": \"AXGroup\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"LingoSeed\"}]}, \"build\": {\"binary_sha256\": \"1636ae99fe6df16e3eabd6e88376fa59cc8f01fc534d43a09d62694eab3e3096\", \"source_sha256\": {\"projects/education-swift/Package.swift\": \"69c107cdd891cdadd83dca370c1618c002fd85fcba63c76391b6b5cc279a0cd1\", \"projects/education-swift/Sources/LearningCore/LearningCore.swift\": \"00b9248530ec2542ad60db94283b562c0383c5cf81b6d3681e0df15133cd30a0\", \"projects/education-swift/Sources/LingoSeed/LingoSeed.swift\": \"5fa6f640cff673bdd8015d2112b3c4c8ce3f52715d840b648b81d13578f9464c\"}}}\n",
+        "output_bytes": 2234,
+        "output_truncated": false,
+        "output_sha256": "caca0bc99d647e6de834437170bdbd00ef719fe9f2325ed1e8946fc0b6ce2299",
+        "wall_seconds": 13.488659,
+        "reason": "Native UI transition timed out"
+      }
+    },
+    {
+      "operation": "reset",
+      "receipt": {
+        "command": [
+          "python3",
+          "candidate-entry.py"
+        ],
+        "source_digest": "c0bb334162e68aaf4c02058a01dc9a5f812a26c2b39ba68808a0dd88ebc4c13a",
+        "integrity": "verified",
+        "evaluator_digest": "3b393451d210440429c7d459974a8f3746433ffdad4d84834caea338695c70e0",
+        "exit_code": 0,
+        "status": "unavailable",
+        "output": "APP_REBUILD_RESULT {\"operation\": \"reset\", \"preparation\": [], \"reason\": \"Native UI transition timed out\", \"status\": \"unavailable\", \"ui_observation\": {\"answer_selected\": false, \"authenticated\": false, \"check_enabled\": false, \"completed_lessons\": null, \"continue_enabled\": false, \"current_lesson_index\": null, \"feedback\": \"none\", \"hearts\": null, \"initial_question_revisited\": false, \"lesson_index\": 0, \"matching_complete\": false, \"next_lesson_enabled\": false, \"options_locked\": false, \"question_changed\": false, \"question_kind\": null, \"reviewing\": false, \"screen\": \"other\", \"selected_word_count\": 0, \"ui_snapshot\": [{\"description\": \"\", \"enabled\": false, \"id\": \"SwiftUI._ConditionalContent<LingoSeed.LearningView, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1\", \"role\": \"AXWindow\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": false, \"id\": \"\", \"role\": \"AXGroup\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"Course unavailable\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"Unable to open the course or saved progress. Check the supplied files before restarting.\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": false, \"id\": \"\", \"role\": \"AXGroup\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": false, \"id\": \"\", \"role\": \"AXGroup\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"LingoSeed\"}]}, \"build\": {\"binary_sha256\": \"1636ae99fe6df16e3eabd6e88376fa59cc8f01fc534d43a09d62694eab3e3096\", \"source_sha256\": {\"projects/education-swift/Package.swift\": \"69c107cdd891cdadd83dca370c1618c002fd85fcba63c76391b6b5cc279a0cd1\", \"projects/education-swift/Sources/LearningCore/LearningCore.swift\": \"00b9248530ec2542ad60db94283b562c0383c5cf81b6d3681e0df15133cd30a0\", \"projects/education-swift/Sources/LingoSeed/LingoSeed.swift\": \"5fa6f640cff673bdd8015d2112b3c4c8ce3f52715d840b648b81d13578f9464c\"}}}\n",
+        "output_bytes": 2234,
+        "output_truncated": false,
+        "output_sha256": "48ed1654de56a6a4c32b0057dd1af5009f91c5e0bede177160e7a744ad4feaa8",
+        "wall_seconds": 13.497503,
+        "reason": "Native UI transition timed out"
+      }
+    },
+    {
+      "operation": "stop",
+      "receipt": {
+        "command": [
+          "python3",
+          "candidate-entry.py"
+        ],
+        "source_digest": "c0bb334162e68aaf4c02058a01dc9a5f812a26c2b39ba68808a0dd88ebc4c13a",
+        "integrity": "verified",
+        "evaluator_digest": "3b393451d210440429c7d459974a8f3746433ffdad4d84834caea338695c70e0",
+        "exit_code": 0,
+        "status": "pass",
+        "output": "APP_REBUILD_RESULT {\"operation\": \"stop\", \"resources\": []}\n",
+        "output_bytes": 58,
+        "output_truncated": false,
+        "output_sha256": "f660b181e4e594cfaced12741780e3c7698768efa16e64cc3b6ec4ce93f7ef1e",
+        "wall_seconds": 0.130507
+      }
+    }
+  ],
+  "created_at": 1791580977.484396,
+  "integrity": "verified",
+  "status": "fail",
+  "counts": {
+    "unknown": 1,
+    "pass": 0,
+    "fail": 0,
+    "invalid": 0,
+    "unavailable": 2,
+    "timeout": 0
+  }
+}

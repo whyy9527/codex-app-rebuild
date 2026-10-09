@@ -1,0 +1,51 @@
+{
+  "status": "registered before first formal model; groups_started0",
+  "supersedes": "prompt_sha256 and protocol_sha256_current in registration.json; source/data/budgets/order unchanged",
+  "reason": "Explicitly restrict all groups to registered observation replay; prohibit independent live discovery so the no-supplemental control cannot replace the removed stage",
+  "protocol_sha256_current": "7c2095a7b6151c8daba473bfdb4104d04a988777481c5c4b5abdcdbbf265d218",
+  "prompt_sha256": {
+    "prompt-session1.txt": "8eba59facb19b6cdbc576bf82bccbb001859122e7f951104f21fcf85cc9014ac",
+    "prompt-session2.txt": "b14c5e03d35f1a3d5ead818d6d09f47cda268086983c88796869bd493122e3d7"
+  },
+  "baseline_calibration_protocol_commit": "8923e6090e34844fd424311f7a7f1f8b19781267",
+  "baseline_counts": {
+    "expanded": {
+      "unknown": 0,
+      "pass": 0,
+      "fail": 0,
+      "invalid": 0,
+      "unavailable": 12,
+      "timeout": 0
+    },
+    "holdout": {
+      "unknown": 1,
+      "pass": 0,
+      "fail": 0,
+      "invalid": 0,
+      "unavailable": 2,
+      "timeout": 0
+    }
+  },
+  "receipt_byte_hashes": {
+    "reference-initial.json": {
+      "original_private_sha256": "c3415b1276a946e09c9cf9917e4cd9e364cdf0c1f07bb271a967a02e77b57229",
+      "exported_sha256": "c3415b1276a946e09c9cf9917e4cd9e364cdf0c1f07bb271a967a02e77b57229"
+    },
+    "reference-expanded.json": {
+      "original_private_sha256": "21a87d7650c730aa6b23d3b292fe3d111bea1371fba2f17eeddba0345285d3a5",
+      "exported_sha256": "21a87d7650c730aa6b23d3b292fe3d111bea1371fba2f17eeddba0345285d3a5"
+    },
+    "reference-holdout.json": {
+      "original_private_sha256": "7abdccc650b81f5831a9ec6a95bf30196385afc86aa87e19618c07f6c88c88bf",
+      "exported_sha256": "7abdccc650b81f5831a9ec6a95bf30196385afc86aa87e19618c07f6c88c88bf"
+    },
+    "baseline-expanded.json": {
+      "original_private_sha256": "e5bb35d95186431eaba3d9c0b3eec621e629a009b1069bc72ff51b89f251b5a1",
+      "exported_sha256": "e5bb35d95186431eaba3d9c0b3eec621e629a009b1069bc72ff51b89f251b5a1"
+    },
+    "baseline-holdout.json": {
+      "original_private_sha256": "c222cfa7d0915e88d058291877a54cf0107a1f9879a75c612f7b07f1c18df6ee",
+      "exported_sha256": "c222cfa7d0915e88d058291877a54cf0107a1f9879a75c612f7b07f1c18df6ee"
+    }
+  }
+}
