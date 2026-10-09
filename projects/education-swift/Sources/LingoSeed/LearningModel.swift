@@ -9,24 +9,51 @@ import LearningCore
     var lesson: Lesson?
     var confirmingExit = false
     var error: String?
+    var destination = "Learn"
+    var showingGuide = false
+    let audio = LearningAudio()
+    var muted = false
+    private var audioPreferencesURL: URL { store.url.appendingPathExtension("audio.json") }
+    func toggleMute() {
+        muted.toggle(); audio.muted = muted
+        do {
+            try FileManager.default.createDirectory(at: audioPreferencesURL.deletingLastPathComponent(), withIntermediateDirectories: true)
+            try JSONEncoder().encode(muted).write(to: audioPreferencesURL, options: .atomic)
+        } catch { self.error = "Sound preference could not be saved." }
+    }
+    func choose(_ id: String) { lesson?.choose(id); audio.play(.tap) }
+    func addWord(_ id: String) { lesson?.addWord(id); audio.play(.tap) }
+    func removeWord(_ id: String) { lesson?.removeWord(id); audio.play(.tap) }
+    func match(_ id: String, left: Bool) {
+        let previous = lesson?.feedback
+        if left { lesson?.matchLeft(id) } else { lesson?.matchRight(id) }
+        audio.play(previous == nil && lesson?.feedback == true ? .correct : .tap)
+    }
+    func pronounce() { if let lesson { audio.speak(lesson.question.prompt) } }
     init(course: Course, store: ProgressStore) throws {
         self.course = course; self.store = store; progress = try store.load()
+        if let data = try? Data(contentsOf: audioPreferencesURL), let saved = try? JSONDecoder().decode(Bool.self, from: data) { muted = saved; audio.muted = saved }
     }
     func begin(_ index: Int) {
         guard progress.isUnlocked(course, index: index) else { return }
         lesson = Lesson(course: course, lessonIndex: index, hearts: progress.hearts)
         confirmingExit = false
+        audio.play(.tap)
     }
     func submit() {
+        guard lesson?.canSubmit == true, lesson?.feedback == nil else { return }
         lesson?.submit()
+        audio.play(lesson?.feedback == true ? .correct : .incorrect)
         if let hearts = lesson?.hearts, hearts != progress.hearts {
             progress.hearts = hearts
             save()
         }
     }
     func advance() {
+        guard lesson?.feedback != nil else { return }
         lesson?.advance()
         if let lesson, lesson.complete {
+            audio.play(.complete)
             progress.markCompleted(course, index: lesson.lessonIndex)
             save()
         }

@@ -32,4 +32,20 @@ swift run --package-path projects/education-swift LearningCoreChecks
 
 非法 JSON、空对象、null 完成记录及负生命进度会显示 Course unavailable 并保留原文件；合法旧格式仍可打开。这五个启动界面检查已冻结并实测，见参考案例的 PROGRESS-REPAIR.md，不代表穷尽所有损坏输入。完整证据、六个实际界面与验收命令见参考案例。多阶段模型续跑已有[一次完整可行性证据](../model-pipeline/README.md)；[四组业务消融](../business-ablation/REPORT.md)已完成，均公开12/12与留出2/2、另1未知；N=1未观察到通过率收益。
 
-本轮最终复验：主产品原生12/12、核心5项及Python43项通过，当前回执和全部八项边界见[交付审计](../../docs/DELIVERY-AUDIT.md)。
+历史v2工程复验：原生12/12、核心5项及Python43项通过；该记录不代表当前产品完成，见[撤回完成声明与历史审计](../../docs/DELIVERY-AUDIT.md)。
+
+## 产品修正 v3（进行中）
+
+默认学习主页采用白底、绿色单元横幅、课程节点、侧导航及右侧学习卡片。窄窗缩为图标侧栏，再隐藏右栏保留课程操作。练习含顶部进度/生命、中央题面及底部检查/反馈。Guidebook、导航页及返回有真实去向；账户、商店和在线排行明确未连接。
+
+原创音效由 LearningAudio 合成：点击、正确、错误、结算，配对自动完成同样触发正确音效。单一播放器替换上一声音，指令朗读使用系统语音（不提前朗读答案）。侧栏和练习顶部有静音按钮，保存到指定进度文件旁的 `.audio.json`；恢复静音状态不会修改课程进度。当前朗读属于产品决策，尚未声称与原版发音入口对应完成。
+
+可复现声音检查（先建立 `artifacts/product-v3`）：
+
+```sh
+mkdir -p artifacts/product-v3
+swiftc -parse-as-library projects/education-swift/Sources/LingoSeed/LearningAudio.swift projects/education-swift/Checks/AudioChecks.swift -o artifacts/product-v3/audio-checks
+artifacts/product-v3/audio-checks artifacts/product-v3/audio-samples
+```
+
+该检查会实际播放两次短音，验证四种音频解码、播放器时间推进、静音停止/阻断和恢复，并导出 WAV 样例。它不等于声卡输出录音或用户听觉验收。完整视觉、声音、入口及纵向流程仍按[产品验收v3](../duolingo-web/PRODUCT-ACCEPTANCE-v3.md)推进，不提前宣布完成。

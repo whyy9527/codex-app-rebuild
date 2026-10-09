@@ -30,6 +30,6 @@ import LearningCore
             if let model { LearningView(model: model) }
             else { ContentUnavailableView("Course unavailable", systemImage: "book.closed", description: Text(startupError ?? "Unknown error")) }
         }
-        .defaultSize(width: 940, height: 700)
+        .defaultSize(width: 1200, height: 760)
     }
 }

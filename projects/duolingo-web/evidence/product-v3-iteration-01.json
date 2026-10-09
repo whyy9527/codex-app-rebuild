@@ -1,0 +1,64 @@
+{
+  "kind": "product_iteration",
+  "date": "2026-10-10",
+  "status": "in_progress",
+  "sources": {
+    "projects/education-swift/Sources/LingoSeed/LearningModel.swift": "a12c8fc6346bdb1935ba0091d9ea4c804177def8d6a86eb7d19a4cc8217a911e",
+    "projects/education-swift/Sources/LingoSeed/LearningView.swift": "e6ba64af8a3289c8af8c505886d79a7b5992b70e2d3e2d5d9e4918af81e3a5df",
+    "projects/education-swift/Sources/LingoSeed/LingoSeed.swift": "24bdb769a42bfe6c4d66f40baa6e8502ab5b4b19a65ca67e4b3a855eb0d237e9",
+    "projects/education-swift/Sources/LingoSeed/LearningAudio.swift": "206d42c2e585d18c02adeeb1fd0af5cced21b87c62ecad79b16c0315b670e6cd",
+    "projects/education-swift/Sources/LearningCore/LearningCore.swift": "d2ae1a9d8265da8ceec7eaad1ba634cc397bc9ebdf009932b9d7f6135765ebaf"
+  },
+  "native_business_receipt": "projects/duolingo-web/evidence/product-v3-candidate-03.json",
+  "native_business_counts": {
+    "unknown": 0,
+    "pass": 12,
+    "fail": 0,
+    "invalid": 0,
+    "unavailable": 0,
+    "timeout": 0
+  },
+  "core_checks": {
+    "status": "pass",
+    "count": 5,
+    "scope": "unchanged LearningCore"
+  },
+  "audio_receipt": "projects/duolingo-web/evidence/product-v3-audio-01.json",
+  "images": {
+    "projects/duolingo-web/evidence/lingoseed-v3-first-home-wide.png": {
+      "sha256": "0a27a91c278d4a1df1371a4e01c73669ef1eff08c41d8d67d016884402c44023",
+      "inspection": "visually inspected; first iteration, fidelity acceptance still pending"
+    },
+    "projects/duolingo-web/evidence/lingoseed-v3-first-home-narrow.png": {
+      "sha256": "e8704f0c8f6e746c5be876237936bcb224b03c6212e6175ab8a6c2e63514c43b",
+      "inspection": "visually inspected; first iteration, fidelity acceptance still pending"
+    },
+    "projects/duolingo-web/evidence/lingoseed-v3-first-choice.png": {
+      "sha256": "ca98a4be2898cdad649e39953f99b928cb689df95f268106a4873b13f237e55a",
+      "inspection": "visually inspected; first iteration, fidelity acceptance still pending"
+    },
+    "projects/duolingo-web/evidence/lingoseed-v3-first-wrong.png": {
+      "sha256": "965e22632c828de96ed341d0c608dc6e4b4c690a781c89d8500d663bbf596d6b",
+      "inspection": "visually inspected; first iteration, fidelity acceptance still pending"
+    }
+  },
+  "window_sizes": {
+    "wide": "1200x760 logical points",
+    "narrow": "820x700 logical points"
+  },
+  "method": "AX resize/press and capture limited to registered owned demo child window. Screenshots inspected individually. No user screenshot committed.",
+  "findings": [
+    "Wide window shows three columns, green unit banner, lesson nodes, statistics/cards; narrow window keeps the course controls.",
+    "Lesson shows one top progress bar and fixed lower check/feedback. Wrong-answer action updates hearts and shows red feedback.",
+    "Long Leaderboards label is still truncated at wide sidebar width; needs correction.",
+    "Leaf emblem remains a placeholder; mascot, icon treatment, path density and detailed visual comparison still need work."
+  ],
+  "remaining": [
+    "Fresh original lesson/navigation/audio observation and same-size comparison.",
+    "All visible destinations and return actions; persistent mute across UI restart.",
+    "Correct/matching/word/review/exit/completion screenshot coverage on current source.",
+    "Actual audible output and app-trigger audio evidence.",
+    "Full v3 product acceptance."
+  ],
+  "completion_statement": "This is an intermediate product repair, not completion of the running Goal."
+}
