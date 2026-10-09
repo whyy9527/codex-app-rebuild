@@ -22,9 +22,29 @@ def module(name, filename):
 
 controller = module('business_controller_test', 'controller.py')
 runtime = module('business_runtime_test', 'experiment-runtime.py')
+setup = module('business_setup_test', 'setup.py')
 
 
 class Controls(unittest.TestCase):
+    def test_clone_registers_its_own_scope_without_reusing_publisher_config(self):
+        from runtime.runner import input_manifest
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory).resolve();master = root / 'master';worker = master / 'worker';worker.mkdir(parents=True)
+            (master / 'runtime').mkdir();(master / 'runtime/harness_mcp.py').write_text('# boundary fixture')
+            (master / 'acceptance.txt').write_text('frozen')
+            for name in ['initial', 'expanded', 'holdout']:
+                (master / ('batch-' + name + '.json')).write_text('{}')
+            setup.register(master)
+            (master / 'fixed-inputs.json').write_text(json.dumps(input_manifest(master, ['acceptance.txt'])))
+            destination = root / 'clone';destination.mkdir()
+            with patch.object(setup.tempfile, 'mkdtemp', return_value=str(destination)):
+                clone = setup.clone(master, 'no_stop_feedback')
+            import tomllib
+            config = tomllib.loads((clone / 'worker/.codex/config.toml').read_text())
+            self.assertEqual(config['mcp_servers']['exploration-lab']['command'], str(clone / 'worker/.codex/exploration-lab/mcp.sh'))
+            self.assertEqual(json.loads((clone / 'experiment.json').read_text()), {'persist_behavior_progress': True, 'automatic_stop_feedback': False, 'supplemental_discovery': True})
+            self.assertEqual((clone / 'acceptance.txt').read_text(), 'frozen')
+
     def test_no_progress_removes_only_projection(self):
         state = {'id': 't', 'objective': 'repair', 'phase': 'ready', 'iterations': 2, 'max_iterations': 20,
                  'verifier': ['python3', 'verify.py'], 'last_error': 'fail', 'acceptance_files': {},

@@ -1,0 +1,22 @@
+test_clone_registers_its_own_scope_without_reusing_publisher_config (tests.business_ablation.test_controls.Controls.test_clone_registers_its_own_scope_without_reusing_publisher_config) ... ERROR
+
+======================================================================
+ERROR: test_clone_registers_its_own_scope_without_reusing_publisher_config (tests.business_ablation.test_controls.Controls.test_clone_registers_its_own_scope_without_reusing_publisher_config)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<toolkit>/tests/business_ablation/test_controls.py", line 41, in test_clone_registers_its_own_scope_without_reusing_publisher_config
+    clone = setup.clone(master, 'no_stop_feedback')
+  File "<toolkit>/projects/business-ablation/setup.py", line 116, in clone
+    register(dst)
+    ~~~~~~~~^^^^^
+  File "<toolkit>/projects/business-ablation/setup.py", line 29, in register
+    install(worker, control)
+    ~~~~~~~^^^^^^^^^^^^^^^^^
+  File "<toolkit>/workflows/harness/install.py", line 30, in install
+    raise ValueError('existing MCP name has another owner')
+ValueError: existing MCP name has another owner
+
+----------------------------------------------------------------------
+Ran 1 test in 0.006s
+
+FAILED (errors=1)

@@ -1,0 +1,13 @@
+{
+  "formal_groups_started": 0,
+  "scope": "Pre-model setup-only repair; frozen reference/targets/controller/runtime/product inputs unchanged",
+  "problem": "Cloned absolute project MCP configuration retained publisher owner; installer correctly rejected another owner",
+  "fix": "Exclude generated .codex registration from copy and create fresh owned project registration in every arm",
+  "old_setup_sha256": "f6738a97423b13e99275ca363b7344402c766ceffc82f0696fb7ced10c00db86",
+  "new_setup_sha256": "ecec77bd8b53c9cdf33b48d640264fbe1bcae64a040650582958ca8d2f64ce41",
+  "checks": {
+    "before": "focused clone regression reproduces existing MCP name has another owner",
+    "after": "43 full checks pass"
+  },
+  "no_model_session_restarted": true
+}

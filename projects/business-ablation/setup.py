@@ -111,7 +111,7 @@ def clone(master, arm):
         if not (master / ('batch-' + name + '.json')).is_file():
             raise ValueError('Reference-confirmed frozen batch required: ' + name)
     dst = Path(tempfile.mkdtemp(prefix='codex-business-' + arm + '-')).resolve()
-    shutil.copytree(master, dst, dirs_exist_ok=True, ignore=shutil.ignore_patterns('__pycache__', '.build'))
+    shutil.copytree(master, dst, dirs_exist_ok=True, ignore=shutil.ignore_patterns('__pycache__', '.build', '.codex'))
     write(dst / 'experiment.json', dict(zip(['persist_behavior_progress', 'automatic_stop_feedback', 'supplemental_discovery'], ARMS[arm])))
     register(dst)
     return dst
