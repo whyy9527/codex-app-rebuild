@@ -20,13 +20,13 @@ Codex 使用原生工具观察和修改；MCP 提供七个任务操作；短 Hoo
 
 `capabilities/rebuild/contracts.py` 已拥有行为 ID、前置状态、动作、期望与证据清单，分离 unknown/observed/decision 和 not_run/pass/fail/invalid/unavailable/timeout。它对两端动作适配器执行统一断言，检查 start/reset/scenario/reset/stop，并在输入与源码变化后拒绝旧结果。参考端通过后才能冻结；增量批次必须关联真实父批次并保留旧场景。
 
-`workflows/rebuild/cli.py` 提供 check、verify、freeze、coverage。回执不覆盖，记录规格/源码/输入摘要、实际观察和差异。目标 layer 显式区分 browser_ui/native_ui/core/test_double；协议不是UI证据认证，当前只有测试替身证明机制。详细契约见 [业务规格](BEHAVIOR-CONTRACT.md)。
+`workflows/rebuild/cli.py` 提供 check、verify、freeze、coverage。回执不覆盖，记录规格/源码/输入摘要、实际观察和差异。目标 layer 显式区分 browser_ui/native_ui/core/test_double；协议不是 UI 证据认证。替身检查验证机制；Duolingo 案例另有真实线上浏览器和 Swift 原生 AX UI 的共享场景实测，不能由协议格式推导任意适配器都提供了真实 UI 证据。详细契约见 [业务规格](BEHAVIOR-CONTRACT.md)。
 
 运行任务应引用固定规格，不能把任务历史当作产品覆盖率。`capabilities/rebuild/pipeline.py` 已保存 explore→specify→reference→freeze→implement→discover→reference→freeze→implement→review 的阶段证据与回执。当前 Codex 依据 next_action 工作，step 校验阶段，不生成伪观察或另起模型。Harness 拥有模型尝试，Pipeline 拥有阶段推进及额外阶段次数/时间上限；两者不复制同一状态。原生 Stop 驱动的单任务模型 fail→pass 续跑已验证（见 `projects/rebuild-mechanisms/REPORT.md`）；整个多阶段重建仍待真实任务验证。
 
 重建工作流编排观察、原版验收、批次冻结、新版实现、差异修复与补充探索。运行时只执行显式命令，不推断规则。`exploration_adopt` 允许用户明确选择暂停任务转交新会话，不自动恢复、不重置预算；旧指针失效，忙碌目标会话和异工作目录被拒绝。正在执行的验收必须结束后才能转交；暂停期间取得的成功结果在显式恢复时正确完成，无须额外消耗尝试。
 
-已实现 `acceptance_paths`：按显式文件/目录冻结验收及夹具，不限语言；默认包括 tests、Tests、e2e 和常见包/Playwright 配置。清单检测新增、删除和修改；拒绝越界路径。已实现 `verify_seconds`，受总截止时间约束；旧任务仍按原冻结契约验证。动态依赖必须明确声明，不能承诺自动捕获所有依赖。业务层零场景判定仍待实现；现有通用层只拒绝 unittest 的空发现。
+已实现 `acceptance_paths`：按显式文件/目录冻结验收及夹具，不限语言；默认包括 tests、Tests、e2e 和常见包/Playwright 配置。清单检测新增、删除和修改；拒绝越界路径。已实现 `verify_seconds`，受总截止时间约束；旧任务仍按原冻结契约验证。动态依赖必须明确声明，不能承诺自动捕获所有依赖。业务层拒绝空行为清单；verify 和 freeze 也拒绝没有可执行已知场景的通过。通用命令层另有 unittest 空发现保护。
 
 ## Swift 教育案例边界
 

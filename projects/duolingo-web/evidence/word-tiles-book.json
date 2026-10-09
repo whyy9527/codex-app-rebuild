@@ -1,0 +1,14 @@
+{
+  "date": "2026-10-10",
+  "stage": "supplemental observation after v1.2 cross-UI acceptance",
+  "scope": "Existing isolated guest second lesson; 2 hearts; no account created",
+  "gap": "Word-tile driver mapping only covered mi maleta and mi casa; the online lesson also presents mi libro.",
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "### Result\n{\"before\":{\"snapshot\":\"- button:\\n  - img\\n- progressbar\\n- img\\n- text: \\\"2\\\"\\n- heading \\\"Write this in English\\\" [level=1]\\n- button:\\n  - img\\n- img\\n- button \\\"my\\\"\\n- button \\\"dog\\\"\\n- button \\\"book\\\"\\n- button \\\"cat\\\"\\n- button \\\"Skip\\\"\\n- button \\\"Check\\\" [disabled]\",\"hints\":[{\"text\":\"\",\"label\":\"mi\"},{\"text\":\"\",\"label\":\"libro\"}]},\"selected\":\"- button:\\n  - img\\n- progressbar\\n- img\\n- text: \\\"2\\\"\\n- heading \\\"Write this in English\\\" [level=1]\\n- button:\\n  - img\\n- img\\n- button \\\"my\\\" [disabled]\\n- button \\\"dog\\\"\\n- button \\\"book\\\" [disabled]\\n- button \\\"cat\\\"\\n- button \\\"Skip\\\"\\n- button \\\"Check\\\"\\n- button \\\"my\\\"\\n- button \\\"book\\\"\",\"submitted\":\"- button:\\n  - img\\n- progressbar: 4 in a row\\n- img\\n- text: \\\"2\\\"\\n- heading \\\"Write this in English\\\" [level=1]\\n- button:\\n  - img\\n- img\\n- button \\\"my\\\" [disabled]\\n- button \\\"dog\\\" [disabled]\\n- button \\\"book\\\" [disabled]\\n- button \\\"cat\\\" [disabled]\\n- heading \\\"Awesome!\\\" [level=2]\\n- button \\\"Too easy\\\"\\n- button \\\"Too difficult\\\"\\n- button \\\"Report\\\"\\n- button \\\"Continue\\\"\\n- button \\\"my\\\" [disabled]\\n- button \\\"book\\\" [disabled]\"}\n### Ran Playwright code\n```js\nawait (async(page)=>{await page.getByRole('heading',{name:'Select the correct meaning',exact:true}).waitFor({state:'hidden'});const before={snapshot:await page.locator('body').ariaSnapshot(),hints:await page.locator('[data-test=\"hint-token\"]').evaluateAll(es=>es.map(e=>({text:e.innerText,label:e.getAttribute('aria-label')})))};const bank=page.locator('[data-test=\"word-bank\"]');await bank.getByRole('button',{name:'my',exact:true}).click();await bank.getByRole('button',{name:'book',exact:true}).click();const selected=await page.locator('body').ariaSnapshot();await page.getByRole('button',{name:'Check',exact:true}).click();await page.getByRole('button',{name:'Continue',exact:true}).waitFor();return {before,selected,submitted:await page.locator('body').ariaSnapshot()};})(page);\n```\n### Page\n- Page URL: https://www.duolingo.com/lesson\n- Page Title: Duolingo - Learn Spanish with lessons that work\n- Console: 100 errors, 0 warnings\n### Events\n- New console entries: tmp/content-browser/downloads/console-2026-10-09T17-44-10-497Z.log#L113"
+      }
+    ]
+  }
+}

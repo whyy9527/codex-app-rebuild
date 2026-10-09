@@ -61,7 +61,7 @@ async function firstLesson() {
 
 let current, firstPrompt, currentLesson = 0;
 const learningTrace = [];
-const translations = { 'mi maleta': ['my','suitcase'], 'mi casa': ['my','house'] };
+const translations = { 'mi maleta': ['my','suitcase'], 'mi casa': ['my','house'], 'mi libro': ['my','book'] };
 async function identify() {
   const containers = page.locator('[data-test^="challenge "]');
   for (let i = 0; i < await containers.count(); i++) {
@@ -245,7 +245,7 @@ async function returnToPath() {
   throw new Error('Unobserved post-lesson path; inspect current UI');
 }
 async function openPathLesson() {
-  const node=page.locator('[data-test="skill-path-level-0 skill-path-level-skill"]').getByRole('button',{name:/^Lesson \d+ of \d+$/});
+  const node=page.locator('[data-test="skill-path-level-0 skill-path-level-skill"]');
   await node.click();
   await page.getByRole('link',{name:/^Start.*XP$/i}).click();
   await settle();
@@ -269,6 +269,9 @@ async function observe() {
   const check=page.getByRole('button',{name:'Check',exact:true});
   const next=page.getByRole('button',{name:'Continue',exact:true}).last();
   const quit=page.locator('[data-test="quit-button"]');
+  const headerLines=await quit.count()?(await quit.locator('..').innerText()).split('\n').map(s=>s.trim()):[];
+  const heartLine=headerLines.at(-1);
+  const hearts=heartLine && /^\d+$/.test(heartLine)?Number(heartLine):null;
   const k = current ? await kind() : null;
   const radios=current?await current.$$('[role="radio"]'):[];
   const bank=current?await current.$('[data-test="word-bank"]'):null;
@@ -289,7 +292,7 @@ async function observe() {
     authenticated:false,question_kind:k,lesson_index:currentLesson,answer_selected:selected>0||selectedWords>0,
     check_enabled:await check.count()?await check.isEnabled():false,options_locked:radios.length>0&&locked===radios.length||k==='word_tiles'&&feedback!=='none'||allMatched,
     feedback,continue_enabled:await next.count()?await next.isEnabled():false,
-    hearts:await quit.count()?Number((await quit.locator('..').innerText()).trim()):null,
+    hearts,
     selected_word_count:selectedWords,matching_complete:allMatched,reviewing:/Previous mistake/.test(raw),
     initial_question_revisited:current?(await questionIdentity())===firstPrompt:false,question_changed:current?(await questionIdentity())!==firstPrompt:false,
     completed_lessons:completed,current_lesson_index:completed,ui_snapshot:raw};

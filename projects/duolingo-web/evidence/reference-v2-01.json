@@ -1,0 +1,1362 @@
+{
+  "schema_version": 1,
+  "kind": "behavior_verification",
+  "target": "reference",
+  "target_kind": "original_online",
+  "layer": "browser_ui",
+  "revision": "duolingo-learning-flow-v2",
+  "spec_digest": "af952e073964b1f057a0c4bfd05093be751c18e8ef1eb4b65616d05dff10ccc0",
+  "targets_digest": "ccd3de83a512187a40b96d0c419ef0f58b08c334f86e2aea5e299ffe4b637169",
+  "source_digest": "9f49c8840687023ff4fd3f9a9ce7826ded607932f5dbcba060a427a686ba7a5b",
+  "inputs": {
+    "projects/duolingo-web/build-native.py": "afbcd31ac4ed06592f005a9b9230c90115d2b62accba155de8945ef44912c7fd",
+    "projects/duolingo-web/evidence/2026-10-10/duo-03-lesson-initial.yml": "d5ad4476cc507d8860c7337f8959a3c49270631a37774dab3e8402dab8102c82",
+    "projects/duolingo-web/evidence/2026-10-10/duo-04-wrong-feedback.yml": "627e64a27c737cbe69a2520dcf230ad0e22898be08653a6f0463c337f8c76132",
+    "projects/duolingo-web/evidence/2026-10-10/duo-05-correct-feedback.yml": "3da1c467a4076e7304096a7441b5ffb91e3bcc8d358994dc4bed69ee54801ec0",
+    "projects/duolingo-web/evidence/2026-10-10/duo-06-exit-confirm.yml": "04cb5df30a119618f45e178be129fdacafb8208dac68a1b28f72d190eb48670e",
+    "projects/duolingo-web/evidence/2026-10-10/duo-07-exit-cancelled.yml": "b9fc0acf24956945478f4fd24d9f7be919b3d3ade61d781164ac5e7d39ff8a73",
+    "projects/duolingo-web/evidence/2026-10-10/duo-08-matching.yml": "3bbd2357c7f2e07d8e8eb971acce88255297264ff4ec0a6ec5d001e1db44cdd8",
+    "projects/duolingo-web/evidence/2026-10-10/duo-09-matching-complete.yml": "65782034fb0af074aa1c6b170bf731090fe94b9a3993d0e7014f4965b5405dca",
+    "projects/duolingo-web/evidence/2026-10-10/duo-12-review-cat.yml": "0fec2d1c2b52b309ab459ba07bb43303e63b17f169798f9668b1ce4129dc9c2f",
+    "projects/duolingo-web/evidence/2026-10-10/duo-14-result.yml": "f6aab6014602f680863093d0a8f14b3c5f311c161a335f0d505e9d2b0267e083",
+    "projects/duolingo-web/evidence/2026-10-10/duo-16-path-before-reload.yml": "079bfe093752818ce5b65d105864f80aebc782632f86e5b6e1b1efb8c263e9ba",
+    "projects/duolingo-web/evidence/2026-10-10/duo-17-path-after-reload.yml": "03637a8dce9fc1646a763a6fa2d8ace3a3e1bb8f20645f73afe1f51cc3c18e23",
+    "projects/duolingo-web/evidence/2026-10-10/duo-18-second-exit-confirm.yml": "89f6a65831fc4cf431a26b7ac6e75304c13b78f8a5d4ba36ca9f7186cc3e6ba7",
+    "projects/duolingo-web/evidence/2026-10-10/duo-19-after-abandon.yml": "deedad177545fed9fe6b8160e388caedf1fb4fdc95c7fee2def7c520a48b0d32",
+    "projects/duolingo-web/evidence/2026-10-10/duo-20-restarted-lesson.yml": "1490cc4b6152d8b631862a2a6e1ae41403e3ecd6f61d5dc084bd56f2e1bb29c4",
+    "projects/duolingo-web/evidence/discovery-reselection.json": "bbb75827f5bcccd332c669b9123367c99618cb19fed03befa5f49ad47a818c36",
+    "projects/duolingo-web/evidence/word-tiles-book.json": "061a4e041d397815a1cf41c9e8b4afabaed4c8e5d0bf59d3ed0757f6bab96617",
+    "projects/duolingo-web/evidence/word-tiles-correct.json": "1f6f407f4a2b21dfc7a4de9a61fd4124361b4bc1426813993f73ffb390e2fe44",
+    "projects/duolingo-web/evidence/word-tiles-selection.json": "7a099f2409e2d28cea2ecd55849376c5f802f8cbf7ec537d8c53d4920d66df9e",
+    "projects/duolingo-web/evidence/word-tiles-undo-wrong.json": "7631077da4013aef037e87bd445152db97898ae64ce3b62ebcf7a02265a218a8",
+    "projects/duolingo-web/fixture-v2.json": "cfd33ce0404f4c566446415cf8e5a4275d56e97013a6a07572954785243fb112",
+    "projects/duolingo-web/native-adapter-v3.swift": "3805f45728d86f6fca110f464aa2e71764470f8604f17a21576f85781f49ddfb",
+    "projects/duolingo-web/original-adapter-v2.mjs": "86d24d0356a9dbf2313babaaec27a55f6591458a99c4c28429d590ae03736c9c",
+    "projects/duolingo-web/package-lock.json": "68603815aa0e350616d954e499d26a7f5050976835fdf0ee1cc4b12580a36f5f",
+    "projects/duolingo-web/package.json": "94e5266ded14092acc68f405483a2e0b18f3fd557cb05eaa40d16d447ff69e46",
+    "projects/duolingo-web/spec-v2.json": "5119a2d4ba268c5b14c6d83c7512fab7058d742dc1e8b2c43597ca4a41b0c44d",
+    "projects/duolingo-web/targets-v2.json": "ec6545097eae5de78d2835e4b39222269e9e62c38c764af51cc1ba874728d7d4"
+  },
+  "behaviors": [
+    {
+      "id": "choice-empty",
+      "discovery": "observed",
+      "status": "pass",
+      "receipt": {
+        "command": [
+          "node",
+          "projects/duolingo-web/original-adapter-v2.mjs"
+        ],
+        "source_digest": "9f49c8840687023ff4fd3f9a9ce7826ded607932f5dbcba060a427a686ba7a5b",
+        "integrity": "verified",
+        "evaluator_digest": "3f08e202ccdb09ef6a75bef5960f0a3817b8cb11574bd24598b3cc859b40b9e3",
+        "exit_code": 0,
+        "status": "pass",
+        "output": "APP_REBUILD_RESULT {\"operation\":\"scenario\",\"scenario_id\":\"choice-empty\",\"precondition_state\":{\"screen\":\"question\",\"authenticated\":false,\"question_kind\":\"choice\",\"lesson_index\":0,\"answer_selected\":false,\"check_enabled\":false,\"options_locked\":false,\"feedback\":\"none\",\"continue_enabled\":false,\"hearts\":5,\"selected_word_count\":0,\"matching_complete\":false,\"reviewing\":false,\"initial_question_revisited\":true,\"question_changed\":false,\"completed_lessons\":null,\"current_lesson_index\":null,\"ui_snapshot\":\"- button:\\n  - img\\n- progressbar\\n- img\\n- text: \\\"5\\\"\\n- img\\n- text: New word\\n- heading \\\"Which one of these is “cat”?\\\" [level=1]\\n- radiogroup \\\"choice\\\":\\n  - radio \\\"papá 1\\\"\\n  - radio \\\"agua 2\\\"\\n  - radio \\\"gato 3\\\"\\n- button \\\"Skip\\\"\\n- button \\\"Check\\\" [disabled]\\n- img\\n- text: Loading... More Americans are learning a language on Duolingo than in the U.S. public school system.\"},\"observations\":[{\"step\":0,\"state\":{\"screen\":\"question\",\"authenticated\":false,\"question_kind\":\"choice\",\"lesson_index\":0,\"answer_selected\":false,\"check_enabled\":false,\"options_locked\":false,\"feedback\":\"none\",\"continue_enabled\":false,\"hearts\":5,\"selected_word_count\":0,\"matching_complete\":false,\"reviewing\":false,\"initial_question_revisited\":true,\"question_changed\":false,\"completed_lessons\":null,\"current_lesson_index\":null,\"ui_snapshot\":\"- button:\\n  - img\\n- progressbar\\n- img\\n- text: \\\"5\\\"\\n- img\\n- text: New word\\n- heading \\\"Which one of these is “cat”?\\\" [level=1]\\n- radiogroup \\\"choice\\\":\\n  - radio \\\"papá 1\\\"\\n  - radio \\\"agua 2\\\"\\n  - radio \\\"gato 3\\\"\\n- button \\\"Skip\\\"\\n- button \\\"Check\\\" [disabled]\\n- img\\n- text: Loading... More Americans are learning a language on Duolingo than in the U.S. public school system.\"}}],\"onboarding\":[{\"stage\":0,\"selected_group\":null,\"visible_text\":\"Hi there! I’m Duo!\\nHi there! I’m Duo!\\nCONTINUE\"},{\"stage\":1,\"selected_group\":null,\"visible_text\":\"Let’s get this party started!\\nLet’s get this party started!\\nCONTINUE\"},{\"stage\":2,\"selected_group\":\"hdyhau\",\"visible_text\":\"How did you hear about Duolingo?\\nHow did you hear about Duolingo?\\nTV\\nShopee\\nGoogle Search\\nYouTube\\nNews/article/blog\\nBrawl Stars\\nFacebook/Instagram\\nFriends/family\\nTikTok\\nOther\\nCONTINUE\"},{\"stage\":3,\"selected_group\":\"motivation\",\"visible_text\":\"Any reason is a good reason to learn!\\nAny reason is a good reason to learn!\\nConnect with people\\nBoost my career\\nJust for fun\\nPrepare for travel\\nSpend time productively\\nSupport my education\\nOther\\nCONTINUE\"},{\"stage\":4,\"selected_group\":\"proficiency\",\"visible_text\":\"Okay, we’ll start fresh!\\nOkay, we’ll start fresh!\\nI’m new to Spanish\\nI know some common words\\nI can have basic conversations\\nI can talk about various topics\\nI can discuss most topics in detail\\nCONTINUE\"},{\"stage\":5,\"selected_group\":null,\"visible_text\":\"Here’s what you can achieve!\\nHere’s what you can achieve!\\nConverse with confidence\\nStress-free speaking and listening exercises\\nBuild a large vocabulary\\nCommon words and practical phrases\\nDevelop a learning habit\\nSmart reminders, fun challenges, and more\\nCONTINUE\"},{\"stage\":6,\"selected_group\":\"daily-goal\",\"visible_text\":\"That’s 25 words in your first week!\\nThat’s 25 words in your first week!\\n5 min / day\\nCasual\\n10 min / day\\nRegular\\n15 min / day\\nSerious\\n20 min / day\\nIntense\\nCONTINUE\"},{\"stage\":7,\"selected_group\":null,\"visible_text\":\"I’ll remind you to practice so it becomes a habit!\\nI’ll remind you to practice so it becomes a habit!\\nwww.duolingo.com wants to\\nShow notifications\\nBLOCK\\nALLOW\\nCONTINUE\"},{\"stage\":8,\"selected_group\":\"choose-path\",\"visible_text\":\"Now let’s find the best place to start!\\nNow let’s find the best place to start!\\nStart from scratch\\nTake the easiest lesson of the Spanish course\\nFind my level\\nLet Duo recommend where you should start learning\\nCONTINUE\"},{\"stage\":9,\"selected_group\":null,\"visible_text\":\"It can be hard to stay motivated…\\nIt can be hard to stay motivated…\\nCONTINUE\"},{\"stage\":10,\"selected_group\":null,\"visible_text\":\"…so Duolingo is designed to be fun like a game!\\n…so Duolingo is designed to be fun like a game!\\nCONTINUE\"},{\"stage\":11,\"selected_group\":null,\"visible_text\":\"5\\nNEW WORD\\nWhich one of these is “cat”?\\npapá\\n1\\nagua\\n2\\ngato\\n3\\nSKIP\\nCHECK\\nLOADING...\\nMore Americans are learning a language on Duolingo than in the U.S. public school system.\"}],\"preparation\":[]}\n",
+        "output_bytes": 4417,
+        "output_truncated": false,
+        "output_sha256": "804243b5dcd7c96776f53bc6b53551539826d3bf25e07caccb3689d83459c60a",
+        "wall_seconds": 31.564507
+      },
+      "differences": [],
+      "observations": [
+        {
+          "step": 0,
+          "state": {
+            "screen": "question",
+            "authenticated": false,
+            "question_kind": "choice",
+            "lesson_index": 0,
+            "answer_selected": false,
+            "check_enabled": false,
+            "options_locked": false,
+            "feedback": "none",
+            "continue_enabled": false,
+            "hearts": 5,
+            "selected_word_count": 0,
+            "matching_complete": false,
+            "reviewing": false,
+            "initial_question_revisited": true,
+            "question_changed": false,
+            "completed_lessons": null,
+            "current_lesson_index": null,
+            "ui_snapshot": "- button:\n  - img\n- progressbar\n- img\n- text: \"5\"\n- img\n- text: New word\n- heading \"Which one of these is “cat”?\" [level=1]\n- radiogroup \"choice\":\n  - radio \"papá 1\"\n  - radio \"agua 2\"\n  - radio \"gato 3\"\n- button \"Skip\"\n- button \"Check\" [disabled]\n- img\n- text: Loading... More Americans are learning a language on Duolingo than in the U.S. public school system."
+          }
+        }
+      ]
+    },
+    {
+      "id": "choice-correct",
+      "discovery": "observed",
+      "status": "pass",
+      "receipt": {
+        "command": [
+          "node",
+          "projects/duolingo-web/original-adapter-v2.mjs"
+        ],
+        "source_digest": "9f49c8840687023ff4fd3f9a9ce7826ded607932f5dbcba060a427a686ba7a5b",
+        "integrity": "verified",
+        "evaluator_digest": "3f08e202ccdb09ef6a75bef5960f0a3817b8cb11574bd24598b3cc859b40b9e3",
+        "exit_code": 0,
+        "status": "pass",
+        "output": "APP_REBUILD_RESULT {\"operation\":\"scenario\",\"scenario_id\":\"choice-correct\",\"precondition_state\":{\"screen\":\"question\",\"authenticated\":false,\"question_kind\":\"choice\",\"lesson_index\":0,\"answer_selected\":false,\"check_enabled\":false,\"options_locked\":false,\"feedback\":\"none\",\"continue_enabled\":false,\"hearts\":5,\"selected_word_count\":0,\"matching_complete\":false,\"reviewing\":false,\"initial_question_revisited\":true,\"question_changed\":false,\"completed_lessons\":null,\"current_lesson_index\":null,\"ui_snapshot\":\"- button:\\n  - img\\n- progressbar:\\n  - img\\n- img\\n- text: \\\"5\\\"\\n- img\\n- text: New word\\n- heading \\\"Which one of these is “cat”?\\\" [level=1]\\n- radiogroup \\\"choice\\\":\\n  - radio \\\"papá 1\\\"\\n  - radio \\\"mamá 2\\\"\\n  - radio \\\"gato 3\\\"\\n- button \\\"Skip\\\"\\n- button \\\"Check\\\" [disabled]\\n- img\\n- text: Loading... We teach endangered languages, including Navajo and Hawaiian.\"},\"observations\":[{\"step\":0,\"state\":{\"screen\":\"question\",\"authenticated\":false,\"question_kind\":\"choice\",\"lesson_index\":0,\"answer_selected\":true,\"check_enabled\":true,\"options_locked\":false,\"feedback\":\"none\",\"continue_enabled\":false,\"hearts\":5,\"selected_word_count\":0,\"matching_complete\":false,\"reviewing\":false,\"initial_question_revisited\":true,\"question_changed\":false,\"completed_lessons\":null,\"current_lesson_index\":null,\"ui_snapshot\":\"- button:\\n  - img\\n- progressbar:\\n  - img\\n- img\\n- text: \\\"5\\\"\\n- img\\n- text: New word\\n- heading \\\"Which one of these is “cat”?\\\" [level=1]\\n- radiogroup \\\"choice\\\":\\n  - radio \\\"papá 1\\\"\\n  - radio \\\"mamá 2\\\"\\n  - radio \\\"gato 3\\\" [checked]\\n- button \\\"Skip\\\"\\n- button \\\"Check\\\"\\n- img\\n- text: Loading... We teach endangered languages, including Navajo and Hawaiian.\"}},{\"step\":1,\"state\":{\"screen\":\"question\",\"authenticated\":false,\"question_kind\":\"choice\",\"lesson_index\":0,\"answer_selected\":true,\"check_enabled\":false,\"options_locked\":true,\"feedback\":\"correct\",\"continue_enabled\":true,\"hearts\":5,\"selected_word_count\":0,\"matching_complete\":false,\"reviewing\":false,\"initial_question_revisited\":true,\"question_changed\":false,\"completed_lessons\":null,\"current_lesson_index\":null,\"ui_snapshot\":\"- button:\\n  - img\\n- progressbar:\\n  - img\\n- img\\n- text: \\\"5\\\"\\n- img\\n- text: New word\\n- heading \\\"Which one of these is “cat”?\\\" [level=1]\\n- radiogroup \\\"choice\\\":\\n  - radio \\\"papá 1\\\" [disabled]:\\n    - text: papá 1\\n    - img\\n    - img\\n  - radio \\\"mamá 2\\\" [disabled]:\\n    - text: mamá 2\\n    - img\\n    - img\\n  - radio \\\"gato 3\\\" [checked] [disabled]:\\n    - text: gato 3\\n    - img\\n    - img\\n- heading \\\"Good job!\\\" [level=2]\\n- button \\\"Too easy\\\"\\n- button \\\"Too difficult\\\"\\n- button \\\"Report\\\"\\n- button \\\"Continue\\\"\\n- img\\n- text: Loading... We teach endangered languages, including Navajo and Hawaiian.\"}}],\"onboarding\":[{\"stage\":0,\"selected_group\":null,\"visible_text\":\"Hi there! I’m Duo!\\nHi there! I’m Duo!\\nCONTINUE\"},{\"stage\":1,\"selected_group\":null,\"visible_text\":\"Let’s get this party started!\\nLet’s get this party started!\\nCONTINUE\"},{\"stage\":2,\"selected_group\":\"hdyhau\",\"visible_text\":\"How did you hear about Duolingo?\\nHow did you hear about Duolingo?\\nNews/article/blog\\nShopee\\nTikTok\\nGoogle Search\\nTV\\nBrawl Stars\\nYouTube\\nFacebook/Instagram\\nFriends/family\\nOther\\nCONTINUE\"},{\"stage\":3,\"selected_group\":\"motivation\",\"visible_text\":\"Any reason is a good reason to learn!\\nAny reason is a good reason to learn!\\nSupport my education\\nConnect with people\\nPrepare for travel\\nSpend time productively\\nBoost my career\\nJust for fun\\nOther\\nCONTINUE\"},{\"stage\":4,\"selected_group\":\"proficiency\",\"visible_text\":\"Okay, we’ll start fresh!\\nOkay, we’ll start fresh!\\nI’m new to Spanish\\nI know some common words\\nI can have basic conversations\\nI can talk about various topics\\nI can discuss most topics in detail\\nCONTINUE\"},{\"stage\":5,\"selected_group\":null,\"visible_text\":\"Here’s what you can achieve!\\nHere’s what you can achieve!\\nConverse with confidence\\nStress-free speaking and listening exercises\\nBuild a large vocabulary\\nCommon words and practical phrases\\nDevelop a learning habit\\nSmart reminders, fun challenges, and more\\nCONTINUE\"},{\"stage\":6,\"selected_group\":\"daily-goal\",\"visible_text\":\"That’s 25 words in your first week!\\nThat’s 25 words in your first week!\\n5 min / day\\nCasual\\n10 min / day\\nRegular\\n15 min / day\\nSerious\\n20 min / day\\nIntense\\nCONTINUE\"},{\"stage\":7,\"selected_group\":null,\"visible_text\":\"I’ll remind you to practice so it becomes a habit!\\nI’ll remind you to practice so it becomes a habit!\\nwww.duolingo.com wants to\\nShow notifications\\nBLOCK\\nALLOW\\nCONTINUE\"},{\"stage\":8,\"selected_group\":\"choose-path\",\"visible_text\":\"Now let’s find the best place to start!\\nNow let’s find the best place to start!\\nStart from scratch\\nTake the easiest lesson of the Spanish course\\nFind my level\\nLet Duo recommend where you should start learning\\nCONTINUE\"},{\"stage\":9,\"selected_group\":null,\"visible_text\":\"It can be hard to stay motivated…\\nIt can be hard to stay motivated…\\nCONTINUE\"},{\"stage\":10,\"selected_group\":null,\"visible_text\":\"…so Duolingo is designed to be fun like a game!\\n…so Duolingo is designed to be fun like a game!\\nCONTINUE\"},{\"stage\":11,\"selected_group\":null,\"visible_text\":\"5\\nNEW WORD\\nWhich one of these is “cat”?\\npapá\\n1\\nmamá\\n2\\ngato\\n3\\nSKIP\\nCHECK\\nLOADING...\\nWe teach endangered languages, including Navajo and Hawaiian.\"}],\"preparation\":[]}\n",
+        "output_bytes": 5415,
+        "output_truncated": false,
+        "output_sha256": "a3d2c276bda9a4afa0bdf9d5c3a9e0db7cf1a21fe32ba71fd8fc0b1d0cbd3beb",
+        "wall_seconds": 33.881378
+      },
+      "differences": [],
+      "observations": [
+        {
+          "step": 0,
+          "state": {
+            "screen": "question",
+            "authenticated": false,
+            "question_kind": "choice",
+            "lesson_index": 0,
+            "answer_selected": true,
+            "check_enabled": true,
+            "options_locked": false,
+            "feedback": "none",
+            "continue_enabled": false,
+            "hearts": 5,
+            "selected_word_count": 0,
+            "matching_complete": false,
+            "reviewing": false,
+            "initial_question_revisited": true,
+            "question_changed": false,
+            "completed_lessons": null,
+            "current_lesson_index": null,
+            "ui_snapshot": "- button:\n  - img\n- progressbar:\n  - img\n- img\n- text: \"5\"\n- img\n- text: New word\n- heading \"Which one of these is “cat”?\" [level=1]\n- radiogroup \"choice\":\n  - radio \"papá 1\"\n  - radio \"mamá 2\"\n  - radio \"gato 3\" [checked]\n- button \"Skip\"\n- button \"Check\"\n- img\n- text: Loading... We teach endangered languages, including Navajo and Hawaiian."
+          }
+        },
+        {
+          "step": 1,
+          "state": {
+            "screen": "question",
+            "authenticated": false,
+            "question_kind": "choice",
+            "lesson_index": 0,
+            "answer_selected": true,
+            "check_enabled": false,
+            "options_locked": true,
+            "feedback": "correct",
+            "continue_enabled": true,
+            "hearts": 5,
+            "selected_word_count": 0,
+            "matching_complete": false,
+            "reviewing": false,
+            "initial_question_revisited": true,
+            "question_changed": false,
+            "completed_lessons": null,
+            "current_lesson_index": null,
+            "ui_snapshot": "- button:\n  - img\n- progressbar:\n  - img\n- img\n- text: \"5\"\n- img\n- text: New word\n- heading \"Which one of these is “cat”?\" [level=1]\n- radiogroup \"choice\":\n  - radio \"papá 1\" [disabled]:\n    - text: papá 1\n    - img\n    - img\n  - radio \"mamá 2\" [disabled]:\n    - text: mamá 2\n    - img\n    - img\n  - radio \"gato 3\" [checked] [disabled]:\n    - text: gato 3\n    - img\n    - img\n- heading \"Good job!\" [level=2]\n- button \"Too easy\"\n- button \"Too difficult\"\n- button \"Report\"\n- button \"Continue\"\n- img\n- text: Loading... We teach endangered languages, including Navajo and Hawaiian."
+          }
+        }
+      ]
+    },
+    {
+      "id": "choice-wrong",
+      "discovery": "observed",
+      "status": "pass",
+      "receipt": {
+        "command": [
+          "node",
+          "projects/duolingo-web/original-adapter-v2.mjs"
+        ],
+        "source_digest": "9f49c8840687023ff4fd3f9a9ce7826ded607932f5dbcba060a427a686ba7a5b",
+        "integrity": "verified",
+        "evaluator_digest": "3f08e202ccdb09ef6a75bef5960f0a3817b8cb11574bd24598b3cc859b40b9e3",
+        "exit_code": 0,
+        "status": "pass",
+        "output": "APP_REBUILD_RESULT {\"operation\":\"scenario\",\"scenario_id\":\"choice-wrong\",\"precondition_state\":{\"screen\":\"question\",\"authenticated\":false,\"question_kind\":\"choice\",\"lesson_index\":0,\"answer_selected\":false,\"check_enabled\":false,\"options_locked\":false,\"feedback\":\"none\",\"continue_enabled\":false,\"hearts\":5,\"selected_word_count\":0,\"matching_complete\":false,\"reviewing\":false,\"initial_question_revisited\":true,\"question_changed\":false,\"completed_lessons\":null,\"current_lesson_index\":null,\"ui_snapshot\":\"- button:\\n  - img\\n- progressbar\\n- img\\n- text: \\\"5\\\"\\n- img\\n- text: New word\\n- heading \\\"Which one of these is “cat”?\\\" [level=1]\\n- radiogroup \\\"choice\\\":\\n  - radio \\\"mamá 1\\\"\\n  - radio \\\"gato 2\\\"\\n  - radio \\\"papá 3\\\"\\n- button \\\"Skip\\\"\\n- button \\\"Check\\\" [disabled]\\n- img\\n- text: Loading... More Americans are learning a language on Duolingo than in the U.S. public school system.\"},\"observations\":[{\"step\":0,\"state\":{\"screen\":\"question\",\"authenticated\":false,\"question_kind\":\"choice\",\"lesson_index\":0,\"answer_selected\":true,\"check_enabled\":true,\"options_locked\":false,\"feedback\":\"none\",\"continue_enabled\":false,\"hearts\":5,\"selected_word_count\":0,\"matching_complete\":false,\"reviewing\":false,\"initial_question_revisited\":true,\"question_changed\":false,\"completed_lessons\":null,\"current_lesson_index\":null,\"ui_snapshot\":\"- button:\\n  - img\\n- progressbar:\\n  - img\\n- img\\n- text: \\\"5\\\"\\n- img\\n- text: New word\\n- heading \\\"Which one of these is “cat”?\\\" [level=1]\\n- radiogroup \\\"choice\\\":\\n  - radio \\\"mamá 1\\\" [checked]\\n  - radio \\\"gato 2\\\"\\n  - radio \\\"papá 3\\\"\\n- button \\\"Skip\\\"\\n- button \\\"Check\\\"\\n- img\\n- text: Loading... More Americans are learning a language on Duolingo than in the U.S. public school system.\"}},{\"step\":1,\"state\":{\"screen\":\"question\",\"authenticated\":false,\"question_kind\":\"choice\",\"lesson_index\":0,\"answer_selected\":true,\"check_enabled\":false,\"options_locked\":true,\"feedback\":\"incorrect\",\"continue_enabled\":true,\"hearts\":4,\"selected_word_count\":0,\"matching_complete\":false,\"reviewing\":false,\"initial_question_revisited\":true,\"question_changed\":false,\"completed_lessons\":null,\"current_lesson_index\":null,\"ui_snapshot\":\"- button:\\n  - img\\n- progressbar\\n- img\\n- text: \\\"4\\\"\\n- img\\n- text: New word\\n- heading \\\"Which one of these is “cat”?\\\" [level=1]\\n- radiogroup \\\"choice\\\":\\n  - radio \\\"mamá 1\\\" [checked] [disabled]:\\n    - text: mamá 1\\n    - img\\n    - img\\n  - radio \\\"gato 2\\\" [disabled]:\\n    - text: gato 2\\n    - img\\n    - img\\n  - radio \\\"papá 3\\\" [disabled]:\\n    - text: papá 3\\n    - img\\n    - img\\n- heading \\\"Correct solution:\\\" [level=2]\\n- text: gato\\n- button \\\"Too easy\\\"\\n- button \\\"Too difficult\\\"\\n- button \\\"Report\\\"\\n- button \\\"Continue\\\"\\n- img\\n- text: Loading... More Americans are learning a language on Duolingo than in the U.S. public school system.\\n- img\\n- img\\n- img\\n- img\\n- img\\n- text: Each mistake costs 1 heart! Stay sharp and focused to keep your hearts. You got this!\\n- button \\\"Keep going\\\"\"}}],\"onboarding\":[{\"stage\":0,\"selected_group\":null,\"visible_text\":\"Hi there! I’m Duo!\\nHi there! I’m Duo!\\nCONTINUE\"},{\"stage\":1,\"selected_group\":null,\"visible_text\":\"Let’s get this party started!\\nLet’s get this party started!\\nCONTINUE\"},{\"stage\":2,\"selected_group\":\"hdyhau\",\"visible_text\":\"How did you hear about Duolingo?\\nHow did you hear about Duolingo?\\nBrawl Stars\\nGoogle Search\\nShopee\\nTikTok\\nFacebook/Instagram\\nNews/article/blog\\nFriends/family\\nYouTube\\nTV\\nOther\\nCONTINUE\"},{\"stage\":3,\"selected_group\":\"motivation\",\"visible_text\":\"Any reason is a good reason to learn!\\nAny reason is a good reason to learn!\\nJust for fun\\nConnect with people\\nPrepare for travel\\nSupport my education\\nBoost my career\\nSpend time productively\\nOther\\nCONTINUE\"},{\"stage\":4,\"selected_group\":\"proficiency\",\"visible_text\":\"Okay, we’ll start fresh!\\nOkay, we’ll start fresh!\\nI’m new to Spanish\\nI know some common words\\nI can have basic conversations\\nI can talk about various topics\\nI can discuss most topics in detail\\nCONTINUE\"},{\"stage\":5,\"selected_group\":null,\"visible_text\":\"Here’s what you can achieve!\\nHere’s what you can achieve!\\nConverse with confidence\\nStress-free speaking and listening exercises\\nBuild a large vocabulary\\nCommon words and practical phrases\\nDevelop a learning habit\\nSmart reminders, fun challenges, and more\\nCONTINUE\"},{\"stage\":6,\"selected_group\":\"daily-goal\",\"visible_text\":\"That’s 25 words in your first week!\\nThat’s 25 words in your first week!\\n5 min / day\\nCasual\\n10 min / day\\nRegular\\n15 min / day\\nSerious\\n20 min / day\\nIntense\\nCONTINUE\"},{\"stage\":7,\"selected_group\":null,\"visible_text\":\"I’ll remind you to practice so it becomes a habit!\\nI’ll remind you to practice so it becomes a habit!\\nwww.duolingo.com wants to\\nShow notifications\\nBLOCK\\nALLOW\\nCONTINUE\"},{\"stage\":8,\"selected_group\":\"choose-path\",\"visible_text\":\"Now let’s find the best place to start!\\nNow let’s find the best place to start!\\nStart from scratch\\nTake the easiest lesson of the Spanish course\\nFind my level\\nLet Duo recommend where you should start learning\\nCONTINUE\"},{\"stage\":9,\"selected_group\":null,\"visible_text\":\"It can be hard to stay motivated…\\nIt can be hard to stay motivated…\\nCONTINUE\"},{\"stage\":10,\"selected_group\":null,\"visible_text\":\"…so Duolingo is designed to be fun like a game!\\n…so Duolingo is designed to be fun like a game!\\nCONTINUE\"},{\"stage\":11,\"selected_group\":null,\"visible_text\":\"5\\nNEW WORD\\nWhich one of these is “cat”?\\nmamá\\n1\\ngato\\n2\\npapá\\n3\\nSKIP\\nCHECK\\nLOADING...\\nMore Americans are learning a language on Duolingo than in the U.S. public school system.\"}],\"preparation\":[]}\n",
+        "output_bytes": 5684,
+        "output_truncated": false,
+        "output_sha256": "973aa40f79c9508b327a38fe93d0834466d254003954d054b50327d3751a88fe",
+        "wall_seconds": 35.951568
+      },
+      "differences": [],
+      "observations": [
+        {
+          "step": 0,
+          "state": {
+            "screen": "question",
+            "authenticated": false,
+            "question_kind": "choice",
+            "lesson_index": 0,
+            "answer_selected": true,
+            "check_enabled": true,
+            "options_locked": false,
+            "feedback": "none",
+            "continue_enabled": false,
+            "hearts": 5,
+            "selected_word_count": 0,
+            "matching_complete": false,
+            "reviewing": false,
+            "initial_question_revisited": true,
+            "question_changed": false,
+            "completed_lessons": null,
+            "current_lesson_index": null,
+            "ui_snapshot": "- button:\n  - img\n- progressbar:\n  - img\n- img\n- text: \"5\"\n- img\n- text: New word\n- heading \"Which one of these is “cat”?\" [level=1]\n- radiogroup \"choice\":\n  - radio \"mamá 1\" [checked]\n  - radio \"gato 2\"\n  - radio \"papá 3\"\n- button \"Skip\"\n- button \"Check\"\n- img\n- text: Loading... More Americans are learning a language on Duolingo than in the U.S. public school system."
+          }
+        },
+        {
+          "step": 1,
+          "state": {
+            "screen": "question",
+            "authenticated": false,
+            "question_kind": "choice",
+            "lesson_index": 0,
+            "answer_selected": true,
+            "check_enabled": false,
+            "options_locked": true,
+            "feedback": "incorrect",
+            "continue_enabled": true,
+            "hearts": 4,
+            "selected_word_count": 0,
+            "matching_complete": false,
+            "reviewing": false,
+            "initial_question_revisited": true,
+            "question_changed": false,
+            "completed_lessons": null,
+            "current_lesson_index": null,
+            "ui_snapshot": "- button:\n  - img\n- progressbar\n- img\n- text: \"4\"\n- img\n- text: New word\n- heading \"Which one of these is “cat”?\" [level=1]\n- radiogroup \"choice\":\n  - radio \"mamá 1\" [checked] [disabled]:\n    - text: mamá 1\n    - img\n    - img\n  - radio \"gato 2\" [disabled]:\n    - text: gato 2\n    - img\n    - img\n  - radio \"papá 3\" [disabled]:\n    - text: papá 3\n    - img\n    - img\n- heading \"Correct solution:\" [level=2]\n- text: gato\n- button \"Too easy\"\n- button \"Too difficult\"\n- button \"Report\"\n- button \"Continue\"\n- img\n- text: Loading... More Americans are learning a language on Duolingo than in the U.S. public school system.\n- img\n- img\n- img\n- img\n- img\n- text: Each mistake costs 1 heart! Stay sharp and focused to keep your hearts. You got this!\n- button \"Keep going\""
+          }
+        }
+      ]
+    },
+    {
+      "id": "exit-cancel",
+      "discovery": "observed",
+      "status": "pass",
+      "receipt": {
+        "command": [
+          "node",
+          "projects/duolingo-web/original-adapter-v2.mjs"
+        ],
+        "source_digest": "9f49c8840687023ff4fd3f9a9ce7826ded607932f5dbcba060a427a686ba7a5b",
+        "integrity": "verified",
+        "evaluator_digest": "3f08e202ccdb09ef6a75bef5960f0a3817b8cb11574bd24598b3cc859b40b9e3",
+        "exit_code": 0,
+        "status": "pass",
+        "output": "APP_REBUILD_RESULT {\"operation\":\"scenario\",\"scenario_id\":\"exit-cancel\",\"precondition_state\":{\"screen\":\"question\",\"authenticated\":false,\"question_kind\":\"choice\",\"lesson_index\":0,\"answer_selected\":false,\"check_enabled\":false,\"options_locked\":false,\"feedback\":\"none\",\"continue_enabled\":false,\"hearts\":5,\"selected_word_count\":0,\"matching_complete\":false,\"reviewing\":false,\"initial_question_revisited\":true,\"question_changed\":false,\"completed_lessons\":null,\"current_lesson_index\":null,\"ui_snapshot\":\"- button:\\n  - img\\n- progressbar\\n- img\\n- text: \\\"5\\\"\\n- img\\n- text: New word\\n- heading \\\"Which one of these is “cat”?\\\" [level=1]\\n- radiogroup \\\"choice\\\":\\n  - radio \\\"gato 1\\\"\\n  - radio \\\"mamá 2\\\"\\n  - radio \\\"papá 3\\\"\\n- button \\\"Skip\\\"\\n- button \\\"Check\\\" [disabled]\\n- img\\n- text: Loading... Our mission is to develop the best education in the world and make it universally available.\"},\"observations\":[{\"step\":0,\"state\":{\"screen\":\"question\",\"authenticated\":false,\"question_kind\":\"choice\",\"lesson_index\":0,\"answer_selected\":true,\"check_enabled\":true,\"options_locked\":false,\"feedback\":\"none\",\"continue_enabled\":false,\"hearts\":5,\"selected_word_count\":0,\"matching_complete\":false,\"reviewing\":false,\"initial_question_revisited\":true,\"question_changed\":false,\"completed_lessons\":null,\"current_lesson_index\":null,\"ui_snapshot\":\"- button:\\n  - img\\n- progressbar:\\n  - img\\n- img\\n- text: \\\"5\\\"\\n- img\\n- text: New word\\n- heading \\\"Which one of these is “cat”?\\\" [level=1]\\n- radiogroup \\\"choice\\\":\\n  - radio \\\"gato 1\\\" [checked]\\n  - radio \\\"mamá 2\\\"\\n  - radio \\\"papá 3\\\"\\n- button \\\"Skip\\\"\\n- button \\\"Check\\\"\\n- img\\n- text: Loading... Our mission is to develop the best education in the world and make it universally available.\"}},{\"step\":1,\"state\":{\"screen\":\"question\",\"authenticated\":false,\"question_kind\":\"choice\",\"lesson_index\":0,\"answer_selected\":true,\"check_enabled\":false,\"options_locked\":true,\"feedback\":\"correct\",\"continue_enabled\":true,\"hearts\":5,\"selected_word_count\":0,\"matching_complete\":false,\"reviewing\":false,\"initial_question_revisited\":true,\"question_changed\":false,\"completed_lessons\":null,\"current_lesson_index\":null,\"ui_snapshot\":\"- button:\\n  - img\\n- progressbar:\\n  - img\\n- img\\n- text: \\\"5\\\"\\n- img\\n- text: New word\\n- heading \\\"Which one of these is “cat”?\\\" [level=1]\\n- radiogroup \\\"choice\\\":\\n  - radio \\\"gato 1\\\" [checked] [disabled]:\\n    - text: gato 1\\n    - img\\n    - img\\n  - radio \\\"mamá 2\\\" [disabled]:\\n    - text: mamá 2\\n    - img\\n    - img\\n  - radio \\\"papá 3\\\" [disabled]:\\n    - text: papá 3\\n    - img\\n    - img\\n- heading \\\"Nice job!\\\" [level=2]\\n- button \\\"Too easy\\\"\\n- button \\\"Too difficult\\\"\\n- button \\\"Report\\\"\\n- button \\\"Continue\\\"\\n- img\\n- text: Loading... Our mission is to develop the best education in the world and make it universally available.\"}},{\"step\":2,\"state\":{\"screen\":\"exit_confirmation\",\"authenticated\":false,\"question_kind\":\"choice\",\"lesson_index\":0,\"answer_selected\":true,\"check_enabled\":false,\"options_locked\":true,\"feedback\":\"correct\",\"continue_enabled\":true,\"hearts\":5,\"selected_word_count\":0,\"matching_complete\":false,\"reviewing\":false,\"initial_question_revisited\":true,\"question_changed\":false,\"completed_lessons\":null,\"current_lesson_index\":null,\"ui_snapshot\":\"- button:\\n  - img\\n- progressbar:\\n  - img\\n- img\\n- text: \\\"5\\\"\\n- img\\n- text: New word\\n- heading \\\"Which one of these is “cat”?\\\" [level=1]\\n- radiogroup \\\"choice\\\":\\n  - radio \\\"gato 1\\\" [checked] [disabled]:\\n    - text: gato 1\\n    - img\\n    - img\\n  - radio \\\"mamá 2\\\" [disabled]:\\n    - text: mamá 2\\n    - img\\n    - img\\n  - radio \\\"papá 3\\\" [disabled]:\\n    - text: papá 3\\n    - img\\n    - img\\n- heading \\\"Nice job!\\\" [level=2]\\n- button \\\"Too easy\\\"\\n- button \\\"Too difficult\\\"\\n- button \\\"Report\\\"\\n- button \\\"Continue\\\"\\n- img\\n- text: Wait, don’t go! You’ll lose your progress if you quit now\\n- button \\\"Keep learning\\\"\\n- button \\\"End session\\\"\"}},{\"step\":3,\"state\":{\"screen\":\"question\",\"authenticated\":false,\"question_kind\":\"choice\",\"lesson_index\":0,\"answer_selected\":true,\"check_enabled\":false,\"options_locked\":true,\"feedback\":\"correct\",\"continue_enabled\":true,\"hearts\":5,\"selected_word_count\":0,\"matching_complete\":false,\"reviewing\":false,\"initial_question_revisited\":true,\"question_changed\":false,\"completed_lessons\":null,\"current_lesson_index\":null,\"ui_snapshot\":\"- button:\\n  - img\\n- progressbar:\\n  - img\\n- img\\n- text: \\\"5\\\"\\n- img\\n- text: New word\\n- heading \\\"Which one of these is “cat”?\\\" [level=1]\\n- radiogroup \\\"choice\\\":\\n  - radio \\\"gato 1\\\" [checked] [disabled]:\\n    - text: gato 1\\n    - img\\n    - img\\n  - radio \\\"mamá 2\\\" [disabled]:\\n    - text: mamá 2\\n    - img\\n    - img\\n  - radio \\\"papá 3\\\" [disabled]:\\n    - text: papá 3\\n    - img\\n    - img\\n- heading \\\"Nice job!\\\" [level=2]\\n- button \\\"Too easy\\\"\\n- button \\\"Too difficult\\\"\\n- button \\\"Report\\\"\\n- button \\\"Continue\\\"\"}}],\"onboarding\":[{\"stage\":0,\"selected_group\":null,\"visible_text\":\"Hi there! I’m Duo!\\nHi there! I’m Duo!\\nCONTINUE\"},{\"stage\":1,\"selected_group\":null,\"visible_text\":\"Let’s get this party started!\\nLet’s get this party started!\\nCONTINUE\"},{\"stage\":2,\"selected_group\":\"hdyhau\",\"visible_text\":\"How did you hear about Duolingo?\\nHow did you hear about Duolingo?\\nBrawl Stars\\nTikTok\\nShopee\\nNews/article/blog\\nTV\\nFacebook/Instagram\\nYouTube\\nGoogle Search\\nFriends/family\\nOther\\nCONTINUE\"},{\"stage\":3,\"selected_group\":\"motivation\",\"visible_text\":\"Any reason is a good reason to learn!\\nAny reason is a good reason to learn!\\nSupport my education\\nSpend time productively\\nBoost my career\\nPrepare for travel\\nJust for fun\\nConnect with people\\nOther\\nCONTINUE\"},{\"stage\":4,\"selected_group\":\"proficiency\",\"visible_text\":\"Okay, we’ll start fresh!\\nOkay, we’ll start fresh!\\nI’m new to Spanish\\nI know some common words\\nI can have basic conversations\\nI can talk about various topics\\nI can discuss most topics in detail\\nCONTINUE\"},{\"stage\":5,\"selected_group\":null,\"visible_text\":\"Here’s what you can achieve!\\nHere’s what you can achieve!\\nConverse with confidence\\nStress-free speaking and listening exercises\\nBuild a large vocabulary\\nCommon words and practical phrases\\nDevelop a learning habit\\nSmart reminders, fun challenges, and more\\nCONTINUE\"},{\"stage\":6,\"selected_group\":\"daily-goal\",\"visible_text\":\"That’s 25 words in your first week!\\nThat’s 25 words in your first week!\\n5 min / day\\nCasual\\n10 min / day\\nRegular\\n15 min / day\\nSerious\\n20 min / day\\nIntense\\nCONTINUE\"},{\"stage\":7,\"selected_group\":null,\"visible_text\":\"I’ll remind you to practice so it becomes a habit!\\nI’ll remind you to practice so it becomes a habit!\\nwww.duolingo.com wants to\\nShow notifications\\nBLOCK\\nALLOW\\nCONTINUE\"},{\"stage\":8,\"selected_group\":\"choose-path\",\"visible_text\":\"Now let’s find the best place to start!\\nNow let’s find the best place to start!\\nStart from scratch\\nTake the easiest lesson of the Spanish course\\nFind my level\\nLet Duo recommend where you should start learning\\nCONTINUE\"},{\"stage\":9,\"selected_group\":null,\"visible_text\":\"It can be hard to stay motivated…\\nIt can be hard to stay motivated…\\nCONTINUE\"},{\"stage\":10,\"selected_group\":null,\"visible_text\":\"…so Duolingo is designed to be fun like a game!\\n…so Duolingo is designed to be fun like a game!\\nCONTINUE\"},{\"stage\":11,\"selected_group\":null,\"visible_text\":\"5\\nNEW WORD\\nWhich one of these is “cat”?\\ngato\\n1\\nmamá\\n2\\npapá\\n3\\nSKIP\\nCHECK\\nLOADING...\\nOur mission is to develop the best education in the world and make it universally available.\"}],\"preparation\":[]}\n",
+        "output_bytes": 7609,
+        "output_truncated": false,
+        "output_sha256": "d95677fcdff335bc420301ea195e6703ca73c5581808125a7c2d979927138fb4",
+        "wall_seconds": 33.006839
+      },
+      "differences": [],
+      "observations": [
+        {
+          "step": 0,
+          "state": {
+            "screen": "question",
+            "authenticated": false,
+            "question_kind": "choice",
+            "lesson_index": 0,
+            "answer_selected": true,
+            "check_enabled": true,
+            "options_locked": false,
+            "feedback": "none",
+            "continue_enabled": false,
+            "hearts": 5,
+            "selected_word_count": 0,
+            "matching_complete": false,
+            "reviewing": false,
+            "initial_question_revisited": true,
+            "question_changed": false,
+            "completed_lessons": null,
+            "current_lesson_index": null,
+            "ui_snapshot": "- button:\n  - img\n- progressbar:\n  - img\n- img\n- text: \"5\"\n- img\n- text: New word\n- heading \"Which one of these is “cat”?\" [level=1]\n- radiogroup \"choice\":\n  - radio \"gato 1\" [checked]\n  - radio \"mamá 2\"\n  - radio \"papá 3\"\n- button \"Skip\"\n- button \"Check\"\n- img\n- text: Loading... Our mission is to develop the best education in the world and make it universally available."
+          }
+        },
+        {
+          "step": 1,
+          "state": {
+            "screen": "question",
+            "authenticated": false,
+            "question_kind": "choice",
+            "lesson_index": 0,
+            "answer_selected": true,
+            "check_enabled": false,
+            "options_locked": true,
+            "feedback": "correct",
+            "continue_enabled": true,
+            "hearts": 5,
+            "selected_word_count": 0,
+            "matching_complete": false,
+            "reviewing": false,
+            "initial_question_revisited": true,
+            "question_changed": false,
+            "completed_lessons": null,
+            "current_lesson_index": null,
+            "ui_snapshot": "- button:\n  - img\n- progressbar:\n  - img\n- img\n- text: \"5\"\n- img\n- text: New word\n- heading \"Which one of these is “cat”?\" [level=1]\n- radiogroup \"choice\":\n  - radio \"gato 1\" [checked] [disabled]:\n    - text: gato 1\n    - img\n    - img\n  - radio \"mamá 2\" [disabled]:\n    - text: mamá 2\n    - img\n    - img\n  - radio \"papá 3\" [disabled]:\n    - text: papá 3\n    - img\n    - img\n- heading \"Nice job!\" [level=2]\n- button \"Too easy\"\n- button \"Too difficult\"\n- button \"Report\"\n- button \"Continue\"\n- img\n- text: Loading... Our mission is to develop the best education in the world and make it universally available."
+          }
+        },
+        {
+          "step": 2,
+          "state": {
+            "screen": "exit_confirmation",
+            "authenticated": false,
+            "question_kind": "choice",
+            "lesson_index": 0,
+            "answer_selected": true,
+            "check_enabled": false,
+            "options_locked": true,
+            "feedback": "correct",
+            "continue_enabled": true,
+            "hearts": 5,
+            "selected_word_count": 0,
+            "matching_complete": false,
+            "reviewing": false,
+            "initial_question_revisited": true,
+            "question_changed": false,
+            "completed_lessons": null,
+            "current_lesson_index": null,
+            "ui_snapshot": "- button:\n  - img\n- progressbar:\n  - img\n- img\n- text: \"5\"\n- img\n- text: New word\n- heading \"Which one of these is “cat”?\" [level=1]\n- radiogroup \"choice\":\n  - radio \"gato 1\" [checked] [disabled]:\n    - text: gato 1\n    - img\n    - img\n  - radio \"mamá 2\" [disabled]:\n    - text: mamá 2\n    - img\n    - img\n  - radio \"papá 3\" [disabled]:\n    - text: papá 3\n    - img\n    - img\n- heading \"Nice job!\" [level=2]\n- button \"Too easy\"\n- button \"Too difficult\"\n- button \"Report\"\n- button \"Continue\"\n- img\n- text: Wait, don’t go! You’ll lose your progress if you quit now\n- button \"Keep learning\"\n- button \"End session\""
+          }
+        },
+        {
+          "step": 3,
+          "state": {
+            "screen": "question",
+            "authenticated": false,
+            "question_kind": "choice",
+            "lesson_index": 0,
+            "answer_selected": true,
+            "check_enabled": false,
+            "options_locked": true,
+            "feedback": "correct",
+            "continue_enabled": true,
+            "hearts": 5,
+            "selected_word_count": 0,
+            "matching_complete": false,
+            "reviewing": false,
+            "initial_question_revisited": true,
+            "question_changed": false,
+            "completed_lessons": null,
+            "current_lesson_index": null,
+            "ui_snapshot": "- button:\n  - img\n- progressbar:\n  - img\n- img\n- text: \"5\"\n- img\n- text: New word\n- heading \"Which one of these is “cat”?\" [level=1]\n- radiogroup \"choice\":\n  - radio \"gato 1\" [checked] [disabled]:\n    - text: gato 1\n    - img\n    - img\n  - radio \"mamá 2\" [disabled]:\n    - text: mamá 2\n    - img\n    - img\n  - radio \"papá 3\" [disabled]:\n    - text: papá 3\n    - img\n    - img\n- heading \"Nice job!\" [level=2]\n- button \"Too easy\"\n- button \"Too difficult\"\n- button \"Report\"\n- button \"Continue\""
+          }
+        }
+      ]
+    },
+    {
+      "id": "choice-reselection",
+      "discovery": "observed",
+      "status": "pass",
+      "receipt": {
+        "command": [
+          "node",
+          "projects/duolingo-web/original-adapter-v2.mjs"
+        ],
+        "source_digest": "9f49c8840687023ff4fd3f9a9ce7826ded607932f5dbcba060a427a686ba7a5b",
+        "integrity": "verified",
+        "evaluator_digest": "3f08e202ccdb09ef6a75bef5960f0a3817b8cb11574bd24598b3cc859b40b9e3",
+        "exit_code": 0,
+        "status": "pass",
+        "output": "APP_REBUILD_RESULT {\"operation\":\"scenario\",\"scenario_id\":\"choice-reselection\",\"precondition_state\":{\"screen\":\"question\",\"authenticated\":false,\"question_kind\":\"choice\",\"lesson_index\":0,\"answer_selected\":false,\"check_enabled\":false,\"options_locked\":false,\"feedback\":\"none\",\"continue_enabled\":false,\"hearts\":5,\"selected_word_count\":0,\"matching_complete\":false,\"reviewing\":false,\"initial_question_revisited\":true,\"question_changed\":false,\"completed_lessons\":null,\"current_lesson_index\":null,\"ui_snapshot\":\"- button:\\n  - img\\n- progressbar\\n- img\\n- text: \\\"5\\\"\\n- img\\n- text: New word\\n- heading \\\"Which one of these is “cat”?\\\" [level=1]\\n- radiogroup \\\"choice\\\":\\n  - radio \\\"gato 1\\\"\\n  - radio \\\"papá 2\\\"\\n  - radio \\\"agua 3\\\"\\n- button \\\"Skip\\\"\\n- button \\\"Check\\\" [disabled]\\n- img\\n- text: Loading... In Sweden, the most popular language on Duolingo is Swedish (mostly by refugees).\"},\"observations\":[{\"step\":0,\"state\":{\"screen\":\"question\",\"authenticated\":false,\"question_kind\":\"choice\",\"lesson_index\":0,\"answer_selected\":true,\"check_enabled\":true,\"options_locked\":false,\"feedback\":\"none\",\"continue_enabled\":false,\"hearts\":5,\"selected_word_count\":0,\"matching_complete\":false,\"reviewing\":false,\"initial_question_revisited\":true,\"question_changed\":false,\"completed_lessons\":null,\"current_lesson_index\":null,\"ui_snapshot\":\"- button:\\n  - img\\n- progressbar:\\n  - img\\n- img\\n- text: \\\"5\\\"\\n- img\\n- text: New word\\n- heading \\\"Which one of these is “cat”?\\\" [level=1]\\n- radiogroup \\\"choice\\\":\\n  - radio \\\"gato 1\\\"\\n  - radio \\\"papá 2\\\" [checked]\\n  - radio \\\"agua 3\\\"\\n- button \\\"Skip\\\"\\n- button \\\"Check\\\"\\n- img\\n- text: Loading... In Sweden, the most popular language on Duolingo is Swedish (mostly by refugees).\"}},{\"step\":1,\"state\":{\"screen\":\"question\",\"authenticated\":false,\"question_kind\":\"choice\",\"lesson_index\":0,\"answer_selected\":true,\"check_enabled\":true,\"options_locked\":false,\"feedback\":\"none\",\"continue_enabled\":false,\"hearts\":5,\"selected_word_count\":0,\"matching_complete\":false,\"reviewing\":false,\"initial_question_revisited\":true,\"question_changed\":false,\"completed_lessons\":null,\"current_lesson_index\":null,\"ui_snapshot\":\"- button:\\n  - img\\n- progressbar:\\n  - img\\n- img\\n- text: \\\"5\\\"\\n- img\\n- text: New word\\n- heading \\\"Which one of these is “cat”?\\\" [level=1]\\n- radiogroup \\\"choice\\\":\\n  - radio \\\"gato 1\\\" [checked]:\\n    - text: gato 1\\n    - img\\n    - img\\n  - radio \\\"papá 2\\\":\\n    - text: papá 2\\n    - img\\n    - img\\n  - radio \\\"agua 3\\\":\\n    - text: agua 3\\n    - img\\n    - img\\n- button \\\"Skip\\\"\\n- button \\\"Check\\\"\\n- img\\n- text: Loading... In Sweden, the most popular language on Duolingo is Swedish (mostly by refugees).\"}},{\"step\":2,\"state\":{\"screen\":\"question\",\"authenticated\":false,\"question_kind\":\"choice\",\"lesson_index\":0,\"answer_selected\":true,\"check_enabled\":false,\"options_locked\":true,\"feedback\":\"correct\",\"continue_enabled\":true,\"hearts\":5,\"selected_word_count\":0,\"matching_complete\":false,\"reviewing\":false,\"initial_question_revisited\":true,\"question_changed\":false,\"completed_lessons\":null,\"current_lesson_index\":null,\"ui_snapshot\":\"- button:\\n  - img\\n- progressbar:\\n  - img\\n- img\\n- text: \\\"5\\\"\\n- img\\n- text: New word\\n- heading \\\"Which one of these is “cat”?\\\" [level=1]\\n- radiogroup \\\"choice\\\":\\n  - radio \\\"gato 1\\\" [checked] [disabled]:\\n    - text: gato 1\\n    - img\\n    - img\\n  - radio \\\"papá 2\\\" [disabled]:\\n    - text: papá 2\\n    - img\\n    - img\\n  - radio \\\"agua 3\\\" [disabled]:\\n    - text: agua 3\\n    - img\\n    - img\\n- heading \\\"Excellent!\\\" [level=2]\\n- button \\\"Too easy\\\"\\n- button \\\"Too difficult\\\"\\n- button \\\"Report\\\"\\n- button \\\"Continue\\\"\"}}],\"onboarding\":[{\"stage\":0,\"selected_group\":null,\"visible_text\":\"Hi there! I’m Duo!\\nHi there! I’m Duo!\\nCONTINUE\"},{\"stage\":1,\"selected_group\":null,\"visible_text\":\"Let’s get this party started!\\nLet’s get this party started!\\nCONTINUE\"},{\"stage\":2,\"selected_group\":\"hdyhau\",\"visible_text\":\"How did you hear about Duolingo?\\nHow did you hear about Duolingo?\\nFacebook/Instagram\\nBrawl Stars\\nYouTube\\nTV\\nNews/article/blog\\nShopee\\nGoogle Search\\nTikTok\\nFriends/family\\nOther\\nCONTINUE\"},{\"stage\":3,\"selected_group\":\"motivation\",\"visible_text\":\"Any reason is a good reason to learn!\\nAny reason is a good reason to learn!\\nConnect with people\\nJust for fun\\nSpend time productively\\nBoost my career\\nPrepare for travel\\nSupport my education\\nOther\\nCONTINUE\"},{\"stage\":4,\"selected_group\":\"proficiency\",\"visible_text\":\"Okay, we’ll start fresh!\\nOkay, we’ll start fresh!\\nI’m new to Spanish\\nI know some common words\\nI can have basic conversations\\nI can talk about various topics\\nI can discuss most topics in detail\\nCONTINUE\"},{\"stage\":5,\"selected_group\":null,\"visible_text\":\"Here’s what you can achieve!\\nHere’s what you can achieve!\\nConverse with confidence\\nStress-free speaking and listening exercises\\nBuild a large vocabulary\\nCommon words and practical phrases\\nDevelop a learning habit\\nSmart reminders, fun challenges, and more\\nCONTINUE\"},{\"stage\":6,\"selected_group\":\"daily-goal\",\"visible_text\":\"That’s 25 words in your first week!\\nThat’s 25 words in your first week!\\n5 min / day\\nCasual\\n10 min / day\\nRegular\\n15 min / day\\nSerious\\n20 min / day\\nIntense\\nCONTINUE\"},{\"stage\":7,\"selected_group\":null,\"visible_text\":\"I’ll remind you to practice so it becomes a habit!\\nI’ll remind you to practice so it becomes a habit!\\nwww.duolingo.com wants to\\nShow notifications\\nBLOCK\\nALLOW\\nCONTINUE\"},{\"stage\":8,\"selected_group\":\"choose-path\",\"visible_text\":\"Now let’s find the best place to start!\\nNow let’s find the best place to start!\\nStart from scratch\\nTake the easiest lesson of the Spanish course\\nFind my level\\nLet Duo recommend where you should start learning\\nCONTINUE\"},{\"stage\":9,\"selected_group\":null,\"visible_text\":\"It can be hard to stay motivated…\\nIt can be hard to stay motivated…\\nCONTINUE\"},{\"stage\":10,\"selected_group\":null,\"visible_text\":\"…so Duolingo is designed to be fun like a game!\\n…so Duolingo is designed to be fun like a game!\\nCONTINUE\"},{\"stage\":11,\"selected_group\":null,\"visible_text\":\"5\\nNEW WORD\\nWhich one of these is “cat”?\\ngato\\n1\\npapá\\n2\\nagua\\n3\\nSKIP\\nCHECK\\nLOADING...\\nIn Sweden, the most popular language on Duolingo is Swedish (mostly by refugees).\"}],\"preparation\":[]}\n",
+        "output_bytes": 6328,
+        "output_truncated": false,
+        "output_sha256": "30bf91109866fdc738067a9870bef4d1d00a70b04baddac4ebca871652d67d30",
+        "wall_seconds": 36.307907
+      },
+      "differences": [],
+      "observations": [
+        {
+          "step": 0,
+          "state": {
+            "screen": "question",
+            "authenticated": false,
+            "question_kind": "choice",
+            "lesson_index": 0,
+            "answer_selected": true,
+            "check_enabled": true,
+            "options_locked": false,
+            "feedback": "none",
+            "continue_enabled": false,
+            "hearts": 5,
+            "selected_word_count": 0,
+            "matching_complete": false,
+            "reviewing": false,
+            "initial_question_revisited": true,
+            "question_changed": false,
+            "completed_lessons": null,
+            "current_lesson_index": null,
+            "ui_snapshot": "- button:\n  - img\n- progressbar:\n  - img\n- img\n- text: \"5\"\n- img\n- text: New word\n- heading \"Which one of these is “cat”?\" [level=1]\n- radiogroup \"choice\":\n  - radio \"gato 1\"\n  - radio \"papá 2\" [checked]\n  - radio \"agua 3\"\n- button \"Skip\"\n- button \"Check\"\n- img\n- text: Loading... In Sweden, the most popular language on Duolingo is Swedish (mostly by refugees)."
+          }
+        },
+        {
+          "step": 1,
+          "state": {
+            "screen": "question",
+            "authenticated": false,
+            "question_kind": "choice",
+            "lesson_index": 0,
+            "answer_selected": true,
+            "check_enabled": true,
+            "options_locked": false,
+            "feedback": "none",
+            "continue_enabled": false,
+            "hearts": 5,
+            "selected_word_count": 0,
+            "matching_complete": false,
+            "reviewing": false,
+            "initial_question_revisited": true,
+            "question_changed": false,
+            "completed_lessons": null,
+            "current_lesson_index": null,
+            "ui_snapshot": "- button:\n  - img\n- progressbar:\n  - img\n- img\n- text: \"5\"\n- img\n- text: New word\n- heading \"Which one of these is “cat”?\" [level=1]\n- radiogroup \"choice\":\n  - radio \"gato 1\" [checked]:\n    - text: gato 1\n    - img\n    - img\n  - radio \"papá 2\":\n    - text: papá 2\n    - img\n    - img\n  - radio \"agua 3\":\n    - text: agua 3\n    - img\n    - img\n- button \"Skip\"\n- button \"Check\"\n- img\n- text: Loading... In Sweden, the most popular language on Duolingo is Swedish (mostly by refugees)."
+          }
+        },
+        {
+          "step": 2,
+          "state": {
+            "screen": "question",
+            "authenticated": false,
+            "question_kind": "choice",
+            "lesson_index": 0,
+            "answer_selected": true,
+            "check_enabled": false,
+            "options_locked": true,
+            "feedback": "correct",
+            "continue_enabled": true,
+            "hearts": 5,
+            "selected_word_count": 0,
+            "matching_complete": false,
+            "reviewing": false,
+            "initial_question_revisited": true,
+            "question_changed": false,
+            "completed_lessons": null,
+            "current_lesson_index": null,
+            "ui_snapshot": "- button:\n  - img\n- progressbar:\n  - img\n- img\n- text: \"5\"\n- img\n- text: New word\n- heading \"Which one of these is “cat”?\" [level=1]\n- radiogroup \"choice\":\n  - radio \"gato 1\" [checked] [disabled]:\n    - text: gato 1\n    - img\n    - img\n  - radio \"papá 2\" [disabled]:\n    - text: papá 2\n    - img\n    - img\n  - radio \"agua 3\" [disabled]:\n    - text: agua 3\n    - img\n    - img\n- heading \"Excellent!\" [level=2]\n- button \"Too easy\"\n- button \"Too difficult\"\n- button \"Report\"\n- button \"Continue\""
+          }
+        }
+      ]
+    },
+    {
+      "id": "matching-complete",
+      "discovery": "observed",
+      "status": "pass",
+      "receipt": {
+        "command": [
+          "node",
+          "projects/duolingo-web/original-adapter-v2.mjs"
+        ],
+        "source_digest": "9f49c8840687023ff4fd3f9a9ce7826ded607932f5dbcba060a427a686ba7a5b",
+        "integrity": "verified",
+        "evaluator_digest": "3f08e202ccdb09ef6a75bef5960f0a3817b8cb11574bd24598b3cc859b40b9e3",
+        "exit_code": 0,
+        "status": "pass",
+        "output": "APP_REBUILD_RESULT {\"operation\":\"scenario\",\"scenario_id\":\"matching-complete\",\"precondition_state\":{\"screen\":\"question\",\"authenticated\":false,\"question_kind\":\"matching\",\"lesson_index\":0,\"answer_selected\":false,\"check_enabled\":false,\"options_locked\":false,\"feedback\":\"none\",\"continue_enabled\":false,\"hearts\":5,\"selected_word_count\":0,\"matching_complete\":false,\"reviewing\":false,\"initial_question_revisited\":true,\"question_changed\":false,\"completed_lessons\":null,\"current_lesson_index\":null,\"ui_snapshot\":\"- button:\\n  - img\\n- progressbar\\n- img\\n- text: \\\"5\\\"\\n- heading \\\"Select the matching pairs\\\" [level=1]\\n- button \\\"1 dog\\\":\\n  - text: 1 dog\\n  - img\\n  - img\\n- button \\\"2 water\\\":\\n  - text: 2 water\\n  - img\\n  - img\\n- button \\\"3 milk\\\":\\n  - text: 3 milk\\n  - img\\n  - img\\n- button \\\"4 mom\\\":\\n  - text: 4 mom\\n  - img\\n  - img\\n- button \\\"5 cat\\\":\\n  - text: 5 cat\\n  - img\\n  - img\\n- button \\\"6 agua\\\":\\n  - text: 6 agua\\n  - img\\n  - img\\n- button \\\"7 perro\\\":\\n  - text: 7 perro\\n  - img\\n  - img\\n- button \\\"8 mamá\\\":\\n  - text: 8 mamá\\n  - img\\n  - img\\n- button \\\"9 gato\\\":\\n  - text: 9 gato\\n  - img\\n  - img\\n- button \\\"0 leche\\\":\\n  - text: 0 leche\\n  - img\\n  - img\\n- button \\\"Skip\\\"\\n- button \\\"Check\\\" [disabled]\"},\"observations\":[{\"step\":0,\"state\":{\"screen\":\"question\",\"authenticated\":false,\"question_kind\":\"matching\",\"lesson_index\":0,\"answer_selected\":false,\"check_enabled\":false,\"options_locked\":true,\"feedback\":\"correct\",\"continue_enabled\":true,\"hearts\":5,\"selected_word_count\":0,\"matching_complete\":true,\"reviewing\":false,\"initial_question_revisited\":true,\"question_changed\":false,\"completed_lessons\":null,\"current_lesson_index\":null,\"ui_snapshot\":\"- button:\\n  - img\\n- progressbar:\\n  - text: 5 in a row\\n  - img\\n- img\\n- text: \\\"5\\\"\\n- heading \\\"Select the matching pairs\\\" [level=1]\\n- button \\\"1 dog\\\" [disabled]:\\n  - text: 1 dog\\n  - img\\n  - img\\n- button \\\"2 water\\\" [disabled]:\\n  - text: 2 water\\n  - img\\n  - img\\n- button \\\"3 milk\\\" [disabled]:\\n  - text: 3 milk\\n  - img\\n  - img\\n- button \\\"4 mom\\\" [disabled]:\\n  - text: 4 mom\\n  - img\\n  - img\\n- button \\\"5 cat\\\" [disabled]:\\n  - text: 5 cat\\n  - img\\n  - img\\n- button \\\"6 agua\\\" [disabled]:\\n  - text: 6 agua\\n  - img\\n  - img\\n- button \\\"7 perro\\\" [disabled]:\\n  - text: 7 perro\\n  - img\\n  - img\\n- button \\\"8 mamá\\\" [disabled]:\\n  - text: 8 mamá\\n  - img\\n  - img\\n- button \\\"9 gato\\\" [disabled]:\\n  - text: 9 gato\\n  - img\\n  - img\\n- button \\\"0 leche\\\" [disabled]:\\n  - text: 0 leche\\n  - img\\n  - img\\n- heading \\\"Correct!\\\" [level=2]\\n- button \\\"Too easy\\\"\\n- button \\\"Too difficult\\\"\\n- button \\\"Report\\\"\\n- button \\\"Continue\\\"\"}}],\"onboarding\":[{\"stage\":0,\"selected_group\":null,\"visible_text\":\"Hi there! I’m Duo!\\nHi there! I’m Duo!\\nCONTINUE\"},{\"stage\":1,\"selected_group\":null,\"visible_text\":\"Let’s get this party started!\\nLet’s get this party started!\\nCONTINUE\"},{\"stage\":2,\"selected_group\":\"hdyhau\",\"visible_text\":\"How did you hear about Duolingo?\\nHow did you hear about Duolingo?\\nFacebook/Instagram\\nShopee\\nBrawl Stars\\nYouTube\\nTikTok\\nGoogle Search\\nTV\\nNews/article/blog\\nFriends/family\\nOther\\nCONTINUE\"},{\"stage\":3,\"selected_group\":\"motivation\",\"visible_text\":\"Any reason is a good reason to learn!\\nAny reason is a good reason to learn!\\nJust for fun\\nSupport my education\\nBoost my career\\nConnect with people\\nSpend time productively\\nPrepare for travel\\nOther\\nCONTINUE\"},{\"stage\":4,\"selected_group\":\"proficiency\",\"visible_text\":\"Okay, we’ll start fresh!\\nOkay, we’ll start fresh!\\nI’m new to Spanish\\nI know some common words\\nI can have basic conversations\\nI can talk about various topics\\nI can discuss most topics in detail\\nCONTINUE\"},{\"stage\":5,\"selected_group\":null,\"visible_text\":\"Here’s what you can achieve!\\nHere’s what you can achieve!\\nConverse with confidence\\nStress-free speaking and listening exercises\\nBuild a large vocabulary\\nCommon words and practical phrases\\nDevelop a learning habit\\nSmart reminders, fun challenges, and more\\nCONTINUE\"},{\"stage\":6,\"selected_group\":\"daily-goal\",\"visible_text\":\"That’s 25 words in your first week!\\nThat’s 25 words in your first week!\\n5 min / day\\nCasual\\n10 min / day\\nRegular\\n15 min / day\\nSerious\\n20 min / day\\nIntense\\nCONTINUE\"},{\"stage\":7,\"selected_group\":null,\"visible_text\":\"I’ll remind you to practice so it becomes a habit!\\nI’ll remind you to practice so it becomes a habit!\\nwww.duolingo.com wants to\\nShow notifications\\nBLOCK\\nALLOW\\nCONTINUE\"},{\"stage\":8,\"selected_group\":\"choose-path\",\"visible_text\":\"Now let’s find the best place to start!\\nNow let’s find the best place to start!\\nStart from scratch\\nTake the easiest lesson of the Spanish course\\nFind my level\\nLet Duo recommend where you should start learning\\nCONTINUE\"},{\"stage\":9,\"selected_group\":null,\"visible_text\":\"It can be hard to stay motivated…\\nIt can be hard to stay motivated…\\nCONTINUE\"},{\"stage\":10,\"selected_group\":null,\"visible_text\":\"…so Duolingo is designed to be fun like a game!\\n…so Duolingo is designed to be fun like a game!\\nCONTINUE\"},{\"stage\":11,\"selected_group\":null,\"visible_text\":\"5\\nNEW WORD\\nWhich one of these is “cat”?\\npapá\\n1\\ngato\\n2\\nagua\\n3\\nSKIP\\nCHECK\\nLOADING...\\nMore Americans are learning a language on Duolingo than in the U.S. public school system.\"}],\"preparation\":[{\"kind\":\"choice\",\"prompt\":\"Which one of these is “cat”?\",\"feedback\":\"positive\"},{\"kind\":\"choice\",\"prompt\":\"Which one of these is “dog”?\",\"feedback\":\"positive\"},{\"kind\":\"choice\",\"prompt\":\"Which one of these is “water”?\",\"feedback\":\"positive\"},{\"kind\":\"choice\",\"prompt\":\"Which one of these is “milk”?\",\"feedback\":\"positive\"}]}\n",
+        "output_bytes": 5665,
+        "output_truncated": false,
+        "output_sha256": "22db85a2c6d59ba8837390d9177065c839564da5fc03a45c3dda91a9cee52a6b",
+        "wall_seconds": 40.492843
+      },
+      "differences": [],
+      "observations": [
+        {
+          "step": 0,
+          "state": {
+            "screen": "question",
+            "authenticated": false,
+            "question_kind": "matching",
+            "lesson_index": 0,
+            "answer_selected": false,
+            "check_enabled": false,
+            "options_locked": true,
+            "feedback": "correct",
+            "continue_enabled": true,
+            "hearts": 5,
+            "selected_word_count": 0,
+            "matching_complete": true,
+            "reviewing": false,
+            "initial_question_revisited": true,
+            "question_changed": false,
+            "completed_lessons": null,
+            "current_lesson_index": null,
+            "ui_snapshot": "- button:\n  - img\n- progressbar:\n  - text: 5 in a row\n  - img\n- img\n- text: \"5\"\n- heading \"Select the matching pairs\" [level=1]\n- button \"1 dog\" [disabled]:\n  - text: 1 dog\n  - img\n  - img\n- button \"2 water\" [disabled]:\n  - text: 2 water\n  - img\n  - img\n- button \"3 milk\" [disabled]:\n  - text: 3 milk\n  - img\n  - img\n- button \"4 mom\" [disabled]:\n  - text: 4 mom\n  - img\n  - img\n- button \"5 cat\" [disabled]:\n  - text: 5 cat\n  - img\n  - img\n- button \"6 agua\" [disabled]:\n  - text: 6 agua\n  - img\n  - img\n- button \"7 perro\" [disabled]:\n  - text: 7 perro\n  - img\n  - img\n- button \"8 mamá\" [disabled]:\n  - text: 8 mamá\n  - img\n  - img\n- button \"9 gato\" [disabled]:\n  - text: 9 gato\n  - img\n  - img\n- button \"0 leche\" [disabled]:\n  - text: 0 leche\n  - img\n  - img\n- heading \"Correct!\" [level=2]\n- button \"Too easy\"\n- button \"Too difficult\"\n- button \"Report\"\n- button \"Continue\""
+          }
+        }
+      ]
+    },
+    {
+      "id": "word-tiles",
+      "discovery": "observed",
+      "status": "pass",
+      "receipt": {
+        "command": [
+          "node",
+          "projects/duolingo-web/original-adapter-v2.mjs"
+        ],
+        "source_digest": "9f49c8840687023ff4fd3f9a9ce7826ded607932f5dbcba060a427a686ba7a5b",
+        "integrity": "verified",
+        "evaluator_digest": "3f08e202ccdb09ef6a75bef5960f0a3817b8cb11574bd24598b3cc859b40b9e3",
+        "exit_code": 0,
+        "status": "pass",
+        "output": "APP_REBUILD_RESULT {\"operation\":\"scenario\",\"scenario_id\":\"word-tiles\",\"precondition_state\":{\"screen\":\"question\",\"authenticated\":false,\"question_kind\":\"word_tiles\",\"lesson_index\":1,\"answer_selected\":false,\"check_enabled\":false,\"options_locked\":false,\"feedback\":\"none\",\"continue_enabled\":false,\"hearts\":5,\"selected_word_count\":0,\"matching_complete\":false,\"reviewing\":false,\"initial_question_revisited\":true,\"question_changed\":false,\"completed_lessons\":null,\"current_lesson_index\":null,\"ui_snapshot\":\"- button:\\n  - img\\n- progressbar\\n- img\\n- text: \\\"5\\\"\\n- img\\n- text: New word\\n- heading \\\"Write this in English\\\" [level=1]\\n- button\\n- img\\n- button \\\"suitcase\\\"\\n- button \\\"house\\\"\\n- button \\\"my\\\"\\n- button \\\"cat\\\"\\n- img\\n- text: Super impressive!\\n- button \\\"Check\\\" [disabled]\"},\"observations\":[{\"step\":0,\"state\":{\"screen\":\"question\",\"authenticated\":false,\"question_kind\":\"word_tiles\",\"lesson_index\":1,\"answer_selected\":true,\"check_enabled\":true,\"options_locked\":false,\"feedback\":\"none\",\"continue_enabled\":false,\"hearts\":5,\"selected_word_count\":2,\"matching_complete\":false,\"reviewing\":false,\"initial_question_revisited\":true,\"question_changed\":false,\"completed_lessons\":null,\"current_lesson_index\":null,\"ui_snapshot\":\"- button:\\n  - img\\n- progressbar\\n- img\\n- text: \\\"5\\\"\\n- img\\n- text: New word\\n- heading \\\"Write this in English\\\" [level=1]\\n- button:\\n  - img\\n- img\\n- button \\\"suitcase\\\" [disabled]\\n- button \\\"house\\\"\\n- button \\\"my\\\" [disabled]\\n- button \\\"cat\\\"\\n- button \\\"Skip\\\"\\n- button \\\"Check\\\"\\n- button \\\"my\\\"\\n- button \\\"suitcase\\\"\"}},{\"step\":1,\"state\":{\"screen\":\"question\",\"authenticated\":false,\"question_kind\":\"word_tiles\",\"lesson_index\":1,\"answer_selected\":true,\"check_enabled\":false,\"options_locked\":true,\"feedback\":\"correct\",\"continue_enabled\":true,\"hearts\":5,\"selected_word_count\":4,\"matching_complete\":false,\"reviewing\":false,\"initial_question_revisited\":true,\"question_changed\":false,\"completed_lessons\":null,\"current_lesson_index\":null,\"ui_snapshot\":\"- button:\\n  - img\\n- progressbar:\\n  - text: 6 in a row\\n  - img\\n- img\\n- text: \\\"5\\\"\\n- img\\n- text: New word\\n- heading \\\"Write this in English\\\" [level=1]\\n- button:\\n  - img\\n- img\\n- button \\\"suitcase\\\" [disabled]\\n- button \\\"house\\\" [disabled]\\n- button \\\"my\\\" [disabled]\\n- button \\\"cat\\\" [disabled]\\n- heading \\\"Amazing!\\\" [level=2]\\n- button \\\"Too easy\\\"\\n- button \\\"Too difficult\\\"\\n- button \\\"Report\\\"\\n- button \\\"Continue\\\"\\n- button \\\"my\\\" [disabled]\\n- button \\\"suitcase\\\" [disabled]\"}}],\"onboarding\":[{\"stage\":0,\"selected_group\":null,\"visible_text\":\"Hi there! I’m Duo!\\nHi there! I’m Duo!\\nCONTINUE\"},{\"stage\":1,\"selected_group\":null,\"visible_text\":\"Let’s get this party started!\\nLet’s get this party started!\\nCONTINUE\"},{\"stage\":2,\"selected_group\":\"hdyhau\",\"visible_text\":\"How did you hear about Duolingo?\\nHow did you hear about Duolingo?\\nShopee\\nNews/article/blog\\nTikTok\\nBrawl Stars\\nYouTube\\nTV\\nGoogle Search\\nFriends/family\\nFacebook/Instagram\\nOther\\nCONTINUE\"},{\"stage\":3,\"selected_group\":\"motivation\",\"visible_text\":\"Any reason is a good reason to learn!\\nAny reason is a good reason to learn!\\nPrepare for travel\\nJust for fun\\nSupport my education\\nConnect with people\\nBoost my career\\nSpend time productively\\nOther\\nCONTINUE\"},{\"stage\":4,\"selected_group\":\"proficiency\",\"visible_text\":\"Okay, we’ll start fresh!\\nOkay, we’ll start fresh!\\nI’m new to Spanish\\nI know some common words\\nI can have basic conversations\\nI can talk about various topics\\nI can discuss most topics in detail\\nCONTINUE\"},{\"stage\":5,\"selected_group\":null,\"visible_text\":\"Here’s what you can achieve!\\nHere’s what you can achieve!\\nConverse with confidence\\nStress-free speaking and listening exercises\\nBuild a large vocabulary\\nCommon words and practical phrases\\nDevelop a learning habit\\nSmart reminders, fun challenges, and more\\nCONTINUE\"},{\"stage\":6,\"selected_group\":\"daily-goal\",\"visible_text\":\"That’s 25 words in your first week!\\nThat’s 25 words in your first week!\\n5 min / day\\nCasual\\n10 min / day\\nRegular\\n15 min / day\\nSerious\\n20 min / day\\nIntense\\nCONTINUE\"},{\"stage\":7,\"selected_group\":null,\"visible_text\":\"I’ll remind you to practice so it becomes a habit!\\nI’ll remind you to practice so it becomes a habit!\\nwww.duolingo.com wants to\\nShow notifications\\nBLOCK\\nALLOW\\nCONTINUE\"},{\"stage\":8,\"selected_group\":\"choose-path\",\"visible_text\":\"Now let’s find the best place to start!\\nNow let’s find the best place to start!\\nStart from scratch\\nTake the easiest lesson of the Spanish course\\nFind my level\\nLet Duo recommend where you should start learning\\nCONTINUE\"},{\"stage\":9,\"selected_group\":null,\"visible_text\":\"It can be hard to stay motivated…\\nIt can be hard to stay motivated…\\nCONTINUE\"},{\"stage\":10,\"selected_group\":null,\"visible_text\":\"…so Duolingo is designed to be fun like a game!\\n…so Duolingo is designed to be fun like a game!\\nCONTINUE\"},{\"stage\":11,\"selected_group\":null,\"visible_text\":\"5\\nNEW WORD\\nWhich one of these is “cat”?\\nagua\\n1\\nmamá\\n2\\ngato\\n3\\nSKIP\\nCHECK\\nLOADING...\\nOur mission is to develop the best education in the world and make it universally available.\"}],\"preparation\":[{\"kind\":\"choice\",\"prompt\":\"Which one of these is “cat”?\",\"feedback\":\"positive\"},{\"kind\":\"choice\",\"prompt\":\"Which one of these is “dog”?\",\"feedback\":\"positive\"},{\"kind\":\"choice\",\"prompt\":\"Which one of these is “water”?\",\"feedback\":\"positive\"},{\"kind\":\"choice\",\"prompt\":\"Which one of these is “milk”?\",\"feedback\":\"positive\"},{\"kind\":\"matching\",\"prompt\":\"Select the matching pairs\",\"feedback\":\"positive\"},{\"kind\":\"choice\",\"prompt\":\"Select the correct meaning\",\"feedback\":\"positive\"},{\"kind\":\"choice\",\"prompt\":\"Select the correct meaning\",\"feedback\":\"positive\"},{\"kind\":\"choice\",\"prompt\":\"Which one of these is “mom”?\",\"feedback\":\"positive\"},{\"kind\":\"choice\",\"prompt\":\"Which one of these is “dad”?\",\"feedback\":\"positive\"},{\"kind\":\"choice\",\"prompt\":\"Select the correct meaning\",\"feedback\":\"positive\"},{\"kind\":\"choice\",\"prompt\":\"Select the correct meaning\",\"feedback\":\"positive\"},{\"kind\":\"matching\",\"prompt\":\"Select the matching pairs\",\"feedback\":\"positive\"},{\"stage\":\"post-lesson-goal\",\"visible_text\":\"- img\\n- radiogroup \\\"goal\\\":\\n  - radio \\\"7 day streak Good\\\" [checked]\\n  - radio \\\"14 day streak Great\\\"\\n  - radio \\\"30 day streak Incredible\\\"\\n  - radio \\\"50 day streak Unstoppable\\\"\\n- button \\\"I can do it!\\\" [disabled]\",\"selection\":\"7 day streak Good\"},{\"kind\":\"choice\",\"prompt\":\"Which one of these is “book”?\",\"feedback\":\"positive\"},{\"kind\":\"choice\",\"prompt\":\"Which one of these is “house”?\",\"feedback\":\"positive\"},{\"kind\":\"choice\",\"prompt\":\"Which one of these is “suitcase”?\",\"feedback\":\"positive\"},{\"kind\":\"matching\",\"prompt\":\"Select the matching pairs\",\"feedback\":\"positive\"},{\"kind\":\"matching\",\"prompt\":\"Select the matching pairs\",\"feedback\":\"positive\"}]}\n",
+        "output_bytes": 6875,
+        "output_truncated": false,
+        "output_sha256": "324a6a16b7cced2774a3879d920a5e2bf842b1892aa7babcc602d16ea98eba14",
+        "wall_seconds": 63.527262
+      },
+      "differences": [],
+      "observations": [
+        {
+          "step": 0,
+          "state": {
+            "screen": "question",
+            "authenticated": false,
+            "question_kind": "word_tiles",
+            "lesson_index": 1,
+            "answer_selected": true,
+            "check_enabled": true,
+            "options_locked": false,
+            "feedback": "none",
+            "continue_enabled": false,
+            "hearts": 5,
+            "selected_word_count": 2,
+            "matching_complete": false,
+            "reviewing": false,
+            "initial_question_revisited": true,
+            "question_changed": false,
+            "completed_lessons": null,
+            "current_lesson_index": null,
+            "ui_snapshot": "- button:\n  - img\n- progressbar\n- img\n- text: \"5\"\n- img\n- text: New word\n- heading \"Write this in English\" [level=1]\n- button:\n  - img\n- img\n- button \"suitcase\" [disabled]\n- button \"house\"\n- button \"my\" [disabled]\n- button \"cat\"\n- button \"Skip\"\n- button \"Check\"\n- button \"my\"\n- button \"suitcase\""
+          }
+        },
+        {
+          "step": 1,
+          "state": {
+            "screen": "question",
+            "authenticated": false,
+            "question_kind": "word_tiles",
+            "lesson_index": 1,
+            "answer_selected": true,
+            "check_enabled": false,
+            "options_locked": true,
+            "feedback": "correct",
+            "continue_enabled": true,
+            "hearts": 5,
+            "selected_word_count": 4,
+            "matching_complete": false,
+            "reviewing": false,
+            "initial_question_revisited": true,
+            "question_changed": false,
+            "completed_lessons": null,
+            "current_lesson_index": null,
+            "ui_snapshot": "- button:\n  - img\n- progressbar:\n  - text: 6 in a row\n  - img\n- img\n- text: \"5\"\n- img\n- text: New word\n- heading \"Write this in English\" [level=1]\n- button:\n  - img\n- img\n- button \"suitcase\" [disabled]\n- button \"house\" [disabled]\n- button \"my\" [disabled]\n- button \"cat\" [disabled]\n- heading \"Amazing!\" [level=2]\n- button \"Too easy\"\n- button \"Too difficult\"\n- button \"Report\"\n- button \"Continue\"\n- button \"my\" [disabled]\n- button \"suitcase\" [disabled]"
+          }
+        }
+      ]
+    },
+    {
+      "id": "word-tiles-undo",
+      "discovery": "observed",
+      "status": "unavailable",
+      "receipt": {
+        "command": [
+          "node",
+          "projects/duolingo-web/original-adapter-v2.mjs"
+        ],
+        "source_digest": "9f49c8840687023ff4fd3f9a9ce7826ded607932f5dbcba060a427a686ba7a5b",
+        "integrity": "verified",
+        "evaluator_digest": "3f08e202ccdb09ef6a75bef5960f0a3817b8cb11574bd24598b3cc859b40b9e3",
+        "exit_code": 0,
+        "status": "unavailable",
+        "output": "APP_REBUILD_RESULT {\"operation\":\"scenario\",\"status\":\"unavailable\",\"reason\":\"locator.click: Timeout 15000ms exceeded.\\nCall log:\\n\\u001b[2m  - waiting for getByRole('button', { name: 'my', exact: true }).nth(1)\\u001b[22m\\n\\u001b[2m    - locator resolved to <button dir=\\\"ltr\\\" lang=\\\"en\\\" translate=\\\"no\\\" aria-disabled=\\\"false\\\" data-test=\\\"my-challenge-tap-token\\\" class=\\\"_3fmUm _2V6ug _1ursp _7jW2t notranslate _3ZtW_ _2O7Ua _3U5_i\\\">…</button>\\u001b[22m\\n\\u001b[2m  - attempting click action\\u001b[22m\\n\\u001b[2m    2 × waiting for element to be visible, enabled and stable\\u001b[22m\\n\\u001b[2m      - element is not stable\\u001b[22m\\n\\u001b[2m    - retrying click action\\u001b[22m\\n\\u001b[2m    - waiting 20ms\\u001b[22m\\n\\u001b[2m    - waiting for element to be visible, enabled and stable\\u001b[22m\\n\\u001b[2m    - element is not stable\\u001b[22m\\n\\u001b[2m  - retrying click action\\u001b[22m\\n\\u001b[2m    - waiting 100ms\\u001b[22m\\n\\u001b[2m    - waiting for element to be visible, enabled and stable\\u001b[22m\\n\\u001b[2m  - element was detached from the DOM, retrying\\u001b[22m\\n\\u001b[2m    - locator resolved to <button dir=\\\"ltr\\\" lang=\\\"en\\\" translate=\\\"no\\\" aria-disabled=\\\"true\\\" data-test=\\\"my-challenge-tap-token\\\" class=\\\"_2wryV _2V6ug _1ursp _7jW2t notranslate _3ZtW_ _2O7Ua _3U5_i _1HvEX _31wR2\\\">…</button>\\u001b[22m\\n\\u001b[2m  - attempting click action\\u001b[22m\\n\\u001b[2m    2 × waiting for element to be visible, enabled and stable\\u001b[22m\\n\\u001b[2m      - element is not enabled\\u001b[22m\\n\\u001b[2m    - retrying click action\\u001b[22m\\n\\u001b[2m    - waiting 20ms\\u001b[22m\\n\\u001b[2m    2 × waiting for element to be visible, enabled and stable\\u001b[22m\\n\\u001b[2m      - element is not enabled\\u001b[22m\\n\\u001b[2m    - retrying click action\\u001b[22m\\n\\u001b[2m      - waiting 100ms\\u001b[22m\\n\\u001b[2m    27 × waiting for element to be visible, enabled and stable\\u001b[22m\\n\\u001b[2m       - element is not enabled\\u001b[22m\\n\\u001b[2m     - retrying click action\\u001b[22m\\n\\u001b[2m       - waiting 500ms\\u001b[22m\\n\",\"onboarding\":[{\"stage\":0,\"selected_group\":null,\"visible_text\":\"Hi there! I’m Duo!\\nHi there! I’m Duo!\\nCONTINUE\"},{\"stage\":1,\"selected_group\":null,\"visible_text\":\"Let’s get this party started!\\nLet’s get this party started!\\nCONTINUE\"},{\"stage\":2,\"selected_group\":\"hdyhau\",\"visible_text\":\"How did you hear about Duolingo?\\nHow did you hear about Duolingo?\\nBrawl Stars\\nFriends/family\\nGoogle Search\\nTV\\nShopee\\nFacebook/Instagram\\nNews/article/blog\\nTikTok\\nYouTube\\nOther\\nCONTINUE\"},{\"stage\":3,\"selected_group\":\"motivation\",\"visible_text\":\"Any reason is a good reason to learn!\\nAny reason is a good reason to learn!\\nConnect with people\\nBoost my career\\nPrepare for travel\\nSupport my education\\nSpend time productively\\nJust for fun\\nOther\\nCONTINUE\"},{\"stage\":4,\"selected_group\":\"proficiency\",\"visible_text\":\"Okay, we’ll start fresh!\\nOkay, we’ll start fresh!\\nI’m new to Spanish\\nI know some common words\\nI can have basic conversations\\nI can talk about various topics\\nI can discuss most topics in detail\\nCONTINUE\"},{\"stage\":5,\"selected_group\":null,\"visible_text\":\"Here’s what you can achieve!\\nHere’s what you can achieve!\\nConverse with confidence\\nStress-free speaking and listening exercises\\nBuild a large vocabulary\\nCommon words and practical phrases\\nDevelop a learning habit\\nSmart reminders, fun challenges, and more\\nCONTINUE\"},{\"stage\":6,\"selected_group\":\"daily-goal\",\"visible_text\":\"That’s 25 words in your first week!\\nThat’s 25 words in your first week!\\n5 min / day\\nCasual\\n10 min / day\\nRegular\\n15 min / day\\nSerious\\n20 min / day\\nIntense\\nCONTINUE\"},{\"stage\":7,\"selected_group\":null,\"visible_text\":\"I’ll remind you to practice so it becomes a habit!\\nI’ll remind you to practice so it becomes a habit!\\nwww.duolingo.com wants to\\nShow notifications\\nBLOCK\\nALLOW\\nCONTINUE\"},{\"stage\":8,\"selected_group\":\"choose-path\",\"visible_text\":\"Now let’s find the best place to start!\\nNow let’s find the best place to start!\\nStart from scratch\\nTake the easiest lesson of the Spanish course\\nFind my level\\nLet Duo recommend where you should start learning\\nCONTINUE\"},{\"stage\":9,\"selected_group\":null,\"visible_text\":\"It can be hard to stay motivated…\\nIt can be hard to stay motivated…\\nCONTINUE\"},{\"stage\":10,\"selected_group\":null,\"visible_text\":\"…so Duolingo is designed to be fun like a game!\\n…so Duolingo is designed to be fun like a game!\\nCONTINUE\"},{\"stage\":11,\"selected_group\":null,\"visible_text\":\"5\\nNEW WORD\\nWhich one of these is “cat”?\\nagua\\n1\\npapá\\n2\\ngato\\n3\\nSKIP\\nCHECK\"}],\"preparation\":[{\"kind\":\"choice\",\"prompt\":\"Which one of these is “cat”?\",\"feedback\":\"positive\"},{\"kind\":\"choice\",\"prompt\":\"Which one of these is “dog”?\",\"feedback\":\"positive\"},{\"kind\":\"choice\",\"prompt\":\"Which one of these is “water”?\",\"feedback\":\"positive\"},{\"kind\":\"choice\",\"prompt\":\"Which one of these is “milk”?\",\"feedback\":\"positive\"},{\"kind\":\"matching\",\"prompt\":\"Select the matching pairs\",\"feedback\":\"positive\"},{\"kind\":\"choice\",\"prompt\":\"Select the correct meaning\",\"feedback\":\"positive\"},{\"kind\":\"choice\",\"prompt\":\"Select the correct meaning\",\"feedback\":\"positive\"},{\"kind\":\"choice\",\"prompt\":\"Which one of these is “mom”?\",\"feedback\":\"positive\"},{\"kind\":\"choice\",\"prompt\":\"Which one of these is “dad”?\",\"feedback\":\"positive\"},{\"kind\":\"choice\",\"prompt\":\"Select the correct meaning\",\"feedback\":\"positive\"},{\"kind\":\"choice\",\"prompt\":\"Select the correct meaning\",\"feedback\":\"positive\"},{\"kind\":\"matching\",\"prompt\":\"Select the matching pairs\",\"feedback\":\"positive\"},{\"stage\":\"post-lesson-goal\",\"visible_text\":\"- img\\n- radiogroup \\\"goal\\\":\\n  - radio \\\"7 day streak Good\\\" [checked]\\n  - radio \\\"14 day streak Great\\\"\\n  - radio \\\"30 day streak Incredible\\\"\\n  - radio \\\"50 day streak Unstoppable\\\"\\n- button \\\"I can do it!\\\" [disabled]\",\"selection\":\"7 day streak Good\"},{\"kind\":\"choice\",\"prompt\":\"Which one of these is “book”?\",\"feedback\":\"positive\"},{\"kind\":\"choice\",\"prompt\":\"Which one of these is “house”?\",\"feedback\":\"positive\"},{\"kind\":\"choice\",\"prompt\":\"Which one of these is “suitcase”?\",\"feedback\":\"positive\"},{\"kind\":\"matching\",\"prompt\":\"Select the matching pairs\",\"feedback\":\"positive\"},{\"kind\":\"matching\",\"prompt\":\"Select the matching pairs\",\"feedback\":\"positive\"}],\"url\":\"https://www.duolingo.com/lesson\",\"visible_text\":\"5\\nNEW WORD\\nWrite this in English\\nmi maleta\\nmy\\ncat\\nhouse\\nsuitcase\\nmy\\nSKIP\\nCHECK\",\"ui_snapshot\":\"- button:\\n  - img\\n- progressbar\\n- img\\n- text: \\\"5\\\"\\n- img\\n- text: New word\\n- heading \\\"Write this in English\\\" [level=1]\\n- button:\\n  - img\\n- img\\n- button \\\"my\\\"\\n- button \\\"cat\\\"\\n- button \\\"house\\\"\\n- button \\\"suitcase\\\"\\n- button \\\"my\\\" [disabled]\\n- button \\\"Skip\\\"\\n- button \\\"Check\\\"\"}\n",
+        "output_bytes": 6805,
+        "output_truncated": false,
+        "output_sha256": "83c56b322b4a83ea4d6718e6d0fbee8b328824bfb6b1398ad458a93bcba7d95c",
+        "wall_seconds": 80.295995,
+        "reason": "locator.click: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'my', exact: true }).nth(1)\u001b[22m\n\u001b[2m    - locator resolved to <button dir=\"ltr\" lang=\"en\" translate=\"no\" aria-disabled=\"false\" data-test=\"my-challenge-tap-token\" class=\"_3fmUm _2V6ug _1ursp _7jW2t notranslate _3ZtW_ _2O7Ua _3U5_i\">…</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not stable\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m    - element is not stable\u001b[22m\n\u001b[2m  - retrying click action\u001b[22m\n\u001b[2m    - waiting 100ms\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m  - element was detached from the DOM, retrying\u001b[22m\n\u001b[2m    - locator resolved to <button dir=\"ltr\" lang=\"en\" translate=\"no\" aria-disabled=\"true\" data-test=\"my-challenge-tap-token\" class=\"_2wryV _2V6ug _1ursp _7jW2t notranslate _3ZtW_ _2O7Ua _3U5_i _1HvEX _31wR2\">…</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not enabled\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not enabled\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    27 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is not enabled\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n"
+      }
+    },
+    {
+      "id": "word-tiles-wrong",
+      "discovery": "observed",
+      "status": "pass",
+      "receipt": {
+        "command": [
+          "node",
+          "projects/duolingo-web/original-adapter-v2.mjs"
+        ],
+        "source_digest": "9f49c8840687023ff4fd3f9a9ce7826ded607932f5dbcba060a427a686ba7a5b",
+        "integrity": "verified",
+        "evaluator_digest": "3f08e202ccdb09ef6a75bef5960f0a3817b8cb11574bd24598b3cc859b40b9e3",
+        "exit_code": 0,
+        "status": "pass",
+        "output": "APP_REBUILD_RESULT {\"operation\":\"scenario\",\"scenario_id\":\"word-tiles-wrong\",\"precondition_state\":{\"screen\":\"question\",\"authenticated\":false,\"question_kind\":\"word_tiles\",\"lesson_index\":1,\"answer_selected\":false,\"check_enabled\":false,\"options_locked\":false,\"feedback\":\"none\",\"continue_enabled\":false,\"hearts\":5,\"selected_word_count\":0,\"matching_complete\":false,\"reviewing\":false,\"initial_question_revisited\":true,\"question_changed\":false,\"completed_lessons\":null,\"current_lesson_index\":null,\"ui_snapshot\":\"- button:\\n  - img\\n- progressbar\\n- img\\n- text: \\\"5\\\"\\n- img\\n- text: New word\\n- heading \\\"Write this in English\\\" [level=1]\\n- button\\n- img\\n- button \\\"my\\\"\\n- button \\\"house\\\"\\n- button \\\"suitcase\\\"\\n- button \\\"cat\\\"\\n- img\\n- text: Amazing! 5 in a row!\\n- button \\\"Check\\\" [disabled]\"},\"observations\":[{\"step\":0,\"state\":{\"screen\":\"question\",\"authenticated\":false,\"question_kind\":\"word_tiles\",\"lesson_index\":1,\"answer_selected\":true,\"check_enabled\":true,\"options_locked\":false,\"feedback\":\"none\",\"continue_enabled\":false,\"hearts\":5,\"selected_word_count\":2,\"matching_complete\":false,\"reviewing\":false,\"initial_question_revisited\":true,\"question_changed\":false,\"completed_lessons\":null,\"current_lesson_index\":null,\"ui_snapshot\":\"- button:\\n  - img\\n- progressbar\\n- img\\n- text: \\\"5\\\"\\n- img\\n- text: New word\\n- heading \\\"Write this in English\\\" [level=1]\\n- button:\\n  - img\\n- img\\n- button \\\"my\\\" [disabled]\\n- button \\\"house\\\"\\n- button \\\"suitcase\\\" [disabled]\\n- button \\\"cat\\\"\\n- button \\\"Skip\\\"\\n- button \\\"Check\\\"\\n- button \\\"suitcase\\\"\\n- button \\\"my\\\"\"}},{\"step\":1,\"state\":{\"screen\":\"question\",\"authenticated\":false,\"question_kind\":\"word_tiles\",\"lesson_index\":1,\"answer_selected\":true,\"check_enabled\":false,\"options_locked\":true,\"feedback\":\"incorrect\",\"continue_enabled\":true,\"hearts\":4,\"selected_word_count\":4,\"matching_complete\":false,\"reviewing\":false,\"initial_question_revisited\":true,\"question_changed\":false,\"completed_lessons\":null,\"current_lesson_index\":null,\"ui_snapshot\":\"- button:\\n  - img\\n- progressbar\\n- img\\n- text: \\\"4\\\"\\n- img\\n- text: New word\\n- heading \\\"Write this in English\\\" [level=1]\\n- button:\\n  - img\\n- img\\n- button \\\"my\\\" [disabled]\\n- button \\\"house\\\" [disabled]\\n- button \\\"suitcase\\\" [disabled]\\n- button \\\"cat\\\" [disabled]\\n- heading \\\"Correct solution:\\\" [level=2]\\n- text: my suitcase\\n- button \\\"Too easy\\\"\\n- button \\\"Too difficult\\\"\\n- button \\\"Report\\\"\\n- button \\\"Continue\\\"\\n- button \\\"suitcase\\\" [disabled]\\n- button \\\"my\\\" [disabled]\"}}],\"onboarding\":[{\"stage\":0,\"selected_group\":null,\"visible_text\":\"Hi there! I’m Duo!\\nHi there! I’m Duo!\\nCONTINUE\"},{\"stage\":1,\"selected_group\":null,\"visible_text\":\"Let’s get this party started!\\nLet’s get this party started!\\nCONTINUE\"},{\"stage\":2,\"selected_group\":\"hdyhau\",\"visible_text\":\"How did you hear about Duolingo?\\nHow did you hear about Duolingo?\\nShopee\\nBrawl Stars\\nTV\\nTikTok\\nNews/article/blog\\nGoogle Search\\nFacebook/Instagram\\nFriends/family\\nYouTube\\nOther\\nCONTINUE\"},{\"stage\":3,\"selected_group\":\"motivation\",\"visible_text\":\"Any reason is a good reason to learn!\\nAny reason is a good reason to learn!\\nBoost my career\\nConnect with people\\nPrepare for travel\\nJust for fun\\nSpend time productively\\nSupport my education\\nOther\\nCONTINUE\"},{\"stage\":4,\"selected_group\":\"proficiency\",\"visible_text\":\"Okay, we’ll start fresh!\\nOkay, we’ll start fresh!\\nI’m new to Spanish\\nI know some common words\\nI can have basic conversations\\nI can talk about various topics\\nI can discuss most topics in detail\\nCONTINUE\"},{\"stage\":5,\"selected_group\":null,\"visible_text\":\"Here’s what you can achieve!\\nHere’s what you can achieve!\\nConverse with confidence\\nStress-free speaking and listening exercises\\nBuild a large vocabulary\\nCommon words and practical phrases\\nDevelop a learning habit\\nSmart reminders, fun challenges, and more\\nCONTINUE\"},{\"stage\":6,\"selected_group\":\"daily-goal\",\"visible_text\":\"That’s 25 words in your first week!\\nThat’s 25 words in your first week!\\n5 min / day\\nCasual\\n10 min / day\\nRegular\\n15 min / day\\nSerious\\n20 min / day\\nIntense\\nCONTINUE\"},{\"stage\":7,\"selected_group\":null,\"visible_text\":\"I’ll remind you to practice so it becomes a habit!\\nI’ll remind you to practice so it becomes a habit!\\nwww.duolingo.com wants to\\nShow notifications\\nBLOCK\\nALLOW\\nCONTINUE\"},{\"stage\":8,\"selected_group\":\"choose-path\",\"visible_text\":\"Now let’s find the best place to start!\\nNow let’s find the best place to start!\\nStart from scratch\\nTake the easiest lesson of the Spanish course\\nFind my level\\nLet Duo recommend where you should start learning\\nCONTINUE\"},{\"stage\":9,\"selected_group\":null,\"visible_text\":\"It can be hard to stay motivated…\\nIt can be hard to stay motivated…\\nCONTINUE\"},{\"stage\":10,\"selected_group\":null,\"visible_text\":\"…so Duolingo is designed to be fun like a game!\\n…so Duolingo is designed to be fun like a game!\\nCONTINUE\"},{\"stage\":11,\"selected_group\":null,\"visible_text\":\"5\\nNEW WORD\\nWhich one of these is “cat”?\\npapá\\n1\\ngato\\n2\\nmamá\\n3\\nSKIP\\nCHECK\\nLOADING...\\nWe teach endangered languages, including Navajo and Hawaiian.\"}],\"preparation\":[{\"kind\":\"choice\",\"prompt\":\"Which one of these is “cat”?\",\"feedback\":\"positive\"},{\"kind\":\"choice\",\"prompt\":\"Which one of these is “dog”?\",\"feedback\":\"positive\"},{\"kind\":\"choice\",\"prompt\":\"Which one of these is “water”?\",\"feedback\":\"positive\"},{\"kind\":\"choice\",\"prompt\":\"Which one of these is “milk”?\",\"feedback\":\"positive\"},{\"kind\":\"matching\",\"prompt\":\"Select the matching pairs\",\"feedback\":\"positive\"},{\"kind\":\"choice\",\"prompt\":\"Select the correct meaning\",\"feedback\":\"positive\"},{\"kind\":\"choice\",\"prompt\":\"Select the correct meaning\",\"feedback\":\"positive\"},{\"kind\":\"choice\",\"prompt\":\"Which one of these is “mom”?\",\"feedback\":\"positive\"},{\"kind\":\"choice\",\"prompt\":\"Which one of these is “dad”?\",\"feedback\":\"positive\"},{\"kind\":\"choice\",\"prompt\":\"Select the correct meaning\",\"feedback\":\"positive\"},{\"kind\":\"choice\",\"prompt\":\"Select the correct meaning\",\"feedback\":\"positive\"},{\"kind\":\"matching\",\"prompt\":\"Select the matching pairs\",\"feedback\":\"positive\"},{\"stage\":\"post-lesson-goal\",\"visible_text\":\"- img\\n- radiogroup \\\"goal\\\":\\n  - radio \\\"7 day streak Good\\\" [checked]\\n  - radio \\\"14 day streak Great\\\"\\n  - radio \\\"30 day streak Incredible\\\"\\n  - radio \\\"50 day streak Unstoppable\\\"\\n- button \\\"I can do it!\\\" [disabled]\",\"selection\":\"7 day streak Good\"},{\"kind\":\"choice\",\"prompt\":\"Which one of these is “book”?\",\"feedback\":\"positive\"},{\"kind\":\"choice\",\"prompt\":\"Which one of these is “house”?\",\"feedback\":\"positive\"},{\"kind\":\"choice\",\"prompt\":\"Which one of these is “suitcase”?\",\"feedback\":\"positive\"},{\"kind\":\"matching\",\"prompt\":\"Select the matching pairs\",\"feedback\":\"positive\"},{\"kind\":\"matching\",\"prompt\":\"Select the matching pairs\",\"feedback\":\"positive\"}]}\n",
+        "output_bytes": 6854,
+        "output_truncated": false,
+        "output_sha256": "94ec808817a7211de15a956fc081708e2de1c78fd13db93b6b30b9a9f248ad89",
+        "wall_seconds": 64.703903
+      },
+      "differences": [],
+      "observations": [
+        {
+          "step": 0,
+          "state": {
+            "screen": "question",
+            "authenticated": false,
+            "question_kind": "word_tiles",
+            "lesson_index": 1,
+            "answer_selected": true,
+            "check_enabled": true,
+            "options_locked": false,
+            "feedback": "none",
+            "continue_enabled": false,
+            "hearts": 5,
+            "selected_word_count": 2,
+            "matching_complete": false,
+            "reviewing": false,
+            "initial_question_revisited": true,
+            "question_changed": false,
+            "completed_lessons": null,
+            "current_lesson_index": null,
+            "ui_snapshot": "- button:\n  - img\n- progressbar\n- img\n- text: \"5\"\n- img\n- text: New word\n- heading \"Write this in English\" [level=1]\n- button:\n  - img\n- img\n- button \"my\" [disabled]\n- button \"house\"\n- button \"suitcase\" [disabled]\n- button \"cat\"\n- button \"Skip\"\n- button \"Check\"\n- button \"suitcase\"\n- button \"my\""
+          }
+        },
+        {
+          "step": 1,
+          "state": {
+            "screen": "question",
+            "authenticated": false,
+            "question_kind": "word_tiles",
+            "lesson_index": 1,
+            "answer_selected": true,
+            "check_enabled": false,
+            "options_locked": true,
+            "feedback": "incorrect",
+            "continue_enabled": true,
+            "hearts": 4,
+            "selected_word_count": 4,
+            "matching_complete": false,
+            "reviewing": false,
+            "initial_question_revisited": true,
+            "question_changed": false,
+            "completed_lessons": null,
+            "current_lesson_index": null,
+            "ui_snapshot": "- button:\n  - img\n- progressbar\n- img\n- text: \"4\"\n- img\n- text: New word\n- heading \"Write this in English\" [level=1]\n- button:\n  - img\n- img\n- button \"my\" [disabled]\n- button \"house\" [disabled]\n- button \"suitcase\" [disabled]\n- button \"cat\" [disabled]\n- heading \"Correct solution:\" [level=2]\n- text: my suitcase\n- button \"Too easy\"\n- button \"Too difficult\"\n- button \"Report\"\n- button \"Continue\"\n- button \"suitcase\" [disabled]\n- button \"my\" [disabled]"
+          }
+        }
+      ]
+    },
+    {
+      "id": "mistake-review",
+      "discovery": "observed",
+      "status": "pass",
+      "receipt": {
+        "command": [
+          "node",
+          "projects/duolingo-web/original-adapter-v2.mjs"
+        ],
+        "source_digest": "9f49c8840687023ff4fd3f9a9ce7826ded607932f5dbcba060a427a686ba7a5b",
+        "integrity": "verified",
+        "evaluator_digest": "3f08e202ccdb09ef6a75bef5960f0a3817b8cb11574bd24598b3cc859b40b9e3",
+        "exit_code": 0,
+        "status": "pass",
+        "output": "APP_REBUILD_RESULT {\"operation\":\"scenario\",\"scenario_id\":\"mistake-review\",\"precondition_state\":{\"screen\":\"question\",\"authenticated\":false,\"question_kind\":\"choice\",\"lesson_index\":0,\"answer_selected\":false,\"check_enabled\":false,\"options_locked\":false,\"feedback\":\"none\",\"continue_enabled\":false,\"hearts\":5,\"selected_word_count\":0,\"matching_complete\":false,\"reviewing\":false,\"initial_question_revisited\":true,\"question_changed\":false,\"completed_lessons\":null,\"current_lesson_index\":null,\"ui_snapshot\":\"- button:\\n  - img\\n- progressbar\\n- img\\n- text: \\\"5\\\"\\n- img\\n- text: New word\\n- heading \\\"Which one of these is “cat”?\\\" [level=1]\\n- radiogroup \\\"choice\\\":\\n  - radio \\\"papá 1\\\"\\n  - radio \\\"gato 2\\\"\\n  - radio \\\"mamá 3\\\"\\n- button \\\"Skip\\\"\\n- button \\\"Check\\\" [disabled]\\n- img\\n- text: Loading... Our mission is to develop the best education in the world and make it universally available.\"},\"observations\":[{\"step\":0,\"state\":{\"screen\":\"question\",\"authenticated\":false,\"question_kind\":\"choice\",\"lesson_index\":0,\"answer_selected\":true,\"check_enabled\":true,\"options_locked\":false,\"feedback\":\"none\",\"continue_enabled\":false,\"hearts\":5,\"selected_word_count\":0,\"matching_complete\":false,\"reviewing\":false,\"initial_question_revisited\":true,\"question_changed\":false,\"completed_lessons\":null,\"current_lesson_index\":null,\"ui_snapshot\":\"- button:\\n  - img\\n- progressbar:\\n  - img\\n- img\\n- text: \\\"5\\\"\\n- img\\n- text: New word\\n- heading \\\"Which one of these is “cat”?\\\" [level=1]\\n- radiogroup \\\"choice\\\":\\n  - radio \\\"papá 1\\\" [checked]\\n  - radio \\\"gato 2\\\"\\n  - radio \\\"mamá 3\\\"\\n- button \\\"Skip\\\"\\n- button \\\"Check\\\"\\n- img\\n- text: Loading... Our mission is to develop the best education in the world and make it universally available.\"}},{\"step\":1,\"state\":{\"screen\":\"question\",\"authenticated\":false,\"question_kind\":\"choice\",\"lesson_index\":0,\"answer_selected\":true,\"check_enabled\":false,\"options_locked\":true,\"feedback\":\"incorrect\",\"continue_enabled\":true,\"hearts\":4,\"selected_word_count\":0,\"matching_complete\":false,\"reviewing\":false,\"initial_question_revisited\":true,\"question_changed\":false,\"completed_lessons\":null,\"current_lesson_index\":null,\"ui_snapshot\":\"- button:\\n  - img\\n- progressbar\\n- img\\n- text: \\\"4\\\"\\n- img\\n- text: New word\\n- heading \\\"Which one of these is “cat”?\\\" [level=1]\\n- radiogroup \\\"choice\\\":\\n  - radio \\\"papá 1\\\" [checked] [disabled]\\n  - radio \\\"gato 2\\\" [disabled]\\n  - radio \\\"mamá 3\\\" [disabled]\\n- heading \\\"Correct solution:\\\" [level=2]\\n- text: gato\\n- button \\\"Too easy\\\"\\n- button \\\"Too difficult\\\"\\n- button \\\"Report\\\"\\n- button \\\"Continue\\\"\\n- img\\n- text: Loading... Our mission is to develop the best education in the world and make it universally available.\\n- img\\n- img\\n- img\\n- img\\n- img\\n- text: Each mistake costs 1 heart! Stay sharp and focused to keep your hearts. You got this!\\n- button \\\"Keep going\\\"\"}},{\"step\":2,\"state\":{\"screen\":\"question\",\"authenticated\":false,\"question_kind\":\"choice\",\"lesson_index\":0,\"answer_selected\":false,\"check_enabled\":false,\"options_locked\":false,\"feedback\":\"none\",\"continue_enabled\":false,\"hearts\":4,\"selected_word_count\":0,\"matching_complete\":false,\"reviewing\":true,\"initial_question_revisited\":true,\"question_changed\":false,\"completed_lessons\":null,\"current_lesson_index\":null,\"ui_snapshot\":\"- button:\\n  - img\\n- progressbar\\n- img\\n- text: \\\"4\\\"\\n- img\\n- text: Previous mistake\\n- heading \\\"Which one of these is “cat”?\\\" [level=1]\\n- radiogroup \\\"choice\\\":\\n  - radio \\\"papá 1\\\":\\n    - text: papá 1\\n    - img\\n    - img\\n  - radio \\\"gato 2\\\":\\n    - text: gato 2\\n    - img\\n    - img\\n  - radio \\\"mamá 3\\\":\\n    - text: mamá 3\\n    - img\\n    - img\\n- img\\n- text: Let's review the exercise you missed!\\n- button \\\"Check\\\" [disabled]\"}},{\"step\":3,\"state\":{\"screen\":\"question\",\"authenticated\":false,\"question_kind\":\"choice\",\"lesson_index\":0,\"answer_selected\":true,\"check_enabled\":true,\"options_locked\":false,\"feedback\":\"none\",\"continue_enabled\":false,\"hearts\":4,\"selected_word_count\":0,\"matching_complete\":false,\"reviewing\":true,\"initial_question_revisited\":true,\"question_changed\":false,\"completed_lessons\":null,\"current_lesson_index\":null,\"ui_snapshot\":\"- button:\\n  - img\\n- progressbar\\n- img\\n- text: \\\"4\\\"\\n- img\\n- text: Previous mistake\\n- heading \\\"Which one of these is “cat”?\\\" [level=1]\\n- radiogroup \\\"choice\\\":\\n  - radio \\\"papá 1\\\":\\n    - text: papá 1\\n    - img\\n    - img\\n  - radio \\\"gato 2\\\" [checked]:\\n    - text: gato 2\\n    - img\\n    - img\\n  - radio \\\"mamá 3\\\":\\n    - text: mamá 3\\n    - img\\n    - img\\n- button \\\"Skip\\\"\\n- button \\\"Check\\\"\"}},{\"step\":4,\"state\":{\"screen\":\"question\",\"authenticated\":false,\"question_kind\":\"choice\",\"lesson_index\":0,\"answer_selected\":true,\"check_enabled\":false,\"options_locked\":true,\"feedback\":\"correct\",\"continue_enabled\":true,\"hearts\":4,\"selected_word_count\":0,\"matching_complete\":false,\"reviewing\":true,\"initial_question_revisited\":true,\"question_changed\":false,\"completed_lessons\":null,\"current_lesson_index\":null,\"ui_snapshot\":\"- button:\\n  - img\\n- progressbar:\\n  - text: 12 in a row\\n  - img\\n- img\\n- text: \\\"4\\\"\\n- img\\n- text: Previous mistake\\n- heading \\\"Which one of these is “cat”?\\\" [level=1]\\n- radiogroup \\\"choice\\\":\\n  - radio \\\"papá 1\\\" [disabled]:\\n    - text: papá 1\\n    - img\\n    - img\\n  - radio \\\"gato 2\\\" [checked] [disabled]:\\n    - text: gato 2\\n    - img\\n    - img\\n  - radio \\\"mamá 3\\\" [disabled]:\\n    - text: mamá 3\\n    - img\\n    - img\\n- heading \\\"Amazing!\\\" [level=2]\\n- button \\\"Too easy\\\"\\n- button \\\"Too difficult\\\"\\n- button \\\"Report\\\"\\n- button \\\"Continue\\\"\"}},{\"step\":5,\"state\":{\"screen\":\"lesson_complete\",\"authenticated\":false,\"question_kind\":null,\"lesson_index\":0,\"answer_selected\":false,\"check_enabled\":false,\"options_locked\":false,\"feedback\":\"none\",\"continue_enabled\":true,\"hearts\":null,\"selected_word_count\":0,\"matching_complete\":false,\"reviewing\":false,\"initial_question_revisited\":false,\"question_changed\":false,\"completed_lessons\":null,\"current_lesson_index\":null,\"ui_snapshot\":\"- img\\n- text: Lesson Complete! combo\\n- img\\n- text: 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9\\n- button \\\"Review lesson\\\"\\n- button \\\"Continue\\\"\"}}],\"onboarding\":[{\"stage\":0,\"selected_group\":null,\"visible_text\":\"Hi there! I’m Duo!\\nHi there! I’m Duo!\\nCONTINUE\"},{\"stage\":1,\"selected_group\":null,\"visible_text\":\"Let’s get this party started!\\nLet’s get this party started!\\nCONTINUE\"},{\"stage\":2,\"selected_group\":\"hdyhau\",\"visible_text\":\"How did you hear about Duolingo?\\nHow did you hear about Duolingo?\\nFacebook/Instagram\\nFriends/family\\nNews/article/blog\\nShopee\\nGoogle Search\\nBrawl Stars\\nTV\\nYouTube\\nTikTok\\nOther\\nCONTINUE\"},{\"stage\":3,\"selected_group\":\"motivation\",\"visible_text\":\"Any reason is a good reason to learn!\\nAny reason is a good reason to learn!\\nBoost my career\\nSpend time productively\\nPrepare for travel\\nJust for fun\\nConnect with people\\nSupport my education\\nOther\\nCONTINUE\"},{\"stage\":4,\"selected_group\":\"proficiency\",\"visible_text\":\"Okay, we’ll start fresh!\\nOkay, we’ll start fresh!\\nI’m new to Spanish\\nI know some common words\\nI can have basic conversations\\nI can talk about various topics\\nI can discuss most topics in detail\\nCONTINUE\"},{\"stage\":5,\"selected_group\":null,\"visible_text\":\"Here’s what you can achieve!\\nHere’s what you can achieve!\\nConverse with confidence\\nStress-free speaking and listening exercises\\nBuild a large vocabulary\\nCommon words and practical phrases\\nDevelop a learning habit\\nSmart reminders, fun challenges, and more\\nCONTINUE\"},{\"stage\":6,\"selected_group\":\"daily-goal\",\"visible_text\":\"That’s 25 words in your first week!\\nThat’s 25 words in your first week!\\n5 min / day\\nCasual\\n10 min / day\\nRegular\\n15 min / day\\nSerious\\n20 min / day\\nIntense\\nCONTINUE\"},{\"stage\":7,\"selected_group\":null,\"visible_text\":\"I’ll remind you to practice so it becomes a habit!\\nI’ll remind you to practice so it becomes a habit!\\nwww.duolingo.com wants to\\nShow notifications\\nBLOCK\\nALLOW\\nCONTINUE\"},{\"stage\":8,\"selected_group\":\"choose-path\",\"visible_text\":\"Now let’s find the best place to start!\\nNow let’s find the best place to start!\\nStart from scratch\\nTake the easiest lesson of the Spanish course\\nFind my level\\nLet Duo recommend where you should start learning\\nCONTINUE\"},{\"stage\":9,\"selected_group\":null,\"visible_text\":\"It can be hard to stay motivated…\\nIt can be hard to stay motivated…\\nCONTINUE\"},{\"stage\":10,\"selected_group\":null,\"visible_text\":\"…so Duolingo is designed to be fun like a game!\\n…so Duolingo is designed to be fun like a game!\\nCONTINUE\"},{\"stage\":11,\"selected_group\":null,\"visible_text\":\"5\\nNEW WORD\\nWhich one of these is “cat”?\\npapá\\n1\\ngato\\n2\\nmamá\\n3\\nSKIP\\nCHECK\\nLOADING...\\nOur mission is to develop the best education in the world and make it universally available.\"}],\"preparation\":[{\"kind\":\"choice\",\"prompt\":\"Which one of these is “dog”?\",\"feedback\":\"positive\"},{\"kind\":\"choice\",\"prompt\":\"Which one of these is “water”?\",\"feedback\":\"positive\"},{\"kind\":\"choice\",\"prompt\":\"Which one of these is “milk”?\",\"feedback\":\"positive\"},{\"kind\":\"matching\",\"prompt\":\"Select the matching pairs\",\"feedback\":\"positive\"},{\"kind\":\"choice\",\"prompt\":\"Select the correct meaning\",\"feedback\":\"positive\"},{\"kind\":\"choice\",\"prompt\":\"Select the correct meaning\",\"feedback\":\"positive\"},{\"kind\":\"choice\",\"prompt\":\"Which one of these is “mom”?\",\"feedback\":\"positive\"},{\"kind\":\"choice\",\"prompt\":\"Which one of these is “dad”?\",\"feedback\":\"positive\"},{\"kind\":\"choice\",\"prompt\":\"Select the correct meaning\",\"feedback\":\"positive\"},{\"kind\":\"choice\",\"prompt\":\"Select the correct meaning\",\"feedback\":\"positive\"},{\"kind\":\"matching\",\"prompt\":\"Select the matching pairs\",\"feedback\":\"positive\"}]}\n",
+        "output_bytes": 9756,
+        "output_truncated": false,
+        "output_sha256": "5d6eed576a41104e8d6795f874f67fadcd2c4701341206448f02a983faad84cb",
+        "wall_seconds": 53.004119
+      },
+      "differences": [],
+      "observations": [
+        {
+          "step": 0,
+          "state": {
+            "screen": "question",
+            "authenticated": false,
+            "question_kind": "choice",
+            "lesson_index": 0,
+            "answer_selected": true,
+            "check_enabled": true,
+            "options_locked": false,
+            "feedback": "none",
+            "continue_enabled": false,
+            "hearts": 5,
+            "selected_word_count": 0,
+            "matching_complete": false,
+            "reviewing": false,
+            "initial_question_revisited": true,
+            "question_changed": false,
+            "completed_lessons": null,
+            "current_lesson_index": null,
+            "ui_snapshot": "- button:\n  - img\n- progressbar:\n  - img\n- img\n- text: \"5\"\n- img\n- text: New word\n- heading \"Which one of these is “cat”?\" [level=1]\n- radiogroup \"choice\":\n  - radio \"papá 1\" [checked]\n  - radio \"gato 2\"\n  - radio \"mamá 3\"\n- button \"Skip\"\n- button \"Check\"\n- img\n- text: Loading... Our mission is to develop the best education in the world and make it universally available."
+          }
+        },
+        {
+          "step": 1,
+          "state": {
+            "screen": "question",
+            "authenticated": false,
+            "question_kind": "choice",
+            "lesson_index": 0,
+            "answer_selected": true,
+            "check_enabled": false,
+            "options_locked": true,
+            "feedback": "incorrect",
+            "continue_enabled": true,
+            "hearts": 4,
+            "selected_word_count": 0,
+            "matching_complete": false,
+            "reviewing": false,
+            "initial_question_revisited": true,
+            "question_changed": false,
+            "completed_lessons": null,
+            "current_lesson_index": null,
+            "ui_snapshot": "- button:\n  - img\n- progressbar\n- img\n- text: \"4\"\n- img\n- text: New word\n- heading \"Which one of these is “cat”?\" [level=1]\n- radiogroup \"choice\":\n  - radio \"papá 1\" [checked] [disabled]\n  - radio \"gato 2\" [disabled]\n  - radio \"mamá 3\" [disabled]\n- heading \"Correct solution:\" [level=2]\n- text: gato\n- button \"Too easy\"\n- button \"Too difficult\"\n- button \"Report\"\n- button \"Continue\"\n- img\n- text: Loading... Our mission is to develop the best education in the world and make it universally available.\n- img\n- img\n- img\n- img\n- img\n- text: Each mistake costs 1 heart! Stay sharp and focused to keep your hearts. You got this!\n- button \"Keep going\""
+          }
+        },
+        {
+          "step": 2,
+          "state": {
+            "screen": "question",
+            "authenticated": false,
+            "question_kind": "choice",
+            "lesson_index": 0,
+            "answer_selected": false,
+            "check_enabled": false,
+            "options_locked": false,
+            "feedback": "none",
+            "continue_enabled": false,
+            "hearts": 4,
+            "selected_word_count": 0,
+            "matching_complete": false,
+            "reviewing": true,
+            "initial_question_revisited": true,
+            "question_changed": false,
+            "completed_lessons": null,
+            "current_lesson_index": null,
+            "ui_snapshot": "- button:\n  - img\n- progressbar\n- img\n- text: \"4\"\n- img\n- text: Previous mistake\n- heading \"Which one of these is “cat”?\" [level=1]\n- radiogroup \"choice\":\n  - radio \"papá 1\":\n    - text: papá 1\n    - img\n    - img\n  - radio \"gato 2\":\n    - text: gato 2\n    - img\n    - img\n  - radio \"mamá 3\":\n    - text: mamá 3\n    - img\n    - img\n- img\n- text: Let's review the exercise you missed!\n- button \"Check\" [disabled]"
+          }
+        },
+        {
+          "step": 3,
+          "state": {
+            "screen": "question",
+            "authenticated": false,
+            "question_kind": "choice",
+            "lesson_index": 0,
+            "answer_selected": true,
+            "check_enabled": true,
+            "options_locked": false,
+            "feedback": "none",
+            "continue_enabled": false,
+            "hearts": 4,
+            "selected_word_count": 0,
+            "matching_complete": false,
+            "reviewing": true,
+            "initial_question_revisited": true,
+            "question_changed": false,
+            "completed_lessons": null,
+            "current_lesson_index": null,
+            "ui_snapshot": "- button:\n  - img\n- progressbar\n- img\n- text: \"4\"\n- img\n- text: Previous mistake\n- heading \"Which one of these is “cat”?\" [level=1]\n- radiogroup \"choice\":\n  - radio \"papá 1\":\n    - text: papá 1\n    - img\n    - img\n  - radio \"gato 2\" [checked]:\n    - text: gato 2\n    - img\n    - img\n  - radio \"mamá 3\":\n    - text: mamá 3\n    - img\n    - img\n- button \"Skip\"\n- button \"Check\""
+          }
+        },
+        {
+          "step": 4,
+          "state": {
+            "screen": "question",
+            "authenticated": false,
+            "question_kind": "choice",
+            "lesson_index": 0,
+            "answer_selected": true,
+            "check_enabled": false,
+            "options_locked": true,
+            "feedback": "correct",
+            "continue_enabled": true,
+            "hearts": 4,
+            "selected_word_count": 0,
+            "matching_complete": false,
+            "reviewing": true,
+            "initial_question_revisited": true,
+            "question_changed": false,
+            "completed_lessons": null,
+            "current_lesson_index": null,
+            "ui_snapshot": "- button:\n  - img\n- progressbar:\n  - text: 12 in a row\n  - img\n- img\n- text: \"4\"\n- img\n- text: Previous mistake\n- heading \"Which one of these is “cat”?\" [level=1]\n- radiogroup \"choice\":\n  - radio \"papá 1\" [disabled]:\n    - text: papá 1\n    - img\n    - img\n  - radio \"gato 2\" [checked] [disabled]:\n    - text: gato 2\n    - img\n    - img\n  - radio \"mamá 3\" [disabled]:\n    - text: mamá 3\n    - img\n    - img\n- heading \"Amazing!\" [level=2]\n- button \"Too easy\"\n- button \"Too difficult\"\n- button \"Report\"\n- button \"Continue\""
+          }
+        },
+        {
+          "step": 5,
+          "state": {
+            "screen": "lesson_complete",
+            "authenticated": false,
+            "question_kind": null,
+            "lesson_index": 0,
+            "answer_selected": false,
+            "check_enabled": false,
+            "options_locked": false,
+            "feedback": "none",
+            "continue_enabled": true,
+            "hearts": null,
+            "selected_word_count": 0,
+            "matching_complete": false,
+            "reviewing": false,
+            "initial_question_revisited": false,
+            "question_changed": false,
+            "completed_lessons": null,
+            "current_lesson_index": null,
+            "ui_snapshot": "- img\n- text: Lesson Complete! combo\n- img\n- text: 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9\n- button \"Review lesson\"\n- button \"Continue\""
+          }
+        }
+      ]
+    },
+    {
+      "id": "completion-reload",
+      "discovery": "observed",
+      "status": "pass",
+      "receipt": {
+        "command": [
+          "node",
+          "projects/duolingo-web/original-adapter-v2.mjs"
+        ],
+        "source_digest": "9f49c8840687023ff4fd3f9a9ce7826ded607932f5dbcba060a427a686ba7a5b",
+        "integrity": "verified",
+        "evaluator_digest": "3f08e202ccdb09ef6a75bef5960f0a3817b8cb11574bd24598b3cc859b40b9e3",
+        "exit_code": 0,
+        "status": "pass",
+        "output": "APP_REBUILD_RESULT {\"operation\":\"scenario\",\"scenario_id\":\"completion-reload\",\"precondition_state\":{\"screen\":\"question\",\"authenticated\":false,\"question_kind\":\"choice\",\"lesson_index\":0,\"answer_selected\":false,\"check_enabled\":false,\"options_locked\":false,\"feedback\":\"none\",\"continue_enabled\":false,\"hearts\":5,\"selected_word_count\":0,\"matching_complete\":false,\"reviewing\":false,\"initial_question_revisited\":true,\"question_changed\":false,\"completed_lessons\":null,\"current_lesson_index\":null,\"ui_snapshot\":\"- button:\\n  - img\\n- progressbar\\n- img\\n- text: \\\"5\\\"\\n- img\\n- text: New word\\n- heading \\\"Which one of these is “cat”?\\\" [level=1]\\n- radiogroup \\\"choice\\\":\\n  - radio \\\"papá 1\\\"\\n  - radio \\\"agua 2\\\"\\n  - radio \\\"gato 3\\\"\\n- button \\\"Skip\\\"\\n- button \\\"Check\\\" [disabled]\\n- img\\n- text: Loading... In Sweden, the most popular language on Duolingo is Swedish (mostly by refugees).\"},\"observations\":[{\"step\":0,\"state\":{\"screen\":\"lesson_complete\",\"authenticated\":false,\"question_kind\":null,\"lesson_index\":0,\"answer_selected\":false,\"check_enabled\":false,\"options_locked\":false,\"feedback\":\"none\",\"continue_enabled\":true,\"hearts\":null,\"selected_word_count\":0,\"matching_complete\":false,\"reviewing\":false,\"initial_question_revisited\":false,\"question_changed\":false,\"completed_lessons\":null,\"current_lesson_index\":null,\"ui_snapshot\":\"- img\\n- text: Lesson Complete! combo\\n- img\\n- text: 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9\\n- button \\\"Review lesson\\\"\\n- button \\\"Continue\\\"\"}},{\"step\":1,\"state\":{\"screen\":\"course_path\",\"authenticated\":false,\"question_kind\":null,\"lesson_index\":0,\"answer_selected\":false,\"check_enabled\":false,\"options_locked\":false,\"feedback\":\"none\",\"continue_enabled\":false,\"hearts\":null,\"selected_word_count\":0,\"matching_complete\":false,\"reviewing\":false,\"initial_question_revisited\":false,\"question_changed\":false,\"completed_lessons\":1,\"current_lesson_index\":1,\"ui_snapshot\":\"- link:\\n  - /url: /learn\\n  - img\\n- link \\\"Learn\\\":\\n  - /url: /learn\\n  - img\\n  - text: Learn\\n- link \\\"Leaderboards\\\":\\n  - /url: /leaderboard\\n  - img\\n  - text: Leaderboards\\n- link \\\"Quests\\\":\\n  - /url: /quests\\n  - img\\n  - text: Quests\\n- link \\\"Shop\\\":\\n  - /url: /shop\\n  - img\\n  - text: Shop\\n- link \\\"Profile\\\":\\n  - /url: /learn?sign-up\\n  - img\\n  - text: Profile\\n- button \\\"More\\\":\\n  - img\\n  - text: More\\n- img\\n- button \\\"1\\\":\\n  - img\\n  - text: \\\"1\\\"\\n- button \\\"1\\\":\\n  - img\\n  - text: \\\"1\\\"\\n- button \\\"505\\\":\\n  - img\\n  - text: \\\"505\\\"\\n- button \\\"5\\\":\\n  - img\\n  - text: \\\"5\\\"\\n- heading \\\"Unlock Leaderboards!\\\" [level=2]\\n- img\\n- text: Complete 2 more lessons to start competing\\n- heading \\\"Daily Quests\\\" [level=2]\\n- link \\\"View all\\\":\\n  - /url: /quests\\n- img\\n- text: Earn 10 XP\\n- progressbar: 10 / 10 10 / 10\\n- img\\n- heading \\\"Create a profile to save your progress!\\\" [level=2]\\n- button \\\"Create a profile\\\"\\n- button \\\"Sign in\\\"\\n- list:\\n  - listitem:\\n    - link \\\"About\\\":\\n      - /url: https://about.duolingo.com\\n  - listitem:\\n    - link \\\"Blog\\\":\\n      - /url: https://blog.duolingo.com\\n  - listitem:\\n    - link \\\"Store\\\":\\n      - /url: https://store.duolingo.com/\\n  - listitem:\\n    - link \\\"efficacy\\\":\\n      - /url: /efficacy\\n  - listitem:\\n    - link \\\"Careers\\\":\\n      - /url: https://careers.duolingo.com\\n  - listitem:\\n    - link \\\"INVESTORS\\\":\\n      - /url: https://investors.duolingo.com\\n  - listitem:\\n    - link \\\"Terms\\\":\\n      - /url: /terms\\n  - listitem:\\n    - link \\\"Privacy\\\":\\n      - /url: /privacy\\n- link \\\"SECTION 1, UNIT 1\\\":\\n  - /url: /sections\\n  - img\\n  - heading \\\"SECTION 1, UNIT 1\\\" [level=1]\\n- text: Order at a café\\n- link \\\"Opens Guidebook for this unit\\\":\\n  - /url: /guidebook/es/1\\n  - img \\\"Guidebook\\\"\\n  - text: Guidebook\\n- img\\n- button \\\"Lesson 2 of 3\\\":\\n  - img\\n  - button \\\"Lesson 2 of 3\\\"\\n- button \\\"Lesson\\\":\\n  - button \\\"Lesson\\\"\\n- button \\\"Lesson\\\":\\n  - button \\\"Lesson\\\"\\n- button \\\"Chest\\\" [disabled]:\\n  - img\\n- button \\\"Practice\\\":\\n  - button \\\"Practice\\\"\\n- button \\\"Unit Review\\\":\\n  - button \\\"Unit Review\\\"\\n- separator\\n- heading \\\"Greet people and say goodbye\\\" [level=2]\\n- separator\\n- link \\\"Jump to Unit 2\\\":\\n  - /url: /lesson/unit/2/test\\n- button \\\"Lesson\\\":\\n  - button \\\"Lesson\\\"\\n- button \\\"Chest\\\" [disabled]:\\n  - img\\n- button \\\"Radio\\\":\\n  - button \\\"Radio\\\"\\n- button \\\"Practice\\\":\\n  - button \\\"Practice\\\"\\n- button \\\"Unit Review\\\":\\n  - button \\\"Unit Review\\\"\\n- paragraph: Up next\\n- heading \\\"Section 2\\\" [level=2]\\n- paragraph: Learn words, phrases, and grammar concepts for basic interactions\\n- button \\\"Jump here?\\\"\"}},{\"step\":2,\"state\":{\"screen\":\"course_path\",\"authenticated\":false,\"question_kind\":null,\"lesson_index\":0,\"answer_selected\":false,\"check_enabled\":false,\"options_locked\":false,\"feedback\":\"none\",\"continue_enabled\":false,\"hearts\":null,\"selected_word_count\":0,\"matching_complete\":false,\"reviewing\":false,\"initial_question_revisited\":false,\"question_changed\":false,\"completed_lessons\":1,\"current_lesson_index\":1,\"ui_snapshot\":\"- link:\\n  - /url: /learn\\n  - img\\n- link \\\"Learn\\\":\\n  - /url: /learn\\n  - img\\n  - text: Learn\\n- link \\\"Leaderboards\\\":\\n  - /url: /leaderboard\\n  - img\\n  - text: Leaderboards\\n- link \\\"Quests\\\":\\n  - /url: /quests\\n  - img\\n  - text: Quests\\n- link \\\"Shop\\\":\\n  - /url: /shop\\n  - img\\n  - text: Shop\\n- link \\\"Profile\\\":\\n  - /url: /learn?sign-up\\n  - img\\n  - text: Profile\\n- button \\\"More\\\":\\n  - img\\n  - text: More\\n- img\\n- button \\\"1\\\":\\n  - img\\n  - text: \\\"1\\\"\\n- button \\\"1\\\":\\n  - img\\n  - text: \\\"1\\\"\\n- button \\\"505\\\":\\n  - img\\n  - text: \\\"505\\\"\\n- button \\\"5\\\":\\n  - img\\n  - text: \\\"5\\\"\\n- heading \\\"Unlock Leaderboards!\\\" [level=2]\\n- img\\n- text: Complete 2 more lessons to start competing\\n- heading \\\"Daily Quests\\\" [level=2]\\n- link \\\"View all\\\":\\n  - /url: /quests\\n- img\\n- text: Earn 10 XP\\n- progressbar: 10 / 10 10 / 10\\n- img\\n- heading \\\"Create a profile to save your progress!\\\" [level=2]\\n- button \\\"Create a profile\\\"\\n- button \\\"Sign in\\\"\\n- list:\\n  - listitem:\\n    - link \\\"About\\\":\\n      - /url: https://about.duolingo.com\\n  - listitem:\\n    - link \\\"Blog\\\":\\n      - /url: https://blog.duolingo.com\\n  - listitem:\\n    - link \\\"Store\\\":\\n      - /url: https://store.duolingo.com/\\n  - listitem:\\n    - link \\\"efficacy\\\":\\n      - /url: /efficacy\\n  - listitem:\\n    - link \\\"Careers\\\":\\n      - /url: https://careers.duolingo.com\\n  - listitem:\\n    - link \\\"INVESTORS\\\":\\n      - /url: https://investors.duolingo.com\\n  - listitem:\\n    - link \\\"Terms\\\":\\n      - /url: /terms\\n  - listitem:\\n    - link \\\"Privacy\\\":\\n      - /url: /privacy\\n- link \\\"SECTION 1, UNIT 1\\\":\\n  - /url: /sections\\n  - img\\n  - heading \\\"SECTION 1, UNIT 1\\\" [level=1]\\n- text: Order at a café\\n- link \\\"Opens Guidebook for this unit\\\":\\n  - /url: /guidebook/es/1\\n  - img \\\"Guidebook\\\"\\n  - text: Guidebook\\n- img\\n- button \\\"Lesson 2 of 3\\\":\\n  - img\\n  - button \\\"Lesson 2 of 3\\\"\\n- button \\\"Lesson\\\":\\n  - button \\\"Lesson\\\"\\n- button \\\"Lesson\\\":\\n  - button \\\"Lesson\\\"\\n- button \\\"Chest\\\" [disabled]:\\n  - img\\n- button \\\"Practice\\\":\\n  - button \\\"Practice\\\"\\n- button \\\"Unit Review\\\":\\n  - button \\\"Unit Review\\\"\\n- separator\\n- heading \\\"Greet people and say goodbye\\\" [level=2]\\n- separator\\n- link \\\"Jump to Unit 2\\\":\\n  - /url: /lesson/unit/2/test\\n- button \\\"Lesson\\\":\\n  - button \\\"Lesson\\\"\\n- button \\\"Chest\\\" [disabled]:\\n  - img\\n- button \\\"Radio\\\":\\n  - button \\\"Radio\\\"\\n- button \\\"Practice\\\":\\n  - button \\\"Practice\\\"\\n- button \\\"Unit Review\\\":\\n  - button \\\"Unit Review\\\"\\n- paragraph: Up next\\n- heading \\\"Section 2\\\" [level=2]\\n- paragraph: Learn words, phrases, and grammar concepts for basic interactions\\n- button \\\"Jump here?\\\"\"}}],\"onboarding\":[{\"stage\":0,\"selected_group\":null,\"visible_text\":\"Hi there! I’m Duo!\\nHi there! I’m Duo!\\nCONTINUE\"},{\"stage\":1,\"selected_group\":null,\"visible_text\":\"Let’s get this party started!\\nLet’s get this party started!\\nCONTINUE\"},{\"stage\":2,\"selected_group\":\"hdyhau\",\"visible_text\":\"How did you hear about Duolingo?\\nHow did you hear about Duolingo?\\nTV\\nFriends/family\\nBrawl Stars\\nShopee\\nTikTok\\nYouTube\\nNews/article/blog\\nGoogle Search\\nFacebook/Instagram\\nOther\\nCONTINUE\"},{\"stage\":3,\"selected_group\":\"motivation\",\"visible_text\":\"Any reason is a good reason to learn!\\nAny reason is a good reason to learn!\\nPrepare for travel\\nConnect with people\\nSpend time productively\\nJust for fun\\nSupport my education\\nBoost my career\\nOther\\nCONTINUE\"},{\"stage\":4,\"selected_group\":\"proficiency\",\"visible_text\":\"Okay, we’ll start fresh!\\nOkay, we’ll start fresh!\\nI’m new to Spanish\\nI know some common words\\nI can have basic conversations\\nI can talk about various topics\\nI can discuss most topics in detail\\nCONTINUE\"},{\"stage\":5,\"selected_group\":null,\"visible_text\":\"Here’s what you can achieve!\\nHere’s what you can achieve!\\nConverse with confidence\\nStress-free speaking and listening exercises\\nBuild a large vocabulary\\nCommon words and practical phrases\\nDevelop a learning habit\\nSmart reminders, fun challenges, and more\\nCONTINUE\"},{\"stage\":6,\"selected_group\":\"daily-goal\",\"visible_text\":\"That’s 25 words in your first week!\\nThat’s 25 words in your first week!\\n5 min / day\\nCasual\\n10 min / day\\nRegular\\n15 min / day\\nSerious\\n20 min / day\\nIntense\\nCONTINUE\"},{\"stage\":7,\"selected_group\":null,\"visible_text\":\"I’ll remind you to practice so it becomes a habit!\\nI’ll remind you to practice so it becomes a habit!\\nwww.duolingo.com wants to\\nShow notifications\\nBLOCK\\nALLOW\\nCONTINUE\"},{\"stage\":8,\"selected_group\":\"choose-path\",\"visible_text\":\"Now let’s find the best place to start!\\nNow let’s find the best place to start!\\nStart from scratch\\nTake the easiest lesson of the Spanish course\\nFind my level\\nLet Duo recommend where you should start learning\\nCONTINUE\"},{\"stage\":9,\"selected_group\":null,\"visible_text\":\"It can be hard to stay motivated…\\nIt can be hard to stay motivated…\\nCONTINUE\"},{\"stage\":10,\"selected_group\":null,\"visible_text\":\"…so Duolingo is designed to be fun like a game!\\n…so Duolingo is designed to be fun like a game!\\nCONTINUE\"},{\"stage\":11,\"selected_group\":null,\"visible_text\":\"5\\nNEW WORD\\nWhich one of these is “cat”?\\npapá\\n1\\nagua\\n2\\ngato\\n3\\nSKIP\\nCHECK\\nLOADING...\\nIn Sweden, the most popular language on Duolingo is Swedish (mostly by refugees).\"}],\"preparation\":[{\"kind\":\"choice\",\"prompt\":\"Which one of these is “cat”?\",\"feedback\":\"positive\"},{\"kind\":\"choice\",\"prompt\":\"Which one of these is “dog”?\",\"feedback\":\"positive\"},{\"kind\":\"choice\",\"prompt\":\"Which one of these is “water”?\",\"feedback\":\"positive\"},{\"kind\":\"choice\",\"prompt\":\"Which one of these is “milk”?\",\"feedback\":\"positive\"},{\"kind\":\"matching\",\"prompt\":\"Select the matching pairs\",\"feedback\":\"positive\"},{\"kind\":\"choice\",\"prompt\":\"Select the correct meaning\",\"feedback\":\"positive\"},{\"kind\":\"choice\",\"prompt\":\"Select the correct meaning\",\"feedback\":\"positive\"},{\"kind\":\"choice\",\"prompt\":\"Which one of these is “mom”?\",\"feedback\":\"positive\"},{\"kind\":\"choice\",\"prompt\":\"Which one of these is “dad”?\",\"feedback\":\"positive\"},{\"kind\":\"choice\",\"prompt\":\"Select the correct meaning\",\"feedback\":\"positive\"},{\"kind\":\"choice\",\"prompt\":\"Select the correct meaning\",\"feedback\":\"positive\"},{\"kind\":\"matching\",\"prompt\":\"Select the matching pairs\",\"feedback\":\"positive\"},{\"stage\":\"post-lesson-goal\",\"visible_text\":\"- img\\n- radiogroup \\\"goal\\\":\\n  - radio \\\"7 day streak Good\\\" [checked]\\n  - radio \\\"14 day streak Great\\\"\\n  - radio \\\"30 day streak Incredible\\\"\\n  - radio \\\"50 day streak Unstoppable\\\"\\n- button \\\"I can do it!\\\" [disabled]\",\"selection\":\"7 day streak Good\"}]}\n",
+        "output_bytes": 11637,
+        "output_truncated": false,
+        "output_sha256": "9a641e82a69f1077c653eb0a040efc0992b70d2a8fb996d4252c6a79da5de1d2",
+        "wall_seconds": 60.624822
+      },
+      "differences": [],
+      "observations": [
+        {
+          "step": 0,
+          "state": {
+            "screen": "lesson_complete",
+            "authenticated": false,
+            "question_kind": null,
+            "lesson_index": 0,
+            "answer_selected": false,
+            "check_enabled": false,
+            "options_locked": false,
+            "feedback": "none",
+            "continue_enabled": true,
+            "hearts": null,
+            "selected_word_count": 0,
+            "matching_complete": false,
+            "reviewing": false,
+            "initial_question_revisited": false,
+            "question_changed": false,
+            "completed_lessons": null,
+            "current_lesson_index": null,
+            "ui_snapshot": "- img\n- text: Lesson Complete! combo\n- img\n- text: 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9\n- button \"Review lesson\"\n- button \"Continue\""
+          }
+        },
+        {
+          "step": 1,
+          "state": {
+            "screen": "course_path",
+            "authenticated": false,
+            "question_kind": null,
+            "lesson_index": 0,
+            "answer_selected": false,
+            "check_enabled": false,
+            "options_locked": false,
+            "feedback": "none",
+            "continue_enabled": false,
+            "hearts": null,
+            "selected_word_count": 0,
+            "matching_complete": false,
+            "reviewing": false,
+            "initial_question_revisited": false,
+            "question_changed": false,
+            "completed_lessons": 1,
+            "current_lesson_index": 1,
+            "ui_snapshot": "- link:\n  - /url: /learn\n  - img\n- link \"Learn\":\n  - /url: /learn\n  - img\n  - text: Learn\n- link \"Leaderboards\":\n  - /url: /leaderboard\n  - img\n  - text: Leaderboards\n- link \"Quests\":\n  - /url: /quests\n  - img\n  - text: Quests\n- link \"Shop\":\n  - /url: /shop\n  - img\n  - text: Shop\n- link \"Profile\":\n  - /url: /learn?sign-up\n  - img\n  - text: Profile\n- button \"More\":\n  - img\n  - text: More\n- img\n- button \"1\":\n  - img\n  - text: \"1\"\n- button \"1\":\n  - img\n  - text: \"1\"\n- button \"505\":\n  - img\n  - text: \"505\"\n- button \"5\":\n  - img\n  - text: \"5\"\n- heading \"Unlock Leaderboards!\" [level=2]\n- img\n- text: Complete 2 more lessons to start competing\n- heading \"Daily Quests\" [level=2]\n- link \"View all\":\n  - /url: /quests\n- img\n- text: Earn 10 XP\n- progressbar: 10 / 10 10 / 10\n- img\n- heading \"Create a profile to save your progress!\" [level=2]\n- button \"Create a profile\"\n- button \"Sign in\"\n- list:\n  - listitem:\n    - link \"About\":\n      - /url: https://about.duolingo.com\n  - listitem:\n    - link \"Blog\":\n      - /url: https://blog.duolingo.com\n  - listitem:\n    - link \"Store\":\n      - /url: https://store.duolingo.com/\n  - listitem:\n    - link \"efficacy\":\n      - /url: /efficacy\n  - listitem:\n    - link \"Careers\":\n      - /url: https://careers.duolingo.com\n  - listitem:\n    - link \"INVESTORS\":\n      - /url: https://investors.duolingo.com\n  - listitem:\n    - link \"Terms\":\n      - /url: /terms\n  - listitem:\n    - link \"Privacy\":\n      - /url: /privacy\n- link \"SECTION 1, UNIT 1\":\n  - /url: /sections\n  - img\n  - heading \"SECTION 1, UNIT 1\" [level=1]\n- text: Order at a café\n- link \"Opens Guidebook for this unit\":\n  - /url: /guidebook/es/1\n  - img \"Guidebook\"\n  - text: Guidebook\n- img\n- button \"Lesson 2 of 3\":\n  - img\n  - button \"Lesson 2 of 3\"\n- button \"Lesson\":\n  - button \"Lesson\"\n- button \"Lesson\":\n  - button \"Lesson\"\n- button \"Chest\" [disabled]:\n  - img\n- button \"Practice\":\n  - button \"Practice\"\n- button \"Unit Review\":\n  - button \"Unit Review\"\n- separator\n- heading \"Greet people and say goodbye\" [level=2]\n- separator\n- link \"Jump to Unit 2\":\n  - /url: /lesson/unit/2/test\n- button \"Lesson\":\n  - button \"Lesson\"\n- button \"Chest\" [disabled]:\n  - img\n- button \"Radio\":\n  - button \"Radio\"\n- button \"Practice\":\n  - button \"Practice\"\n- button \"Unit Review\":\n  - button \"Unit Review\"\n- paragraph: Up next\n- heading \"Section 2\" [level=2]\n- paragraph: Learn words, phrases, and grammar concepts for basic interactions\n- button \"Jump here?\""
+          }
+        },
+        {
+          "step": 2,
+          "state": {
+            "screen": "course_path",
+            "authenticated": false,
+            "question_kind": null,
+            "lesson_index": 0,
+            "answer_selected": false,
+            "check_enabled": false,
+            "options_locked": false,
+            "feedback": "none",
+            "continue_enabled": false,
+            "hearts": null,
+            "selected_word_count": 0,
+            "matching_complete": false,
+            "reviewing": false,
+            "initial_question_revisited": false,
+            "question_changed": false,
+            "completed_lessons": 1,
+            "current_lesson_index": 1,
+            "ui_snapshot": "- link:\n  - /url: /learn\n  - img\n- link \"Learn\":\n  - /url: /learn\n  - img\n  - text: Learn\n- link \"Leaderboards\":\n  - /url: /leaderboard\n  - img\n  - text: Leaderboards\n- link \"Quests\":\n  - /url: /quests\n  - img\n  - text: Quests\n- link \"Shop\":\n  - /url: /shop\n  - img\n  - text: Shop\n- link \"Profile\":\n  - /url: /learn?sign-up\n  - img\n  - text: Profile\n- button \"More\":\n  - img\n  - text: More\n- img\n- button \"1\":\n  - img\n  - text: \"1\"\n- button \"1\":\n  - img\n  - text: \"1\"\n- button \"505\":\n  - img\n  - text: \"505\"\n- button \"5\":\n  - img\n  - text: \"5\"\n- heading \"Unlock Leaderboards!\" [level=2]\n- img\n- text: Complete 2 more lessons to start competing\n- heading \"Daily Quests\" [level=2]\n- link \"View all\":\n  - /url: /quests\n- img\n- text: Earn 10 XP\n- progressbar: 10 / 10 10 / 10\n- img\n- heading \"Create a profile to save your progress!\" [level=2]\n- button \"Create a profile\"\n- button \"Sign in\"\n- list:\n  - listitem:\n    - link \"About\":\n      - /url: https://about.duolingo.com\n  - listitem:\n    - link \"Blog\":\n      - /url: https://blog.duolingo.com\n  - listitem:\n    - link \"Store\":\n      - /url: https://store.duolingo.com/\n  - listitem:\n    - link \"efficacy\":\n      - /url: /efficacy\n  - listitem:\n    - link \"Careers\":\n      - /url: https://careers.duolingo.com\n  - listitem:\n    - link \"INVESTORS\":\n      - /url: https://investors.duolingo.com\n  - listitem:\n    - link \"Terms\":\n      - /url: /terms\n  - listitem:\n    - link \"Privacy\":\n      - /url: /privacy\n- link \"SECTION 1, UNIT 1\":\n  - /url: /sections\n  - img\n  - heading \"SECTION 1, UNIT 1\" [level=1]\n- text: Order at a café\n- link \"Opens Guidebook for this unit\":\n  - /url: /guidebook/es/1\n  - img \"Guidebook\"\n  - text: Guidebook\n- img\n- button \"Lesson 2 of 3\":\n  - img\n  - button \"Lesson 2 of 3\"\n- button \"Lesson\":\n  - button \"Lesson\"\n- button \"Lesson\":\n  - button \"Lesson\"\n- button \"Chest\" [disabled]:\n  - img\n- button \"Practice\":\n  - button \"Practice\"\n- button \"Unit Review\":\n  - button \"Unit Review\"\n- separator\n- heading \"Greet people and say goodbye\" [level=2]\n- separator\n- link \"Jump to Unit 2\":\n  - /url: /lesson/unit/2/test\n- button \"Lesson\":\n  - button \"Lesson\"\n- button \"Chest\" [disabled]:\n  - img\n- button \"Radio\":\n  - button \"Radio\"\n- button \"Practice\":\n  - button \"Practice\"\n- button \"Unit Review\":\n  - button \"Unit Review\"\n- paragraph: Up next\n- heading \"Section 2\" [level=2]\n- paragraph: Learn words, phrases, and grammar concepts for basic interactions\n- button \"Jump here?\""
+          }
+        }
+      ]
+    },
+    {
+      "id": "exit-discard",
+      "discovery": "observed",
+      "status": "pass",
+      "receipt": {
+        "command": [
+          "node",
+          "projects/duolingo-web/original-adapter-v2.mjs"
+        ],
+        "source_digest": "9f49c8840687023ff4fd3f9a9ce7826ded607932f5dbcba060a427a686ba7a5b",
+        "integrity": "verified",
+        "evaluator_digest": "3f08e202ccdb09ef6a75bef5960f0a3817b8cb11574bd24598b3cc859b40b9e3",
+        "exit_code": 0,
+        "status": "pass",
+        "output": "APP_REBUILD_RESULT {\"operation\":\"scenario\",\"scenario_id\":\"exit-discard\",\"precondition_state\":{\"screen\":\"question\",\"authenticated\":false,\"question_kind\":\"choice\",\"lesson_index\":1,\"answer_selected\":false,\"check_enabled\":false,\"options_locked\":false,\"feedback\":\"none\",\"continue_enabled\":false,\"hearts\":5,\"selected_word_count\":0,\"matching_complete\":false,\"reviewing\":false,\"initial_question_revisited\":true,\"question_changed\":false,\"completed_lessons\":null,\"current_lesson_index\":null,\"ui_snapshot\":\"- button:\\n  - img\\n- progressbar:\\n  - img\\n- img\\n- text: \\\"5\\\"\\n- img\\n- text: New word\\n- heading \\\"Which one of these is “book”?\\\" [level=1]\\n- radiogroup \\\"choice\\\":\\n  - radio \\\"perro 1\\\":\\n    - text: perro 1\\n    - img\\n    - img\\n  - radio \\\"mamá 2\\\":\\n    - text: mamá 2\\n    - img\\n    - img\\n  - radio \\\"libro 3\\\":\\n    - text: libro 3\\n    - img\\n    - img\\n- button \\\"Skip\\\"\\n- button \\\"Check\\\" [disabled]\"},\"observations\":[{\"step\":0,\"state\":{\"screen\":\"question\",\"authenticated\":false,\"question_kind\":\"choice\",\"lesson_index\":1,\"answer_selected\":true,\"check_enabled\":true,\"options_locked\":false,\"feedback\":\"none\",\"continue_enabled\":false,\"hearts\":5,\"selected_word_count\":0,\"matching_complete\":false,\"reviewing\":false,\"initial_question_revisited\":true,\"question_changed\":false,\"completed_lessons\":null,\"current_lesson_index\":null,\"ui_snapshot\":\"- button:\\n  - img\\n- progressbar:\\n  - img\\n- img\\n- text: \\\"5\\\"\\n- img\\n- text: New word\\n- heading \\\"Which one of these is “book”?\\\" [level=1]\\n- radiogroup \\\"choice\\\":\\n  - radio \\\"perro 1\\\":\\n    - text: perro 1\\n    - img\\n    - img\\n  - radio \\\"mamá 2\\\":\\n    - text: mamá 2\\n    - img\\n    - img\\n  - radio \\\"libro 3\\\" [checked]:\\n    - text: libro 3\\n    - img\\n    - img\\n- button \\\"Skip\\\"\\n- button \\\"Check\\\"\"}},{\"step\":1,\"state\":{\"screen\":\"question\",\"authenticated\":false,\"question_kind\":\"choice\",\"lesson_index\":1,\"answer_selected\":true,\"check_enabled\":false,\"options_locked\":true,\"feedback\":\"correct\",\"continue_enabled\":true,\"hearts\":5,\"selected_word_count\":0,\"matching_complete\":false,\"reviewing\":false,\"initial_question_revisited\":true,\"question_changed\":false,\"completed_lessons\":null,\"current_lesson_index\":null,\"ui_snapshot\":\"- button:\\n  - img\\n- progressbar:\\n  - img\\n- img\\n- text: \\\"5\\\"\\n- img\\n- text: New word\\n- heading \\\"Which one of these is “book”?\\\" [level=1]\\n- radiogroup \\\"choice\\\":\\n  - radio \\\"perro 1\\\" [disabled]:\\n    - text: perro 1\\n    - img\\n    - img\\n  - radio \\\"mamá 2\\\" [disabled]:\\n    - text: mamá 2\\n    - img\\n    - img\\n  - radio \\\"libro 3\\\" [checked] [disabled]:\\n    - text: libro 3\\n    - img\\n    - img\\n- heading \\\"Great!\\\" [level=2]\\n- button \\\"Too easy\\\"\\n- button \\\"Too difficult\\\"\\n- button \\\"Report\\\"\\n- button \\\"Continue\\\"\"}},{\"step\":2,\"state\":{\"screen\":\"question\",\"authenticated\":false,\"question_kind\":\"choice\",\"lesson_index\":1,\"answer_selected\":false,\"check_enabled\":false,\"options_locked\":false,\"feedback\":\"none\",\"continue_enabled\":false,\"hearts\":5,\"selected_word_count\":0,\"matching_complete\":false,\"reviewing\":false,\"initial_question_revisited\":false,\"question_changed\":true,\"completed_lessons\":null,\"current_lesson_index\":null,\"ui_snapshot\":\"- button:\\n  - img\\n- progressbar\\n- img\\n- text: \\\"5\\\"\\n- img\\n- text: New word\\n- heading \\\"Which one of these is “house”?\\\" [level=1]\\n- radiogroup \\\"choice\\\":\\n  - radio \\\"gato 1\\\":\\n    - text: gato 1\\n    - img\\n    - img\\n  - radio \\\"casa 2\\\":\\n    - text: casa 2\\n    - img\\n    - img\\n  - radio \\\"perro 3\\\":\\n    - text: perro 3\\n    - img\\n    - img\\n- button \\\"Skip\\\"\\n- button \\\"Check\\\" [disabled]\"}},{\"step\":3,\"state\":{\"screen\":\"exit_confirmation\",\"authenticated\":false,\"question_kind\":\"choice\",\"lesson_index\":1,\"answer_selected\":false,\"check_enabled\":false,\"options_locked\":false,\"feedback\":\"none\",\"continue_enabled\":false,\"hearts\":5,\"selected_word_count\":0,\"matching_complete\":false,\"reviewing\":false,\"initial_question_revisited\":false,\"question_changed\":true,\"completed_lessons\":null,\"current_lesson_index\":null,\"ui_snapshot\":\"- button:\\n  - img\\n- progressbar\\n- img\\n- text: \\\"5\\\"\\n- img\\n- text: New word\\n- heading \\\"Which one of these is “house”?\\\" [level=1]\\n- radiogroup \\\"choice\\\":\\n  - radio \\\"gato 1\\\":\\n    - text: gato 1\\n    - img\\n    - img\\n  - radio \\\"casa 2\\\":\\n    - text: casa 2\\n    - img\\n    - img\\n  - radio \\\"perro 3\\\":\\n    - text: perro 3\\n    - img\\n    - img\\n- button \\\"Skip\\\"\\n- button \\\"Check\\\" [disabled]\\n- img\\n- text: Wait, don’t go! You’ll lose your progress if you quit now\\n- button \\\"Keep learning\\\"\\n- button \\\"End session\\\"\"}},{\"step\":4,\"state\":{\"screen\":\"course_path\",\"authenticated\":false,\"question_kind\":null,\"lesson_index\":1,\"answer_selected\":false,\"check_enabled\":false,\"options_locked\":false,\"feedback\":\"none\",\"continue_enabled\":false,\"hearts\":null,\"selected_word_count\":0,\"matching_complete\":false,\"reviewing\":false,\"initial_question_revisited\":false,\"question_changed\":false,\"completed_lessons\":1,\"current_lesson_index\":1,\"ui_snapshot\":\"- link:\\n  - /url: /learn\\n  - img\\n- link \\\"Learn\\\":\\n  - /url: /learn\\n  - img\\n  - text: Learn\\n- link \\\"Leaderboards\\\":\\n  - /url: /leaderboard\\n  - img\\n  - text: Leaderboards\\n- link \\\"Quests\\\":\\n  - /url: /quests\\n  - img\\n  - text: Quests\\n- link \\\"Shop\\\":\\n  - /url: /shop\\n  - img\\n  - text: Shop\\n- link \\\"Profile\\\":\\n  - /url: /learn?sign-up\\n  - img\\n  - text: Profile\\n- button \\\"More\\\":\\n  - img\\n  - text: More\\n- img\\n- button \\\"1\\\":\\n  - img\\n  - text: \\\"1\\\"\\n- button \\\"1\\\":\\n  - img\\n  - text: \\\"1\\\"\\n- button \\\"505\\\":\\n  - img\\n  - text: \\\"505\\\"\\n- button \\\"5\\\":\\n  - img\\n  - text: \\\"5\\\"\\n- heading \\\"Unlock Leaderboards!\\\" [level=2]\\n- img\\n- text: Complete 2 more lessons to start competing\\n- heading \\\"Daily Quests\\\" [level=2]\\n- link \\\"View all\\\":\\n  - /url: /quests\\n- img\\n- text: Earn 10 XP\\n- progressbar: 10 / 10 10 / 10\\n- img\\n- heading \\\"Create a profile to save your progress!\\\" [level=2]\\n- button \\\"Create a profile\\\"\\n- button \\\"Sign in\\\"\\n- list:\\n  - listitem:\\n    - link \\\"About\\\":\\n      - /url: https://about.duolingo.com\\n  - listitem:\\n    - link \\\"Blog\\\":\\n      - /url: https://blog.duolingo.com\\n  - listitem:\\n    - link \\\"Store\\\":\\n      - /url: https://store.duolingo.com/\\n  - listitem:\\n    - link \\\"efficacy\\\":\\n      - /url: /efficacy\\n  - listitem:\\n    - link \\\"Careers\\\":\\n      - /url: https://careers.duolingo.com\\n  - listitem:\\n    - link \\\"INVESTORS\\\":\\n      - /url: https://investors.duolingo.com\\n  - listitem:\\n    - link \\\"Terms\\\":\\n      - /url: /terms\\n  - listitem:\\n    - link \\\"Privacy\\\":\\n      - /url: /privacy\\n- link \\\"SECTION 1, UNIT 1\\\":\\n  - /url: /sections\\n  - img\\n  - heading \\\"SECTION 1, UNIT 1\\\" [level=1]\\n- text: Order at a café\\n- link \\\"Opens Guidebook for this unit\\\":\\n  - /url: /guidebook/es/1\\n  - img \\\"Guidebook\\\"\\n  - text: Guidebook\\n- img\\n- button \\\"Lesson 2 of 3\\\":\\n  - img\\n  - button \\\"Lesson 2 of 3\\\"\\n- button \\\"Lesson\\\":\\n  - button \\\"Lesson\\\"\\n- button \\\"Lesson\\\":\\n  - button \\\"Lesson\\\"\\n- button \\\"Chest\\\" [disabled]:\\n  - img\\n- button \\\"Practice\\\":\\n  - button \\\"Practice\\\"\\n- button \\\"Unit Review\\\":\\n  - button \\\"Unit Review\\\"\\n- separator\\n- heading \\\"Greet people and say goodbye\\\" [level=2]\\n- separator\\n- link \\\"Jump to Unit 2\\\":\\n  - /url: /lesson/unit/2/test\\n- button \\\"Lesson\\\":\\n  - button \\\"Lesson\\\"\\n- button \\\"Chest\\\" [disabled]:\\n  - img\\n- button \\\"Radio\\\":\\n  - button \\\"Radio\\\"\\n- button \\\"Practice\\\":\\n  - button \\\"Practice\\\"\\n- button \\\"Unit Review\\\":\\n  - button \\\"Unit Review\\\"\\n- paragraph: Up next\\n- heading \\\"Section 2\\\" [level=2]\\n- paragraph: Learn words, phrases, and grammar concepts for basic interactions\\n- button \\\"Jump here?\\\"\"}},{\"step\":5,\"state\":{\"screen\":\"question\",\"authenticated\":false,\"question_kind\":\"choice\",\"lesson_index\":1,\"answer_selected\":false,\"check_enabled\":false,\"options_locked\":false,\"feedback\":\"none\",\"continue_enabled\":false,\"hearts\":5,\"selected_word_count\":0,\"matching_complete\":false,\"reviewing\":false,\"initial_question_revisited\":true,\"question_changed\":false,\"completed_lessons\":null,\"current_lesson_index\":null,\"ui_snapshot\":\"- button:\\n  - img\\n- progressbar:\\n  - img\\n- img\\n- text: \\\"5\\\"\\n- img\\n- text: New word\\n- heading \\\"Which one of these is “book”?\\\" [level=1]\\n- radiogroup \\\"choice\\\":\\n  - radio \\\"mamá 1\\\":\\n    - text: mamá 1\\n    - img\\n    - img\\n  - radio \\\"libro 2\\\":\\n    - text: libro 2\\n    - img\\n    - img\\n  - radio \\\"perro 3\\\":\\n    - text: perro 3\\n    - img\\n    - img\\n- button \\\"Skip\\\"\\n- button \\\"Check\\\" [disabled]\"}}],\"onboarding\":[{\"stage\":0,\"selected_group\":null,\"visible_text\":\"Hi there! I’m Duo!\\nHi there! I’m Duo!\\nCONTINUE\"},{\"stage\":1,\"selected_group\":null,\"visible_text\":\"Let’s get this party started!\\nLet’s get this party started!\\nCONTINUE\"},{\"stage\":2,\"selected_group\":\"hdyhau\",\"visible_text\":\"How did you hear about Duolingo?\\nHow did you hear about Duolingo?\\nFacebook/Instagram\\nShopee\\nTikTok\\nBrawl Stars\\nFriends/family\\nTV\\nGoogle Search\\nNews/article/blog\\nYouTube\\nOther\\nCONTINUE\"},{\"stage\":3,\"selected_group\":\"motivation\",\"visible_text\":\"Any reason is a good reason to learn!\\nAny reason is a good reason to learn!\\nPrepare for travel\\nSpend time productively\\nSupport my education\\nConnect with people\\nJust for fun\\nBoost my career\\nOther\\nCONTINUE\"},{\"stage\":4,\"selected_group\":\"proficiency\",\"visible_text\":\"Okay, we’ll start fresh!\\nOkay, we’ll start fresh!\\nI’m new to Spanish\\nI know some common words\\nI can have basic conversations\\nI can talk about various topics\\nI can discuss most topics in detail\\nCONTINUE\"},{\"stage\":5,\"selected_group\":null,\"visible_text\":\"Here’s what you can achieve!\\nHere’s what you can achieve!\\nConverse with confidence\\nStress-free speaking and listening exercises\\nBuild a large vocabulary\\nCommon words and practical phrases\\nDevelop a learning habit\\nSmart reminders, fun challenges, and more\\nCONTINUE\"},{\"stage\":6,\"selected_group\":\"daily-goal\",\"visible_text\":\"That’s 25 words in your first week!\\nThat’s 25 words in your first week!\\n5 min / day\\nCasual\\n10 min / day\\nRegular\\n15 min / day\\nSerious\\n20 min / day\\nIntense\\nCONTINUE\"},{\"stage\":7,\"selected_group\":null,\"visible_text\":\"I’ll remind you to practice so it becomes a habit!\\nI’ll remind you to practice so it becomes a habit!\\nwww.duolingo.com wants to\\nShow notifications\\nBLOCK\\nALLOW\\nCONTINUE\"},{\"stage\":8,\"selected_group\":\"choose-path\",\"visible_text\":\"Now let’s find the best place to start!\\nNow let’s find the best place to start!\\nStart from scratch\\nTake the easiest lesson of the Spanish course\\nFind my level\\nLet Duo recommend where you should start learning\\nCONTINUE\"},{\"stage\":9,\"selected_group\":null,\"visible_text\":\"It can be hard to stay motivated…\\nIt can be hard to stay motivated…\\nCONTINUE\"},{\"stage\":10,\"selected_group\":null,\"visible_text\":\"…so Duolingo is designed to be fun like a game!\\n…so Duolingo is designed to be fun like a game!\\nCONTINUE\"},{\"stage\":11,\"selected_group\":null,\"visible_text\":\"5\\nNEW WORD\\nWhich one of these is “cat”?\\nmamá\\n1\\nagua\\n2\\ngato\\n3\\nSKIP\\nCHECK\\nLOADING...\\nMore Americans are learning a language on Duolingo than in the U.S. public school system.\"}],\"preparation\":[{\"kind\":\"choice\",\"prompt\":\"Which one of these is “cat”?\",\"feedback\":\"positive\"},{\"kind\":\"choice\",\"prompt\":\"Which one of these is “dog”?\",\"feedback\":\"positive\"},{\"kind\":\"choice\",\"prompt\":\"Which one of these is “water”?\",\"feedback\":\"positive\"},{\"kind\":\"choice\",\"prompt\":\"Which one of these is “milk”?\",\"feedback\":\"positive\"},{\"kind\":\"matching\",\"prompt\":\"Select the matching pairs\",\"feedback\":\"positive\"},{\"kind\":\"choice\",\"prompt\":\"Select the correct meaning\",\"feedback\":\"positive\"},{\"kind\":\"choice\",\"prompt\":\"Select the correct meaning\",\"feedback\":\"positive\"},{\"kind\":\"choice\",\"prompt\":\"Which one of these is “mom”?\",\"feedback\":\"positive\"},{\"kind\":\"choice\",\"prompt\":\"Which one of these is “dad”?\",\"feedback\":\"positive\"},{\"kind\":\"choice\",\"prompt\":\"Select the correct meaning\",\"feedback\":\"positive\"},{\"kind\":\"choice\",\"prompt\":\"Select the correct meaning\",\"feedback\":\"positive\"},{\"kind\":\"matching\",\"prompt\":\"Select the matching pairs\",\"feedback\":\"positive\"},{\"stage\":\"post-lesson-goal\",\"visible_text\":\"- img\\n- radiogroup \\\"goal\\\":\\n  - radio \\\"7 day streak Good\\\" [checked]\\n  - radio \\\"14 day streak Great\\\"\\n  - radio \\\"30 day streak Incredible\\\"\\n  - radio \\\"50 day streak Unstoppable\\\"\\n- button \\\"I can do it!\\\" [disabled]\",\"selection\":\"7 day streak Good\"}]}\n",
+        "output_bytes": 12489,
+        "output_truncated": false,
+        "output_sha256": "6c9e328a109cefd6a098c3605c41d54b7142c49981dc7d15f99063b877362696",
+        "wall_seconds": 62.4971
+      },
+      "differences": [],
+      "observations": [
+        {
+          "step": 0,
+          "state": {
+            "screen": "question",
+            "authenticated": false,
+            "question_kind": "choice",
+            "lesson_index": 1,
+            "answer_selected": true,
+            "check_enabled": true,
+            "options_locked": false,
+            "feedback": "none",
+            "continue_enabled": false,
+            "hearts": 5,
+            "selected_word_count": 0,
+            "matching_complete": false,
+            "reviewing": false,
+            "initial_question_revisited": true,
+            "question_changed": false,
+            "completed_lessons": null,
+            "current_lesson_index": null,
+            "ui_snapshot": "- button:\n  - img\n- progressbar:\n  - img\n- img\n- text: \"5\"\n- img\n- text: New word\n- heading \"Which one of these is “book”?\" [level=1]\n- radiogroup \"choice\":\n  - radio \"perro 1\":\n    - text: perro 1\n    - img\n    - img\n  - radio \"mamá 2\":\n    - text: mamá 2\n    - img\n    - img\n  - radio \"libro 3\" [checked]:\n    - text: libro 3\n    - img\n    - img\n- button \"Skip\"\n- button \"Check\""
+          }
+        },
+        {
+          "step": 1,
+          "state": {
+            "screen": "question",
+            "authenticated": false,
+            "question_kind": "choice",
+            "lesson_index": 1,
+            "answer_selected": true,
+            "check_enabled": false,
+            "options_locked": true,
+            "feedback": "correct",
+            "continue_enabled": true,
+            "hearts": 5,
+            "selected_word_count": 0,
+            "matching_complete": false,
+            "reviewing": false,
+            "initial_question_revisited": true,
+            "question_changed": false,
+            "completed_lessons": null,
+            "current_lesson_index": null,
+            "ui_snapshot": "- button:\n  - img\n- progressbar:\n  - img\n- img\n- text: \"5\"\n- img\n- text: New word\n- heading \"Which one of these is “book”?\" [level=1]\n- radiogroup \"choice\":\n  - radio \"perro 1\" [disabled]:\n    - text: perro 1\n    - img\n    - img\n  - radio \"mamá 2\" [disabled]:\n    - text: mamá 2\n    - img\n    - img\n  - radio \"libro 3\" [checked] [disabled]:\n    - text: libro 3\n    - img\n    - img\n- heading \"Great!\" [level=2]\n- button \"Too easy\"\n- button \"Too difficult\"\n- button \"Report\"\n- button \"Continue\""
+          }
+        },
+        {
+          "step": 2,
+          "state": {
+            "screen": "question",
+            "authenticated": false,
+            "question_kind": "choice",
+            "lesson_index": 1,
+            "answer_selected": false,
+            "check_enabled": false,
+            "options_locked": false,
+            "feedback": "none",
+            "continue_enabled": false,
+            "hearts": 5,
+            "selected_word_count": 0,
+            "matching_complete": false,
+            "reviewing": false,
+            "initial_question_revisited": false,
+            "question_changed": true,
+            "completed_lessons": null,
+            "current_lesson_index": null,
+            "ui_snapshot": "- button:\n  - img\n- progressbar\n- img\n- text: \"5\"\n- img\n- text: New word\n- heading \"Which one of these is “house”?\" [level=1]\n- radiogroup \"choice\":\n  - radio \"gato 1\":\n    - text: gato 1\n    - img\n    - img\n  - radio \"casa 2\":\n    - text: casa 2\n    - img\n    - img\n  - radio \"perro 3\":\n    - text: perro 3\n    - img\n    - img\n- button \"Skip\"\n- button \"Check\" [disabled]"
+          }
+        },
+        {
+          "step": 3,
+          "state": {
+            "screen": "exit_confirmation",
+            "authenticated": false,
+            "question_kind": "choice",
+            "lesson_index": 1,
+            "answer_selected": false,
+            "check_enabled": false,
+            "options_locked": false,
+            "feedback": "none",
+            "continue_enabled": false,
+            "hearts": 5,
+            "selected_word_count": 0,
+            "matching_complete": false,
+            "reviewing": false,
+            "initial_question_revisited": false,
+            "question_changed": true,
+            "completed_lessons": null,
+            "current_lesson_index": null,
+            "ui_snapshot": "- button:\n  - img\n- progressbar\n- img\n- text: \"5\"\n- img\n- text: New word\n- heading \"Which one of these is “house”?\" [level=1]\n- radiogroup \"choice\":\n  - radio \"gato 1\":\n    - text: gato 1\n    - img\n    - img\n  - radio \"casa 2\":\n    - text: casa 2\n    - img\n    - img\n  - radio \"perro 3\":\n    - text: perro 3\n    - img\n    - img\n- button \"Skip\"\n- button \"Check\" [disabled]\n- img\n- text: Wait, don’t go! You’ll lose your progress if you quit now\n- button \"Keep learning\"\n- button \"End session\""
+          }
+        },
+        {
+          "step": 4,
+          "state": {
+            "screen": "course_path",
+            "authenticated": false,
+            "question_kind": null,
+            "lesson_index": 1,
+            "answer_selected": false,
+            "check_enabled": false,
+            "options_locked": false,
+            "feedback": "none",
+            "continue_enabled": false,
+            "hearts": null,
+            "selected_word_count": 0,
+            "matching_complete": false,
+            "reviewing": false,
+            "initial_question_revisited": false,
+            "question_changed": false,
+            "completed_lessons": 1,
+            "current_lesson_index": 1,
+            "ui_snapshot": "- link:\n  - /url: /learn\n  - img\n- link \"Learn\":\n  - /url: /learn\n  - img\n  - text: Learn\n- link \"Leaderboards\":\n  - /url: /leaderboard\n  - img\n  - text: Leaderboards\n- link \"Quests\":\n  - /url: /quests\n  - img\n  - text: Quests\n- link \"Shop\":\n  - /url: /shop\n  - img\n  - text: Shop\n- link \"Profile\":\n  - /url: /learn?sign-up\n  - img\n  - text: Profile\n- button \"More\":\n  - img\n  - text: More\n- img\n- button \"1\":\n  - img\n  - text: \"1\"\n- button \"1\":\n  - img\n  - text: \"1\"\n- button \"505\":\n  - img\n  - text: \"505\"\n- button \"5\":\n  - img\n  - text: \"5\"\n- heading \"Unlock Leaderboards!\" [level=2]\n- img\n- text: Complete 2 more lessons to start competing\n- heading \"Daily Quests\" [level=2]\n- link \"View all\":\n  - /url: /quests\n- img\n- text: Earn 10 XP\n- progressbar: 10 / 10 10 / 10\n- img\n- heading \"Create a profile to save your progress!\" [level=2]\n- button \"Create a profile\"\n- button \"Sign in\"\n- list:\n  - listitem:\n    - link \"About\":\n      - /url: https://about.duolingo.com\n  - listitem:\n    - link \"Blog\":\n      - /url: https://blog.duolingo.com\n  - listitem:\n    - link \"Store\":\n      - /url: https://store.duolingo.com/\n  - listitem:\n    - link \"efficacy\":\n      - /url: /efficacy\n  - listitem:\n    - link \"Careers\":\n      - /url: https://careers.duolingo.com\n  - listitem:\n    - link \"INVESTORS\":\n      - /url: https://investors.duolingo.com\n  - listitem:\n    - link \"Terms\":\n      - /url: /terms\n  - listitem:\n    - link \"Privacy\":\n      - /url: /privacy\n- link \"SECTION 1, UNIT 1\":\n  - /url: /sections\n  - img\n  - heading \"SECTION 1, UNIT 1\" [level=1]\n- text: Order at a café\n- link \"Opens Guidebook for this unit\":\n  - /url: /guidebook/es/1\n  - img \"Guidebook\"\n  - text: Guidebook\n- img\n- button \"Lesson 2 of 3\":\n  - img\n  - button \"Lesson 2 of 3\"\n- button \"Lesson\":\n  - button \"Lesson\"\n- button \"Lesson\":\n  - button \"Lesson\"\n- button \"Chest\" [disabled]:\n  - img\n- button \"Practice\":\n  - button \"Practice\"\n- button \"Unit Review\":\n  - button \"Unit Review\"\n- separator\n- heading \"Greet people and say goodbye\" [level=2]\n- separator\n- link \"Jump to Unit 2\":\n  - /url: /lesson/unit/2/test\n- button \"Lesson\":\n  - button \"Lesson\"\n- button \"Chest\" [disabled]:\n  - img\n- button \"Radio\":\n  - button \"Radio\"\n- button \"Practice\":\n  - button \"Practice\"\n- button \"Unit Review\":\n  - button \"Unit Review\"\n- paragraph: Up next\n- heading \"Section 2\" [level=2]\n- paragraph: Learn words, phrases, and grammar concepts for basic interactions\n- button \"Jump here?\""
+          }
+        },
+        {
+          "step": 5,
+          "state": {
+            "screen": "question",
+            "authenticated": false,
+            "question_kind": "choice",
+            "lesson_index": 1,
+            "answer_selected": false,
+            "check_enabled": false,
+            "options_locked": false,
+            "feedback": "none",
+            "continue_enabled": false,
+            "hearts": 5,
+            "selected_word_count": 0,
+            "matching_complete": false,
+            "reviewing": false,
+            "initial_question_revisited": true,
+            "question_changed": false,
+            "completed_lessons": null,
+            "current_lesson_index": null,
+            "ui_snapshot": "- button:\n  - img\n- progressbar:\n  - img\n- img\n- text: \"5\"\n- img\n- text: New word\n- heading \"Which one of these is “book”?\" [level=1]\n- radiogroup \"choice\":\n  - radio \"mamá 1\":\n    - text: mamá 1\n    - img\n    - img\n  - radio \"libro 2\":\n    - text: libro 2\n    - img\n    - img\n  - radio \"perro 3\":\n    - text: perro 3\n    - img\n    - img\n- button \"Skip\"\n- button \"Check\" [disabled]"
+          }
+        }
+      ]
+    }
+  ],
+  "lifecycle": [
+    {
+      "operation": "start",
+      "receipt": {
+        "command": [
+          "node",
+          "projects/duolingo-web/original-adapter-v2.mjs"
+        ],
+        "source_digest": "9f49c8840687023ff4fd3f9a9ce7826ded607932f5dbcba060a427a686ba7a5b",
+        "integrity": "verified",
+        "evaluator_digest": "3f08e202ccdb09ef6a75bef5960f0a3817b8cb11574bd24598b3cc859b40b9e3",
+        "exit_code": 0,
+        "status": "pass",
+        "output": "APP_REBUILD_RESULT {\"operation\":\"start\",\"state\":{\"screen\":\"course_entry\",\"authenticated\":false},\"reset_scope\":\"Fresh ephemeral browser context; no remote backend reset\"}\n",
+        "output_bytes": 170,
+        "output_truncated": false,
+        "output_sha256": "eb0ff6602add29c4fa797232857c4336c57a939b5354c4915cfa284d83c61a67",
+        "wall_seconds": 3.238622
+      }
+    },
+    {
+      "operation": "reset",
+      "receipt": {
+        "command": [
+          "node",
+          "projects/duolingo-web/original-adapter-v2.mjs"
+        ],
+        "source_digest": "9f49c8840687023ff4fd3f9a9ce7826ded607932f5dbcba060a427a686ba7a5b",
+        "integrity": "verified",
+        "evaluator_digest": "3f08e202ccdb09ef6a75bef5960f0a3817b8cb11574bd24598b3cc859b40b9e3",
+        "exit_code": 0,
+        "status": "pass",
+        "output": "APP_REBUILD_RESULT {\"operation\":\"reset\",\"state\":{\"screen\":\"course_entry\",\"authenticated\":false},\"reset_scope\":\"Fresh ephemeral browser context; no remote backend reset\"}\n",
+        "output_bytes": 170,
+        "output_truncated": false,
+        "output_sha256": "519aedb8ea1d80c755186f2dde6867a0dffdd38209af5e77b52c7a2fdd625e81",
+        "wall_seconds": 3.192705
+      }
+    },
+    {
+      "operation": "reset",
+      "receipt": {
+        "command": [
+          "node",
+          "projects/duolingo-web/original-adapter-v2.mjs"
+        ],
+        "source_digest": "9f49c8840687023ff4fd3f9a9ce7826ded607932f5dbcba060a427a686ba7a5b",
+        "integrity": "verified",
+        "evaluator_digest": "3f08e202ccdb09ef6a75bef5960f0a3817b8cb11574bd24598b3cc859b40b9e3",
+        "exit_code": 0,
+        "status": "pass",
+        "output": "APP_REBUILD_RESULT {\"operation\":\"reset\",\"state\":{\"screen\":\"course_entry\",\"authenticated\":false},\"reset_scope\":\"Fresh ephemeral browser context; no remote backend reset\"}\n",
+        "output_bytes": 170,
+        "output_truncated": false,
+        "output_sha256": "519aedb8ea1d80c755186f2dde6867a0dffdd38209af5e77b52c7a2fdd625e81",
+        "wall_seconds": 3.17721
+      }
+    },
+    {
+      "operation": "reset",
+      "receipt": {
+        "command": [
+          "node",
+          "projects/duolingo-web/original-adapter-v2.mjs"
+        ],
+        "source_digest": "9f49c8840687023ff4fd3f9a9ce7826ded607932f5dbcba060a427a686ba7a5b",
+        "integrity": "verified",
+        "evaluator_digest": "3f08e202ccdb09ef6a75bef5960f0a3817b8cb11574bd24598b3cc859b40b9e3",
+        "exit_code": 0,
+        "status": "pass",
+        "output": "APP_REBUILD_RESULT {\"operation\":\"reset\",\"state\":{\"screen\":\"course_entry\",\"authenticated\":false},\"reset_scope\":\"Fresh ephemeral browser context; no remote backend reset\"}\n",
+        "output_bytes": 170,
+        "output_truncated": false,
+        "output_sha256": "519aedb8ea1d80c755186f2dde6867a0dffdd38209af5e77b52c7a2fdd625e81",
+        "wall_seconds": 3.756412
+      }
+    },
+    {
+      "operation": "reset",
+      "receipt": {
+        "command": [
+          "node",
+          "projects/duolingo-web/original-adapter-v2.mjs"
+        ],
+        "source_digest": "9f49c8840687023ff4fd3f9a9ce7826ded607932f5dbcba060a427a686ba7a5b",
+        "integrity": "verified",
+        "evaluator_digest": "3f08e202ccdb09ef6a75bef5960f0a3817b8cb11574bd24598b3cc859b40b9e3",
+        "exit_code": 0,
+        "status": "pass",
+        "output": "APP_REBUILD_RESULT {\"operation\":\"reset\",\"state\":{\"screen\":\"course_entry\",\"authenticated\":false},\"reset_scope\":\"Fresh ephemeral browser context; no remote backend reset\"}\n",
+        "output_bytes": 170,
+        "output_truncated": false,
+        "output_sha256": "519aedb8ea1d80c755186f2dde6867a0dffdd38209af5e77b52c7a2fdd625e81",
+        "wall_seconds": 3.546458
+      }
+    },
+    {
+      "operation": "reset",
+      "receipt": {
+        "command": [
+          "node",
+          "projects/duolingo-web/original-adapter-v2.mjs"
+        ],
+        "source_digest": "9f49c8840687023ff4fd3f9a9ce7826ded607932f5dbcba060a427a686ba7a5b",
+        "integrity": "verified",
+        "evaluator_digest": "3f08e202ccdb09ef6a75bef5960f0a3817b8cb11574bd24598b3cc859b40b9e3",
+        "exit_code": 0,
+        "status": "pass",
+        "output": "APP_REBUILD_RESULT {\"operation\":\"reset\",\"state\":{\"screen\":\"course_entry\",\"authenticated\":false},\"reset_scope\":\"Fresh ephemeral browser context; no remote backend reset\"}\n",
+        "output_bytes": 170,
+        "output_truncated": false,
+        "output_sha256": "519aedb8ea1d80c755186f2dde6867a0dffdd38209af5e77b52c7a2fdd625e81",
+        "wall_seconds": 4.587219
+      }
+    },
+    {
+      "operation": "reset",
+      "receipt": {
+        "command": [
+          "node",
+          "projects/duolingo-web/original-adapter-v2.mjs"
+        ],
+        "source_digest": "9f49c8840687023ff4fd3f9a9ce7826ded607932f5dbcba060a427a686ba7a5b",
+        "integrity": "verified",
+        "evaluator_digest": "3f08e202ccdb09ef6a75bef5960f0a3817b8cb11574bd24598b3cc859b40b9e3",
+        "exit_code": 0,
+        "status": "pass",
+        "output": "APP_REBUILD_RESULT {\"operation\":\"reset\",\"state\":{\"screen\":\"course_entry\",\"authenticated\":false},\"reset_scope\":\"Fresh ephemeral browser context; no remote backend reset\"}\n",
+        "output_bytes": 170,
+        "output_truncated": false,
+        "output_sha256": "519aedb8ea1d80c755186f2dde6867a0dffdd38209af5e77b52c7a2fdd625e81",
+        "wall_seconds": 3.601736
+      }
+    },
+    {
+      "operation": "reset",
+      "receipt": {
+        "command": [
+          "node",
+          "projects/duolingo-web/original-adapter-v2.mjs"
+        ],
+        "source_digest": "9f49c8840687023ff4fd3f9a9ce7826ded607932f5dbcba060a427a686ba7a5b",
+        "integrity": "verified",
+        "evaluator_digest": "3f08e202ccdb09ef6a75bef5960f0a3817b8cb11574bd24598b3cc859b40b9e3",
+        "exit_code": 0,
+        "status": "pass",
+        "output": "APP_REBUILD_RESULT {\"operation\":\"reset\",\"state\":{\"screen\":\"course_entry\",\"authenticated\":false},\"reset_scope\":\"Fresh ephemeral browser context; no remote backend reset\"}\n",
+        "output_bytes": 170,
+        "output_truncated": false,
+        "output_sha256": "519aedb8ea1d80c755186f2dde6867a0dffdd38209af5e77b52c7a2fdd625e81",
+        "wall_seconds": 3.729994
+      }
+    },
+    {
+      "operation": "reset",
+      "receipt": {
+        "command": [
+          "node",
+          "projects/duolingo-web/original-adapter-v2.mjs"
+        ],
+        "source_digest": "9f49c8840687023ff4fd3f9a9ce7826ded607932f5dbcba060a427a686ba7a5b",
+        "integrity": "verified",
+        "evaluator_digest": "3f08e202ccdb09ef6a75bef5960f0a3817b8cb11574bd24598b3cc859b40b9e3",
+        "exit_code": 0,
+        "status": "pass",
+        "output": "APP_REBUILD_RESULT {\"operation\":\"reset\",\"state\":{\"screen\":\"course_entry\",\"authenticated\":false},\"reset_scope\":\"Fresh ephemeral browser context; no remote backend reset\"}\n",
+        "output_bytes": 170,
+        "output_truncated": false,
+        "output_sha256": "519aedb8ea1d80c755186f2dde6867a0dffdd38209af5e77b52c7a2fdd625e81",
+        "wall_seconds": 3.257692
+      }
+    },
+    {
+      "operation": "reset",
+      "receipt": {
+        "command": [
+          "node",
+          "projects/duolingo-web/original-adapter-v2.mjs"
+        ],
+        "source_digest": "9f49c8840687023ff4fd3f9a9ce7826ded607932f5dbcba060a427a686ba7a5b",
+        "integrity": "verified",
+        "evaluator_digest": "3f08e202ccdb09ef6a75bef5960f0a3817b8cb11574bd24598b3cc859b40b9e3",
+        "exit_code": 0,
+        "status": "pass",
+        "output": "APP_REBUILD_RESULT {\"operation\":\"reset\",\"state\":{\"screen\":\"course_entry\",\"authenticated\":false},\"reset_scope\":\"Fresh ephemeral browser context; no remote backend reset\"}\n",
+        "output_bytes": 170,
+        "output_truncated": false,
+        "output_sha256": "519aedb8ea1d80c755186f2dde6867a0dffdd38209af5e77b52c7a2fdd625e81",
+        "wall_seconds": 3.243072
+      }
+    },
+    {
+      "operation": "reset",
+      "receipt": {
+        "command": [
+          "node",
+          "projects/duolingo-web/original-adapter-v2.mjs"
+        ],
+        "source_digest": "9f49c8840687023ff4fd3f9a9ce7826ded607932f5dbcba060a427a686ba7a5b",
+        "integrity": "verified",
+        "evaluator_digest": "3f08e202ccdb09ef6a75bef5960f0a3817b8cb11574bd24598b3cc859b40b9e3",
+        "exit_code": 0,
+        "status": "pass",
+        "output": "APP_REBUILD_RESULT {\"operation\":\"reset\",\"state\":{\"screen\":\"course_entry\",\"authenticated\":false},\"reset_scope\":\"Fresh ephemeral browser context; no remote backend reset\"}\n",
+        "output_bytes": 170,
+        "output_truncated": false,
+        "output_sha256": "519aedb8ea1d80c755186f2dde6867a0dffdd38209af5e77b52c7a2fdd625e81",
+        "wall_seconds": 3.354499
+      }
+    },
+    {
+      "operation": "reset",
+      "receipt": {
+        "command": [
+          "node",
+          "projects/duolingo-web/original-adapter-v2.mjs"
+        ],
+        "source_digest": "9f49c8840687023ff4fd3f9a9ce7826ded607932f5dbcba060a427a686ba7a5b",
+        "integrity": "verified",
+        "evaluator_digest": "3f08e202ccdb09ef6a75bef5960f0a3817b8cb11574bd24598b3cc859b40b9e3",
+        "exit_code": 0,
+        "status": "pass",
+        "output": "APP_REBUILD_RESULT {\"operation\":\"reset\",\"state\":{\"screen\":\"course_entry\",\"authenticated\":false},\"reset_scope\":\"Fresh ephemeral browser context; no remote backend reset\"}\n",
+        "output_bytes": 170,
+        "output_truncated": false,
+        "output_sha256": "519aedb8ea1d80c755186f2dde6867a0dffdd38209af5e77b52c7a2fdd625e81",
+        "wall_seconds": 3.691387
+      }
+    },
+    {
+      "operation": "reset",
+      "receipt": {
+        "command": [
+          "node",
+          "projects/duolingo-web/original-adapter-v2.mjs"
+        ],
+        "source_digest": "9f49c8840687023ff4fd3f9a9ce7826ded607932f5dbcba060a427a686ba7a5b",
+        "integrity": "verified",
+        "evaluator_digest": "3f08e202ccdb09ef6a75bef5960f0a3817b8cb11574bd24598b3cc859b40b9e3",
+        "exit_code": 0,
+        "status": "pass",
+        "output": "APP_REBUILD_RESULT {\"operation\":\"reset\",\"state\":{\"screen\":\"course_entry\",\"authenticated\":false},\"reset_scope\":\"Fresh ephemeral browser context; no remote backend reset\"}\n",
+        "output_bytes": 170,
+        "output_truncated": false,
+        "output_sha256": "519aedb8ea1d80c755186f2dde6867a0dffdd38209af5e77b52c7a2fdd625e81",
+        "wall_seconds": 3.307656
+      }
+    },
+    {
+      "operation": "reset",
+      "receipt": {
+        "command": [
+          "node",
+          "projects/duolingo-web/original-adapter-v2.mjs"
+        ],
+        "source_digest": "9f49c8840687023ff4fd3f9a9ce7826ded607932f5dbcba060a427a686ba7a5b",
+        "integrity": "verified",
+        "evaluator_digest": "3f08e202ccdb09ef6a75bef5960f0a3817b8cb11574bd24598b3cc859b40b9e3",
+        "exit_code": 0,
+        "status": "pass",
+        "output": "APP_REBUILD_RESULT {\"operation\":\"reset\",\"state\":{\"screen\":\"course_entry\",\"authenticated\":false},\"reset_scope\":\"Fresh ephemeral browser context; no remote backend reset\"}\n",
+        "output_bytes": 170,
+        "output_truncated": false,
+        "output_sha256": "519aedb8ea1d80c755186f2dde6867a0dffdd38209af5e77b52c7a2fdd625e81",
+        "wall_seconds": 4.067436
+      }
+    },
+    {
+      "operation": "stop",
+      "receipt": {
+        "command": [
+          "node",
+          "projects/duolingo-web/original-adapter-v2.mjs"
+        ],
+        "source_digest": "9f49c8840687023ff4fd3f9a9ce7826ded607932f5dbcba060a427a686ba7a5b",
+        "integrity": "verified",
+        "evaluator_digest": "3f08e202ccdb09ef6a75bef5960f0a3817b8cb11574bd24598b3cc859b40b9e3",
+        "exit_code": 0,
+        "status": "pass",
+        "output": "APP_REBUILD_RESULT {\"operation\":\"stop\",\"resources\":[]}\n",
+        "output_bytes": 55,
+        "output_truncated": false,
+        "output_sha256": "8d202b624e2db652713bed809eefa3302caaf85dd5727ef82ab5ba5e25784b25",
+        "wall_seconds": 0.242378
+      }
+    }
+  ],
+  "created_at": 1791573148.644903,
+  "integrity": "verified",
+  "status": "fail",
+  "counts": {
+    "unknown": 0,
+    "pass": 11,
+    "fail": 0,
+    "invalid": 0,
+    "unavailable": 1,
+    "timeout": 0
+  }
+}
