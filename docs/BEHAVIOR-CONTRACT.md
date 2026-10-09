@@ -74,4 +74,4 @@ python3 -m workflows.rebuild.cli coverage --workspace <项目> --spec spec.json 
 
 报告分离 discovery 和执行 status：unknown、observed、decision 表示知识来源；not_run、pass、fail、invalid、unavailable、timeout 表示执行状态。保存规格/配置/输入/源码摘要、动作观察、差异、生命周期、命令输出和耗时。源码或规格变化后，旧回执仍是历史证据，但不能作为当前通过状态。
 
-本层尚不提供自动业务发现或原生 UI 驱动。阶段控制与显式任务接续已接入，完整实际模型自动续跑仍待验证。当前测试在临时目录运行真实子进程和明确的状态机替身，证明协议与断言机制，不证明 Duolingo 覆盖或模型收益。
+本层尚不提供自动业务发现或原生 UI 驱动。阶段控制与显式任务接续已接入，原生单任务模型 Stop 续跑已验证；完整多阶段模型重建仍待验证。当前测试在临时目录运行真实子进程和明确的状态机替身，证明协议与断言机制，不证明 Duolingo 覆盖或模型收益。
