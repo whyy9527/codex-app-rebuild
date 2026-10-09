@@ -1,0 +1,7 @@
+{
+  "date": "2026-10-10",
+  "scope": "existing isolated English-to-Spanish guest, second lesson, two hearts",
+  "content": [
+    "### Result\n{\"url\":\"https://www.duolingo.com/lesson\",\"body\":\"2\\nNEW WORD\\nWhich one of these is “book”?\\nagua\\n1\\nlibro\\n2\\nperro\\n3\\nSKIP\\nCHECK\"}\n### Ran Playwright code\n```js\nawait (async (page) => { await page.getByRole('link', {name:'Start +10 XP', exact:true}).click(); await page.getByRole('button',{name:'Check',exact:true}).waitFor({state:'visible',timeout:30000}); return {url:page.url(), body:await page.locator('body').innerText()}; })(page);\n```\n### Page\n- Page URL: https://www.duolingo.com/lesson\n- Page Title: Duolingo - Learn Spanish with lessons that work\n- Console: 171 errors, 0 warnings"
+  ]
+}

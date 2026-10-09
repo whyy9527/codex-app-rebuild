@@ -1,0 +1,7 @@
+{
+  "date": "2026-10-10",
+  "scope": "existing isolated English-to-Spanish guest, second lesson, two hearts",
+  "content": [
+    "### Result\n{\"before\":{\"checkEnabled\":false,\"question\":\"Which one of these is “book”?\"},\"after\":\"2\\nNEW WORD\\nWhich one of these is “book”?\\nagua\\n1\\nlibro\\n2\\nperro\\n3\\nCorrect!\\nTOO EASY\\nTOO DIFFICULT\\nREPORT\\nCONTINUE\",\"radios\":[{\"label\":\"agua1\",\"disabled\":\"true\",\"checked\":\"false\"},{\"label\":\"libro2\",\"disabled\":\"true\",\"checked\":\"true\"},{\"label\":\"perro3\",\"disabled\":\"true\",\"checked\":\"false\"}]}\n### Ran Playwright code\n```js\nawait (async (page) => { const before={checkEnabled:await page.getByRole('button',{name:'Check',exact:true}).isEnabled(),question:await page.getByRole('heading',{level:1}).innerText()}; await page.getByRole('radio',{name:'libro 2',exact:true}).click(); await page.getByRole('button',{name:'Check',exact:true}).click(); await page.getByRole('button',{name:'Continue',exact:true}).waitFor({state:'visible',timeout:10000}); return {before,after:await page.locator('body').innerText(),radios:await page.getByRole('radio').evaluateAll(es=>es.map(e=>({label:e.textContent,disabled:e.getAttribute('aria-disabled'),checked:e.getAttribute('aria-checked')})))}; })(page);\n```\n### Page\n- Page URL: https://www.duolingo.com/lesson\n- Page Title: Duolingo - Learn Spanish with lessons that work\n- Console: 172 errors, 0 warnings\n### Events\n- New console entries: <browser-console-log>#L185"
+  ]
+}

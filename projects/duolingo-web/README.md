@@ -72,4 +72,4 @@ v2 的 candidate 命令 `build-native.py` 先构建当前源码并记录源码/�
 
 [学习批次记录](evidence/V2-PREPARATION.md)保留驱动失败、冻结和实现顺序。旧候选不能读取新题库，baseline 12项 unavailable；首次 Swift 构建缺少 import，随后构建通过。两者都不是产品业务 fail→pass。新实现首次完整原生12项通过，不能据此声称反馈循环或模型的收益。
 
-六个实际界面及方法见 [界面检查](evidence/V2-DELIVERY.md)。检查涉及课程路径、选择、配对、解锁、拼句及反馈；截图不证明学习效果或模型能力。另发现候选端 `{}` 进度误接受边界，单独修复，不改共享 Duolingo 断言。
+六个实际界面及方法见 [界面检查](evidence/V2-DELIVERY.md)。检查涉及课程路径、选择、配对、解锁、拼句及反馈；截图不证明学习效果或模型能力。候选端 `{}` / null 进度误接受已单独复现并修复，冻结的五项存储启动检查通过；共享 v2 12项与 v1.2 5项回归通过（candidate-v2-02.json / candidate-v1.2-02.json）。见 [存储修复](evidence/PROGRESS-REPAIR.md)，未修改共享 Duolingo 断言。

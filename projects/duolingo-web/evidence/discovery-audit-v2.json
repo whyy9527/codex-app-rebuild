@@ -1,0 +1,20 @@
+{
+  "parent_batch_digest": "8c2844d853bd55f57bef1a0dbb0deecab3bbcc063ea79cf9d0de6fa8d7e6df31",
+  "checks": {
+    "normal": "projects/duolingo-web/evidence/audit-normal.md",
+    "error": "projects/duolingo-web/evidence/audit-error.md",
+    "boundary": "projects/duolingo-web/evidence/audit-boundary.md",
+    "exit": "projects/duolingo-web/evidence/audit-exit.md",
+    "recovery": "projects/duolingo-web/evidence/audit-recovery.md",
+    "state_link": "projects/duolingo-web/evidence/audit-state_link.md"
+  },
+  "scope": "Current evidence audit with live normal/boundary/exit/recovery rechecks. Not a reconstructed historical Pipeline run, not a newly frozen increment.",
+  "previous_independent_gap": "discovery-reselection.json, found after v1.1 candidate pass; v1.2 confirmed5/5 on both sides. Product already supported it: zero repair gain.",
+  "unknowns": [
+    "zero-heart blocking",
+    "wrong matching penalty",
+    "cross-device guest persistence",
+    "account/payment flows"
+  ],
+  "additional_observed_not_in_frozen_v2": "exit cancellation after positive feedback"
+}

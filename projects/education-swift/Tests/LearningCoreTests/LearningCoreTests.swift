@@ -34,11 +34,13 @@ func persistence() throws {
     progress.completedCourses.insert("original-course")
     try store.save(progress)
     try check(try ProgressStore(url: store.url).load() == progress, "Completed progress lost on reopening")
-    try Data("broken".utf8).write(to: store.url)
-    var rejected = false
-    do { _ = try store.load() } catch { rejected = true }
-    try check(rejected, "Corrupt progress was silently accepted")
-    try check(try String(contentsOf: store.url, encoding: .utf8) == "broken", "Corrupt progress was overwritten")
+    for content in ["broken", "{}", "{\"completedCourses\":null}", "{\"completedCourses\":[],\"hearts\":-1}"] {
+        try Data(content.utf8).write(to: store.url)
+        var rejected = false
+        do { _ = try store.load() } catch { rejected = true }
+        try check(rejected, "Corrupt progress was silently accepted: " + content)
+        try check(try String(contentsOf: store.url, encoding: .utf8) == content, "Corrupt progress was overwritten")
+    }
     print("PASS persistence and corrupt-data preservation")
 }
 func wordTilesAndReview() throws {

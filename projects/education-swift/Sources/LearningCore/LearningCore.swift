@@ -193,9 +193,12 @@ public struct LearningProgress: Codable, Equatable, Sendable {
     enum CodingKeys: String, CodingKey { case completedCourses, completedLessons, hearts }
     public init(from decoder: Decoder) throws {
         let c = try decoder.container(keyedBy: CodingKeys.self)
-        completedCourses = try c.decodeIfPresent(Set<String>.self, forKey: .completedCourses) ?? []
-        completedLessons = try c.decodeIfPresent([String: Set<String>].self, forKey: .completedLessons) ?? [:]
-        hearts = try c.decodeIfPresent(Int.self, forKey: .hearts) ?? 5
+        guard c.contains(.completedCourses) || c.contains(.completedLessons) else {
+            throw DecodingError.dataCorruptedError(forKey: .completedCourses, in: c, debugDescription: "Stored progress must contain a completion collection")
+        }
+        completedCourses = c.contains(.completedCourses) ? try c.decode(Set<String>.self, forKey: .completedCourses) : []
+        completedLessons = c.contains(.completedLessons) ? try c.decode([String: Set<String>].self, forKey: .completedLessons) : [:]
+        hearts = c.contains(.hearts) ? try c.decode(Int.self, forKey: .hearts) : 5
         guard hearts >= 0 else { throw DecodingError.dataCorruptedError(forKey: .hearts, in: c, debugDescription: "Hearts cannot be negative") }
     }
     public func isCompleted(_ course: Course, index: Int) -> Bool {
