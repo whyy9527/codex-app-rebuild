@@ -1,0 +1,129 @@
+{
+  "arm": "full",
+  "status": "visible_acceptance_complete; private scoring pending",
+  "task_id": "fb62431ab04b490dbccbcc0467bb5962",
+  "attempts": 3,
+  "original_deadline": 1791586780.274761,
+  "session1_counts": [
+    {
+      "unknown": 0,
+      "pass": 0,
+      "fail": 0,
+      "invalid": 0,
+      "unavailable": 4,
+      "timeout": 0
+    },
+    {
+      "unknown": 0,
+      "pass": 4,
+      "fail": 0,
+      "invalid": 0,
+      "unavailable": 0,
+      "timeout": 0
+    }
+  ],
+  "expanded_visible_counts": {
+    "unknown": 0,
+    "pass": 12,
+    "fail": 0,
+    "invalid": 0,
+    "unavailable": 0,
+    "timeout": 0
+  },
+  "sessions": [
+    {
+      "arm": "full",
+      "protocol_pre_data_commit": "ba03ce5c2cc06f1c2b9f656037e23289fd1b040e",
+      "native_session": "01a12291-e1d1-7c82-9f9b-f2235d2a3069",
+      "cli_version": "0.162.0-alpha.17.2",
+      "native_turn_contexts": [
+        {
+          "turn_id": "01a12291-e28d-7e63-b877-9f14a60178c1",
+          "model": "gpt-6.1-sol",
+          "effort": "medium",
+          "approval_policy": "on-request"
+        }
+      ],
+      "launch": {
+        "model": "gpt-6.1-sol",
+        "effort": "medium",
+        "sandbox": "workspace-write",
+        "approval": "on-request",
+        "daemon": false
+      },
+      "interventions": {
+        "owned_folder_trust": 1,
+        "owned_three_hook_review_batch": 1,
+        "native_hook_review_navigation": 3,
+        "parent_product_edits": 0,
+        "parent_strategy_prompts": 0,
+        "session_scoped_fixed_verifier_approval": 1
+      },
+      "setup_note": "Native review screen allowed initial prompt execution before owned SessionStart trust; model used its CODEX_THREAD_ID environment for task identity. Parent independently matched task identity to native host. Stop definitions trusted before verification.",
+      "raw_rollout_sha256": "a43c1eb617466e45b3728a6a4c994b9dde72603e9e60bc91625d9c2ae25ed1da",
+      "usage_reported_by_native_host": {
+        "input_tokens": 703882,
+        "cached_input_tokens": 654336,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 6076,
+        "reasoning_output_tokens": 239,
+        "total_tokens": 709958,
+        "derived_uncached_input_tokens": 49546,
+        "derived_uncached_input_plus_output_tokens": 55622
+      }
+    },
+    {
+      "native_session": "01a12296-5ebd-7323-a26d-6a933d551556",
+      "native_turn_contexts": [
+        {
+          "turn_id": "01a12296-5f78-7042-8007-fde734a64a79",
+          "model": "gpt-6.1-sol",
+          "effort": "medium",
+          "approval_policy": "on-request"
+        }
+      ],
+      "same_task": "fb62431ab04b490dbccbcc0467bb5962",
+      "original_deadline_unchanged": 1791586780.274761,
+      "transfer_retained_used_attempts": 2,
+      "current_attempt": 3,
+      "interventions": {
+        "registered_new_session_transfer": 1,
+        "session_scoped_fixed_verifier_approval": 1,
+        "parent_product_edits": 0,
+        "parent_strategy_prompts": 0
+      },
+      "old_session_scope_removed": true,
+      "raw_rollout_sha256": "d08bc7a7c87f1fd0bdcf23b9b0a30a26fa7d0fb9d38d627587712883056cd228",
+      "usage_reported_by_native_host": {
+        "input_tokens": 643085,
+        "cached_input_tokens": 592640,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1261,
+        "reasoning_output_tokens": 168,
+        "total_tokens": 644346,
+        "derived_uncached_input_tokens": 50445,
+        "derived_uncached_input_plus_output_tokens": 51706
+      }
+    }
+  ],
+  "final_stop": {
+    "event": "Stop",
+    "session_id": "01a12296-5ebd-7323-a26d-6a933d551556",
+    "turn_id": "01a12296-5f78-7042-8007-fde734a64a79",
+    "decision": null,
+    "output_fields": [],
+    "time": 1791581756.304951
+  },
+  "stop_continuation_count": 0,
+  "scope_audit": "Tool calls read worker files and edit product Sources plus the requested task-pointer.json; no parent/sibling/main-repository/held-out reads or extra model launches observed. Native CODEX_THREAD_ID read supplies task identity, not model attestation.",
+  "sealed_source_file": "pre-score-seal.json",
+  "private_holdout_not_run": true,
+  "private_final_scores_not_run": true,
+  "cost": null,
+  "limits": [
+    "One arm only; other three remain unexecuted",
+    "Within-turn repair completed without native Stop continuation; this run alone cannot estimate a Stop effect",
+    "First attempt unavailable is not a business assertion failure; intermediate handoff exit1 also does not mean four cases failed"
+  ],
+  "archived_at": 1791581906.7670872
+}
