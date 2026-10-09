@@ -30,4 +30,4 @@ swift run --package-path projects/education-swift LearningCoreChecks
 
 两端比较业务动作和断言，题面、课程长度、选项顺序及视觉素材不同。生命归零暂不阻断学习；错误配对重试不扣生命。这些是原版未观察边界上的显式产品决策。完成课时和生命持久保存，主动退出丢弃未完成尝试，不保存逐题断点。没有登录、支付、排行、语音识别或完整题库。
 
-非法 JSON、空对象、null 完成记录及负生命进度会显示 Course unavailable 并保留原文件；合法旧格式仍可打开。这五个启动界面检查已冻结并实测，见参考案例的 PROGRESS-REPAIR.md，不代表穷尽所有损坏输入。完整证据、六个实际界面与验收命令见参考案例。多阶段模型续跑和业务消融仍待完成。
+非法 JSON、空对象、null 完成记录及负生命进度会显示 Course unavailable 并保留原文件；合法旧格式仍可打开。这五个启动界面检查已冻结并实测，见参考案例的 PROGRESS-REPAIR.md，不代表穷尽所有损坏输入。完整证据、六个实际界面与验收命令见参考案例。多阶段模型续跑已有[一次完整可行性证据](../model-pipeline/README.md)；[四组业务消融](../business-ablation/README.md)仍待完成。

@@ -1,11 +1,13 @@
 # Duolingo 网页参考案例
 
-这是私有 Codex App Rebuild 的第一个真实业务案例。网页只作为行为参考，Swift 教育基座使用原创名称、课程与素材。已交付12条跨端冻结验收与可运行 SwiftUI 两课时教育基座；真实多阶段模型续跑和业务消融仍待完成。
+这是私有 Codex App Rebuild 的第一个真实业务案例。网页只作为行为参考，Swift 教育基座使用原创名称、课程与素材。已交付12条跨端冻结验收与可运行 SwiftUI 两课时教育基座；真实多阶段模型续跑已有[一次完整可行性证据](../model-pipeline/README.md)；[四组业务消融](../business-ablation/README.md)仍待完成。
 
-## 现有产物
+当前复现入口是文末的冻结 v2 命令。以下草案和首批运行记录保留探索历史；它们的范围与限制不代表当前 v2 尚未实现这些功能。回执证明记录时的源码与输入，后续代码变化需要重新验收。
+
+## 早期探索产物
 
 - [实际观察与范围](evidence/2026-10-10-observations.md)：正常答题、错误反馈、配对、错题重练、退出与刷新。
-- [观察计划](OBSERVATION-PLAN.md)：仍未覆盖的拼句和其他边界。
+- [观察计划](OBSERVATION-PLAN.md)：首批探索计划与当时未知的拼句/边界；当前确认范围见文末 v2。
 - `spec.draft.json`：单一业务动作与预期草案；未冻结，不能视为已确认参考验收。
 - `fixture.json`：公共初始状态与动作语义；不能注入 Duolingo 后端。
 - `original-adapter.mjs`：真实 Playwright UI 驱动，stdin 接收操作/动作，stdout 输出 `APP_REBUILD_RESULT`。不接收预期值，不自报通过。
@@ -13,7 +15,7 @@
 - [四条原版可行性结果](evidence/REFERENCE-PREFLIGHT.md)：均通过，未作为冻结回执。
 - [本机 Swift 环境](ENVIRONMENT.md)：编译能力与原生 UI 验收限制。
 
-## 安装与运行
+## 安装与重放早期探索
 
 需要 Python 3.11+、Node.js 20+、可访问 Duolingo 的网络。以下命令从仓库根执行：
 
@@ -31,11 +33,11 @@ python3 projects/duolingo-web/probe-reference.py --scenario choice-wrong --out p
 
 适配器依据当前可操作选项所属题目容器定位，不读取全页最后一个标题。继续后等待旧引导组选项消失，避免动画残留。未知题型或词义映射停止并保存当前 AX 证据，不猜答案。首次缺少 Playwright 浏览器的失败保留在 `reference-probe-01.jsonl`；恢复安装后的初态探针在 `reference-probe-02.jsonl`。
 
-## 推进门槛
+## 早期推进门槛与范围
 
 先完成原版可重复执行验证与原生动作适配设计，建立完整 reference/candidate 配置，使用主验收入口重新运行并冻结。可行性记录不能直接交给冻结步骤。已观察但尚未转为场景的行为仍属待验收；拼句保持 unknown。后续独立遗漏发现必须寻找初始观察以外的缺口，不能把本轮已看到的错题重练事后当作补充探索收益。
 
-首批四个场景已在网页和真实原生 UI 两侧通过，只覆盖选择、反馈和退出取消。完整 Goal 还要求退出确认、未完成进度丢弃、配对、错题重练、结算、恢复、课程进度、拼句、Swift 原生 UI 和真实业务消融；这些没有被缩减或宣称完成。
+首批四个场景只覆盖选择、反馈和退出取消。当时后续要求的退出确认、进度丢弃、配对、错题重练、结算、恢复和拼句，现已进入文末 v2 的跨端验收。真实业务消融及最终整体审计仍待完成；首批通过没有被当成完整 Goal 完成。
 
 ## 正式首批跨端验收
 
@@ -48,13 +50,13 @@ swift build --package-path projects/education-swift --product LingoSeed
 python3 -m workflows.rebuild.cli verify --workspace . --spec projects/duolingo-web/spec-v1.1.json --targets projects/duolingo-web/targets-v1.1.json --target candidate --frozen projects/duolingo-web/evidence/batch-v1.1.json --timeout 60 --max-seconds 600 --out artifacts/duolingo/candidate-new-01.json
 ```
 
-当前原生驱动只启动已构建的二进制，调用者必须先构建当前源码；下一批完整修复循环还需把构建纳入验收命令，防止使用旧二进制。驱动通过自己启动的子进程 PID 查找 AXWindows，点击实际控件并返回可见属性，不访问其他应用。需要当前进程拥有辅助功能权限。
+v1.1 原生驱动只启动已构建的二进制，调用者必须先构建当前源码；该阶段未纳入构建的限制，已由 v2 构建包装器补齐。驱动通过自己启动的子进程 PID 查找 AXWindows，点击实际控件并返回可见属性，不访问其他应用。需要当前进程拥有辅助功能权限。
 
 正式记录见 [原生迭代](evidence/NATIVE-V1-ITERATION.md)：v1 原生因快照超限而整体失败，v1.1 保留四项断言、重新确认原版与父批次后，两端均 4/4 通过；word-tiles 在这两批仍为 unknown。完整协议、冻结及参考/候选回执均在 evidence 中，覆盖报告为 `coverage-v1.1.json`。Swift 构建和启动见 [客户端说明](../education-swift/README.md)。
 
 ## 补充探索增量 v1.2
 
-首批通过后，实际探索发现初始场景未覆盖“提交前从错误选项改选正确选项”。真实证据、原版和原生 UI 的五项通过回执、父批次关系及覆盖报告见 [增量准备记录](evidence/V2-PREPARATION.md)。`spec-v1.2.json` / `targets-v1.2.json` / `evidence/batch-v1.2.json` 是目前最新已冻结批次；word-tiles 在该批仍为 unknown。客户端已有改选能力，这次没有产品代码修改，不能声称修复收益。
+首批通过后，实际探索发现初始场景未覆盖“提交前从错误选项改选正确选项”。真实证据、原版和原生 UI 的五项通过回执、父批次关系及覆盖报告见 [增量准备记录](evidence/V2-PREPARATION.md)。`spec-v1.2.json` / `targets-v1.2.json` / `evidence/batch-v1.2.json` 是该阶段的冻结批次；word-tiles 在该批仍为 unknown。客户端已有改选能力，这次没有产品代码修改，不能声称修复收益。
 
 ## 完整学习批次 v2
 
