@@ -1,0 +1,20 @@
+{
+  "attestor": "parent controller; not model self-report",
+  "native_cli_version": "0.162.0-alpha.17.2",
+  "native_session_id": "01a12254-9e0c-7e01-9031-3040c53278e6",
+  "sources": [
+    "parent-observed native TUI version and GPT-6.1-Sol medium indicator",
+    "Codex-generated turn_context in this exact session rollout; native thread metadata"
+  ],
+  "observed_model": "gpt-6.1-sol",
+  "observed_effort": "medium",
+  "observed_approval_policy": "on-request",
+  "observed_sandbox": {
+    "type": "workspace-write",
+    "network_access": false,
+    "exclude_tmpdir_env_var": false,
+    "exclude_slash_tmp": false
+  },
+  "scope": "actual current session only",
+  "instruction": "Parent owns runtime attestation. Do not inspect Codex UI, process lists, other sessions or another workspace to self-attest."
+}

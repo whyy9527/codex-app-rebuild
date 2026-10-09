@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "id": "d006291bacb943b7967b4682d4bf3455",
+  "stage": "implement",
+  "specification": "active-spec.json",
+  "targets": "targets.json",
+  "deadline": 1791582886.332481,
+  "max_steps": 30,
+  "steps": 4,
+  "events": [
+    {
+      "step": 1,
+      "stage": "explore",
+      "at": 1791577486.332916,
+      "status": "pass",
+      "next_stage": "specify",
+      "spec_digest": "fe2622765576ac016e9c534bdb02b313654de840afc9ad43f1f1a99a2e81dc63"
+    },
+    {
+      "step": 2,
+      "stage": "specify",
+      "at": 1791577500.7766242,
+      "status": "pass",
+      "next_stage": "reference",
+      "spec_digest": "fe2622765576ac016e9c534bdb02b313654de840afc9ad43f1f1a99a2e81dc63"
+    },
+    {
+      "step": 3,
+      "stage": "reference",
+      "at": 1791577511.9236622,
+      "receipt": "artifacts/rebuild/d006291bacb943b7967b4682d4bf3455/3-reference.json",
+      "status": "pass",
+      "next_stage": "freeze",
+      "spec_digest": "fe2622765576ac016e9c534bdb02b313654de840afc9ad43f1f1a99a2e81dc63"
+    },
+    {
+      "step": 4,
+      "stage": "freeze",
+      "at": 1791577689.192074,
+      "receipt": "artifacts/rebuild/d006291bacb943b7967b4682d4bf3455/4-batch.json",
+      "status": "pass",
+      "next_stage": "implement",
+      "spec_digest": "fe2622765576ac016e9c534bdb02b313654de840afc9ad43f1f1a99a2e81dc63"
+    }
+  ],
+  "batch": "artifacts/rebuild/d006291bacb943b7967b4682d4bf3455/4-batch.json",
+  "parent": null,
+  "reference_receipt": "artifacts/rebuild/d006291bacb943b7967b4682d4bf3455/3-reference.json",
+  "candidate_receipt": null,
+  "discovery_completed": false,
+  "discovered_ids": [],
+  "last_error": null,
+  "inventory_digest": "fe2622765576ac016e9c534bdb02b313654de840afc9ad43f1f1a99a2e81dc63"
+}

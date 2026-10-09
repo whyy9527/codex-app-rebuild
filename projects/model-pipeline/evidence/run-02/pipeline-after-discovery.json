@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "id": "d006291bacb943b7967b4682d4bf3455",
+  "stage": "reference",
+  "specification": "active-spec.json",
+  "targets": "targets.json",
+  "deadline": 1791582886.332481,
+  "max_steps": 30,
+  "steps": 7,
+  "events": [
+    {
+      "step": 1,
+      "stage": "explore",
+      "at": 1791577486.332916,
+      "status": "pass",
+      "next_stage": "specify",
+      "spec_digest": "fe2622765576ac016e9c534bdb02b313654de840afc9ad43f1f1a99a2e81dc63"
+    },
+    {
+      "step": 2,
+      "stage": "specify",
+      "at": 1791577500.7766242,
+      "status": "pass",
+      "next_stage": "reference",
+      "spec_digest": "fe2622765576ac016e9c534bdb02b313654de840afc9ad43f1f1a99a2e81dc63"
+    },
+    {
+      "step": 3,
+      "stage": "reference",
+      "at": 1791577511.9236622,
+      "receipt": "artifacts/rebuild/d006291bacb943b7967b4682d4bf3455/3-reference.json",
+      "status": "pass",
+      "next_stage": "freeze",
+      "spec_digest": "fe2622765576ac016e9c534bdb02b313654de840afc9ad43f1f1a99a2e81dc63"
+    },
+    {
+      "step": 4,
+      "stage": "freeze",
+      "at": 1791577689.192074,
+      "receipt": "artifacts/rebuild/d006291bacb943b7967b4682d4bf3455/4-batch.json",
+      "status": "pass",
+      "next_stage": "implement",
+      "spec_digest": "fe2622765576ac016e9c534bdb02b313654de840afc9ad43f1f1a99a2e81dc63"
+    },
+    {
+      "step": 5,
+      "stage": "implement",
+      "at": 1791577913.910707,
+      "receipt": "artifacts/rebuild/d006291bacb943b7967b4682d4bf3455/5-candidate.json",
+      "status": "pass",
+      "next_stage": "discover",
+      "spec_digest": "fe2622765576ac016e9c534bdb02b313654de840afc9ad43f1f1a99a2e81dc63"
+    },
+    {
+      "step": 6,
+      "stage": "discover",
+      "at": 1791578034.3165991,
+      "status": "fail",
+      "error": "independent discovery audit is required"
+    },
+    {
+      "step": 7,
+      "stage": "discover",
+      "at": 1791578092.527319,
+      "status": "pass",
+      "next_stage": "reference",
+      "spec_digest": "87828009f713c60e240d94edde6cdf70933d1ca789f0bcb37b19df714fb0fd5a"
+    }
+  ],
+  "batch": "artifacts/rebuild/d006291bacb943b7967b4682d4bf3455/4-batch.json",
+  "parent": "artifacts/rebuild/d006291bacb943b7967b4682d4bf3455/4-batch.json",
+  "reference_receipt": null,
+  "candidate_receipt": null,
+  "discovery_completed": true,
+  "discovered_ids": [
+    "choice-reselection",
+    "matching-complete",
+    "word-tiles",
+    "word-tiles-undo",
+    "word-tiles-wrong",
+    "mistake-review",
+    "completion-reload",
+    "exit-discard"
+  ],
+  "last_error": null,
+  "inventory_digest": "87828009f713c60e240d94edde6cdf70933d1ca789f0bcb37b19df714fb0fd5a",
+  "discovery_paths": [
+    "artifacts/rebuild/d006291bacb943b7967b4682d4bf3455/3-reference.json",
+    "discovery-audit.json",
+    "projects/duolingo-web/evidence/2026-10-10/duo-12-review-cat.yml",
+    "projects/duolingo-web/evidence/2026-10-10/duo-17-path-after-reload.yml",
+    "projects/duolingo-web/evidence/2026-10-10/duo-18-second-exit-confirm.yml",
+    "projects/duolingo-web/evidence/word-tiles-selection.json",
+    "projects/duolingo-web/evidence/word-tiles-undo-wrong.json"
+  ],
+  "discovery_inputs": {
+    "artifacts/rebuild/d006291bacb943b7967b4682d4bf3455/3-reference.json": "29067940113c7fc83a47f6d3eb9fec021d10b2d482c87a461bcab8812ce2d311",
+    "discovery-audit.json": "5be307b4492808057ed650557539e8c104414313ced1f36cd6d248d40c562f23",
+    "projects/duolingo-web/evidence/2026-10-10/duo-12-review-cat.yml": "0fec2d1c2b52b309ab459ba07bb43303e63b17f169798f9668b1ce4129dc9c2f",
+    "projects/duolingo-web/evidence/2026-10-10/duo-17-path-after-reload.yml": "03637a8dce9fc1646a763a6fa2d8ace3a3e1bb8f20645f73afe1f51cc3c18e23",
+    "projects/duolingo-web/evidence/2026-10-10/duo-18-second-exit-confirm.yml": "89f6a65831fc4cf431a26b7ac6e75304c13b78f8a5d4ba36ca9f7186cc3e6ba7",
+    "projects/duolingo-web/evidence/word-tiles-selection.json": "7a099f2409e2d28cea2ecd55849376c5f802f8cbf7ec537d8c53d4920d66df9e",
+    "projects/duolingo-web/evidence/word-tiles-undo-wrong.json": "7631077da4013aef037e87bd445152db97898ae64ce3b62ebcf7a02265a218a8"
+  },
+  "discovery_audit_digest": "5fc5f5ab9dcfd85b69da6b0b53575bbfba3b5579351e4a73c96292b200779b1d"
+}

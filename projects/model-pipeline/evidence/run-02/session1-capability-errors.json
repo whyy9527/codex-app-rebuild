@@ -1,0 +1,13 @@
+{
+  "host_process_inspection": {
+    "command": "ps -o pid,ppid,command -p $$ -p $PPID",
+    "exit_code": 127,
+    "error": "zsh:1: operation not permitted: ps"
+  },
+  "native_ui_inspection": {
+    "call": "cua.getState()",
+    "error": "js execution timed out; kernel reset, rerun your request"
+  },
+  "model_effort_attestation": "unavailable; no model self-report substituted",
+  "pipeline_started": false
+}

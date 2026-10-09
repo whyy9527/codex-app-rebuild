@@ -1,0 +1,45 @@
+{
+  "status": "in_progress",
+  "protocol": "PROTOCOL-v2.md",
+  "toolkit_commit": "335c52ff08dde51b4891cc1e5193e73d452195f9",
+  "product_baseline": "21dbe64bfea93bf7ef2633ae0152021cad24fc81",
+  "session1": "01a12254-9e0c-7e01-9031-3040c53278e6",
+  "session2": "01a1225b-cd26-7f43-91ef-3deb873efd02",
+  "task_id": "05cd476c579a47b7acdf31c046458abe",
+  "run_id": "d006291bacb943b7967b4682d4bf3455",
+  "verified_segments": [
+    "Three native Stop continuations within one actual host turn with new measured checkpoints",
+    "Actual online reference4/4 passed before freezing",
+    "Paused at registered post-freeze boundary",
+    "Genuinely new native model session adopted the same task and removed the old pointer",
+    "Original deadline and max-attempt budget retained",
+    "Reference pass and candidate not_run states recomputed from actual receipts by both model and parent"
+  ],
+  "unfinished": [
+    "Initial candidate verification and subsequent reconstruction/discovery/expanded-reference/repair/review/final Stop",
+    "Full business ablation"
+  ],
+  "interventions_so_far": {
+    "owned_folder_review": 1,
+    "native_hook_review_batch_for_three_owned_definitions": 1,
+    "session1_tool_session_review": 1,
+    "session2_tool_session_review": 1,
+    "parent_attestation_clarification_prompt": 1,
+    "registered_session_handoff_prompt": 1,
+    "product_edits_by_parent": 0
+  },
+  "session1_raw_rollout_sha256": "b48aea7c94938d669a02eb258a4ff66ecca6a09c69c19c27f688f798c1ff59b7",
+  "session1_usage_reported_by_native_host": {
+    "input_tokens": 2126318,
+    "cached_input_tokens": 2057600,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 4254,
+    "reasoning_output_tokens": 261,
+    "total_tokens": 2130572
+  },
+  "cost": null,
+  "limitations": [
+    "Known observed behavior templates are visible; no novel model-discovery claim",
+    "One engineering feasibility run after an explicitly preserved failed run; no efficacy estimate"
+  ]
+}

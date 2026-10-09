@@ -1,0 +1,138 @@
+{
+  "task_id": "05cd476c579a47b7acdf31c046458abe",
+  "run_id": "d006291bacb943b7967b4682d4bf3455",
+  "before": {
+    "source": "artifacts/host-flow/handoff.json",
+    "session_id": "01a12254-9e0c-7e01-9031-3040c53278e6",
+    "phase": "paused",
+    "iterations": 4,
+    "remaining_iterations": 16,
+    "deadline": 1791582803.663732
+  },
+  "after_adoption": {
+    "session_id": "01a1225b-cd26-7f43-91ef-3deb873efd02",
+    "phase": "paused",
+    "iterations": 4,
+    "remaining_iterations": 16,
+    "deadline": 1791582803.663732,
+    "ownership_history": [
+      {
+        "from": "01a12254-9e0c-7e01-9031-3040c53278e6",
+        "to": "01a1225b-cd26-7f43-91ef-3deb873efd02",
+        "at": 1791577822.195893
+      }
+    ],
+    "old_pointer_exists": false,
+    "new_pointer": {
+      "id": "05cd476c579a47b7acdf31c046458abe"
+    }
+  },
+  "current_after_resume_and_reservation": {
+    "session_id": "01a1225b-cd26-7f43-91ef-3deb873efd02",
+    "phase": "working",
+    "iterations": 5,
+    "max_iterations": 20,
+    "deadline": 1791582803.663732
+  },
+  "frozen_batch": "artifacts/rebuild/d006291bacb943b7967b4682d4bf3455/4-batch.json",
+  "frozen_batch_digest": "30bef1a9233ebad203263742143df4dc7ed3e36afc4b4ed5a7664e320a79b057",
+  "reference_receipt": "artifacts/rebuild/d006291bacb943b7967b4682d4bf3455/3-reference.json",
+  "reference_receipt_digest": "9a6c4931d39ae1ed47f096eaecccfed8bab98b01a0d1d90ab1e3870bbf35fa80",
+  "initial_reference_coverage": {
+    "revision": "host-flow-initial-four",
+    "spec_digest": "fe2622765576ac016e9c534bdb02b313654de840afc9ad43f1f1a99a2e81dc63",
+    "rows": [
+      {
+        "id": "choice-empty",
+        "discovery": "observed",
+        "status": "pass"
+      },
+      {
+        "id": "choice-correct",
+        "discovery": "observed",
+        "status": "pass"
+      },
+      {
+        "id": "choice-wrong",
+        "discovery": "observed",
+        "status": "pass"
+      },
+      {
+        "id": "exit-cancel",
+        "discovery": "observed",
+        "status": "pass"
+      }
+    ],
+    "known_total": 4,
+    "unknown_total": 0,
+    "receipt_digest": "9a6c4931d39ae1ed47f096eaecccfed8bab98b01a0d1d90ab1e3870bbf35fa80"
+  },
+  "candidate_coverage": {
+    "revision": "host-flow-initial-four",
+    "spec_digest": "fe2622765576ac016e9c534bdb02b313654de840afc9ad43f1f1a99a2e81dc63",
+    "rows": [
+      {
+        "id": "choice-empty",
+        "discovery": "observed",
+        "status": "not_run"
+      },
+      {
+        "id": "choice-correct",
+        "discovery": "observed",
+        "status": "not_run"
+      },
+      {
+        "id": "choice-wrong",
+        "discovery": "observed",
+        "status": "not_run"
+      },
+      {
+        "id": "exit-cancel",
+        "discovery": "observed",
+        "status": "not_run"
+      }
+    ],
+    "known_total": 4,
+    "unknown_total": 0,
+    "receipt_digest": null
+  },
+  "candidate_receipt": null,
+  "pipeline_stage": "implement",
+  "pipeline_events": [
+    {
+      "step": 1,
+      "stage": "explore",
+      "at": 1791577486.332916,
+      "status": "pass",
+      "next_stage": "specify",
+      "spec_digest": "fe2622765576ac016e9c534bdb02b313654de840afc9ad43f1f1a99a2e81dc63"
+    },
+    {
+      "step": 2,
+      "stage": "specify",
+      "at": 1791577500.7766242,
+      "status": "pass",
+      "next_stage": "reference",
+      "spec_digest": "fe2622765576ac016e9c534bdb02b313654de840afc9ad43f1f1a99a2e81dc63"
+    },
+    {
+      "step": 3,
+      "stage": "reference",
+      "at": 1791577511.9236622,
+      "receipt": "artifacts/rebuild/d006291bacb943b7967b4682d4bf3455/3-reference.json",
+      "status": "pass",
+      "next_stage": "freeze",
+      "spec_digest": "fe2622765576ac016e9c534bdb02b313654de840afc9ad43f1f1a99a2e81dc63"
+    },
+    {
+      "step": 4,
+      "stage": "freeze",
+      "at": 1791577689.192074,
+      "receipt": "artifacts/rebuild/d006291bacb943b7967b4682d4bf3455/4-batch.json",
+      "status": "pass",
+      "next_stage": "implement",
+      "spec_digest": "fe2622765576ac016e9c534bdb02b313654de840afc9ad43f1f1a99a2e81dc63"
+    }
+  ],
+  "runtime_attestation": "Owned by parent controller; not self-inspected"
+}

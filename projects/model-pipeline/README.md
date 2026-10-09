@@ -13,3 +13,9 @@ python3 projects/model-pipeline/setup.py --protocol PROTOCOL-v2.md --out artifac
 ```
 
 It copies the fixed toolkit, original UI observations, drivers and original curriculum, but takes product Sources from commit21dbe64 and excludes the finished app/build. It installs project-local Hooks/MCP and records input hashes. Native folder/Hook/tool review is still required. Do not substitute manual verifier calls for model execution. Preserve old attempts and unavailable results.
+
+## Corrected run02 checkpoint
+
+The actual host produced three Stop continuations under one native turn ID, confirmed all four initial online scenarios and froze the batch. A genuinely new model session explicitly adopted the same task, retaining the original deadline and4 used attempts; the old session pointer disappeared. Both the model and parent recomputed reference pass / candidate not_run behavior states from actual receipts. See [checkpoint](evidence/run-02/checkpoint-result.json) and [independent adoption verification](evidence/run-02/adoption-parent-verification.json). A parent attestation clarification and two session-scoped verifier reviews are counted as interventions.
+
+The first native candidate batch subsequently passed4/4, then the discovery gate correctly rejected a missing audit. The model supplied the six-category audit and parent-linked expanded observed inventory, preserving the original scenarios. Expanded reference confirmation and actual Swift extension/repair remain in progress; no full-pipeline success or business effect is claimed at this checkpoint.

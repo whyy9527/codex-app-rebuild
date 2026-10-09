@@ -1,0 +1,68 @@
+{
+  "verified_by": "parent recomputation from actual task pointers and receipts",
+  "task_id": "05cd476c579a47b7acdf31c046458abe",
+  "before_session": "01a12254-9e0c-7e01-9031-3040c53278e6",
+  "new_session": "01a1225b-cd26-7f43-91ef-3deb873efd02",
+  "same_deadline": true,
+  "same_max_iterations": true,
+  "old_session_no_active_task": true,
+  "new_session_owns_original_task": true,
+  "reference_coverage": {
+    "revision": "host-flow-initial-four",
+    "spec_digest": "fe2622765576ac016e9c534bdb02b313654de840afc9ad43f1f1a99a2e81dc63",
+    "rows": [
+      {
+        "id": "choice-empty",
+        "discovery": "observed",
+        "status": "pass"
+      },
+      {
+        "id": "choice-correct",
+        "discovery": "observed",
+        "status": "pass"
+      },
+      {
+        "id": "choice-wrong",
+        "discovery": "observed",
+        "status": "pass"
+      },
+      {
+        "id": "exit-cancel",
+        "discovery": "observed",
+        "status": "pass"
+      }
+    ],
+    "known_total": 4,
+    "unknown_total": 0,
+    "receipt_digest": "9a6c4931d39ae1ed47f096eaecccfed8bab98b01a0d1d90ab1e3870bbf35fa80"
+  },
+  "candidate_before_first_verification": {
+    "revision": "host-flow-initial-four",
+    "spec_digest": "fe2622765576ac016e9c534bdb02b313654de840afc9ad43f1f1a99a2e81dc63",
+    "rows": [
+      {
+        "id": "choice-empty",
+        "discovery": "observed",
+        "status": "not_run"
+      },
+      {
+        "id": "choice-correct",
+        "discovery": "observed",
+        "status": "not_run"
+      },
+      {
+        "id": "choice-wrong",
+        "discovery": "observed",
+        "status": "not_run"
+      },
+      {
+        "id": "exit-cancel",
+        "discovery": "observed",
+        "status": "not_run"
+      }
+    ],
+    "known_total": 4,
+    "unknown_total": 0,
+    "receipt_digest": null
+  }
+}

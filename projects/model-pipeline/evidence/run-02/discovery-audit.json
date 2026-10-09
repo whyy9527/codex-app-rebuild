@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "parent_batch_digest": "30bef1a9233ebad203263742143df4dc7ed3e36afc4b4ed5a7664e320a79b057",
+  "parent_batch": "artifacts/rebuild/d006291bacb943b7967b4682d4bf3455/4-batch.json",
+  "checks": {
+    "normal": "artifacts/rebuild/d006291bacb943b7967b4682d4bf3455/3-reference.json",
+    "error": "projects/duolingo-web/evidence/word-tiles-undo-wrong.json",
+    "boundary": "projects/duolingo-web/evidence/word-tiles-selection.json",
+    "exit": "projects/duolingo-web/evidence/2026-10-10/duo-18-second-exit-confirm.yml",
+    "recovery": "projects/duolingo-web/evidence/2026-10-10/duo-17-path-after-reload.yml",
+    "state_link": "projects/duolingo-web/evidence/2026-10-10/duo-12-review-cat.yml"
+  },
+  "findings": {
+    "normal": {
+      "evidence": [
+        "artifacts/rebuild/d006291bacb943b7967b4682d4bf3455/3-reference.json",
+        "projects/duolingo-web/evidence/2026-10-10/duo-08-matching.yml",
+        "projects/duolingo-web/evidence/2026-10-10/duo-09-matching-complete.yml",
+        "projects/duolingo-web/evidence/word-tiles-correct.json",
+        "projects/duolingo-web/evidence/word-tiles-book.json"
+      ],
+      "finding": "First live reference receipt confirms four initial behaviors. Recorded matching locks all pairs and enables Continue; recorded ordered word phrases produce positive feedback."
+    },
+    "error": {
+      "evidence": [
+        "projects/duolingo-web/evidence/2026-10-10/duo-04-wrong-feedback.yml",
+        "projects/duolingo-web/evidence/word-tiles-undo-wrong.json"
+      ],
+      "finding": "Recorded wrong choice and reversed word order show correction, one fewer heart and Continue."
+    },
+    "boundary": {
+      "evidence": [
+        "projects/duolingo-web/evidence/2026-10-10/duo-03-lesson-initial.yml",
+        "projects/duolingo-web/evidence/word-tiles-selection.json",
+        "projects/duolingo-web/evidence/word-tiles-undo-wrong.json",
+        "projects/duolingo-web/evidence/discovery-reselection.json"
+      ],
+      "finding": "Empty choice and word selection disable Check. Adding one word enables Check, undo returns to empty. Reselecting changes the pending choice without judging it until submit."
+    },
+    "exit": {
+      "evidence": [
+        "projects/duolingo-web/evidence/2026-10-10/duo-06-exit-confirm.yml",
+        "projects/duolingo-web/evidence/2026-10-10/duo-07-exit-cancelled.yml",
+        "projects/duolingo-web/evidence/2026-10-10/duo-18-second-exit-confirm.yml",
+        "projects/duolingo-web/evidence/2026-10-10/duo-19-after-abandon.yml",
+        "projects/duolingo-web/evidence/2026-10-10/duo-20-restarted-lesson.yml"
+      ],
+      "finding": "Cancel preserves lesson feedback. Confirmed second-lesson exit returns to Lesson 2 path; restarting shows book initial choice with disabled Check."
+    },
+    "recovery": {
+      "evidence": [
+        "projects/duolingo-web/evidence/2026-10-10/duo-16-path-before-reload.yml",
+        "projects/duolingo-web/evidence/2026-10-10/duo-17-path-after-reload.yml"
+      ],
+      "finding": "Both same-guest-context path snapshots show Lesson 2 of 3 START after first lesson completion and reload. Account or cross-device persistence is not established."
+    },
+    "state_link": {
+      "evidence": [
+        "projects/duolingo-web/evidence/2026-10-10/duo-12-review-cat.yml",
+        "projects/duolingo-web/evidence/2026-10-10/duo-14-result.yml",
+        "projects/duolingo-web/evidence/2026-10-10/duo-16-path-before-reload.yml"
+      ],
+      "finding": "Recorded missed cat returns as Previous mistake before result. Completion leads to next lesson on path."
+    }
+  },
+  "initial_reference_receipt": "artifacts/rebuild/d006291bacb943b7967b4682d4bf3455/3-reference.json",
+  "initial_reference_coverage": {
+    "revision": "host-flow-initial-four",
+    "spec_digest": "fe2622765576ac016e9c534bdb02b313654de840afc9ad43f1f1a99a2e81dc63",
+    "rows": [
+      {
+        "id": "choice-empty",
+        "discovery": "observed",
+        "status": "pass"
+      },
+      {
+        "id": "choice-correct",
+        "discovery": "observed",
+        "status": "pass"
+      },
+      {
+        "id": "choice-wrong",
+        "discovery": "observed",
+        "status": "pass"
+      },
+      {
+        "id": "exit-cancel",
+        "discovery": "observed",
+        "status": "pass"
+      }
+    ],
+    "known_total": 4,
+    "unknown_total": 0,
+    "receipt_digest": "9a6c4931d39ae1ed47f096eaecccfed8bab98b01a0d1d90ab1e3870bbf35fa80"
+  },
+  "provenance": "Session2 inspected supplied original UI evidence and actual first reference receipt. expanded-template.json is the visible known observed twelve-behavior input. Historical observations were not newly performed by this session; next stage must re-execute expanded reference on live online UI.",
+  "preserved_parent_behavior_ids": [
+    "choice-empty",
+    "choice-correct",
+    "choice-wrong",
+    "exit-cancel"
+  ],
+  "added_behavior_ids": [
+    "choice-reselection",
+    "matching-complete",
+    "word-tiles",
+    "word-tiles-undo",
+    "word-tiles-wrong",
+    "mistake-review",
+    "completion-reload",
+    "exit-discard"
+  ],
+  "limitations": [
+    "Expanded reference and candidate behaviors are not yet confirmed in this run.",
+    "Random ordering, backend resets, authentication and cross-device guarantees are outside observed scope.",
+    "Known reselection observation is not evidence of novel model discovery or product repair benefit."
+  ]
+}
