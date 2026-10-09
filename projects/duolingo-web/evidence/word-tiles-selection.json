@@ -1,0 +1,12 @@
+{
+  "date": "2026-10-10",
+  "stage": "initial exploration continuing while v1 reference runs; not supplemental-discovery efficacy",
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "### Result\n[{\"stage\":\"empty\",\"text\":\"NEW WORD\\nWrite this in English\\nmi maleta\\ncat\\nsuitcase\\nmy\\nhouse\",\"snapshot\":\"- button:\\n  - img\\n- progressbar\\n- img\\n- text: \\\"3\\\"\\n- img\\n- text: New word\\n- heading \\\"Write this in English\\\" [level=1]\\n- button:\\n  - img\\n- img\\n- button \\\"cat\\\"\\n- button \\\"suitcase\\\"\\n- button \\\"my\\\"\\n- button \\\"house\\\"\\n- button \\\"Skip\\\"\\n- button \\\"Check\\\" [disabled]\"},{\"stage\":\"selected-my\",\"snapshot\":\"- button:\\n  - img\\n- progressbar\\n- img\\n- text: \\\"3\\\"\\n- img\\n- text: New word\\n- heading \\\"Write this in English\\\" [level=1]\\n- button:\\n  - img\\n- img\\n- button \\\"cat\\\"\\n- button \\\"suitcase\\\"\\n- button \\\"my\\\" [disabled]\\n- button \\\"house\\\"\\n- button \\\"Skip\\\"\\n- button \\\"Check\\\"\\n- button \\\"my\\\"\",\"buttons\":[{\"test\":null,\"text\":\"\",\"disabled\":null},{\"test\":\"cat-challenge-tap-token\",\"text\":\"cat\",\"disabled\":\"false\"},{\"test\":\"suitcase-challenge-tap-token\",\"text\":\"suitcase\",\"disabled\":\"false\"},{\"test\":\"my-challenge-tap-token\",\"text\":\"my\",\"disabled\":\"true\"},{\"test\":\"house-challenge-tap-token\",\"text\":\"house\",\"disabled\":\"false\"}]}]\n### Ran Playwright code\n```js\nawait (async(page)=>{const c=page.locator('[data-test=\"challenge challenge-translate\"]');const events=[{stage:'empty',text:await c.innerText(),snapshot:await page.locator('body').ariaSnapshot()}];await c.locator('[data-test=\"word-bank\"]').getByRole('button',{name:'my',exact:true}).click();events.push({stage:'selected-my',snapshot:await page.locator('body').ariaSnapshot(),buttons:await c.getByRole('button').evaluateAll(es=>es.map(e=>({test:e.getAttribute('data-test'),text:e.innerText,disabled:e.getAttribute('aria-disabled')})))});return events;})(page);\n```\n### Page\n- Page URL: https://www.duolingo.com/lesson\n- Page Title: Duolingo - Learn Spanish with lessons that work\n- Console: 40 errors, 0 warnings\n### Events\n- New console entries: tmp/content-browser/downloads/console-2026-10-09T17-44-10-497Z.log#L53"
+      }
+    ]
+  }
+}

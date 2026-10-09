@@ -1,0 +1,20 @@
+{
+  "kind": "post_validation_build_inventory",
+  "command": [
+    "swift",
+    "build",
+    "--package-path",
+    "projects/education-swift",
+    "--product",
+    "LingoSeed"
+  ],
+  "build_log": "projects/duolingo-web/evidence/swift-build-05.log",
+  "source_sha256": {
+    "projects/education-swift/Package.swift": "69c107cdd891cdadd83dca370c1618c002fd85fcba63c76391b6b5cc279a0cd1",
+    "projects/education-swift/Sources/LingoSeed/LingoSeed.swift": "5fa6f640cff673bdd8015d2112b3c4c8ce3f52715d840b648b81d13578f9464c",
+    "projects/education-swift/Sources/LearningCore/LearningCore.swift": "00b9248530ec2542ad60db94283b562c0383c5cf81b6d3681e0df15133cd30a0"
+  },
+  "binary_sha256": "ec4036ca6b3353c3ce54438a47199282064a1eb85975f923532f3f08940e8540",
+  "ui_receipt": "projects/duolingo-web/evidence/candidate-v1.1-01.json",
+  "limitations": "Inventory after current-source build and validation; not a cryptographic compiler attestation. Rebuild before future verification."
+}

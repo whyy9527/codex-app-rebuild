@@ -1,0 +1,18 @@
+[0/1] Planning build
+Building for debugging...
+[0/6] Write sources
+[1/6] Write swift-version--1AB21518FC5DEDBE.txt
+error: emit-module command failed with exit code 1 (use -v to see invocation)
+[3/6] Emitting module LearningCoreTests
+<workspace>/projects/education-swift/Tests/LearningCoreTests/LearningCoreTests.swift:1:8: error: no such module 'XCTest'
+ 1 | import XCTest
+   |        `- error: no such module 'XCTest'
+ 2 | @testable import LearningCore
+ 3 |
+[4/6] Compiling LearningCoreTests LearningCoreTests.swift
+<workspace>/projects/education-swift/Tests/LearningCoreTests/LearningCoreTests.swift:1:8: error: no such module 'XCTest'
+ 1 | import XCTest
+   |        `- error: no such module 'XCTest'
+ 2 | @testable import LearningCore
+ 3 |
+error: fatalError

@@ -1,0 +1,137 @@
+[0/1] Planning build
+Building for debugging...
+[0/5] Write sources
+[1/5] Write swift-version--1AB21518FC5DEDBE.txt
+[3/7] Compiling LearningCore LearningCore.swift
+[4/7] Emitting module LearningCore
+error: emit-module command failed with exit code 1 (use -v to see invocation)
+[5/9] Emitting module LingoSeed
+<workspace>/projects/education-swift/Sources/LingoSeed/LingoSeed.swift:9:19: error: 'Progress' is ambiguous for type lookup in this context
+  7 |     let course: Course
+  8 |     let store: ProgressStore
+  9 |     var progress: Progress
+    |                   `- error: 'Progress' is ambiguous for type lookup in this context
+ 10 |     var lesson: Lesson?
+ 11 |     var confirmingExit = false
+
+<workspace>/projects/education-swift/Sources/LearningCore/LearningCore.swift:76:15: note: found this candidate
+74 | }
+75 |
+76 | public struct Progress: Codable, Equatable, Sendable {
+   |               `- note: found this candidate
+77 |     public var completedCourses: Set<String> = []
+78 |     public init() {}
+
+<toolchain>/SDKs/MacOSX.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSProgress.h:37:12: note: found this candidate
+ 35 | NS_SWIFT_SENDABLE // Thread safe via locking and storing the only reference to properties
+ 36 | API_AVAILABLE(macos(10.9), ios(7.0), watchos(2.0), tvos(9.0))
+ 37 | @interface NSProgress : NSObject
+    |            `- note: found this candidate
+ 38 |
+ 39 | /* The instance of NSProgress associated with the current thread by a previous invocation of -becomeCurrentWithPendingUnitCount:, if any. The purpose of this per-thread value is to allow code that does work to usefully report progress even when it is widely separated from the code that actually presents progress to the user, without requiring layers of intervening code to pass the instance of NSProgress through. Using the result of invoking this directly will often not be the right thing to do, because the invoking code will often not even know what units of work the current progress object deals in. Invoking +progressWithTotalUnitCount: to create a child NSProgress object and then using that to report progress makes more sense in that situation.
+
+macro expansion @ObservationTracked:2:25: error: 'Progress' is ambiguous for type lookup in this context
+`- <workspace>/projects/education-swift/Sources/LingoSeed/LingoSeed.swift:9:27: note: expanded code originates here
+  7 |     let course: Course
+  8 |     let store: ProgressStore
+  9 |     var progress: Progress
+    +--- macro expansion @ObservationTracked ---------------------------
+    |1 | @ObservationIgnored
+    |2 | private  var _progress: Progress
+    |  |                         `- error: 'Progress' is ambiguous for type lookup in this context
+    +-------------------------------------------------------------------
+ 10 |     var lesson: Lesson?
+ 11 |     var confirmingExit = false
+
+<workspace>/projects/education-swift/Sources/LearningCore/LearningCore.swift:76:15: note: found this candidate
+74 | }
+75 |
+76 | public struct Progress: Codable, Equatable, Sendable {
+   |               `- note: found this candidate
+77 |     public var completedCourses: Set<String> = []
+78 |     public init() {}
+
+<toolchain>/SDKs/MacOSX.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSProgress.h:37:12: note: found this candidate
+ 35 | NS_SWIFT_SENDABLE // Thread safe via locking and storing the only reference to properties
+ 36 | API_AVAILABLE(macos(10.9), ios(7.0), watchos(2.0), tvos(9.0))
+ 37 | @interface NSProgress : NSObject
+    |            `- note: found this candidate
+ 38 |
+ 39 | /* The instance of NSProgress associated with the current thread by a previous invocation of -becomeCurrentWithPendingUnitCount:, if any. The purpose of this per-thread value is to allow code that does work to usefully report progress even when it is widely separated from the code that actually presents progress to the user, without requiring layers of intervening code to pass the instance of NSProgress through. Using the result of invoking this directly will often not be the right thing to do, because the invoking code will often not even know what units of work the current progress object deals in. Invoking +progressWithTotalUnitCount: to create a child NSProgress object and then using that to report progress makes more sense in that situation.
+[6/9] Compiling LingoSeed LingoSeed.swift
+<workspace>/projects/education-swift/Sources/LingoSeed/LingoSeed.swift:9:19: error: 'Progress' is ambiguous for type lookup in this context
+  7 |     let course: Course
+  8 |     let store: ProgressStore
+  9 |     var progress: Progress
+    |                   `- error: 'Progress' is ambiguous for type lookup in this context
+ 10 |     var lesson: Lesson?
+ 11 |     var confirmingExit = false
+
+<workspace>/projects/education-swift/Sources/LearningCore/LearningCore.swift:76:15: note: found this candidate
+74 | }
+75 |
+76 | public struct Progress: Codable, Equatable, Sendable {
+   |               `- note: found this candidate
+77 |     public var completedCourses: Set<String> = []
+78 |     public init() {}
+
+<toolchain>/SDKs/MacOSX.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSProgress.h:37:12: note: found this candidate
+ 35 | NS_SWIFT_SENDABLE // Thread safe via locking and storing the only reference to properties
+ 36 | API_AVAILABLE(macos(10.9), ios(7.0), watchos(2.0), tvos(9.0))
+ 37 | @interface NSProgress : NSObject
+    |            `- note: found this candidate
+ 38 |
+ 39 | /* The instance of NSProgress associated with the current thread by a previous invocation of -becomeCurrentWithPendingUnitCount:, if any. The purpose of this per-thread value is to allow code that does work to usefully report progress even when it is widely separated from the code that actually presents progress to the user, without requiring layers of intervening code to pass the instance of NSProgress through. Using the result of invoking this directly will often not be the right thing to do, because the invoking code will often not even know what units of work the current progress object deals in. Invoking +progressWithTotalUnitCount: to create a child NSProgress object and then using that to report progress makes more sense in that situation.
+
+macro expansion @ObservationTracked:2:25: error: 'Progress' is ambiguous for type lookup in this context
+`- <workspace>/projects/education-swift/Sources/LingoSeed/LingoSeed.swift:9:27: note: expanded code originates here
+  7 |     let course: Course
+  8 |     let store: ProgressStore
+  9 |     var progress: Progress
+    +--- macro expansion @ObservationTracked ---------------------------
+    |1 | @ObservationIgnored
+    |2 | private  var _progress: Progress
+    |  |                         `- error: 'Progress' is ambiguous for type lookup in this context
+    +-------------------------------------------------------------------
+ 10 |     var lesson: Lesson?
+ 11 |     var confirmingExit = false
+
+<workspace>/projects/education-swift/Sources/LearningCore/LearningCore.swift:76:15: note: found this candidate
+74 | }
+75 |
+76 | public struct Progress: Codable, Equatable, Sendable {
+   |               `- note: found this candidate
+77 |     public var completedCourses: Set<String> = []
+78 |     public init() {}
+
+<toolchain>/SDKs/MacOSX.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSProgress.h:37:12: note: found this candidate
+ 35 | NS_SWIFT_SENDABLE // Thread safe via locking and storing the only reference to properties
+ 36 | API_AVAILABLE(macos(10.9), ios(7.0), watchos(2.0), tvos(9.0))
+ 37 | @interface NSProgress : NSObject
+    |            `- note: found this candidate
+ 38 |
+ 39 | /* The instance of NSProgress associated with the current thread by a previous invocation of -becomeCurrentWithPendingUnitCount:, if any. The purpose of this per-thread value is to allow code that does work to usefully report progress even when it is widely separated from the code that actually presents progress to the user, without requiring layers of intervening code to pass the instance of NSProgress through. Using the result of invoking this directly will often not be the right thing to do, because the invoking code will often not even know what units of work the current progress object deals in. Invoking +progressWithTotalUnitCount: to create a child NSProgress object and then using that to report progress makes more sense in that situation.
+
+<workspace>/projects/education-swift/Sources/LingoSeed/LingoSeed.swift:127:26: error: referencing subscript 'subscript(dynamicMember:)' requires wrapper 'Bindable<LearningModel>'
+125 |                 VStack(alignment: .leading, spacing: 18) {
+126 |                     Label(model.course.title, systemImage: "sun.max.fill").font(.title.bold()).foregroundStyle(accent)
+127 |                     Text(model.progress.completedCourses.contains(model.course.id) ? "Completed · Ready to practice again" : "Lesson 1 · Greetings and gratitude")
+    |                          `- error: referencing subscript 'subscript(dynamicMember:)' requires wrapper 'Bindable<LearningModel>'
+128 |                     Button(model.progress.completedCourses.contains(model.course.id) ? "Practice again" : "Start lesson") { model.lesson = Lesson(course: model.course) }
+129 |                         .buttonStyle(.borderedProminent).tint(accent).controlSize(.large).accessibilityIdentifier("start-lesson")
+
+<workspace>/projects/education-swift/Sources/LingoSeed/LingoSeed.swift:127:67: error: missing argument label 'where:' in call
+125 |                 VStack(alignment: .leading, spacing: 18) {
+126 |                     Label(model.course.title, systemImage: "sun.max.fill").font(.title.bold()).foregroundStyle(accent)
+127 |                     Text(model.progress.completedCourses.contains(model.course.id) ? "Completed · Ready to practice again" : "Lesson 1 · Greetings and gratitude")
+    |                                                                   `- error: missing argument label 'where:' in call
+128 |                     Button(model.progress.completedCourses.contains(model.course.id) ? "Practice again" : "Start lesson") { model.lesson = Lesson(course: model.course) }
+129 |                         .buttonStyle(.borderedProminent).tint(accent).controlSize(.large).accessibilityIdentifier("start-lesson")
+
+<workspace>/projects/education-swift/Sources/LingoSeed/LingoSeed.swift:127:80: error: cannot convert value of type 'String' to expected argument type '(Binding<Subject>.Element) throws -> Bool' (aka '(Binding<Subject.Element>) throws -> Bool')
+125 |                 VStack(alignment: .leading, spacing: 18) {
+126 |                     Label(model.course.title, systemImage: "sun.max.fill").font(.title.bold()).foregroundStyle(accent)
+127 |                     Text(model.progress.completedCourses.contains(model.course.id) ? "Completed · Ready to practice again" : "Lesson 1 · Greetings and gratitude")
+    |                                                                                `- error: cannot convert value of type 'String' to expected argument type '(Binding<Subject>.Element) throws -> Bool' (aka '(Binding<Subject.Element>) throws -> Bool')
+128 |                     Button(model.progress.completedCourses.contains(model.course.id) ? "Practice again" : "Start lesson") { model.lesson = Lesson(course: model.course) }
+129 |                         .buttonStyle(.borderedProminent).tint(accent).controlSize(.large).accessibilityIdentifier("start-lesson")

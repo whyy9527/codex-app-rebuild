@@ -1,0 +1,12 @@
+{
+  "date": "2026-10-10",
+  "stage": "initial exploration continuing while v1 reference runs; not supplemental-discovery efficacy",
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "### Result\n[{\"stage\":\"prompt\",\"text\":\"Write this in English\\nmi casa\\nbook\\ndog\\nmy\\nhouse\",\"snapshot\":\"- button:\\n  - img\\n- progressbar\\n- img\\n- text: \\\"2\\\"\\n- heading \\\"Write this in English\\\" [level=1]\\n- button:\\n  - img\\n- img\\n- button \\\"book\\\"\\n- button \\\"dog\\\"\\n- button \\\"my\\\"\\n- button \\\"house\\\"\\n- button \\\"Skip\\\"\\n- button \\\"Check\\\" [disabled]\"},{\"stage\":\"correct-order\",\"snapshot\":\"- button:\\n  - img\\n- progressbar\\n- img\\n- text: \\\"2\\\"\\n- heading \\\"Write this in English\\\" [level=1]\\n- button:\\n  - img\\n- img\\n- button \\\"book\\\"\\n- button \\\"dog\\\"\\n- button \\\"my\\\" [disabled]\\n- button \\\"house\\\" [disabled]\\n- button \\\"Skip\\\"\\n- button \\\"Check\\\"\\n- button \\\"my\\\"\\n- button \\\"house\\\"\"},{\"stage\":\"correct-feedback\",\"snapshot\":\"- button:\\n  - img\\n- progressbar: 2 in a row\\n- img\\n- text: \\\"2\\\"\\n- heading \\\"Write this in English\\\" [level=1]\\n- button:\\n  - img\\n- img\\n- button \\\"book\\\" [disabled]\\n- button \\\"dog\\\" [disabled]\\n- button \\\"my\\\" [disabled]\\n- button \\\"house\\\" [disabled]\\n- heading \\\"Great job!\\\" [level=2]\\n- button \\\"Too easy\\\"\\n- button \\\"Too difficult\\\"\\n- button \\\"Report\\\"\\n- button \\\"Continue\\\"\\n- button \\\"my\\\" [disabled]\\n- button \\\"house\\\" [disabled]\"}]\n### Ran Playwright code\n```js\nawait (async(page)=>{const c=page.locator('[data-test=\"challenge challenge-translate\"]');const events=[{stage:'prompt',text:await c.innerText(),snapshot:await page.locator('body').ariaSnapshot()}];const bank=c.locator('[data-test=\"word-bank\"]');for(const word of ['my','house'])await bank.getByRole('button',{name:word,exact:true}).click();events.push({stage:'correct-order',snapshot:await page.locator('body').ariaSnapshot()});await page.getByRole('button',{name:'Check',exact:true}).click();await page.getByRole('button',{name:'Continue',exact:true}).waitFor();events.push({stage:'correct-feedback',snapshot:await page.locator('body').ariaSnapshot()});return events;})(page);\n```"
+      }
+    ]
+  }
+}

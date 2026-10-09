@@ -1,6 +1,6 @@
 # Duolingo 网页参考案例
 
-这是私有 Codex App Rebuild 的第一个真实业务案例。网页只作为行为参考，Swift 教育基座使用原创名称、课程与素材。当前已完成首批观察，原版适配处于可行性验证；Swift 客户端和跨端冻结验收尚未交付。
+这是私有 Codex App Rebuild 的第一个真实业务案例。网页只作为行为参考，Swift 教育基座使用原创名称、课程与素材。已交付首批四条跨端冻结验收与可运行 SwiftUI 选择课；完整学习流程和真实业务消融仍待完成。
 
 ## 现有产物
 
@@ -35,4 +35,19 @@ python3 projects/duolingo-web/probe-reference.py --scenario choice-wrong --out p
 
 先完成原版可重复执行验证与原生动作适配设计，建立完整 reference/candidate 配置，使用主验收入口重新运行并冻结。可行性记录不能直接交给冻结步骤。已观察但尚未转为场景的行为仍属待验收；拼句保持 unknown。后续独立遗漏发现必须寻找初始观察以外的缺口，不能把本轮已看到的错题重练事后当作补充探索收益。
 
-首批四个场景只覆盖选择、反馈和退出取消。完整 Goal 还要求退出确认、未完成进度丢弃、配对、错题重练、结算、恢复、课程进度、拼句、Swift 原生 UI 和真实业务消融；这些没有被缩减或宣称完成。
+首批四个场景已在网页和真实原生 UI 两侧通过，只覆盖选择、反馈和退出取消。完整 Goal 还要求退出确认、未完成进度丢弃、配对、错题重练、结算、恢复、课程进度、拼句、Swift 原生 UI 和真实业务消融；这些没有被缩减或宣称完成。
+
+## 正式首批跨端验收
+
+`spec-v1.1.json`、`fixture-v1.json` 与 `targets-v1.1.json` 是这一批的输入。原版使用线上西班牙语入门词汇，候选使用原创英语问候课；选择 correct/wrong 对应各自题面的明确映射，共享同一套场景和业务预期。线上题库无法注入，允许题面、选项顺序和课程内容不同，不能声称比较了相同题库。
+
+先从仓库根构建当前产品，再运行实际原生验收：
+
+```sh
+swift build --package-path projects/education-swift --product LingoSeed
+python3 -m workflows.rebuild.cli verify --workspace . --spec projects/duolingo-web/spec-v1.1.json --targets projects/duolingo-web/targets-v1.1.json --target candidate --frozen projects/duolingo-web/evidence/batch-v1.1.json --timeout 60 --max-seconds 600 --out artifacts/duolingo/candidate-new-01.json
+```
+
+当前原生驱动只启动已构建的二进制，调用者必须先构建当前源码；下一批完整修复循环还需把构建纳入验收命令，防止使用旧二进制。驱动通过自己启动的子进程 PID 查找 AXWindows，点击实际控件并返回可见属性，不访问其他应用。需要当前进程拥有辅助功能权限。
+
+正式记录见 [原生迭代](evidence/NATIVE-V1-ITERATION.md)：v1 原生因快照超限而整体失败，v1.1 保留四项断言、重新确认原版与父批次后，两端均 4/4 通过；word-tiles 在这两批仍为 unknown。完整协议、冻结及参考/候选回执均在 evidence 中，覆盖报告为 `coverage-v1.1.json`。Swift 构建和启动见 [客户端说明](../education-swift/README.md)。

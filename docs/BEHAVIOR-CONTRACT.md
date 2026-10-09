@@ -1,6 +1,6 @@
 # 共享业务规格与适配协议
 
-`capabilities/rebuild/contracts.py` 拥有场景断言；平台适配器只执行动作并返回观察。浏览器与原生客户端使用同一份场景、前置状态及断言，分别驱动界面。这是协议机制，不证明当前已存在真实浏览器或 Swift 适配器。
+`capabilities/rebuild/contracts.py` 拥有场景断言；平台适配器只执行动作并返回观察。浏览器与原生客户端使用同一份场景、前置状态及断言，分别驱动界面。协议机制与产品证据分开；Duolingo 案例已用真实浏览器和 macOS 辅助功能驱动实际 SwiftUI 客户端，首批四条共享场景通过，见案例记录。
 
 ## 输入
 
@@ -74,4 +74,4 @@ python3 -m workflows.rebuild.cli coverage --workspace <项目> --spec spec.json 
 
 报告分离 discovery 和执行 status：unknown、observed、decision 表示知识来源；not_run、pass、fail、invalid、unavailable、timeout 表示执行状态。保存规格/配置/输入/源码摘要、动作观察、差异、生命周期、命令输出和耗时。源码或规格变化后，旧回执仍是历史证据，但不能作为当前通过状态。
 
-本层尚不提供自动业务发现或原生 UI 驱动。阶段控制与显式任务接续已接入，原生单任务模型 Stop 续跑已验证；完整多阶段模型重建仍待验证。当前测试在临时目录运行真实子进程和明确的状态机替身，证明协议与断言机制，不证明 Duolingo 覆盖或模型收益。
+本通用层不提供自动业务发现；案例层已有浏览器与原生 UI 驱动，范围见 `projects/duolingo-web/README.md`。阶段控制与显式任务接续已接入，原生单任务模型 Stop 续跑已验证；完整多阶段模型重建仍待验证。当前测试在临时目录运行真实子进程和明确的状态机替身，证明协议与断言机制，不证明 Duolingo 覆盖或模型收益。
