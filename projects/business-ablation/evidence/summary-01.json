@@ -1,0 +1,287 @@
+{
+  "schema_version": 1,
+  "kind": "preregistered_real_business_ablation",
+  "repeats_per_arm": 1,
+  "all_models_closed_before_any_final_score": true,
+  "parent_product_edits": 0,
+  "parent_strategy_prompts": 0,
+  "scoring_helper_preflight": "Metadata KeyError corrected before any final-seal/evaluator started; no experimental inputs changed.",
+  "cost": null,
+  "arms": [
+    {
+      "arm": "full",
+      "task_id": "fb62431ab04b490dbccbcc0467bb5962",
+      "attempts": 3,
+      "expanded": {
+        "unknown": 0,
+        "pass": 12,
+        "fail": 0,
+        "invalid": 0,
+        "unavailable": 0,
+        "timeout": 0
+      },
+      "holdout": {
+        "unknown": 1,
+        "pass": 2,
+        "fail": 0,
+        "invalid": 0,
+        "unavailable": 0,
+        "timeout": 0
+      },
+      "holdout_planned_paths": 3,
+      "prior_public_four_regressions": 0,
+      "supplemental_eight_not_passing": 0,
+      "model_workflow_wall_seconds": 376.03,
+      "wall_scope": "Task creation to actual session2 final Stop; includes approval waits and registered transfer; excludes final scoring",
+      "scoring_wall_seconds": 61.247,
+      "actual_sessions": 2,
+      "parent_observed_cli_exit_codes": [
+        0,
+        0
+      ],
+      "stop_continuations": 0,
+      "usage": {
+        "input_tokens": 1346967,
+        "cached_input_tokens": 1246976,
+        "output_tokens": 7337,
+        "reasoning_output_tokens": 407,
+        "total_tokens": 1354304,
+        "derived_uncached_input_tokens": 99991,
+        "derived_uncached_input_plus_output_tokens": 107328
+      },
+      "cost": null,
+      "parent_product_edits": 0,
+      "parent_strategy_prompts": 0,
+      "standard_setup_permission_handoff_actions": 5,
+      "extra_hook_review_navigation_actions": 3,
+      "additional_host_diagnostic_episodes": 0,
+      "actual_attempt_assertion_failures": 0,
+      "actual_attempt_unavailable_cases": 4,
+      "final_source_sha256": {
+        "projects/education-swift/Sources/LearningCore/LearningCore.swift": "f6c04d2f643bb46da4d214bd7987960884838999c32738acea9a40961c7653ff",
+        "projects/education-swift/Sources/LingoSeed/LingoSeed.swift": "f4d6e605a6616636e8a066bb6f136c14b7e2a0c39f458f968851654ebd4ed804"
+      },
+      "artifacts": {
+        "final-seal.json": {
+          "raw_sha256": "e6be0b1e8ff110f91153a72a53bb04b6321d2a0adc697764646420e777bb609e",
+          "export_sha256": "54e697e53df3871247cbfed13fd655c4a46f3e1b37ccbf9375d0d941d2c28a00"
+        },
+        "final-expanded.json": {
+          "raw_sha256": "190fc90b0733fc490b01ccd8e4f2e2b4d614292ff0c53a7c477cb430f85f7787",
+          "export_sha256": "190fc90b0733fc490b01ccd8e4f2e2b4d614292ff0c53a7c477cb430f85f7787"
+        },
+        "final-holdout.json": {
+          "raw_sha256": "9c488aa6ae1b3001a81609b712fc3be99ab9704bd4271f8b43d67578e96f7081",
+          "export_sha256": "9c488aa6ae1b3001a81609b712fc3be99ab9704bd4271f8b43d67578e96f7081"
+        }
+      }
+    },
+    {
+      "arm": "no_behavior_progress",
+      "task_id": "62cfb36dccb246ad9b85f394dbe79de9",
+      "attempts": 2,
+      "expanded": {
+        "unknown": 0,
+        "pass": 12,
+        "fail": 0,
+        "invalid": 0,
+        "unavailable": 0,
+        "timeout": 0
+      },
+      "holdout": {
+        "unknown": 1,
+        "pass": 2,
+        "fail": 0,
+        "invalid": 0,
+        "unavailable": 0,
+        "timeout": 0
+      },
+      "holdout_planned_paths": 3,
+      "prior_public_four_regressions": 0,
+      "supplemental_eight_not_passing": 0,
+      "model_workflow_wall_seconds": 323.642,
+      "wall_scope": "Task creation to actual session2 final Stop; includes approval waits and registered transfer; excludes final scoring",
+      "scoring_wall_seconds": 62.712,
+      "actual_sessions": 2,
+      "parent_observed_cli_exit_codes": [
+        0,
+        0
+      ],
+      "stop_continuations": 0,
+      "usage": {
+        "input_tokens": 1018667,
+        "cached_input_tokens": 937344,
+        "output_tokens": 8508,
+        "reasoning_output_tokens": 270,
+        "total_tokens": 1027175,
+        "derived_uncached_input_tokens": 81323,
+        "derived_uncached_input_plus_output_tokens": 89831
+      },
+      "cost": null,
+      "parent_product_edits": 0,
+      "parent_strategy_prompts": 0,
+      "standard_setup_permission_handoff_actions": 5,
+      "extra_hook_review_navigation_actions": 0,
+      "additional_host_diagnostic_episodes": 0,
+      "actual_attempt_assertion_failures": 0,
+      "actual_attempt_unavailable_cases": 0,
+      "final_source_sha256": {
+        "projects/education-swift/Sources/LearningCore/LearningCore.swift": "d2be11737217a878deb7f92b3e87c3d84559492767da88a6a81a88b2ab8f92a8",
+        "projects/education-swift/Sources/LingoSeed/LingoSeed.swift": "0c998fd75066693da33e72c41b72ee3385e8c91838785652b2edc430674d8b06"
+      },
+      "artifacts": {
+        "final-seal.json": {
+          "raw_sha256": "ef082cd48ed8ee68ed5e3dcc66142cb299d1cd40b3b5576cd7435f986539d942",
+          "export_sha256": "8040f970b862391bd6d51a8617feefe11ba0caeb82a583dbebe2d4f967200090"
+        },
+        "final-expanded.json": {
+          "raw_sha256": "ec0ae40c7ee067a5414a37bd8e8dd1283a53c06daba085f09b53e86a4ced0145",
+          "export_sha256": "ec0ae40c7ee067a5414a37bd8e8dd1283a53c06daba085f09b53e86a4ced0145"
+        },
+        "final-holdout.json": {
+          "raw_sha256": "87def36377c5fff64468c3f26f8a51afb629702308ed9f5341652da222261b80",
+          "export_sha256": "87def36377c5fff64468c3f26f8a51afb629702308ed9f5341652da222261b80"
+        }
+      }
+    },
+    {
+      "arm": "no_stop_feedback",
+      "task_id": "714e23a6496f4e4a8436e05878a70b27",
+      "attempts": 2,
+      "expanded": {
+        "unknown": 0,
+        "pass": 12,
+        "fail": 0,
+        "invalid": 0,
+        "unavailable": 0,
+        "timeout": 0
+      },
+      "holdout": {
+        "unknown": 1,
+        "pass": 2,
+        "fail": 0,
+        "invalid": 0,
+        "unavailable": 0,
+        "timeout": 0
+      },
+      "holdout_planned_paths": 3,
+      "prior_public_four_regressions": 0,
+      "supplemental_eight_not_passing": 0,
+      "model_workflow_wall_seconds": 557.82,
+      "wall_scope": "Task creation to actual session2 final Stop; includes approval waits and registered transfer; excludes final scoring",
+      "scoring_wall_seconds": 61.786,
+      "actual_sessions": 2,
+      "parent_observed_cli_exit_codes": [
+        0,
+        0
+      ],
+      "stop_continuations": 0,
+      "usage": {
+        "input_tokens": 1206731,
+        "cached_input_tokens": 1081472,
+        "output_tokens": 7261,
+        "reasoning_output_tokens": 451,
+        "total_tokens": 1213992,
+        "derived_uncached_input_tokens": 125259,
+        "derived_uncached_input_plus_output_tokens": 132520
+      },
+      "cost": null,
+      "parent_product_edits": 0,
+      "parent_strategy_prompts": 0,
+      "standard_setup_permission_handoff_actions": 5,
+      "extra_hook_review_navigation_actions": 0,
+      "additional_host_diagnostic_episodes": 1,
+      "actual_attempt_assertion_failures": 0,
+      "actual_attempt_unavailable_cases": 0,
+      "final_source_sha256": {
+        "projects/education-swift/Sources/LearningCore/LearningCore.swift": "f8cc18ce2ae614de613bbfdb5353e9f6d6614d75b07355858e76443c6759ab57",
+        "projects/education-swift/Sources/LingoSeed/LingoSeed.swift": "c047568d64f992fbc503af90959f5e07608eb77e39a3b4cc86e2fdc104a896e1"
+      },
+      "artifacts": {
+        "final-seal.json": {
+          "raw_sha256": "056c530dc846153f5d95b48e76828d7fa3e2cdf24213fa6fc34626ca2fd31f39",
+          "export_sha256": "6aa48d30508b7d1e3bee8f0cf1dc27f704ce964c369f9dcc3b73741d016e38bc"
+        },
+        "final-expanded.json": {
+          "raw_sha256": "dda77581761bef13eac69fc3e55ec86057b4bfc32208f70fa733866460af0c37",
+          "export_sha256": "dda77581761bef13eac69fc3e55ec86057b4bfc32208f70fa733866460af0c37"
+        },
+        "final-holdout.json": {
+          "raw_sha256": "bc2c9b99d41a5ba96645a8bea3071581bb0d6ec004b3d23cc6894388f33a05cf",
+          "export_sha256": "bc2c9b99d41a5ba96645a8bea3071581bb0d6ec004b3d23cc6894388f33a05cf"
+        }
+      }
+    },
+    {
+      "arm": "no_supplemental_discovery",
+      "task_id": "7dd417b5f1ad4e0e965da88aa67a2181",
+      "attempts": 2,
+      "expanded": {
+        "unknown": 0,
+        "pass": 12,
+        "fail": 0,
+        "invalid": 0,
+        "unavailable": 0,
+        "timeout": 0
+      },
+      "holdout": {
+        "unknown": 1,
+        "pass": 2,
+        "fail": 0,
+        "invalid": 0,
+        "unavailable": 0,
+        "timeout": 0
+      },
+      "holdout_planned_paths": 3,
+      "prior_public_four_regressions": 0,
+      "supplemental_eight_not_passing": 0,
+      "model_workflow_wall_seconds": 278.054,
+      "wall_scope": "Task creation to actual session2 final Stop; includes approval waits and registered transfer; excludes final scoring",
+      "scoring_wall_seconds": 62.173,
+      "actual_sessions": 2,
+      "parent_observed_cli_exit_codes": [
+        0,
+        0
+      ],
+      "stop_continuations": 0,
+      "usage": {
+        "input_tokens": 962597,
+        "cached_input_tokens": 883968,
+        "output_tokens": 7295,
+        "reasoning_output_tokens": 537,
+        "total_tokens": 969892,
+        "derived_uncached_input_tokens": 78629,
+        "derived_uncached_input_plus_output_tokens": 85924
+      },
+      "cost": null,
+      "parent_product_edits": 0,
+      "parent_strategy_prompts": 0,
+      "standard_setup_permission_handoff_actions": 5,
+      "extra_hook_review_navigation_actions": 0,
+      "additional_host_diagnostic_episodes": 0,
+      "actual_attempt_assertion_failures": 0,
+      "actual_attempt_unavailable_cases": 0,
+      "final_source_sha256": {
+        "projects/education-swift/Sources/LearningCore/LearningCore.swift": "57834c1c20605ed8452c97afe6d6e148e1f3a70fec9d33cfe55506825c09d27b",
+        "projects/education-swift/Sources/LingoSeed/LingoSeed.swift": "54c8b029b42a8f9ccb3a9bb7ef14e66b15b83a223b51cbc2ce33fef2c86aa780"
+      },
+      "artifacts": {
+        "final-seal.json": {
+          "raw_sha256": "00962aa0cb88a1117f018b18d6a358fea5f464eba3ddc9053928faa1d1eaff44",
+          "export_sha256": "e0b42161ba96acb4179359520771997dd057d36a05a36b42630b7233a94b80ab"
+        },
+        "final-expanded.json": {
+          "raw_sha256": "5b2a58a2030b88933a2b50e51e1a8d77c0a504375589ded4e8c52511199d9065",
+          "export_sha256": "5b2a58a2030b88933a2b50e51e1a8d77c0a504375589ded4e8c52511199d9065"
+        },
+        "final-holdout.json": {
+          "raw_sha256": "91f88b4f469ea8e60f146719eeb64993c77c5b0b0e1318ef5c04afaf39d5f3f1",
+          "export_sha256": "91f88b4f469ea8e60f146719eeb64993c77c5b0b0e1318ef5c04afaf39d5f3f1"
+        }
+      }
+    }
+  ],
+  "scoring_started_at": 1791583608.841795,
+  "scoring_finished_at": 1791583856.759661,
+  "result": "All four arms public12/12 and executable holdout2/2; unknown1/planned3 retained. Zero observed acceptance benefit at N=1; no statistical, generalization or timing-efficiency claim."
+}

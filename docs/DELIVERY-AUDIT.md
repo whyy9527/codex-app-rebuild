@@ -1,0 +1,33 @@
+# 本轮交付审计 · 2026-10-10
+
+已交付有范围的App重建工具与LingoSeed教育基座，并完成四组真实业务消融。当前主产品原生12/12、核心5项、Python43项通过；原版冻结12/12。四组封存后公开12/12、留出2/2，另1项未知，无观察到的通过率收益。不是整个Duolingo复现，也没有证明教育效果或RSI算法收益。
+
+## 八项逐项核验
+
+| 逻辑 | 实际交付与证据 | 验收与边界 |
+| --- | --- | --- |
+| 独立运行的代码化模子 | [目标/夹具/启动重置说明](../projects/duolingo-web/README.md)、[共享v2规格](../projects/duolingo-web/spec-v2.json)、[原版回执](../projects/duolingo-web/evidence/reference-v2-02.json)及[当前原生回执](../projects/duolingo-web/evidence/final-candidate-v2-01.json) | 两端实际启动、重置、场景、再次重置及关闭；线上端为有日期与范围的临时访客，不重置服务器、恢复账号或声称离线原版。在线西语与原创英语内容不同，只共用语义契约。 |
+| 探索到E2E | [观察范围](../projects/duolingo-web/OBSERVATION-PLAN.md)、[实际观察与增量](../projects/duolingo-web/evidence/V2-PREPARATION.md) | 正常、错误、退出/恢复已观察并先在原版验收；已观察、未知和基座自定规则分开。没有用候选实现证明原版规则。 |
+| 跨语言同一验收 | v2单一规格、断言与夹具；[原版/原生配置](../projects/duolingo-web/targets-v2.json)及两个动作驱动 | 原版12/12、Swift原生12/12；AX驱动操作自有进程，适配器不接收期望；核心检查不替代UI。 |
+| 失败反馈迭代 | [真实存储缺陷修复](../projects/duolingo-web/evidence/PROGRESS-REPAIR.md)、冻结前后五项启动UI回执 | 原先3通过2失败，记录假设后修复，原五项全部通过，旧5/新12共享回归通过；保留失败及预算。正式完整组另有构建unavailable→模型自行修复，不能混称业务断言失败。 |
+| 环节自动迭代 | [阶段工作流](../workflows/rebuild/WORKFLOW.md)、[实际模型run02](../projects/model-pipeline/README.md) | 实际宿主串联初始参考/冻结、实现、补充审计、扩展参考/冻结、实现、复核；两真实会话11尝试/阶段，Stop实际多次继续且最终停止。旧去重缺陷/失败run01保留。已知模板可见，不证明自主发现未知规则。 |
+| 完成进度及接续 | [行为契约](BEHAVIOR-CONTRACT.md)、[当前逐行为覆盖](../projects/duolingo-web/evidence/final-coverage-v2-01.json)、模型run02及四组原生事件 | 版本、证据与当前源码关联；未运行/通过/失败/不可用分开。实际新会话显式adopt/resume，同一任务保留deadline和已用次数，旧指针移除；不自动接管其他会话。 |
+| 迭代补救探索缺口 | v1.1→v1.2→v2的真实父批次及[V2准备记录](../projects/duolingo-web/evidence/V2-PREPARATION.md) | 独立补查发现提交前改选未覆盖，形成新规格并在原版/原生确认。已有产品支持改选，因此只算覆盖增加，不算修复收益；其他扩展学习行为原版确认后冻结。未知仍保留。 |
+| 消融机制与业务效果 | [前置机制报告](../projects/rebuild-mechanisms/REPORT.md)、[业务预注册](../projects/business-ablation/PROTOCOL.md)、[真实业务报告](../projects/business-ablation/REPORT.md) | 机制36项与业务四组分别记录；实际模型N=1/组、同输入/上限、一次只移除一个机制。四组12/12+2/2，未知1，无通过率差异；Stop机制本样本未触发。原始失败、人工介入、时间/缓存及未缓存token保留，费用unknown。 |
+
+## 主教育基座
+
+[构建与使用](../projects/education-swift/README.md)提供macOS14+ / Swift6运行入口、独立进度文件与题库替换方法。Foundation核心、课程数据、LearningModel、SwiftUI界面及进度存储分离。原创两课时覆盖选择、配对、拼句/撤回、反馈、错题重练、结算、解锁与持久进度。没有引入登录、订阅、排行、语音识别或完整内容库。
+
+- [当前原生12项](../projects/duolingo-web/evidence/final-candidate-v2-01.json)完整性验证通过，源码摘要与交付代码一致。
+- [当前核心5项](../projects/duolingo-web/evidence/final-core-02.json)覆盖答题、错题、持久化、拼句、配对、解锁和旧数据边界。
+- [当前Python43项](../projects/business-ablation/evidence/final-checks-01/python-result.json)及原始日志验证机制/控制。
+- [六个界面检查](../projects/duolingo-web/evidence/V2-DELIVERY.md)为已实际查看的940×700 macOS窗口；[当前哈希连续性](../projects/duolingo-web/evidence/final-visual-continuity-01.json)确认三个UI源码文件与六张图片未变。之后只改进度解码，独立启动UI/核心/共享场景覆盖该修复；截图没有冒充重新拍摄。
+
+核心保留iOS复用方向，但未构建iOS；没有完整Xcode/XCUITest环境，原生验收用实际AX交互。生命归零、错误配对扣生命等未观察边界是显式产品决策。在线服务随机内容与未知后端规则不在复现保证内。没有验证所有损坏文件、设备尺寸或中断恢复组合。
+
+## 文档、研究及交付范围
+
+README、AGENTS、[哲学](PHILOSOPHY.md)、[架构](ARCHITECTURE.md)和[路线图](ROADMAP.md)按最终实现维护。运行Goal拥有任务契约，没有新增GOAL.md。Dream-RSI与Cordis的原论文/官方实现、借鉴点、未实现边界和旧实验无收益在[研究来源](RESEARCH.md)保留；Cordis没有冒称第二篇RSI算法论文。
+
+仓库为私有whyy9527/codex-app-rebuild；本轮核验GitHub private=true，未公开、部署或发布。交付检查包含差异/敏感信息、精确暂存、提交推送与远端提交一致性；最后提交号以运行Goal最终回报和Git远端为准，不把提交号写入自身文档形成循环。实验Source没有自动替换主产品。后续扩张属于新范围，应先固定新业务和新的盲留出。

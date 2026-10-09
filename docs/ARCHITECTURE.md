@@ -24,7 +24,7 @@ Stop 去重绑定会话、原生 turn ID 和实际尝试/验收/阶段检查点�
 
 `workflows/rebuild/cli.py` 提供 check、verify、freeze、coverage。回执不覆盖，记录规格/源码/输入摘要、实际观察和差异。目标 layer 显式区分 browser_ui/native_ui/core/test_double；协议不是 UI 证据认证。替身检查验证机制；Duolingo 案例另有真实线上浏览器和 Swift 原生 AX UI 的共享场景实测，不能由协议格式推导任意适配器都提供了真实 UI 证据。详细契约见 [业务规格](BEHAVIOR-CONTRACT.md)。
 
-运行任务应引用固定规格，不能把任务历史当作产品覆盖率。`capabilities/rebuild/pipeline.py` 已保存 explore→specify→reference→freeze→implement→discover→reference→freeze→implement→review 的阶段证据与回执。当前 Codex 依据 next_action 工作，step 校验阶段，不生成伪观察或另起模型。Harness 拥有模型尝试，Pipeline 拥有阶段推进及额外阶段次数/时间上限；两者不复制同一状态。原生 Stop 驱动的单任务模型 fail→pass 续跑已验证（见 `projects/rebuild-mechanisms/REPORT.md`）；一次多阶段真实宿主流程已完成：初始原版4/4→冻结→新会话接续→初始原生4/4→补充观察模板及审计→扩展原版12/12→冻结→模型扩展旧 Swift→原生12/12→复核→最终停止。模板可见，不证明自主发现未知行为；真实业务效果消融待执行。
+运行任务应引用固定规格，不能把任务历史当作产品覆盖率。`capabilities/rebuild/pipeline.py` 已保存 explore→specify→reference→freeze→implement→discover→reference→freeze→implement→review 的阶段证据与回执。当前 Codex 依据 next_action 工作，step 校验阶段，不生成伪观察或另起模型。Harness 拥有模型尝试，Pipeline 拥有阶段推进及额外阶段次数/时间上限；两者不复制同一状态。原生 Stop 驱动的单任务模型 fail→pass 续跑已验证（见 `projects/rebuild-mechanisms/REPORT.md`）；一次多阶段真实宿主流程已完成：初始原版4/4→冻结→新会话接续→初始原生4/4→补充观察模板及审计→扩展原版12/12→冻结→模型扩展旧 Swift→原生12/12→复核→最终停止。模板可见，不证明自主发现未知行为；四组真实业务消融已执行，均12/12及可执行留出2/2、另1未知；N=1未观察到通过率收益，见 [业务报告](../projects/business-ablation/REPORT.md)。
 
 重建工作流编排观察、原版验收、批次冻结、新版实现、差异修复与补充探索。运行时只执行显式命令，不推断规则。`exploration_adopt` 允许用户明确选择暂停任务转交新会话，不自动恢复、不重置预算；旧指针失效，忙碌目标会话和异工作目录被拒绝。正在执行的验收必须结束后才能转交；暂停期间取得的成功结果在显式恢复时正确完成，无须额外消耗尝试。
 
@@ -32,7 +32,7 @@ Stop 去重绑定会话、原生 turn ID 和实际尝试/验收/阶段检查点�
 
 ## Swift 教育案例边界
 
-课程和题库是内容数据；学习引擎拥有题目队列、答题反馈、错题重练和结算；进度仓库负责保存和恢复；SwiftUI 负责展示与输入。业务核心可以独立测试，并通过场景适配器与浏览器观察的语义对应。当前 `projects/education-swift` 将 LearningCore、SwiftUI 客户端和可执行核心检查分开；`projects/duolingo-web` 拥有线上浏览器与原生 AX 驱动及共享规格。v2 已在原版和原生 UI 两侧通过12条共享场景。LearningCore 拥有 Codable 课程/课时、三题型状态机、错题队列及进度；LearningModel 处理 UI 操作与保存；LearningView 展示界面。构建包装器先编译当前源码，再驱动自有 PID 的窗口，记录源码与二进制摘要。实际结果见该案例 evidence；另有实际模型从旧版 Swift 扩展到12/12的可行性记录；其效果提升仍待四组业务对照。
+课程和题库是内容数据；学习引擎拥有题目队列、答题反馈、错题重练和结算；进度仓库负责保存和恢复；SwiftUI 负责展示与输入。业务核心可以独立测试，并通过场景适配器与浏览器观察的语义对应。当前 `projects/education-swift` 将 LearningCore、SwiftUI 客户端和可执行核心检查分开；`projects/duolingo-web` 拥有线上浏览器与原生 AX 驱动及共享规格。v2 已在原版和原生 UI 两侧通过12条共享场景。LearningCore 拥有 Codable 课程/课时、三题型状态机、错题队列及进度；LearningModel 处理 UI 操作与保存；LearningView 展示界面。构建包装器先编译当前源码，再驱动自有 PID 的窗口，记录源码与二进制摘要。实际结果见该案例 evidence；另有实际模型从旧版 Swift 扩展到12/12的可行性记录；四组业务对照已完成且没有通过率差异，不据此宣称机制提升。
 
 测试分三层：核心业务测试、原生客户端交互、视觉审查。适配器只是桥梁，不能用核心测试通过代替 UI 通过。平台构建和实际交互分别提供证据。
 

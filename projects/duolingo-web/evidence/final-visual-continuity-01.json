@@ -1,0 +1,24 @@
+{
+  "status": "verified historical visual inspection remains applicable to unchanged UI source",
+  "original_inspection": "projects/duolingo-web/evidence/V2-DELIVERY.md",
+  "actual_images_inspected": 6,
+  "ui_source_sha256": {
+    "projects/education-swift/Sources/LingoSeed/LearningModel.swift": "ec8ff2814af2db92cb4eecad7a343155d53004bb2725f6825e5d268c277c0f8f",
+    "projects/education-swift/Sources/LingoSeed/LearningView.swift": "bfe8565c835129a2cd86948b89e2f0ca2ab19045296d324b339803c2a7dee8e3",
+    "projects/education-swift/Sources/LingoSeed/LingoSeed.swift": "8379469d948a47dab7c73b4f23cae6c357ea9141638077ae96d4c429e101e1bc"
+  },
+  "screenshot_sha256": {
+    "projects/duolingo-web/evidence/lingoseed-v2-choice.png": "bbe6bde3329ebd62931d89ceb12d0ba9d8f908573835f1c7959050677c5eb6c2",
+    "projects/duolingo-web/evidence/lingoseed-v2-matching.png": "a92b895c97f19c059f4610ebbc9418cb1e1d8daadab5867fdecec8907196c68d",
+    "projects/duolingo-web/evidence/lingoseed-v2-path.png": "7929792d0a1df86d112c20d007d2cd7880a28381d08926220f49498fdab428d8",
+    "projects/duolingo-web/evidence/lingoseed-v2-unlocked.png": "888090401b3ce7cc9b675b70c319e450584de3677deb32a2de2c490c20af74a6",
+    "projects/duolingo-web/evidence/lingoseed-v2-word-feedback.png": "41ed4473405aa841c71c4953261d8e8173d5e1c597dabfe4326f5fecd1432cdc",
+    "projects/duolingo-web/evidence/lingoseed-v2-word-tiles.png": "c6e63e98a95f7ff7d05f982bb7a6ebcf81f1f0135aff6d26771b94754b833ba2"
+  },
+  "core_changed_since_visual_inspection": "Strict saved-progress decoder repair; separate actual startup UI checks and current core/native acceptance cover this change. Original screenshots are historical, not newly captured.",
+  "limits": [
+    "940x700 default macOS window only",
+    "No iOS, responsive-layout or educational efficacy claim"
+  ],
+  "checked_at": 1791583802.509574
+}

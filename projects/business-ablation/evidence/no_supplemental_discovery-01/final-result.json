@@ -1,0 +1,68 @@
+{
+  "arm": "no_supplemental_discovery",
+  "task_id": "7dd417b5f1ad4e0e965da88aa67a2181",
+  "attempts": 2,
+  "expanded": {
+    "unknown": 0,
+    "pass": 12,
+    "fail": 0,
+    "invalid": 0,
+    "unavailable": 0,
+    "timeout": 0
+  },
+  "holdout": {
+    "unknown": 1,
+    "pass": 2,
+    "fail": 0,
+    "invalid": 0,
+    "unavailable": 0,
+    "timeout": 0
+  },
+  "holdout_planned_paths": 3,
+  "prior_public_four_regressions": 0,
+  "supplemental_eight_not_passing": 0,
+  "model_workflow_wall_seconds": 278.054,
+  "wall_scope": "Task creation to actual session2 final Stop; includes approval waits and registered transfer; excludes final scoring",
+  "scoring_wall_seconds": 62.173,
+  "actual_sessions": 2,
+  "parent_observed_cli_exit_codes": [
+    0,
+    0
+  ],
+  "stop_continuations": 0,
+  "usage": {
+    "input_tokens": 962597,
+    "cached_input_tokens": 883968,
+    "output_tokens": 7295,
+    "reasoning_output_tokens": 537,
+    "total_tokens": 969892,
+    "derived_uncached_input_tokens": 78629,
+    "derived_uncached_input_plus_output_tokens": 85924
+  },
+  "cost": null,
+  "parent_product_edits": 0,
+  "parent_strategy_prompts": 0,
+  "standard_setup_permission_handoff_actions": 5,
+  "extra_hook_review_navigation_actions": 0,
+  "additional_host_diagnostic_episodes": 0,
+  "actual_attempt_assertion_failures": 0,
+  "actual_attempt_unavailable_cases": 0,
+  "final_source_sha256": {
+    "projects/education-swift/Sources/LearningCore/LearningCore.swift": "57834c1c20605ed8452c97afe6d6e148e1f3a70fec9d33cfe55506825c09d27b",
+    "projects/education-swift/Sources/LingoSeed/LingoSeed.swift": "54c8b029b42a8f9ccb3a9bb7ef14e66b15b83a223b51cbc2ce33fef2c86aa780"
+  },
+  "artifacts": {
+    "final-seal.json": {
+      "raw_sha256": "00962aa0cb88a1117f018b18d6a358fea5f464eba3ddc9053928faa1d1eaff44",
+      "export_sha256": "e0b42161ba96acb4179359520771997dd057d36a05a36b42630b7233a94b80ab"
+    },
+    "final-expanded.json": {
+      "raw_sha256": "5b2a58a2030b88933a2b50e51e1a8d77c0a504375589ded4e8c52511199d9065",
+      "export_sha256": "5b2a58a2030b88933a2b50e51e1a8d77c0a504375589ded4e8c52511199d9065"
+    },
+    "final-holdout.json": {
+      "raw_sha256": "91f88b4f469ea8e60f146719eeb64993c77c5b0b0e1318ef5c04afaf39d5f3f1",
+      "export_sha256": "91f88b4f469ea8e60f146719eeb64993c77c5b0b0e1318ef5c04afaf39d5f3f1"
+    }
+  }
+}
