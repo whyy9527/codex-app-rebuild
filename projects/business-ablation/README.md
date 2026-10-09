@@ -30,3 +30,5 @@ Before formal models, the clone-scope check reproduced an installer refusal: cop
 ## Formal full arm · visible checkpoint
 
 [full-01](evidence/full-01/visible-result.json) completed visible acceptance in3 attempts across two native gpt-6.1-sol / medium sessions with the original deadline. Attempt1 was unavailable due to a SwiftUI build syntax error; attempt2 passed initial4 and paused, and the fresh adopted session's attempt3 passed expanded12 with unchanged Sources. All failures, per-attempt Sources, actual host/tool events, usage and setup interventions are retained. Both sessions ended with non-continuing Stop; there was no Stop-driven continuation in this arm, so it cannot by itself estimate that mechanism's benefit. Parent edits/coaching: zero. Sources are sealed; parent final scores and held-out evaluation are deferred until all four implementations finish. Other three formal arms remain unexecuted at this checkpoint.
+
+去行为进度正式组已完成两会话、2次尝试：初始4/4、扩展可见12/12，Source未在第二会话改动；原预算接续、最终Stop不继续、模型读写范围与进度投影移除均已审计。见 [no_behavior_progress 可见记录](evidence/no_behavior_progress-01/visible-result.json)。隐藏与统一最终评分仍未运行；不能把可见通过率当作机制收益。

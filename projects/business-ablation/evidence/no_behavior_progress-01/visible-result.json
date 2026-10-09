@@ -1,0 +1,116 @@
+{
+  "arm": "no_behavior_progress",
+  "status": "complete; private scoring pending",
+  "task_id": "62cfb36dccb246ad9b85f394dbe79de9",
+  "attempts": 2,
+  "original_deadline": 1791587597.5925481,
+  "visible_receipts": [
+    {
+      "attempt": 1,
+      "counts": {
+        "unknown": 0,
+        "pass": 4,
+        "fail": 0,
+        "invalid": 0,
+        "unavailable": 0,
+        "timeout": 0
+      }
+    },
+    {
+      "attempt": 2,
+      "counts": {
+        "unknown": 0,
+        "pass": 12,
+        "fail": 0,
+        "invalid": 0,
+        "unavailable": 0,
+        "timeout": 0
+      }
+    }
+  ],
+  "sessions": [
+    {
+      "session_id": "01a1229e-a2d9-7bf1-aee3-6b95d9c8489a",
+      "cli_version": "0.162.0-alpha.17.2",
+      "native_contexts": [
+        {
+          "turn_id": "01a1229e-a369-7310-9532-08bafbeb63ee",
+          "model": "gpt-6.1-sol",
+          "effort": "medium",
+          "approval_policy": "on-request"
+        }
+      ],
+      "folder_trust_actions": 1,
+      "owned_three_hook_review_batch_actions": 1,
+      "hook_review_navigation_actions": 0,
+      "session_scoped_verifier_approvals": 1,
+      "parent_product_edits": 0,
+      "strategy_prompts": 0,
+      "setup_note": "Parent reviewed three owned hook definitions and launchers before selecting Trust all and continue; SessionStart was trusted before prompt execution. No unrelated hooks changed.",
+      "hook_launcher_sha256": "4ac0ff4535c964aa08722943c666e0e1df449f7d96eda846119955b54d1c878b",
+      "recorded_at": 1791582206.316742,
+      "raw_rollout_sha256": "6e58cc8143fe2fe46907f6703f8adfb05c404cf87c35eb8bd7c3209aa8a483b9",
+      "usage_reported_by_native_host": {
+        "input_tokens": 472463,
+        "cached_input_tokens": 437120,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 7385,
+        "reasoning_output_tokens": 159,
+        "total_tokens": 479848,
+        "derived_uncached_input_tokens": 35343,
+        "derived_uncached_input_plus_output_tokens": 42728
+      }
+    },
+    {
+      "session_id": "01a122a2-2081-7bc2-885d-bb6f01d3e6cb",
+      "cli_version": "0.162.0-alpha.17.2",
+      "native_contexts": [
+        {
+          "turn_id": "01a122a2-2138-7123-9406-a4086e26e7d6",
+          "model": "gpt-6.1-sol",
+          "effort": "medium",
+          "approval_policy": "on-request"
+        }
+      ],
+      "new_session_transfer_actions": 1,
+      "session_scoped_verifier_approvals": 1,
+      "original_deadline": 1791587597.5925481,
+      "retained_attempts_at_transfer": 1,
+      "parent_product_edits": 0,
+      "strategy_prompts": 0,
+      "recorded_at": 1791582463.043652,
+      "old_scope_removed": true,
+      "raw_rollout_sha256": "c9031fc36d15e3fe03c1687f5e9610f3eae64f984d50d211ca739baa9a068436",
+      "usage_reported_by_native_host": {
+        "input_tokens": 546204,
+        "cached_input_tokens": 500224,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1123,
+        "reasoning_output_tokens": 111,
+        "total_tokens": 547327,
+        "derived_uncached_input_tokens": 45980,
+        "derived_uncached_input_plus_output_tokens": 47103
+      }
+    }
+  ],
+  "final_stop": {
+    "event": "Stop",
+    "session_id": "01a122a2-2081-7bc2-885d-bb6f01d3e6cb",
+    "turn_id": "01a122a2-2138-7123-9406-a4086e26e7d6",
+    "decision": null,
+    "output_fields": [],
+    "time": 1791582521.234406
+  },
+  "stop_continuation_count": 0,
+  "scope_audit": "Parent reviewed all curated tool calls and Source dependencies: worker files only; edits confined to product Sources plus requested task-pointer.json. No parent, sibling, main repository, held-out inputs, independent browsing or additional model launches observed. Missing fixture-v1 read failed and was preserved. Sources read only supplied fixture and progress paths; no verifier/assertion imports.",
+  "sealed_source_file": "pre-score-seal.json",
+  "private_holdout_not_run": true,
+  "private_final_scores_not_run": true,
+  "cost": null,
+  "limits": [
+    "N=1 per arm; no statistical or generalization claim",
+    "Public acceptance is training feedback; final expanded and hidden scores remain pending"
+  ],
+  "archived_at": 1791582574.707235,
+  "projection_audit": "SessionStart/returned task summaries omit persisted behavior_progress; latest feedback and raw parent-only receipts retained. One string occurrence in session1 output is the arm directory name, not a behavior progress field."
+}
