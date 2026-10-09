@@ -1,0 +1,24 @@
+{
+  "captured_at": "2026-10-09T18:56:03.310379+00:00",
+  "capture_scope": "Driver captured during probe 06; source unchanged since launch.",
+  "driver_archive": "projects/duolingo-web/evidence/v2-completion-probe-06-source.mjs.txt",
+  "driver_sha256": "a247421b6f1c2c6b63791b17bbb6cad7fcbb145bb93eac96b4a7f923b827bfae",
+  "request": {
+    "operation": "scenario",
+    "scenario_id": "completion-reload-probe",
+    "fixture": {},
+    "precondition": {},
+    "actions": [
+      {
+        "type": "finish_lesson"
+      },
+      {
+        "type": "return_to_path"
+      },
+      {
+        "type": "reload"
+      }
+    ]
+  },
+  "result": "projects/duolingo-web/evidence/v2-completion-probe-06.jsonl"
+}

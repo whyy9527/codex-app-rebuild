@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "kind": "frozen_batch",
+  "revision": "duolingo-guest-choice-v1.2",
+  "spec_digest": "bab85865e20badf5cf73451905f10b76864868bb2210ec00a7417c40bc583da7",
+  "targets_digest": "c5f169516a51e7197b1fa0f059dfe05ef513d110e962cd335cc1567c2879ee71",
+  "inputs": {
+    "projects/duolingo-web/evidence/2026-10-10/duo-03-lesson-initial.yml": "d5ad4476cc507d8860c7337f8959a3c49270631a37774dab3e8402dab8102c82",
+    "projects/duolingo-web/evidence/2026-10-10/duo-04-wrong-feedback.yml": "627e64a27c737cbe69a2520dcf230ad0e22898be08653a6f0463c337f8c76132",
+    "projects/duolingo-web/evidence/2026-10-10/duo-05-correct-feedback.yml": "3da1c467a4076e7304096a7441b5ffb91e3bcc8d358994dc4bed69ee54801ec0",
+    "projects/duolingo-web/evidence/2026-10-10/duo-06-exit-confirm.yml": "04cb5df30a119618f45e178be129fdacafb8208dac68a1b28f72d190eb48670e",
+    "projects/duolingo-web/evidence/2026-10-10/duo-07-exit-cancelled.yml": "b9fc0acf24956945478f4fd24d9f7be919b3d3ade61d781164ac5e7d39ff8a73",
+    "projects/duolingo-web/evidence/discovery-reselection.json": "bbb75827f5bcccd332c669b9123367c99618cb19fed03befa5f49ad47a818c36",
+    "projects/duolingo-web/fixture-v1.json": "e8a5b0490b9c78fb5e8e730f3245b8275e6eb6015f427326f8a90ab408c5f561",
+    "projects/duolingo-web/native-adapter-v2.swift": "ab35bfef59cc441116c62d4450bc72343495633d86304c0ec59ce901d740a223",
+    "projects/duolingo-web/original-adapter.mjs": "142dd8616a033d24a8a34c04ea462b8b7b535ed36233fc9ef5587ec6186678f1",
+    "projects/duolingo-web/package-lock.json": "68603815aa0e350616d954e499d26a7f5050976835fdf0ee1cc4b12580a36f5f",
+    "projects/duolingo-web/package.json": "94e5266ded14092acc68f405483a2e0b18f3fd557cb05eaa40d16d447ff69e46",
+    "projects/duolingo-web/spec-v1.2.json": "38a1ee0d15bc2aaca74d878dcba66068a661e6e0ad22cf0d17defd97e7f6d3ca",
+    "projects/duolingo-web/targets-v1.2.json": "18150d75560faefa0f8c75c24499de6ffa8bb85969a04ea6076a83ffe7faac12"
+  },
+  "reference_receipt_digest": "cd96aa2d67842423d8dc6bd9a33b9b6b21a367ba60b1e146b134888b41a31066",
+  "reference_kind": "original_online",
+  "reference_layer": "browser_ui",
+  "parent_digest": "e8c6c8208eb3d49332a4a6babbeda783443ccc0e1e7a0e7edc0149fcc2e1f7dd",
+  "scenario_digests": {
+    "choice-empty": "016eb470ebfbbcd567336074cf1d8c2f4d85666edcb99dc26ea5019e755d0040",
+    "choice-correct": "f1f7aeaa4403687e692ae91c0bfccca43902e0346ccc8772504ebd7b0eede404",
+    "choice-wrong": "e100b790af42679d01878fd04a83342b10b51d624e8208092e6dd7957cc54bb3",
+    "exit-cancel": "99828355a66263e45b0a8261b33c87ebd6efc5ea4c368aa95d6840e3a17d891c",
+    "choice-reselection": "b655269371f3513e65f6fb3f4cd267f4216271f35ec24036b7590544f0008d9a"
+  },
+  "created_at": 1791572329.3456042
+}

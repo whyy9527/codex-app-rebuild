@@ -1,6 +1,6 @@
 # Duolingo 网页参考案例
 
-这是私有 Codex App Rebuild 的第一个真实业务案例。网页只作为行为参考，Swift 教育基座使用原创名称、课程与素材。已交付首批四条跨端冻结验收与可运行 SwiftUI 选择课；完整学习流程和真实业务消融仍待完成。
+这是私有 Codex App Rebuild 的第一个真实业务案例。网页只作为行为参考，Swift 教育基座使用原创名称、课程与素材。已交付五条跨端冻结验收与可运行 SwiftUI 选择课；完整学习流程和真实业务消融仍待完成。
 
 ## 现有产物
 
@@ -51,3 +51,9 @@ python3 -m workflows.rebuild.cli verify --workspace . --spec projects/duolingo-w
 当前原生驱动只启动已构建的二进制，调用者必须先构建当前源码；下一批完整修复循环还需把构建纳入验收命令，防止使用旧二进制。驱动通过自己启动的子进程 PID 查找 AXWindows，点击实际控件并返回可见属性，不访问其他应用。需要当前进程拥有辅助功能权限。
 
 正式记录见 [原生迭代](evidence/NATIVE-V1-ITERATION.md)：v1 原生因快照超限而整体失败，v1.1 保留四项断言、重新确认原版与父批次后，两端均 4/4 通过；word-tiles 在这两批仍为 unknown。完整协议、冻结及参考/候选回执均在 evidence 中，覆盖报告为 `coverage-v1.1.json`。Swift 构建和启动见 [客户端说明](../education-swift/README.md)。
+
+## 补充探索增量 v1.2
+
+首批通过后，实际探索发现初始场景未覆盖“提交前从错误选项改选正确选项”。真实证据、原版和原生 UI 的五项通过回执、父批次关系及覆盖报告见 [增量准备记录](evidence/V2-PREPARATION.md)。`spec-v1.2.json` / `targets-v1.2.json` / `evidence/batch-v1.2.json` 是目前最新已冻结批次；word-tiles 在该批仍为 unknown。客户端已有改选能力，这次没有产品代码修改，不能声称修复收益。
+
+`spec-v2.draft.json` 与 `targets-v2.draft.json` 是12条学习流程的待确认草案，含拼句、配对、错题回顾、结算/刷新与退出丢弃。v2 浏览器驱动、v3 原生驱动和构建包装器尚处集成准备；源码/类型检查不等于跨端业务通过。不能把草案当作已冻结验收或完整 Swift 基座。
