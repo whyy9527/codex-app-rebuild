@@ -1,0 +1,122 @@
+{
+  "arm": "no_stop_feedback",
+  "status": "complete; private scoring pending",
+  "task_id": "714e23a6496f4e4a8436e05878a70b27",
+  "attempts": 2,
+  "original_deadline": 1791588030.778218,
+  "visible_receipts": [
+    {
+      "attempt": 1,
+      "counts": {
+        "unknown": 0,
+        "pass": 4,
+        "fail": 0,
+        "invalid": 0,
+        "unavailable": 0,
+        "timeout": 0
+      }
+    },
+    {
+      "attempt": 2,
+      "counts": {
+        "unknown": 0,
+        "pass": 12,
+        "fail": 0,
+        "invalid": 0,
+        "unavailable": 0,
+        "timeout": 0
+      }
+    }
+  ],
+  "sessions": [
+    {
+      "session_id": "01a122a5-3faa-75a1-9e38-3c145971cfc1",
+      "cli_version": "0.162.0-alpha.17.2",
+      "native_contexts": [
+        {
+          "turn_id": "01a122a5-44dc-7a91-8c66-af8e09bb74e6",
+          "model": "gpt-6.1-sol",
+          "effort": "medium",
+          "approval_policy": "on-request"
+        }
+      ],
+      "folder_trust_actions": 1,
+      "owned_three_hook_review_batch_actions": 1,
+      "hook_review_navigation_actions": 0,
+      "session_scoped_verifier_approvals": 1,
+      "parent_product_edits": 0,
+      "strategy_prompts": 0,
+      "setup_note": "Parent reviewed three owned hook definitions and launchers before Trust all and continue; SessionStart trusted before prompt execution.",
+      "recorded_at": 1791582634.6913338,
+      "additional_capability_interventions": [
+        {
+          "action": "Read-only own process tree, own thread logs, terminal Ctrl-L/Ctrl-Q/WINCH and owned PTY resize 100x40; resize revealed a pending verifier approval that had not painted. Selected visible session-only option2. No model prompt, transcript edit, restart, verifier duplicate or product patch.",
+          "time": 1791582970.404688
+        }
+      ],
+      "host_diagnostic": "Native UI did not repaint pending MCP approval at original 80x24; actual permission screen became visible after PTY resize. Not a model acceptance failure or confirmed dangling transcript defect.",
+      "raw_rollout_sha256": "63d0535d20f31f7eea454403807b05fe4ae2ef30397c42a3aeb4b6b285e560b2",
+      "usage_reported_by_native_host": {
+        "input_tokens": 647777,
+        "cached_input_tokens": 610048,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 5894,
+        "reasoning_output_tokens": 275,
+        "total_tokens": 653671,
+        "derived_uncached_input_tokens": 37729,
+        "derived_uncached_input_plus_output_tokens": 43623
+      }
+    },
+    {
+      "session_id": "01a122ac-4f60-7d82-b9f6-1f1d33ce6c2f",
+      "cli_version": "0.162.0-alpha.17.2",
+      "native_contexts": [
+        {
+          "turn_id": "01a122ac-5020-74f2-8f95-a1b4234b2430",
+          "model": "gpt-6.1-sol",
+          "effort": "medium",
+          "approval_policy": "on-request"
+        }
+      ],
+      "new_session_transfer_actions": 1,
+      "session_scoped_verifier_approvals": 1,
+      "original_deadline": 1791588030.778218,
+      "retained_attempts_at_transfer": 1,
+      "parent_product_edits": 0,
+      "strategy_prompts": 0,
+      "recorded_at": 1791583091.114608,
+      "old_scope_removed": true,
+      "raw_rollout_sha256": "7278d9282906e8d364bfde8c8bb4a95191b80a9e516403cf1e64655724198a11",
+      "usage_reported_by_native_host": {
+        "input_tokens": 558954,
+        "cached_input_tokens": 471424,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1367,
+        "reasoning_output_tokens": 176,
+        "total_tokens": 560321,
+        "derived_uncached_input_tokens": 87530,
+        "derived_uncached_input_plus_output_tokens": 88897
+      }
+    }
+  ],
+  "final_stop": {
+    "event": "Stop",
+    "session_id": "01a122ac-4f60-7d82-b9f6-1f1d33ce6c2f",
+    "turn_id": "01a122ac-5020-74f2-8f95-a1b4234b2430",
+    "decision": null,
+    "output_fields": [],
+    "time": 1791583188.597815
+  },
+  "stop_continuation_count": 0,
+  "scope_audit": "Parent reviewed curated tool calls and Source dependencies: all project reads within worker; writes limited to product Sources and requested task-pointer.json. No parent/sibling/main/held-out reads, independent browsing or extra model launches observed. Missing fixture-v1 read failed and is retained. Source reads supplied fixture/progress paths, no verifier/assertion imports.",
+  "sealed_source_file": "pre-score-seal.json",
+  "private_holdout_not_run": true,
+  "private_final_scores_not_run": true,
+  "cost": null,
+  "limits": [
+    "N=1 per arm; no statistical or generalization claim",
+    "Public acceptance is training feedback; final expanded and hidden scores remain pending"
+  ],
+  "archived_at": 1791583233.132566,
+  "host_limit": "Session1 pending MCP approval did not repaint in 80x24 PTY; parent read-only diagnostics and resize revealed it. Same session-only approval then continued original attempt. Wall time includes that delay; no causal timing claim."
+}
