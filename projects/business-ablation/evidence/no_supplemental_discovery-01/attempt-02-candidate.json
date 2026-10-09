@@ -1,0 +1,1718 @@
+{
+  "schema_version": 1,
+  "kind": "behavior_verification",
+  "target": "candidate",
+  "target_kind": "candidate",
+  "layer": "native_ui",
+  "revision": "business-initial-four",
+  "spec_digest": "4ab6db1ce15eca661c01409bc349d42bfda11dfb99d1b552ee31ba3eb4025c98",
+  "targets_digest": "182496c6cee4d8aee5960a15f322a0a19fde14eabb9c4bce1044823e41b0f5b1",
+  "source_digest": "8942729121590e28ee16db83ad3b9d3574e54325107c9a2f9e01f8696c680db8",
+  "inputs": {
+    "candidate-entry.py": "d5384419fc2bac5570c5827eedda920024a735f34a642024786b466973c3ac53",
+    "controller.py": "85d8cea945d57d567997b272d3d6c7d182a46f65e2bff4a017a42d40592ec19d",
+    "experiment-runtime.py": "3a991438cb981c38ba0dc177c60f85ad7cc02a2cb1e8518d8441380acfcabd78",
+    "projects/duolingo-web/evidence/2026-10-10/duo-03-lesson-initial.yml": "d5ad4476cc507d8860c7337f8959a3c49270631a37774dab3e8402dab8102c82",
+    "projects/duolingo-web/evidence/2026-10-10/duo-04-wrong-feedback.yml": "627e64a27c737cbe69a2520dcf230ad0e22898be08653a6f0463c337f8c76132",
+    "projects/duolingo-web/evidence/2026-10-10/duo-05-correct-feedback.yml": "3da1c467a4076e7304096a7441b5ffb91e3bcc8d358994dc4bed69ee54801ec0",
+    "projects/duolingo-web/evidence/2026-10-10/duo-06-exit-confirm.yml": "04cb5df30a119618f45e178be129fdacafb8208dac68a1b28f72d190eb48670e",
+    "projects/duolingo-web/evidence/2026-10-10/duo-07-exit-cancelled.yml": "b9fc0acf24956945478f4fd24d9f7be919b3d3ade61d781164ac5e7d39ff8a73",
+    "projects/duolingo-web/original-adapter-v2.mjs": "dcaef55e187e213fa4128b57d91dedf32fd5b46ab0dae92920617af2d77f18b4",
+    "projects/duolingo-web/package-lock.json": "68603815aa0e350616d954e499d26a7f5050976835fdf0ee1cc4b12580a36f5f",
+    "projects/duolingo-web/package.json": "94e5266ded14092acc68f405483a2e0b18f3fd557cb05eaa40d16d447ff69e46",
+    "spec-initial.json": "0d85693a25b7ae2d645e7ee082471c6cdcd2b3c30160ced50e4211aa18e3beb1",
+    "targets.json": "292f751699bd01bdb9664c73cefbb4972aae8b217df98d1ffe9f403229206909",
+    "worker/projects/duolingo-web/build-native.py": "afbcd31ac4ed06592f005a9b9230c90115d2b62accba155de8945ef44912c7fd",
+    "worker/projects/duolingo-web/fixture-v2.json": "cfd33ce0404f4c566446415cf8e5a4275d56e97013a6a07572954785243fb112",
+    "worker/projects/duolingo-web/native-adapter-v3.swift": "3805f45728d86f6fca110f464aa2e71764470f8604f17a21576f85781f49ddfb",
+    "worker/projects/education-swift/Package.swift": "69c107cdd891cdadd83dca370c1618c002fd85fcba63c76391b6b5cc279a0cd1",
+    "worker/projects/education-swift/Tests/LearningCoreTests/LearningCoreTests.swift": "46c5fa7de5f6f1153339eececc2613e2373daca8a530008444b3ba75b76a4129"
+  },
+  "behaviors": [
+    {
+      "id": "choice-empty",
+      "discovery": "observed",
+      "status": "pass",
+      "receipt": {
+        "command": [
+          "python3",
+          "candidate-entry.py"
+        ],
+        "source_digest": "8942729121590e28ee16db83ad3b9d3574e54325107c9a2f9e01f8696c680db8",
+        "integrity": "verified",
+        "evaluator_digest": "3b393451d210440429c7d459974a8f3746433ffdad4d84834caea338695c70e0",
+        "exit_code": 0,
+        "status": "pass",
+        "output": "APP_REBUILD_RESULT {\"observations\": [{\"state\": {\"answer_selected\": false, \"authenticated\": false, \"check_enabled\": false, \"completed_lessons\": null, \"continue_enabled\": false, \"current_lesson_index\": null, \"feedback\": \"none\", \"hearts\": 5, \"initial_question_revisited\": true, \"lesson_index\": 0, \"matching_complete\": false, \"next_lesson_enabled\": false, \"options_locked\": false, \"question_changed\": false, \"question_kind\": \"choice\", \"reviewing\": false, \"screen\": \"question\", \"selected_word_count\": 0, \"ui_snapshot\": [{\"description\": \"\", \"enabled\": false, \"id\": \"SwiftUI._ConditionalContent<LingoSeed.LearningView, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1\", \"role\": \"AXWindow\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": false, \"id\": \"\", \"role\": \"AXGroup\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"LingoSeed\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"A little practice. A new possibility.\"}, {\"description\": \"Close lesson\", \"enabled\": true, \"id\": \"quit\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"♥ 5\", \"enabled\": true, \"id\": \"hearts\", \"role\": \"AXStaticText\", \"value\": \"5\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"LESSON 1 · SMALL BEGINNINGS\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXProgressIndicator\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"question-title\", \"role\": \"AXStaticText\", \"value\": \"Choose the greeting for a new day.\"}, {\"description\": \"Good morning\", \"enabled\": true, \"id\": \"option-morning\", \"role\": \"AXButton\", \"value\": \"not selected\"}, {\"description\": \"Good night\", \"enabled\": true, \"id\": \"option-night\", \"role\": \"AXButton\", \"value\": \"not selected\"}, {\"description\": \"Thank you\", \"enabled\": true, \"id\": \"option-thanks\", \"role\": \"AXButton\", \"value\": \"not selected\"}, {\"description\": \"Check answer\", \"enabled\": false, \"id\": \"check\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": false, \"id\": \"\", \"role\": \"AXGroup\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"LingoSeed\"}]}, \"step\": 0}], \"operation\": \"scenario\", \"precondition_state\": {\"answer_selected\": false, \"authenticated\": false, \"check_enabled\": false, \"completed_lessons\": null, \"continue_enabled\": false, \"current_lesson_index\": null, \"feedback\": \"none\", \"hearts\": 5, \"initial_question_revisited\": true, \"lesson_index\": 0, \"matching_complete\": false, \"next_lesson_enabled\": false, \"options_locked\": false, \"question_changed\": false, \"question_kind\": \"choice\", \"reviewing\": false, \"screen\": \"question\", \"selected_word_count\": 0, \"ui_snapshot\": [{\"description\": \"\", \"enabled\": false, \"id\": \"SwiftUI._ConditionalContent<LingoSeed.LearningView, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1\", \"role\": \"AXWindow\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": false, \"id\": \"\", \"role\": \"AXGroup\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"LingoSeed\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"A little practice. A new possibility.\"}, {\"description\": \"Close lesson\", \"enabled\": true, \"id\": \"quit\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"♥ 5\", \"enabled\": true, \"id\": \"hearts\", \"role\": \"AXStaticText\", \"value\": \"5\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"LESSON 1 · SMALL BEGINNINGS\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXProgressIndicator\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"question-title\", \"role\": \"AXStaticText\", \"value\": \"Choose the greeting for a new day.\"}, {\"description\": \"Good morning\", \"enabled\": true, \"id\": \"option-morning\", \"role\": \"AXButton\", \"value\": \"not selected\"}, {\"description\": \"Good night\", \"enabled\": true, \"id\": \"option-night\", \"role\": \"AXButton\", \"value\": \"not selected\"}, {\"description\": \"Thank you\", \"enabled\": true, \"id\": \"option-thanks\", \"role\": \"AXButton\", \"value\": \"not selected\"}, {\"description\": \"Check answer\", \"enabled\": false, \"id\": \"check\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": false, \"id\": \"\", \"role\": \"AXGroup\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"LingoSeed\"}]}, \"preparation\": [], \"scenario_id\": \"choice-empty\", \"build\": {\"binary_sha256\": \"dc62c761bb88813bae490025c66744d5f763463085f1b67d04176c0a045b93d4\", \"source_sha256\": {\"projects/education-swift/Package.swift\": \"69c107cdd891cdadd83dca370c1618c002fd85fcba63c76391b6b5cc279a0cd1\", \"projects/education-swift/Sources/LearningCore/LearningCore.swift\": \"57834c1c20605ed8452c97afe6d6e148e1f3a70fec9d33cfe55506825c09d27b\", \"projects/education-swift/Sources/LingoSeed/LingoSeed.swift\": \"54c8b029b42a8f9ccb3a9bb7ef14e66b15b83a223b51cbc2ce33fef2c86aa780\"}}}\n",
+        "output_bytes": 5522,
+        "output_truncated": false,
+        "output_sha256": "6bb6d4b94e36ef2cda3e458d10b26540ca1fa7ca7c9125994566729d01be068e",
+        "wall_seconds": 1.851751
+      },
+      "differences": [],
+      "observations": [
+        {
+          "state": {
+            "answer_selected": false,
+            "authenticated": false,
+            "check_enabled": false,
+            "completed_lessons": null,
+            "continue_enabled": false,
+            "current_lesson_index": null,
+            "feedback": "none",
+            "hearts": 5,
+            "initial_question_revisited": true,
+            "lesson_index": 0,
+            "matching_complete": false,
+            "next_lesson_enabled": false,
+            "options_locked": false,
+            "question_changed": false,
+            "question_kind": "choice",
+            "reviewing": false,
+            "screen": "question",
+            "selected_word_count": 0,
+            "ui_snapshot": [
+              {
+                "description": "",
+                "enabled": false,
+                "id": "SwiftUI._ConditionalContent<LingoSeed.LearningView, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1",
+                "role": "AXWindow",
+                "value": ""
+              },
+              {
+                "description": "",
+                "enabled": false,
+                "id": "",
+                "role": "AXGroup",
+                "value": ""
+              },
+              {
+                "description": "",
+                "enabled": true,
+                "id": "",
+                "role": "AXStaticText",
+                "value": "LingoSeed"
+              },
+              {
+                "description": "",
+                "enabled": true,
+                "id": "",
+                "role": "AXStaticText",
+                "value": "A little practice. A new possibility."
+              },
+              {
+                "description": "Close lesson",
+                "enabled": true,
+                "id": "quit",
+                "role": "AXButton",
+                "value": ""
+              },
+              {
+                "description": "♥ 5",
+                "enabled": true,
+                "id": "hearts",
+                "role": "AXStaticText",
+                "value": "5"
+              },
+              {
+                "description": "",
+                "enabled": true,
+                "id": "",
+                "role": "AXStaticText",
+                "value": "LESSON 1 · SMALL BEGINNINGS"
+              },
+              {
+                "description": "",
+                "enabled": true,
+                "id": "",
+                "role": "AXProgressIndicator",
+                "value": ""
+              },
+              {
+                "description": "",
+                "enabled": true,
+                "id": "question-title",
+                "role": "AXStaticText",
+                "value": "Choose the greeting for a new day."
+              },
+              {
+                "description": "Good morning",
+                "enabled": true,
+                "id": "option-morning",
+                "role": "AXButton",
+                "value": "not selected"
+              },
+              {
+                "description": "Good night",
+                "enabled": true,
+                "id": "option-night",
+                "role": "AXButton",
+                "value": "not selected"
+              },
+              {
+                "description": "Thank you",
+                "enabled": true,
+                "id": "option-thanks",
+                "role": "AXButton",
+                "value": "not selected"
+              },
+              {
+                "description": "Check answer",
+                "enabled": false,
+                "id": "check",
+                "role": "AXButton",
+                "value": ""
+              },
+              {
+                "description": "",
+                "enabled": true,
+                "id": "",
+                "role": "AXButton",
+                "value": ""
+              },
+              {
+                "description": "",
+                "enabled": true,
+                "id": "",
+                "role": "AXButton",
+                "value": ""
+              },
+              {
+                "description": "",
+                "enabled": false,
+                "id": "",
+                "role": "AXGroup",
+                "value": ""
+              },
+              {
+                "description": "",
+                "enabled": true,
+                "id": "",
+                "role": "AXButton",
+                "value": ""
+              },
+              {
+                "description": "",
+                "enabled": true,
+                "id": "",
+                "role": "AXStaticText",
+                "value": "LingoSeed"
+              }
+            ]
+          },
+          "step": 0
+        }
+      ]
+    },
+    {
+      "id": "choice-correct",
+      "discovery": "observed",
+      "status": "pass",
+      "receipt": {
+        "command": [
+          "python3",
+          "candidate-entry.py"
+        ],
+        "source_digest": "8942729121590e28ee16db83ad3b9d3574e54325107c9a2f9e01f8696c680db8",
+        "integrity": "verified",
+        "evaluator_digest": "3b393451d210440429c7d459974a8f3746433ffdad4d84834caea338695c70e0",
+        "exit_code": 0,
+        "status": "pass",
+        "output": "APP_REBUILD_RESULT {\"observations\": [{\"state\": {\"answer_selected\": true, \"authenticated\": false, \"check_enabled\": true, \"completed_lessons\": null, \"continue_enabled\": false, \"current_lesson_index\": null, \"feedback\": \"none\", \"hearts\": 5, \"initial_question_revisited\": true, \"lesson_index\": 0, \"matching_complete\": false, \"next_lesson_enabled\": false, \"options_locked\": false, \"question_changed\": false, \"question_kind\": \"choice\", \"reviewing\": false, \"screen\": \"question\", \"selected_word_count\": 0, \"ui_snapshot\": [{\"description\": \"\", \"enabled\": false, \"id\": \"SwiftUI._ConditionalContent<LingoSeed.LearningView, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1\", \"role\": \"AXWindow\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": false, \"id\": \"\", \"role\": \"AXGroup\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"LingoSeed\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"A little practice. A new possibility.\"}, {\"description\": \"Close lesson\", \"enabled\": true, \"id\": \"quit\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"♥ 5\", \"enabled\": true, \"id\": \"hearts\", \"role\": \"AXStaticText\", \"value\": \"5\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"LESSON 1 · SMALL BEGINNINGS\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXProgressIndicator\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"question-title\", \"role\": \"AXStaticText\", \"value\": \"Choose the greeting for a new day.\"}, {\"description\": \"Good morning\", \"enabled\": true, \"id\": \"option-morning\", \"role\": \"AXButton\", \"value\": \"selected\"}, {\"description\": \"Good night\", \"enabled\": true, \"id\": \"option-night\", \"role\": \"AXButton\", \"value\": \"not selected\"}, {\"description\": \"Thank you\", \"enabled\": true, \"id\": \"option-thanks\", \"role\": \"AXButton\", \"value\": \"not selected\"}, {\"description\": \"Check answer\", \"enabled\": true, \"id\": \"check\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": false, \"id\": \"\", \"role\": \"AXGroup\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"LingoSeed\"}]}, \"step\": 0}, {\"state\": {\"answer_selected\": true, \"authenticated\": false, \"check_enabled\": false, \"completed_lessons\": null, \"continue_enabled\": true, \"current_lesson_index\": null, \"feedback\": \"correct\", \"hearts\": 5, \"initial_question_revisited\": true, \"lesson_index\": 0, \"matching_complete\": false, \"next_lesson_enabled\": false, \"options_locked\": true, \"question_changed\": false, \"question_kind\": \"choice\", \"reviewing\": false, \"screen\": \"question\", \"selected_word_count\": 0, \"ui_snapshot\": [{\"description\": \"\", \"enabled\": false, \"id\": \"SwiftUI._ConditionalContent<LingoSeed.LearningView, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1\", \"role\": \"AXWindow\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": false, \"id\": \"\", \"role\": \"AXGroup\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"LingoSeed\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"A little practice. A new possibility.\"}, {\"description\": \"Close lesson\", \"enabled\": true, \"id\": \"quit\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"♥ 5\", \"enabled\": true, \"id\": \"hearts\", \"role\": \"AXStaticText\", \"value\": \"5\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"LESSON 1 · SMALL BEGINNINGS\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXProgressIndicator\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"question-title\", \"role\": \"AXStaticText\", \"value\": \"Choose the greeting for a new day.\"}, {\"description\": \"Good morning\", \"enabled\": false, \"id\": \"option-morning\", \"role\": \"AXButton\", \"value\": \"selected\"}, {\"description\": \"Good night\", \"enabled\": false, \"id\": \"option-night\", \"role\": \"AXButton\", \"value\": \"not selected\"}, {\"description\": \"Thank you\", \"enabled\": false, \"id\": \"option-thanks\", \"role\": \"AXButton\", \"value\": \"not selected\"}, {\"description\": \"Correct!\", \"enabled\": true, \"id\": \"feedback\", \"role\": \"AXStaticText\", \"value\": \"correct\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"Good morning is a greeting for the start of a day.\"}, {\"description\": \"Continue\", \"enabled\": true, \"id\": \"continue\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": false, \"id\": \"\", \"role\": \"AXGroup\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": false, \"id\": \"\", \"role\": \"AXGroup\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"LingoSeed\"}]}, \"step\": 1}], \"operation\": \"scenario\", \"precondition_state\": {\"answer_selected\": false, \"authenticated\": false, \"check_enabled\": false, \"completed_lessons\": null, \"continue_enabled\": false, \"current_lesson_index\": null, \"feedback\": \"none\", \"hearts\": 5, \"initial_question_revisited\": true, \"lesson_index\": 0, \"matching_complete\": false, \"next_lesson_enabled\": false, \"options_locked\": false, \"question_changed\": false, \"question_kind\": \"choice\", \"reviewing\": false, \"screen\": \"question\", \"selected_word_count\": 0, \"ui_snapshot\": [{\"description\": \"\", \"enabled\": false, \"id\": \"SwiftUI._ConditionalContent<LingoSeed.LearningView, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1\", \"role\": \"AXWindow\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": false, \"id\": \"\", \"role\": \"AXGroup\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"LingoSeed\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"A little practice. A new possibility.\"}, {\"description\": \"Close lesson\", \"enabled\": true, \"id\": \"quit\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"♥ 5\", \"enabled\": true, \"id\": \"hearts\", \"role\": \"AXStaticText\", \"value\": \"5\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"LESSON 1 · SMALL BEGINNINGS\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXProgressIndicator\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"question-title\", \"role\": \"AXStaticText\", \"value\": \"Choose the greeting for a new day.\"}, {\"description\": \"Good morning\", \"enabled\": true, \"id\": \"option-morning\", \"role\": \"AXButton\", \"value\": \"not selected\"}, {\"description\": \"Good night\", \"enabled\": true, \"id\": \"option-night\", \"role\": \"AXButton\", \"value\": \"not selected\"}, {\"description\": \"Thank you\", \"enabled\": true, \"id\": \"option-thanks\", \"role\": \"AXButton\", \"value\": \"not selected\"}, {\"description\": \"Check answer\", \"enabled\": false, \"id\": \"check\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": false, \"id\": \"\", \"role\": \"AXGroup\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"LingoSeed\"}]}, \"preparation\": [], \"scenario_id\": \"choice-correct\", \"build\": {\"binary_sha256\": \"dc62c761bb88813bae490025c66744d5f763463085f1b67d04176c0a045b93d4\", \"source_sha256\": {\"projects/education-swift/Package.swift\": \"69c107cdd891cdadd83dca370c1618c002fd85fcba63c76391b6b5cc279a0cd1\", \"projects/education-swift/Sources/LearningCore/LearningCore.swift\": \"57834c1c20605ed8452c97afe6d6e148e1f3a70fec9d33cfe55506825c09d27b\", \"projects/education-swift/Sources/LingoSeed/LingoSeed.swift\": \"54c8b029b42a8f9ccb3a9bb7ef14e66b15b83a223b51cbc2ce33fef2c86aa780\"}}}\n",
+        "output_bytes": 8297,
+        "output_truncated": false,
+        "output_sha256": "31f131537c8e7922c08f851f5a39da13776ed81ee82d4d26a6cc8ed5e30931f0",
+        "wall_seconds": 1.955886
+      },
+      "differences": [],
+      "observations": [
+        {
+          "state": {
+            "answer_selected": true,
+            "authenticated": false,
+            "check_enabled": true,
+            "completed_lessons": null,
+            "continue_enabled": false,
+            "current_lesson_index": null,
+            "feedback": "none",
+            "hearts": 5,
+            "initial_question_revisited": true,
+            "lesson_index": 0,
+            "matching_complete": false,
+            "next_lesson_enabled": false,
+            "options_locked": false,
+            "question_changed": false,
+            "question_kind": "choice",
+            "reviewing": false,
+            "screen": "question",
+            "selected_word_count": 0,
+            "ui_snapshot": [
+              {
+                "description": "",
+                "enabled": false,
+                "id": "SwiftUI._ConditionalContent<LingoSeed.LearningView, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1",
+                "role": "AXWindow",
+                "value": ""
+              },
+              {
+                "description": "",
+                "enabled": false,
+                "id": "",
+                "role": "AXGroup",
+                "value": ""
+              },
+              {
+                "description": "",
+                "enabled": true,
+                "id": "",
+                "role": "AXStaticText",
+                "value": "LingoSeed"
+              },
+              {
+                "description": "",
+                "enabled": true,
+                "id": "",
+                "role": "AXStaticText",
+                "value": "A little practice. A new possibility."
+              },
+              {
+                "description": "Close lesson",
+                "enabled": true,
+                "id": "quit",
+                "role": "AXButton",
+                "value": ""
+              },
+              {
+                "description": "♥ 5",
+                "enabled": true,
+                "id": "hearts",
+                "role": "AXStaticText",
+                "value": "5"
+              },
+              {
+                "description": "",
+                "enabled": true,
+                "id": "",
+                "role": "AXStaticText",
+                "value": "LESSON 1 · SMALL BEGINNINGS"
+              },
+              {
+                "description": "",
+                "enabled": true,
+                "id": "",
+                "role": "AXProgressIndicator",
+                "value": ""
+              },
+              {
+                "description": "",
+                "enabled": true,
+                "id": "question-title",
+                "role": "AXStaticText",
+                "value": "Choose the greeting for a new day."
+              },
+              {
+                "description": "Good morning",
+                "enabled": true,
+                "id": "option-morning",
+                "role": "AXButton",
+                "value": "selected"
+              },
+              {
+                "description": "Good night",
+                "enabled": true,
+                "id": "option-night",
+                "role": "AXButton",
+                "value": "not selected"
+              },
+              {
+                "description": "Thank you",
+                "enabled": true,
+                "id": "option-thanks",
+                "role": "AXButton",
+                "value": "not selected"
+              },
+              {
+                "description": "Check answer",
+                "enabled": true,
+                "id": "check",
+                "role": "AXButton",
+                "value": ""
+              },
+              {
+                "description": "",
+                "enabled": true,
+                "id": "",
+                "role": "AXButton",
+                "value": ""
+              },
+              {
+                "description": "",
+                "enabled": true,
+                "id": "",
+                "role": "AXButton",
+                "value": ""
+              },
+              {
+                "description": "",
+                "enabled": false,
+                "id": "",
+                "role": "AXGroup",
+                "value": ""
+              },
+              {
+                "description": "",
+                "enabled": true,
+                "id": "",
+                "role": "AXButton",
+                "value": ""
+              },
+              {
+                "description": "",
+                "enabled": true,
+                "id": "",
+                "role": "AXStaticText",
+                "value": "LingoSeed"
+              }
+            ]
+          },
+          "step": 0
+        },
+        {
+          "state": {
+            "answer_selected": true,
+            "authenticated": false,
+            "check_enabled": false,
+            "completed_lessons": null,
+            "continue_enabled": true,
+            "current_lesson_index": null,
+            "feedback": "correct",
+            "hearts": 5,
+            "initial_question_revisited": true,
+            "lesson_index": 0,
+            "matching_complete": false,
+            "next_lesson_enabled": false,
+            "options_locked": true,
+            "question_changed": false,
+            "question_kind": "choice",
+            "reviewing": false,
+            "screen": "question",
+            "selected_word_count": 0,
+            "ui_snapshot": [
+              {
+                "description": "",
+                "enabled": false,
+                "id": "SwiftUI._ConditionalContent<LingoSeed.LearningView, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1",
+                "role": "AXWindow",
+                "value": ""
+              },
+              {
+                "description": "",
+                "enabled": false,
+                "id": "",
+                "role": "AXGroup",
+                "value": ""
+              },
+              {
+                "description": "",
+                "enabled": true,
+                "id": "",
+                "role": "AXStaticText",
+                "value": "LingoSeed"
+              },
+              {
+                "description": "",
+                "enabled": true,
+                "id": "",
+                "role": "AXStaticText",
+                "value": "A little practice. A new possibility."
+              },
+              {
+                "description": "Close lesson",
+                "enabled": true,
+                "id": "quit",
+                "role": "AXButton",
+                "value": ""
+              },
+              {
+                "description": "♥ 5",
+                "enabled": true,
+                "id": "hearts",
+                "role": "AXStaticText",
+                "value": "5"
+              },
+              {
+                "description": "",
+                "enabled": true,
+                "id": "",
+                "role": "AXStaticText",
+                "value": "LESSON 1 · SMALL BEGINNINGS"
+              },
+              {
+                "description": "",
+                "enabled": true,
+                "id": "",
+                "role": "AXProgressIndicator",
+                "value": ""
+              },
+              {
+                "description": "",
+                "enabled": true,
+                "id": "question-title",
+                "role": "AXStaticText",
+                "value": "Choose the greeting for a new day."
+              },
+              {
+                "description": "Good morning",
+                "enabled": false,
+                "id": "option-morning",
+                "role": "AXButton",
+                "value": "selected"
+              },
+              {
+                "description": "Good night",
+                "enabled": false,
+                "id": "option-night",
+                "role": "AXButton",
+                "value": "not selected"
+              },
+              {
+                "description": "Thank you",
+                "enabled": false,
+                "id": "option-thanks",
+                "role": "AXButton",
+                "value": "not selected"
+              },
+              {
+                "description": "Correct!",
+                "enabled": true,
+                "id": "feedback",
+                "role": "AXStaticText",
+                "value": "correct"
+              },
+              {
+                "description": "",
+                "enabled": true,
+                "id": "",
+                "role": "AXStaticText",
+                "value": "Good morning is a greeting for the start of a day."
+              },
+              {
+                "description": "Continue",
+                "enabled": true,
+                "id": "continue",
+                "role": "AXButton",
+                "value": ""
+              },
+              {
+                "description": "",
+                "enabled": true,
+                "id": "",
+                "role": "AXButton",
+                "value": ""
+              },
+              {
+                "description": "",
+                "enabled": true,
+                "id": "",
+                "role": "AXButton",
+                "value": ""
+              },
+              {
+                "description": "",
+                "enabled": false,
+                "id": "",
+                "role": "AXGroup",
+                "value": ""
+              },
+              {
+                "description": "",
+                "enabled": false,
+                "id": "",
+                "role": "AXGroup",
+                "value": ""
+              },
+              {
+                "description": "",
+                "enabled": true,
+                "id": "",
+                "role": "AXButton",
+                "value": ""
+              },
+              {
+                "description": "",
+                "enabled": true,
+                "id": "",
+                "role": "AXStaticText",
+                "value": "LingoSeed"
+              }
+            ]
+          },
+          "step": 1
+        }
+      ]
+    },
+    {
+      "id": "choice-wrong",
+      "discovery": "observed",
+      "status": "pass",
+      "receipt": {
+        "command": [
+          "python3",
+          "candidate-entry.py"
+        ],
+        "source_digest": "8942729121590e28ee16db83ad3b9d3574e54325107c9a2f9e01f8696c680db8",
+        "integrity": "verified",
+        "evaluator_digest": "3b393451d210440429c7d459974a8f3746433ffdad4d84834caea338695c70e0",
+        "exit_code": 0,
+        "status": "pass",
+        "output": "APP_REBUILD_RESULT {\"observations\": [{\"state\": {\"answer_selected\": true, \"authenticated\": false, \"check_enabled\": true, \"completed_lessons\": null, \"continue_enabled\": false, \"current_lesson_index\": null, \"feedback\": \"none\", \"hearts\": 5, \"initial_question_revisited\": true, \"lesson_index\": 0, \"matching_complete\": false, \"next_lesson_enabled\": false, \"options_locked\": false, \"question_changed\": false, \"question_kind\": \"choice\", \"reviewing\": false, \"screen\": \"question\", \"selected_word_count\": 0, \"ui_snapshot\": [{\"description\": \"\", \"enabled\": false, \"id\": \"SwiftUI._ConditionalContent<LingoSeed.LearningView, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1\", \"role\": \"AXWindow\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": false, \"id\": \"\", \"role\": \"AXGroup\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"LingoSeed\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"A little practice. A new possibility.\"}, {\"description\": \"Close lesson\", \"enabled\": true, \"id\": \"quit\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"♥ 5\", \"enabled\": true, \"id\": \"hearts\", \"role\": \"AXStaticText\", \"value\": \"5\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"LESSON 1 · SMALL BEGINNINGS\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXProgressIndicator\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"question-title\", \"role\": \"AXStaticText\", \"value\": \"Choose the greeting for a new day.\"}, {\"description\": \"Good morning\", \"enabled\": true, \"id\": \"option-morning\", \"role\": \"AXButton\", \"value\": \"not selected\"}, {\"description\": \"Good night\", \"enabled\": true, \"id\": \"option-night\", \"role\": \"AXButton\", \"value\": \"selected\"}, {\"description\": \"Thank you\", \"enabled\": true, \"id\": \"option-thanks\", \"role\": \"AXButton\", \"value\": \"not selected\"}, {\"description\": \"Check answer\", \"enabled\": true, \"id\": \"check\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": false, \"id\": \"\", \"role\": \"AXGroup\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": false, \"id\": \"\", \"role\": \"AXGroup\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"LingoSeed\"}]}, \"step\": 0}, {\"state\": {\"answer_selected\": true, \"authenticated\": false, \"check_enabled\": false, \"completed_lessons\": null, \"continue_enabled\": true, \"current_lesson_index\": null, \"feedback\": \"incorrect\", \"hearts\": 4, \"initial_question_revisited\": true, \"lesson_index\": 0, \"matching_complete\": false, \"next_lesson_enabled\": false, \"options_locked\": true, \"question_changed\": false, \"question_kind\": \"choice\", \"reviewing\": false, \"screen\": \"question\", \"selected_word_count\": 0, \"ui_snapshot\": [{\"description\": \"\", \"enabled\": false, \"id\": \"SwiftUI._ConditionalContent<LingoSeed.LearningView, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1\", \"role\": \"AXWindow\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": false, \"id\": \"\", \"role\": \"AXGroup\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"LingoSeed\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"A little practice. A new possibility.\"}, {\"description\": \"Close lesson\", \"enabled\": true, \"id\": \"quit\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"♥ 4\", \"enabled\": true, \"id\": \"hearts\", \"role\": \"AXStaticText\", \"value\": \"4\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"LESSON 1 · SMALL BEGINNINGS\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXProgressIndicator\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"question-title\", \"role\": \"AXStaticText\", \"value\": \"Choose the greeting for a new day.\"}, {\"description\": \"Good morning\", \"enabled\": false, \"id\": \"option-morning\", \"role\": \"AXButton\", \"value\": \"not selected\"}, {\"description\": \"Good night\", \"enabled\": false, \"id\": \"option-night\", \"role\": \"AXButton\", \"value\": \"selected\"}, {\"description\": \"Thank you\", \"enabled\": false, \"id\": \"option-thanks\", \"role\": \"AXButton\", \"value\": \"not selected\"}, {\"description\": \"Correct answer: Good morning\", \"enabled\": true, \"id\": \"feedback\", \"role\": \"AXStaticText\", \"value\": \"incorrect\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"Good morning is a greeting for the start of a day.\"}, {\"description\": \"Continue\", \"enabled\": true, \"id\": \"continue\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": false, \"id\": \"\", \"role\": \"AXGroup\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": false, \"id\": \"\", \"role\": \"AXGroup\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"LingoSeed\"}]}, \"step\": 1}], \"operation\": \"scenario\", \"precondition_state\": {\"answer_selected\": false, \"authenticated\": false, \"check_enabled\": false, \"completed_lessons\": null, \"continue_enabled\": false, \"current_lesson_index\": null, \"feedback\": \"none\", \"hearts\": 5, \"initial_question_revisited\": true, \"lesson_index\": 0, \"matching_complete\": false, \"next_lesson_enabled\": false, \"options_locked\": false, \"question_changed\": false, \"question_kind\": \"choice\", \"reviewing\": false, \"screen\": \"question\", \"selected_word_count\": 0, \"ui_snapshot\": [{\"description\": \"\", \"enabled\": false, \"id\": \"SwiftUI._ConditionalContent<LingoSeed.LearningView, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1\", \"role\": \"AXWindow\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": false, \"id\": \"\", \"role\": \"AXGroup\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"LingoSeed\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"A little practice. A new possibility.\"}, {\"description\": \"Close lesson\", \"enabled\": true, \"id\": \"quit\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"♥ 5\", \"enabled\": true, \"id\": \"hearts\", \"role\": \"AXStaticText\", \"value\": \"5\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"LESSON 1 · SMALL BEGINNINGS\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXProgressIndicator\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"question-title\", \"role\": \"AXStaticText\", \"value\": \"Choose the greeting for a new day.\"}, {\"description\": \"Good morning\", \"enabled\": true, \"id\": \"option-morning\", \"role\": \"AXButton\", \"value\": \"not selected\"}, {\"description\": \"Good night\", \"enabled\": true, \"id\": \"option-night\", \"role\": \"AXButton\", \"value\": \"not selected\"}, {\"description\": \"Thank you\", \"enabled\": true, \"id\": \"option-thanks\", \"role\": \"AXButton\", \"value\": \"not selected\"}, {\"description\": \"Check answer\", \"enabled\": false, \"id\": \"check\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": false, \"id\": \"\", \"role\": \"AXGroup\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"LingoSeed\"}]}, \"preparation\": [], \"scenario_id\": \"choice-wrong\", \"build\": {\"binary_sha256\": \"dc62c761bb88813bae490025c66744d5f763463085f1b67d04176c0a045b93d4\", \"source_sha256\": {\"projects/education-swift/Package.swift\": \"69c107cdd891cdadd83dca370c1618c002fd85fcba63c76391b6b5cc279a0cd1\", \"projects/education-swift/Sources/LearningCore/LearningCore.swift\": \"57834c1c20605ed8452c97afe6d6e148e1f3a70fec9d33cfe55506825c09d27b\", \"projects/education-swift/Sources/LingoSeed/LingoSeed.swift\": \"54c8b029b42a8f9ccb3a9bb7ef14e66b15b83a223b51cbc2ce33fef2c86aa780\"}}}\n",
+        "output_bytes": 8400,
+        "output_truncated": false,
+        "output_sha256": "526d5b49ef77f72cfa3ace8410391576912e1993f5c4d8af59411dc698275cfa",
+        "wall_seconds": 1.926072
+      },
+      "differences": [],
+      "observations": [
+        {
+          "state": {
+            "answer_selected": true,
+            "authenticated": false,
+            "check_enabled": true,
+            "completed_lessons": null,
+            "continue_enabled": false,
+            "current_lesson_index": null,
+            "feedback": "none",
+            "hearts": 5,
+            "initial_question_revisited": true,
+            "lesson_index": 0,
+            "matching_complete": false,
+            "next_lesson_enabled": false,
+            "options_locked": false,
+            "question_changed": false,
+            "question_kind": "choice",
+            "reviewing": false,
+            "screen": "question",
+            "selected_word_count": 0,
+            "ui_snapshot": [
+              {
+                "description": "",
+                "enabled": false,
+                "id": "SwiftUI._ConditionalContent<LingoSeed.LearningView, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1",
+                "role": "AXWindow",
+                "value": ""
+              },
+              {
+                "description": "",
+                "enabled": false,
+                "id": "",
+                "role": "AXGroup",
+                "value": ""
+              },
+              {
+                "description": "",
+                "enabled": true,
+                "id": "",
+                "role": "AXStaticText",
+                "value": "LingoSeed"
+              },
+              {
+                "description": "",
+                "enabled": true,
+                "id": "",
+                "role": "AXStaticText",
+                "value": "A little practice. A new possibility."
+              },
+              {
+                "description": "Close lesson",
+                "enabled": true,
+                "id": "quit",
+                "role": "AXButton",
+                "value": ""
+              },
+              {
+                "description": "♥ 5",
+                "enabled": true,
+                "id": "hearts",
+                "role": "AXStaticText",
+                "value": "5"
+              },
+              {
+                "description": "",
+                "enabled": true,
+                "id": "",
+                "role": "AXStaticText",
+                "value": "LESSON 1 · SMALL BEGINNINGS"
+              },
+              {
+                "description": "",
+                "enabled": true,
+                "id": "",
+                "role": "AXProgressIndicator",
+                "value": ""
+              },
+              {
+                "description": "",
+                "enabled": true,
+                "id": "question-title",
+                "role": "AXStaticText",
+                "value": "Choose the greeting for a new day."
+              },
+              {
+                "description": "Good morning",
+                "enabled": true,
+                "id": "option-morning",
+                "role": "AXButton",
+                "value": "not selected"
+              },
+              {
+                "description": "Good night",
+                "enabled": true,
+                "id": "option-night",
+                "role": "AXButton",
+                "value": "selected"
+              },
+              {
+                "description": "Thank you",
+                "enabled": true,
+                "id": "option-thanks",
+                "role": "AXButton",
+                "value": "not selected"
+              },
+              {
+                "description": "Check answer",
+                "enabled": true,
+                "id": "check",
+                "role": "AXButton",
+                "value": ""
+              },
+              {
+                "description": "",
+                "enabled": true,
+                "id": "",
+                "role": "AXButton",
+                "value": ""
+              },
+              {
+                "description": "",
+                "enabled": true,
+                "id": "",
+                "role": "AXButton",
+                "value": ""
+              },
+              {
+                "description": "",
+                "enabled": false,
+                "id": "",
+                "role": "AXGroup",
+                "value": ""
+              },
+              {
+                "description": "",
+                "enabled": false,
+                "id": "",
+                "role": "AXGroup",
+                "value": ""
+              },
+              {
+                "description": "",
+                "enabled": true,
+                "id": "",
+                "role": "AXButton",
+                "value": ""
+              },
+              {
+                "description": "",
+                "enabled": true,
+                "id": "",
+                "role": "AXStaticText",
+                "value": "LingoSeed"
+              }
+            ]
+          },
+          "step": 0
+        },
+        {
+          "state": {
+            "answer_selected": true,
+            "authenticated": false,
+            "check_enabled": false,
+            "completed_lessons": null,
+            "continue_enabled": true,
+            "current_lesson_index": null,
+            "feedback": "incorrect",
+            "hearts": 4,
+            "initial_question_revisited": true,
+            "lesson_index": 0,
+            "matching_complete": false,
+            "next_lesson_enabled": false,
+            "options_locked": true,
+            "question_changed": false,
+            "question_kind": "choice",
+            "reviewing": false,
+            "screen": "question",
+            "selected_word_count": 0,
+            "ui_snapshot": [
+              {
+                "description": "",
+                "enabled": false,
+                "id": "SwiftUI._ConditionalContent<LingoSeed.LearningView, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1",
+                "role": "AXWindow",
+                "value": ""
+              },
+              {
+                "description": "",
+                "enabled": false,
+                "id": "",
+                "role": "AXGroup",
+                "value": ""
+              },
+              {
+                "description": "",
+                "enabled": true,
+                "id": "",
+                "role": "AXStaticText",
+                "value": "LingoSeed"
+              },
+              {
+                "description": "",
+                "enabled": true,
+                "id": "",
+                "role": "AXStaticText",
+                "value": "A little practice. A new possibility."
+              },
+              {
+                "description": "Close lesson",
+                "enabled": true,
+                "id": "quit",
+                "role": "AXButton",
+                "value": ""
+              },
+              {
+                "description": "♥ 4",
+                "enabled": true,
+                "id": "hearts",
+                "role": "AXStaticText",
+                "value": "4"
+              },
+              {
+                "description": "",
+                "enabled": true,
+                "id": "",
+                "role": "AXStaticText",
+                "value": "LESSON 1 · SMALL BEGINNINGS"
+              },
+              {
+                "description": "",
+                "enabled": true,
+                "id": "",
+                "role": "AXProgressIndicator",
+                "value": ""
+              },
+              {
+                "description": "",
+                "enabled": true,
+                "id": "question-title",
+                "role": "AXStaticText",
+                "value": "Choose the greeting for a new day."
+              },
+              {
+                "description": "Good morning",
+                "enabled": false,
+                "id": "option-morning",
+                "role": "AXButton",
+                "value": "not selected"
+              },
+              {
+                "description": "Good night",
+                "enabled": false,
+                "id": "option-night",
+                "role": "AXButton",
+                "value": "selected"
+              },
+              {
+                "description": "Thank you",
+                "enabled": false,
+                "id": "option-thanks",
+                "role": "AXButton",
+                "value": "not selected"
+              },
+              {
+                "description": "Correct answer: Good morning",
+                "enabled": true,
+                "id": "feedback",
+                "role": "AXStaticText",
+                "value": "incorrect"
+              },
+              {
+                "description": "",
+                "enabled": true,
+                "id": "",
+                "role": "AXStaticText",
+                "value": "Good morning is a greeting for the start of a day."
+              },
+              {
+                "description": "Continue",
+                "enabled": true,
+                "id": "continue",
+                "role": "AXButton",
+                "value": ""
+              },
+              {
+                "description": "",
+                "enabled": true,
+                "id": "",
+                "role": "AXButton",
+                "value": ""
+              },
+              {
+                "description": "",
+                "enabled": true,
+                "id": "",
+                "role": "AXButton",
+                "value": ""
+              },
+              {
+                "description": "",
+                "enabled": false,
+                "id": "",
+                "role": "AXGroup",
+                "value": ""
+              },
+              {
+                "description": "",
+                "enabled": false,
+                "id": "",
+                "role": "AXGroup",
+                "value": ""
+              },
+              {
+                "description": "",
+                "enabled": true,
+                "id": "",
+                "role": "AXButton",
+                "value": ""
+              },
+              {
+                "description": "",
+                "enabled": true,
+                "id": "",
+                "role": "AXStaticText",
+                "value": "LingoSeed"
+              }
+            ]
+          },
+          "step": 1
+        }
+      ]
+    },
+    {
+      "id": "exit-cancel",
+      "discovery": "observed",
+      "status": "pass",
+      "receipt": {
+        "command": [
+          "python3",
+          "candidate-entry.py"
+        ],
+        "source_digest": "8942729121590e28ee16db83ad3b9d3574e54325107c9a2f9e01f8696c680db8",
+        "integrity": "verified",
+        "evaluator_digest": "3b393451d210440429c7d459974a8f3746433ffdad4d84834caea338695c70e0",
+        "exit_code": 0,
+        "status": "pass",
+        "output": "APP_REBUILD_RESULT {\"observations\": [{\"state\": {\"answer_selected\": true, \"authenticated\": false, \"check_enabled\": true, \"completed_lessons\": null, \"continue_enabled\": false, \"current_lesson_index\": null, \"feedback\": \"none\", \"hearts\": 5, \"initial_question_revisited\": true, \"lesson_index\": 0, \"matching_complete\": false, \"next_lesson_enabled\": false, \"options_locked\": false, \"question_changed\": false, \"question_kind\": \"choice\", \"reviewing\": false, \"screen\": \"question\", \"selected_word_count\": 0, \"ui_snapshot\": [{\"description\": \"\", \"enabled\": false, \"id\": \"SwiftUI._ConditionalContent<LingoSeed.LearningView, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1\", \"role\": \"AXWindow\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": false, \"id\": \"\", \"role\": \"AXGroup\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"LingoSeed\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"A little practice. A new possibility.\"}, {\"description\": \"Close lesson\", \"enabled\": true, \"id\": \"quit\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"♥ 5\", \"enabled\": true, \"id\": \"hearts\", \"role\": \"AXStaticText\", \"value\": \"5\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"LESSON 1 · SMALL BEGINNINGS\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXProgressIndicator\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"question-title\", \"role\": \"AXStaticText\", \"value\": \"Choose the greeting for a new day.\"}, {\"description\": \"Good morning\", \"enabled\": true, \"id\": \"option-morning\", \"role\": \"AXButton\", \"value\": \"selected\"}, {\"description\": \"Good night\", \"enabled\": true, \"id\": \"option-night\", \"role\": \"AXButton\", \"value\": \"not selected\"}, {\"description\": \"Thank you\", \"enabled\": true, \"id\": \"option-thanks\", \"role\": \"AXButton\", \"value\": \"not selected\"}, {\"description\": \"Check answer\", \"enabled\": true, \"id\": \"check\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": false, \"id\": \"\", \"role\": \"AXGroup\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": false, \"id\": \"\", \"role\": \"AXGroup\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"LingoSeed\"}]}, \"step\": 0}, {\"state\": {\"answer_selected\": true, \"authenticated\": false, \"check_enabled\": false, \"completed_lessons\": null, \"continue_enabled\": true, \"current_lesson_index\": null, \"feedback\": \"correct\", \"hearts\": 5, \"initial_question_revisited\": true, \"lesson_index\": 0, \"matching_complete\": false, \"next_lesson_enabled\": false, \"options_locked\": true, \"question_changed\": false, \"question_kind\": \"choice\", \"reviewing\": false, \"screen\": \"question\", \"selected_word_count\": 0, \"ui_snapshot\": [{\"description\": \"\", \"enabled\": false, \"id\": \"SwiftUI._ConditionalContent<LingoSeed.LearningView, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1\", \"role\": \"AXWindow\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": false, \"id\": \"\", \"role\": \"AXGroup\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"LingoSeed\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"A little practice. A new possibility.\"}, {\"description\": \"Close lesson\", \"enabled\": true, \"id\": \"quit\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"♥ 5\", \"enabled\": true, \"id\": \"hearts\", \"role\": \"AXStaticText\", \"value\": \"5\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"LESSON 1 · SMALL BEGINNINGS\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXProgressIndicator\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"question-title\", \"role\": \"AXStaticText\", \"value\": \"Choose the greeting for a new day.\"}, {\"description\": \"Good morning\", \"enabled\": false, \"id\": \"option-morning\", \"role\": \"AXButton\", \"value\": \"selected\"}, {\"description\": \"Good night\", \"enabled\": false, \"id\": \"option-night\", \"role\": \"AXButton\", \"value\": \"not selected\"}, {\"description\": \"Thank you\", \"enabled\": false, \"id\": \"option-thanks\", \"role\": \"AXButton\", \"value\": \"not selected\"}, {\"description\": \"Correct!\", \"enabled\": true, \"id\": \"feedback\", \"role\": \"AXStaticText\", \"value\": \"correct\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"Good morning is a greeting for the start of a day.\"}, {\"description\": \"Continue\", \"enabled\": true, \"id\": \"continue\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": false, \"id\": \"\", \"role\": \"AXGroup\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": false, \"id\": \"\", \"role\": \"AXGroup\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"LingoSeed\"}]}, \"step\": 1}, {\"state\": {\"answer_selected\": false, \"authenticated\": false, \"check_enabled\": false, \"completed_lessons\": null, \"continue_enabled\": false, \"current_lesson_index\": null, \"feedback\": \"none\", \"hearts\": 5, \"initial_question_revisited\": false, \"lesson_index\": 0, \"matching_complete\": false, \"next_lesson_enabled\": false, \"options_locked\": false, \"question_changed\": false, \"question_kind\": null, \"reviewing\": false, \"screen\": \"exit_confirmation\", \"selected_word_count\": 0, \"ui_snapshot\": [{\"description\": \"\", \"enabled\": false, \"id\": \"SwiftUI._ConditionalContent<LingoSeed.LearningView, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1\", \"role\": \"AXWindow\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": false, \"id\": \"\", \"role\": \"AXGroup\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"LingoSeed\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"A little practice. A new possibility.\"}, {\"description\": \"Close lesson\", \"enabled\": true, \"id\": \"quit\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"♥ 5\", \"enabled\": true, \"id\": \"hearts\", \"role\": \"AXStaticText\", \"value\": \"5\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"exit-title\", \"role\": \"AXStaticText\", \"value\": \"Leave this lesson?\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"Your finished lessons are safe. This unfinished attempt will be discarded.\"}, {\"description\": \"Keep learning\", \"enabled\": true, \"id\": \"cancel-quit\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"End session\", \"enabled\": true, \"id\": \"confirm-quit\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": false, \"id\": \"\", \"role\": \"AXGroup\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": false, \"id\": \"\", \"role\": \"AXGroup\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"LingoSeed\"}]}, \"step\": 2}, {\"state\": {\"answer_selected\": true, \"authenticated\": false, \"check_enabled\": false, \"completed_lessons\": null, \"continue_enabled\": true, \"current_lesson_index\": null, \"feedback\": \"correct\", \"hearts\": 5, \"initial_question_revisited\": true, \"lesson_index\": 0, \"matching_complete\": false, \"next_lesson_enabled\": false, \"options_locked\": true, \"question_changed\": false, \"question_kind\": \"choice\", \"reviewing\": false, \"screen\": \"question\", \"selected_word_count\": 0, \"ui_snapshot\": [{\"description\": \"\", \"enabled\": false, \"id\": \"SwiftUI._ConditionalContent<LingoSeed.LearningView, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1\", \"role\": \"AXWindow\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": false, \"id\": \"\", \"role\": \"AXGroup\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"LingoSeed\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"A little practice. A new possibility.\"}, {\"description\": \"Close lesson\", \"enabled\": true, \"id\": \"quit\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"♥ 5\", \"enabled\": true, \"id\": \"hearts\", \"role\": \"AXStaticText\", \"value\": \"5\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"LESSON 1 · SMALL BEGINNINGS\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXProgressIndicator\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"question-title\", \"role\": \"AXStaticText\", \"value\": \"Choose the greeting for a new day.\"}, {\"description\": \"Good morning\", \"enabled\": false, \"id\": \"option-morning\", \"role\": \"AXButton\", \"value\": \"selected\"}, {\"description\": \"Good night\", \"enabled\": false, \"id\": \"option-night\", \"role\": \"AXButton\", \"value\": \"not selected\"}, {\"description\": \"Thank you\", \"enabled\": false, \"id\": \"option-thanks\", \"role\": \"AXButton\", \"value\": \"not selected\"}, {\"description\": \"Correct!\", \"enabled\": true, \"id\": \"feedback\", \"role\": \"AXStaticText\", \"value\": \"correct\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"Good morning is a greeting for the start of a day.\"}, {\"description\": \"Continue\", \"enabled\": true, \"id\": \"continue\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": false, \"id\": \"\", \"role\": \"AXGroup\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": false, \"id\": \"\", \"role\": \"AXGroup\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"LingoSeed\"}]}, \"step\": 3}], \"operation\": \"scenario\", \"precondition_state\": {\"answer_selected\": false, \"authenticated\": false, \"check_enabled\": false, \"completed_lessons\": null, \"continue_enabled\": false, \"current_lesson_index\": null, \"feedback\": \"none\", \"hearts\": 5, \"initial_question_revisited\": true, \"lesson_index\": 0, \"matching_complete\": false, \"next_lesson_enabled\": false, \"options_locked\": false, \"question_changed\": false, \"question_kind\": \"choice\", \"reviewing\": false, \"screen\": \"question\", \"selected_word_count\": 0, \"ui_snapshot\": [{\"description\": \"\", \"enabled\": false, \"id\": \"SwiftUI._ConditionalContent<LingoSeed.LearningView, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1\", \"role\": \"AXWindow\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": false, \"id\": \"\", \"role\": \"AXGroup\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"LingoSeed\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"A little practice. A new possibility.\"}, {\"description\": \"Close lesson\", \"enabled\": true, \"id\": \"quit\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"♥ 5\", \"enabled\": true, \"id\": \"hearts\", \"role\": \"AXStaticText\", \"value\": \"5\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"LESSON 1 · SMALL BEGINNINGS\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXProgressIndicator\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"question-title\", \"role\": \"AXStaticText\", \"value\": \"Choose the greeting for a new day.\"}, {\"description\": \"Good morning\", \"enabled\": true, \"id\": \"option-morning\", \"role\": \"AXButton\", \"value\": \"not selected\"}, {\"description\": \"Good night\", \"enabled\": true, \"id\": \"option-night\", \"role\": \"AXButton\", \"value\": \"not selected\"}, {\"description\": \"Thank you\", \"enabled\": true, \"id\": \"option-thanks\", \"role\": \"AXButton\", \"value\": \"not selected\"}, {\"description\": \"Check answer\", \"enabled\": false, \"id\": \"check\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": false, \"id\": \"\", \"role\": \"AXGroup\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"LingoSeed\"}]}, \"preparation\": [], \"scenario_id\": \"exit-cancel\", \"build\": {\"binary_sha256\": \"dc62c761bb88813bae490025c66744d5f763463085f1b67d04176c0a045b93d4\", \"source_sha256\": {\"projects/education-swift/Package.swift\": \"69c107cdd891cdadd83dca370c1618c002fd85fcba63c76391b6b5cc279a0cd1\", \"projects/education-swift/Sources/LearningCore/LearningCore.swift\": \"57834c1c20605ed8452c97afe6d6e148e1f3a70fec9d33cfe55506825c09d27b\", \"projects/education-swift/Sources/LingoSeed/LingoSeed.swift\": \"54c8b029b42a8f9ccb3a9bb7ef14e66b15b83a223b51cbc2ce33fef2c86aa780\"}}}\n",
+        "output_bytes": 13396,
+        "output_truncated": false,
+        "output_sha256": "4885ed4d429c7d77b0383507ae18d9cc833b7a59d30a3f3d577e6569cc8faf9f",
+        "wall_seconds": 2.076211
+      },
+      "differences": [],
+      "observations": [
+        {
+          "state": {
+            "answer_selected": true,
+            "authenticated": false,
+            "check_enabled": true,
+            "completed_lessons": null,
+            "continue_enabled": false,
+            "current_lesson_index": null,
+            "feedback": "none",
+            "hearts": 5,
+            "initial_question_revisited": true,
+            "lesson_index": 0,
+            "matching_complete": false,
+            "next_lesson_enabled": false,
+            "options_locked": false,
+            "question_changed": false,
+            "question_kind": "choice",
+            "reviewing": false,
+            "screen": "question",
+            "selected_word_count": 0,
+            "ui_snapshot": [
+              {
+                "description": "",
+                "enabled": false,
+                "id": "SwiftUI._ConditionalContent<LingoSeed.LearningView, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1",
+                "role": "AXWindow",
+                "value": ""
+              },
+              {
+                "description": "",
+                "enabled": false,
+                "id": "",
+                "role": "AXGroup",
+                "value": ""
+              },
+              {
+                "description": "",
+                "enabled": true,
+                "id": "",
+                "role": "AXStaticText",
+                "value": "LingoSeed"
+              },
+              {
+                "description": "",
+                "enabled": true,
+                "id": "",
+                "role": "AXStaticText",
+                "value": "A little practice. A new possibility."
+              },
+              {
+                "description": "Close lesson",
+                "enabled": true,
+                "id": "quit",
+                "role": "AXButton",
+                "value": ""
+              },
+              {
+                "description": "♥ 5",
+                "enabled": true,
+                "id": "hearts",
+                "role": "AXStaticText",
+                "value": "5"
+              },
+              {
+                "description": "",
+                "enabled": true,
+                "id": "",
+                "role": "AXStaticText",
+                "value": "LESSON 1 · SMALL BEGINNINGS"
+              },
+              {
+                "description": "",
+                "enabled": true,
+                "id": "",
+                "role": "AXProgressIndicator",
+                "value": ""
+              },
+              {
+                "description": "",
+                "enabled": true,
+                "id": "question-title",
+                "role": "AXStaticText",
+                "value": "Choose the greeting for a new day."
+              },
+              {
+                "description": "Good morning",
+                "enabled": true,
+                "id": "option-morning",
+                "role": "AXButton",
+                "value": "selected"
+              },
+              {
+                "description": "Good night",
+                "enabled": true,
+                "id": "option-night",
+                "role": "AXButton",
+                "value": "not selected"
+              },
+              {
+                "description": "Thank you",
+                "enabled": true,
+                "id": "option-thanks",
+                "role": "AXButton",
+                "value": "not selected"
+              },
+              {
+                "description": "Check answer",
+                "enabled": true,
+                "id": "check",
+                "role": "AXButton",
+                "value": ""
+              },
+              {
+                "description": "",
+                "enabled": true,
+                "id": "",
+                "role": "AXButton",
+                "value": ""
+              },
+              {
+                "description": "",
+                "enabled": true,
+                "id": "",
+                "role": "AXButton",
+                "value": ""
+              },
+              {
+                "description": "",
+                "enabled": false,
+                "id": "",
+                "role": "AXGroup",
+                "value": ""
+              },
+              {
+                "description": "",
+                "enabled": false,
+                "id": "",
+                "role": "AXGroup",
+                "value": ""
+              },
+              {
+                "description": "",
+                "enabled": true,
+                "id": "",
+                "role": "AXButton",
+                "value": ""
+              },
+              {
+                "description": "",
+                "enabled": true,
+                "id": "",
+                "role": "AXStaticText",
+                "value": "LingoSeed"
+              }
+            ]
+          },
+          "step": 0
+        },
+        {
+          "state": {
+            "answer_selected": true,
+            "authenticated": false,
+            "check_enabled": false,
+            "completed_lessons": null,
+            "continue_enabled": true,
+            "current_lesson_index": null,
+            "feedback": "correct",
+            "hearts": 5,
+            "initial_question_revisited": true,
+            "lesson_index": 0,
+            "matching_complete": false,
+            "next_lesson_enabled": false,
+            "options_locked": true,
+            "question_changed": false,
+            "question_kind": "choice",
+            "reviewing": false,
+            "screen": "question",
+            "selected_word_count": 0,
+            "ui_snapshot": [
+              {
+                "description": "",
+                "enabled": false,
+                "id": "SwiftUI._ConditionalContent<LingoSeed.LearningView, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1",
+                "role": "AXWindow",
+                "value": ""
+              },
+              {
+                "description": "",
+                "enabled": false,
+                "id": "",
+                "role": "AXGroup",
+                "value": ""
+              },
+              {
+                "description": "",
+                "enabled": true,
+                "id": "",
+                "role": "AXStaticText",
+                "value": "LingoSeed"
+              },
+              {
+                "description": "",
+                "enabled": true,
+                "id": "",
+                "role": "AXStaticText",
+                "value": "A little practice. A new possibility."
+              },
+              {
+                "description": "Close lesson",
+                "enabled": true,
+                "id": "quit",
+                "role": "AXButton",
+                "value": ""
+              },
+              {
+                "description": "♥ 5",
+                "enabled": true,
+                "id": "hearts",
+                "role": "AXStaticText",
+                "value": "5"
+              },
+              {
+                "description": "",
+                "enabled": true,
+                "id": "",
+                "role": "AXStaticText",
+                "value": "LESSON 1 · SMALL BEGINNINGS"
+              },
+              {
+                "description": "",
+                "enabled": true,
+                "id": "",
+                "role": "AXProgressIndicator",
+                "value": ""
+              },
+              {
+                "description": "",
+                "enabled": true,
+                "id": "question-title",
+                "role": "AXStaticText",
+                "value": "Choose the greeting for a new day."
+              },
+              {
+                "description": "Good morning",
+                "enabled": false,
+                "id": "option-morning",
+                "role": "AXButton",
+                "value": "selected"
+              },
+              {
+                "description": "Good night",
+                "enabled": false,
+                "id": "option-night",
+                "role": "AXButton",
+                "value": "not selected"
+              },
+              {
+                "description": "Thank you",
+                "enabled": false,
+                "id": "option-thanks",
+                "role": "AXButton",
+                "value": "not selected"
+              },
+              {
+                "description": "Correct!",
+                "enabled": true,
+                "id": "feedback",
+                "role": "AXStaticText",
+                "value": "correct"
+              },
+              {
+                "description": "",
+                "enabled": true,
+                "id": "",
+                "role": "AXStaticText",
+                "value": "Good morning is a greeting for the start of a day."
+              },
+              {
+                "description": "Continue",
+                "enabled": true,
+                "id": "continue",
+                "role": "AXButton",
+                "value": ""
+              },
+              {
+                "description": "",
+                "enabled": true,
+                "id": "",
+                "role": "AXButton",
+                "value": ""
+              },
+              {
+                "description": "",
+                "enabled": true,
+                "id": "",
+                "role": "AXButton",
+                "value": ""
+              },
+              {
+                "description": "",
+                "enabled": false,
+                "id": "",
+                "role": "AXGroup",
+                "value": ""
+              },
+              {
+                "description": "",
+                "enabled": false,
+                "id": "",
+                "role": "AXGroup",
+                "value": ""
+              },
+              {
+                "description": "",
+                "enabled": true,
+                "id": "",
+                "role": "AXButton",
+                "value": ""
+              },
+              {
+                "description": "",
+                "enabled": true,
+                "id": "",
+                "role": "AXStaticText",
+                "value": "LingoSeed"
+              }
+            ]
+          },
+          "step": 1
+        },
+        {
+          "state": {
+            "answer_selected": false,
+            "authenticated": false,
+            "check_enabled": false,
+            "completed_lessons": null,
+            "continue_enabled": false,
+            "current_lesson_index": null,
+            "feedback": "none",
+            "hearts": 5,
+            "initial_question_revisited": false,
+            "lesson_index": 0,
+            "matching_complete": false,
+            "next_lesson_enabled": false,
+            "options_locked": false,
+            "question_changed": false,
+            "question_kind": null,
+            "reviewing": false,
+            "screen": "exit_confirmation",
+            "selected_word_count": 0,
+            "ui_snapshot": [
+              {
+                "description": "",
+                "enabled": false,
+                "id": "SwiftUI._ConditionalContent<LingoSeed.LearningView, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1",
+                "role": "AXWindow",
+                "value": ""
+              },
+              {
+                "description": "",
+                "enabled": false,
+                "id": "",
+                "role": "AXGroup",
+                "value": ""
+              },
+              {
+                "description": "",
+                "enabled": true,
+                "id": "",
+                "role": "AXStaticText",
+                "value": "LingoSeed"
+              },
+              {
+                "description": "",
+                "enabled": true,
+                "id": "",
+                "role": "AXStaticText",
+                "value": "A little practice. A new possibility."
+              },
+              {
+                "description": "Close lesson",
+                "enabled": true,
+                "id": "quit",
+                "role": "AXButton",
+                "value": ""
+              },
+              {
+                "description": "♥ 5",
+                "enabled": true,
+                "id": "hearts",
+                "role": "AXStaticText",
+                "value": "5"
+              },
+              {
+                "description": "",
+                "enabled": true,
+                "id": "exit-title",
+                "role": "AXStaticText",
+                "value": "Leave this lesson?"
+              },
+              {
+                "description": "",
+                "enabled": true,
+                "id": "",
+                "role": "AXStaticText",
+                "value": "Your finished lessons are safe. This unfinished attempt will be discarded."
+              },
+              {
+                "description": "Keep learning",
+                "enabled": true,
+                "id": "cancel-quit",
+                "role": "AXButton",
+                "value": ""
+              },
+              {
+                "description": "End session",
+                "enabled": true,
+                "id": "confirm-quit",
+                "role": "AXButton",
+                "value": ""
+              },
+              {
+                "description": "",
+                "enabled": true,
+                "id": "",
+                "role": "AXButton",
+                "value": ""
+              },
+              {
+                "description": "",
+                "enabled": true,
+                "id": "",
+                "role": "AXButton",
+                "value": ""
+              },
+              {
+                "description": "",
+                "enabled": false,
+                "id": "",
+                "role": "AXGroup",
+                "value": ""
+              },
+              {
+                "description": "",
+                "enabled": false,
+                "id": "",
+                "role": "AXGroup",
+                "value": ""
+              },
+              {
+                "description": "",
+                "enabled": true,
+                "id": "",
+                "role": "AXButton",
+                "value": ""
+              },
+              {
+                "description": "",
+                "enabled": true,
+                "id": "",
+                "role": "AXStaticText",
+                "value": "LingoSeed"
+              }
+            ]
+          },
+          "step": 2
+        },
+        {
+          "state": {
+            "answer_selected": true,
+            "authenticated": false,
+            "check_enabled": false,
+            "completed_lessons": null,
+            "continue_enabled": true,
+            "current_lesson_index": null,
+            "feedback": "correct",
+            "hearts": 5,
+            "initial_question_revisited": true,
+            "lesson_index": 0,
+            "matching_complete": false,
+            "next_lesson_enabled": false,
+            "options_locked": true,
+            "question_changed": false,
+            "question_kind": "choice",
+            "reviewing": false,
+            "screen": "question",
+            "selected_word_count": 0,
+            "ui_snapshot": [
+              {
+                "description": "",
+                "enabled": false,
+                "id": "SwiftUI._ConditionalContent<LingoSeed.LearningView, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1",
+                "role": "AXWindow",
+                "value": ""
+              },
+              {
+                "description": "",
+                "enabled": false,
+                "id": "",
+                "role": "AXGroup",
+                "value": ""
+              },
+              {
+                "description": "",
+                "enabled": true,
+                "id": "",
+                "role": "AXStaticText",
+                "value": "LingoSeed"
+              },
+              {
+                "description": "",
+                "enabled": true,
+                "id": "",
+                "role": "AXStaticText",
+                "value": "A little practice. A new possibility."
+              },
+              {
+                "description": "Close lesson",
+                "enabled": true,
+                "id": "quit",
+                "role": "AXButton",
+                "value": ""
+              },
+              {
+                "description": "♥ 5",
+                "enabled": true,
+                "id": "hearts",
+                "role": "AXStaticText",
+                "value": "5"
+              },
+              {
+                "description": "",
+                "enabled": true,
+                "id": "",
+                "role": "AXStaticText",
+                "value": "LESSON 1 · SMALL BEGINNINGS"
+              },
+              {
+                "description": "",
+                "enabled": true,
+                "id": "",
+                "role": "AXProgressIndicator",
+                "value": ""
+              },
+              {
+                "description": "",
+                "enabled": true,
+                "id": "question-title",
+                "role": "AXStaticText",
+                "value": "Choose the greeting for a new day."
+              },
+              {
+                "description": "Good morning",
+                "enabled": false,
+                "id": "option-morning",
+                "role": "AXButton",
+                "value": "selected"
+              },
+              {
+                "description": "Good night",
+                "enabled": false,
+                "id": "option-night",
+                "role": "AXButton",
+                "value": "not selected"
+              },
+              {
+                "description": "Thank you",
+                "enabled": false,
+                "id": "option-thanks",
+                "role": "AXButton",
+                "value": "not selected"
+              },
+              {
+                "description": "Correct!",
+                "enabled": true,
+                "id": "feedback",
+                "role": "AXStaticText",
+                "value": "correct"
+              },
+              {
+                "description": "",
+                "enabled": true,
+                "id": "",
+                "role": "AXStaticText",
+                "value": "Good morning is a greeting for the start of a day."
+              },
+              {
+                "description": "Continue",
+                "enabled": true,
+                "id": "continue",
+                "role": "AXButton",
+                "value": ""
+              },
+              {
+                "description": "",
+                "enabled": true,
+                "id": "",
+                "role": "AXButton",
+                "value": ""
+              },
+              {
+                "description": "",
+                "enabled": true,
+                "id": "",
+                "role": "AXButton",
+                "value": ""
+              },
+              {
+                "description": "",
+                "enabled": false,
+                "id": "",
+                "role": "AXGroup",
+                "value": ""
+              },
+              {
+                "description": "",
+                "enabled": false,
+                "id": "",
+                "role": "AXGroup",
+                "value": ""
+              },
+              {
+                "description": "",
+                "enabled": true,
+                "id": "",
+                "role": "AXButton",
+                "value": ""
+              },
+              {
+                "description": "",
+                "enabled": true,
+                "id": "",
+                "role": "AXStaticText",
+                "value": "LingoSeed"
+              }
+            ]
+          },
+          "step": 3
+        }
+      ]
+    }
+  ],
+  "lifecycle": [
+    {
+      "operation": "start",
+      "receipt": {
+        "command": [
+          "python3",
+          "candidate-entry.py"
+        ],
+        "source_digest": "8942729121590e28ee16db83ad3b9d3574e54325107c9a2f9e01f8696c680db8",
+        "integrity": "verified",
+        "evaluator_digest": "3b393451d210440429c7d459974a8f3746433ffdad4d84834caea338695c70e0",
+        "exit_code": 0,
+        "status": "pass",
+        "output": "APP_REBUILD_RESULT {\"operation\": \"start\", \"state\": {\"answer_selected\": false, \"authenticated\": false, \"check_enabled\": false, \"completed_lessons\": 0, \"continue_enabled\": false, \"current_lesson_index\": 0, \"feedback\": \"none\", \"hearts\": null, \"initial_question_revisited\": false, \"lesson_index\": 0, \"matching_complete\": false, \"next_lesson_enabled\": true, \"options_locked\": false, \"question_changed\": false, \"question_kind\": null, \"reviewing\": false, \"screen\": \"course_entry\", \"selected_word_count\": 0, \"ui_snapshot\": [{\"description\": \"\", \"enabled\": false, \"id\": \"SwiftUI._ConditionalContent<LingoSeed.LearningView, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1\", \"role\": \"AXWindow\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": false, \"id\": \"\", \"role\": \"AXGroup\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"LingoSeed\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"A little practice. A new possibility.\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"course-entry\", \"role\": \"AXStaticText\", \"value\": \"Your learning path\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"Build confidence, one small conversation at a time.\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"Everyday English\"}, {\"description\": \"0 lessons completed\", \"enabled\": true, \"id\": \"completed-count\", \"role\": \"AXStaticText\", \"value\": \"0\"}, {\"description\": \"Brightness Higher\", \"enabled\": true, \"id\": \"sun.max.fill\", \"role\": \"AXImage\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"Lesson 1 · Small beginnings\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"Ready for your next step\"}, {\"description\": \"Start lesson\", \"enabled\": true, \"id\": \"start-lesson\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"Lock\", \"enabled\": true, \"id\": \"lock.fill\", \"role\": \"AXImage\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"Lesson 2 · Words together\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"Complete the previous lesson to unlock\"}, {\"description\": \"Start lesson\", \"enabled\": false, \"id\": \"start-lesson-1\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"Small steps grow into everyday skills.\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": false, \"id\": \"\", \"role\": \"AXGroup\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"LingoSeed\"}]}, \"build\": {\"binary_sha256\": \"dc62c761bb88813bae490025c66744d5f763463085f1b67d04176c0a045b93d4\", \"source_sha256\": {\"projects/education-swift/Package.swift\": \"69c107cdd891cdadd83dca370c1618c002fd85fcba63c76391b6b5cc279a0cd1\", \"projects/education-swift/Sources/LearningCore/LearningCore.swift\": \"57834c1c20605ed8452c97afe6d6e148e1f3a70fec9d33cfe55506825c09d27b\", \"projects/education-swift/Sources/LingoSeed/LingoSeed.swift\": \"54c8b029b42a8f9ccb3a9bb7ef14e66b15b83a223b51cbc2ce33fef2c86aa780\"}}}\n",
+        "output_bytes": 3462,
+        "output_truncated": false,
+        "output_sha256": "daff410b584dc3ffffb4b8a3f9f38e2b4675f2a51de8b244bfc1a174b0acbd8f",
+        "wall_seconds": 1.84773
+      }
+    },
+    {
+      "operation": "reset",
+      "receipt": {
+        "command": [
+          "python3",
+          "candidate-entry.py"
+        ],
+        "source_digest": "8942729121590e28ee16db83ad3b9d3574e54325107c9a2f9e01f8696c680db8",
+        "integrity": "verified",
+        "evaluator_digest": "3b393451d210440429c7d459974a8f3746433ffdad4d84834caea338695c70e0",
+        "exit_code": 0,
+        "status": "pass",
+        "output": "APP_REBUILD_RESULT {\"operation\": \"reset\", \"state\": {\"answer_selected\": false, \"authenticated\": false, \"check_enabled\": false, \"completed_lessons\": 0, \"continue_enabled\": false, \"current_lesson_index\": 0, \"feedback\": \"none\", \"hearts\": null, \"initial_question_revisited\": false, \"lesson_index\": 0, \"matching_complete\": false, \"next_lesson_enabled\": true, \"options_locked\": false, \"question_changed\": false, \"question_kind\": null, \"reviewing\": false, \"screen\": \"course_entry\", \"selected_word_count\": 0, \"ui_snapshot\": [{\"description\": \"\", \"enabled\": false, \"id\": \"SwiftUI._ConditionalContent<LingoSeed.LearningView, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1\", \"role\": \"AXWindow\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": false, \"id\": \"\", \"role\": \"AXGroup\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"LingoSeed\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"A little practice. A new possibility.\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"course-entry\", \"role\": \"AXStaticText\", \"value\": \"Your learning path\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"Build confidence, one small conversation at a time.\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"Everyday English\"}, {\"description\": \"0 lessons completed\", \"enabled\": true, \"id\": \"completed-count\", \"role\": \"AXStaticText\", \"value\": \"0\"}, {\"description\": \"Brightness Higher\", \"enabled\": true, \"id\": \"sun.max.fill\", \"role\": \"AXImage\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"Lesson 1 · Small beginnings\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"Ready for your next step\"}, {\"description\": \"Start lesson\", \"enabled\": true, \"id\": \"start-lesson\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"Lock\", \"enabled\": true, \"id\": \"lock.fill\", \"role\": \"AXImage\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"Lesson 2 · Words together\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"Complete the previous lesson to unlock\"}, {\"description\": \"Start lesson\", \"enabled\": false, \"id\": \"start-lesson-1\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"Small steps grow into everyday skills.\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": false, \"id\": \"\", \"role\": \"AXGroup\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"LingoSeed\"}]}, \"build\": {\"binary_sha256\": \"dc62c761bb88813bae490025c66744d5f763463085f1b67d04176c0a045b93d4\", \"source_sha256\": {\"projects/education-swift/Package.swift\": \"69c107cdd891cdadd83dca370c1618c002fd85fcba63c76391b6b5cc279a0cd1\", \"projects/education-swift/Sources/LearningCore/LearningCore.swift\": \"57834c1c20605ed8452c97afe6d6e148e1f3a70fec9d33cfe55506825c09d27b\", \"projects/education-swift/Sources/LingoSeed/LingoSeed.swift\": \"54c8b029b42a8f9ccb3a9bb7ef14e66b15b83a223b51cbc2ce33fef2c86aa780\"}}}\n",
+        "output_bytes": 3462,
+        "output_truncated": false,
+        "output_sha256": "3e6f2d012813a97d76c0c6232e1ecbb75567349aa2bf251b903d50c3afb09c92",
+        "wall_seconds": 1.75265
+      }
+    },
+    {
+      "operation": "reset",
+      "receipt": {
+        "command": [
+          "python3",
+          "candidate-entry.py"
+        ],
+        "source_digest": "8942729121590e28ee16db83ad3b9d3574e54325107c9a2f9e01f8696c680db8",
+        "integrity": "verified",
+        "evaluator_digest": "3b393451d210440429c7d459974a8f3746433ffdad4d84834caea338695c70e0",
+        "exit_code": 0,
+        "status": "pass",
+        "output": "APP_REBUILD_RESULT {\"operation\": \"reset\", \"state\": {\"answer_selected\": false, \"authenticated\": false, \"check_enabled\": false, \"completed_lessons\": 0, \"continue_enabled\": false, \"current_lesson_index\": 0, \"feedback\": \"none\", \"hearts\": null, \"initial_question_revisited\": false, \"lesson_index\": 0, \"matching_complete\": false, \"next_lesson_enabled\": true, \"options_locked\": false, \"question_changed\": false, \"question_kind\": null, \"reviewing\": false, \"screen\": \"course_entry\", \"selected_word_count\": 0, \"ui_snapshot\": [{\"description\": \"\", \"enabled\": false, \"id\": \"SwiftUI._ConditionalContent<LingoSeed.LearningView, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1\", \"role\": \"AXWindow\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": false, \"id\": \"\", \"role\": \"AXGroup\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"LingoSeed\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"A little practice. A new possibility.\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"course-entry\", \"role\": \"AXStaticText\", \"value\": \"Your learning path\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"Build confidence, one small conversation at a time.\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"Everyday English\"}, {\"description\": \"0 lessons completed\", \"enabled\": true, \"id\": \"completed-count\", \"role\": \"AXStaticText\", \"value\": \"0\"}, {\"description\": \"Brightness Higher\", \"enabled\": true, \"id\": \"sun.max.fill\", \"role\": \"AXImage\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"Lesson 1 · Small beginnings\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"Ready for your next step\"}, {\"description\": \"Start lesson\", \"enabled\": true, \"id\": \"start-lesson\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"Lock\", \"enabled\": true, \"id\": \"lock.fill\", \"role\": \"AXImage\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"Lesson 2 · Words together\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"Complete the previous lesson to unlock\"}, {\"description\": \"Start lesson\", \"enabled\": false, \"id\": \"start-lesson-1\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"Small steps grow into everyday skills.\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": false, \"id\": \"\", \"role\": \"AXGroup\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"LingoSeed\"}]}, \"build\": {\"binary_sha256\": \"dc62c761bb88813bae490025c66744d5f763463085f1b67d04176c0a045b93d4\", \"source_sha256\": {\"projects/education-swift/Package.swift\": \"69c107cdd891cdadd83dca370c1618c002fd85fcba63c76391b6b5cc279a0cd1\", \"projects/education-swift/Sources/LearningCore/LearningCore.swift\": \"57834c1c20605ed8452c97afe6d6e148e1f3a70fec9d33cfe55506825c09d27b\", \"projects/education-swift/Sources/LingoSeed/LingoSeed.swift\": \"54c8b029b42a8f9ccb3a9bb7ef14e66b15b83a223b51cbc2ce33fef2c86aa780\"}}}\n",
+        "output_bytes": 3462,
+        "output_truncated": false,
+        "output_sha256": "3e6f2d012813a97d76c0c6232e1ecbb75567349aa2bf251b903d50c3afb09c92",
+        "wall_seconds": 1.651812
+      }
+    },
+    {
+      "operation": "reset",
+      "receipt": {
+        "command": [
+          "python3",
+          "candidate-entry.py"
+        ],
+        "source_digest": "8942729121590e28ee16db83ad3b9d3574e54325107c9a2f9e01f8696c680db8",
+        "integrity": "verified",
+        "evaluator_digest": "3b393451d210440429c7d459974a8f3746433ffdad4d84834caea338695c70e0",
+        "exit_code": 0,
+        "status": "pass",
+        "output": "APP_REBUILD_RESULT {\"operation\": \"reset\", \"state\": {\"answer_selected\": false, \"authenticated\": false, \"check_enabled\": false, \"completed_lessons\": 0, \"continue_enabled\": false, \"current_lesson_index\": 0, \"feedback\": \"none\", \"hearts\": null, \"initial_question_revisited\": false, \"lesson_index\": 0, \"matching_complete\": false, \"next_lesson_enabled\": true, \"options_locked\": false, \"question_changed\": false, \"question_kind\": null, \"reviewing\": false, \"screen\": \"course_entry\", \"selected_word_count\": 0, \"ui_snapshot\": [{\"description\": \"\", \"enabled\": false, \"id\": \"SwiftUI._ConditionalContent<LingoSeed.LearningView, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1\", \"role\": \"AXWindow\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": false, \"id\": \"\", \"role\": \"AXGroup\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"LingoSeed\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"A little practice. A new possibility.\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"course-entry\", \"role\": \"AXStaticText\", \"value\": \"Your learning path\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"Build confidence, one small conversation at a time.\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"Everyday English\"}, {\"description\": \"0 lessons completed\", \"enabled\": true, \"id\": \"completed-count\", \"role\": \"AXStaticText\", \"value\": \"0\"}, {\"description\": \"Brightness Higher\", \"enabled\": true, \"id\": \"sun.max.fill\", \"role\": \"AXImage\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"Lesson 1 · Small beginnings\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"Ready for your next step\"}, {\"description\": \"Start lesson\", \"enabled\": true, \"id\": \"start-lesson\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"Lock\", \"enabled\": true, \"id\": \"lock.fill\", \"role\": \"AXImage\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"Lesson 2 · Words together\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"Complete the previous lesson to unlock\"}, {\"description\": \"Start lesson\", \"enabled\": false, \"id\": \"start-lesson-1\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"Small steps grow into everyday skills.\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": false, \"id\": \"\", \"role\": \"AXGroup\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"LingoSeed\"}]}, \"build\": {\"binary_sha256\": \"dc62c761bb88813bae490025c66744d5f763463085f1b67d04176c0a045b93d4\", \"source_sha256\": {\"projects/education-swift/Package.swift\": \"69c107cdd891cdadd83dca370c1618c002fd85fcba63c76391b6b5cc279a0cd1\", \"projects/education-swift/Sources/LearningCore/LearningCore.swift\": \"57834c1c20605ed8452c97afe6d6e148e1f3a70fec9d33cfe55506825c09d27b\", \"projects/education-swift/Sources/LingoSeed/LingoSeed.swift\": \"54c8b029b42a8f9ccb3a9bb7ef14e66b15b83a223b51cbc2ce33fef2c86aa780\"}}}\n",
+        "output_bytes": 3462,
+        "output_truncated": false,
+        "output_sha256": "3e6f2d012813a97d76c0c6232e1ecbb75567349aa2bf251b903d50c3afb09c92",
+        "wall_seconds": 1.70144
+      }
+    },
+    {
+      "operation": "reset",
+      "receipt": {
+        "command": [
+          "python3",
+          "candidate-entry.py"
+        ],
+        "source_digest": "8942729121590e28ee16db83ad3b9d3574e54325107c9a2f9e01f8696c680db8",
+        "integrity": "verified",
+        "evaluator_digest": "3b393451d210440429c7d459974a8f3746433ffdad4d84834caea338695c70e0",
+        "exit_code": 0,
+        "status": "pass",
+        "output": "APP_REBUILD_RESULT {\"operation\": \"reset\", \"state\": {\"answer_selected\": false, \"authenticated\": false, \"check_enabled\": false, \"completed_lessons\": 0, \"continue_enabled\": false, \"current_lesson_index\": 0, \"feedback\": \"none\", \"hearts\": null, \"initial_question_revisited\": false, \"lesson_index\": 0, \"matching_complete\": false, \"next_lesson_enabled\": true, \"options_locked\": false, \"question_changed\": false, \"question_kind\": null, \"reviewing\": false, \"screen\": \"course_entry\", \"selected_word_count\": 0, \"ui_snapshot\": [{\"description\": \"\", \"enabled\": false, \"id\": \"SwiftUI._ConditionalContent<LingoSeed.LearningView, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1\", \"role\": \"AXWindow\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": false, \"id\": \"\", \"role\": \"AXGroup\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"LingoSeed\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"A little practice. A new possibility.\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"course-entry\", \"role\": \"AXStaticText\", \"value\": \"Your learning path\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"Build confidence, one small conversation at a time.\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"Everyday English\"}, {\"description\": \"0 lessons completed\", \"enabled\": true, \"id\": \"completed-count\", \"role\": \"AXStaticText\", \"value\": \"0\"}, {\"description\": \"Brightness Higher\", \"enabled\": true, \"id\": \"sun.max.fill\", \"role\": \"AXImage\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"Lesson 1 · Small beginnings\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"Ready for your next step\"}, {\"description\": \"Start lesson\", \"enabled\": true, \"id\": \"start-lesson\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"Lock\", \"enabled\": true, \"id\": \"lock.fill\", \"role\": \"AXImage\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"Lesson 2 · Words together\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"Complete the previous lesson to unlock\"}, {\"description\": \"Start lesson\", \"enabled\": false, \"id\": \"start-lesson-1\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"Small steps grow into everyday skills.\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": false, \"id\": \"\", \"role\": \"AXGroup\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"LingoSeed\"}]}, \"build\": {\"binary_sha256\": \"dc62c761bb88813bae490025c66744d5f763463085f1b67d04176c0a045b93d4\", \"source_sha256\": {\"projects/education-swift/Package.swift\": \"69c107cdd891cdadd83dca370c1618c002fd85fcba63c76391b6b5cc279a0cd1\", \"projects/education-swift/Sources/LearningCore/LearningCore.swift\": \"57834c1c20605ed8452c97afe6d6e148e1f3a70fec9d33cfe55506825c09d27b\", \"projects/education-swift/Sources/LingoSeed/LingoSeed.swift\": \"54c8b029b42a8f9ccb3a9bb7ef14e66b15b83a223b51cbc2ce33fef2c86aa780\"}}}\n",
+        "output_bytes": 3462,
+        "output_truncated": false,
+        "output_sha256": "3e6f2d012813a97d76c0c6232e1ecbb75567349aa2bf251b903d50c3afb09c92",
+        "wall_seconds": 1.695522
+      }
+    },
+    {
+      "operation": "reset",
+      "receipt": {
+        "command": [
+          "python3",
+          "candidate-entry.py"
+        ],
+        "source_digest": "8942729121590e28ee16db83ad3b9d3574e54325107c9a2f9e01f8696c680db8",
+        "integrity": "verified",
+        "evaluator_digest": "3b393451d210440429c7d459974a8f3746433ffdad4d84834caea338695c70e0",
+        "exit_code": 0,
+        "status": "pass",
+        "output": "APP_REBUILD_RESULT {\"operation\": \"reset\", \"state\": {\"answer_selected\": false, \"authenticated\": false, \"check_enabled\": false, \"completed_lessons\": 0, \"continue_enabled\": false, \"current_lesson_index\": 0, \"feedback\": \"none\", \"hearts\": null, \"initial_question_revisited\": false, \"lesson_index\": 0, \"matching_complete\": false, \"next_lesson_enabled\": true, \"options_locked\": false, \"question_changed\": false, \"question_kind\": null, \"reviewing\": false, \"screen\": \"course_entry\", \"selected_word_count\": 0, \"ui_snapshot\": [{\"description\": \"\", \"enabled\": false, \"id\": \"SwiftUI._ConditionalContent<LingoSeed.LearningView, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1\", \"role\": \"AXWindow\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": false, \"id\": \"\", \"role\": \"AXGroup\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"LingoSeed\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"A little practice. A new possibility.\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"course-entry\", \"role\": \"AXStaticText\", \"value\": \"Your learning path\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"Build confidence, one small conversation at a time.\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"Everyday English\"}, {\"description\": \"0 lessons completed\", \"enabled\": true, \"id\": \"completed-count\", \"role\": \"AXStaticText\", \"value\": \"0\"}, {\"description\": \"Brightness Higher\", \"enabled\": true, \"id\": \"sun.max.fill\", \"role\": \"AXImage\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"Lesson 1 · Small beginnings\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"Ready for your next step\"}, {\"description\": \"Start lesson\", \"enabled\": true, \"id\": \"start-lesson\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"Lock\", \"enabled\": true, \"id\": \"lock.fill\", \"role\": \"AXImage\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"Lesson 2 · Words together\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"Complete the previous lesson to unlock\"}, {\"description\": \"Start lesson\", \"enabled\": false, \"id\": \"start-lesson-1\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"Small steps grow into everyday skills.\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": false, \"id\": \"\", \"role\": \"AXGroup\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"LingoSeed\"}]}, \"build\": {\"binary_sha256\": \"dc62c761bb88813bae490025c66744d5f763463085f1b67d04176c0a045b93d4\", \"source_sha256\": {\"projects/education-swift/Package.swift\": \"69c107cdd891cdadd83dca370c1618c002fd85fcba63c76391b6b5cc279a0cd1\", \"projects/education-swift/Sources/LearningCore/LearningCore.swift\": \"57834c1c20605ed8452c97afe6d6e148e1f3a70fec9d33cfe55506825c09d27b\", \"projects/education-swift/Sources/LingoSeed/LingoSeed.swift\": \"54c8b029b42a8f9ccb3a9bb7ef14e66b15b83a223b51cbc2ce33fef2c86aa780\"}}}\n",
+        "output_bytes": 3462,
+        "output_truncated": false,
+        "output_sha256": "3e6f2d012813a97d76c0c6232e1ecbb75567349aa2bf251b903d50c3afb09c92",
+        "wall_seconds": 1.801291
+      }
+    },
+    {
+      "operation": "stop",
+      "receipt": {
+        "command": [
+          "python3",
+          "candidate-entry.py"
+        ],
+        "source_digest": "8942729121590e28ee16db83ad3b9d3574e54325107c9a2f9e01f8696c680db8",
+        "integrity": "verified",
+        "evaluator_digest": "3b393451d210440429c7d459974a8f3746433ffdad4d84834caea338695c70e0",
+        "exit_code": 0,
+        "status": "pass",
+        "output": "APP_REBUILD_RESULT {\"operation\": \"stop\", \"resources\": []}\n",
+        "output_bytes": 58,
+        "output_truncated": false,
+        "output_sha256": "f660b181e4e594cfaced12741780e3c7698768efa16e64cc3b6ec4ce93f7ef1e",
+        "wall_seconds": 0.133482
+      }
+    }
+  ],
+  "created_at": 1791583537.472488,
+  "integrity": "verified",
+  "status": "pass",
+  "counts": {
+    "unknown": 0,
+    "pass": 4,
+    "fail": 0,
+    "invalid": 0,
+    "unavailable": 0,
+    "timeout": 0
+  }
+}

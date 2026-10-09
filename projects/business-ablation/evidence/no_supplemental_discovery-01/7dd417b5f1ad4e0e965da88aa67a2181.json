@@ -1,0 +1,107 @@
+{
+  "id": "7dd417b5f1ad4e0e965da88aa67a2181",
+  "workspace": "<worker>",
+  "session_id": "01a122b2-7e7b-7e41-8190-13a8e489235a",
+  "objective": "Reconstruct the registered original two-lesson Swift education app from the choice-only baseline",
+  "verifier": [
+    "python3",
+    "verify.py"
+  ],
+  "verifier_digest": "368b06c7b8b1b288af9044e88c36c7e1cd2777d80c698399570300bde53cd6a4",
+  "phase": "complete",
+  "iterations": 2,
+  "max_iterations": 20,
+  "max_failures": 20,
+  "failures": 0,
+  "deadline": 1791588680.964727,
+  "attempts": [
+    {
+      "iteration": 1,
+      "hypothesis": "Backward-compatible fixture decoding and a shared core lesson state machine for choice, matching and ordered removable words, plus per-lesson persisted unlocks and semantic UI identifiers, will implement the complete two-lesson brief and satisfy native choice/quit checks.",
+      "evaluation": {
+        "command": [
+          "python3",
+          "verify.py"
+        ],
+        "source_files": {
+          "verify.py": "0adef6aedb6c017670b21db522413b1f07f41ac7eec8534839fdfe78bb1d0a68",
+          "projects/duolingo-web/build-native.py": "afbcd31ac4ed06592f005a9b9230c90115d2b62accba155de8945ef44912c7fd",
+          "projects/duolingo-web/native-adapter-v3.swift": "3805f45728d86f6fca110f464aa2e71764470f8604f17a21576f85781f49ddfb",
+          "projects/education-swift/Package.swift": "69c107cdd891cdadd83dca370c1618c002fd85fcba63c76391b6b5cc279a0cd1",
+          "projects/education-swift/Sources/LearningCore/LearningCore.swift": "57834c1c20605ed8452c97afe6d6e148e1f3a70fec9d33cfe55506825c09d27b",
+          "projects/education-swift/Sources/LingoSeed/LingoSeed.swift": "54c8b029b42a8f9ccb3a9bb7ef14e66b15b83a223b51cbc2ce33fef2c86aa780",
+          "projects/education-swift/Tests/LearningCoreTests/LearningCoreTests.swift": "46c5fa7de5f6f1153339eececc2613e2373daca8a530008444b3ba75b76a4129"
+        },
+        "source_digest": "825b2659a3303244a795897381a88d12c493dfe1418fb4f8f654511aab30f5a7",
+        "integrity": "verified",
+        "evaluator_digest": "a3ffb1c56c5f93e8f737c1a37bb22fc5170a7c1fdc248932c09164a88eca7a5d",
+        "exit_code": 1,
+        "status": "fail",
+        "output": "{\"phase\": \"initial\", \"revision\": \"business-initial-four\", \"counts\": {\"unknown\": 0, \"pass\": 4, \"fail\": 0, \"invalid\": 0, \"unavailable\": 0, \"timeout\": 0}, \"integrity\": \"verified\", \"diagnostics\": [], \"differences\": [], \"next_action\": \"Registered handoff boundary reached; end this session while paused. New session adopts the same task and deadline.\"}\n",
+        "output_bytes": 348,
+        "output_truncated": false,
+        "output_sha256": "7ca389f382cc41a589d82fc0a5e54eb4f612dbf5e85b4ddd3c4f7535f2f382fb",
+        "wall_seconds": 53.108413,
+        "python_cache": "fresh isolated prefix, bytecode writes disabled"
+      }
+    },
+    {
+      "iteration": 2,
+      "hypothesis": "The existing Sources implement the full two-lesson brief and preserve the native adapter identifiers. After adoption, the frozen verifier should confirm current visible behavior; any measured failure will identify the necessary Sources repair.",
+      "evaluation": {
+        "command": [
+          "python3",
+          "verify.py"
+        ],
+        "source_files": {
+          "verify.py": "0adef6aedb6c017670b21db522413b1f07f41ac7eec8534839fdfe78bb1d0a68",
+          "projects/duolingo-web/build-native.py": "afbcd31ac4ed06592f005a9b9230c90115d2b62accba155de8945ef44912c7fd",
+          "projects/duolingo-web/native-adapter-v3.swift": "3805f45728d86f6fca110f464aa2e71764470f8604f17a21576f85781f49ddfb",
+          "projects/education-swift/Package.swift": "69c107cdd891cdadd83dca370c1618c002fd85fcba63c76391b6b5cc279a0cd1",
+          "projects/education-swift/Sources/LearningCore/LearningCore.swift": "57834c1c20605ed8452c97afe6d6e148e1f3a70fec9d33cfe55506825c09d27b",
+          "projects/education-swift/Sources/LingoSeed/LingoSeed.swift": "54c8b029b42a8f9ccb3a9bb7ef14e66b15b83a223b51cbc2ce33fef2c86aa780",
+          "projects/education-swift/Tests/LearningCoreTests/LearningCoreTests.swift": "46c5fa7de5f6f1153339eececc2613e2373daca8a530008444b3ba75b76a4129"
+        },
+        "source_digest": "825b2659a3303244a795897381a88d12c493dfe1418fb4f8f654511aab30f5a7",
+        "integrity": "verified",
+        "evaluator_digest": "a3ffb1c56c5f93e8f737c1a37bb22fc5170a7c1fdc248932c09164a88eca7a5d",
+        "exit_code": 0,
+        "status": "pass",
+        "output": "{\"phase\": \"complete\", \"revision\": \"business-initial-four\", \"counts\": {\"unknown\": 0, \"pass\": 4, \"fail\": 0, \"invalid\": 0, \"unavailable\": 0, \"timeout\": 0}, \"integrity\": \"verified\", \"diagnostics\": [], \"differences\": [], \"next_action\": \"Measured visible acceptance completed. End the turn; private evaluation is parent-owned.\"}\n",
+        "output_bytes": 323,
+        "output_truncated": false,
+        "output_sha256": "bc970041f7a0cc84c5575a34d18af7ed43594987c63a20b614f66429d58b44ad",
+        "wall_seconds": 18.722623,
+        "python_cache": "fresh isolated prefix, bytecode writes disabled"
+      }
+    }
+  ],
+  "last_error": null,
+  "hook_events": [],
+  "acceptance_paths": [
+    "verify.py",
+    "AGENTS.md",
+    "projects/education-swift/Package.swift",
+    "projects/education-swift/Tests",
+    "projects/duolingo-web"
+  ],
+  "acceptance_files": {
+    "verify.py": "0adef6aedb6c017670b21db522413b1f07f41ac7eec8534839fdfe78bb1d0a68",
+    "AGENTS.md": "dae7ed1c69cf64d45c5bf247121c960d5fbebfac57e65df950d46c44791bc64b",
+    "projects/education-swift/Package.swift": "69c107cdd891cdadd83dca370c1618c002fd85fcba63c76391b6b5cc279a0cd1",
+    "projects/education-swift/Tests/LearningCoreTests/LearningCoreTests.swift": "46c5fa7de5f6f1153339eececc2613e2373daca8a530008444b3ba75b76a4129",
+    "projects/duolingo-web/build-native.py": "afbcd31ac4ed06592f005a9b9230c90115d2b62accba155de8945ef44912c7fd",
+    "projects/duolingo-web/fixture-v2.json": "cfd33ce0404f4c566446415cf8e5a4275d56e97013a6a07572954785243fb112",
+    "projects/duolingo-web/native-adapter-v3.swift": "3805f45728d86f6fca110f464aa2e71764470f8604f17a21576f85781f49ddfb"
+  },
+  "verify_seconds": 1200,
+  "verification_in_flight": false,
+  "ownership_history": [
+    {
+      "from": "01a122af-2a8e-7ef3-9487-8d3ff41f074d",
+      "to": "01a122b2-7e7b-7e41-8190-13a8e489235a",
+      "at": 1791583497.623778
+    }
+  ],
+  "last_hook_progress": null
+}

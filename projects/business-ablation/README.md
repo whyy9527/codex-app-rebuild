@@ -34,3 +34,5 @@ Before formal models, the clone-scope check reproduced an installer refusal: cop
 去行为进度正式组已完成两会话、2次尝试：初始4/4、扩展可见12/12，Source未在第二会话改动；原预算接续、最终Stop不继续、模型读写范围与进度投影移除均已审计。见 [no_behavior_progress 可见记录](evidence/no_behavior_progress-01/visible-result.json)。隐藏与统一最终评分仍未运行；不能把可见通过率当作机制收益。
 
 去Stop续跑正式组已完成两会话、2次尝试及初始4/4、扩展可见12/12；第二会话无需改Source。见 [no_stop_feedback 可见记录](evidence/no_stop_feedback-01/visible-result.json)。首会话终端未绘制权限提示，父端调整自有PTY尺寸后确认原调用；等待与诊断计入介入和耗时，不归因于模型机制。统一最终评分尚未运行。
+
+去补充探索正式组已完成两会话、2次尝试，两次可见4/4；第二会话未改Source，未揭示扩展8项规格/观察。见 [no_supplemental_discovery 可见记录](evidence/no_supplemental_discovery-01/visible-result.json)。四组会话均已退出并封存，随后才启动各组一次12项统一评分与2项留出评分；另1项原版未知保留。

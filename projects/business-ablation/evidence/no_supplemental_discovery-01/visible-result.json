@@ -1,0 +1,115 @@
+{
+  "arm": "no_supplemental_discovery",
+  "status": "complete; private scoring pending",
+  "task_id": "7dd417b5f1ad4e0e965da88aa67a2181",
+  "attempts": 2,
+  "original_deadline": 1791588680.964727,
+  "visible_receipts": [
+    {
+      "attempt": 1,
+      "counts": {
+        "unknown": 0,
+        "pass": 4,
+        "fail": 0,
+        "invalid": 0,
+        "unavailable": 0,
+        "timeout": 0
+      }
+    },
+    {
+      "attempt": 2,
+      "counts": {
+        "unknown": 0,
+        "pass": 4,
+        "fail": 0,
+        "invalid": 0,
+        "unavailable": 0,
+        "timeout": 0
+      }
+    }
+  ],
+  "sessions": [
+    {
+      "session_id": "01a122af-2a8e-7ef3-9487-8d3ff41f074d",
+      "cli_version": "0.162.0-alpha.17.2",
+      "native_contexts": [
+        {
+          "turn_id": "01a122af-2b56-77b0-866d-175487d15521",
+          "model": "gpt-6.1-sol",
+          "effort": "medium",
+          "approval_policy": "on-request"
+        }
+      ],
+      "folder_trust_actions": 1,
+      "owned_three_hook_review_batch_actions": 1,
+      "hook_review_navigation_actions": 0,
+      "session_scoped_verifier_approvals": 1,
+      "parent_product_edits": 0,
+      "strategy_prompts": 0,
+      "setup_note": "Parent reviewed three owned hook definitions/launchers before Trust all and continue; native SessionStart trusted before prompt execution.",
+      "recorded_at": 1791583293.9396632,
+      "raw_rollout_sha256": "6f32c38d7cdacebaa948e5acd53d63177e4ca24be33cc520f893a15d2d4e5b46",
+      "usage_reported_by_native_host": {
+        "input_tokens": 544036,
+        "cached_input_tokens": 504064,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 6170,
+        "reasoning_output_tokens": 369,
+        "total_tokens": 550206,
+        "derived_uncached_input_tokens": 39972,
+        "derived_uncached_input_plus_output_tokens": 46142
+      }
+    },
+    {
+      "session_id": "01a122b2-7e7b-7e41-8190-13a8e489235a",
+      "cli_version": "0.162.0-alpha.17.2",
+      "native_contexts": [
+        {
+          "turn_id": "01a122b2-7f35-78e0-b738-e60c0426e9ac",
+          "model": "gpt-6.1-sol",
+          "effort": "medium",
+          "approval_policy": "on-request"
+        }
+      ],
+      "new_session_transfer_actions": 1,
+      "session_scoped_verifier_approvals": 1,
+      "original_deadline": 1791588680.964727,
+      "retained_attempts_at_transfer": 1,
+      "parent_product_edits": 0,
+      "strategy_prompts": 0,
+      "recorded_at": 1791583501.961639,
+      "old_scope_removed": true,
+      "raw_rollout_sha256": "23ef5823974a440953e7a5544987aa675e7040c06cf8335fcfc9a44172724ef3",
+      "usage_reported_by_native_host": {
+        "input_tokens": 418561,
+        "cached_input_tokens": 379904,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1125,
+        "reasoning_output_tokens": 168,
+        "total_tokens": 419686,
+        "derived_uncached_input_tokens": 38657,
+        "derived_uncached_input_plus_output_tokens": 39782
+      }
+    }
+  ],
+  "final_stop": {
+    "event": "Stop",
+    "session_id": "01a122b2-7e7b-7e41-8190-13a8e489235a",
+    "turn_id": "01a122b2-7f35-78e0-b738-e60c0426e9ac",
+    "decision": null,
+    "output_fields": [],
+    "time": 1791583559.018764
+  },
+  "stop_continuation_count": 0,
+  "scope_audit": "Parent reviewed curated tool calls and Source dependencies: all reads within worker; writes limited to product Sources plus requested task-pointer.json. No parent/sibling/main/held-out inputs, independent browsing or extra model launches observed. Sources read only supplied fixture/progress files, no verifier/assertion imports.",
+  "sealed_source_file": "pre-score-seal.json",
+  "private_holdout_not_run": true,
+  "private_final_scores_not_run": true,
+  "cost": null,
+  "limits": [
+    "N=1 per arm; no statistical or generalization claim",
+    "Public acceptance is training feedback; final expanded and hidden scores remain pending"
+  ],
+  "archived_at": 1791583593.830901,
+  "observation_ablation_audit": "Public spec stayed initial four behaviors in both sessions; only initial observation files present; expanded eight assertions/observations were not revealed. Full two-lesson brief, original fixture-v2 and native adapter remained shared inputs."
+}
