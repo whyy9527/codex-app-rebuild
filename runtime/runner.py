@@ -58,7 +58,7 @@ def manifest(root):
     return files
 
 
-def evaluate(root, command, timeout=30, environment=None):
+def evaluate(root, command, timeout=30, environment=None, input_text=None):
     if not command or not math.isfinite(timeout) or timeout <= 0:
         raise ValueError("explicit command and positive finite timeout required")
     root = Path(root).resolve()
@@ -67,10 +67,14 @@ def evaluate(root, command, timeout=30, environment=None):
     files = manifest(root)
     started = time.monotonic()
     exit_code, status = None, "unavailable"
-    with tempfile.TemporaryFile() as stream:
+    with tempfile.TemporaryFile() as stream, tempfile.TemporaryFile() as input_stream:
+        if input_text is not None:
+            input_stream.write(input_text.encode())
+            input_stream.seek(0)
         process = None
         try:
-            process = subprocess.Popen(command, cwd=root, stdout=stream, stderr=stream, start_new_session=True,
+            process = subprocess.Popen(command, cwd=root, stdin=input_stream if input_text is not None else subprocess.DEVNULL,
+                                       stdout=stream, stderr=stream, start_new_session=True,
                                        env=None if environment is None else {**os.environ,**environment})
             try:
                 exit_code = process.wait(timeout=timeout)

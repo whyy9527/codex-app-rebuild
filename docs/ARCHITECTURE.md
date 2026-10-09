@@ -16,9 +16,13 @@ Codex 使用原生工具观察和修改；MCP 提供任务操作；短 Hook 在 
 
 现有状态：ready → working → verifying → complete；失败返回 ready 或进入 blocked / budget_exhausted；用户可暂停并显式恢复。锁协调 MCP 和 Hook。新会话不自动激活其他会话任务。
 
-## 待完善的重建结构
+## 重建结构与当前范围
 
-行为规格层拥有行为 ID、前置状态、动作、期望、来源证据和 unknown/observed 状态；验收记录拥有该规格版本下的 pass/fail/unavailable。运行任务引用固定规格，不能把任务历史当作产品覆盖率。
+`capabilities/rebuild/contracts.py` 已拥有行为 ID、前置状态、动作、期望与证据清单，分离 unknown/observed/decision 和 not_run/pass/fail/invalid/unavailable/timeout。它对两端动作适配器执行统一断言，检查 start/reset/scenario/reset/stop，并在输入与源码变化后拒绝旧结果。参考端通过后才能冻结；增量批次必须关联真实父批次并保留旧场景。
+
+`workflows/rebuild/cli.py` 提供 check、verify、freeze、coverage。回执不覆盖，记录规格/源码/输入摘要、实际观察和差异。目标 layer 显式区分 browser_ui/native_ui/core/test_double；协议不是UI证据认证，当前只有测试替身证明机制。详细契约见 [业务规格](BEHAVIOR-CONTRACT.md)。
+
+运行任务应引用固定规格，不能把任务历史当作产品覆盖率。自动阶段状态与跨会话接续仍待实现。
 
 重建工作流编排观察、原版验收、批次冻结、新版实现、差异修复与补充探索。运行时只执行显式命令，不推断规则。显式接续通过用户选择旧任务并重新绑定当前会话，不取消作用域隔离。
 
