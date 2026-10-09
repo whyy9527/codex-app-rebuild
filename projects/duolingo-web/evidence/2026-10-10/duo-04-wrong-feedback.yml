@@ -1,0 +1,39 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e4423]:
+    - generic [ref=e4426]:
+      - button [ref=e4427] [cursor=pointer]
+      - progressbar [ref=e4429]
+      - generic [ref=e4434]: "4"
+    - generic [ref=e4441]:
+      - generic [ref=e4442]:
+        - generic [ref=e4443]: New word
+        - heading "Which one of these is “cat”?" [level=1] [ref=e4447]
+      - radiogroup "choice" [ref=e4449]:
+        - radio "gato 1" [disabled] [ref=e4450]:
+          - generic [ref=e4454]:
+            - generic [ref=e4455]: gato
+            - generic [ref=e4456]: "1"
+        - radio "papá 2" [checked] [disabled] [ref=e4457]:
+          - generic [ref=e4461]:
+            - generic [ref=e4462]: papá
+            - generic [ref=e4463]: "2"
+        - radio "mamá 3" [disabled] [ref=e4464]:
+          - generic [ref=e4468]:
+            - generic [ref=e4469]: mamá
+            - generic [ref=e4470]: "3"
+    - generic [ref=e4474]:
+      - generic [ref=e4487]:
+        - generic [ref=e4489]:
+          - heading "Correct solution:" [level=2] [ref=e4490]
+          - generic [ref=e4491]: gato
+        - generic [ref=e4492]:
+          - generic [ref=e4493]:
+            - button "Too easy" [ref=e4494] [cursor=pointer]
+            - button "Too difficult" [ref=e4500] [cursor=pointer]
+          - button "Report" [ref=e4506] [cursor=pointer]
+      - button "Continue" [ref=e4510] [cursor=pointer]
+  - generic [ref=e4516]:
+    - generic [ref=e4528]:
+      - generic [ref=e4529]: Each mistake costs 1 heart!
+      - generic [ref=e4530]: Stay sharp and focused to keep your hearts. You got this!
+    - button "Keep going" [ref=e4531] [cursor=pointer]

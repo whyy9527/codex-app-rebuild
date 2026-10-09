@@ -1,0 +1,115 @@
+- generic [ref=f5e4]:
+  - generic [ref=f5e5]:
+    - link [ref=f5e7] [cursor=pointer]:
+      - /url: /learn
+    - generic [ref=f5e9]:
+      - link "Learn" [ref=f5e11] [cursor=pointer]:
+        - /url: /learn
+      - link "Leaderboards" [ref=f5e17] [cursor=pointer]:
+        - /url: /leaderboard
+      - link "Quests" [ref=f5e23] [cursor=pointer]:
+        - /url: /quests
+      - link "Shop" [ref=f5e29] [cursor=pointer]:
+        - /url: /shop
+      - link "Profile" [ref=f5e35] [cursor=pointer]:
+        - /url: /learn?sign-up
+      - button "More" [ref=f5e43]
+  - generic [ref=f5e49]:
+    - generic [ref=f5e51]:
+      - generic [ref=f5e52]:
+        - button "1" [ref=f5e54]
+        - button "1" [ref=f5e59]
+        - button "505" [ref=f5e64]
+        - button "4" [ref=f5e68]
+      - generic [ref=f5e72]:
+        - heading "Unlock Leaderboards!" [level=2] [ref=f5e73]
+        - generic [ref=f5e74]: Complete 2 more lessons to start competing
+      - generic [ref=f5e78]:
+        - generic [ref=f5e79]:
+          - heading "Daily Quests" [level=2] [ref=f5e80]
+          - link "View all" [ref=f5e81] [cursor=pointer]:
+            - /url: /quests
+        - generic [ref=f5e85]:
+          - generic [ref=f5e86]: Earn 10 XP
+          - progressbar [ref=f5e88]:
+            - generic [ref=f5e89]:
+              - generic [ref=f5e90]: 10 / 10
+              - generic [ref=f5e91]: 10 / 10
+      - generic [ref=f5e97]:
+        - heading "Create a profile to save your progress!" [level=2] [ref=f5e98]
+        - button "Create a profile" [ref=f5e99] [cursor=pointer]
+        - button "Sign in" [ref=f5e101] [cursor=pointer]
+      - list [ref=f5e103]:
+        - listitem [ref=f5e104]:
+          - link "About" [ref=f5e105] [cursor=pointer]:
+            - /url: https://about.duolingo.com
+        - listitem [ref=f5e106]:
+          - link "Blog" [ref=f5e107] [cursor=pointer]:
+            - /url: https://blog.duolingo.com
+        - listitem [ref=f5e108]:
+          - link "Store" [ref=f5e109] [cursor=pointer]:
+            - /url: https://store.duolingo.com/
+        - listitem [ref=f5e110]:
+          - link "efficacy" [ref=f5e111] [cursor=pointer]:
+            - /url: /efficacy
+        - listitem [ref=f5e112]:
+          - link "Careers" [ref=f5e113] [cursor=pointer]:
+            - /url: https://careers.duolingo.com
+        - listitem [ref=f5e114]:
+          - link "INVESTORS" [ref=f5e115] [cursor=pointer]:
+            - /url: https://investors.duolingo.com
+        - listitem [ref=f5e116]:
+          - link "Terms" [ref=f5e117] [cursor=pointer]:
+            - /url: /terms
+        - listitem [ref=f5e118]:
+          - link "Privacy" [ref=f5e119] [cursor=pointer]:
+            - /url: /privacy
+    - generic [ref=f5e120]:
+      - generic [ref=f5e123]:
+        - link [ref=f5e124] [cursor=pointer]:
+          - /url: /sections
+          - heading "SECTION 1, UNIT 1" [level=1] [ref=f5e126]
+        - generic [ref=f5e127]: Order at a café
+        - link "Opens Guidebook for this unit" [ref=f5e128] [cursor=pointer]:
+          - /url: /guidebook/es/1
+          - img "Guidebook" [ref=f5e129]
+          - generic [ref=f5e130]: Guidebook
+      - generic [ref=f5e131]:
+        - generic [ref=f5e134]:
+          - button [ref=f5e182] [cursor=pointer]:
+            - generic [ref=f5e183]:
+              - button "Lesson 2 of 3" [active] [ref=f5e184]
+              - generic [ref=f5e185]: START
+          - button [ref=f5e190] [cursor=pointer]:
+            - button "Lesson" [ref=f5e192]
+          - button [ref=f5e194] [cursor=pointer]:
+            - button "Lesson" [ref=f5e196]
+          - button "Chest" [disabled] [ref=f5e198]
+          - button [ref=f5e202] [cursor=pointer]:
+            - button "Practice" [ref=f5e204]
+          - button [ref=f5e206] [cursor=pointer]:
+            - button "Unit Review" [ref=f5e208]
+        - generic [ref=f5e209]:
+          - generic [ref=f5e210]:
+            - separator [ref=f5e211]
+            - heading "Greet people and say goodbye" [level=2] [ref=f5e212]
+            - separator [ref=f5e213]
+          - generic [ref=f5e214]:
+            - link "Jump to Unit 2" [ref=f5e218] [cursor=pointer]:
+              - /url: /lesson/unit/2/test
+              - generic [ref=f5e219]: Jump here?
+            - button [ref=f5e224] [cursor=pointer]:
+              - button "Lesson" [ref=f5e226]
+            - button "Chest" [disabled] [ref=f5e228]
+            - button [ref=f5e232] [cursor=pointer]:
+              - button "Radio" [ref=f5e234]
+            - button [ref=f5e236] [cursor=pointer]:
+              - button "Practice" [ref=f5e238]
+            - button [ref=f5e240] [cursor=pointer]:
+              - button "Unit Review" [ref=f5e242]
+      - generic [ref=f5e243]:
+        - generic [ref=f5e244]:
+          - paragraph [ref=f5e245]: Up next
+          - heading "Section 2" [level=2] [ref=f5e247]
+          - paragraph [ref=f5e248]: Learn words, phrases, and grammar concepts for basic interactions
+        - button "Jump here?" [ref=f5e249] [cursor=pointer]

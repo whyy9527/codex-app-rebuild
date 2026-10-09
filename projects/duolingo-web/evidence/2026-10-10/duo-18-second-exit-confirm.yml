@@ -1,0 +1,30 @@
+- generic [active] [ref=f5e1]:
+  - generic [ref=f5e261]:
+    - generic [ref=f5e264]:
+      - button [ref=f5e265] [cursor=pointer]
+      - progressbar [ref=f5e267]
+      - generic [ref=f5e272]: "4"
+    - generic [ref=f5e322]:
+      - generic [ref=f5e323]:
+        - generic [ref=f5e324]: New word
+        - heading "Which one of these is “house”?" [level=1] [ref=f5e328]
+      - radiogroup "choice" [ref=f5e330]:
+        - radio "perro 1" [ref=f5e331] [cursor=pointer]:
+          - generic [ref=f5e335]:
+            - generic [ref=f5e336]: perro
+            - generic [ref=f5e337]: "1"
+        - radio "casa 2" [ref=f5e338] [cursor=pointer]:
+          - generic [ref=f5e342]:
+            - generic [ref=f5e343]: casa
+            - generic [ref=f5e344]: "2"
+        - radio "gato 3" [ref=f5e345] [cursor=pointer]:
+          - generic [ref=f5e349]:
+            - generic [ref=f5e350]: gato
+            - generic [ref=f5e351]: "3"
+    - generic [ref=f5e312]:
+      - button "Skip" [ref=f5e353] [cursor=pointer]
+      - button "Check" [disabled] [ref=f5e317]
+  - generic [ref=f5e360]:
+    - generic [ref=f5e363]: Wait, don’t go! You’ll lose your progress if you quit now
+    - button "Keep learning" [ref=f5e364] [cursor=pointer]
+    - button "End session" [ref=f5e366] [cursor=pointer]

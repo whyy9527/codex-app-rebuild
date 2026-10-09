@@ -9,6 +9,7 @@
 | macOS SDK | 26.5 | `xcrun --show-sdk-version` 实际返回 |
 | SwiftUI/AppKit 预检 | `swiftc -parse-as-library -typecheck -` 成功 | 原生应用入口、WindowGroup 与 Text 类型检查通过 |
 | Xcode | `xcodebuild -version` 报需要完整 Xcode；标准 Applications 目录未发现 Xcode.app | 当前 Xcode/XCUITest 路径不可用，不代表 SwiftUI 无法构建 |
+| 当前 Swift 进程辅助功能权限 | `AXIsProcessTrusted()` 实际返回 true | 允许后续探查我们自己的原生客户端；不证明 UI 驱动已执行 |
 | 实际原生 UI 验收 | 未执行 | 需要后续可运行客户端与实际 UI 驱动证据 |
 
 预检源代码是临时能力探针，未作为产品实现提交，也未启动应用：

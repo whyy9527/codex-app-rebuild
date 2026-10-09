@@ -1,0 +1,25 @@
+- generic [ref=e4423]:
+  - generic [ref=e4426]:
+    - button [ref=e4427] [cursor=pointer]
+    - progressbar [ref=e4429]
+    - generic [ref=e4434]: "5"
+  - generic [ref=e4441]:
+    - generic [ref=e4442]:
+      - generic [ref=e4443]: New word
+      - heading "Which one of these is “cat”?" [level=1] [ref=e4447]
+    - radiogroup "choice" [ref=e4449]:
+      - radio "gato 1" [active] [ref=e4450] [cursor=pointer]:
+        - generic [ref=e4454]:
+          - generic [ref=e4455]: gato
+          - generic [ref=e4456]: "1"
+      - radio "papá 2" [ref=e4457] [cursor=pointer]:
+        - generic [ref=e4461]:
+          - generic [ref=e4462]: papá
+          - generic [ref=e4463]: "2"
+      - radio "mamá 3" [ref=e4464] [cursor=pointer]:
+        - generic [ref=e4468]:
+          - generic [ref=e4469]: mamá
+          - generic [ref=e4470]: "3"
+  - generic [ref=e4474]:
+    - button "Skip" [ref=e4476] [cursor=pointer]
+    - button "Check" [disabled] [ref=e4479]
