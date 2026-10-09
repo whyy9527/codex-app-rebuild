@@ -1,5 +1,7 @@
 # Codex App Rebuild
 
+**当前状态：产品复刻未完成。** 用户实际体验指出主页、视觉还原与声音缺失，已撤回此前整体完成判断；[反思与纠正](docs/REBUILD-RETROSPECTIVE-2026-10-10.md)记录原因，[产品验收v3](projects/duolingo-web/PRODUCT-ACCEPTANCE-v3.md)固定下一阶段标准。既有12项行为与消融结果只覆盖各自范围。
+
 把原产品的可观察行为变成可执行规格，让 Codex 在有限上下文和预算内重建 App。仓库保持私有；改名不代表开源或发布。
 
 ## 方法
