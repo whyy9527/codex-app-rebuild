@@ -10,9 +10,9 @@
 
 ## 当前能力
 
-已有七个 MCP 工具、三个短 Hook、任务持久化、真实命令验收、显式多语言验收输入冻结、可配置验证时长、次数/时间/无进展停止与显式暂停。Codex 自己思考和编辑，工具不启动独立模型。已有机制检查和机制消融；完整模型续跑与真实 App 重建收益尚未证实。
+已有七个 MCP 工具、三个短 Hook、任务持久化、真实命令验收、显式多语言验收输入冻结、可配置验证时长、次数/时间/无进展停止与显式暂停。Codex 自己思考和编辑，工具不启动独立模型。已有机制检查和机制消融；原生 Stop 驱动的有界单任务模型续跑已验证，真实 App 重建收益尚未证实。
 
-已加入共享业务场景与断言、参考确认后冻结、两端动作适配协议、行为级覆盖及增量规格检查；见 [业务规格](docs/BEHAVIOR-CONTRACT.md)和 [重建工作流](workflows/rebuild/WORKFLOW.md)。协议已有机制测试，已加入持久阶段控制及暂停任务的显式跨会话接续。真实浏览器/原生适配、实际模型完整续跑和业务效果实验仍待完成。最新完成情况见 [Roadmap](docs/ROADMAP.md)，机制限制见 [架构](docs/ARCHITECTURE.md)。不把规划写成已实现能力。
+已加入共享业务场景与断言、参考确认后冻结、两端动作适配协议、行为级覆盖及增量规格检查；见 [业务规格](docs/BEHAVIOR-CONTRACT.md)和 [重建工作流](workflows/rebuild/WORKFLOW.md)。协议已有机制测试，已加入持久阶段控制及暂停任务的显式跨会话接续。真实浏览器/原生适配、多阶段模型重建及业务效果实验仍待完成。最新完成情况见 [Roadmap](docs/ROADMAP.md)，机制限制见 [架构](docs/ARCHITECTURE.md)。不把规划写成已实现能力。
 
 ## 在目标项目安装迭代工具
 
@@ -46,4 +46,5 @@ python3 -m unittest discover -v
 - [代理约束](AGENTS.md)：证据、验收、实验和交付纪律。
 - [架构](docs/ARCHITECTURE.md)：所有者、数据流与实际边界。
 - [路线图](docs/ROADMAP.md)：分阶段完成条件。
+- [本轮机制实验与原生续跑](projects/rebuild-mechanisms/REPORT.md)：固定36项检查，另有真实宿主 smoke。
 - [历史机制消融](projects/ablation/REPORT.md)：只能说明机制检查结果。

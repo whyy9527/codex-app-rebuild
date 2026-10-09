@@ -22,7 +22,7 @@ Codex 使用原生工具观察和修改；MCP 提供七个任务操作；短 Hoo
 
 `workflows/rebuild/cli.py` 提供 check、verify、freeze、coverage。回执不覆盖，记录规格/源码/输入摘要、实际观察和差异。目标 layer 显式区分 browser_ui/native_ui/core/test_double；协议不是UI证据认证，当前只有测试替身证明机制。详细契约见 [业务规格](BEHAVIOR-CONTRACT.md)。
 
-运行任务应引用固定规格，不能把任务历史当作产品覆盖率。`capabilities/rebuild/pipeline.py` 已保存 explore→specify→reference→freeze→implement→discover→reference→freeze→implement→review 的阶段证据与回执。当前 Codex 依据 next_action 工作，step 校验阶段，不生成伪观察或另起模型。Harness 拥有模型尝试，Pipeline 拥有阶段推进及额外阶段次数/时间上限；两者不复制同一状态。完整实际模型续跑仍待宿主验证。
+运行任务应引用固定规格，不能把任务历史当作产品覆盖率。`capabilities/rebuild/pipeline.py` 已保存 explore→specify→reference→freeze→implement→discover→reference→freeze→implement→review 的阶段证据与回执。当前 Codex 依据 next_action 工作，step 校验阶段，不生成伪观察或另起模型。Harness 拥有模型尝试，Pipeline 拥有阶段推进及额外阶段次数/时间上限；两者不复制同一状态。原生 Stop 驱动的单任务模型 fail→pass 续跑已验证（见 `projects/rebuild-mechanisms/REPORT.md`）；整个多阶段重建仍待真实任务验证。
 
 重建工作流编排观察、原版验收、批次冻结、新版实现、差异修复与补充探索。运行时只执行显式命令，不推断规则。`exploration_adopt` 允许用户明确选择暂停任务转交新会话，不自动恢复、不重置预算；旧指针失效，忙碌目标会话和异工作目录被拒绝。正在执行的验收必须结束后才能转交；暂停期间取得的成功结果在显式恢复时正确完成，无须额外消耗尝试。
 
@@ -36,7 +36,7 @@ Codex 使用原生工具观察和修改；MCP 提供七个任务操作；短 Hoo
 
 ## 已知限制
 
-默认单次验收时长 30 秒，可显式设置；验收保护只覆盖声明的输入。源码完整性检查记录常见代码文件，运行数据不自动视为源码。业务批次 deadline 阻止新的动作；到期后保留最多5秒的 stop 清理额度。验证进程崩溃恢复、UI 中断完整覆盖、完整 Stop 驱动模型续跑未验证。可信验证命令具有宿主权限。
+默认单次验收时长 30 秒，可显式设置；验收保护只覆盖声明的输入。源码完整性检查记录常见代码文件，运行数据不自动视为源码。业务批次 deadline 阻止新的动作；到期后保留最多5秒的 stop 清理额度。验证进程崩溃恢复、UI 中断完整覆盖、多阶段模型重建未验证。可信验证命令具有宿主权限。
 
 仓库重命名保留 `exploration_*` 工具、`exploration-lab` 服务名和状态目录兼容。旧目标项目安装器启动路径需显式重装后更新，不自动修改其他项目。
 

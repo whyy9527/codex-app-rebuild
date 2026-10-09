@@ -1,0 +1,177 @@
+{
+  "status": "pass",
+  "scope": "scalar repair smoke; not App rebuilding efficacy",
+  "host_tui_version": "0.162.0",
+  "shell_cli_version": "0.139.0",
+  "version_discrepancy": "interactive and noninteractive resolution differ; each recorded as observed",
+  "model": "GPT-6.1-Sol",
+  "reasoning_effort": "medium",
+  "configuration": "current default; no override",
+  "limits": {
+    "iterations": 3,
+    "failures": 3,
+    "seconds": 180,
+    "verify_seconds": 20
+  },
+  "native_reviews": {
+    "folder_trust": "temporary workspace only",
+    "project_hooks": [
+      "SessionStart",
+      "UserPromptSubmit",
+      "Stop"
+    ],
+    "existing_global_hooks": "not modified",
+    "verification_tool": "native session-scoped approval selected once"
+  },
+  "human_interventions": {
+    "setup_hook_reviews": 3,
+    "folder_trust_reviews": 1,
+    "verification_tool_reviews": 1,
+    "repair_edits": 0,
+    "continuation_prompts": 0
+  },
+  "token_usage": {
+    "input_tokens": 267188,
+    "cached_input_tokens": 251904,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 798,
+    "reasoning_output_tokens": 0,
+    "total_tokens": 267986
+  },
+  "cost": null,
+  "events_sha256": "8a3fa1e3b2c3905a9086c5247a02e633003b75040e146e2b5064ffd3896f26cd",
+  "original_rollout_sha256": "32df7083de8e210defbfbfc67acc933a4a6e020bca8fd989924bae1087cb8100",
+  "hooks": [
+    {
+      "event": "SessionStart",
+      "session_id": "01a121ae-ac0d-7172-bf3e-3743676834f9",
+      "output_fields": [
+        "hookSpecificOutput"
+      ],
+      "time": 1791566483.195179
+    },
+    {
+      "event": "UserPromptSubmit",
+      "session_id": "01a121ae-ac0d-7172-bf3e-3743676834f9",
+      "output_fields": [],
+      "time": 1791566483.239121
+    },
+    {
+      "event": "Stop",
+      "session_id": "01a121ae-ac0d-7172-bf3e-3743676834f9",
+      "output_fields": [
+        "decision",
+        "reason"
+      ],
+      "time": 1791566555.8837261
+    },
+    {
+      "event": "Stop",
+      "session_id": "01a121ae-ac0d-7172-bf3e-3743676834f9",
+      "output_fields": [],
+      "time": 1791566573.481977
+    }
+  ],
+  "task": {
+    "id": "a2706f859def4c959e37cab6e9d6ad73",
+    "workspace": "<workspace>",
+    "session_id": "01a121ae-ac0d-7172-bf3e-3743676834f9",
+    "objective": "repair answer.py so existing tests pass",
+    "verifier": [
+      "python3",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests"
+    ],
+    "verifier_digest": "83873fc24ed14f10093e19ccf1a8ee77cd9b3160b1d685fbeab2750cff0f25de",
+    "phase": "complete",
+    "iterations": 2,
+    "max_iterations": 3,
+    "max_failures": 3,
+    "failures": 0,
+    "deadline": 1791566671.855061,
+    "attempts": [
+      {
+        "iteration": 1,
+        "hypothesis": "The unchanged answer.py returns value 1; record its actual existing-test failure before making any edit.",
+        "evaluation": {
+          "command": [
+            "python3",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tests"
+          ],
+          "source_files": {
+            "answer.py": "585c93666fcb046b7b264d3fa73202aa2a38254ae82a4b3ba19e873c2d5a9886",
+            "tests/test_answer.py": "a1527915dc0a8498d0231fc5537c3bbd87310b07a8bf81d28d2601a5e7a6a197"
+          },
+          "source_digest": "5e4f5ed35da8e1d29331b1ccf386cc69f19d0ea66068fb17acd065752f976999",
+          "integrity": "verified",
+          "evaluator_digest": "ada7c2fc543b797d487274cad9de562bb3b167a1bb807b68d36091d2c42b92d1",
+          "exit_code": 1,
+          "status": "fail",
+          "output": "F\n======================================================================\nFAIL: test_value (test_answer.Acceptance.test_value)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"<workspace>/tests/test_answer.py\", line 4, in test_value\n    def test_value(self): self.assertEqual(answer.value, 2)\n                          ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\nAssertionError: 1 != 2\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nFAILED (failures=1)\n",
+          "output_bytes": 627,
+          "output_truncated": false,
+          "output_sha256": "47327d38c3ab31254532626787441c037571f78857d82e89394acc0cf82e9eb9",
+          "wall_seconds": 0.183543,
+          "python_cache": "fresh isolated prefix, bytecode writes disabled"
+        }
+      },
+      {
+        "iteration": 2,
+        "hypothesis": "Measured failure asserts answer.value must equal 2; changing only answer.py from value = 1 to value = 2 should pass the frozen tests.",
+        "evaluation": {
+          "command": [
+            "python3",
+            "-m",
+            "unittest",
+            "discover",
+            "-s",
+            "tests"
+          ],
+          "source_files": {
+            "answer.py": "69ef4f409b530264b0da21ad4054978ada08895c93631a0da1957e2a10b592b5",
+            "tests/test_answer.py": "a1527915dc0a8498d0231fc5537c3bbd87310b07a8bf81d28d2601a5e7a6a197"
+          },
+          "source_digest": "321b539450424bcf24ec43678adac0ac9c1c1ca3968ba295d6cac854e3aae097",
+          "integrity": "verified",
+          "evaluator_digest": "ada7c2fc543b797d487274cad9de562bb3b167a1bb807b68d36091d2c42b92d1",
+          "exit_code": 0,
+          "status": "pass",
+          "output": ".\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nOK\n",
+          "output_bytes": 98,
+          "output_truncated": false,
+          "output_sha256": "fb184ea57734512b1f088f9181209901b9cd46df3eb7eaa2500ea9e48dde20b5",
+          "wall_seconds": 0.187182,
+          "python_cache": "fresh isolated prefix, bytecode writes disabled"
+        }
+      }
+    ],
+    "last_error": null,
+    "hook_events": [
+      "2859e0060c983d29baac41b75b76a9d559e389b12f3810c0f9ffabe3cc101784"
+    ],
+    "acceptance_paths": [
+      "tests"
+    ],
+    "acceptance_files": {
+      "tests/test_answer.py": "a1527915dc0a8498d0231fc5537c3bbd87310b07a8bf81d28d2601a5e7a6a197"
+    },
+    "verify_seconds": 20,
+    "verification_in_flight": false,
+    "last_hook_progress": [
+      1,
+      1,
+      "ready"
+    ]
+  },
+  "files": {
+    "answer.py": "value = 2\n",
+    "tests/test_answer.py": "import unittest\nimport answer\nclass Acceptance(unittest.TestCase):\n def test_value(self): self.assertEqual(answer.value, 2)\n"
+  }
+}
