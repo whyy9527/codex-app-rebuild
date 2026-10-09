@@ -4,78 +4,217 @@ public struct Choice: Codable, Equatable, Sendable, Identifiable {
     public let id: String
     public let text: String
 }
+public struct WordPair: Codable, Equatable, Sendable, Identifiable {
+    public let id: String
+    public let left: String
+    public let right: String
+}
+public enum QuestionKind: String, Codable, Sendable {
+    case choice, matching
+    case wordTiles = "word_tiles"
+}
 public struct Question: Codable, Equatable, Sendable, Identifiable {
     public let id: String
+    public let kind: QuestionKind
     public let prompt: String
     public let options: [Choice]
     public let answer: String
+    public let words: [Choice]
+    public let answerWords: [String]
+    public let pairs: [WordPair]
     public let explanation: String
+    enum CodingKeys: String, CodingKey {
+        case id, kind, prompt, options, answer, words, pairs, explanation
+        case answerWords = "answer_words"
+    }
+    public init(from decoder: Decoder) throws {
+        let c = try decoder.container(keyedBy: CodingKeys.self)
+        id = try c.decode(String.self, forKey: .id)
+        kind = try c.decodeIfPresent(QuestionKind.self, forKey: .kind) ?? .choice
+        prompt = try c.decode(String.self, forKey: .prompt)
+        options = try c.decodeIfPresent([Choice].self, forKey: .options) ?? []
+        answer = try c.decodeIfPresent(String.self, forKey: .answer) ?? ""
+        words = try c.decodeIfPresent([Choice].self, forKey: .words) ?? []
+        answerWords = try c.decodeIfPresent([String].self, forKey: .answerWords) ?? []
+        pairs = try c.decodeIfPresent([WordPair].self, forKey: .pairs) ?? []
+        explanation = try c.decode(String.self, forKey: .explanation)
+    }
+    public var correctText: String {
+        switch kind {
+        case .choice: options.first { $0.id == answer }?.text ?? ""
+        case .wordTiles: answerWords.compactMap { id in words.first { $0.id == id }?.text }.joined(separator: " ")
+        case .matching: "All pairs matched"
+        }
+    }
+    var valid: Bool {
+        func unique(_ ids: [String]) -> Bool { !ids.isEmpty && ids.allSatisfy { !$0.isEmpty } && Set(ids).count == ids.count }
+        guard !id.isEmpty, !prompt.isEmpty else { return false }
+        switch kind {
+        case .choice: return unique(options.map(\.id)) && options.contains { $0.id == answer }
+        case .wordTiles: return unique(words.map(\.id)) && unique(answerWords) && answerWords.allSatisfy { id in words.contains { $0.id == id } }
+        case .matching: return unique(pairs.map(\.id)) && pairs.allSatisfy { !$0.left.isEmpty && !$0.right.isEmpty }
+        }
+    }
+}
+public struct LessonDefinition: Codable, Equatable, Sendable, Identifiable {
+    public let id: String
+    public let title: String
+    public let questions: [Question]
 }
 public struct Course: Codable, Equatable, Sendable, Identifiable {
     public let id: String
     public let title: String
-    public let questions: [Question]
+    public let lessons: [LessonDefinition]
+    public let usesLegacyQuestions: Bool
+    // Compatibility for the original single-lesson curriculum.
+    public var questions: [Question] { lessons[0].questions }
+    enum CodingKeys: String, CodingKey { case id, title, lessons, questions }
+    public init(from decoder: Decoder) throws {
+        let c = try decoder.container(keyedBy: CodingKeys.self)
+        id = try c.decode(String.self, forKey: .id)
+        title = try c.decode(String.self, forKey: .title)
+        if let definitions = try c.decodeIfPresent([LessonDefinition].self, forKey: .lessons) {
+            guard !c.contains(.questions) else { throw DecodingError.dataCorruptedError(forKey: .lessons, in: c, debugDescription: "Declare lessons or legacy questions, not both") }
+            lessons = definitions
+            usesLegacyQuestions = false
+        } else {
+            lessons = [LessonDefinition(id: "intro", title: title, questions: try c.decode([Question].self, forKey: .questions))]
+            usesLegacyQuestions = true
+        }
+    }
+    public func encode(to encoder: Encoder) throws {
+        var c = encoder.container(keyedBy: CodingKeys.self)
+        try c.encode(id, forKey: .id); try c.encode(title, forKey: .title)
+        if usesLegacyQuestions { try c.encode(questions, forKey: .questions) }
+        else { try c.encode(lessons, forKey: .lessons) }
+    }
     public static func readFixture(_ url: URL) throws -> Course {
         struct DataSection: Decodable { let candidate_course: Course }
         struct Fixture: Decodable { let data: DataSection }
         let course = try JSONDecoder().decode(Fixture.self, from: Data(contentsOf: url)).data.candidate_course
-        guard !course.questions.isEmpty, Set(course.questions.map(\.id)).count == course.questions.count,
-              course.questions.allSatisfy({ question in
-                  !question.options.isEmpty && Set(question.options.map(\.id)).count == question.options.count
-                      && question.options.contains(where: { $0.id == question.answer })
-              }) else {
-            throw CocoaError(.fileReadCorruptFile)
-        }
+        guard !course.id.isEmpty, !course.lessons.isEmpty,
+              Set(course.lessons.map(\.id)).count == course.lessons.count,
+              course.lessons.allSatisfy({ lesson in
+                  !lesson.id.isEmpty && !lesson.questions.isEmpty
+                    && Set(lesson.questions.map(\.id)).count == lesson.questions.count
+                    && lesson.questions.allSatisfy(\.valid)
+              }) else { throw CocoaError(.fileReadCorruptFile) }
         return course
     }
 }
 
 public struct Lesson: Equatable, Sendable {
     public let course: Course
+    public let lessonIndex: Int
+    public var definition: LessonDefinition { course.lessons[lessonIndex] }
     public private(set) var position = 0
     public private(set) var selected: String?
+    public private(set) var selectedWords = [String]()
+    public private(set) var matchedPairs = Set<String>()
+    public private(set) var selectedLeft: String?
+    public private(set) var selectedRight: String?
+    public private(set) var matchingHint: String?
     public private(set) var feedback: Bool?
-    public private(set) var hearts = 5
+    public private(set) var hearts: Int
     public private(set) var review = [Int]()
     public private(set) var reviewing = false
     public private(set) var complete = false
-    public var question: Question { course.questions[position] }
-    public var canSubmit: Bool { selected != nil && feedback == nil && !complete }
-
-    public init(course: Course) { self.course = course }
+    public var question: Question { definition.questions[position] }
+    public var canSubmit: Bool {
+        guard feedback == nil, !complete else { return false }
+        switch question.kind {
+        case .choice: return selected != nil
+        case .wordTiles: return !selectedWords.isEmpty
+        case .matching: return false
+        }
+    }
+    public init(course: Course, lessonIndex: Int = 0, hearts: Int = 5) {
+        precondition(course.lessons.indices.contains(lessonIndex) && hearts >= 0)
+        self.course = course; self.lessonIndex = lessonIndex; self.hearts = hearts
+    }
     public mutating func choose(_ id: String) {
-        guard feedback == nil, !complete, question.options.contains(where: { $0.id == id }) else { return }
+        guard question.kind == .choice, feedback == nil, !complete, question.options.contains(where: { $0.id == id }) else { return }
         selected = id
+    }
+    public mutating func addWord(_ id: String) {
+        guard question.kind == .wordTiles, feedback == nil, !complete,
+              question.words.contains(where: { $0.id == id }), !selectedWords.contains(id) else { return }
+        selectedWords.append(id)
+    }
+    public mutating func removeWord(_ id: String) {
+        guard question.kind == .wordTiles, feedback == nil, !complete else { return }
+        selectedWords.removeAll { $0 == id }
+    }
+    public mutating func matchLeft(_ id: String) { selectPair(id, left: true) }
+    public mutating func matchRight(_ id: String) { selectPair(id, left: false) }
+    private mutating func selectPair(_ id: String, left: Bool) {
+        guard question.kind == .matching, feedback == nil, !complete,
+              question.pairs.contains(where: { $0.id == id }), !matchedPairs.contains(id) else { return }
+        matchingHint = nil
+        if left { selectedLeft = id } else { selectedRight = id }
+        if let a = selectedLeft, let b = selectedRight {
+            if a == b { matchedPairs.insert(a) }
+            else { matchingHint = "Try a different pair." } // Product decision: unobserved wrong-pair penalty.
+            selectedLeft = nil; selectedRight = nil
+            if matchedPairs.count == question.pairs.count { feedback = true }
+        }
     }
     public mutating func submit() {
         guard canSubmit else { return }
-        let correct = selected == question.answer
+        let correct = question.kind == .choice ? selected == question.answer : selectedWords == question.answerWords
         feedback = correct
         if !correct {
             hearts = max(0, hearts - 1)
             if !review.contains(position) { review.append(position) }
         }
     }
+    private mutating func clearAnswer() {
+        selected = nil; selectedWords = []; matchedPairs = []
+        selectedLeft = nil; selectedRight = nil; matchingHint = nil; feedback = nil
+    }
     public mutating func advance() {
         guard feedback != nil, !complete else { return }
         if reviewing {
             if feedback == true { review.removeAll { $0 == position } }
-        } else if position + 1 < course.questions.count {
-            position += 1
-            selected = nil
-            feedback = nil
-            return
+        } else if position + 1 < definition.questions.count {
+            position += 1; clearAnswer(); return
         } else { reviewing = true }
         if let next = review.first { position = next }
         else { complete = true }
-        selected = nil
-        feedback = nil
+        clearAnswer()
     }
 }
 
 public struct LearningProgress: Codable, Equatable, Sendable {
     public var completedCourses: Set<String> = []
+    public var completedLessons: [String: Set<String>] = [:]
+    public var hearts = 5
     public init() {}
+    enum CodingKeys: String, CodingKey { case completedCourses, completedLessons, hearts }
+    public init(from decoder: Decoder) throws {
+        let c = try decoder.container(keyedBy: CodingKeys.self)
+        completedCourses = try c.decodeIfPresent(Set<String>.self, forKey: .completedCourses) ?? []
+        completedLessons = try c.decodeIfPresent([String: Set<String>].self, forKey: .completedLessons) ?? [:]
+        hearts = try c.decodeIfPresent(Int.self, forKey: .hearts) ?? 5
+        guard hearts >= 0 else { throw DecodingError.dataCorruptedError(forKey: .hearts, in: c, debugDescription: "Hearts cannot be negative") }
+    }
+    public func isCompleted(_ course: Course, index: Int) -> Bool {
+        guard course.lessons.indices.contains(index) else { return false }
+        return completedLessons[course.id, default: []].contains(course.lessons[index].id)
+            || course.usesLegacyQuestions && completedCourses.contains(course.id)
+    }
+    public func completedCount(_ course: Course) -> Int {
+        course.lessons.indices.prefix { isCompleted(course, index: $0) }.count
+    }
+    public func isUnlocked(_ course: Course, index: Int) -> Bool {
+        course.lessons.indices.contains(index) && (0..<index).allSatisfy { isCompleted(course, index: $0) }
+    }
+    @discardableResult public mutating func markCompleted(_ course: Course, index: Int) -> Bool {
+        guard isUnlocked(course, index: index) else { return false }
+        completedLessons[course.id, default: []].insert(course.lessons[index].id)
+        if completedCount(course) == course.lessons.count { completedCourses.insert(course.id) }
+        return true
+    }
 }
 public struct ProgressStore: Sendable {
     public let url: URL

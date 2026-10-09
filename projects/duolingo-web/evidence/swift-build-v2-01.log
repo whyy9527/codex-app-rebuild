@@ -1,0 +1,33 @@
+[0/1] Planning build
+Building for debugging...
+[0/6] Write sources
+[2/6] Write swift-version--1AB21518FC5DEDBE.txt
+[4/8] Compiling LearningCore LearningCore.swift
+[5/8] Emitting module LearningCore
+[6/12] Compiling LingoSeed LearningView.swift
+[7/12] Emitting module LingoSeed
+[8/12] Compiling LingoSeed LearningModel.swift
+[9/12] Compiling LingoSeed LingoSeed.swift
+<workspace>/projects/education-swift/Sources/LingoSeed/LingoSeed.swift:24:69: error: cannot find 'Course' in scope
+22 |         let progress = argument("--progress").map { URL(fileURLWithPath: $0) }
+23 |             ?? FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0].appendingPathComponent("LingoSeed/progress.json")
+24 |         do { _model = State(initialValue: try LearningModel(course: Course.readFixture(fixture), store: ProgressStore(url: progress))) }
+   |                                                                     `- error: cannot find 'Course' in scope
+25 |         catch { _startupError = State(initialValue: "Unable to open the course or saved progress. Check the supplied files before restarting.") }
+26 |     }
+
+<workspace>/projects/education-swift/Sources/LingoSeed/LingoSeed.swift:24:105: error: cannot find 'ProgressStore' in scope
+22 |         let progress = argument("--progress").map { URL(fileURLWithPath: $0) }
+23 |             ?? FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0].appendingPathComponent("LingoSeed/progress.json")
+24 |         do { _model = State(initialValue: try LearningModel(course: Course.readFixture(fixture), store: ProgressStore(url: progress))) }
+   |                                                                                                         `- error: cannot find 'ProgressStore' in scope
+25 |         catch { _startupError = State(initialValue: "Unable to open the course or saved progress. Check the supplied files before restarting.") }
+26 |     }
+
+<workspace>/projects/education-swift/Sources/LingoSeed/LingoSeed.swift:25:9: warning: 'catch' block is unreachable because no errors are thrown in 'do' block
+23 |             ?? FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0].appendingPathComponent("LingoSeed/progress.json")
+24 |         do { _model = State(initialValue: try LearningModel(course: Course.readFixture(fixture), store: ProgressStore(url: progress))) }
+25 |         catch { _startupError = State(initialValue: "Unable to open the course or saved progress. Check the supplied files before restarting.") }
+   |         `- warning: 'catch' block is unreachable because no errors are thrown in 'do' block
+26 |     }
+27 |     var body: some Scene {

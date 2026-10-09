@@ -1,0 +1,186 @@
+{
+  "schema_version": 1,
+  "kind": "behavior_verification",
+  "target": "candidate",
+  "target_kind": "candidate",
+  "layer": "native_ui",
+  "revision": "duolingo-learning-flow-v2",
+  "spec_digest": "af952e073964b1f057a0c4bfd05093be751c18e8ef1eb4b65616d05dff10ccc0",
+  "targets_digest": "ccd3de83a512187a40b96d0c419ef0f58b08c334f86e2aea5e299ffe4b637169",
+  "source_digest": "0e5fad0e863cebdb8e3df6a1e29b0b6b9e583ee753877c8cd0ce5c38bdb1b764",
+  "inputs": {
+    "projects/duolingo-web/build-native.py": "afbcd31ac4ed06592f005a9b9230c90115d2b62accba155de8945ef44912c7fd",
+    "projects/duolingo-web/evidence/2026-10-10/duo-03-lesson-initial.yml": "d5ad4476cc507d8860c7337f8959a3c49270631a37774dab3e8402dab8102c82",
+    "projects/duolingo-web/evidence/2026-10-10/duo-04-wrong-feedback.yml": "627e64a27c737cbe69a2520dcf230ad0e22898be08653a6f0463c337f8c76132",
+    "projects/duolingo-web/evidence/2026-10-10/duo-05-correct-feedback.yml": "3da1c467a4076e7304096a7441b5ffb91e3bcc8d358994dc4bed69ee54801ec0",
+    "projects/duolingo-web/evidence/2026-10-10/duo-06-exit-confirm.yml": "04cb5df30a119618f45e178be129fdacafb8208dac68a1b28f72d190eb48670e",
+    "projects/duolingo-web/evidence/2026-10-10/duo-07-exit-cancelled.yml": "b9fc0acf24956945478f4fd24d9f7be919b3d3ade61d781164ac5e7d39ff8a73",
+    "projects/duolingo-web/evidence/2026-10-10/duo-08-matching.yml": "3bbd2357c7f2e07d8e8eb971acce88255297264ff4ec0a6ec5d001e1db44cdd8",
+    "projects/duolingo-web/evidence/2026-10-10/duo-09-matching-complete.yml": "65782034fb0af074aa1c6b170bf731090fe94b9a3993d0e7014f4965b5405dca",
+    "projects/duolingo-web/evidence/2026-10-10/duo-12-review-cat.yml": "0fec2d1c2b52b309ab459ba07bb43303e63b17f169798f9668b1ce4129dc9c2f",
+    "projects/duolingo-web/evidence/2026-10-10/duo-14-result.yml": "f6aab6014602f680863093d0a8f14b3c5f311c161a335f0d505e9d2b0267e083",
+    "projects/duolingo-web/evidence/2026-10-10/duo-16-path-before-reload.yml": "079bfe093752818ce5b65d105864f80aebc782632f86e5b6e1b1efb8c263e9ba",
+    "projects/duolingo-web/evidence/2026-10-10/duo-17-path-after-reload.yml": "03637a8dce9fc1646a763a6fa2d8ace3a3e1bb8f20645f73afe1f51cc3c18e23",
+    "projects/duolingo-web/evidence/2026-10-10/duo-18-second-exit-confirm.yml": "89f6a65831fc4cf431a26b7ac6e75304c13b78f8a5d4ba36ca9f7186cc3e6ba7",
+    "projects/duolingo-web/evidence/2026-10-10/duo-19-after-abandon.yml": "deedad177545fed9fe6b8160e388caedf1fb4fdc95c7fee2def7c520a48b0d32",
+    "projects/duolingo-web/evidence/2026-10-10/duo-20-restarted-lesson.yml": "1490cc4b6152d8b631862a2a6e1ae41403e3ecd6f61d5dc084bd56f2e1bb29c4",
+    "projects/duolingo-web/evidence/discovery-reselection.json": "bbb75827f5bcccd332c669b9123367c99618cb19fed03befa5f49ad47a818c36",
+    "projects/duolingo-web/evidence/word-tiles-book.json": "061a4e041d397815a1cf41c9e8b4afabaed4c8e5d0bf59d3ed0757f6bab96617",
+    "projects/duolingo-web/evidence/word-tiles-correct.json": "1f6f407f4a2b21dfc7a4de9a61fd4124361b4bc1426813993f73ffb390e2fe44",
+    "projects/duolingo-web/evidence/word-tiles-selection.json": "7a099f2409e2d28cea2ecd55849376c5f802f8cbf7ec537d8c53d4920d66df9e",
+    "projects/duolingo-web/evidence/word-tiles-undo-wrong.json": "7631077da4013aef037e87bd445152db97898ae64ce3b62ebcf7a02265a218a8",
+    "projects/duolingo-web/fixture-v2.json": "cfd33ce0404f4c566446415cf8e5a4275d56e97013a6a07572954785243fb112",
+    "projects/duolingo-web/native-adapter-v3.swift": "3805f45728d86f6fca110f464aa2e71764470f8604f17a21576f85781f49ddfb",
+    "projects/duolingo-web/original-adapter-v2.mjs": "dcaef55e187e213fa4128b57d91dedf32fd5b46ab0dae92920617af2d77f18b4",
+    "projects/duolingo-web/package-lock.json": "68603815aa0e350616d954e499d26a7f5050976835fdf0ee1cc4b12580a36f5f",
+    "projects/duolingo-web/package.json": "94e5266ded14092acc68f405483a2e0b18f3fd557cb05eaa40d16d447ff69e46",
+    "projects/duolingo-web/spec-v2.json": "5119a2d4ba268c5b14c6d83c7512fab7058d742dc1e8b2c43597ca4a41b0c44d",
+    "projects/duolingo-web/targets-v2.json": "ec6545097eae5de78d2835e4b39222269e9e62c38c764af51cc1ba874728d7d4"
+  },
+  "behaviors": [
+    {
+      "id": "choice-empty",
+      "discovery": "observed",
+      "status": "unavailable",
+      "reason": "target startup failed"
+    },
+    {
+      "id": "choice-correct",
+      "discovery": "observed",
+      "status": "unavailable",
+      "reason": "target startup failed"
+    },
+    {
+      "id": "choice-wrong",
+      "discovery": "observed",
+      "status": "unavailable",
+      "reason": "target startup failed"
+    },
+    {
+      "id": "exit-cancel",
+      "discovery": "observed",
+      "status": "unavailable",
+      "reason": "target startup failed"
+    },
+    {
+      "id": "choice-reselection",
+      "discovery": "observed",
+      "status": "unavailable",
+      "reason": "target startup failed"
+    },
+    {
+      "id": "matching-complete",
+      "discovery": "observed",
+      "status": "unavailable",
+      "reason": "target startup failed"
+    },
+    {
+      "id": "word-tiles",
+      "discovery": "observed",
+      "status": "unavailable",
+      "reason": "target startup failed"
+    },
+    {
+      "id": "word-tiles-undo",
+      "discovery": "observed",
+      "status": "unavailable",
+      "reason": "target startup failed"
+    },
+    {
+      "id": "word-tiles-wrong",
+      "discovery": "observed",
+      "status": "unavailable",
+      "reason": "target startup failed"
+    },
+    {
+      "id": "mistake-review",
+      "discovery": "observed",
+      "status": "unavailable",
+      "reason": "target startup failed"
+    },
+    {
+      "id": "completion-reload",
+      "discovery": "observed",
+      "status": "unavailable",
+      "reason": "target startup failed"
+    },
+    {
+      "id": "exit-discard",
+      "discovery": "observed",
+      "status": "unavailable",
+      "reason": "target startup failed"
+    }
+  ],
+  "lifecycle": [
+    {
+      "operation": "start",
+      "receipt": {
+        "command": [
+          "python3",
+          "projects/duolingo-web/build-native.py"
+        ],
+        "source_digest": "0e5fad0e863cebdb8e3df6a1e29b0b6b9e583ee753877c8cd0ce5c38bdb1b764",
+        "integrity": "verified",
+        "evaluator_digest": "c692d887c119101daae28336f422db7f10fa88bb96a5d316bba7e889ae633bec",
+        "exit_code": 0,
+        "status": "unavailable",
+        "output": "APP_REBUILD_RESULT {\"operation\": \"start\", \"preparation\": [], \"reason\": \"Native UI transition timed out\", \"status\": \"unavailable\", \"ui_observation\": {\"answer_selected\": false, \"authenticated\": false, \"check_enabled\": false, \"completed_lessons\": null, \"continue_enabled\": false, \"current_lesson_index\": null, \"feedback\": \"none\", \"hearts\": null, \"initial_question_revisited\": false, \"lesson_index\": 0, \"matching_complete\": false, \"next_lesson_enabled\": false, \"options_locked\": false, \"question_changed\": false, \"question_kind\": null, \"reviewing\": false, \"screen\": \"other\", \"selected_word_count\": 0, \"ui_snapshot\": [{\"description\": \"\", \"enabled\": false, \"id\": \"SwiftUI._ConditionalContent<LingoSeed.LearningView, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1\", \"role\": \"AXWindow\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": false, \"id\": \"\", \"role\": \"AXGroup\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"Course unavailable\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"Unable to open the course or saved progress. Check the supplied files before restarting.\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": false, \"id\": \"\", \"role\": \"AXGroup\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": false, \"id\": \"\", \"role\": \"AXGroup\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"LingoSeed\"}]}, \"build\": {\"binary_sha256\": \"ec4036ca6b3353c3ce54438a47199282064a1eb85975f923532f3f08940e8540\", \"source_sha256\": {\"projects/education-swift/Package.swift\": \"69c107cdd891cdadd83dca370c1618c002fd85fcba63c76391b6b5cc279a0cd1\", \"projects/education-swift/Sources/LearningCore/LearningCore.swift\": \"00b9248530ec2542ad60db94283b562c0383c5cf81b6d3681e0df15133cd30a0\", \"projects/education-swift/Sources/LingoSeed/LingoSeed.swift\": \"5fa6f640cff673bdd8015d2112b3c4c8ce3f52715d840b648b81d13578f9464c\"}}}\n",
+        "output_bytes": 2234,
+        "output_truncated": false,
+        "output_sha256": "36035bcf584abbd101f1e605d037725107f8988658bdf96446e86a1b7332e0dc",
+        "wall_seconds": 15.033015,
+        "reason": "Native UI transition timed out"
+      }
+    },
+    {
+      "operation": "reset",
+      "receipt": {
+        "command": [
+          "python3",
+          "projects/duolingo-web/build-native.py"
+        ],
+        "source_digest": "0e5fad0e863cebdb8e3df6a1e29b0b6b9e583ee753877c8cd0ce5c38bdb1b764",
+        "integrity": "verified",
+        "evaluator_digest": "c692d887c119101daae28336f422db7f10fa88bb96a5d316bba7e889ae633bec",
+        "exit_code": 0,
+        "status": "unavailable",
+        "output": "APP_REBUILD_RESULT {\"operation\": \"reset\", \"preparation\": [], \"reason\": \"Native UI transition timed out\", \"status\": \"unavailable\", \"ui_observation\": {\"answer_selected\": false, \"authenticated\": false, \"check_enabled\": false, \"completed_lessons\": null, \"continue_enabled\": false, \"current_lesson_index\": null, \"feedback\": \"none\", \"hearts\": null, \"initial_question_revisited\": false, \"lesson_index\": 0, \"matching_complete\": false, \"next_lesson_enabled\": false, \"options_locked\": false, \"question_changed\": false, \"question_kind\": null, \"reviewing\": false, \"screen\": \"other\", \"selected_word_count\": 0, \"ui_snapshot\": [{\"description\": \"\", \"enabled\": false, \"id\": \"SwiftUI._ConditionalContent<LingoSeed.LearningView, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1\", \"role\": \"AXWindow\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": false, \"id\": \"\", \"role\": \"AXGroup\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"Course unavailable\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"Unable to open the course or saved progress. Check the supplied files before restarting.\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": false, \"id\": \"\", \"role\": \"AXGroup\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": false, \"id\": \"\", \"role\": \"AXGroup\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXButton\", \"value\": \"\"}, {\"description\": \"\", \"enabled\": true, \"id\": \"\", \"role\": \"AXStaticText\", \"value\": \"LingoSeed\"}]}, \"build\": {\"binary_sha256\": \"ec4036ca6b3353c3ce54438a47199282064a1eb85975f923532f3f08940e8540\", \"source_sha256\": {\"projects/education-swift/Package.swift\": \"69c107cdd891cdadd83dca370c1618c002fd85fcba63c76391b6b5cc279a0cd1\", \"projects/education-swift/Sources/LearningCore/LearningCore.swift\": \"00b9248530ec2542ad60db94283b562c0383c5cf81b6d3681e0df15133cd30a0\", \"projects/education-swift/Sources/LingoSeed/LingoSeed.swift\": \"5fa6f640cff673bdd8015d2112b3c4c8ce3f52715d840b648b81d13578f9464c\"}}}\n",
+        "output_bytes": 2234,
+        "output_truncated": false,
+        "output_sha256": "f878dc02b77cab05c04c201c8603c2d00b6debb828d94add05cd9cea95dd4ee3",
+        "wall_seconds": 13.501346,
+        "reason": "Native UI transition timed out"
+      }
+    },
+    {
+      "operation": "stop",
+      "receipt": {
+        "command": [
+          "python3",
+          "projects/duolingo-web/build-native.py"
+        ],
+        "source_digest": "0e5fad0e863cebdb8e3df6a1e29b0b6b9e583ee753877c8cd0ce5c38bdb1b764",
+        "integrity": "verified",
+        "evaluator_digest": "c692d887c119101daae28336f422db7f10fa88bb96a5d316bba7e889ae633bec",
+        "exit_code": 0,
+        "status": "pass",
+        "output": "APP_REBUILD_RESULT {\"operation\": \"stop\", \"resources\": []}\n",
+        "output_bytes": 58,
+        "output_truncated": false,
+        "output_sha256": "f660b181e4e594cfaced12741780e3c7698768efa16e64cc3b6ec4ce93f7ef1e",
+        "wall_seconds": 0.132297
+      }
+    }
+  ],
+  "created_at": 1791574813.279583,
+  "integrity": "verified",
+  "status": "fail",
+  "counts": {
+    "unknown": 0,
+    "pass": 0,
+    "fail": 0,
+    "invalid": 0,
+    "unavailable": 12,
+    "timeout": 0
+  }
+}

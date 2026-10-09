@@ -30,7 +30,7 @@ Codex 使用原生工具观察和修改；MCP 提供七个任务操作；短 Hoo
 
 ## Swift 教育案例边界
 
-课程和题库是内容数据；学习引擎拥有题目队列、答题反馈、错题重练和结算；进度仓库负责保存和恢复；SwiftUI 负责展示与输入。业务核心可以独立测试，并通过场景适配器与浏览器观察的语义对应。当前 `projects/education-swift` 将 LearningCore、SwiftUI 客户端和可执行核心检查分开；`projects/duolingo-web` 拥有线上浏览器与原生 AX 驱动及共享规格。首批实际结果见该案例 evidence，不能由架构分层推导完整业务已完成。
+课程和题库是内容数据；学习引擎拥有题目队列、答题反馈、错题重练和结算；进度仓库负责保存和恢复；SwiftUI 负责展示与输入。业务核心可以独立测试，并通过场景适配器与浏览器观察的语义对应。当前 `projects/education-swift` 将 LearningCore、SwiftUI 客户端和可执行核心检查分开；`projects/duolingo-web` 拥有线上浏览器与原生 AX 驱动及共享规格。v2 已在原版和原生 UI 两侧通过12条共享场景。LearningCore 拥有 Codable 课程/课时、三题型状态机、错题队列及进度；LearningModel 处理 UI 操作与保存；LearningView 展示界面。构建包装器先编译当前源码，再驱动自有 PID 的窗口，记录源码与二进制摘要。实际结果见该案例 evidence；模型重建效果仍待验证。
 
 测试分三层：核心业务测试、原生客户端交互、视觉审查。适配器只是桥梁，不能用核心测试通过代替 UI 通过。平台构建和实际交互分别提供证据。
 

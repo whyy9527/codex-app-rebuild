@@ -1,0 +1,23 @@
+{
+  "scope": "Initial product implementation, after v2 acceptance frozen",
+  "logs": {
+    "swift-build-v2-01.log": {
+      "exit_code": 1,
+      "raw_sha256": "2503916b320e0158e34f35b3396c091320a446f97423148a0768e78e036ff340",
+      "saved_sha256": "3946cdf8ec53d10c7d6843b8cd6a15727cbaca934a7fcc3d10323cc53384675d"
+    },
+    "swift-core-v2-01.log": {
+      "exit_code": 0,
+      "raw_sha256": "7497d547d99c4184fe528811f50963588b8da04c491bd0fd2bd052c5e286c22c",
+      "saved_sha256": "7497d547d99c4184fe528811f50963588b8da04c491bd0fd2bd052c5e286c22c"
+    }
+  },
+  "source_sha256": {
+    "projects/education-swift/Sources/LearningCore/LearningCore.swift": "d35393449131e4b54a947e2b49b18d7900c8c429530ccc6bd9fe220fce9b3b68",
+    "projects/education-swift/Sources/LingoSeed/LearningModel.swift": "ec8ff2814af2db92cb4eecad7a343155d53004bb2725f6825e5d268c277c0f8f",
+    "projects/education-swift/Sources/LingoSeed/LearningView.swift": "bfe8565c835129a2cd86948b89e2f0ca2ab19045296d324b339803c2a7dee8e3",
+    "projects/education-swift/Sources/LingoSeed/LingoSeed.swift": "dba47cd8cb5fcf57c5fb9eeb6b732ef310ce7104edccc597ed763ffecde62c36"
+  },
+  "diagnosis": "App launcher lost its LearningCore import when model and views moved to separate files. Core checks passed; product did not compile.",
+  "next_hypothesis": "Restore the module import; no shared acceptance changes."
+}

@@ -1,32 +1,33 @@
-# LingoSeed · Swift 教育基座（首批）
+# LingoSeed · Swift 教育基座
 
-可运行的 macOS SwiftUI 客户端，使用原创 Everyday English 课程和系统符号，没有 Duolingo 素材。当前只有一个两题选择课；这不是完整 Goal 的交付。拼句、配对、多个课时的路径解锁及后续共享验收仍待实现。
+可运行的 macOS SwiftUI 客户端，使用原创 Everyday English 两课时题库与系统符号。实现课程路径与顺序解锁、选择题、配对、拼句与撤回、反馈、错题重练、结算和持久进度。冻结 v2 的12条共享场景已在网页参考和实际原生 UI 两侧通过；这不代表整个运行 Goal 已完成。
 
-## 构建与运行
+## 构建、运行与重置
 
 从仓库根执行，macOS 14+、Swift 6 工具链：
 
 ```sh
-swift build --package-path projects/education-swift
-projects/education-swift/.build/debug/LingoSeed --fixture projects/duolingo-web/fixture-v1.json
+swift build --package-path projects/education-swift --product LingoSeed
+projects/education-swift/.build/debug/LingoSeed --fixture projects/duolingo-web/fixture-v2.json --progress artifacts/lingoseed-demo/progress.json
 swift run --package-path projects/education-swift LearningCoreChecks
 ```
 
-普通运行将已完成课程保存到用户 Application Support 下 `LingoSeed/progress.json`。使用 `--progress <新文件路径>` 可在独立空进度中运行；不要把普通用户进度作为验收夹具。UI 适配器始终创建临时目录，运行后关闭自己启动的进程并清理该目录，不读取用户进度。
+换一个尚不存在的 `--progress` 文件即可建立独立初态。普通运行默认保存到用户 Application Support 下 `LingoSeed/progress.json`，不要将普通用户进度用作验收夹具。原生适配器始终使用临时题库/进度，关闭并清理自己启动的进程；reload 重开同一临时进度文件。
 
-命令行工具集可以构建本客户端，但当前本机缺少 XCTest 和 Swift Testing 模块；保留失败日志，核心检查采用 `LearningCoreChecks` 可执行入口，错误时返回非零。它检查空答案、错题复习、完成前必须纠错、存储重开以及损坏数据不被覆盖，属于核心层，不代替原生 UI E2E。
+本机缺少 XCTest / Swift Testing 模块；核心检查采用非零失败的 `LearningCoreChecks` 可执行入口。五项检查覆盖空答案与错题重练、存储往返、拼句/撤回/锁定、配对、课时解锁及旧数据兼容。它们不能替代原生 UI E2E。
 
-## 职责
+## 职责与扩展
 
-- `LearningCore`：可替换的 Codable 课程、题目、选择题状态机和进度存储；不依赖 SwiftUI/AppKit。
-- `LingoSeed`：SwiftUI 页面、用户操作和保存完成进度；课程由显式夹具读取。
+- `LearningCore`：Foundation-only 课程、题型、状态机和进度存储，保留未来 iOS 复用能力；尚未验证 iOS 构建。
+- `LearningModel`：用户动作、尝试状态、保存与错误提示。
+- `LearningView`：SwiftUI 路径、活动、反馈与结算。
 - `LearningCoreChecks`：核心业务检查。
-- 原生 UI 驱动、统一场景和断言在 [参考案例](../duolingo-web/README.md)，不放进产品状态机。
+- [参考案例](../duolingo-web/README.md)：共享规格、冻结批次和平台驱动；产品状态机不包含验收答案逻辑。
 
-题目选择、提交锁定、错误扣生命和退出取消以已观察网页行为为来源。核心目前还实现了错题队列、完成结算及本地保存，但这些尚未全部通过原版／原生共享场景验收。选择／反馈／退出取消及提交前改选五条共享场景已由原生 UI 实际执行通过，见 `candidate-v1.2-01.json`。原生界面实测截图在参考案例 evidence 中；截图只是界面检查，不证明课程或持久化的所有行为。
+替换 fixture 的 `data.candidate_course` 可换课程。新格式含 `lessons`，每课含 questions；题型为 choice、matching、word_tiles，字段例见 fixture-v2.json。仍可读取旧单课 questions 格式。旧完成记录只给旧单课内容记分，不自动完成新课时。
 
-## 显式产品决策与限制
+## 产品决策与边界
 
-原创题面和课程长度不同于网页题库；两端比较相同动作语义与业务断言，不比较文字、选项顺序、奖励或品牌外观。首批五颗生命只记录错误，不阻断学习；耗尽后的原版规则尚未观察，这项是基座决策。一个课程暂时对应一个课时，完成后允许练习，不能把这当作已经实现多课时解锁。
+两端比较业务动作和断言，题面、课程长度、选项顺序及视觉素材不同。生命归零暂不阻断学习；错误配对重试不扣生命。这些是原版未观察边界上的显式产品决策。完成课时和生命持久保存，主动退出丢弃未完成尝试，不保存逐题断点。没有登录、支付、排行、语音识别或完整题库。
 
-持久化只保存已完成课程，主动退出丢弃当前未完成尝试。加载损坏的进度时显示错误，不静默重置。后续需完成跨端验收、更多题型、路径状态和完整业务实验，才能满足运行 Goal。
+非法 JSON 进度会显示 Course unavailable 并保留原文件；审查发现空对象 `{}` 仍被误接受，修复待验收，不能据此宣称所有损坏数据都已保护。完整证据、六个实际界面与验收命令见参考案例。多阶段模型续跑和业务消融仍待完成。

@@ -1,6 +1,6 @@
 # Learning-flow batch preparation
 
-Date: 2026-10-10. This is preparation, not a frozen or passing batch.
+Date: 2026-10-10. The chronological preparation records below precede the final frozen batch; the final result is appended, not substituted for failures.
 
 After `candidate-v1.1-01.json` passed its four known behaviors, independent browser exploration changed an unsubmitted wrong selection to the correct selection. The visible heart count stayed at 2 during both selections and after the final correct submission. `discovery-reselection.json` preserves all four snapshots and the actual Playwright actions. The initial shared scenarios never changed a selection before submitting. `spec-v1.2.json` adds this behavior while preserving the four prior scenarios and their assertions; word tiles remain unknown in that narrow batch. Its fresh-guest scenario checks the same rule with the independently established initial five hearts.
 
@@ -34,3 +34,7 @@ The same-context refresh comparison does not imply a backend reset, offline Duol
 `reference-v2-01.json` confirms 11/12 behaviors with verified source integrity: matching, word ordering/error, review, progress refresh and later-lesson abandon/restart now pass. Word-tile undo is unavailable: the saved ordinal locator initially resolves to the enabled selected token, then re-resolves to the disabled bank token after animation changes DOM order. The raw Playwright call log records the detach and changed `aria-disabled` value. This is a driver action failure; preserve the undo assertions and replace ordinal binding with the actual same-name enabled control. The Swift product has not changed for this expanded batch.
 
 `v2-undo-probe-01.jsonl` / `v2-undo-probe-01-check.json` pass the original shared undo assertions after replacing ordinal binding with the observed same-name button whose aria-disabled is false. Selected word count changes 1 → 0, Check enabled → disabled, hearts stay 5. This is a single original UI feasibility probe, not a batch receipt. Re-run all 12 under this unchanged driver before freezing. Driver revisions corresponding to the full failed preparation and 11/12 run are preserved by commits `4ed03bd` and `51f69fb`.
+
+## Frozen reference and native delivery
+
+`reference-v2-02.json` passes all12 unchanged assertions with verified source integrity. `batch-v2.json` was frozen against v1.2 before product implementation. `candidate-v2-baseline-01.json` records the old product failing to decode the new curriculum:12 unavailable, not12 behavioral failures. The first product build missed a LearningCore import (`swift-build-v2-01.log`); the corrected build and five core checks pass in the -02 logs. `candidate-v2-01.json` then passes all12 via actual native UI, with source integrity and per-command build/source/binary records. `coverage-v2-01.json` joins those results. No product behavioral fail→repair benefit is established by this sequence.

@@ -1,6 +1,6 @@
 # Duolingo 网页参考案例
 
-这是私有 Codex App Rebuild 的第一个真实业务案例。网页只作为行为参考，Swift 教育基座使用原创名称、课程与素材。已交付五条跨端冻结验收与可运行 SwiftUI 选择课；完整学习流程和真实业务消融仍待完成。
+这是私有 Codex App Rebuild 的第一个真实业务案例。网页只作为行为参考，Swift 教育基座使用原创名称、课程与素材。已交付12条跨端冻结验收与可运行 SwiftUI 两课时教育基座；真实多阶段模型续跑和业务消融仍待完成。
 
 ## 现有产物
 
@@ -56,4 +56,20 @@ python3 -m workflows.rebuild.cli verify --workspace . --spec projects/duolingo-w
 
 首批通过后，实际探索发现初始场景未覆盖“提交前从错误选项改选正确选项”。真实证据、原版和原生 UI 的五项通过回执、父批次关系及覆盖报告见 [增量准备记录](evidence/V2-PREPARATION.md)。`spec-v1.2.json` / `targets-v1.2.json` / `evidence/batch-v1.2.json` 是目前最新已冻结批次；word-tiles 在该批仍为 unknown。客户端已有改选能力，这次没有产品代码修改，不能声称修复收益。
 
-`spec-v2.draft.json` 与 `targets-v2.draft.json` 是12条学习流程的待确认草案，含拼句、配对、错题回顾、结算/刷新与退出丢弃。v2 浏览器驱动、v3 原生驱动和构建包装器尚处集成准备；源码/类型检查不等于跨端业务通过。不能把草案当作已冻结验收或完整 Swift 基座。
+## 完整学习批次 v2
+
+最新冻结输入为 `spec-v2.json`、`fixture-v2.json`、`targets-v2.json` 和 `evidence/batch-v2.json`，父批次为 v1.2。参考端 `reference-v2-02.json` 与原生端 `candidate-v2-01.json` 均12/12通过，完整性检查通过；覆盖报告为 `coverage-v2-01.json`。历史草案与失败没有覆盖。
+
+12条包括空答案、正确/错误选择、退出取消、改选、配对完成、正确/错误拼句、拼句撤回、错题重练、完成返回及刷新、第二课退出丢弃并重开。候选题库为原创两课时。线上原版不能注入该题库，比较的是共享动作语义与业务断言，不是相同内容或后端状态。
+
+```sh
+python3 -m workflows.rebuild.cli verify --workspace . --spec projects/duolingo-web/spec-v2.json --targets projects/duolingo-web/targets-v2.json --target candidate --frozen projects/duolingo-web/evidence/batch-v2.json --timeout 360 --max-seconds 1800 --out artifacts/duolingo/candidate-v2-new-01.json
+```
+
+参考确认可使用相同 spec / targets、`--target reference`，输出新文件。原版运行需要网络和 Playwright Chromium。v2 参考场景在同一临时浏览器上下文内完成连续学习/刷新；命令间仍是新访客，不恢复账号或重置服务器。未知词义/题型停止并保留证据。
+
+v2 的 candidate 命令 `build-native.py` 先构建当前源码并记录源码/二进制摘要，再由 v3 Swift AX 驱动操作自有子进程窗口。与早期直接运行二进制的 v1.1 命令不同，它包含构建，不会把旧二进制算作当前源码通过。须有辅助功能权限。参考与候选适配器只接收动作、不接收预期，统一引擎应用断言。
+
+[学习批次记录](evidence/V2-PREPARATION.md)保留驱动失败、冻结和实现顺序。旧候选不能读取新题库，baseline 12项 unavailable；首次 Swift 构建缺少 import，随后构建通过。两者都不是产品业务 fail→pass。新实现首次完整原生12项通过，不能据此声称反馈循环或模型的收益。
+
+六个实际界面及方法见 [界面检查](evidence/V2-DELIVERY.md)。检查涉及课程路径、选择、配对、解锁、拼句及反馈；截图不证明学习效果或模型能力。另发现候选端 `{}` 进度误接受边界，单独修复，不改共享 Duolingo 断言。
