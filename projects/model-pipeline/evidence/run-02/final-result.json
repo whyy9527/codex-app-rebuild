@@ -1,0 +1,88 @@
+{
+  "status": "pass",
+  "scope": "single corrected engineering feasibility run; not business ablation",
+  "protocol": "PROTOCOL-v2.md",
+  "task_id": "05cd476c579a47b7acdf31c046458abe",
+  "run_id": "d006291bacb943b7967b4682d4bf3455",
+  "session2": "01a1225b-cd26-7f43-91ef-3deb873efd02",
+  "task_deadline": 1791582803.663732,
+  "attempts": 11,
+  "pipeline_steps": 11,
+  "reference_counts": {
+    "unknown": 0,
+    "pass": 12,
+    "fail": 0,
+    "invalid": 0,
+    "unavailable": 0,
+    "timeout": 0
+  },
+  "candidate_counts": {
+    "unknown": 0,
+    "pass": 12,
+    "fail": 0,
+    "invalid": 0,
+    "unavailable": 0,
+    "timeout": 0
+  },
+  "source_integrity": "verified current product matches candidate receipt",
+  "final_stop": {
+    "event": "Stop",
+    "session_id": "01a1225b-cd26-7f43-91ef-3deb873efd02",
+    "turn_id": "01a1225b-cde2-7330-a9b6-a8138fc6e466",
+    "decision": null,
+    "output_fields": [],
+    "time": 1791579136.277272
+  },
+  "native_stop_continuations_session2": 6,
+  "session2_runtime_contexts": [
+    {
+      "turn_id": "01a1225b-cde2-7330-a9b6-a8138fc6e466",
+      "model": "gpt-6.1-sol",
+      "effort": "medium",
+      "approval_policy": "on-request"
+    }
+  ],
+  "session2_raw_rollout_sha256": "3eb97397b407b0a798a23bdea07ea806a392a9cc33c0a55ff0ed42ac3fb21144",
+  "session2_usage_reported_by_native_host": {
+    "input_tokens": 8620338,
+    "cached_input_tokens": 8479872,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 17367,
+    "reasoning_output_tokens": 1069,
+    "total_tokens": 8637705,
+    "derived_uncached_input_tokens": 140466,
+    "derived_uncached_input_plus_output_tokens": 157833
+  },
+  "session1_usage_reported_by_native_host": {
+    "input_tokens": 2126318,
+    "cached_input_tokens": 2057600,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 4254,
+    "reasoning_output_tokens": 261,
+    "total_tokens": 2130572,
+    "derived_uncached_input_tokens": 68718,
+    "derived_uncached_input_plus_output_tokens": 72972
+  },
+  "cost": null,
+  "interventions": {
+    "owned_folder_review": 1,
+    "native_hook_review_batch_for_three_owned_definitions": 1,
+    "session1_tool_session_review": 1,
+    "session2_tool_session_review": 1,
+    "parent_attestation_clarification_prompt": 1,
+    "registered_session_handoff_prompt": 1,
+    "product_edits_by_parent": 0,
+    "native_core_check_one_off_review": 1
+  },
+  "failures_preserved": "missing independent discovery audit; transport timeouts recovered by same model without resetting; earlier run01 remains failed",
+  "limits": [
+    "Known observation templates visible; no novel model-discovery claim",
+    "One corrected feasibility run; no mechanism effect size",
+    "Intermediate stage verifier exit1 denotes unfinished pipeline, not ten product failures",
+    "Model candidate passed first expanded native batch; no business fail-to-repair claim for this run",
+    "Final source is experimental output archived separately from main education product"
+  ],
+  "archived_at": 1791579158.332879,
+  "usage_note": "Native token_count input/total includes cached input. Derived uncached input+output matches session2 TUI total157833; this is not price/cost attestation.",
+  "wall_seconds_task_creation_to_final_stop": 1732.6135399341583
+}

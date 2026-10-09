@@ -1,0 +1,156 @@
+{
+  "run_id": "d006291bacb943b7967b4682d4bf3455",
+  "task_id": "05cd476c579a47b7acdf31c046458abe",
+  "coverage": {
+    "revision": "duolingo-learning-flow-v2",
+    "spec_digest": "87828009f713c60e240d94edde6cdf70933d1ca789f0bcb37b19df714fb0fd5a",
+    "rows": [
+      {
+        "id": "choice-empty",
+        "discovery": "observed",
+        "status": "pass"
+      },
+      {
+        "id": "choice-correct",
+        "discovery": "observed",
+        "status": "pass"
+      },
+      {
+        "id": "choice-wrong",
+        "discovery": "observed",
+        "status": "pass"
+      },
+      {
+        "id": "exit-cancel",
+        "discovery": "observed",
+        "status": "pass"
+      },
+      {
+        "id": "choice-reselection",
+        "discovery": "observed",
+        "status": "pass"
+      },
+      {
+        "id": "matching-complete",
+        "discovery": "observed",
+        "status": "pass"
+      },
+      {
+        "id": "word-tiles",
+        "discovery": "observed",
+        "status": "pass"
+      },
+      {
+        "id": "word-tiles-undo",
+        "discovery": "observed",
+        "status": "pass"
+      },
+      {
+        "id": "word-tiles-wrong",
+        "discovery": "observed",
+        "status": "pass"
+      },
+      {
+        "id": "mistake-review",
+        "discovery": "observed",
+        "status": "pass"
+      },
+      {
+        "id": "completion-reload",
+        "discovery": "observed",
+        "status": "pass"
+      },
+      {
+        "id": "exit-discard",
+        "discovery": "observed",
+        "status": "pass"
+      }
+    ],
+    "known_total": 12,
+    "unknown_total": 0,
+    "receipt_digest": "00477e1d48e90777250eb824703094eff8a9a0a99d36d6b71d349aa3221d3738"
+  },
+  "candidate_receipt": "artifacts/rebuild/d006291bacb943b7967b4682d4bf3455/10-candidate.json",
+  "candidate_counts": {
+    "unknown": 0,
+    "pass": 12,
+    "fail": 0,
+    "invalid": 0,
+    "unavailable": 0,
+    "timeout": 0
+  },
+  "reference_receipt": "artifacts/rebuild/d006291bacb943b7967b4682d4bf3455/8-reference.json",
+  "reference_counts": {
+    "unknown": 0,
+    "pass": 12,
+    "fail": 0,
+    "invalid": 0,
+    "unavailable": 0,
+    "timeout": 0
+  },
+  "frozen_batch_digest": "a674478003f79dfcdffbe52cb4e6acf39a1ce42cf43ae5621a7a7ebefb0c0206",
+  "core_checks": {
+    "command": [
+      "swift",
+      "run",
+      "--package-path",
+      "projects/education-swift",
+      "LearningCoreChecks"
+    ],
+    "initial_sandbox_attempt": {
+      "exit_code": 1,
+      "reason": "Compiler could not write <home>/.cache/clang/ModuleCache; reported SwiftShims/manifest errors."
+    },
+    "approved_rerun": {
+      "exit_code": 0,
+      "output": [
+        "PASS mistake review and empty-answer boundary",
+        "PASS persistence and corrupt-data preservation",
+        "2 business checks passed; core layer only"
+      ]
+    }
+  },
+  "source_hashes": {
+    "projects/education-swift/Sources/LingoSeed/LingoSeed.swift": "68b556a2e0742b367bc22a467cbb9a558d02c32ae1796a2c72dde9b7a2a99832",
+    "projects/education-swift/Sources/LearningCore/LearningCore.swift": "9e7367fe910f5e1eb4c9a00e36fc8e9ba8c63098c9a73d17a98b5d15bda6637d"
+  },
+  "review": {
+    "scope": "Twelve fixed semantic UI scenarios plus two fixed legacy core checks. Sources only product changes; active specification expanded at discover.",
+    "state_ui_separation": "Fixture decoding, question answers, lesson transitions and progress storage are in LearningCore; SwiftUI invokes model actions and renders state. No adapter intent/answer mapping is embedded in the UI.",
+    "legacy_support": "Existing v1 fixture was decoded and exercised by the fixed core checks.",
+    "unknowns_and_limits": [
+      "No independent visual or aesthetic review was performed. Native semantic checks are not aesthetic evidence.",
+      "Bounded inventory has zero declared unknowns; account, cross-device persistence, backend reset guarantees and hearts exhaustion behavior remain outside measured scope.",
+      "Expanded observations were supplied historical inputs, then re-executed on live reference; this is not novel autonomous discovery.",
+      "Only observed matching completion is accepted; mismatched-pair feedback is not covered by this batch.",
+      "Runtime model attestation, exact native turn_context, token/cost measurements and final non-continuing Stop observation belong to the parent controller and are not self-attested here.",
+      "A single feasibility run does not establish generalized model efficacy or replace the registered business ablation."
+    ],
+    "retained_failures": [
+      "Attempt6 missing discovery audit after preparation assertion failure.",
+      "Attempt8 MCP verifier and status transport timeouts; later resolved by actual passing receipt.",
+      "Initial sandboxed core check build failure; approved rerun passed."
+    ],
+    "interventions": [
+      "Registered user-selected session handoff.",
+      "Native approval for Swift core-check rerun after sandbox cache failure; exact host approval events are parent-owned."
+    ]
+  },
+  "completion": {
+    "harness_phase": "complete",
+    "pipeline_stage": "complete",
+    "iterations": 11,
+    "remaining_iterations": 9,
+    "original_deadline": 1791582803.663732,
+    "verifier_exit_code": 0,
+    "last_pipeline_event": {
+      "step": 11,
+      "stage": "review",
+      "at": 1791579120.9094322,
+      "status": "pass",
+      "next_stage": "complete",
+      "spec_digest": "87828009f713c60e240d94edde6cdf70933d1ca789f0bcb37b19df714fb0fd5a"
+    },
+    "final_stop_observation": "Pending parent observation after this final response; not self-attested."
+  }
+}

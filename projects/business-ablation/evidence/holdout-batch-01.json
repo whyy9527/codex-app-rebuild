@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "kind": "frozen_batch",
+  "revision": "duolingo-prospective-holdout-01",
+  "spec_digest": "cdd506eb8fb986ba5cbfe198701671515784ee6db8aa9135e2402facf7e0e6a7",
+  "targets_digest": "ccd3de83a512187a40b96d0c419ef0f58b08c334f86e2aea5e299ffe4b637169",
+  "inputs": {
+    "projects/business-ablation/evidence/correct-exit-continue-original-01.json": "23f887b9c5d1609ca00b89bdf2c74a9946e565ad77a96185508ac519ab9ddab0",
+    "projects/business-ablation/evidence/undo-all-words-original-01.json": "4e129056496f6d3bcb19d213f0eb9d5364d092bbe8be3c60c315ec65106c8927",
+    "projects/business-ablation/holdout-spec.json": "379607bd3b04215ebe2d6370e6bcdaed6ffa0d3f35f6e79c50e99e37ba015e25",
+    "projects/duolingo-web/build-native.py": "afbcd31ac4ed06592f005a9b9230c90115d2b62accba155de8945ef44912c7fd",
+    "projects/duolingo-web/fixture-v2.json": "cfd33ce0404f4c566446415cf8e5a4275d56e97013a6a07572954785243fb112",
+    "projects/duolingo-web/native-adapter-v3.swift": "3805f45728d86f6fca110f464aa2e71764470f8604f17a21576f85781f49ddfb",
+    "projects/duolingo-web/original-adapter-v2.mjs": "dcaef55e187e213fa4128b57d91dedf32fd5b46ab0dae92920617af2d77f18b4",
+    "projects/duolingo-web/package-lock.json": "68603815aa0e350616d954e499d26a7f5050976835fdf0ee1cc4b12580a36f5f",
+    "projects/duolingo-web/package.json": "94e5266ded14092acc68f405483a2e0b18f3fd557cb05eaa40d16d447ff69e46",
+    "projects/duolingo-web/targets-v2.json": "ec6545097eae5de78d2835e4b39222269e9e62c38c764af51cc1ba874728d7d4"
+  },
+  "reference_receipt_digest": "0952146c9a8b9d9da3c75b0d798459299367bd27e193c5b9cf94279528d14d5d",
+  "reference_kind": "original_online",
+  "reference_layer": "browser_ui",
+  "parent_digest": null,
+  "scenario_digests": {
+    "correct-exit-continue": "0eca42184a4309820347b1baca664bd01276310eb782072ade0ea035a4a1c084",
+    "undo-all-words": "6d84c36a9f65eb9e9c270131f0eee4998ddb299fb5fb0f13025aef747deaf776"
+  },
+  "created_at": 1791579255.846215
+}

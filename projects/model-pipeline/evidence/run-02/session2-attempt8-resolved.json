@@ -1,0 +1,144 @@
+{
+  "receipt": "artifacts/rebuild/d006291bacb943b7967b4682d4bf3455/8-reference.json",
+  "status": "pass",
+  "counts": {
+    "unknown": 0,
+    "pass": 12,
+    "fail": 0,
+    "invalid": 0,
+    "unavailable": 0,
+    "timeout": 0
+  },
+  "coverage": {
+    "revision": "duolingo-learning-flow-v2",
+    "spec_digest": "87828009f713c60e240d94edde6cdf70933d1ca789f0bcb37b19df714fb0fd5a",
+    "rows": [
+      {
+        "id": "choice-empty",
+        "discovery": "observed",
+        "status": "pass"
+      },
+      {
+        "id": "choice-correct",
+        "discovery": "observed",
+        "status": "pass"
+      },
+      {
+        "id": "choice-wrong",
+        "discovery": "observed",
+        "status": "pass"
+      },
+      {
+        "id": "exit-cancel",
+        "discovery": "observed",
+        "status": "pass"
+      },
+      {
+        "id": "choice-reselection",
+        "discovery": "observed",
+        "status": "pass"
+      },
+      {
+        "id": "matching-complete",
+        "discovery": "observed",
+        "status": "pass"
+      },
+      {
+        "id": "word-tiles",
+        "discovery": "observed",
+        "status": "pass"
+      },
+      {
+        "id": "word-tiles-undo",
+        "discovery": "observed",
+        "status": "pass"
+      },
+      {
+        "id": "word-tiles-wrong",
+        "discovery": "observed",
+        "status": "pass"
+      },
+      {
+        "id": "mistake-review",
+        "discovery": "observed",
+        "status": "pass"
+      },
+      {
+        "id": "completion-reload",
+        "discovery": "observed",
+        "status": "pass"
+      },
+      {
+        "id": "exit-discard",
+        "discovery": "observed",
+        "status": "pass"
+      }
+    ],
+    "known_total": 12,
+    "unknown_total": 0,
+    "receipt_digest": "518847a144404d10fa51a65855c730eadb9ddb8480acc0a99624bb07a2dfb406"
+  },
+  "results": [
+    {
+      "id": "choice-empty",
+      "status": "pass",
+      "differences": []
+    },
+    {
+      "id": "choice-correct",
+      "status": "pass",
+      "differences": []
+    },
+    {
+      "id": "choice-wrong",
+      "status": "pass",
+      "differences": []
+    },
+    {
+      "id": "exit-cancel",
+      "status": "pass",
+      "differences": []
+    },
+    {
+      "id": "choice-reselection",
+      "status": "pass",
+      "differences": []
+    },
+    {
+      "id": "matching-complete",
+      "status": "pass",
+      "differences": []
+    },
+    {
+      "id": "word-tiles",
+      "status": "pass",
+      "differences": []
+    },
+    {
+      "id": "word-tiles-undo",
+      "status": "pass",
+      "differences": []
+    },
+    {
+      "id": "word-tiles-wrong",
+      "status": "pass",
+      "differences": []
+    },
+    {
+      "id": "mistake-review",
+      "status": "pass",
+      "differences": []
+    },
+    {
+      "id": "completion-reload",
+      "status": "pass",
+      "differences": []
+    },
+    {
+      "id": "exit-discard",
+      "status": "pass",
+      "differences": []
+    }
+  ],
+  "interpretation": "The previously transport-timed-out verifier finished and recorded passing expanded reference. This does not confirm the expanded candidate."
+}

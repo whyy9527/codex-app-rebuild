@@ -1,0 +1,1250 @@
+{
+  "kind": "prospective_holdout_original_observation",
+  "plan_commit": "b47bd35edcf6915d317bf39ce0d590202f55960e",
+  "scenario_id": "undo-all-words",
+  "started_at": 1791578939.301204,
+  "inputs": {
+    "projects/duolingo-web/original-adapter-v2.mjs": "dcaef55e187e213fa4128b57d91dedf32fd5b46ab0dae92920617af2d77f18b4",
+    "projects/duolingo-web/fixture-v2.json": "cfd33ce0404f4c566446415cf8e5a4275d56e97013a6a07572954785243fb112",
+    "projects/duolingo-web/package-lock.json": "68603815aa0e350616d954e499d26a7f5050976835fdf0ee1cc4b12580a36f5f",
+    "projects/business-ablation/HOLDOUT-PLAN.md": "31dba5517e1ceb19a91bfb23f809cc2877c697f393d056c424c0a7fb0a0df85f"
+  },
+  "operations": [
+    {
+      "request": {
+        "operation": "start",
+        "fixture": {
+          "data": {
+            "semantic_actions": {
+              "correct": "select the observed translation of the current prompt",
+              "wrong": "select a distinct visible alternative"
+            },
+            "online_data_injection": false,
+            "candidate_content": "Original Everyday English curriculum; semantics are compared, not copied question text or option order.",
+            "candidate_course": {
+              "id": "everyday-english",
+              "title": "Everyday English",
+              "lessons": [
+                {
+                  "id": "greetings",
+                  "title": "Small beginnings",
+                  "questions": [
+                    {
+                      "id": "morning",
+                      "prompt": "Choose the greeting for a new day.",
+                      "options": [
+                        {
+                          "id": "morning",
+                          "text": "Good morning"
+                        },
+                        {
+                          "id": "night",
+                          "text": "Good night"
+                        },
+                        {
+                          "id": "thanks",
+                          "text": "Thank you"
+                        }
+                      ],
+                      "answer": "morning",
+                      "explanation": "Good morning is a greeting for the start of a day."
+                    },
+                    {
+                      "id": "thanks",
+                      "prompt": "A friend helps you. What do you say?",
+                      "options": [
+                        {
+                          "id": "bye",
+                          "text": "Goodbye"
+                        },
+                        {
+                          "id": "thanks",
+                          "text": "Thank you"
+                        },
+                        {
+                          "id": "hello",
+                          "text": "Hello"
+                        }
+                      ],
+                      "answer": "thanks",
+                      "explanation": "Thank you expresses appreciation."
+                    },
+                    {
+                      "id": "greeting-pairs",
+                      "kind": "matching",
+                      "prompt": "Match the greetings with their moments.",
+                      "pairs": [
+                        {
+                          "id": "morning",
+                          "left": "Good morning",
+                          "right": "Start of the day"
+                        },
+                        {
+                          "id": "thanks",
+                          "left": "Thank you",
+                          "right": "Appreciation"
+                        },
+                        {
+                          "id": "bye",
+                          "left": "Goodbye",
+                          "right": "Leaving"
+                        }
+                      ],
+                      "explanation": "Each expression has its moment."
+                    }
+                  ]
+                },
+                {
+                  "id": "everyday-phrases",
+                  "title": "Words together",
+                  "questions": [
+                    {
+                      "id": "welcome",
+                      "prompt": "Someone arrives. Choose a greeting.",
+                      "options": [
+                        {
+                          "id": "hello",
+                          "text": "Hello"
+                        },
+                        {
+                          "id": "bye",
+                          "text": "Goodbye"
+                        },
+                        {
+                          "id": "thanks",
+                          "text": "Thank you"
+                        }
+                      ],
+                      "answer": "hello",
+                      "explanation": "Hello welcomes someone."
+                    },
+                    {
+                      "id": "morning-words",
+                      "kind": "word_tiles",
+                      "prompt": "Build a greeting for the start of a day.",
+                      "words": [
+                        {
+                          "id": "good",
+                          "text": "Good"
+                        },
+                        {
+                          "id": "morning",
+                          "text": "morning"
+                        },
+                        {
+                          "id": "night",
+                          "text": "night"
+                        },
+                        {
+                          "id": "bye",
+                          "text": "Goodbye"
+                        }
+                      ],
+                      "answer_words": [
+                        "good",
+                        "morning"
+                      ],
+                      "explanation": "Good morning greets someone at the start of a day."
+                    },
+                    {
+                      "id": "thank-words",
+                      "kind": "word_tiles",
+                      "prompt": "Build a phrase that expresses appreciation.",
+                      "words": [
+                        {
+                          "id": "you",
+                          "text": "you"
+                        },
+                        {
+                          "id": "thank",
+                          "text": "Thank"
+                        },
+                        {
+                          "id": "hello",
+                          "text": "Hello"
+                        }
+                      ],
+                      "answer_words": [
+                        "thank",
+                        "you"
+                      ],
+                      "explanation": "Thank you expresses appreciation."
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          "initial_state": {
+            "screen": "course_entry",
+            "authenticated": false
+          }
+        }
+      },
+      "receipt": {
+        "command": [
+          "node",
+          "projects/duolingo-web/original-adapter-v2.mjs"
+        ],
+        "source_digest": "e4495d04f58886df8fc0cbff80c14f3df811f11eaf798570b293565a2463a746",
+        "integrity": "verified",
+        "evaluator_digest": "ca80c9879a9e604baca738a78dffb3e2039bee2eefbfbeb399a3dd67ada9fbdc",
+        "exit_code": 0,
+        "status": "pass",
+        "output": "APP_REBUILD_RESULT {\"operation\":\"start\",\"state\":{\"screen\":\"course_entry\",\"authenticated\":false},\"reset_scope\":\"Fresh ephemeral browser context; no remote backend reset\"}\n",
+        "output_bytes": 170,
+        "output_truncated": false,
+        "output_sha256": "eb0ff6602add29c4fa797232857c4336c57a939b5354c4915cfa284d83c61a67",
+        "wall_seconds": 2.973684
+      },
+      "response": {
+        "operation": "start",
+        "state": {
+          "screen": "course_entry",
+          "authenticated": false
+        },
+        "reset_scope": "Fresh ephemeral browser context; no remote backend reset"
+      }
+    },
+    {
+      "request": {
+        "operation": "reset",
+        "fixture": {
+          "data": {
+            "semantic_actions": {
+              "correct": "select the observed translation of the current prompt",
+              "wrong": "select a distinct visible alternative"
+            },
+            "online_data_injection": false,
+            "candidate_content": "Original Everyday English curriculum; semantics are compared, not copied question text or option order.",
+            "candidate_course": {
+              "id": "everyday-english",
+              "title": "Everyday English",
+              "lessons": [
+                {
+                  "id": "greetings",
+                  "title": "Small beginnings",
+                  "questions": [
+                    {
+                      "id": "morning",
+                      "prompt": "Choose the greeting for a new day.",
+                      "options": [
+                        {
+                          "id": "morning",
+                          "text": "Good morning"
+                        },
+                        {
+                          "id": "night",
+                          "text": "Good night"
+                        },
+                        {
+                          "id": "thanks",
+                          "text": "Thank you"
+                        }
+                      ],
+                      "answer": "morning",
+                      "explanation": "Good morning is a greeting for the start of a day."
+                    },
+                    {
+                      "id": "thanks",
+                      "prompt": "A friend helps you. What do you say?",
+                      "options": [
+                        {
+                          "id": "bye",
+                          "text": "Goodbye"
+                        },
+                        {
+                          "id": "thanks",
+                          "text": "Thank you"
+                        },
+                        {
+                          "id": "hello",
+                          "text": "Hello"
+                        }
+                      ],
+                      "answer": "thanks",
+                      "explanation": "Thank you expresses appreciation."
+                    },
+                    {
+                      "id": "greeting-pairs",
+                      "kind": "matching",
+                      "prompt": "Match the greetings with their moments.",
+                      "pairs": [
+                        {
+                          "id": "morning",
+                          "left": "Good morning",
+                          "right": "Start of the day"
+                        },
+                        {
+                          "id": "thanks",
+                          "left": "Thank you",
+                          "right": "Appreciation"
+                        },
+                        {
+                          "id": "bye",
+                          "left": "Goodbye",
+                          "right": "Leaving"
+                        }
+                      ],
+                      "explanation": "Each expression has its moment."
+                    }
+                  ]
+                },
+                {
+                  "id": "everyday-phrases",
+                  "title": "Words together",
+                  "questions": [
+                    {
+                      "id": "welcome",
+                      "prompt": "Someone arrives. Choose a greeting.",
+                      "options": [
+                        {
+                          "id": "hello",
+                          "text": "Hello"
+                        },
+                        {
+                          "id": "bye",
+                          "text": "Goodbye"
+                        },
+                        {
+                          "id": "thanks",
+                          "text": "Thank you"
+                        }
+                      ],
+                      "answer": "hello",
+                      "explanation": "Hello welcomes someone."
+                    },
+                    {
+                      "id": "morning-words",
+                      "kind": "word_tiles",
+                      "prompt": "Build a greeting for the start of a day.",
+                      "words": [
+                        {
+                          "id": "good",
+                          "text": "Good"
+                        },
+                        {
+                          "id": "morning",
+                          "text": "morning"
+                        },
+                        {
+                          "id": "night",
+                          "text": "night"
+                        },
+                        {
+                          "id": "bye",
+                          "text": "Goodbye"
+                        }
+                      ],
+                      "answer_words": [
+                        "good",
+                        "morning"
+                      ],
+                      "explanation": "Good morning greets someone at the start of a day."
+                    },
+                    {
+                      "id": "thank-words",
+                      "kind": "word_tiles",
+                      "prompt": "Build a phrase that expresses appreciation.",
+                      "words": [
+                        {
+                          "id": "you",
+                          "text": "you"
+                        },
+                        {
+                          "id": "thank",
+                          "text": "Thank"
+                        },
+                        {
+                          "id": "hello",
+                          "text": "Hello"
+                        }
+                      ],
+                      "answer_words": [
+                        "thank",
+                        "you"
+                      ],
+                      "explanation": "Thank you expresses appreciation."
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          "initial_state": {
+            "screen": "course_entry",
+            "authenticated": false
+          }
+        }
+      },
+      "receipt": {
+        "command": [
+          "node",
+          "projects/duolingo-web/original-adapter-v2.mjs"
+        ],
+        "source_digest": "e4495d04f58886df8fc0cbff80c14f3df811f11eaf798570b293565a2463a746",
+        "integrity": "verified",
+        "evaluator_digest": "ca80c9879a9e604baca738a78dffb3e2039bee2eefbfbeb399a3dd67ada9fbdc",
+        "exit_code": 0,
+        "status": "pass",
+        "output": "APP_REBUILD_RESULT {\"operation\":\"reset\",\"state\":{\"screen\":\"course_entry\",\"authenticated\":false},\"reset_scope\":\"Fresh ephemeral browser context; no remote backend reset\"}\n",
+        "output_bytes": 170,
+        "output_truncated": false,
+        "output_sha256": "519aedb8ea1d80c755186f2dde6867a0dffdd38209af5e77b52c7a2fdd625e81",
+        "wall_seconds": 2.958286
+      },
+      "response": {
+        "operation": "reset",
+        "state": {
+          "screen": "course_entry",
+          "authenticated": false
+        },
+        "reset_scope": "Fresh ephemeral browser context; no remote backend reset"
+      }
+    },
+    {
+      "request": {
+        "operation": "scenario",
+        "fixture": {
+          "data": {
+            "semantic_actions": {
+              "correct": "select the observed translation of the current prompt",
+              "wrong": "select a distinct visible alternative"
+            },
+            "online_data_injection": false,
+            "candidate_content": "Original Everyday English curriculum; semantics are compared, not copied question text or option order.",
+            "candidate_course": {
+              "id": "everyday-english",
+              "title": "Everyday English",
+              "lessons": [
+                {
+                  "id": "greetings",
+                  "title": "Small beginnings",
+                  "questions": [
+                    {
+                      "id": "morning",
+                      "prompt": "Choose the greeting for a new day.",
+                      "options": [
+                        {
+                          "id": "morning",
+                          "text": "Good morning"
+                        },
+                        {
+                          "id": "night",
+                          "text": "Good night"
+                        },
+                        {
+                          "id": "thanks",
+                          "text": "Thank you"
+                        }
+                      ],
+                      "answer": "morning",
+                      "explanation": "Good morning is a greeting for the start of a day."
+                    },
+                    {
+                      "id": "thanks",
+                      "prompt": "A friend helps you. What do you say?",
+                      "options": [
+                        {
+                          "id": "bye",
+                          "text": "Goodbye"
+                        },
+                        {
+                          "id": "thanks",
+                          "text": "Thank you"
+                        },
+                        {
+                          "id": "hello",
+                          "text": "Hello"
+                        }
+                      ],
+                      "answer": "thanks",
+                      "explanation": "Thank you expresses appreciation."
+                    },
+                    {
+                      "id": "greeting-pairs",
+                      "kind": "matching",
+                      "prompt": "Match the greetings with their moments.",
+                      "pairs": [
+                        {
+                          "id": "morning",
+                          "left": "Good morning",
+                          "right": "Start of the day"
+                        },
+                        {
+                          "id": "thanks",
+                          "left": "Thank you",
+                          "right": "Appreciation"
+                        },
+                        {
+                          "id": "bye",
+                          "left": "Goodbye",
+                          "right": "Leaving"
+                        }
+                      ],
+                      "explanation": "Each expression has its moment."
+                    }
+                  ]
+                },
+                {
+                  "id": "everyday-phrases",
+                  "title": "Words together",
+                  "questions": [
+                    {
+                      "id": "welcome",
+                      "prompt": "Someone arrives. Choose a greeting.",
+                      "options": [
+                        {
+                          "id": "hello",
+                          "text": "Hello"
+                        },
+                        {
+                          "id": "bye",
+                          "text": "Goodbye"
+                        },
+                        {
+                          "id": "thanks",
+                          "text": "Thank you"
+                        }
+                      ],
+                      "answer": "hello",
+                      "explanation": "Hello welcomes someone."
+                    },
+                    {
+                      "id": "morning-words",
+                      "kind": "word_tiles",
+                      "prompt": "Build a greeting for the start of a day.",
+                      "words": [
+                        {
+                          "id": "good",
+                          "text": "Good"
+                        },
+                        {
+                          "id": "morning",
+                          "text": "morning"
+                        },
+                        {
+                          "id": "night",
+                          "text": "night"
+                        },
+                        {
+                          "id": "bye",
+                          "text": "Goodbye"
+                        }
+                      ],
+                      "answer_words": [
+                        "good",
+                        "morning"
+                      ],
+                      "explanation": "Good morning greets someone at the start of a day."
+                    },
+                    {
+                      "id": "thank-words",
+                      "kind": "word_tiles",
+                      "prompt": "Build a phrase that expresses appreciation.",
+                      "words": [
+                        {
+                          "id": "you",
+                          "text": "you"
+                        },
+                        {
+                          "id": "thank",
+                          "text": "Thank"
+                        },
+                        {
+                          "id": "hello",
+                          "text": "Hello"
+                        }
+                      ],
+                      "answer_words": [
+                        "thank",
+                        "you"
+                      ],
+                      "explanation": "Thank you expresses appreciation."
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          "initial_state": {
+            "screen": "course_entry",
+            "authenticated": false
+          }
+        },
+        "scenario_id": "undo-all-words",
+        "precondition": {
+          "question_kind": "word_tiles"
+        },
+        "actions": [
+          {
+            "type": "fill_words",
+            "order": "correct"
+          },
+          {
+            "type": "remove_word",
+            "index": 0
+          },
+          {
+            "type": "remove_word",
+            "index": 1
+          }
+        ]
+      },
+      "receipt": {
+        "command": [
+          "node",
+          "projects/duolingo-web/original-adapter-v2.mjs"
+        ],
+        "source_digest": "e4495d04f58886df8fc0cbff80c14f3df811f11eaf798570b293565a2463a746",
+        "integrity": "verified",
+        "evaluator_digest": "ca80c9879a9e604baca738a78dffb3e2039bee2eefbfbeb399a3dd67ada9fbdc",
+        "exit_code": 0,
+        "status": "pass",
+        "output": "APP_REBUILD_RESULT {\"operation\":\"scenario\",\"scenario_id\":\"undo-all-words\",\"precondition_state\":{\"screen\":\"question\",\"authenticated\":false,\"question_kind\":\"word_tiles\",\"lesson_index\":1,\"answer_selected\":false,\"check_enabled\":false,\"options_locked\":false,\"feedback\":\"none\",\"continue_enabled\":false,\"hearts\":5,\"selected_word_count\":0,\"matching_complete\":false,\"reviewing\":false,\"initial_question_revisited\":true,\"question_changed\":false,\"completed_lessons\":null,\"current_lesson_index\":null,\"ui_snapshot\":\"- button:\\n  - img\\n- progressbar\\n- img\\n- text: \\\"5\\\"\\n- img\\n- text: New word\\n- heading \\\"Write this in English\\\" [level=1]\\n- button\\n- img\\n- button \\\"my\\\"\\n- button \\\"suitcase\\\"\\n- button \\\"house\\\"\\n- button \\\"cat\\\"\\n- img\\n- text: Awesome! You’re working hard and learning new words!\\n- button \\\"Check\\\" [disabled]\"},\"observations\":[{\"step\":0,\"state\":{\"screen\":\"question\",\"authenticated\":false,\"question_kind\":\"word_tiles\",\"lesson_index\":1,\"answer_selected\":true,\"check_enabled\":true,\"options_locked\":false,\"feedback\":\"none\",\"continue_enabled\":false,\"hearts\":5,\"selected_word_count\":2,\"matching_complete\":false,\"reviewing\":false,\"initial_question_revisited\":true,\"question_changed\":false,\"completed_lessons\":null,\"current_lesson_index\":null,\"ui_snapshot\":\"- button:\\n  - img\\n- progressbar\\n- img\\n- text: \\\"5\\\"\\n- img\\n- text: New word\\n- heading \\\"Write this in English\\\" [level=1]\\n- button:\\n  - img\\n- img\\n- button \\\"my\\\" [disabled]\\n- button \\\"suitcase\\\" [disabled]\\n- button \\\"house\\\"\\n- button \\\"cat\\\"\\n- button \\\"Skip\\\"\\n- button \\\"Check\\\"\\n- button \\\"my\\\"\\n- button \\\"suitcase\\\"\"}},{\"step\":1,\"state\":{\"screen\":\"question\",\"authenticated\":false,\"question_kind\":\"word_tiles\",\"lesson_index\":1,\"answer_selected\":true,\"check_enabled\":true,\"options_locked\":false,\"feedback\":\"none\",\"continue_enabled\":false,\"hearts\":5,\"selected_word_count\":1,\"matching_complete\":false,\"reviewing\":false,\"initial_question_revisited\":true,\"question_changed\":false,\"completed_lessons\":null,\"current_lesson_index\":null,\"ui_snapshot\":\"- button:\\n  - img\\n- progressbar\\n- img\\n- text: \\\"5\\\"\\n- img\\n- text: New word\\n- heading \\\"Write this in English\\\" [level=1]\\n- button:\\n  - img\\n- img\\n- button \\\"suitcase\\\"\\n- button \\\"my\\\"\\n- button \\\"suitcase\\\" [disabled]\\n- button \\\"house\\\"\\n- button \\\"cat\\\"\\n- button \\\"Skip\\\"\\n- button \\\"Check\\\"\"}},{\"step\":2,\"state\":{\"screen\":\"question\",\"authenticated\":false,\"question_kind\":\"word_tiles\",\"lesson_index\":1,\"answer_selected\":false,\"check_enabled\":false,\"options_locked\":false,\"feedback\":\"none\",\"continue_enabled\":false,\"hearts\":5,\"selected_word_count\":0,\"matching_complete\":false,\"reviewing\":false,\"initial_question_revisited\":true,\"question_changed\":false,\"completed_lessons\":null,\"current_lesson_index\":null,\"ui_snapshot\":\"- button:\\n  - img\\n- progressbar\\n- img\\n- text: \\\"5\\\"\\n- img\\n- text: New word\\n- heading \\\"Write this in English\\\" [level=1]\\n- button:\\n  - img\\n- img\\n- button \\\"my\\\"\\n- button \\\"suitcase\\\"\\n- button \\\"house\\\"\\n- button \\\"cat\\\"\\n- button \\\"Skip\\\"\\n- button \\\"Check\\\" [disabled]\"}}],\"onboarding\":[{\"stage\":0,\"selected_group\":null,\"visible_text\":\"Hi there! I’m Duo!\\nHi there! I’m Duo!\\nCONTINUE\"},{\"stage\":1,\"selected_group\":null,\"visible_text\":\"Let’s get this party started!\\nLet’s get this party started!\\nCONTINUE\"},{\"stage\":2,\"selected_group\":\"hdyhau\",\"visible_text\":\"How did you hear about Duolingo?\\nHow did you hear about Duolingo?\\nBrawl Stars\\nGoogle Search\\nTikTok\\nYouTube\\nNews/article/blog\\nShopee\\nFacebook/Instagram\\nTV\\nFriends/family\\nOther\\nCONTINUE\"},{\"stage\":3,\"selected_group\":\"motivation\",\"visible_text\":\"Any reason is a good reason to learn!\\nAny reason is a good reason to learn!\\nSpend time productively\\nBoost my career\\nPrepare for travel\\nConnect with people\\nSupport my education\\nJust for fun\\nOther\\nCONTINUE\"},{\"stage\":4,\"selected_group\":\"proficiency\",\"visible_text\":\"Okay, we’ll start fresh!\\nOkay, we’ll start fresh!\\nI’m new to Spanish\\nI know some common words\\nI can have basic conversations\\nI can talk about various topics\\nI can discuss most topics in detail\\nCONTINUE\"},{\"stage\":5,\"selected_group\":null,\"visible_text\":\"Here’s what you can achieve!\\nHere’s what you can achieve!\\nConverse with confidence\\nStress-free speaking and listening exercises\\nBuild a large vocabulary\\nCommon words and practical phrases\\nDevelop a learning habit\\nSmart reminders, fun challenges, and more\\nCONTINUE\"},{\"stage\":6,\"selected_group\":\"daily-goal\",\"visible_text\":\"That’s 25 words in your first week!\\nThat’s 25 words in your first week!\\n5 min / day\\nCasual\\n10 min / day\\nRegular\\n15 min / day\\nSerious\\n20 min / day\\nIntense\\nCONTINUE\"},{\"stage\":7,\"selected_group\":null,\"visible_text\":\"I’ll remind you to practice so it becomes a habit!\\nI’ll remind you to practice so it becomes a habit!\\nwww.duolingo.com wants to\\nShow notifications\\nBLOCK\\nALLOW\\nCONTINUE\"},{\"stage\":8,\"selected_group\":\"choose-path\",\"visible_text\":\"Now let’s find the best place to start!\\nNow let’s find the best place to start!\\nStart from scratch\\nTake the easiest lesson of the Spanish course\\nFind my level\\nLet Duo recommend where you should start learning\\nCONTINUE\"},{\"stage\":9,\"selected_group\":null,\"visible_text\":\"It can be hard to stay motivated…\\nIt can be hard to stay motivated…\\nCONTINUE\"},{\"stage\":10,\"selected_group\":null,\"visible_text\":\"…so Duolingo is designed to be fun like a game!\\n…so Duolingo is designed to be fun like a game!\\nCONTINUE\"},{\"stage\":11,\"selected_group\":null,\"visible_text\":\"5\\nNEW WORD\\nWhich one of these is “cat”?\\ngato\\n1\\nmamá\\n2\\nagua\\n3\\nSKIP\\nCHECK\\nLOADING...\\nProtip: After a lesson, write down as many phrases as you can remember from it.\"}],\"preparation\":[{\"kind\":\"choice\",\"prompt\":\"Which one of these is “cat”?\",\"feedback\":\"positive\"},{\"kind\":\"choice\",\"prompt\":\"Which one of these is “dog”?\",\"feedback\":\"positive\"},{\"kind\":\"choice\",\"prompt\":\"Which one of these is “water”?\",\"feedback\":\"positive\"},{\"kind\":\"choice\",\"prompt\":\"Which one of these is “milk”?\",\"feedback\":\"positive\"},{\"kind\":\"matching\",\"prompt\":\"Select the matching pairs\",\"feedback\":\"positive\"},{\"kind\":\"choice\",\"prompt\":\"Select the correct meaning\",\"feedback\":\"positive\"},{\"kind\":\"choice\",\"prompt\":\"Select the correct meaning\",\"feedback\":\"positive\"},{\"kind\":\"choice\",\"prompt\":\"Which one of these is “mom”?\",\"feedback\":\"positive\"},{\"kind\":\"choice\",\"prompt\":\"Which one of these is “dad”?\",\"feedback\":\"positive\"},{\"kind\":\"choice\",\"prompt\":\"Select the correct meaning\",\"feedback\":\"positive\"},{\"kind\":\"choice\",\"prompt\":\"Select the correct meaning\",\"feedback\":\"positive\"},{\"kind\":\"matching\",\"prompt\":\"Select the matching pairs\",\"feedback\":\"positive\"},{\"stage\":\"post-lesson-goal\",\"visible_text\":\"- img\\n- radiogroup \\\"goal\\\":\\n  - radio \\\"7 day streak Good\\\" [checked]\\n  - radio \\\"14 day streak Great\\\"\\n  - radio \\\"30 day streak Incredible\\\"\\n  - radio \\\"50 day streak Unstoppable\\\"\\n- button \\\"I can do it!\\\" [disabled]\",\"selection\":\"7 day streak Good\"},{\"kind\":\"choice\",\"prompt\":\"Which one of these is “book”?\",\"feedback\":\"positive\"},{\"kind\":\"choice\",\"prompt\":\"Which one of these is “house”?\",\"feedback\":\"positive\"},{\"kind\":\"choice\",\"prompt\":\"Which one of these is “suitcase”?\",\"feedback\":\"positive\"},{\"kind\":\"matching\",\"prompt\":\"Select the matching pairs\",\"feedback\":\"positive\"},{\"kind\":\"matching\",\"prompt\":\"Select the matching pairs\",\"feedback\":\"positive\"}]}\n",
+        "output_bytes": 7418,
+        "output_truncated": false,
+        "output_sha256": "ca4c8fe4be0fc6e3a5fedaefccf620481b81055e12890254372b8911ca242d3d",
+        "wall_seconds": 63.310593
+      },
+      "response": {
+        "operation": "scenario",
+        "scenario_id": "undo-all-words",
+        "precondition_state": {
+          "screen": "question",
+          "authenticated": false,
+          "question_kind": "word_tiles",
+          "lesson_index": 1,
+          "answer_selected": false,
+          "check_enabled": false,
+          "options_locked": false,
+          "feedback": "none",
+          "continue_enabled": false,
+          "hearts": 5,
+          "selected_word_count": 0,
+          "matching_complete": false,
+          "reviewing": false,
+          "initial_question_revisited": true,
+          "question_changed": false,
+          "completed_lessons": null,
+          "current_lesson_index": null,
+          "ui_snapshot": "- button:\n  - img\n- progressbar\n- img\n- text: \"5\"\n- img\n- text: New word\n- heading \"Write this in English\" [level=1]\n- button\n- img\n- button \"my\"\n- button \"suitcase\"\n- button \"house\"\n- button \"cat\"\n- img\n- text: Awesome! You’re working hard and learning new words!\n- button \"Check\" [disabled]"
+        },
+        "observations": [
+          {
+            "step": 0,
+            "state": {
+              "screen": "question",
+              "authenticated": false,
+              "question_kind": "word_tiles",
+              "lesson_index": 1,
+              "answer_selected": true,
+              "check_enabled": true,
+              "options_locked": false,
+              "feedback": "none",
+              "continue_enabled": false,
+              "hearts": 5,
+              "selected_word_count": 2,
+              "matching_complete": false,
+              "reviewing": false,
+              "initial_question_revisited": true,
+              "question_changed": false,
+              "completed_lessons": null,
+              "current_lesson_index": null,
+              "ui_snapshot": "- button:\n  - img\n- progressbar\n- img\n- text: \"5\"\n- img\n- text: New word\n- heading \"Write this in English\" [level=1]\n- button:\n  - img\n- img\n- button \"my\" [disabled]\n- button \"suitcase\" [disabled]\n- button \"house\"\n- button \"cat\"\n- button \"Skip\"\n- button \"Check\"\n- button \"my\"\n- button \"suitcase\""
+            }
+          },
+          {
+            "step": 1,
+            "state": {
+              "screen": "question",
+              "authenticated": false,
+              "question_kind": "word_tiles",
+              "lesson_index": 1,
+              "answer_selected": true,
+              "check_enabled": true,
+              "options_locked": false,
+              "feedback": "none",
+              "continue_enabled": false,
+              "hearts": 5,
+              "selected_word_count": 1,
+              "matching_complete": false,
+              "reviewing": false,
+              "initial_question_revisited": true,
+              "question_changed": false,
+              "completed_lessons": null,
+              "current_lesson_index": null,
+              "ui_snapshot": "- button:\n  - img\n- progressbar\n- img\n- text: \"5\"\n- img\n- text: New word\n- heading \"Write this in English\" [level=1]\n- button:\n  - img\n- img\n- button \"suitcase\"\n- button \"my\"\n- button \"suitcase\" [disabled]\n- button \"house\"\n- button \"cat\"\n- button \"Skip\"\n- button \"Check\""
+            }
+          },
+          {
+            "step": 2,
+            "state": {
+              "screen": "question",
+              "authenticated": false,
+              "question_kind": "word_tiles",
+              "lesson_index": 1,
+              "answer_selected": false,
+              "check_enabled": false,
+              "options_locked": false,
+              "feedback": "none",
+              "continue_enabled": false,
+              "hearts": 5,
+              "selected_word_count": 0,
+              "matching_complete": false,
+              "reviewing": false,
+              "initial_question_revisited": true,
+              "question_changed": false,
+              "completed_lessons": null,
+              "current_lesson_index": null,
+              "ui_snapshot": "- button:\n  - img\n- progressbar\n- img\n- text: \"5\"\n- img\n- text: New word\n- heading \"Write this in English\" [level=1]\n- button:\n  - img\n- img\n- button \"my\"\n- button \"suitcase\"\n- button \"house\"\n- button \"cat\"\n- button \"Skip\"\n- button \"Check\" [disabled]"
+            }
+          }
+        ],
+        "onboarding": [
+          {
+            "stage": 0,
+            "selected_group": null,
+            "visible_text": "Hi there! I’m Duo!\nHi there! I’m Duo!\nCONTINUE"
+          },
+          {
+            "stage": 1,
+            "selected_group": null,
+            "visible_text": "Let’s get this party started!\nLet’s get this party started!\nCONTINUE"
+          },
+          {
+            "stage": 2,
+            "selected_group": "hdyhau",
+            "visible_text": "How did you hear about Duolingo?\nHow did you hear about Duolingo?\nBrawl Stars\nGoogle Search\nTikTok\nYouTube\nNews/article/blog\nShopee\nFacebook/Instagram\nTV\nFriends/family\nOther\nCONTINUE"
+          },
+          {
+            "stage": 3,
+            "selected_group": "motivation",
+            "visible_text": "Any reason is a good reason to learn!\nAny reason is a good reason to learn!\nSpend time productively\nBoost my career\nPrepare for travel\nConnect with people\nSupport my education\nJust for fun\nOther\nCONTINUE"
+          },
+          {
+            "stage": 4,
+            "selected_group": "proficiency",
+            "visible_text": "Okay, we’ll start fresh!\nOkay, we’ll start fresh!\nI’m new to Spanish\nI know some common words\nI can have basic conversations\nI can talk about various topics\nI can discuss most topics in detail\nCONTINUE"
+          },
+          {
+            "stage": 5,
+            "selected_group": null,
+            "visible_text": "Here’s what you can achieve!\nHere’s what you can achieve!\nConverse with confidence\nStress-free speaking and listening exercises\nBuild a large vocabulary\nCommon words and practical phrases\nDevelop a learning habit\nSmart reminders, fun challenges, and more\nCONTINUE"
+          },
+          {
+            "stage": 6,
+            "selected_group": "daily-goal",
+            "visible_text": "That’s 25 words in your first week!\nThat’s 25 words in your first week!\n5 min / day\nCasual\n10 min / day\nRegular\n15 min / day\nSerious\n20 min / day\nIntense\nCONTINUE"
+          },
+          {
+            "stage": 7,
+            "selected_group": null,
+            "visible_text": "I’ll remind you to practice so it becomes a habit!\nI’ll remind you to practice so it becomes a habit!\nwww.duolingo.com wants to\nShow notifications\nBLOCK\nALLOW\nCONTINUE"
+          },
+          {
+            "stage": 8,
+            "selected_group": "choose-path",
+            "visible_text": "Now let’s find the best place to start!\nNow let’s find the best place to start!\nStart from scratch\nTake the easiest lesson of the Spanish course\nFind my level\nLet Duo recommend where you should start learning\nCONTINUE"
+          },
+          {
+            "stage": 9,
+            "selected_group": null,
+            "visible_text": "It can be hard to stay motivated…\nIt can be hard to stay motivated…\nCONTINUE"
+          },
+          {
+            "stage": 10,
+            "selected_group": null,
+            "visible_text": "…so Duolingo is designed to be fun like a game!\n…so Duolingo is designed to be fun like a game!\nCONTINUE"
+          },
+          {
+            "stage": 11,
+            "selected_group": null,
+            "visible_text": "5\nNEW WORD\nWhich one of these is “cat”?\ngato\n1\nmamá\n2\nagua\n3\nSKIP\nCHECK\nLOADING...\nProtip: After a lesson, write down as many phrases as you can remember from it."
+          }
+        ],
+        "preparation": [
+          {
+            "kind": "choice",
+            "prompt": "Which one of these is “cat”?",
+            "feedback": "positive"
+          },
+          {
+            "kind": "choice",
+            "prompt": "Which one of these is “dog”?",
+            "feedback": "positive"
+          },
+          {
+            "kind": "choice",
+            "prompt": "Which one of these is “water”?",
+            "feedback": "positive"
+          },
+          {
+            "kind": "choice",
+            "prompt": "Which one of these is “milk”?",
+            "feedback": "positive"
+          },
+          {
+            "kind": "matching",
+            "prompt": "Select the matching pairs",
+            "feedback": "positive"
+          },
+          {
+            "kind": "choice",
+            "prompt": "Select the correct meaning",
+            "feedback": "positive"
+          },
+          {
+            "kind": "choice",
+            "prompt": "Select the correct meaning",
+            "feedback": "positive"
+          },
+          {
+            "kind": "choice",
+            "prompt": "Which one of these is “mom”?",
+            "feedback": "positive"
+          },
+          {
+            "kind": "choice",
+            "prompt": "Which one of these is “dad”?",
+            "feedback": "positive"
+          },
+          {
+            "kind": "choice",
+            "prompt": "Select the correct meaning",
+            "feedback": "positive"
+          },
+          {
+            "kind": "choice",
+            "prompt": "Select the correct meaning",
+            "feedback": "positive"
+          },
+          {
+            "kind": "matching",
+            "prompt": "Select the matching pairs",
+            "feedback": "positive"
+          },
+          {
+            "stage": "post-lesson-goal",
+            "visible_text": "- img\n- radiogroup \"goal\":\n  - radio \"7 day streak Good\" [checked]\n  - radio \"14 day streak Great\"\n  - radio \"30 day streak Incredible\"\n  - radio \"50 day streak Unstoppable\"\n- button \"I can do it!\" [disabled]",
+            "selection": "7 day streak Good"
+          },
+          {
+            "kind": "choice",
+            "prompt": "Which one of these is “book”?",
+            "feedback": "positive"
+          },
+          {
+            "kind": "choice",
+            "prompt": "Which one of these is “house”?",
+            "feedback": "positive"
+          },
+          {
+            "kind": "choice",
+            "prompt": "Which one of these is “suitcase”?",
+            "feedback": "positive"
+          },
+          {
+            "kind": "matching",
+            "prompt": "Select the matching pairs",
+            "feedback": "positive"
+          },
+          {
+            "kind": "matching",
+            "prompt": "Select the matching pairs",
+            "feedback": "positive"
+          }
+        ]
+      }
+    },
+    {
+      "request": {
+        "operation": "reset",
+        "fixture": {
+          "data": {
+            "semantic_actions": {
+              "correct": "select the observed translation of the current prompt",
+              "wrong": "select a distinct visible alternative"
+            },
+            "online_data_injection": false,
+            "candidate_content": "Original Everyday English curriculum; semantics are compared, not copied question text or option order.",
+            "candidate_course": {
+              "id": "everyday-english",
+              "title": "Everyday English",
+              "lessons": [
+                {
+                  "id": "greetings",
+                  "title": "Small beginnings",
+                  "questions": [
+                    {
+                      "id": "morning",
+                      "prompt": "Choose the greeting for a new day.",
+                      "options": [
+                        {
+                          "id": "morning",
+                          "text": "Good morning"
+                        },
+                        {
+                          "id": "night",
+                          "text": "Good night"
+                        },
+                        {
+                          "id": "thanks",
+                          "text": "Thank you"
+                        }
+                      ],
+                      "answer": "morning",
+                      "explanation": "Good morning is a greeting for the start of a day."
+                    },
+                    {
+                      "id": "thanks",
+                      "prompt": "A friend helps you. What do you say?",
+                      "options": [
+                        {
+                          "id": "bye",
+                          "text": "Goodbye"
+                        },
+                        {
+                          "id": "thanks",
+                          "text": "Thank you"
+                        },
+                        {
+                          "id": "hello",
+                          "text": "Hello"
+                        }
+                      ],
+                      "answer": "thanks",
+                      "explanation": "Thank you expresses appreciation."
+                    },
+                    {
+                      "id": "greeting-pairs",
+                      "kind": "matching",
+                      "prompt": "Match the greetings with their moments.",
+                      "pairs": [
+                        {
+                          "id": "morning",
+                          "left": "Good morning",
+                          "right": "Start of the day"
+                        },
+                        {
+                          "id": "thanks",
+                          "left": "Thank you",
+                          "right": "Appreciation"
+                        },
+                        {
+                          "id": "bye",
+                          "left": "Goodbye",
+                          "right": "Leaving"
+                        }
+                      ],
+                      "explanation": "Each expression has its moment."
+                    }
+                  ]
+                },
+                {
+                  "id": "everyday-phrases",
+                  "title": "Words together",
+                  "questions": [
+                    {
+                      "id": "welcome",
+                      "prompt": "Someone arrives. Choose a greeting.",
+                      "options": [
+                        {
+                          "id": "hello",
+                          "text": "Hello"
+                        },
+                        {
+                          "id": "bye",
+                          "text": "Goodbye"
+                        },
+                        {
+                          "id": "thanks",
+                          "text": "Thank you"
+                        }
+                      ],
+                      "answer": "hello",
+                      "explanation": "Hello welcomes someone."
+                    },
+                    {
+                      "id": "morning-words",
+                      "kind": "word_tiles",
+                      "prompt": "Build a greeting for the start of a day.",
+                      "words": [
+                        {
+                          "id": "good",
+                          "text": "Good"
+                        },
+                        {
+                          "id": "morning",
+                          "text": "morning"
+                        },
+                        {
+                          "id": "night",
+                          "text": "night"
+                        },
+                        {
+                          "id": "bye",
+                          "text": "Goodbye"
+                        }
+                      ],
+                      "answer_words": [
+                        "good",
+                        "morning"
+                      ],
+                      "explanation": "Good morning greets someone at the start of a day."
+                    },
+                    {
+                      "id": "thank-words",
+                      "kind": "word_tiles",
+                      "prompt": "Build a phrase that expresses appreciation.",
+                      "words": [
+                        {
+                          "id": "you",
+                          "text": "you"
+                        },
+                        {
+                          "id": "thank",
+                          "text": "Thank"
+                        },
+                        {
+                          "id": "hello",
+                          "text": "Hello"
+                        }
+                      ],
+                      "answer_words": [
+                        "thank",
+                        "you"
+                      ],
+                      "explanation": "Thank you expresses appreciation."
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          "initial_state": {
+            "screen": "course_entry",
+            "authenticated": false
+          }
+        }
+      },
+      "receipt": {
+        "command": [
+          "node",
+          "projects/duolingo-web/original-adapter-v2.mjs"
+        ],
+        "source_digest": "e4495d04f58886df8fc0cbff80c14f3df811f11eaf798570b293565a2463a746",
+        "integrity": "verified",
+        "evaluator_digest": "ca80c9879a9e604baca738a78dffb3e2039bee2eefbfbeb399a3dd67ada9fbdc",
+        "exit_code": 0,
+        "status": "pass",
+        "output": "APP_REBUILD_RESULT {\"operation\":\"reset\",\"state\":{\"screen\":\"course_entry\",\"authenticated\":false},\"reset_scope\":\"Fresh ephemeral browser context; no remote backend reset\"}\n",
+        "output_bytes": 170,
+        "output_truncated": false,
+        "output_sha256": "519aedb8ea1d80c755186f2dde6867a0dffdd38209af5e77b52c7a2fdd625e81",
+        "wall_seconds": 3.290632
+      },
+      "response": {
+        "operation": "reset",
+        "state": {
+          "screen": "course_entry",
+          "authenticated": false
+        },
+        "reset_scope": "Fresh ephemeral browser context; no remote backend reset"
+      }
+    },
+    {
+      "request": {
+        "operation": "stop",
+        "fixture": {
+          "data": {
+            "semantic_actions": {
+              "correct": "select the observed translation of the current prompt",
+              "wrong": "select a distinct visible alternative"
+            },
+            "online_data_injection": false,
+            "candidate_content": "Original Everyday English curriculum; semantics are compared, not copied question text or option order.",
+            "candidate_course": {
+              "id": "everyday-english",
+              "title": "Everyday English",
+              "lessons": [
+                {
+                  "id": "greetings",
+                  "title": "Small beginnings",
+                  "questions": [
+                    {
+                      "id": "morning",
+                      "prompt": "Choose the greeting for a new day.",
+                      "options": [
+                        {
+                          "id": "morning",
+                          "text": "Good morning"
+                        },
+                        {
+                          "id": "night",
+                          "text": "Good night"
+                        },
+                        {
+                          "id": "thanks",
+                          "text": "Thank you"
+                        }
+                      ],
+                      "answer": "morning",
+                      "explanation": "Good morning is a greeting for the start of a day."
+                    },
+                    {
+                      "id": "thanks",
+                      "prompt": "A friend helps you. What do you say?",
+                      "options": [
+                        {
+                          "id": "bye",
+                          "text": "Goodbye"
+                        },
+                        {
+                          "id": "thanks",
+                          "text": "Thank you"
+                        },
+                        {
+                          "id": "hello",
+                          "text": "Hello"
+                        }
+                      ],
+                      "answer": "thanks",
+                      "explanation": "Thank you expresses appreciation."
+                    },
+                    {
+                      "id": "greeting-pairs",
+                      "kind": "matching",
+                      "prompt": "Match the greetings with their moments.",
+                      "pairs": [
+                        {
+                          "id": "morning",
+                          "left": "Good morning",
+                          "right": "Start of the day"
+                        },
+                        {
+                          "id": "thanks",
+                          "left": "Thank you",
+                          "right": "Appreciation"
+                        },
+                        {
+                          "id": "bye",
+                          "left": "Goodbye",
+                          "right": "Leaving"
+                        }
+                      ],
+                      "explanation": "Each expression has its moment."
+                    }
+                  ]
+                },
+                {
+                  "id": "everyday-phrases",
+                  "title": "Words together",
+                  "questions": [
+                    {
+                      "id": "welcome",
+                      "prompt": "Someone arrives. Choose a greeting.",
+                      "options": [
+                        {
+                          "id": "hello",
+                          "text": "Hello"
+                        },
+                        {
+                          "id": "bye",
+                          "text": "Goodbye"
+                        },
+                        {
+                          "id": "thanks",
+                          "text": "Thank you"
+                        }
+                      ],
+                      "answer": "hello",
+                      "explanation": "Hello welcomes someone."
+                    },
+                    {
+                      "id": "morning-words",
+                      "kind": "word_tiles",
+                      "prompt": "Build a greeting for the start of a day.",
+                      "words": [
+                        {
+                          "id": "good",
+                          "text": "Good"
+                        },
+                        {
+                          "id": "morning",
+                          "text": "morning"
+                        },
+                        {
+                          "id": "night",
+                          "text": "night"
+                        },
+                        {
+                          "id": "bye",
+                          "text": "Goodbye"
+                        }
+                      ],
+                      "answer_words": [
+                        "good",
+                        "morning"
+                      ],
+                      "explanation": "Good morning greets someone at the start of a day."
+                    },
+                    {
+                      "id": "thank-words",
+                      "kind": "word_tiles",
+                      "prompt": "Build a phrase that expresses appreciation.",
+                      "words": [
+                        {
+                          "id": "you",
+                          "text": "you"
+                        },
+                        {
+                          "id": "thank",
+                          "text": "Thank"
+                        },
+                        {
+                          "id": "hello",
+                          "text": "Hello"
+                        }
+                      ],
+                      "answer_words": [
+                        "thank",
+                        "you"
+                      ],
+                      "explanation": "Thank you expresses appreciation."
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          "initial_state": {
+            "screen": "course_entry",
+            "authenticated": false
+          }
+        }
+      },
+      "receipt": {
+        "command": [
+          "node",
+          "projects/duolingo-web/original-adapter-v2.mjs"
+        ],
+        "source_digest": "e4495d04f58886df8fc0cbff80c14f3df811f11eaf798570b293565a2463a746",
+        "integrity": "verified",
+        "evaluator_digest": "ca80c9879a9e604baca738a78dffb3e2039bee2eefbfbeb399a3dd67ada9fbdc",
+        "exit_code": 0,
+        "status": "pass",
+        "output": "APP_REBUILD_RESULT {\"operation\":\"stop\",\"resources\":[]}\n",
+        "output_bytes": 55,
+        "output_truncated": false,
+        "output_sha256": "8d202b624e2db652713bed809eefa3302caaf85dd5727ef82ab5ba5e25784b25",
+        "wall_seconds": 0.245233
+      },
+      "response": {
+        "operation": "stop",
+        "resources": []
+      }
+    }
+  ],
+  "finished_at": 1791579012.102008
+}

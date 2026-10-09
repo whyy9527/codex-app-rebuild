@@ -1,0 +1,142 @@
+{
+  "schema_version": 1,
+  "revision": "duolingo-prospective-holdout-01",
+  "source": {
+    "kind": "original_online",
+    "version": "unknown; observed 2026-10-10",
+    "date": "2026-10-10",
+    "scope": "Prospective combined paths; two observed, one unavailable after wrong-feedback exit. Guest English UI to Spanish; same original reset limitations.",
+    "reset_limitations": "New ephemeral browser context and public onboarding only; no backend reset, fixture injection, fixed random order, account or cross-device guarantees."
+  },
+  "fixture": "projects/duolingo-web/fixture-v2.json",
+  "behaviors": [
+    {
+      "id": "correct-exit-continue",
+      "description": "Cancelling exit after correct feedback preserves state and then advances with empty selection",
+      "discovery": "observed",
+      "evidence": [
+        "projects/business-ablation/evidence/correct-exit-continue-original-01.json"
+      ],
+      "precondition": {
+        "screen": "question",
+        "hearts": 5,
+        "question_kind": "choice"
+      },
+      "steps": [
+        {
+          "action": {
+            "type": "select",
+            "answer": "correct"
+          },
+          "expect": {
+            "answer_selected": true,
+            "check_enabled": true,
+            "hearts": 5
+          }
+        },
+        {
+          "action": {
+            "type": "submit"
+          },
+          "expect": {
+            "feedback": "correct",
+            "options_locked": true,
+            "hearts": 5
+          }
+        },
+        {
+          "action": {
+            "type": "quit"
+          },
+          "expect": {
+            "screen": "exit_confirmation"
+          }
+        },
+        {
+          "action": {
+            "type": "cancel_quit"
+          },
+          "expect": {
+            "screen": "question",
+            "feedback": "correct",
+            "hearts": 5
+          }
+        },
+        {
+          "action": {
+            "type": "continue"
+          },
+          "expect": {
+            "screen": "question",
+            "question_changed": true,
+            "answer_selected": false,
+            "check_enabled": false,
+            "feedback": "none",
+            "hearts": 5
+          }
+        }
+      ]
+    },
+    {
+      "id": "reselect-wrong-exit",
+      "description": "Changing correct to wrong then cancelling exit after incorrect feedback; original adapter could not confirm this path",
+      "discovery": "unknown",
+      "evidence": [
+        "projects/business-ablation/evidence/reselect-wrong-exit-original-01.json"
+      ],
+      "precondition": {
+        "screen": "question",
+        "hearts": 5,
+        "question_kind": "choice"
+      }
+    },
+    {
+      "id": "undo-all-words",
+      "description": "Removing both correct words reaches empty-selection disabled submission",
+      "discovery": "observed",
+      "evidence": [
+        "projects/business-ablation/evidence/undo-all-words-original-01.json"
+      ],
+      "precondition": {
+        "screen": "question",
+        "hearts": 5,
+        "question_kind": "word_tiles"
+      },
+      "steps": [
+        {
+          "action": {
+            "type": "fill_words",
+            "order": "correct"
+          },
+          "expect": {
+            "selected_word_count": 2,
+            "check_enabled": true,
+            "hearts": 5
+          }
+        },
+        {
+          "action": {
+            "type": "remove_word",
+            "index": 0
+          },
+          "expect": {
+            "selected_word_count": 1,
+            "check_enabled": true,
+            "hearts": 5
+          }
+        },
+        {
+          "action": {
+            "type": "remove_word",
+            "index": 1
+          },
+          "expect": {
+            "selected_word_count": 0,
+            "check_enabled": false,
+            "hearts": 5
+          }
+        }
+      ]
+    }
+  ]
+}
