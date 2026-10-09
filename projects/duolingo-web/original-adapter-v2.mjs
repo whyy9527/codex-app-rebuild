@@ -158,13 +158,9 @@ async function addWord(index) {
 }
 async function removeWord(index) {
   const word = (await readWords())[index];
-  const buttons = page.getByRole('button', { name: word, exact: true });
-  let chosen = null;
-  for (let i=0; i<await buttons.count(); i++) if (await buttons.nth(i).isEnabled()) {
-    if (chosen) throw new Error('Ambiguous selected token');
-    chosen = buttons.nth(i);
-  }
-  if (!chosen) throw new Error('Selected token unavailable');
+  // Selection animation can reorder equal-name buttons; bind by the observed
+  // enabled state rather than retaining a DOM ordinal from before animation.
+  const chosen = page.getByRole('button', { name: word, exact: true }).and(page.locator('button[aria-disabled="false"]'));
   await chosen.click();
   await page.waitForFunction(word => [...document.querySelectorAll('[data-test="word-bank"] button')].some(e=>e.innerText.trim()===word && e.getAttribute('aria-disabled')==='false'), word, {timeout:5000});
 }
