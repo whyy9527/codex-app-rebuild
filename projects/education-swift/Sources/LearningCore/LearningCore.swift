@@ -4,6 +4,7 @@ public struct Choice: Codable, Equatable, Sendable, Identifiable {
     public let id: String
     public let text: String
     public let audioResource: String?
+    public let imageResource: String?
 }
 public struct WordPair: Codable, Equatable, Sendable, Identifiable {
     public let id: String
@@ -31,8 +32,11 @@ public struct Question: Codable, Equatable, Sendable, Identifiable {
     public let audioResource: String?
     public let sourceLanguage: String?
     public let characterResource: String?
+    public let sourceType: String?
+    public let slowAudioResource: String?
+    public let dialogueAvatars: [String]?
     enum CodingKeys: String, CodingKey {
-        case id, kind, prompt, options, answer, words, pairs, explanation, hint, newWord, rightOrder, audioResource, sourceLanguage, characterResource
+        case id, kind, prompt, options, answer, words, pairs, explanation, hint, newWord, rightOrder, audioResource, sourceLanguage, characterResource, sourceType, slowAudioResource, dialogueAvatars
         case answerWords = "answer_words"
     }
     public init(from decoder: Decoder) throws {
@@ -51,6 +55,9 @@ public struct Question: Codable, Equatable, Sendable, Identifiable {
         rightOrder = try c.decodeIfPresent([String].self, forKey: .rightOrder)
         audioResource = try c.decodeIfPresent(String.self, forKey: .audioResource)
         sourceLanguage = try c.decodeIfPresent(String.self, forKey: .sourceLanguage)
+        sourceType = try c.decodeIfPresent(String.self, forKey: .sourceType)
+        slowAudioResource = try c.decodeIfPresent(String.self, forKey: .slowAudioResource)
+        dialogueAvatars = try c.decodeIfPresent([String].self, forKey: .dialogueAvatars)
         characterResource = try c.decodeIfPresent(String.self, forKey: .characterResource)
     }
     public var correctText: String {
@@ -91,15 +98,17 @@ public struct Course: Codable, Equatable, Sendable, Identifiable {
     public let title: String
     public let lessons: [LessonDefinition]
     public let speechLanguage: String
+    public let interfaceLanguage: String?
     public let pathNodes: [CoursePathNode]?
     public let usesLegacyQuestions: Bool
     // Compatibility for the original single-lesson curriculum.
     public var questions: [Question] { lessons[0].questions }
-    enum CodingKeys: String, CodingKey { case id, title, lessons, questions, speechLanguage, pathNodes }
+    enum CodingKeys: String, CodingKey { case id, title, lessons, questions, speechLanguage, pathNodes, interfaceLanguage }
     public init(from decoder: Decoder) throws {
         let c = try decoder.container(keyedBy: CodingKeys.self)
         id = try c.decode(String.self, forKey: .id)
         title = try c.decode(String.self, forKey: .title)
+        interfaceLanguage = try c.decodeIfPresent(String.self, forKey: .interfaceLanguage)
         speechLanguage = try c.decodeIfPresent(String.self, forKey: .speechLanguage) ?? "en-US"
         pathNodes = try c.decodeIfPresent([CoursePathNode].self, forKey: .pathNodes)
         if let definitions = try c.decodeIfPresent([LessonDefinition].self, forKey: .lessons) {
@@ -115,6 +124,7 @@ public struct Course: Codable, Equatable, Sendable, Identifiable {
         var c = encoder.container(keyedBy: CodingKeys.self)
         try c.encode(id, forKey: .id); try c.encode(title, forKey: .title)
         try c.encode(speechLanguage, forKey: .speechLanguage)
+        try c.encodeIfPresent(interfaceLanguage, forKey: .interfaceLanguage)
         try c.encodeIfPresent(pathNodes, forKey: .pathNodes)
         if usesLegacyQuestions { try c.encode(questions, forKey: .questions) }
         else { try c.encode(lessons, forKey: .lessons) }

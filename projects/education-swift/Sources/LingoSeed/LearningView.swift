@@ -3,6 +3,8 @@ import LearningCore
 
 struct LearningView: View {
     @Bindable var model: LearningModel
+    private var chinese: Bool { model.course.interfaceLanguage == "zh" }
+    private func copy(_ english: String, _ zh: String) -> String { chinese ? zh : english }
     private let ink = Color(white: 0.28)
     private let accent = Color(red: 0.345, green: 0.8, blue: 0)
     private let columns = [GridItem(.adaptive(minimum: 110), spacing: 12)]
@@ -153,7 +155,7 @@ struct LearningView: View {
             }
             Spacer(minLength: 0)
             if lesson.interlude != nil {
-                HStack { Spacer(); Button("CONTINUE") { model.advance() }.buttonStyle(ReferenceButton()).frame(width: 150).accessibilityIdentifier("interlude-continue") }
+                HStack { Spacer(); Button(copy("CONTINUE", "继续")) { model.advance() }.buttonStyle(ReferenceButton()).frame(width: 150).accessibilityIdentifier("interlude-continue") }
                     .padding(.horizontal, 60).padding(.vertical, 28).frame(minHeight: 115)
                     .overlay(alignment: .top) { Rectangle().fill(ReferenceStyle.border).frame(height: 2) }
             } else if !lesson.complete { answerBar(lesson) }
@@ -165,16 +167,16 @@ struct LearningView: View {
             if let correct = lesson.feedback {
                 Image(systemName: correct ? "checkmark.circle.fill" : "xmark.circle.fill").font(.system(size: 48)).foregroundStyle(correct ? accent : .red)
                 VStack(alignment: .leading, spacing: 8) {
-                    Text(correct ? "Well done!" : "Correct answer: \(lesson.question.correctText)").font(.title2.bold())
+                    Text(correct ? copy("Well done!", "好棒！") : copy("Correct answer: \(lesson.question.correctText)", "正确答案：\(lesson.question.correctText)")).font(.title2.bold())
                         .foregroundStyle(correct ? Color(red: 0.28, green: 0.62, blue: 0) : Color.red).accessibilityIdentifier("feedback").accessibilityValue(correct ? "correct" : "incorrect")
                     Text(lesson.question.explanation)
                 }
                 Spacer()
-                Button("CONTINUE") { model.advance() }.buttonStyle(SeedButtonStyle(fill: correct ? accent : .red)).accessibilityIdentifier("continue")
+                Button(copy("CONTINUE", "继续")) { model.advance() }.buttonStyle(SeedButtonStyle(fill: correct ? accent : .red)).accessibilityIdentifier("continue")
             } else {
                 Text(lesson.question.kind == .matching ? "Match all pairs to continue" : "Take your time. You’ve got this.").foregroundStyle(.secondary)
                 Spacer()
-                if lesson.question.kind != .matching { Button("CHECK") { model.submit() }.buttonStyle(SeedButtonStyle(fill: accent)).disabled(!lesson.canSubmit).accessibilityIdentifier("check") }
+                if lesson.question.kind != .matching { Button(copy("CHECK", "检查")) { model.submit() }.buttonStyle(SeedButtonStyle(fill: accent)).disabled(!lesson.canSubmit).accessibilityIdentifier("check") }
             }
         }.padding(.horizontal, 60).padding(.vertical, 28).frame(minHeight: 115)
             .background(lesson.feedback == nil ? Color.white : lesson.feedback == true ? Color(red: 0.843, green: 1, blue: 0.722) : Color(red: 1, green: 0.875, blue: 0.875))
@@ -200,21 +202,23 @@ struct LearningView: View {
     }
     @ViewBuilder private func question(_ lesson: Lesson) -> some View {
         if lesson.reviewing {
-            Text("ONE MORE LOOK").font(.caption.bold()).foregroundStyle(accent).accessibilityIdentifier("review-label")
-        } else if lesson.question.newWord { Text("NEW WORD").font(ReferenceStyle.font(14, bold: true)).foregroundStyle(.purple) }
-        Text(lesson.question.kind == .wordTiles && lesson.question.hint == nil ? "Build this phrase" : lesson.question.prompt).font(ReferenceStyle.font(28, bold: true))
+            Text(copy("ONE MORE LOOK", "错题重练")).font(.caption.bold()).foregroundStyle(accent).accessibilityIdentifier("review-label")
+        } else if lesson.question.newWord { Text(copy("NEW WORD", "新单词")).font(ReferenceStyle.font(14, bold: true)).foregroundStyle(.purple) }
+        Text(lesson.question.kind == .wordTiles && lesson.question.hint == nil && lesson.question.sourceType != "listenTap" ? "Build this phrase" : lesson.question.prompt).font(ReferenceStyle.font(28, bold: true))
             .accessibilityIdentifier("question-title").accessibilityValue(lesson.question.prompt)
         switch lesson.question.kind {
         case .choice: choices(lesson)
         case .wordTiles: words(lesson)
         case .matching: matching(lesson)
         }
-        if lesson.question.kind == .choice {
+        if lesson.question.kind == .choice && lesson.question.sourceType != "dialogue" {
             Button { model.pronounce() } label: { Label(lesson.selected == nil ? "Read the instruction" : "Listen again", systemImage: "speaker.wave.2.fill") }.buttonStyle(.plain).foregroundStyle(.cyan).accessibilityIdentifier("pronounce")
         }
     }
     @ViewBuilder private func choices(_ lesson: Lesson) -> some View {
-        if let hint = lesson.question.hint {
+        if lesson.question.sourceType == "dialogue" {
+            dialogue(lesson)
+        } else if let hint = lesson.question.hint {
             HStack(spacing: 16) {
                 if let character = lesson.question.characterResource { ReferenceStyle.image(character).resizable().scaledToFit().frame(width: 120, height: 150) }
                 Text(hint).font(ReferenceStyle.font(20)).accessibilityIdentifier("question-hint")
@@ -233,7 +237,7 @@ struct LearningView: View {
             ForEach(Array(lesson.question.options.enumerated()), id: \.element.id) { index, option in
                 Button { model.choose(option.id) } label: {
                     VStack(spacing: 18) {
-                        ChoiceIllustration(phrase: option.text)
+                        ChoiceIllustration(phrase: option.text, resource: option.imageResource)
                         HStack {
                             Text(option.text).font(.system(size: 17, weight: .medium)).lineLimit(1).minimumScaleFactor(0.8)
                             Spacer(minLength: 3)
@@ -247,8 +251,42 @@ struct LearningView: View {
             }
         } }
     }
+    private func dialogue(_ lesson: Lesson) -> some View {
+        VStack(spacing: 34) {
+            HStack(spacing: 16) {
+                if let avatar = lesson.question.dialogueAvatars?.first { ReferenceStyle.image(avatar).resizable().scaledToFit().frame(width: 64, height: 64) }
+                Button { model.playQuestion() } label: {
+                    HStack { Image(systemName: "speaker.wave.2.fill").foregroundStyle(ReferenceStyle.blue); Text(lesson.question.hint ?? "").foregroundStyle(ink) }
+                        .font(ReferenceStyle.font(19)).padding(16).overlay(RoundedRectangle(cornerRadius: 12).stroke(ReferenceStyle.border, lineWidth: 2))
+                }.buttonStyle(.plain).accessibilityIdentifier("pronounce")
+                Spacer()
+            }
+            HStack(spacing: 20) {
+                Spacer()
+                Text(lesson.feedback == true ? lesson.question.correctText : "_______").font(ReferenceStyle.font(19)).padding(16)
+                    .overlay(RoundedRectangle(cornerRadius: 12).stroke(ReferenceStyle.border, lineWidth: 2))
+                if let avatar = lesson.question.dialogueAvatars?.last { ReferenceStyle.image(avatar).resizable().scaledToFit().frame(width: 64, height: 64) }
+            }
+            VStack(spacing: 12) {
+                ForEach(Array(lesson.question.options.enumerated()), id: \.element.id) { index, option in
+                    Button { model.choose(option.id) } label: {
+                        HStack { Text("\(index + 1)").font(ReferenceStyle.font(14)).frame(width: 26, height: 26).overlay(RoundedRectangle(cornerRadius: 6).stroke(ReferenceStyle.border, lineWidth: 2)); Spacer(); Text(option.text); Spacer() }
+                    }.buttonStyle(SeedTileStyle(selected: lesson.selected == option.id)).disabled(lesson.feedback != nil)
+                        .accessibilityLabel(option.text).accessibilityIdentifier("option-" + option.id)
+                }
+            }.padding(.top, 12)
+        }
+    }
     private func words(_ lesson: Lesson) -> some View {
         VStack(alignment: .leading, spacing: 24) {
+            if lesson.question.sourceType == "listenTap" {
+                HStack(spacing: 28) {
+                    Button { model.playQuestion() } label: { Image(systemName: "speaker.wave.2.fill").font(.system(size: 54)).frame(width: 110, height: 110) }
+                        .buttonStyle(ReferenceButton(color: ReferenceStyle.blue)).accessibilityLabel(copy("Listen", "播放")).accessibilityIdentifier("pronounce")
+                    Button { model.playQuestion(slow: true) } label: { Image(systemName: "tortoise.fill").font(.system(size: 28)).frame(width: 64, height: 64) }
+                        .buttonStyle(ReferenceButton(color: ReferenceStyle.blue)).accessibilityLabel(copy("Slow", "慢速播放")).accessibilityIdentifier("pronounce-slow")
+                }.frame(maxWidth: .infinity)
+            } else {
             HStack(spacing: 16) {
                 Group {
                     if let character = lesson.question.characterResource { ReferenceStyle.image(character).resizable().scaledToFit() }
@@ -262,8 +300,9 @@ struct LearningView: View {
                         .overlay(RoundedRectangle(cornerRadius: 14).stroke(Color.gray.opacity(0.25), lineWidth: 2))
                 }.buttonStyle(.plain).accessibilityLabel(lesson.question.hint ?? "Read the instruction").accessibilityIdentifier("pronounce")
             }
+            }
             VStack(alignment: .leading, spacing: 12) {
-                if lesson.selectedWords.isEmpty { Text("Choose words in order.").foregroundStyle(.secondary).frame(height: 42) }
+                if lesson.selectedWords.isEmpty { Text(chinese ? "" : "Choose words in order.").foregroundStyle(.secondary).frame(height: 42) }
                 LazyVGrid(columns: columns, alignment: .leading, spacing: 12) {
                     ForEach(lesson.selectedWords, id: \.self) { id in
                         Button(lesson.question.words.first { $0.id == id }!.text) { model.removeWord(id) }
@@ -280,7 +319,7 @@ struct LearningView: View {
                         .disabled(lesson.feedback != nil || lesson.selectedWords.contains(word.id)).accessibilityIdentifier("word-bank-" + word.id)
                 }
             }
-            Text("Tap a word in your phrase to put it back.").font(.callout).foregroundStyle(.secondary)
+            Text(chinese ? "" : "Tap a word in your phrase to put it back.").font(.callout).foregroundStyle(.secondary)
         }
     }
     private func matching(_ lesson: Lesson) -> some View {

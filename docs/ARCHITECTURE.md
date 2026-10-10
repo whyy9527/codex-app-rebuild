@@ -87,3 +87,8 @@ LearningCore的题目/选项/配对可携带可选音频资源名；LearningMode
 Guidebook从SwiftPM中的实测结构化内容读取，使用原版语音与发音图形，原生回放在三课后进入Guidebook，与参考的课程前置状态对齐。标题几何比较采相同的文字边界，保留旧满宽块/AX文字比较失败。LessonDefinition可声明有来源的题间状态，Lesson在状态显示时阻断题目输入，继续后恢复下一题；当前只确认观察到的全对轨迹，不能视为完整鼓励策略。
 
 用户指定后续英语学科；课程来源将改为真实中文→英语观察，已有西语夹具继续版本化保留。Guidebook内容、角色与语音属于案例数据，不能将西语字符串或旧原创英语题库当作新的课程规格。
+
+
+英语首课由`compile-english-course.py`将API公开内容、UI顺序/反馈和截图转录的对话问句编译为Swift夹具。`sourceType`保留听力/对话等呈现语义，业务kind仍复用choice/word_tiles/matching；`Choice.imageResource`、`slowAudioResource`、`dialogueAvatars`及`Course.interfaceLanguage`明确资源和界面语言。音频资源依具体题目/选项关联，未知英语选项不新增合成音。`fetch-english-resources.py`下载公开原件，在隔离浏览器上下文转换SVG并登记哈希。默认课程为真实en/zh，默认进度按夹具名隔离。英语主页及完成状态链仍待连接，历史Spanish验收入口继续保留。
+
+`observe-frontend.swift --english-first-wrong`复现源参考的首题误选sugar及最后重练，采集逐题前后AX与截图。`compare-english-captures.py`按实际窗口内容矩形去标题栏/归一化尺度，输出无遮罩、无容差的像素差异诊断；不是产品通过判据。英语共享前端契约仍将视觉/声音/交互未验证项标pending，不能凭新增布局或像素统计改为pass。

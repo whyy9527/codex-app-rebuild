@@ -1,0 +1,29 @@
+{
+  "kind": "native-English-execution-checkpoint",
+  "business_checks": {
+    "passed": 7,
+    "scope": "LearningCore only, actual wrong-first/review checked; no audio or visual certification"
+  },
+  "native_walks": {
+    "all_correct": "all-correct-observed.json",
+    "wrong_first_then_review": "observed.json"
+  },
+  "frontend": {
+    "passed": 15,
+    "not_run": 59,
+    "status": "fail"
+  },
+  "pixels": {
+    "different": 28,
+    "compared": 28,
+    "status": "diagnostic only; equivalence not proven"
+  },
+  "default_change_after_walk": "Only LingoSeed.swift default fixture and progress namespace changed after the full UI walks. Explicit-fixture native capture provenance remains applicable; default startup is separately checked.",
+  "limitations": [
+    "Source first-error overlay and encouragement still absent",
+    "Complete English homepage/path and later lessons pending",
+    "Native completion still generic; source completion sequence absent",
+    "Guidebook still historical Spanish; captured as a known mismatch",
+    "Actual acoustic output not compared"
+  ]
+}

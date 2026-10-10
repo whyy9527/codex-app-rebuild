@@ -32,7 +32,9 @@ import LearningCore
     func choose(_ id: String) {
         guard let lesson, lesson.feedback == nil, let option = lesson.question.options.first(where: { $0.id == id }) else { return }
         self.lesson?.choose(id)
-        audio.speak(option.text, language: course.speechLanguage, resource: option.audioResource)
+        if course.interfaceLanguage != "zh" || option.audioResource != nil {
+            audio.speak(option.text, language: course.speechLanguage, resource: option.audioResource)
+        }
     }
     func addWord(_ id: String) {
         guard let word = lesson?.question.words.first(where: { $0.id == id }) else { return }
@@ -49,6 +51,10 @@ import LearningCore
         } else {
             audio.play(previous == nil && lesson?.feedback == true ? .correct : lesson?.matchingHint != nil ? .incorrect : .tap)
         }
+    }
+    func playQuestion(slow: Bool = false) {
+        guard let question = lesson?.question else { return }
+        audio.speak(question.hint ?? question.prompt, language: question.sourceLanguage ?? course.speechLanguage, resource: slow ? question.slowAudioResource : question.audioResource)
     }
     func pronounce() {
         guard let lesson else { return }
@@ -68,6 +74,11 @@ import LearningCore
         lesson = Lesson(course: course, lessonIndex: index, hearts: progress.hearts)
         confirmingExit = false
         audio.play(.tap)
+        playAutomaticPrompt()
+    }
+    private func playAutomaticPrompt() {
+        guard let question = lesson?.question, ["translate", "listenTap", "dialogue"].contains(question.sourceType ?? "") else { return }
+        playQuestion()
     }
     func submit() {
         guard lesson?.canSubmit == true, lesson?.feedback == nil else { return }
@@ -80,7 +91,9 @@ import LearningCore
     }
     func advance() {
         guard lesson?.feedback != nil || lesson?.interlude != nil else { return }
+        let previousQuestion = lesson?.question.id
         lesson?.advance()
+        if let lesson, !lesson.complete, lesson.interlude == nil, lesson.question.id != previousQuestion { playAutomaticPrompt() }
         if let lesson, lesson.complete {
             audio.play(.complete)
             progress.markCompleted(course, index: lesson.lessonIndex)

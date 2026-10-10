@@ -1,0 +1,101 @@
+"""Compile UI-confirmed English source into a Swift-readable fixture and asset manifest."""
+import hashlib
+import json
+from pathlib import Path
+import re
+
+BASE = Path(__file__).resolve().parent
+EV = BASE / 'evidence/english-v1'
+def read(name): return json.loads((EV / name).read_text())
+def label(text): return re.sub(r'^\d\s*|\s*\d$', '', text).strip()
+resources = {}
+def resource(url, kind):
+    assert url.startswith('https://') and '?' not in url
+    domains = {'speech': 'https://d1vq87e9lcf771.cloudfront.net/',
+               'image': 'https://d2pur3iezf4d1j.cloudfront.net/images/',
+               'avatar': 'https://simg-ssl.duolingo.com/world-characters/avatars/'}
+    assert url.startswith(domains[kind])
+    stem = 'en-' + kind + '-' + hashlib.sha256(url.encode()).hexdigest()[:20]
+    resources[stem] = {'url': url, 'kind': kind, 'name': stem,
+                       'source_file': stem + ('.mp3' if kind == 'speech' else '.svg')}
+    return stem + '.mp3' if kind == 'speech' else stem
+source = read('first-session.json')['session']
+rows = {}
+for n in (1, 2, 3):
+    for row in read(f'replay-{n:02}.json')['observed']:
+        if 'feedback' in row: rows[row['index']] = row
+# Actual initial choice order plus the separately accepted retry, not a fake
+# positive submission of question 0 on the original first attempt.
+rows[0] = {'before': read('first-session.json')['initial'],
+           'heading': '哪个是“咖啡”呢？', 'feedback': read('review-answer.json')['feedback']}
+dialogues = read('dialogue-public-ui.json')['questions']
+questions = []
+for record in source['challenges']:
+    i, c = record['index'], record['content']; row = rows[i]
+    q = {'id': f'en-zh-q{i}', 'prompt': row['heading'], 'sourceType': c['type'],
+         'newWord': '新单词' in row['before'], 'explanation': c.get('solutionTranslation', ''),
+         'sourceLanguage': c.get('sourceLanguage', 'en')}
+    if c.get('tts'): q['audioResource'] = resource(c['tts'], 'speech')
+    if c.get('slowTts'): q['slowAudioResource'] = resource(c['slowTts'], 'speech')
+    if c.get('character'): q['characterResource'] = resource(c['character']['image']['svg'], 'image')
+    if c['type'] in ('select', 'assist', 'dialogue'):
+        q['kind'] = 'choice'
+        texts = [label(t) for t in re.findall(r'- radio "([^"]+)"', row['before'])]
+        choices = {v if isinstance(v, str) else v['phrase']: v for v in c['choices']}
+        assert len(texts) == len(choices) and set(texts) == set(choices)
+        answer = c['choices'][c['correctIndex']]
+        answer = answer if isinstance(answer, str) else answer['phrase']
+        checked = [label(t) for t in re.findall(r'- radio "([^"]+)" \[checked\]', row['feedback'])]
+        assert checked == [answer] and '正确答案：' not in row['feedback']
+        q['options'] = []
+        for j, text in enumerate(texts):
+            item = {'id': f'option-{j}', 'text': text}; value = choices[text]
+            if isinstance(value, dict):
+                if value.get('tts'): item['audioResource'] = resource(value['tts'], 'speech')
+                if value.get('svg'): item['imageResource'] = resource(value['svg'], 'image')
+            q['options'].append(item)
+        q['answer'] = next(v['id'] for v in q['options'] if v['text'] == answer)
+        if c['type'] == 'assist':
+            q['hint'] = c['prompt']
+            clips = [m['src'] for m in row.get('media', []) if m['src'].startswith('https://d1vq87e9lcf771.cloudfront.net/')]
+            assert len(clips) == 1
+            next(v for v in q['options'] if v['id'] == q['answer'])['audioResource'] = resource(clips[0], 'speech')
+        if c['type'] == 'dialogue':
+            d = dialogues[str(i)]; q['hint'] = d['prompt']
+            q['dialogueAvatars'] = [resource(a['src'], 'avatar') for a in row['images']]
+            clip = row['media_before'][-1]['src']; assert clip == d['observed_speech']
+            q['audioResource'] = resource(clip, 'speech')
+    elif c['type'] in ('translate', 'listenTap'):
+        q['kind'] = 'word_tiles'
+        if c['type'] == 'translate': q['hint'] = c['prompt']
+        texts = [v.strip() for v in row['word_bank']]
+        choices = {v['text']: v for v in c['choices']}
+        assert len(choices) == len(c['choices']) and set(texts) == set(choices)
+        q['words'] = []
+        for j, text in enumerate(texts):
+            item = {'id': f'word-{j}', 'text': text}
+            if choices[text].get('tts'): item['audioResource'] = resource(choices[text]['tts'], 'speech')
+            q['words'].append(item)
+        answer = [c['choices'][j]['text'] for j in c['correctIndices']]
+        assert [a['word'] for a in row['actions']] == answer
+        q['answer_words'] = [next(v['id'] for v in q['words'] if v['text'] == t) for t in answer]
+    elif c['type'] == 'match':
+        q['kind'] = 'matching'
+        controls = [label(t) for t in re.findall(r'- button "(\d[^"\n]+)"', row['before'])]
+        pairs = {p['fromToken']: p for p in c['pairs']}; assert len(controls) == len(pairs)*2
+        q['pairs'] = [{'id': f'pair-{j}', 'left': t, 'right': pairs[t]['learningToken'],
+                       'audioResource': resource(pairs[t]['tts'], 'speech')} for j, t in enumerate(controls[:len(pairs)])]
+        q['rightOrder'] = [next(p['id'] for p in q['pairs'] if p['right'] == t) for t in controls[len(pairs):]]
+    else: raise ValueError(c['type'])
+    questions.append(q)
+course = {'id': 'duolingo-en-zh-unit-1', 'title': '提供或接受饮料', 'speechLanguage': 'en',
+          'interfaceLanguage': 'zh', 'lessons': [{'id': 'lesson-1', 'title': 'Lesson 1 of 4', 'questions': questions}]}
+fixture = {'data': {'candidate_course': course}, 'provenance': {
+    'source': 'Actual anonymous en/zh first lesson; option order, answers and word banks UI-confirmed; question 0 accepted on mistake review',
+    'evidence': ['projects/duolingo-web/evidence/english-v1/first-session.json',
+                 'projects/duolingo-web/evidence/english-v1/dialogue-public-ui.json'] +
+                [f'projects/duolingo-web/evidence/english-v1/replay-{n:02}.json' for n in (1,2,3)],
+    'unknown': 'Later lessons, homepage migration, full completion chain, first-error tutorial, encouragement scheduling, animation and sound output remain incomplete; no fake later lessons added'}}
+(BASE/'fixture-reference-en-zh-v1.json').write_text(json.dumps(fixture, ensure_ascii=False, indent=2)+'\n')
+(BASE/'reference-assets-en-zh-v1.json').write_text(json.dumps(list(resources.values()), ensure_ascii=False, indent=2)+'\n')
+print(f'Compiled {len(questions)} actual questions and {len(resources)} source resources; full frontend equivalence pending')

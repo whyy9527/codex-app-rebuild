@@ -3,6 +3,7 @@ import SwiftUI
 /// Presentation-only vocabulary artwork. It never reads the question's answer.
 struct ChoiceIllustration: View {
     let phrase: String
+    var resource: String? = nil
     private var symbol: String {
         switch phrase.lowercased() {
         case "good morning": "sun.max.fill"
@@ -24,7 +25,7 @@ struct ChoiceIllustration: View {
     }
     var body: some View {
         Group {
-            if let name = ReferenceStyle.choiceImages[phrase.lowercased()] {
+            if let name = resource ?? ReferenceStyle.choiceImages[phrase.lowercased()] {
                 ReferenceStyle.image(name).resizable().scaledToFit().frame(width: 143, height: 160)
             } else { ZStack {
             Circle().fill(colors[0].opacity(0.1)).frame(width: 110, height: 110)

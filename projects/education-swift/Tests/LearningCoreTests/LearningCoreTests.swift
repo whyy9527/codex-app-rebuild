@@ -128,6 +128,39 @@ func observedInterludes() throws {
     try check(seen == ["Cool! 5 in a row!", "Nice! Practice always pays off."], "Observed interludes missing or repeated")
     print("PASS observed interludes block hidden input and resume without losing a question; other trajectories unverified")
 }
+func actualEnglishTrajectory() throws {
+    let source = try course(fixture: "fixture-reference-en-zh-v1.json")
+    try check(source.speechLanguage == "en" && source.interfaceLanguage == "zh", "Real course language metadata lost")
+    try check(source.questions.count == 15, "Actual English question count changed")
+    let listening = source.questions.filter { $0.sourceType == "listenTap" }
+    let dialogues = source.questions.filter { $0.sourceType == "dialogue" }
+    try check(listening.count == 2 && listening.allSatisfy { $0.audioResource != nil && $0.slowAudioResource != nil }, "Observed listening clips missing")
+    try check(dialogues.count == 2 && dialogues.allSatisfy { $0.dialogueAvatars?.count == 2 && $0.hint != nil && $0.audioResource != nil }, "Dialogue presentation data missing")
+    try check(source.questions[0].options.allSatisfy { $0.imageResource != nil }, "Per-option source artwork lost")
+    var lesson = Lesson(course: source)
+    let first = lesson.question.id
+    lesson.choose(lesson.question.options.first { $0.text == "sugar" }!.id); lesson.submit()
+    try check(lesson.hearts == 4 && lesson.feedback == false, "Observed first mistake must consume one heart")
+    lesson.advance()
+    var accepted = 0
+    while !lesson.reviewing && !lesson.complete {
+        switch lesson.question.kind {
+        case .choice: lesson.choose(lesson.question.answer); lesson.submit()
+        case .wordTiles:
+            for id in lesson.question.answerWords { lesson.addWord(id) }; lesson.submit()
+        case .matching:
+            for pair in lesson.question.pairs { lesson.matchLeft(pair.id); lesson.matchRight(pair.id) }
+        }
+        try check(lesson.feedback == true, "Observed English answer rejected")
+        accepted += 1; lesson.advance()
+    }
+    try check(accepted == 14 && lesson.reviewing && lesson.question.id == first && !lesson.complete, "Actual mistake review trajectory lost")
+    lesson.choose(lesson.question.answer); lesson.submit(); lesson.advance()
+    try check(lesson.complete && lesson.hearts == 4, "Correct retry must complete without restoring lost heart")
+    let roundTrip = try JSONDecoder().decode(Course.self, from: JSONEncoder().encode(source))
+    try check(roundTrip == source, "English presentation metadata failed Codable round-trip")
+    print("PASS actual en/zh 15-question wrong-first/review trajectory and presentation metadata; frontend equivalence pending")
+}
 func legacyCourse() throws -> Course { try course() }
 do {
     try mistakeReview()
@@ -136,7 +169,8 @@ do {
     try matching()
     try unlocksAndLegacy()
     try observedInterludes()
-    print("6 business checks passed; core layer only")
+    try actualEnglishTrajectory()
+    print("7 business checks passed; core layer only")
 } catch {
     FileHandle.standardError.write(Data(("FAIL " + String(describing: error) + "\n").utf8))
     exit(1)

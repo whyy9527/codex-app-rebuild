@@ -211,11 +211,13 @@ if CommandLine.arguments.contains("--walk-course") {
             let nodeIndex = path?.firstIndex { ($0["lessonIDs"] as? [String])?.contains(definition["id"] as! String) == true } ?? lessonIndex
             try press(nodeIndex == 0 ? "start-lesson" : "start-lesson-\(nodeIndex)")
             let questions = definition["questions"] as! [[String: Any]]
+            let wrongFirst = CommandLine.arguments.contains("--english-first-wrong") && course["interfaceLanguage"] as? String == "zh" && lessonIndex == 0
             for question in questions {
                 try waitFor("question-title", value: question["prompt"] as? String)
                 let key = question["id"] as! String
                 states[key] = observe()
-                if let kind = question["kind"] as? String, capturedKinds.insert(kind).inserted { try capture("question-" + kind) }
+                if let kind = (question["sourceType"] ?? question["kind"]) as? String, capturedKinds.insert(kind).inserted { try capture("question-" + kind) }
+                if course["interfaceLanguage"] as? String == "zh" { try capture(key + "-before") }
                 switch question["kind"] as? String {
                 case "matching":
                     for pair in question["pairs"] as! [[String: Any]] {
@@ -226,16 +228,29 @@ if CommandLine.arguments.contains("--walk-course") {
                     for word in question["answer_words"] as! [String] { try press("word-bank-" + word) }
                     try press("check")
                 default:
-                    try press("option-" + (question["answer"] as! String)); try press("check")
+                    if wrongFirst && question["id"] as? String == "en-zh-q0" {
+                        let options = question["options"] as! [[String: Any]]
+                        let wrong = options.first { $0["text"] as? String == "sugar" }!["id"] as! String
+                        try press("option-" + wrong)
+                    } else { try press("option-" + (question["answer"] as! String)) }
+                    try press("check")
                 }
                 try waitFor("continue")
                 states[key + "-feedback"] = observe()
+                if course["interfaceLanguage"] as? String == "zh" { try capture(key + "-feedback") }
                 try press("continue")
                 if let interludes = definition["interludes"] as? [[String: String]], let interlude = interludes.first(where: { $0["afterQuestionID"] == key }) {
                     try waitFor("lesson-interlude", value: interlude["id"])
                     states[interlude["id"]!] = observe(); try capture(interlude["id"]! + "-window")
                     try press("interlude-continue")
                 }
+            }
+            if wrongFirst {
+                let first = questions[0]
+                try waitFor("question-title", value: first["prompt"] as? String)
+                states["en-zh-review-question"] = observe(); try capture("en-zh-review-question")
+                try press("option-" + (first["answer"] as! String)); try press("check"); try waitFor("continue")
+                states["en-zh-review-feedback"] = observe(); try capture("en-zh-review-feedback"); try press("continue")
             }
             try waitFor("lesson-complete")
             states["lesson-\(lessonIndex + 1)-complete"] = observe()

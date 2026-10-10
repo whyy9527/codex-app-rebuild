@@ -1,6 +1,6 @@
 # LingoSeed · Swift 教育基座
 
-可运行的 macOS SwiftUI 客户端。当前默认读取从原版匿名西语课实际观察编译的两节课、共24题，使用原版公开加载的字体、主页图形和选择题图片。第三节课及后续分支继续探索；已有数据不是复刻范围上限。旧 Everyday English 夹具保留用于冻结业务回归。实现课程路径与顺序解锁、选择题、配对、拼句与撤回、反馈、错题重练、结算和持久进度。冻结 v2 的12条共享场景已在网页参考和实际原生 UI 两侧通过；本轮产品修正的逐项证据见文末，行为测试本身仍不代表全部产品要求。
+可运行的 macOS SwiftUI 客户端。当前默认接入原版中文母语→英语首课15题，逐选项图片及语音均来自实际参考。支持听力拼词、对话、选择、翻译、配对、错题重练；主页、鼓励/红心教学、完整完成链、布局和实际声音仍未对齐。西语v6及原始夹具保留历史回归；局部业务通过不等于产品复刻完成。
 
 ## 构建、运行与重置
 
@@ -8,13 +8,13 @@
 
 ```sh
 swift build --package-path projects/education-swift --product LingoSeed
-projects/education-swift/.build/debug/LingoSeed --fixture projects/duolingo-web/fixture-reference-v4.json --progress artifacts/lingoseed-demo-v4/progress.json
+projects/education-swift/.build/debug/LingoSeed --fixture projects/duolingo-web/fixture-reference-en-zh-v1.json --progress artifacts/lingoseed-english-demo/progress.json
 swift run --package-path projects/education-swift LearningCoreChecks
 ```
 
-换一个尚不存在的 `--progress` 文件即可建立独立初态。普通运行默认保存到用户 Application Support 下 `LingoSeed/progress.json`，不要将普通用户进度用作验收夹具。原生适配器始终使用临时题库/进度，关闭并清理自己启动的进程；reload 重开同一临时进度文件。
+换一个尚不存在的 `--progress` 文件即可建立独立初态。普通运行默认保存到用户 Application Support 下 `LingoSeed/<fixture-name>/progress.json`，不同夹具不共享默认进度，不要将普通用户进度用作验收夹具。原生适配器始终使用临时题库/进度，关闭并清理自己启动的进程；reload 重开同一临时进度文件。
 
-本机缺少 XCTest / Swift Testing 模块；核心检查采用非零失败的 `LearningCoreChecks` 可执行入口。五项检查覆盖空答案与错题重练、存储往返、拼句/撤回/锁定、配对、课时解锁及旧数据兼容。它们不能替代原生 UI E2E。
+本机缺少 XCTest / Swift Testing 模块；核心检查采用非零失败的 `LearningCoreChecks` 可执行入口。七项检查覆盖实际英语轨迹、题间状态、空答案与错题重练、存储往返、拼句/撤回/锁定、配对、课时解锁及旧数据兼容。它们不能替代原生 UI E2E。
 
 ## 职责与扩展
 
@@ -92,3 +92,17 @@ Swift仍缺原版题间鼓励、评分/连续学习/Legendary/注册提示及完
 当前默认历史夹具为`fixture-reference-v6.json`：原版角色、两处题间状态和完整实测Guidebook内容已加入。`ReferenceGuidebook`替换通用介绍弹窗，逐句播放六个源语音文件。6项核心检查、37题实际原生回放通过；Guidebook还有1.03125点的图标y差、完整视觉/声音和其它行为缺口，不能视为1:1。
 
 用户建议英语学科后，当前目标转为中文母语学习英语。默认候选尚未切换，正在采真实英语课；旧原创英语夹具只保留历史兼容，不是原版英语复刻。详见[v6证据和运行命令](../duolingo-web/evidence/exploration-v6/README.md)。
+
+
+### 真实英语首课接入
+
+默认启动已读取`fixture-reference-en-zh-v1.json`，不是旧原创英语题库。15题由实际API公开内容及UI确认的顺序/反馈编译；首题答案在实际错题重练中接受。明确资源关联替代词语全局猜测，保留normal/slow听力源剪辑及双人对话头像/问句。34个公共源资源（21音频、13SVG及对应PNG）有URL和SHA256清单；资源传输、播放调用不代表实际声音输出一致。
+
+```sh
+python3 projects/duolingo-web/compile-english-course.py
+swift build --package-path projects/education-swift
+swift run --package-path projects/education-swift LearningCoreChecks
+projects/education-swift/.build/debug/LingoSeed --fixture projects/duolingo-web/fixture-reference-en-zh-v1.json --progress artifacts/my-english-preview/progress.json
+```
+
+7项核心检查通过，原生UI全对/首题答错两条轨迹均执行到结算；标题15通过，59待覆盖；28对源/原生归一化截图均有差异。普通默认启动也单独验证英语标题。原生仍缺原版红心教学、鼓励和完整完成链；英语主页及Guidebook尚未迁移，当前Guidebook还是历史西语。不可称1:1或声学验收完成。[证据与复跑](../duolingo-web/evidence/english-native-v1/README.md)。
