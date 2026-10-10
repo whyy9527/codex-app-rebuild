@@ -15,6 +15,7 @@ struct ReferenceHome: View {
     @State private var moreHovered = false
     @State private var menuHovered = false
     private var completed: Int { model.progress.completedCount(model.course) }
+    private var homeSnapshot: HomeProgressSnapshot? { model.course.home?.progressSnapshots?.first { $0.completedLessons == completed } }
     private let green = ReferenceStyle.green
     private let blue = ReferenceStyle.blue
     var body: some View {
@@ -147,7 +148,7 @@ struct ReferenceHome: View {
                 VStack(alignment: .leading, spacing: 5) {
                     Text(model.course.title).font(ReferenceStyle.font(19, bold: true))
                     Text("第 \(nodeDone + 1)/\(total) 单元").font(ReferenceStyle.font(17))
-                    Button("开始 +10 经验") { if let next { lessonPopover = false; model.begin(next) } }
+                    Button(next.flatMap { model.course.lessons[$0].entry } != nil ? "开始 +20 经验" : "开始 +10 经验") { if let next { lessonPopover = false; model.begin(next) } }
                         .buttonStyle(SeedButtonStyle(fill: .white, foreground: green)).frame(maxWidth: .infinity).padding(.top, 14)
                         .disabled(next == nil).accessibilityIdentifier("start-lesson-confirm")
                 }.foregroundStyle(.white).padding(16).frame(width: 294).background(green, in: RoundedRectangle(cornerRadius: 15)).offset(y: 134)
@@ -190,14 +191,20 @@ struct ReferenceHome: View {
             HStack {
                 stat(model.course.home?.flagResource ?? "flag-spanish", chinese ? "5" : "1", color: ReferenceStyle.ink, width: 31)
                 Spacer(); stat("streak", completed > 0 ? "1" : "0", color: .orange, width: 23)
-                Spacer(); stat("gems", "\(500 + completed * 5)", color: blue, width: 22)
+                Spacer(); stat("gems", "\(homeSnapshot?.gems ?? (500 + completed * 5))", color: blue, width: 22)
                 Spacer(); stat("hearts", "\(model.progress.hearts)", color: .red, width: 28)
             }.padding(.horizontal, 12).padding(.bottom, 16)
             card {
-                Text(copy("Unlock Leaderboards!", "来解锁排行榜吧！")).font(ReferenceStyle.font(19, bold: true))
+                HStack {
+                    Text(homeSnapshot?.leagueTitle ?? copy("Unlock Leaderboards!", "来解锁排行榜吧！")).font(ReferenceStyle.font(19, bold: true))
+                    if let link = homeSnapshot?.leagueLink { Spacer(); Button(link) { model.destination = "Leaderboards" }.buttonStyle(.plain).font(ReferenceStyle.font(15, bold: true)).foregroundStyle(blue).accessibilityIdentifier("view-leaderboards") }
+                }
                 HStack(spacing: 20) {
-                    ReferenceStyle.image("league-locked").resizable().scaledToFit().frame(width: 70, height: 50)
-                    Text(copy("Complete \(max(0, 3 - completed)) more lessons to start competing", "再学 \(max(0, 3 - completed)) 个单元，就能参加排行榜挑战了")).font(ReferenceStyle.font(17)).foregroundStyle(Color(white: 119/255)).lineSpacing(4)
+                    ReferenceStyle.image(homeSnapshot?.leagueResource ?? "league-locked").resizable().scaledToFit().frame(width: 70, height: 50)
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text(homeSnapshot?.leagueMessage ?? copy("Complete \(max(0, 3 - completed)) more lessons to start competing", "再学 \(max(0, 3 - completed)) 个单元，就能参加排行榜挑战了")).font(ReferenceStyle.font(17)).foregroundStyle(Color(white: 119/255)).lineSpacing(4)
+                        if let countdown = homeSnapshot?.leagueCountdown { Text(countdown).font(ReferenceStyle.font(15)).foregroundStyle(Color(white: 175/255)) }
+                    }
                 }.padding(.top, 12)
             }.frame(height: 150)
             card {

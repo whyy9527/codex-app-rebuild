@@ -8,6 +8,7 @@ import LearningCore
     var progress: LearningProgress
     var lesson: Lesson?
     var confirmingExit = false
+    var entryPending = false
     var error: String?
     var destination = "Learn"
     var preferences = LearningPreferences()
@@ -77,11 +78,13 @@ import LearningCore
         guard progress.isUnlocked(course, index: index) else { return }
         lesson = Lesson(course: course, lessonIndex: index, hearts: progress.hearts)
         confirmingExit = false
+        entryPending = course.lessons[index].entry != nil
         audio.play(.tap)
         playAutomaticPrompt()
     }
+    func acceptEntry() { entryPending = false; playAutomaticPrompt() }
     private func playAutomaticPrompt() {
-        guard let question = lesson?.question, ["translate", "listenTap", "dialogue", "orderTapComplete"].contains(question.sourceType ?? ""),
+        guard !entryPending, lesson?.interlude == nil, let question = lesson?.question, ["translate", "listenTap", "dialogue", "orderTapComplete"].contains(question.sourceType ?? ""),
               course.interfaceLanguage != "zh" || question.audioResource != nil else { return }
         playQuestion()
     }
@@ -97,8 +100,9 @@ import LearningCore
     func advance() {
         guard lesson?.feedback != nil || lesson?.interlude != nil else { return }
         let previousQuestion = lesson?.question.id
+        let wasInterlude = lesson?.interlude != nil
         lesson?.advance()
-        if let lesson, !lesson.complete, lesson.interlude == nil, lesson.question.id != previousQuestion { playAutomaticPrompt() }
+        if let lesson, !lesson.complete, lesson.interlude == nil, (wasInterlude || lesson.question.id != previousQuestion) { playAutomaticPrompt() }
         if let lesson, lesson.complete {
             audio.play(.complete)
             progress.markCompleted(course, index: lesson.lessonIndex)
@@ -109,5 +113,5 @@ import LearningCore
         do { try store.save(progress); error = nil }
         catch { self.error = "Progress could not be saved. Please try again." }
     }
-    func discardAttempt() { lesson = nil; confirmingExit = false }
+    func discardAttempt() { lesson = nil; confirmingExit = false; entryPending = false }
 }

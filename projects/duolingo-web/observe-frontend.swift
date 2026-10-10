@@ -233,6 +233,16 @@ if CommandLine.arguments.contains("--walk-course") {
                 }
                 try press("start-lesson-confirm")
             }
+            if let entry = definition["entry"] as? [String: String] {
+                try waitFor("lesson-entry", value: entry["id"])
+                states[entry["id"]!] = observe(); try capture(entry["id"]! + "-window")
+                try press("lesson-entry-start")
+            }
+            if let initial = definition["initialInterlude"] as? [String: String] {
+                try waitFor("lesson-interlude", value: initial["id"])
+                states[initial["id"]!] = observe(); try capture(initial["id"]! + "-window")
+                try press("interlude-continue")
+            }
             let questions = definition["questions"] as! [[String: Any]]
             let wrongFirst = CommandLine.arguments.contains("--english-first-wrong") && course["interfaceLanguage"] as? String == "zh" && lessonIndex == 0
             for question in questions {
@@ -302,9 +312,11 @@ if CommandLine.arguments.contains("--walk-course") {
             }
             try waitFor("lesson-complete")
             states["lesson-\(lessonIndex + 1)-complete"] = observe()
+            if course["interfaceLanguage"] as? String == "zh" { states["en-zh-l\(lessonIndex + 1)-complete"] = observe() }
             try press("return-path")
             try waitFor("course-entry")
             states["home-after-lesson-\(lessonIndex + 1)"] = observe()
+            try capture("home-after-lesson-\(lessonIndex + 1)-window")
             if lessonIndex == 0 && course["interfaceLanguage"] as? String == "zh" {
                 // The frozen English home reference follows the first lesson.
                 // Keep initial facts; compare the same state from this run.

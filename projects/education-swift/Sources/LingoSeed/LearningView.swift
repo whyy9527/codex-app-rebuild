@@ -132,7 +132,19 @@ struct LearningView: View {
             model.begin(next)
         }.buttonStyle(SeedButtonStyle(fill: accent)).accessibilityIdentifier("destination-practice")
     }
-    private func lessonPage(_ lesson: Lesson) -> some View {
+    @ViewBuilder private func lessonPage(_ lesson: Lesson) -> some View {
+        if model.entryPending, let entry = lesson.definition.entry {
+            VStack(spacing: 32) {
+                Spacer()
+                Text(entry.title).font(ReferenceStyle.font(28, bold: true)).multilineTextAlignment(.center).frame(maxWidth: 560).accessibilityIdentifier("lesson-entry").accessibilityValue(entry.id)
+                Spacer()
+                HStack {
+                    Button(entry.declineLabel) { model.discardAttempt() }.buttonStyle(ReferenceButton(color: .gray)).accessibilityIdentifier("lesson-entry-decline")
+                    Spacer()
+                    Button(entry.startLabel) { model.acceptEntry() }.buttonStyle(ReferenceButton()).accessibilityIdentifier("lesson-entry-start")
+                }.padding(40)
+            }
+        } else {
         VStack(spacing: 0) {
             HStack(spacing: 24) {
                 if !lesson.complete { Button { model.confirmingExit = true } label: { Image(systemName: "xmark").font(.title2.bold()).foregroundStyle(.gray) }.buttonStyle(.plain).accessibilityIdentifier("quit") }
@@ -161,6 +173,7 @@ struct LearningView: View {
             } else if !lesson.complete { answerBar(lesson) }
         }
         .sheet(isPresented: $model.confirmingExit) { exitConfirmation }
+        }
     }
     private func answerBar(_ lesson: Lesson) -> some View {
         HStack(spacing: 30) {

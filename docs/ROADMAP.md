@@ -125,3 +125,8 @@ Swift默认已切真实en/zh首课15题，保留每题sourceType、逐选项图�
 ### 英语第四课：探索模具修复与新结算链
 
 实际完成原版第四课12题，并发现挑战入口、复习说明、难题说明、英语分数、双倍经验奖励及传奇邀请。听力转录不可见造成的身份误判已用当前显式播放回执修正，文字题核对未放宽。保留失败、原版截图和角色idle/correct/incorrect动画来源。v5共519项：当前三课候选221pass、4fail、294not_run，整体fail；4个明确失败是三课后主页青铜/宝石差异。Swift第四课、视觉/声学等价和RSI探索机制消融尚待完成。见[第四课证据](../projects/duolingo-web/evidence/english-fourth-v1/README.md)。Goal保持active。
+
+
+### 英语第四课原生接入
+
+默认v4为57题，挑战入口/两处说明进入状态机；实际四课从空进度完成，核心10项通过。三课后主页505/青铜卡片修正，70个公开英语语音随Git交付。前端v5为303pass/8fail/208not_run，第四课24对截图全部不同；下一批直接修第四课完整结算与完成路径，再处理源动画、几何和实际声音。RSI消融未开展，完整Goal保持active。[实际证据](../projects/duolingo-web/evidence/english-fourth-native-v1/README.md)。

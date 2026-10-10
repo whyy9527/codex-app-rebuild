@@ -94,16 +94,33 @@ public struct LessonInterlude: Codable, Equatable, Sendable, Identifiable {
     public let afterQuestionID: String
     public let text: String
 }
+public struct LessonEntry: Codable, Equatable, Sendable, Identifiable {
+    public let id: String
+    public let title: String
+    public let startLabel: String
+    public let declineLabel: String
+}
 public struct LessonDefinition: Codable, Equatable, Sendable, Identifiable {
     public let id: String
     public let title: String
     public let questions: [Question]
     public let interludes: [LessonInterlude]?
+    public let initialInterlude: LessonInterlude?
+    public let entry: LessonEntry?
 }
 public struct CoursePathNode: Codable, Equatable, Sendable {
     public let kind: String
     public let lessonIDs: [String]
     public let lessonCount: Int?
+}
+public struct HomeProgressSnapshot: Codable, Equatable, Sendable {
+    public let completedLessons: Int
+    public let gems: Int
+    public let leagueTitle: String?
+    public let leagueLink: String?
+    public let leagueMessage: String?
+    public let leagueCountdown: String?
+    public let leagueResource: String?
 }
 public struct HomePresentation: Codable, Equatable, Sendable {
     public let sectionTitle: String
@@ -112,6 +129,7 @@ public struct HomePresentation: Codable, Equatable, Sendable {
     public let nextSectionTitle: String
     public let flagResource: String
     public let pronunciationResource: String
+    public let progressSnapshots: [HomeProgressSnapshot]?
 }
 public struct Course: Codable, Equatable, Sendable, Identifiable {
     public let id: String
@@ -138,7 +156,7 @@ public struct Course: Codable, Equatable, Sendable, Identifiable {
             lessons = definitions
             usesLegacyQuestions = false
         } else {
-            lessons = [LessonDefinition(id: "intro", title: title, questions: try c.decode([Question].self, forKey: .questions), interludes: nil)]
+            lessons = [LessonDefinition(id: "intro", title: title, questions: try c.decode([Question].self, forKey: .questions), interludes: nil, initialInterlude: nil, entry: nil)]
             usesLegacyQuestions = true
         }
     }
@@ -196,6 +214,7 @@ public struct Lesson: Equatable, Sendable {
     public init(course: Course, lessonIndex: Int = 0, hearts: Int = 5) {
         precondition(course.lessons.indices.contains(lessonIndex) && hearts >= 0)
         self.course = course; self.lessonIndex = lessonIndex; self.hearts = hearts
+        self.interlude = course.lessons[lessonIndex].initialInterlude
     }
     public mutating func choose(_ id: String) {
         guard question.kind == .choice, feedback == nil, !complete, interlude == nil, question.options.contains(where: { $0.id == id }) else { return }

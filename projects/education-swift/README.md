@@ -1,6 +1,6 @@
 # LingoSeed · Swift 教育基座
 
-可运行的 macOS SwiftUI 客户端。当前默认接入原版中文母语→英语首课15题，逐选项图片及语音均来自实际参考。支持听力拼词、对话、选择、翻译、配对、错题重练；主页、鼓励/红心教学、完整完成链、布局和实际声音仍未对齐。西语v6及原始夹具保留历史回归；局部业务通过不等于产品复刻完成。
+可运行的 macOS SwiftUI 客户端。当前默认接入原版中文母语→英语四课57题（15/15/15/12），逐选项图片及语音均来自实际参考。支持听力拼词、对话、选择、翻译、配对、错题重练；主页、鼓励/红心教学、完整完成链、布局和实际声音仍未对齐。西语v6及原始夹具保留历史回归；局部业务通过不等于产品复刻完成。
 
 ## 构建、运行与重置
 
@@ -8,7 +8,7 @@
 
 ```sh
 swift build --package-path projects/education-swift --product LingoSeed
-projects/education-swift/.build/debug/LingoSeed --fixture projects/duolingo-web/fixture-reference-en-zh-v3.json --progress artifacts/lingoseed-english-demo/progress.json
+projects/education-swift/.build/debug/LingoSeed --fixture projects/duolingo-web/fixture-reference-en-zh-v4.json --progress artifacts/lingoseed-english-demo/progress.json
 swift run --package-path projects/education-swift LearningCoreChecks
 ```
 
@@ -121,3 +121,8 @@ projects/education-swift/.build/debug/LingoSeed --fixture projects/duolingo-web/
 ### 当前默认：英语第三课
 
 默认`fixture-reference-en-zh-v3.json`为三课各15道实际题，支持重复词块独立选择/撤回。9项核心及原生完整三课回放通过；前端221通过、151未覆盖整体fail，第三课30对截图均有差异。完成三课不再错误标记未编译路径全部完成。旧v1/v2与先前失败保留。[实测、限制与命令](../duolingo-web/evidence/english-third-native-v1/README.md)。
+
+
+### 真实英语第四课与公开语音交付
+
+默认v4接入12题挑战、独立入口及开场/难题说明；四课原生从空进度走完，核心10项通过，统一前端303pass/8fail/208not_run，产品仍fail。主页三课后宝石505及青铜卡片已修正，70条公共源语音随默认应用资源纳入Git；结算链、下一节点、视觉及实际声音等价仍未完成。详见[本批验证与复跑](../duolingo-web/evidence/english-fourth-native-v1/README.md)。

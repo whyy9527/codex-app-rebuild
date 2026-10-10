@@ -1,0 +1,24 @@
+{
+  "build": "swift build --package-path projects/education-swift --product LingoSeed passed",
+  "core": "10 checks passed, core only",
+  "native": "Owned full four-lesson AX course walk, first lesson wrong/review and duplicate undo; walk_error null",
+  "frontend_counts": {
+    "pass": 303,
+    "fail": 8,
+    "not_run": 208,
+    "unavailable": 0
+  },
+  "resources": {
+    "public_count": 92,
+    "speech_count": 70,
+    "hashes_verified": true,
+    "built_bundle_speech_hashes_verified": 70
+  },
+  "fixture_sha256": "afc8046f9fa724469fd822f82dd7fb6bd93c20e77a026297bb9733d88fb6bcdf",
+  "limitations": [
+    "Fourth completion chain and next-node home remain wrong/unimplemented; no product completion claim",
+    "All 24 fourth question screenshots differ",
+    "Audio transfer/availability is verified; acoustic application/source equivalence is not",
+    "Streak and countdown are not generalized by frozen home snapshots"
+  ]
+}

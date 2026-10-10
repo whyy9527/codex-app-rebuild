@@ -243,6 +243,37 @@ func actualEnglishThirdTrajectory() throws {
     try check(roundTrip == source, "Third-course occurrence identities lost during round-trip")
     print("PASS actual third lesson, duplicate-tile independence/undo/multiplicity/equivalent sequence, three interludes and unlock; full source grader unverified")
 }
+func actualEnglishFourthTrajectory() throws {
+    let source = try course(fixture: "fixture-reference-en-zh-v4.json")
+    try check(source.lessons.map { $0.questions.count } == [15,15,15,12], "Fourth source length replaced with assumed 15 questions")
+    try check(source.lessons[3].entry?.startLabel == "开始挑战 +20 经验", "Observed challenge entry lost")
+    var progress = LearningProgress()
+    for index in 0..<3 { progress.markCompleted(source, index: index) }
+    try check(progress.isUnlocked(source, index: 3), "Fourth unavailable after actual first three")
+    var lesson = Lesson(course: source, lessonIndex: 3, hearts: 4)
+    try check(lesson.interlude?.id == "en-zh-l4-review-intro" && !lesson.canSubmit, "Initial review intro skipped")
+    lesson.choose(lesson.question.answer)
+    try check(lesson.selected == nil, "Hidden question accepted input during introduction")
+    var count = 0; var interludes = [String]()
+    while !lesson.complete {
+        if let interlude = lesson.interlude { interludes.append(interlude.id); lesson.advance(); continue }
+        switch lesson.question.kind {
+        case .choice: lesson.choose(lesson.question.answer)
+        case .wordTiles: for id in lesson.question.answerWords { lesson.addWord(id) }
+        case .matching: throw CheckFailure.failed("Fourth actual trajectory has no matching task")
+        }
+        lesson.submit(); try check(lesson.feedback == true, "Actual accepted fourth answer rejected")
+        count += 1; lesson.advance()
+    }
+    try check(count == 12 && lesson.hearts == 4 && interludes == ["en-zh-l4-review-intro", "en-zh-l4-hard-intro"], "Fourth trajectory or introduction ordering changed")
+    progress.markCompleted(source, index: 3)
+    try check(!progress.completedCourses.contains(source.id), "Uncompiled next path falsely credited")
+    let afterThird = source.home?.progressSnapshots?.first { $0.completedLessons == 3 }
+    try check(afterThird?.gems == 505 && afterThird?.leagueTitle == "青铜等级", "Observed home snapshot lost")
+    let roundTrip = try JSONDecoder().decode(Course.self, from: JSONEncoder().encode(source))
+    try check(roundTrip == source, "Fourth presentation round-trip failed")
+    print("PASS actual fourth 12-question trajectory, initial input boundary, hard interlude, home snapshot and partial path credit; frontend pending")
+}
 func legacyCourse() throws -> Course { try course() }
 do {
     try mistakeReview()
@@ -254,7 +285,8 @@ do {
     try actualEnglishTrajectory()
     try actualEnglishSecondTrajectory()
     try actualEnglishThirdTrajectory()
-    print("9 business checks passed; core layer only")
+    try actualEnglishFourthTrajectory()
+    print("10 business checks passed; core layer only")
 } catch {
     FileHandle.standardError.write(Data(("FAIL " + String(describing: error) + "\n").utf8))
     exit(1)
