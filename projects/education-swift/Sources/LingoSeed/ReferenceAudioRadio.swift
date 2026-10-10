@@ -10,6 +10,7 @@ struct ReferenceAudioRadio: NSViewRepresentable {
     let selected: Bool
     let enabled: Bool
     let action: () -> Void
+    var textChoice = false
 
     final class Coordinator: NSObject {
         var action: () -> Void
@@ -29,7 +30,7 @@ struct ReferenceAudioRadio: NSViewRepresentable {
             guard let window else { return super.accessibilityFrame() }
             return window.convertToScreen(convert(bounds, to: nil))
         }
-        override var intrinsicContentSize: NSSize { NSSize(width: 600, height: 62) }
+        override var intrinsicContentSize: NSSize { NSSize(width: NSView.noIntrinsicMetric, height: 62) }
         // Native radio cell owns input/accessibility; the observed web face is custom.
         override func draw(_ dirtyRect: NSRect) {}
     }
@@ -75,7 +76,18 @@ struct ReferenceAudioRadio: NSViewRepresentable {
     private var edge: Color { accepted ? Color(.sRGB, red: 165/255, green: 237/255, blue: 110/255) : selected ? ReferenceStyle.blue : ReferenceStyle.border }
     private var ink: Color { accepted ? Color(.sRGB, red: 88/255, green: 167/255, blue: 0) : ReferenceStyle.blue }
     private var fill: Color { accepted ? Color(.sRGB, red: 215/255, green: 1, blue: 184/255) : selected ? Color.cyan.opacity(0.1) : .white }
-    private var face: some View {
+    @ViewBuilder private var face: some View {
+        if textChoice { textFace } else { audioFace }
+    }
+    private var textFace: some View {
+        ZStack(alignment: .leading) {
+            Text(String(label.prefix(1))).font(ReferenceStyle.font(14, bold: true)).foregroundStyle(ReferenceStyle.disclosureInk)
+                .frame(width: 28, height: 28).overlay(RoundedRectangle(cornerRadius: 6).strokeBorder(edge, lineWidth: 2)).padding(.leading, 18)
+            Text(String(label.dropFirst(2))).font(ReferenceStyle.font(19)).foregroundStyle(selected ? ink : ReferenceStyle.ink).frame(maxWidth: .infinity)
+        }.frame(height: 56).background(RoundedRectangle(cornerRadius: 12).fill(fill).shadow(color: edge, radius: 0, y: 4))
+            .overlay(RoundedRectangle(cornerRadius: 12).strokeBorder(edge, lineWidth: 2)).frame(height: 60, alignment: .top)
+    }
+    private var audioFace: some View {
         ZStack(alignment: .leading) {
             Text(label).font(ReferenceStyle.font(14, bold: true))
                 .foregroundStyle(accepted ? ink : ReferenceStyle.disclosureInk)

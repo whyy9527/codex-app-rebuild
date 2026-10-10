@@ -12,7 +12,8 @@ struct LearningView: View {
         GeometryReader { geometry in
             VStack(spacing: 0) {
                 if let lesson = model.lesson {
-                    lessonPage(lesson)
+                    if model.isPronunciationPractice { ReferencePronunciationPractice(model: model, lesson: lesson) }
+                    else { lessonPage(lesson) }
                 } else if ["Learn", "Settings", "Guidebook", "Pronunciation"].contains(model.destination) {
                     ReferenceHome(model: model)
                 } else {

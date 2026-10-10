@@ -23,7 +23,7 @@ struct ReferencePronunciation: View {
                 .frame(maxWidth: .infinity).frame(height: 51.1953125)
             Text("磨耳朵，练就地道英语发音").font(ReferenceStyle.font(19))
                 .foregroundStyle(ReferenceStyle.secondaryInk).frame(height: 26.59375).padding(.top, 10)
-            Button { model.destination = "PronunciationExercise" } label: {
+            Button { model.beginPronunciation() } label: {
                 Text("开始 +10 经验").font(ReferenceStyle.font(15, bold: true))
                     .foregroundStyle(.white).frame(width: 264, height: 44)
                     .background(ReferenceStyle.blue, in: RoundedRectangle(cornerRadius: 16))

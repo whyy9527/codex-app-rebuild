@@ -24,6 +24,7 @@ public struct ListeningDecline: Codable, Equatable, Sendable {
     public let body: String
 }
 public struct Question: Codable, Equatable, Sendable, Identifiable {
+    public let practiceAudioResources: [String]?
     public let id: String
     public let kind: QuestionKind
     public let prompt: String
@@ -57,13 +58,14 @@ public struct Question: Codable, Equatable, Sendable, Identifiable {
     public let skipCorrectText: String?
     public let feedbackReportReasons: [String]?
     enum CodingKeys: String, CodingKey {
-        case feedbackHint, reviewWordOrder, skipLabel, skipCorrectText
+        case practiceAudioResources, feedbackHint, reviewWordOrder, skipLabel, skipCorrectText
         case keyboardAnswer, keyboardPrompt, correctFeedback, indicator, example, exampleAudioResource, completionPrefix, completionSuffix, listeningDecline, feedbackReportReasons
         case id, kind, prompt, options, answer, words, pairs, explanation, hint, newWord, rightOrder, audioResource, sourceLanguage, characterResource, sourceType, slowAudioResource, dialogueAvatars
         case answerWords = "answer_words"
     }
     public init(from decoder: Decoder) throws {
         let c = try decoder.container(keyedBy: CodingKeys.self)
+        practiceAudioResources = try c.decodeIfPresent([String].self, forKey: .practiceAudioResources)
         id = try c.decode(String.self, forKey: .id)
         kind = try c.decodeIfPresent(QuestionKind.self, forKey: .kind) ?? .choice
         prompt = try c.decode(String.self, forKey: .prompt)

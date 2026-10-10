@@ -1,0 +1,6 @@
+{
+  "stage": "practice did not start",
+  "error": "Course decoder rejects simultaneous lessons and legacy questions; compiler emitted both. Native original probe timed out waiting for question-prompt.",
+  "original_log_sha256": "0712e0da72d4d1dc2a4c326394fb49977252ed1cf221647b709a1a93dd42b9d6",
+  "repair": "Remove legacy questions, keep lessons, surface definition decode error instead of silently returning."
+}

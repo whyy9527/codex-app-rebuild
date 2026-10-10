@@ -4,9 +4,9 @@
 
 探索原产品，把用户可观察的业务与前端需求变成可独立运行的代码化模具，用历史反馈改进探索，再让 Codex 重建 App。仓库保持私有；改名不代表开源或发布。
 
-当前默认夹具为 `fixture-reference-en-zh-v9.json`：七课102道评分题，保留实际口语暂缓、听力暂缓、插入/替换题、独立输入偏好、跳过重练及结算路径。第七课15题与三页结算已原生走通，后续课程继续探索；不会把学完已编译课程标成整课程完成。
+当前默认夹具为 `fixture-reference-en-zh-v10.json`：七课102道评分题，保留实际口语暂缓、听力暂缓、插入/替换题、独立输入偏好、跳过重练及结算路径。第七课15题与三页结算已原生走通，后续课程继续探索；不会把学完已编译课程标成整课程完成。
 
-前端契约v17保留所有旧要求，共1511项，包含反馈补词、同色彩空间的截图像素及实际第八课退出/重进入口。新版从归档六课进度走完第七课81状态：353通过、33失败、1125未覆盖；两对整页仍不同。反馈补词与背景色通过，边框仍失败，第八课候选尚未集成。macOS ICC截图现转换到参考sRGB后比较，旧raw RGB失败保留。见[最新证据与复跑](projects/duolingo-web/evidence/english-radio-feedback-v1/README.md)；[旧构建七课连续回放](projects/duolingo-web/evidence/english-seventh-native-v1/README.md)单独保留。
+前端契约v19保留全部旧要求，共1638项。发音页及练习入口已接原生实现；实际52状态覆盖听辨、相同/不同、口语暂缓、配对、四错更正、稍后建档、返回和未答退出，新增练习44项通过、5项待验证。三组整图仍不同，正常口语、音标进度持久化、结算统计和声音等价未完成。见[最新证据与复跑](projects/duolingo-web/evidence/english-pronunciation-practice-v1/README.md)。[第七课旧构建回放](projects/duolingo-web/evidence/english-radio-feedback-v1/README.md)独立保留，未将其通过结果转移到当前构建。
 
 Bea/Lucy、Falstaff和正确Lin的源Rive已绑定；更多角色、气泡、主页引导、radio1声音和生命刷新仍未对齐。不能用核心通过、控件几何通过或源语音文件已下载宣称1:1完成。原始RSI论文、机制实验及无收益结果见[研究来源](docs/RESEARCH.md)，新的真实探索策略消融仍待执行。
 

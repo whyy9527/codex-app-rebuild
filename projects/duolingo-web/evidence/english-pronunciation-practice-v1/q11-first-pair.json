@@ -1,0 +1,82 @@
+{
+  "snapshot": "- button:\n  - img\n- progressbar\n- heading \"选择配对\" [level=1]\n- button \"1\" [disabled]:\n  - text: \"1\"\n  - img\n  - img\n  - img\n  - img\n- button \"2\":\n  - text: \"2\"\n  - img\n  - img\n  - img\n  - img\n- button \"3\":\n  - text: \"3\"\n  - img\n  - img\n  - img\n  - img\n- button \"4\":\n  - text: \"4\"\n  - img\n  - img\n  - img\n  - img\n- button \"5 deck\" [disabled]:\n  - text: 5 deck\n  - img\n  - img\n- button \"6 get\":\n  - text: 6 get\n  - img\n  - img\n- button \"7 got\":\n  - text: 7 got\n  - img\n  - img\n- button \"8 dock\":\n  - text: 8 dock\n  - img\n  - img\n- button \"跳过\"\n- button \"检查\" [disabled]",
+  "buttons": [
+    {
+      "label": "",
+      "disabled": false,
+      "ariaDisabled": null,
+      "test": "quit-button",
+      "class": "_1gEmM _7jW2t _3X5b9"
+    },
+    {
+      "label": "1",
+      "disabled": false,
+      "ariaDisabled": "true",
+      "test": "deck-challenge-tap-token",
+      "class": "_2wryV _3fmUm _2V6ug _1ursp _7jW2t notranslate _3ZtW_ _2O7Ua _3U5_i _1YHBP _3Ymqr"
+    },
+    {
+      "label": "2",
+      "disabled": false,
+      "ariaDisabled": "false",
+      "test": "dock-challenge-tap-token",
+      "class": "_3fmUm _2V6ug _1ursp _7jW2t notranslate _3ZtW_ _2O7Ua _3U5_i _1YHBP _3Ymqr"
+    },
+    {
+      "label": "3",
+      "disabled": false,
+      "ariaDisabled": "false",
+      "test": "got-challenge-tap-token",
+      "class": "_3fmUm _2V6ug _1ursp _7jW2t notranslate _3ZtW_ _2O7Ua _3U5_i _1YHBP _3Ymqr"
+    },
+    {
+      "label": "4",
+      "disabled": false,
+      "ariaDisabled": "false",
+      "test": "get-challenge-tap-token",
+      "class": "_3fmUm _2V6ug _1ursp _7jW2t notranslate _3ZtW_ _2O7Ua _3U5_i _1YHBP _3Ymqr"
+    },
+    {
+      "label": "5\ndeck",
+      "disabled": false,
+      "ariaDisabled": "true",
+      "test": "deck-challenge-tap-token",
+      "class": "_2wryV _3fmUm _2V6ug _1ursp _7jW2t notranslate _3ZtW_ _2O7Ua _3U5_i _1YHBP _3Ymqr"
+    },
+    {
+      "label": "6\nget",
+      "disabled": false,
+      "ariaDisabled": "false",
+      "test": "get-challenge-tap-token",
+      "class": "_3fmUm _2V6ug _1ursp _7jW2t notranslate _3ZtW_ _2O7Ua _3U5_i _1YHBP _3Ymqr"
+    },
+    {
+      "label": "7\ngot",
+      "disabled": false,
+      "ariaDisabled": "false",
+      "test": "got-challenge-tap-token",
+      "class": "_3fmUm _2V6ug _1ursp _7jW2t notranslate _3ZtW_ _2O7Ua _3U5_i _1YHBP _3Ymqr"
+    },
+    {
+      "label": "8\ndock",
+      "disabled": false,
+      "ariaDisabled": "false",
+      "test": "dock-challenge-tap-token",
+      "class": "_3fmUm _2V6ug _1ursp _7jW2t notranslate _3ZtW_ _2O7Ua _3U5_i _1YHBP _3Ymqr"
+    },
+    {
+      "label": "跳过",
+      "disabled": false,
+      "ariaDisabled": null,
+      "test": "player-skip",
+      "class": "_2V6ug _1ursp _7jW2t _2x7Co _3fo6Q"
+    },
+    {
+      "label": "检查",
+      "disabled": false,
+      "ariaDisabled": "true",
+      "test": "player-next",
+      "class": "_2wryV _1rcV8 _1VYyp _1ursp _7jW2t _3DbUj _38g3s _2oGJR"
+    }
+  ]
+}

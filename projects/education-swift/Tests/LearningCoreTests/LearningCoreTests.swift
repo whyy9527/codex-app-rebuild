@@ -538,6 +538,30 @@ func actualSeventhTrajectory() throws {
     print("PASS full observed seventh skip/normal listening/radio2/preferences/speech decline/insertion/review/settlement; heart refresh and unknown radio1 audio unverified")
 }
 
+func actualPronunciationPractice() throws {
+    let package = URL(fileURLWithPath: #filePath).deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent()
+    let url = package.appendingPathComponent("Sources/LingoSeed/Resources/Reference/pronunciation-practice.json")
+    let course = try JSONDecoder().decode(Course.self, from: Data(contentsOf: url))
+    var lesson = Lesson(course: course, lessonIndex: 0, hearts: 3)
+    var graded = 0, declined = 0, reviews = 0
+    for _ in 0..<40 {
+        if lesson.complete { break }
+        if lesson.deferredSpeech != nil { lesson.declineSpeech(); declined += 1; lesson.advance(); continue }
+        let question = lesson.question
+        if question.kind == .matching {
+            for pair in question.pairs { lesson.matchLeft(pair.id); lesson.matchRight(pair.id) }
+        } else {
+            if lesson.reviewing { reviews += 1 }
+            lesson.choose(lesson.reviewing ? question.answer : question.options[0].id)
+            lesson.submit()
+        }
+        try check(lesson.feedback != nil, "Observed pronunciation answer must grade")
+        graded += 1; lesson.advance()
+    }
+    try check(lesson.complete && declined == 1 && reviews == 4 && graded == 15, "Observed 10 choices, speech decline, matching and four reviews must finish")
+    print("PASS pronunciation original 12-state base trajectory and four corrections; main progress isolation verified separately through native UI")
+}
+
 do {
     try mistakeReview()
     try persistence()
@@ -560,7 +584,8 @@ do {
     try actualCrossQuestionPreferences()
     try actualSkipReview()
     try actualSeventhTrajectory()
-    print("21 business checks passed; core layer only")
+    try actualPronunciationPractice()
+    print("22 business checks passed; core layer only")
 } catch {
     FileHandle.standardError.write(Data(("FAIL " + String(describing: error) + "\n").utf8))
     exit(1)

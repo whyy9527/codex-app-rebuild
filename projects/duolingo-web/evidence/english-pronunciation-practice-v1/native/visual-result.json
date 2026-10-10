@@ -1,0 +1,98 @@
+{
+  "kind": "same-viewport-pixel-diagnostic",
+  "native_trajectory": "Actual initial pronunciation question and feedback; same source archived fixture and native viewport",
+  "viewport": [
+    1200,
+    732
+  ],
+  "normalization": "ICC to common sRGB; crop native titlebar using measured content rect, downsample2x with Lanczos; reference pixels unchanged",
+  "rows": [
+    {
+      "question": null,
+      "stage": "q0-before",
+      "source": "projects/duolingo-web/evidence/english-pronunciation-practice-v1/q0-before.png",
+      "native": "pronunciation-p0-before.png",
+      "source_sha256": "c383777447a28a3444cfec11bb36ff8d34d4b8fe89fde890a4fd62da28737e96",
+      "native_sha256": "19ea832debed2fc1f3765722f9781985528435b9276d13fa004ce82d739a04a4",
+      "color_management": {
+        "source": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        },
+        "native": {
+          "input_profile": "Display",
+          "input_profile_sha256": "b6869613f44ea83b13cbd15652a1071c6bd85a37a5517bcbe7d1db1bcdc58e6f",
+          "comparison_space": "sRGB"
+        }
+      },
+      "mean_absolute_rgb_difference": [
+        1.3628267304189436,
+        0.9240926684881603,
+        0.7271322859744991
+      ],
+      "status": "different"
+    },
+    {
+      "question": null,
+      "stage": "q0-feedback",
+      "source": "projects/duolingo-web/evidence/english-pronunciation-practice-v1/q0-feedback.png",
+      "native": "pronunciation-p0-feedback.png",
+      "source_sha256": "4e3c55f6c78a720268ce5979586262bf9625e894df3b50710cb5384cb0c7de22",
+      "native_sha256": "3609bab1e8c15c790f7a4cb5fe5e5375d05d43e382873d58e7b5c0ff7e664ac0",
+      "color_management": {
+        "source": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        },
+        "native": {
+          "input_profile": "Display",
+          "input_profile_sha256": "b6869613f44ea83b13cbd15652a1071c6bd85a37a5517bcbe7d1db1bcdc58e6f",
+          "comparison_space": "sRGB"
+        }
+      },
+      "mean_absolute_rgb_difference": [
+        2.762344034608379,
+        1.7016051912568306,
+        2.82808970856102
+      ],
+      "status": "different"
+    },
+    {
+      "question": null,
+      "stage": "q5-before",
+      "source": "projects/duolingo-web/evidence/english-pronunciation-practice-v1/walk03/q5-before.png",
+      "native": "pronunciation-p5-before.png",
+      "source_sha256": "6f79383fb856a5b5756056779efaac35cf855d6139c4b345ddcfc1d779713638",
+      "native_sha256": "032eb8e16b1b7e97d917e5d2ca99c881dddd8cfdf2666961655f689458473920",
+      "color_management": {
+        "source": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        },
+        "native": {
+          "input_profile": "Display",
+          "input_profile_sha256": "b6869613f44ea83b13cbd15652a1071c6bd85a37a5517bcbe7d1db1bcdc58e6f",
+          "comparison_space": "sRGB"
+        }
+      },
+      "mean_absolute_rgb_difference": [
+        4.618096539162113,
+        2.768499544626594,
+        2.775568078324226
+      ],
+      "status": "different"
+    }
+  ],
+  "candidate_acceptance": "not_proven",
+  "limitations": [
+    "This is an actual pixel diagnostic, not a substitute for frontend acceptance",
+    "Animation frames and temporal sound not aligned",
+    "Font antialiasing differs across renderers; reported without tolerance or masking",
+    "Hearts tutorial, source interlude visuals and full completion chain remain incomplete",
+    "Source completion included an explorer lookup failure and extra corrections; it is not the same full completion trajectory as the candidate. These pairs are initial question states only.",
+    "ICC conversion, titlebar crop,2x downsample; no masks or acceptance tolerance"
+  ]
+}

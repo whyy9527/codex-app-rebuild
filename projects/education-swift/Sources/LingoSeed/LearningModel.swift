@@ -7,6 +7,7 @@ import LearningCore
     let store: ProgressStore
     var progress: LearningProgress
     var lesson: Lesson?
+    var isPronunciationPractice = false
     var confirmingExit = false
     var feedbackDifficulty: String?
     var reportingQuestion = false
@@ -59,19 +60,27 @@ import LearningCore
     func match(_ id: String, left: Bool) {
         let previous = lesson?.feedback
         if left { lesson?.matchLeft(id) } else { lesson?.matchRight(id) }
-        if (lesson?.question.sourceType == "listenMatch" ? left : !left), let pair = lesson?.question.pairs.first(where: { $0.id == id }), let resource = pair.audioResource {
+        if isPronunciationPractice {
+            if left, let pair = lesson?.question.pairs.first(where: { $0.id == id }), let resource = pair.audioResource {
+                audio.speak(pair.right, language: course.speechLanguage, resource: resource)
+            }
+            // Missing original speech is left unavailable, never replaced by a synthetic tap or voice.
+        } else if (lesson?.question.sourceType == "listenMatch" ? left : !left), let pair = lesson?.question.pairs.first(where: { $0.id == id }), let resource = pair.audioResource {
             audio.speak(pair.right, language: course.speechLanguage, resource: resource)
         } else {
             audio.play(previous == nil && lesson?.feedback == true ? .correct : (lesson?.matchingHint != nil || lesson?.incorrectMatch != nil) ? .incorrect : .tap)
         }
-        if let hearts = lesson?.hearts, hearts != progress.hearts { progress.hearts = hearts; save() }
+        if !isPronunciationPractice, let hearts = lesson?.hearts, hearts != progress.hearts { progress.hearts = hearts; save() }
     }
-    func playQuestion(slow: Bool = false) {
+    func playQuestion(slow: Bool = false, practicePart: Int = 0) {
         if let speech = lesson?.deferredSpeech {
             audio.speak(speech.phrase, language: course.speechLanguage, resource: speech.audioResource)
             return
         }
         guard let question = lesson?.question else { return }
+        if let resources = question.practiceAudioResources, resources.indices.contains(practicePart) {
+            audio.speak(question.prompt, resource: resources[practicePart]); return
+        }
         audio.speak(question.hint ?? question.prompt, language: question.sourceLanguage ?? course.speechLanguage, resource: slow ? question.slowAudioResource : question.audioResource)
     }
     func playExample() {
@@ -91,7 +100,19 @@ import LearningCore
         audio.effectsEnabled = preferences.soundEffects
         if let data = try? Data(contentsOf: audioPreferencesURL), let saved = try? JSONDecoder().decode(Bool.self, from: data) { muted = saved; audio.muted = saved }
     }
+    func beginPronunciation() {
+        guard let url = Bundle.module.url(forResource: "pronunciation-practice", withExtension: "json", subdirectory: "Reference"),
+              let data = try? Data(contentsOf: url) else { error = "无法打开练习。"; return }
+        let practice: Course
+        do { practice = try JSONDecoder().decode(Course.self, from: data) }
+        catch { self.error = "无法打开练习。"; NSLog("Practice definition decode failed: %@", String(describing: error)); return }
+        isPronunciationPractice = true
+        lesson = Lesson(course: practice, lessonIndex: 0, hearts: progress.hearts)
+        settlement = nil; entryPending = false; confirmingExit = false
+        feedbackDifficulty = nil; closeQuestionReport(); playQuestion()
+    }
     func begin(_ index: Int) {
+        isPronunciationPractice = false
         guard progress.isUnlocked(course, index: index) else { return }
         lesson = Lesson(course: course, lessonIndex: index, hearts: progress.hearts)
         settlement = nil
@@ -105,7 +126,7 @@ import LearningCore
     func declineSpeech() { lesson?.declineSpeech() }
     func declineListening() { lesson?.declineListening() }
     private func playAutomaticPrompt() {
-        guard !entryPending, lesson?.interlude == nil, lesson?.deferredSpeech == nil, let question = lesson?.question, ["translate", "listenTap", "dialogue", "orderTapComplete"].contains(question.sourceType ?? ""),
+        guard !entryPending, lesson?.interlude == nil, lesson?.deferredSpeech == nil, let question = lesson?.question, ["translate", "listenTap", "dialogue", "orderTapComplete", "selectPronunciation", "sameDifferent"].contains(question.sourceType ?? ""),
               course.interfaceLanguage != "zh" || question.audioResource != nil else { return }
         playQuestion()
     }
@@ -117,7 +138,7 @@ import LearningCore
         guard lesson?.canSubmit == true, lesson?.feedback == nil else { return }
         lesson?.submit()
         audio.play(lesson?.feedback == true ? .correct : .incorrect)
-        if let hearts = lesson?.hearts, hearts != progress.hearts {
+        if !isPronunciationPractice, let hearts = lesson?.hearts, hearts != progress.hearts {
             progress.hearts = hearts
             save()
         }
@@ -133,8 +154,7 @@ import LearningCore
         if let lesson, lesson.complete {
             audio.play(.complete)
             if let pages = lesson.definition.settlement { settlement = SettlementFlow(pages: pages) }
-            progress.markCompleted(course, index: lesson.lessonIndex)
-            save()
+            if !isPronunciationPractice { progress.markCompleted(course, index: lesson.lessonIndex); save() }
         }
     }
     func advanceSettlement() {
@@ -145,5 +165,5 @@ import LearningCore
         do { try store.save(progress); error = nil }
         catch { self.error = "Progress could not be saved. Please try again." }
     }
-    func discardAttempt() { lesson = nil; confirmingExit = false; entryPending = false; settlement = nil }
+    func discardAttempt() { if isPronunciationPractice { destination = "Pronunciation" }; isPronunciationPractice = false; lesson = nil; confirmingExit = false; entryPending = false; settlement = nil }
 }

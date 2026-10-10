@@ -175,6 +175,50 @@ if CommandLine.arguments.contains("--observe-pronunciation") {
         try recorder.run(); recorder.waitUntilExit()
         precondition(recorder.terminationStatus == 0, "Owned pronunciation audio recording failed; preserve log")
     }
+    if CommandLine.arguments.contains("--walk-pronunciation-practice") {
+        try press("pronunciation-start"); try waitFor("question-prompt", value: "p0")
+        var visits: [String: Int] = [:]
+        let practiceURL = root.appendingPathComponent("projects/education-swift/Sources/LingoSeed/Resources/Reference/pronunciation-practice.json")
+        let practice = try JSONSerialization.jsonObject(with: Data(contentsOf: practiceURL)) as! [String: Any]
+        let lessonDefinition = (practice["lessons"] as! [[String: Any]])[0]
+        let questions = lessonDefinition["questions"] as! [[String: Any]]
+        for _ in 0..<30 {
+            if current().contains(where: { (attr($0, kAXIdentifierAttribute) as? String) == "practice-settlement-title" }) { break }
+            if current().contains(where: { (attr($0, kAXIdentifierAttribute) as? String) == "speech-decline" }) {
+                states["pronunciation-speech-before"] = observe(); try capture("practice-speech-before")
+                try press("speech-decline"); states["pronunciation-speech-declined"] = observe()
+                try press("speech-continue"); continue
+            }
+            guard let prompt = current().first(where: { (attr($0, kAXIdentifierAttribute) as? String) == "question-prompt" }),
+                  let id = attr(prompt, kAXValueAttribute) as? String,
+                  let question = questions.first(where: { $0["id"] as? String == id }) else { throw ProbeError(message: "No actual practice question") }
+            let repeatCount = visits[id, default: 0]; visits[id] = repeatCount + 1
+            let state = "pronunciation-" + id + (repeatCount > 0 ? "-review" : "")
+            var before = observe()
+            let check = current().first { (attr($0, kAXIdentifierAttribute) as? String) == "check" }
+            before["interactions"] = ["check_enabled": check.flatMap { attr($0, kAXEnabledAttribute) as? Bool } ?? false]
+            states[state + "-before"] = before; try capture(state + "-before")
+            if question["kind"] as? String == "matching" {
+                for pair in question["pairs"] as! [[String: Any]] {
+                    let pairID = pair["id"] as! String
+                    try press("pair-left-" + pairID); try press("pair-right-" + pairID)
+                }
+            } else {
+                let options = question["options"] as! [[String: Any]]
+                let answer = repeatCount > 0 ? question["answer"] as! String : options[0]["id"] as! String
+                try press("option-" + answer)
+                states[state + "-selected"] = observe(); try capture(state + "-selected")
+                try press("check")
+            }
+            states[state + "-feedback"] = observe(); try capture(state + "-feedback")
+            try press("continue")
+        }
+        states["pronunciation-settlement"] = observe(); try capture("practice-settlement")
+        try press("settlement-continue"); states["pronunciation-profile"] = observe(); try capture("practice-profile")
+        try press("settlement-continue"); states["pronunciation-returned"] = observe(); try capture("practice-returned")
+        try press("pronunciation-start"); try waitFor("question-prompt", value: "p0"); try press("exit")
+        states["pronunciation-exit-returned"] = observe(); try capture("practice-exit-returned")
+    }
     let receipt: [String: Any] = ["kind": "owned_native_ax_observation", "states": states,
         "candidate_binary_sha256": candidateSHA, "fixture_sha256": fixtureSHA,
         "observed_at": ISO8601DateFormatter().string(from: Date()),

@@ -204,3 +204,7 @@ v15保留1489项并增8项真实原版断言。独立原生radio2实际点击及
 ### Swift发音页及真实原版音频
 
 已实现39音标/词例/分组/进度条，修复顶层路由遗漏及LazyVGrid离屏AX缺字，保留两次失败。逐项播放完成边界重测39个源按钮，排除v1快速采样串音归因，绑定39个原版MP3。v10保留七课102题，只补真实六课主页连胜/倒计时元数据；匹配生命3。构建、21核心、52框架通过；新页59pass/15fail/4not_run，整图different，未放宽几何。实际owned音标点击录音非零，但声音等价未证实。原版练习入口已进入dock/deck听辨首题，候选开始仍是旧通用页；下一步从真实练习续跑并实现，继续修视觉/输出。完整Goalactive，[证据与复跑](../projects/duolingo-web/evidence/english-pronunciation-v2/README.md)。
+
+### 发音练习实际续跑与Swift入口
+
+原版走完听辨、sameDifferent、口语暂缓、配对、错题复习、结算/稍后建档并返回；保留过渡重影、单speaker假设、URL答案键串题导致24次额外错误及结算过渡超时。按题型/选项/音频绑定修正探索，不称作RSI收益。Swift入口已接独立Lesson，52个原生状态、主六课/生命3不变；新增49前端要求44pass/5not_run，横排radio零容差几何及旧纵排回归通过。完整v19共1638项，本次122pass/19fail/1497not_run，三对整图different。构建、22核心、52框架通过。原版练习后音标进度增长，候选仍缺持久化；正常口语、结算统计/条件文案及声音/视觉等价未完成。完整Goalactive，[证据与复跑](../projects/duolingo-web/evidence/english-pronunciation-practice-v1/README.md)。
