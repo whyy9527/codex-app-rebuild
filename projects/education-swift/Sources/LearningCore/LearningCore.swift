@@ -30,8 +30,9 @@ public struct Question: Codable, Equatable, Sendable, Identifiable {
     public let rightOrder: [String]?
     public let audioResource: String?
     public let sourceLanguage: String?
+    public let characterResource: String?
     enum CodingKeys: String, CodingKey {
-        case id, kind, prompt, options, answer, words, pairs, explanation, hint, newWord, rightOrder, audioResource, sourceLanguage
+        case id, kind, prompt, options, answer, words, pairs, explanation, hint, newWord, rightOrder, audioResource, sourceLanguage, characterResource
         case answerWords = "answer_words"
     }
     public init(from decoder: Decoder) throws {
@@ -50,6 +51,7 @@ public struct Question: Codable, Equatable, Sendable, Identifiable {
         rightOrder = try c.decodeIfPresent([String].self, forKey: .rightOrder)
         audioResource = try c.decodeIfPresent(String.self, forKey: .audioResource)
         sourceLanguage = try c.decodeIfPresent(String.self, forKey: .sourceLanguage)
+        characterResource = try c.decodeIfPresent(String.self, forKey: .characterResource)
     }
     public var correctText: String {
         switch kind {
@@ -69,10 +71,16 @@ public struct Question: Codable, Equatable, Sendable, Identifiable {
         }
     }
 }
+public struct LessonInterlude: Codable, Equatable, Sendable, Identifiable {
+    public let id: String
+    public let afterQuestionID: String
+    public let text: String
+}
 public struct LessonDefinition: Codable, Equatable, Sendable, Identifiable {
     public let id: String
     public let title: String
     public let questions: [Question]
+    public let interludes: [LessonInterlude]?
 }
 public struct CoursePathNode: Codable, Equatable, Sendable {
     public let kind: String
@@ -99,7 +107,7 @@ public struct Course: Codable, Equatable, Sendable, Identifiable {
             lessons = definitions
             usesLegacyQuestions = false
         } else {
-            lessons = [LessonDefinition(id: "intro", title: title, questions: try c.decode([Question].self, forKey: .questions))]
+            lessons = [LessonDefinition(id: "intro", title: title, questions: try c.decode([Question].self, forKey: .questions), interludes: nil)]
             usesLegacyQuestions = true
         }
     }
@@ -142,9 +150,10 @@ public struct Lesson: Equatable, Sendable {
     public private(set) var review = [Int]()
     public private(set) var reviewing = false
     public private(set) var complete = false
+    public private(set) var interlude: LessonInterlude?
     public var question: Question { definition.questions[position] }
     public var canSubmit: Bool {
-        guard feedback == nil, !complete else { return false }
+        guard feedback == nil, !complete, interlude == nil else { return false }
         switch question.kind {
         case .choice: return selected != nil
         case .wordTiles: return !selectedWords.isEmpty
@@ -156,22 +165,22 @@ public struct Lesson: Equatable, Sendable {
         self.course = course; self.lessonIndex = lessonIndex; self.hearts = hearts
     }
     public mutating func choose(_ id: String) {
-        guard question.kind == .choice, feedback == nil, !complete, question.options.contains(where: { $0.id == id }) else { return }
+        guard question.kind == .choice, feedback == nil, !complete, interlude == nil, question.options.contains(where: { $0.id == id }) else { return }
         selected = id
     }
     public mutating func addWord(_ id: String) {
-        guard question.kind == .wordTiles, feedback == nil, !complete,
+        guard question.kind == .wordTiles, feedback == nil, !complete, interlude == nil,
               question.words.contains(where: { $0.id == id }), !selectedWords.contains(id) else { return }
         selectedWords.append(id)
     }
     public mutating func removeWord(_ id: String) {
-        guard question.kind == .wordTiles, feedback == nil, !complete else { return }
+        guard question.kind == .wordTiles, feedback == nil, !complete, interlude == nil else { return }
         selectedWords.removeAll { $0 == id }
     }
     public mutating func matchLeft(_ id: String) { selectPair(id, left: true) }
     public mutating func matchRight(_ id: String) { selectPair(id, left: false) }
     private mutating func selectPair(_ id: String, left: Bool) {
-        guard question.kind == .matching, feedback == nil, !complete,
+        guard question.kind == .matching, feedback == nil, !complete, interlude == nil,
               question.pairs.contains(where: { $0.id == id }), !matchedPairs.contains(id) else { return }
         matchingHint = nil
         if left { selectedLeft = id } else { selectedRight = id }
@@ -196,11 +205,15 @@ public struct Lesson: Equatable, Sendable {
         selectedLeft = nil; selectedRight = nil; matchingHint = nil; feedback = nil
     }
     public mutating func advance() {
+        if interlude != nil { interlude = nil; return }
         guard feedback != nil, !complete else { return }
+        let answeredID = question.id
         if reviewing {
             if feedback == true { review.removeAll { $0 == position } }
         } else if position + 1 < definition.questions.count {
-            position += 1; clearAnswer(); return
+            position += 1; clearAnswer()
+            interlude = definition.interludes?.first { $0.afterQuestionID == answeredID }
+            return
         } else { reviewing = true }
         if let next = review.first { position = next }
         else { complete = true }

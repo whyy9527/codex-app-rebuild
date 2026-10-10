@@ -10,7 +10,6 @@ import LearningCore
     var confirmingExit = false
     var error: String?
     var destination = "Learn"
-    var showingGuide = false
     var preferences = LearningPreferences()
     private var preferencesURL: URL { store.url.appendingPathExtension("preferences.json") }
     func savePreferences() {
@@ -80,7 +79,7 @@ import LearningCore
         }
     }
     func advance() {
-        guard lesson?.feedback != nil else { return }
+        guard lesson?.feedback != nil || lesson?.interlude != nil else { return }
         lesson?.advance()
         if let lesson, lesson.complete {
             audio.play(.complete)

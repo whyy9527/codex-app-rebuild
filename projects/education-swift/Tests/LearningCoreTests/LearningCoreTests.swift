@@ -101,6 +101,33 @@ func unlocksAndLegacy() throws {
     try check(legacy.completedCount(course) == 0, "Old course credit silently completed new lesson content")
     print("PASS prerequisite unlock, progress reopening and legacy-content boundary")
 }
+func observedInterludes() throws {
+    let source = try course(fixture: "fixture-reference-v6.json")
+    var lesson = Lesson(course: source, lessonIndex: 2)
+    var seen = [String]()
+    while !lesson.complete {
+        if let interlude = lesson.interlude {
+            seen.append(interlude.text)
+            let questionID = lesson.question.id
+            lesson.choose(lesson.question.answer); lesson.submit()
+            try check(lesson.selected == nil && lesson.feedback == nil && !lesson.canSubmit, "Interlude allowed answering the hidden next question")
+            lesson.advance()
+            try check(lesson.interlude == nil && lesson.question.id == questionID, "Dismissing interlude skipped the next question")
+            continue
+        }
+        switch lesson.question.kind {
+        case .choice: lesson.choose(lesson.question.answer); lesson.submit()
+        case .wordTiles:
+            for id in lesson.question.answerWords { lesson.addWord(id) }; lesson.submit()
+        case .matching:
+            for pair in lesson.question.pairs { lesson.matchLeft(pair.id); lesson.matchRight(pair.id) }
+        }
+        try check(lesson.feedback == true, "Observed source answer failed")
+        lesson.advance()
+    }
+    try check(seen == ["Cool! 5 in a row!", "Nice! Practice always pays off."], "Observed interludes missing or repeated")
+    print("PASS observed interludes block hidden input and resume without losing a question; other trajectories unverified")
+}
 func legacyCourse() throws -> Course { try course() }
 do {
     try mistakeReview()
@@ -108,7 +135,8 @@ do {
     try wordTilesAndReview()
     try matching()
     try unlocksAndLegacy()
-    print("5 business checks passed; core layer only")
+    try observedInterludes()
+    print("6 business checks passed; core layer only")
 } catch {
     FileHandle.standardError.write(Data(("FAIL " + String(describing: error) + "\n").utf8))
     exit(1)

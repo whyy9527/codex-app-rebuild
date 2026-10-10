@@ -11,7 +11,7 @@ struct LearningView: View {
             VStack(spacing: 0) {
                 if let lesson = model.lesson {
                     lessonPage(lesson)
-                } else if ["Learn", "Settings"].contains(model.destination) {
+                } else if ["Learn", "Settings", "Guidebook"].contains(model.destination) {
                     ReferenceHome(model: model)
                 } else {
                     HStack(spacing: 0) {
@@ -33,15 +33,7 @@ struct LearningView: View {
         .frame(minWidth: 780, minHeight: 660)
         .foregroundStyle(ink).background(ReferenceStyle.background)
         .preferredColorScheme(model.preferences.darkMode == "On" ? .dark : model.preferences.darkMode == "Off" ? .light : nil)
-        .sheet(isPresented: $model.showingGuide) {
-            VStack(alignment: .leading, spacing: 24) {
-                Text("Unit guidebook").font(.largeTitle.bold()).accessibilityIdentifier("guide-title")
-                Text(model.course.title).font(.title2.bold())
-                Text("Practice greetings, match expressions with their meaning, and build short phrases. Mistakes return at the end so you can try again.")
-                ForEach(model.course.lessons.indices, id: \.self) { i in Text("\(i + 1). \(model.course.lessons[i].title)").font(.headline) }
-                Button("Back to learning") { model.showingGuide = false }.buttonStyle(SeedButtonStyle(fill: accent)).accessibilityIdentifier("close-guide")
-            }.padding(40).frame(width: 500)
-        }
+
     }
     private func sidebar(compact: Bool) -> some View {
         VStack(alignment: .leading, spacing: 15) {
@@ -150,11 +142,21 @@ struct LearningView: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 28) {
                     if lesson.complete { completion }
+                    else if let interlude = lesson.interlude {
+                        VStack(spacing: 28) {
+                            ReferenceStyle.image("duo-observed-frame").resizable().scaledToFit().frame(width: 180, height: 190)
+                            Text(interlude.text).font(ReferenceStyle.font(28, bold: true)).multilineTextAlignment(.center).accessibilityIdentifier("lesson-interlude").accessibilityValue(interlude.id)
+                        }.frame(maxWidth: .infinity)
+                    }
                     else { question(lesson) }
                 }.padding(30).frame(maxWidth: 660).frame(maxWidth: .infinity)
             }
             Spacer(minLength: 0)
-            if !lesson.complete { answerBar(lesson) }
+            if lesson.interlude != nil {
+                HStack { Spacer(); Button("CONTINUE") { model.advance() }.buttonStyle(ReferenceButton()).frame(width: 150).accessibilityIdentifier("interlude-continue") }
+                    .padding(.horizontal, 60).padding(.vertical, 28).frame(minHeight: 115)
+                    .overlay(alignment: .top) { Rectangle().fill(ReferenceStyle.border).frame(height: 2) }
+            } else if !lesson.complete { answerBar(lesson) }
         }
         .sheet(isPresented: $model.confirmingExit) { exitConfirmation }
     }
@@ -213,7 +215,11 @@ struct LearningView: View {
     }
     @ViewBuilder private func choices(_ lesson: Lesson) -> some View {
         if let hint = lesson.question.hint {
-            Text(hint).font(ReferenceStyle.font(20)).accessibilityIdentifier("question-hint")
+            HStack(spacing: 16) {
+                if let character = lesson.question.characterResource { ReferenceStyle.image(character).resizable().scaledToFit().frame(width: 120, height: 150) }
+                Text(hint).font(ReferenceStyle.font(20)).accessibilityIdentifier("question-hint")
+                    .padding(16).overlay(RoundedRectangle(cornerRadius: 14).stroke(ReferenceStyle.border, lineWidth: 2))
+            }
             VStack(spacing: 12) {
                 ForEach(Array(lesson.question.options.enumerated()), id: \.element.id) { index, option in
                     Button { model.choose(option.id) } label: {
@@ -244,7 +250,10 @@ struct LearningView: View {
     private func words(_ lesson: Lesson) -> some View {
         VStack(alignment: .leading, spacing: 24) {
             HStack(spacing: 16) {
-                SeedMascot().scaleEffect(0.7).frame(width: 90, height: 110)
+                Group {
+                    if let character = lesson.question.characterResource { ReferenceStyle.image(character).resizable().scaledToFit() }
+                    else { SeedMascot().scaleEffect(0.7) }
+                }.frame(width: 120, height: 150)
                 Button { model.pronounce() } label: {
                     HStack(spacing: 12) {
                         Image(systemName: "speaker.wave.2.fill").foregroundStyle(.cyan)

@@ -20,7 +20,7 @@ import LearningCore
             guard let index = CommandLine.arguments.firstIndex(of: name), index + 1 < CommandLine.arguments.count else { return nil }
             return CommandLine.arguments[index + 1]
         }
-        let fixture = URL(fileURLWithPath: argument("--fixture") ?? "projects/duolingo-web/fixture-reference-v5.json")
+        let fixture = URL(fileURLWithPath: argument("--fixture") ?? "projects/duolingo-web/fixture-reference-v6.json")
         let progress = argument("--progress").map { URL(fileURLWithPath: $0) }
             ?? FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0].appendingPathComponent("LingoSeed/progress.json")
         do { _model = State(initialValue: try LearningModel(course: Course.readFixture(fixture), store: ProgressStore(url: progress))) }

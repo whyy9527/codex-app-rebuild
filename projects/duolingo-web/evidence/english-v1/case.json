@@ -1,0 +1,30 @@
+{
+  "course_entry": "https://www.duolingo.com/course/en/zh/Learn-English",
+  "learning_language": "en",
+  "from_language": "zh",
+  "locale": "Chinese course UI confirmed after Get started",
+  "fixture_choices": "Other discovery source; Other motivation; first-time English; 5 minutes; deny notifications; start from basics. Anonymous test setup, not user profile preferences.",
+  "reference": "first-session.json",
+  "observed": "first-wrong-and-hearts-intro.json",
+  "candidate": "not_run; current native default remains historical Spanish v6, not an English reconstruction",
+  "unknown": [
+    "15 source questions are not 15 UI-confirmed questions",
+    "listenTap and dialogue frontends not yet reached in English",
+    "English home, completion, restart, pronunciation output and visual equality remain to observe",
+    "Generic Continue is ambiguous when the hearts tutorial is open; driver needs control-specific actions"
+  ],
+  "captures": {
+    "reference-english-first-wrong.png": {
+      "pixels": [
+        1200,
+        732
+      ]
+    },
+    "reference-english-hearts-intro.png": {
+      "pixels": [
+        1200,
+        732
+      ]
+    }
+  }
+}

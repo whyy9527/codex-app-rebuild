@@ -1,0 +1,9 @@
+{
+  "before": "- img\n- img\n- img\n- img\n- button:\n  - img\n- progressbar\n- img\n- text: 来看看我们该从哪儿开始吧？ 来看看我们该从哪儿开始吧？\n- radiogroup \"choose-path\":\n  - list:\n    - radio \"从最基础的内容开始 从英语课程里最简单的单元开始学习\":\n      - img\n      - text: 从最基础的内容开始 从英语课程里最简单的单元开始学习\n    - radio \"评估我的水平 让多儿给你推荐应该从哪里开始学习\":\n      - img\n      - text: 评估我的水平 让多儿给你推荐应该从哪里开始学习\n- button \"继续\" [disabled]",
+  "after": "- img\n- img\n- img\n- img\n- button:\n  - img\n- progressbar\n- button \"继续\" [disabled]",
+  "observed_at": "2026-10-10T14:10:26.591Z",
+  "action": {
+    "select": "从最基础的内容开始 从英语课程里最简单的单元开始学习",
+    "press": "继续"
+  }
+}

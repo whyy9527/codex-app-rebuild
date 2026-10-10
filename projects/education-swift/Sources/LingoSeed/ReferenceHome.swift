@@ -18,7 +18,10 @@ struct ReferenceHome: View {
                 Rectangle().fill(ReferenceStyle.border).frame(width: 2)
                 if model.destination == "Settings" { ReferenceSettings(model: model) }
                 else {
-                ScrollView { path.padding(.horizontal, 24).padding(.top, 48) }
+                ScrollView {
+                    if model.destination == "Guidebook" { ReferenceGuidebook(model: model).padding(.horizontal, 24).padding(.top, 48) }
+                    else { path.padding(.horizontal, 24).padding(.top, 48) }
+                }
                     .frame(maxWidth: .infinity)
                 if geometry.size.width >= 1120 {
                     ScrollView { dashboard.padding(.top, 32) }
@@ -49,9 +52,9 @@ struct ReferenceHome: View {
                         }
                         Spacer(minLength: 0)
                     }.padding(.horizontal, 16).frame(height: 52)
-                        .foregroundStyle(item == "Learn" && model.destination == "Learn" ? blue : ReferenceStyle.secondaryInk)
-                        .background(item == "Learn" && model.destination == "Learn" ? Color(red: 221/255, green: 244/255, blue: 1) : .clear, in: RoundedRectangle(cornerRadius: 12))
-                        .overlay(RoundedRectangle(cornerRadius: 12).strokeBorder(item == "Learn" && model.destination == "Learn" ? Color(red: 132/255, green: 216/255, blue: 1) : .clear, lineWidth: 2))
+                        .foregroundStyle(item == "Learn" && ["Learn", "Guidebook"].contains(model.destination) ? blue : ReferenceStyle.secondaryInk)
+                        .background(item == "Learn" && ["Learn", "Guidebook"].contains(model.destination) ? Color(red: 221/255, green: 244/255, blue: 1) : .clear, in: RoundedRectangle(cornerRadius: 12))
+                        .overlay(RoundedRectangle(cornerRadius: 12).strokeBorder(item == "Learn" && ["Learn", "Guidebook"].contains(model.destination) ? Color(red: 132/255, green: 216/255, blue: 1) : .clear, lineWidth: 2))
                 }.buttonStyle(.plain).accessibilityLabel(item).accessibilityIdentifier("nav-" + item.lowercased())
                 .onHover { inside in
                     if item == "More" { moreHovered = inside; if inside { moreOpen = true } else { dismissMenuLater() } }
@@ -83,7 +86,7 @@ struct ReferenceHome: View {
                     Text(model.course.title).font(ReferenceStyle.font(22, bold: true)).accessibilityIdentifier("course-entry")
                 }
                 Spacer(minLength: 0)
-                Button { model.showingGuide = true } label: {
+                Button { model.destination = "Guidebook" } label: {
                     HStack(spacing: 10) { ReferenceStyle.image("guidebook").resizable().frame(width: 24, height: 24); Text("GUIDEBOOK").font(ReferenceStyle.font(15, bold: true)).tracking(1) }
                         .padding(.horizontal, 14).frame(height: 48)
                         .overlay(RoundedRectangle(cornerRadius: 15).stroke(Color(red: 70/255, green: 163/255, blue: 2/255), lineWidth: 2))

@@ -1,0 +1,218 @@
+{
+  "kind": "frontend_requirements",
+  "contract_digest": "e10d996f08df7739d90d1bf9f66909b23d7277683caf12454b389fa17ddaa6b4",
+  "observation_digest": "305cc943ee3056233e905475d798bea7ae39a3e82ad555e4a2af29a54e6b04b9",
+  "rows": [
+    {
+      "id": "guide-copy-0",
+      "state": "guidebook",
+      "status": "pass",
+      "expected": "Unit 1 Guidebook"
+    },
+    {
+      "id": "guide-copy-1",
+      "state": "guidebook",
+      "status": "pass",
+      "expected": "Explore grammar tips and key phrases for this unit"
+    },
+    {
+      "id": "guide-copy-2",
+      "state": "guidebook",
+      "status": "pass",
+      "expected": "KEY PHRASES"
+    },
+    {
+      "id": "guide-copy-3",
+      "state": "guidebook",
+      "status": "pass",
+      "expected": "TIP"
+    },
+    {
+      "id": "guide-copy-4",
+      "state": "guidebook",
+      "status": "pass",
+      "expected": "Conjunctions: y & o"
+    },
+    {
+      "id": "guide-copy-5",
+      "state": "guidebook",
+      "status": "pass",
+      "expected": "Spanish uses y (and) and o (or) to connect words, just like in English."
+    },
+    {
+      "id": "guide-copy-6",
+      "state": "guidebook",
+      "status": "pass",
+      "expected": "Spanish"
+    },
+    {
+      "id": "guide-copy-7",
+      "state": "guidebook",
+      "status": "pass",
+      "expected": "English"
+    },
+    {
+      "id": "guide-copy-8",
+      "state": "guidebook",
+      "status": "pass",
+      "expected": "y"
+    },
+    {
+      "id": "guide-copy-9",
+      "state": "guidebook",
+      "status": "pass",
+      "expected": "and"
+    },
+    {
+      "id": "guide-copy-10",
+      "state": "guidebook",
+      "status": "pass",
+      "expected": "o"
+    },
+    {
+      "id": "guide-copy-11",
+      "state": "guidebook",
+      "status": "pass",
+      "expected": "or"
+    },
+    {
+      "id": "guide-copy-12",
+      "state": "guidebook",
+      "status": "pass",
+      "expected": "Un vaso de agua, por favor."
+    },
+    {
+      "id": "guide-copy-13",
+      "state": "guidebook",
+      "status": "pass",
+      "expected": "A glass of water, please."
+    },
+    {
+      "id": "guide-copy-14",
+      "state": "guidebook",
+      "status": "pass",
+      "expected": "Hola, quiero un té con azúcar."
+    },
+    {
+      "id": "guide-copy-15",
+      "state": "guidebook",
+      "status": "pass",
+      "expected": "Hello, I want a tea with sugar."
+    },
+    {
+      "id": "guide-copy-16",
+      "state": "guidebook",
+      "status": "pass",
+      "expected": "Quiero un helado y un vaso de agua."
+    },
+    {
+      "id": "guide-copy-17",
+      "state": "guidebook",
+      "status": "pass",
+      "expected": "I want an ice cream and a glass of water."
+    },
+    {
+      "id": "guide-copy-18",
+      "state": "guidebook",
+      "status": "pass",
+      "expected": "¿Un café o un té?"
+    },
+    {
+      "id": "guide-copy-19",
+      "state": "guidebook",
+      "status": "pass",
+      "expected": "A coffee or a tea?"
+    },
+    {
+      "id": "guide-copy-20",
+      "state": "guidebook",
+      "status": "pass",
+      "expected": "Un sándwich y un café, por favor."
+    },
+    {
+      "id": "guide-copy-21",
+      "state": "guidebook",
+      "status": "pass",
+      "expected": "A sandwich and a coffee, please."
+    },
+    {
+      "id": "guide-copy-22",
+      "state": "guidebook",
+      "status": "pass",
+      "expected": "Un café y un helado."
+    },
+    {
+      "id": "guide-copy-23",
+      "state": "guidebook",
+      "status": "pass",
+      "expected": "A coffee and an ice cream."
+    },
+    {
+      "id": "guide-geometry-guide-title",
+      "state": "guidebook",
+      "status": "fail",
+      "expected": [
+        418,
+        152,
+        318,
+        30
+      ],
+      "actual": [
+        418,
+        152,
+        180,
+        29
+      ],
+      "delta_points": [
+        0,
+        0,
+        138,
+        1
+      ],
+      "reason": "Control geometry in content points only; other visual properties remain separate"
+    },
+    {
+      "id": "guide-geometry-guide-speech-0",
+      "state": "guidebook",
+      "status": "fail",
+      "expected": [
+        306,
+        378.03125,
+        29,
+        22
+      ],
+      "actual": [
+        309,
+        379,
+        23,
+        18.5
+      ],
+      "delta_points": [
+        3,
+        0.96875,
+        6,
+        3.5
+      ],
+      "reason": "Control geometry in content points only; other visual properties remain separate"
+    },
+    {
+      "id": "guide-visual",
+      "state": "guidebook",
+      "status": "not_run",
+      "reason": "Full bubble geometry, arrows, original speaker artwork and responsive/scroll presentation not yet verified"
+    },
+    {
+      "id": "guide-output",
+      "state": "guidebook",
+      "status": "not_run",
+      "reason": "Seven actual source invocations captured; native output identity and timing not yet acoustically compared"
+    },
+    {
+      "id": "guide-translation-hints",
+      "state": "guidebook",
+      "status": "not_run",
+      "reason": "Word hint controls observed, their hover/click behavior still to explore"
+    }
+  ],
+  "status": "fail"
+}

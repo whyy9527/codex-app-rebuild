@@ -25,10 +25,11 @@ def main():
     source = digest(manifest(root))
     resources = digest(input_manifest(root, ['projects/education-swift/Sources/LingoSeed/Resources/Reference']))
     contract_paths = {'frontend': 'projects/duolingo-web/frontend-v4.json',
-                      'course': 'projects/duolingo-web/frontend-course-v5.json',
-                      'preferences': 'projects/duolingo-web/frontend-preferences-v4.1.json'}
+                      'course': 'projects/duolingo-web/frontend-course-v6.json',
+                      'preferences': 'projects/duolingo-web/frontend-preferences-v4.1.json',
+                      'guidebook': 'projects/duolingo-web/frontend-guidebook-v6.1.json'}
     contracts = {name: json.loads((root / path).read_text()) for name, path in contract_paths.items()}
-    fixture_path = 'projects/duolingo-web/fixture-reference-v5.json'
+    fixture_path = 'projects/duolingo-web/fixture-reference-v6.json'
     inputs = {fixture_path, *contract_paths.values()}
     inputs.update(json.loads((root / fixture_path).read_text())['provenance']['evidence'])
     reference_preferences_path = 'projects/duolingo-web/evidence/exploration-v4/preferences-reference-ack-04.json'
@@ -45,7 +46,7 @@ def main():
         capture_output=True, text=True, timeout=1850)
     (output / 'business.log').write_text(business.stdout + business.stderr)
     probe = subprocess.run(['swift', 'projects/duolingo-web/observe-frontend.swift', str(output / 'frontend'),
-                            'projects/duolingo-web/fixture-reference-v5.json', '--walk-course'],
+                            'projects/duolingo-web/fixture-reference-v6.json', '--walk-course'],
         capture_output=True, text=True, timeout=90)
     (output / 'frontend.log').write_text(probe.stdout + probe.stderr)
     checks = {}

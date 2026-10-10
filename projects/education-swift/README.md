@@ -85,3 +85,10 @@ python3 projects/duolingo-web/verify-product.py --out artifacts/product-new
 默认夹具改为`fixture-reference-v5.json`，由原版前三课37题组成。第三课源答案、实际呈现顺序和逐题正向反馈已经交叉确认，31个源语音文件按具体题目/选项关联；旧课的语音缺口仍在。关闭Sound effects不阻断这些语音，全局静音仍停止并阻断播放，实际播放器推进已检查，原版音色/时序输出尚未比较。
 
 Swift仍缺原版题间鼓励、评分/连续学习/Legendary/注册提示及完成节点状态。它们已进入新版前端契约，不会因37题文案通过被算作完成。重新编译固定v5使用`python3 projects/duolingo-web/compile-session-course.py`；[本批证据与运行方式](../duolingo-web/evidence/exploration-v5/README.md)保留失败及人工续点。
+
+
+### v6与英语方向
+
+当前默认历史夹具为`fixture-reference-v6.json`：原版角色、两处题间状态和完整实测Guidebook内容已加入。`ReferenceGuidebook`替换通用介绍弹窗，逐句播放六个源语音文件。6项核心检查、37题实际原生回放通过；Guidebook还有1.03125点的图标y差、完整视觉/声音和其它行为缺口，不能视为1:1。
+
+用户建议英语学科后，当前目标转为中文母语学习英语。默认候选尚未切换，正在采真实英语课；旧原创英语夹具只保留历史兼容，不是原版英语复刻。详见[v6证据和运行命令](../duolingo-web/evidence/exploration-v6/README.md)。

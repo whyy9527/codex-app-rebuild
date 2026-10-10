@@ -1,0 +1,1349 @@
+{
+  "source": "Actual sessions response, public lesson fields only; no session/user identifiers or tracking payloads retained",
+  "session": {
+    "learningLanguage": "es",
+    "fromLanguage": "en",
+    "type": "LESSON",
+    "lessonIndex": 0,
+    "levelIndex": 0,
+    "levelSessionIndex": 0,
+    "challenges": [
+      {
+        "index": 0,
+        "keys": [
+          "prompt",
+          "choices",
+          "correctIndex",
+          "type",
+          "id",
+          "challengeResponseTrackingProperties",
+          "metadata",
+          "newWords",
+          "progressUpdates",
+          "challengeGeneratorIdentifier",
+          "canBeSkipped"
+        ],
+        "content": {
+          "prompt": "coffee",
+          "choices": [
+            {
+              "image": "https://d2pur3iezf4d1j.cloudfront.net/images/31a1f663c9536e3ed265d470dd43b15a",
+              "phrase": "taco",
+              "svg": "https://d2pur3iezf4d1j.cloudfront.net/images/31a1f663c9536e3ed265d470dd43b15a",
+              "tts": "https://d1vq87e9lcf771.cloudfront.net/miguel/e8fde77a68f7aa47273801ea8922d49b",
+              "hint": "taco"
+            },
+            {
+              "image": "https://d2pur3iezf4d1j.cloudfront.net/images/6fd84b8a838c43c4a84b44b08b10177e",
+              "phrase": "café",
+              "svg": "https://d2pur3iezf4d1j.cloudfront.net/images/6fd84b8a838c43c4a84b44b08b10177e",
+              "tts": "https://d1vq87e9lcf771.cloudfront.net/penelope/9bce536e70acf708e4658aaaf89c0ee1",
+              "hint": "coffee"
+            },
+            {
+              "image": "https://d2pur3iezf4d1j.cloudfront.net/images/18a521f1507cb86689faa5b2e8277703",
+              "phrase": "té",
+              "svg": "https://d2pur3iezf4d1j.cloudfront.net/images/18a521f1507cb86689faa5b2e8277703",
+              "tts": "https://d1vq87e9lcf771.cloudfront.net/miguel/e9b64101b7fcef4a6432e95b4870ced2",
+              "hint": "tea"
+            }
+          ],
+          "correctIndex": 1,
+          "type": "select",
+          "newWords": [
+            "café"
+          ],
+          "canBeSkipped": false
+        }
+      },
+      {
+        "index": 1,
+        "keys": [
+          "prompt",
+          "choices",
+          "correctIndex",
+          "type",
+          "id",
+          "challengeResponseTrackingProperties",
+          "metadata",
+          "newWords",
+          "progressUpdates",
+          "challengeGeneratorIdentifier",
+          "canBeSkipped"
+        ],
+        "content": {
+          "prompt": "tea",
+          "choices": [
+            {
+              "image": "https://d2pur3iezf4d1j.cloudfront.net/images/6fd84b8a838c43c4a84b44b08b10177e",
+              "phrase": "café",
+              "svg": "https://d2pur3iezf4d1j.cloudfront.net/images/6fd84b8a838c43c4a84b44b08b10177e",
+              "tts": "https://d1vq87e9lcf771.cloudfront.net/miguel/7621be263ec49e37d07612453e9df3b9",
+              "hint": "coffee"
+            },
+            {
+              "image": "https://d2pur3iezf4d1j.cloudfront.net/images/d56b5cfc3455ffcdac9b1207d34cdeaa",
+              "phrase": "un sándwich",
+              "svg": "https://d2pur3iezf4d1j.cloudfront.net/images/d56b5cfc3455ffcdac9b1207d34cdeaa",
+              "tts": "https://d1vq87e9lcf771.cloudfront.net/penelope/390f3ba71757b308d89487cd97d898e4",
+              "hint": "sandwich"
+            },
+            {
+              "image": "https://d2pur3iezf4d1j.cloudfront.net/images/18a521f1507cb86689faa5b2e8277703",
+              "phrase": "té",
+              "svg": "https://d2pur3iezf4d1j.cloudfront.net/images/18a521f1507cb86689faa5b2e8277703",
+              "tts": "https://d1vq87e9lcf771.cloudfront.net/miguel/e9b64101b7fcef4a6432e95b4870ced2",
+              "hint": "tea"
+            }
+          ],
+          "correctIndex": 2,
+          "type": "select",
+          "newWords": [
+            "té"
+          ],
+          "canBeSkipped": false
+        }
+      },
+      {
+        "index": 2,
+        "keys": [
+          "prompt",
+          "correctSolutions",
+          "compactTranslations",
+          "correctTokens",
+          "wrongTokens",
+          "choices",
+          "correctIndices",
+          "sourceLanguage",
+          "targetLanguage",
+          "grader",
+          "taggedKcIds",
+          "challengeDisplaySettings",
+          "weakWordPromptRanges",
+          "tokens",
+          "tts",
+          "character",
+          "isSpeakerUniversal",
+          "type",
+          "id",
+          "challengeResponseTrackingProperties",
+          "metadata",
+          "newWords",
+          "progressUpdates",
+          "sentenceId",
+          "challengeGeneratorIdentifier",
+          "canBeSkipped"
+        ],
+        "content": {
+          "prompt": "Un té.",
+          "correctSolutions": [
+            "A tea."
+          ],
+          "correctTokens": [
+            "A",
+            "tea"
+          ],
+          "choices": [
+            {
+              "text": "A"
+            },
+            {
+              "text": "tea"
+            },
+            {
+              "text": "coffee"
+            }
+          ],
+          "correctIndices": [
+            0,
+            1
+          ],
+          "sourceLanguage": "es",
+          "targetLanguage": "en",
+          "tokens": [
+            {
+              "value": "Un",
+              "tts": "https://d1vq87e9lcf771.cloudfront.net/eddyes/61bc3343aff1a41f407ddfce6c759bc2",
+              "hintTable": {}
+            },
+            {
+              "value": " "
+            },
+            {
+              "value": "té",
+              "tts": "https://d1vq87e9lcf771.cloudfront.net/eddyes/bb69a1c8aba479f1b132436faef67523",
+              "hintTable": {}
+            },
+            {
+              "value": "."
+            }
+          ],
+          "tts": "https://d1vq87e9lcf771.cloudfront.net/eddyes/c203d5a09361d0be6f72647f7767533e",
+          "character": {
+            "image": {
+              "svg": "https://d2pur3iezf4d1j.cloudfront.net/images/096d0b1f6280b962cd7080a7736dd2bb"
+            },
+            "gender": "MALE"
+          },
+          "type": "translate",
+          "newWords": [
+            "Un"
+          ],
+          "canBeSkipped": false
+        }
+      },
+      {
+        "index": 3,
+        "keys": [
+          "prompt",
+          "correctSolutions",
+          "compactTranslations",
+          "correctTokens",
+          "wrongTokens",
+          "choices",
+          "correctIndices",
+          "sourceLanguage",
+          "targetLanguage",
+          "grader",
+          "taggedKcIds",
+          "challengeDisplaySettings",
+          "weakWordPromptRanges",
+          "tokens",
+          "tts",
+          "character",
+          "isSpeakerUniversal",
+          "type",
+          "id",
+          "challengeResponseTrackingProperties",
+          "metadata",
+          "newWords",
+          "progressUpdates",
+          "sentenceId",
+          "challengeGeneratorIdentifier",
+          "canBeSkipped"
+        ],
+        "content": {
+          "prompt": "Por favor.",
+          "correctSolutions": [
+            "Please."
+          ],
+          "correctTokens": [
+            "Please"
+          ],
+          "choices": [
+            {
+              "text": "Please"
+            },
+            {
+              "text": "ice cream"
+            }
+          ],
+          "correctIndices": [
+            0
+          ],
+          "sourceLanguage": "es",
+          "targetLanguage": "en",
+          "tokens": [
+            {
+              "value": "Por",
+              "tts": "https://d1vq87e9lcf771.cloudfront.net/lilyes2/a3d115cd0223d7c16a35c998d0834333",
+              "hintTable": {}
+            },
+            {
+              "value": " "
+            },
+            {
+              "value": "favor",
+              "tts": "https://d1vq87e9lcf771.cloudfront.net/lilyes2/135ca25e87bbfffb81ded24da6067eb4",
+              "hintTable": {}
+            },
+            {
+              "value": "."
+            }
+          ],
+          "tts": "https://d1vq87e9lcf771.cloudfront.net/lilyes2/02099cec6dbc5bd7abe22930d7b37c6b",
+          "character": {
+            "image": {
+              "svg": "https://d2pur3iezf4d1j.cloudfront.net/images/81ca92172d70599306b16bcb87799195"
+            },
+            "gender": "FEMALE"
+          },
+          "type": "translate",
+          "newWords": [
+            "Por",
+            "favor"
+          ],
+          "canBeSkipped": false
+        }
+      },
+      {
+        "index": 4,
+        "keys": [
+          "prompt",
+          "correctSolutions",
+          "compactTranslations",
+          "correctTokens",
+          "wrongTokens",
+          "choices",
+          "correctIndices",
+          "sourceLanguage",
+          "targetLanguage",
+          "grader",
+          "taggedKcIds",
+          "challengeDisplaySettings",
+          "weakWordPromptRanges",
+          "tokens",
+          "tts",
+          "character",
+          "isSpeakerUniversal",
+          "type",
+          "id",
+          "challengeResponseTrackingProperties",
+          "metadata",
+          "newWords",
+          "progressUpdates",
+          "sentenceId",
+          "challengeGeneratorIdentifier"
+        ],
+        "content": {
+          "prompt": "Un café, por favor.",
+          "correctSolutions": [
+            "A coffee, please."
+          ],
+          "correctTokens": [
+            "A",
+            "coffee",
+            "please"
+          ],
+          "choices": [
+            {
+              "text": "A"
+            },
+            {
+              "text": "coffee"
+            },
+            {
+              "text": "please"
+            },
+            {
+              "text": "tea"
+            }
+          ],
+          "correctIndices": [
+            0,
+            1,
+            2
+          ],
+          "sourceLanguage": "es",
+          "targetLanguage": "en",
+          "tokens": [
+            {
+              "value": "Un",
+              "tts": "https://d1vq87e9lcf771.cloudfront.net/falstaffes/9f4927c73c9af98b1e00fa59f352d354",
+              "hintTable": {}
+            },
+            {
+              "value": " "
+            },
+            {
+              "value": "café",
+              "tts": "https://d1vq87e9lcf771.cloudfront.net/falstaffes/7fdde95913807d6a80891fce2e74e3a4",
+              "hintTable": {}
+            },
+            {
+              "value": ","
+            },
+            {
+              "value": " "
+            },
+            {
+              "value": "por",
+              "tts": "https://d1vq87e9lcf771.cloudfront.net/falstaffes/b4ff3e6fa36fde70581852d9024e0fc6",
+              "hintTable": {}
+            },
+            {
+              "value": " "
+            },
+            {
+              "value": "favor",
+              "tts": "https://d1vq87e9lcf771.cloudfront.net/falstaffes/e285dd7ef640b5eb79fff7c99a537c41",
+              "hintTable": {}
+            },
+            {
+              "value": "."
+            }
+          ],
+          "tts": "https://d1vq87e9lcf771.cloudfront.net/falstaffes/f2cdb8940771bbc03ba27e6ac71e65ac",
+          "character": {
+            "image": {
+              "svg": "https://d2pur3iezf4d1j.cloudfront.net/images/0f284113af41f7f7296263183701a13b"
+            },
+            "gender": "MALE"
+          },
+          "type": "translate",
+          "newWords": []
+        }
+      },
+      {
+        "index": 5,
+        "keys": [
+          "prompt",
+          "correctSolutions",
+          "compactTranslations",
+          "correctTokens",
+          "wrongTokens",
+          "choices",
+          "correctIndices",
+          "sourceLanguage",
+          "targetLanguage",
+          "grader",
+          "taggedKcIds",
+          "challengeDisplaySettings",
+          "weakWordPromptRanges",
+          "tokens",
+          "tts",
+          "character",
+          "isSpeakerUniversal",
+          "type",
+          "id",
+          "challengeResponseTrackingProperties",
+          "metadata",
+          "newWords",
+          "progressUpdates",
+          "sentenceId",
+          "challengeGeneratorIdentifier",
+          "canBeSkipped"
+        ],
+        "content": {
+          "prompt": "Hola, un té.",
+          "correctSolutions": [
+            "Hello, a tea."
+          ],
+          "correctTokens": [
+            "Hello",
+            "a",
+            "tea"
+          ],
+          "choices": [
+            {
+              "text": "Hello"
+            },
+            {
+              "text": "a"
+            },
+            {
+              "text": "tea"
+            },
+            {
+              "text": "coffee"
+            }
+          ],
+          "correctIndices": [
+            0,
+            1,
+            2
+          ],
+          "sourceLanguage": "es",
+          "targetLanguage": "en",
+          "tokens": [
+            {
+              "value": "Hola",
+              "tts": "https://d1vq87e9lcf771.cloudfront.net/falstaffes/eeaca31a7d89a60d65e1af172e0eb853",
+              "hintTable": {}
+            },
+            {
+              "value": ","
+            },
+            {
+              "value": " "
+            },
+            {
+              "value": "un",
+              "tts": "https://d1vq87e9lcf771.cloudfront.net/falstaffes/9f4927c73c9af98b1e00fa59f352d354",
+              "hintTable": {}
+            },
+            {
+              "value": " "
+            },
+            {
+              "value": "té",
+              "tts": "https://d1vq87e9lcf771.cloudfront.net/falstaffes/2841d189b1752c78a16a1ebfa9c1f643",
+              "hintTable": {}
+            },
+            {
+              "value": "."
+            }
+          ],
+          "tts": "https://d1vq87e9lcf771.cloudfront.net/falstaffes/1c12fec22cba58fa60faef503e565b64",
+          "character": {
+            "image": {
+              "svg": "https://d2pur3iezf4d1j.cloudfront.net/images/0f284113af41f7f7296263183701a13b"
+            },
+            "gender": "MALE"
+          },
+          "type": "translate",
+          "newWords": [
+            "Hola"
+          ],
+          "canBeSkipped": false
+        }
+      },
+      {
+        "index": 6,
+        "keys": [
+          "character",
+          "prompt",
+          "choices",
+          "correctIndex",
+          "options",
+          "type",
+          "id",
+          "challengeResponseTrackingProperties",
+          "metadata",
+          "newWords",
+          "progressUpdates",
+          "challengeGeneratorIdentifier"
+        ],
+        "content": {
+          "character": {
+            "image": {
+              "svg": "https://d2pur3iezf4d1j.cloudfront.net/images/f4639160abfb44c54829ebeb62c0542d"
+            },
+            "gender": "MALE"
+          },
+          "prompt": "hello",
+          "choices": [
+            "café",
+            "hola",
+            "té"
+          ],
+          "correctIndex": 1,
+          "type": "assist",
+          "newWords": []
+        }
+      },
+      {
+        "index": 7,
+        "keys": [
+          "prompt",
+          "correctSolutions",
+          "compactTranslations",
+          "correctTokens",
+          "wrongTokens",
+          "choices",
+          "correctIndices",
+          "sourceLanguage",
+          "targetLanguage",
+          "grader",
+          "taggedKcIds",
+          "challengeDisplaySettings",
+          "weakWordPromptRanges",
+          "tokens",
+          "tts",
+          "character",
+          "isSpeakerUniversal",
+          "type",
+          "id",
+          "challengeResponseTrackingProperties",
+          "metadata",
+          "newWords",
+          "progressUpdates",
+          "sentenceId",
+          "challengeGeneratorIdentifier",
+          "canBeSkipped"
+        ],
+        "content": {
+          "prompt": "un café con leche",
+          "correctSolutions": [
+            "a coffee with milk"
+          ],
+          "correctTokens": [
+            "a",
+            "coffee",
+            "with",
+            "milk"
+          ],
+          "choices": [
+            {
+              "text": "a"
+            },
+            {
+              "text": "coffee"
+            },
+            {
+              "text": "with"
+            },
+            {
+              "text": "milk"
+            },
+            {
+              "text": "want"
+            }
+          ],
+          "correctIndices": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "sourceLanguage": "es",
+          "targetLanguage": "en",
+          "tokens": [
+            {
+              "value": "un",
+              "tts": "https://d1vq87e9lcf771.cloudfront.net/falstaffes/9f4927c73c9af98b1e00fa59f352d354",
+              "hintTable": {}
+            },
+            {
+              "value": " "
+            },
+            {
+              "value": "café",
+              "tts": "https://d1vq87e9lcf771.cloudfront.net/falstaffes/7fdde95913807d6a80891fce2e74e3a4",
+              "hintTable": {}
+            },
+            {
+              "value": " "
+            },
+            {
+              "value": "con",
+              "tts": "https://d1vq87e9lcf771.cloudfront.net/falstaffes/f8cbc0ad3bb849bb82face8983e714eb",
+              "hintTable": {}
+            },
+            {
+              "value": " "
+            },
+            {
+              "value": "leche",
+              "tts": "https://d1vq87e9lcf771.cloudfront.net/falstaffes/8c7594b0bf5a038c273ae385fa1a874c",
+              "hintTable": {}
+            }
+          ],
+          "tts": "https://d1vq87e9lcf771.cloudfront.net/falstaffes/0b0c73612c8946bbceed3d45f53ea34e",
+          "character": {
+            "image": {
+              "svg": "https://d2pur3iezf4d1j.cloudfront.net/images/0f284113af41f7f7296263183701a13b"
+            },
+            "gender": "MALE"
+          },
+          "type": "translate",
+          "newWords": [
+            "con",
+            "leche"
+          ],
+          "canBeSkipped": false
+        }
+      },
+      {
+        "index": 8,
+        "keys": [
+          "prompt",
+          "correctSolutions",
+          "compactTranslations",
+          "correctTokens",
+          "wrongTokens",
+          "choices",
+          "correctIndices",
+          "sourceLanguage",
+          "targetLanguage",
+          "grader",
+          "taggedKcIds",
+          "challengeDisplaySettings",
+          "weakWordPromptRanges",
+          "tokens",
+          "tts",
+          "character",
+          "isSpeakerUniversal",
+          "type",
+          "id",
+          "challengeResponseTrackingProperties",
+          "metadata",
+          "newWords",
+          "progressUpdates",
+          "sentenceId",
+          "challengeGeneratorIdentifier",
+          "canBeSkipped"
+        ],
+        "content": {
+          "prompt": "Hola, quiero un café.",
+          "correctSolutions": [
+            "Hello, I want a coffee."
+          ],
+          "correctTokens": [
+            "Hello",
+            "I",
+            "want",
+            "a",
+            "coffee"
+          ],
+          "choices": [
+            {
+              "text": "Hello"
+            },
+            {
+              "text": "I"
+            },
+            {
+              "text": "want"
+            },
+            {
+              "text": "a"
+            },
+            {
+              "text": "coffee"
+            },
+            {
+              "text": "tea"
+            }
+          ],
+          "correctIndices": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "sourceLanguage": "es",
+          "targetLanguage": "en",
+          "tokens": [
+            {
+              "value": "Hola",
+              "tts": "https://d1vq87e9lcf771.cloudfront.net/oscares/b6b5f2b90aababdde8ce9f04fbe3cb96",
+              "hintTable": {}
+            },
+            {
+              "value": ","
+            },
+            {
+              "value": " "
+            },
+            {
+              "value": "quiero",
+              "tts": "https://d1vq87e9lcf771.cloudfront.net/oscares/d9abdd2552220edc7e0348c505e73db8",
+              "hintTable": {}
+            },
+            {
+              "value": " "
+            },
+            {
+              "value": "un",
+              "tts": "https://d1vq87e9lcf771.cloudfront.net/oscares/9ee32fa2e53b843d92b5be5f37e45374",
+              "hintTable": {}
+            },
+            {
+              "value": " "
+            },
+            {
+              "value": "café",
+              "tts": "https://d1vq87e9lcf771.cloudfront.net/oscares/e14df6d8b20dab324071f61a0f0b8e75",
+              "hintTable": {}
+            },
+            {
+              "value": "."
+            }
+          ],
+          "tts": "https://d1vq87e9lcf771.cloudfront.net/oscares/6cf0e81befb630d979875916cec77d17",
+          "character": {
+            "image": {
+              "svg": "https://d2pur3iezf4d1j.cloudfront.net/images/f4639160abfb44c54829ebeb62c0542d"
+            },
+            "gender": "MALE"
+          },
+          "type": "translate",
+          "newWords": [
+            "quiero"
+          ],
+          "canBeSkipped": false
+        }
+      },
+      {
+        "index": 9,
+        "keys": [
+          "prompt",
+          "correctSolutions",
+          "compactTranslations",
+          "correctTokens",
+          "wrongTokens",
+          "choices",
+          "correctIndices",
+          "sourceLanguage",
+          "targetLanguage",
+          "grader",
+          "taggedKcIds",
+          "challengeDisplaySettings",
+          "weakWordPromptRanges",
+          "tokens",
+          "tts",
+          "character",
+          "isSpeakerUniversal",
+          "type",
+          "id",
+          "challengeResponseTrackingProperties",
+          "metadata",
+          "newWords",
+          "progressUpdates",
+          "sentenceId",
+          "challengeGeneratorIdentifier"
+        ],
+        "content": {
+          "prompt": "Hola, quiero un café con leche.",
+          "correctSolutions": [
+            "Hello, I want a coffee with milk."
+          ],
+          "correctTokens": [
+            "Hello",
+            "I",
+            "want",
+            "a",
+            "coffee",
+            "with",
+            "milk"
+          ],
+          "choices": [
+            {
+              "text": "Hello"
+            },
+            {
+              "text": "I"
+            },
+            {
+              "text": "want"
+            },
+            {
+              "text": "a"
+            },
+            {
+              "text": "coffee"
+            },
+            {
+              "text": "with"
+            },
+            {
+              "text": "milk"
+            },
+            {
+              "text": "thank you"
+            }
+          ],
+          "correctIndices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "sourceLanguage": "es",
+          "targetLanguage": "en",
+          "tokens": [
+            {
+              "value": "Hola",
+              "tts": "https://d1vq87e9lcf771.cloudfront.net/beaes/a173764c56425897b473389870ef16bc",
+              "hintTable": {}
+            },
+            {
+              "value": ","
+            },
+            {
+              "value": " "
+            },
+            {
+              "value": "quiero",
+              "tts": "https://d1vq87e9lcf771.cloudfront.net/beaes/0808bb11076fe0d5489fe2e753369f96",
+              "hintTable": {}
+            },
+            {
+              "value": " "
+            },
+            {
+              "value": "un",
+              "tts": "https://d1vq87e9lcf771.cloudfront.net/beaes/895817f205f076676012559014feb90c",
+              "hintTable": {}
+            },
+            {
+              "value": " "
+            },
+            {
+              "value": "café",
+              "tts": "https://d1vq87e9lcf771.cloudfront.net/beaes/325da5dd32510601a6f9a87a4be51ba7",
+              "hintTable": {}
+            },
+            {
+              "value": " "
+            },
+            {
+              "value": "con",
+              "tts": "https://d1vq87e9lcf771.cloudfront.net/beaes/169215252e73e6f0a68615b9ba0d3d22",
+              "hintTable": {}
+            },
+            {
+              "value": " "
+            },
+            {
+              "value": "leche",
+              "tts": "https://d1vq87e9lcf771.cloudfront.net/beaes/a4976fae8dfce0a257ab5abab78dd123",
+              "hintTable": {}
+            },
+            {
+              "value": "."
+            }
+          ],
+          "tts": "https://d1vq87e9lcf771.cloudfront.net/beaes/6484b6bb2ec4414de04f1cdc67b73976",
+          "character": {
+            "image": {
+              "svg": "https://d2pur3iezf4d1j.cloudfront.net/images/50af330449fbbaf257fc9868c4321586"
+            },
+            "gender": "FEMALE"
+          },
+          "type": "translate",
+          "newWords": []
+        }
+      },
+      {
+        "index": 10,
+        "keys": [
+          "character",
+          "prompt",
+          "choices",
+          "correctIndex",
+          "options",
+          "type",
+          "id",
+          "challengeResponseTrackingProperties",
+          "metadata",
+          "newWords",
+          "progressUpdates",
+          "challengeGeneratorIdentifier"
+        ],
+        "content": {
+          "character": {
+            "image": {
+              "svg": "https://d2pur3iezf4d1j.cloudfront.net/images/f4639160abfb44c54829ebeb62c0542d"
+            },
+            "gender": "MALE"
+          },
+          "prompt": "please",
+          "choices": [
+            "café",
+            "por favor",
+            "hola"
+          ],
+          "correctIndex": 1,
+          "type": "assist",
+          "newWords": []
+        }
+      },
+      {
+        "index": 11,
+        "keys": [
+          "choices",
+          "correctIndex",
+          "dialogue",
+          "solutionTranslation",
+          "type",
+          "id",
+          "challengeResponseTrackingProperties",
+          "metadata",
+          "progressUpdates",
+          "challengeGeneratorIdentifier"
+        ],
+        "content": {
+          "choices": [
+            "¿Por favor?",
+            "Hola, ¿un café?"
+          ],
+          "correctIndex": 1,
+          "solutionTranslation": "Hello, a coffee?",
+          "type": "dialogue"
+        }
+      },
+      {
+        "index": 12,
+        "keys": [
+          "prompt",
+          "correctTokens",
+          "wrongTokens",
+          "choices",
+          "correctIndices",
+          "solutionTranslation",
+          "tts",
+          "slowTts",
+          "grader",
+          "type",
+          "id",
+          "challengeResponseTrackingProperties",
+          "metadata",
+          "newWords",
+          "progressUpdates",
+          "sentenceId",
+          "challengeGeneratorIdentifier"
+        ],
+        "content": {
+          "prompt": "un café",
+          "correctTokens": [
+            "un",
+            "café"
+          ],
+          "choices": [
+            {
+              "text": "un",
+              "tts": "https://d1vq87e9lcf771.cloudfront.net/miguel/77f436e44094f0912fa76368e873f996"
+            },
+            {
+              "text": "café",
+              "tts": "https://d1vq87e9lcf771.cloudfront.net/miguel/7621be263ec49e37d07612453e9df3b9"
+            },
+            {
+              "text": "chao",
+              "tts": "https://d1vq87e9lcf771.cloudfront.net/miguel/cdcd64fa95037d561ebad47312a98af3"
+            }
+          ],
+          "correctIndices": [
+            0,
+            1
+          ],
+          "solutionTranslation": "a coffee",
+          "tts": "https://d1vq87e9lcf771.cloudfront.net/miguel/9b03975358f699c373c8eb5df5c28b39",
+          "slowTts": "https://d1vq87e9lcf771.cloudfront.net/miguel/0e9d77a7ebf5f77493882102892bf6d5",
+          "type": "listenTap",
+          "newWords": []
+        }
+      },
+      {
+        "index": 13,
+        "keys": [
+          "choices",
+          "correctIndex",
+          "dialogue",
+          "solutionTranslation",
+          "type",
+          "id",
+          "challengeResponseTrackingProperties",
+          "metadata",
+          "progressUpdates",
+          "challengeGeneratorIdentifier"
+        ],
+        "content": {
+          "choices": [
+            "¡Un té, por favor!",
+            "Hola."
+          ],
+          "correctIndex": 0,
+          "solutionTranslation": "A tea, please!",
+          "type": "dialogue"
+        }
+      },
+      {
+        "index": 14,
+        "keys": [
+          "prompt",
+          "correctTokens",
+          "wrongTokens",
+          "choices",
+          "correctIndices",
+          "solutionTranslation",
+          "tts",
+          "slowTts",
+          "grader",
+          "type",
+          "id",
+          "challengeResponseTrackingProperties",
+          "metadata",
+          "newWords",
+          "progressUpdates",
+          "sentenceId",
+          "challengeGeneratorIdentifier"
+        ],
+        "content": {
+          "prompt": "¡Por favor!",
+          "correctTokens": [
+            "Por",
+            "favor"
+          ],
+          "choices": [
+            {
+              "text": "Por",
+              "tts": "https://d1vq87e9lcf771.cloudfront.net/miguel/e339e0bfe581d755bb02344cc04edecc"
+            },
+            {
+              "text": "favor",
+              "tts": "https://d1vq87e9lcf771.cloudfront.net/miguel/9358c3c3f8307e1eefb952fa52f8135d"
+            },
+            {
+              "text": "y",
+              "tts": "https://d1vq87e9lcf771.cloudfront.net/miguel/05e3848edd76360dcc4340e158ad7843"
+            }
+          ],
+          "correctIndices": [
+            0,
+            1
+          ],
+          "solutionTranslation": "Please!",
+          "tts": "https://d1vq87e9lcf771.cloudfront.net/miguel/ff70ef7e568187418a23a62fbfff6dec",
+          "slowTts": "https://d1vq87e9lcf771.cloudfront.net/miguel/11af75e689a4bbadffcb986cd6765c9a",
+          "type": "listenTap",
+          "newWords": []
+        }
+      }
+    ],
+    "omitted_keys": [
+      "challenge.0.id",
+      "challenge.0.challengeResponseTrackingProperties",
+      "challenge.0.metadata",
+      "challenge.0.progressUpdates",
+      "challenge.0.challengeGeneratorIdentifier",
+      "challenge.1.id",
+      "challenge.1.challengeResponseTrackingProperties",
+      "challenge.1.metadata",
+      "challenge.1.progressUpdates",
+      "challenge.1.challengeGeneratorIdentifier",
+      "challenge.2.compactTranslations",
+      "challenge.2.wrongTokens",
+      "challenge.2.grader",
+      "challenge.2.taggedKcIds",
+      "challenge.2.challengeDisplaySettings",
+      "challenge.2.weakWordPromptRanges",
+      "challenge.2.isSpeakerUniversal",
+      "challenge.2.id",
+      "challenge.2.challengeResponseTrackingProperties",
+      "challenge.2.metadata",
+      "challenge.2.progressUpdates",
+      "challenge.2.sentenceId",
+      "challenge.2.challengeGeneratorIdentifier",
+      "challenge.2.tokens.0.hintTable.headers",
+      "challenge.2.tokens.0.hintTable.rows",
+      "challenge.2.tokens.2.hintTable.headers",
+      "challenge.2.tokens.2.hintTable.rows",
+      "challenge.2.character.url",
+      "challenge.2.character.correctAnimation",
+      "challenge.2.character.incorrectAnimation",
+      "challenge.2.character.idleAnimation",
+      "challenge.2.character.name",
+      "challenge.2.character.avatarIconImage",
+      "challenge.2.character.image.pdf",
+      "challenge.3.compactTranslations",
+      "challenge.3.wrongTokens",
+      "challenge.3.grader",
+      "challenge.3.taggedKcIds",
+      "challenge.3.challengeDisplaySettings",
+      "challenge.3.weakWordPromptRanges",
+      "challenge.3.isSpeakerUniversal",
+      "challenge.3.id",
+      "challenge.3.challengeResponseTrackingProperties",
+      "challenge.3.metadata",
+      "challenge.3.progressUpdates",
+      "challenge.3.sentenceId",
+      "challenge.3.challengeGeneratorIdentifier",
+      "challenge.3.tokens.0.hintTable.headers",
+      "challenge.3.tokens.0.hintTable.rows",
+      "challenge.3.tokens.2.hintTable.headers",
+      "challenge.3.tokens.2.hintTable.rows",
+      "challenge.3.character.url",
+      "challenge.3.character.correctAnimation",
+      "challenge.3.character.incorrectAnimation",
+      "challenge.3.character.idleAnimation",
+      "challenge.3.character.name",
+      "challenge.3.character.avatarIconImage",
+      "challenge.3.character.image.pdf",
+      "challenge.4.compactTranslations",
+      "challenge.4.wrongTokens",
+      "challenge.4.grader",
+      "challenge.4.taggedKcIds",
+      "challenge.4.challengeDisplaySettings",
+      "challenge.4.weakWordPromptRanges",
+      "challenge.4.isSpeakerUniversal",
+      "challenge.4.id",
+      "challenge.4.challengeResponseTrackingProperties",
+      "challenge.4.metadata",
+      "challenge.4.progressUpdates",
+      "challenge.4.sentenceId",
+      "challenge.4.challengeGeneratorIdentifier",
+      "challenge.4.tokens.0.hintTable.headers",
+      "challenge.4.tokens.0.hintTable.rows",
+      "challenge.4.tokens.2.hintTable.headers",
+      "challenge.4.tokens.2.hintTable.rows",
+      "challenge.4.tokens.5.hintTable.headers",
+      "challenge.4.tokens.5.hintTable.rows",
+      "challenge.4.tokens.7.hintTable.headers",
+      "challenge.4.tokens.7.hintTable.rows",
+      "challenge.4.character.url",
+      "challenge.4.character.correctAnimation",
+      "challenge.4.character.incorrectAnimation",
+      "challenge.4.character.idleAnimation",
+      "challenge.4.character.name",
+      "challenge.4.character.avatarIconImage",
+      "challenge.4.character.image.pdf",
+      "challenge.5.compactTranslations",
+      "challenge.5.wrongTokens",
+      "challenge.5.grader",
+      "challenge.5.taggedKcIds",
+      "challenge.5.challengeDisplaySettings",
+      "challenge.5.weakWordPromptRanges",
+      "challenge.5.isSpeakerUniversal",
+      "challenge.5.id",
+      "challenge.5.challengeResponseTrackingProperties",
+      "challenge.5.metadata",
+      "challenge.5.progressUpdates",
+      "challenge.5.sentenceId",
+      "challenge.5.challengeGeneratorIdentifier",
+      "challenge.5.tokens.0.hintTable.headers",
+      "challenge.5.tokens.0.hintTable.rows",
+      "challenge.5.tokens.3.hintTable.headers",
+      "challenge.5.tokens.3.hintTable.rows",
+      "challenge.5.tokens.5.hintTable.headers",
+      "challenge.5.tokens.5.hintTable.rows",
+      "challenge.5.character.url",
+      "challenge.5.character.correctAnimation",
+      "challenge.5.character.incorrectAnimation",
+      "challenge.5.character.idleAnimation",
+      "challenge.5.character.name",
+      "challenge.5.character.avatarIconImage",
+      "challenge.5.character.image.pdf",
+      "challenge.6.options",
+      "challenge.6.id",
+      "challenge.6.challengeResponseTrackingProperties",
+      "challenge.6.metadata",
+      "challenge.6.progressUpdates",
+      "challenge.6.challengeGeneratorIdentifier",
+      "challenge.6.character.url",
+      "challenge.6.character.correctAnimation",
+      "challenge.6.character.incorrectAnimation",
+      "challenge.6.character.idleAnimation",
+      "challenge.6.character.name",
+      "challenge.6.character.avatarIconImage",
+      "challenge.6.character.image.pdf",
+      "challenge.7.compactTranslations",
+      "challenge.7.wrongTokens",
+      "challenge.7.grader",
+      "challenge.7.taggedKcIds",
+      "challenge.7.challengeDisplaySettings",
+      "challenge.7.weakWordPromptRanges",
+      "challenge.7.isSpeakerUniversal",
+      "challenge.7.id",
+      "challenge.7.challengeResponseTrackingProperties",
+      "challenge.7.metadata",
+      "challenge.7.progressUpdates",
+      "challenge.7.sentenceId",
+      "challenge.7.challengeGeneratorIdentifier",
+      "challenge.7.tokens.0.hintTable.headers",
+      "challenge.7.tokens.0.hintTable.rows",
+      "challenge.7.tokens.2.hintTable.headers",
+      "challenge.7.tokens.2.hintTable.rows",
+      "challenge.7.tokens.4.hintTable.headers",
+      "challenge.7.tokens.4.hintTable.rows",
+      "challenge.7.tokens.6.hintTable.headers",
+      "challenge.7.tokens.6.hintTable.rows",
+      "challenge.7.character.url",
+      "challenge.7.character.correctAnimation",
+      "challenge.7.character.incorrectAnimation",
+      "challenge.7.character.idleAnimation",
+      "challenge.7.character.name",
+      "challenge.7.character.avatarIconImage",
+      "challenge.7.character.image.pdf",
+      "challenge.8.compactTranslations",
+      "challenge.8.wrongTokens",
+      "challenge.8.grader",
+      "challenge.8.taggedKcIds",
+      "challenge.8.challengeDisplaySettings",
+      "challenge.8.weakWordPromptRanges",
+      "challenge.8.isSpeakerUniversal",
+      "challenge.8.id",
+      "challenge.8.challengeResponseTrackingProperties",
+      "challenge.8.metadata",
+      "challenge.8.progressUpdates",
+      "challenge.8.sentenceId",
+      "challenge.8.challengeGeneratorIdentifier",
+      "challenge.8.tokens.0.hintTable.headers",
+      "challenge.8.tokens.0.hintTable.rows",
+      "challenge.8.tokens.3.hintTable.headers",
+      "challenge.8.tokens.3.hintTable.rows",
+      "challenge.8.tokens.5.hintTable.headers",
+      "challenge.8.tokens.5.hintTable.rows",
+      "challenge.8.tokens.7.hintTable.headers",
+      "challenge.8.tokens.7.hintTable.rows",
+      "challenge.8.character.url",
+      "challenge.8.character.correctAnimation",
+      "challenge.8.character.incorrectAnimation",
+      "challenge.8.character.idleAnimation",
+      "challenge.8.character.name",
+      "challenge.8.character.avatarIconImage",
+      "challenge.8.character.image.pdf",
+      "challenge.9.compactTranslations",
+      "challenge.9.wrongTokens",
+      "challenge.9.grader",
+      "challenge.9.taggedKcIds",
+      "challenge.9.challengeDisplaySettings",
+      "challenge.9.weakWordPromptRanges",
+      "challenge.9.isSpeakerUniversal",
+      "challenge.9.id",
+      "challenge.9.challengeResponseTrackingProperties",
+      "challenge.9.metadata",
+      "challenge.9.progressUpdates",
+      "challenge.9.sentenceId",
+      "challenge.9.challengeGeneratorIdentifier",
+      "challenge.9.tokens.0.hintTable.headers",
+      "challenge.9.tokens.0.hintTable.rows",
+      "challenge.9.tokens.3.hintTable.headers",
+      "challenge.9.tokens.3.hintTable.rows",
+      "challenge.9.tokens.5.hintTable.headers",
+      "challenge.9.tokens.5.hintTable.rows",
+      "challenge.9.tokens.7.hintTable.headers",
+      "challenge.9.tokens.7.hintTable.rows",
+      "challenge.9.tokens.9.hintTable.headers",
+      "challenge.9.tokens.9.hintTable.rows",
+      "challenge.9.tokens.11.hintTable.headers",
+      "challenge.9.tokens.11.hintTable.rows",
+      "challenge.9.character.url",
+      "challenge.9.character.correctAnimation",
+      "challenge.9.character.incorrectAnimation",
+      "challenge.9.character.idleAnimation",
+      "challenge.9.character.name",
+      "challenge.9.character.avatarIconImage",
+      "challenge.9.character.image.pdf",
+      "challenge.10.options",
+      "challenge.10.id",
+      "challenge.10.challengeResponseTrackingProperties",
+      "challenge.10.metadata",
+      "challenge.10.progressUpdates",
+      "challenge.10.challengeGeneratorIdentifier",
+      "challenge.10.character.url",
+      "challenge.10.character.correctAnimation",
+      "challenge.10.character.incorrectAnimation",
+      "challenge.10.character.idleAnimation",
+      "challenge.10.character.name",
+      "challenge.10.character.avatarIconImage",
+      "challenge.10.character.image.pdf",
+      "challenge.11.dialogue",
+      "challenge.11.id",
+      "challenge.11.challengeResponseTrackingProperties",
+      "challenge.11.metadata",
+      "challenge.11.progressUpdates",
+      "challenge.11.challengeGeneratorIdentifier",
+      "challenge.12.wrongTokens",
+      "challenge.12.grader",
+      "challenge.12.id",
+      "challenge.12.challengeResponseTrackingProperties",
+      "challenge.12.metadata",
+      "challenge.12.progressUpdates",
+      "challenge.12.sentenceId",
+      "challenge.12.challengeGeneratorIdentifier",
+      "challenge.13.dialogue",
+      "challenge.13.id",
+      "challenge.13.challengeResponseTrackingProperties",
+      "challenge.13.metadata",
+      "challenge.13.progressUpdates",
+      "challenge.13.challengeGeneratorIdentifier",
+      "challenge.14.wrongTokens",
+      "challenge.14.grader",
+      "challenge.14.id",
+      "challenge.14.challengeResponseTrackingProperties",
+      "challenge.14.metadata",
+      "challenge.14.progressUpdates",
+      "challenge.14.sentenceId",
+      "challenge.14.challengeGeneratorIdentifier"
+    ]
+  },
+  "initial": "- button:\n  - img\n- progressbar\n- img\n- text: \"5\"\n- img\n- text: New word\n- heading \"Which one of these is “coffee”?\" [level=1]\n- radiogroup \"choice\":\n  - radio \"taco 1\":\n    - text: taco 1\n    - img\n    - img\n  - radio \"café 2\":\n    - text: café 2\n    - img\n    - img\n  - radio \"té 3\":\n    - text: té 3\n    - img\n    - img\n- button \"Skip\"\n- button \"Check\" [disabled]\n- text: Loading... In Sweden, the most popular language on Duolingo is Swedish (mostly by refugees).",
+  "observed_at": "2026-10-10T03:15:08.046Z"
+}

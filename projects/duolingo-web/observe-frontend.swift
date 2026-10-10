@@ -14,7 +14,7 @@ if let seedIndex = CommandLine.arguments.firstIndex(of: "--seed-progress"), seed
 }
 let childLog = output.appendingPathComponent("child.log")
 FileManager.default.createFile(atPath: childLog.path, contents: nil)
-let fixture = CommandLine.arguments.count > 2 ? CommandLine.arguments[2] : "projects/duolingo-web/fixture-reference-v5.json"
+let fixture = CommandLine.arguments.count > 2 ? CommandLine.arguments[2] : "projects/duolingo-web/fixture-reference-v6.json"
 func launchChild() throws -> Process {
     let process = Process()
     process.executableURL = root.appendingPathComponent("projects/education-swift/.build/debug/LingoSeed")
@@ -231,12 +231,21 @@ if CommandLine.arguments.contains("--walk-course") {
                 try waitFor("continue")
                 states[key + "-feedback"] = observe()
                 try press("continue")
+                if let interludes = definition["interludes"] as? [[String: String]], let interlude = interludes.first(where: { $0["afterQuestionID"] == key }) {
+                    try waitFor("lesson-interlude", value: interlude["id"])
+                    states[interlude["id"]!] = observe(); try capture(interlude["id"]! + "-window")
+                    try press("interlude-continue")
+                }
             }
             try waitFor("lesson-complete")
             states["lesson-\(lessonIndex + 1)-complete"] = observe()
             try press("return-path")
             try waitFor("course-entry")
         }
+        // Reference Guidebook was observed after the first node's three lessons.
+        try press("open-guide"); try waitFor("guide-title")
+        states["guidebook"] = observe(); try capture("guidebook-window")
+        try press("close-guide"); try waitFor("course-entry")
     } catch { walkError = String(describing: error) }
 }
 let receipt: [String: Any] = ["kind": "owned_native_ax_observation", "states": states,
