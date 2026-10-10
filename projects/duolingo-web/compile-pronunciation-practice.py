@@ -18,6 +18,9 @@ for i in range(10):
  heading=re.search(r'- heading "([^"]+)" \[level=2\]',s['feedback']).group(1)
  extra=re.findall(r'^- text: (.+)$',s['feedback'],re.M);correct=1 if '还不太准确' in heading else 0
  questions.append({'id':f'p{i}','kind':'choice','prompt':'先听后答' if same else '你听到了什么？','options':options,'answer':options[correct]['id'],'explanation':extra[-1] if extra else '', 'sourceType':'sameDifferent' if same else 'selectPronunciation','practiceAudioResources':clips,'correctFeedback':heading if correct==0 else None,'skipLabel':'跳过'})
+ # These are actual disabled speaker labels revealed by feedback, not guesses from audio URLs.
+ if same:
+  questions[-1]['practiceAudioLabels']=re.findall(r'^- button "([^"]+)" \[disabled\]:$',s['feedback'],re.M)
 # Current matching's public DOM data-test identities and accepted actual pairs.
 pairs_raw=readraw('q11-pairs.raw.txt');pair_clips={r['left']:r['media'][0]['src'] for r in pairs_raw['rows']}
 urls.update(pair_clips.values())

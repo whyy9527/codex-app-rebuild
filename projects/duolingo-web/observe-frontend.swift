@@ -198,6 +198,9 @@ if CommandLine.arguments.contains("--observe-pronunciation") {
             let check = current().first { (attr($0, kAXIdentifierAttribute) as? String) == "check" }
             before["interactions"] = ["check_enabled": check.flatMap { attr($0, kAXEnabledAttribute) as? Bool } ?? false]
             states[state + "-before"] = before; try capture(state + "-before")
+            if question["sourceType"] as? String == "sameDifferent" {
+                try press("practice-play-0"); try press("practice-play-1")
+            }
             if question["kind"] as? String == "matching" {
                 for pair in question["pairs"] as! [[String: Any]] {
                     let pairID = pair["id"] as! String

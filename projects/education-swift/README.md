@@ -1,12 +1,12 @@
 # LingoSeed · Swift 教育基座
 
-可运行的 macOS SwiftUI 客户端。当前默认 `fixture-reference-en-zh-v9.json` 包含原版中文母语→英语七课102道评分题，另有未评分的听力/口语暂缓状态。第七课接入正常听音配对、音频单选、跨题输入偏好、非惩罚跳过、原题重练、成就/建档结算；radio1声音、更多暂缓/录音分支、生命刷新和完整图形/实际声音仍未对齐。[当前实测和复跑](../duolingo-web/evidence/english-seventh-native-v1/README.md)保留原始失败；核心通过不代表1:1完成。
+可运行的 macOS SwiftUI 客户端。当前默认 `fixture-reference-en-zh-v10.json` 包含原版中文母语→英语七课102道评分题，另有未评分的听力/口语暂缓状态。第七课接入正常听音配对、音频单选、跨题输入偏好、非惩罚跳过、原题重练、成就/建档结算；radio1声音、更多暂缓/录音分支、生命刷新和完整图形/实际声音仍未对齐。[当前实测和复跑](../duolingo-web/evidence/english-seventh-native-v1/README.md)保留原始失败；核心通过不代表1:1完成。
 
-最新v9补齐实际反馈句及正确静态波形，实走完整第七课81状态，无walk_error；补词和背景色通过，边框与整页仍不同，见[最新反馈验证](../duolingo-web/evidence/english-radio-feedback-v1/README.md)。此前checked及几何8项结果保留为[控件补漏](../duolingo-web/evidence/english-radio-layout-v1/README.md)。不把旧构建或局部结果移用为本构建整体验收。
+当前发音练习复用Lesson状态机，独立于主课程保存；分段播放采用原版控件布局及反馈词，驱动实际走过52状态。前端与声音仍不一致，见[最新证据与复跑](../duolingo-web/evidence/english-pronunciation-split-v1/README.md)。旧第七课全程结果保留为历史，不移用到当前构建。
 
 原版Bea/Lucy的实际Rive全身动画已接入默认题库，官方Apple RiveRuntime锁定6.24.0。初次构建需联网下载SDK约108MB，SwiftPM自动将framework放到可执行文件旁；直接运行保留整个构建目录及资源bundle。角色变化已通过实际连续截图测量，动画时序、mouth/audio同步与其余角色仍未对齐。[当前渲染证据和失败](../duolingo-web/evidence/english-character-render-v1/README.md)。
 
-五课、六课及组件探针保持历史版本，不再将“正常分支尚未采齐”作为默认集成已观察课程的额外门槛；未验证分支继续进入探索与验收。21项核心检查不能替代真实窗口、视觉或音频验收。
+五课、六课及组件探针保持历史版本，不再将“正常分支尚未采齐”作为默认集成已观察课程的额外门槛；未验证分支继续进入探索与验收。22项核心检查不能替代真实窗口、视觉或音频验收。
 
 ## 构建、运行与重置
 
@@ -14,13 +14,13 @@
 
 ```sh
 swift build --package-path projects/education-swift --product LingoSeed
-projects/education-swift/.build/debug/LingoSeed --fixture projects/duolingo-web/fixture-reference-en-zh-v9.json --progress artifacts/lingoseed-english-demo/progress.json
+projects/education-swift/.build/debug/LingoSeed --fixture projects/duolingo-web/fixture-reference-en-zh-v10.json --progress artifacts/lingoseed-english-demo/progress.json
 swift run --package-path projects/education-swift LearningCoreChecks
 ```
 
 换一个尚不存在的 `--progress` 文件即可建立独立初态。普通运行默认保存到用户 Application Support 下 `LingoSeed/<fixture-name>/progress.json`，不同夹具不共享默认进度，不要将普通用户进度用作验收夹具。原生适配器始终使用临时题库/进度，关闭并清理自己启动的进程；reload 重开同一临时进度文件。
 
-本机缺少 XCTest / Swift Testing 模块；核心检查采用非零失败的 `LearningCoreChecks` 可执行入口。21项核心检查覆盖实际英语轨迹、题间状态、空答案与错题重练、存储往返、拼句/撤回/锁定、配对、课时解锁及旧数据兼容。它们不能替代原生 UI E2E。
+本机缺少 XCTest / Swift Testing 模块；核心检查采用非零失败的 `LearningCoreChecks` 可执行入口。22项核心检查覆盖实际英语轨迹、题间状态、空答案与错题重练、存储往返、拼句/撤回/锁定、配对、课时解锁及旧数据兼容。它们不能替代原生 UI E2E。
 
 ## 职责与扩展
 

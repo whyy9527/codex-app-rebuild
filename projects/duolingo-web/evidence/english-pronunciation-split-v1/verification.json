@@ -1,0 +1,37 @@
+{
+  "kind": "native-split-speaker-verification",
+  "contract": "projects/duolingo-web/frontend-english-v20.json",
+  "preserved_v19_requirements": 1638,
+  "requirements": 1650,
+  "native_states": 52,
+  "framework_checks": {
+    "count": 52,
+    "status": "pass"
+  },
+  "core_checks": {
+    "count": 22,
+    "status": "pass"
+  },
+  "build": "pass",
+  "counts": {
+    "not_run": 1497,
+    "pass": 130,
+    "fail": 23
+  },
+  "new_requirements": {
+    "fail": 4,
+    "pass": 8
+  },
+  "visual": {
+    "pairs": 4,
+    "different": 4
+  },
+  "actual_actions": "Observer pressed both enabled split speakers before choosing on every sameDifferent visit; normal/review completion and fresh immediate exit. No acoustic equality claim.",
+  "limitations": [
+    "Four new zero-tolerance geometry requirements each differ by 0.25 points",
+    "Owned UI action and MP3 binding do not prove sound output equality",
+    "Full original completion contains extra errors; only the four listed initial states are image-paired",
+    "Normal speech, settlement statistics, phoneme progress persistence and broader product remain incomplete"
+  ],
+  "goal": "active"
+}

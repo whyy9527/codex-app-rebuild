@@ -1,0 +1,29 @@
+{
+  "trajectory": "Actual original initial q0 and q5 states, including their first feedback; not full-source completion equivalence",
+  "pairs": [
+    {
+      "stage": "q0-before",
+      "source": "projects/duolingo-web/evidence/english-pronunciation-practice-v1/q0-before.png",
+      "native": "pronunciation-p0-before.png"
+    },
+    {
+      "stage": "q0-feedback",
+      "source": "projects/duolingo-web/evidence/english-pronunciation-practice-v1/q0-feedback.png",
+      "native": "pronunciation-p0-feedback.png"
+    },
+    {
+      "stage": "q5-before",
+      "source": "projects/duolingo-web/evidence/english-pronunciation-practice-v1/walk03/q5-before.png",
+      "native": "pronunciation-p5-before.png"
+    },
+    {
+      "stage": "q5-feedback",
+      "source": "projects/duolingo-web/evidence/english-pronunciation-practice-v1/walk03/q5-feedback.png",
+      "native": "pronunciation-p5-feedback.png"
+    }
+  ],
+  "limitations": [
+    "Source completion included an explorer lookup failure and extra corrections; it is not the same full completion trajectory as the candidate. These pairs are initial question states only.",
+    "ICC conversion, titlebar crop,2x downsample; no masks or acceptance tolerance"
+  ]
+}

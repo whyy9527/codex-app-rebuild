@@ -208,3 +208,8 @@ v15保留1489项并增8项真实原版断言。独立原生radio2实际点击及
 ### 发音练习实际续跑与Swift入口
 
 原版走完听辨、sameDifferent、口语暂缓、配对、错题复习、结算/稍后建档并返回；保留过渡重影、单speaker假设、URL答案键串题导致24次额外错误及结算过渡超时。按题型/选项/音频绑定修正探索，不称作RSI收益。Swift入口已接独立Lesson，52个原生状态、主六课/生命3不变；新增49前端要求44pass/5not_run，横排radio零容差几何及旧纵排回归通过。完整v19共1638项，本次122pass/19fail/1497not_run，三对整图different。构建、22核心、52框架通过。原版练习后音标进度增长，候选仍缺持久化；正常口语、结算统计/条件文案及声音/视觉等价未完成。完整Goalactive，[证据与复跑](../projects/duolingo-web/evidence/english-pronunciation-practice-v1/README.md)。
+
+
+### 分段播放的前端模具补漏
+
+旧练习只检查选项，漏掉白色165宽分段speaker及反馈揭示词。v20保留1638项并追加12项，原生实际播放、答题/复习和返回52状态；新增8pass/4fail，四项几何仍差0.25点不放宽。整次130pass/23fail/1497not_run，四对整图different。保留AX缺失及AXUnknown失败，修复原退出资源缺失问号；构建、22核心、52框架通过。已知视觉/声学、口语、结算、音标持久化及未访问分支继续推进，真实质量消融仍未完成。完整Goal active。[证据及复跑](../projects/duolingo-web/evidence/english-pronunciation-split-v1/README.md)。

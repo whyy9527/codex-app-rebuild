@@ -176,3 +176,8 @@ Lesson将词库键盘、填空整句偏好分别保存；clearAnswer清答案缓
 
 
 前端颜色事实来自实际PNG；`capture_color.py` 将嵌入ICC的macOS截图转换到参考CSS/sRGB空间，再按窗口几何采样。共同 `pixel_color` 契约要求显式sRGB与实际RGB，零容差比较采样点；不替代整图比较。旧raw RGB诊断保留为不同空间直接比较的反例。可选feedbackHint与Choice.correctImageResource表达已观察反馈阶段内容，不改变答题评分。
+
+
+### 发音练习与分段播放
+
+`compile-pronunciation-practice.py`从真实UI归档生成独立Course，`Question.practiceAudioResources`和`practiceAudioLabels`分别承载原音频身份、反馈揭示词。`LearningModel`以独立Lesson接入发音入口并复用评分/重练；当前尚未实现原版音标持久化，不能以主课程隔离代替发音恢复。`ReferencePracticeAudioButton`使用显式NSButton角色与容器，分别绘制两个分段并在反馈禁用。共同前端v20独立比较原版几何、角色和状态，`observe-frontend.swift`实际点击播放/答题并采集事实，不自行声明通过。[数据与失败](../projects/duolingo-web/evidence/english-pronunciation-split-v1/README.md)。
