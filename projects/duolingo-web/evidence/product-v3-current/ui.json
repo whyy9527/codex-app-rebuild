@@ -1,0 +1,118 @@
+{
+  "kind": "native_product_ui",
+  "limitations": [
+    "Does not record acoustic output",
+    "Does not establish reference visual similarity"
+  ],
+  "passed_checks": [
+    "Default home has course and locked second lesson",
+    "Practice nodes are locked before lesson completion",
+    "Leaderboards navigation opens its destination",
+    "Quests navigation opens its destination",
+    "Shop navigation opens its destination",
+    "Profile navigation opens its destination",
+    "More navigation opens its destination",
+    "Guidebook opens and closes",
+    "view-quests opens Quests",
+    "view-profile opens Profile",
+    "Narrow home keeps start and named navigation",
+    "Mute survives an actual process restart",
+    "Sound can be restored",
+    "Wrong answer updates hearts",
+    "Completing all pairs advances to correct feedback without Check",
+    "Mistake returns for review",
+    "Completion progress is full after mistake review",
+    "Completion updates home and unlocks lesson two",
+    "Completion and unlock survive restart",
+    "Narrow word tiles keep Check",
+    "Wrong phrase returns to review",
+    "Both lessons complete with persistent learning state",
+    "Exit cancel and confirm preserve completed lessons",
+    "Two completed lessons reopen after actual restart",
+    "Completed lesson unlocks practice 0",
+    "Practice 0 return preserves completions",
+    "Completed lesson unlocks practice 1",
+    "Practice 1 return preserves completions"
+  ],
+  "scope": "Owned child AX actions; real UI, isolated original course fixture and progress; screenshots require separate visual review",
+  "screenshots": [
+    {
+      "path": "choice.png",
+      "sha256": "0d94d74f6c90867c6379a2efae0b3b699389c4bb01a49ece141fa4e3a9ea5341"
+    },
+    {
+      "path": "completed-home.png",
+      "sha256": "afae3f6c96ab456fe3cd5470557ec7b8ba07a04ec740d407e15525e6a3ae4830"
+    },
+    {
+      "path": "completion.png",
+      "sha256": "d0086def5ed0996f02175ecaf94b6e66482f628acfb02a9a14e58e7d167b93f0"
+    },
+    {
+      "path": "correct.png",
+      "sha256": "4d2f31da1d3a0c5647e3d3a1422676ebe7882e6bd12cd159723ef30aa35b1b6c"
+    },
+    {
+      "path": "exit.png",
+      "sha256": "056de9373b8da1b369e4bbdb4259654fadb6545711ca977c6182aa823143043a"
+    },
+    {
+      "path": "guidebook.png",
+      "sha256": "871ea7147eb3b1c8a4e2984ce6fa94048182e18509618066e499caf2473f2762"
+    },
+    {
+      "path": "home-narrow.png",
+      "sha256": "6dcbb3943f76757b626708b8f8bd92bfcd87498fe608dfe9c800f82d0d81ceca"
+    },
+    {
+      "path": "home-wide.png",
+      "sha256": "9d153bd783c8d28397c6577dc0ba3cd9f00fc0db91056a3fa82141928697a308"
+    },
+    {
+      "path": "incorrect.png",
+      "sha256": "ec2324af5bd4b3216a835b1b9ef37691fc98989b1ceca708f576bd44339b34a8"
+    },
+    {
+      "path": "matching-correct.png",
+      "sha256": "c6a6ffdb4d06bd6f50f75bfbfe2adccb637c7658815d5c7e30d4419b61ccdcab"
+    },
+    {
+      "path": "matching.png",
+      "sha256": "45ec272514cbbd0e1178757462d27dc3f965c1da16cd6da83f2b7bf19bbbc305"
+    },
+    {
+      "path": "mistake-review.png",
+      "sha256": "744557cd22566bd1a070e46da5cac5730abbcc2ed107dc46c8708b124a355cec"
+    },
+    {
+      "path": "unlocked-home.png",
+      "sha256": "afc5827453e7accc41363182cf89dab29fb48f7584dff23f639db73e93d49178"
+    },
+    {
+      "path": "word-correct.png",
+      "sha256": "086fbeaea19d547de176b1d653340754cc0a29da76a0a1f1e35fb882abb51a20"
+    },
+    {
+      "path": "word-incorrect.png",
+      "sha256": "79a35a564fd4998c55bef6e4e63f347a564c3a784a39db531722614fd6560ac0"
+    },
+    {
+      "path": "word-tiles-narrow.png",
+      "sha256": "b0c047c07c99d0f37b3234b1ecd1920abce311686e95d9a6e91ace266db3e77b"
+    },
+    {
+      "path": "word-tiles.png",
+      "sha256": "da3754b513e7e4ea30ca7ff9182e947408d845fb09ab0738c6a79e4212f358cf"
+    }
+  ],
+  "status": "pass",
+  "source_sha256": {
+    "projects/education-swift/Sources/LingoSeed/LearningModel.swift": "c4582760892f5e450885669bb36484145f9abab5fef879d1194157b0afd6952f",
+    "projects/education-swift/Sources/LingoSeed/LearningView.swift": "9c87e65fb9c8b3a56d65cbb009077467c11c9804bc934987f7d20ee9d714043f",
+    "projects/education-swift/Sources/LingoSeed/LingoSeed.swift": "24bdb769a42bfe6c4d66f40baa6e8502ab5b4b19a65ca67e4b3a855eb0d237e9",
+    "projects/education-swift/Sources/LingoSeed/SeedMascot.swift": "ac8983db54d62dfe12e957f5fd998ca7b4fef4ecd8b951a37d07c0875604f18a",
+    "projects/education-swift/Sources/LingoSeed/ChoiceIllustration.swift": "e19b4ff248446c4777e5f4fb12576a0d1bc05652c3da4402abe4729dba218d22",
+    "projects/education-swift/Sources/LingoSeed/LearningAudio.swift": "0470e7efc71c48b762235f67651d000cea8ba2015483e092145f5cf56c3c4cdf",
+    "projects/education-swift/Sources/LearningCore/LearningCore.swift": "d2ae1a9d8265da8ceec7eaad1ba634cc397bc9ebdf009932b9d7f6135765ebaf"
+  }
+}

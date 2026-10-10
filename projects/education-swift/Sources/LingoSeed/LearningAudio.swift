@@ -21,7 +21,11 @@ import AVFoundation
     }
     func speak(_ text: String) {
         guard !muted else { return }
-        player?.stop(); speech.stopSpeaking(at: .immediate); speech.speak(AVSpeechUtterance(string: text))
+        player?.stop(); speech.stopSpeaking(at: .immediate)
+        let utterance = AVSpeechUtterance(string: text)
+        utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
+        utterance.rate = 0.45
+        speech.speak(utterance)
     }
     static func wave(_ cue: Cue) -> Data {
         let notes: [Double] = switch cue {

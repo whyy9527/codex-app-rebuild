@@ -1,0 +1,247 @@
+{
+  "kind": "native_ui_audio_loopback_suite",
+  "status": "pass",
+  "scenarios": {
+    "pronunciation": {
+      "duration_seconds": 7,
+      "filter": "Only explicitly selected child application",
+      "frames": 352320,
+      "kind": "owned_application_audio_loopback",
+      "microphone": false,
+      "peak": 0.70490562915802,
+      "rms": 0.0550790606970952,
+      "samples": 704640,
+      "ui_actions": [
+        {
+          "elapsed_seconds": 0.15256106853485107,
+          "id": "start-lesson"
+        },
+        {
+          "elapsed_seconds": 0.36464905738830566,
+          "id": "option-morning"
+        },
+        {
+          "elapsed_seconds": 0.5360391139984131,
+          "id": "pronounce"
+        }
+      ],
+      "sha256": "e9a90c8868ee6a229f177fe1cdb9799c84455acf921a46ae1f42784c36a09adf",
+      "bytes": 2822656,
+      "status": "pass"
+    },
+    "correct": {
+      "duration_seconds": 7,
+      "filter": "Only explicitly selected child application",
+      "frames": 354240,
+      "kind": "owned_application_audio_loopback",
+      "microphone": false,
+      "peak": 0.13877049088478088,
+      "rms": 0.010018434542594015,
+      "samples": 708480,
+      "ui_actions": [
+        {
+          "elapsed_seconds": 0.06029200553894043,
+          "id": "check"
+        }
+      ],
+      "sha256": "9bd8227224e25501ae9445f7af26ecdc3ac9f01ce30037a7e0f0fb5db3531c6c",
+      "bytes": 2838016,
+      "status": "pass"
+    },
+    "incorrect": {
+      "duration_seconds": 7,
+      "filter": "Only explicitly selected child application",
+      "frames": 341760,
+      "kind": "owned_application_audio_loopback",
+      "microphone": false,
+      "peak": 0.5503720045089722,
+      "rms": 0.023537458158975365,
+      "samples": 683520,
+      "ui_actions": [
+        {
+          "elapsed_seconds": 0.04544496536254883,
+          "id": "continue"
+        },
+        {
+          "elapsed_seconds": 0.21636903285980225,
+          "id": "option-bye"
+        },
+        {
+          "elapsed_seconds": 0.40337908267974854,
+          "id": "check"
+        }
+      ],
+      "sha256": "1f93fd8336cfa85094538de1ff196eca0d6eddddb0756c45dc7f9ac71206ff97",
+      "bytes": 2738176,
+      "status": "pass"
+    },
+    "muted-matching": {
+      "duration_seconds": 7,
+      "filter": "Only explicitly selected child application",
+      "frames": 354240,
+      "kind": "owned_application_audio_loopback",
+      "microphone": false,
+      "peak": 0,
+      "rms": 0,
+      "samples": 708480,
+      "ui_actions": [
+        {
+          "elapsed_seconds": 0.03552103042602539,
+          "id": "sound-toggle"
+        },
+        {
+          "elapsed_seconds": 0.21522605419158936,
+          "id": "continue"
+        },
+        {
+          "elapsed_seconds": 0.383882999420166,
+          "id": "pair-left-morning"
+        },
+        {
+          "elapsed_seconds": 0.560824990272522,
+          "id": "pair-right-morning"
+        },
+        {
+          "elapsed_seconds": 0.7328230142593384,
+          "id": "pair-left-thanks"
+        },
+        {
+          "elapsed_seconds": 0.9071090221405029,
+          "id": "pair-right-thanks"
+        },
+        {
+          "elapsed_seconds": 1.0845760107040405,
+          "id": "pair-left-bye"
+        },
+        {
+          "elapsed_seconds": 1.2667959928512573,
+          "id": "pair-right-bye"
+        }
+      ],
+      "sha256": "69636afdaf730ad4f0cd6775adc7e66019664d1b98e232a241b722b317a33da7",
+      "bytes": 2838016,
+      "status": "pass"
+    },
+    "restored-completion": {
+      "duration_seconds": 7,
+      "filter": "Only explicitly selected child application",
+      "frames": 345600,
+      "kind": "owned_application_audio_loopback",
+      "microphone": false,
+      "peak": 0.5913119912147522,
+      "rms": 0.01985104807597358,
+      "samples": 691200,
+      "ui_actions": [
+        {
+          "elapsed_seconds": 0.03200101852416992,
+          "id": "sound-toggle"
+        },
+        {
+          "elapsed_seconds": 0.20582401752471924,
+          "id": "continue"
+        },
+        {
+          "elapsed_seconds": 0.38174498081207275,
+          "id": "option-thanks"
+        },
+        {
+          "elapsed_seconds": 0.573058009147644,
+          "id": "check"
+        },
+        {
+          "elapsed_seconds": 0.7666540145874023,
+          "id": "continue"
+        }
+      ],
+      "sha256": "d18c77a424a1adfea0f07fbbe403b4dcb2d5c0f7a0de46eba646f8b995ba93d1",
+      "bytes": 2768896,
+      "status": "pass"
+    },
+    "matching-correct": {
+      "duration_seconds": 7,
+      "filter": "Only explicitly selected child application",
+      "frames": 347520,
+      "kind": "owned_application_audio_loopback",
+      "microphone": false,
+      "peak": 0.5913057327270508,
+      "rms": 0.03383760958404108,
+      "samples": 695040,
+      "ui_actions": [
+        {
+          "elapsed_seconds": 0.0520939826965332,
+          "id": "return-path"
+        },
+        {
+          "elapsed_seconds": 0.2720099687576294,
+          "id": "start-lesson"
+        },
+        {
+          "elapsed_seconds": 0.46039295196533203,
+          "id": "option-morning"
+        },
+        {
+          "elapsed_seconds": 0.6487070322036743,
+          "id": "check"
+        },
+        {
+          "elapsed_seconds": 0.8297059535980225,
+          "id": "continue"
+        },
+        {
+          "elapsed_seconds": 1.0106920003890991,
+          "id": "option-thanks"
+        },
+        {
+          "elapsed_seconds": 1.2009649276733398,
+          "id": "check"
+        },
+        {
+          "elapsed_seconds": 1.3839229345321655,
+          "id": "continue"
+        },
+        {
+          "elapsed_seconds": 1.5724289417266846,
+          "id": "pair-left-morning"
+        },
+        {
+          "elapsed_seconds": 1.7646520137786865,
+          "id": "pair-right-morning"
+        },
+        {
+          "elapsed_seconds": 1.9560619592666626,
+          "id": "pair-left-thanks"
+        },
+        {
+          "elapsed_seconds": 2.1481690406799316,
+          "id": "pair-right-thanks"
+        },
+        {
+          "elapsed_seconds": 2.3399139642715454,
+          "id": "pair-left-bye"
+        },
+        {
+          "elapsed_seconds": 2.5255589485168457,
+          "id": "pair-right-bye"
+        }
+      ],
+      "sha256": "8768f25482cc86a350b0da7d50e0b098033f2b33325c5766eb5e92da049a709c",
+      "bytes": 2784256,
+      "status": "pass"
+    }
+  },
+  "binary_sha256": "c2e53771cadc5d913b6127736a50c366dc5272fcae2219a94bf1409d07e31480",
+  "source_sha256": {
+    "projects/education-swift/Sources/LingoSeed/LearningModel.swift": "c4582760892f5e450885669bb36484145f9abab5fef879d1194157b0afd6952f",
+    "projects/education-swift/Sources/LingoSeed/LearningView.swift": "9c87e65fb9c8b3a56d65cbb009077467c11c9804bc934987f7d20ee9d714043f",
+    "projects/education-swift/Sources/LingoSeed/LingoSeed.swift": "24bdb769a42bfe6c4d66f40baa6e8502ab5b4b19a65ca67e4b3a855eb0d237e9",
+    "projects/education-swift/Sources/LingoSeed/SeedMascot.swift": "ac8983db54d62dfe12e957f5fd998ca7b4fef4ecd8b951a37d07c0875604f18a",
+    "projects/education-swift/Sources/LingoSeed/ChoiceIllustration.swift": "e19b4ff248446c4777e5f4fb12576a0d1bc05652c3da4402abe4729dba218d22",
+    "projects/education-swift/Sources/LingoSeed/LearningAudio.swift": "0470e7efc71c48b762235f67651d000cea8ba2015483e092145f5cf56c3c4cdf",
+    "projects/education-swift/Sources/LearningCore/LearningCore.swift": "d2ae1a9d8265da8ceec7eaad1ba634cc397bc9ebdf009932b9d7f6135765ebaf"
+  },
+  "scope": "Only owned application system output, microphone disabled; actual AX actions timed inside each recording",
+  "limitations": [
+    "Verifies digital system-output signal, not physical speaker volume or human preference",
+    "Original synthesized sounds and system English voice, not Duolingo recordings"
+  ]
+}

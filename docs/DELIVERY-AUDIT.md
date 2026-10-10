@@ -33,3 +33,7 @@
 README、AGENTS、[哲学](PHILOSOPHY.md)、[架构](ARCHITECTURE.md)和[路线图](ROADMAP.md)按最终实现维护。运行Goal拥有任务契约，没有新增GOAL.md。Dream-RSI与Cordis的原论文/官方实现、借鉴点、未实现边界和旧实验无收益在[研究来源](RESEARCH.md)保留；Cordis没有冒称第二篇RSI算法论文。
 
 仓库为私有whyy9527/codex-app-rebuild；本轮核验GitHub private=true，未公开、部署或发布。交付检查包含差异/敏感信息、精确暂存、提交推送与远端提交一致性；最后提交号以运行Goal最终回报和Git远端为准，不把提交号写入自身文档形成循环。实验Source没有自动替换主产品。后续扩张属于新范围，应先固定新业务和新的盲留出。
+
+## 产品修正的后续证据
+
+[产品复验](../projects/duolingo-web/evidence/PRODUCT-V3-REVIEW.md)记录本轮主页、音效、发音、28项UI与12项原生回归、实际音频输出以及视觉剩余项。以下历史正文中的“当前”均指当时工程版本；新产品源码不能用历史摘要证明。整体Goal仍active。

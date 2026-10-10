@@ -45,3 +45,5 @@ Stop 去重绑定会话、原生 turn ID 和实际尝试/验收/阶段检查点�
 ## 研究关系
 
 历史策略池、回放和组件库已从运行链移除，当前不是 Dream-RSI/Cordis 复现。研究机制、历史证据与恢复位置由 [RESEARCH.md](RESEARCH.md)维护。
+
+产品检查另用自有子进程AX驱动，隔离进度，不改变冻结v2断言。音频输出检查使用ScreenCaptureKit的自有PID过滤、关闭麦克风，录音开始后驱动真实控件并记录时间戳；非零输出和静音零输出分别判断。数字输出证据与物理扬声器听感分开。ChoiceIllustration只按选项文本呈现原创插画，SeedMascot只负责展示，不读取正确答案。详见[产品复验](../projects/duolingo-web/evidence/PRODUCT-V3-REVIEW.md)。

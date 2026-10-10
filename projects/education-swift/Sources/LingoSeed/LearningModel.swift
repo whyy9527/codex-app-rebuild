@@ -21,15 +21,23 @@ import LearningCore
             try JSONEncoder().encode(muted).write(to: audioPreferencesURL, options: .atomic)
         } catch { self.error = "Sound preference could not be saved." }
     }
-    func choose(_ id: String) { lesson?.choose(id); audio.play(.tap) }
+    func choose(_ id: String) {
+        guard let lesson, lesson.feedback == nil, let option = lesson.question.options.first(where: { $0.id == id }) else { return }
+        self.lesson?.choose(id)
+        audio.speak(option.text)
+    }
     func addWord(_ id: String) { lesson?.addWord(id); audio.play(.tap) }
     func removeWord(_ id: String) { lesson?.removeWord(id); audio.play(.tap) }
     func match(_ id: String, left: Bool) {
         let previous = lesson?.feedback
         if left { lesson?.matchLeft(id) } else { lesson?.matchRight(id) }
-        audio.play(previous == nil && lesson?.feedback == true ? .correct : .tap)
+        audio.play(previous == nil && lesson?.feedback == true ? .correct : lesson?.matchingHint != nil ? .incorrect : .tap)
     }
-    func pronounce() { if let lesson { audio.speak(lesson.question.prompt) } }
+    func pronounce() {
+        guard let lesson else { return }
+        let phrase = lesson.question.options.first { $0.id == lesson.selected }?.text ?? lesson.question.prompt
+        audio.speak(phrase)
+    }
     init(course: Course, store: ProgressStore) throws {
         self.course = course; self.store = store; progress = try store.load()
         if let data = try? Data(contentsOf: audioPreferencesURL), let saved = try? JSONDecoder().decode(Bool.self, from: data) { muted = saved; audio.muted = saved }
