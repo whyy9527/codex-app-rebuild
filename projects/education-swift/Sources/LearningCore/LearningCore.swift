@@ -50,11 +50,12 @@ public struct Question: Codable, Equatable, Sendable, Identifiable {
     public let listeningDecline: ListeningDecline?
     public let keyboardAnswer: String?
     public let keyboardPrompt: String?
+    public let reviewWordOrder: [String]?
     public let skipLabel: String?
     public let skipCorrectText: String?
     public let feedbackReportReasons: [String]?
     enum CodingKeys: String, CodingKey {
-        case skipLabel, skipCorrectText
+        case reviewWordOrder, skipLabel, skipCorrectText
         case keyboardAnswer, keyboardPrompt, correctFeedback, indicator, example, exampleAudioResource, completionPrefix, completionSuffix, listeningDecline, feedbackReportReasons
         case id, kind, prompt, options, answer, words, pairs, explanation, hint, newWord, rightOrder, audioResource, sourceLanguage, characterResource, sourceType, slowAudioResource, dialogueAvatars
         case answerWords = "answer_words"
@@ -88,6 +89,7 @@ public struct Question: Codable, Equatable, Sendable, Identifiable {
         listeningDecline = try c.decodeIfPresent(ListeningDecline.self, forKey: .listeningDecline)
         keyboardAnswer = try c.decodeIfPresent(String.self, forKey: .keyboardAnswer)
         keyboardPrompt = try c.decodeIfPresent(String.self, forKey: .keyboardPrompt)
+        reviewWordOrder = try c.decodeIfPresent([String].self, forKey: .reviewWordOrder)
         skipLabel = try c.decodeIfPresent(String.self, forKey: .skipLabel)
         skipCorrectText = try c.decodeIfPresent(String.self, forKey: .skipCorrectText)
         feedbackReportReasons = try c.decodeIfPresent([String].self, forKey: .feedbackReportReasons)
@@ -103,6 +105,9 @@ public struct Question: Codable, Equatable, Sendable, Identifiable {
     var valid: Bool {
         func unique(_ ids: [String]) -> Bool { !ids.isEmpty && ids.allSatisfy { !$0.isEmpty } && Set(ids).count == ids.count }
         guard !id.isEmpty, !prompt.isEmpty else { return false }
+        if let order = reviewWordOrder {
+            guard unique(order), Set(order) == Set(words.map(\.id)) else { return false }
+        }
         switch kind {
         case .textEntry: return !answer.isEmpty
         case .choice: return unique(options.map(\.id)) && options.contains { $0.id == answer }
@@ -135,6 +140,7 @@ public struct SettlementPage: Codable, Equatable, Sendable, Identifiable {
     public let observedAccuracy: Int?
     public let observedMistakes: Int?
     public let accuracyLabel: String?
+    public var levelLabel: String? = nil
 }
 public struct DeferredSpeech: Codable, Equatable, Sendable, Identifiable {
     public let id: String
@@ -298,6 +304,10 @@ public struct Lesson: Equatable, Sendable {
         speechDeclined = true
     }
     public var question: Question { definition.questions[position] }
+    public var visibleWords: [Choice] {
+        guard reviewing, let order = question.reviewWordOrder else { return question.words }
+        return order.compactMap { id in question.words.first { $0.id == id } }
+    }
     public var canSubmit: Bool {
         guard feedback == nil, !listeningDeclined, !complete, interlude == nil, deferredSpeech == nil else { return false }
         if usingKeyboard { return !keyboardText.isEmpty }

@@ -166,3 +166,10 @@ ReferenceAnswerEditor拥有NSTextView，19px/400与600×170区域，关闭系统
 ### 同课输入偏好与完整第七课需求
 
 Lesson将词库键盘、填空整句偏好分别保存；clearAnswer清答案缓冲，按新题支持的类型恢复对应模式，不支持切换的题不清偏好。原生驱动以当前新题提示和AXTextArea判断模式，不无条件切换。compile-input-preference-probe冻结四个实际题的跨题状态；freeze-seventh-frontend独立从完整原版回执生成39状态/419项及产品v13，组件通过不填补整课未执行。Lin绑定来自实际coffee and tea的API/PNG/renderer及CDN一致字节。源心数刷新、口语替换和额外结算继续作为显式未知/待实现状态。[本批](../projects/duolingo-web/evidence/english-seventh-v1/README.md)。
+
+
+### 七课集成与控件语义
+
+`compile-english-seventh.py`按真实源UI顺序扩展v8，而非直接照初始API顺序。`Question.reviewWordOrder`保留重练词库顺序，`Lesson.visibleWords`在重练阶段切换展示而不改变答案身份；`SettlementPage.levelLabel`保留额外成就级别。`ReferenceAudioRadio`使用原生NSButton radio承载选择/禁用语义，独立hosting视图绘制源波形帧，不把普通按钮冒充单选。
+
+共享前端v14新增`element_role`（DOM/AX语义归一）和`element_boolean`（必须实际布尔值），在同文字情况下仍能判错控件角色和禁用状态。源ARIA快照与旧`!n.disabled`采样冲突保留，后续采集读取`aria-disabled`；旧v13不覆盖或放宽。驱动用显式`sourceObservationPhase`把切换后的空输入与对应源时点比较，初始状态另外保留；原版与候选都不由测试期望值生成事实。题库、源资源与未观察分支仍分开记录。

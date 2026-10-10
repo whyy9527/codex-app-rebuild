@@ -1,0 +1,26 @@
+[0/1] Planning build
+Building for debugging...
+[0/5] Write sources
+[1/5] Write swift-version--1AB21518FC5DEDBE.txt
+[3/7] Emitting module LingoSeed
+[4/7] Compiling LingoSeed LearningView.swift
+<repo>/projects/education-swift/Sources/LingoSeed/LearningView.swift:558:26: warning: result of call to 'accessibilityValue' is unused [#no-usage]
+556 |                         .disabled(lesson.listeningDeclined || lesson.feedback != nil || lesson.matchedPairs.contains(pair.id))
+557 |                         .accessibilityIdentifier("pair-right-" + pair.id).accessibilityLabel(label)
+558 |                         .accessibilityValue(lesson.incorrectMatch?.last == pair.id ? "incorrect" : lesson.matchedPairs.contains(pair.id) ? "matched" : "available")
+    |                          `- warning: result of call to 'accessibilityValue' is unused [#no-usage]
+559 |     }
+560 |     private func orderedRightPairs(_ question: Question) -> [WordPair] {
+
+<repo>/projects/education-swift/Sources/LingoSeed/LearningView.swift:547:18: error: function declares an opaque return type, but has no return statements in its body from which to infer an underlying type [#OpaqueTypeInference]
+545 |         }.frame(maxWidth: .infinity).padding(.top, 59)
+546 |     }
+547 |     private func audioRightPair(_ pair: WordPair, index: Int, lesson: Lesson) -> some View {
+    |                  `- error: function declares an opaque return type, but has no return statements in its body from which to infer an underlying type [#OpaqueTypeInference]
+548 |         let label = "\(index + 5) \(pair.right)"
+549 |                     Button { model.match(pair.id, left: false) } label: {
+    |                     `- note: did you mean to return the last expression?
+550 |                         HStack {
+551 |                             Text(String(index + 5)).font(ReferenceStyle.font(14, bold: true)).frame(width: 28, height: 28)
+
+[#OpaqueTypeInference]: <https://docs.swift.org/compiler/documentation/diagnostics/opaque-type-inference>

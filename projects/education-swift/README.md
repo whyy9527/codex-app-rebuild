@@ -1,10 +1,10 @@
 # LingoSeed · Swift 教育基座
 
-可运行的 macOS SwiftUI 客户端。当前默认接入原版中文母语→英语五课72题（15/15/15/12/15），另含一次未评分的口语暂缓状态。第五课按实际源轨迹实现插入题、听音配对扣心和重试、填空错题重练、每日任务/宝石/建档结算及返回主页。录音与识别尚未接入；该按钮会明确报告缺失，不伪造识别结果。原版字符、布局、完整图形动画和实际声音仍未对齐。[本批实测和复跑](../duolingo-web/evidence/english-fifth-native-v1/README.md)保留失败，不把课程子集与核心通过当作1:1完成。
+可运行的 macOS SwiftUI 客户端。当前默认 `fixture-reference-en-zh-v8.json` 包含原版中文母语→英语七课102道评分题，另有未评分的听力/口语暂缓状态。第七课接入正常听音配对、音频单选、跨题输入偏好、非惩罚跳过、原题重练、成就/建档结算；radio1声音、更多暂缓/录音分支、生命刷新和完整图形/实际声音仍未对齐。[当前实测和复跑](../duolingo-web/evidence/english-seventh-native-v1/README.md)保留原始失败；核心通过不代表1:1完成。
 
 原版Bea/Lucy的实际Rive全身动画已接入默认题库，官方Apple RiveRuntime锁定6.24.0。初次构建需联网下载SDK约108MB，SwiftPM自动将framework放到可执行文件旁；直接运行保留整个构建目录及资源bundle。角色变化已通过实际连续截图测量，动画时序、mouth/audio同步与其余角色仍未对齐。[当前渲染证据和失败](../duolingo-web/evidence/english-character-render-v1/README.md)。
 
-新增听力暂缓的未评分状态与已观察的插入题路径，当前只在fixture-listening-decline.json中冻结并验证；默认五课缺完整暂缓后的源轨迹，尚未冒充支持。核心增至16项；局部22项回归16通过、0失败、6未验证。见[当前批次](../duolingo-web/evidence/english-listening-decline-v1/README.md)。
+五课、六课及组件探针保持历史版本，不再将“正常分支尚未采齐”作为默认集成已观察课程的额外门槛；未验证分支继续进入探索与验收。21项核心检查不能替代真实窗口、视觉或音频验收。
 
 ## 构建、运行与重置
 
@@ -12,13 +12,13 @@
 
 ```sh
 swift build --package-path projects/education-swift --product LingoSeed
-projects/education-swift/.build/debug/LingoSeed --fixture projects/duolingo-web/fixture-reference-en-zh-v6.json --progress artifacts/lingoseed-english-demo/progress.json
+projects/education-swift/.build/debug/LingoSeed --fixture projects/duolingo-web/fixture-reference-en-zh-v8.json --progress artifacts/lingoseed-english-demo/progress.json
 swift run --package-path projects/education-swift LearningCoreChecks
 ```
 
 换一个尚不存在的 `--progress` 文件即可建立独立初态。普通运行默认保存到用户 Application Support 下 `LingoSeed/<fixture-name>/progress.json`，不同夹具不共享默认进度，不要将普通用户进度用作验收夹具。原生适配器始终使用临时题库/进度，关闭并清理自己启动的进程；reload 重开同一临时进度文件。
 
-本机缺少 XCTest / Swift Testing 模块；核心检查采用非零失败的 `LearningCoreChecks` 可执行入口。15项核心检查覆盖实际英语轨迹、题间状态、空答案与错题重练、存储往返、拼句/撤回/锁定、配对、课时解锁及旧数据兼容。它们不能替代原生 UI E2E。
+本机缺少 XCTest / Swift Testing 模块；核心检查采用非零失败的 `LearningCoreChecks` 可执行入口。21项核心检查覆盖实际英语轨迹、题间状态、空答案与错题重练、存储往返、拼句/撤回/锁定、配对、课时解锁及旧数据兼容。它们不能替代原生 UI E2E。
 
 ## 职责与扩展
 
@@ -93,7 +93,7 @@ Swift仍缺原版题间鼓励、评分/连续学习/Legendary/注册提示及完
 
 ### v6与英语方向
 
-当前默认历史夹具为`fixture-reference-v6.json`：原版角色、两处题间状态和完整实测Guidebook内容已加入。`ReferenceGuidebook`替换通用介绍弹窗，逐句播放六个源语音文件。6项核心检查、37题实际原生回放通过；Guidebook还有1.03125点的图标y差、完整视觉/声音和其它行为缺口，不能视为1:1。
+历史西语夹具`fixture-reference-v6.json`：原版角色、两处题间状态和完整实测Guidebook内容已加入。`ReferenceGuidebook`替换通用介绍弹窗，逐句播放六个源语音文件。6项核心检查、37题实际原生回放通过；Guidebook还有1.03125点的图标y差、完整视觉/声音和其它行为缺口，不能视为1:1。
 
 用户建议英语学科后，当前目标转为中文母语学习英语。默认候选尚未切换，正在采真实英语课；旧原创英语夹具只保留历史兼容，不是原版英语复刻。详见[v6证据和运行命令](../duolingo-web/evidence/exploration-v6/README.md)。
 

@@ -46,6 +46,19 @@ def compare(root, contract, observed):
             actual = state.get('interactions', {}).get(requirement['field'])
             row.update(status='unavailable' if type(actual) is not bool else 'pass' if actual == requirement['expected'] else 'fail',
                        expected=requirement['expected'], actual=actual)
+        elif requirement['kind'] == 'element_role':
+            actual = state.get('elements', {}).get(requirement['element'], {}).get('role')
+            # Compare a common semantic role across DOM and macOS AX drivers.
+            actual = {'AXRadioButton': 'radio', 'AXButton': 'button', 'AXCheckBox': 'checkbox'}.get(actual, actual)
+            row.update(status='unavailable' if actual is None else 'pass' if actual == requirement['role'] else 'fail',
+                       expected=requirement['role'], actual=actual)
+        elif requirement['kind'] == 'element_boolean':
+            field = requirement['field']
+            if field != 'enabled' or type(requirement['expected']) is not bool:
+                raise ValueError('Unsupported element boolean contract')
+            actual = state.get('elements', {}).get(requirement['element'], {}).get(field)
+            row.update(status='unavailable' if type(actual) is not bool else 'pass' if actual == requirement['expected'] else 'fail',
+                       expected=requirement['expected'], actual=actual)
         elif requirement['kind'] == 'element_geometry':
             expected = requirement['rect']
             tolerance = requirement['tolerance_points']

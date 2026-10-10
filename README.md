@@ -4,19 +4,13 @@
 
 探索原产品，把用户可观察的业务与前端需求变成可独立运行的代码化模具，用历史反馈改进探索，再让 Codex 重建 App。仓库保持私有；改名不代表开源或发布。
 
-最新反馈分支已实际观察难度评价、多选报错和关闭重开，并实现原生交互；共享31项两端均25通过、6未验证，整体fail。九对整页及四对同几何弹窗图仍全部不同；提交服务、其他题型选项和完整第六课未完成。原始AX定位失败及修复、16个已执行动作/60个待探索动作见[反馈动作证据](projects/duolingo-web/evidence/english-feedback-actions-v1/README.md)。不把更多约束或局部测试通过当作探索收益。
+当前默认夹具为 `fixture-reference-en-zh-v8.json`：七课102道评分题，保留实际口语暂缓、听力暂缓、插入/替换题、独立输入偏好、跳过重练及结算路径。第七课15题与三页结算已原生走通，后续课程继续探索；不会把学完已编译课程标成整课程完成。
 
-原版第六课已实际完成：两种暂缓及替换尾部、15经验/100%、直接建档返回主页；默认Swift尚未接入。新增306需求进入v11，共1058项，保留全部视觉/声音未验证项。[实际续探与契约](projects/duolingo-web/evidence/english-sixth-v1/README.md)。
+前端契约v14保留v13全部1480项，再加入9项原版控件要求。比较涵盖文字、交互、几何、单选角色及启用状态；完整图像和实际声音仍有缺口。采集器已修正ARIA禁用状态和听力选项字段丢失，原始错误记录保留。源轨迹、原生失败、整课回归与复跑见[当前证据](projects/duolingo-web/evidence/english-seventh-native-v1/README.md)。
 
-显式六课夹具已原生连续执行273状态，17项核心通过。修正源AX序列化/动画采样后，v12共1061项为662通过、42失败、357未覆盖；25对第六课图片仍全部不同。默认五课同步修正第二节点进度、30经验任务、输入区域及反馈；正常暂缓分支尚未合并为默认六课。[本轮原生实测与模具修订](projects/duolingo-web/evidence/english-sixth-native-v1/README.md)。
+Bea/Lucy、Falstaff和正确Lin的源Rive已绑定；更多角色、气泡、主页引导、radio1声音和生命刷新仍未对齐。不能用核心通过、控件几何通过或源语音文件已下载宣称1:1完成。原始RSI论文、机制实验及无收益结果见[研究来源](docs/RESEARCH.md)，新的真实探索策略消融仍待执行。
 
-新增真实次要动作探索：确认跳过不扣心、两种输入模式独立保留、正常听音配对及新的音频填空题型。Swift两题切换探针已实际运行；18项核心通过，共享48项为30通过/14几何失败/4未验证，默认课程尚未接入。重新加载换题及DOM/AX禁用冲突保留为模具反例。[源证据、原生失败与接续](projects/duolingo-web/evidence/english-secondary-actions-v1/README.md)。
-
-整句输入新增真实多行编辑器、角色行和源Falstaff Rive；原48项中6项输入区几何已精确通过，保留8项切换失败。加入角色几何后49项仍36pass/9fail/4not_run，6对整页仍不同。实际执行发现并修复macOS智能引号改写；旧文件名导致的Lin素材误配已撤回并保留失败。[本轮实际修正](projects/duolingo-web/evidence/english-input-layout-v1/README.md)。
-
-第七课原版已完整完成并回主页：发现两种独立跨题输入偏好、跳过不扣心但入重练且结算100%、口语后的插入/替换题及额外成就页；真正Lin动画已核实接入。四题原生偏好路径28状态、19项核心通过，58项仍45pass/9fail/4not_run。源39状态/419项进入v13共1480项，现有六课为662pass/42fail/776not_run，第七课全程原生尚未接入。[实际轨迹、模具与复跑](projects/duolingo-web/evidence/english-seventh-v1/README.md)。
-
-跳过分支现已在独立原生探针走通：不扣心、不计错误、入原题重练；20项核心通过。源按钮150×50的几何失败已修，59项前端仍43pass/6fail/10not_run，五对截图全部不同。探针没有替代默认产品或完整第七课。[源断言、失败和复跑](projects/duolingo-web/evidence/english-skip-native-v1/README.md)。
+历史探针和旧版本均保留：见[Roadmap](docs/ROADMAP.md)、[反馈分支](projects/duolingo-web/evidence/english-feedback-actions-v1/README.md)、[六课连续回放](projects/duolingo-web/evidence/english-sixth-native-v1/README.md)、[第七课源观察](projects/duolingo-web/evidence/english-seventh-v1/README.md)和[跳过探针](projects/duolingo-web/evidence/english-skip-native-v1/README.md)。组件结果不相加冒充整体验收。
 
 ## 方法
 
@@ -24,13 +18,7 @@
 
 测试重新计算完成状态，文档保存决策与未知。通过现有测试不代表产品完整；未探索、不可用、失败和通过必须分开。探索新增行为后建立下一批规格，不能在实现期间降低当前验收标准。
 
-Swift默认已接入真实中文→英语五课72题，另有一次未评分的口语暂缓状态。第五课按实际页面顺序包含跳过口语后的插入题、听音配对扣心、填空错题重练和四页结算；录音识别仍未实现，不能视为完整口语功能。15项核心检查通过。实际第五课与五课连续运行、共享前端v10结果、失败及像素差异由[当前证据](projects/duolingo-web/evidence/english-fifth-native-v1/README.md)维护；契约752项不等于752项通过。角色图、动画、布局、声音、次要操作、后续课程及真实探索策略消融继续推进。
-
-最新探索已从裁切静态图追到原版实际Rive渲染器，接入Bea/Lucy全身动画，并按源标题样式修正角色纵向位置。当前五课回归仍为434pass / 11fail / 307not_run，整体fail；独立角色几何仍有0.194点横差，两张同视口画面仍不同。源探针、假设修订、实际动画帧和失败见[角色渲染证据](projects/duolingo-web/evidence/english-character-render-v1/README.md)。这次发现不代表自主RSI探索或消融收益。
-
-最新续探实际执行“现在不做听力题”，发现未评分暂缓后的插入题及后续题型替换。Swift已实现冻结局部路径；当前共享22项：原版16通过、6未验证，Swift回归16通过、0失败、6未验证。16项核心通过；默认五课仍434通过/11失败/307未覆盖。完整轨迹、集成失败和接续见[听力暂缓证据](projects/duolingo-web/evidence/english-listening-decline-v1/README.md)。默认产品的完整暂缓分支与真实探索消融仍未完成。
-
-历史四课、输入/配对组件与热茶重练的独立回执仍保留；不把不同时期的组件结果相加冒充同一次产品验收。原始RSI论文和负面实验见[研究来源](docs/RESEARCH.md)。
+Swift的21项核心检查覆盖实际课程轨迹、错误与暂缓、重练、输入偏好和进度。原生驱动另行操作窗口并保存控件、截图、失败及实际状态；它们不能互相替代。具体构建、启动和重置入口见[Swift基座](projects/education-swift/README.md)。
 
 ## 当前能力
 
@@ -75,3 +63,5 @@ python3 -m unittest discover -v
 
 
 上一探索检查点实际完成原版英语第三课，发现重复词块及同题型动态换题；当时候选仍为前两课，v4为128通过、244未覆盖。此历史结果保留，最新候选见上文。[第三课探索与下一步](projects/duolingo-web/evidence/english-third-v1/README.md)。
+
+本轮默认七课同次实际回放430状态；前端1489项为985通过、69失败、435未覆盖。38对截图全部有差异，实际声音等价尚未证明；[完整回执及保留失败](projects/duolingo-web/evidence/english-seventh-native-v1/README.md)。

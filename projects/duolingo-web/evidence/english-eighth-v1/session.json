@@ -1,0 +1,1290 @@
+{
+  "source": "Actual sessions response, public lesson fields only; no session/user identifiers or tracking payloads retained",
+  "session": {
+    "learningLanguage": "en",
+    "fromLanguage": "zh",
+    "type": "LEVEL_REVIEW",
+    "levelIndex": 1,
+    "challenges": [
+      {
+        "index": 0,
+        "keys": [
+          "prompt",
+          "correctSolutions",
+          "compactTranslations",
+          "correctTokens",
+          "wrongTokens",
+          "choices",
+          "correctIndices",
+          "sourceLanguage",
+          "targetLanguage",
+          "grader",
+          "taggedKcIds",
+          "challengeDisplaySettings",
+          "weakWordPromptRanges",
+          "tokens",
+          "tts",
+          "character",
+          "isSpeakerUniversal",
+          "type",
+          "id",
+          "challengeResponseTrackingProperties",
+          "metadata",
+          "newWords",
+          "progressUpdates",
+          "sentenceId",
+          "challengeGeneratorIdentifier",
+          "indicatorType"
+        ],
+        "content": {
+          "prompt": "tea and coffee",
+          "correctSolutions": [
+            "茶和咖啡"
+          ],
+          "correctTokens": [
+            "茶",
+            "和",
+            "咖啡"
+          ],
+          "choices": [
+            {
+              "text": "茶"
+            },
+            {
+              "text": "和"
+            },
+            {
+              "text": "咖啡"
+            },
+            {
+              "text": "也"
+            }
+          ],
+          "correctIndices": [
+            0,
+            1,
+            2
+          ],
+          "sourceLanguage": "en",
+          "targetLanguage": "zh",
+          "tokens": [
+            {
+              "value": "tea",
+              "tts": "https://d1vq87e9lcf771.cloudfront.net/eddyen/e350cb0630dc6e3f4f6b1a0fd750012c",
+              "hintTable": {}
+            },
+            {
+              "value": " "
+            },
+            {
+              "value": "and",
+              "tts": "https://d1vq87e9lcf771.cloudfront.net/eddyen/f8bbe7530cfb5e8dbaf1ad18c2a005d0",
+              "hintTable": {}
+            },
+            {
+              "value": " "
+            },
+            {
+              "value": "coffee",
+              "tts": "https://d1vq87e9lcf771.cloudfront.net/eddyen/37a5d19960f33d6f3f4c9c51719592d1",
+              "hintTable": {}
+            }
+          ],
+          "tts": "https://d1vq87e9lcf771.cloudfront.net/eddyen/45a64fa4f67e6720a2a231fd3c1c845d",
+          "character": {
+            "url": "https://d2pur3iezf4d1j.cloudfront.net/images/b53f870ed38105349d4d83edf682d77f",
+            "image": {
+              "svg": "https://d2pur3iezf4d1j.cloudfront.net/images/096d0b1f6280b962cd7080a7736dd2bb"
+            },
+            "gender": "MALE",
+            "correctAnimation": "https://simg-ssl.duolingo.com/lottie/Eddy_CORRECT_Cropped_Flex.json",
+            "incorrectAnimation": "https://simg-ssl.duolingo.com/lottie/Coach_INCORRECT_Cropped.json",
+            "idleAnimation": "https://simg-ssl.duolingo.com/lottie/Eddy_IDLE_Cropped.json",
+            "name": "EDDY",
+            "avatarIconImage": {
+              "svg": "https://simg-ssl.duolingo.com/world-characters/avatars/eddy_avatar_icon.svg"
+            }
+          },
+          "type": "translate",
+          "newWords": []
+        }
+      },
+      {
+        "index": 1,
+        "keys": [
+          "prompt",
+          "displayTokens",
+          "taggedKcIds",
+          "grader",
+          "weakWordPromptRanges",
+          "tokens",
+          "character",
+          "isSpeakerUniversal",
+          "type",
+          "id",
+          "challengeResponseTrackingProperties",
+          "metadata",
+          "newWords",
+          "progressUpdates",
+          "sentenceId",
+          "challengeGeneratorIdentifier",
+          "indicatorType"
+        ],
+        "content": {
+          "prompt": "热茶",
+          "displayTokens": [
+            {
+              "text": "hot",
+              "isBlank": true
+            },
+            {
+              "text": " ",
+              "isBlank": false
+            },
+            {
+              "text": "tea",
+              "isBlank": false
+            }
+          ],
+          "tokens": [
+            {
+              "value": "热茶",
+              "hintTable": {}
+            }
+          ],
+          "character": {
+            "url": "https://d2pur3iezf4d1j.cloudfront.net/images/1d4af8ffd16389a7c68b88b0d358ce92",
+            "image": {
+              "svg": "https://d2pur3iezf4d1j.cloudfront.net/images/f4639160abfb44c54829ebeb62c0542d"
+            },
+            "gender": "male",
+            "correctAnimation": "https://simg-ssl.duolingo.com/lottie/Oscar_CORRECT_Cropped_Coffee.json",
+            "incorrectAnimation": "https://simg-ssl.duolingo.com/lottie/Mo_INCORRECT_Cropped.json",
+            "idleAnimation": "https://simg-ssl.duolingo.com/lottie/Oscar_IDLE_Cropped.json",
+            "name": "OSCAR",
+            "avatarIconImage": {
+              "svg": "https://simg-ssl.duolingo.com/world-characters/avatars/oscar_avatar_icon.svg"
+            }
+          },
+          "type": "completeReverseTranslation",
+          "newWords": []
+        }
+      },
+      {
+        "index": 2,
+        "keys": [
+          "prompt",
+          "solutionTranslation",
+          "soundId",
+          "threshold",
+          "tokens",
+          "tts",
+          "correctTokens",
+          "wrongTokens",
+          "choices",
+          "correctIndices",
+          "character",
+          "taggedKcIds",
+          "speakGrader",
+          "useImmersiveUi",
+          "type",
+          "id",
+          "challengeResponseTrackingProperties",
+          "metadata",
+          "newWords",
+          "progressUpdates",
+          "sentenceId",
+          "challengeGeneratorIdentifier"
+        ],
+        "content": {
+          "prompt": "hello",
+          "solutionTranslation": "你好",
+          "tokens": [
+            {
+              "value": "hello",
+              "tts": "https://d1vq87e9lcf771.cloudfront.net/lucyen/b60f94918e53a3aab0e6f5bcdcb4fadd",
+              "hintTable": {}
+            }
+          ],
+          "tts": "https://d1vq87e9lcf771.cloudfront.net/lucyen/b60f94918e53a3aab0e6f5bcdcb4fadd",
+          "correctTokens": [],
+          "choices": [],
+          "correctIndices": [],
+          "character": {
+            "url": "https://d2pur3iezf4d1j.cloudfront.net/images/122480f3b6c86522d5715c920764dc44",
+            "image": {
+              "svg": "https://d2pur3iezf4d1j.cloudfront.net/images/ad178aebb8dfd890ab602527440e685c"
+            },
+            "gender": "FEMALE",
+            "correctAnimation": "https://simg-ssl.duolingo.com/lottie/Lucy_CORRECT_Cropped_WhoaHey.json",
+            "incorrectAnimation": "https://simg-ssl.duolingo.com/lottie/Gma_INCORRECT_Cropped.json",
+            "idleAnimation": "https://simg-ssl.duolingo.com/lottie/Lucy_IDLE_Cropped.json",
+            "name": "LUCY",
+            "avatarIconImage": {
+              "svg": "https://simg-ssl.duolingo.com/world-characters/avatars/lucy_avatar_icon.svg"
+            }
+          },
+          "type": "speak",
+          "newWords": []
+        }
+      },
+      {
+        "index": 3,
+        "keys": [
+          "prompt",
+          "correctSolutions",
+          "compactTranslations",
+          "correctTokens",
+          "wrongTokens",
+          "choices",
+          "correctIndices",
+          "sourceLanguage",
+          "targetLanguage",
+          "solutionTts",
+          "grader",
+          "smartTipsGraderV2",
+          "speechContextTokens",
+          "taggedKcIds",
+          "challengeDisplaySettings",
+          "weakWordPromptRanges",
+          "tokens",
+          "character",
+          "isSpeakerUniversal",
+          "type",
+          "id",
+          "challengeResponseTrackingProperties",
+          "metadata",
+          "newWords",
+          "progressUpdates",
+          "sentenceId",
+          "challengeGeneratorIdentifier"
+        ],
+        "content": {
+          "prompt": "再见，谢谢！",
+          "correctSolutions": [
+            "Goodbye, thank you!"
+          ],
+          "correctTokens": [
+            "Goodbye",
+            "thank",
+            "you"
+          ],
+          "choices": [
+            {
+              "text": "Goodbye",
+              "tts": "https://d1vq87e9lcf771.cloudfront.net/zarienminus5/932798c05a81b519d5158f768d28143b"
+            },
+            {
+              "text": "thank",
+              "tts": "https://d1vq87e9lcf771.cloudfront.net/zarienminus5/a546c4fdb5d1673c63ca6dfc18bd4bbc"
+            },
+            {
+              "text": "you",
+              "tts": "https://d1vq87e9lcf771.cloudfront.net/zarienminus5/7b93e04415cc428542bf2ce12c2525e9"
+            },
+            {
+              "text": "or",
+              "tts": "https://d1vq87e9lcf771.cloudfront.net/zarienminus5/aff493dfca5bd810821c8879d8d5d5f7"
+            }
+          ],
+          "correctIndices": [
+            0,
+            1,
+            2
+          ],
+          "sourceLanguage": "zh",
+          "targetLanguage": "en",
+          "tokens": [
+            {
+              "value": "再见",
+              "hintTable": {}
+            },
+            {
+              "value": "，"
+            },
+            {
+              "value": "谢谢",
+              "hintTable": {}
+            },
+            {
+              "value": "！"
+            }
+          ],
+          "character": {
+            "url": "https://d2pur3iezf4d1j.cloudfront.net/images/3f4adf80c0b6e9a0dc438f3ba8119703",
+            "image": {
+              "svg": "https://d2pur3iezf4d1j.cloudfront.net/images/6d99bc8306bdaacc3c8acc911214c557"
+            },
+            "gender": "female",
+            "correctAnimation": "https://simg-ssl.duolingo.com/lottie/Zari_CORRECT_Cropped_Spin.json",
+            "incorrectAnimation": "https://simg-ssl.duolingo.com/lottie/Pink_INCORRECT_Cropped.json",
+            "idleAnimation": "https://simg-ssl.duolingo.com/lottie/Zari_IDLE_Cropped.json",
+            "name": "ZARI",
+            "avatarIconImage": {
+              "svg": "https://simg-ssl.duolingo.com/world-characters/avatars/zari_avatar_icon.svg"
+            }
+          },
+          "type": "translate",
+          "newWords": []
+        }
+      },
+      {
+        "index": 4,
+        "keys": [
+          "prompt",
+          "solutionTranslation",
+          "soundId",
+          "threshold",
+          "tokens",
+          "tts",
+          "correctTokens",
+          "wrongTokens",
+          "choices",
+          "correctIndices",
+          "character",
+          "taggedKcIds",
+          "speakGrader",
+          "useImmersiveUi",
+          "type",
+          "id",
+          "challengeResponseTrackingProperties",
+          "metadata",
+          "newWords",
+          "progressUpdates",
+          "sentenceId",
+          "challengeGeneratorIdentifier"
+        ],
+        "content": {
+          "prompt": "Thank you.",
+          "solutionTranslation": "谢谢。",
+          "tokens": [
+            {
+              "value": "Thank",
+              "tts": "https://d1vq87e9lcf771.cloudfront.net/vikramen/8f518b84146b55b87c9ee9b4893ab04b",
+              "hintTable": {}
+            },
+            {
+              "value": " "
+            },
+            {
+              "value": "you",
+              "tts": "https://d1vq87e9lcf771.cloudfront.net/vikramen/12e11c9778d9e72cdc8b9e7f81d81ad9",
+              "hintTable": {}
+            },
+            {
+              "value": "."
+            }
+          ],
+          "tts": "https://d1vq87e9lcf771.cloudfront.net/vikramen/8d614c0fcde70a3bdc8f798d8b41a4f1",
+          "correctTokens": [],
+          "choices": [],
+          "correctIndices": [],
+          "character": {
+            "url": "https://d2pur3iezf4d1j.cloudfront.net/images/61e19bb4a1ff1d94e58d58b33db58c36",
+            "image": {
+              "svg": "https://d2pur3iezf4d1j.cloudfront.net/images/52a5a774c4de18f4a4e8c91d91788347"
+            },
+            "gender": "MALE",
+            "correctAnimation": "https://simg-ssl.duolingo.com/lottie/Vikram_CORRECT_Cropped_Disco.json",
+            "incorrectAnimation": "https://simg-ssl.duolingo.com/lottie/Dan_INCORRECT_Cropped.json",
+            "idleAnimation": "https://simg-ssl.duolingo.com/lottie/Vikram_IDLE_Cropped.json",
+            "name": "VIKRAM",
+            "avatarIconImage": {
+              "svg": "https://simg-ssl.duolingo.com/world-characters/avatars/vikram_avatar_icon.svg"
+            }
+          },
+          "type": "speak",
+          "newWords": []
+        }
+      },
+      {
+        "index": 5,
+        "keys": [
+          "prompt",
+          "correctSolutions",
+          "compactTranslations",
+          "correctTokens",
+          "wrongTokens",
+          "choices",
+          "correctIndices",
+          "sourceLanguage",
+          "targetLanguage",
+          "solutionTts",
+          "grader",
+          "smartTipsGraderV2",
+          "speechContextTokens",
+          "taggedKcIds",
+          "challengeDisplaySettings",
+          "weakWordPromptRanges",
+          "tokens",
+          "character",
+          "isSpeakerUniversal",
+          "type",
+          "id",
+          "challengeResponseTrackingProperties",
+          "metadata",
+          "newWords",
+          "progressUpdates",
+          "sentenceId",
+          "challengeGeneratorIdentifier"
+        ],
+        "content": {
+          "prompt": "谢谢， 再见！",
+          "correctSolutions": [
+            "Thank you, goodbye!"
+          ],
+          "correctTokens": [
+            "Thank",
+            "you",
+            "goodbye"
+          ],
+          "choices": [
+            {
+              "text": "Thank",
+              "tts": "https://d1vq87e9lcf771.cloudfront.net/falstaffen/0168e35396ac4a73a069173229ba268a"
+            },
+            {
+              "text": "you",
+              "tts": "https://d1vq87e9lcf771.cloudfront.net/falstaffen/e9005f07e0a0c472cac69e3f39dfd364"
+            },
+            {
+              "text": "goodbye",
+              "tts": "https://d1vq87e9lcf771.cloudfront.net/falstaffen/ca063f2f000ee58efc0f9b289aac725e"
+            },
+            {
+              "text": "and",
+              "tts": "https://d1vq87e9lcf771.cloudfront.net/falstaffen/5fbd681b7a4362f8f9cc41a8d822fb71"
+            }
+          ],
+          "correctIndices": [
+            0,
+            1,
+            2
+          ],
+          "sourceLanguage": "zh",
+          "targetLanguage": "en",
+          "tokens": [
+            {
+              "value": "谢谢",
+              "hintTable": {}
+            },
+            {
+              "value": "，"
+            },
+            {
+              "value": " "
+            },
+            {
+              "value": "再见",
+              "hintTable": {}
+            },
+            {
+              "value": "！"
+            }
+          ],
+          "character": {
+            "url": "https://d2pur3iezf4d1j.cloudfront.net/images/51d3bded9ecbd8bf6e9869041c437ba9",
+            "image": {
+              "svg": "https://d2pur3iezf4d1j.cloudfront.net/images/0f284113af41f7f7296263183701a13b"
+            },
+            "gender": "male",
+            "correctAnimation": "https://simg-ssl.duolingo.com/lottie/Bear_CORRECT_Cropped.json",
+            "incorrectAnimation": "https://simg-ssl.duolingo.com/lottie/Bear_INCORRECT_Cropped.json",
+            "idleAnimation": "https://simg-ssl.duolingo.com/lottie/Falstaff_IDLE_Cropped.json",
+            "name": "FALSTAFF",
+            "avatarIconImage": {
+              "svg": "https://simg-ssl.duolingo.com/world-characters/avatars/falstaff_avatar_icon.svg"
+            }
+          },
+          "type": "translate",
+          "newWords": []
+        }
+      },
+      {
+        "index": 6,
+        "keys": [
+          "prompt",
+          "solutionTranslation",
+          "soundId",
+          "threshold",
+          "tokens",
+          "tts",
+          "correctTokens",
+          "wrongTokens",
+          "choices",
+          "correctIndices",
+          "character",
+          "taggedKcIds",
+          "speakGrader",
+          "useImmersiveUi",
+          "type",
+          "id",
+          "challengeResponseTrackingProperties",
+          "metadata",
+          "newWords",
+          "progressUpdates",
+          "sentenceId",
+          "challengeGeneratorIdentifier"
+        ],
+        "content": {
+          "prompt": "sugar and milk",
+          "solutionTranslation": "糖和牛奶",
+          "tokens": [
+            {
+              "value": "sugar",
+              "tts": "https://d1vq87e9lcf771.cloudfront.net/lucyen/26435e6d54b298bb9dadbb63689d5517",
+              "hintTable": {}
+            },
+            {
+              "value": " "
+            },
+            {
+              "value": "and",
+              "tts": "https://d1vq87e9lcf771.cloudfront.net/lucyen/6952fa2742f98d7534dbef03ca79d913",
+              "hintTable": {}
+            },
+            {
+              "value": " "
+            },
+            {
+              "value": "milk",
+              "tts": "https://d1vq87e9lcf771.cloudfront.net/lucyen/2db096361c3cdcb7000bb14102af1fa9",
+              "hintTable": {}
+            }
+          ],
+          "tts": "https://d1vq87e9lcf771.cloudfront.net/lucyen/8545f3d9806d8eb1ae16d50cc27dd65c",
+          "correctTokens": [],
+          "choices": [],
+          "correctIndices": [],
+          "character": {
+            "url": "https://d2pur3iezf4d1j.cloudfront.net/images/122480f3b6c86522d5715c920764dc44",
+            "image": {
+              "svg": "https://d2pur3iezf4d1j.cloudfront.net/images/ad178aebb8dfd890ab602527440e685c"
+            },
+            "gender": "FEMALE",
+            "correctAnimation": "https://simg-ssl.duolingo.com/lottie/Gma_CORRECT_Cropped.json",
+            "incorrectAnimation": "https://simg-ssl.duolingo.com/lottie/Gma_INCORRECT_Cropped.json",
+            "idleAnimation": "https://simg-ssl.duolingo.com/lottie/Lucy_IDLE_Cropped.json",
+            "name": "LUCY",
+            "avatarIconImage": {
+              "svg": "https://simg-ssl.duolingo.com/world-characters/avatars/lucy_avatar_icon.svg"
+            }
+          },
+          "type": "speak",
+          "newWords": []
+        }
+      },
+      {
+        "index": 7,
+        "keys": [
+          "prompt",
+          "correctSolutions",
+          "compactTranslations",
+          "correctTokens",
+          "wrongTokens",
+          "choices",
+          "correctIndices",
+          "sourceLanguage",
+          "targetLanguage",
+          "solutionTts",
+          "grader",
+          "speechContextTokens",
+          "taggedKcIds",
+          "challengeDisplaySettings",
+          "weakWordPromptRanges",
+          "tokens",
+          "character",
+          "isSpeakerUniversal",
+          "type",
+          "id",
+          "challengeResponseTrackingProperties",
+          "metadata",
+          "newWords",
+          "progressUpdates",
+          "sentenceId",
+          "challengeGeneratorIdentifier"
+        ],
+        "content": {
+          "prompt": "早上好，我想要咖啡，谢谢。",
+          "correctSolutions": [
+            "Good morning, I'd like coffee, please."
+          ],
+          "correctTokens": [
+            "Good",
+            "morning",
+            "I'd",
+            "like",
+            "coffee",
+            "please"
+          ],
+          "choices": [
+            {
+              "text": "Good",
+              "tts": "https://d1vq87e9lcf771.cloudfront.net/eddyen/8ae445c865ff50847563964c016f5cb9"
+            },
+            {
+              "text": "morning",
+              "tts": "https://d1vq87e9lcf771.cloudfront.net/eddyen/d8f478901980a33cef2dff9864593fb5"
+            },
+            {
+              "text": "I'd",
+              "tts": "https://d1vq87e9lcf771.cloudfront.net/eddyen/876e8730631b24fd535e848e347579da"
+            },
+            {
+              "text": "like",
+              "tts": "https://d1vq87e9lcf771.cloudfront.net/eddyen/8f2fdef7aef01c5ad1b1971b98bad8b7"
+            },
+            {
+              "text": "coffee",
+              "tts": "https://d1vq87e9lcf771.cloudfront.net/eddyen/37a5d19960f33d6f3f4c9c51719592d1"
+            },
+            {
+              "text": "please",
+              "tts": "https://d1vq87e9lcf771.cloudfront.net/eddyen/3966e375db89d84680fab50078b9fa5e"
+            },
+            {
+              "text": "you're welcome",
+              "tts": "https://d1vq87e9lcf771.cloudfront.net/eddyen/fe3db8f3ac9862cc1e3362dc6e89790d"
+            }
+          ],
+          "correctIndices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "sourceLanguage": "zh",
+          "targetLanguage": "en",
+          "tokens": [
+            {
+              "value": "早上好",
+              "hintTable": {}
+            },
+            {
+              "value": "，"
+            },
+            {
+              "value": "我",
+              "hintTable": {}
+            },
+            {
+              "value": "想要",
+              "hintTable": {}
+            },
+            {
+              "value": "咖啡",
+              "hintTable": {}
+            },
+            {
+              "value": "，"
+            },
+            {
+              "value": "谢谢",
+              "hintTable": {}
+            },
+            {
+              "value": "。"
+            }
+          ],
+          "character": {
+            "url": "https://d2pur3iezf4d1j.cloudfront.net/images/b53f870ed38105349d4d83edf682d77f",
+            "image": {
+              "svg": "https://d2pur3iezf4d1j.cloudfront.net/images/096d0b1f6280b962cd7080a7736dd2bb"
+            },
+            "gender": "male",
+            "correctAnimation": "https://simg-ssl.duolingo.com/lottie/Eddy_CORRECT_Cropped_Cheer.json",
+            "incorrectAnimation": "https://simg-ssl.duolingo.com/lottie/Coach_INCORRECT_Cropped.json",
+            "idleAnimation": "https://simg-ssl.duolingo.com/lottie/Eddy_IDLE_Cropped.json",
+            "name": "EDDY",
+            "avatarIconImage": {
+              "svg": "https://simg-ssl.duolingo.com/world-characters/avatars/eddy_avatar_icon.svg"
+            }
+          },
+          "type": "translate",
+          "newWords": []
+        }
+      },
+      {
+        "index": 8,
+        "keys": [
+          "prompt",
+          "solutionTranslation",
+          "soundId",
+          "threshold",
+          "tokens",
+          "tts",
+          "correctTokens",
+          "wrongTokens",
+          "choices",
+          "correctIndices",
+          "character",
+          "taggedKcIds",
+          "speakGrader",
+          "useImmersiveUi",
+          "type",
+          "id",
+          "challengeResponseTrackingProperties",
+          "metadata",
+          "newWords",
+          "progressUpdates",
+          "sentenceId",
+          "challengeGeneratorIdentifier"
+        ],
+        "content": {
+          "prompt": "Good morning!",
+          "solutionTranslation": "早上好！",
+          "tokens": [
+            {
+              "value": "Good",
+              "tts": "https://d1vq87e9lcf771.cloudfront.net/eddyen/8ae445c865ff50847563964c016f5cb9",
+              "hintTable": {}
+            },
+            {
+              "value": " "
+            },
+            {
+              "value": "morning",
+              "tts": "https://d1vq87e9lcf771.cloudfront.net/eddyen/d8f478901980a33cef2dff9864593fb5",
+              "hintTable": {}
+            },
+            {
+              "value": "!"
+            }
+          ],
+          "tts": "https://d1vq87e9lcf771.cloudfront.net/eddyen/7aa69b26fed835635e59288b7d33ac2b",
+          "correctTokens": [],
+          "choices": [],
+          "correctIndices": [],
+          "character": {
+            "url": "https://d2pur3iezf4d1j.cloudfront.net/images/b53f870ed38105349d4d83edf682d77f",
+            "image": {
+              "svg": "https://d2pur3iezf4d1j.cloudfront.net/images/096d0b1f6280b962cd7080a7736dd2bb"
+            },
+            "gender": "MALE",
+            "correctAnimation": "https://simg-ssl.duolingo.com/lottie/Eddy_CORRECT_Cropped_Flex.json",
+            "incorrectAnimation": "https://simg-ssl.duolingo.com/lottie/Coach_INCORRECT_Cropped.json",
+            "idleAnimation": "https://simg-ssl.duolingo.com/lottie/Eddy_IDLE_Cropped.json",
+            "name": "EDDY",
+            "avatarIconImage": {
+              "svg": "https://simg-ssl.duolingo.com/world-characters/avatars/eddy_avatar_icon.svg"
+            }
+          },
+          "type": "speak",
+          "newWords": []
+        }
+      },
+      {
+        "index": 9,
+        "keys": [
+          "prompt",
+          "displayTokens",
+          "taggedKcIds",
+          "grader",
+          "weakWordPromptRanges",
+          "tokens",
+          "character",
+          "isSpeakerUniversal",
+          "type",
+          "id",
+          "challengeResponseTrackingProperties",
+          "metadata",
+          "newWords",
+          "progressUpdates",
+          "sentenceId",
+          "challengeGeneratorIdentifier"
+        ],
+        "content": {
+          "prompt": "我想要热咖啡，谢谢。",
+          "displayTokens": [
+            {
+              "text": "I'd",
+              "isBlank": false
+            },
+            {
+              "text": " ",
+              "isBlank": false
+            },
+            {
+              "text": "like",
+              "isBlank": false
+            },
+            {
+              "text": " ",
+              "isBlank": false
+            },
+            {
+              "text": "hot",
+              "isBlank": false
+            },
+            {
+              "text": " ",
+              "isBlank": false
+            },
+            {
+              "text": "coffee",
+              "isBlank": true
+            },
+            {
+              "text": ",",
+              "isBlank": false
+            },
+            {
+              "text": " ",
+              "isBlank": false
+            },
+            {
+              "text": "please",
+              "isBlank": false
+            },
+            {
+              "text": ".",
+              "isBlank": false
+            }
+          ],
+          "tokens": [
+            {
+              "value": "我",
+              "hintTable": {}
+            },
+            {
+              "value": "想要",
+              "hintTable": {}
+            },
+            {
+              "value": "热咖啡",
+              "hintTable": {}
+            },
+            {
+              "value": "，"
+            },
+            {
+              "value": "谢谢",
+              "hintTable": {}
+            },
+            {
+              "value": "。"
+            }
+          ],
+          "character": {
+            "url": "https://d2pur3iezf4d1j.cloudfront.net/images/3f4adf80c0b6e9a0dc438f3ba8119703",
+            "image": {
+              "svg": "https://d2pur3iezf4d1j.cloudfront.net/images/6d99bc8306bdaacc3c8acc911214c557"
+            },
+            "gender": "female",
+            "correctAnimation": "https://simg-ssl.duolingo.com/lottie/Zari_CORRECT_Cropped_HappyDance.json",
+            "incorrectAnimation": "https://simg-ssl.duolingo.com/lottie/Pink_INCORRECT_Cropped.json",
+            "idleAnimation": "https://simg-ssl.duolingo.com/lottie/Zari_IDLE_Cropped.json",
+            "name": "ZARI",
+            "avatarIconImage": {
+              "svg": "https://simg-ssl.duolingo.com/world-characters/avatars/zari_avatar_icon.svg"
+            }
+          },
+          "type": "completeReverseTranslation",
+          "newWords": []
+        }
+      },
+      {
+        "index": 10,
+        "keys": [
+          "prompt",
+          "displayTokens",
+          "taggedKcIds",
+          "grader",
+          "weakWordPromptRanges",
+          "tokens",
+          "character",
+          "isSpeakerUniversal",
+          "type",
+          "id",
+          "challengeResponseTrackingProperties",
+          "metadata",
+          "newWords",
+          "progressUpdates",
+          "sentenceId",
+          "challengeGeneratorIdentifier"
+        ],
+        "content": {
+          "prompt": "茶加糖",
+          "displayTokens": [
+            {
+              "text": "tea",
+              "isBlank": false
+            },
+            {
+              "text": " ",
+              "isBlank": false
+            },
+            {
+              "text": "with",
+              "isBlank": true
+            },
+            {
+              "text": " ",
+              "isBlank": false
+            },
+            {
+              "text": "sugar",
+              "isBlank": false
+            }
+          ],
+          "tokens": [
+            {
+              "value": "茶",
+              "hintTable": {}
+            },
+            {
+              "value": "加糖",
+              "hintTable": {}
+            }
+          ],
+          "character": {
+            "url": "https://d2pur3iezf4d1j.cloudfront.net/images/51d3bded9ecbd8bf6e9869041c437ba9",
+            "image": {
+              "svg": "https://d2pur3iezf4d1j.cloudfront.net/images/0f284113af41f7f7296263183701a13b"
+            },
+            "gender": "male",
+            "correctAnimation": "https://simg-ssl.duolingo.com/lottie/Falstaff_CORRECT_Cropped_Tango.json",
+            "incorrectAnimation": "https://simg-ssl.duolingo.com/lottie/Bear_INCORRECT_Cropped.json",
+            "idleAnimation": "https://simg-ssl.duolingo.com/lottie/Falstaff_IDLE_Cropped.json",
+            "name": "FALSTAFF",
+            "avatarIconImage": {
+              "svg": "https://simg-ssl.duolingo.com/world-characters/avatars/falstaff_avatar_icon.svg"
+            }
+          },
+          "type": "completeReverseTranslation",
+          "newWords": []
+        }
+      },
+      {
+        "index": 11,
+        "keys": [
+          "prompt",
+          "displayTokens",
+          "taggedKcIds",
+          "grader",
+          "weakWordPromptRanges",
+          "tokens",
+          "character",
+          "isSpeakerUniversal",
+          "type",
+          "id",
+          "challengeResponseTrackingProperties",
+          "metadata",
+          "newWords",
+          "progressUpdates",
+          "sentenceId",
+          "challengeGeneratorIdentifier"
+        ],
+        "content": {
+          "prompt": "不加冰，谢谢。",
+          "displayTokens": [
+            {
+              "text": "No",
+              "isBlank": true
+            },
+            {
+              "text": " ",
+              "isBlank": false
+            },
+            {
+              "text": "ice",
+              "isBlank": false
+            },
+            {
+              "text": ",",
+              "isBlank": false
+            },
+            {
+              "text": " ",
+              "isBlank": false
+            },
+            {
+              "text": "please",
+              "isBlank": false
+            },
+            {
+              "text": ".",
+              "isBlank": false
+            }
+          ],
+          "tokens": [
+            {
+              "value": "不",
+              "hintTable": {}
+            },
+            {
+              "value": "加冰",
+              "hintTable": {}
+            },
+            {
+              "value": "，"
+            },
+            {
+              "value": "谢谢",
+              "hintTable": {}
+            },
+            {
+              "value": "。"
+            }
+          ],
+          "character": {
+            "url": "https://d2pur3iezf4d1j.cloudfront.net/images/861252b26a49194f2a98ee58e7c373f8",
+            "image": {
+              "svg": "https://d2pur3iezf4d1j.cloudfront.net/images/81ca92172d70599306b16bcb87799195"
+            },
+            "gender": "female",
+            "correctAnimation": "https://simg-ssl.duolingo.com/lottie/Lily_CORRECT_Cropped_HairTuck.json",
+            "incorrectAnimation": "https://simg-ssl.duolingo.com/lottie/Violet_INCORRECT_Cropped.json",
+            "idleAnimation": "https://simg-ssl.duolingo.com/lottie/Lily_IDLE_Cropped.json",
+            "name": "LILY",
+            "avatarIconImage": {
+              "svg": "https://simg-ssl.duolingo.com/world-characters/avatars/lily_avatar_icon.svg"
+            }
+          },
+          "type": "completeReverseTranslation",
+          "newWords": []
+        }
+      }
+    ],
+    "omitted_keys": [
+      "challenge.0.compactTranslations",
+      "challenge.0.wrongTokens",
+      "challenge.0.grader",
+      "challenge.0.taggedKcIds",
+      "challenge.0.challengeDisplaySettings",
+      "challenge.0.weakWordPromptRanges",
+      "challenge.0.isSpeakerUniversal",
+      "challenge.0.id",
+      "challenge.0.challengeResponseTrackingProperties",
+      "challenge.0.metadata",
+      "challenge.0.progressUpdates",
+      "challenge.0.sentenceId",
+      "challenge.0.challengeGeneratorIdentifier",
+      "challenge.0.indicatorType",
+      "challenge.0.tokens.0.hintTable.headers",
+      "challenge.0.tokens.0.hintTable.rows",
+      "challenge.0.tokens.2.hintTable.headers",
+      "challenge.0.tokens.2.hintTable.rows",
+      "challenge.0.tokens.4.hintTable.headers",
+      "challenge.0.tokens.4.hintTable.rows",
+      "challenge.0.character.image.pdf",
+      "challenge.0.character.avatarIconImage.pdf",
+      "challenge.1.taggedKcIds",
+      "challenge.1.grader",
+      "challenge.1.weakWordPromptRanges",
+      "challenge.1.isSpeakerUniversal",
+      "challenge.1.id",
+      "challenge.1.challengeResponseTrackingProperties",
+      "challenge.1.metadata",
+      "challenge.1.progressUpdates",
+      "challenge.1.sentenceId",
+      "challenge.1.challengeGeneratorIdentifier",
+      "challenge.1.indicatorType",
+      "challenge.1.tokens.0.hintTable.headers",
+      "challenge.1.tokens.0.hintTable.rows",
+      "challenge.1.character.image.pdf",
+      "challenge.1.character.avatarIconImage.pdf",
+      "challenge.2.soundId",
+      "challenge.2.threshold",
+      "challenge.2.wrongTokens",
+      "challenge.2.taggedKcIds",
+      "challenge.2.speakGrader",
+      "challenge.2.useImmersiveUi",
+      "challenge.2.id",
+      "challenge.2.challengeResponseTrackingProperties",
+      "challenge.2.metadata",
+      "challenge.2.progressUpdates",
+      "challenge.2.sentenceId",
+      "challenge.2.challengeGeneratorIdentifier",
+      "challenge.2.tokens.0.hintTable.headers",
+      "challenge.2.tokens.0.hintTable.rows",
+      "challenge.2.character.image.pdf",
+      "challenge.2.character.avatarIconImage.pdf",
+      "challenge.3.compactTranslations",
+      "challenge.3.wrongTokens",
+      "challenge.3.solutionTts",
+      "challenge.3.grader",
+      "challenge.3.smartTipsGraderV2",
+      "challenge.3.speechContextTokens",
+      "challenge.3.taggedKcIds",
+      "challenge.3.challengeDisplaySettings",
+      "challenge.3.weakWordPromptRanges",
+      "challenge.3.isSpeakerUniversal",
+      "challenge.3.id",
+      "challenge.3.challengeResponseTrackingProperties",
+      "challenge.3.metadata",
+      "challenge.3.progressUpdates",
+      "challenge.3.sentenceId",
+      "challenge.3.challengeGeneratorIdentifier",
+      "challenge.3.tokens.0.hintTable.headers",
+      "challenge.3.tokens.0.hintTable.rows",
+      "challenge.3.tokens.2.hintTable.headers",
+      "challenge.3.tokens.2.hintTable.rows",
+      "challenge.3.character.image.pdf",
+      "challenge.3.character.avatarIconImage.pdf",
+      "challenge.4.soundId",
+      "challenge.4.threshold",
+      "challenge.4.wrongTokens",
+      "challenge.4.taggedKcIds",
+      "challenge.4.speakGrader",
+      "challenge.4.useImmersiveUi",
+      "challenge.4.id",
+      "challenge.4.challengeResponseTrackingProperties",
+      "challenge.4.metadata",
+      "challenge.4.progressUpdates",
+      "challenge.4.sentenceId",
+      "challenge.4.challengeGeneratorIdentifier",
+      "challenge.4.tokens.0.hintTable.headers",
+      "challenge.4.tokens.0.hintTable.rows",
+      "challenge.4.tokens.2.hintTable.headers",
+      "challenge.4.tokens.2.hintTable.rows",
+      "challenge.4.character.image.pdf",
+      "challenge.4.character.avatarIconImage.pdf",
+      "challenge.5.compactTranslations",
+      "challenge.5.wrongTokens",
+      "challenge.5.solutionTts",
+      "challenge.5.grader",
+      "challenge.5.smartTipsGraderV2",
+      "challenge.5.speechContextTokens",
+      "challenge.5.taggedKcIds",
+      "challenge.5.challengeDisplaySettings",
+      "challenge.5.weakWordPromptRanges",
+      "challenge.5.isSpeakerUniversal",
+      "challenge.5.id",
+      "challenge.5.challengeResponseTrackingProperties",
+      "challenge.5.metadata",
+      "challenge.5.progressUpdates",
+      "challenge.5.sentenceId",
+      "challenge.5.challengeGeneratorIdentifier",
+      "challenge.5.tokens.0.hintTable.headers",
+      "challenge.5.tokens.0.hintTable.rows",
+      "challenge.5.tokens.3.hintTable.headers",
+      "challenge.5.tokens.3.hintTable.rows",
+      "challenge.5.character.image.pdf",
+      "challenge.5.character.avatarIconImage.pdf",
+      "challenge.6.soundId",
+      "challenge.6.threshold",
+      "challenge.6.wrongTokens",
+      "challenge.6.taggedKcIds",
+      "challenge.6.speakGrader",
+      "challenge.6.useImmersiveUi",
+      "challenge.6.id",
+      "challenge.6.challengeResponseTrackingProperties",
+      "challenge.6.metadata",
+      "challenge.6.progressUpdates",
+      "challenge.6.sentenceId",
+      "challenge.6.challengeGeneratorIdentifier",
+      "challenge.6.tokens.0.hintTable.headers",
+      "challenge.6.tokens.0.hintTable.rows",
+      "challenge.6.tokens.2.hintTable.headers",
+      "challenge.6.tokens.2.hintTable.rows",
+      "challenge.6.tokens.4.hintTable.headers",
+      "challenge.6.tokens.4.hintTable.rows",
+      "challenge.6.character.image.pdf",
+      "challenge.6.character.avatarIconImage.pdf",
+      "challenge.7.compactTranslations",
+      "challenge.7.wrongTokens",
+      "challenge.7.solutionTts",
+      "challenge.7.grader",
+      "challenge.7.speechContextTokens",
+      "challenge.7.taggedKcIds",
+      "challenge.7.challengeDisplaySettings",
+      "challenge.7.weakWordPromptRanges",
+      "challenge.7.isSpeakerUniversal",
+      "challenge.7.id",
+      "challenge.7.challengeResponseTrackingProperties",
+      "challenge.7.metadata",
+      "challenge.7.progressUpdates",
+      "challenge.7.sentenceId",
+      "challenge.7.challengeGeneratorIdentifier",
+      "challenge.7.tokens.0.hintTable.headers",
+      "challenge.7.tokens.0.hintTable.rows",
+      "challenge.7.tokens.2.hintTable.headers",
+      "challenge.7.tokens.2.hintTable.rows",
+      "challenge.7.tokens.3.hintTable.headers",
+      "challenge.7.tokens.3.hintTable.rows",
+      "challenge.7.tokens.4.hintTable.headers",
+      "challenge.7.tokens.4.hintTable.rows",
+      "challenge.7.tokens.6.hintTable.headers",
+      "challenge.7.tokens.6.hintTable.rows",
+      "challenge.7.character.image.pdf",
+      "challenge.7.character.avatarIconImage.pdf",
+      "challenge.8.soundId",
+      "challenge.8.threshold",
+      "challenge.8.wrongTokens",
+      "challenge.8.taggedKcIds",
+      "challenge.8.speakGrader",
+      "challenge.8.useImmersiveUi",
+      "challenge.8.id",
+      "challenge.8.challengeResponseTrackingProperties",
+      "challenge.8.metadata",
+      "challenge.8.progressUpdates",
+      "challenge.8.sentenceId",
+      "challenge.8.challengeGeneratorIdentifier",
+      "challenge.8.tokens.0.hintTable.headers",
+      "challenge.8.tokens.0.hintTable.rows",
+      "challenge.8.tokens.2.hintTable.headers",
+      "challenge.8.tokens.2.hintTable.rows",
+      "challenge.8.character.image.pdf",
+      "challenge.8.character.avatarIconImage.pdf",
+      "challenge.9.taggedKcIds",
+      "challenge.9.grader",
+      "challenge.9.weakWordPromptRanges",
+      "challenge.9.isSpeakerUniversal",
+      "challenge.9.id",
+      "challenge.9.challengeResponseTrackingProperties",
+      "challenge.9.metadata",
+      "challenge.9.progressUpdates",
+      "challenge.9.sentenceId",
+      "challenge.9.challengeGeneratorIdentifier",
+      "challenge.9.tokens.0.hintTable.headers",
+      "challenge.9.tokens.0.hintTable.rows",
+      "challenge.9.tokens.1.hintTable.headers",
+      "challenge.9.tokens.1.hintTable.rows",
+      "challenge.9.tokens.2.hintTable.headers",
+      "challenge.9.tokens.2.hintTable.rows",
+      "challenge.9.tokens.4.hintTable.headers",
+      "challenge.9.tokens.4.hintTable.rows",
+      "challenge.9.character.image.pdf",
+      "challenge.9.character.avatarIconImage.pdf",
+      "challenge.10.taggedKcIds",
+      "challenge.10.grader",
+      "challenge.10.weakWordPromptRanges",
+      "challenge.10.isSpeakerUniversal",
+      "challenge.10.id",
+      "challenge.10.challengeResponseTrackingProperties",
+      "challenge.10.metadata",
+      "challenge.10.progressUpdates",
+      "challenge.10.sentenceId",
+      "challenge.10.challengeGeneratorIdentifier",
+      "challenge.10.tokens.0.hintTable.headers",
+      "challenge.10.tokens.0.hintTable.rows",
+      "challenge.10.tokens.1.hintTable.headers",
+      "challenge.10.tokens.1.hintTable.rows",
+      "challenge.10.character.image.pdf",
+      "challenge.10.character.avatarIconImage.pdf",
+      "challenge.11.taggedKcIds",
+      "challenge.11.grader",
+      "challenge.11.weakWordPromptRanges",
+      "challenge.11.isSpeakerUniversal",
+      "challenge.11.id",
+      "challenge.11.challengeResponseTrackingProperties",
+      "challenge.11.metadata",
+      "challenge.11.progressUpdates",
+      "challenge.11.sentenceId",
+      "challenge.11.challengeGeneratorIdentifier",
+      "challenge.11.tokens.0.hintTable.headers",
+      "challenge.11.tokens.0.hintTable.rows",
+      "challenge.11.tokens.1.hintTable.headers",
+      "challenge.11.tokens.1.hintTable.rows",
+      "challenge.11.tokens.3.hintTable.headers",
+      "challenge.11.tokens.3.hintTable.rows",
+      "challenge.11.character.image.pdf",
+      "challenge.11.character.avatarIconImage.pdf"
+    ]
+  },
+  "initial": "- img\n- text: 加载中… “达人”经验：每学完一个单元，写下能记得的短语，越多越好。",
+  "observed_at": "2026-10-10T20:52:28.422Z"
+}

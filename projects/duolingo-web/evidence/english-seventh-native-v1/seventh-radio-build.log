@@ -1,0 +1,14 @@
+[0/1] Planning build
+Building for debugging...
+[0/5] Write sources
+[1/5] Write swift-version--1AB21518FC5DEDBE.txt
+[3/8] Compiling LingoSeed ReferenceAudioRadio.swift
+[4/8] Emitting module LingoSeed
+[5/8] Compiling LingoSeed LearningView.swift
+<repo>/projects/education-swift/Sources/LingoSeed/LearningView.swift:542:21: error: the compiler is unable to type-check this expression in reasonable time; try breaking up the expression into distinct sub-expressions
+540 |             VStack(spacing: 12) {
+541 |                 ForEach(Array(orderedRightPairs(lesson.question).enumerated()), id: \.element.id) { index, pair in
+542 |                     Button { model.match(pair.id, left: false) } label: {
+    |                     `- error: the compiler is unable to type-check this expression in reasonable time; try breaking up the expression into distinct sub-expressions
+543 |                         HStack {
+544 |                             Text(String(index + 5)).font(ReferenceStyle.font(14, bold: true)).frame(width: 28, height: 28)

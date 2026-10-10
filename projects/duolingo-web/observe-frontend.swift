@@ -2,6 +2,7 @@
 import AppKit
 import ApplicationServices
 import Foundation
+import CryptoKit
 
 enum ObservationStop: Error { case afterQuestion(String) }
 func main() throws {
@@ -16,9 +17,12 @@ if let seedIndex = CommandLine.arguments.firstIndex(of: "--seed-progress"), seed
 let childLog = output.appendingPathComponent("child.log")
 FileManager.default.createFile(atPath: childLog.path, contents: nil)
 let fixture = CommandLine.arguments.count > 2 ? CommandLine.arguments[2] : "projects/duolingo-web/fixture-reference-v6.json"
+let candidateURL = root.appendingPathComponent("projects/education-swift/.build/debug/LingoSeed")
+let candidateSHA = SHA256.hash(data: try Data(contentsOf: candidateURL)).map { String(format: "%02x", $0) }.joined()
+let fixtureSHA = SHA256.hash(data: try Data(contentsOf: root.appendingPathComponent(fixture))).map { String(format: "%02x", $0) }.joined()
 func launchChild() throws -> Process {
     let process = Process()
-    process.executableURL = root.appendingPathComponent("projects/education-swift/.build/debug/LingoSeed")
+    process.executableURL = candidateURL
     process.arguments = ["--fixture", root.appendingPathComponent(fixture).path, "--progress", progress.path, "--render-metadata", output.appendingPathComponent("window.json").path]
     if let index = CommandLine.arguments.firstIndex(of: "--reference-color-scheme"), index + 1 < CommandLine.arguments.count {
         process.arguments! += ["--reference-color-scheme", CommandLine.arguments[index + 1]]
@@ -295,6 +299,7 @@ if CommandLine.arguments.contains("--walk-course") {
                     states[id] = observe(); try capture(id + "-before")
                     try press("speech-decline"); try waitFor("speech-closed")
                     states[id + "-closed"] = observe(); states[id + "-declined"] = observe(); try capture(id + "-closed")
+                    if id.hasSuffix("-speech") { states[String(id.dropLast(7)) + "-declined"] = observe() }
                     try press("speech-continue")
                 }
                 let modeProbe = CommandLine.arguments.contains("--exercise-input-modes") && question["keyboardAnswer"] != nil
@@ -314,6 +319,7 @@ if CommandLine.arguments.contains("--walk-course") {
                     initialObservation["interactions"] = ["keyboard_mode": full, "empty_input": empty, "check_enabled": enabled]
                 }
                 states[key] = initialObservation
+                states[key + "-initial"] = initialObservation
                 if CommandLine.arguments.contains("--capture-character-frames"), current().contains(where: { (attr($0, kAXIdentifierAttribute) as? String) == "question-character" }) {
                     for frame in 0..<12 { try capture(key + "-character-idle-\(frame)"); Thread.sleep(forTimeInterval: 0.15) }
                 }
@@ -337,6 +343,7 @@ if CommandLine.arguments.contains("--walk-course") {
                         let inputMatches = phase == "returned" && question["kind"] as? String == "word_tiles" ? actual == nil : actual == expectedInput
                         value["interactions"] = ["check_enabled": enabled("check"), "input_matches": inputMatches]
                         states[key + "-" + phase] = value; try capture(key + "-" + phase)
+                        if question["sourceObservationPhase"] as? String == phase { states[key] = value }
                     }
                     let full = current().first { (attr($0, kAXIdentifierAttribute) as? String) == "answer-input" }.flatMap { attr($0, kAXRoleAttribute) as? String } == "AXTextArea"
                     if full {
@@ -378,7 +385,8 @@ if CommandLine.arguments.contains("--walk-course") {
                     let pairs = question["pairs"] as! [[String: Any]]
                     func value(_ id: String) -> String? { current().first { (attr($0, kAXIdentifierAttribute) as? String) == id }.flatMap { attr($0, kAXValueAttribute) as? String } }
                     func enabled(_ id: String) -> Bool { current().first { (attr($0, kAXIdentifierAttribute) as? String) == id }.flatMap { attr($0, kAXEnabledAttribute) as? Bool } ?? false }
-                    if CommandLine.arguments.contains("--exercise-listening-decline"), question["listeningDecline"] != nil {
+                    let declineLesson = CommandLine.arguments.firstIndex(of: "--decline-lesson-id").map { CommandLine.arguments[$0 + 1] }
+                    if CommandLine.arguments.contains("--exercise-listening-decline"), question["listeningDecline"] != nil, declineLesson == nil || declineLesson == definition["id"] as? String {
                         let before = value("hearts")
                         try press("listening-decline"); try waitFor("listening-declined")
                         var observed = observe()
@@ -499,7 +507,10 @@ if CommandLine.arguments.contains("--walk-course") {
                 try waitFor("lesson-interlude", value: intro["id"])
                 states[intro["id"]!] = observe(); try capture(intro["id"]! + "-window")
                 try press("interlude-continue"); try waitFor("review-label")
-                try waitFor("question-hint", value: first["hint"] as? String)
+                try waitFor("question-title", value: first["prompt"] as? String)
+                if let hint = first["hint"] as? String {
+                    guard current().contains(where: { node in [kAXValueAttribute, kAXTitleAttribute, kAXDescriptionAttribute].contains { attr(node, $0) as? String == hint } }) else { throw ProbeError(message: "Review original hint not observed") }
+                }
                 states["en-zh-l7-review-q0"] = observe(); try capture("en-zh-l7-review-q0")
                 var skipped = states["en-zh-l7-q0-skipped"]!
                 var facts = skipped["interactions"] as! [String: Bool]
@@ -585,7 +596,16 @@ if CommandLine.arguments.contains("--walk-course") {
         try? capture("walk-failure-window")
     }
 }
+// Read the actual rendered seventh result, not a core-state prediction or score formula.
+if var skipped = states["en-zh-l7-q0-skipped"],
+   let result = states["en-zh-l7-result"]?["accessible_text"] as? [String],
+   result.contains("100%"), result.contains("你练习全对，无错完成本单元") {
+    var facts = skipped["interactions"] as? [String: Bool] ?? [:]
+    facts["settlement_mistake"] = false
+    skipped["interactions"] = facts; states["en-zh-l7-q0-skipped"] = skipped
+}
 let receipt: [String: Any] = ["kind": "owned_native_ax_observation", "states": states,
+    "candidate_binary_sha256": candidateSHA, "fixture_sha256": fixtureSHA,
     "observed_at": ISO8601DateFormatter().string(from: Date()),
     "action": "Start isolated child, collect home, move pointer into More then out, optionally walk the observed course",
     "walk_error": walkError as Any? ?? NSNull(),

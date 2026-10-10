@@ -503,6 +503,39 @@ func actualSkipReview() throws {
     print("PASS observed empty skip, no heart/error penalty, original-question review and correction")
 }
 
+func actualSeventhTrajectory() throws {
+    let c = try course(fixture: "fixture-reference-en-zh-v8.json")
+    var lesson = Lesson(course: c, lessonIndex: 6, hearts: 2)
+    let original = lesson.question.id
+    lesson.skip(); lesson.advance()
+    for index in 1..<15 {
+        try check(lesson.position == index, "Seventh actual order changed")
+        if lesson.deferredSpeech != nil { lesson.declineSpeech(); lesson.advance() }
+        if [1,4].contains(index) { lesson.toggleInputMode() }
+        if [6,7,8,14].contains(index) { try check(lesson.usingKeyboard, "Source independent preference lost") }
+        if lesson.usingKeyboard { lesson.enterText(lesson.question.keyboardAnswer!); lesson.submit() }
+        else {
+            switch lesson.question.kind {
+            case .matching: for p in lesson.question.pairs { lesson.matchLeft(p.id); lesson.matchRight(p.id) }
+            case .choice: lesson.choose(lesson.question.answer); lesson.submit()
+            case .textEntry: lesson.enterText(lesson.question.answer); lesson.submit()
+            case .wordTiles: for w in lesson.question.answerWords { lesson.addWord(w) }; lesson.submit()
+            }
+        }
+        try check(lesson.feedback == true && lesson.hearts == 2 && lesson.mistakesMade == 0, "Seventh source accepted answer failed")
+        lesson.advance()
+    }
+    try check(lesson.reviewing && lesson.interlude != nil && lesson.question.id == original, "Seventh skipped q0 not queued at actual end")
+    lesson.advance()
+    try check(lesson.visibleWords.map(\.text) == ["和","茶","咖啡","谢谢你"], "Review bank must follow observed reshuffle")
+    for w in lesson.question.answerWords { lesson.addWord(w) }; lesson.submit()
+    try check(lesson.correctStreak == 15, "Actual fifteen-correct streak lost")
+    lesson.advance()
+    try check(lesson.complete && lesson.mistakesMade == 0, "Seventh actual review did not complete")
+    try check(lesson.definition.settlement?.map(\.kind) == ["result","achievement","profile"], "Source seventh settlement order lost")
+    print("PASS full observed seventh skip/normal listening/radio2/preferences/speech decline/insertion/review/settlement; heart refresh and unknown radio1 audio unverified")
+}
+
 do {
     try mistakeReview()
     try persistence()
@@ -524,7 +557,8 @@ do {
     try actualSecondaryInputModes()
     try actualCrossQuestionPreferences()
     try actualSkipReview()
-    print("20 business checks passed; core layer only")
+    try actualSeventhTrajectory()
+    print("21 business checks passed; core layer only")
 } catch {
     FileHandle.standardError.write(Data(("FAIL " + String(describing: error) + "\n").utf8))
     exit(1)

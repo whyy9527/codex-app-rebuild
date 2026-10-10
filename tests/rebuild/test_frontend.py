@@ -45,3 +45,18 @@ class FrontendRequirements(unittest.TestCase):
             for actual, expected in [([704, 174.5, 56, 32], 'pass'), ([704, 190, 56, 32], 'fail'), (None, 'unavailable')]:
                 observed = {'states': {'settings': {'elements': {'sound': {'rect': actual}}}}}
                 self.assertEqual(compare(root, contract, observed)['rows'][0]['status'], expected)
+
+    def test_identical_copy_cannot_hide_wrong_radio_role_or_enabled_state(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / 'reference.txt').write_text('Source feedback: radio 2 checked and disabled')
+            contract = {'requirements': [
+                {'id': 'role', 'state': 'feedback', 'kind': 'element_role', 'element': 'option-1', 'role': 'radio', 'evidence': ['reference.txt']},
+                {'id': 'disabled', 'state': 'feedback', 'kind': 'element_boolean', 'element': 'option-1', 'field': 'enabled', 'expected': False, 'evidence': ['reference.txt']}]}
+            for role in ['radio', 'AXRadioButton']:
+                observed = {'states': {'feedback': {'accessible_text': ['2'], 'elements': {'option-1': {'role': role, 'enabled': False}}}}}
+                self.assertEqual(compare(root, contract, observed)['status'], 'pass')
+            observed['states']['feedback']['elements']['option-1'] = {'role': 'AXButton', 'enabled': True}
+            self.assertEqual([x['status'] for x in compare(root, contract, observed)['rows']], ['fail', 'fail'])
+            observed['states']['feedback']['elements']['option-1'] = {'role': None, 'enabled': None}
+            self.assertEqual([x['status'] for x in compare(root, contract, observed)['rows']], ['unavailable', 'unavailable'])

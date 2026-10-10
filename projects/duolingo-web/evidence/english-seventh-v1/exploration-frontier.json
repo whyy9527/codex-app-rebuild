@@ -4,22 +4,22 @@
     {
       "behavior": "Two independent cross-question keyboard and full-sentence preferences",
       "source": "q1 keyboard -> q4 starts fill -> q4 harder -> q6 keyboard -> q7 harder -> q8 keyboard/q14 harder",
-      "candidate": "Four-question real native probe passed; default-course metadata not integrated; cross-lesson/restart still unknown"
+      "candidate": "Integrated into default v8 and full seven-course replay; cross-lesson/restart preference behavior still requires independent source evidence"
     },
     {
       "behavior": "Empty q0 Skip preserves hearts and sends same question to end review",
       "source": "secondary q0 skipped -> seventh review intro -> tea and coffee reviewed -> perfect15XP/100%",
-      "candidate": "Not implemented; full seventh native still missing. Mid-streak skip, repeated review skip and general score formula unknown"
+      "candidate": "Integrated: actual full seventh skip, same-question review and perfect settlement replayed; mid-streak/repeated-review skip and general scoring remain unknown"
     },
     {
       "behavior": "Normal listenMatch + listenIsolation + listenComplete",
       "source": "Two normal matches accepted, radio2 accepted, No/goodbye blanks accepted",
-      "candidate": "Full seventh not implemented; listenIsolation options were omitted by sanitizer; full audio resources/equality incomplete"
+      "candidate": "Normal matches, radio2 and blanks integrated and replayed; nine new control assertions pass. Radio1 audio, numeric selected-state observation and full visual/audio equality remain incomplete"
     },
     {
       "behavior": "Speech decline inserts Thank you, replaces later Goodbye speech with bank translation",
       "source": "Actual live UI differs from initial API array",
-      "candidate": "Not integrated for seventh; normal recording branch unknown"
+      "candidate": "Actual declined speech insertion/replacement integrated and replayed; normal recording branch unknown"
     },
     {
       "behavior": "Heart counter changes2->3 around q7/q8",
@@ -29,7 +29,7 @@
     {
       "behavior": "Extra achievement page after 15XP/100% result",
       "source": "Level2, earned100XP; profile and home follow",
-      "candidate": "Not integrated"
+      "candidate": "Integrated actual result, extra achievement, profile and home; remaining visual/control branches not proven"
     },
     {
       "behavior": "Actual Lin renderer from coffee and tea",
@@ -38,12 +38,13 @@
     }
   ],
   "next_actions": [
-    "Compile actual seventh skip/listening/speech/review/settlement path into default curriculum; 419 frozen frontend requirements are not covered by four-question probe",
-    "Recover/observe missing listenIsolation choice audio rather than invent options",
-    "Integrate verified non-penalizing skip/review probe into full seventh trajectory; preserve full-course counters, review bank reordering and actual sound requirements",
-    "Observe preferences across lessons/restart and heart refresh trigger",
-    "Fix full UI/audio differences and execute preregistered matched-budget RSI exploration ablation"
+    "Continue actual eighth challenge entry; discover omitted behaviors rather than only replay known tests",
+    "Recover radio1 audio and normal speech evidence; retain unknown heart-refresh trigger",
+    "Compare actual native/source glyph fonts and repair existing geometry, graphics, animation and sound differences",
+    "Observe preferences across lessons/restart and missing listening-decline branches",
+    "Execute matched-budget RSI exploration ablation on actual rebuilding tasks; preserve negative results"
   ],
   "experiment": "No new RSI ablation run; prior papers/history/negative results retained",
-  "skip_probe_evidence": "projects/duolingo-web/evidence/english-skip-native-v1/README.md"
+  "skip_probe_evidence": "projects/duolingo-web/evidence/english-skip-native-v1/README.md",
+  "full_seventh_evidence": "projects/duolingo-web/evidence/english-seventh-native-v1/README.md"
 }

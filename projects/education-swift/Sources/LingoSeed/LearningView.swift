@@ -240,7 +240,7 @@ struct LearningView: View {
                 }
                 if lesson.question.sourceType == nil { Text(lesson.question.kind == .matching ? "Match all pairs to continue" : "Take your time. You’ve got this.").foregroundStyle(.secondary) }
                 Spacer()
-                if lesson.question.kind != .matching {
+                if lesson.question.kind != .matching || chinese {
                     if chinese {
                         Button("检查") { model.submit() }.buttonStyle(ReferenceCheckButton()).disabled(!lesson.canSubmit).accessibilityIdentifier("check").offset(y: 2)
                     } else {
@@ -297,7 +297,7 @@ struct LearningView: View {
         case .textEntry: textEntry(lesson)
         }
         }.padding(.top, 0.5)
-        if lesson.question.kind == .choice && lesson.question.sourceType != "dialogue" {
+        if lesson.question.kind == .choice && !["dialogue", "listenIsolation"].contains(lesson.question.sourceType ?? "") {
             Button { model.pronounce() } label: { Label(lesson.selected == nil ? "Read the instruction" : "Listen again", systemImage: "speaker.wave.2.fill") }.buttonStyle(.plain).foregroundStyle(.cyan).accessibilityIdentifier("pronounce")
         }
     }
@@ -339,8 +339,34 @@ struct LearningView: View {
             .overlay(RoundedRectangle(cornerRadius: chinese ? 8 : 12).stroke(Color.gray.opacity(0.25), lineWidth: 2))
         }
     }
+    private func isolation(_ lesson: Lesson) -> some View {
+        VStack(spacing: 36) {
+            HStack(spacing: 16) {
+                if let character = lesson.question.characterResource {
+                    ReferenceCharacter(resource: character, feedback: lesson.feedback).id(lesson.question.id)
+                        .frame(width: 118, height: 175)
+                }
+                Button { model.playQuestion() } label: {
+                    HStack(spacing: 8) {
+                        ReferenceStyle.image("en-match-speaker-source-frame").renderingMode(.template).resizable().frame(width: 24, height: 19).foregroundStyle(ReferenceStyle.blue)
+                        Text(lesson.question.hint ?? "").font(ReferenceStyle.font(19)).foregroundStyle(ReferenceStyle.ink)
+                    }.padding(14).overlay(RoundedRectangle(cornerRadius: 14).strokeBorder(ReferenceStyle.border, lineWidth: 2))
+                }.buttonStyle(.plain).accessibilityIdentifier("isolation-prompt")
+                Spacer()
+            }.frame(height: 175)
+            VStack(spacing: 10) {
+                ForEach(lesson.question.options) { option in
+                    ReferenceAudioRadio(label: option.text, identifier: "option-" + option.id,
+                        waveform: option.imageResource, selected: lesson.selected == option.id,
+                        enabled: lesson.feedback == nil, action: { model.choose(option.id) }).frame(height: 62)
+                }
+            }
+        }
+    }
     @ViewBuilder private func choices(_ lesson: Lesson) -> some View {
-        if lesson.question.sourceType == "dialogue" {
+        if lesson.question.sourceType == "listenIsolation" {
+            isolation(lesson)
+        } else if lesson.question.sourceType == "dialogue" {
             dialogue(lesson)
         } else if let hint = lesson.question.hint {
             HStack(spacing: 16) {
@@ -455,7 +481,7 @@ struct LearningView: View {
                     .overlay(alignment: .bottom) { Rectangle().fill(ReferenceStyle.border).frame(height: 2) }
             }
             WordFlowLayout(centered: true) {
-                ForEach(lesson.question.words) { word in
+                ForEach(lesson.visibleWords) { word in
                     Button(word.text) { model.addWord(word.id) }.buttonStyle(SeedTileStyle()).fixedSize()
                         .disabled(lesson.feedback != nil || lesson.selectedWords.contains(word.id)).accessibilityIdentifier("word-bank-" + word.id)
                 }
@@ -513,19 +539,23 @@ struct LearningView: View {
             }
             VStack(spacing: 12) {
                 ForEach(Array(orderedRightPairs(lesson.question).enumerated()), id: \.element.id) { index, pair in
-                    Button { model.match(pair.id, left: false) } label: {
-                        HStack {
-                            Text(String(index + 5)).font(ReferenceStyle.font(14, bold: true)).frame(width: 28, height: 28)
-                                .overlay(RoundedRectangle(cornerRadius: 6).stroke(Color.gray.opacity(0.25), lineWidth: 2))
-                            Text(pair.right).font(ReferenceStyle.font(20)).frame(maxWidth: .infinity)
-                        }.padding(.horizontal, 18).frame(width: 253, height: 56)
-                    }.buttonStyle(AudioPairButtonStyle(matched: lesson.matchedPairs.contains(pair.id), selected: lesson.selectedRight == pair.id, incorrect: lesson.incorrectMatch?.last == pair.id))
-                        .disabled(lesson.listeningDeclined || lesson.feedback != nil || lesson.matchedPairs.contains(pair.id))
-                        .accessibilityIdentifier("pair-right-" + pair.id).accessibilityLabel(pair.right)
-                        .accessibilityValue(lesson.incorrectMatch?.last == pair.id ? "incorrect" : lesson.matchedPairs.contains(pair.id) ? "matched" : "available")
+                    audioRightPair(pair, index: index, lesson: lesson)
                 }
             }
         }.frame(maxWidth: .infinity).padding(.top, 59)
+    }
+    private func audioRightPair(_ pair: WordPair, index: Int, lesson: Lesson) -> some View {
+        let label = "\(index + 5) \(pair.right)"
+        return Button { model.match(pair.id, left: false) } label: {
+            HStack {
+                Text(String(index + 5)).font(ReferenceStyle.font(14, bold: true)).frame(width: 28, height: 28)
+                    .overlay(RoundedRectangle(cornerRadius: 6).stroke(Color.gray.opacity(0.25), lineWidth: 2))
+                Text(pair.right).font(ReferenceStyle.font(20)).frame(maxWidth: .infinity)
+            }.padding(.horizontal, 18).frame(width: 253, height: 56)
+                    }.buttonStyle(AudioPairButtonStyle(matched: lesson.matchedPairs.contains(pair.id), selected: lesson.selectedRight == pair.id, incorrect: lesson.incorrectMatch?.last == pair.id))
+            .disabled(lesson.listeningDeclined || lesson.feedback != nil || lesson.matchedPairs.contains(pair.id))
+            .accessibilityIdentifier("pair-right-" + pair.id).accessibilityLabel(label)
+            .accessibilityValue(lesson.incorrectMatch?.last == pair.id ? "incorrect" : lesson.matchedPairs.contains(pair.id) ? "matched" : "available")
     }
     private func orderedRightPairs(_ question: Question) -> [WordPair] {
         question.rightOrder?.compactMap { id in question.pairs.first { $0.id == id } } ?? Array(question.pairs.reversed())

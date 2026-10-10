@@ -22,7 +22,7 @@ struct ReferenceSettlement: View {
                 }.frame(width: 340).padding(.bottom, 110)
             } else {
                 HStack {
-                    if ["result", "streak", "daily_quests", "gems"].contains(page.kind) { secondary }
+                    if ["result", "streak", "daily_quests", "gems", "achievement"].contains(page.kind) { secondary }
                     Spacer()
                     Button(page.continueLabel, action: advance)
                         .buttonStyle(ReferenceButton(color: page.kind == "streak" ? ReferenceStyle.blue : ReferenceStyle.green))
@@ -92,6 +92,7 @@ struct ReferenceSettlement: View {
         default:
             VStack(spacing: 24) {
                 if page.kind != "profile" { Color.clear.frame(width: 220, height: 210) }
+                if let level = page.levelLabel { Text(level).font(ReferenceStyle.font(19)) }
                 Text(page.title).font(ReferenceStyle.font(page.kind == "profile" ? 28 : 24, bold: true)).multilineTextAlignment(.center).accessibilityIdentifier("settlement-title").accessibilityValue(page.title)
                 if let body = page.body { Text(body).font(ReferenceStyle.font(19)).foregroundStyle(ReferenceStyle.disclosureInk).lineSpacing(7).multilineTextAlignment(.center).frame(maxWidth: 430) }
                 if page.kind == "legendary" { secondary }
