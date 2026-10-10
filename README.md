@@ -52,3 +52,6 @@ python3 -m unittest discover -v
 - [路线图](docs/ROADMAP.md)：分阶段完成条件。
 - [本轮机制实验与原生续跑](projects/rebuild-mechanisms/REPORT.md)：固定36项检查，另有真实宿主 smoke。
 - [历史机制消融](projects/ablation/REPORT.md)：只能说明机制检查结果。
+
+
+最新探索已实际完成原版英语第三课，发现重复词块及同题型动态换题。新驱动保留并修正失败后原位续跑，候选仍为前两课；共享前端v4当前128通过、244未覆盖，整体失败。[第三课探索与下一步](projects/duolingo-web/evidence/english-third-v1/README.md)。

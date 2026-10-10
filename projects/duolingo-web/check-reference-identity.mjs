@@ -1,0 +1,30 @@
+// Regression checks consume real frozen UI/API observations, not a simulated
+// discovery score. They do not establish exploration-policy or RSI benefit.
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import {fileURLToPath} from 'node:url';
+import {challengeIdentity} from './reference-challenge-identity.mjs';
+const base=fileURLToPath(new URL('./evidence/english-third-v1/',import.meta.url));
+const read=name=>JSON.parse(readFileSync(base+name,'utf8'));
+const session=read('session.json').session;
+const rows=[...read('replay-01.json').observed,...read('replay-02.json').observed];
+const accepted=rows.filter(r=>r.feedback);
+assert.equal(accepted.length,12);
+for(const row of accepted)assert.equal(challengeIdentity(session.challenges[row.index].content,row.identity.actual).matches,true);
+const diverged=rows.find(r=>r.divergence);
+assert.equal(diverged.index,12);
+assert.equal(diverged.dom_type,'challenge challenge-translate');
+assert.equal(session.challenges[12].content.type,'translate');
+const result=challengeIdentity(session.challenges[12].content,diverged.identity.actual);
+assert.equal(result.matches,false);
+assert(result.reasons.includes('choice_set_changed'));
+assert.equal(diverged.actions.length,0);
+const prompts=[...new Set(read('hint-token-reading.json').hints.map(h=>h.parent))];
+const exact=challengeIdentity(session.challenges[12].content,{...diverged.identity.actual,prompts});
+assert(exact.reasons.includes('prompt_changed'));
+assert(exact.prompt_check.includes('equality'));
+const repeat=accepted.find(r=>r.index===9);
+assert.equal(repeat.identity.actual.choices.filter(w=>w==='不要').length,2);
+assert.equal(repeat.actions.filter(a=>a.word==='不要').length,2);
+assert.deepEqual(repeat.actions.filter(a=>a.word==='不要').map(a=>a.occurrence),[0,1]);
+console.log('PASS 12 accepted real questions, same-type adaptive divergence before action, and two distinct duplicate-token occurrences; no policy-effect claim');

@@ -34,3 +34,6 @@ git show 2ad5175:projects/self-improvement/REPORT.md
 现有 `projects/ablation/REPORT.md` 是固定机制检查的消融；新的真实业务对照已单独保存[预注册及四组报告](../projects/business-ablation/REPORT.md)，N=1未观察到通过率收益，费用仍未知。论文结果、历史机制结果与新的 App 重建结果分别报告。
 
 本轮再次核对官方仓库，仍列 full codebase / reproduction scripts 为准备发布；不等待其开源才继续探索。[本轮探索历史](../projects/duolingo-web/evidence/exploration-v4/history.json)与待探索分支已成为实际消费者，但目前只支持未访问优先，尚无策略生成、历史树回放或在线收益证据。保持这个区别，避免把账本命名为 RSI。
+
+
+第三课出现真实同类型换题和重复词块遗漏，已把失败、调整与续跑写入[实际探索历史](../projects/duolingo-web/evidence/english-third-v1/README.md)，供后续策略实验消费。当前调整由Codex依据现场选择，尚未实现Dream-RSI的历史树策略生成/离策略评估；身份回归和现场续跑不构成算法收益或真实探索消融结论。

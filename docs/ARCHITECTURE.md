@@ -102,3 +102,6 @@ Guidebook从SwiftPM中的实测结构化内容读取，使用原版语音与发�
 第二课编译复用无导入写入副作用的`compile_questions`，`compile-english-second.py`以源UI接受反馈裁定实际题目，生成独立v2；v1原字节保持。Question新增可选indicator/example/exampleAudioResource/completionPrefix/completionSuffix，保存范例填空的固定句段及挑战标识，不改业务判题kind。词块按内在宽度换行，保持顺序；没有源语音的中文挑战提示不自动合成未知声音。资源下载支持显式manifest/out，避免覆盖冻结证据。
 
 原生观察器现实际从首课完成主页进入第二课。after-first主页与fresh课程回放分别保存，前端组合观察逐状态登记源回执；原始状态不匹配失败保留。第二课像素诊断包含实际挑战尾部，仍不当作视觉通过。范例按钮音频身份、挑战角色动画、同类型题面动态替换仍是待观察需求。
+
+
+参考回放现把API期望与独立DOM事实传给`reference-challenge-identity.mjs`，保留完整词库多重集；重复文本不去重。可读提示容器使用hint-token父容器innerText（叶textContent可能为空），否则明确降为文本存在证据。分歧在回答前保存，不能拿身份检查代替完整探索。`answer-reference-live.mjs`以现场词库和模型选择续探，正误回执先落盘，继续转移另行执行，避免过渡失败抹掉已作答证据。第三课历史已交给通用discovery消费者；未加入新策略池或声称完整RSI。
