@@ -7,9 +7,9 @@ import subprocess
 import hashlib
 from replay import load_world,replay,digest
 spec=importlib.util.spec_from_file_location('worker',Path(__file__).with_name('model-worker.py'));worker=importlib.util.module_from_spec(spec);spec.loader.exec_module(worker)
-p=argparse.ArgumentParser(description=__doc__);p.add_argument('--world',required=True);p.add_argument('--out',required=True);a=p.parse_args()
+p=argparse.ArgumentParser(description=__doc__);p.add_argument('--codex',required=True);p.add_argument('--registration',required=True);p.add_argument('--world',required=True);p.add_argument('--out',required=True);a=p.parse_args()
 out=Path(a.out);out.mkdir(parents=True,exist_ok=False)
-registration=json.loads(Path(__file__).with_name('registration.json').read_text())
+registration=json.loads(Path(a.registration).read_text())
 for name, expected in registration['files'].items():
     if hashlib.sha256(Path(name).read_bytes()).hexdigest()!=expected:raise ValueError('Frozen source training evidence changed')
 world=load_world(a.world)
@@ -19,15 +19,15 @@ common={'task':'Generate exploration allocation policies for a source-App fronte
         'objective':'Find novel source frontend facts efficiently. Number of deduplicated new AX lines and actual visible control enabled/checked/rect/CSS facts is a limited proxy; long pages may have advantage. Do not claim product completeness.',
         'root_snapshot':world['root_snapshot'],'available_actions':world['actions']}
 schema=Path(__file__).with_name('policy-schema.json')
-initial,ir=worker.call_worker('initial',json.dumps(common,ensure_ascii=False),out/'workers',schema)
+initial,ir=worker.call_worker('initial',json.dumps(common,ensure_ascii=False),out/'workers',schema,a.codex,registration['cli_binary_sha256'])
 initial_replays=[replay(world,p) for p in initial]
 control_input=dict(common,prior_candidates=initial,instruction='Revise the three policies from visible labels and prior candidates only. No evaluator feedback is supplied. Return preferred policy first.')
-control,cr=worker.call_worker('no-replay-revision',json.dumps(control_input,ensure_ascii=False),out/'workers',schema)
+control,cr=worker.call_worker('no-replay-revision',json.dumps(control_input,ensure_ascii=False),out/'workers',schema,a.codex,registration['cli_binary_sha256'])
 # Seal the no-feedback choice before giving any replay result to the other arm.
 control_seal={'policy':control[0],'digest':digest(control[0]),'reason':'Model preferred first candidate; no replay-feedback selection'}
 (out/'control-seal.json').write_text(json.dumps(control_seal,ensure_ascii=False,indent=2)+'\n')
 full_input=dict(common,prior_candidates=initial,replay_feedback=initial_replays,instruction='Use actual revealed replay feedback to revise the policies. Do not infer outcomes outside these recorded traces. Return3 revised policies.')
-full,fr=worker.call_worker('replay-revision',json.dumps(full_input,ensure_ascii=False),out/'workers',schema)
+full,fr=worker.call_worker('replay-revision',json.dumps(full_input,ensure_ascii=False),out/'workers',schema,a.codex,registration['cli_binary_sha256'])
 pool=initial+full;scored=[replay(world,p) for p in pool];best=max(range(len(pool)),key=lambda i:scored[i]['score'])
 selected={'replay_feedback':pool[best],'no_replay_feedback':control[0]}
 seal={'baseline_commit':'db4f95a','registration_commit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),
