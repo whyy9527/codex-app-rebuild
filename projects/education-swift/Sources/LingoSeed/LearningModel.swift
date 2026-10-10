@@ -53,6 +53,7 @@ import LearningCore
         if let resource = word.audioResource { audio.speak(word.text, language: course.speechLanguage, resource: resource) }
         else { audio.play(.tap) }
     }
+    func toggleInputMode() { lesson?.toggleInputMode() }
     func enterText(_ text: String) { lesson?.enterText(text) }
     func removeWord(_ id: String) { lesson?.removeWord(id); audio.play(.tap) }
     func match(_ id: String, left: Bool) {

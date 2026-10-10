@@ -1,0 +1,566 @@
+{
+  "kind": "frontend_requirements",
+  "contract_digest": "dfbe57637fe5d017df765bcf9bee40217ba4bce38efdfa464d80c52de467fc34",
+  "observation_digest": "6cc331b3fd7b0e3687d4c2cf8b0348331dec19612796f394ef581e9bbc4825fb",
+  "rows": [
+    {
+      "id": "en-zh-secondary-keyboard-empty-check_enabled",
+      "state": "en-zh-secondary-keyboard-empty",
+      "status": "pass",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "id": "en-zh-secondary-keyboard-empty-input_matches",
+      "state": "en-zh-secondary-keyboard-empty",
+      "status": "pass",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "id": "en-zh-secondary-keyboard-empty-text-0",
+      "state": "en-zh-secondary-keyboard-empty",
+      "status": "pass",
+      "expected": "使用词库"
+    },
+    {
+      "id": "en-zh-secondary-keyboard-empty-toggle-input-mode-geometry",
+      "state": "en-zh-secondary-keyboard-empty",
+      "status": "fail",
+      "expected": [
+        524.9921875,
+        654.2265625,
+        150,
+        19.546875
+      ],
+      "actual": [
+        504,
+        666.5,
+        52,
+        16
+      ],
+      "delta_points": [
+        20.9921875,
+        12.2734375,
+        98,
+        3.546875
+      ],
+      "reason": "Control geometry in content points only; other visual properties remain separate"
+    },
+    {
+      "id": "en-zh-secondary-keyboard-empty-answer-input-geometry",
+      "state": "en-zh-secondary-keyboard-empty",
+      "status": "fail",
+      "expected": [
+        300,
+        336,
+        600,
+        170
+      ],
+      "actual": [
+        312,
+        205,
+        576,
+        31
+      ],
+      "delta_points": [
+        12,
+        131,
+        24,
+        139
+      ],
+      "reason": "Control geometry in content points only; other visual properties remain separate"
+    },
+    {
+      "id": "en-zh-secondary-keyboard-filled-check_enabled",
+      "state": "en-zh-secondary-keyboard-filled",
+      "status": "pass",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "id": "en-zh-secondary-keyboard-filled-input_matches",
+      "state": "en-zh-secondary-keyboard-filled",
+      "status": "pass",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "id": "en-zh-secondary-keyboard-filled-text-0",
+      "state": "en-zh-secondary-keyboard-filled",
+      "status": "pass",
+      "expected": "使用词库"
+    },
+    {
+      "id": "en-zh-secondary-keyboard-filled-text-1",
+      "state": "en-zh-secondary-keyboard-filled",
+      "status": "pass",
+      "expected": "Thank you."
+    },
+    {
+      "id": "en-zh-secondary-keyboard-filled-toggle-input-mode-geometry",
+      "state": "en-zh-secondary-keyboard-filled",
+      "status": "fail",
+      "expected": [
+        524.9921875,
+        654.2265625,
+        150,
+        19.546875
+      ],
+      "actual": [
+        504,
+        666.5,
+        52,
+        16
+      ],
+      "delta_points": [
+        20.9921875,
+        12.2734375,
+        98,
+        3.546875
+      ],
+      "reason": "Control geometry in content points only; other visual properties remain separate"
+    },
+    {
+      "id": "en-zh-secondary-keyboard-filled-answer-input-geometry",
+      "state": "en-zh-secondary-keyboard-filled",
+      "status": "fail",
+      "expected": [
+        300,
+        336,
+        600,
+        170
+      ],
+      "actual": [
+        312,
+        205,
+        576,
+        31
+      ],
+      "delta_points": [
+        12,
+        131,
+        24,
+        139
+      ],
+      "reason": "Control geometry in content points only; other visual properties remain separate"
+    },
+    {
+      "id": "en-zh-secondary-keyboard-returned-check_enabled",
+      "state": "en-zh-secondary-keyboard-returned",
+      "status": "pass",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "id": "en-zh-secondary-keyboard-returned-input_matches",
+      "state": "en-zh-secondary-keyboard-returned",
+      "status": "pass",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "id": "en-zh-secondary-keyboard-returned-text-0",
+      "state": "en-zh-secondary-keyboard-returned",
+      "status": "pass",
+      "expected": "使用键盘"
+    },
+    {
+      "id": "en-zh-secondary-keyboard-returned-toggle-input-mode-geometry",
+      "state": "en-zh-secondary-keyboard-returned",
+      "status": "fail",
+      "expected": [
+        524.9921875,
+        654.2265625,
+        150,
+        19.546875
+      ],
+      "actual": [
+        504,
+        666.5,
+        52,
+        16
+      ],
+      "delta_points": [
+        20.9921875,
+        12.2734375,
+        98,
+        3.546875
+      ],
+      "reason": "Control geometry in content points only; other visual properties remain separate"
+    },
+    {
+      "id": "en-zh-secondary-keyboard-reopened-check_enabled",
+      "state": "en-zh-secondary-keyboard-reopened",
+      "status": "pass",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "id": "en-zh-secondary-keyboard-reopened-input_matches",
+      "state": "en-zh-secondary-keyboard-reopened",
+      "status": "pass",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "id": "en-zh-secondary-keyboard-reopened-text-0",
+      "state": "en-zh-secondary-keyboard-reopened",
+      "status": "pass",
+      "expected": "使用词库"
+    },
+    {
+      "id": "en-zh-secondary-keyboard-reopened-text-1",
+      "state": "en-zh-secondary-keyboard-reopened",
+      "status": "pass",
+      "expected": "Thank you."
+    },
+    {
+      "id": "en-zh-secondary-keyboard-reopened-toggle-input-mode-geometry",
+      "state": "en-zh-secondary-keyboard-reopened",
+      "status": "fail",
+      "expected": [
+        524.9921875,
+        654.2265625,
+        150,
+        19.546875
+      ],
+      "actual": [
+        504,
+        666.5,
+        52,
+        16
+      ],
+      "delta_points": [
+        20.9921875,
+        12.2734375,
+        98,
+        3.546875
+      ],
+      "reason": "Control geometry in content points only; other visual properties remain separate"
+    },
+    {
+      "id": "en-zh-secondary-keyboard-reopened-answer-input-geometry",
+      "state": "en-zh-secondary-keyboard-reopened",
+      "status": "fail",
+      "expected": [
+        300,
+        336,
+        600,
+        170
+      ],
+      "actual": [
+        312,
+        205,
+        576,
+        31
+      ],
+      "delta_points": [
+        12,
+        131,
+        24,
+        139
+      ],
+      "reason": "Control geometry in content points only; other visual properties remain separate"
+    },
+    {
+      "id": "en-zh-secondary-keyboard-feedback-accepted",
+      "state": "en-zh-secondary-keyboard-feedback",
+      "status": "pass",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "id": "en-zh-secondary-keyboard-feedback-pixels",
+      "state": "en-zh-secondary-keyboard-feedback",
+      "status": "not_run",
+      "reason": "Actual same-state pixels equivalence remains unverified"
+    },
+    {
+      "id": "en-zh-secondary-keyboard-feedback-audio",
+      "state": "en-zh-secondary-keyboard-feedback",
+      "status": "not_run",
+      "reason": "Actual same-state audio equivalence remains unverified"
+    },
+    {
+      "id": "en-zh-secondary-harder-empty-check_enabled",
+      "state": "en-zh-secondary-harder-empty",
+      "status": "pass",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "id": "en-zh-secondary-harder-empty-input_matches",
+      "state": "en-zh-secondary-harder-empty",
+      "status": "pass",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "id": "en-zh-secondary-harder-empty-text-0",
+      "state": "en-zh-secondary-harder-empty",
+      "status": "pass",
+      "expected": "减少难度"
+    },
+    {
+      "id": "en-zh-secondary-harder-empty-toggle-input-mode-geometry",
+      "state": "en-zh-secondary-harder-empty",
+      "status": "fail",
+      "expected": [
+        524.9921875,
+        654.2265625,
+        150,
+        19.546875
+      ],
+      "actual": [
+        504,
+        666.5,
+        52,
+        16
+      ],
+      "delta_points": [
+        20.9921875,
+        12.2734375,
+        98,
+        3.546875
+      ],
+      "reason": "Control geometry in content points only; other visual properties remain separate"
+    },
+    {
+      "id": "en-zh-secondary-harder-empty-answer-input-geometry",
+      "state": "en-zh-secondary-harder-empty",
+      "status": "fail",
+      "expected": [
+        300,
+        336,
+        600,
+        170
+      ],
+      "actual": [
+        312,
+        261,
+        576,
+        31
+      ],
+      "delta_points": [
+        12,
+        75,
+        24,
+        139
+      ],
+      "reason": "Control geometry in content points only; other visual properties remain separate"
+    },
+    {
+      "id": "en-zh-secondary-harder-filled-check_enabled",
+      "state": "en-zh-secondary-harder-filled",
+      "status": "pass",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "id": "en-zh-secondary-harder-filled-input_matches",
+      "state": "en-zh-secondary-harder-filled",
+      "status": "pass",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "id": "en-zh-secondary-harder-filled-text-0",
+      "state": "en-zh-secondary-harder-filled",
+      "status": "pass",
+      "expected": "减少难度"
+    },
+    {
+      "id": "en-zh-secondary-harder-filled-text-1",
+      "state": "en-zh-secondary-harder-filled",
+      "status": "pass",
+      "expected": "I'd like water and coffee, please."
+    },
+    {
+      "id": "en-zh-secondary-harder-filled-toggle-input-mode-geometry",
+      "state": "en-zh-secondary-harder-filled",
+      "status": "fail",
+      "expected": [
+        524.9921875,
+        654.2265625,
+        150,
+        19.546875
+      ],
+      "actual": [
+        504,
+        666.5,
+        52,
+        16
+      ],
+      "delta_points": [
+        20.9921875,
+        12.2734375,
+        98,
+        3.546875
+      ],
+      "reason": "Control geometry in content points only; other visual properties remain separate"
+    },
+    {
+      "id": "en-zh-secondary-harder-filled-answer-input-geometry",
+      "state": "en-zh-secondary-harder-filled",
+      "status": "fail",
+      "expected": [
+        300,
+        336,
+        600,
+        170
+      ],
+      "actual": [
+        312,
+        261,
+        576,
+        31
+      ],
+      "delta_points": [
+        12,
+        75,
+        24,
+        139
+      ],
+      "reason": "Control geometry in content points only; other visual properties remain separate"
+    },
+    {
+      "id": "en-zh-secondary-harder-returned-check_enabled",
+      "state": "en-zh-secondary-harder-returned",
+      "status": "pass",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "id": "en-zh-secondary-harder-returned-input_matches",
+      "state": "en-zh-secondary-harder-returned",
+      "status": "pass",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "id": "en-zh-secondary-harder-returned-text-0",
+      "state": "en-zh-secondary-harder-returned",
+      "status": "pass",
+      "expected": "加大难度"
+    },
+    {
+      "id": "en-zh-secondary-harder-returned-toggle-input-mode-geometry",
+      "state": "en-zh-secondary-harder-returned",
+      "status": "fail",
+      "expected": [
+        524.9921875,
+        654.2265625,
+        150,
+        19.546875
+      ],
+      "actual": [
+        504,
+        666.5,
+        52,
+        16
+      ],
+      "delta_points": [
+        20.9921875,
+        12.2734375,
+        98,
+        3.546875
+      ],
+      "reason": "Control geometry in content points only; other visual properties remain separate"
+    },
+    {
+      "id": "en-zh-secondary-harder-reopened-check_enabled",
+      "state": "en-zh-secondary-harder-reopened",
+      "status": "pass",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "id": "en-zh-secondary-harder-reopened-input_matches",
+      "state": "en-zh-secondary-harder-reopened",
+      "status": "pass",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "id": "en-zh-secondary-harder-reopened-text-0",
+      "state": "en-zh-secondary-harder-reopened",
+      "status": "pass",
+      "expected": "减少难度"
+    },
+    {
+      "id": "en-zh-secondary-harder-reopened-text-1",
+      "state": "en-zh-secondary-harder-reopened",
+      "status": "pass",
+      "expected": "I'd like water and coffee, please."
+    },
+    {
+      "id": "en-zh-secondary-harder-reopened-toggle-input-mode-geometry",
+      "state": "en-zh-secondary-harder-reopened",
+      "status": "fail",
+      "expected": [
+        524.9921875,
+        654.2265625,
+        150,
+        19.546875
+      ],
+      "actual": [
+        504,
+        666.5,
+        52,
+        16
+      ],
+      "delta_points": [
+        20.9921875,
+        12.2734375,
+        98,
+        3.546875
+      ],
+      "reason": "Control geometry in content points only; other visual properties remain separate"
+    },
+    {
+      "id": "en-zh-secondary-harder-reopened-answer-input-geometry",
+      "state": "en-zh-secondary-harder-reopened",
+      "status": "fail",
+      "expected": [
+        300,
+        336,
+        600,
+        170
+      ],
+      "actual": [
+        312,
+        261,
+        576,
+        31
+      ],
+      "delta_points": [
+        12,
+        75,
+        24,
+        139
+      ],
+      "reason": "Control geometry in content points only; other visual properties remain separate"
+    },
+    {
+      "id": "en-zh-secondary-harder-feedback-accepted",
+      "state": "en-zh-secondary-harder-feedback",
+      "status": "pass",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "id": "en-zh-secondary-harder-feedback-pixels",
+      "state": "en-zh-secondary-harder-feedback",
+      "status": "not_run",
+      "reason": "Actual same-state pixels equivalence remains unverified"
+    },
+    {
+      "id": "en-zh-secondary-harder-feedback-audio",
+      "state": "en-zh-secondary-harder-feedback",
+      "status": "not_run",
+      "reason": "Actual same-state audio equivalence remains unverified"
+    }
+  ],
+  "status": "fail"
+}

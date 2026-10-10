@@ -1,0 +1,67 @@
+{
+  "source_state": "Seventh fresh regenerated lesson, q4 whole-answer accepted; no Continue after q4 yet",
+  "history_feedback": [
+    {
+      "counterexample": "Reload replaced initial listenMatch with translate",
+      "adjustment": "Keep active trajectory; record fresh lesson separately rather than merge pre/post reload state",
+      "evidence": "secondary-q0-before.json / secondary-reset-q0.json"
+    },
+    {
+      "counterexample": "DOM enabled=true contradicts AX disabled for empty Check",
+      "adjustment": "Preserve both; source contract disabled fact read from actual AX snapshot",
+      "evidence": "secondary-keyboard-empty.json"
+    },
+    {
+      "counterexample": "Public sanitizer omitted listenIsolation options",
+      "adjustment": "Record actual radio2 acceptance only; missing choices cannot be reconstructed from a later reload",
+      "evidence": "secondary-listen-isolation-feedback.json"
+    }
+  ],
+  "branches": [
+    {
+      "action": "keyboard/full-answer toggle and switch back",
+      "status": "observed",
+      "candidate": "two-question probe actual pass; default-course integration not_run"
+    },
+    {
+      "action": "harder/full-answer and reduce",
+      "status": "observed",
+      "candidate": "two-question probe actual pass; default-course integration not_run"
+    },
+    {
+      "action": "skip",
+      "status": "observed feedback/no heart loss",
+      "candidate": "not_run",
+      "remaining": "Observe end review/score before inferring skip semantics"
+    },
+    {
+      "action": "listenMatch normal audio pairing",
+      "status": "observed four accepted pairs",
+      "candidate": "not_run for seventh sequence"
+    },
+    {
+      "action": "listenIsolation",
+      "status": "observed radio2 accepted",
+      "candidate": "not_run",
+      "remaining": "Options/blank range omitted by sanitizer; full source fields missing"
+    },
+    {
+      "action": "cross-question input preference",
+      "status": "unknown"
+    },
+    {
+      "action": "correct streak display",
+      "status": "observed none at1, visible2/3/4",
+      "candidate": "known threshold>=5 mismatch; pending repair"
+    },
+    {
+      "action": "full seventh continuation/review/end/home",
+      "status": "unknown"
+    },
+    {
+      "action": "same-state visuals/audio",
+      "status": "fail or not_run"
+    }
+  ],
+  "experiment": "No new matched-budget RSI ablation executed; existing papers and negative results retained"
+}

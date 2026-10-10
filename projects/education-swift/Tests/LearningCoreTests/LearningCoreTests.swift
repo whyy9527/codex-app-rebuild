@@ -443,6 +443,32 @@ func actualEnglishSixthDoubleDecline() throws {
     print("PASS actual sixth double-decline: 15 graded + ungraded listening/speech, challenge entry and independent settlement; normal branch still unknown")
 }
 
+func actualSecondaryInputModes() throws {
+    let source = try course(fixture: "fixture-reference-en-zh-secondary-v1.json")
+    var lesson = Lesson(course: source, hearts: 2)
+    for (index, answer) in ["Thank you.", "I'd like water and coffee, please."].enumerated() {
+        try check(!lesson.canSubmit && lesson.supportsInputMode, "Observed initial action state missing")
+        lesson.toggleInputMode()
+        try check(lesson.usingKeyboard && !lesson.canSubmit && lesson.displayedPrompt == "用英语写出这句话", "Empty full answer must be disabled")
+        lesson.enterText(answer)
+        try check(lesson.canSubmit && lesson.displayedInput == answer, "Full answer not retained")
+        lesson.toggleInputMode()
+        try check(!lesson.canSubmit && lesson.displayedInput.isEmpty && lesson.selectedWords.isEmpty, "Alternative answer must stay independent")
+        if index == 1 { try check(lesson.displayedPrompt == "输入所缺单词", "Reduced difficulty prompt missing") }
+        lesson.toggleInputMode()
+        try check(lesson.displayedInput == answer && lesson.canSubmit, "Reopened source answer lost")
+        lesson.submit()
+        try check(lesson.feedback == true && lesson.hearts == 2, "Actual accepted full answer rejected")
+        lesson.toggleInputMode()
+        try check(lesson.usingKeyboard, "Feedback input must remain locked")
+        lesson.advance()
+    }
+    try check(lesson.complete && lesson.mistakesMade == 0, "Probe did not finish")
+    let roundTrip = try JSONDecoder().decode(Course.self, from: JSONEncoder().encode(source))
+    try check(roundTrip == source, "Input-mode metadata lost")
+    print("PASS actual keyboard/harder independent buffers, source accepted full answers and feedback lock")
+}
+
 do {
     try mistakeReview()
     try persistence()
@@ -461,7 +487,8 @@ do {
     try actualEnglishFifthTrajectory()
     try actualListeningDeclinePrefix()
     try actualEnglishSixthDoubleDecline()
-    print("17 business checks passed; core layer only")
+    try actualSecondaryInputModes()
+    print("18 business checks passed; core layer only")
 } catch {
     FileHandle.standardError.write(Data(("FAIL " + String(describing: error) + "\n").utf8))
     exit(1)

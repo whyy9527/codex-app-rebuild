@@ -151,3 +151,8 @@ Question.feedbackReportReasons保存实际题型原因；LearningModel管理互�
 ### 源文案采样修订与第六课原生轨迹
 
 第六课按实际双暂缓轨迹编译为显式v7夹具，正常分支未观察，不切默认。正确连对计数仅随评分更新，暂缓不增加；主页任务来自可选进度快照。源AX序列化引号和动画父节点不等于显示文案，v12修订保留v11及逐项变化，结算数字来自实际PNG人工读取，不能冒充自动AX识别。文字、几何、像素、实际声音及资源传输分别验收；新修订仍保留全部50项视觉/音频未验证。详见[实际执行与模具反例](../projects/duolingo-web/evidence/english-sixth-native-v1/README.md)。
+
+
+### 真实次要输入模式
+
+Question可选keyboardAnswer/keyboardPrompt承载源接受的整句；Lesson用usingKeyboard及keyboardText与已有词库/填空分别保存状态。LearningModel转发切换，SwiftUI按实际模式换提示、输入和按钮。observe-frontend的显式exercise-input-modes通过AX/键盘采集四个中间态和实际反馈，与实现前冻结契约独立比较。当前仅两题探针已配置；默认课程、跨题偏好、完整评分器和视觉/声音仍缺，不由fallback补成已验证。源reload与DOM/AX冲突说明重置/采样本身也需要可追溯证据。[本批回执](../projects/duolingo-web/evidence/english-secondary-actions-v1/README.md)。

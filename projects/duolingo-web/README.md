@@ -121,3 +121,6 @@ node projects/duolingo-web/explore-curriculum.mjs artifacts/reference-new.json -
 第二节点增量见[输入组件验证](evidence/english-input-native-v1/README.md)：实际源观察→text_entry→真实键盘原生验证，12pass/6not_run。产品v7共578项，完整第二节点、口语识别、视觉声学一致及真实RSI探索机制消融仍未完成。
 
 原版第二节点首课现已完整走通并回主页，15评分题+口语暂缓阶段及typed review均有证据。已修正候选听音配对扣心/左侧原音、完整输入纠错和HOT接受；14项核心通过，产品v9共606项。默认整课接入及RSI策略消融尚待完成。[最新轨迹与组件结果](evidence/english-pairing-native-v1/README.md)。
+
+
+第七课次要动作增量已记录跳过不扣心、独立键盘/词库及难度缓冲、正常配对和listenIsolation缺口。两题原生探针18项核心通过；共享48项仍30pass/14fail/4not_run。默认课程未集成，完整第七课与RSI消融继续。[本批实际证据与复跑](evidence/english-secondary-actions-v1/README.md)。

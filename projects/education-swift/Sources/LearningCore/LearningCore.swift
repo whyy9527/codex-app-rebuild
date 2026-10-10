@@ -48,9 +48,11 @@ public struct Question: Codable, Equatable, Sendable, Identifiable {
     public let completionPrefix: String?
     public let completionSuffix: String?
     public let listeningDecline: ListeningDecline?
+    public let keyboardAnswer: String?
+    public let keyboardPrompt: String?
     public let feedbackReportReasons: [String]?
     enum CodingKeys: String, CodingKey {
-        case correctFeedback, indicator, example, exampleAudioResource, completionPrefix, completionSuffix, listeningDecline, feedbackReportReasons
+        case keyboardAnswer, keyboardPrompt, correctFeedback, indicator, example, exampleAudioResource, completionPrefix, completionSuffix, listeningDecline, feedbackReportReasons
         case id, kind, prompt, options, answer, words, pairs, explanation, hint, newWord, rightOrder, audioResource, sourceLanguage, characterResource, sourceType, slowAudioResource, dialogueAvatars
         case answerWords = "answer_words"
     }
@@ -81,6 +83,8 @@ public struct Question: Codable, Equatable, Sendable, Identifiable {
         completionPrefix = try c.decodeIfPresent(String.self, forKey: .completionPrefix)
         completionSuffix = try c.decodeIfPresent(String.self, forKey: .completionSuffix)
         listeningDecline = try c.decodeIfPresent(ListeningDecline.self, forKey: .listeningDecline)
+        keyboardAnswer = try c.decodeIfPresent(String.self, forKey: .keyboardAnswer)
+        keyboardPrompt = try c.decodeIfPresent(String.self, forKey: .keyboardPrompt)
         feedbackReportReasons = try c.decodeIfPresent([String].self, forKey: .feedbackReportReasons)
     }
     public var correctText: String {
@@ -245,6 +249,15 @@ public struct Lesson: Equatable, Sendable {
     public private(set) var selected: String?
     public private(set) var selectedWords = [String]()
     public private(set) var enteredText = ""
+    public private(set) var keyboardText = ""
+    public private(set) var usingKeyboard = false
+    public var displayedInput: String { usingKeyboard ? keyboardText : enteredText }
+    public var displayedPrompt: String { usingKeyboard ? (question.keyboardPrompt ?? question.prompt) : question.prompt }
+    public var supportsInputMode: Bool { question.keyboardAnswer != nil && question.keyboardPrompt != nil && (question.kind == .wordTiles || question.kind == .textEntry) }
+    public mutating func toggleInputMode() {
+        guard supportsInputMode, feedback == nil, !complete, !listeningDeclined, interlude == nil, deferredSpeech == nil else { return }
+        usingKeyboard.toggle()
+    }
     public private(set) var matchedPairs = Set<String>()
     public private(set) var selectedLeft: String?
     public private(set) var selectedRight: String?
@@ -277,6 +290,7 @@ public struct Lesson: Equatable, Sendable {
     public var question: Question { definition.questions[position] }
     public var canSubmit: Bool {
         guard feedback == nil, !listeningDeclined, !complete, interlude == nil, deferredSpeech == nil else { return false }
+        if usingKeyboard { return !keyboardText.isEmpty }
         switch question.kind {
         case .choice: return selected != nil
         case .wordTiles: return !selectedWords.isEmpty
@@ -294,8 +308,8 @@ public struct Lesson: Equatable, Sendable {
         selected = id
     }
     public mutating func enterText(_ text: String) {
-        guard question.kind == .textEntry, feedback == nil, !listeningDeclined, !complete, interlude == nil, deferredSpeech == nil else { return }
-        enteredText = text
+        guard (question.kind == .textEntry || usingKeyboard), feedback == nil, !listeningDeclined, !complete, interlude == nil, deferredSpeech == nil else { return }
+        if usingKeyboard { keyboardText = text } else { enteredText = text }
     }
     public mutating func addWord(_ id: String) {
         guard question.kind == .wordTiles, feedback == nil, !listeningDeclined, !complete, interlude == nil, deferredSpeech == nil,
@@ -330,11 +344,15 @@ public struct Lesson: Equatable, Sendable {
         // word sequence so two indistinguishable copies can exchange positions.
         let textByID = Dictionary(uniqueKeysWithValues: question.words.map { ($0.id, $0.text) })
         let correct: Bool
+        if usingKeyboard {
+            correct = keyboardText.caseInsensitiveCompare(question.keyboardAnswer ?? "") == .orderedSame
+        } else {
         switch question.kind {
         case .choice: correct = selected == question.answer
         case .wordTiles: correct = selectedWords.compactMap { textByID[$0] } == question.answerWords.compactMap { textByID[$0] }
         case .textEntry: correct = enteredText.caseInsensitiveCompare(question.answer) == .orderedSame // HOT accepted for source hot; whitespace, punctuation and spelling tolerance remain unverified.
         case .matching: return
+        }
         }
         feedback = correct
         correctStreak = correct ? correctStreak + 1 : 0
@@ -345,7 +363,7 @@ public struct Lesson: Equatable, Sendable {
         }
     }
     private mutating func clearAnswer() {
-        selected = nil; selectedWords = []; enteredText = ""; matchedPairs = []
+        selected = nil; selectedWords = []; enteredText = ""; keyboardText = ""; usingKeyboard = false; matchedPairs = []
         selectedLeft = nil; selectedRight = nil; matchingHint = nil; incorrectMatch = nil; feedback = nil; listeningDeclined = false
     }
     public mutating func advance() {

@@ -1,0 +1,19 @@
+{
+  "core": {
+    "command": "swift run --package-path projects/education-swift LearningCoreChecks",
+    "exit_code": 0,
+    "checks": 18,
+    "scope": "Core only; actual two-question mode transitions added to 17 historical checks"
+  },
+  "build": {
+    "command": "swift build --package-path projects/education-swift --product LingoSeed",
+    "exit_code": 0
+  },
+  "listening_pairs_helper": {
+    "command": "node --check projects/duolingo-web/answer-listening-pairs-live.mjs",
+    "exit_code": 0,
+    "actual_receipt": "secondary-pairs.json",
+    "pairs_accepted": 4
+  },
+  "full_goal": "active; no completion claim"
+}

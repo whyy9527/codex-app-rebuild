@@ -288,6 +288,23 @@ if CommandLine.arguments.contains("--walk-course") {
                 }
                 if let kind = (question["sourceType"] ?? question["kind"]) as? String, capturedKinds.insert(kind).inserted { try capture("question-" + kind) }
                 if course["interfaceLanguage"] as? String == "zh" { try capture(key + "-before") }
+                if CommandLine.arguments.contains("--exercise-input-modes"), let answer = question["keyboardAnswer"] as? String {
+                    func enabled(_ id: String) -> Bool {
+                        current().first { (attr($0, kAXIdentifierAttribute) as? String) == id }.flatMap { attr($0, kAXEnabledAttribute) as? Bool } ?? false
+                    }
+                    func recordMode(_ phase: String, expectedInput: String) throws {
+                        var value = observe()
+                        let actual = current().first { (attr($0, kAXIdentifierAttribute) as? String) == "answer-input" }.flatMap { attr($0, kAXValueAttribute) as? String }
+                        let inputMatches = phase == "returned" && question["kind"] as? String == "word_tiles" ? actual == nil : actual == expectedInput
+                        value["interactions"] = ["check_enabled": enabled("check"), "input_matches": inputMatches]
+                        states[key + "-" + phase] = value; try capture(key + "-" + phase)
+                    }
+                    try press("toggle-input-mode"); try recordMode("empty", expectedInput: "")
+                    try fillInput(answer); try recordMode("filled", expectedInput: answer)
+                    try press("toggle-input-mode"); try recordMode("returned", expectedInput: "")
+                    try press("toggle-input-mode"); try recordMode("reopened", expectedInput: answer)
+                    try press("check")
+                } else {
                 switch question["kind"] as? String {
                 case "text_entry":
                     func enabled(_ id: String) -> Bool {
@@ -384,8 +401,14 @@ if CommandLine.arguments.contains("--walk-course") {
                     } else { try press("option-" + (question["answer"] as! String)) }
                     try press("check")
                 }
+                }
                 try waitFor("continue")
-                states[key + "-feedback"] = observe()
+                var feedbackObservation = observe()
+                if CommandLine.arguments.contains("--exercise-input-modes"), question["keyboardAnswer"] != nil {
+                    let actual = current().first { (attr($0, kAXIdentifierAttribute) as? String) == "feedback" }.flatMap { attr($0, kAXValueAttribute) as? String }
+                    feedbackObservation["interactions"] = ["accepted": actual == "correct"]
+                }
+                states[key + "-feedback"] = feedbackObservation
                 if CommandLine.arguments.contains("--capture-character-frames"), current().contains(where: { (attr($0, kAXIdentifierAttribute) as? String) == "question-character" }) {
                     for frame in 0..<12 { try capture(key + "-character-feedback-\(frame)"); Thread.sleep(forTimeInterval: 0.15) }
                 }

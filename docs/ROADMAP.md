@@ -8,6 +8,8 @@
 
 最新听力暂缓批次：实际执行遗漏分支，发现插入翻译及后续替换；局部原生路径可运行，完整默认分支未接入。22项源16pass/6not_run，原生13pass/3fail/6not_run；16项核心通过，默认五课v10仍整体fail。[轨迹、失败与接续](../projects/duolingo-web/evidence/english-listening-decline-v1/README.md)。
 
+次要动作增量：实际探索键盘/词库、填空/整句、跳过和正常听音配对，新增listenIsolation缺口；两题原生切换已执行，48项仍14几何失败/4未验证，18项核心通过。默认课程集成、跳过重练/结算、后续第七课及真实RSI策略消融未完成。[证据与接续](../projects/duolingo-web/evidence/english-secondary-actions-v1/README.md)。
+
 | 阶段 | 已交付 | 验收与范围 |
 | --- | --- | --- |
 | 0 定位与改名 | 私有codex-app-rebuild；README、AGENTS、哲学、架构与研究来源 | Dream-RSI/Cordis及历史无收益保留；没有开源或部署。 |

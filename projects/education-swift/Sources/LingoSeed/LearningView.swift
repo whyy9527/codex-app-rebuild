@@ -237,6 +237,11 @@ struct LearningView: View {
                 }
                 if lesson.question.sourceType == nil { Text(lesson.question.kind == .matching ? "Match all pairs to continue" : "Take your time. You’ve got this.").foregroundStyle(.secondary) }
                 Spacer()
+                if lesson.supportsInputMode {
+                    Button(lesson.question.kind == .wordTiles ? (lesson.usingKeyboard ? "使用词库" : "使用键盘") : (lesson.usingKeyboard ? "减少难度" : "加大难度")) { model.toggleInputMode() }
+                        .buttonStyle(.plain).accessibilityIdentifier("toggle-input-mode")
+                }
+                Spacer()
                 if lesson.question.kind != .matching { Button(copy("CHECK", "检查")) { model.submit() }.buttonStyle(SeedButtonStyle(fill: accent)).disabled(!lesson.canSubmit).accessibilityIdentifier("check") }
             }
         }.padding(.horizontal, 60).padding(.vertical, 28).frame(minHeight: 115)
@@ -270,12 +275,12 @@ struct LearningView: View {
         // Source challenge-header: 32px/40px. Translation's character row follows
         // the heading directly; the old shared 28-point gap displaced it.
         VStack(alignment: .leading, spacing: lesson.question.sourceType == "translate" ? 0 : 28) {
-        Text(lesson.question.kind == .wordTiles && lesson.question.hint == nil && lesson.question.sourceType == nil ? "Build this phrase" : lesson.question.prompt).font(ReferenceStyle.font(32, bold: true))
+        Text(lesson.question.kind == .wordTiles && lesson.question.hint == nil && lesson.question.sourceType == nil ? "Build this phrase" : lesson.displayedPrompt).font(ReferenceStyle.font(32, bold: true))
             .frame(maxWidth: .infinity, minHeight: 40, maxHeight: 40, alignment: .leading)
-            .accessibilityIdentifier("question-title").accessibilityValue(lesson.question.prompt)
+            .accessibilityIdentifier("question-title").accessibilityValue(lesson.displayedPrompt)
         switch lesson.question.kind {
         case .choice: choices(lesson)
-        case .wordTiles: words(lesson)
+        case .wordTiles: if lesson.usingKeyboard { textEntry(lesson) } else { words(lesson) }
         case .matching: matching(lesson)
         case .textEntry: textEntry(lesson)
         }
@@ -297,12 +302,12 @@ struct LearningView: View {
             }
         }
         HStack(spacing: 6) {
-            if let prefix = lesson.question.completionPrefix, !prefix.isEmpty { Text(prefix).font(ReferenceStyle.font(20)).accessibilityIdentifier("completion-prefix") }
-            TextField("", text: Binding(get: { model.lesson?.enteredText ?? "" }, set: { model.enterText($0) }))
-                .font(ReferenceStyle.font(chinese ? 17 : 20)).textFieldStyle(.plain).frame(maxWidth: lesson.question.completionPrefix == nil ? .infinity : 120)
+            if let prefix = lesson.question.completionPrefix, !prefix.isEmpty, !lesson.usingKeyboard { Text(prefix).font(ReferenceStyle.font(20)).accessibilityIdentifier("completion-prefix") }
+            TextField("", text: Binding(get: { model.lesson?.displayedInput ?? "" }, set: { model.enterText($0) }))
+                .font(ReferenceStyle.font(chinese ? 17 : 20)).textFieldStyle(.plain).frame(maxWidth: lesson.usingKeyboard || lesson.question.completionPrefix == nil ? .infinity : 120)
                 .padding(.vertical, 8).overlay(alignment: .bottom) { Rectangle().fill(Color.gray.opacity(0.4)).frame(height: 2) }
-                .disabled(lesson.feedback != nil).accessibilityIdentifier("answer-input").accessibilityLabel(chinese ? (lesson.question.completionPrefix != nil ? (lesson.question.completionPrefix ?? "") + (lesson.question.completionSuffix ?? "") : "使用英语键入") : "填写所缺单词")
-            if let suffix = lesson.question.completionSuffix { Text(suffix).font(ReferenceStyle.font(20)).accessibilityIdentifier("completion-suffix") }
+                .disabled(lesson.feedback != nil).accessibilityIdentifier("answer-input").accessibilityLabel(chinese ? (!lesson.usingKeyboard && lesson.question.completionPrefix != nil ? (lesson.question.completionPrefix ?? "") + (lesson.question.completionSuffix ?? "") : "使用英语键入") : "填写所缺单词")
+            if let suffix = lesson.question.completionSuffix, !lesson.usingKeyboard { Text(suffix).font(ReferenceStyle.font(20)).accessibilityIdentifier("completion-suffix") }
         }.frame(maxWidth: .infinity, minHeight: chinese ? 146 : nil, maxHeight: chinese ? 146 : nil, alignment: .topLeading).padding(chinese ? 12 : 20)
             .background(chinese ? Color(white: 247/255) : .clear, in: RoundedRectangle(cornerRadius: chinese ? 8 : 12))
             .overlay(RoundedRectangle(cornerRadius: chinese ? 8 : 12).stroke(Color.gray.opacity(0.25), lineWidth: 2))

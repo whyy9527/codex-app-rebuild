@@ -43,3 +43,6 @@ Dream-RSI 的历史与策略研究、Cordis 的组合与生命周期思想保留
 
 
 实际画面与资源假设冲突时，探索需要改变观测对象：本次裁切静态图无法解释全身角色，追查canvas实际renderer后才发现独立Rive资源与状态机。把反例、假设修订、探针及新需求连起来，才能检验探索是否补上遗漏；增加已有测试的循环次数无法替代这一步。[角色案例](../projects/duolingo-web/evidence/english-character-render-v1/README.md)验证了一次实际发现，尚不支持自主RSI或消融收益声明。
+
+
+探索也要检验观测方法：同一原版reload会换题，DOM的enabled可能与实际AX禁用冲突。保留矛盾并改变下一步探针，不能通过挑选对实现有利的读数解决。次要动作的独立状态和输入缓冲同样属于产品需求；只遍历正确答案会持续遗漏它们。见[实际反例](../projects/duolingo-web/evidence/english-secondary-actions-v1/README.md)。
