@@ -133,7 +133,9 @@ struct LearningView: View {
         }.buttonStyle(SeedButtonStyle(fill: accent)).accessibilityIdentifier("destination-practice")
     }
     @ViewBuilder private func lessonPage(_ lesson: Lesson) -> some View {
-        if model.entryPending, let entry = lesson.definition.entry {
+        if lesson.complete, let page = model.settlement?.current {
+            ReferenceSettlement(page: page, allCorrect: lesson.mistakesMade == 0, advance: model.advanceSettlement)
+        } else if model.entryPending, let entry = lesson.definition.entry {
             VStack(spacing: 32) {
                 Spacer()
                 Text(entry.title).font(ReferenceStyle.font(28, bold: true)).multilineTextAlignment(.center).frame(maxWidth: 560).accessibilityIdentifier("lesson-entry").accessibilityValue(entry.id)

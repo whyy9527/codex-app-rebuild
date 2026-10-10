@@ -1,0 +1,75 @@
+{
+  "viewport": [
+    1200,
+    732
+  ],
+  "normalization": "Native content crop from measured window, Lanczos 2x downsample; source unchanged; no masking or passing tolerance",
+  "rows": [
+    {
+      "stage": "complete",
+      "source": "projects/duolingo-web/evidence/english-fourth-v1/reference-fourth-complete.png",
+      "native": "en-zh-l4-complete-window.png",
+      "source_sha256": "9bcdf95aee08ff44baa42427f7cef9990bf808af424958e9e5e0ecba6146bdfb",
+      "native_sha256": "d7c61d29b1e66c41917f462d0efca0f789c8fdb456b7b424799a067d8b7f4847",
+      "mean_absolute_rgb_difference": [
+        4.021658697632058,
+        3.2417725409836065,
+        8.583796675774135
+      ],
+      "status": "different"
+    },
+    {
+      "stage": "score",
+      "source": "projects/duolingo-web/evidence/english-fourth-v1/reference-fourth-score.png",
+      "native": "en-zh-l4-score-window.png",
+      "source_sha256": "e95f9b316d48a5316a71322fc8c6ab902a5ebe0a44155fda88ec2b4f6b4b4532",
+      "native_sha256": "b06d3daf5bd28bded5d4b2b4654c6eeab7ec4b821cef7ffe4ef1f9778f65d4bd",
+      "mean_absolute_rgb_difference": [
+        4.738944672131147,
+        3.1398030510018216,
+        6.441284153005465
+      ],
+      "status": "different"
+    },
+    {
+      "stage": "streak",
+      "source": "projects/duolingo-web/evidence/english-fourth-v1/reference-fourth-streak.png",
+      "native": "en-zh-l4-streak-window.png",
+      "source_sha256": "e31710c191274c710682469e18f5e8c6a18bf3f576d3e2baaf2118cc8f5a7456",
+      "native_sha256": "8a3698d4eb9aa8d2d9dbd704487ad9719350d89756f18bf91fbaee32c1587a09",
+      "mean_absolute_rgb_difference": [
+        1.5307388433515483,
+        2.6426639344262295,
+        4.953203551912568
+      ],
+      "status": "different"
+    },
+    {
+      "stage": "xp-boost",
+      "source": "projects/duolingo-web/evidence/english-fourth-v1/reference-fourth-xp-boost.png",
+      "native": "en-zh-l4-xp-boost-window.png",
+      "source_sha256": "8de211d11443fbfee7928837d7fdf9f14c0e09ae357d853b39581a2a826b6d0f",
+      "native_sha256": "22abf416110859aa4ac1f9fbeaf709a7ed83ffd88d310107ca7cfe941da1ae2f",
+      "mean_absolute_rgb_difference": [
+        2.811287568306011,
+        3.8533287795992712,
+        5.1188103369763205
+      ],
+      "status": "different"
+    },
+    {
+      "stage": "legendary",
+      "source": "projects/duolingo-web/evidence/english-fourth-v1/reference-fourth-legendary.png",
+      "native": "en-zh-l4-legendary-window.png",
+      "source_sha256": "95e55355325d36a637981fd3166cc789d964c635a27e7b77b23ea4c79baa8cec",
+      "native_sha256": "9fad8c6ca91aec5af107b8912cafcc4aa876cdecc1f7e32bc03d9376c747b80e",
+      "mean_absolute_rgb_difference": [
+        214.80741461748633,
+        216.81728028233152,
+        227.02012067395265
+      ],
+      "status": "different"
+    }
+  ],
+  "candidate_acceptance": "not_proven"
+}

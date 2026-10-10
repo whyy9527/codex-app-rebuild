@@ -113,3 +113,9 @@ Guidebook从SwiftPM中的实测结构化内容读取，使用原版语音与发�
 
 
 英语第四课验证了两种采集生命周期缺口：进入/重载课程可能先停在挑战邀请或复习说明，不能以challenge heading作为所有入口的就绪条件；响应捕获必须在结束/异常时移除自己的监听器。听力题身份使用当前显式播放的实际源地址和完整词库，文字题仍用可见题面；源地址相等不证明声音输出或听感。新的失败和需求保存在第四课证据，Swift尚未实现新增结算链。
+
+### 英语结算批次与源图形发现
+
+默认en/zh v5在四课57题基础上添加源观察的SettlementPage与独立SettlementFlow，LearningModel控制六页继续与返回主页，ReferenceSettlement负责呈现。题目判分与结算展示分开；observedStreak仅是现场快照，不承担日历算法。完成路径的源几何与两个弹窗存于证据，未接入第二节点不能重复旧内容冒充新课。前端v6保留全部v5断言并新增35项，当前341/8/205、整体fail。
+
+回放器现在保留真实challenge canvas帧、边界与像素尺寸。原版全身角色的Canvas与接口裁切SVG/PDF不同；渲染器及动画资源绑定仍未知。此采集扩展修正素材探索遗漏，不等于已解决动画或证明RSI收益。[当前批次](../projects/duolingo-web/evidence/english-settlement-v1/README.md)。

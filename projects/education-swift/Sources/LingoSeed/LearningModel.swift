@@ -9,6 +9,7 @@ import LearningCore
     var lesson: Lesson?
     var confirmingExit = false
     var entryPending = false
+    var settlement: SettlementFlow?
     var error: String?
     var destination = "Learn"
     var preferences = LearningPreferences()
@@ -77,6 +78,7 @@ import LearningCore
     func begin(_ index: Int) {
         guard progress.isUnlocked(course, index: index) else { return }
         lesson = Lesson(course: course, lessonIndex: index, hearts: progress.hearts)
+        settlement = nil
         confirmingExit = false
         entryPending = course.lessons[index].entry != nil
         audio.play(.tap)
@@ -105,13 +107,18 @@ import LearningCore
         if let lesson, !lesson.complete, lesson.interlude == nil, (wasInterlude || lesson.question.id != previousQuestion) { playAutomaticPrompt() }
         if let lesson, lesson.complete {
             audio.play(.complete)
+            if let pages = lesson.definition.settlement { settlement = SettlementFlow(pages: pages) }
             progress.markCompleted(course, index: lesson.lessonIndex)
             save()
         }
+    }
+    func advanceSettlement() {
+        settlement?.advance()
+        if settlement?.current == nil { discardAttempt() }
     }
     func save() {
         do { try store.save(progress); error = nil }
         catch { self.error = "Progress could not be saved. Please try again." }
     }
-    func discardAttempt() { lesson = nil; confirmingExit = false; entryPending = false }
+    func discardAttempt() { lesson = nil; confirmingExit = false; entryPending = false; settlement = nil }
 }

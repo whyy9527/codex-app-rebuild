@@ -48,6 +48,13 @@ const callback = async page => {
    row.media_before=await page.evaluate(()=>window.__referenceMedia.slice());
    row.screenshot_before=SCREENSHOT_PREFIX+'-question-'+record.index+'-before.png';
    await page.screenshot({path:row.screenshot_before});
+   row.canvases=[];
+   const canvases=page.locator('[data-test~="challenge"] canvas');
+   for(let j=0;j<await canvases.count();j++){
+    const canvas=canvases.nth(j),frame=SCREENSHOT_PREFIX+'-question-'+record.index+'-canvas-'+j+'.png';
+    row.canvases.push({source_frame:frame,rect:await canvas.boundingBox(),pixels:await canvas.evaluate(n=>[n.width,n.height])});
+    await canvas.screenshot({path:frame,omitBackground:true});
+   }
    const mediaStart=await page.evaluate(()=>window.__referenceMedia.length);
    const challenge=page.locator('[data-test~="challenge"]');
    const radioTexts=await challenge.getByRole('radio').allTextContents();

@@ -1,0 +1,22 @@
+{
+  "resource_count": 93,
+  "bundled_files_verified": 116,
+  "fixture_sha256": "a3cb6d134bea619809553bf8b1fedf1d0fb4b14139a8683798fe2e67e85941f2",
+  "checks": [
+    "11 LearningCoreChecks passed",
+    "source identity regression passed",
+    "full native four-lesson walk including six settlement pages: walk_error null",
+    "source and actual Swift bundle resource hashes matched"
+  ],
+  "frontend": {
+    "pass": 341,
+    "fail": 8,
+    "not_run": 205,
+    "overall": "fail"
+  },
+  "limits": [
+    "Five available source/native settlement PNG pairs all differ; source profile PNG unavailable",
+    "No new RSI policy/model ablation",
+    "No acoustic equality claim"
+  ]
+}

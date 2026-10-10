@@ -274,6 +274,21 @@ func actualEnglishFourthTrajectory() throws {
     try check(roundTrip == source, "Fourth presentation round-trip failed")
     print("PASS actual fourth 12-question trajectory, initial input boundary, hard interlude, home snapshot and partial path credit; frontend pending")
 }
+func actualEnglishSettlement() throws {
+    let source = try course(fixture: "fixture-reference-en-zh-v5.json")
+    let pages = source.lessons[3].settlement!
+    var flow = SettlementFlow(pages: pages)
+    var ids = [String]()
+    while let page = flow.current { ids.append(page.id); flow.advance() }
+    try check(ids == ["en-zh-l4-complete", "en-zh-l4-score", "en-zh-l4-streak", "en-zh-l4-xp-boost", "en-zh-l4-legendary", "en-zh-l4-profile"], "Observed settlement ordering changed")
+    flow.advance(); try check(flow.current == nil && flow.position == 6, "Finished settlement restarted")
+    let roundTrip = try JSONDecoder().decode(Course.self, from: JSONEncoder().encode(source))
+    try check(roundTrip == source, "Settlement metadata lost in round-trip")
+    var lesson = Lesson(course: source, hearts: 4)
+    lesson.choose(lesson.question.options.first { $0.id != lesson.question.answer }!.id); lesson.submit()
+    try check(lesson.mistakesMade == 1, "Incorrect attempt lost, potentially rendering false 100 percent")
+    print("PASS source six-stage settlement sequence, terminal behavior, metadata and incorrect-attempt accounting; frontend/secondary branches pending")
+}
 func legacyCourse() throws -> Course { try course() }
 do {
     try mistakeReview()
@@ -286,7 +301,8 @@ do {
     try actualEnglishSecondTrajectory()
     try actualEnglishThirdTrajectory()
     try actualEnglishFourthTrajectory()
-    print("10 business checks passed; core layer only")
+    try actualEnglishSettlement()
+    print("11 business checks passed; core layer only")
 } catch {
     FileHandle.standardError.write(Data(("FAIL " + String(describing: error) + "\n").utf8))
     exit(1)

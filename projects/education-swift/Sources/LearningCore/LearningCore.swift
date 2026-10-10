@@ -100,6 +100,23 @@ public struct LessonEntry: Codable, Equatable, Sendable, Identifiable {
     public let startLabel: String
     public let declineLabel: String
 }
+public struct SettlementPage: Codable, Equatable, Sendable, Identifiable {
+    public let id: String
+    public let kind: String
+    public let title: String
+    public let body: String?
+    public let continueLabel: String
+    public let secondaryLabel: String?
+    public let experience: Int?
+    public let observedStreak: Int?
+}
+public struct SettlementFlow: Equatable, Sendable {
+    public let pages: [SettlementPage]
+    public private(set) var position = 0
+    public var current: SettlementPage? { pages.indices.contains(position) ? pages[position] : nil }
+    public init(pages: [SettlementPage]) { self.pages = pages }
+    public mutating func advance() { if current != nil { position += 1 } }
+}
 public struct LessonDefinition: Codable, Equatable, Sendable, Identifiable {
     public let id: String
     public let title: String
@@ -107,6 +124,7 @@ public struct LessonDefinition: Codable, Equatable, Sendable, Identifiable {
     public let interludes: [LessonInterlude]?
     public let initialInterlude: LessonInterlude?
     public let entry: LessonEntry?
+    public let settlement: [SettlementPage]?
 }
 public struct CoursePathNode: Codable, Equatable, Sendable {
     public let kind: String
@@ -129,6 +147,9 @@ public struct HomePresentation: Codable, Equatable, Sendable {
     public let nextSectionTitle: String
     public let flagResource: String
     public let pronunciationResource: String
+    public let completedNodeResource: String?
+    public let completedNodeCenters: [Double]?
+    public let completedPathHeight: Double?
     public let progressSnapshots: [HomeProgressSnapshot]?
 }
 public struct Course: Codable, Equatable, Sendable, Identifiable {
@@ -156,7 +177,7 @@ public struct Course: Codable, Equatable, Sendable, Identifiable {
             lessons = definitions
             usesLegacyQuestions = false
         } else {
-            lessons = [LessonDefinition(id: "intro", title: title, questions: try c.decode([Question].self, forKey: .questions), interludes: nil, initialInterlude: nil, entry: nil)]
+            lessons = [LessonDefinition(id: "intro", title: title, questions: try c.decode([Question].self, forKey: .questions), interludes: nil, initialInterlude: nil, entry: nil, settlement: nil)]
             usesLegacyQuestions = true
         }
     }
@@ -198,6 +219,7 @@ public struct Lesson: Equatable, Sendable {
     public private(set) var matchingHint: String?
     public private(set) var feedback: Bool?
     public private(set) var hearts: Int
+    public private(set) var mistakesMade = 0
     public private(set) var review = [Int]()
     public private(set) var reviewing = false
     public private(set) var complete = false
@@ -252,6 +274,7 @@ public struct Lesson: Equatable, Sendable {
             : selectedWords.compactMap { textByID[$0] } == question.answerWords.compactMap { textByID[$0] }
         feedback = correct
         if !correct {
+            mistakesMade += 1
             hearts = max(0, hearts - 1)
             if !review.contains(position) { review.append(position) }
         }

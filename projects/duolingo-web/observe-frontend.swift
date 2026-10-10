@@ -313,10 +313,42 @@ if CommandLine.arguments.contains("--walk-course") {
             try waitFor("lesson-complete")
             states["lesson-\(lessonIndex + 1)-complete"] = observe()
             if course["interfaceLanguage"] as? String == "zh" { states["en-zh-l\(lessonIndex + 1)-complete"] = observe() }
-            try press("return-path")
+            if let pages = definition["settlement"] as? [[String: Any]] {
+                for (pageIndex, page) in pages.enumerated() {
+                    let id = page["id"] as! String
+                    try waitFor(page["kind"] as? String == "result" ? "lesson-complete" : "settlement-title", value: page["title"] as? String)
+                    var observed = observe()
+                    let secondary = page["secondaryLabel"] as? String
+                    let actionAvailable = secondary.map { label in current().contains { node in
+                        let role = attr(node, kAXRoleAttribute) as? String
+                        let text = [kAXTitleAttribute, kAXValueAttribute, kAXDescriptionAttribute].compactMap { attr(node, $0) as? String }
+                        return [kAXButtonRole, "AXLink"].contains(role ?? "") && text.contains(label) && (attr(node, kAXEnabledAttribute) as? Bool != false)
+                    } } ?? false
+                    observed["interactions"] = ["secondary_action_available": actionAvailable]
+                    states[id] = observed; try capture(id + "-window")
+                    try press("settlement-continue")
+                    if pageIndex + 1 < pages.count { try waitFor("settlement-title", value: pages[pageIndex + 1]["title"] as? String) }
+                    else { try waitFor("course-entry") }
+                    observed["interactions"] = ["secondary_action_available": actionAvailable, "next_state_reached": true]
+                    states[id] = observed
+                }
+            } else { try press("return-path") }
             try waitFor("course-entry")
             states["home-after-lesson-\(lessonIndex + 1)"] = observe()
             try capture("home-after-lesson-\(lessonIndex + 1)-window")
+            if lessonIndex == 3 && definition["settlement"] != nil {
+                try press("start-lesson")
+                var observed = observe()
+                observed["interactions"] = ["practice_action_available": current().contains { (attr($0, kAXRoleAttribute) as? String) == kAXButtonRole && (attr($0, kAXTitleAttribute) as? String) == "练习 +5 经验" },
+                    "legendary_action_available": current().contains { (attr($0, kAXRoleAttribute) as? String) == kAXButtonRole && (attr($0, kAXTitleAttribute) as? String) == "晋升传奇 +40 经验" }]
+                states["en-zh-completed-popover"] = observed; try capture("en-zh-completed-popover-window")
+                try press("start-lesson"); try press("start-lesson-1")
+                observed = observe()
+                let start = current().first { (attr($0, kAXIdentifierAttribute) as? String) == "start-lesson-confirm" }
+                observed["interactions"] = ["start_enabled": start.flatMap { attr($0, kAXEnabledAttribute) as? Bool } ?? false]
+                states["en-zh-next-popover"] = observed; try capture("en-zh-next-popover-window")
+                try press("start-lesson-1")
+            }
             if lessonIndex == 0 && course["interfaceLanguage"] as? String == "zh" {
                 // The frozen English home reference follows the first lesson.
                 // Keep initial facts; compare the same state from this run.

@@ -1,0 +1,7 @@
+### Error
+Error: locator.waitFor: Error: strict mode violation: locator('[data-test=challenge-header]') resolved to 2 elements:
+    1) <h1 class="_3EOK0" data-test="challenge-header">…</h1> aka locator('[data-test="challenge challenge-listenComplete"] [data-test="challenge-header"]')
+    2) <h1 class="_3EOK0" data-test="challenge-header">…</h1> aka locator('[data-test="challenge challenge-listenMatch"] [data-test="challenge-header"]')
+
+Call log:
+[2m  - waiting for locator('[data-test=challenge-header]') to be visible[22m
