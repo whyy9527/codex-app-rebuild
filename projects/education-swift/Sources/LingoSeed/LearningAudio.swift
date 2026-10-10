@@ -1,12 +1,17 @@
 import AppKit
 import AVFoundation
 
-/// Original synthesized cues. No Duolingo recordings or system alert sounds.
+/// Bundled reference speech where observed; synthesized cues remain a known fidelity gap.
 @MainActor final class LearningAudio {
     enum Cue: String, CaseIterable { case tap, correct, incorrect, complete }
     private var player: AVAudioPlayer?
     private let speech = AVSpeechSynthesizer()
-    var muted = false { didSet { if muted { player?.stop(); speech.stopSpeaking(at: .immediate) } } }
+    private var referenceSpeech: AVAudioPlayer?
+    private let resourceURL: (String) -> URL?
+    init(resourceURL: @escaping (String) -> URL? = { _ in nil }) { self.resourceURL = resourceURL }
+    var referenceSpeechPlaying: Bool { referenceSpeech?.isPlaying ?? false }
+    var referencePlaybackTime: TimeInterval { referenceSpeech?.currentTime ?? 0 }
+    var muted = false { didSet { if muted { player?.stop(); referenceSpeech?.stop(); speech.stopSpeaking(at: .immediate) } } }
     var effectsEnabled = true { didSet { if !effectsEnabled { player?.stop() } } }
     var isPlaying: Bool { player?.isPlaying ?? false }
     var playbackTime: TimeInterval { player?.currentTime ?? 0 }
@@ -20,9 +25,21 @@ import AVFoundation
             return player?.play() ?? false
         } catch { NSLog("Audio playback failed: %@", error.localizedDescription); return false }
     }
-    func speak(_ text: String, language: String = "en-US") {
+    func speak(_ text: String, language: String = "en-US", resource: String? = nil) {
+        if let resource {
+            guard !muted else { return }
+            player?.stop(); referenceSpeech?.stop(); speech.stopSpeaking(at: .immediate)
+            guard let url = resourceURL(resource) else {
+                NSLog("Reference speech resource missing: %@", resource); return
+            }
+            do {
+                referenceSpeech = try AVAudioPlayer(contentsOf: url)
+                referenceSpeech?.prepareToPlay(); referenceSpeech?.play()
+            } catch { NSLog("Reference speech playback failed: %@", error.localizedDescription) }
+            return
+        }
         guard !muted else { return }
-        player?.stop(); speech.stopSpeaking(at: .immediate)
+        player?.stop(); referenceSpeech?.stop(); speech.stopSpeaking(at: .immediate)
         let utterance = AVSpeechUtterance(string: text)
         utterance.voice = AVSpeechSynthesisVoice(language: language)
         utterance.rate = 0.45

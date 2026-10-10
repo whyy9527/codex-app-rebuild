@@ -14,7 +14,7 @@ if let seedIndex = CommandLine.arguments.firstIndex(of: "--seed-progress"), seed
 }
 let childLog = output.appendingPathComponent("child.log")
 FileManager.default.createFile(atPath: childLog.path, contents: nil)
-let fixture = CommandLine.arguments.count > 2 ? CommandLine.arguments[2] : "projects/duolingo-web/fixture-reference-v4.json"
+let fixture = CommandLine.arguments.count > 2 ? CommandLine.arguments[2] : "projects/duolingo-web/fixture-reference-v5.json"
 func launchChild() throws -> Process {
     let process = Process()
     process.executableURL = root.appendingPathComponent("projects/education-swift/.build/debug/LingoSeed")

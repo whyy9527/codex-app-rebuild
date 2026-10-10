@@ -1,0 +1,964 @@
+{
+  "schema_version": 1,
+  "source": "Actual owned browser observations on 2026-10-10; controls listed from snapshots, unexecuted effects remain unknown",
+  "states": [
+    {
+      "id": "home",
+      "evidence": "projects/duolingo-web/evidence/exploration-v4/more-hover.yml",
+      "actions": [
+        {
+          "id": "more-hover",
+          "description": "Hover More"
+        },
+        {
+          "id": "guidebook",
+          "description": "Open unit guidebook"
+        },
+        {
+          "id": "lesson-2",
+          "description": "Start next lesson"
+        },
+        {
+          "id": "course-picker",
+          "description": "Open Spanish course selector"
+        },
+        {
+          "id": "hearts",
+          "description": "Open hearts status"
+        },
+        {
+          "id": "gems",
+          "description": "Open gems status"
+        },
+        {
+          "id": "unit-2",
+          "description": "Inspect Jump to Unit 2"
+        }
+      ]
+    },
+    {
+      "id": "more-open",
+      "evidence": "projects/duolingo-web/evidence/exploration-v4/more-hover.yml",
+      "actions": [
+        {
+          "id": "settings",
+          "description": "Open Settings"
+        },
+        {
+          "id": "help",
+          "description": "Open Help"
+        },
+        {
+          "id": "sign-in",
+          "description": "Open Sign in"
+        },
+        {
+          "id": "create-profile",
+          "description": "Open Create a profile"
+        },
+        {
+          "id": "english-test",
+          "description": "Open English Test link"
+        },
+        {
+          "id": "dismiss",
+          "description": "Move pointer out and verify dismissal"
+        },
+        {
+          "id": "move-out",
+          "description": "Move pointer outside More and menu"
+        }
+      ]
+    },
+    {
+      "id": "preferences",
+      "evidence": "projects/duolingo-web/evidence/exploration-v4/preferences.yml",
+      "actions": [
+        {
+          "id": "privacy",
+          "description": "Open Privacy settings"
+        },
+        {
+          "id": "sound-effects",
+          "description": "Toggle Sound effects and check reload persistence"
+        },
+        {
+          "id": "animations",
+          "description": "Toggle Animations and inspect lesson"
+        },
+        {
+          "id": "motivation",
+          "description": "Toggle Motivational messages and inspect lesson"
+        },
+        {
+          "id": "listening",
+          "description": "Toggle Listening exercises and inspect generated lesson"
+        },
+        {
+          "id": "dark-mode",
+          "description": "Select appearance and check System Default/On/Off"
+        },
+        {
+          "id": "all-switches-reload",
+          "description": "Turn four preferences off, reload, read their states"
+        }
+      ]
+    },
+    {
+      "id": "privacy",
+      "evidence": "projects/duolingo-web/evidence/exploration-v4/privacy.yml",
+      "actions": [
+        {
+          "id": "help-center",
+          "description": "Open Help Center"
+        },
+        {
+          "id": "public-profile",
+          "description": "Inspect public profile toggle and save enablement"
+        },
+        {
+          "id": "personalized-ads",
+          "description": "Inspect ads toggle and save enablement"
+        }
+      ]
+    },
+    {
+      "id": "help",
+      "evidence": "projects/duolingo-web/evidence/exploration-v4/help.yml",
+      "actions": [
+        {
+          "id": "course-change",
+          "description": "Expand Why did my course change?"
+        },
+        {
+          "id": "streak",
+          "description": "Expand What is a streak?"
+        },
+        {
+          "id": "reset-course",
+          "description": "Expand How do I remove or reset a course?"
+        },
+        {
+          "id": "support-request",
+          "description": "Open Send Feedback form"
+        }
+      ]
+    },
+    {
+      "id": "home-two-complete",
+      "evidence": "projects/duolingo-web/evidence/exploration-v4/more-hover-dismiss.json",
+      "actions": [
+        {
+          "id": "more-hover",
+          "description": "Hover More at lesson 3 of 3"
+        },
+        {
+          "id": "lesson-3",
+          "description": "Start the third lesson of the first path node"
+        }
+      ]
+    },
+    {
+      "id": "more-open-two-complete",
+      "evidence": "projects/duolingo-web/evidence/exploration-v4/more-hover-dismiss.json",
+      "actions": [
+        {
+          "id": "move-out",
+          "description": "Move pointer outside menu and row"
+        }
+      ]
+    },
+    {
+      "id": "preferences-sound-off-reloaded",
+      "evidence": "projects/duolingo-web/evidence/exploration-v4/settings-sound-reload.json",
+      "actions": [
+        {
+          "id": "sound-on",
+          "description": "Restore sound effects and inspect actual output"
+        }
+      ]
+    },
+    {
+      "id": "lesson-2-phrase-match",
+      "evidence": "projects/duolingo-web/evidence/exploration-v4/curriculum-second-01.json",
+      "actions": [
+        {
+          "id": "phrase-pairs",
+          "description": "Resolve unknown my + noun matches, then verify on the reference"
+        }
+      ]
+    },
+    {
+      "id": "lesson-2-complete",
+      "evidence": "projects/duolingo-web/evidence/exploration-v4/curriculum-second-02.json",
+      "actions": [
+        {
+          "id": "return-home",
+          "description": "Return to path and inspect first node grouping"
+        }
+      ]
+    },
+    {
+      "id": "lesson-3-first-question",
+      "evidence": "projects/duolingo-web/evidence/exploration-v4/third-lesson-picture-source.json",
+      "actions": [
+        {
+          "id": "answer-book",
+          "description": "Answer the first book question and discover subsequent states"
+        }
+      ]
+    },
+    {
+      "id": "preferences-off-reloaded",
+      "evidence": "projects/duolingo-web/evidence/exploration-v4/preferences-interactions.json",
+      "actions": [
+        {
+          "id": "appearance-on-reload",
+          "description": "Select On, reload and read appearance"
+        }
+      ]
+    },
+    {
+      "id": "preferences-dark-reloaded",
+      "evidence": "projects/duolingo-web/evidence/exploration-v4/preferences-interactions.json",
+      "actions": [
+        {
+          "id": "appearance-off-default-restore",
+          "description": "Select Off, restore System Default and four switches"
+        }
+      ]
+    },
+    {
+      "id": "lesson-3-green",
+      "evidence": "projects/duolingo-web/evidence/exploration-v4/sound-effects-speech-green.json",
+      "actions": [
+        {
+          "id": "select-verde",
+          "description": "Select verde with Sound effects off, submit, inspect feedback and media invocation"
+        }
+      ]
+    },
+    {
+      "id": "lesson-3-green-feedback",
+      "evidence": "projects/duolingo-web/evidence/exploration-v4/sound-effects-speech-green.json",
+      "actions": [
+        {
+          "id": "continue",
+          "description": "Continue to discover the next question"
+        }
+      ]
+    },
+    {
+      "id": "fresh-lesson-3-green-feedback",
+      "evidence": "projects/duolingo-web/evidence/exploration-v4/multi-lesson-knowledge-01.json",
+      "actions": [
+        {
+          "id": "continue",
+          "description": "Advance after automatically answering known green prompt"
+        }
+      ]
+    },
+    {
+      "id": "fresh-lesson-3-blue",
+      "evidence": "projects/duolingo-web/evidence/exploration-v4/multi-lesson-knowledge-01.json",
+      "actions": [
+        {
+          "id": "resolve-blue",
+          "description": "Propose azul, then confirm feedback on the reference before adding knowledge"
+        }
+      ]
+    },
+    {
+      "id": "v5-third-q1",
+      "evidence": "projects/duolingo-web/evidence/exploration-v5/third-lesson.json",
+      "actions": [
+        {
+          "id": "answer-from-public-session",
+          "description": "Execute actual source answer, retaining presented order and positive feedback"
+        }
+      ]
+    },
+    {
+      "id": "v5-third-q1-feedback",
+      "evidence": "projects/duolingo-web/evidence/exploration-v5/third-lesson.json",
+      "actions": [
+        {
+          "id": "continue",
+          "description": "Advance and discover lesson interludes or next question"
+        }
+      ]
+    },
+    {
+      "id": "v5-third-q2",
+      "evidence": "projects/duolingo-web/evidence/exploration-v5/third-lesson.json",
+      "actions": [
+        {
+          "id": "answer-from-public-session",
+          "description": "Execute actual source answer, retaining presented order and positive feedback"
+        }
+      ]
+    },
+    {
+      "id": "v5-third-q2-feedback",
+      "evidence": "projects/duolingo-web/evidence/exploration-v5/third-lesson.json",
+      "actions": [
+        {
+          "id": "continue",
+          "description": "Advance and discover lesson interludes or next question"
+        }
+      ]
+    },
+    {
+      "id": "v5-third-q3",
+      "evidence": "projects/duolingo-web/evidence/exploration-v5/third-lesson.json",
+      "actions": [
+        {
+          "id": "answer-from-public-session",
+          "description": "Execute actual source answer, retaining presented order and positive feedback"
+        }
+      ]
+    },
+    {
+      "id": "v5-third-q3-feedback",
+      "evidence": "projects/duolingo-web/evidence/exploration-v5/third-lesson.json",
+      "actions": [
+        {
+          "id": "continue",
+          "description": "Advance and discover lesson interludes or next question"
+        }
+      ]
+    },
+    {
+      "id": "v5-third-q4",
+      "evidence": "projects/duolingo-web/evidence/exploration-v5/third-lesson.json",
+      "actions": [
+        {
+          "id": "answer-from-public-session",
+          "description": "Execute actual source answer, retaining presented order and positive feedback"
+        }
+      ]
+    },
+    {
+      "id": "v5-third-q4-feedback",
+      "evidence": "projects/duolingo-web/evidence/exploration-v5/third-lesson.json",
+      "actions": [
+        {
+          "id": "continue",
+          "description": "Advance and discover lesson interludes or next question"
+        }
+      ]
+    },
+    {
+      "id": "v5-third-q5",
+      "evidence": "projects/duolingo-web/evidence/exploration-v5/third-lesson.json",
+      "actions": [
+        {
+          "id": "answer-from-public-session",
+          "description": "Execute actual source answer, retaining presented order and positive feedback"
+        }
+      ]
+    },
+    {
+      "id": "v5-third-q5-feedback",
+      "evidence": "projects/duolingo-web/evidence/exploration-v5/third-lesson.json",
+      "actions": [
+        {
+          "id": "continue",
+          "description": "Advance and discover lesson interludes or next question"
+        }
+      ]
+    },
+    {
+      "id": "v5-third-before-q6-interlude",
+      "evidence": "projects/duolingo-web/evidence/exploration-v5/third-lesson.json",
+      "actions": [
+        {
+          "id": "continue",
+          "description": "- button:\n  - img\n- progressbar\n- img\n- text: 5 Cool! 5 in a row!\n- button \"Continue\""
+        }
+      ]
+    },
+    {
+      "id": "v5-third-q6",
+      "evidence": "projects/duolingo-web/evidence/exploration-v5/third-lesson.json",
+      "actions": [
+        {
+          "id": "answer-from-public-session",
+          "description": "Execute actual source answer, retaining presented order and positive feedback"
+        }
+      ]
+    },
+    {
+      "id": "v5-third-q6-feedback",
+      "evidence": "projects/duolingo-web/evidence/exploration-v5/third-lesson.json",
+      "actions": [
+        {
+          "id": "continue",
+          "description": "Advance and discover lesson interludes or next question"
+        }
+      ]
+    },
+    {
+      "id": "v5-third-q7",
+      "evidence": "projects/duolingo-web/evidence/exploration-v5/third-lesson.json",
+      "actions": [
+        {
+          "id": "answer-from-public-session",
+          "description": "Execute actual source answer, retaining presented order and positive feedback"
+        }
+      ]
+    },
+    {
+      "id": "v5-third-q7-feedback",
+      "evidence": "projects/duolingo-web/evidence/exploration-v5/third-lesson.json",
+      "actions": [
+        {
+          "id": "continue",
+          "description": "Advance and discover lesson interludes or next question"
+        }
+      ]
+    },
+    {
+      "id": "v5-third-q8",
+      "evidence": "projects/duolingo-web/evidence/exploration-v5/third-lesson.json",
+      "actions": [
+        {
+          "id": "answer-from-public-session",
+          "description": "Execute actual source answer, retaining presented order and positive feedback"
+        }
+      ]
+    },
+    {
+      "id": "v5-third-q8-feedback",
+      "evidence": "projects/duolingo-web/evidence/exploration-v5/third-lesson.json",
+      "actions": [
+        {
+          "id": "continue",
+          "description": "Advance and discover lesson interludes or next question"
+        }
+      ]
+    },
+    {
+      "id": "v5-third-q9",
+      "evidence": "projects/duolingo-web/evidence/exploration-v5/third-lesson.json",
+      "actions": [
+        {
+          "id": "answer-from-public-session",
+          "description": "Execute actual source answer, retaining presented order and positive feedback"
+        }
+      ]
+    },
+    {
+      "id": "v5-third-q9-feedback",
+      "evidence": "projects/duolingo-web/evidence/exploration-v5/third-lesson.json",
+      "actions": [
+        {
+          "id": "continue",
+          "description": "Advance and discover lesson interludes or next question"
+        }
+      ]
+    },
+    {
+      "id": "v5-third-q10",
+      "evidence": "projects/duolingo-web/evidence/exploration-v5/third-lesson.json",
+      "actions": [
+        {
+          "id": "answer-from-public-session",
+          "description": "Execute actual source answer, retaining presented order and positive feedback"
+        }
+      ]
+    },
+    {
+      "id": "v5-third-q10-feedback",
+      "evidence": "projects/duolingo-web/evidence/exploration-v5/third-lesson.json",
+      "actions": [
+        {
+          "id": "continue",
+          "description": "Advance and discover lesson interludes or next question"
+        }
+      ]
+    },
+    {
+      "id": "v5-third-before-q11-interlude",
+      "evidence": "projects/duolingo-web/evidence/exploration-v5/third-lesson.json",
+      "actions": [
+        {
+          "id": "continue",
+          "description": "- button:\n  - img\n- progressbar\n- img\n- text: 5 Nice! Practice always pays off.\n- button \"Continue\""
+        }
+      ]
+    },
+    {
+      "id": "v5-third-q11",
+      "evidence": "projects/duolingo-web/evidence/exploration-v5/third-lesson.json",
+      "actions": [
+        {
+          "id": "answer-from-public-session",
+          "description": "Execute actual source answer, retaining presented order and positive feedback"
+        }
+      ]
+    },
+    {
+      "id": "v5-third-q11-feedback",
+      "evidence": "projects/duolingo-web/evidence/exploration-v5/third-lesson.json",
+      "actions": [
+        {
+          "id": "continue",
+          "description": "Advance and discover lesson interludes or next question"
+        }
+      ]
+    },
+    {
+      "id": "v5-third-q12",
+      "evidence": "projects/duolingo-web/evidence/exploration-v5/third-lesson.json",
+      "actions": [
+        {
+          "id": "answer-from-public-session",
+          "description": "Execute actual source answer, retaining presented order and positive feedback"
+        }
+      ]
+    },
+    {
+      "id": "v5-third-q12-feedback",
+      "evidence": "projects/duolingo-web/evidence/exploration-v5/third-lesson.json",
+      "actions": [
+        {
+          "id": "continue",
+          "description": "Advance and discover lesson interludes or next question"
+        }
+      ]
+    },
+    {
+      "id": "v5-third-q13",
+      "evidence": "projects/duolingo-web/evidence/exploration-v5/third-lesson.json",
+      "actions": [
+        {
+          "id": "answer-from-public-session",
+          "description": "Execute actual source answer, retaining presented order and positive feedback"
+        }
+      ]
+    },
+    {
+      "id": "v5-third-q13-feedback",
+      "evidence": "projects/duolingo-web/evidence/exploration-v5/third-lesson.json",
+      "actions": [
+        {
+          "id": "continue",
+          "description": "Advance and discover lesson interludes or next question"
+        }
+      ]
+    },
+    {
+      "id": "v5-completion-0",
+      "evidence": "projects/duolingo-web/evidence/exploration-v5/completion-states.json",
+      "actions": [
+        {
+          "id": "continue",
+          "description": "Actual visible continue action"
+        }
+      ]
+    },
+    {
+      "id": "v5-completion-1",
+      "evidence": "projects/duolingo-web/evidence/exploration-v5/completion-states.json",
+      "actions": [
+        {
+          "id": "continue",
+          "description": "Actual visible continue action"
+        }
+      ]
+    },
+    {
+      "id": "v5-completion-2",
+      "evidence": "projects/duolingo-web/evidence/exploration-v5/completion-states.json",
+      "actions": [
+        {
+          "id": "continue",
+          "description": "Actual visible continue action"
+        },
+        {
+          "id": "legendary",
+          "description": "Observed extra-hard challenge link, not explored"
+        }
+      ]
+    },
+    {
+      "id": "v5-completion-3",
+      "evidence": "projects/duolingo-web/evidence/exploration-v5/completion-states.json",
+      "actions": [
+        {
+          "id": "later",
+          "description": "Actual visible later action"
+        },
+        {
+          "id": "create-profile",
+          "description": "Observed create-profile action, not explored"
+        }
+      ]
+    },
+    {
+      "id": "v5-home-after-third",
+      "evidence": "projects/duolingo-web/evidence/exploration-v5/home-after-third.json",
+      "actions": [
+        {
+          "id": "second-node-lesson",
+          "description": "Observed Lesson 1 of 4 entry, not yet entered"
+        },
+        {
+          "id": "completed-node",
+          "description": "Observed completed first node, review state not yet entered"
+        },
+        {
+          "id": "bronze-league",
+          "description": "Observed View League link, not yet explored"
+        }
+      ]
+    }
+  ],
+  "transitions": [
+    {
+      "from": "home",
+      "action": "more-hover",
+      "to": "more-open",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/exploration-v4/more-hover.yml"
+    },
+    {
+      "from": "more-open",
+      "action": "settings",
+      "to": "preferences",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/exploration-v4/preferences.yml"
+    },
+    {
+      "from": "preferences",
+      "action": "privacy",
+      "to": "privacy",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/exploration-v4/privacy.yml"
+    },
+    {
+      "from": "privacy",
+      "action": "help-center",
+      "to": "help",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/exploration-v4/help.yml"
+    },
+    {
+      "from": "preferences",
+      "action": "sound-effects",
+      "to": "preferences-sound-off-reloaded",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/exploration-v4/settings-sound-reload.json"
+    },
+    {
+      "from": "home",
+      "action": "lesson-2",
+      "to": "lesson-2-phrase-match",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/exploration-v4/curriculum-second-01.json"
+    },
+    {
+      "from": "lesson-2-phrase-match",
+      "action": "phrase-pairs",
+      "to": "lesson-2-complete",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/exploration-v4/curriculum-second-02.json"
+    },
+    {
+      "from": "lesson-2-complete",
+      "action": "return-home",
+      "to": "home-two-complete",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/exploration-v4/more-hover-dismiss.json"
+    },
+    {
+      "from": "home-two-complete",
+      "action": "more-hover",
+      "to": "more-open-two-complete",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/exploration-v4/more-hover-dismiss.json"
+    },
+    {
+      "from": "more-open-two-complete",
+      "action": "move-out",
+      "to": "home-two-complete",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/exploration-v4/more-hover-dismiss.json"
+    },
+    {
+      "from": "home-two-complete",
+      "action": "lesson-3",
+      "to": "lesson-3-first-question",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/exploration-v4/third-lesson-picture-source.json"
+    },
+    {
+      "from": "preferences",
+      "action": "all-switches-reload",
+      "to": "preferences-off-reloaded",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/exploration-v4/preferences-interactions.json"
+    },
+    {
+      "from": "preferences",
+      "action": "dark-mode",
+      "to": "preferences-dark-reloaded",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/exploration-v4/preferences-interactions.json"
+    },
+    {
+      "from": "preferences-off-reloaded",
+      "action": "appearance-on-reload",
+      "to": "preferences-dark-reloaded",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/exploration-v4/preferences-interactions.json"
+    },
+    {
+      "from": "preferences-dark-reloaded",
+      "action": "appearance-off-default-restore",
+      "to": "preferences",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/exploration-v4/preferences-interactions.json"
+    },
+    {
+      "from": "home-two-complete",
+      "action": "lesson-3",
+      "to": "lesson-3-green",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/exploration-v4/sound-effects-speech-green.json"
+    },
+    {
+      "from": "lesson-3-green",
+      "action": "select-verde",
+      "to": "lesson-3-green-feedback",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/exploration-v4/sound-effects-speech-green.json"
+    },
+    {
+      "from": "fresh-lesson-3-green-feedback",
+      "action": "continue",
+      "to": "fresh-lesson-3-blue",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/exploration-v4/multi-lesson-knowledge-01.json"
+    },
+    {
+      "from": "v5-third-q1",
+      "action": "answer-from-public-session",
+      "to": "v5-third-q1-feedback",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/exploration-v5/third-lesson.json"
+    },
+    {
+      "from": "v5-third-q1-feedback",
+      "action": "continue",
+      "to": "v5-third-q2",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/exploration-v5/third-lesson.json"
+    },
+    {
+      "from": "v5-third-q2",
+      "action": "answer-from-public-session",
+      "to": "v5-third-q2-feedback",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/exploration-v5/third-lesson.json"
+    },
+    {
+      "from": "v5-third-q2-feedback",
+      "action": "continue",
+      "to": "v5-third-q3",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/exploration-v5/third-lesson.json"
+    },
+    {
+      "from": "v5-third-q3",
+      "action": "answer-from-public-session",
+      "to": "v5-third-q3-feedback",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/exploration-v5/third-lesson.json"
+    },
+    {
+      "from": "v5-third-q3-feedback",
+      "action": "continue",
+      "to": "v5-third-q4",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/exploration-v5/third-lesson.json"
+    },
+    {
+      "from": "v5-third-q4",
+      "action": "answer-from-public-session",
+      "to": "v5-third-q4-feedback",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/exploration-v5/third-lesson.json"
+    },
+    {
+      "from": "v5-third-q4-feedback",
+      "action": "continue",
+      "to": "v5-third-q5",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/exploration-v5/third-lesson.json"
+    },
+    {
+      "from": "v5-third-q5",
+      "action": "answer-from-public-session",
+      "to": "v5-third-q5-feedback",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/exploration-v5/third-lesson.json"
+    },
+    {
+      "from": "v5-third-before-q6-interlude",
+      "action": "continue",
+      "to": "v5-third-q6",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/exploration-v5/third-lesson.json"
+    },
+    {
+      "from": "v5-third-q5-feedback",
+      "action": "continue",
+      "to": "v5-third-before-q6-interlude",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/exploration-v5/third-lesson.json"
+    },
+    {
+      "from": "v5-third-q6",
+      "action": "answer-from-public-session",
+      "to": "v5-third-q6-feedback",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/exploration-v5/third-lesson.json"
+    },
+    {
+      "from": "v5-third-q6-feedback",
+      "action": "continue",
+      "to": "v5-third-q7",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/exploration-v5/third-lesson.json"
+    },
+    {
+      "from": "v5-third-q7",
+      "action": "answer-from-public-session",
+      "to": "v5-third-q7-feedback",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/exploration-v5/third-lesson.json"
+    },
+    {
+      "from": "v5-third-q7-feedback",
+      "action": "continue",
+      "to": "v5-third-q8",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/exploration-v5/third-lesson.json"
+    },
+    {
+      "from": "v5-third-q8",
+      "action": "answer-from-public-session",
+      "to": "v5-third-q8-feedback",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/exploration-v5/third-lesson.json"
+    },
+    {
+      "from": "v5-third-q8-feedback",
+      "action": "continue",
+      "to": "v5-third-q9",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/exploration-v5/third-lesson.json"
+    },
+    {
+      "from": "v5-third-q9",
+      "action": "answer-from-public-session",
+      "to": "v5-third-q9-feedback",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/exploration-v5/third-lesson.json"
+    },
+    {
+      "from": "v5-third-q9-feedback",
+      "action": "continue",
+      "to": "v5-third-q10",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/exploration-v5/third-lesson.json"
+    },
+    {
+      "from": "v5-third-q10",
+      "action": "answer-from-public-session",
+      "to": "v5-third-q10-feedback",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/exploration-v5/third-lesson.json"
+    },
+    {
+      "from": "v5-third-before-q11-interlude",
+      "action": "continue",
+      "to": "v5-third-q11",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/exploration-v5/third-lesson.json"
+    },
+    {
+      "from": "v5-third-q10-feedback",
+      "action": "continue",
+      "to": "v5-third-before-q11-interlude",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/exploration-v5/third-lesson.json"
+    },
+    {
+      "from": "v5-third-q11",
+      "action": "answer-from-public-session",
+      "to": "v5-third-q11-feedback",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/exploration-v5/third-lesson.json"
+    },
+    {
+      "from": "v5-third-q11-feedback",
+      "action": "continue",
+      "to": "v5-third-q12",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/exploration-v5/third-lesson.json"
+    },
+    {
+      "from": "v5-third-q12",
+      "action": "answer-from-public-session",
+      "to": "v5-third-q12-feedback",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/exploration-v5/third-lesson.json"
+    },
+    {
+      "from": "v5-third-q12-feedback",
+      "action": "continue",
+      "to": "v5-third-q13",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/exploration-v5/third-lesson.json"
+    },
+    {
+      "from": "v5-third-q13",
+      "action": "answer-from-public-session",
+      "to": "v5-third-q13-feedback",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/exploration-v5/third-lesson.json"
+    },
+    {
+      "from": "v5-completion-0",
+      "action": "continue",
+      "to": "v5-completion-1",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/exploration-v5/completion-states.json"
+    },
+    {
+      "from": "v5-completion-1",
+      "action": "continue",
+      "to": "v5-completion-2",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/exploration-v5/completion-states.json"
+    },
+    {
+      "from": "v5-completion-2",
+      "action": "continue",
+      "to": "v5-completion-3",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/exploration-v5/completion-states.json"
+    },
+    {
+      "from": "v5-completion-3",
+      "action": "later",
+      "to": "v5-home-after-third",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/exploration-v5/home-after-third.json"
+    }
+  ],
+  "limitations": "Evidence-derived graph remains disconnected across fresh sessions; not a complete replay tree or RSI effectiveness proof."
+}

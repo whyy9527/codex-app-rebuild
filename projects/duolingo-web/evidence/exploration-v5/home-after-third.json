@@ -1,0 +1,213 @@
+{
+  "before": "- heading \"Time to create a profile!\" [level=1]\n- paragraph: Create a profile to save your progress and continue learning for free.\n- button \"Create a profile\"\n- button \"LATER\"",
+  "after": "- link:\n  - /url: /learn\n  - img\n- link \"Learn\":\n  - /url: /learn\n  - img\n  - text: Learn\n- link \"Leaderboards\":\n  - /url: /leaderboard\n  - img\n  - text: Leaderboards\n- link \"Quests\":\n  - /url: /quests\n  - img\n  - text: Quests\n- link \"Shop\":\n  - /url: /shop\n  - img\n  - text: Shop\n- link \"Profile\":\n  - /url: /learn?sign-up\n  - img\n  - text: Profile\n- button \"More\":\n  - img\n  - text: More\n- img\n- button \"1\":\n  - img\n  - text: \"1\"\n- button \"1\":\n  - img\n  - text: \"1\"\n- button \"505\":\n  - img\n  - text: \"505\"\n- button \"5\":\n  - img\n  - text: \"5\"\n- heading \"Bronze League\" [level=2]\n- link \"View League\":\n  - /url: /leaderboard\n- img\n- text: Complete a lesson to join this week’s leaderboard and compete against other learners\n- heading \"Daily Quests\" [level=2]\n- link \"View all\":\n  - /url: /quests\n- img\n- text: Earn 10 XP\n- progressbar: 10 / 10 10 / 10\n- img\n- heading \"Create a profile to save your progress!\" [level=2]\n- button \"Create a profile\"\n- button \"Sign in\"\n- list:\n  - listitem:\n    - link \"About\":\n      - /url: https://about.duolingo.com\n  - listitem:\n    - link \"Blog\":\n      - /url: https://blog.duolingo.com\n  - listitem:\n    - link \"Store\":\n      - /url: https://store.duolingo.com/\n  - listitem:\n    - link \"efficacy\":\n      - /url: /efficacy\n  - listitem:\n    - link \"Careers\":\n      - /url: https://careers.duolingo.com\n  - listitem:\n    - link \"INVESTORS\":\n      - /url: https://investors.duolingo.com\n  - listitem:\n    - link \"Terms\":\n      - /url: /terms\n  - listitem:\n    - link \"Privacy\":\n      - /url: /privacy\n- link \"SECTION 1, UNIT 1\":\n  - /url: /sections\n  - img\n  - heading \"SECTION 1, UNIT 1\" [level=1]\n- text: Order at a café\n- link \"Opens Guidebook for this unit\":\n  - /url: /guidebook/es/1\n  - img \"Guidebook\"\n  - text: Guidebook\n- button \"Lesson\":\n  - button \"Lesson\"\n- button \"Lesson 1 of 4\":\n  - img\n  - button \"Lesson 1 of 4\"\n- button \"Lesson\":\n  - button \"Lesson\"\n- button \"Chest\" [disabled]:\n  - img\n- button \"Practice\":\n  - button \"Practice\"\n- button \"Unit Review\":\n  - button \"Unit Review\"\n- separator\n- heading \"Greet people and say goodbye\" [level=2]\n- separator\n- link \"Jump to Unit 2\":\n  - /url: /lesson/unit/2/test\n- button \"Lesson\":\n  - button \"Lesson\"\n- button \"Chest\" [disabled]:\n  - img\n- button \"Radio\":\n  - button \"Radio\"\n- button \"Practice\":\n  - button \"Practice\"\n- button \"Unit Review\":\n  - button \"Unit Review\"\n- separator\n- heading \"Say where you are from\" [level=2]\n- separator\n- link \"Jump to Unit 3\":\n  - /url: /lesson/unit/3/test\n- button \"Lesson\":\n  - button \"Lesson\"\n- button \"Radio\":\n  - button \"Radio\"\n- button \"Chest\" [disabled]:\n  - img\n- button \"Radio\":\n  - button \"Radio\"\n- button \"Practice\":\n  - button \"Practice\"\n- button \"Radio\":\n  - button \"Radio\"\n- button \"Unit Review\":\n  - button \"Unit Review\"\n- paragraph: Up next\n- heading \"Section 2\" [level=2]\n- paragraph: Learn words, phrases, and grammar concepts for basic interactions\n- button \"Jump here?\"",
+  "buttons": [
+    {
+      "label": null,
+      "text": "More",
+      "test": null
+    },
+    {
+      "label": null,
+      "text": "1",
+      "test": null
+    },
+    {
+      "label": null,
+      "text": "1",
+      "test": null
+    },
+    {
+      "label": null,
+      "text": "505",
+      "test": null
+    },
+    {
+      "label": null,
+      "text": "5",
+      "test": null
+    },
+    {
+      "label": null,
+      "text": "Create a profile",
+      "test": "create-profile-juicy"
+    },
+    {
+      "label": null,
+      "text": "Sign in",
+      "test": "sign-in-juicy"
+    },
+    {
+      "label": null,
+      "text": "",
+      "test": null
+    },
+    {
+      "label": "Lesson",
+      "text": "",
+      "test": "skill-path-level-0 skill-path-level-skill"
+    },
+    {
+      "label": null,
+      "text": "START",
+      "test": null
+    },
+    {
+      "label": "Lesson 1 of 4",
+      "text": "",
+      "test": "skill-path-level-1 skill-path-level-skill"
+    },
+    {
+      "label": null,
+      "text": "",
+      "test": null
+    },
+    {
+      "label": "Lesson",
+      "text": "",
+      "test": "skill-path-level-2 skill-path-level-skill"
+    },
+    {
+      "label": "Chest",
+      "text": "",
+      "test": null
+    },
+    {
+      "label": null,
+      "text": "",
+      "test": null
+    },
+    {
+      "label": "Practice",
+      "text": "",
+      "test": "skill-path-level-4 skill-path-level-practice"
+    },
+    {
+      "label": null,
+      "text": "",
+      "test": null
+    },
+    {
+      "label": "Unit Review",
+      "text": "",
+      "test": "skill-path-level-5 skill-path-level-unit_review"
+    },
+    {
+      "label": null,
+      "text": "",
+      "test": null
+    },
+    {
+      "label": "Lesson",
+      "text": "",
+      "test": "skill-path-level-1 skill-path-level-skill"
+    },
+    {
+      "label": "Chest",
+      "text": "",
+      "test": null
+    },
+    {
+      "label": null,
+      "text": "",
+      "test": null
+    },
+    {
+      "label": "Radio",
+      "text": "",
+      "test": "skill-path-level-3 skill-path-level-duo_radio"
+    },
+    {
+      "label": null,
+      "text": "",
+      "test": null
+    },
+    {
+      "label": "Practice",
+      "text": "",
+      "test": "skill-path-level-4 skill-path-level-practice"
+    },
+    {
+      "label": null,
+      "text": "",
+      "test": null
+    },
+    {
+      "label": "Unit Review",
+      "text": "",
+      "test": "skill-path-level-5 skill-path-level-unit_review"
+    },
+    {
+      "label": null,
+      "text": "",
+      "test": null
+    },
+    {
+      "label": "Lesson",
+      "text": "",
+      "test": "skill-path-level-1 skill-path-level-skill"
+    },
+    {
+      "label": null,
+      "text": "",
+      "test": null
+    },
+    {
+      "label": "Radio",
+      "text": "",
+      "test": "skill-path-level-2 skill-path-level-duo_radio"
+    },
+    {
+      "label": "Chest",
+      "text": "",
+      "test": null
+    },
+    {
+      "label": null,
+      "text": "",
+      "test": null
+    },
+    {
+      "label": "Radio",
+      "text": "",
+      "test": "skill-path-level-4 skill-path-level-duo_radio"
+    },
+    {
+      "label": null,
+      "text": "",
+      "test": null
+    },
+    {
+      "label": "Practice",
+      "text": "",
+      "test": "skill-path-level-5 skill-path-level-practice"
+    },
+    {
+      "label": null,
+      "text": "",
+      "test": null
+    },
+    {
+      "label": "Radio",
+      "text": "",
+      "test": "skill-path-level-6 skill-path-level-duo_radio"
+    },
+    {
+      "label": null,
+      "text": "",
+      "test": null
+    },
+    {
+      "label": "Unit Review",
+      "text": "",
+      "test": "skill-path-level-7 skill-path-level-unit_review"
+    },
+    {
+      "label": null,
+      "text": "Jump here?",
+      "test": null
+    }
+  ],
+  "screenshot": "projects/duolingo-web/evidence/exploration-v5/reference-v5-home-after-third.png",
+  "observed_at": "2026-10-10"
+}

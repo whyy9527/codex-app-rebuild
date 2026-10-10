@@ -1,0 +1,145 @@
+{
+  "kind": "frontend_requirements",
+  "contract_digest": "b3bee9ee082dd64382cab8984ae88fcdad8dcbb6e7c7839fd1188c5f16fce748",
+  "observation_digest": "4e1f92fe96897d4fee4635d36b593428e2c232406e7094fd65ecdef6f1820ea0",
+  "rows": [
+    {
+      "id": "preferences-geometry-sound-effects",
+      "state": "preferences",
+      "status": "pass",
+      "expected": [
+        704,
+        174,
+        56,
+        32
+      ],
+      "actual": [
+        704,
+        174,
+        56,
+        32
+      ],
+      "delta_points": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "reason": "Control geometry in content points only; other visual properties remain separate"
+    },
+    {
+      "id": "preferences-persist-sound-effects",
+      "state": "preferences-reopened",
+      "status": "fail",
+      "expected": true,
+      "actual": false
+    },
+    {
+      "id": "preferences-geometry-animations",
+      "state": "preferences",
+      "status": "pass",
+      "expected": [
+        704,
+        230,
+        56,
+        32
+      ],
+      "actual": [
+        704,
+        230,
+        56,
+        32
+      ],
+      "delta_points": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "reason": "Control geometry in content points only; other visual properties remain separate"
+    },
+    {
+      "id": "preferences-persist-animations",
+      "state": "preferences-reopened",
+      "status": "fail",
+      "expected": true,
+      "actual": false
+    },
+    {
+      "id": "preferences-geometry-motivational-messages",
+      "state": "preferences",
+      "status": "pass",
+      "expected": [
+        704,
+        286,
+        56,
+        32
+      ],
+      "actual": [
+        704,
+        286,
+        56,
+        32
+      ],
+      "delta_points": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "reason": "Control geometry in content points only; other visual properties remain separate"
+    },
+    {
+      "id": "preferences-persist-motivational-messages",
+      "state": "preferences-reopened",
+      "status": "pass",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "id": "preferences-geometry-listening-exercises",
+      "state": "preferences",
+      "status": "pass",
+      "expected": [
+        704,
+        342,
+        56,
+        32
+      ],
+      "actual": [
+        704,
+        342,
+        56,
+        32
+      ],
+      "delta_points": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "reason": "Control geometry in content points only; other visual properties remain separate"
+    },
+    {
+      "id": "preferences-persist-listening-exercises",
+      "state": "preferences-reopened",
+      "status": "pass",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "id": "preferences-dark-persist",
+      "state": "preferences-reopened",
+      "status": "pass",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "id": "preferences-lesson-effects",
+      "state": "preferences",
+      "status": "not_run",
+      "reason": "Animations, motivational messages and listening exercises effects in generated lessons require observation and implementation"
+    }
+  ],
+  "status": "fail"
+}

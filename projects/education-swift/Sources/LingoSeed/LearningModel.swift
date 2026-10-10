@@ -20,7 +20,7 @@ import LearningCore
             try JSONEncoder().encode(preferences).write(to: preferencesURL, options: .atomic)
         } catch { self.error = "Preferences could not be saved." }
     }
-    let audio = LearningAudio()
+    let audio = LearningAudio(resourceURL: { Bundle.module.url(forResource: $0, withExtension: nil, subdirectory: "Reference") })
     var muted = false
     private var audioPreferencesURL: URL { store.url.appendingPathExtension("audio.json") }
     func toggleMute() {
@@ -33,20 +33,30 @@ import LearningCore
     func choose(_ id: String) {
         guard let lesson, lesson.feedback == nil, let option = lesson.question.options.first(where: { $0.id == id }) else { return }
         self.lesson?.choose(id)
-        audio.speak(option.text, language: course.speechLanguage)
+        audio.speak(option.text, language: course.speechLanguage, resource: option.audioResource)
     }
-    func addWord(_ id: String) { lesson?.addWord(id); audio.play(.tap) }
+    func addWord(_ id: String) {
+        guard let word = lesson?.question.words.first(where: { $0.id == id }) else { return }
+        lesson?.addWord(id)
+        if let resource = word.audioResource { audio.speak(word.text, language: course.speechLanguage, resource: resource) }
+        else { audio.play(.tap) }
+    }
     func removeWord(_ id: String) { lesson?.removeWord(id); audio.play(.tap) }
     func match(_ id: String, left: Bool) {
         let previous = lesson?.feedback
         if left { lesson?.matchLeft(id) } else { lesson?.matchRight(id) }
-        audio.play(previous == nil && lesson?.feedback == true ? .correct : lesson?.matchingHint != nil ? .incorrect : .tap)
+        if !left, let pair = lesson?.question.pairs.first(where: { $0.id == id }), let resource = pair.audioResource {
+            audio.speak(pair.right, language: course.speechLanguage, resource: resource)
+        } else {
+            audio.play(previous == nil && lesson?.feedback == true ? .correct : lesson?.matchingHint != nil ? .incorrect : .tap)
+        }
     }
     func pronounce() {
         guard let lesson else { return }
-        let selected = lesson.question.options.first { $0.id == lesson.selected }?.text
+        let option = lesson.question.options.first { $0.id == lesson.selected }
+        let selected = option?.text
         let phrase = selected ?? lesson.question.hint ?? lesson.question.prompt
-        audio.speak(phrase, language: selected != nil || (lesson.question.kind == .wordTiles && lesson.question.hint != nil) ? course.speechLanguage : "en-US")
+        audio.speak(phrase, language: selected != nil ? course.speechLanguage : (lesson.question.sourceLanguage ?? (lesson.question.kind == .wordTiles ? course.speechLanguage : "en-US")), resource: option?.audioResource ?? lesson.question.audioResource)
     }
     init(course: Course, store: ProgressStore) throws {
         self.course = course; self.store = store; progress = try store.load()

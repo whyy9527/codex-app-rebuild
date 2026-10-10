@@ -78,3 +78,10 @@ python3 projects/duolingo-web/verify-product.py --out artifacts/product-new
 设置页使用原版布局、字体、四个开关和三项外观选择。`LearningPreferences`保存非全局静音的偏好，`LearningAudio.effectsEnabled`单独控制音效，原来的全局静音继续控制所有输出。`ReferenceSettings`通过实际AX动作验证四个开关关闭后重启恢复、Dark mode=On重启恢复，以及四个开关的内容坐标几何。
 
 这些检查不代表课程效果已实现：Animations、Motivational messages、Listening exercises目前只保存偏好。原版相同契约还暴露了保存200后刷新恢复旧值的反例，统一产品入口会一并报告。当前完整证据和未知见[偏好与探索记录](../duolingo-web/evidence/exploration-v4/README.md)。
+
+
+### 当前v5：第三课与原版语音
+
+默认夹具改为`fixture-reference-v5.json`，由原版前三课37题组成。第三课源答案、实际呈现顺序和逐题正向反馈已经交叉确认，31个源语音文件按具体题目/选项关联；旧课的语音缺口仍在。关闭Sound effects不阻断这些语音，全局静音仍停止并阻断播放，实际播放器推进已检查，原版音色/时序输出尚未比较。
+
+Swift仍缺原版题间鼓励、评分/连续学习/Legendary/注册提示及完成节点状态。它们已进入新版前端契约，不会因37题文案通过被算作完成。重新编译固定v5使用`python3 projects/duolingo-web/compile-session-course.py`；[本批证据与运行方式](../duolingo-web/evidence/exploration-v5/README.md)保留失败及人工续点。

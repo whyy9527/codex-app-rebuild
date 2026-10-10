@@ -3,11 +3,13 @@ import Foundation
 public struct Choice: Codable, Equatable, Sendable, Identifiable {
     public let id: String
     public let text: String
+    public let audioResource: String?
 }
 public struct WordPair: Codable, Equatable, Sendable, Identifiable {
     public let id: String
     public let left: String
     public let right: String
+    public let audioResource: String?
 }
 public enum QuestionKind: String, Codable, Sendable {
     case choice, matching
@@ -26,8 +28,10 @@ public struct Question: Codable, Equatable, Sendable, Identifiable {
     public let hint: String?
     public let newWord: Bool
     public let rightOrder: [String]?
+    public let audioResource: String?
+    public let sourceLanguage: String?
     enum CodingKeys: String, CodingKey {
-        case id, kind, prompt, options, answer, words, pairs, explanation, hint, newWord, rightOrder
+        case id, kind, prompt, options, answer, words, pairs, explanation, hint, newWord, rightOrder, audioResource, sourceLanguage
         case answerWords = "answer_words"
     }
     public init(from decoder: Decoder) throws {
@@ -44,6 +48,8 @@ public struct Question: Codable, Equatable, Sendable, Identifiable {
         hint = try c.decodeIfPresent(String.self, forKey: .hint)
         newWord = try c.decodeIfPresent(Bool.self, forKey: .newWord) ?? false
         rightOrder = try c.decodeIfPresent([String].self, forKey: .rightOrder)
+        audioResource = try c.decodeIfPresent(String.self, forKey: .audioResource)
+        sourceLanguage = try c.decodeIfPresent(String.self, forKey: .sourceLanguage)
     }
     public var correctText: String {
         switch kind {
