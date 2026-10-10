@@ -10,12 +10,12 @@
     "projects/duolingo-web/evidence/english-pronunciation-practice-v1/q11-feedback.png"
   ],
   "files": {
-    "projects/frontend-quality-ablation/run.py": "31b5d9212fee592c81f9f49980a3894873682b9384566df3e570383f114f2e86",
+    "projects/frontend-quality-ablation/run.py": "6b70458d6c7594ec265d8b26979a06b1ecf70dd3975dbb5b8361b4b059080894",
     "projects/frontend-quality-ablation/pairs.json": "eafbfea783101d82fd1284fdc993ad0c87491646dfc87f57c80604a1f3a41a38",
     "projects/frontend-quality-ablation/input.json": "7a5aa07c85eaf279f8e6babfeb1e41adfce9e04871afe884792c4d6911a533fc",
     "projects/frontend-quality-ablation/schema.json": "cd76a21f12abf1ebdeadcab1eada3db30d5c36c645193d22d233edddd83b374f",
     "projects/frontend-quality-ablation/contract.json": "9e5049e0cc92ed8397f13117497f8175ec3e550f649319726dd94a7cab0975a7",
-    "projects/frontend-quality-ablation/PROTOCOL.md": "8579159a65bee00a0fd84b38659c281063a35e025fdb821b59fbbcccd1456330",
+    "projects/frontend-quality-ablation/PROTOCOL.md": "ad24718aa3bd58057196579b2b781d846907789ec559c672a2ff79749ebef6a0",
     "projects/duolingo-web/evidence/english-pronunciation-practice-v1/q11-match-before.png": "1ffa23850f71b78c600d16200c75b3f53428e1e924769ee9ac1f158661a01ef7",
     "projects/duolingo-web/evidence/english-pronunciation-practice-v1/q11-feedback.png": "ff17bd64773ddd13e2a68041dc105d81388984563ec917ff7aa36c889d19acfd",
     "projects/duolingo-web/evidence/english-pronunciation-practice-v1/q11-match-before.json": "ad0240f94bc95835c071f57ec620b02103c423e2f82f480a6cb261715ffa4c18",
@@ -35,5 +35,6 @@
     "control",
     "feedback"
   ],
-  "claim_scope": "One historical matching task; frontend feedback mechanism only"
+  "claim_scope": "One historical matching task; frontend feedback mechanism only",
+  "amendment": "Pre-model comparator absolute-path wrapper fix; resume same completed baseline UI capture, no model calls before amendment"
 }

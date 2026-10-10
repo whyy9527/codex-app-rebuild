@@ -85,9 +85,13 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--codex", required=True)
     parser.add_argument("--out", required=True)
+    parser.add_argument("--resume-baseline", action="store_true", help="Resume only a failed pre-model comparator; preserve completed baseline capture")
     args = parser.parse_args()
     out = (ROOT / args.out).resolve()
-    out.mkdir(parents=True, exist_ok=False)
+    if not args.resume_baseline:
+        out.mkdir(parents=True, exist_ok=False)
+    elif not (out / "failure.json").exists() or (out / "initial-prompt.json").exists():
+        raise ValueError("Resume is only for preserved pre-model baseline failure")
     registration = json.loads((HERE / "registration.json").read_text())
     binary = Path(args.codex).resolve()
     if sha(binary) != registration["cli_sha256"]:
@@ -96,27 +100,37 @@ def main():
         if sha(ROOT / file) != digest:
             raise ValueError("Registered input changed: " + file)
     checkout = out / "historical-checkout"
-    subprocess.run(["git", "worktree", "add", "--detach", str(checkout), registration["baseline_commit"]], cwd=ROOT, check=True)
+    if not args.resume_baseline:
+        subprocess.run(["git", "worktree", "add", "--detach", str(checkout), registration["baseline_commit"]], cwd=ROOT, check=True)
     target = checkout / registration["target"]
     original = target.read_text()
+    expected_original = subprocess.check_output(["git", "show", registration["baseline_commit"] + ":" + registration["target"]], cwd=ROOT, text=True)
+    if original != expected_original:
+        raise ValueError("Historical checkout source changed before initial model")
     common = json.loads((HERE / "input.json").read_text())
     common["source_code"] = original
 
-    def evaluate(name, source):
+    def evaluate(name, source, resume=False):
         print("evaluate " + name, flush=True)
         target.write_text(source)
         folder = out / name
-        folder.mkdir()
+        folder.mkdir(exist_ok=resume)
         (folder / "candidate.swift").write_text(source)
         receipt = {"source_sha256": sha(target)}
-        receipt["build"] = command(["swift", "build", "--package-path", "projects/education-swift"], checkout, folder / "build.log")
+        if resume:
+            observed = json.loads((folder / "native/observed.json").read_text())
+            if observed["candidate_binary_sha256"] != sha(checkout / "projects/education-swift/.build/debug/LingoSeed"):
+                raise ValueError("Preserved baseline binary changed")
+            receipt["build"] = {"exit_code": 0, "seconds": None, "provenance": "Preserved successful build, original elapsed metric lost at wrapper exception"}
+        else:
+            receipt["build"] = command(["swift", "build", "--package-path", "projects/education-swift"], checkout, folder / "build.log")
         if receipt["build"]["exit_code"]:
             receipt["status"] = "build_fail"
             write(folder / "receipt.json", receipt)
             return receipt
-        receipt["core"] = command(["swift", "run", "--package-path", "projects/education-swift", "LearningCoreChecks"], checkout, folder / "core.log")
+        receipt["core"] = command(["swift", "run", "--package-path", "projects/education-swift", "LearningCoreChecks"], checkout, folder / ("core-resume.log" if resume else "core.log"))
         observation = folder / "native"
-        receipt["native"] = command(["swift", "projects/duolingo-web/observe-frontend.swift", str(observation),
+        receipt["native"] = {"exit_code": 0, "seconds": None, "provenance": "Preserved completed native observation; no restart"} if resume else command(["swift", "projects/duolingo-web/observe-frontend.swift", str(observation),
             "projects/duolingo-web/fixture-reference-en-zh-v10.json", "--seed-progress",
             "projects/duolingo-web/evidence/english-pronunciation-v2/progress-source.json", "--reference-color-scheme",
             "light", "--observe-pronunciation", "--walk-pronunciation-practice"], checkout, folder / "native.log")
@@ -124,10 +138,10 @@ def main():
             receipt["status"] = "native_fail"
             write(folder / "receipt.json", receipt)
             return receipt
-        command(["python3", "-m", "capabilities.rebuild.frontend", "--contract", str(HERE / "contract.json"),
-                 "--observed", str(observation / "observed.json"), "--out", str(folder / "frontend.json")], ROOT, folder / "frontend.log")
+        command(["python3", "-m", "capabilities.rebuild.frontend", "--contract", str((HERE / "contract.json").relative_to(ROOT)),
+                 "--observed", str((observation / "observed.json").relative_to(ROOT)), "--out", str((folder / "frontend.json").relative_to(ROOT))], ROOT, folder / ("frontend-resume.log" if resume else "frontend.log"))
         command(["python3", "projects/duolingo-web/compare-english-captures.py", "--native", str(observation),
-                 "--pairs", str(HERE / "pairs.json"), "--out", str(folder / "visual.json")], ROOT, folder / "visual.log")
+                 "--pairs", str(HERE / "pairs.json"), "--out", str(folder / ("visual-resume.json" if resume else "visual.json"))], ROOT, folder / ("visual-resume.log" if resume else "visual.log"))
         frontend = json.loads((folder / "frontend.json").read_text())
         receipt["counts"] = {status: sum(row["status"] == status for row in frontend["rows"]) for status in ["pass", "fail", "unavailable", "not_run"]}
         receipt["status"] = "measured" if receipt["core"]["exit_code"] == 0 else "core_fail"
@@ -135,7 +149,7 @@ def main():
         return receipt
 
     try:
-        baseline = evaluate("baseline", original)
+        baseline = evaluate("baseline", original, resume=args.resume_baseline)
         initial = worker("initial", common, out, binary, registration)
         initial_source = apply(original, initial)
         initial_measurement = evaluate("initial", initial_source)

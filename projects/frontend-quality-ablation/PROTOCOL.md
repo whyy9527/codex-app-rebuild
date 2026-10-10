@@ -17,3 +17,8 @@
 ## 复跑
 
 从仓库根以显式匹配注册哈希的Codex CLI执行 `python3 projects/frontend-quality-ablation/run.py --codex <binary> --out artifacts/frontend-quality-01`。输出目录必须新建。记录原始失败，不在本批追加模型调用。先确认协议已提交推送，再运行；产物及当前产品分别报告。
+
+
+## 模型调用前修正：相对路径接口
+
+01实际历史构建146.74秒、22核心及52原生状态采集完成，随后wrapper传绝对契约路径被前端入口拒绝，模型零调用。原始失败保留于evidence/pre-model-failure01。修正仅将入口参数改为仓库内相对路径；不改变模型输入、预算、源码起点、指标或已采集原生状态。提交推送修正后以 `--resume-baseline` 从同一已完成基线采集续跑，不重复UI或换样本。续跑校验历史源码及已采集二进制哈希，重新运行核心检查；异常前丢失的elapsed字段记unknown，不能捏造计量。本批failure.json保留，后续成功result也不能抹去该失败。新目录可不加resume从头复跑。
