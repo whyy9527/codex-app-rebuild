@@ -1,0 +1,296 @@
+{
+  "task": "Repair this actual historical Swift Duolingo pronunciation matching frontend to match the attached original before/feedback images at 1200x732 content points. Preserve working matching, disabling and remaining exercise flows. Return exact unique text replacement edits to the supplied source file. No tools, no file reads, no external lookup. Return edits relative to supplied source_code.",
+  "reference_before": "- button:\n  - img\n- progressbar\n- heading \"选择配对\" [level=1]\n- button \"1\":\n  - text: \"1\"\n  - img\n  - img\n  - img\n  - img\n- button \"2\":\n  - text: \"2\"\n  - img\n  - img\n  - img\n  - img\n- button \"3\":\n  - text: \"3\"\n  - img\n  - img\n  - img\n  - img\n- button \"4\":\n  - text: \"4\"\n  - img\n  - img\n  - img\n  - img\n- button \"5 deck\":\n  - text: 5 deck\n  - img\n  - img\n- button \"6 get\":\n  - text: 6 get\n  - img\n  - img\n- button \"7 got\":\n  - text: 7 got\n  - img\n  - img\n- button \"8 dock\":\n  - text: 8 dock\n  - img\n  - img\n- button \"跳过\"\n- button \"检查\" [disabled]",
+  "reference_feedback": "- button:\n  - img\n- progressbar:\n  - text: 连对 2 题\n  - img\n- heading \"选择配对\" [level=1]\n- button \"1\" [disabled]:\n  - text: \"1\"\n  - img\n  - img\n  - img\n  - img\n- button \"2\" [disabled]:\n  - text: \"2\"\n  - img\n  - img\n  - img\n  - img\n- button \"3\" [disabled]:\n  - text: \"3\"\n  - img\n  - img\n  - img\n  - img\n- button \"4\" [disabled]:\n  - text: \"4\"\n  - img\n  - img\n  - img\n  - img\n- button \"5 deck\" [disabled]:\n  - text: 5 deck\n  - img\n  - img\n- button \"6 get\" [disabled]:\n  - text: 6 get\n  - img\n  - img\n- button \"7 got\" [disabled]:\n  - text: 7 got\n  - img\n  - img\n- button \"8 dock\" [disabled]:\n  - text: 8 dock\n  - img\n  - img\n- heading \"泰裤辣！\" [level=2]\n- button \"太简单\"\n- button \"太难\"\n- button \"报错\"\n- button \"继续\"",
+  "reference_controls": [
+    {
+      "test": "quit-button",
+      "text": "",
+      "rect": [
+        100,
+        50,
+        18,
+        18
+      ],
+      "enabled": true,
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "400",
+        "lineHeight": "19.55px",
+        "color": "rgb(0, 0, 0)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "test": "deck-challenge-tap-token",
+      "text": "1",
+      "rect": [
+        330,
+        247,
+        255,
+        58
+      ],
+      "enabled": true,
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "19px",
+        "fontWeight": "500",
+        "lineHeight": "21.85px",
+        "color": "rgb(75, 75, 75)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "12px",
+        "borderWidth": "2px 2px 4px",
+        "borderColor": "rgba(0, 0, 0, 0)"
+      }
+    },
+    {
+      "test": "dock-challenge-tap-token",
+      "text": "2",
+      "rect": [
+        330,
+        315,
+        255,
+        58
+      ],
+      "enabled": true,
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "19px",
+        "fontWeight": "500",
+        "lineHeight": "21.85px",
+        "color": "rgb(75, 75, 75)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "12px",
+        "borderWidth": "2px 2px 4px",
+        "borderColor": "rgba(0, 0, 0, 0)"
+      }
+    },
+    {
+      "test": "got-challenge-tap-token",
+      "text": "3",
+      "rect": [
+        330,
+        383,
+        255,
+        58
+      ],
+      "enabled": true,
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "19px",
+        "fontWeight": "500",
+        "lineHeight": "21.85px",
+        "color": "rgb(75, 75, 75)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "12px",
+        "borderWidth": "2px 2px 4px",
+        "borderColor": "rgba(0, 0, 0, 0)"
+      }
+    },
+    {
+      "test": "get-challenge-tap-token",
+      "text": "4",
+      "rect": [
+        330,
+        451,
+        255,
+        58
+      ],
+      "enabled": true,
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "19px",
+        "fontWeight": "500",
+        "lineHeight": "21.85px",
+        "color": "rgb(75, 75, 75)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "12px",
+        "borderWidth": "2px 2px 4px",
+        "borderColor": "rgba(0, 0, 0, 0)"
+      }
+    },
+    {
+      "test": "deck-challenge-tap-token",
+      "text": "5\ndeck",
+      "rect": [
+        615,
+        247,
+        255,
+        58
+      ],
+      "enabled": true,
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "19px",
+        "fontWeight": "500",
+        "lineHeight": "21.85px",
+        "color": "rgb(75, 75, 75)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "12px",
+        "borderWidth": "2px 2px 4px",
+        "borderColor": "rgba(0, 0, 0, 0)"
+      }
+    },
+    {
+      "test": "get-challenge-tap-token",
+      "text": "6\nget",
+      "rect": [
+        615,
+        315,
+        255,
+        58
+      ],
+      "enabled": true,
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "19px",
+        "fontWeight": "500",
+        "lineHeight": "21.85px",
+        "color": "rgb(75, 75, 75)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "12px",
+        "borderWidth": "2px 2px 4px",
+        "borderColor": "rgba(0, 0, 0, 0)"
+      }
+    },
+    {
+      "test": "got-challenge-tap-token",
+      "text": "7\ngot",
+      "rect": [
+        615,
+        383,
+        255,
+        58
+      ],
+      "enabled": true,
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "19px",
+        "fontWeight": "500",
+        "lineHeight": "21.85px",
+        "color": "rgb(75, 75, 75)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "12px",
+        "borderWidth": "2px 2px 4px",
+        "borderColor": "rgba(0, 0, 0, 0)"
+      }
+    },
+    {
+      "test": "dock-challenge-tap-token",
+      "text": "8\ndock",
+      "rect": [
+        615,
+        451,
+        255,
+        58
+      ],
+      "enabled": true,
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "19px",
+        "fontWeight": "500",
+        "lineHeight": "21.85px",
+        "color": "rgb(75, 75, 75)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "12px",
+        "borderWidth": "2px 2px 4px",
+        "borderColor": "rgba(0, 0, 0, 0)"
+      }
+    },
+    {
+      "test": "player-skip",
+      "text": "跳过",
+      "rect": [
+        140,
+        639,
+        150,
+        50
+      ],
+      "enabled": true,
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "700",
+        "lineHeight": "20.4px",
+        "color": "rgb(175, 175, 175)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "16px",
+        "borderWidth": "2px 2px 4px",
+        "borderColor": "rgba(0, 0, 0, 0)"
+      }
+    },
+    {
+      "test": "player-next",
+      "text": "检查",
+      "rect": [
+        909.9921875,
+        643,
+        150,
+        50
+      ],
+      "enabled": false,
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "700",
+        "lineHeight": "20.4px",
+        "color": "rgb(175, 175, 175)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "16px",
+        "borderWidth": "0px 0px 4px",
+        "borderColor": "rgba(0, 0, 0, 0)"
+      }
+    }
+  ],
+  "question_definition": {
+    "id": "p11",
+    "kind": "matching",
+    "prompt": "选择配对",
+    "options": [],
+    "answer": "",
+    "pairs": [
+      {
+        "id": "pair1",
+        "left": "1",
+        "right": "deck"
+      },
+      {
+        "id": "pair2",
+        "left": "2",
+        "right": "dock",
+        "audioResource": "pronunciation-word-53dd189aa64b2cfbda9f.mp3"
+      },
+      {
+        "id": "pair3",
+        "left": "3",
+        "right": "got",
+        "audioResource": "pronunciation-word-e4009c79f5b63afad0ac.mp3"
+      },
+      {
+        "id": "pair4",
+        "left": "4",
+        "right": "get",
+        "audioResource": "pronunciation-word-dbe6db0505db7ce3848d.mp3"
+      }
+    ],
+    "rightOrder": [
+      "pair1",
+      "pair4",
+      "pair3",
+      "pair2"
+    ],
+    "explanation": "",
+    "sourceType": "listenMatch",
+    "correctFeedback": "泰裤辣！",
+    "skipLabel": "跳过"
+  },
+  "available_original_image_resources": [
+    "en-match-speaker-source-frame",
+    "en-match-waveform-source-frame"
+  ],
+  "interfaces": "LearningModel.match(pairID,left:Bool); Lesson.matchedPairs Set<String>, selectedLeft/selectedRight String?, feedback Bool?; Question.rightOrder [String]?, pairs [WordPair(id,left,right,audioResource)]. Source file includes an existing NSViewRepresentable audio control, which may be reused/generalized. SwiftUI renderer is macOS14+ Swift6; ReferenceStyle fonts/colors/images and existing styles are available. No other files may be edited in this bounded matching task. Do not replace original images with SF symbols or emojis."
+}
