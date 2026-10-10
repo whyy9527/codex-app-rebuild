@@ -3,6 +3,7 @@ import AppKit
 import ApplicationServices
 import Foundation
 
+enum ObservationStop: Error { case afterQuestion(String) }
 func main() throws {
 let root = URL(fileURLWithPath: FileManager.default.currentDirectoryPath)
 let output = URL(fileURLWithPath: CommandLine.arguments[1], relativeTo: root).standardizedFileURL
@@ -233,6 +234,7 @@ if opened {
 
 }
 var walkError: String?
+var stoppedAtQuestion: String?
 if CommandLine.arguments.contains("--walk-course") {
     do {
         try press("nav-learn")
@@ -315,6 +317,19 @@ if CommandLine.arguments.contains("--walk-course") {
                     let pairs = question["pairs"] as! [[String: Any]]
                     func value(_ id: String) -> String? { current().first { (attr($0, kAXIdentifierAttribute) as? String) == id }.flatMap { attr($0, kAXValueAttribute) as? String } }
                     func enabled(_ id: String) -> Bool { current().first { (attr($0, kAXIdentifierAttribute) as? String) == id }.flatMap { attr($0, kAXEnabledAttribute) as? Bool } ?? false }
+                    if CommandLine.arguments.contains("--exercise-listening-decline"), question["listeningDecline"] != nil {
+                        let before = value("hearts")
+                        try press("listening-decline"); try waitFor("listening-declined")
+                        var observed = observe()
+                        observed["interactions"] = ["hearts_unchanged": before != nil && value("hearts") == before,
+                            "all_pairs_disabled": pairs.allSatisfy { pair in
+                                let id = pair["id"] as! String
+                                return !enabled("pair-left-" + id) && !enabled("pair-right-" + id)
+                            }]
+                        states[key + "-declined"] = observed; try capture(key + "-declined")
+                        try press("listening-continue")
+                        continue
+                    }
                     if (CommandLine.arguments.contains("--exercise-wrong-audio-pair") || (fifthErrors && key == "en-zh-l5-q8")), question["sourceType"] as? String == "listenMatch", pairs.count > 1 {
                         let a = pairs[0]["id"] as! String, b = pairs[1]["id"] as! String
                         let before = Int(value("hearts") ?? "")
@@ -375,6 +390,8 @@ if CommandLine.arguments.contains("--walk-course") {
                     for frame in 0..<12 { try capture(key + "-character-feedback-\(frame)"); Thread.sleep(forTimeInterval: 0.15) }
                 }
                 if course["interfaceLanguage"] as? String == "zh" { try capture(key + "-feedback") }
+                if let i = CommandLine.arguments.firstIndex(of: "--stop-after-question-id"), i + 1 < CommandLine.arguments.count,
+                   CommandLine.arguments[i + 1] == key { throw ObservationStop.afterQuestion(key) }
                 try press("continue")
                 if let interludes = definition["interludes"] as? [[String: String]], let interlude = interludes.first(where: { $0["afterQuestionID"] == key }) {
                     try waitFor("lesson-interlude", value: interlude["id"])
@@ -449,12 +466,14 @@ if CommandLine.arguments.contains("--walk-course") {
         try press("open-guide"); try waitFor("guide-title")
         states["guidebook"] = observe(); try capture("guidebook-window")
         try press("close-guide"); try waitFor("course-entry")
-    } catch { walkError = String(describing: error) }
+    } catch ObservationStop.afterQuestion(let id) { stoppedAtQuestion = id }
+    catch { walkError = String(describing: error) }
 }
 let receipt: [String: Any] = ["kind": "owned_native_ax_observation", "states": states,
     "observed_at": ISO8601DateFormatter().string(from: Date()),
     "action": "Start isolated child, collect home, move pointer into More then out, optionally walk the observed course",
     "walk_error": walkError as Any? ?? NSNull(),
+    "stopped_at_question": stoppedAtQuestion as Any? ?? NSNull(),
     "pointer_actions": pointerActions,
     "limitations": ["AX text and owned pointer actions; no visual/audio equivalence"]]
 let data = try JSONSerialization.data(withJSONObject: receipt, options: [.prettyPrinted, .sortedKeys])

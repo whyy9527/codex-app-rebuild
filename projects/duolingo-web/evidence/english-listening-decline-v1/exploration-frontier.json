@@ -1,0 +1,188 @@
+{
+  "kind": "observed_exploration_frontier",
+  "pending": [
+    {
+      "state": "match",
+      "action": {
+        "id": "play-1",
+        "description": "音频按钮1"
+      },
+      "attempts": 0,
+      "evidence": "projects/duolingo-web/evidence/english-listening-decline-v1/english-sixth-listening-before.json"
+    },
+    {
+      "state": "match",
+      "action": {
+        "id": "play-2",
+        "description": "音频按钮2"
+      },
+      "attempts": 0,
+      "evidence": "projects/duolingo-web/evidence/english-listening-decline-v1/english-sixth-listening-before.json"
+    },
+    {
+      "state": "match",
+      "action": {
+        "id": "play-3",
+        "description": "音频按钮3"
+      },
+      "attempts": 0,
+      "evidence": "projects/duolingo-web/evidence/english-listening-decline-v1/english-sixth-listening-before.json"
+    },
+    {
+      "state": "match",
+      "action": {
+        "id": "play-4",
+        "description": "音频按钮4"
+      },
+      "attempts": 0,
+      "evidence": "projects/duolingo-web/evidence/english-listening-decline-v1/english-sixth-listening-before.json"
+    },
+    {
+      "state": "declined",
+      "action": {
+        "id": "too-easy",
+        "description": "太简单"
+      },
+      "attempts": 0,
+      "evidence": "projects/duolingo-web/evidence/english-listening-decline-v1/english-sixth-listening-declined.json"
+    },
+    {
+      "state": "declined",
+      "action": {
+        "id": "too-hard",
+        "description": "太难"
+      },
+      "attempts": 0,
+      "evidence": "projects/duolingo-web/evidence/english-listening-decline-v1/english-sixth-listening-declined.json"
+    },
+    {
+      "state": "declined",
+      "action": {
+        "id": "report",
+        "description": "报错"
+      },
+      "attempts": 0,
+      "evidence": "projects/duolingo-web/evidence/english-listening-decline-v1/english-sixth-listening-declined.json"
+    },
+    {
+      "state": "adaptive",
+      "action": {
+        "id": "skip",
+        "description": "跳过"
+      },
+      "attempts": 0,
+      "evidence": "projects/duolingo-web/evidence/english-listening-decline-v1/q3-answer.json"
+    },
+    {
+      "state": "adaptive",
+      "action": {
+        "id": "play",
+        "description": "当前题播放按钮"
+      },
+      "attempts": 0,
+      "evidence": "projects/duolingo-web/evidence/english-listening-decline-v1/q3-answer.json"
+    },
+    {
+      "state": "adaptive-feedback",
+      "action": {
+        "id": "too-easy",
+        "description": "太简单"
+      },
+      "attempts": 0,
+      "evidence": "projects/duolingo-web/evidence/english-listening-decline-v1/q3-answer.json"
+    },
+    {
+      "state": "adaptive-feedback",
+      "action": {
+        "id": "too-hard",
+        "description": "太难"
+      },
+      "attempts": 0,
+      "evidence": "projects/duolingo-web/evidence/english-listening-decline-v1/q3-answer.json"
+    },
+    {
+      "state": "adaptive-feedback",
+      "action": {
+        "id": "report",
+        "description": "报错"
+      },
+      "attempts": 0,
+      "evidence": "projects/duolingo-web/evidence/english-listening-decline-v1/q3-answer.json"
+    },
+    {
+      "state": "fill",
+      "action": {
+        "id": "skip",
+        "description": "跳过"
+      },
+      "attempts": 0,
+      "evidence": "projects/duolingo-web/evidence/english-listening-decline-v1/english-sixth-after-coffee-milk.json"
+    },
+    {
+      "state": "fill",
+      "action": {
+        "id": "harder",
+        "description": "加大难度"
+      },
+      "attempts": 0,
+      "evidence": "projects/duolingo-web/evidence/english-listening-decline-v1/english-sixth-after-coffee-milk.json"
+    },
+    {
+      "state": "fill-feedback",
+      "action": {
+        "id": "too-easy",
+        "description": "太简单"
+      },
+      "attempts": 0,
+      "evidence": "projects/duolingo-web/evidence/english-listening-decline-v1/english-sixth-milk-fill-accepted.json"
+    },
+    {
+      "state": "fill-feedback",
+      "action": {
+        "id": "too-hard",
+        "description": "太难"
+      },
+      "attempts": 0,
+      "evidence": "projects/duolingo-web/evidence/english-listening-decline-v1/english-sixth-milk-fill-accepted.json"
+    },
+    {
+      "state": "fill-feedback",
+      "action": {
+        "id": "report",
+        "description": "报错"
+      },
+      "attempts": 0,
+      "evidence": "projects/duolingo-web/evidence/english-listening-decline-v1/english-sixth-milk-fill-accepted.json"
+    },
+    {
+      "state": "sugar",
+      "action": {
+        "id": "answer",
+        "description": "选择糖 / 检查"
+      },
+      "attempts": 0,
+      "evidence": "projects/duolingo-web/evidence/english-listening-decline-v1/english-sixth-sugar-after-fill.json"
+    },
+    {
+      "state": "sugar",
+      "action": {
+        "id": "skip",
+        "description": "跳过"
+      },
+      "attempts": 0,
+      "evidence": "projects/duolingo-web/evidence/english-listening-decline-v1/english-sixth-sugar-after-fill.json"
+    },
+    {
+      "state": "sugar",
+      "action": {
+        "id": "play",
+        "description": "当前题播放按钮"
+      },
+      "attempts": 0,
+      "evidence": "projects/duolingo-web/evidence/english-listening-decline-v1/english-sixth-sugar-after-fill.json"
+    }
+  ],
+  "resolved_actions": 6,
+  "completion": "unknown; an empty recorded frontier does not prove the whole app explored",
+  "policy": "unvisited-first, observation order; not RSI self-improvement"
+}

@@ -1,0 +1,32 @@
+{
+  "before": "- button:\n  - img\n- progressbar\n- img\n- text: \"2\"\n- heading \"用中文（简体）写出这句话\" [level=1]\n- button:\n  - img\n- img\n- button \"牛奶\"\n- button \"我\"\n- button \"咖啡\"\n- button \"加\"\n- button \"跳过\"\n- button \"检查\" [disabled]",
+  "text": "用中文（简体）写出这句话\ncoffee with milk\n牛奶\n我\n咖啡\n加",
+  "prompts": [
+    "coffee with milk"
+  ],
+  "choices": [
+    "牛奶",
+    "我",
+    "咖啡",
+    "加"
+  ],
+  "images": [],
+  "clicks": [
+    {
+      "word": "咖啡",
+      "occurrence": 0
+    },
+    {
+      "word": "加",
+      "occurrence": 0
+    },
+    {
+      "word": "牛奶",
+      "occurrence": 0
+    }
+  ],
+  "feedback": "- button:\n  - img\n- progressbar: 连对 3 题\n- img\n- text: \"2\"\n- heading \"用中文（简体）写出这句话\" [level=1]\n- button:\n  - img\n- img\n- button \"牛奶\" [disabled]\n- button \"我\" [disabled]\n- button \"咖啡\" [disabled]\n- button \"加\" [disabled]\n- heading \"你太棒了！\" [level=2]\n- button \"太简单\"\n- button \"太难\"\n- button \"报错\"\n- button \"继续\"\n- button \"咖啡\" [disabled]\n- button \"加\" [disabled]\n- button \"牛奶\" [disabled]",
+  "rejected": false,
+  "next_action": "Receipt saved before transition. Inspect acceptance then continue separately; no assumed next question.",
+  "observed_at": "2026-10-10T18:31:53.441Z"
+}

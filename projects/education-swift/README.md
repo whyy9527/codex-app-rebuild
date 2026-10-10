@@ -4,6 +4,8 @@
 
 原版Bea/Lucy的实际Rive全身动画已接入默认题库，官方Apple RiveRuntime锁定6.24.0。初次构建需联网下载SDK约108MB，SwiftPM自动将framework放到可执行文件旁；直接运行保留整个构建目录及资源bundle。角色变化已通过实际连续截图测量，动画时序、mouth/audio同步与其余角色仍未对齐。[当前渲染证据和失败](../duolingo-web/evidence/english-character-render-v1/README.md)。
 
+新增听力暂缓的未评分状态与已观察的插入题路径，当前只在fixture-listening-decline.json中冻结并验证；默认五课缺完整暂缓后的源轨迹，尚未冒充支持。核心增至16项；局部22项仍有3失败/6未验证。见[当前批次](../duolingo-web/evidence/english-listening-decline-v1/README.md)。
+
 ## 构建、运行与重置
 
 从仓库根执行，macOS 14+、Swift 6 工具链：

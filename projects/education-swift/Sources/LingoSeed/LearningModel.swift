@@ -92,6 +92,7 @@ import LearningCore
     }
     func acceptEntry() { entryPending = false; playAutomaticPrompt() }
     func declineSpeech() { lesson?.declineSpeech() }
+    func declineListening() { lesson?.declineListening() }
     private func playAutomaticPrompt() {
         guard !entryPending, lesson?.interlude == nil, lesson?.deferredSpeech == nil, let question = lesson?.question, ["translate", "listenTap", "dialogue", "orderTapComplete"].contains(question.sourceType ?? ""),
               course.interfaceLanguage != "zh" || question.audioResource != nil else { return }
@@ -107,7 +108,7 @@ import LearningCore
         }
     }
     func advance() {
-        guard lesson?.feedback != nil || lesson?.interlude != nil || lesson?.speechDeclined == true else { return }
+        guard lesson?.feedback != nil || lesson?.interlude != nil || lesson?.speechDeclined == true || lesson?.listeningDeclined == true else { return }
         let previousQuestion = lesson?.question.id
         let wasInterlude = lesson?.interlude != nil
         let wasDeferred = lesson?.deferredSpeech != nil

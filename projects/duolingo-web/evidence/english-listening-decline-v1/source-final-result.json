@@ -1,0 +1,124 @@
+{
+  "kind": "frontend_requirements",
+  "contract_digest": "0e693c9c27c658af1429e440da4bc7436316f25a811dcd3a62316cee182897fc",
+  "observation_digest": "5f69656e5695766bbffc90d21ea4064b6faafe187047308648c11babd5daddf7",
+  "rows": [
+    {
+      "id": "en-zh-decline-match-heading",
+      "state": "en-zh-decline-match",
+      "status": "pass",
+      "expected": "选择配对"
+    },
+    {
+      "id": "en-zh-decline-match-action",
+      "state": "en-zh-decline-match",
+      "status": "pass",
+      "expected": "现在不做听力题"
+    },
+    {
+      "id": "en-zh-decline-match-declined-title",
+      "state": "en-zh-decline-match-declined",
+      "status": "pass",
+      "expected": "听力题已跳过"
+    },
+    {
+      "id": "en-zh-decline-match-declined-body",
+      "state": "en-zh-decline-match-declined",
+      "status": "pass",
+      "expected": "将在 15 分钟后恢复"
+    },
+    {
+      "id": "en-zh-decline-match-declined-continue",
+      "state": "en-zh-decline-match-declined",
+      "status": "pass",
+      "expected": "继续"
+    },
+    {
+      "id": "en-zh-decline-match-declined-hearts_unchanged",
+      "state": "en-zh-decline-match-declined",
+      "status": "pass",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "id": "en-zh-decline-match-declined-all_pairs_disabled",
+      "state": "en-zh-decline-match-declined",
+      "status": "pass",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "id": "en-zh-decline-adaptive-heading",
+      "state": "en-zh-decline-adaptive",
+      "status": "pass",
+      "expected": "用中文（简体）写出这句话"
+    },
+    {
+      "id": "en-zh-decline-adaptive-hint",
+      "state": "en-zh-decline-adaptive",
+      "status": "pass",
+      "expected": "coffee with milk"
+    },
+    {
+      "id": "en-zh-decline-adaptive-feedback-accepted",
+      "state": "en-zh-decline-adaptive-feedback",
+      "status": "pass",
+      "expected": "你太棒了！"
+    },
+    {
+      "id": "en-zh-decline-fill-heading",
+      "state": "en-zh-decline-fill",
+      "status": "pass",
+      "expected": "输入所缺单词"
+    },
+    {
+      "id": "en-zh-decline-fill-hint",
+      "state": "en-zh-decline-fill",
+      "status": "pass",
+      "expected": "咖啡加牛奶"
+    },
+    {
+      "id": "en-zh-decline-fill-feedback-accepted",
+      "state": "en-zh-decline-fill-feedback",
+      "status": "pass",
+      "expected": "好棒！"
+    },
+    {
+      "id": "decline-same-state-pixels",
+      "state": "en-zh-decline-match-declined",
+      "status": "not_run",
+      "reason": "same-state-pixels remains unverified"
+    },
+    {
+      "id": "decline-pair-playback-binding",
+      "state": "en-zh-decline-match-declined",
+      "status": "not_run",
+      "reason": "pair-playback-binding remains unverified"
+    },
+    {
+      "id": "decline-adaptive-audio",
+      "state": "en-zh-decline-match-declined",
+      "status": "not_run",
+      "reason": "adaptive-audio remains unverified"
+    },
+    {
+      "id": "decline-timer-expiry",
+      "state": "en-zh-decline-match-declined",
+      "status": "not_run",
+      "reason": "timer-expiry remains unverified"
+    },
+    {
+      "id": "decline-later-adaptive-sequence",
+      "state": "en-zh-decline-match-declined",
+      "status": "not_run",
+      "reason": "later-adaptive-sequence remains unverified"
+    },
+    {
+      "id": "decline-secondary-actions",
+      "state": "en-zh-decline-match-declined",
+      "status": "not_run",
+      "reason": "secondary-actions remains unverified"
+    }
+  ],
+  "status": "fail"
+}

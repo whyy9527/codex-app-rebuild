@@ -1,0 +1,105 @@
+{
+  "kind": "same-viewport-pixel-diagnostic",
+  "native_trajectory": "Actual sixth-lesson decline prefix; same question/feedback and hearts2, earlier-answer progress context differs",
+  "viewport": [
+    1200,
+    732
+  ],
+  "normalization": "Crop native titlebar using measured content rect, downsample2x with Lanczos; reference pixels unchanged",
+  "rows": [
+    {
+      "question": null,
+      "stage": "match",
+      "source": "projects/duolingo-web/evidence/english-listening-decline-v1/english-sixth-listening-before.png",
+      "native": "en-zh-decline-match-before.png",
+      "source_sha256": "f46e82e71d472e13b042912afbe7cf5ce76a058b982331d2158e6d7a44b6642c",
+      "native_sha256": "80001e9044443ceb96e6dfe8a68afcff776d89f66b1204bdcf0052e43925121a",
+      "mean_absolute_rgb_difference": [
+        3.4390630692167576,
+        2.4400045537340618,
+        2.7941473132969032
+      ],
+      "status": "different"
+    },
+    {
+      "question": null,
+      "stage": "declined",
+      "source": "projects/duolingo-web/evidence/english-listening-decline-v1/english-sixth-listening-declined.png",
+      "native": "en-zh-decline-match-declined.png",
+      "source_sha256": "9b52d6153554b1cc78e60123d651957ba106ebc6f290584fea572b08ca2b6263",
+      "native_sha256": "3f4c50a5ad7f93c9c99aee7f857813ac77d41c30d51f438ff6697f6e1f3dc231",
+      "mean_absolute_rgb_difference": [
+        4.283222905282331,
+        5.129918032786885,
+        11.812490892531876
+      ],
+      "status": "different"
+    },
+    {
+      "question": null,
+      "stage": "adaptive",
+      "source": "projects/duolingo-web/evidence/english-listening-decline-v1/q3-before.png",
+      "native": "en-zh-decline-adaptive-before.png",
+      "source_sha256": "26f1dc69caae5fd2a3f519b77e87d56d8f7fb327b43ba65c400261bf3a8ed3f2",
+      "native_sha256": "60960c1f70f15f688a3825c276ab7e1c238cc32abd8da20c51434ade12c7809f",
+      "mean_absolute_rgb_difference": [
+        3.734176912568306,
+        2.8982695810564665,
+        4.435933515482696
+      ],
+      "status": "different"
+    },
+    {
+      "question": null,
+      "stage": "adaptive-feedback",
+      "source": "projects/duolingo-web/evidence/english-listening-decline-v1/q3-feedback.png",
+      "native": "en-zh-decline-adaptive-feedback.png",
+      "source_sha256": "be8c9639deb388a0ab878ed9a4865c2d923865dcb5ba4ab042cd4af4c86dd337",
+      "native_sha256": "f528ca449267c23dde958dfe4c0975aad54ec297e4f183aa96ebb668bb4e9fcc",
+      "mean_absolute_rgb_difference": [
+        8.328181921675775,
+        4.0744091530054645,
+        10.692731102003643
+      ],
+      "status": "different"
+    },
+    {
+      "question": null,
+      "stage": "fill",
+      "source": "projects/duolingo-web/evidence/english-listening-decline-v1/english-sixth-after-coffee-milk.png",
+      "native": "en-zh-decline-fill-before.png",
+      "source_sha256": "e7a387baf3a439f493a3f568643c79490a3c2ced7422095eba88975ed3a7475f",
+      "native_sha256": "8d2f4cdad92781a3cffb82ee9b7bb574897d5ec589b961e97bf078984dce2bb6",
+      "mean_absolute_rgb_difference": [
+        5.620934653916211,
+        4.658837659380692,
+        7.82797131147541
+      ],
+      "status": "different"
+    },
+    {
+      "question": null,
+      "stage": "fill-feedback",
+      "source": "projects/duolingo-web/evidence/english-listening-decline-v1/english-sixth-milk-fill-accepted.png",
+      "native": "en-zh-decline-fill-feedback.png",
+      "source_sha256": "7ef3910a12a35ad9692a89eed166986d504ef6362e7584e9bc7c84a251ed21ff",
+      "native_sha256": "b67112fde6295f93c6922d244f4ffc9008f769c0d9c9e0c609043e52f9a51315",
+      "mean_absolute_rgb_difference": [
+        9.821920537340619,
+        5.289574225865209,
+        14.018496129326047
+      ],
+      "status": "different"
+    }
+  ],
+  "candidate_acceptance": "not_proven",
+  "limitations": [
+    "This is an actual pixel diagnostic, not a substitute for frontend acceptance",
+    "Animation frames and temporal sound not aligned",
+    "Font antialiasing differs across renderers; reported without tolerance or masking",
+    "Hearts tutorial, source interlude visuals and full completion chain remain incomplete",
+    "Source already answered two questions; native component starts at matching. Progress bar and whole-lesson context are NOT the same state. Do not claim whole-page 1:1 from this prefix diagnostic.",
+    "Pair audio left order is API-only in this probe; no audio matching was attempted",
+    "Source adaptive question audio identity is unobserved; six states do not cover a full lesson"
+  ]
+}

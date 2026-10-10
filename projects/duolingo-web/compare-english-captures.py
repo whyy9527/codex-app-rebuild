@@ -8,12 +8,14 @@ from PIL import Image, ImageChops, ImageStat
 p=argparse.ArgumentParser(description=__doc__)
 p.add_argument('--native',required=True);p.add_argument('--out',required=True)
 p.add_argument('--home-reference',help='Compare this actual home PNG with native home-window.png')
+p.add_argument('--pairs', help='Explicit observed source/native screenshot-pair manifest; includes scope limitations')
 lessons=p.add_mutually_exclusive_group()
 lessons.add_argument('--second-lesson', action='store_true', help='Compare actual second-lesson normal and adaptive question captures')
 lessons.add_argument('--third-lesson', action='store_true', help='Compare actual third-lesson normal and adaptive question captures')
 lessons.add_argument('--fifth-lesson', action='store_true', help='Compare captured fifth mixed-error trajectory, including speech and settlement')
 lessons.add_argument('--fourth-lesson', action='store_true', help='Compare actual fourth 12-question challenge')
 a=p.parse_args()
+if a.pairs and (a.home_reference or a.second_lesson or a.third_lesson or a.fourth_lesson or a.fifth_lesson): p.error('--pairs cannot be combined with predefined trajectories')
 native=Path(a.native);source=Path('projects/duolingo-web/evidence/english-v1')
 metadata=json.loads((native/'window.json').read_text())
 x,y,w,h=metadata['content_rect_points'];scale=metadata['backing_scale']
@@ -22,12 +24,15 @@ if a.second_lesson: source=Path('projects/duolingo-web/evidence/english-second-v
 if a.third_lesson: source=Path('projects/duolingo-web/evidence/english-third-v1')
 if a.fourth_lesson: source=Path('projects/duolingo-web/evidence/english-fourth-v1')
 observations={}
-for number in (() if a.fifth_lesson else (2,3) if a.fourth_lesson else (1,2) if a.second_lesson or a.third_lesson else (1,2,3)):
+for number in (() if a.pairs or a.fifth_lesson else (2,3) if a.fourth_lesson else (1,2) if a.second_lesson or a.third_lesson else (1,2,3)):
     for row in json.loads((source/f'replay-{number:02}.json').read_text())['observed']:
         if 'feedback' in row: observations[row['index']]=row
 rows=[]
 pairs=[]
-if a.home_reference:
+explicit = json.loads(Path(a.pairs).read_text()) if a.pairs else None
+if explicit:
+    pairs = [(row.get('question'),row['stage'],Path(row['source']),native/row['native']) for row in explicit['pairs']]
+elif a.home_reference:
     pairs.append((None, 'home', Path(a.home_reference), native/'home-window.png'))
 else:
     for index,row in sorted(observations.items()):
@@ -87,12 +92,13 @@ for index,stage,original,candidate in pairs:
                  'native_sha256':hashlib.sha256(candidate.read_bytes()).hexdigest(),
                  'mean_absolute_rgb_difference':mean,
                  'status':'identical' if all(hi==0 for lo,hi in extrema) else 'different'})
-result={'kind':'same-viewport-pixel-diagnostic','native_trajectory':'fifth lesson from hearts4, cold and wrong pair, HOT review, deferred speech' if a.fifth_lesson else 'home after first lesson, hearts4' if a.home_reference else 'fourth lesson all 12 accepted, starting hearts4' if a.fourth_lesson else 'third lesson all accepted, starting hearts4' if a.third_lesson else 'second lesson all accepted, starting hearts4' if a.second_lesson else 'first question wrong sugar, then correct, retry coffee',
+result={'kind':'same-viewport-pixel-diagnostic','native_trajectory':explicit['trajectory'] if explicit else 'fifth lesson from hearts4, cold and wrong pair, HOT review, deferred speech' if a.fifth_lesson else 'home after first lesson, hearts4' if a.home_reference else 'fourth lesson all 12 accepted, starting hearts4' if a.fourth_lesson else 'third lesson all accepted, starting hearts4' if a.third_lesson else 'second lesson all accepted, starting hearts4' if a.second_lesson else 'first question wrong sugar, then correct, retry coffee',
         'viewport':[w,h],'normalization':'Crop native titlebar using measured content rect, downsample2x with Lanczos; reference pixels unchanged',
         'rows':rows,'candidate_acceptance':'not_proven',
         'limitations':['This is an actual pixel diagnostic, not a substitute for frontend acceptance',
                        'Animation frames and temporal sound not aligned',
                        'Font antialiasing differs across renderers; reported without tolerance or masking',
                        'Hearts tutorial, source interlude visuals and full completion chain remain incomplete']}
+if explicit: result['limitations'] += explicit['limitations']
 Path(a.out).write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
 print(json.dumps({'pairs':len(rows),'different':sum(r['status']=='different' for r in rows),'candidate_acceptance':'not_proven'}))

@@ -390,6 +390,27 @@ func actualEnglishFifthTrajectory() throws {
     try check(roundTrip == source, "Speech/review metadata lost in round-trip")
     print("PASS full fifth mixed-error trajectory: 15 graded questions + ungraded speech + one typed review; settlement/home metadata; frontend pending")
 }
+func actualListeningDeclinePrefix() throws {
+    let source = try course(fixture: "fixture-listening-decline.json")
+    var lesson = Lesson(course: source, hearts: 2)
+    lesson.advance()
+    try check(lesson.position == 0, "Unanswered pairing advanced before decline")
+    lesson.declineListening()
+    let pair = lesson.question.pairs[0].id
+    lesson.matchLeft(pair); lesson.matchRight(pair); lesson.submit()
+    try check(lesson.listeningDeclined && lesson.feedback == nil && lesson.matchedPairs.isEmpty && lesson.hearts == 2 && lesson.mistakesMade == 0 && lesson.review.isEmpty,
+              "Declined listening was scored, accepted input, or consumed a heart")
+    lesson.advance()
+    try check(lesson.question.id == "en-zh-decline-adaptive" && !lesson.listeningDeclined, "Inserted source translation was skipped")
+    lesson.declineListening()
+    try check(!lesson.listeningDeclined, "Listening decline leaked into translation")
+    for id in lesson.question.answerWords { lesson.addWord(id) }
+    lesson.submit(); lesson.advance()
+    try check(lesson.question.id == "en-zh-decline-fill", "Original typed challenge did not follow inserted translation")
+    lesson.enterText("milk"); lesson.submit()
+    try check(lesson.feedback == true && lesson.hearts == 2 && lesson.review.isEmpty, "Observed milk acceptance changed")
+    print("PASS source listening decline locks pairs without grading, preserves hearts, enters inserted translation then original fill; later adaptation/timer unverified")
+}
 do {
     try mistakeReview()
     try persistence()
@@ -406,7 +427,8 @@ do {
     try actualEnglishAudioPairing()
     try actualEnglishTypedReview()
     try actualEnglishFifthTrajectory()
-    print("15 business checks passed; core layer only")
+    try actualListeningDeclinePrefix()
+    print("16 business checks passed; core layer only")
 } catch {
     FileHandle.standardError.write(Data(("FAIL " + String(describing: error) + "\n").utf8))
     exit(1)

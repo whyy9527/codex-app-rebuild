@@ -203,7 +203,15 @@ struct LearningView: View {
     }
     private func answerBar(_ lesson: Lesson) -> some View {
         HStack(spacing: 30) {
-            if let correct = lesson.feedback {
+            if lesson.listeningDeclined, let decline = lesson.question.listeningDecline {
+                Image(systemName: "checkmark.circle.fill").font(.system(size: 48)).foregroundStyle(Color(red: 0.80, green: 0.47, blue: 0))
+                VStack(alignment: .leading, spacing: 8) {
+                    Text(decline.title).font(ReferenceStyle.font(22, bold: true)).accessibilityIdentifier("listening-declined")
+                    Text(decline.body).font(ReferenceStyle.font(18))
+                }.foregroundStyle(Color(red: 0.80, green: 0.47, blue: 0))
+                Spacer()
+                Button("继续") { model.advance() }.buttonStyle(ReferenceButton(color: Color(red: 1, green: 0.78, blue: 0))).accessibilityIdentifier("listening-continue")
+            } else if let correct = lesson.feedback {
                 Image(systemName: correct ? "checkmark.circle.fill" : "xmark.circle.fill").font(.system(size: 48)).foregroundStyle(correct ? accent : .red)
                 VStack(alignment: .leading, spacing: 8) {
                     Text(correct ? (lesson.question.correctFeedback ?? copy("Well done!", "好棒！")) : (lesson.question.kind == .textEntry ? copy("Correct answer:", "正确答案：") : copy("Correct answer: \(lesson.question.correctText)", "正确答案：\(lesson.question.correctText)"))).font(.title2.bold())
@@ -214,12 +222,15 @@ struct LearningView: View {
                 Spacer()
                 Button(copy("CONTINUE", "继续")) { model.advance() }.buttonStyle(SeedButtonStyle(fill: correct ? accent : .red)).accessibilityIdentifier("continue")
             } else {
+                if let decline = lesson.question.listeningDecline {
+                    Button(decline.label) { model.declineListening() }.buttonStyle(.plain).accessibilityIdentifier("listening-decline")
+                }
                 if lesson.question.sourceType == nil { Text(lesson.question.kind == .matching ? "Match all pairs to continue" : "Take your time. You’ve got this.").foregroundStyle(.secondary) }
                 Spacer()
                 if lesson.question.kind != .matching { Button(copy("CHECK", "检查")) { model.submit() }.buttonStyle(SeedButtonStyle(fill: accent)).disabled(!lesson.canSubmit).accessibilityIdentifier("check") }
             }
         }.padding(.horizontal, 60).padding(.vertical, 28).frame(minHeight: 115)
-            .background(lesson.feedback == nil ? Color.white : lesson.feedback == true ? Color(red: 0.843, green: 1, blue: 0.722) : Color(red: 1, green: 0.875, blue: 0.875))
+            .background(lesson.listeningDeclined ? Color(red: 1, green: 0.961, blue: 0.827) : lesson.feedback == nil ? Color.white : lesson.feedback == true ? Color(red: 0.843, green: 1, blue: 0.722) : Color(red: 1, green: 0.875, blue: 0.875))
             .overlay(alignment: .top) { Rectangle().fill(Color.gray.opacity(0.15)).frame(height: 2) }
     }
     private var exitConfirmation: some View {
@@ -425,14 +436,14 @@ struct LearningView: View {
                     ForEach(lesson.question.pairs) { pair in
                         Button(pair.left) { model.match(pair.id, left: true) }
                             .buttonStyle(SeedTileStyle(selected: lesson.selectedLeft == pair.id))
-                            .disabled(lesson.feedback != nil || lesson.matchedPairs.contains(pair.id)).accessibilityIdentifier("pair-left-" + pair.id)
+                            .disabled(lesson.listeningDeclined || lesson.feedback != nil || lesson.matchedPairs.contains(pair.id)).accessibilityIdentifier("pair-left-" + pair.id)
                     }
                 }
                 VStack(spacing: 12) {
                     ForEach(orderedRightPairs(lesson.question)) { pair in
                         Button(pair.right) { model.match(pair.id, left: false) }
                             .buttonStyle(SeedTileStyle(selected: lesson.selectedRight == pair.id))
-                            .disabled(lesson.feedback != nil || lesson.matchedPairs.contains(pair.id)).accessibilityIdentifier("pair-right-" + pair.id)
+                            .disabled(lesson.listeningDeclined || lesson.feedback != nil || lesson.matchedPairs.contains(pair.id)).accessibilityIdentifier("pair-right-" + pair.id)
                     }
                 }
             }
@@ -452,7 +463,7 @@ struct LearningView: View {
                             Spacer(minLength: 0)
                         }.padding(.horizontal, 18).frame(width: 253, height: 56)
                     }.buttonStyle(AudioPairButtonStyle(matched: lesson.matchedPairs.contains(pair.id), selected: lesson.selectedLeft == pair.id, incorrect: lesson.incorrectMatch?.first == pair.id))
-                        .disabled(lesson.feedback != nil || lesson.matchedPairs.contains(pair.id))
+                        .disabled(lesson.listeningDeclined || lesson.feedback != nil || lesson.matchedPairs.contains(pair.id))
                         .accessibilityIdentifier("pair-left-" + pair.id).accessibilityLabel(String(index + 1))
                         .accessibilityValue(lesson.incorrectMatch?.first == pair.id ? "incorrect" : lesson.matchedPairs.contains(pair.id) ? "matched" : "available")
                 }
@@ -466,7 +477,7 @@ struct LearningView: View {
                             Text(pair.right).font(ReferenceStyle.font(20)).frame(maxWidth: .infinity)
                         }.padding(.horizontal, 18).frame(width: 253, height: 56)
                     }.buttonStyle(AudioPairButtonStyle(matched: lesson.matchedPairs.contains(pair.id), selected: lesson.selectedRight == pair.id, incorrect: lesson.incorrectMatch?.last == pair.id))
-                        .disabled(lesson.feedback != nil || lesson.matchedPairs.contains(pair.id))
+                        .disabled(lesson.listeningDeclined || lesson.feedback != nil || lesson.matchedPairs.contains(pair.id))
                         .accessibilityIdentifier("pair-right-" + pair.id).accessibilityLabel(pair.right)
                         .accessibilityValue(lesson.incorrectMatch?.last == pair.id ? "incorrect" : lesson.matchedPairs.contains(pair.id) ? "matched" : "available")
                 }

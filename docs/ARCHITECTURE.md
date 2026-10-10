@@ -132,3 +132,10 @@ listenMatch使用现有matching状态机及原版静态向量帧，左侧解析�
 `capture-source-canvas.mjs`从当前challenge canvas导出透明绘图buffer和关联RIVE数据，compositor截图另存；公开CDN解压字节与buffer独立校验。`ReferenceCharacter`以旧角色资源身份映射实际动画资源/状态机/trigger/transform，SwiftPM精确依赖官方RiveRuntime6.24.0，LearningCore不依赖渲染SDK。当前仅Bea/Lucy配置，未映射角色仍是历史静态图，不宣称完整。
 
 原生观察器可采集12张真实idle/feedback窗口，`compare-character-render.py`按实际content rect归一化，并单独计算角色ROI帧变化和整页像素差；变化不能代替源相位/声学等价。独立角色契约保留零容差失败，默认五课v10仍整体fail。标题按实际32px/40px修正，同时回归配对几何。此批反例驱动探索更换探针，尚无自主探索策略或收益证据。[测量与接续](../projects/duolingo-web/evidence/english-character-render-v1/README.md)。
+
+
+### 观察到的听力暂缓分支
+
+Question可选listeningDecline仅配置已观察路径。Lesson保存独立未评分暂缓状态，禁止继续配对输入，advance不将其写入错误或重练；LearningModel的集成门槛同样接受该状态。实际题序由冻结夹具保存插入翻译→原填空，不依据API下一索引推测后续替换。15分钟是源提示，尚无已验证的计时规则或默认课程完整分支。
+
+观察器新增显式exercise-listening-decline与stop-after-question-id，回执区分局部停止与完整walk，默认不截断。通用截图比较入口可接受显式pairs manifest并保留整课进度背景不匹配限制。首次host advance失败、源AX提取错误及当前次要动作缺失均保留；同一22项契约在原版与Swift独立执行。[本批证据](../projects/duolingo-web/evidence/english-listening-decline-v1/README.md)。

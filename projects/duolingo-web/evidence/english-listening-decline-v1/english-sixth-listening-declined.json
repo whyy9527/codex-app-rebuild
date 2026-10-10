@@ -1,0 +1,392 @@
+{
+  "observed_at": "2026-10-10T18:31:09.999Z",
+  "path": "/lesson",
+  "viewport": {
+    "width": 1200,
+    "height": 732
+  },
+  "snapshot": "- button:\n  - img\n- progressbar:\n  - img\n- img\n- text: \"2\"\n- heading \"选择配对\" [level=1]\n- button \"1\" [disabled]:\n  - text: \"1\"\n  - img\n  - img\n  - img\n  - img\n- button \"2\" [disabled]:\n  - text: \"2\"\n  - img\n  - img\n  - img\n  - img\n- button \"3\" [disabled]:\n  - text: \"3\"\n  - img\n  - img\n  - img\n  - img\n- button \"4\" [disabled]:\n  - text: \"4\"\n  - img\n  - img\n  - img\n  - img\n- button \"5 你好\" [disabled]:\n  - text: 5 你好\n  - img\n  - img\n- button \"6 热\" [disabled]:\n  - text: 6 热\n  - img\n  - img\n- button \"7 茶\" [disabled]:\n  - text: 7 茶\n  - img\n  - img\n- button \"8 欢迎\" [disabled]:\n  - text: 8 欢迎\n  - img\n  - img\n- heading \"听力题已跳过\" [level=2]\n- text: 将在 15 分钟后恢复\n- button \"太简单\"\n- button \"太难\"\n- button \"报错\"\n- button \"继续\"",
+  "visible": [
+    {
+      "test": "quit-button",
+      "tag": "BUTTON",
+      "role": null,
+      "text": "",
+      "rect": [
+        100,
+        57,
+        18,
+        18
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "400",
+        "lineHeight": "19.55px",
+        "color": "rgb(0, 0, 0)",
+        "backgroundColor": "rgba(0, 0, 0, 0)"
+      }
+    },
+    {
+      "test": "challenge challenge-listenMatch",
+      "tag": "DIV",
+      "role": null,
+      "text": "选择配对\n1\n2\n3\n4\n5\n你好\n6\n热\n7\n茶\n8\n欢迎",
+      "rect": [
+        0,
+        100,
+        1200,
+        492
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "19px",
+        "fontWeight": "500",
+        "lineHeight": "20px",
+        "color": "rgb(60, 60, 60)",
+        "backgroundColor": "rgba(0, 0, 0, 0)"
+      }
+    },
+    {
+      "test": "challenge-header",
+      "tag": "H1",
+      "role": null,
+      "text": "选择配对",
+      "rect": [
+        300,
+        121,
+        600,
+        40
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "32px",
+        "fontWeight": "700",
+        "lineHeight": "40px",
+        "color": "rgb(60, 60, 60)",
+        "backgroundColor": "rgba(0, 0, 0, 0)"
+      }
+    },
+    {
+      "test": "你好-challenge-tap-token",
+      "tag": "BUTTON",
+      "role": null,
+      "text": "1",
+      "rect": [
+        330,
+        247,
+        255,
+        58
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "19px",
+        "fontWeight": "500",
+        "lineHeight": "21.85px",
+        "color": "rgb(75, 75, 75)",
+        "backgroundColor": "rgba(0, 0, 0, 0)"
+      }
+    },
+    {
+      "test": "欢迎-challenge-tap-token",
+      "tag": "BUTTON",
+      "role": null,
+      "text": "2",
+      "rect": [
+        330,
+        315,
+        255,
+        58
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "19px",
+        "fontWeight": "500",
+        "lineHeight": "21.85px",
+        "color": "rgb(75, 75, 75)",
+        "backgroundColor": "rgba(0, 0, 0, 0)"
+      }
+    },
+    {
+      "test": "茶-challenge-tap-token",
+      "tag": "BUTTON",
+      "role": null,
+      "text": "3",
+      "rect": [
+        330,
+        383,
+        255,
+        58
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "19px",
+        "fontWeight": "500",
+        "lineHeight": "21.85px",
+        "color": "rgb(75, 75, 75)",
+        "backgroundColor": "rgba(0, 0, 0, 0)"
+      }
+    },
+    {
+      "test": "热-challenge-tap-token",
+      "tag": "BUTTON",
+      "role": null,
+      "text": "4",
+      "rect": [
+        330,
+        451,
+        255,
+        58
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "19px",
+        "fontWeight": "500",
+        "lineHeight": "21.85px",
+        "color": "rgb(75, 75, 75)",
+        "backgroundColor": "rgba(0, 0, 0, 0)"
+      }
+    },
+    {
+      "test": "你好-challenge-tap-token",
+      "tag": "BUTTON",
+      "role": null,
+      "text": "5\n你好",
+      "rect": [
+        615,
+        247,
+        255,
+        58
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "19px",
+        "fontWeight": "500",
+        "lineHeight": "21.85px",
+        "color": "rgb(75, 75, 75)",
+        "backgroundColor": "rgba(0, 0, 0, 0)"
+      }
+    },
+    {
+      "test": "challenge-tap-token-text",
+      "tag": "SPAN",
+      "role": null,
+      "text": "你好",
+      "rect": [
+        737.5,
+        264.078125,
+        38,
+        21.84375
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "19px",
+        "fontWeight": "500",
+        "lineHeight": "21.85px",
+        "color": "rgb(75, 75, 75)",
+        "backgroundColor": "rgba(0, 0, 0, 0)"
+      }
+    },
+    {
+      "test": "热-challenge-tap-token",
+      "tag": "BUTTON",
+      "role": null,
+      "text": "6\n热",
+      "rect": [
+        615,
+        315,
+        255,
+        58
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "19px",
+        "fontWeight": "500",
+        "lineHeight": "21.85px",
+        "color": "rgb(75, 75, 75)",
+        "backgroundColor": "rgba(0, 0, 0, 0)"
+      }
+    },
+    {
+      "test": "challenge-tap-token-text",
+      "tag": "SPAN",
+      "role": null,
+      "text": "热",
+      "rect": [
+        747,
+        332.078125,
+        19,
+        21.84375
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "19px",
+        "fontWeight": "500",
+        "lineHeight": "21.85px",
+        "color": "rgb(75, 75, 75)",
+        "backgroundColor": "rgba(0, 0, 0, 0)"
+      }
+    },
+    {
+      "test": "茶-challenge-tap-token",
+      "tag": "BUTTON",
+      "role": null,
+      "text": "7\n茶",
+      "rect": [
+        615,
+        383,
+        255,
+        58
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "19px",
+        "fontWeight": "500",
+        "lineHeight": "21.85px",
+        "color": "rgb(75, 75, 75)",
+        "backgroundColor": "rgba(0, 0, 0, 0)"
+      }
+    },
+    {
+      "test": "challenge-tap-token-text",
+      "tag": "SPAN",
+      "role": null,
+      "text": "茶",
+      "rect": [
+        747,
+        400.078125,
+        19,
+        21.84375
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "19px",
+        "fontWeight": "500",
+        "lineHeight": "21.85px",
+        "color": "rgb(75, 75, 75)",
+        "backgroundColor": "rgba(0, 0, 0, 0)"
+      }
+    },
+    {
+      "test": "欢迎-challenge-tap-token",
+      "tag": "BUTTON",
+      "role": null,
+      "text": "8\n欢迎",
+      "rect": [
+        615,
+        451,
+        255,
+        58
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "19px",
+        "fontWeight": "500",
+        "lineHeight": "21.85px",
+        "color": "rgb(75, 75, 75)",
+        "backgroundColor": "rgba(0, 0, 0, 0)"
+      }
+    },
+    {
+      "test": "challenge-tap-token-text",
+      "tag": "SPAN",
+      "role": null,
+      "text": "欢迎",
+      "rect": [
+        737.5,
+        468.078125,
+        38,
+        21.84375
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "19px",
+        "fontWeight": "500",
+        "lineHeight": "21.85px",
+        "color": "rgb(75, 75, 75)",
+        "backgroundColor": "rgba(0, 0, 0, 0)"
+      }
+    },
+    {
+      "test": "blame blame-correct",
+      "tag": "DIV",
+      "role": null,
+      "text": "听力题已跳过\n将在 15 分钟后恢复\n太简单\n太难\n报错",
+      "rect": [
+        140,
+        615.25,
+        732.796875,
+        93.5
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "500",
+        "lineHeight": "20px",
+        "color": "rgb(60, 60, 60)",
+        "backgroundColor": "rgba(0, 0, 0, 0)"
+      }
+    },
+    {
+      "test": null,
+      "tag": "H2",
+      "role": null,
+      "text": "听力题已跳过",
+      "rect": [
+        236,
+        615.25,
+        320,
+        30
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "24px",
+        "fontWeight": "700",
+        "lineHeight": "30px",
+        "color": "rgb(205, 121, 0)",
+        "backgroundColor": "rgba(0, 0, 0, 0)"
+      }
+    },
+    {
+      "test": "player-next",
+      "tag": "BUTTON",
+      "role": null,
+      "text": "继续",
+      "rect": [
+        909.9921875,
+        637,
+        150,
+        50
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "700",
+        "lineHeight": "20.4px",
+        "color": "rgb(255, 255, 255)",
+        "backgroundColor": "rgba(0, 0, 0, 0)"
+      }
+    },
+    {
+      "test": "drawer-backdrop",
+      "tag": "DIV",
+      "role": null,
+      "text": "",
+      "rect": [
+        0,
+        0,
+        1200,
+        732
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "500",
+        "lineHeight": "20px",
+        "color": "rgb(60, 60, 60)",
+        "backgroundColor": "rgba(0, 0, 0, 0.4)"
+      }
+    }
+  ],
+  "screenshot": "english-sixth-listening-declined.png"
+}

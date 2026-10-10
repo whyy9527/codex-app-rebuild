@@ -6,6 +6,8 @@
 
 最新角色批次：已确认Bea/Lucy独立Rive渲染buffer并接入默认五课，修复标题及角色纵向布局。当前五课214状态，434pass/11fail/307not_run；角色组件3pass/1fail/5not_run，仍有横向几何、实际像素/动画/声音差异。源第六课只完成第0题，停在第1题未答。完整失败、接续和复跑由[角色渲染批次](../projects/duolingo-web/evidence/english-character-render-v1/README.md)维护；RSI探索策略及匹配预算消融仍待完成。
 
+最新听力暂缓批次：实际执行遗漏分支，发现插入翻译及后续替换；局部原生路径可运行，完整默认分支未接入。22项源16pass/6not_run，原生13pass/3fail/6not_run；16项核心通过，默认五课v10仍整体fail。[轨迹、失败与接续](../projects/duolingo-web/evidence/english-listening-decline-v1/README.md)。
+
 | 阶段 | 已交付 | 验收与范围 |
 | --- | --- | --- |
 | 0 定位与改名 | 私有codex-app-rebuild；README、AGENTS、哲学、架构与研究来源 | Dream-RSI/Cordis及历史无收益保留；没有开源或部署。 |

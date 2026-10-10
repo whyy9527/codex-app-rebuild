@@ -1,0 +1,40 @@
+{
+  "trajectory": "Actual sixth-lesson decline prefix; same question/feedback and hearts2, earlier-answer progress context differs",
+  "pairs": [
+    {
+      "stage": "match",
+      "source": "projects/duolingo-web/evidence/english-listening-decline-v1/english-sixth-listening-before.png",
+      "native": "en-zh-decline-match-before.png"
+    },
+    {
+      "stage": "declined",
+      "source": "projects/duolingo-web/evidence/english-listening-decline-v1/english-sixth-listening-declined.png",
+      "native": "en-zh-decline-match-declined.png"
+    },
+    {
+      "stage": "adaptive",
+      "source": "projects/duolingo-web/evidence/english-listening-decline-v1/q3-before.png",
+      "native": "en-zh-decline-adaptive-before.png"
+    },
+    {
+      "stage": "adaptive-feedback",
+      "source": "projects/duolingo-web/evidence/english-listening-decline-v1/q3-feedback.png",
+      "native": "en-zh-decline-adaptive-feedback.png"
+    },
+    {
+      "stage": "fill",
+      "source": "projects/duolingo-web/evidence/english-listening-decline-v1/english-sixth-after-coffee-milk.png",
+      "native": "en-zh-decline-fill-before.png"
+    },
+    {
+      "stage": "fill-feedback",
+      "source": "projects/duolingo-web/evidence/english-listening-decline-v1/english-sixth-milk-fill-accepted.png",
+      "native": "en-zh-decline-fill-feedback.png"
+    }
+  ],
+  "limitations": [
+    "Source already answered two questions; native component starts at matching. Progress bar and whole-lesson context are NOT the same state. Do not claim whole-page 1:1 from this prefix diagnostic.",
+    "Pair audio left order is API-only in this probe; no audio matching was attempted",
+    "Source adaptive question audio identity is unobserved; six states do not cover a full lesson"
+  ]
+}

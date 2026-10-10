@@ -1,0 +1,207 @@
+{
+  "kind": "actual-source-listening-decline-history",
+  "states": [
+    {
+      "id": "match",
+      "evidence": "projects/duolingo-web/evidence/english-listening-decline-v1/english-sixth-listening-before.json",
+      "actions": [
+        {
+          "id": "decline",
+          "description": "现在不做听力题"
+        },
+        {
+          "id": "play-1",
+          "description": "音频按钮1"
+        },
+        {
+          "id": "play-2",
+          "description": "音频按钮2"
+        },
+        {
+          "id": "play-3",
+          "description": "音频按钮3"
+        },
+        {
+          "id": "play-4",
+          "description": "音频按钮4"
+        }
+      ]
+    },
+    {
+      "id": "declined",
+      "evidence": "projects/duolingo-web/evidence/english-listening-decline-v1/english-sixth-listening-declined.json",
+      "actions": [
+        {
+          "id": "continue",
+          "description": "继续"
+        },
+        {
+          "id": "too-easy",
+          "description": "太简单"
+        },
+        {
+          "id": "too-hard",
+          "description": "太难"
+        },
+        {
+          "id": "report",
+          "description": "报错"
+        }
+      ]
+    },
+    {
+      "id": "adaptive",
+      "evidence": "projects/duolingo-web/evidence/english-listening-decline-v1/q3-answer.json",
+      "actions": [
+        {
+          "id": "answer",
+          "description": "咖啡 加 牛奶 / 检查"
+        },
+        {
+          "id": "skip",
+          "description": "跳过"
+        },
+        {
+          "id": "play",
+          "description": "当前题播放按钮"
+        }
+      ]
+    },
+    {
+      "id": "adaptive-feedback",
+      "evidence": "projects/duolingo-web/evidence/english-listening-decline-v1/q3-answer.json",
+      "actions": [
+        {
+          "id": "continue",
+          "description": "继续"
+        },
+        {
+          "id": "too-easy",
+          "description": "太简单"
+        },
+        {
+          "id": "too-hard",
+          "description": "太难"
+        },
+        {
+          "id": "report",
+          "description": "报错"
+        }
+      ]
+    },
+    {
+      "id": "fill",
+      "evidence": "projects/duolingo-web/evidence/english-listening-decline-v1/english-sixth-after-coffee-milk.json",
+      "actions": [
+        {
+          "id": "answer",
+          "description": "输入milk / 检查"
+        },
+        {
+          "id": "skip",
+          "description": "跳过"
+        },
+        {
+          "id": "harder",
+          "description": "加大难度"
+        }
+      ]
+    },
+    {
+      "id": "fill-feedback",
+      "evidence": "projects/duolingo-web/evidence/english-listening-decline-v1/english-sixth-milk-fill-accepted.json",
+      "actions": [
+        {
+          "id": "continue",
+          "description": "继续"
+        },
+        {
+          "id": "too-easy",
+          "description": "太简单"
+        },
+        {
+          "id": "too-hard",
+          "description": "太难"
+        },
+        {
+          "id": "report",
+          "description": "报错"
+        }
+      ]
+    },
+    {
+      "id": "sugar",
+      "evidence": "projects/duolingo-web/evidence/english-listening-decline-v1/english-sixth-sugar-after-fill.json",
+      "actions": [
+        {
+          "id": "answer",
+          "description": "选择糖 / 检查"
+        },
+        {
+          "id": "skip",
+          "description": "跳过"
+        },
+        {
+          "id": "play",
+          "description": "当前题播放按钮"
+        }
+      ]
+    }
+  ],
+  "transitions": [
+    {
+      "from": "match",
+      "action": "decline",
+      "to": "declined",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-listening-decline-v1/english-sixth-listening-declined.json"
+    },
+    {
+      "from": "declined",
+      "action": "continue",
+      "to": "adaptive",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-listening-decline-v1/english-sixth-after-listening-decline.json"
+    },
+    {
+      "from": "adaptive",
+      "action": "answer",
+      "to": "adaptive-feedback",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-listening-decline-v1/q3-answer.json"
+    },
+    {
+      "from": "adaptive-feedback",
+      "action": "continue",
+      "to": "fill",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-listening-decline-v1/english-sixth-after-coffee-milk.json"
+    },
+    {
+      "from": "fill",
+      "action": "answer",
+      "to": "fill-feedback",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-listening-decline-v1/english-sixth-milk-fill-accepted.json"
+    },
+    {
+      "from": "fill-feedback",
+      "action": "continue",
+      "to": "sugar",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-listening-decline-v1/english-sixth-sugar-after-fill.json"
+    }
+  ],
+  "policy_update": {
+    "prior": "Continue normal-answer sequence using captured session indices",
+    "counterevidence": "Recorded listening-decline affordance still unvisited; later question type and renderer differ from next API row",
+    "choice": "Execute actual decline branch, preserve inserted translation and changed follow-up instead of applying captured answers",
+    "status": "Agent-driven feedback adjustment; not autonomous RSI or benefit experiment"
+  },
+  "unknown": [
+    "Full later replacements and source grader",
+    "15-minute expiry and persistence",
+    "Actual audio identity/output on adaptive question",
+    "Final sixth-lesson score/review/settlement"
+  ]
+}
