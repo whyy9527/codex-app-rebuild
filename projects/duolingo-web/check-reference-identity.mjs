@@ -28,3 +28,16 @@ assert.equal(repeat.identity.actual.choices.filter(w=>w==='不要').length,2);
 assert.equal(repeat.actions.filter(a=>a.word==='不要').length,2);
 assert.deepEqual(repeat.actions.filter(a=>a.word==='不要').map(a=>a.occurrence),[0,1]);
 console.log('PASS 12 accepted real questions, same-type adaptive divergence before action, and two distinct duplicate-token occurrences; no policy-effect claim');
+
+const fourthBase=fileURLToPath(new URL('./evidence/english-fourth-v1/',import.meta.url));
+const fourthRead=name=>JSON.parse(readFileSync(fourthBase+name,'utf8'));
+const listening=fourthRead('replay-02.json').observed.find(r=>r.index===5);
+const listeningExpected=fourthRead('session.json').session.challenges[5].content;
+assert.equal(listening.actions.length,0);
+assert.equal(listening.identity.reasons[0],'prompt_not_visible');
+const playedAudio=fourthRead('audio-identity.json').media.map(m=>m.src);
+assert(challengeIdentity(listeningExpected,{...listening.identity.actual,playedAudio}).matches);
+assert(challengeIdentity(listeningExpected,listening.identity.actual).reasons.includes('audio_identity_unverified'));
+assert(challengeIdentity(listeningExpected,{...listening.identity.actual,playedAudio:[]}).reasons.includes('audio_identity_unverified'));
+assert(challengeIdentity({...listeningExpected,tts:'different-source'}, {...listening.identity.actual,playedAudio}).reasons.includes('audio_identity_unverified'));
+console.log('PASS actual listening transcript is hidden; current playback source required, absent/wrong audio rejected');

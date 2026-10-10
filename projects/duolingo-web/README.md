@@ -110,3 +110,8 @@ node projects/duolingo-web/explore-curriculum.mjs artifacts/reference-new.json -
 
 
 当前默认已升级`fixture-reference-en-zh-v3.json`，前三课各15道实际UI题目。重复词块支持、9项核心及原生三课回放完成；前端v4当前221通过、151未覆盖，第三课30对截图均不同，整体仍fail。[第三课原生证据与接续](evidence/english-third-native-v1/README.md)。
+
+
+### 英语第四课：探索模具修复与新结算链
+
+实际完成原版第四课12题，并发现挑战入口、复习说明、难题说明、英语分数、双倍经验奖励及传奇邀请。听力转录不可见造成的身份误判已用当前显式播放回执修正，文字题核对未放宽。保留失败、原版截图和角色idle/correct/incorrect动画来源。v5共519项：当前三课候选221pass、4fail、294not_run，整体fail；4个明确失败是三课后主页青铜/宝石差异。Swift第四课、视觉/声学等价和RSI探索机制消融尚待完成。见[第四课证据](evidence/english-fourth-v1/README.md)。Goal保持active。

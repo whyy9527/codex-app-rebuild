@@ -1,0 +1,39 @@
+{
+  "observed_at": "2026-10-10/11 Asia/Shanghai",
+  "failures": [
+    {
+      "action": "click first node",
+      "result": "notification overlay intercepted click",
+      "recovery": "Observed reminder and chose 下次再说; no force click"
+    },
+    {
+      "action": "capture after failed entry",
+      "result": "wrongly reloaded /learn then no sessions response",
+      "recovery": "Add unfinished /lesson precondition; actually verified rejection on /learn"
+    },
+    {
+      "action": "find start link after popup disappeared",
+      "result": "locator.click timeout; link absent",
+      "recovery": "Fresh source observation and reopened popup"
+    },
+    {
+      "action": "wait challenge after clicking 开始 +20 经验",
+      "result": "actual challenge invitation page, not question",
+      "evidence": "reference-fourth-challenge-entry.png"
+    },
+    {
+      "action": "wait challenge after clicking 开始挑战 +20 经验",
+      "result": "actual review introduction, not question",
+      "evidence": "reference-fourth-review-intro.png"
+    },
+    {
+      "action": "replay immediately after capture reload",
+      "result": "replay-01 timeout; actual challenge invitation preserved"
+    },
+    {
+      "action": "question5 listening identity",
+      "result": "replay-02 prompt_not_visible before any answer; transcription is intentionally hidden",
+      "recovery": "Explicit current-question playback exact source identity; replay-03 accepted5-11"
+    }
+  ]
+}

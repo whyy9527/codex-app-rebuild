@@ -120,3 +120,8 @@ Swift默认已切真实en/zh首课15题，保留每题sourceType、逐选项图�
 
 
 素材缺口的进一步根因：旧采集白名单丢弃角色url、idle/correct/incorrectAnimation及name；当前扩展为仅角色上下文保留，范例字段同时保留，下一实际session验证值与页面关联。现有三份公开Lottie命名为Duo，不能当Junior完整角色替代。
+
+
+### 英语第四课：探索模具修复与新结算链
+
+实际完成原版第四课12题，并发现挑战入口、复习说明、难题说明、英语分数、双倍经验奖励及传奇邀请。听力转录不可见造成的身份误判已用当前显式播放回执修正，文字题核对未放宽。保留失败、原版截图和角色idle/correct/incorrect动画来源。v5共519项：当前三课候选221pass、4fail、294not_run，整体fail；4个明确失败是三课后主页青铜/宝石差异。Swift第四课、视觉/声学等价和RSI探索机制消融尚待完成。见[第四课证据](../projects/duolingo-web/evidence/english-fourth-v1/README.md)。Goal保持active。

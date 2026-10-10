@@ -57,7 +57,17 @@ const callback = async page => {
    const visibleChoices=radioTexts.length ? radioTexts.map(t=>t.trim().replace(/^\d\s*|\s*\d$/g,'').trim()) : bankTexts.length ? bankTexts : buttons.filter(t=>t.trim()&&! [labels.check,labels.continue,'跳过','Skip','使用键盘','Use keyboard'].includes(t.trim()));
    const prompts=await challenge.locator('[data-test=hint-token]').evaluateAll(ns=>[...new Set(ns.map(n=>n.parentElement.innerText.trim()).filter(Boolean))]);
    if(!prompts.length && c.type==='select'){const quoted=row.heading.match(/[“「](.+?)[”」]/);if(quoted)prompts.push(quoted[1]);}
-   row.identity=identity(c,{type:row.dom_type,text:await challenge.innerText(),choices:visibleChoices,prompts});
+   const playedAudio=[];
+   if(c.type==='listenTap'){
+    // Observed normal-speaker SVG, independently inspected on the real source.
+    const speaker=challenge.getByRole('button').filter({has:page.locator('svg[viewBox="0 0 94 73"]')});
+    const playbackStart=await page.evaluate(()=>window.__referenceMedia.length);
+    await speaker.click();
+    await page.waitForFunction(start=>window.__referenceMedia.slice(start).some(m=>m.src.startsWith('https://d1vq87e9lcf771.cloudfront.net/')),playbackStart);
+    row.identity_playback=await page.evaluate(start=>window.__referenceMedia.slice(start),playbackStart);
+    playedAudio.push(...new Set(row.identity_playback.map(m=>m.src).filter(Boolean)));
+   }
+   row.identity=identity(c,{type:row.dom_type,text:await challenge.innerText(),choices:visibleChoices,prompts,playedAudio});
    row.dom_fields=await challenge.locator('[data-test]').evaluateAll(ns=>ns.map(n=>({test:n.getAttribute('data-test'),text:n.textContent})));
    if(!row.identity.matches){row.divergence={kind:row.identity.reasons.includes('type_changed')?'type_changed':'same_type_content_changed',next_action:'Read current prompt and complete choice set; do not reuse captured answer. Record new observed branch before resuming.'};throw new Error('Reference UI diverged: '+row.identity.reasons.join(', '));}
    if(['select','assist','dialogue'].includes(c.type)){

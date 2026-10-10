@@ -13,8 +13,10 @@ export function challengeIdentity(expected, actual) {
   // The visible container is broader than a dedicated prompt node. This is
   // evidence of presence, not exact prompt equality; retain that limitation.
   const exactPrompts = actual.prompts ?? [];
-  if (expected.prompt && exactPrompts.length && !exactPrompts.some(p => normalize(p) === normalize(expected.prompt))) reasons.push('prompt_changed');
-  else if (expected.prompt && !exactPrompts.length && !normalize(actual.text).includes(normalize(expected.prompt))) reasons.push('prompt_not_visible');
+  if (expected.type === 'listenTap') {
+    if (!expected.tts || !(actual.playedAudio ?? []).includes(expected.tts)) reasons.push('audio_identity_unverified');
+  } else if (expected.prompt && exactPrompts.length && !exactPrompts.some(p => normalize(p) === normalize(expected.prompt))) reasons.push('prompt_changed');
+  else if (expected.type !== 'listenTap' && expected.prompt && !exactPrompts.length && !normalize(actual.text).includes(normalize(expected.prompt))) reasons.push('prompt_not_visible');
   return {matches: reasons.length === 0, reasons, expected: {type: expected.type, prompt: expected.prompt ?? null, choices},
-    actual, prompt_check: exactPrompts.length ? 'normalized equality with independently read visible hint container' : 'normalized presence in current challenge text; exact prompt identity not yet proven'};
+    actual, prompt_check: expected.type === 'listenTap' ? 'exact source URL from current-question explicit playback; acoustic output not verified' : exactPrompts.length ? 'normalized equality with independently read visible hint container' : 'normalized presence in current challenge text; exact prompt identity not yet proven'};
 }
