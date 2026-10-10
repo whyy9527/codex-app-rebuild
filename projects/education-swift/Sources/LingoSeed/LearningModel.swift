@@ -12,7 +12,7 @@ import LearningCore
     var reportingQuestion = false
     var selectedReportReasons = Set<Int>()
     func rateDifficulty(_ value: String) {
-        guard lesson?.feedback != nil || lesson?.listeningDeclined == true else { return }
+        guard lesson?.feedback != nil || lesson?.listeningDeclined == true || lesson?.speechDeclined == true else { return }
         feedbackDifficulty = feedbackDifficulty == value ? nil : value
     }
     func openQuestionReport() { selectedReportReasons = []; reportingQuestion = true }

@@ -150,3 +150,8 @@ Swift默认已切真实en/zh首课15题，保留每题sourceType、逐选项图�
 ### 第六课实际完成与契约增量
 
 实际续探完成第六课：听力及口语暂缓产生替换，三道挑战不同于API尾部；结算15经验/100%，直接建档后回主页，第二节点3/4、生命2、宝石510。冻结25状态/306新需求，源256pass/50not_run；v11共1058项，用上一批五课实际AX对照434pass/11fail/613not_run。默认仍五课，尚未编译第六课，不能用历史五课观测宣称新整课通过。探索历史42resolved/117pending，完整Goal active。[源轨迹、回执和接续](../projects/duolingo-web/evidence/english-sixth-v1/README.md)。
+
+
+### 第六课原生全程与源采样反例修正
+
+显式v7编入已观察双暂缓轨迹，默认仍v6五课，正常分支未采齐。17项核心通过；默认共享输入标签/区域、口语暂缓动作、正确连对计数、第二节点进度和30经验任务已修。独立六课从空进度连续273状态，无walk_error、最终生命2。源序列化数字和动画父文本误采样在新v12修订，v11及失败保留；1061项当前662pass/42fail/357not_run。第六课25对像素仍全部不同，声学与真实探索策略消融未完成。完整Goal active。[源码、失败、资源及复跑](../projects/duolingo-web/evidence/english-sixth-native-v1/README.md)。

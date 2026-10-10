@@ -146,3 +146,8 @@ Question可选listeningDecline仅配置已观察路径。Lesson保存独立未�
 Question.feedbackReportReasons保存实际题型原因；LearningModel管理互斥可取消评价、弹窗选择及切题/关闭重置，ReferenceFeedbackActions负责源SVG图形、动作和多选弹窗。当前只冻结已观察糖题，不能用固定六项推断所有题型。提交服务、评价服务器效果未知。
 
 源探针采集可见button/input/label的实际pressed/checked/enabled及布局；原生观察器通过AX实际点击并读取选中/禁用状态，独立生成共享契约观测。父容器必须明确accessibilityElement(children: .contain)，避免其ID覆盖子控件；失败时观察器保存现场AX和截图。卡片像素工具仅在独立测得几何严格相同时比较，不设置通过容差，整页状态背景差异另行报告。[完整范围和回执](../projects/duolingo-web/evidence/english-feedback-actions-v1/README.md)。
+
+
+### 源文案采样修订与第六课原生轨迹
+
+第六课按实际双暂缓轨迹编译为显式v7夹具，正常分支未观察，不切默认。正确连对计数仅随评分更新，暂缓不增加；主页任务来自可选进度快照。源AX序列化引号和动画父节点不等于显示文案，v12修订保留v11及逐项变化，结算数字来自实际PNG人工读取，不能冒充自动AX识别。文字、几何、像素、实际声音及资源传输分别验收；新修订仍保留全部50项视觉/音频未验证。详见[实际执行与模具反例](../projects/duolingo-web/evidence/english-sixth-native-v1/README.md)。

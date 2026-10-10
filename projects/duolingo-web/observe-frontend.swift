@@ -277,7 +277,7 @@ if CommandLine.arguments.contains("--walk-course") {
                     try waitFor("speech-title", value: id)
                     states[id] = observe(); try capture(id + "-before")
                     try press("speech-decline"); try waitFor("speech-closed")
-                    states[id + "-closed"] = observe(); try capture(id + "-closed")
+                    states[id + "-closed"] = observe(); states[id + "-declined"] = observe(); try capture(id + "-closed")
                     try press("speech-continue")
                 }
                 try waitFor("question-title", value: question["prompt"] as? String)
@@ -467,6 +467,7 @@ if CommandLine.arguments.contains("--walk-course") {
             } else { try press("return-path") }
             try waitFor("course-entry")
             states["home-after-lesson-\(lessonIndex + 1)"] = observe()
+            if course["interfaceLanguage"] as? String == "zh" { states["en-zh-l\(lessonIndex + 1)-home"] = observe() }
             try capture("home-after-lesson-\(lessonIndex + 1)-window")
             if lessonIndex == 3 && definition["settlement"] != nil {
                 try press("start-lesson")

@@ -168,6 +168,8 @@ public struct HomeProgressSnapshot: Codable, Equatable, Sendable {
     public let leagueMessage: String?
     public let leagueCountdown: String?
     public let leagueResource: String?
+    public let questTarget: Int?
+    public let questProgress: Int?
 }
 public struct HomePresentation: Codable, Equatable, Sendable {
     public let sectionTitle: String
@@ -251,6 +253,7 @@ public struct Lesson: Equatable, Sendable {
     public private(set) var feedback: Bool?
     public private(set) var hearts: Int
     public private(set) var mistakesMade = 0
+    public private(set) var correctStreak = 0
     public private(set) var review = [Int]()
     public private(set) var reviewing = false
     public private(set) var complete = false
@@ -314,11 +317,11 @@ public struct Lesson: Equatable, Sendable {
             if a == b { matchedPairs.insert(a) }
             else if question.sourceType == "listenMatch" {
                 incorrectMatch = [a, b]
-                hearts = max(0, hearts - 1); mistakesMade += 1
+                hearts = max(0, hearts - 1); mistakesMade += 1; correctStreak = 0
                 // Observed mixed-error source retries this pair in-place and reviews only its typed error at lesson end.
             } else { matchingHint = "Try a different pair." } // Historical text-pair penalty remains unobserved.
             selectedLeft = nil; selectedRight = nil
-            if matchedPairs.count == question.pairs.count { feedback = true }
+            if matchedPairs.count == question.pairs.count { feedback = true; correctStreak += 1 }
         }
     }
     public mutating func submit() {
@@ -334,6 +337,7 @@ public struct Lesson: Equatable, Sendable {
         case .matching: return
         }
         feedback = correct
+        correctStreak = correct ? correctStreak + 1 : 0
         if !correct {
             mistakesMade += 1
             hearts = max(0, hearts - 1)

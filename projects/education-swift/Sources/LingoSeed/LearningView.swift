@@ -152,6 +152,12 @@ struct LearningView: View {
             HStack(spacing: 24) {
                 if !lesson.complete { Button { model.confirmingExit = true } label: { Image(systemName: "xmark").font(.title2.bold()).foregroundStyle(.gray) }.buttonStyle(.plain).accessibilityIdentifier("quit") }
                 ProgressView(value: lesson.complete ? 1 : lesson.reviewing ? 0.9 : Double(lesson.position) / Double(lesson.definition.questions.count)).tint(accent).scaleEffect(y: 2).accessibilityIdentifier("lesson-progress").accessibilityValue(lesson.complete ? "complete" : lesson.reviewing ? "review" : String(lesson.position))
+                    .overlay(alignment: .top) {
+                        if chinese && lesson.feedback == true && lesson.correctStreak >= 5 {
+                            Text("连对 \(lesson.correctStreak) 题").font(ReferenceStyle.font(17, bold: true)).foregroundStyle(.orange).offset(y: -24)
+                                .accessibilityIdentifier("correct-streak")
+                        }
+                    }
                 Text("♥ \(lesson.hearts)").font(.title2.bold()).foregroundStyle(.red).accessibilityIdentifier("hearts").accessibilityValue(String(lesson.hearts))
                 Button { model.toggleMute() } label: { Image(systemName: model.muted ? "speaker.slash.fill" : "speaker.wave.2.fill") }.buttonStyle(.plain).accessibilityLabel(model.muted ? "Sound off" : "Sound on").accessibilityIdentifier("sound-toggle").accessibilityValue(model.muted ? "muted" : "on")
             }.padding(.horizontal, 60).padding(.vertical, 35)
@@ -187,6 +193,7 @@ struct LearningView: View {
                         VStack(alignment: .leading, spacing: 8) {
                             Text(speech.closedTitle).font(ReferenceStyle.font(22, bold: true)).accessibilityIdentifier("speech-closed")
                             Text(speech.closedBody).font(ReferenceStyle.font(18))
+                            if chinese { ReferenceFeedbackActions(model: model, color: Color(red: 205/255, green: 121/255, blue: 0)) }
                         }
                         Spacer()
                         Button("继续") { model.advance() }.buttonStyle(ReferenceButton()).accessibilityIdentifier("speech-continue")
@@ -292,12 +299,13 @@ struct LearningView: View {
         HStack(spacing: 6) {
             if let prefix = lesson.question.completionPrefix, !prefix.isEmpty { Text(prefix).font(ReferenceStyle.font(20)).accessibilityIdentifier("completion-prefix") }
             TextField("", text: Binding(get: { model.lesson?.enteredText ?? "" }, set: { model.enterText($0) }))
-                .font(ReferenceStyle.font(20)).textFieldStyle(.plain).frame(width: 120)
+                .font(ReferenceStyle.font(chinese ? 17 : 20)).textFieldStyle(.plain).frame(maxWidth: lesson.question.completionPrefix == nil ? .infinity : 120)
                 .padding(.vertical, 8).overlay(alignment: .bottom) { Rectangle().fill(Color.gray.opacity(0.4)).frame(height: 2) }
-                .disabled(lesson.feedback != nil).accessibilityIdentifier("answer-input").accessibilityLabel("填写所缺单词")
+                .disabled(lesson.feedback != nil).accessibilityIdentifier("answer-input").accessibilityLabel(chinese ? (lesson.question.completionPrefix != nil ? (lesson.question.completionPrefix ?? "") + (lesson.question.completionSuffix ?? "") : "使用英语键入") : "填写所缺单词")
             if let suffix = lesson.question.completionSuffix { Text(suffix).font(ReferenceStyle.font(20)).accessibilityIdentifier("completion-suffix") }
-        }.frame(maxWidth: .infinity, alignment: .leading).padding(20)
-            .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color.gray.opacity(0.25), lineWidth: 2))
+        }.frame(maxWidth: .infinity, minHeight: chinese ? 146 : nil, maxHeight: chinese ? 146 : nil, alignment: .topLeading).padding(chinese ? 12 : 20)
+            .background(chinese ? Color(white: 247/255) : .clear, in: RoundedRectangle(cornerRadius: chinese ? 8 : 12))
+            .overlay(RoundedRectangle(cornerRadius: chinese ? 8 : 12).stroke(Color.gray.opacity(0.25), lineWidth: 2))
     }
     @ViewBuilder private func choices(_ lesson: Lesson) -> some View {
         if lesson.question.sourceType == "dialogue" {

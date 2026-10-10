@@ -411,6 +411,38 @@ func actualListeningDeclinePrefix() throws {
     try check(lesson.feedback == true && lesson.hearts == 2 && lesson.review.isEmpty, "Observed milk acceptance changed")
     print("PASS source listening decline locks pairs without grading, preserves hearts, enters inserted translation then original fill; later adaptation/timer unverified")
 }
+func actualEnglishSixthDoubleDecline() throws {
+    let source = try course(fixture: "fixture-reference-en-zh-v7.json")
+    var lesson = Lesson(course: source, lessonIndex: 5, hearts: 2)
+    var graded = 0, listening = 0, speech = 0, introductions = 0
+    while !lesson.complete {
+        if lesson.interlude != nil { introductions += 1; lesson.advance(); continue }
+        if lesson.deferredSpeech != nil {
+            speech += 1; lesson.declineSpeech(); lesson.advance(); continue
+        }
+        let q = lesson.question
+        if q.listeningDecline != nil {
+            listening += 1; lesson.declineListening()
+            try check(lesson.feedback == nil && lesson.hearts == 2 && lesson.review.isEmpty, "Sixth listening decline was graded")
+            lesson.advance(); continue
+        }
+        switch q.kind {
+        case .wordTiles: for id in q.answerWords { lesson.addWord(id) }
+        case .textEntry: lesson.enterText(q.answer)
+        default: throw CheckFailure.failed("Unexpected sixth graded task")
+        }
+        lesson.submit()
+        try check(lesson.feedback == true, "Actual sixth accepted answer rejected")
+        graded += 1; try check(lesson.correctStreak == graded, "Ungraded sixth stage changed correct streak"); lesson.advance()
+    }
+    try check(graded == 15 && listening == 1 && speech == 1 && introductions == 1 && lesson.hearts == 2 && lesson.mistakesMade == 0 && lesson.review.isEmpty, "Sixth observed trajectory diverged")
+    try check(lesson.definition.settlement?.map(\.kind) == ["result", "profile"], "Sixth incorrectly inherited fifth settlement")
+    try check(source.pathNodes?[1].lessonIDs == ["lesson-5", "lesson-6"], "Sixth second-node placement lost")
+    let roundTrip = try JSONDecoder().decode(Course.self, from: JSONEncoder().encode(source))
+    try check(roundTrip == source, "Sixth metadata lost during round trip")
+    print("PASS actual sixth double-decline: 15 graded + ungraded listening/speech, challenge entry and independent settlement; normal branch still unknown")
+}
+
 do {
     try mistakeReview()
     try persistence()
@@ -428,7 +460,8 @@ do {
     try actualEnglishTypedReview()
     try actualEnglishFifthTrajectory()
     try actualListeningDeclinePrefix()
-    print("16 business checks passed; core layer only")
+    try actualEnglishSixthDoubleDecline()
+    print("17 business checks passed; core layer only")
 } catch {
     FileHandle.standardError.write(Data(("FAIL " + String(describing: error) + "\n").utf8))
     exit(1)

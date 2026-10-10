@@ -100,7 +100,7 @@ assert '你莫不是特工？ 本单元中，你完成了 4 项听力挑战' in 
 lesson['settlement'][0].update(title='你莫不是特工？', body='本单元中，你完成了 4 项听力挑战', accuracyLabel='棒棒哒！')
 course = fixture['data']['candidate_course']; course['lessons'].append(lesson)
 course['pathNodes'][1]['lessonIDs'] = ['lesson-5']; course['pathNodes'][1]['lessonCount'] = 4
-course['home']['progressSnapshots'].append(dict(course['home']['progressSnapshots'][-1], completedLessons=5, gems=510, leagueCountdown='16 小时'))
+course['home']['progressSnapshots'].append(dict(course['home']['progressSnapshots'][-1], completedLessons=5, gems=510, questTarget=30, questProgress=30, leagueCountdown='16 小时'))
 fixture['provenance']['source'] += '; fifth actual 15 graded questions plus one ungraded deferred speech stage; typed review and four settlement pages'
 fixture['provenance']['evidence'] += [str((EV/n).relative_to(BASE.parent.parent)) for n in sorted(set(['trajectory.json', 'session.json']+[s['evidence'] for s in trajectory['observed_states']]+['complete.json', 'reference-lesson5-complete-settled.png', 'after-complete-settled.json', 'five-gems.json', 'home-after-five.json']))]
 fixture['provenance']['unknown'] = 'Recording/recognition branch, adaptation/reward/accuracy/timer formulas, remaining second-node lessons, secondary actions, original graphics/animation and acoustic equality remain incomplete. Fifth path is the captured deferred-speech trajectory, not all possible source paths.'

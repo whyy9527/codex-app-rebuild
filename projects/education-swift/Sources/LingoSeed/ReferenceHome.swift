@@ -126,8 +126,9 @@ struct ReferenceHome: View {
         }.frame(maxWidth: 528).padding(.bottom, 40)
     }
     private func englishPathNode(_ index: Int) -> some View {
-        let total = model.course.home?.firstNodeLessonCount ?? 4
-        let nodeDone = model.course.pathNodes?.first?.lessonIDs.filter { model.progress.completedLessons[model.course.id, default: []].contains($0) }.count ?? completed
+        let node = model.course.pathNodes.flatMap { $0.indices.contains(index) ? $0[index] : nil }
+        let total = node?.lessonCount ?? model.course.home?.firstNodeLessonCount ?? 4
+        let nodeDone = node?.lessonIDs.filter { model.progress.completedLessons[model.course.id, default: []].contains($0) }.count ?? completed
         let next = model.course.lessons.indices.first { !model.progress.isCompleted(model.course, index: $0) }
         let activeIndex = firstNodeCompleted ? 1 : 0
         let active = index == activeIndex
@@ -135,14 +136,14 @@ struct ReferenceHome: View {
         return ZStack {
             if active {
                 Circle().stroke(ReferenceStyle.border, lineWidth: 7).padding(3.5)
-                if index == 0 && nodeDone > 0 { Circle().trim(from: 0, to: CGFloat(nodeDone) / CGFloat(total)).stroke(green, style: StrokeStyle(lineWidth: 7, lineCap: .round)).rotationEffect(.degrees(-90)).padding(3.5) }
+                if nodeDone > 0 { Circle().trim(from: 0, to: CGFloat(nodeDone) / CGFloat(total)).stroke(green, style: StrokeStyle(lineWidth: 7, lineCap: .round)).rotationEffect(.degrees(-90)).padding(3.5) }
             }
             Button { if active || finished { lessonPopoverNode = lessonPopoverNode == index ? nil : index } } label: {
                 ReferenceStyle.image(finished ? model.course.home?.completedNodeResource ?? "star-active" : index == 4 ? "review-locked" : active ? "star-active" : "star-locked").resizable().scaledToFit().frame(width: 42, height: 34)
                     .frame(width: 70, height: 56).background(active || finished ? green : ReferenceStyle.border, in: Ellipse())
                     .compositingGroup().shadow(color: active || finished ? Color(red: 70/255, green: 163/255, blue: 2/255) : Color(white: 183/255), radius: 0, y: 8)
                     .frame(height: 65, alignment: .top).contentShape(Rectangle())
-            }.buttonStyle(.plain).accessibilityLabel(active ? "Lesson \(index == 0 ? nodeDone + 1 : 1) of \(total)" : index == 4 ? "复习该部分" : index == 3 ? "Practice" : "Lesson")
+            }.buttonStyle(.plain).accessibilityLabel(active ? "Lesson \(nodeDone + 1) of \(total)" : index == 4 ? "复习该部分" : index == 3 ? "Practice" : "Lesson")
                 .accessibilityIdentifier(index == 0 ? "start-lesson" : "start-lesson-\(index)")
             if active && lessonPopoverNode != index {
                 Text("开始").font(ReferenceStyle.font(17, bold: true)).foregroundStyle(green).frame(width: 78, height: 42)
@@ -157,7 +158,7 @@ struct ReferenceHome: View {
                         Text("练习 +5 经验").font(ReferenceStyle.font(17, bold: true)).padding(.top, 14)
                         Text("晋升传奇 +40 经验").font(ReferenceStyle.font(17, bold: true)).padding(.top, 14)
                     } else {
-                        Text("第 \(index == 0 ? nodeDone + 1 : 1)/\(total) 单元").font(ReferenceStyle.font(17))
+                        Text("第 \(nodeDone + 1)/\(total) 单元").font(ReferenceStyle.font(17))
                         Button(next.flatMap { model.course.lessons[$0].entry } != nil ? "开始 +20 经验" : "开始 +10 经验") { if let next { lessonPopoverNode = nil; model.begin(next) } }
                             .buttonStyle(SeedButtonStyle(fill: .white, foreground: green)).frame(maxWidth: .infinity).padding(.top, 14)
                             .disabled(next == nil).accessibilityIdentifier("start-lesson-confirm")
@@ -223,11 +224,11 @@ struct ReferenceHome: View {
                 HStack(spacing: 20) {
                     ReferenceStyle.image("quest-xp").resizable().scaledToFit().frame(width: 60, height: 60)
                     VStack(alignment: .leading, spacing: 16) {
-                        Text(copy("Earn 10 XP", "获取 10 经验")).font(ReferenceStyle.font(17, bold: true))
+                        Text(copy("Earn \(homeSnapshot?.questTarget ?? 10) XP", "获取 \(homeSnapshot?.questTarget ?? 10) 经验")).font(ReferenceStyle.font(17, bold: true))
                         ZStack {
                             Capsule().fill(Color(white: 229/255)).frame(height: 18)
                             if completed > 0 { Capsule().fill(Color(red: 1, green: 200/255, blue: 0)).frame(height: 18) }
-                            Text("\(min(10, completed * 10)) / 10").font(ReferenceStyle.font(14, bold: true)).foregroundStyle(Color(red: 204/255, green: 144/255, blue: 0))
+                            Text("\(homeSnapshot?.questProgress ?? min(10, completed * 10)) / \(homeSnapshot?.questTarget ?? 10)").font(ReferenceStyle.font(14, bold: true)).foregroundStyle(Color(red: 204/255, green: 144/255, blue: 0))
                         }.overlay(alignment: .trailing) { ReferenceStyle.image("quest-chest").resizable().scaledToFit().frame(width: 33, height: 35).offset(x: 0) }
                     }
                 }.padding(.top, 10)
