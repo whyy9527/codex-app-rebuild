@@ -92,22 +92,33 @@ public struct LessonDefinition: Codable, Equatable, Sendable, Identifiable {
 public struct CoursePathNode: Codable, Equatable, Sendable {
     public let kind: String
     public let lessonIDs: [String]
+    public let lessonCount: Int?
+}
+public struct HomePresentation: Codable, Equatable, Sendable {
+    public let sectionTitle: String
+    public let firstNodeLessonCount: Int
+    public let pathKinds: [String]
+    public let nextSectionTitle: String
+    public let flagResource: String
+    public let pronunciationResource: String
 }
 public struct Course: Codable, Equatable, Sendable, Identifiable {
     public let id: String
     public let title: String
     public let lessons: [LessonDefinition]
     public let speechLanguage: String
+    public let home: HomePresentation?
     public let interfaceLanguage: String?
     public let pathNodes: [CoursePathNode]?
     public let usesLegacyQuestions: Bool
     // Compatibility for the original single-lesson curriculum.
     public var questions: [Question] { lessons[0].questions }
-    enum CodingKeys: String, CodingKey { case id, title, lessons, questions, speechLanguage, pathNodes, interfaceLanguage }
+    enum CodingKeys: String, CodingKey { case id, title, lessons, questions, speechLanguage, pathNodes, interfaceLanguage, home }
     public init(from decoder: Decoder) throws {
         let c = try decoder.container(keyedBy: CodingKeys.self)
         id = try c.decode(String.self, forKey: .id)
         title = try c.decode(String.self, forKey: .title)
+        home = try c.decodeIfPresent(HomePresentation.self, forKey: .home)
         interfaceLanguage = try c.decodeIfPresent(String.self, forKey: .interfaceLanguage)
         speechLanguage = try c.decodeIfPresent(String.self, forKey: .speechLanguage) ?? "en-US"
         pathNodes = try c.decodeIfPresent([CoursePathNode].self, forKey: .pathNodes)
@@ -125,6 +136,7 @@ public struct Course: Codable, Equatable, Sendable, Identifiable {
         try c.encode(id, forKey: .id); try c.encode(title, forKey: .title)
         try c.encode(speechLanguage, forKey: .speechLanguage)
         try c.encodeIfPresent(interfaceLanguage, forKey: .interfaceLanguage)
+        try c.encodeIfPresent(home, forKey: .home)
         try c.encodeIfPresent(pathNodes, forKey: .pathNodes)
         if usesLegacyQuestions { try c.encode(questions, forKey: .questions) }
         else { try c.encode(lessons, forKey: .lessons) }

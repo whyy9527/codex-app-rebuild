@@ -4,6 +4,11 @@ import LearningCore
 
 @MainActor final class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ notification: Notification) {
+        if let index = CommandLine.arguments.firstIndex(of: "--reference-color-scheme"), index + 1 < CommandLine.arguments.count {
+            let scheme = CommandLine.arguments[index + 1]
+            if scheme == "light" { NSApp.appearance = NSAppearance(named: .aqua) }
+            else if scheme == "dark" { NSApp.appearance = NSAppearance(named: .darkAqua) }
+        }
         NSApp.setActivationPolicy(.regular)
         NSApp.activate(ignoringOtherApps: true)
     }

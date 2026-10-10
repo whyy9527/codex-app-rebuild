@@ -1,0 +1,32 @@
+{
+  "kind": "same-viewport-pixel-diagnostic",
+  "native_trajectory": "home after first lesson, hearts4",
+  "viewport": [
+    1200,
+    732
+  ],
+  "normalization": "Crop native titlebar using measured content rect, downsample2x with Lanczos; reference pixels unchanged",
+  "rows": [
+    {
+      "question": null,
+      "stage": "home",
+      "source": "projects/duolingo-web/evidence/english-home-v2/reference-english-home-v2.png",
+      "native": "home-window.png",
+      "source_sha256": "6e6ac20f1480556280466c79476e8da7156e0af0590c90c51813fe72ce7e3163",
+      "native_sha256": "821add98246f057d8b8177798c98020dba902dd1bd62a15f59224fec3d80d93f",
+      "mean_absolute_rgb_difference": [
+        10.823128415300546,
+        4.374541211293261,
+        14.86534266848816
+      ],
+      "status": "different"
+    }
+  ],
+  "candidate_acceptance": "not_proven",
+  "limitations": [
+    "This is an actual pixel diagnostic, not a substitute for frontend acceptance",
+    "Animation frames and temporal sound not aligned",
+    "Font antialiasing differs across renderers; reported without tolerance or masking",
+    "Current native lacks hearts tutorial, interludes and full completion chain"
+  ]
+}

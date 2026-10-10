@@ -92,3 +92,8 @@ Guidebook从SwiftPM中的实测结构化内容读取，使用原版语音与发�
 英语首课由`compile-english-course.py`将API公开内容、UI顺序/反馈和截图转录的对话问句编译为Swift夹具。`sourceType`保留听力/对话等呈现语义，业务kind仍复用choice/word_tiles/matching；`Choice.imageResource`、`slowAudioResource`、`dialogueAvatars`及`Course.interfaceLanguage`明确资源和界面语言。音频资源依具体题目/选项关联，未知英语选项不新增合成音。`fetch-english-resources.py`下载公开原件，在隔离浏览器上下文转换SVG并登记哈希。默认课程为真实en/zh，默认进度按夹具名隔离。英语主页及完成状态链仍待连接，历史Spanish验收入口继续保留。
 
 `observe-frontend.swift --english-first-wrong`复现源参考的首题误选sugar及最后重练，采集逐题前后AX与截图。`compare-english-captures.py`按实际窗口内容矩形去标题栏/归一化尺度，输出无遮罩、无容差的像素差异诊断；不是产品通过判据。英语共享前端契约仍将视觉/声音/交互未验证项标pending，不能凭新增布局或像素统计改为pass。
+
+
+英语主页配置从实际主页证据编译为`Course.home`与节点lessonCount，区分首节点总4课和当前已观察的lessonIDs，未观察课不编造ID/内容。Swift开始按钮先进入实际节点弹层；未接入第2课是已记录失败，不用首课重放冒充后续内容。原生观察器支持共同进度夹具、弹层状态/按钮enabled采样及显式参考color-scheme环境；普通用户System Default保持原义。源SVG下载处理HTTP gzip后再渲染，保留解码后原件与PNG哈希。
+
+源第二课出现初始API末3题与实际挑战翻译不一致。参考回放现在先核对实际DOM题型，发现分歧时保留证据并停止静态动作；仍需处理同类型内容变化和运行中需求更新，不能认为一次type检查已完成探索模型。orderTapComplete通过真实UI填空顺序被确认，原生对应能力尚待接入。

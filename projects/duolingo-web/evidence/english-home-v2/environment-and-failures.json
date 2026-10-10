@@ -1,0 +1,21 @@
+{
+  "reference": {
+    "prefers_color_scheme_dark": false,
+    "body_background": "rgb(255, 255, 255)",
+    "viewport": [
+      1200,
+      732
+    ]
+  },
+  "first_failure": {
+    "svg_download": "HTTP gzip body was not decompressed; both home SVG assertions failed before write",
+    "native_theme": "Inherited macOS dark; did not match reference light",
+    "native_accessibility": "Chinese navigation visible but English AX labels; unselected hit area smaller than link"
+  },
+  "corrections": [
+    "Decode HTTP gzip before validating/storing SVG",
+    "Explicit reference-color-scheme light for same-environment capture; preserves normal user default",
+    "Match Chinese AX labels and full-row hit shape"
+  ],
+  "remaining_failure": "Start Lesson 2 disabled until actual second lesson compiled; source is enabled. Captured as a failing assertion, not a passing placeholder."
+}

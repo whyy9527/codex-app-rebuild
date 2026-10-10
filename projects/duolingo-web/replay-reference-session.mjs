@@ -33,11 +33,13 @@ const callback = async page => {
    await page.getByRole('heading',{level:1}).waitFor();
    row.before=await page.locator('body').ariaSnapshot();
    row.heading=await page.getByRole('heading',{level:1}).textContent();
+   row.dom_type=await page.locator('[data-test~="challenge"]').getAttribute('data-test');
    row.images=await page.locator('[data-test~="challenge"] img').evaluateAll(ns=>ns.map(n=>({alt:n.alt,src:n.currentSrc||n.src})));
    row.media_before=await page.evaluate(()=>window.__referenceMedia.slice());
    row.screenshot_before=SCREENSHOT_PREFIX+'-question-'+record.index+'-before.png';
    await page.screenshot({path:row.screenshot_before});
    const mediaStart=await page.evaluate(()=>window.__referenceMedia.length);
+   if(!row.dom_type.split(/\s+/).includes('challenge-'+c.type))throw new Error('Reference UI type diverged from captured session: expected '+c.type+' observed '+row.dom_type);
    if(['select','assist','dialogue'].includes(c.type)){
     const choice=c.choices[c.correctIndex],text=typeof choice==='string'?choice:choice.phrase;
     await exactVisible(page.getByRole('radio'),text);row.actions.push({select:text});
@@ -47,7 +49,14 @@ const callback = async page => {
     for(const index of c.correctIndices){const choice=c.choices[index],text=typeof choice==='string'?choice:choice.text;
      await bank.getByRole('button',{name:text,exact:true}).click();row.actions.push({word:text});}
     await page.getByRole('button',{name:labels.check,exact:true}).click();
+   }else if(c.type==='orderTapComplete'){
+    const blanks=c.displayTokens.filter(token=>token.isBlank).map(token=>token.text);
+    row.word_bank=[];
+    for(const choice of c.choices){const button=page.getByRole('button',{name:choice.text,exact:true});await button.waitFor();row.word_bank.push(await button.textContent());}
+    for(const text of blanks){await page.getByRole('button',{name:text,exact:true}).click();row.actions.push({word:text});}
+    await page.getByRole('button',{name:labels.check,exact:true}).click();
    }else if(c.type==='match'){
+
     row.button_order=await page.getByRole('button').allTextContents();
     for(const pair of c.pairs){for(const text of [pair.fromToken,pair.learningToken]){await exactVisible(page.getByRole('button'),text);row.actions.push({match:text});}}
    }else throw new Error('Uncovered type: '+c.type);

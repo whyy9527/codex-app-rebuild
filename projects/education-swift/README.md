@@ -106,3 +106,8 @@ projects/education-swift/.build/debug/LingoSeed --fixture projects/duolingo-web/
 ```
 
 7项核心检查通过，原生UI全对/首题答错两条轨迹均执行到结算；标题15通过，59待覆盖；28对源/原生归一化截图均有差异。普通默认启动也单独验证英语标题。原生仍缺原版红心教学、鼓励和完整完成链；英语主页及Guidebook尚未迁移，当前Guidebook还是历史西语。不可称1:1或声学验收完成。[证据与复跑](../duolingo-web/evidence/english-native-v1/README.md)。
+
+
+### 英语主页v2
+
+主页补入中文侧栏/卡片、发音与英语旗帜源素材、五节点顺序、首节点四课进度环及开始弹层。按首课完成且红心4的共同夹具，v2.1主页/弹层26项通过、1项失败、75项未执行；第2课开始仍失败，原版实际第2课已观察但尚未编译。首轮资源gzip、色彩环境、AX标签及点击范围失败均保留。使用`--reference-color-scheme light`匹配本次原版浏览器环境，普通用户默认外观保持System Default。源资源现36个（21音频、15SVG/PNG）。见[主页实测](../duolingo-web/evidence/english-home-v2/README.md)和[第二课实际尾部变化](../duolingo-web/evidence/english-second-v1/README.md)。

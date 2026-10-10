@@ -19,6 +19,9 @@ func launchChild() throws -> Process {
     let process = Process()
     process.executableURL = root.appendingPathComponent("projects/education-swift/.build/debug/LingoSeed")
     process.arguments = ["--fixture", root.appendingPathComponent(fixture).path, "--progress", progress.path, "--render-metadata", output.appendingPathComponent("window.json").path]
+    if let index = CommandLine.arguments.firstIndex(of: "--reference-color-scheme"), index + 1 < CommandLine.arguments.count {
+        process.arguments! += ["--reference-color-scheme", CommandLine.arguments[index + 1]]
+    }
     process.standardOutput = FileHandle.nullDevice
     let log = try FileHandle(forWritingTo: childLog); try log.seekToEnd()
     process.standardError = log
@@ -119,6 +122,15 @@ func movePointer(to id: String) -> Bool {
 }
 var states = ["home": observe()]
 try capture("home-window")
+if CommandLine.arguments.contains("--observe-home-popover") {
+    try press("start-lesson"); try waitFor("start-lesson-confirm")
+    var popover = observe()
+    let start = current().first { (attr($0, kAXIdentifierAttribute) as? String) == "start-lesson-confirm" }
+    popover["interactions"] = ["start_enabled": start.flatMap { attr($0, kAXEnabledAttribute) as? Bool } ?? false]
+    states["en-zh-home-popover"] = popover; try capture("home-popover-window")
+    try press("start-lesson")
+}
+
 // A hover must include an outside-to-inside transition, including when the cursor
 // starts over the same row left by a previous owned probe.
 _ = movePointer(to: "course-entry")
@@ -210,6 +222,7 @@ if CommandLine.arguments.contains("--walk-course") {
             let path = course["pathNodes"] as? [[String: Any]]
             let nodeIndex = path?.firstIndex { ($0["lessonIDs"] as? [String])?.contains(definition["id"] as! String) == true } ?? lessonIndex
             try press(nodeIndex == 0 ? "start-lesson" : "start-lesson-\(nodeIndex)")
+            if course["interfaceLanguage"] as? String == "zh" { try press("start-lesson-confirm") }
             let questions = definition["questions"] as! [[String: Any]]
             let wrongFirst = CommandLine.arguments.contains("--english-first-wrong") && course["interfaceLanguage"] as? String == "zh" && lessonIndex == 0
             for question in questions {

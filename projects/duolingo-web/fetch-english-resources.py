@@ -2,6 +2,7 @@
 import argparse
 import concurrent.futures
 import hashlib
+import gzip
 import json
 from pathlib import Path
 import subprocess
@@ -16,7 +17,13 @@ rows = json.loads((base/'reference-assets-en-zh-v1.json').read_text())
 def fetch(row):
     path = out/row['source_file']
     if not path.exists():
-        with urlopen(row['url'], timeout=30) as response: data = response.read()
+        with urlopen(row['url'], timeout=30) as response:
+            data = response.read()
+            encoding = response.headers.get('Content-Encoding', '').lower()
+            if encoding == 'gzip' or data.startswith(b'\x1f\x8b'):
+                row['wire_sha256'] = hashlib.sha256(data).hexdigest()
+                row['content_encoding'] = 'gzip'
+                data = gzip.decompress(data)
         if row['kind'] != 'speech': assert b'<svg' in data[:2000]
         path.write_bytes(data)
     row['sha256'] = hashlib.sha256(path.read_bytes()).hexdigest()

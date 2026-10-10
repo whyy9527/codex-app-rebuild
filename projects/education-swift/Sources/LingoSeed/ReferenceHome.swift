@@ -5,6 +5,12 @@ import LearningCore
 /// continue to come from the model; this view does not supply answer outcomes.
 struct ReferenceHome: View {
     @Bindable var model: LearningModel
+    @State private var lessonPopover = false
+    private var chinese: Bool { model.course.interfaceLanguage == "zh" }
+    private func copy(_ en: String, _ zh: String) -> String { chinese ? zh : en }
+    private func navigationLabel(_ item: String) -> String {
+        chinese ? ["Learn":"学习", "Pronunciation":"发音", "Leaderboards":"排行榜", "Quests":"特别任务", "Shop":"宝石小店", "Profile":"个人档案", "More":"更多"][item, default:item] : item.uppercased()
+    }
     @State private var moreOpen = false
     @State private var moreHovered = false
     @State private var menuHovered = false
@@ -39,15 +45,15 @@ struct ReferenceHome: View {
         VStack(alignment: .leading, spacing: 8) {
             ReferenceStyle.image("logo").resizable().scaledToFit().frame(width: 128, height: 30)
                 .padding(.leading, 16).padding(.top, 32).padding(.bottom, 22)
-            ForEach(["Learn", "Leaderboards", "Quests", "Shop", "Profile", "More"], id: \.self) { item in
+            ForEach(chinese ? ["Learn", "Pronunciation", "Leaderboards", "Quests", "Shop", "Profile", "More"] : ["Learn", "Leaderboards", "Quests", "Shop", "Profile", "More"], id: \.self) { item in
                 Button {
                     if item == "More" { moreOpen.toggle() }
                     else { model.destination = item; moreOpen = false }
                 } label: {
                     HStack(spacing: 20) {
-                        ReferenceStyle.image("nav-" + item.lowercased()).resizable().scaledToFit().frame(width: 32, height: 32)
+                        ReferenceStyle.image(item == "Pronunciation" ? (model.course.home?.pronunciationResource ?? "nav-test") : "nav-" + item.lowercased()).resizable().scaledToFit().frame(width: 32, height: 32)
                         ViewThatFits(in: .horizontal) {
-                            Text(item.uppercased()).font(ReferenceStyle.font(15, bold: true)).tracking(0.7).fixedSize()
+                            Text(navigationLabel(item)).font(ReferenceStyle.font(15, bold: true)).tracking(0.7).fixedSize()
                             Color.clear.frame(width: 0, height: 1)
                         }
                         Spacer(minLength: 0)
@@ -55,7 +61,8 @@ struct ReferenceHome: View {
                         .foregroundStyle(item == "Learn" && ["Learn", "Guidebook"].contains(model.destination) ? blue : ReferenceStyle.secondaryInk)
                         .background(item == "Learn" && ["Learn", "Guidebook"].contains(model.destination) ? Color(red: 221/255, green: 244/255, blue: 1) : .clear, in: RoundedRectangle(cornerRadius: 12))
                         .overlay(RoundedRectangle(cornerRadius: 12).strokeBorder(item == "Learn" && ["Learn", "Guidebook"].contains(model.destination) ? Color(red: 132/255, green: 216/255, blue: 1) : .clear, lineWidth: 2))
-                }.buttonStyle(.plain).accessibilityLabel(item).accessibilityIdentifier("nav-" + item.lowercased())
+                        .contentShape(Rectangle())
+                }.buttonStyle(.plain).accessibilityLabel(chinese ? navigationLabel(item) : item).accessibilityIdentifier("nav-" + item.lowercased())
                 .onHover { inside in
                     if item == "More" { moreHovered = inside; if inside { moreOpen = true } else { dismissMenuLater() } }
                 }
@@ -82,12 +89,12 @@ struct ReferenceHome: View {
         VStack(spacing: 0) {
             HStack(spacing: 12) {
                 VStack(alignment: .leading, spacing: 8) {
-                    HStack(spacing: 8) { ReferenceStyle.image("back").resizable().frame(width: 16, height: 16); Text("SECTION 1, UNIT 1").font(ReferenceStyle.font(16, bold: true)) }.opacity(0.8)
+                    HStack(spacing: 8) { ReferenceStyle.image("back").resizable().frame(width: 16, height: 16); Text(model.course.home?.sectionTitle ?? "SECTION 1, UNIT 1").font(ReferenceStyle.font(16, bold: true)) }.opacity(0.8)
                     Text(model.course.title).font(ReferenceStyle.font(22, bold: true)).accessibilityIdentifier("course-entry")
                 }
                 Spacer(minLength: 0)
                 Button { model.destination = "Guidebook" } label: {
-                    HStack(spacing: 10) { ReferenceStyle.image("guidebook").resizable().frame(width: 24, height: 24); Text("GUIDEBOOK").font(ReferenceStyle.font(15, bold: true)).tracking(1) }
+                    HStack(spacing: 10) { ReferenceStyle.image("guidebook").resizable().frame(width: 24, height: 24); Text(copy("GUIDEBOOK", "指南")).font(ReferenceStyle.font(15, bold: true)).tracking(1) }
                         .padding(.horizontal, 14).frame(height: 48)
                         .overlay(RoundedRectangle(cornerRadius: 15).stroke(Color(red: 70/255, green: 163/255, blue: 2/255), lineWidth: 2))
                         .shadow(color: Color(red: 70/255, green: 163/255, blue: 2/255), radius: 0, y: 2)
@@ -97,19 +104,55 @@ struct ReferenceHome: View {
                 let center = geometry.size.width / 2
                 ReferenceStyle.image("duo-observed-frame").resizable().scaledToFit()
                     .frame(width: 243, height: 261).position(x: center + 103, y: 292)
-                ForEach(0..<6, id: \.self) { index in
+                ForEach(0..<(chinese ? 5 : 6), id: \.self) { index in
                     let xs: [CGFloat] = [0, -45, -70, -45, 0, 0]
-                    let ys: [CGFloat] = [94, 203, 288, 392, 476, 566]
-                    if index == 3 {
+                    let ys: [CGFloat] = chinese ? [113.5, 204.3515625, 307.2265625, 400.1015625, 476.953125] : [94, 203, 288, 392, 476, 566]
+                    if index == (chinese ? 2 : 3) {
                         ReferenceStyle.image("chest-locked").resizable().scaledToFit().frame(width: 80, height: 90).position(x: center + xs[index], y: ys[index])
                     } else {
-                        pathNode(index).position(x: center + xs[index], y: ys[index])
+                        if chinese { englishPathNode(index).position(x: center + xs[index], y: ys[index]) }
+                        else { pathNode(index).position(x: center + xs[index], y: ys[index]) }
                     }
                 }
-            }.frame(height: 640)
+            }.frame(height: chinese ? 570 : 640)
+            if let home = model.course.home {
+                HStack(spacing: 16) { Rectangle().fill(ReferenceStyle.border).frame(height: 2); Text(home.nextSectionTitle).font(ReferenceStyle.font(20, bold: true)).fixedSize(); Rectangle().fill(ReferenceStyle.border).frame(height: 2) }.foregroundStyle(ReferenceStyle.disclosureInk)
+            }
             Text("\(completed) of \(model.course.lessons.count) lessons complete")
                 .font(ReferenceStyle.font(13)).foregroundStyle(.secondary).accessibilityIdentifier("completed-count").accessibilityValue(String(completed))
         }.frame(maxWidth: 528).padding(.bottom, 40)
+    }
+    private func englishPathNode(_ index: Int) -> some View {
+        let total = model.course.home?.firstNodeLessonCount ?? 4
+        let nodeDone = model.course.pathNodes?.first?.lessonIDs.filter { model.progress.completedLessons[model.course.id, default: []].contains($0) }.count ?? completed
+        let next = model.course.lessons.indices.first { !model.progress.isCompleted(model.course, index: $0) }
+        return ZStack {
+            if index == 0 {
+                Circle().stroke(ReferenceStyle.border, lineWidth: 7).padding(3.5)
+                if nodeDone > 0 { Circle().trim(from: 0, to: CGFloat(nodeDone) / CGFloat(total)).stroke(green, style: StrokeStyle(lineWidth: 7, lineCap: .round)).rotationEffect(.degrees(-90)).padding(3.5) }
+            }
+            Button { if index == 0 { lessonPopover.toggle() } } label: {
+                ReferenceStyle.image(index == 4 ? "review-locked" : index == 0 ? "star-active" : "star-locked").resizable().scaledToFit().frame(width: 42, height: 34)
+                    .frame(width: 70, height: 56).background(index == 0 ? green : ReferenceStyle.border, in: Ellipse())
+                    .compositingGroup().shadow(color: index == 0 ? Color(red: 70/255, green: 163/255, blue: 2/255) : Color(white: 183/255), radius: 0, y: 8)
+                    .frame(height: 65, alignment: .top)
+            }.buttonStyle(.plain).accessibilityLabel(index == 0 ? "Lesson \(nodeDone + 1) of \(total)" : index == 4 ? "复习该部分" : index == 3 ? "Practice" : "Lesson")
+                .accessibilityIdentifier(index == 0 ? "start-lesson" : "start-lesson-\(index)")
+            if index == 0 && !lessonPopover {
+                Text("开始").font(ReferenceStyle.font(17, bold: true)).foregroundStyle(green).frame(width: 78, height: 42)
+                    .background(ReferenceStyle.background, in: RoundedRectangle(cornerRadius: 10))
+                    .overlay(RoundedRectangle(cornerRadius: 10).stroke(ReferenceStyle.border, lineWidth: 2)).offset(y: -61)
+            }
+            if index == 0 && lessonPopover {
+                VStack(alignment: .leading, spacing: 5) {
+                    Text(model.course.title).font(ReferenceStyle.font(19, bold: true))
+                    Text("第 \(nodeDone + 1)/\(total) 单元").font(ReferenceStyle.font(17))
+                    Button("开始 +10 经验") { if let next { lessonPopover = false; model.begin(next) } }
+                        .buttonStyle(SeedButtonStyle(fill: .white, foreground: green)).frame(maxWidth: .infinity).padding(.top, 14)
+                        .disabled(next == nil).accessibilityIdentifier("start-lesson-confirm")
+                }.foregroundStyle(.white).padding(16).frame(width: 294).background(green, in: RoundedRectangle(cornerRadius: 15)).offset(y: 134)
+            }
+        }.frame(width: index == 0 ? 100 : 70, height: index == 0 ? 100 : 65).zIndex(index == 0 ? 2 : 0)
     }
     private func pathNode(_ index: Int) -> some View {
         let node = model.course.pathNodes?.indices.contains(index) == true ? model.course.pathNodes?[index] : nil
@@ -145,24 +188,24 @@ struct ReferenceHome: View {
     private var dashboard: some View {
         VStack(alignment: .leading, spacing: 16) {
             HStack {
-                stat("flag-spanish", "1", color: ReferenceStyle.ink, width: 31)
+                stat(model.course.home?.flagResource ?? "flag-spanish", chinese ? "5" : "1", color: ReferenceStyle.ink, width: 31)
                 Spacer(); stat("streak", completed > 0 ? "1" : "0", color: .orange, width: 23)
                 Spacer(); stat("gems", "\(500 + completed * 5)", color: blue, width: 22)
                 Spacer(); stat("hearts", "\(model.progress.hearts)", color: .red, width: 28)
             }.padding(.horizontal, 12).padding(.bottom, 16)
             card {
-                Text("Unlock Leaderboards!").font(ReferenceStyle.font(19, bold: true))
+                Text(copy("Unlock Leaderboards!", "来解锁排行榜吧！")).font(ReferenceStyle.font(19, bold: true))
                 HStack(spacing: 20) {
                     ReferenceStyle.image("league-locked").resizable().scaledToFit().frame(width: 70, height: 50)
-                    Text("Complete \(max(0, 3 - completed)) more lessons to start competing").font(ReferenceStyle.font(17)).foregroundStyle(Color(white: 119/255)).lineSpacing(4)
+                    Text(copy("Complete \(max(0, 3 - completed)) more lessons to start competing", "再学 \(max(0, 3 - completed)) 个单元，就能参加排行榜挑战了")).font(ReferenceStyle.font(17)).foregroundStyle(Color(white: 119/255)).lineSpacing(4)
                 }.padding(.top, 12)
             }.frame(height: 150)
             card {
-                HStack { Text("Daily Quests").font(ReferenceStyle.font(19, bold: true)); Spacer(); Button("VIEW ALL") { model.destination = "Quests" }.buttonStyle(.plain).font(ReferenceStyle.font(15, bold: true)).foregroundStyle(blue).accessibilityIdentifier("view-quests") }
+                HStack { Text(copy("Daily Quests", "每日特别任务")).font(ReferenceStyle.font(19, bold: true)); Spacer(); Button(copy("VIEW ALL", "显示全部")) { model.destination = "Quests" }.buttonStyle(.plain).font(ReferenceStyle.font(15, bold: true)).foregroundStyle(blue).accessibilityIdentifier("view-quests") }
                 HStack(spacing: 20) {
                     ReferenceStyle.image("quest-xp").resizable().scaledToFit().frame(width: 60, height: 60)
                     VStack(alignment: .leading, spacing: 16) {
-                        Text("Earn 10 XP").font(ReferenceStyle.font(17, bold: true))
+                        Text(copy("Earn 10 XP", "获取 10 经验")).font(ReferenceStyle.font(17, bold: true))
                         ZStack {
                             Capsule().fill(Color(white: 229/255)).frame(height: 18)
                             if completed > 0 { Capsule().fill(Color(red: 1, green: 200/255, blue: 0)).frame(height: 18) }
@@ -172,13 +215,13 @@ struct ReferenceHome: View {
                 }.padding(.top, 10)
             }.frame(height: 165)
             card {
-                Text("Create a profile to save your progress!").font(ReferenceStyle.font(19, bold: true))
+                Text(copy("Create a profile to save your progress!", "创建个人档案，保存学习进度！")).font(ReferenceStyle.font(19, bold: true))
                 VStack(spacing: 14) {
-                    Button("CREATE A PROFILE") { model.destination = "Create a profile" }.buttonStyle(ReferenceButton()).accessibilityIdentifier("view-profile")
-                    Button("SIGN IN") { model.destination = "Sign in" }.buttonStyle(ReferenceButton(color: blue)).accessibilityIdentifier("sign-in")
+                    Button(copy("CREATE A PROFILE", "创建档案")) { model.destination = "Create a profile" }.buttonStyle(ReferenceButton()).accessibilityIdentifier("view-profile")
+                    Button(copy("SIGN IN", "登录")) { model.destination = "Sign in" }.buttonStyle(ReferenceButton(color: blue)).accessibilityIdentifier("sign-in")
                 }.padding(.top, 12)
             }.frame(height: 201)
-            Text("ABOUT    BLOG    STORE    EFFICACY    CAREERS\n\nINVESTORS    TERMS    PRIVACY").font(ReferenceStyle.font(12, bold: true)).foregroundStyle(Color(white: 175/255)).frame(maxWidth: .infinity).multilineTextAlignment(.center).padding(.top, 18)
+            Text(copy("ABOUT    BLOG    STORE    EFFICACY    CAREERS\n\nINVESTORS    TERMS    PRIVACY", "关于我们    宝石小店    有效性    招聘贤才\n\n投资者    条款    隐私")).font(ReferenceStyle.font(12, bold: true)).foregroundStyle(Color(white: 175/255)).frame(maxWidth: .infinity).multilineTextAlignment(.center).padding(.top, 18)
         }
     }
     private func stat(_ image: String, _ text: String, color: Color, width: CGFloat) -> some View {

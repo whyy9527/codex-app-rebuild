@@ -13,7 +13,8 @@ def resource(url, kind):
     assert url.startswith('https://') and '?' not in url
     domains = {'speech': 'https://d1vq87e9lcf771.cloudfront.net/',
                'image': 'https://d2pur3iezf4d1j.cloudfront.net/images/',
-               'avatar': 'https://simg-ssl.duolingo.com/world-characters/avatars/'}
+               'avatar': 'https://simg-ssl.duolingo.com/world-characters/avatars/',
+               'home': 'https://d35aaqx5ub95lt.cloudfront.net/'}
     assert url.startswith(domains[kind])
     stem = 'en-' + kind + '-' + hashlib.sha256(url.encode()).hexdigest()[:20]
     resources[stem] = {'url': url, 'kind': kind, 'name': stem,
@@ -90,10 +91,17 @@ for record in source['challenges']:
     questions.append(q)
 course = {'id': 'duolingo-en-zh-unit-1', 'title': '提供或接受饮料', 'speechLanguage': 'en',
           'interfaceLanguage': 'zh', 'lessons': [{'id': 'lesson-1', 'title': 'Lesson 1 of 4', 'questions': questions}]}
+home_source = json.loads((BASE/'evidence/english-home-v2/configuration-source.json').read_text())
+course['home'] = {k: v for k, v in home_source.items() if k != 'resources'}
+course['home']['flagResource'] = resource(home_source['resources']['flag'], 'home')
+course['home']['pronunciationResource'] = resource(home_source['resources']['pronunciation'], 'home')
+course['pathNodes'] = [{'kind': 'lesson', 'lessonIDs': ['lesson-1'], 'lessonCount': 4}] + [
+    {'kind': kind, 'lessonIDs': []} for kind in home_source['pathKinds'][1:]]
 fixture = {'data': {'candidate_course': course}, 'provenance': {
     'source': 'Actual anonymous en/zh first lesson; option order, answers and word banks UI-confirmed; question 0 accepted on mistake review',
     'evidence': ['projects/duolingo-web/evidence/english-v1/first-session.json',
-                 'projects/duolingo-web/evidence/english-v1/dialogue-public-ui.json'] +
+                 'projects/duolingo-web/evidence/english-v1/dialogue-public-ui.json',
+                 'projects/duolingo-web/evidence/english-home-v2/configuration-source.json'] +
                 [f'projects/duolingo-web/evidence/english-v1/replay-{n:02}.json' for n in (1,2,3)],
     'unknown': 'Later lessons, homepage migration, full completion chain, first-error tutorial, encouragement scheduling, animation and sound output remain incomplete; no fake later lessons added'}}
 (BASE/'fixture-reference-en-zh-v1.json').write_text(json.dumps(fixture, ensure_ascii=False, indent=2)+'\n')
