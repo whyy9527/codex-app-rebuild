@@ -5,10 +5,14 @@ import {writeFileSync,mkdirSync} from 'node:fs';
 import {resolve,dirname} from 'node:path';
 function arg(name,fallback){const i=process.argv.indexOf(name);return i<0?fallback:process.argv[i+1];}
 for(const name of ['--cli','--session','--out'])if(!arg(name))throw Error('Required: --cli PATH --session NAME --out PATH [--start-index N]');
+const uiLanguage=arg('--ui-language','en');
+if(!['en','zh'].includes(uiLanguage))throw Error('Unsupported UI language: '+uiLanguage);
+const labels=uiLanguage==='zh'?{check:'检查',continue:'继续'}:{check:'Check',continue:'Continue'};
 const start=Number(arg('--start-index','0'));
 if(!Number.isInteger(start)||start<0)throw Error('Invalid start index');
 const output=resolve(arg('--out'));mkdirSync(dirname(output),{recursive:true});
 const callback = async page => {
+ const labels=UI_LABELS;
  const session=await page.evaluate(()=>window.__referenceSession);
  const observed=[],interludes=[];let failure=null;
  async function exactVisible(locator,text){
@@ -21,42 +25,44 @@ const callback = async page => {
   const c=record.content,row={index:record.index,type:c.type,actions:[]};observed.push(row);
   try{
    for(let transition=0;transition<6;transition++){
-    await page.waitForFunction(()=>{const n=document.querySelectorAll('[data-test="challenge-header"]').length,b=document.querySelector('[data-test="player-next"]');return b&&((n===1&&b.textContent.trim()==='Check')||(n===0&&b.textContent.trim()==='Continue'));});
+    await page.waitForFunction(labels=>{const n=document.querySelectorAll('[data-test="challenge-header"]').length,b=document.querySelector('[data-test="player-next"]');return b&&((n===1&&b.textContent.trim()===labels.check)||(n===0&&b.textContent.trim()===labels.continue));},labels);
     if(await page.getByRole('heading',{level:1}).count()===1)break;
     interludes.push({before_index:record.index,snapshot:await page.locator('body').ariaSnapshot()});
-    await page.getByRole('button',{name:'Continue',exact:true}).click();
+    await page.getByRole('button',{name:labels.continue,exact:true}).click();
    }
    await page.getByRole('heading',{level:1}).waitFor();
    row.before=await page.locator('body').ariaSnapshot();
    row.heading=await page.getByRole('heading',{level:1}).textContent();
+   row.images=await page.locator('[data-test~="challenge"] img').evaluateAll(ns=>ns.map(n=>({alt:n.alt,src:n.currentSrc||n.src})));
+   row.media_before=await page.evaluate(()=>window.__referenceMedia.slice());
    row.screenshot_before=SCREENSHOT_PREFIX+'-question-'+record.index+'-before.png';
    await page.screenshot({path:row.screenshot_before});
    const mediaStart=await page.evaluate(()=>window.__referenceMedia.length);
-   if(['select','assist'].includes(c.type)){
+   if(['select','assist','dialogue'].includes(c.type)){
     const choice=c.choices[c.correctIndex],text=typeof choice==='string'?choice:choice.phrase;
     await exactVisible(page.getByRole('radio'),text);row.actions.push({select:text});
-    await page.getByRole('button',{name:'Check',exact:true}).click();
-   }else if(c.type==='translate'){
+    await page.getByRole('button',{name:labels.check,exact:true}).click();
+   }else if(['translate','listenTap'].includes(c.type)){
     const bank=page.locator('[data-test="word-bank"]');row.word_bank=await bank.getByRole('button').allTextContents();
     for(const index of c.correctIndices){const choice=c.choices[index],text=typeof choice==='string'?choice:choice.text;
      await bank.getByRole('button',{name:text,exact:true}).click();row.actions.push({word:text});}
-    await page.getByRole('button',{name:'Check',exact:true}).click();
+    await page.getByRole('button',{name:labels.check,exact:true}).click();
    }else if(c.type==='match'){
     row.button_order=await page.getByRole('button').allTextContents();
     for(const pair of c.pairs){for(const text of [pair.fromToken,pair.learningToken]){await exactVisible(page.getByRole('button'),text);row.actions.push({match:text});}}
    }else throw new Error('Uncovered type: '+c.type);
-   await page.getByRole('button',{name:'Continue',exact:true}).waitFor();
+   await page.getByRole('button',{name:labels.continue,exact:true}).waitFor();
    row.feedback=await page.locator('body').ariaSnapshot();
    row.media=await page.evaluate(start=>window.__referenceMedia.slice(start),mediaStart);
-   if(row.feedback.includes('Correct solution'))throw new Error('Source answer rejected');
    row.screenshot_feedback=SCREENSHOT_PREFIX+'-question-'+record.index+'-feedback.png';
    await page.screenshot({path:row.screenshot_feedback});
-   await page.getByRole('button',{name:'Continue',exact:true}).click();
+   if(await page.locator('[data-test~="blame-incorrect"]').count())throw new Error('Source answer rejected');
+   await page.getByRole('button',{name:labels.continue,exact:true}).click();
   }catch(error){failure=String(error);break;}
  }
  return {session,observed,interludes,failure,final:await page.locator('body').ariaSnapshot(),limitations:['One actual generated lesson instance; media invocations are not acoustic output evidence.']};
 };
-const code=callback.toString().replace('START_INDEX',String(start)).replaceAll('SCREENSHOT_PREFIX',JSON.stringify(arg('--screenshot-prefix','reference-session')));
+const code=callback.toString().replace('UI_LABELS',JSON.stringify(labels)).replace('START_INDEX',String(start)).replaceAll('SCREENSHOT_PREFIX',JSON.stringify(arg('--screenshot-prefix','reference-session')));
 const result=spawnSync(arg('--cli'),['-s='+arg('--session'),'run-code',code],{cwd:resolve('artifacts/output/playwright'),encoding:'utf8',timeout:300000,maxBuffer:16*1024*1024});
 const raw=(result.stdout||'')+(result.stderr||'');writeFileSync(output+'.raw.txt',raw,{flag:'wx'});
 if(result.status!==0||!raw.includes('### Result\n'))throw Error('Unavailable replay; raw output retained, inspect current tab before resuming');

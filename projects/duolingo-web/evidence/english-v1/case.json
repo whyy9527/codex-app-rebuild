@@ -3,15 +3,32 @@
   "learning_language": "en",
   "from_language": "zh",
   "locale": "Chinese course UI confirmed after Get started",
-  "fixture_choices": "Other discovery source; Other motivation; first-time English; 5 minutes; deny notifications; start from basics. Anonymous test setup, not user profile preferences.",
+  "fixture_choices": "Other discovery source; Other motivation; first-time English; 5 minutes; deny notifications; start from basics. Anonymous test setup, not user profile preferences.; post-completion anonymous streak goal selected 7 days; profile creation deferred.",
   "reference": "first-session.json",
-  "observed": "first-wrong-and-hearts-intro.json",
+  "observed": [
+    "first-wrong-and-hearts-intro.json",
+    "replay-01.json",
+    "replay-02.json",
+    "replay-03.json",
+    "review-intro.json",
+    "review-answer.json",
+    "completion.json",
+    "score.json",
+    "score-progress.json",
+    "streak.json",
+    "streak-goal.json",
+    "daily-quest.json",
+    "gem-reward.json",
+    "profile-prompt.json",
+    "home.json"
+  ],
   "candidate": "not_run; current native default remains historical Spanish v6, not an English reconstruction",
   "unknown": [
-    "15 source questions are not 15 UI-confirmed questions",
-    "listenTap and dialogue frontends not yet reached in English",
-    "English home, completion, restart, pronunciation output and visual equality remain to observe",
-    "Generic Continue is ambiguous when the hearts tutorial is open; driver needs control-specific actions"
+    "English candidate implementation and equivalence not_run",
+    "Listening keyboard, skip, slow audio and deliberate wrong branches pending",
+    "English Guidebook and navigation destinations pending",
+    "Reload/resume and subsequent lessons pending",
+    "Acoustic output and visual equivalence remain unverified"
   ],
   "captures": {
     "reference-english-first-wrong.png": {
@@ -26,5 +43,6 @@
         732
       ]
     }
-  }
+  },
+  "current_reference_state": "English /learn; first node Lesson 2 of 4, hearts 4, gems 505, streak 1, score 5"
 }
