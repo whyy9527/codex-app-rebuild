@@ -23,8 +23,11 @@ public struct Question: Codable, Equatable, Sendable, Identifiable {
     public let answerWords: [String]
     public let pairs: [WordPair]
     public let explanation: String
+    public let hint: String?
+    public let newWord: Bool
+    public let rightOrder: [String]?
     enum CodingKeys: String, CodingKey {
-        case id, kind, prompt, options, answer, words, pairs, explanation
+        case id, kind, prompt, options, answer, words, pairs, explanation, hint, newWord, rightOrder
         case answerWords = "answer_words"
     }
     public init(from decoder: Decoder) throws {
@@ -38,6 +41,9 @@ public struct Question: Codable, Equatable, Sendable, Identifiable {
         answerWords = try c.decodeIfPresent([String].self, forKey: .answerWords) ?? []
         pairs = try c.decodeIfPresent([WordPair].self, forKey: .pairs) ?? []
         explanation = try c.decode(String.self, forKey: .explanation)
+        hint = try c.decodeIfPresent(String.self, forKey: .hint)
+        newWord = try c.decodeIfPresent(Bool.self, forKey: .newWord) ?? false
+        rightOrder = try c.decodeIfPresent([String].self, forKey: .rightOrder)
     }
     public var correctText: String {
         switch kind {
@@ -53,6 +59,7 @@ public struct Question: Codable, Equatable, Sendable, Identifiable {
         case .choice: return unique(options.map(\.id)) && options.contains { $0.id == answer }
         case .wordTiles: return unique(words.map(\.id)) && unique(answerWords) && answerWords.allSatisfy { id in words.contains { $0.id == id } }
         case .matching: return unique(pairs.map(\.id)) && pairs.allSatisfy { !$0.left.isEmpty && !$0.right.isEmpty }
+            && (rightOrder == nil || (unique(rightOrder!) && Set(rightOrder!) == Set(pairs.map(\.id))))
         }
     }
 }
@@ -61,18 +68,26 @@ public struct LessonDefinition: Codable, Equatable, Sendable, Identifiable {
     public let title: String
     public let questions: [Question]
 }
+public struct CoursePathNode: Codable, Equatable, Sendable {
+    public let kind: String
+    public let lessonIDs: [String]
+}
 public struct Course: Codable, Equatable, Sendable, Identifiable {
     public let id: String
     public let title: String
     public let lessons: [LessonDefinition]
+    public let speechLanguage: String
+    public let pathNodes: [CoursePathNode]?
     public let usesLegacyQuestions: Bool
     // Compatibility for the original single-lesson curriculum.
     public var questions: [Question] { lessons[0].questions }
-    enum CodingKeys: String, CodingKey { case id, title, lessons, questions }
+    enum CodingKeys: String, CodingKey { case id, title, lessons, questions, speechLanguage, pathNodes }
     public init(from decoder: Decoder) throws {
         let c = try decoder.container(keyedBy: CodingKeys.self)
         id = try c.decode(String.self, forKey: .id)
         title = try c.decode(String.self, forKey: .title)
+        speechLanguage = try c.decodeIfPresent(String.self, forKey: .speechLanguage) ?? "en-US"
+        pathNodes = try c.decodeIfPresent([CoursePathNode].self, forKey: .pathNodes)
         if let definitions = try c.decodeIfPresent([LessonDefinition].self, forKey: .lessons) {
             guard !c.contains(.questions) else { throw DecodingError.dataCorruptedError(forKey: .lessons, in: c, debugDescription: "Declare lessons or legacy questions, not both") }
             lessons = definitions
@@ -85,6 +100,8 @@ public struct Course: Codable, Equatable, Sendable, Identifiable {
     public func encode(to encoder: Encoder) throws {
         var c = encoder.container(keyedBy: CodingKeys.self)
         try c.encode(id, forKey: .id); try c.encode(title, forKey: .title)
+        try c.encode(speechLanguage, forKey: .speechLanguage)
+        try c.encodeIfPresent(pathNodes, forKey: .pathNodes)
         if usesLegacyQuestions { try c.encode(questions, forKey: .questions) }
         else { try c.encode(lessons, forKey: .lessons) }
     }

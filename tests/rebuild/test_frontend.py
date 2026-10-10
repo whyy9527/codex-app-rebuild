@@ -23,3 +23,14 @@ class FrontendRequirements(unittest.TestCase):
             self.assertEqual(compare(root, contract, observed)['status'], 'fail')
             contract['requirements'].pop()
             self.assertEqual(compare(root, contract, observed)['status'], 'pass')
+
+    def test_interaction_requires_observed_boolean_and_failed_action_stays_failed(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / 'reference.txt').write_text('Hover opens, moving out dismisses')
+            contract = {'requirements': [{'id': 'hover', 'state': 'home',
+                'kind': 'interaction_boolean', 'field': 'opened', 'expected': True,
+                'evidence': ['reference.txt']}]}
+            for actual, expected in [(None, 'unavailable'), (1, 'unavailable'), (False, 'fail'), (True, 'pass')]:
+                observed = {'states': {'home': {'interactions': {'opened': actual}}}}
+                self.assertEqual(compare(root, contract, observed)['rows'][0]['status'], expected)

@@ -1,0 +1,136 @@
+{
+  "kind": "frontend_requirements",
+  "contract_digest": "afe5d1dc765ee1a6233371b340d70105bb31a3159e3582ecc1ffff25a8d019ec",
+  "observation_digest": "af819a4b41d002de71bd40cc1f8d5fffc2028099b2b9d43543e2a81838b34986",
+  "rows": [
+    {
+      "id": "home-unit-title",
+      "state": "home",
+      "status": "pass",
+      "expected": "Order at a café"
+    },
+    {
+      "id": "home-leaderboard-card",
+      "state": "home",
+      "status": "pass",
+      "expected": "Unlock Leaderboards!"
+    },
+    {
+      "id": "home-daily-quests",
+      "state": "home",
+      "status": "pass",
+      "expected": "Daily Quests"
+    },
+    {
+      "id": "home-quest-description",
+      "state": "home",
+      "status": "pass",
+      "expected": "Earn 10 XP"
+    },
+    {
+      "id": "home-profile-card",
+      "state": "home",
+      "status": "pass",
+      "expected": "Create a profile to save your progress!"
+    },
+    {
+      "id": "home-sign-in",
+      "state": "home",
+      "status": "pass",
+      "expected": "Sign in"
+    },
+    {
+      "id": "more-settings",
+      "state": "more-open",
+      "status": "pass",
+      "expected": "Settings"
+    },
+    {
+      "id": "more-help",
+      "state": "more-open",
+      "status": "pass",
+      "expected": "Help"
+    },
+    {
+      "id": "more-sign-in",
+      "state": "more-open",
+      "status": "pass",
+      "expected": "Sign in"
+    },
+    {
+      "id": "more-test-link",
+      "state": "more-open",
+      "status": "pass",
+      "expected": "Duolingo English Test"
+    },
+    {
+      "id": "visual",
+      "state": "home",
+      "status": "not_run",
+      "reason": "Same-state content, assets, typography, geometry and image comparison not yet implemented"
+    },
+    {
+      "id": "audio",
+      "state": "home",
+      "status": "not_run",
+      "reason": "Reference sound identity/timing comparison not yet implemented"
+    },
+    {
+      "id": "more_hover_opened",
+      "state": "home",
+      "status": "pass",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "id": "more_hover_dismissed",
+      "state": "home",
+      "status": "pass",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "id": "preferences-text-0",
+      "state": "preferences",
+      "status": "fail",
+      "expected": "Preferences"
+    },
+    {
+      "id": "preferences-text-1",
+      "state": "preferences",
+      "status": "fail",
+      "expected": "Lesson experience"
+    },
+    {
+      "id": "preferences-text-2",
+      "state": "preferences",
+      "status": "fail",
+      "expected": "Sound effects"
+    },
+    {
+      "id": "preferences-text-3",
+      "state": "preferences",
+      "status": "fail",
+      "expected": "Animations"
+    },
+    {
+      "id": "preferences-text-4",
+      "state": "preferences",
+      "status": "fail",
+      "expected": "Motivational messages"
+    },
+    {
+      "id": "preferences-text-5",
+      "state": "preferences",
+      "status": "fail",
+      "expected": "Listening exercises"
+    },
+    {
+      "id": "preferences-text-6",
+      "state": "preferences",
+      "status": "fail",
+      "expected": "Dark mode"
+    }
+  ],
+  "status": "fail"
+}

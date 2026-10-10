@@ -41,6 +41,10 @@ def compare(root, contract, observed):
             row.update(status='unavailable' if actual is None else 'pass' if actual == expected else 'fail',
                        expected=expected, actual=actual,
                        reason='Comparable capture dimensions only; does not prove visual equivalence')
+        elif requirement['kind'] == 'interaction_boolean':
+            actual = state.get('interactions', {}).get(requirement['field'])
+            row.update(status='unavailable' if type(actual) is not bool else 'pass' if actual == requirement['expected'] else 'fail',
+                       expected=requirement['expected'], actual=actual)
         else:
             raise ValueError('Unsupported frontend requirement: ' + requirement['kind'])
         rows.append(row)

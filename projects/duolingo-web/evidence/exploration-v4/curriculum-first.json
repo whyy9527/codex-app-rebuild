@@ -1,0 +1,102 @@
+{
+  "complete": true,
+  "observed": [
+    {
+      "step": 0,
+      "kind": "choice",
+      "prompt": "Which one of these is “cat”?",
+      "before": "- button:\n  - img\n- progressbar\n- img\n- text: \"5\"\n- img\n- text: New word\n- heading \"Which one of these is “cat”?\" [level=1]\n- radiogroup \"choice\":\n  - radio \"papá 1\"\n  - radio \"gato 2\"\n  - radio \"agua 3\"\n- button \"Skip\"\n- button \"Check\" [disabled]",
+      "text": "NEW WORD\nWhich one of these is “cat”?\npapá\n1\ngato\n2\nagua\n3",
+      "feedback": "- button:\n  - img\n- progressbar\n- img\n- text: \"5\"\n- img\n- text: New word\n- heading \"Which one of these is “cat”?\" [level=1]\n- radiogroup \"choice\":\n  - radio \"papá 1\" [disabled]\n  - radio \"gato 2\" [checked] [disabled]\n  - radio \"agua 3\" [disabled]\n- heading \"Correct!\" [level=2]\n- button \"Too easy\"\n- button \"Too difficult\"\n- button \"Report\"\n- button \"Continue\""
+    },
+    {
+      "step": 1,
+      "kind": "choice",
+      "prompt": "Which one of these is “dog”?",
+      "before": "- button:\n  - img\n- progressbar\n- img\n- text: \"5\"\n- img\n- text: New word\n- heading \"Which one of these is “dog”?\" [level=1]\n- radiogroup \"choice\":\n  - radio \"mamá 1\":\n    - text: mamá 1\n    - img\n    - img\n  - radio \"papá 2\":\n    - text: papá 2\n    - img\n    - img\n  - radio \"perro 3\":\n    - text: perro 3\n    - img\n    - img\n- button \"Skip\"\n- button \"Check\" [disabled]",
+      "text": "NEW WORD\nWhich one of these is “dog”?\nmamá\n1\npapá\n2\nperro\n3",
+      "feedback": "- button:\n  - img\n- progressbar:\n  - text: 2 in a row\n  - img\n- img\n- text: \"5\"\n- img\n- text: New word\n- heading \"Which one of these is “dog”?\" [level=1]\n- radiogroup \"choice\":\n  - radio \"mamá 1\" [disabled]:\n    - text: mamá 1\n    - img\n    - img\n  - radio \"papá 2\" [disabled]:\n    - text: papá 2\n    - img\n    - img\n  - radio \"perro 3\" [checked] [disabled]:\n    - text: perro 3\n    - img\n    - img\n- heading \"Correct!\" [level=2]\n- button \"Too easy\"\n- button \"Too difficult\"\n- button \"Report\"\n- button \"Continue\""
+    },
+    {
+      "step": 2,
+      "kind": "choice",
+      "prompt": "Which one of these is “water”?",
+      "before": "- button:\n  - img\n- progressbar\n- img\n- text: \"5\"\n- img\n- text: New word\n- heading \"Which one of these is “water”?\" [level=1]\n- radiogroup \"choice\":\n  - radio \"agua 1\":\n    - text: agua 1\n    - img\n    - img\n  - radio \"perro 2\":\n    - text: perro 2\n    - img\n    - img\n  - radio \"papá 3\":\n    - text: papá 3\n    - img\n    - img\n- button \"Skip\"\n- button \"Check\" [disabled]",
+      "text": "NEW WORD\nWhich one of these is “water”?\nagua\n1\nperro\n2\npapá\n3",
+      "feedback": "- button:\n  - img\n- progressbar:\n  - text: 3 in a row\n  - img\n- img\n- text: \"5\"\n- img\n- text: New word\n- heading \"Which one of these is “water”?\" [level=1]\n- radiogroup \"choice\":\n  - radio \"agua 1\" [checked] [disabled]:\n    - text: agua 1\n    - img\n    - img\n  - radio \"perro 2\" [disabled]:\n    - text: perro 2\n    - img\n    - img\n  - radio \"papá 3\" [disabled]:\n    - text: papá 3\n    - img\n    - img\n- heading \"Correct!\" [level=2]\n- button \"Too easy\"\n- button \"Too difficult\"\n- button \"Report\"\n- button \"Continue\""
+    },
+    {
+      "step": 3,
+      "kind": "choice",
+      "prompt": "Which one of these is “milk”?",
+      "before": "- button:\n  - img\n- progressbar\n- img\n- text: \"5\"\n- img\n- text: New word\n- heading \"Which one of these is “milk”?\" [level=1]\n- radiogroup \"choice\":\n  - radio \"leche 1\":\n    - text: leche 1\n    - img\n    - img\n  - radio \"gato 2\":\n    - text: gato 2\n    - img\n    - img\n  - radio \"perro 3\":\n    - text: perro 3\n    - img\n    - img\n- button \"Skip\"\n- button \"Check\" [disabled]",
+      "text": "NEW WORD\nWhich one of these is “milk”?\nleche\n1\ngato\n2\nperro\n3",
+      "feedback": "- button:\n  - img\n- progressbar:\n  - text: 4 in a row\n  - img\n- img\n- text: \"5\"\n- img\n- text: New word\n- heading \"Which one of these is “milk”?\" [level=1]\n- radiogroup \"choice\":\n  - radio \"leche 1\" [checked] [disabled]:\n    - text: leche 1\n    - img\n    - img\n  - radio \"gato 2\" [disabled]:\n    - text: gato 2\n    - img\n    - img\n  - radio \"perro 3\" [disabled]:\n    - text: perro 3\n    - img\n    - img\n- heading \"Great job!\" [level=2]\n- button \"Too easy\"\n- button \"Too difficult\"\n- button \"Report\"\n- button \"Continue\""
+    },
+    {
+      "step": 4,
+      "kind": "matching",
+      "prompt": "Select the matching pairs",
+      "before": "- button:\n  - img\n- progressbar\n- img\n- text: \"5\"\n- heading \"Select the matching pairs\" [level=1]\n- button \"1 water\":\n  - text: 1 water\n  - img\n  - img\n- button \"2 cat\":\n  - text: 2 cat\n  - img\n  - img\n- button \"3 milk\":\n  - text: 3 milk\n  - img\n  - img\n- button \"4 dog\":\n  - text: 4 dog\n  - img\n  - img\n- button \"5 mom\":\n  - text: 5 mom\n  - img\n  - img\n- button \"6 mamá\":\n  - text: 6 mamá\n  - img\n  - img\n- button \"7 perro\":\n  - text: 7 perro\n  - img\n  - img\n- button \"8 gato\":\n  - text: 8 gato\n  - img\n  - img\n- button \"9 agua\":\n  - text: 9 agua\n  - img\n  - img\n- button \"0 leche\":\n  - text: 0 leche\n  - img\n  - img\n- button \"Skip\"\n- button \"Check\" [disabled]",
+      "text": "Select the matching pairs\n1\nwater\n2\ncat\n3\nmilk\n4\ndog\n5\nmom\n6\nmamá\n7\nperro\n8\ngato\n9\nagua\n0\nleche",
+      "feedback": "- button:\n  - img\n- progressbar:\n  - text: 5 in a row\n  - img\n- img\n- text: \"5\"\n- heading \"Select the matching pairs\" [level=1]\n- button \"1 water\" [disabled]:\n  - text: 1 water\n  - img\n  - img\n- button \"2 cat\" [disabled]:\n  - text: 2 cat\n  - img\n  - img\n- button \"3 milk\" [disabled]:\n  - text: 3 milk\n  - img\n  - img\n- button \"4 dog\" [disabled]:\n  - text: 4 dog\n  - img\n  - img\n- button \"5 mom\" [disabled]:\n  - text: 5 mom\n  - img\n  - img\n- button \"6 mamá\" [disabled]:\n  - text: 6 mamá\n  - img\n  - img\n- button \"7 perro\" [disabled]:\n  - text: 7 perro\n  - img\n  - img\n- button \"8 gato\" [disabled]:\n  - text: 8 gato\n  - img\n  - img\n- button \"9 agua\" [disabled]:\n  - text: 9 agua\n  - img\n  - img\n- button \"0 leche\" [disabled]:\n  - text: 0 leche\n  - img\n  - img\n- heading \"Nice!\" [level=2]\n- button \"Too easy\"\n- button \"Too difficult\"\n- button \"Report\"\n- button \"Continue\""
+    },
+    {
+      "step": 5,
+      "kind": "choice",
+      "prompt": "Select the correct meaning: dog",
+      "before": "- button:\n  - img\n- progressbar\n- img\n- text: \"5\"\n- heading \"Select the correct meaning\" [level=1]\n- text: dog\n- img\n- radiogroup \"choice\":\n  - radio \"1 agua\":\n    - text: 1 agua\n    - img\n    - img\n  - radio \"2 gato\":\n    - text: 2 gato\n    - img\n    - img\n  - radio \"3 perro\":\n    - text: 3 perro\n    - img\n    - img\n- img\n- text: Awesome! You’re working hard and learning new words!\n- button \"Check\" [disabled]",
+      "text": "Select the correct meaning\ndog\n1\nagua\n2\ngato\n3\nperro",
+      "feedback": "- button:\n  - img\n- progressbar:\n  - text: 6 in a row\n  - img\n- img\n- text: \"5\"\n- heading \"Select the correct meaning\" [level=1]\n- text: dog\n- img\n- radiogroup \"choice\":\n  - radio \"1 agua\" [disabled]:\n    - text: 1 agua\n    - img\n    - img\n  - radio \"2 gato\" [disabled]:\n    - text: 2 gato\n    - img\n    - img\n  - radio \"3 perro\" [checked] [disabled]:\n    - text: 3 perro\n    - img\n    - img\n- heading \"Nice job!\" [level=2]\n- button \"Too easy\"\n- button \"Too difficult\"\n- button \"Report\"\n- button \"Continue\""
+    },
+    {
+      "step": 6,
+      "kind": "choice",
+      "prompt": "Select the correct meaning: water",
+      "before": "- button:\n  - img\n- progressbar\n- img\n- text: \"5\"\n- heading \"Select the correct meaning\" [level=1]\n- text: water\n- img\n- radiogroup \"choice\":\n  - radio \"1 agua\":\n    - text: 1 agua\n    - img\n    - img\n  - radio \"2 perro\":\n    - text: 2 perro\n    - img\n    - img\n  - radio \"3 leche\":\n    - text: 3 leche\n    - img\n    - img\n- button \"Skip\"\n- button \"Check\" [disabled]",
+      "text": "Select the correct meaning\nwater\n1\nagua\n2\nperro\n3\nleche",
+      "feedback": "- button:\n  - img\n- progressbar:\n  - text: 7 in a row\n  - img\n- img\n- text: \"5\"\n- heading \"Select the correct meaning\" [level=1]\n- text: water\n- img\n- radiogroup \"choice\":\n  - radio \"1 agua\" [checked] [disabled]:\n    - text: 1 agua\n    - img\n    - img\n  - radio \"2 perro\" [disabled]:\n    - text: 2 perro\n    - img\n    - img\n  - radio \"3 leche\" [disabled]:\n    - text: 3 leche\n    - img\n    - img\n- heading \"Amazing!\" [level=2]\n- button \"Too easy\"\n- button \"Too difficult\"\n- button \"Report\"\n- button \"Continue\""
+    },
+    {
+      "step": 7,
+      "kind": "choice",
+      "prompt": "Which one of these is “mom”?",
+      "before": "- button:\n  - img\n- progressbar\n- img\n- text: \"5\"\n- img\n- text: New word\n- heading \"Which one of these is “mom”?\" [level=1]\n- radiogroup \"choice\":\n  - radio \"agua 1\":\n    - text: agua 1\n    - img\n    - img\n  - radio \"mamá 2\":\n    - text: mamá 2\n    - img\n    - img\n  - radio \"perro 3\":\n    - text: perro 3\n    - img\n    - img\n- button \"Skip\"\n- button \"Check\" [disabled]",
+      "text": "NEW WORD\nWhich one of these is “mom”?\nagua\n1\nmamá\n2\nperro\n3",
+      "feedback": "- button:\n  - img\n- progressbar:\n  - text: 8 in a row\n  - img\n- img\n- text: \"5\"\n- img\n- text: New word\n- heading \"Which one of these is “mom”?\" [level=1]\n- radiogroup \"choice\":\n  - radio \"agua 1\" [disabled]:\n    - text: agua 1\n    - img\n    - img\n  - radio \"mamá 2\" [checked] [disabled]:\n    - text: mamá 2\n    - img\n    - img\n  - radio \"perro 3\" [disabled]:\n    - text: perro 3\n    - img\n    - img\n- heading \"Nice job!\" [level=2]\n- button \"Too easy\"\n- button \"Too difficult\"\n- button \"Report\"\n- button \"Continue\""
+    },
+    {
+      "step": 8,
+      "kind": "choice",
+      "prompt": "Which one of these is “dad”?",
+      "before": "- button:\n  - img\n- progressbar\n- img\n- text: \"5\"\n- img\n- text: New word\n- heading \"Which one of these is “dad”?\" [level=1]\n- radiogroup \"choice\":\n  - radio \"agua 1\":\n    - text: agua 1\n    - img\n    - img\n  - radio \"gato 2\":\n    - text: gato 2\n    - img\n    - img\n  - radio \"papá 3\":\n    - text: papá 3\n    - img\n    - img\n- button \"Skip\"\n- button \"Check\" [disabled]",
+      "text": "NEW WORD\nWhich one of these is “dad”?\nagua\n1\ngato\n2\npapá\n3",
+      "feedback": "- button:\n  - img\n- progressbar:\n  - text: 9 in a row\n  - img\n- img\n- text: \"5\"\n- img\n- text: New word\n- heading \"Which one of these is “dad”?\" [level=1]\n- radiogroup \"choice\":\n  - radio \"agua 1\" [disabled]:\n    - text: agua 1\n    - img\n    - img\n  - radio \"gato 2\" [disabled]:\n    - text: gato 2\n    - img\n    - img\n  - radio \"papá 3\" [checked] [disabled]:\n    - text: papá 3\n    - img\n    - img\n- heading \"Awesome!\" [level=2]\n- button \"Too easy\"\n- button \"Too difficult\"\n- button \"Report\"\n- button \"Continue\""
+    },
+    {
+      "step": 9,
+      "kind": "choice",
+      "prompt": "Select the correct meaning: dad",
+      "before": "- button:\n  - img\n- progressbar\n- img\n- text: \"5\"\n- heading \"Select the correct meaning\" [level=1]\n- text: dad\n- img\n- radiogroup \"choice\":\n  - radio \"1 mamá\":\n    - text: 1 mamá\n    - img\n    - img\n  - radio \"2 leche\":\n    - text: 2 leche\n    - img\n    - img\n  - radio \"3 papá\":\n    - text: 3 papá\n    - img\n    - img\n- button \"Skip\"\n- button \"Check\" [disabled]",
+      "text": "Select the correct meaning\ndad\n1\nmamá\n2\nleche\n3\npapá",
+      "feedback": "- button:\n  - img\n- progressbar:\n  - text: 10 in a row\n  - img\n- img\n- text: \"5\"\n- heading \"Select the correct meaning\" [level=1]\n- text: dad\n- img\n- radiogroup \"choice\":\n  - radio \"1 mamá\" [disabled]:\n    - text: 1 mamá\n    - img\n    - img\n  - radio \"2 leche\" [disabled]:\n    - text: 2 leche\n    - img\n    - img\n  - radio \"3 papá\" [checked] [disabled]:\n    - text: 3 papá\n    - img\n    - img\n- heading \"Nice!\" [level=2]\n- button \"Too easy\"\n- button \"Too difficult\"\n- button \"Report\"\n- button \"Continue\""
+    },
+    {
+      "step": 10,
+      "kind": "choice",
+      "prompt": "Select the correct meaning: cat",
+      "before": "- button:\n  - img\n- progressbar\n- img\n- text: \"5\"\n- heading \"Select the correct meaning\" [level=1]\n- text: cat\n- img\n- radiogroup \"choice\":\n  - radio \"1 agua\":\n    - text: 1 agua\n    - img\n    - img\n  - radio \"2 gato\":\n    - text: 2 gato\n    - img\n    - img\n  - radio \"3 perro\":\n    - text: 3 perro\n    - img\n    - img\n- img\n- text: Good effort!\n- button \"Check\" [disabled]",
+      "text": "Select the correct meaning\ncat\n1\nagua\n2\ngato\n3\nperro",
+      "feedback": "- button:\n  - img\n- progressbar:\n  - text: 11 in a row\n  - img\n- img\n- text: \"5\"\n- heading \"Select the correct meaning\" [level=1]\n- text: cat\n- img\n- radiogroup \"choice\":\n  - radio \"1 agua\" [disabled]:\n    - text: 1 agua\n    - img\n    - img\n  - radio \"2 gato\" [checked] [disabled]:\n    - text: 2 gato\n    - img\n    - img\n  - radio \"3 perro\" [disabled]:\n    - text: 3 perro\n    - img\n    - img\n- heading \"Nice!\" [level=2]\n- button \"Too easy\"\n- button \"Too difficult\"\n- button \"Report\"\n- button \"Continue\""
+    },
+    {
+      "step": 11,
+      "kind": "matching",
+      "prompt": "Select the matching pairs",
+      "before": "- button:\n  - img\n- progressbar\n- img\n- text: \"5\"\n- heading \"Select the matching pairs\" [level=1]\n- button \"1 mom\":\n  - text: 1 mom\n  - img\n  - img\n- button \"2 cat\":\n  - text: 2 cat\n  - img\n  - img\n- button \"3 milk\":\n  - text: 3 milk\n  - img\n  - img\n- button \"4 dog\":\n  - text: 4 dog\n  - img\n  - img\n- button \"5 water\":\n  - text: 5 water\n  - img\n  - img\n- button \"6 mamá\":\n  - text: 6 mamá\n  - img\n  - img\n- button \"7 leche\":\n  - text: 7 leche\n  - img\n  - img\n- button \"8 perro\":\n  - text: 8 perro\n  - img\n  - img\n- button \"9 agua\":\n  - text: 9 agua\n  - img\n  - img\n- button \"0 gato\":\n  - text: 0 gato\n  - img\n  - img\n- button \"Skip\"\n- button \"Check\" [disabled]",
+      "text": "Select the matching pairs\n1\nmom\n2\ncat\n3\nmilk\n4\ndog\n5\nwater\n6\nmamá\n7\nleche\n8\nperro\n9\nagua\n0\ngato",
+      "feedback": "- button:\n  - img\n- progressbar:\n  - text: 12 in a row\n  - img\n- img\n- text: \"5\"\n- heading \"Select the matching pairs\" [level=1]\n- button \"1 mom\" [disabled]:\n  - text: 1 mom\n  - img\n  - img\n- button \"2 cat\" [disabled]:\n  - text: 2 cat\n  - img\n  - img\n- button \"3 milk\" [disabled]:\n  - text: 3 milk\n  - img\n  - img\n- button \"4 dog\" [disabled]:\n  - text: 4 dog\n  - img\n  - img\n- button \"5 water\" [disabled]:\n  - text: 5 water\n  - img\n  - img\n- button \"6 mamá\" [disabled]:\n  - text: 6 mamá\n  - img\n  - img\n- button \"7 leche\" [disabled]:\n  - text: 7 leche\n  - img\n  - img\n- button \"8 perro\" [disabled]:\n  - text: 8 perro\n  - img\n  - img\n- button \"9 agua\" [disabled]:\n  - text: 9 agua\n  - img\n  - img\n- button \"0 gato\" [disabled]:\n  - text: 0 gato\n  - img\n  - img\n- heading \"Excellent!\" [level=2]\n- button \"Too easy\"\n- button \"Too difficult\"\n- button \"Report\"\n- button \"Continue\""
+    }
+  ],
+  "completion": "- text: Lesson Complete! combo\n- img\n- text: 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9\n- button \"Review lesson\"\n- button \"Continue\""
+}

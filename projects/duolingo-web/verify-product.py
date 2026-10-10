@@ -12,7 +12,7 @@ import sys
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 from capabilities.rebuild.frontend import compare
 from capabilities.exploration.storage import digest
-from runtime.runner import manifest
+from runtime.runner import manifest, input_manifest
 
 
 def main():
@@ -23,6 +23,7 @@ def main():
     output = root / args.out
     output.mkdir(parents=True, exist_ok=False)
     source = digest(manifest(root))
+    resources = digest(input_manifest(root, ['projects/education-swift/Sources/LingoSeed/Resources/Reference']))
     business = subprocess.run([sys.executable, '-m', 'workflows.rebuild.cli', 'verify',
         '--workspace', '.', '--spec', 'projects/duolingo-web/spec-v2.json',
         '--targets', 'projects/duolingo-web/targets-v2.json', '--target', 'candidate',
@@ -30,7 +31,8 @@ def main():
         '--max-seconds', '1800', '--out', (output / 'business.json').relative_to(root).as_posix()],
         capture_output=True, text=True, timeout=1850)
     (output / 'business.log').write_text(business.stdout + business.stderr)
-    probe = subprocess.run(['swift', 'projects/duolingo-web/observe-frontend.swift', str(output / 'frontend')],
+    probe = subprocess.run(['swift', 'projects/duolingo-web/observe-frontend.swift', str(output / 'frontend'),
+                            'projects/duolingo-web/fixture-reference-v4.json', '--walk-course'],
         capture_output=True, text=True, timeout=60)
     (output / 'frontend.log').write_text(probe.stdout + probe.stderr)
     frontend = {'status': 'unavailable', 'reason': 'Actual native frontend probe failed'}
@@ -38,11 +40,18 @@ def main():
         frontend = compare(root, json.loads((root / 'projects/duolingo-web/frontend-v4.json').read_text()),
                            json.loads((output / 'frontend/observed.json').read_text()))
     (output / 'frontend.json').write_text(json.dumps(frontend, ensure_ascii=False, indent=2) + '\n')
+    course = {'status': 'unavailable'}
+    if probe.returncode == 0:
+        course = compare(root, json.loads((root / 'projects/duolingo-web/frontend-course-v4.json').read_text()),
+                         json.loads((output / 'frontend/observed.json').read_text()))
+    (output / 'course.json').write_text(json.dumps(course, ensure_ascii=False, indent=2) + '\n')
     unchanged = source == digest(manifest(root))
+    resources_unchanged = resources == digest(input_manifest(root, ['projects/education-swift/Sources/LingoSeed/Resources/Reference']))
     result = {'kind': 'combined_product_acceptance', 'source_digest': source,
-        'source_unchanged': unchanged, 'business_exit_code': business.returncode,
+        'source_unchanged': unchanged, 'resource_digest': resources, 'resources_unchanged': resources_unchanged,
+        'business_exit_code': business.returncode, 'course_copy_status': course['status'],
         'frontend_status': frontend['status'],
-        'status': 'pass' if unchanged and business.returncode == 0 and frontend['status'] == 'pass' else 'fail',
+        'status': 'pass' if unchanged and resources_unchanged and business.returncode == 0 and frontend['status'] == 'pass' and course['status'] == 'pass' else 'fail',
         'limitations': ['Frontend inventory expands with exploration',
                         'Current pending visual/audio requirements prevent product completion']}
     (output / 'result.json').write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\n')

@@ -24,7 +24,7 @@ import LearningCore
     func choose(_ id: String) {
         guard let lesson, lesson.feedback == nil, let option = lesson.question.options.first(where: { $0.id == id }) else { return }
         self.lesson?.choose(id)
-        audio.speak(option.text)
+        audio.speak(option.text, language: course.speechLanguage)
     }
     func addWord(_ id: String) { lesson?.addWord(id); audio.play(.tap) }
     func removeWord(_ id: String) { lesson?.removeWord(id); audio.play(.tap) }
@@ -35,8 +35,9 @@ import LearningCore
     }
     func pronounce() {
         guard let lesson else { return }
-        let phrase = lesson.question.options.first { $0.id == lesson.selected }?.text ?? lesson.question.prompt
-        audio.speak(phrase)
+        let selected = lesson.question.options.first { $0.id == lesson.selected }?.text
+        let phrase = selected ?? lesson.question.hint ?? lesson.question.prompt
+        audio.speak(phrase, language: selected != nil || (lesson.question.kind == .wordTiles && lesson.question.hint != nil) ? course.speechLanguage : "en-US")
     }
     init(course: Course, store: ProgressStore) throws {
         self.course = course; self.store = store; progress = try store.load()

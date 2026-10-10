@@ -3,16 +3,22 @@ import AppKit
 import ApplicationServices
 import Foundation
 
+func main() throws {
 let root = URL(fileURLWithPath: FileManager.default.currentDirectoryPath)
 let output = URL(fileURLWithPath: CommandLine.arguments[1], relativeTo: root).standardizedFileURL
 try FileManager.default.createDirectory(at: output, withIntermediateDirectories: true)
 let progress = output.appendingPathComponent("progress.json")
 precondition(!FileManager.default.fileExists(atPath: progress.path), "Use a fresh output directory")
+if let seedIndex = CommandLine.arguments.firstIndex(of: "--seed-progress"), seedIndex + 1 < CommandLine.arguments.count {
+    try Data(contentsOf: root.appendingPathComponent(CommandLine.arguments[seedIndex + 1])).write(to: progress, options: .withoutOverwriting)
+}
 let child = Process()
 child.executableURL = root.appendingPathComponent("projects/education-swift/.build/debug/LingoSeed")
-child.arguments = ["--fixture", root.appendingPathComponent("projects/duolingo-web/fixture-v2.json").path, "--progress", progress.path]
+let fixture = CommandLine.arguments.count > 2 ? CommandLine.arguments[2] : "projects/duolingo-web/fixture-reference-v4.json"
+child.arguments = ["--fixture", root.appendingPathComponent(fixture).path, "--progress", progress.path, "--render-metadata", output.appendingPathComponent("window.json").path]
 child.standardOutput = FileHandle.nullDevice
-child.standardError = FileHandle.nullDevice
+FileManager.default.createFile(atPath: output.appendingPathComponent("child.log").path, contents: nil)
+child.standardError = try FileHandle(forWritingTo: output.appendingPathComponent("child.log"))
 try child.run()
 defer { if child.isRunning { child.terminate() } }
 let app = AXUIElementCreateApplication(child.processIdentifier)
@@ -33,25 +39,151 @@ while Date() < deadline && !current().contains(where: { (attr($0, kAXIdentifierA
     Thread.sleep(forTimeInterval: 0.1)
 }
 precondition(current().contains(where: { (attr($0, kAXIdentifierAttribute) as? String) == "course-entry" }), "No child home observed")
+if let window = (attr(app, kAXWindowsAttribute) as? [AXUIElement])?.first {
+    let metadata = try? Data(contentsOf: output.appendingPathComponent("window.json"))
+    let value = metadata.flatMap { try? JSONSerialization.jsonObject(with: $0) as? [String: Any] }
+    let frame = value?["window_points"] as? [Double]
+    let rect = value?["content_rect_points"] as? [Double]
+    let decoration = (frame?.last ?? 0) - (rect?.last ?? 0)
+    var size = CGSize(width: 1200, height: 732 + decoration)
+    AXUIElementSetAttributeValue(window, kAXSizeAttribute as CFString, AXValueCreate(.cgSize, &size)!)
+}
+Thread.sleep(forTimeInterval: 0.6)
+AXUIElementSetAttributeValue(app, kAXFrontmostAttribute as CFString, kCFBooleanTrue)
+if let window = (attr(app, kAXWindowsAttribute) as? [AXUIElement])?.first { AXUIElementPerformAction(window, kAXRaiseAction as CFString) }
+Thread.sleep(forTimeInterval: 0.2)
+func capture(_ name: String) throws {
+    var number: Int?
+    let deadline = Date().addingTimeInterval(10)
+    repeat {
+        let info = CGWindowListCopyWindowInfo([.optionOnScreenOnly, .excludeDesktopElements], kCGNullWindowID) as? [[String: Any]] ?? []
+        number = info.first(where: { ($0[kCGWindowOwnerPID as String] as? Int) == Int(child.processIdentifier) && ($0[kCGWindowLayer as String] as? Int) == 0 })?[kCGWindowNumber as String] as? Int
+        if number == nil { Thread.sleep(forTimeInterval: 0.1) }
+    } while number == nil && child.isRunning && Date() < deadline
+    guard let number else { throw ProbeError(message: "No owned visible window") }
+    let process = Process(); process.executableURL = URL(fileURLWithPath: "/usr/sbin/screencapture")
+    process.arguments = ["-x", "-o", "-l", String(number), output.appendingPathComponent(name + ".png").path]
+    try process.run(); process.waitUntilExit()
+    precondition(process.terminationStatus == 0, "Owned window capture failed")
+}
 func observe() -> [String: Any] {
     let strings = Set(current().flatMap { node in
         [kAXValueAttribute, kAXTitleAttribute, kAXDescriptionAttribute].compactMap { attr(node, $0) as? String }.filter { !$0.isEmpty }
     })
     return ["accessible_text": strings.sorted()]
 }
+var pointerActions: [[String: Any]] = []
+func movePointer(to id: String) -> Bool {
+    guard let node = current().first(where: { (attr($0, kAXIdentifierAttribute) as? String) == id }),
+          let position = attr(node, kAXPositionAttribute), let size = attr(node, kAXSizeAttribute) else { return false }
+    var point = CGPoint.zero; var dimensions = CGSize.zero
+    AXValueGetValue(position as! AXValue, .cgPoint, &point); AXValueGetValue(size as! AXValue, .cgSize, &dimensions)
+    let center = CGPoint(x: point.x + dimensions.width / 2, y: point.y + dimensions.height / 2)
+    pointerActions.append(["control": id, "position": [point.x, point.y], "size": [dimensions.width, dimensions.height], "center": [center.x, center.y]])
+    CGEvent(mouseEventSource: nil, mouseType: .mouseMoved, mouseCursorPosition: center, mouseButton: .left)?.post(tap: .cghidEventTap)
+    Thread.sleep(forTimeInterval: 0.4)
+    let ready = Date().addingTimeInterval(8)
+    while current().isEmpty && child.isRunning && Date() < ready { Thread.sleep(forTimeInterval: 0.1) }
+    pointerActions[pointerActions.count - 1]["child_running"] = child.isRunning
+    pointerActions[pointerActions.count - 1]["window_count"] = (attr(app, kAXWindowsAttribute) as? [AXUIElement])?.count ?? -1
+    let running = NSRunningApplication(processIdentifier: child.processIdentifier)
+    pointerActions[pointerActions.count - 1]["active"] = running?.isActive
+    pointerActions[pointerActions.count - 1]["hidden"] = running?.isHidden
+    pointerActions[pointerActions.count - 1]["all_owned_windows"] = ((CGWindowListCopyWindowInfo(.optionAll, kCGNullWindowID) as? [[String: Any]]) ?? []).filter { ($0[kCGWindowOwnerPID as String] as? Int) == Int(child.processIdentifier) }.map { ["layer": $0[kCGWindowLayer as String] as Any, "bounds": $0[kCGWindowBounds as String] as Any, "onscreen": $0[kCGWindowIsOnscreen as String] as Any] }
+    try? JSONSerialization.data(withJSONObject: pointerActions, options: [.prettyPrinted]).write(to: output.appendingPathComponent("pointer.json"))
+    return true
+}
 var states = ["home": observe()]
-if let more = current().first(where: { (attr($0, kAXIdentifierAttribute) as? String) == "nav-more" }) {
-    let result = AXUIElementPerformAction(more, kAXPressAction as CFString)
-    if result == .success {
-        Thread.sleep(forTimeInterval: 0.5)
-        // Reference expectation: submenu. Candidate currently opens a page.
-        states["more-open"] = observe()
+try capture("home-window")
+// A hover must include an outside-to-inside transition, including when the cursor
+// starts over the same row left by a previous owned probe.
+_ = movePointer(to: "course-entry")
+let moved = movePointer(to: "nav-more")
+let opened = current().contains { (attr($0, kAXIdentifierAttribute) as? String) == "more-settings" }
+states["more-open"] = observe()
+try capture("more-window")
+let movedOut = movePointer(to: "course-entry")
+let dismissed = opened && !current().contains { (attr($0, kAXIdentifierAttribute) as? String) == "more-settings" }
+states["home"]?["interactions"] = ["more_hover_opened": moved && opened, "more_hover_dismissed": movedOut && dismissed]
+struct ProbeError: Error { let message: String }
+func waitFor(_ id: String, value: String? = nil) throws {
+    let end = Date().addingTimeInterval(10)
+    while Date() < end {
+        if let node = current().first(where: { (attr($0, kAXIdentifierAttribute) as? String) == id }),
+           value == nil || (attr(node, kAXValueAttribute) as? String) == value { return }
+        Thread.sleep(forTimeInterval: 0.05)
     }
+    throw ProbeError(message: "No observed control: " + id)
+}
+func press(_ id: String) throws {
+    try waitFor(id)
+    guard let node = current().first(where: { (attr($0, kAXIdentifierAttribute) as? String) == id }),
+          AXUIElementPerformAction(node, kAXPressAction as CFString) == .success else { throw ProbeError(message: "Cannot press " + id) }
+    Thread.sleep(forTimeInterval: 0.08)
+}
+if opened {
+    _ = movePointer(to: "nav-more")
+    try press("more-settings")
+    states["preferences"] = observe()
+    try capture("preferences-window")
+    try press("nav-learn")
+}
+var walkError: String?
+if CommandLine.arguments.contains("--walk-course") {
+    do {
+        try press("nav-learn")
+        let data = try Data(contentsOf: root.appendingPathComponent(fixture))
+        let json = try JSONSerialization.jsonObject(with: data) as! [String: Any]
+        let course = (json["data"] as! [String: Any])["candidate_course"] as! [String: Any]
+        let lessons = course["lessons"] as! [[String: Any]]
+        var capturedKinds = Set<String>()
+        for (lessonIndex, definition) in lessons.enumerated() {
+            let path = course["pathNodes"] as? [[String: Any]]
+            let nodeIndex = path?.firstIndex { ($0["lessonIDs"] as? [String])?.contains(definition["id"] as! String) == true } ?? lessonIndex
+            try press(nodeIndex == 0 ? "start-lesson" : "start-lesson-\(nodeIndex)")
+            let questions = definition["questions"] as! [[String: Any]]
+            for question in questions {
+                try waitFor("question-title", value: question["prompt"] as? String)
+                let key = question["id"] as! String
+                states[key] = observe()
+                if let kind = question["kind"] as? String, capturedKinds.insert(kind).inserted { try capture("question-" + kind) }
+                switch question["kind"] as? String {
+                case "matching":
+                    for pair in question["pairs"] as! [[String: Any]] {
+                        let id = pair["id"] as! String
+                        try press("pair-left-" + id); try press("pair-right-" + id)
+                    }
+                case "word_tiles":
+                    for word in question["answer_words"] as! [String] { try press("word-bank-" + word) }
+                    try press("check")
+                default:
+                    try press("option-" + (question["answer"] as! String)); try press("check")
+                }
+                try waitFor("continue")
+                states[key + "-feedback"] = observe()
+                try press("continue")
+            }
+            try waitFor("lesson-complete")
+            states["lesson-\(lessonIndex + 1)-complete"] = observe()
+            try press("return-path")
+            try waitFor("course-entry")
+        }
+    } catch { walkError = String(describing: error) }
 }
 let receipt: [String: Any] = ["kind": "owned_native_ax_observation", "states": states,
     "observed_at": ISO8601DateFormatter().string(from: Date()),
-    "action": "Start isolated child, collect home, press More, collect result",
-    "limitations": ["AX text only; no visual/audio equivalence", "More press is not reference hover"]]
+    "action": "Start isolated child, collect home, move pointer into More then out, optionally walk the observed course",
+    "walk_error": walkError as Any? ?? NSNull(),
+    "pointer_actions": pointerActions,
+    "limitations": ["AX text and owned pointer actions; no visual/audio equivalence"]]
 let data = try JSONSerialization.data(withJSONObject: receipt, options: [.prettyPrinted, .sortedKeys])
 try data.write(to: output.appendingPathComponent("observed.json"), options: .withoutOverwriting)
 print("Collected actual home and More text from owned child")
+if child.isRunning { child.terminate(); child.waitUntilExit() }
+if walkError != nil { exit(1) }
+
+}
+do { try main() } catch {
+    FileHandle.standardError.write(Data(("Native observation failed: \(error)\n").utf8))
+    exit(1)
+}

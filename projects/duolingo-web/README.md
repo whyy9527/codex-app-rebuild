@@ -88,6 +88,8 @@ python3 projects/duolingo-web/verify-product.py --out artifacts/product-new
 python3 -m capabilities.rebuild.discovery --history projects/duolingo-web/evidence/exploration-v4/history.json --out artifacts/frontier-new.json
 ```
 
-产品入口执行冻结业务 E2E，再启动隔离 Swift 子进程采集主页/More 的 AX 文本，执行 `frontend-v4.json` 断言。任一失败或尚未验证，统一结果即失败。当前真实基线：业务12/12通过，原版10项文案在候选均失败，另3项未验证，整体失败；原版同一组10项均通过。AX 文本只验证可访问文案，不能证明视觉可见或 1:1；视觉、音色及悬停检查仍待实现，不用文案检查冒充它们。
+产品入口执行冻结业务 E2E，再启动隔离 Swift 子进程实际悬停/移出 More、进入 Settings、逐题完成当前西语课24题；分别执行主页/导航和144项课程文案契约。当前回执：业务12/12、课程文案144/144通过；主页/More 12项通过，Settings 7项失败，视觉/原版音频2项未验证，整体失败。源码和资源摘要均保持不变；未访问与不可用不能算通过。AX文案不证明视觉可见或1:1。
+
+当前默认夹具 `fixture-reference-v4.json` 由原版实际题面、选项和正确反馈编译；冻结v2回归继续用旧夹具。真实字体、主页图形和选择题图片已打包。`measure-visual.py`按实际窗口几何/Retina采样输出原始差异，未建立视觉通过判定。探索队列当前11状态、11转移、23待访问动作，仍是未访问优先策略，没有宣称RSI自改进。
 
 [探索与差异记录](evidence/exploration-v4/README.md)保存真实来源、待探索分支和本轮失败。

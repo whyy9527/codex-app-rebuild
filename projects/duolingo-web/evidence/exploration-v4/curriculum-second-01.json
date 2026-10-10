@@ -1,0 +1,113 @@
+{
+  "complete": false,
+  "error": "Error: No observed matching pairs",
+  "observed": [
+    {
+      "step": 0,
+      "kind": "choice",
+      "prompt": "Which one of these is “book”?",
+      "before": "- button:\n  - img\n- progressbar:\n  - img\n- img\n- text: \"5\"\n- img\n- text: New word\n- heading \"Which one of these is “book”?\" [level=1]\n- radiogroup \"choice\":\n  - radio \"agua 1\":\n    - text: agua 1\n    - img\n    - img\n  - radio \"libro 2\":\n    - text: libro 2\n    - img\n    - img\n  - radio \"perro 3\":\n    - text: perro 3\n    - img\n    - img\n- button \"Skip\"\n- button \"Check\" [disabled]",
+      "text": "NEW WORD\nWhich one of these is “book”?\nagua\n1\nlibro\n2\nperro\n3",
+      "feedback": "- button:\n  - img\n- progressbar:\n  - img\n- img\n- text: \"5\"\n- img\n- text: New word\n- heading \"Which one of these is “book”?\" [level=1]\n- radiogroup \"choice\":\n  - radio \"agua 1\" [disabled]:\n    - text: agua 1\n    - img\n    - img\n  - radio \"libro 2\" [checked] [disabled]:\n    - text: libro 2\n    - img\n    - img\n  - radio \"perro 3\" [disabled]:\n    - text: perro 3\n    - img\n    - img\n- heading \"Correct!\" [level=2]\n- button \"Too easy\"\n- button \"Too difficult\"\n- button \"Report\"\n- button \"Continue\""
+    },
+    {
+      "step": 1,
+      "kind": "choice",
+      "prompt": "Which one of these is “house”?",
+      "before": "- button:\n  - img\n- progressbar\n- img\n- text: \"5\"\n- img\n- text: New word\n- heading \"Which one of these is “house”?\" [level=1]\n- radiogroup \"choice\":\n  - radio \"gato 1\":\n    - text: gato 1\n    - img\n    - img\n  - radio \"casa 2\":\n    - text: casa 2\n    - img\n    - img\n  - radio \"libro 3\":\n    - text: libro 3\n    - img\n    - img\n- button \"Skip\"\n- button \"Check\" [disabled]",
+      "text": "NEW WORD\nWhich one of these is “house”?\ngato\n1\ncasa\n2\nlibro\n3",
+      "feedback": "- button:\n  - img\n- progressbar: 2 in a row\n- img\n- text: \"5\"\n- img\n- text: New word\n- heading \"Which one of these is “house”?\" [level=1]\n- radiogroup \"choice\":\n  - radio \"gato 1\" [disabled]:\n    - text: gato 1\n    - img\n    - img\n  - radio \"casa 2\" [checked] [disabled]:\n    - text: casa 2\n    - img\n    - img\n  - radio \"libro 3\" [disabled]:\n    - text: libro 3\n    - img\n    - img\n- heading \"Good job!\" [level=2]\n- button \"Too easy\"\n- button \"Too difficult\"\n- button \"Report\"\n- button \"Continue\""
+    },
+    {
+      "step": 2,
+      "kind": "choice",
+      "prompt": "Which one of these is “suitcase”?",
+      "before": "- button:\n  - img\n- progressbar\n- img\n- text: \"5\"\n- img\n- text: New word\n- heading \"Which one of these is “suitcase”?\" [level=1]\n- radiogroup \"choice\":\n  - radio \"leche 1\":\n    - text: leche 1\n    - img\n    - img\n  - radio \"libro 2\":\n    - text: libro 2\n    - img\n    - img\n  - radio \"maleta 3\":\n    - text: maleta 3\n    - img\n    - img\n- button \"Skip\"\n- button \"Check\" [disabled]",
+      "text": "NEW WORD\nWhich one of these is “suitcase”?\nleche\n1\nlibro\n2\nmaleta\n3",
+      "feedback": "- button:\n  - img\n- progressbar:\n  - text: 3 in a row\n  - img\n- img\n- text: \"5\"\n- img\n- text: New word\n- heading \"Which one of these is “suitcase”?\" [level=1]\n- radiogroup \"choice\":\n  - radio \"leche 1\" [disabled]:\n    - text: leche 1\n    - img\n    - img\n  - radio \"libro 2\" [disabled]:\n    - text: libro 2\n    - img\n    - img\n  - radio \"maleta 3\" [checked] [disabled]:\n    - text: maleta 3\n    - img\n    - img\n- heading \"Awesome!\" [level=2]\n- button \"Too easy\"\n- button \"Too difficult\"\n- button \"Report\"\n- button \"Continue\""
+    },
+    {
+      "step": 3,
+      "kind": "matching",
+      "prompt": "Select the matching pairs",
+      "before": "- button:\n  - img\n- progressbar\n- img\n- text: \"5\"\n- heading \"Select the matching pairs\" [level=1]\n- button \"1 dad\":\n  - text: 1 dad\n  - img\n  - img\n- button \"2 house\":\n  - text: 2 house\n  - img\n  - img\n- button \"3 dog\":\n  - text: 3 dog\n  - img\n  - img\n- button \"4 mom\":\n  - text: 4 mom\n  - img\n  - img\n- button \"5 book\":\n  - text: 5 book\n  - img\n  - img\n- button \"6 perro\":\n  - text: 6 perro\n  - img\n  - img\n- button \"7 papá\":\n  - text: 7 papá\n  - img\n  - img\n- button \"8 mamá\":\n  - text: 8 mamá\n  - img\n  - img\n- button \"9 libro\":\n  - text: 9 libro\n  - img\n  - img\n- button \"0 casa\":\n  - text: 0 casa\n  - img\n  - img\n- button \"Skip\"\n- button \"Check\" [disabled]",
+      "text": "Select the matching pairs\n1\ndad\n2\nhouse\n3\ndog\n4\nmom\n5\nbook\n6\nperro\n7\npapá\n8\nmamá\n9\nlibro\n0\ncasa",
+      "feedback": "- button:\n  - img\n- progressbar:\n  - text: 4 in a row\n  - img\n- img\n- text: \"5\"\n- heading \"Select the matching pairs\" [level=1]\n- button \"1 dad\" [disabled]:\n  - text: 1 dad\n  - img\n  - img\n- button \"2 house\" [disabled]:\n  - text: 2 house\n  - img\n  - img\n- button \"3 dog\" [disabled]:\n  - text: 3 dog\n  - img\n  - img\n- button \"4 mom\" [disabled]:\n  - text: 4 mom\n  - img\n  - img\n- button \"5 book\" [disabled]:\n  - text: 5 book\n  - img\n  - img\n- button \"6 perro\" [disabled]:\n  - text: 6 perro\n  - img\n  - img\n- button \"7 papá\" [disabled]:\n  - text: 7 papá\n  - img\n  - img\n- button \"8 mamá\" [disabled]:\n  - text: 8 mamá\n  - img\n  - img\n- button \"9 libro\" [disabled]:\n  - text: 9 libro\n  - img\n  - img\n- button \"0 casa\" [disabled]:\n  - text: 0 casa\n  - img\n  - img\n- heading \"Correct!\" [level=2]\n- button \"Too easy\"\n- button \"Too difficult\"\n- button \"Report\"\n- button \"Continue\""
+    },
+    {
+      "step": 4,
+      "kind": "matching",
+      "prompt": "Select the matching pairs",
+      "before": "- button:\n  - img\n- progressbar\n- img\n- text: \"5\"\n- heading \"Select the matching pairs\" [level=1]\n- button \"1 suitcase\":\n  - text: 1 suitcase\n  - img\n  - img\n- button \"2 milk\":\n  - text: 2 milk\n  - img\n  - img\n- button \"3 water\":\n  - text: 3 water\n  - img\n  - img\n- button \"4 cat\":\n  - text: 4 cat\n  - img\n  - img\n- button \"5 house\":\n  - text: 5 house\n  - img\n  - img\n- button \"6 casa\":\n  - text: 6 casa\n  - img\n  - img\n- button \"7 agua\":\n  - text: 7 agua\n  - img\n  - img\n- button \"8 maleta\":\n  - text: 8 maleta\n  - img\n  - img\n- button \"9 gato\":\n  - text: 9 gato\n  - img\n  - img\n- button \"0 leche\":\n  - text: 0 leche\n  - img\n  - img\n- button \"Skip\"\n- button \"Check\" [disabled]",
+      "text": "Select the matching pairs\n1\nsuitcase\n2\nmilk\n3\nwater\n4\ncat\n5\nhouse\n6\ncasa\n7\nagua\n8\nmaleta\n9\ngato\n0\nleche",
+      "feedback": "- button:\n  - img\n- progressbar:\n  - text: 5 in a row\n  - img\n- img\n- text: \"5\"\n- heading \"Select the matching pairs\" [level=1]\n- button \"1 suitcase\" [disabled]:\n  - text: 1 suitcase\n  - img\n  - img\n- button \"2 milk\" [disabled]:\n  - text: 2 milk\n  - img\n  - img\n- button \"3 water\" [disabled]:\n  - text: 3 water\n  - img\n  - img\n- button \"4 cat\" [disabled]:\n  - text: 4 cat\n  - img\n  - img\n- button \"5 house\" [disabled]:\n  - text: 5 house\n  - img\n  - img\n- button \"6 casa\" [disabled]:\n  - text: 6 casa\n  - img\n  - img\n- button \"7 agua\" [disabled]:\n  - text: 7 agua\n  - img\n  - img\n- button \"8 maleta\" [disabled]:\n  - text: 8 maleta\n  - img\n  - img\n- button \"9 gato\" [disabled]:\n  - text: 9 gato\n  - img\n  - img\n- button \"0 leche\" [disabled]:\n  - text: 0 leche\n  - img\n  - img\n- heading \"Excellent!\" [level=2]\n- button \"Too easy\"\n- button \"Too difficult\"\n- button \"Report\"\n- button \"Continue\""
+    },
+    {
+      "step": 5,
+      "kind": "word_tiles",
+      "prompt": "Write this in English",
+      "before": "- button:\n  - img\n- progressbar\n- img\n- text: \"5\"\n- img\n- text: New word\n- heading \"Write this in English\" [level=1]\n- button:\n  - img\n- img\n- button \"suitcase\"\n- button \"my\"\n- button \"house\"\n- button \"cat\"\n- img\n- text: You’re getting good at this!\n- button \"Check\" [disabled]",
+      "text": "NEW WORD\nWrite this in English\nmi maleta\nsuitcase\nmy\nhouse\ncat",
+      "hints": [
+        "mi",
+        "maleta"
+      ],
+      "feedback": "- button:\n  - img\n- progressbar:\n  - text: 6 in a row\n  - img\n- img\n- text: \"5\"\n- img\n- text: New word\n- heading \"Write this in English\" [level=1]\n- button:\n  - img\n- img\n- button \"suitcase\" [disabled]\n- button \"my\" [disabled]\n- button \"house\" [disabled]\n- button \"cat\" [disabled]\n- heading \"Nice job!\" [level=2]\n- button \"Too easy\"\n- button \"Too difficult\"\n- button \"Report\"\n- button \"Continue\"\n- button \"my\" [disabled]\n- button \"suitcase\" [disabled]"
+    },
+    {
+      "step": 6,
+      "kind": "choice",
+      "prompt": "Select the correct meaning: suitcase",
+      "before": "- button:\n  - img\n- progressbar\n- img\n- text: \"5\"\n- heading \"Select the correct meaning\" [level=1]\n- text: suitcase\n- img\n- radiogroup \"choice\":\n  - radio \"1 libro\":\n    - text: 1 libro\n    - img\n    - img\n  - radio \"2 maleta\":\n    - text: 2 maleta\n    - img\n    - img\n  - radio \"3 casa\":\n    - text: 3 casa\n    - img\n    - img\n- button \"Skip\"\n- button \"Check\" [disabled]",
+      "text": "Select the correct meaning\nsuitcase\n1\nlibro\n2\nmaleta\n3\ncasa",
+      "feedback": "- button:\n  - img\n- progressbar:\n  - text: 7 in a row\n  - img\n- img\n- text: \"5\"\n- heading \"Select the correct meaning\" [level=1]\n- text: suitcase\n- img\n- radiogroup \"choice\":\n  - radio \"1 libro\" [disabled]:\n    - text: 1 libro\n    - img\n    - img\n  - radio \"2 maleta\" [checked] [disabled]:\n    - text: 2 maleta\n    - img\n    - img\n  - radio \"3 casa\" [disabled]:\n    - text: 3 casa\n    - img\n    - img\n- heading \"Amazing!\" [level=2]\n- button \"Too easy\"\n- button \"Too difficult\"\n- button \"Report\"\n- button \"Continue\""
+    },
+    {
+      "step": 7,
+      "kind": "word_tiles",
+      "prompt": "Write this in English",
+      "before": "- button:\n  - img\n- progressbar\n- img\n- text: \"5\"\n- heading \"Write this in English\" [level=1]\n- button:\n  - img\n- img\n- button \"my\"\n- button \"dog\"\n- button \"book\"\n- button \"house\"\n- button \"Skip\"\n- button \"Check\" [disabled]",
+      "text": "Write this in English\nmi casa\nmy\ndog\nbook\nhouse",
+      "hints": [
+        "mi",
+        "casa"
+      ],
+      "feedback": "- button:\n  - img\n- progressbar:\n  - text: 8 in a row\n  - img\n- img\n- text: \"5\"\n- heading \"Write this in English\" [level=1]\n- button:\n  - img\n- img\n- button \"my\" [disabled]\n- button \"dog\" [disabled]\n- button \"book\" [disabled]\n- button \"house\" [disabled]\n- heading \"Nice!\" [level=2]\n- button \"Too easy\"\n- button \"Too difficult\"\n- button \"Report\"\n- button \"Continue\"\n- button \"my\" [disabled]\n- button \"house\" [disabled]"
+    },
+    {
+      "step": 8,
+      "kind": "choice",
+      "prompt": "Select the correct meaning: house",
+      "before": "- button:\n  - img\n- progressbar\n- img\n- text: \"5\"\n- heading \"Select the correct meaning\" [level=1]\n- text: house\n- img\n- radiogroup \"choice\":\n  - radio \"1 maleta\":\n    - text: 1 maleta\n    - img\n    - img\n  - radio \"2 casa\":\n    - text: 2 casa\n    - img\n    - img\n  - radio \"3 libro\":\n    - text: 3 libro\n    - img\n    - img\n- button \"Skip\"\n- button \"Check\" [disabled]",
+      "text": "Select the correct meaning\nhouse\n1\nmaleta\n2\ncasa\n3\nlibro",
+      "feedback": "- button:\n  - img\n- progressbar:\n  - text: 9 in a row\n  - img\n- img\n- text: \"5\"\n- heading \"Select the correct meaning\" [level=1]\n- text: house\n- img\n- radiogroup \"choice\":\n  - radio \"1 maleta\" [disabled]:\n    - text: 1 maleta\n    - img\n    - img\n  - radio \"2 casa\" [checked] [disabled]:\n    - text: 2 casa\n    - img\n    - img\n  - radio \"3 libro\" [disabled]:\n    - text: 3 libro\n    - img\n    - img\n- heading \"Excellent!\" [level=2]\n- button \"Too easy\"\n- button \"Too difficult\"\n- button \"Report\"\n- button \"Continue\""
+    },
+    {
+      "step": 9,
+      "kind": "word_tiles",
+      "prompt": "Write this in English",
+      "before": "- button:\n  - img\n- progressbar\n- img\n- text: \"5\"\n- heading \"Write this in English\" [level=1]\n- button:\n  - img\n- img\n- button \"my\"\n- button \"cat\"\n- button \"book\"\n- button \"dog\"\n- button \"Skip\"\n- button \"Check\" [disabled]",
+      "text": "Write this in English\nmi libro\nmy\ncat\nbook\ndog",
+      "hints": [
+        "mi",
+        "libro"
+      ],
+      "feedback": "- button:\n  - img\n- progressbar:\n  - text: 10 in a row\n  - img\n- img\n- text: \"5\"\n- heading \"Write this in English\" [level=1]\n- button:\n  - img\n- img\n- button \"my\" [disabled]\n- button \"cat\" [disabled]\n- button \"book\" [disabled]\n- button \"dog\" [disabled]\n- heading \"Amazing!\" [level=2]\n- button \"Too easy\"\n- button \"Too difficult\"\n- button \"Report\"\n- button \"Continue\"\n- button \"my\" [disabled]\n- button \"book\" [disabled]"
+    },
+    {
+      "step": 10,
+      "kind": "choice",
+      "prompt": "Select the correct meaning: book",
+      "before": "- button:\n  - img\n- progressbar\n- img\n- text: \"5\"\n- heading \"Select the correct meaning\" [level=1]\n- text: book\n- img\n- radiogroup \"choice\":\n  - radio \"1 libro\":\n    - text: 1 libro\n    - img\n    - img\n  - radio \"2 perro\":\n    - text: 2 perro\n    - img\n    - img\n  - radio \"3 agua\":\n    - text: 3 agua\n    - img\n    - img\n- img\n- text: You're the best!\n- button \"Check\" [disabled]",
+      "text": "Select the correct meaning\nbook\n1\nlibro\n2\nperro\n3\nagua",
+      "feedback": "- button:\n  - img\n- progressbar:\n  - text: 11 in a row\n  - img\n- img\n- text: \"5\"\n- heading \"Select the correct meaning\" [level=1]\n- text: book\n- img\n- radiogroup \"choice\":\n  - radio \"1 libro\" [checked] [disabled]:\n    - text: 1 libro\n    - img\n    - img\n  - radio \"2 perro\" [disabled]:\n    - text: 2 perro\n    - img\n    - img\n  - radio \"3 agua\" [disabled]:\n    - text: 3 agua\n    - img\n    - img\n- heading \"Amazing!\" [level=2]\n- button \"Too easy\"\n- button \"Too difficult\"\n- button \"Report\"\n- button \"Continue\""
+    },
+    {
+      "step": 11,
+      "kind": "matching",
+      "prompt": "Select the matching pairs",
+      "before": "- button:\n  - img\n- progressbar\n- img\n- text: \"5\"\n- heading \"Select the matching pairs\" [level=1]\n- button \"1 my dad\":\n  - text: 1 my dad\n  - img\n  - img\n- button \"2 my house\":\n  - text: 2 my house\n  - img\n  - img\n- button \"3 my mom\":\n  - text: 3 my mom\n  - img\n  - img\n- button \"4 my cat\":\n  - text: 4 my cat\n  - img\n  - img\n- button \"5 my dog\":\n  - text: 5 my dog\n  - img\n  - img\n- button \"6 mi mamá\":\n  - text: 6 mi mamá\n  - img\n  - img\n- button \"7 mi perro\":\n  - text: 7 mi perro\n  - img\n  - img\n- button \"8 mi papá\":\n  - text: 8 mi papá\n  - img\n  - img\n- button \"9 mi casa\":\n  - text: 9 mi casa\n  - img\n  - img\n- button \"0 mi gato\":\n  - text: 0 mi gato\n  - img\n  - img\n- button \"Skip\"\n- button \"Check\" [disabled]",
+      "text": "Select the matching pairs\n1\nmy dad\n2\nmy house\n3\nmy mom\n4\nmy cat\n5\nmy dog\n6\nmi mamá\n7\nmi perro\n8\nmi papá\n9\nmi casa\n0\nmi gato"
+    }
+  ]
+}

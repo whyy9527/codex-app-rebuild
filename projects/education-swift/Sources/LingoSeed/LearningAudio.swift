@@ -19,11 +19,11 @@ import AVFoundation
             return player?.play() ?? false
         } catch { NSLog("Audio playback failed: %@", error.localizedDescription); return false }
     }
-    func speak(_ text: String) {
+    func speak(_ text: String, language: String = "en-US") {
         guard !muted else { return }
         player?.stop(); speech.stopSpeaking(at: .immediate)
         let utterance = AVSpeechUtterance(string: text)
-        utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
+        utterance.voice = AVSpeechSynthesisVoice(language: language)
         utterance.rate = 0.45
         speech.speak(utterance)
     }

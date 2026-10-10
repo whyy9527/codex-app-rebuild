@@ -23,10 +23,14 @@ struct ChoiceIllustration: View {
         }
     }
     var body: some View {
-        ZStack {
+        Group {
+            if let name = ReferenceStyle.choiceImages[phrase.lowercased()] {
+                ReferenceStyle.image(name).resizable().scaledToFit().frame(width: 143, height: 160)
+            } else { ZStack {
             Circle().fill(colors[0].opacity(0.1)).frame(width: 110, height: 110)
             Image(systemName: symbol).font(.system(size: 68, weight: .semibold)).symbolRenderingMode(.palette).foregroundStyle(colors[0], colors[1])
-        }.frame(height: 135).accessibilityHidden(true)
+            }.frame(height: 135) }
+        }.accessibilityHidden(true)
     }
 }
 struct SeedChoiceStyle: ButtonStyle {

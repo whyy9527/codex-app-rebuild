@@ -1,6 +1,6 @@
 # LingoSeed · Swift 教育基座
 
-可运行的 macOS SwiftUI 客户端，使用原创 Everyday English 两课时题库与系统符号。实现课程路径与顺序解锁、选择题、配对、拼句与撤回、反馈、错题重练、结算和持久进度。冻结 v2 的12条共享场景已在网页参考和实际原生 UI 两侧通过；本轮产品修正的逐项证据见文末，行为测试本身仍不代表全部产品要求。
+可运行的 macOS SwiftUI 客户端。当前默认读取从原版匿名西语课实际观察编译的两节课、共24题，使用原版公开加载的字体、主页图形和选择题图片。第三节课及后续分支继续探索；已有数据不是复刻范围上限。旧 Everyday English 夹具保留用于冻结业务回归。实现课程路径与顺序解锁、选择题、配对、拼句与撤回、反馈、错题重练、结算和持久进度。冻结 v2 的12条共享场景已在网页参考和实际原生 UI 两侧通过；本轮产品修正的逐项证据见文末，行为测试本身仍不代表全部产品要求。
 
 ## 构建、运行与重置
 
@@ -8,7 +8,7 @@
 
 ```sh
 swift build --package-path projects/education-swift --product LingoSeed
-projects/education-swift/.build/debug/LingoSeed --fixture projects/duolingo-web/fixture-v2.json --progress artifacts/lingoseed-demo/progress.json
+projects/education-swift/.build/debug/LingoSeed --fixture projects/duolingo-web/fixture-reference-v4.json --progress artifacts/lingoseed-demo-v4/progress.json
 swift run --package-path projects/education-swift LearningCoreChecks
 ```
 
@@ -26,7 +26,9 @@ swift run --package-path projects/education-swift LearningCoreChecks
 
 替换 fixture 的 `data.candidate_course` 可换课程。新格式含 `lessons`，每课含 questions；题型为 choice、matching、word_tiles，字段例见 fixture-v2.json。仍可读取旧单课 questions 格式。旧完成记录只给旧单课内容记分，不自动完成新课时。
 
-## 产品决策与边界
+## 历史 v2/v3 产品决策与边界
+
+以下记录描述旧实现，不能作为当前 1:1 目标的范围限制。
 
 两端比较业务动作和断言，题面、课程长度、选项顺序及视觉素材不同。生命归零暂不阻断学习；错误配对重试不扣生命。这些是原版未观察边界上的显式产品决策。完成课时和生命持久保存，主动退出丢弃未完成尝试，不保存逐题断点。没有登录、支付、排行、语音识别或完整题库。
 
@@ -34,7 +36,7 @@ swift run --package-path projects/education-swift LearningCoreChecks
 
 历史v2工程复验：原生12/12、核心5项及Python43项通过；该记录不代表当前产品完成，见[撤回完成声明与历史审计](../../docs/DELIVERY-AUDIT.md)。
 
-## 产品修正 v3
+## 历史产品修正 v3（局部检查，完成声明已撤回）
 
 默认学习主页采用白底、绿色单元横幅、课程节点、侧导航及右侧学习卡片。窄窗缩为图标侧栏，再隐藏右栏保留课程操作。练习含顶部进度/生命、中央题面及底部检查/反馈。Guidebook、导航页及返回有真实去向；账户、商店和在线排行明确未连接。
 
@@ -52,4 +54,20 @@ artifacts/product-v3/audio-checks artifacts/product-v3/audio-samples
 
 本轮新增28项产品UI检查与六段真实应用系统输出录音通过；静音时执行配对的采样输出为零。检查命令、17张截图、来源与尚未对齐的拼句/导航视觉见[产品复验](../duolingo-web/evidence/PRODUCT-V3-REVIEW.md)。后续最终证据见下文。
 
-最终产品修正验收：35项原生产品检查、22张实际截图、7段应用输出录音、冻结12项与核心5项通过，见[交付审计](../duolingo-web/evidence/PRODUCT-V3-DELIVERY.md)与[并排截图](../duolingo-web/evidence/product-v3-comparison.html)。包括自然启动三栏、五个导航页及真实课程入口、拼句发音气泡与答案横线。此前28项/6段是历史迭代，不是最终源码的回执。
+历史产品修正检查：35项原生产品检查、22张实际截图、7段应用输出录音、冻结12项与核心5项通过，见[交付审计](../duolingo-web/evidence/PRODUCT-V3-DELIVERY.md)与[并排截图](../duolingo-web/evidence/product-v3-comparison.html)。包括自然启动三栏、五个导航页及真实课程入口、拼句发音气泡与答案横线。此前28项/6段是历史迭代，不是最终源码的回执。
+
+
+## 当前 v4 修正
+
+`ReferenceHome`、`ReferenceStyle` 负责原版主页和字体/资源呈现；`LearningCore` 仍拥有课程状态，题目答案由实际原版正向反馈确认后编入夹具。第一个路径节点含三节课，不能把每节课画成独立节点；尚未采齐的第三节课不会被伪造内容替代。`ChoiceIllustration` 按选项文本查找实际图片，不读取答案。
+
+原版两节课24题在真实原生 AX 驱动中走完，144项题面/选项/词库/配对文案通过。文案通过不证明选项几何、反馈或声音一致。实际字体与图形已经纳入 SwiftPM 资源；Duo 目前只是原版一个动画帧，动画仍缺。系统西语朗读已接入，原版语音和反馈音效身份/时序尚未对齐，旧合成音不能被算作 1:1。
+
+从仓库根复验：
+
+```sh
+python3 projects/duolingo-web/compile-observed-course.py
+python3 projects/duolingo-web/verify-product.py --out artifacts/product-new
+```
+
+统一入口会因未完成的前端需求返回失败，这是当前实际状态。具体回执与未探索分支见[探索记录](../duolingo-web/evidence/exploration-v4/README.md)。

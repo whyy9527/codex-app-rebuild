@@ -63,6 +63,10 @@
         {
           "id": "dismiss",
           "description": "Move pointer out and verify dismissal"
+        },
+        {
+          "id": "move-out",
+          "description": "Move pointer outside More and menu"
         }
       ]
     },
@@ -135,6 +139,70 @@
           "description": "Open Send Feedback form"
         }
       ]
+    },
+    {
+      "id": "home-two-complete",
+      "evidence": "projects/duolingo-web/evidence/exploration-v4/more-hover-dismiss.json",
+      "actions": [
+        {
+          "id": "more-hover",
+          "description": "Hover More at lesson 3 of 3"
+        },
+        {
+          "id": "lesson-3",
+          "description": "Start the third lesson of the first path node"
+        }
+      ]
+    },
+    {
+      "id": "more-open-two-complete",
+      "evidence": "projects/duolingo-web/evidence/exploration-v4/more-hover-dismiss.json",
+      "actions": [
+        {
+          "id": "move-out",
+          "description": "Move pointer outside menu and row"
+        }
+      ]
+    },
+    {
+      "id": "preferences-sound-off-reloaded",
+      "evidence": "projects/duolingo-web/evidence/exploration-v4/settings-sound-reload.json",
+      "actions": [
+        {
+          "id": "sound-on",
+          "description": "Restore sound effects and inspect actual output"
+        }
+      ]
+    },
+    {
+      "id": "lesson-2-phrase-match",
+      "evidence": "projects/duolingo-web/evidence/exploration-v4/curriculum-second-01.json",
+      "actions": [
+        {
+          "id": "phrase-pairs",
+          "description": "Resolve unknown my + noun matches, then verify on the reference"
+        }
+      ]
+    },
+    {
+      "id": "lesson-2-complete",
+      "evidence": "projects/duolingo-web/evidence/exploration-v4/curriculum-second-02.json",
+      "actions": [
+        {
+          "id": "return-home",
+          "description": "Return to path and inspect first node grouping"
+        }
+      ]
+    },
+    {
+      "id": "lesson-3-first-question",
+      "evidence": "projects/duolingo-web/evidence/exploration-v4/third-lesson-picture-source.json",
+      "actions": [
+        {
+          "id": "answer-book",
+          "description": "Answer the first book question and discover subsequent states"
+        }
+      ]
     }
   ],
   "transitions": [
@@ -165,6 +233,55 @@
       "to": "help",
       "outcome": "observed",
       "evidence": "projects/duolingo-web/evidence/exploration-v4/help.yml"
+    },
+    {
+      "from": "preferences",
+      "action": "sound-effects",
+      "to": "preferences-sound-off-reloaded",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/exploration-v4/settings-sound-reload.json"
+    },
+    {
+      "from": "home",
+      "action": "lesson-2",
+      "to": "lesson-2-phrase-match",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/exploration-v4/curriculum-second-01.json"
+    },
+    {
+      "from": "lesson-2-phrase-match",
+      "action": "phrase-pairs",
+      "to": "lesson-2-complete",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/exploration-v4/curriculum-second-02.json"
+    },
+    {
+      "from": "lesson-2-complete",
+      "action": "return-home",
+      "to": "home-two-complete",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/exploration-v4/more-hover-dismiss.json"
+    },
+    {
+      "from": "home-two-complete",
+      "action": "more-hover",
+      "to": "more-open-two-complete",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/exploration-v4/more-hover-dismiss.json"
+    },
+    {
+      "from": "more-open-two-complete",
+      "action": "move-out",
+      "to": "home-two-complete",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/exploration-v4/more-hover-dismiss.json"
+    },
+    {
+      "from": "home-two-complete",
+      "action": "lesson-3",
+      "to": "lesson-3-first-question",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/exploration-v4/third-lesson-picture-source.json"
     }
   ]
 }

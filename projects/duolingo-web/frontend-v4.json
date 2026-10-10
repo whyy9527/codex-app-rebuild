@@ -111,12 +111,86 @@
       ]
     },
     {
-      "id": "hover",
-      "state": "more-open",
-      "kind": "pending",
-      "description": "More hover trigger and menu dismissal not yet implemented",
+      "id": "more_hover_opened",
+      "state": "home",
+      "kind": "interaction_boolean",
+      "field": "more_hover_opened",
+      "expected": true,
       "evidence": [
-        "projects/duolingo-web/evidence/exploration-v4/more-hover.yml"
+        "projects/duolingo-web/evidence/exploration-v4/more-hover-dismiss.json"
+      ]
+    },
+    {
+      "id": "more_hover_dismissed",
+      "state": "home",
+      "kind": "interaction_boolean",
+      "field": "more_hover_dismissed",
+      "expected": true,
+      "evidence": [
+        "projects/duolingo-web/evidence/exploration-v4/more-hover-dismiss.json"
+      ]
+    },
+    {
+      "id": "preferences-text-0",
+      "state": "preferences",
+      "kind": "accessible_text",
+      "text": "Preferences",
+      "evidence": [
+        "projects/duolingo-web/evidence/exploration-v4/preferences.yml"
+      ]
+    },
+    {
+      "id": "preferences-text-1",
+      "state": "preferences",
+      "kind": "accessible_text",
+      "text": "Lesson experience",
+      "evidence": [
+        "projects/duolingo-web/evidence/exploration-v4/preferences.yml"
+      ]
+    },
+    {
+      "id": "preferences-text-2",
+      "state": "preferences",
+      "kind": "accessible_text",
+      "text": "Sound effects",
+      "evidence": [
+        "projects/duolingo-web/evidence/exploration-v4/preferences.yml"
+      ]
+    },
+    {
+      "id": "preferences-text-3",
+      "state": "preferences",
+      "kind": "accessible_text",
+      "text": "Animations",
+      "evidence": [
+        "projects/duolingo-web/evidence/exploration-v4/preferences.yml"
+      ]
+    },
+    {
+      "id": "preferences-text-4",
+      "state": "preferences",
+      "kind": "accessible_text",
+      "text": "Motivational messages",
+      "evidence": [
+        "projects/duolingo-web/evidence/exploration-v4/preferences.yml"
+      ]
+    },
+    {
+      "id": "preferences-text-5",
+      "state": "preferences",
+      "kind": "accessible_text",
+      "text": "Listening exercises",
+      "evidence": [
+        "projects/duolingo-web/evidence/exploration-v4/preferences.yml"
+      ]
+    },
+    {
+      "id": "preferences-text-6",
+      "state": "preferences",
+      "kind": "accessible_text",
+      "text": "Dark mode",
+      "evidence": [
+        "projects/duolingo-web/evidence/exploration-v4/preferences.yml"
       ]
     }
   ]

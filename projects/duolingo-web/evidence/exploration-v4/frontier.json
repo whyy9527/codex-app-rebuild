@@ -13,15 +13,6 @@
     {
       "state": "home",
       "action": {
-        "id": "lesson-2",
-        "description": "Start next lesson"
-      },
-      "attempts": 0,
-      "evidence": "projects/duolingo-web/evidence/exploration-v4/more-hover.yml"
-    },
-    {
-      "state": "home",
-      "action": {
         "id": "course-picker",
         "description": "Open Spanish course selector"
       },
@@ -101,13 +92,13 @@
       "evidence": "projects/duolingo-web/evidence/exploration-v4/more-hover.yml"
     },
     {
-      "state": "preferences",
+      "state": "more-open",
       "action": {
-        "id": "sound-effects",
-        "description": "Toggle Sound effects and check reload persistence"
+        "id": "move-out",
+        "description": "Move pointer outside More and menu"
       },
       "attempts": 0,
-      "evidence": "projects/duolingo-web/evidence/exploration-v4/preferences.yml"
+      "evidence": "projects/duolingo-web/evidence/exploration-v4/more-hover.yml"
     },
     {
       "state": "preferences",
@@ -198,9 +189,27 @@
       },
       "attempts": 0,
       "evidence": "projects/duolingo-web/evidence/exploration-v4/help.yml"
+    },
+    {
+      "state": "preferences-sound-off-reloaded",
+      "action": {
+        "id": "sound-on",
+        "description": "Restore sound effects and inspect actual output"
+      },
+      "attempts": 0,
+      "evidence": "projects/duolingo-web/evidence/exploration-v4/settings-sound-reload.json"
+    },
+    {
+      "state": "lesson-3-first-question",
+      "action": {
+        "id": "answer-book",
+        "description": "Answer the first book question and discover subsequent states"
+      },
+      "attempts": 0,
+      "evidence": "projects/duolingo-web/evidence/exploration-v4/third-lesson-picture-source.json"
     }
   ],
-  "resolved_actions": 4,
+  "resolved_actions": 11,
   "completion": "unknown; an empty recorded frontier does not prove the whole app explored",
   "policy": "unvisited-first, observation order; not RSI self-improvement"
 }

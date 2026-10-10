@@ -11,13 +11,14 @@ struct LearningView: View {
             VStack(spacing: 0) {
                 if let lesson = model.lesson {
                     lessonPage(lesson)
+                } else if model.destination == "Learn" {
+                    ReferenceHome(model: model)
                 } else {
                     HStack(spacing: 0) {
                         sidebar(compact: geometry.size.width < 1180)
                         Divider()
                         ScrollView {
-                            if model.destination == "Learn" { path }
-                            else { destinationPage }
+                            destinationPage
                         }.frame(maxWidth: .infinity)
                         if geometry.size.width >= 1120 {
                             ScrollView { dashboard }.frame(width: 350).padding(.trailing, 24)
@@ -30,7 +31,7 @@ struct LearningView: View {
             }
         }
         .frame(minWidth: 780, minHeight: 660)
-        .fontDesign(.rounded).foregroundStyle(ink).background(.white)
+        .foregroundStyle(ink).background(.white)
         .sheet(isPresented: $model.showingGuide) {
             VStack(alignment: .leading, spacing: 24) {
                 Text("Unit guidebook").font(.largeTitle.bold()).accessibilityIdentifier("guide-title")
@@ -194,59 +195,11 @@ struct LearningView: View {
                 .buttonStyle(SeedButtonStyle(fill: accent)).accessibilityIdentifier("return-path")
         }.padding(.vertical, 32)
     }
-    private var path: some View {
-        VStack(spacing: 18) {
-            HStack(alignment: .center) {
-                VStack(alignment: .leading, spacing: 9) {
-                    Text("SECTION 1, UNIT 1").font(.headline).opacity(0.8)
-                    Text(model.course.title).font(.system(size: 22, weight: .heavy)).accessibilityIdentifier("course-entry")
-                }
-                Spacer(minLength: 10)
-                Button { model.showingGuide = true } label: { Label("GUIDEBOOK", systemImage: "text.book.closed.fill").font(.headline) }.buttonStyle(SeedButtonStyle(fill: accent)).accessibilityIdentifier("open-guide")
-            }.padding(20).foregroundStyle(.white).background(accent, in: RoundedRectangle(cornerRadius: 17))
-            ForEach(model.course.lessons.indices, id: \.self) { index in
-                let completed = model.progress.isCompleted(model.course, index: index)
-                let unlocked = model.progress.isUnlocked(model.course, index: index)
-                VStack(spacing: 8) {
-                    if unlocked && !completed { Text("START").font(.headline.bold()).foregroundStyle(accent).padding(12).background(.white, in: RoundedRectangle(cornerRadius: 12)).overlay(RoundedRectangle(cornerRadius: 12).stroke(Color.gray.opacity(0.2), lineWidth: 2)) }
-                    Button { model.begin(index) } label: {
-                        Image(systemName: completed ? "checkmark" : "star.fill").font(.system(size: 32, weight: .heavy)).foregroundStyle(unlocked ? .white : .gray)
-                            .frame(width: 78, height: 68).background {
-                                Ellipse().fill(unlocked ? accent : Color(white: 0.9))
-                                    .shadow(color: unlocked ? Color(red: 0.28, green: 0.62, blue: 0) : Color(white: 0.72), radius: 0, y: 8)
-                            }
-                            .padding(9).overlay(Ellipse().stroke(unlocked && !completed ? accent.opacity(0.3) : .clear, lineWidth: 5))
-                    }.buttonStyle(.plain).disabled(!unlocked).accessibilityLabel(completed ? "Practice again: " + model.course.lessons[index].title : "Start lesson: " + model.course.lessons[index].title)
-                        .accessibilityIdentifier(index == 0 ? "start-lesson" : "start-lesson-\(index)")
-                    Text(model.course.lessons[index].title).font(.headline).foregroundStyle(unlocked ? ink : .gray)
-                }.overlay(alignment: .trailing) {
-                    if index == model.course.lessons.count - 1 { SeedMascot().scaleEffect(0.75).frame(width: 95, height: 120).offset(x: 130) }
-                }.offset(x: index % 2 == 0 ? 25 : -60).padding(.vertical, 6)
-            }
-            ForEach(model.course.lessons.indices, id: \.self) { index in
-                let unlocked = model.progress.isCompleted(model.course, index: index)
-                VStack(spacing: 8) {
-                    Button { model.begin(index) } label: {
-                        Image(systemName: "dumbbell.fill").font(.system(size: 28, weight: .bold)).foregroundStyle(unlocked ? .white : .gray)
-                            .frame(width: 78, height: 68).background {
-                                Ellipse().fill(unlocked ? accent : Color(white: 0.9))
-                                    .shadow(color: unlocked ? Color(red: 0.28, green: 0.62, blue: 0) : Color(white: 0.72), radius: 0, y: 8)
-                            }
-                    }.buttonStyle(.plain).disabled(!unlocked).accessibilityLabel("Practice " + model.course.lessons[index].title)
-                        .accessibilityIdentifier("practice-lesson-\(index)")
-                    Text("Practice · " + model.course.lessons[index].title).font(.caption.bold()).foregroundStyle(.secondary)
-                }.offset(x: index % 2 == 0 ? -80 : 15).padding(.vertical, 6)
-            }
-            Text("\(model.progress.completedCount(model.course)) of \(model.course.lessons.count) lessons complete").font(.caption.bold()).foregroundStyle(.secondary)
-                .accessibilityIdentifier("completed-count").accessibilityValue(String(model.progress.completedCount(model.course)))
-            Text("More lessons will grow here.").foregroundStyle(.secondary).padding(.bottom, 40)
-        }.padding(30).frame(maxWidth: 720).frame(maxWidth: .infinity)
-    }
     @ViewBuilder private func question(_ lesson: Lesson) -> some View {
         if lesson.reviewing {
             Text("ONE MORE LOOK").font(.caption.bold()).foregroundStyle(accent).accessibilityIdentifier("review-label")
-        } else { Text(model.course.title.uppercased()).font(.caption.bold()).foregroundStyle(accent) }
-        Text(lesson.question.kind == .wordTiles ? "Build this phrase" : lesson.question.prompt).font(.system(size: 30, weight: .bold))
+        } else if lesson.question.newWord { Text("NEW WORD").font(ReferenceStyle.font(14, bold: true)).foregroundStyle(.purple) }
+        Text(lesson.question.kind == .wordTiles && lesson.question.hint == nil ? "Build this phrase" : lesson.question.prompt).font(ReferenceStyle.font(28, bold: true))
             .accessibilityIdentifier("question-title").accessibilityValue(lesson.question.prompt)
         switch lesson.question.kind {
         case .choice: choices(lesson)
@@ -257,8 +210,19 @@ struct LearningView: View {
             Button { model.pronounce() } label: { Label(lesson.selected == nil ? "Read the instruction" : "Listen again", systemImage: "speaker.wave.2.fill") }.buttonStyle(.plain).foregroundStyle(.cyan).accessibilityIdentifier("pronounce")
         }
     }
-    private func choices(_ lesson: Lesson) -> some View {
-        LazyVGrid(columns: [GridItem(.adaptive(minimum: 150, maximum: 220), spacing: 12)], spacing: 12) {
+    @ViewBuilder private func choices(_ lesson: Lesson) -> some View {
+        if let hint = lesson.question.hint {
+            Text(hint).font(ReferenceStyle.font(20)).accessibilityIdentifier("question-hint")
+            VStack(spacing: 12) {
+                ForEach(Array(lesson.question.options.enumerated()), id: \.element.id) { index, option in
+                    Button { model.choose(option.id) } label: {
+                        HStack(spacing: 20) { Text("\(index + 1)").font(ReferenceStyle.font(14)).frame(width: 24, height: 24).overlay(RoundedRectangle(cornerRadius: 6).stroke(ReferenceStyle.border, lineWidth: 2)); Text(option.text).font(ReferenceStyle.font(19)); Spacer() }
+                    }.buttonStyle(SeedTileStyle(selected: lesson.selected == option.id))
+                        .disabled(lesson.feedback != nil).accessibilityIdentifier("option-" + option.id)
+                        .accessibilityLabel(option.text).accessibilityValue(lesson.selected == option.id ? "selected" : "not selected")
+                }
+            }
+        } else { LazyVGrid(columns: [GridItem(.adaptive(minimum: 150, maximum: 220), spacing: 12)], spacing: 12) {
             ForEach(Array(lesson.question.options.enumerated()), id: \.element.id) { index, option in
                 Button { model.choose(option.id) } label: {
                     VStack(spacing: 18) {
@@ -274,7 +238,7 @@ struct LearningView: View {
                     .disabled(lesson.feedback != nil).accessibilityIdentifier("option-" + option.id)
                     .accessibilityLabel(option.text).accessibilityValue(lesson.selected == option.id ? "selected" : "not selected")
             }
-        }
+        } }
     }
     private func words(_ lesson: Lesson) -> some View {
         VStack(alignment: .leading, spacing: 24) {
@@ -283,10 +247,10 @@ struct LearningView: View {
                 Button { model.pronounce() } label: {
                     HStack(spacing: 12) {
                         Image(systemName: "speaker.wave.2.fill").foregroundStyle(.cyan)
-                        Text(lesson.question.prompt).foregroundStyle(ink).multilineTextAlignment(.leading)
+                        Text(lesson.question.hint ?? lesson.question.prompt).foregroundStyle(ink).multilineTextAlignment(.leading).accessibilityIdentifier("question-hint")
                     }.font(.title3).padding(18)
                         .overlay(RoundedRectangle(cornerRadius: 14).stroke(Color.gray.opacity(0.25), lineWidth: 2))
-                }.buttonStyle(.plain).accessibilityLabel("Read the instruction").accessibilityIdentifier("pronounce")
+                }.buttonStyle(.plain).accessibilityLabel(lesson.question.hint ?? "Read the instruction").accessibilityIdentifier("pronounce")
             }
             VStack(alignment: .leading, spacing: 12) {
                 if lesson.selectedWords.isEmpty { Text("Choose words in order.").foregroundStyle(.secondary).frame(height: 42) }
@@ -321,7 +285,7 @@ struct LearningView: View {
                     }
                 }
                 VStack(spacing: 12) {
-                    ForEach(lesson.question.pairs.reversed()) { pair in
+                    ForEach(orderedRightPairs(lesson.question)) { pair in
                         Button(pair.right) { model.match(pair.id, left: false) }
                             .buttonStyle(SeedTileStyle(selected: lesson.selectedRight == pair.id))
                             .disabled(lesson.feedback != nil || lesson.matchedPairs.contains(pair.id)).accessibilityIdentifier("pair-right-" + pair.id)
@@ -329,6 +293,9 @@ struct LearningView: View {
                 }
             }
         }
+    }
+    private func orderedRightPairs(_ question: Question) -> [WordPair] {
+        question.rightOrder?.compactMap { id in question.pairs.first { $0.id == id } } ?? Array(question.pairs.reversed())
     }
 }
 

@@ -15,11 +15,12 @@ import LearningCore
     @State private var model: LearningModel?
     @State private var startupError: String?
     init() {
+        ReferenceStyle.registerFonts()
         func argument(_ name: String) -> String? {
             guard let index = CommandLine.arguments.firstIndex(of: name), index + 1 < CommandLine.arguments.count else { return nil }
             return CommandLine.arguments[index + 1]
         }
-        let fixture = URL(fileURLWithPath: argument("--fixture") ?? "projects/duolingo-web/fixture-v2.json")
+        let fixture = URL(fileURLWithPath: argument("--fixture") ?? "projects/duolingo-web/fixture-reference-v4.json")
         let progress = argument("--progress").map { URL(fileURLWithPath: $0) }
             ?? FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0].appendingPathComponent("LingoSeed/progress.json")
         do { _model = State(initialValue: try LearningModel(course: Course.readFixture(fixture), store: ProgressStore(url: progress))) }
@@ -27,7 +28,10 @@ import LearningCore
     }
     var body: some Scene {
         WindowGroup("LingoSeed") {
-            if let model { LearningView(model: model) }
+            if let model { LearningView(model: model)
+                    .onAppear { DispatchQueue.main.async { ReferenceStyle.recordWindowGeometry() } }
+                    .onReceive(NotificationCenter.default.publisher(for: NSWindow.didResizeNotification)) { _ in ReferenceStyle.recordWindowGeometry() }
+            }
             else { ContentUnavailableView("Course unavailable", systemImage: "book.closed", description: Text(startupError ?? "Unknown error")) }
         }
         .defaultSize(width: 1200, height: 760)
