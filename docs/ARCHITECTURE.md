@@ -47,3 +47,5 @@ Stop 去重绑定会话、原生 turn ID 和实际尝试/验收/阶段检查点�
 历史策略池、回放和组件库已从运行链移除，当前不是 Dream-RSI/Cordis 复现。研究机制、历史证据与恢复位置由 [RESEARCH.md](RESEARCH.md)维护。
 
 产品检查另用自有子进程AX驱动，隔离进度，不改变冻结v2断言。音频输出检查使用ScreenCaptureKit的自有PID过滤、关闭麦克风，录音开始后驱动真实控件并记录时间戳；非零输出和静音零输出分别判断。数字输出证据与物理扬声器听感分开。ChoiceIllustration只按选项文本呈现原创插画，SeedMascot只负责展示，不读取正确答案。详见[产品复验](../projects/duolingo-web/evidence/PRODUCT-V3-REVIEW.md)。
+
+最终产品修正增加导航卡片与真实课程入口、拼句角色/发音提示与答案横线；没有改变Foundation学习状态或持久化格式。UI35项、核心5项、冻结原生12项与7段系统输出录音分别验证，实际参考对照见[产品交付](../projects/duolingo-web/evidence/PRODUCT-V3-DELIVERY.md)。此前AudioChecks的“只证明传输”仍指该单项检查；新ScreenCaptureKit回执另证明应用数字音频输出。

@@ -37,3 +37,5 @@ README、AGENTS、[哲学](PHILOSOPHY.md)、[架构](ARCHITECTURE.md)和[路线�
 ## 产品修正的后续证据
 
 [产品复验](../projects/duolingo-web/evidence/PRODUCT-V3-REVIEW.md)记录本轮主页、音效、发音、28项UI与12项原生回归、实际音频输出以及视觉剩余项。以下历史正文中的“当前”均指当时工程版本；新产品源码不能用历史摘要证明。整体Goal仍active。
+
+最终产品修正见[六项逐项审计](../projects/duolingo-web/evidence/PRODUCT-V3-DELIVERY.md)。35项UI/22图、7段应用输出、冻结12项与核心5项通过，原有“active/视觉剩余”描述是此前迭代状态，保留历史，不作为当前状态。

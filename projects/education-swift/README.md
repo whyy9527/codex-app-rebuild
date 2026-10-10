@@ -1,6 +1,6 @@
 # LingoSeed · Swift 教育基座
 
-可运行的 macOS SwiftUI 客户端，使用原创 Everyday English 两课时题库与系统符号。实现课程路径与顺序解锁、选择题、配对、拼句与撤回、反馈、错题重练、结算和持久进度。冻结 v2 的12条共享场景已在网页参考和实际原生 UI 两侧通过；这不代表整个运行 Goal 已完成。
+可运行的 macOS SwiftUI 客户端，使用原创 Everyday English 两课时题库与系统符号。实现课程路径与顺序解锁、选择题、配对、拼句与撤回、反馈、错题重练、结算和持久进度。冻结 v2 的12条共享场景已在网页参考和实际原生 UI 两侧通过；本轮产品修正的逐项证据见文末，行为测试本身仍不代表全部产品要求。
 
 ## 构建、运行与重置
 
@@ -34,7 +34,7 @@ swift run --package-path projects/education-swift LearningCoreChecks
 
 历史v2工程复验：原生12/12、核心5项及Python43项通过；该记录不代表当前产品完成，见[撤回完成声明与历史审计](../../docs/DELIVERY-AUDIT.md)。
 
-## 产品修正 v3（进行中）
+## 产品修正 v3
 
 默认学习主页采用白底、绿色单元横幅、课程节点、侧导航及右侧学习卡片。窄窗缩为图标侧栏，再隐藏右栏保留课程操作。练习含顶部进度/生命、中央题面及底部检查/反馈。Guidebook、导航页及返回有真实去向；账户、商店和在线排行明确未连接。
 
@@ -50,4 +50,6 @@ artifacts/product-v3/audio-checks artifacts/product-v3/audio-samples
 
 该检查会实际播放两次短音，验证四种音频解码、播放器时间推进、静音停止/阻断和恢复，并导出 WAV 样例。它不等于声卡输出录音或用户听觉验收。完整视觉、声音、入口及纵向流程仍按[产品验收v3](../duolingo-web/PRODUCT-ACCEPTANCE-v3.md)推进，不提前宣布完成。
 
-本轮新增28项产品UI检查与六段真实应用系统输出录音通过；静音时执行配对的采样输出为零。检查命令、17张截图、来源与尚未对齐的拼句/导航视觉见[产品复验](../duolingo-web/evidence/PRODUCT-V3-REVIEW.md)。整体Goal保持进行中。
+本轮新增28项产品UI检查与六段真实应用系统输出录音通过；静音时执行配对的采样输出为零。检查命令、17张截图、来源与尚未对齐的拼句/导航视觉见[产品复验](../duolingo-web/evidence/PRODUCT-V3-REVIEW.md)。后续最终证据见下文。
+
+最终产品修正验收：35项原生产品检查、22张实际截图、7段应用输出录音、冻结12项与核心5项通过，见[交付审计](../duolingo-web/evidence/PRODUCT-V3-DELIVERY.md)与[并排截图](../duolingo-web/evidence/product-v3-comparison.html)。包括自然启动三栏、五个导航页及真实课程入口、拼句发音气泡与答案横线。此前28项/6段是历史迭代，不是最终源码的回执。

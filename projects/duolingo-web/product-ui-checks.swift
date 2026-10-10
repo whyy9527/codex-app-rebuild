@@ -94,7 +94,13 @@ func writeReceipt(_ status: String, _ failure: String? = nil) throws {
 }
 defer { stop() }
 do {
-    try launch(); try resize(1200, 760)
+    try launch()
+    if let window = windows().first, let raw = attr(window, kAXSizeAttribute) {
+        var size = CGSize.zero
+        AXValueGetValue(raw as! AXValue, .cgSize, &size)
+        try check("Natural startup supports the three-column home", size.width >= 1120 && size.height >= 660)
+    } else { throw CheckFailure(message: "No natural startup window size") }
+    try resize(1200, 760)
     try check("Default home has course and locked second lesson", find("course-entry") != nil && enabled("start-lesson") && !enabled("start-lesson-1"))
     try check("Practice nodes are locked before lesson completion", !enabled("practice-lesson-0") && !enabled("practice-lesson-1"))
     try capture("home-wide")
@@ -102,6 +108,16 @@ do {
         try press("nav-" + name.lowercased())
         try wait(name + " destination") { value("destination-title") == name }
         try check(name + " navigation opens its destination", value("destination-title") == name)
+        try capture("navigation-" + name.lowercased())
+        if ["Leaderboards", "Quests", "Shop"].contains(name) {
+            try press("destination-practice"); try wait("destination starts real lesson") { find("question-title") != nil }
+            try check(name + " starts an actual lesson", find("question-title") != nil)
+            try press("quit"); try press("confirm-quit"); try wait("return to same destination") { value("destination-title") == name }
+        }
+        if name == "More" {
+            try press("settings-sound"); try check("Settings turns sound off", value("sound-toggle") == "muted")
+            try press("settings-sound"); try check("Settings restores sound", value("sound-toggle") == "on")
+        }
         try press("return-learn"); try wait("navigation return") { find("course-entry") != nil }
     }
     try press("open-guide"); try wait("guide sheet") { find("guide-title") != nil }; try capture("guidebook")
@@ -136,7 +152,7 @@ do {
     stop(); try launch(); try resize(1200, 760)
     try check("Completion and unlock survive restart", value("completed-count") == "1" && enabled("start-lesson-1") && value("sound-toggle") == "on")
     try press("start-lesson-1"); try wait("second lesson") { find("option-hello") != nil }; try answer("hello"); try next()
-    try wait("word tiles") { find("word-bank-good") != nil }; try capture("word-tiles")
+    try wait("word tiles") { find("word-bank-good") != nil }; try check("Word instruction speech entry is available", enabled("pronounce")); try press("pronounce"); try capture("word-tiles")
     try resize(820, 700); try capture("word-tiles-narrow"); try check("Narrow word tiles keep Check", find("check") != nil && find("word-bank-good") != nil); try resize(1200, 760)
     try press("word-bank-good"); try press("word-bank-night"); try press("check"); try wait("wrong word order") { value("feedback") == "incorrect" }; try capture("word-incorrect"); try next()
     try press("word-bank-thank"); try press("word-bank-you"); try press("check"); try wait("correct phrase") { value("feedback") == "correct" }; try capture("word-correct"); try next()

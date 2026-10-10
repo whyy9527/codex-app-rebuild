@@ -1,0 +1,41 @@
+{
+  "failure": "CheckFailure(message: \"Narrow word tiles keep Check\")",
+  "kind": "native_product_ui",
+  "limitations": [
+    "Does not record acoustic output",
+    "Does not establish reference visual similarity"
+  ],
+  "passed_checks": [
+    "Natural startup supports the three-column home",
+    "Default home has course and locked second lesson",
+    "Practice nodes are locked before lesson completion",
+    "Leaderboards navigation opens its destination",
+    "Leaderboards starts an actual lesson",
+    "Quests navigation opens its destination",
+    "Quests starts an actual lesson",
+    "Shop navigation opens its destination",
+    "Shop starts an actual lesson",
+    "Profile navigation opens its destination",
+    "More navigation opens its destination",
+    "Settings turns sound off",
+    "Settings restores sound",
+    "Guidebook opens and closes",
+    "view-quests opens Quests",
+    "view-profile opens Profile",
+    "Narrow home keeps start and named navigation",
+    "Mute survives an actual process restart",
+    "Sound can be restored",
+    "Wrong answer updates hearts",
+    "Completing all pairs advances to correct feedback without Check",
+    "Mistake returns for review",
+    "Completion progress is full after mistake review",
+    "Completion updates home and unlocks lesson two",
+    "Completion and unlock survive restart",
+    "Word instruction speech entry is available"
+  ],
+  "scope": "Owned child AX actions; real UI, isolated original course fixture and progress; screenshots require separate visual review",
+  "screenshots": [
+    "Retained locally; failed-run screenshots are not final product evidence"
+  ],
+  "status": "fail"
+}

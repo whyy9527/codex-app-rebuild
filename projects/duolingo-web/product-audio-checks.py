@@ -31,6 +31,7 @@ scenarios = [
     ('muted-matching', ['sound-toggle', 'continue', 'pair-left-morning', 'pair-right-morning', 'pair-left-thanks', 'pair-right-thanks', 'pair-left-bye', 'pair-right-bye'], True),
     ('restored-completion', ['sound-toggle', 'continue', 'option-thanks', 'check', 'continue'], False),
     ('matching-correct', ['return-path', 'start-lesson', 'option-morning', 'check', 'continue', 'option-thanks', 'check', 'continue', 'pair-left-morning', 'pair-right-morning', 'pair-left-thanks', 'pair-right-thanks', 'pair-left-bye', 'pair-right-bye'], False),
+    ('word-pronunciation', ['continue', 'return-path', 'start-lesson-1', 'option-hello', 'check', 'continue', 'pronounce'], False),
 ]
 try:
     time.sleep(1)
@@ -76,4 +77,4 @@ finally:
     (out / 'result.json').write_text(json.dumps(receipt, indent=2) + '\n')
 if status != 'pass':
     raise SystemExit(results['failure'])
-print('PASS six actual UI-triggered output recordings including sampled mute silence')
+print('PASS seven actual UI-triggered output recordings including word instruction and sampled mute silence')

@@ -1,6 +1,6 @@
 # Codex App Rebuild
 
-**当前状态：产品复刻未完成。** 用户实际体验指出主页、视觉还原与声音缺失，已撤回此前整体完成判断；[反思与纠正](docs/REBUILD-RETROSPECTIVE-2026-10-10.md)记录原因，[产品验收v3](projects/duolingo-web/PRODUCT-ACCEPTANCE-v3.md)固定下一阶段标准。既有12项行为与消融结果只覆盖各自范围。主页、声音和图片选择卡现已有可运行修正版；28项产品检查与真实音频输出证据见[本轮产品复验](projects/duolingo-web/evidence/PRODUCT-V3-REVIEW.md)，视觉剩余项继续推进。
+**当前状态：产品修正v3已通过验收。** 三栏主页、参考视觉结构、真实声音/发音、两课完整学习与持久化已有实际证据，见[逐项产品交付审计](projects/duolingo-web/evidence/PRODUCT-V3-DELIVERY.md)与[原版/Swift截图对照](projects/duolingo-web/evidence/product-v3-comparison.html)。此前过早完成判断的[反思与撤回](docs/REBUILD-RETROSPECTIVE-2026-10-10.md)保留；在线服务、完整内容库和iOS仍有明确边界。既有消融结果只覆盖其原范围。
 
 把原产品的可观察行为变成可执行规格，让 Codex 在有限上下文和预算内重建 App。仓库保持私有；改名不代表开源或发布。
 

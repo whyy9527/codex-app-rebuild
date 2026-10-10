@@ -86,16 +86,55 @@ struct LearningView: View {
     }
     private var destinationPage: some View {
         VStack(alignment: .leading, spacing: 26) {
-            Text(model.destination).font(.largeTitle.bold()).accessibilityIdentifier("destination-title").accessibilityValue(model.destination)
+            HStack(spacing: 16) {
+                Image(systemName: icon(model.destination)).font(.system(size: 36, weight: .bold)).foregroundStyle(model.destination == "Profile" ? .purple : .orange)
+                Text(model.destination).font(.largeTitle.bold()).accessibilityIdentifier("destination-title").accessibilityValue(model.destination)
+            }
             switch model.destination {
-            case "Quests": Text("Practice a lesson").font(.title2.bold()); Text("\(min(model.progress.completedCount(model.course), 1)) / 1 complete in this course")
-            case "Profile": Text("Local learner").font(.title2.bold()); Text("\(model.progress.completedCount(model.course)) completed lessons · \(model.progress.hearts) hearts"); Text("Progress is saved on this device. Account synchronization is not connected.")
-            case "Leaderboards": Text("Keep learning at your own pace.").font(.title2.bold()); Text("Online competitions are not connected in this local education base.")
-            case "Shop": Text("Everything here is free to practice.").font(.title2.bold()); Text("Purchases and subscriptions are not connected.")
-            default: Button(model.muted ? "Turn sound on" : "Turn sound off") { model.toggleMute() }.buttonStyle(SeedButtonStyle(fill: accent)).accessibilityIdentifier("settings-sound"); Text("LingoSeed · original lessons and sounds, inspired by the reference learning flow.")
+            case "Quests":
+                card("Your course goal") {
+                    Label("Complete a lesson", systemImage: "bolt.fill").font(.title3.bold()).foregroundStyle(.orange)
+                    Text("\(min(model.progress.completedCount(model.course), 1)) / 1 complete in this course")
+                    ProgressView(value: Double(min(model.progress.completedCount(model.course), 1)), total: 1).tint(.yellow)
+                    Text("Every lesson is a step forward.").foregroundStyle(.secondary)
+                    practiceButton
+                }
+            case "Profile":
+                HStack(spacing: 24) { SeedMascot(); VStack(alignment: .leading, spacing: 8) { Text("Local learner").font(.title2.bold()); Text("Everyday practice, at your pace.").foregroundStyle(.secondary) } }
+                card("Your learning") {
+                    Label("\(model.progress.completedCount(model.course)) completed lessons", systemImage: "checkmark.seal.fill").font(.title3.bold()).foregroundStyle(accent)
+                    Label("\(model.progress.hearts) hearts", systemImage: "heart.fill").foregroundStyle(.red)
+                    Text("Progress is saved on this device. Account synchronization is not connected.").foregroundStyle(.secondary)
+                }
+            case "Leaderboards":
+                card("Learn. Practice. Make progress.") {
+                    HStack { Image(systemName: "shield.lefthalf.filled").font(.system(size: 56)).foregroundStyle(.cyan); Text("Keep learning at your own pace.").font(.title2.bold()) }
+                    Text("Online competitions are not connected in this local education base.").foregroundStyle(.secondary)
+                    practiceButton
+                }
+            case "Shop":
+                card("Hearts") {
+                    Label("\(model.progress.hearts) hearts", systemImage: "heart.fill").font(.title2.bold()).foregroundStyle(.red)
+                    Text("Everything here is free to practice.")
+                    Text("Purchases and subscriptions are not connected.").foregroundStyle(.secondary)
+                }
+                card("Practice is always open") { Text("Return to your course whenever you are ready."); practiceButton }
+            default:
+                card("Learning sounds") {
+                    Label(model.muted ? "Sound off" : "Sound on", systemImage: model.muted ? "speaker.slash.fill" : "speaker.wave.2.fill").font(.title2.bold()).foregroundStyle(.cyan)
+                    Text("Hear words and feedback as you learn. Your preference is saved on this device.").foregroundStyle(.secondary)
+                    Button(model.muted ? "Turn sound on" : "Turn sound off") { model.toggleMute() }.buttonStyle(SeedButtonStyle(fill: accent)).accessibilityIdentifier("settings-sound")
+                }
+                Text("LingoSeed · original lessons and sounds, inspired by the reference learning flow.").foregroundStyle(.secondary)
             }
             Button("Back to learning") { model.destination = "Learn" }.buttonStyle(SeedButtonStyle(fill: accent)).accessibilityIdentifier("return-learn")
-        }.padding(40).frame(maxWidth: 680, alignment: .leading)
+        }.padding(30).frame(maxWidth: 680, alignment: .leading)
+    }
+    private var practiceButton: some View {
+        Button("START A LESSON") {
+            let next = model.course.lessons.indices.first { !model.progress.isCompleted(model.course, index: $0) && model.progress.isUnlocked(model.course, index: $0) } ?? 0
+            model.begin(next)
+        }.buttonStyle(SeedButtonStyle(fill: accent)).accessibilityIdentifier("destination-practice")
     }
     private func lessonPage(_ lesson: Lesson) -> some View {
         VStack(spacing: 0) {
@@ -207,14 +246,14 @@ struct LearningView: View {
         if lesson.reviewing {
             Text("ONE MORE LOOK").font(.caption.bold()).foregroundStyle(accent).accessibilityIdentifier("review-label")
         } else { Text(model.course.title.uppercased()).font(.caption.bold()).foregroundStyle(accent) }
-        Text(lesson.question.prompt).font(.system(size: 30, weight: .bold))
+        Text(lesson.question.kind == .wordTiles ? "Build this phrase" : lesson.question.prompt).font(.system(size: 30, weight: .bold))
             .accessibilityIdentifier("question-title").accessibilityValue(lesson.question.prompt)
         switch lesson.question.kind {
         case .choice: choices(lesson)
         case .wordTiles: words(lesson)
         case .matching: matching(lesson)
         }
-        if lesson.question.kind != .matching {
+        if lesson.question.kind == .choice {
             Button { model.pronounce() } label: { Label(lesson.selected == nil ? "Read the instruction" : "Listen again", systemImage: "speaker.wave.2.fill") }.buttonStyle(.plain).foregroundStyle(.cyan).accessibilityIdentifier("pronounce")
         }
     }
@@ -238,9 +277,18 @@ struct LearningView: View {
         }
     }
     private func words(_ lesson: Lesson) -> some View {
-        VStack(alignment: .leading, spacing: 18) {
+        VStack(alignment: .leading, spacing: 24) {
+            HStack(spacing: 16) {
+                SeedMascot().scaleEffect(0.7).frame(width: 90, height: 110)
+                Button { model.pronounce() } label: {
+                    HStack(spacing: 12) {
+                        Image(systemName: "speaker.wave.2.fill").foregroundStyle(.cyan)
+                        Text(lesson.question.prompt).foregroundStyle(ink).multilineTextAlignment(.leading)
+                    }.font(.title3).padding(18)
+                        .overlay(RoundedRectangle(cornerRadius: 14).stroke(Color.gray.opacity(0.25), lineWidth: 2))
+                }.buttonStyle(.plain).accessibilityLabel("Read the instruction").accessibilityIdentifier("pronounce")
+            }
             VStack(alignment: .leading, spacing: 12) {
-                Text("YOUR PHRASE").font(.caption.bold()).foregroundStyle(.secondary)
                 if lesson.selectedWords.isEmpty { Text("Choose words in order.").foregroundStyle(.secondary).frame(height: 42) }
                 LazyVGrid(columns: columns, alignment: .leading, spacing: 12) {
                     ForEach(lesson.selectedWords, id: \.self) { id in
@@ -249,7 +297,9 @@ struct LearningView: View {
                             .accessibilityIdentifier("selected-word-" + id)
                     }
                 }
-            }.padding(20).frame(maxWidth: .infinity, alignment: .leading).background(.white, in: RoundedRectangle(cornerRadius: 18))
+            }.padding(.vertical, 12).frame(maxWidth: .infinity, minHeight: 108, alignment: .topLeading)
+                .overlay(alignment: .top) { Rectangle().fill(Color.gray.opacity(0.25)).frame(height: 2) }
+                .overlay(alignment: .bottom) { Rectangle().fill(Color.gray.opacity(0.25)).frame(height: 2) }
             LazyVGrid(columns: columns, alignment: .leading, spacing: 12) {
                 ForEach(lesson.question.words) { word in
                     Button(word.text) { model.addWord(word.id) }.buttonStyle(SeedTileStyle())
