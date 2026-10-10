@@ -1,0 +1,297 @@
+{
+  "task": "Repair this actual historical Swift Duolingo pronunciation matching frontend to match the attached original before/feedback images at 1200x732 content points. Preserve working matching, disabling and remaining exercise flows. Return exact unique text replacement edits to the supplied source file. No tools, no file reads, no external lookup. Return edits relative to supplied source_code.",
+  "reference_before": "- button:\n  - img\n- progressbar\n- heading \"选择配对\" [level=1]\n- button \"1\":\n  - text: \"1\"\n  - img\n  - img\n  - img\n  - img\n- button \"2\":\n  - text: \"2\"\n  - img\n  - img\n  - img\n  - img\n- button \"3\":\n  - text: \"3\"\n  - img\n  - img\n  - img\n  - img\n- button \"4\":\n  - text: \"4\"\n  - img\n  - img\n  - img\n  - img\n- button \"5 deck\":\n  - text: 5 deck\n  - img\n  - img\n- button \"6 get\":\n  - text: 6 get\n  - img\n  - img\n- button \"7 got\":\n  - text: 7 got\n  - img\n  - img\n- button \"8 dock\":\n  - text: 8 dock\n  - img\n  - img\n- button \"跳过\"\n- button \"检查\" [disabled]",
+  "reference_feedback": "- button:\n  - img\n- progressbar:\n  - text: 连对 2 题\n  - img\n- heading \"选择配对\" [level=1]\n- button \"1\" [disabled]:\n  - text: \"1\"\n  - img\n  - img\n  - img\n  - img\n- button \"2\" [disabled]:\n  - text: \"2\"\n  - img\n  - img\n  - img\n  - img\n- button \"3\" [disabled]:\n  - text: \"3\"\n  - img\n  - img\n  - img\n  - img\n- button \"4\" [disabled]:\n  - text: \"4\"\n  - img\n  - img\n  - img\n  - img\n- button \"5 deck\" [disabled]:\n  - text: 5 deck\n  - img\n  - img\n- button \"6 get\" [disabled]:\n  - text: 6 get\n  - img\n  - img\n- button \"7 got\" [disabled]:\n  - text: 7 got\n  - img\n  - img\n- button \"8 dock\" [disabled]:\n  - text: 8 dock\n  - img\n  - img\n- heading \"泰裤辣！\" [level=2]\n- button \"太简单\"\n- button \"太难\"\n- button \"报错\"\n- button \"继续\"",
+  "reference_controls": [
+    {
+      "test": "quit-button",
+      "text": "",
+      "rect": [
+        100,
+        50,
+        18,
+        18
+      ],
+      "enabled": true,
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "400",
+        "lineHeight": "19.55px",
+        "color": "rgb(0, 0, 0)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "test": "deck-challenge-tap-token",
+      "text": "1",
+      "rect": [
+        330,
+        247,
+        255,
+        58
+      ],
+      "enabled": true,
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "19px",
+        "fontWeight": "500",
+        "lineHeight": "21.85px",
+        "color": "rgb(75, 75, 75)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "12px",
+        "borderWidth": "2px 2px 4px",
+        "borderColor": "rgba(0, 0, 0, 0)"
+      }
+    },
+    {
+      "test": "dock-challenge-tap-token",
+      "text": "2",
+      "rect": [
+        330,
+        315,
+        255,
+        58
+      ],
+      "enabled": true,
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "19px",
+        "fontWeight": "500",
+        "lineHeight": "21.85px",
+        "color": "rgb(75, 75, 75)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "12px",
+        "borderWidth": "2px 2px 4px",
+        "borderColor": "rgba(0, 0, 0, 0)"
+      }
+    },
+    {
+      "test": "got-challenge-tap-token",
+      "text": "3",
+      "rect": [
+        330,
+        383,
+        255,
+        58
+      ],
+      "enabled": true,
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "19px",
+        "fontWeight": "500",
+        "lineHeight": "21.85px",
+        "color": "rgb(75, 75, 75)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "12px",
+        "borderWidth": "2px 2px 4px",
+        "borderColor": "rgba(0, 0, 0, 0)"
+      }
+    },
+    {
+      "test": "get-challenge-tap-token",
+      "text": "4",
+      "rect": [
+        330,
+        451,
+        255,
+        58
+      ],
+      "enabled": true,
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "19px",
+        "fontWeight": "500",
+        "lineHeight": "21.85px",
+        "color": "rgb(75, 75, 75)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "12px",
+        "borderWidth": "2px 2px 4px",
+        "borderColor": "rgba(0, 0, 0, 0)"
+      }
+    },
+    {
+      "test": "deck-challenge-tap-token",
+      "text": "5\ndeck",
+      "rect": [
+        615,
+        247,
+        255,
+        58
+      ],
+      "enabled": true,
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "19px",
+        "fontWeight": "500",
+        "lineHeight": "21.85px",
+        "color": "rgb(75, 75, 75)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "12px",
+        "borderWidth": "2px 2px 4px",
+        "borderColor": "rgba(0, 0, 0, 0)"
+      }
+    },
+    {
+      "test": "get-challenge-tap-token",
+      "text": "6\nget",
+      "rect": [
+        615,
+        315,
+        255,
+        58
+      ],
+      "enabled": true,
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "19px",
+        "fontWeight": "500",
+        "lineHeight": "21.85px",
+        "color": "rgb(75, 75, 75)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "12px",
+        "borderWidth": "2px 2px 4px",
+        "borderColor": "rgba(0, 0, 0, 0)"
+      }
+    },
+    {
+      "test": "got-challenge-tap-token",
+      "text": "7\ngot",
+      "rect": [
+        615,
+        383,
+        255,
+        58
+      ],
+      "enabled": true,
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "19px",
+        "fontWeight": "500",
+        "lineHeight": "21.85px",
+        "color": "rgb(75, 75, 75)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "12px",
+        "borderWidth": "2px 2px 4px",
+        "borderColor": "rgba(0, 0, 0, 0)"
+      }
+    },
+    {
+      "test": "dock-challenge-tap-token",
+      "text": "8\ndock",
+      "rect": [
+        615,
+        451,
+        255,
+        58
+      ],
+      "enabled": true,
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "19px",
+        "fontWeight": "500",
+        "lineHeight": "21.85px",
+        "color": "rgb(75, 75, 75)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "12px",
+        "borderWidth": "2px 2px 4px",
+        "borderColor": "rgba(0, 0, 0, 0)"
+      }
+    },
+    {
+      "test": "player-skip",
+      "text": "跳过",
+      "rect": [
+        140,
+        639,
+        150,
+        50
+      ],
+      "enabled": true,
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "700",
+        "lineHeight": "20.4px",
+        "color": "rgb(175, 175, 175)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "16px",
+        "borderWidth": "2px 2px 4px",
+        "borderColor": "rgba(0, 0, 0, 0)"
+      }
+    },
+    {
+      "test": "player-next",
+      "text": "检查",
+      "rect": [
+        909.9921875,
+        643,
+        150,
+        50
+      ],
+      "enabled": false,
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "700",
+        "lineHeight": "20.4px",
+        "color": "rgb(175, 175, 175)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "16px",
+        "borderWidth": "0px 0px 4px",
+        "borderColor": "rgba(0, 0, 0, 0)"
+      }
+    }
+  ],
+  "question_definition": {
+    "id": "p11",
+    "kind": "matching",
+    "prompt": "选择配对",
+    "options": [],
+    "answer": "",
+    "pairs": [
+      {
+        "id": "pair1",
+        "left": "1",
+        "right": "deck"
+      },
+      {
+        "id": "pair2",
+        "left": "2",
+        "right": "dock",
+        "audioResource": "pronunciation-word-53dd189aa64b2cfbda9f.mp3"
+      },
+      {
+        "id": "pair3",
+        "left": "3",
+        "right": "got",
+        "audioResource": "pronunciation-word-e4009c79f5b63afad0ac.mp3"
+      },
+      {
+        "id": "pair4",
+        "left": "4",
+        "right": "get",
+        "audioResource": "pronunciation-word-dbe6db0505db7ce3848d.mp3"
+      }
+    ],
+    "rightOrder": [
+      "pair1",
+      "pair4",
+      "pair3",
+      "pair2"
+    ],
+    "explanation": "",
+    "sourceType": "listenMatch",
+    "correctFeedback": "泰裤辣！",
+    "skipLabel": "跳过"
+  },
+  "available_original_image_resources": [
+    "en-match-speaker-source-frame",
+    "en-match-waveform-source-frame"
+  ],
+  "interfaces": "LearningModel.match(pairID,left:Bool); Lesson.matchedPairs Set<String>, selectedLeft/selectedRight String?, feedback Bool?; Question.rightOrder [String]?, pairs [WordPair(id,left,right,audioResource)]. Source file includes an existing NSViewRepresentable audio control, which may be reused/generalized. SwiftUI renderer is macOS14+ Swift6; ReferenceStyle fonts/colors/images and existing styles are available. No other files may be edited in this bounded matching task. Do not replace original images with SF symbols or emojis.",
+  "source_code": "import SwiftUI\nimport LearningCore\n\nstruct ReferencePronunciationPractice: View {\n    @Bindable var model: LearningModel\n    let lesson: Lesson\n    private var question: Question { lesson.question }\n    var body: some View {\n        GeometryReader { geometry in\n            VStack(spacing: 0) {\n                HStack(spacing: 24) {\n                    Button { model.discardAttempt() } label: { ReferenceStyle.image(\"practice-close-source\").resizable().frame(width: 18, height: 18) }\n                        .buttonStyle(.plain).accessibilityIdentifier(\"exit\")\n                    ProgressView(value: lesson.complete ? 1 : lesson.reviewing ? 0.9 : Double(lesson.position) / Double(lesson.definition.questions.count)).tint(ReferenceStyle.green).accessibilityIdentifier(\"lesson-progress\")\n                }.frame(maxWidth: 1000).padding(.top, 50)\n                if let speech = lesson.deferredSpeech {\n                    VStack(alignment: .leading, spacing: 40) {\n                        Text(speech.title).font(ReferenceStyle.font(32, bold: true))\n                        Text(speech.phrase).font(ReferenceStyle.font(22))\n                        Button(\"点击并开始录音\") {}.buttonStyle(ReferenceButton(color: ReferenceStyle.blue)).disabled(true)\n                    }.frame(width: 600).padding(.top, 50)\n                } else if lesson.complete {\n                    VStack(spacing: 24) {\n                        Text(model.settlement?.current?.title ?? \"\").font(ReferenceStyle.font(32, bold: true)).accessibilityIdentifier(\"practice-settlement-title\")\n                        if let body = model.settlement?.current?.body { Text(body).font(ReferenceStyle.font(19)) }\n                    }.padding(.top, 80)\n                } else {\n                    VStack(alignment: .leading, spacing: 0) {\n                        Text(question.prompt).font(ReferenceStyle.font(32, bold: true)).frame(height: 40).accessibilityIdentifier(\"question-prompt\").accessibilityValue(question.id)\n                        if question.kind == .matching {\n                            HStack(spacing: 32) {\n                                VStack { ForEach(question.pairs) { pair in Button(pair.left) { model.match(pair.id, left: true) }.buttonStyle(ReferenceSkipButton()).disabled(lesson.matchedPairs.contains(pair.id)).accessibilityIdentifier(\"pair-left-\" + pair.id) } }\n                                VStack { ForEach(question.pairs) { pair in Button(pair.right) { model.match(pair.id, left: false) }.buttonStyle(ReferenceSkipButton()).disabled(lesson.matchedPairs.contains(pair.id)).accessibilityIdentifier(\"pair-right-\" + pair.id) } }\n                            }.padding(.top, 40)\n                        } else if question.sourceType == \"sameDifferent\" {\n                            VStack(alignment: .leading, spacing: 0) {\n                                splitSpeaker.frame(maxWidth: .infinity)\n                                Text(\"你听到的词是？\").font(ReferenceStyle.font(19, bold: true)).frame(height: 27).padding(.top, 40.25).padding(.bottom, 8)\n                                ForEach(Array(question.options.enumerated()), id: \\.element.id) { index, option in radio(option, index: index).padding(.bottom, 8) }\n                            }.padding(.top, 27.75)\n                        } else {\n                            VStack(spacing: 24) {\n                                speaker(0, size: 140)\n                                HStack(spacing: 8) { ForEach(Array(question.options.enumerated()), id: \\.element.id) { index, option in radio(option, index: index) } }\n                            }.padding(.top, 105)\n                        }\n                    }.frame(width: 600).padding(.top, 51)\n                }\n                Spacer(minLength: 0)\n                footer.frame(height: 140)\n            }.frame(maxWidth: .infinity, maxHeight: .infinity)\n                .foregroundStyle(ReferenceStyle.ink).background(ReferenceStyle.background)\n        }\n    }\n\n    private var splitSpeaker: some View {\n        VStack(spacing: 0) {\n            ForEach(0..<2) { part in\n                let labels = question.practiceAudioLabels ?? []\n                let label = lesson.feedback != nil && labels.indices.contains(part) ? labels[part] : \"\"\n                ReferencePracticeAudioButton(label: label, identifier: \"practice-play-\" + String(part), enabled: lesson.feedback == nil,\n                    action: { model.playQuestion(practicePart: part) })\n                    .frame(width: 165, height: part == 0 ? 85.5 : 89.5)\n            }\n        }.frame(width: 165, height: 175)\n            .background {\n                RoundedRectangle(cornerRadius: 41.25).fill(.white)\n                    .shadow(color: ReferenceStyle.border, radius: 0, y: 2)\n                    .overlay(RoundedRectangle(cornerRadius: 41.25).strokeBorder(ReferenceStyle.border, lineWidth: 2))\n            }\n            .overlay(alignment: .top) { Rectangle().fill(ReferenceStyle.border).frame(height: 2).offset(y: 85.5).allowsHitTesting(false) }\n    }\n\n    private func speaker(_ part: Int, size: Double) -> some View {\n        Button { model.playQuestion(practicePart: part) } label: {\n            ReferenceStyle.image(\"practice-speaker-source\").resizable().scaledToFit().frame(width: size * 0.67, height: size * 0.52)\n                .frame(width: size, height: size).background(alignment: .top) {\n                    RoundedRectangle(cornerRadius: 32).fill(ReferenceStyle.blue).frame(height: size - 4)\n                        .shadow(color: Color(red: 24/255, green: 153/255, blue: 214/255), radius: 0, y: 4)\n                }\n        }.buttonStyle(.plain).frame(maxWidth: .infinity).accessibilityIdentifier(\"practice-play-\" + String(part))\n    }\n    private func radio(_ option: Choice, index: Int) -> some View {\n        ReferenceAudioRadio(label: \"\\(index + 1) \\(option.text)\", identifier: \"option-\" + option.id, waveform: nil,\n            correct: lesson.feedback == true, selected: lesson.selected == option.id, enabled: lesson.feedback == nil,\n            action: { model.choose(option.id) }, textChoice: true).frame(width: question.sourceType == \"sameDifferent\" ? 600 : 296, height: 60)\n    }\n    private var footer: some View {\n        HStack {\n            if let speech = lesson.deferredSpeech {\n                if lesson.speechDeclined {\n                    Text(speech.closedTitle).font(ReferenceStyle.font(22, bold: true)); Spacer()\n                    Button(\"继续\") { model.advance() }.buttonStyle(ReferenceCheckButton()).accessibilityIdentifier(\"speech-continue\")\n                } else {\n                    Button(\"现在不做口语题\") { model.declineSpeech() }.buttonStyle(ReferenceSkipButton()).accessibilityIdentifier(\"speech-decline\")\n                    Spacer(); Button(\"检查\") {}.buttonStyle(ReferenceCheckButton()).disabled(true)\n                }\n            } else if lesson.complete {\n                Spacer(); Button(model.settlement?.current?.continueLabel ?? \"继续\") { model.advanceSettlement() }.buttonStyle(ReferenceCheckButton()).accessibilityIdentifier(\"settlement-continue\")\n            } else if let feedback = lesson.feedback {\n                VStack(alignment: .leading, spacing: 8) {\n                    Text(feedback ? (question.correctFeedback ?? \"你练得一副好听力，厉害呀！\") : \"还不太准确，再多听几次吧！\").font(ReferenceStyle.font(22, bold: true)).accessibilityIdentifier(\"feedback\")\n                    if question.sourceType == \"sameDifferent\" { Text(question.explanation).font(ReferenceStyle.font(18)) }\n                    ReferenceFeedbackActions(model: model, color: feedback ? ReferenceStyle.green : .red)\n                }\n                Spacer(); Button(\"继续\") { model.advance() }.buttonStyle(ReferenceCheckButton()).accessibilityIdentifier(\"continue\")\n            } else {\n                Button(\"跳过\") { model.skip() }.buttonStyle(ReferenceSkipButton()).accessibilityIdentifier(\"skip\")\n                Spacer(); Button(\"检查\") { model.submit() }.buttonStyle(ReferenceCheckButton()).disabled(!lesson.canSubmit).accessibilityIdentifier(\"check\")\n            }\n        }.padding(.horizontal, 140).frame(maxWidth: .infinity, maxHeight: .infinity)\n            .background(lesson.feedback == nil && !lesson.speechDeclined ? ReferenceStyle.background : lesson.feedback == false ? Color(red: 1, green: 223/255, blue: 224/255) : Color(red: 215/255, green: 1, blue: 184/255))\n            .overlay(alignment: .top) { Rectangle().fill(ReferenceStyle.border).frame(height: 2) }\n    }\n}\n\n// The source's two halves have distinct hit rectangles, disabled states and labels.\n// NSButton supplies those semantics without SwiftUI's decorative focus inset.\nprivate struct ReferencePracticeAudioButton: NSViewRepresentable {\n    let label: String\n    let identifier: String\n    let enabled: Bool\n    let action: () -> Void\n    final class Coordinator: NSObject {\n        var action: () -> Void\n        init(_ action: @escaping () -> Void) { self.action = action }\n        @objc func play(_ sender: NSButton) { action() }\n    }\n    final class Button: NSButton {\n        let face = ReferenceAudioRadio.PassiveHost(rootView: AnyView(EmptyView()))\n        override func accessibilityRole() -> NSAccessibility.Role? { .button }\n        override var intrinsicContentSize: NSSize { NSSize(width: NSView.noIntrinsicMetric, height: NSView.noIntrinsicMetric) }\n        override func draw(_ dirtyRect: NSRect) {}\n        override func accessibilityFrame() -> NSRect {\n            guard let window else { return super.accessibilityFrame() }\n            return window.convertToScreen(convert(bounds, to: nil))\n        }\n    }\n    final class Container: NSView {\n        let button = Button(frame: .zero)\n    }\n    func makeCoordinator() -> Coordinator { Coordinator(action) }\n    func makeNSView(context: Context) -> Container {\n        let container = Container(frame: .zero)\n        let button = container.button\n        container.addSubview(button)\n        button.translatesAutoresizingMaskIntoConstraints = false\n        NSLayoutConstraint.activate([\n            button.leadingAnchor.constraint(equalTo: container.leadingAnchor), button.trailingAnchor.constraint(equalTo: container.trailingAnchor),\n            button.topAnchor.constraint(equalTo: container.topAnchor), button.bottomAnchor.constraint(equalTo: container.bottomAnchor)\n        ])\n        button.setAccessibilityElement(true)\n        container.setAccessibilityElement(false)\n        container.setAccessibilityChildren([button])\n        button.isBordered = false\n        button.setButtonType(.momentaryPushIn)\n        button.target = context.coordinator\n        button.action = #selector(Coordinator.play(_:))\n        button.addSubview(button.face)\n        button.face.translatesAutoresizingMaskIntoConstraints = false\n        NSLayoutConstraint.activate([\n            button.face.leadingAnchor.constraint(equalTo: button.leadingAnchor), button.face.trailingAnchor.constraint(equalTo: button.trailingAnchor),\n            button.face.topAnchor.constraint(equalTo: button.topAnchor), button.face.bottomAnchor.constraint(equalTo: button.bottomAnchor)\n        ])\n        button.setAccessibilityChildren([])\n        return container\n    }\n    func updateNSView(_ container: Container, context: Context) {\n        let button = container.button\n        context.coordinator.action = action\n        button.isEnabled = enabled\n        button.title = label\n        button.setAccessibilityLabel(label)\n        button.setAccessibilityIdentifier(identifier)\n        button.face.rootView = AnyView(HStack(spacing: 8) {\n            ReferenceStyle.image(\"practice-speaker-source\").renderingMode(.template).resizable().frame(width: 24, height: 19).foregroundStyle(ReferenceStyle.blue)\n            Text(label.isEmpty ? \" \" : label).font(ReferenceStyle.font(19, bold: true)).foregroundStyle(ReferenceStyle.ink)\n                .frame(width: 42, height: 27).overlay(alignment: .bottom) { Rectangle().fill(ReferenceStyle.border).frame(height: 2) }\n        }.offset(y: -2).frame(maxWidth: .infinity, maxHeight: .infinity).accessibilityHidden(true))\n    }\n}\n"
+}

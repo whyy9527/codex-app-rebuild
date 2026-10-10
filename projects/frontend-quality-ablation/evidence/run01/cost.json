@@ -1,0 +1,52 @@
+{
+  "actual_model_calls": 3,
+  "reported_tokens_total": 97345,
+  "model_seconds_total": 181.0073244587984,
+  "per_call": {
+    "initial": {
+      "exit_code": 0,
+      "timed_out": false,
+      "seconds": 95.72234416706488,
+      "runtime": {
+        "model": "gpt-6.1-sol",
+        "reasoning effort": "medium",
+        "provider": "openai"
+      },
+      "cli_version": "0.162.0-alpha.17.2",
+      "reported_tokens": 33573,
+      "fee": "unknown",
+      "input_output_cache_breakdown": "unknown"
+    },
+    "control": {
+      "exit_code": 0,
+      "timed_out": false,
+      "seconds": 47.63228795793839,
+      "runtime": {
+        "model": "gpt-6.1-sol",
+        "reasoning effort": "medium",
+        "provider": "openai"
+      },
+      "cli_version": "0.162.0-alpha.17.2",
+      "reported_tokens": 36575,
+      "fee": "unknown",
+      "input_output_cache_breakdown": "unknown"
+    },
+    "feedback": {
+      "exit_code": 0,
+      "timed_out": false,
+      "seconds": 37.65269233379513,
+      "runtime": {
+        "model": "gpt-6.1-sol",
+        "reasoning effort": "medium",
+        "provider": "openai"
+      },
+      "cli_version": "0.162.0-alpha.17.2",
+      "reported_tokens": 27197,
+      "fee": "unknown",
+      "input_output_cache_breakdown": "unknown"
+    }
+  },
+  "group_accounting": "Each arm has half the shared initial call plus its own revision. Same call/time ceilings; no assertion of equal actual token spending.",
+  "money": "unknown",
+  "token_breakdown": "unknown"
+}

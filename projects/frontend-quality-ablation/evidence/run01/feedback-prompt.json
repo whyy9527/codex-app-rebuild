@@ -1,0 +1,350 @@
+{
+  "task": "Repair this actual historical Swift Duolingo pronunciation matching frontend to match the attached original before/feedback images at 1200x732 content points. Preserve working matching, disabling and remaining exercise flows. Return exact unique text replacement edits to the supplied source file. No tools, no file reads, no external lookup. Return edits relative to supplied source_code.",
+  "reference_before": "- button:\n  - img\n- progressbar\n- heading \"选择配对\" [level=1]\n- button \"1\":\n  - text: \"1\"\n  - img\n  - img\n  - img\n  - img\n- button \"2\":\n  - text: \"2\"\n  - img\n  - img\n  - img\n  - img\n- button \"3\":\n  - text: \"3\"\n  - img\n  - img\n  - img\n  - img\n- button \"4\":\n  - text: \"4\"\n  - img\n  - img\n  - img\n  - img\n- button \"5 deck\":\n  - text: 5 deck\n  - img\n  - img\n- button \"6 get\":\n  - text: 6 get\n  - img\n  - img\n- button \"7 got\":\n  - text: 7 got\n  - img\n  - img\n- button \"8 dock\":\n  - text: 8 dock\n  - img\n  - img\n- button \"跳过\"\n- button \"检查\" [disabled]",
+  "reference_feedback": "- button:\n  - img\n- progressbar:\n  - text: 连对 2 题\n  - img\n- heading \"选择配对\" [level=1]\n- button \"1\" [disabled]:\n  - text: \"1\"\n  - img\n  - img\n  - img\n  - img\n- button \"2\" [disabled]:\n  - text: \"2\"\n  - img\n  - img\n  - img\n  - img\n- button \"3\" [disabled]:\n  - text: \"3\"\n  - img\n  - img\n  - img\n  - img\n- button \"4\" [disabled]:\n  - text: \"4\"\n  - img\n  - img\n  - img\n  - img\n- button \"5 deck\" [disabled]:\n  - text: 5 deck\n  - img\n  - img\n- button \"6 get\" [disabled]:\n  - text: 6 get\n  - img\n  - img\n- button \"7 got\" [disabled]:\n  - text: 7 got\n  - img\n  - img\n- button \"8 dock\" [disabled]:\n  - text: 8 dock\n  - img\n  - img\n- heading \"泰裤辣！\" [level=2]\n- button \"太简单\"\n- button \"太难\"\n- button \"报错\"\n- button \"继续\"",
+  "reference_controls": [
+    {
+      "test": "quit-button",
+      "text": "",
+      "rect": [
+        100,
+        50,
+        18,
+        18
+      ],
+      "enabled": true,
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "400",
+        "lineHeight": "19.55px",
+        "color": "rgb(0, 0, 0)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(0, 0, 0)"
+      }
+    },
+    {
+      "test": "deck-challenge-tap-token",
+      "text": "1",
+      "rect": [
+        330,
+        247,
+        255,
+        58
+      ],
+      "enabled": true,
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "19px",
+        "fontWeight": "500",
+        "lineHeight": "21.85px",
+        "color": "rgb(75, 75, 75)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "12px",
+        "borderWidth": "2px 2px 4px",
+        "borderColor": "rgba(0, 0, 0, 0)"
+      }
+    },
+    {
+      "test": "dock-challenge-tap-token",
+      "text": "2",
+      "rect": [
+        330,
+        315,
+        255,
+        58
+      ],
+      "enabled": true,
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "19px",
+        "fontWeight": "500",
+        "lineHeight": "21.85px",
+        "color": "rgb(75, 75, 75)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "12px",
+        "borderWidth": "2px 2px 4px",
+        "borderColor": "rgba(0, 0, 0, 0)"
+      }
+    },
+    {
+      "test": "got-challenge-tap-token",
+      "text": "3",
+      "rect": [
+        330,
+        383,
+        255,
+        58
+      ],
+      "enabled": true,
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "19px",
+        "fontWeight": "500",
+        "lineHeight": "21.85px",
+        "color": "rgb(75, 75, 75)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "12px",
+        "borderWidth": "2px 2px 4px",
+        "borderColor": "rgba(0, 0, 0, 0)"
+      }
+    },
+    {
+      "test": "get-challenge-tap-token",
+      "text": "4",
+      "rect": [
+        330,
+        451,
+        255,
+        58
+      ],
+      "enabled": true,
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "19px",
+        "fontWeight": "500",
+        "lineHeight": "21.85px",
+        "color": "rgb(75, 75, 75)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "12px",
+        "borderWidth": "2px 2px 4px",
+        "borderColor": "rgba(0, 0, 0, 0)"
+      }
+    },
+    {
+      "test": "deck-challenge-tap-token",
+      "text": "5\ndeck",
+      "rect": [
+        615,
+        247,
+        255,
+        58
+      ],
+      "enabled": true,
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "19px",
+        "fontWeight": "500",
+        "lineHeight": "21.85px",
+        "color": "rgb(75, 75, 75)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "12px",
+        "borderWidth": "2px 2px 4px",
+        "borderColor": "rgba(0, 0, 0, 0)"
+      }
+    },
+    {
+      "test": "get-challenge-tap-token",
+      "text": "6\nget",
+      "rect": [
+        615,
+        315,
+        255,
+        58
+      ],
+      "enabled": true,
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "19px",
+        "fontWeight": "500",
+        "lineHeight": "21.85px",
+        "color": "rgb(75, 75, 75)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "12px",
+        "borderWidth": "2px 2px 4px",
+        "borderColor": "rgba(0, 0, 0, 0)"
+      }
+    },
+    {
+      "test": "got-challenge-tap-token",
+      "text": "7\ngot",
+      "rect": [
+        615,
+        383,
+        255,
+        58
+      ],
+      "enabled": true,
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "19px",
+        "fontWeight": "500",
+        "lineHeight": "21.85px",
+        "color": "rgb(75, 75, 75)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "12px",
+        "borderWidth": "2px 2px 4px",
+        "borderColor": "rgba(0, 0, 0, 0)"
+      }
+    },
+    {
+      "test": "dock-challenge-tap-token",
+      "text": "8\ndock",
+      "rect": [
+        615,
+        451,
+        255,
+        58
+      ],
+      "enabled": true,
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "19px",
+        "fontWeight": "500",
+        "lineHeight": "21.85px",
+        "color": "rgb(75, 75, 75)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "12px",
+        "borderWidth": "2px 2px 4px",
+        "borderColor": "rgba(0, 0, 0, 0)"
+      }
+    },
+    {
+      "test": "player-skip",
+      "text": "跳过",
+      "rect": [
+        140,
+        639,
+        150,
+        50
+      ],
+      "enabled": true,
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "700",
+        "lineHeight": "20.4px",
+        "color": "rgb(175, 175, 175)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "16px",
+        "borderWidth": "2px 2px 4px",
+        "borderColor": "rgba(0, 0, 0, 0)"
+      }
+    },
+    {
+      "test": "player-next",
+      "text": "检查",
+      "rect": [
+        909.9921875,
+        643,
+        150,
+        50
+      ],
+      "enabled": false,
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "700",
+        "lineHeight": "20.4px",
+        "color": "rgb(175, 175, 175)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "16px",
+        "borderWidth": "0px 0px 4px",
+        "borderColor": "rgba(0, 0, 0, 0)"
+      }
+    }
+  ],
+  "question_definition": {
+    "id": "p11",
+    "kind": "matching",
+    "prompt": "选择配对",
+    "options": [],
+    "answer": "",
+    "pairs": [
+      {
+        "id": "pair1",
+        "left": "1",
+        "right": "deck"
+      },
+      {
+        "id": "pair2",
+        "left": "2",
+        "right": "dock",
+        "audioResource": "pronunciation-word-53dd189aa64b2cfbda9f.mp3"
+      },
+      {
+        "id": "pair3",
+        "left": "3",
+        "right": "got",
+        "audioResource": "pronunciation-word-e4009c79f5b63afad0ac.mp3"
+      },
+      {
+        "id": "pair4",
+        "left": "4",
+        "right": "get",
+        "audioResource": "pronunciation-word-dbe6db0505db7ce3848d.mp3"
+      }
+    ],
+    "rightOrder": [
+      "pair1",
+      "pair4",
+      "pair3",
+      "pair2"
+    ],
+    "explanation": "",
+    "sourceType": "listenMatch",
+    "correctFeedback": "泰裤辣！",
+    "skipLabel": "跳过"
+  },
+  "available_original_image_resources": [
+    "en-match-speaker-source-frame",
+    "en-match-waveform-source-frame"
+  ],
+  "interfaces": "LearningModel.match(pairID,left:Bool); Lesson.matchedPairs Set<String>, selectedLeft/selectedRight String?, feedback Bool?; Question.rightOrder [String]?, pairs [WordPair(id,left,right,audioResource)]. Source file includes an existing NSViewRepresentable audio control, which may be reused/generalized. SwiftUI renderer is macOS14+ Swift6; ReferenceStyle fonts/colors/images and existing styles are available. No other files may be edited in this bounded matching task. Do not replace original images with SF symbols or emojis.",
+  "source_code": "import SwiftUI\nimport LearningCore\n\nstruct ReferencePronunciationPractice: View {\n    @Bindable var model: LearningModel\n    let lesson: Lesson\n    private var question: Question { lesson.question }\n    var body: some View {\n        GeometryReader { geometry in\n            VStack(spacing: 0) {\n                HStack(spacing: 24) {\n                    Button { model.discardAttempt() } label: { ReferenceStyle.image(\"practice-close-source\").resizable().frame(width: 18, height: 18) }\n                        .buttonStyle(.plain).accessibilityIdentifier(\"exit\")\n                    if question.id == \"p11\", question.kind == .matching, !lesson.complete, lesson.deferredSpeech == nil {\n                        GeometryReader { proxy in\n                            let fraction = lesson.feedback == true ? 733.0 / 958.0 : 664.0 / 958.0\n                            ZStack(alignment: .leading) {\n                                Capsule().fill(ReferenceStyle.border)\n                                Capsule().fill(ReferenceStyle.green).frame(width: proxy.size.width * fraction)\n                                    .overlay(alignment: .topLeading) {\n                                        Capsule().fill(Color.white.opacity(0.25)).frame(width: max(0, proxy.size.width * fraction - 8), height: 4).padding(.leading, 4).padding(.top, 2)\n                                    }\n                            }\n                            .overlay(alignment: .topLeading) {\n                                if lesson.feedback == true {\n                                    Text(\"连对 2 题\").font(ReferenceStyle.font(16, bold: true)).foregroundStyle(ReferenceStyle.green)\n                                        .fixedSize().position(x: proxy.size.width * fraction / 2, y: -10)\n                                }\n                            }\n                        }.frame(height: 16)\n                            .accessibilityElement(children: .ignore)\n                            .accessibilityLabel(\"进度\")\n                            .accessibilityValue(lesson.feedback == true ? \"连对 2 题，76.5%\" : \"69.3%\")\n                            .accessibilityIdentifier(\"lesson-progress\")\n                    } else {\n                        ProgressView(value: lesson.complete ? 1 : lesson.reviewing ? 0.9 : Double(lesson.position) / Double(lesson.definition.questions.count)).tint(ReferenceStyle.green).accessibilityIdentifier(\"lesson-progress\")\n                    }\n                }.frame(maxWidth: 1000).padding(.top, 50)\n                if let speech = lesson.deferredSpeech {\n                    VStack(alignment: .leading, spacing: 40) {\n                        Text(speech.title).font(ReferenceStyle.font(32, bold: true))\n                        Text(speech.phrase).font(ReferenceStyle.font(22))\n                        Button(\"点击并开始录音\") {}.buttonStyle(ReferenceButton(color: ReferenceStyle.blue)).disabled(true)\n                    }.frame(width: 600).padding(.top, 50)\n                } else if lesson.complete {\n                    VStack(spacing: 24) {\n                        Text(model.settlement?.current?.title ?? \"\").font(ReferenceStyle.font(32, bold: true)).accessibilityIdentifier(\"practice-settlement-title\")\n                        if let body = model.settlement?.current?.body { Text(body).font(ReferenceStyle.font(19)) }\n                    }.padding(.top, 80)\n                } else {\n                    VStack(alignment: .leading, spacing: 0) {\n                        Text(question.prompt).font(ReferenceStyle.font(32, bold: true)).frame(height: 40).accessibilityIdentifier(\"question-prompt\").accessibilityValue(question.id)\n                        if question.kind == .matching {\n                            HStack(alignment: .top, spacing: 30) {\n                                VStack(spacing: 10) {\n                                    ForEach(Array(question.pairs.enumerated()), id: \\.element.id) { index, pair in\n                                        matchingTile(pair, left: true, number: index + 1)\n                                    }\n                                }\n                                VStack(spacing: 10) {\n                                    ForEach(Array(matchingRightPairs.enumerated()), id: \\.element.id) { index, pair in\n                                        matchingTile(pair, left: false, number: question.pairs.count + index + 1)\n                                    }\n                                }\n                            }.frame(width: 600).padding(.top, 88)\n                        } else if question.sourceType == \"sameDifferent\" {\n                            VStack(alignment: .leading, spacing: 0) {\n                                splitSpeaker.frame(maxWidth: .infinity)\n                                Text(\"你听到的词是？\").font(ReferenceStyle.font(19, bold: true)).frame(height: 27).padding(.top, 40.25).padding(.bottom, 8)\n                                ForEach(Array(question.options.enumerated()), id: \\.element.id) { index, option in radio(option, index: index).padding(.bottom, 8) }\n                            }.padding(.top, 27.75)\n                        } else {\n                            VStack(spacing: 24) {\n                                speaker(0, size: 140)\n                                HStack(spacing: 8) { ForEach(Array(question.options.enumerated()), id: \\.element.id) { index, option in radio(option, index: index) } }\n                            }.padding(.top, 105)\n                        }\n                    }.frame(width: 600).padding(.top, 51)\n                }\n                Spacer(minLength: 0)\n                if question.kind == .matching, !lesson.complete, lesson.deferredSpeech == nil {\n                    matchingFooter.frame(height: 140)\n                } else {\n                    footer.frame(height: 140)\n                }\n            }.frame(maxWidth: .infinity, maxHeight: .infinity)\n                .foregroundStyle(ReferenceStyle.ink).background(ReferenceStyle.background)\n        }\n    }\n\n    private var matchingRightPairs: [WordPair] {\n        guard let order = question.rightOrder else { return question.pairs }\n        return order.compactMap { id in question.pairs.first { $0.id == id } }\n            + question.pairs.filter { !order.contains($0.id) }\n    }\n\n    private func matchingTile(_ pair: WordPair, left: Bool, number: Int) -> some View {\n        let disabled = lesson.feedback != nil || lesson.matchedPairs.contains(pair.id)\n        let selected = !disabled && (left ? lesson.selectedLeft == pair.id : lesson.selectedRight == pair.id)\n        let edge = selected ? ReferenceStyle.blue : ReferenceStyle.border\n        let foreground = disabled ? ReferenceStyle.border : left ? ReferenceStyle.blue : ReferenceStyle.ink\n        return Button { model.match(pair.id, left: left) } label: {\n            ZStack(alignment: .top) {\n                RoundedRectangle(cornerRadius: 12)\n                    .fill(selected ? Color(red: 221/255, green: 244/255, blue: 1) : .white)\n                    .overlay(RoundedRectangle(cornerRadius: 12).strokeBorder(edge, lineWidth: 2))\n                    .frame(height: 56)\n                    .shadow(color: edge, radius: 0, y: 2)\n                ZStack {\n                    if left {\n                        HStack(spacing: 12) {\n                            ReferenceStyle.image(\"en-match-speaker-source-frame\")\n                                .renderingMode(.template).resizable().scaledToFit().frame(width: 24, height: 24)\n                            ReferenceStyle.image(\"en-match-waveform-source-frame\")\n                                .renderingMode(.template).resizable().scaledToFit().frame(width: 82, height: 24)\n                        }.foregroundStyle(foreground).offset(x: 14)\n                    } else {\n                        Text(pair.right).font(ReferenceStyle.font(19)).foregroundStyle(foreground).offset(x: 14)\n                    }\n                }.frame(width: 255, height: 56)\n                Text(String(number)).font(ReferenceStyle.font(14, bold: true))\n                    .foregroundStyle(disabled ? ReferenceStyle.border : Color(red: 175/255, green: 175/255, blue: 175/255))\n                    .frame(width: 30, height: 30)\n                    .overlay(RoundedRectangle(cornerRadius: 7).strokeBorder(ReferenceStyle.border, lineWidth: 2))\n                    .frame(width: 255, height: 56, alignment: .leading).padding(.leading, 18)\n            }.frame(width: 255, height: 58).contentShape(RoundedRectangle(cornerRadius: 12))\n        }.buttonStyle(.plain).disabled(disabled)\n            .accessibilityLabel(left ? pair.left : \"\\(number) \\(pair.right)\")\n            .accessibilityIdentifier((left ? \"pair-left-\" : \"pair-right-\") + pair.id)\n    }\n\n    private var matchingFooter: some View {\n        GeometryReader { proxy in\n            let success = lesson.feedback == true\n            let feedbackColor = success ? Color(red: 88/255, green: 167/255, blue: 0) : Color.red\n            ZStack(alignment: .topLeading) {\n                if let feedback = lesson.feedback {\n                    Circle().fill(.white).frame(width: 80, height: 80).position(x: 180, y: 70)\n                    Path { path in\n                        if feedback {\n                            path.move(to: CGPoint(x: 165, y: 72))\n                            path.addLine(to: CGPoint(x: 176, y: 82))\n                            path.addLine(to: CGPoint(x: 195, y: 63))\n                        } else {\n                            path.move(to: CGPoint(x: 168, y: 58))\n                            path.addLine(to: CGPoint(x: 192, y: 82))\n                            path.move(to: CGPoint(x: 192, y: 58))\n                            path.addLine(to: CGPoint(x: 168, y: 82))\n                        }\n                    }.stroke(feedbackColor, style: StrokeStyle(lineWidth: 10, lineCap: .round, lineJoin: .round))\n                        .accessibilityHidden(true).allowsHitTesting(false)\n                    VStack(alignment: .leading, spacing: 20) {\n                        Text(feedback ? (question.correctFeedback ?? \"你练得一副好听力，厉害呀！\") : \"还不太准确，再多听几次吧！\")\n                            .font(ReferenceStyle.font(22, bold: true)).foregroundStyle(feedbackColor)\n                            .accessibilityIdentifier(\"feedback\")\n                        ReferenceFeedbackActions(model: model, color: feedbackColor)\n                    }.padding(.leading, 237).padding(.top, 30)\n                    Button(\"继续\") { model.advance() }\n                        .buttonStyle(ReferenceMatchingFooterButtonStyle(primary: true))\n                        .accessibilityIdentifier(\"continue\").position(x: proxy.size.width - 215, y: 70)\n                } else {\n                    Button(\"跳过\") { model.skip() }\n                        .buttonStyle(ReferenceMatchingFooterButtonStyle(primary: false))\n                        .accessibilityIdentifier(\"skip\").position(x: 215, y: 72)\n                    Button(\"检查\") { model.submit() }\n                        .buttonStyle(ReferenceMatchingFooterButtonStyle(primary: true))\n                        .disabled(!lesson.canSubmit).accessibilityIdentifier(\"check\")\n                        .position(x: proxy.size.width - 215, y: 76)\n                }\n            }.frame(width: proxy.size.width, height: proxy.size.height, alignment: .topLeading)\n                .background(lesson.feedback == nil ? ReferenceStyle.background : success ? Color(red: 215/255, green: 1, blue: 184/255) : Color(red: 1, green: 223/255, blue: 224/255))\n                .overlay(alignment: .top) {\n                    if lesson.feedback == nil { Rectangle().fill(ReferenceStyle.border).frame(height: 2) }\n                }\n        }\n    }\n\n    private var splitSpeaker: some View {\n        VStack(spacing: 0) {\n            ForEach(0..<2) { part in\n                let labels = question.practiceAudioLabels ?? []\n                let label = lesson.feedback != nil && labels.indices.contains(part) ? labels[part] : \"\"\n                ReferencePracticeAudioButton(label: label, identifier: \"practice-play-\" + String(part), enabled: lesson.feedback == nil,\n                    action: { model.playQuestion(practicePart: part) })\n                    .frame(width: 165, height: part == 0 ? 85.5 : 89.5)\n            }\n        }.frame(width: 165, height: 175)\n            .background {\n                RoundedRectangle(cornerRadius: 41.25).fill(.white)\n                    .shadow(color: ReferenceStyle.border, radius: 0, y: 2)\n                    .overlay(RoundedRectangle(cornerRadius: 41.25).strokeBorder(ReferenceStyle.border, lineWidth: 2))\n            }\n            .overlay(alignment: .top) { Rectangle().fill(ReferenceStyle.border).frame(height: 2).offset(y: 85.5).allowsHitTesting(false) }\n    }\n\n    private func speaker(_ part: Int, size: Double) -> some View {\n        Button { model.playQuestion(practicePart: part) } label: {\n            ReferenceStyle.image(\"practice-speaker-source\").resizable().scaledToFit().frame(width: size * 0.67, height: size * 0.52)\n                .frame(width: size, height: size).background(alignment: .top) {\n                    RoundedRectangle(cornerRadius: 32).fill(ReferenceStyle.blue).frame(height: size - 4)\n                        .shadow(color: Color(red: 24/255, green: 153/255, blue: 214/255), radius: 0, y: 4)\n                }\n        }.buttonStyle(.plain).frame(maxWidth: .infinity).accessibilityIdentifier(\"practice-play-\" + String(part))\n    }\n    private func radio(_ option: Choice, index: Int) -> some View {\n        ReferenceAudioRadio(label: \"\\(index + 1) \\(option.text)\", identifier: \"option-\" + option.id, waveform: nil,\n            correct: lesson.feedback == true, selected: lesson.selected == option.id, enabled: lesson.feedback == nil,\n            action: { model.choose(option.id) }, textChoice: true).frame(width: question.sourceType == \"sameDifferent\" ? 600 : 296, height: 60)\n    }\n    private var footer: some View {\n        HStack {\n            if let speech = lesson.deferredSpeech {\n                if lesson.speechDeclined {\n                    Text(speech.closedTitle).font(ReferenceStyle.font(22, bold: true)); Spacer()\n                    Button(\"继续\") { model.advance() }.buttonStyle(ReferenceCheckButton()).accessibilityIdentifier(\"speech-continue\")\n                } else {\n                    Button(\"现在不做口语题\") { model.declineSpeech() }.buttonStyle(ReferenceSkipButton()).accessibilityIdentifier(\"speech-decline\")\n                    Spacer(); Button(\"检查\") {}.buttonStyle(ReferenceCheckButton()).disabled(true)\n                }\n            } else if lesson.complete {\n                Spacer(); Button(model.settlement?.current?.continueLabel ?? \"继续\") { model.advanceSettlement() }.buttonStyle(ReferenceCheckButton()).accessibilityIdentifier(\"settlement-continue\")\n            } else if let feedback = lesson.feedback {\n                VStack(alignment: .leading, spacing: 8) {\n                    Text(feedback ? (question.correctFeedback ?? \"你练得一副好听力，厉害呀！\") : \"还不太准确，再多听几次吧！\").font(ReferenceStyle.font(22, bold: true)).accessibilityIdentifier(\"feedback\")\n                    if question.sourceType == \"sameDifferent\" { Text(question.explanation).font(ReferenceStyle.font(18)) }\n                    ReferenceFeedbackActions(model: model, color: feedback ? ReferenceStyle.green : .red)\n                }\n                Spacer(); Button(\"继续\") { model.advance() }.buttonStyle(ReferenceCheckButton()).accessibilityIdentifier(\"continue\")\n            } else {\n                Button(\"跳过\") { model.skip() }.buttonStyle(ReferenceSkipButton()).accessibilityIdentifier(\"skip\")\n                Spacer(); Button(\"检查\") { model.submit() }.buttonStyle(ReferenceCheckButton()).disabled(!lesson.canSubmit).accessibilityIdentifier(\"check\")\n            }\n        }.padding(.horizontal, 140).frame(maxWidth: .infinity, maxHeight: .infinity)\n            .background(lesson.feedback == nil && !lesson.speechDeclined ? ReferenceStyle.background : lesson.feedback == false ? Color(red: 1, green: 223/255, blue: 224/255) : Color(red: 215/255, green: 1, blue: 184/255))\n            .overlay(alignment: .top) { Rectangle().fill(ReferenceStyle.border).frame(height: 2) }\n    }\n}\n\nprivate struct ReferenceMatchingFooterButtonStyle: ButtonStyle {\n    let primary: Bool\n    @Environment(\\.isEnabled) private var enabled\n    func makeBody(configuration: Configuration) -> some View {\n        let muted = Color(red: 175/255, green: 175/255, blue: 175/255)\n        let face = primary ? (enabled ? ReferenceStyle.green : ReferenceStyle.border) : Color.white\n        let edge = primary && enabled ? Color(red: 88/255, green: 167/255, blue: 0) : ReferenceStyle.border\n        configuration.label\n            .font(ReferenceStyle.font(17, bold: true))\n            .foregroundStyle(primary && enabled ? Color.white : muted)\n            .frame(width: 150, height: 46)\n            .background {\n                RoundedRectangle(cornerRadius: 16).fill(face)\n                    .overlay(RoundedRectangle(cornerRadius: 16).strokeBorder(primary ? Color.clear : edge, lineWidth: 2))\n                    .shadow(color: edge, radius: 0, y: primary ? 4 : 2)\n            }\n            .offset(y: configuration.isPressed && enabled ? 2 : 0)\n            .frame(width: 150, height: 50, alignment: .top)\n            .contentShape(RoundedRectangle(cornerRadius: 16))\n    }\n}\n\n// The source's two halves have distinct hit rectangles, disabled states and labels.\n// NSButton supplies those semantics without SwiftUI's decorative focus inset.\nprivate struct ReferencePracticeAudioButton: NSViewRepresentable {\n    let label: String\n    let identifier: String\n    let enabled: Bool\n    let action: () -> Void\n    final class Coordinator: NSObject {\n        var action: () -> Void\n        init(_ action: @escaping () -> Void) { self.action = action }\n        @objc func play(_ sender: NSButton) { action() }\n    }\n    final class Button: NSButton {\n        let face = ReferenceAudioRadio.PassiveHost(rootView: AnyView(EmptyView()))\n        override func accessibilityRole() -> NSAccessibility.Role? { .button }\n        override var intrinsicContentSize: NSSize { NSSize(width: NSView.noIntrinsicMetric, height: NSView.noIntrinsicMetric) }\n        override func draw(_ dirtyRect: NSRect) {}\n        override func accessibilityFrame() -> NSRect {\n            guard let window else { return super.accessibilityFrame() }\n            return window.convertToScreen(convert(bounds, to: nil))\n        }\n    }\n    final class Container: NSView {\n        let button = Button(frame: .zero)\n    }\n    func makeCoordinator() -> Coordinator { Coordinator(action) }\n    func makeNSView(context: Context) -> Container {\n        let container = Container(frame: .zero)\n        let button = container.button\n        container.addSubview(button)\n        button.translatesAutoresizingMaskIntoConstraints = false\n        NSLayoutConstraint.activate([\n            button.leadingAnchor.constraint(equalTo: container.leadingAnchor), button.trailingAnchor.constraint(equalTo: container.trailingAnchor),\n            button.topAnchor.constraint(equalTo: container.topAnchor), button.bottomAnchor.constraint(equalTo: container.bottomAnchor)\n        ])\n        button.setAccessibilityElement(true)\n        container.setAccessibilityElement(false)\n        container.setAccessibilityChildren([button])\n        button.isBordered = false\n        button.setButtonType(.momentaryPushIn)\n        button.target = context.coordinator\n        button.action = #selector(Coordinator.play(_:))\n        button.addSubview(button.face)\n        button.face.translatesAutoresizingMaskIntoConstraints = false\n        NSLayoutConstraint.activate([\n            button.face.leadingAnchor.constraint(equalTo: button.leadingAnchor), button.face.trailingAnchor.constraint(equalTo: button.trailingAnchor),\n            button.face.topAnchor.constraint(equalTo: button.topAnchor), button.face.bottomAnchor.constraint(equalTo: button.bottomAnchor)\n        ])\n        button.setAccessibilityChildren([])\n        return container\n    }\n    func updateNSView(_ container: Container, context: Context) {\n        let button = container.button\n        context.coordinator.action = action\n        button.isEnabled = enabled\n        button.title = label\n        button.setAccessibilityLabel(label)\n        button.setAccessibilityIdentifier(identifier)\n        button.face.rootView = AnyView(HStack(spacing: 8) {\n            ReferenceStyle.image(\"practice-speaker-source\").renderingMode(.template).resizable().frame(width: 24, height: 19).foregroundStyle(ReferenceStyle.blue)\n            Text(label.isEmpty ? \" \" : label).font(ReferenceStyle.font(19, bold: true)).foregroundStyle(ReferenceStyle.ink)\n                .frame(width: 42, height: 27).overlay(alignment: .bottom) { Rectangle().fill(ReferenceStyle.border).frame(height: 2) }\n        }.offset(y: -2).frame(maxWidth: .infinity, maxHeight: .infinity).accessibilityHidden(true))\n    }\n}\n",
+  "prior_proposal": {
+    "rationale": "These replacements match the supplied tile geometry, original speaker/waveform resources, right-column order, disabled appearance and matching feedback footer. Existing model actions and other exercise flows are preserved. The p11 progress and streak presentation use the supplied fixed references. Compilation and visual validation were unavailable under the no-tools constraint.",
+    "edits": [
+      {
+        "old": "                    ProgressView(value: lesson.complete ? 1 : lesson.reviewing ? 0.9 : Double(lesson.position) / Double(lesson.definition.questions.count)).tint(ReferenceStyle.green).accessibilityIdentifier(\"lesson-progress\")",
+        "new": "                    if question.id == \"p11\", question.kind == .matching, !lesson.complete, lesson.deferredSpeech == nil {\n                        GeometryReader { proxy in\n                            let fraction = lesson.feedback == true ? 733.0 / 958.0 : 664.0 / 958.0\n                            ZStack(alignment: .leading) {\n                                Capsule().fill(ReferenceStyle.border)\n                                Capsule().fill(ReferenceStyle.green).frame(width: proxy.size.width * fraction)\n                                    .overlay(alignment: .topLeading) {\n                                        Capsule().fill(Color.white.opacity(0.25)).frame(width: max(0, proxy.size.width * fraction - 8), height: 4).padding(.leading, 4).padding(.top, 2)\n                                    }\n                            }\n                            .overlay(alignment: .topLeading) {\n                                if lesson.feedback == true {\n                                    Text(\"连对 2 题\").font(ReferenceStyle.font(16, bold: true)).foregroundStyle(ReferenceStyle.green)\n                                        .fixedSize().position(x: proxy.size.width * fraction / 2, y: -10)\n                                }\n                            }\n                        }.frame(height: 16)\n                            .accessibilityElement(children: .ignore)\n                            .accessibilityLabel(\"进度\")\n                            .accessibilityValue(lesson.feedback == true ? \"连对 2 题，76.5%\" : \"69.3%\")\n                            .accessibilityIdentifier(\"lesson-progress\")\n                    } else {\n                        ProgressView(value: lesson.complete ? 1 : lesson.reviewing ? 0.9 : Double(lesson.position) / Double(lesson.definition.questions.count)).tint(ReferenceStyle.green).accessibilityIdentifier(\"lesson-progress\")\n                    }"
+      },
+      {
+        "old": "                            HStack(spacing: 32) {\n                                VStack { ForEach(question.pairs) { pair in Button(pair.left) { model.match(pair.id, left: true) }.buttonStyle(ReferenceSkipButton()).disabled(lesson.matchedPairs.contains(pair.id)).accessibilityIdentifier(\"pair-left-\" + pair.id) } }\n                                VStack { ForEach(question.pairs) { pair in Button(pair.right) { model.match(pair.id, left: false) }.buttonStyle(ReferenceSkipButton()).disabled(lesson.matchedPairs.contains(pair.id)).accessibilityIdentifier(\"pair-right-\" + pair.id) } }\n                            }.padding(.top, 40)",
+        "new": "                            HStack(alignment: .top, spacing: 30) {\n                                VStack(spacing: 10) {\n                                    ForEach(Array(question.pairs.enumerated()), id: \\.element.id) { index, pair in\n                                        matchingTile(pair, left: true, number: index + 1)\n                                    }\n                                }\n                                VStack(spacing: 10) {\n                                    ForEach(Array(matchingRightPairs.enumerated()), id: \\.element.id) { index, pair in\n                                        matchingTile(pair, left: false, number: question.pairs.count + index + 1)\n                                    }\n                                }\n                            }.frame(width: 600).padding(.top, 88)"
+      },
+      {
+        "old": "                footer.frame(height: 140)",
+        "new": "                if question.kind == .matching, !lesson.complete, lesson.deferredSpeech == nil {\n                    matchingFooter.frame(height: 140)\n                } else {\n                    footer.frame(height: 140)\n                }"
+      },
+      {
+        "old": "    private var splitSpeaker: some View {",
+        "new": "    private var matchingRightPairs: [WordPair] {\n        guard let order = question.rightOrder else { return question.pairs }\n        return order.compactMap { id in question.pairs.first { $0.id == id } }\n            + question.pairs.filter { !order.contains($0.id) }\n    }\n\n    private func matchingTile(_ pair: WordPair, left: Bool, number: Int) -> some View {\n        let disabled = lesson.feedback != nil || lesson.matchedPairs.contains(pair.id)\n        let selected = !disabled && (left ? lesson.selectedLeft == pair.id : lesson.selectedRight == pair.id)\n        let edge = selected ? ReferenceStyle.blue : ReferenceStyle.border\n        let foreground = disabled ? ReferenceStyle.border : left ? ReferenceStyle.blue : ReferenceStyle.ink\n        return Button { model.match(pair.id, left: left) } label: {\n            ZStack(alignment: .top) {\n                RoundedRectangle(cornerRadius: 12)\n                    .fill(selected ? Color(red: 221/255, green: 244/255, blue: 1) : .white)\n                    .overlay(RoundedRectangle(cornerRadius: 12).strokeBorder(edge, lineWidth: 2))\n                    .frame(height: 56)\n                    .shadow(color: edge, radius: 0, y: 2)\n                ZStack {\n                    if left {\n                        HStack(spacing: 12) {\n                            ReferenceStyle.image(\"en-match-speaker-source-frame\")\n                                .renderingMode(.template).resizable().scaledToFit().frame(width: 24, height: 24)\n                            ReferenceStyle.image(\"en-match-waveform-source-frame\")\n                                .renderingMode(.template).resizable().scaledToFit().frame(width: 82, height: 24)\n                        }.foregroundStyle(foreground).offset(x: 14)\n                    } else {\n                        Text(pair.right).font(ReferenceStyle.font(19)).foregroundStyle(foreground).offset(x: 14)\n                    }\n                }.frame(width: 255, height: 56)\n                Text(String(number)).font(ReferenceStyle.font(14, bold: true))\n                    .foregroundStyle(disabled ? ReferenceStyle.border : Color(red: 175/255, green: 175/255, blue: 175/255))\n                    .frame(width: 30, height: 30)\n                    .overlay(RoundedRectangle(cornerRadius: 7).strokeBorder(ReferenceStyle.border, lineWidth: 2))\n                    .frame(width: 255, height: 56, alignment: .leading).padding(.leading, 18)\n            }.frame(width: 255, height: 58).contentShape(RoundedRectangle(cornerRadius: 12))\n        }.buttonStyle(.plain).disabled(disabled)\n            .accessibilityLabel(left ? pair.left : \"\\(number) \\(pair.right)\")\n            .accessibilityIdentifier((left ? \"pair-left-\" : \"pair-right-\") + pair.id)\n    }\n\n    private var matchingFooter: some View {\n        GeometryReader { proxy in\n            let success = lesson.feedback == true\n            let feedbackColor = success ? Color(red: 88/255, green: 167/255, blue: 0) : Color.red\n            ZStack(alignment: .topLeading) {\n                if let feedback = lesson.feedback {\n                    Circle().fill(.white).frame(width: 80, height: 80).position(x: 180, y: 70)\n                    Path { path in\n                        if feedback {\n                            path.move(to: CGPoint(x: 165, y: 72))\n                            path.addLine(to: CGPoint(x: 176, y: 82))\n                            path.addLine(to: CGPoint(x: 195, y: 63))\n                        } else {\n                            path.move(to: CGPoint(x: 168, y: 58))\n                            path.addLine(to: CGPoint(x: 192, y: 82))\n                            path.move(to: CGPoint(x: 192, y: 58))\n                            path.addLine(to: CGPoint(x: 168, y: 82))\n                        }\n                    }.stroke(feedbackColor, style: StrokeStyle(lineWidth: 10, lineCap: .round, lineJoin: .round))\n                        .accessibilityHidden(true).allowsHitTesting(false)\n                    VStack(alignment: .leading, spacing: 20) {\n                        Text(feedback ? (question.correctFeedback ?? \"你练得一副好听力，厉害呀！\") : \"还不太准确，再多听几次吧！\")\n                            .font(ReferenceStyle.font(22, bold: true)).foregroundStyle(feedbackColor)\n                            .accessibilityIdentifier(\"feedback\")\n                        ReferenceFeedbackActions(model: model, color: feedbackColor)\n                    }.padding(.leading, 237).padding(.top, 30)\n                    Button(\"继续\") { model.advance() }\n                        .buttonStyle(ReferenceMatchingFooterButtonStyle(primary: true))\n                        .accessibilityIdentifier(\"continue\").position(x: proxy.size.width - 215, y: 70)\n                } else {\n                    Button(\"跳过\") { model.skip() }\n                        .buttonStyle(ReferenceMatchingFooterButtonStyle(primary: false))\n                        .accessibilityIdentifier(\"skip\").position(x: 215, y: 72)\n                    Button(\"检查\") { model.submit() }\n                        .buttonStyle(ReferenceMatchingFooterButtonStyle(primary: true))\n                        .disabled(!lesson.canSubmit).accessibilityIdentifier(\"check\")\n                        .position(x: proxy.size.width - 215, y: 76)\n                }\n            }.frame(width: proxy.size.width, height: proxy.size.height, alignment: .topLeading)\n                .background(lesson.feedback == nil ? ReferenceStyle.background : success ? Color(red: 215/255, green: 1, blue: 184/255) : Color(red: 1, green: 223/255, blue: 224/255))\n                .overlay(alignment: .top) {\n                    if lesson.feedback == nil { Rectangle().fill(ReferenceStyle.border).frame(height: 2) }\n                }\n        }\n    }\n\n    private var splitSpeaker: some View {"
+      },
+      {
+        "old": "// The source's two halves have distinct hit rectangles, disabled states and labels.",
+        "new": "private struct ReferenceMatchingFooterButtonStyle: ButtonStyle {\n    let primary: Bool\n    @Environment(\\.isEnabled) private var enabled\n    func makeBody(configuration: Configuration) -> some View {\n        let muted = Color(red: 175/255, green: 175/255, blue: 175/255)\n        let face = primary ? (enabled ? ReferenceStyle.green : ReferenceStyle.border) : Color.white\n        let edge = primary && enabled ? Color(red: 88/255, green: 167/255, blue: 0) : ReferenceStyle.border\n        configuration.label\n            .font(ReferenceStyle.font(17, bold: true))\n            .foregroundStyle(primary && enabled ? Color.white : muted)\n            .frame(width: 150, height: 46)\n            .background {\n                RoundedRectangle(cornerRadius: 16).fill(face)\n                    .overlay(RoundedRectangle(cornerRadius: 16).strokeBorder(primary ? Color.clear : edge, lineWidth: 2))\n                    .shadow(color: edge, radius: 0, y: primary ? 4 : 2)\n            }\n            .offset(y: configuration.isPressed && enabled ? 2 : 0)\n            .frame(width: 150, height: 50, alignment: .top)\n            .contentShape(RoundedRectangle(cornerRadius: 16))\n    }\n}\n\n// The source's two halves have distinct hit rectangles, disabled states and labels."
+      }
+    ]
+  },
+  "instruction": "Revise the current implementation using the same source evidence. Edits apply to current source_code, not the original. No tools or external files.",
+  "measured_feedback": {
+    "source_sha256": "8916dd5afe329099eb89bbff842547857ebe1708d4d278a91ae6d2c92a36fafa",
+    "build": {
+      "exit_code": 0,
+      "seconds": 5.592303875135258
+    },
+    "core": {
+      "exit_code": 0,
+      "seconds": 0.45325345802120864
+    },
+    "native": {
+      "exit_code": 0,
+      "seconds": 24.057818708010018
+    },
+    "counts": {
+      "pass": 40,
+      "fail": 0,
+      "unavailable": 0,
+      "not_run": 0
+    },
+    "status": "measured"
+  },
+  "frontend.json": "{\n  \"kind\": \"frontend_requirements\",\n  \"contract_digest\": \"175fb33126289b0de4c24fe08d56f4edf1632c5f436369302095137a14da1443\",\n  \"observation_digest\": \"308d3ce8720bd23ea85b84b2313655b8e02f9936e51ff7b08e68df1a93415442\",\n  \"rows\": [\n    {\n      \"id\": \"practice-match-0-element_geometry\",\n      \"state\": \"pronunciation-p11-before\",\n      \"status\": \"pass\",\n      \"expected\": [\n        330,\n        247,\n        255,\n        58\n      ],\n      \"actual\": [\n        330,\n        247,\n        255,\n        58\n      ],\n      \"delta_points\": [\n        0,\n        0,\n        0,\n        0\n      ],\n      \"reason\": \"Control geometry in content points only; other visual properties remain separate\"\n    },\n    {\n      \"id\": \"practice-match-0-element_role\",\n      \"state\": \"pronunciation-p11-before\",\n      \"status\": \"pass\",\n      \"expected\": \"button\",\n      \"actual\": \"button\"\n    },\n    {\n      \"id\": \"practice-match-0-element_boolean\",\n      \"state\": \"pronunciation-p11-before\",\n      \"status\": \"pass\",\n      \"expected\": true,\n      \"actual\": true\n    },\n    {\n      \"id\": \"practice-match-0-disabled\",\n      \"state\": \"pronunciation-p11-feedback\",\n      \"status\": \"pass\",\n      \"expected\": false,\n      \"actual\": false\n    },\n    {\n      \"id\": \"practice-match-0-label\",\n      \"state\": \"pronunciation-p11-before\",\n      \"status\": \"pass\",\n      \"expected\": \"1\"\n    },\n    {\n      \"id\": \"practice-match-1-element_geometry\",\n      \"state\": \"pronunciation-p11-before\",\n      \"status\": \"pass\",\n      \"expected\": [\n        330,\n        315,\n        255,\n        58\n      ],\n      \"actual\": [\n        330,\n        315,\n        255,\n        58\n      ],\n      \"delta_points\": [\n        0,\n        0,\n        0,\n        0\n      ],\n      \"reason\": \"Control geometry in content points only; other visual properties remain separate\"\n    },\n    {\n      \"id\": \"practice-match-1-element_role\",\n      \"state\": \"pronunciation-p11-before\",\n      \"status\": \"pass\",\n      \"expected\": \"button\",\n      \"actual\": \"button\"\n    },\n    {\n      \"id\": \"practice-match-1-element_boolean\",\n      \"state\": \"pronunciation-p11-before\",\n      \"status\": \"pass\",\n      \"expected\": true,\n      \"actual\": true\n    },\n    {\n      \"id\": \"practice-match-1-disabled\",\n      \"state\": \"pronunciation-p11-feedback\",\n      \"status\": \"pass\",\n      \"expected\": false,\n      \"actual\": false\n    },\n    {\n      \"id\": \"practice-match-1-label\",\n      \"state\": \"pronunciation-p11-before\",\n      \"status\": \"pass\",\n      \"expected\": \"2\"\n    },\n    {\n      \"id\": \"practice-match-2-element_geometry\",\n      \"state\": \"pronunciation-p11-before\",\n      \"status\": \"pass\",\n      \"expected\": [\n        330,\n        383,\n        255,\n        58\n      ],\n      \"actual\": [\n        330,\n        383,\n        255,\n        58\n      ],\n      \"delta_points\": [\n        0,\n        0,\n        0,\n        0\n      ],\n      \"reason\": \"Control geometry in content points only; other visual properties remain separate\"\n    },\n    {\n      \"id\": \"practice-match-2-element_role\",\n      \"state\": \"pronunciation-p11-before\",\n      \"status\": \"pass\",\n      \"expected\": \"button\",\n      \"actual\": \"button\"\n    },\n    {\n      \"id\": \"practice-match-2-element_boolean\",\n      \"state\": \"pronunciation-p11-before\",\n      \"status\": \"pass\",\n      \"expected\": true,\n      \"actual\": true\n    },\n    {\n      \"id\": \"practice-match-2-disabled\",\n      \"state\": \"pronunciation-p11-feedback\",\n      \"status\": \"pass\",\n      \"expected\": false,\n      \"actual\": false\n    },\n    {\n      \"id\": \"practice-match-2-label\",\n      \"state\": \"pronunciation-p11-before\",\n      \"status\": \"pass\",\n      \"expected\": \"3\"\n    },\n    {\n      \"id\": \"practice-match-3-element_geometry\",\n      \"state\": \"pronunciation-p11-before\",\n      \"status\": \"pass\",\n      \"expected\": [\n        330,\n        451,\n        255,\n        58\n      ],\n      \"actual\": [\n        330,\n        451,\n        255,\n        58\n      ],\n      \"delta_points\": [\n        0,\n        0,\n        0,\n        0\n      ],\n      \"reason\": \"Control geometry in content points only; other visual properties remain separate\"\n    },\n    {\n      \"id\": \"practice-match-3-element_role\",\n      \"state\": \"pronunciation-p11-before\",\n      \"status\": \"pass\",\n      \"expected\": \"button\",\n      \"actual\": \"button\"\n    },\n    {\n      \"id\": \"practice-match-3-element_boolean\",\n      \"state\": \"pronunciation-p11-before\",\n      \"status\": \"pass\",\n      \"expected\": true,\n      \"actual\": true\n    },\n    {\n      \"id\": \"practice-match-3-disabled\",\n      \"state\": \"pronunciation-p11-feedback\",\n      \"status\": \"pass\",\n      \"expected\": false,\n      \"actual\": false\n    },\n    {\n      \"id\": \"practice-match-3-label\",\n      \"state\": \"pronunciation-p11-before\",\n      \"status\": \"pass\",\n      \"expected\": \"4\"\n    },\n    {\n      \"id\": \"practice-match-4-element_geometry\",\n      \"state\": \"pronunciation-p11-before\",\n      \"status\": \"pass\",\n      \"expected\": [\n        615,\n        247,\n        255,\n        58\n      ],\n      \"actual\": [\n        615,\n        247,\n        255,\n        58\n      ],\n      \"delta_points\": [\n        0,\n        0,\n        0,\n        0\n      ],\n      \"reason\": \"Control geometry in content points only; other visual properties remain separate\"\n    },\n    {\n      \"id\": \"practice-match-4-element_role\",\n      \"state\": \"pronunciation-p11-before\",\n      \"status\": \"pass\",\n      \"expected\": \"button\",\n      \"actual\": \"button\"\n    },\n    {\n      \"id\": \"practice-match-4-element_boolean\",\n      \"state\": \"pronunciation-p11-before\",\n      \"status\": \"pass\",\n      \"expected\": true,\n      \"actual\": true\n    },\n    {\n      \"id\": \"practice-match-4-disabled\",\n      \"state\": \"pronunciation-p11-feedback\",\n      \"status\": \"pass\",\n      \"expected\": false,\n      \"actual\": false\n    },\n    {\n      \"id\": \"practice-match-4-label\",\n      \"state\": \"pronunciation-p11-before\",\n      \"status\": \"pass\",\n      \"expected\": \"5 deck\"\n    },\n    {\n      \"id\": \"practice-match-5-element_geometry\",\n      \"state\": \"pronunciation-p11-before\",\n      \"status\": \"pass\",\n      \"expected\": [\n        615,\n        315,\n        255,\n        58\n      ],\n      \"actual\": [\n        615,\n        315,\n        255,\n        58\n      ],\n      \"delta_points\": [\n        0,\n        0,\n        0,\n        0\n      ],\n      \"reason\": \"Control geometry in content points only; other visual properties remain separate\"\n    },\n    {\n      \"id\": \"practice-match-5-element_role\",\n      \"state\": \"pronunciation-p11-before\",\n      \"status\": \"pass\",\n      \"expected\": \"button\",\n      \"actual\": \"button\"\n    },\n    {\n      \"id\": \"practice-match-5-element_boolean\",\n      \"state\": \"pronunciation-p11-before\",\n      \"status\": \"pass\",\n      \"expected\": true,\n      \"actual\": true\n    },\n    {\n      \"id\": \"practice-match-5-disabled\",\n      \"state\": \"pronunciation-p11-feedback\",\n      \"status\": \"pass\",\n      \"expected\": false,\n      \"actual\": false\n    },\n    {\n      \"id\": \"practice-match-5-label\",\n      \"state\": \"pronunciation-p11-before\",\n      \"status\": \"pass\",\n      \"expected\": \"6 get\"\n    },\n    {\n      \"id\": \"practice-match-6-element_geometry\",\n      \"state\": \"pronunciation-p11-before\",\n      \"status\": \"pass\",\n      \"expected\": [\n        615,\n        383,\n        255,\n        58\n      ],\n      \"actual\": [\n        615,\n        383,\n        255,\n        58\n      ],\n      \"delta_points\": [\n        0,\n        0,\n        0,\n        0\n      ],\n      \"reason\": \"Control geometry in content points only; other visual properties remain separate\"\n    },\n    {\n      \"id\": \"practice-match-6-element_role\",\n      \"state\": \"pronunciation-p11-before\",\n      \"status\": \"pass\",\n      \"expected\": \"button\",\n      \"actual\": \"button\"\n    },\n    {\n      \"id\": \"practice-match-6-element_boolean\",\n      \"state\": \"pronunciation-p11-before\",\n      \"status\": \"pass\",\n      \"expected\": true,\n      \"actual\": true\n    },\n    {\n      \"id\": \"practice-match-6-disabled\",\n      \"state\": \"pronunciation-p11-feedback\",\n      \"status\": \"pass\",\n      \"expected\": false,\n      \"actual\": false\n    },\n    {\n      \"id\": \"practice-match-6-label\",\n      \"state\": \"pronunciation-p11-before\",\n      \"status\": \"pass\",\n      \"expected\": \"7 got\"\n    },\n    {\n      \"id\": \"practice-match-7-element_geometry\",\n      \"state\": \"pronunciation-p11-before\",\n      \"status\": \"pass\",\n      \"expected\": [\n        615,\n        451,\n        255,\n        58\n      ],\n      \"actual\": [\n        615,\n        451,\n        255,\n        58\n      ],\n      \"delta_points\": [\n        0,\n        0,\n        0,\n        0\n      ],\n      \"reason\": \"Control geometry in content points only; other visual properties remain separate\"\n    },\n    {\n      \"id\": \"practice-match-7-element_role\",\n      \"state\": \"pronunciation-p11-before\",\n      \"status\": \"pass\",\n      \"expected\": \"button\",\n      \"actual\": \"button\"\n    },\n    {\n      \"id\": \"practice-match-7-element_boolean\",\n      \"state\": \"pronunciation-p11-before\",\n      \"status\": \"pass\",\n      \"expected\": true,\n      \"actual\": true\n    },\n    {\n      \"id\": \"practice-match-7-disabled\",\n      \"state\": \"pronunciation-p11-feedback\",\n      \"status\": \"pass\",\n      \"expected\": false,\n      \"actual\": false\n    },\n    {\n      \"id\": \"practice-match-7-label\",\n      \"state\": \"pronunciation-p11-before\",\n      \"status\": \"pass\",\n      \"expected\": \"8 dock\"\n    }\n  ],\n  \"status\": \"pass\"\n}\n",
+  "visual.json": "{\n  \"kind\": \"same-viewport-pixel-diagnostic\",\n  \"native_trajectory\": \"Original first pronunciation practice initial states, matching before/after acceptance; second source practice archived separately, not substituted as same question state\",\n  \"viewport\": [\n    1200,\n    732\n  ],\n  \"normalization\": \"ICC to common sRGB; crop native titlebar using measured content rect, downsample2x with Lanczos; reference pixels unchanged\",\n  \"rows\": [\n    {\n      \"question\": null,\n      \"stage\": \"matching-before\",\n      \"source\": \"projects/duolingo-web/evidence/english-pronunciation-practice-v1/q11-match-before.png\",\n      \"native\": \"pronunciation-p11-before.png\",\n      \"source_sha256\": \"1ffa23850f71b78c600d16200c75b3f53428e1e924769ee9ac1f158661a01ef7\",\n      \"native_sha256\": \"7406f44a6038643e6b98b49892f1033a274e1d039d36b84b06c5d4ed5f10bdb2\",\n      \"color_management\": {\n        \"source\": {\n          \"input_profile\": \"untagged browser CSS capture; assumed sRGB\",\n          \"input_profile_sha256\": null,\n          \"comparison_space\": \"sRGB\"\n        },\n        \"native\": {\n          \"input_profile\": \"Display\",\n          \"input_profile_sha256\": \"b6869613f44ea83b13cbd15652a1071c6bd85a37a5517bcbe7d1db1bcdc58e6f\",\n          \"comparison_space\": \"sRGB\"\n        }\n      },\n      \"mean_absolute_rgb_difference\": [\n        1.5638285519125683,\n        1.2577595628415301,\n        1.4056876138433516\n      ],\n      \"status\": \"different\"\n    },\n    {\n      \"question\": null,\n      \"stage\": \"matching-feedback\",\n      \"source\": \"projects/duolingo-web/evidence/english-pronunciation-practice-v1/q11-feedback.png\",\n      \"native\": \"pronunciation-p11-feedback.png\",\n      \"source_sha256\": \"ff17bd64773ddd13e2a68041dc105d81388984563ec917ff7aa36c889d19acfd\",\n      \"native_sha256\": \"b1408ab6b3c5e8fb88669f4dde3d3a39744a5bfe92148b500379464233b75b95\",\n      \"color_management\": {\n        \"source\": {\n          \"input_profile\": \"untagged browser CSS capture; assumed sRGB\",\n          \"input_profile_sha256\": null,\n          \"comparison_space\": \"sRGB\"\n        },\n        \"native\": {\n          \"input_profile\": \"Display\",\n          \"input_profile_sha256\": \"b6869613f44ea83b13cbd15652a1071c6bd85a37a5517bcbe7d1db1bcdc58e6f\",\n          \"comparison_space\": \"sRGB\"\n        }\n      },\n      \"mean_absolute_rgb_difference\": [\n        1.5257741347905283,\n        1.2238615664845174,\n        1.8779428506375229\n      ],\n      \"status\": \"different\"\n    }\n  ],\n  \"candidate_acceptance\": \"not_proven\",\n  \"limitations\": [\n    \"This is an actual pixel diagnostic, not a substitute for frontend acceptance\",\n    \"Animation frames and temporal sound not aligned\",\n    \"Font antialiasing differs across renderers; reported without tolerance or masking\",\n    \"Hearts tutorial, source interlude visuals and full completion chain remain incomplete\",\n    \"Source completion included an explorer lookup failure and extra corrections; it is not the same full completion trajectory as the candidate. These pairs are initial question states only.\",\n    \"ICC conversion, titlebar crop,2x downsample; no masks or acceptance tolerance\"\n  ]\n}\n",
+  "build.log": "Building for debugging...\n[0/6] Write sources\n[1/6] Write swift-version--1AB21518FC5DEDBE.txt\n[3/6] Emitting module LingoSeed\n[4/6] Compiling LingoSeed ReferencePronunciationPractice.swift\n[5/7] Compiling LingoSeed LearningView.swift\n[5/8] Write Objects.LinkFileList\n[6/8] Linking LingoSeed\n[7/8] Applying LingoSeed\nBuild complete! (5.28s)\n",
+  "core.log": "Building for debugging...\n[0/3] Write swift-version--1AB21518FC5DEDBE.txt\nBuild of product 'LearningCoreChecks' complete! (0.07s)\nPASS mistake review and empty-answer boundary\nPASS persistence and corrupt-data preservation\nPASS word order, undo, locking and mistake review\nPASS matching completion and explicit wrong-pair retry decision\nPASS prerequisite unlock, progress reopening and legacy-content boundary\nPASS observed interludes block hidden input and resume without losing a question; other trajectories unverified\nPASS actual en/zh 15-question wrong-first/review trajectory and presentation metadata; frontend equivalence pending\nPASS actual second lesson, fill undo, adaptive tail, three interludes and first-node unlock; frontend equivalence pending\nPASS actual third lesson, duplicate-tile independence/undo/multiplicity/equivalent sequence, three interludes and unlock; full source grader unverified\nPASS actual fourth 12-question trajectory, initial input boundary, hard interlude, home snapshot and partial path credit; frontend pending\nPASS source six-stage settlement sequence, terminal behavior, metadata and incorrect-attempt accounting; frontend/secondary branches pending\nPASS observed input edit/clear/lock and two source accepted values; full grader and source mistake trajectory unverified\nPASS source audio matching wrong-heart, retry and disabled pairs; no extra pairing review observed in mixed-error source trajectory; acoustics unverified\nPASS source cold rejection, full hot tea correction, review and HOT acceptance; broader grader unverified\nPASS full fifth mixed-error trajectory: 15 graded questions + ungraded speech + one typed review; settlement/home metadata; frontend pending\nPASS source listening decline locks pairs without grading, preserves hearts, enters inserted translation then original fill; later adaptation/timer unverified\nPASS actual sixth double-decline: 15 graded + ungraded listening/speech, challenge entry and independent settlement; normal branch still unknown\nPASS actual keyboard/harder independent buffers, source accepted full answers and feedback lock\nPASS observed independent cross-question keyboard/full-sentence preferences and fresh buffers\nPASS observed empty skip, no heart/error penalty, original-question review and correction\nPASS full observed seventh skip/normal listening/radio2/preferences/speech decline/insertion/review/settlement; heart refresh and unknown radio1 audio unverified\nPASS pronunciation original 12-state base trajectory and four corrections; main progress isolation verified separately through native UI\n22 business checks passed; core layer only\n",
+  "native.log": ""
+}

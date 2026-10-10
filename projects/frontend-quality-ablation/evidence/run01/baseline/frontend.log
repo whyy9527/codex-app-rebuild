@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "<repository>/capabilities/rebuild/frontend.py", line 115, in <module>
+    raise SystemExit(main())
+                     ~~~~^^
+  File "<repository>/capabilities/rebuild/frontend.py", line 101, in main
+    contract = json.loads(local_file(root, args.contract).read_text())
+                          ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "<repository>/capabilities/rebuild/contracts.py", line 25, in local_file
+    raise ValueError('contract files must be inside the explicit workspace')
+ValueError: contract files must be inside the explicit workspace

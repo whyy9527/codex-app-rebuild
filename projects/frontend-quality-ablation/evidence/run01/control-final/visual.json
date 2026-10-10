@@ -1,0 +1,72 @@
+{
+  "kind": "same-viewport-pixel-diagnostic",
+  "native_trajectory": "Original first pronunciation practice initial states, matching before/after acceptance; second source practice archived separately, not substituted as same question state",
+  "viewport": [
+    1200,
+    732
+  ],
+  "normalization": "ICC to common sRGB; crop native titlebar using measured content rect, downsample2x with Lanczos; reference pixels unchanged",
+  "rows": [
+    {
+      "question": null,
+      "stage": "matching-before",
+      "source": "projects/duolingo-web/evidence/english-pronunciation-practice-v1/q11-match-before.png",
+      "native": "pronunciation-p11-before.png",
+      "source_sha256": "1ffa23850f71b78c600d16200c75b3f53428e1e924769ee9ac1f158661a01ef7",
+      "native_sha256": "81354819f8c73302e95ee24d3a7d563ffada905839d8909e13cbbf5e455fefbe",
+      "color_management": {
+        "source": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        },
+        "native": {
+          "input_profile": "Display",
+          "input_profile_sha256": "b6869613f44ea83b13cbd15652a1071c6bd85a37a5517bcbe7d1db1bcdc58e6f",
+          "comparison_space": "sRGB"
+        }
+      },
+      "mean_absolute_rgb_difference": [
+        0.930200364298725,
+        0.6738888888888889,
+        0.845754781420765
+      ],
+      "status": "different"
+    },
+    {
+      "question": null,
+      "stage": "matching-feedback",
+      "source": "projects/duolingo-web/evidence/english-pronunciation-practice-v1/q11-feedback.png",
+      "native": "pronunciation-p11-feedback.png",
+      "source_sha256": "ff17bd64773ddd13e2a68041dc105d81388984563ec917ff7aa36c889d19acfd",
+      "native_sha256": "e385058593f9ee5877636eec4a3b2e3caa50037b6d2cc0b255dac92efcab2ccc",
+      "color_management": {
+        "source": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        },
+        "native": {
+          "input_profile": "Display",
+          "input_profile_sha256": "b6869613f44ea83b13cbd15652a1071c6bd85a37a5517bcbe7d1db1bcdc58e6f",
+          "comparison_space": "sRGB"
+        }
+      },
+      "mean_absolute_rgb_difference": [
+        1.1114959016393442,
+        0.8096209016393443,
+        1.4636873861566484
+      ],
+      "status": "different"
+    }
+  ],
+  "candidate_acceptance": "not_proven",
+  "limitations": [
+    "This is an actual pixel diagnostic, not a substitute for frontend acceptance",
+    "Animation frames and temporal sound not aligned",
+    "Font antialiasing differs across renderers; reported without tolerance or masking",
+    "Hearts tutorial, source interlude visuals and full completion chain remain incomplete",
+    "Source completion included an explorer lookup failure and extra corrections; it is not the same full completion trajectory as the candidate. These pairs are initial question states only.",
+    "ICC conversion, titlebar crop,2x downsample; no masks or acceptance tolerance"
+  ]
+}

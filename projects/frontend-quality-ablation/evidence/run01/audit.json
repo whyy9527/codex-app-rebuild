@@ -1,0 +1,55 @@
+{
+  "registration_commits": [
+    "bbad913",
+    "4256cc7"
+  ],
+  "model_calls": [
+    {
+      "name": "initial",
+      "stdout_sha256": "5fe97357004a6d26c8e908fc887ced0c1e4cb2613c537e6db7cd81866ee381e1",
+      "stderr_sha256": "eac5af6967418360ba34ffc42abf528780aac25c41d0c8b421469d456b87dafe",
+      "original_prompt_sha256": "b0984a779af5ac66d3f446cc9a09d17fad108bf9523292022f8cab4c901b0f25",
+      "native_header": [
+        "OpenAI Codex v0.162.0-alpha.17.2",
+        "model: gpt-6.1-sol",
+        "provider: openai",
+        "reasoning effort: medium"
+      ],
+      "model_tool_markers": []
+    },
+    {
+      "name": "control",
+      "stdout_sha256": "e1f8080768f5c0fb73ff8bb5ab82a2c58cb5d9bbc2204b796e4bf5021d21850a",
+      "stderr_sha256": "2a30806eded598c1047a5d860cc771c775e2e04ce5e3220e8c04e9da3456877e",
+      "original_prompt_sha256": "9590c9da20b14b4af98bf8b6d7c0be21cc14171bbd3e734a446f5df6bc335072",
+      "native_header": [
+        "OpenAI Codex v0.162.0-alpha.17.2",
+        "model: gpt-6.1-sol",
+        "provider: openai",
+        "reasoning effort: medium"
+      ],
+      "model_tool_markers": []
+    },
+    {
+      "name": "feedback",
+      "stdout_sha256": "23ba70678725297e7a53fcaca46cb1c6d8b7dae5d9fa413fc1541f4fece8a09a",
+      "stderr_sha256": "b7c6e8a3a15055e470cec38602f806fc9a898b0f213899d3a5d789a2562af4d1",
+      "original_prompt_sha256": "0716a9cf49dc8b8924c9198047744dadf5f36d7c24b9184b52b9ab05e1f527f9",
+      "native_header": [
+        "OpenAI Codex v0.162.0-alpha.17.2",
+        "model: gpt-6.1-sol",
+        "provider: openai",
+        "reasoning effort: medium"
+      ],
+      "model_tool_markers": []
+    }
+  ],
+  "raw_transcripts": "Local originals retained; committed prompts/logs redact repository path. Native header excerpts and hashes below are parent-derived.",
+  "limits": [
+    "N=1; no seeded replication",
+    "Same call/time ceilings, actual token use differs",
+    "Automatic SessionStart/UserPromptSubmit hooks were present in all model calls; no model-initiated tools observed in captured transcripts",
+    "Initial frontend metric already at ceiling",
+    "Experimental code contains state-specific p11 progress/streak constants; not adopted as general source rules"
+  ]
+}
