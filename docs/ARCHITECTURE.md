@@ -181,3 +181,9 @@ Lesson将词库键盘、填空整句偏好分别保存；clearAnswer清答案缓
 ### 发音练习与分段播放
 
 `compile-pronunciation-practice.py`从真实UI归档生成独立Course，`Question.practiceAudioResources`和`practiceAudioLabels`分别承载原音频身份、反馈揭示词。`LearningModel`以独立Lesson接入发音入口并复用评分/重练；当前尚未实现原版音标持久化，不能以主课程隔离代替发音恢复。`ReferencePracticeAudioButton`使用显式NSButton角色与容器，分别绘制两个分段并在反馈禁用。共同前端v20独立比较原版几何、角色和状态，`observe-frontend.swift`实际点击播放/答题并采集事实，不自行声明通过。[数据与失败](../projects/duolingo-web/evidence/english-pronunciation-split-v1/README.md)。
+
+
+发音分段与配对共用`ReferencePracticeControl`的原生按钮/AX容器；各自绘制面独立，`Question.rightOrder`决定右列而不改变匹配身份。共同v21比较八个真实原版矩形及标签顺序。第二次原版路线/音标恢复已另存探索frontier，尚未进入课程选择或持久化模型；不以首套定义证明后续练习支持。源驱动对切换后仍禁用的旧radio先等真实可操作状态或非选择题/结算，目前只验证已有终态，后续继续验实际切换。
+
+
+源练习驱动现在默认建立answer_memory：键包含真实题型、选项标签和原音频身份，结果只从实际反馈更新，续跑显式传入并记录first_probe/prior_feedback；第三次五道重练均实际接受。就绪等待防止disabled旧radio被再次操作；既有slide和已观察成绩单入口共同识别终态，未知题型仍保存现场。源口语/权限及成绩单需求进入v22下一批，原生尚缺对应实现；权限denied探针只改变当前来源并恢复原prompt，不采集环境麦克风。

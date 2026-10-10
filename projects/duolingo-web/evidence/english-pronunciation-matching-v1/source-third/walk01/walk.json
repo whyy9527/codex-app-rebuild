@@ -1,0 +1,516 @@
+{
+  "kind": "actual-pronunciation-practice-continuation",
+  "observed_at": "2026-10-10T23:06:13.240Z",
+  "start_question": 0,
+  "steps": [
+    {
+      "index": 0,
+      "before": "- button:\n  - img\n- progressbar:\n  - img\n- heading \"你听到了什么？\" [level=1]\n- button:\n  - img\n- radiogroup \"choice\":\n  - radio \"1 tell\":\n    - text: 1 tell\n    - img\n    - img\n  - radio \"2 tall\":\n    - text: 2 tall\n    - img\n    - img\n- button \"跳过\"\n- button \"检查\" [disabled]",
+      "labels": [
+        {
+          "label": "1\ntell",
+          "rect": [
+            300,
+            430,
+            296,
+            60
+          ]
+        },
+        {
+          "label": "2\ntall",
+          "rect": [
+            604,
+            430,
+            296,
+            60
+          ]
+        }
+      ],
+      "source_type": "challenge challenge-selectPronunciation",
+      "speakers": [
+        [
+          {
+            "src": "https://d1vq87e9lcf771.cloudfront.net/vikramen/f94ff37294e51527a7c1e50a62b282de",
+            "at": 425838.2999999523
+          }
+        ]
+      ],
+      "media": [
+        {
+          "src": "https://d1vq87e9lcf771.cloudfront.net/vikramen/f94ff37294e51527a7c1e50a62b282de",
+          "at": 425838.2999999523
+        }
+      ],
+      "chosen": 0,
+      "answer_origin": "first_probe",
+      "selected": "- button:\n  - img\n- progressbar:\n  - img\n- heading \"你听到了什么？\" [level=1]\n- button:\n  - img\n- radiogroup \"choice\":\n  - radio \"1 tell\" [checked]:\n    - text: 1 tell\n    - img\n    - img\n  - radio \"2 tall\":\n    - text: 2 tall\n    - img\n    - img\n- button \"跳过\"\n- button \"检查\"",
+      "feedback": "- button:\n  - img\n- progressbar\n- heading \"你听到了什么？\" [level=1]\n- button:\n  - img\n- radiogroup \"choice\":\n  - radio \"1 tell\" [checked] [disabled]:\n    - text: 1 tell\n    - img\n    - img\n  - radio \"2 tall\" [disabled]:\n    - text: 2 tall\n    - img\n    - img\n- heading \"还不太准确，再多听几次吧！\" [level=2]\n- button \"太简单\"\n- button \"太难\"\n- button \"报错\"\n- button \"继续\"",
+      "after_continue": "- button:\n  - img\n- progressbar\n- heading \"你听到了什么？\" [level=1]\n- button:\n  - img\n- radiogroup \"choice\":\n  - radio \"1 pet\":\n    - text: 1 pet\n    - img\n    - img\n  - radio \"2 pot\":\n    - text: 2 pot\n    - img\n    - img\n- button \"跳过\"\n- button \"检查\" [disabled]"
+    },
+    {
+      "index": 1,
+      "before": "- button:\n  - img\n- progressbar\n- heading \"你听到了什么？\" [level=1]\n- button:\n  - img\n- radiogroup \"choice\":\n  - radio \"1 pet\":\n    - text: 1 pet\n    - img\n    - img\n  - radio \"2 pot\":\n    - text: 2 pot\n    - img\n    - img\n- button \"跳过\"\n- button \"检查\" [disabled]",
+      "labels": [
+        {
+          "label": "1\npet",
+          "rect": [
+            300,
+            430,
+            296,
+            60
+          ]
+        },
+        {
+          "label": "2\npot",
+          "rect": [
+            604,
+            430,
+            296,
+            60
+          ]
+        }
+      ],
+      "source_type": "challenge challenge-selectPronunciation",
+      "speakers": [
+        [
+          {
+            "src": "https://d1vq87e9lcf771.cloudfront.net/eddyen/b0def5d7347dafd9c3a7fbf143cb899b",
+            "at": 428021.7999999523
+          }
+        ]
+      ],
+      "media": [
+        {
+          "src": "https://d1vq87e9lcf771.cloudfront.net/eddyen/b0def5d7347dafd9c3a7fbf143cb899b",
+          "at": 428021.7999999523
+        }
+      ],
+      "chosen": 0,
+      "answer_origin": "first_probe",
+      "selected": "- button:\n  - img\n- progressbar\n- heading \"你听到了什么？\" [level=1]\n- button:\n  - img\n- radiogroup \"choice\":\n  - radio \"1 pet\" [checked]:\n    - text: 1 pet\n    - img\n    - img\n  - radio \"2 pot\":\n    - text: 2 pot\n    - img\n    - img\n- button \"跳过\"\n- button \"检查\"",
+      "feedback": "- button:\n  - img\n- progressbar:\n  - img\n- heading \"你听到了什么？\" [level=1]\n- button:\n  - img\n- radiogroup \"choice\":\n  - radio \"1 pet\" [checked] [disabled]:\n    - text: 1 pet\n    - img\n    - img\n  - radio \"2 pot\" [disabled]:\n    - text: 2 pot\n    - img\n    - img\n- heading \"看，多练几次真的有用吧！\" [level=2]\n- button \"太简单\"\n- button \"太难\"\n- button \"报错\"\n- button \"继续\"",
+      "after_continue": "- button:\n  - img\n- progressbar\n- heading \"你听到了什么？\" [level=1]\n- button:\n  - img\n- radiogroup \"choice\":\n  - radio \"1 tall\":\n    - text: 1 tall\n    - img\n    - img\n  - radio \"2 tell\":\n    - text: 2 tell\n    - img\n    - img\n- button \"跳过\"\n- button \"检查\" [disabled]"
+    },
+    {
+      "index": 2,
+      "before": "- button:\n  - img\n- progressbar\n- heading \"你听到了什么？\" [level=1]\n- button:\n  - img\n- radiogroup \"choice\":\n  - radio \"1 tall\":\n    - text: 1 tall\n    - img\n    - img\n  - radio \"2 tell\":\n    - text: 2 tell\n    - img\n    - img\n- button \"跳过\"\n- button \"检查\" [disabled]",
+      "labels": [
+        {
+          "label": "1\ntall",
+          "rect": [
+            300,
+            430,
+            296,
+            60
+          ]
+        },
+        {
+          "label": "2\ntell",
+          "rect": [
+            604,
+            430,
+            296,
+            60
+          ]
+        }
+      ],
+      "source_type": "challenge challenge-selectPronunciation",
+      "speakers": [
+        [
+          {
+            "src": "https://d1vq87e9lcf771.cloudfront.net/oscaren/69a9960d336de3b7baf6ca8a4e64a6b3",
+            "at": 430205
+          }
+        ]
+      ],
+      "media": [
+        {
+          "src": "https://d1vq87e9lcf771.cloudfront.net/oscaren/69a9960d336de3b7baf6ca8a4e64a6b3",
+          "at": 430205
+        }
+      ],
+      "chosen": 0,
+      "answer_origin": "first_probe",
+      "selected": "- button:\n  - img\n- progressbar\n- heading \"你听到了什么？\" [level=1]\n- button:\n  - img\n- radiogroup \"choice\":\n  - radio \"1 tall\" [checked]:\n    - text: 1 tall\n    - img\n    - img\n  - radio \"2 tell\":\n    - text: 2 tell\n    - img\n    - img\n- button \"跳过\"\n- button \"检查\"",
+      "feedback": "- button:\n  - img\n- progressbar\n- heading \"你听到了什么？\" [level=1]\n- button:\n  - img\n- radiogroup \"choice\":\n  - radio \"1 tall\" [checked] [disabled]:\n    - text: 1 tall\n    - img\n    - img\n  - radio \"2 tell\" [disabled]:\n    - text: 2 tell\n    - img\n    - img\n- heading \"还不太准确，再多听几次吧！\" [level=2]\n- button \"太简单\"\n- button \"太难\"\n- button \"报错\"\n- button \"继续\"",
+      "after_continue": "- button:\n  - img\n- progressbar\n- heading \"你听到了什么？\" [level=1]\n- button:\n  - img\n- radiogroup \"choice\":\n  - radio \"1 pet\":\n    - text: 1 pet\n    - img\n    - img\n  - radio \"2 pot\":\n    - text: 2 pot\n    - img\n    - img\n- button \"跳过\"\n- button \"检查\" [disabled]"
+    },
+    {
+      "index": 3,
+      "before": "- button:\n  - img\n- progressbar\n- heading \"你听到了什么？\" [level=1]\n- button:\n  - img\n- radiogroup \"choice\":\n  - radio \"1 pet\":\n    - text: 1 pet\n    - img\n    - img\n  - radio \"2 pot\":\n    - text: 2 pot\n    - img\n    - img\n- button \"跳过\"\n- button \"检查\" [disabled]",
+      "labels": [
+        {
+          "label": "1\npet",
+          "rect": [
+            300,
+            430,
+            296,
+            60
+          ]
+        },
+        {
+          "label": "2\npot",
+          "rect": [
+            604,
+            430,
+            296,
+            60
+          ]
+        }
+      ],
+      "source_type": "challenge challenge-selectPronunciation",
+      "speakers": [
+        [
+          {
+            "src": "https://d1vq87e9lcf771.cloudfront.net/vikramen/0da07d2265aea1d77652006987062261",
+            "at": 432388.40000009537
+          }
+        ]
+      ],
+      "media": [
+        {
+          "src": "https://d1vq87e9lcf771.cloudfront.net/vikramen/0da07d2265aea1d77652006987062261",
+          "at": 432388.40000009537
+        }
+      ],
+      "chosen": 0,
+      "answer_origin": "first_probe",
+      "selected": "- button:\n  - img\n- progressbar\n- heading \"你听到了什么？\" [level=1]\n- button:\n  - img\n- radiogroup \"choice\":\n  - radio \"1 pet\" [checked]:\n    - text: 1 pet\n    - img\n    - img\n  - radio \"2 pot\":\n    - text: 2 pot\n    - img\n    - img\n- button \"跳过\"\n- button \"检查\"",
+      "feedback": "- button:\n  - img\n- progressbar\n- heading \"你听到了什么？\" [level=1]\n- button:\n  - img\n- radiogroup \"choice\":\n  - radio \"1 pet\" [checked] [disabled]:\n    - text: 1 pet\n    - img\n    - img\n  - radio \"2 pot\" [disabled]:\n    - text: 2 pot\n    - img\n    - img\n- heading \"还不太准确，再多听几次吧！\" [level=2]\n- button \"太简单\"\n- button \"太难\"\n- button \"报错\"\n- button \"继续\"",
+      "after_continue": "- button:\n  - img\n- progressbar\n- heading \"你听到了什么？\" [level=1]\n- button:\n  - img\n- radiogroup \"choice\":\n  - radio \"1 tall\":\n    - text: 1 tall\n    - img\n    - img\n  - radio \"2 tell\":\n    - text: 2 tell\n    - img\n    - img\n- button \"跳过\"\n- button \"检查\" [disabled]"
+    },
+    {
+      "index": 4,
+      "before": "- button:\n  - img\n- progressbar\n- heading \"你听到了什么？\" [level=1]\n- button:\n  - img\n- radiogroup \"choice\":\n  - radio \"1 tall\":\n    - text: 1 tall\n    - img\n    - img\n  - radio \"2 tell\":\n    - text: 2 tell\n    - img\n    - img\n- button \"跳过\"\n- button \"检查\" [disabled]",
+      "labels": [
+        {
+          "label": "1\ntall",
+          "rect": [
+            300,
+            430,
+            296,
+            60
+          ]
+        },
+        {
+          "label": "2\ntell",
+          "rect": [
+            604,
+            430,
+            296,
+            60
+          ]
+        }
+      ],
+      "source_type": "challenge challenge-selectPronunciation",
+      "speakers": [
+        [
+          {
+            "src": "https://d1vq87e9lcf771.cloudfront.net/oscaren/11524de8a360aff9a2c27a837b79602f",
+            "at": 434538.7000000477
+          }
+        ]
+      ],
+      "media": [
+        {
+          "src": "https://d1vq87e9lcf771.cloudfront.net/oscaren/11524de8a360aff9a2c27a837b79602f",
+          "at": 434538.7000000477
+        }
+      ],
+      "chosen": 0,
+      "answer_origin": "first_probe",
+      "selected": "- button:\n  - img\n- progressbar\n- heading \"你听到了什么？\" [level=1]\n- button:\n  - img\n- radiogroup \"choice\":\n  - radio \"1 tall\" [checked]:\n    - text: 1 tall\n    - img\n    - img\n  - radio \"2 tell\":\n    - text: 2 tell\n    - img\n    - img\n- button \"跳过\"\n- button \"检查\"",
+      "feedback": "- button:\n  - img\n- progressbar:\n  - img\n- heading \"你听到了什么？\" [level=1]\n- button:\n  - img\n- radiogroup \"choice\":\n  - radio \"1 tall\" [checked] [disabled]:\n    - text: 1 tall\n    - img\n    - img\n  - radio \"2 tell\" [disabled]:\n    - text: 2 tell\n    - img\n    - img\n- heading \"耳朵会越练越灵哦\" [level=2]\n- button \"太简单\"\n- button \"太难\"\n- button \"报错\"\n- button \"继续\"",
+      "after_continue": "- button:\n  - img\n- progressbar\n- heading \"先听后答\" [level=1]\n- button:\n  - img\n- button:\n  - img\n- text: 你听到的词是？\n- radiogroup \"choice\":\n  - radio \"1 同一个词\":\n    - text: 1 同一个词\n    - img\n    - img\n  - radio \"2 两个不同的词\":\n    - text: 2 两个不同的词\n    - img\n    - img\n- button \"跳过\"\n- button \"检查\" [disabled]"
+    },
+    {
+      "index": 5,
+      "before": "- button:\n  - img\n- progressbar\n- heading \"先听后答\" [level=1]\n- button:\n  - img\n- button:\n  - img\n- text: 你听到的词是？\n- radiogroup \"choice\":\n  - radio \"1 同一个词\":\n    - text: 1 同一个词\n    - img\n    - img\n  - radio \"2 两个不同的词\":\n    - text: 2 两个不同的词\n    - img\n    - img\n- button \"跳过\"\n- button \"检查\" [disabled]",
+      "labels": [
+        {
+          "label": "1\n同一个词",
+          "rect": [
+            300,
+            439.25,
+            600,
+            60
+          ]
+        },
+        {
+          "label": "2\n两个不同的词",
+          "rect": [
+            300,
+            507.25,
+            600,
+            60
+          ]
+        }
+      ],
+      "source_type": "challenge challenge-sameDifferent",
+      "speakers": [
+        [
+          {
+            "src": "https://d1vq87e9lcf771.cloudfront.net/beaen/c5ccc08c55d0dced8edeffb39699d94d",
+            "at": 436721.10000014305
+          }
+        ],
+        [
+          {
+            "src": "https://d1vq87e9lcf771.cloudfront.net/eddyen/88cb1e019cb5a17bc0213228d13cb1cb",
+            "at": 437955.7000000477
+          }
+        ]
+      ],
+      "media": [
+        {
+          "src": "https://d1vq87e9lcf771.cloudfront.net/beaen/c5ccc08c55d0dced8edeffb39699d94d",
+          "at": 436721.10000014305
+        },
+        {
+          "src": "https://d1vq87e9lcf771.cloudfront.net/eddyen/88cb1e019cb5a17bc0213228d13cb1cb",
+          "at": 437955.7000000477
+        }
+      ],
+      "chosen": 0,
+      "answer_origin": "first_probe",
+      "selected": "- button:\n  - img\n- progressbar\n- heading \"先听后答\" [level=1]\n- button:\n  - img\n- button:\n  - img\n- text: 你听到的词是？\n- radiogroup \"choice\":\n  - radio \"1 同一个词\" [checked]:\n    - text: 1 同一个词\n    - img\n    - img\n  - radio \"2 两个不同的词\":\n    - text: 2 两个不同的词\n    - img\n    - img\n- button \"跳过\"\n- button \"检查\"",
+      "feedback": "- button:\n  - img\n- progressbar:\n  - text: 连对 2 题\n  - img\n- heading \"先听后答\" [level=1]\n- button \"tall\" [disabled]:\n  - img\n  - text: tall\n- button \"tall\" [disabled]:\n  - img\n  - text: tall\n- text: 你听到的词是？\n- radiogroup \"choice\":\n  - radio \"1 同一个词\" [checked] [disabled]:\n    - text: 1 同一个词\n    - img\n    - img\n  - radio \"2 两个不同的词\" [disabled]:\n    - text: 2 两个不同的词\n    - img\n    - img\n- heading \"看，多练几次真的有用吧！\" [level=2]\n- text: tall /tɑl/\n- button \"太简单\"\n- button \"太难\"\n- button \"报错\"\n- button \"继续\"",
+      "after_continue": "- button:\n  - img\n- progressbar\n- heading \"先听后答\" [level=1]\n- button:\n  - img\n- button:\n  - img\n- text: 你听到的词是？\n- radiogroup \"choice\":\n  - radio \"1 同一个词\":\n    - text: 1 同一个词\n    - img\n    - img\n  - radio \"2 两个不同的词\":\n    - text: 2 两个不同的词\n    - img\n    - img\n- button \"跳过\"\n- button \"检查\" [disabled]"
+    },
+    {
+      "index": 6,
+      "before": "- button:\n  - img\n- progressbar\n- heading \"先听后答\" [level=1]\n- button:\n  - img\n- button:\n  - img\n- text: 你听到的词是？\n- radiogroup \"choice\":\n  - radio \"1 同一个词\":\n    - text: 1 同一个词\n    - img\n    - img\n  - radio \"2 两个不同的词\":\n    - text: 2 两个不同的词\n    - img\n    - img\n- button \"跳过\"\n- button \"检查\" [disabled]",
+      "labels": [
+        {
+          "label": "1\n同一个词",
+          "rect": [
+            300,
+            439.25,
+            600,
+            60
+          ]
+        },
+        {
+          "label": "2\n两个不同的词",
+          "rect": [
+            300,
+            507.25,
+            600,
+            60
+          ]
+        }
+      ],
+      "source_type": "challenge challenge-sameDifferent",
+      "speakers": [
+        [
+          {
+            "src": "https://d1vq87e9lcf771.cloudfront.net/eddyen/b0def5d7347dafd9c3a7fbf143cb899b",
+            "at": 440155.40000009537
+          }
+        ],
+        [
+          {
+            "src": "https://d1vq87e9lcf771.cloudfront.net/vikramen/a123c183266e1dc64cf9334e2e5e9119",
+            "at": 441388.5
+          }
+        ]
+      ],
+      "media": [
+        {
+          "src": "https://d1vq87e9lcf771.cloudfront.net/eddyen/b0def5d7347dafd9c3a7fbf143cb899b",
+          "at": 440155.40000009537
+        },
+        {
+          "src": "https://d1vq87e9lcf771.cloudfront.net/vikramen/a123c183266e1dc64cf9334e2e5e9119",
+          "at": 441388.5
+        }
+      ],
+      "chosen": 0,
+      "answer_origin": "first_probe",
+      "selected": "- button:\n  - img\n- progressbar\n- heading \"先听后答\" [level=1]\n- button:\n  - img\n- button:\n  - img\n- text: 你听到的词是？\n- radiogroup \"choice\":\n  - radio \"1 同一个词\" [checked]:\n    - text: 1 同一个词\n    - img\n    - img\n  - radio \"2 两个不同的词\":\n    - text: 2 两个不同的词\n    - img\n    - img\n- button \"跳过\"\n- button \"检查\"",
+      "feedback": "- button:\n  - img\n- progressbar: 连对 3 题\n- heading \"先听后答\" [level=1]\n- button \"pet\" [disabled]:\n  - img\n  - text: pet\n- button \"pet\" [disabled]:\n  - img\n  - text: pet\n- text: 你听到的词是？\n- radiogroup \"choice\":\n  - radio \"1 同一个词\" [checked] [disabled]:\n    - text: 1 同一个词\n    - img\n    - img\n  - radio \"2 两个不同的词\" [disabled]:\n    - text: 2 两个不同的词\n    - img\n    - img\n- heading \"这个有点难度，但你答对啦！\" [level=2]\n- text: pet /pɛt/\n- button \"太简单\"\n- button \"太难\"\n- button \"报错\"\n- button \"继续\"",
+      "after_continue": "- button:\n  - img\n- progressbar\n- heading \"先听后答\" [level=1]\n- button:\n  - img\n- button:\n  - img\n- text: 你听到的词是？\n- radiogroup \"choice\":\n  - radio \"1 同一个词\":\n    - text: 1 同一个词\n    - img\n    - img\n  - radio \"2 两个不同的词\":\n    - text: 2 两个不同的词\n    - img\n    - img\n- button \"跳过\"\n- button \"检查\" [disabled]"
+    },
+    {
+      "index": 7,
+      "before": "- button:\n  - img\n- progressbar\n- heading \"先听后答\" [level=1]\n- button:\n  - img\n- button:\n  - img\n- text: 你听到的词是？\n- radiogroup \"choice\":\n  - radio \"1 同一个词\":\n    - text: 1 同一个词\n    - img\n    - img\n  - radio \"2 两个不同的词\":\n    - text: 2 两个不同的词\n    - img\n    - img\n- button \"跳过\"\n- button \"检查\" [disabled]",
+      "labels": [
+        {
+          "label": "1\n同一个词",
+          "rect": [
+            300,
+            439.25,
+            600,
+            60
+          ]
+        },
+        {
+          "label": "2\n两个不同的词",
+          "rect": [
+            300,
+            507.25,
+            600,
+            60
+          ]
+        }
+      ],
+      "source_type": "challenge challenge-sameDifferent",
+      "speakers": [
+        [
+          {
+            "src": "https://d1vq87e9lcf771.cloudfront.net/eddyen/32e5acc8721e2d5b83b0dfac8a65d290",
+            "at": 443588.10000014305
+          }
+        ],
+        [
+          {
+            "src": "https://d1vq87e9lcf771.cloudfront.net/vikramen/f94ff37294e51527a7c1e50a62b282de",
+            "at": 444821.90000009537
+          }
+        ]
+      ],
+      "media": [
+        {
+          "src": "https://d1vq87e9lcf771.cloudfront.net/eddyen/32e5acc8721e2d5b83b0dfac8a65d290",
+          "at": 443588.10000014305
+        },
+        {
+          "src": "https://d1vq87e9lcf771.cloudfront.net/vikramen/f94ff37294e51527a7c1e50a62b282de",
+          "at": 444821.90000009537
+        }
+      ],
+      "chosen": 0,
+      "answer_origin": "first_probe",
+      "selected": "- button:\n  - img\n- progressbar\n- heading \"先听后答\" [level=1]\n- button:\n  - img\n- button:\n  - img\n- text: 你听到的词是？\n- radiogroup \"choice\":\n  - radio \"1 同一个词\" [checked]:\n    - text: 1 同一个词\n    - img\n    - img\n  - radio \"2 两个不同的词\":\n    - text: 2 两个不同的词\n    - img\n    - img\n- button \"跳过\"\n- button \"检查\"",
+      "feedback": "- button:\n  - img\n- progressbar\n- heading \"先听后答\" [level=1]\n- button \"tell\" [disabled]:\n  - img\n  - text: tell\n- button \"tall\" [disabled]:\n  - img\n  - text: tall\n- text: 你听到的词是？\n- radiogroup \"choice\":\n  - radio \"1 同一个词\" [checked] [disabled]:\n    - text: 1 同一个词\n    - img\n    - img\n  - radio \"2 两个不同的词\" [disabled]:\n    - text: 2 两个不同的词\n    - img\n    - img\n- heading \"还不太准确，再多听几次吧！\" [level=2]\n- text: tell /tɛl/, tall /tɑl/\n- button \"太简单\"\n- button \"太难\"\n- button \"报错\"\n- button \"继续\"",
+      "after_continue": "- button:\n  - img\n- progressbar\n- heading \"先听后答\" [level=1]\n- button:\n  - img\n- button:\n  - img\n- text: 你听到的词是？\n- radiogroup \"choice\":\n  - radio \"1 同一个词\":\n    - text: 1 同一个词\n    - img\n    - img\n  - radio \"2 两个不同的词\":\n    - text: 2 两个不同的词\n    - img\n    - img\n- button \"跳过\"\n- button \"检查\" [disabled]"
+    },
+    {
+      "index": 8,
+      "before": "- button:\n  - img\n- progressbar\n- heading \"先听后答\" [level=1]\n- button:\n  - img\n- button:\n  - img\n- text: 你听到的词是？\n- radiogroup \"choice\":\n  - radio \"1 同一个词\":\n    - text: 1 同一个词\n    - img\n    - img\n  - radio \"2 两个不同的词\":\n    - text: 2 两个不同的词\n    - img\n    - img\n- button \"跳过\"\n- button \"检查\" [disabled]",
+      "labels": [
+        {
+          "label": "1\n同一个词",
+          "rect": [
+            300,
+            439.25,
+            600,
+            60
+          ]
+        },
+        {
+          "label": "2\n两个不同的词",
+          "rect": [
+            300,
+            507.25,
+            600,
+            60
+          ]
+        }
+      ],
+      "source_type": "challenge challenge-sameDifferent",
+      "speakers": [
+        [
+          {
+            "src": "https://d1vq87e9lcf771.cloudfront.net/eddyen/74944a76d848a498db1933105968f1ca",
+            "at": 447022.10000014305
+          }
+        ],
+        [
+          {
+            "src": "https://d1vq87e9lcf771.cloudfront.net/vikramen/a123c183266e1dc64cf9334e2e5e9119",
+            "at": 448255.90000009537
+          }
+        ]
+      ],
+      "media": [
+        {
+          "src": "https://d1vq87e9lcf771.cloudfront.net/eddyen/74944a76d848a498db1933105968f1ca",
+          "at": 447022.10000014305
+        },
+        {
+          "src": "https://d1vq87e9lcf771.cloudfront.net/vikramen/a123c183266e1dc64cf9334e2e5e9119",
+          "at": 448255.90000009537
+        }
+      ],
+      "chosen": 0,
+      "answer_origin": "first_probe",
+      "selected": "- button:\n  - img\n- progressbar\n- heading \"先听后答\" [level=1]\n- button:\n  - img\n- button:\n  - img\n- text: 你听到的词是？\n- radiogroup \"choice\":\n  - radio \"1 同一个词\" [checked]:\n    - text: 1 同一个词\n    - img\n    - img\n  - radio \"2 两个不同的词\":\n    - text: 2 两个不同的词\n    - img\n    - img\n- button \"跳过\"\n- button \"检查\"",
+      "feedback": "- button:\n  - img\n- progressbar\n- heading \"先听后答\" [level=1]\n- button \"pot\" [disabled]:\n  - img\n  - text: pot\n- button \"pet\" [disabled]:\n  - img\n  - text: pet\n- text: 你听到的词是？\n- radiogroup \"choice\":\n  - radio \"1 同一个词\" [checked] [disabled]:\n    - text: 1 同一个词\n    - img\n    - img\n  - radio \"2 两个不同的词\" [disabled]:\n    - text: 2 两个不同的词\n    - img\n    - img\n- heading \"还不太准确，再多听几次吧！\" [level=2]\n- text: pot /pɑt/, pet /pɛt/\n- button \"太简单\"\n- button \"太难\"\n- button \"报错\"\n- button \"继续\"",
+      "after_continue": "- button:\n  - img\n- progressbar\n- heading \"先听后答\" [level=1]\n- button:\n  - img\n- button:\n  - img\n- text: 你听到的词是？\n- radiogroup \"choice\":\n  - radio \"1 同一个词\":\n    - text: 1 同一个词\n    - img\n    - img\n  - radio \"2 两个不同的词\":\n    - text: 2 两个不同的词\n    - img\n    - img\n- button \"跳过\"\n- button \"检查\" [disabled]"
+    },
+    {
+      "index": 9,
+      "before": "- button:\n  - img\n- progressbar\n- heading \"先听后答\" [level=1]\n- button:\n  - img\n- button:\n  - img\n- text: 你听到的词是？\n- radiogroup \"choice\":\n  - radio \"1 同一个词\":\n    - text: 1 同一个词\n    - img\n    - img\n  - radio \"2 两个不同的词\":\n    - text: 2 两个不同的词\n    - img\n    - img\n- button \"跳过\"\n- button \"检查\" [disabled]",
+      "labels": [
+        {
+          "label": "1\n同一个词",
+          "rect": [
+            300,
+            439.25,
+            600,
+            60
+          ]
+        },
+        {
+          "label": "2\n两个不同的词",
+          "rect": [
+            300,
+            507.25,
+            600,
+            60
+          ]
+        }
+      ],
+      "source_type": "challenge challenge-sameDifferent",
+      "speakers": [
+        [
+          {
+            "src": "https://d1vq87e9lcf771.cloudfront.net/beaen/39ccf938a2a859735e06f9e5c6f5854c",
+            "at": 450454.90000009537
+          }
+        ],
+        [
+          {
+            "src": "https://d1vq87e9lcf771.cloudfront.net/vikramen/c4f40f5697903603c4593eba7b7be7bc",
+            "at": 451690.7999999523
+          }
+        ]
+      ],
+      "media": [
+        {
+          "src": "https://d1vq87e9lcf771.cloudfront.net/beaen/39ccf938a2a859735e06f9e5c6f5854c",
+          "at": 450454.90000009537
+        },
+        {
+          "src": "https://d1vq87e9lcf771.cloudfront.net/vikramen/c4f40f5697903603c4593eba7b7be7bc",
+          "at": 451690.7999999523
+        }
+      ],
+      "chosen": 0,
+      "answer_origin": "first_probe",
+      "selected": "- button:\n  - img\n- progressbar\n- heading \"先听后答\" [level=1]\n- button:\n  - img\n- button:\n  - img\n- text: 你听到的词是？\n- radiogroup \"choice\":\n  - radio \"1 同一个词\" [checked]:\n    - text: 1 同一个词\n    - img\n    - img\n  - radio \"2 两个不同的词\":\n    - text: 2 两个不同的词\n    - img\n    - img\n- button \"跳过\"\n- button \"检查\"",
+      "feedback": "- button:\n  - img\n- progressbar:\n  - img\n- heading \"先听后答\" [level=1]\n- button \"tell\" [disabled]:\n  - img\n  - text: tell\n- button \"tell\" [disabled]:\n  - img\n  - text: tell\n- text: 你听到的词是？\n- radiogroup \"choice\":\n  - radio \"1 同一个词\" [checked] [disabled]:\n    - text: 1 同一个词\n    - img\n    - img\n  - radio \"2 两个不同的词\" [disabled]:\n    - text: 2 两个不同的词\n    - img\n    - img\n- heading \"耳朵会越练越灵哦\" [level=2]\n- text: tell /tɛl/\n- button \"太简单\"\n- button \"太难\"\n- button \"报错\"\n- button \"继续\"",
+      "after_continue": "- button:\n  - img\n- progressbar\n- heading \"朗读下面的句子\" [level=1]\n- img\n- button:\n  - img\n- img\n- button \"点击并开始录音\":\n  - img\n  - text: 点击并开始录音\n  - img\n  - img\n- button \"现在不做口语题\"\n- button \"检查\" [disabled]"
+    },
+    {
+      "index": 10,
+      "before": "- button:\n  - img\n- progressbar\n- heading \"朗读下面的句子\" [level=1]\n- img\n- button:\n  - img\n- img\n- button \"点击并开始录音\":\n  - img\n  - text: 点击并开始录音\n  - img\n  - img\n- button \"现在不做口语题\"\n- button \"检查\" [disabled]",
+      "unhandled": "Observed state is not a two-choice question; preserve for next exploration"
+    }
+  ],
+  "failure": null,
+  "terminal": false,
+  "answer_memory": {
+    "[\"challenge challenge-selectPronunciation\",[\"1 tell\",\"2 tall\"],[\"https://d1vq87e9lcf771.cloudfront.net/vikramen/f94ff37294e51527a7c1e50a62b282de\"]]": 1,
+    "[\"challenge challenge-selectPronunciation\",[\"1 pet\",\"2 pot\"],[\"https://d1vq87e9lcf771.cloudfront.net/eddyen/b0def5d7347dafd9c3a7fbf143cb899b\"]]": 0,
+    "[\"challenge challenge-selectPronunciation\",[\"1 tall\",\"2 tell\"],[\"https://d1vq87e9lcf771.cloudfront.net/oscaren/69a9960d336de3b7baf6ca8a4e64a6b3\"]]": 1,
+    "[\"challenge challenge-selectPronunciation\",[\"1 pet\",\"2 pot\"],[\"https://d1vq87e9lcf771.cloudfront.net/vikramen/0da07d2265aea1d77652006987062261\"]]": 1,
+    "[\"challenge challenge-selectPronunciation\",[\"1 tall\",\"2 tell\"],[\"https://d1vq87e9lcf771.cloudfront.net/oscaren/11524de8a360aff9a2c27a837b79602f\"]]": 0,
+    "[\"challenge challenge-sameDifferent\",[\"1 同一个词\",\"2 两个不同的词\"],[\"https://d1vq87e9lcf771.cloudfront.net/beaen/c5ccc08c55d0dced8edeffb39699d94d\",\"https://d1vq87e9lcf771.cloudfront.net/eddyen/88cb1e019cb5a17bc0213228d13cb1cb\"]]": 0,
+    "[\"challenge challenge-sameDifferent\",[\"1 同一个词\",\"2 两个不同的词\"],[\"https://d1vq87e9lcf771.cloudfront.net/eddyen/b0def5d7347dafd9c3a7fbf143cb899b\",\"https://d1vq87e9lcf771.cloudfront.net/vikramen/a123c183266e1dc64cf9334e2e5e9119\"]]": 0,
+    "[\"challenge challenge-sameDifferent\",[\"1 同一个词\",\"2 两个不同的词\"],[\"https://d1vq87e9lcf771.cloudfront.net/eddyen/32e5acc8721e2d5b83b0dfac8a65d290\",\"https://d1vq87e9lcf771.cloudfront.net/vikramen/f94ff37294e51527a7c1e50a62b282de\"]]": 1,
+    "[\"challenge challenge-sameDifferent\",[\"1 同一个词\",\"2 两个不同的词\"],[\"https://d1vq87e9lcf771.cloudfront.net/eddyen/74944a76d848a498db1933105968f1ca\",\"https://d1vq87e9lcf771.cloudfront.net/vikramen/a123c183266e1dc64cf9334e2e5e9119\"]]": 1,
+    "[\"challenge challenge-sameDifferent\",[\"1 同一个词\",\"2 两个不同的词\"],[\"https://d1vq87e9lcf771.cloudfront.net/beaen/39ccf938a2a859735e06f9e5c6f5854c\",\"https://d1vq87e9lcf771.cloudfront.net/vikramen/c4f40f5697903603c4593eba7b7be7bc\"]]": 0
+  }
+}

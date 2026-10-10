@@ -28,10 +28,7 @@ struct ReferencePronunciationPractice: View {
                     VStack(alignment: .leading, spacing: 0) {
                         Text(question.prompt).font(ReferenceStyle.font(32, bold: true)).frame(height: 40).accessibilityIdentifier("question-prompt").accessibilityValue(question.id)
                         if question.kind == .matching {
-                            HStack(spacing: 32) {
-                                VStack { ForEach(question.pairs) { pair in Button(pair.left) { model.match(pair.id, left: true) }.buttonStyle(ReferenceSkipButton()).disabled(lesson.matchedPairs.contains(pair.id)).accessibilityIdentifier("pair-left-" + pair.id) } }
-                                VStack { ForEach(question.pairs) { pair in Button(pair.right) { model.match(pair.id, left: false) }.buttonStyle(ReferenceSkipButton()).disabled(lesson.matchedPairs.contains(pair.id)).accessibilityIdentifier("pair-right-" + pair.id) } }
-                            }.padding(.top, 40)
+                            matching.padding(.top, 86)
                         } else if question.sourceType == "sameDifferent" {
                             VStack(alignment: .leading, spacing: 0) {
                                 splitSpeaker.frame(maxWidth: .infinity)
@@ -51,6 +48,44 @@ struct ReferencePronunciationPractice: View {
             }.frame(maxWidth: .infinity, maxHeight: .infinity)
                 .foregroundStyle(ReferenceStyle.ink).background(ReferenceStyle.background)
         }
+    }
+
+    private var matching: some View {
+        let right = question.rightOrder?.compactMap { id in question.pairs.first { $0.id == id } } ?? question.pairs
+        return HStack(spacing: 30) {
+            VStack(spacing: 10) {
+                ForEach(Array(question.pairs.enumerated()), id: \.element.id) { index, pair in
+                    pairButton(pair, number: index + 1, left: true)
+                }
+            }
+            VStack(spacing: 10) {
+                ForEach(Array(right.enumerated()), id: \.element.id) { index, pair in
+                    pairButton(pair, number: index + 5, left: false)
+                }
+            }
+        }.frame(maxWidth: .infinity)
+    }
+    private func pairButton(_ pair: WordPair, number: Int, left: Bool) -> some View {
+        let matched = lesson.matchedPairs.contains(pair.id)
+        let selected = (left ? lesson.selectedLeft : lesson.selectedRight) == pair.id
+        let edge = selected ? ReferenceStyle.blue : ReferenceStyle.border
+        let ink = matched ? ReferenceStyle.disclosureInk : selected ? ReferenceStyle.blue : ReferenceStyle.ink
+        let face = HStack(spacing: left ? 14 : 0) {
+            Text(String(number)).font(ReferenceStyle.font(14, bold: true)).foregroundStyle(matched ? ReferenceStyle.border : selected ? ReferenceStyle.blue : ReferenceStyle.disclosureInk)
+                .frame(width: 28, height: 28).overlay(RoundedRectangle(cornerRadius: 6).strokeBorder(edge, lineWidth: 2))
+            if left {
+                ReferenceStyle.image("en-match-speaker-source-frame").renderingMode(.template).resizable().frame(width: 24, height: 19).foregroundStyle(matched ? ReferenceStyle.border : ReferenceStyle.blue)
+                ReferenceStyle.image("en-match-waveform-source-frame").renderingMode(.template).resizable().frame(width: 81, height: 24).foregroundStyle(matched ? ReferenceStyle.border : ReferenceStyle.blue)
+                Spacer(minLength: 0)
+            } else {
+                Text(pair.right).font(ReferenceStyle.font(19)).foregroundStyle(ink).frame(maxWidth: .infinity)
+            }
+        }.padding(.horizontal, 18).frame(width: 255, height: 56)
+            .background(RoundedRectangle(cornerRadius: 12).fill(selected ? Color(red: 221/255, green: 244/255, blue: 1) : .white).shadow(color: edge, radius: 0, y: 2))
+            .overlay(RoundedRectangle(cornerRadius: 12).strokeBorder(edge, lineWidth: 2)).frame(height: 58, alignment: .top)
+        return ReferencePracticeControl(label: left ? String(number) : "\(number) \(pair.right)", identifier: (left ? "pair-left-" : "pair-right-") + pair.id,
+            enabled: lesson.feedback == nil && !matched, action: { model.match(pair.id, left: left) }, face: AnyView(face))
+            .frame(width: 255, height: 58)
     }
 
     private var splitSpeaker: some View {
@@ -116,11 +151,26 @@ struct ReferencePronunciationPractice: View {
 
 // The source's two halves have distinct hit rectangles, disabled states and labels.
 // NSButton supplies those semantics without SwiftUI's decorative focus inset.
-private struct ReferencePracticeAudioButton: NSViewRepresentable {
+private struct ReferencePracticeAudioButton: View {
     let label: String
     let identifier: String
     let enabled: Bool
     let action: () -> Void
+    var body: some View {
+        ReferencePracticeControl(label: label, identifier: identifier, enabled: enabled, action: action, face: AnyView(HStack(spacing: 8) {
+            ReferenceStyle.image("practice-speaker-source").renderingMode(.template).resizable().frame(width: 24, height: 19).foregroundStyle(ReferenceStyle.blue)
+            Text(label.isEmpty ? " " : label).font(ReferenceStyle.font(19, bold: true)).foregroundStyle(ReferenceStyle.ink)
+                .frame(width: 42, height: 27).overlay(alignment: .bottom) { Rectangle().fill(ReferenceStyle.border).frame(height: 2) }
+        }.offset(y: -2).frame(maxWidth: .infinity, maxHeight: .infinity)))
+    }
+}
+
+private struct ReferencePracticeControl: NSViewRepresentable {
+    let label: String
+    let identifier: String
+    let enabled: Bool
+    let action: () -> Void
+    let face: AnyView
     final class Coordinator: NSObject {
         var action: () -> Void
         init(_ action: @escaping () -> Void) { self.action = action }
@@ -172,10 +222,6 @@ private struct ReferencePracticeAudioButton: NSViewRepresentable {
         button.title = label
         button.setAccessibilityLabel(label)
         button.setAccessibilityIdentifier(identifier)
-        button.face.rootView = AnyView(HStack(spacing: 8) {
-            ReferenceStyle.image("practice-speaker-source").renderingMode(.template).resizable().frame(width: 24, height: 19).foregroundStyle(ReferenceStyle.blue)
-            Text(label.isEmpty ? " " : label).font(ReferenceStyle.font(19, bold: true)).foregroundStyle(ReferenceStyle.ink)
-                .frame(width: 42, height: 27).overlay(alignment: .bottom) { Rectangle().fill(ReferenceStyle.border).frame(height: 2) }
-        }.offset(y: -2).frame(maxWidth: .infinity, maxHeight: .infinity).accessibilityHidden(true))
+        button.face.rootView = AnyView(face.accessibilityHidden(true))
     }
 }

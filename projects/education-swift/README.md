@@ -2,7 +2,7 @@
 
 可运行的 macOS SwiftUI 客户端。当前默认 `fixture-reference-en-zh-v10.json` 包含原版中文母语→英语七课102道评分题，另有未评分的听力/口语暂缓状态。第七课接入正常听音配对、音频单选、跨题输入偏好、非惩罚跳过、原题重练、成就/建档结算；radio1声音、更多暂缓/录音分支、生命刷新和完整图形/实际声音仍未对齐。[当前实测和复跑](../duolingo-web/evidence/english-seventh-native-v1/README.md)保留原始失败；核心通过不代表1:1完成。
 
-当前发音练习复用Lesson状态机，独立于主课程保存；分段播放采用原版控件布局及反馈词，驱动实际走过52状态。前端与声音仍不一致，见[最新证据与复跑](../duolingo-web/evidence/english-pronunciation-split-v1/README.md)。旧第七课全程结果保留为历史，不移用到当前构建。
+当前发音练习复用Lesson状态机，独立于主课程保存；分段播放采用原版控件布局及反馈词，配对使用255×58控件和指定右列顺序，驱动实际走过52状态。前端与声音仍不一致，见[最新证据与复跑](../duolingo-web/evidence/english-pronunciation-matching-v1/README.md)。旧第七课全程结果保留为历史，不移用到当前构建。
 
 原版Bea/Lucy的实际Rive全身动画已接入默认题库，官方Apple RiveRuntime锁定6.24.0。初次构建需联网下载SDK约108MB，SwiftPM自动将framework放到可执行文件旁；直接运行保留整个构建目录及资源bundle。角色变化已通过实际连续截图测量，动画时序、mouth/audio同步与其余角色仍未对齐。[当前渲染证据和失败](../duolingo-web/evidence/english-character-render-v1/README.md)。
 

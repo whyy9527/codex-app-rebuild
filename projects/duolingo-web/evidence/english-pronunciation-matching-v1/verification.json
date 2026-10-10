@@ -1,0 +1,79 @@
+{
+  "kind": "source-exploration-and-native-matching-verification",
+  "source_second_base_questions": 11,
+  "source_second_wrong_first_choices": 6,
+  "source_second_corrected_reviews": 6,
+  "source_second_speech": "not observed; reason unknown",
+  "source_reload_preserved_phoneme_progress": {
+    "ɑ": 0.05,
+    "ɛ": 0.041666668,
+    "s": 0.1,
+    "z": 0.1
+  },
+  "requirements": 1690,
+  "preserved_requirements": 1650,
+  "new_requirements": {
+    "pass": 40
+  },
+  "native_states": 52,
+  "swift_build": "pass",
+  "core_checks": {
+    "count": 22,
+    "status": "pass"
+  },
+  "js_syntax": "pass",
+  "source_readiness_probe": {
+    "actual_terminal": true,
+    "steps": 0,
+    "source_final_transition_after_fix": "Five actual reviews reached settlement without stale disabled-click; terminal initially preserved as unhandled, later verified terminal with0 actions. Added review-button fallback not re-exercised during a full transition."
+  },
+  "pixel_pairs": 6,
+  "pixel_different": 6,
+  "goal": "active",
+  "limitations": [
+    "Normal recording and recognition not observed or implemented",
+    "Second practice not integrated into native course selection/progress",
+    "Original progress update rule unknown; observed numbers do not prove an increment formula",
+    "Source first completion had extra errors after matching; comparison only includes named pre-review states",
+    "Baseline visual initially used a prior evidence subset without matching PNGs; recovered matching PNGs from original full local capture, same binary hash",
+    "Frozen v22 adds speech/denied/review requirements; current candidate6 unavailable controls,24fail and1501not_run remain"
+  ],
+  "candidate_binary_sha256": "49cffcc1682d8b48ed2bd21b4080025493d5356cdd069e6cbcb5b93d49b8300d",
+  "alignment_followup": "Source right word center756.5 points; remove extra14-point gap, shifts native center7points. Initial alignment evidence preserved separately.",
+  "v21_counts": {
+    "not_run": 1497,
+    "pass": 170,
+    "fail": 23
+  },
+  "latest_contract": "projects/duolingo-web/frontend-english-v22.json",
+  "latest_requirements": 1702,
+  "latest_counts": {
+    "not_run": 1501,
+    "pass": 171,
+    "fail": 24,
+    "unavailable": 6
+  },
+  "source_third": {
+    "words": [
+      "tell",
+      "tall",
+      "pot",
+      "pet"
+    ],
+    "speaking_phrase": "tell",
+    "permission_sequence": [
+      "prompt",
+      "denied",
+      "prompt"
+    ],
+    "normal_recognition": "unverified",
+    "reviews_from_saved_feedback": 5,
+    "review_errors": 0,
+    "unit_review_cards": 17,
+    "first_card": {
+      "your_answer": "tell",
+      "correct_answer": "tall"
+    }
+  },
+  "source_terminal_status": "terminal"
+}

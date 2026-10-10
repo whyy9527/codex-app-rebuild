@@ -1,0 +1,92 @@
+{
+  "kind": "observed-discovery-frontier",
+  "evidence_root": "projects/duolingo-web/evidence/english-pronunciation-matching-v1",
+  "observations": [
+    {
+      "id": "pronunciation-second-sequence",
+      "status": "observed",
+      "fact": "Second practice has no speech; third practice has actual tell speech, denied-permission modal, decline feedback then matching. Condition unknown.",
+      "evidence": [
+        "source-second/walk01/walk.json",
+        "source-second/matching-before.json",
+        "source-second/matching-action.json",
+        "source-second/review01/walk.json",
+        "source-third/third-speech-before.json",
+        "source-third/third-speech-denied.json",
+        "source-third/third-speech-decline02.json"
+      ],
+      "next": "Implement actual speech playback, enabled recording/permission flow and source modal; observe normal recognition success using an explicit non-environmental test audio input."
+    },
+    {
+      "id": "pronunciation-second-content",
+      "status": "observed",
+      "fact": "sip/zip/sap/zap and new paired audio; first practice deck/dock/get/got does not cover second practice",
+      "evidence": [
+        "source-second/walk01/walk.json"
+      ],
+      "next": "Compile observed second practice and its original audio identities; integrate source-driven selection rather than repeating first definition"
+    },
+    {
+      "id": "pronunciation-result-review-action",
+      "status": "observed",
+      "fact": "Source has 回顾本单元 and 继续, dynamic settlement title and 11 listening challenges",
+      "evidence": [
+        "source-second/settlement.json"
+      ],
+      "next": "Observe review-unit action, statistics and settlement conditions"
+    },
+    {
+      "id": "pronunciation-progress-recovery",
+      "status": "observed",
+      "fact": "s/z changed from0 to0.1; previousɑ/ɛ retained and all four survive real reload",
+      "evidence": [
+        "source-second/home-before.json",
+        "source-second/home-after-settled.json",
+        "source-second/reload-recovery.json"
+      ],
+      "next": "Determine update rule and add native pronunciation persistence with corresponding actual trajectory verification"
+    },
+    {
+      "id": "speaking-settings-entry",
+      "status": "unknown",
+      "fact": "Current anonymous More click and hover did not reveal settings; browser microphone prompt and recognition function exist",
+      "evidence": [
+        "source-second/returned-menu.json",
+        "source-second/more-hover.json",
+        "source-second/browser-speech-capability.json"
+      ],
+      "next": "Observe a reachable settings or speaking entry; do not infer absence cause from API availability or generic help"
+    },
+    {
+      "id": "third-feedback-memory",
+      "status": "observed",
+      "fact": "Default collector saved10 composite answers; after oral/matching continuation, five reviews used prior_feedback and all were accepted; terminal read initially unhandled, later verified actual settlement",
+      "evidence": [
+        "source-third/walk01/walk.json",
+        "source-third/review01/walk.json",
+        "source-third/terminal-probe/walk.json"
+      ],
+      "next": "Use saved answer_memory on continuation; verify future transitions without relabeling this uncontrolled task as RSI benefit"
+    },
+    {
+      "id": "microphone-denied",
+      "status": "observed",
+      "fact": "Actual source record click with permission denied shows 未授权使用麦克风; prompt restored. Overlay blocks speaker action until actual close circle clicked",
+      "evidence": [
+        "source-third/third-speech-denied.json",
+        "source-third/third-denied-close.json"
+      ],
+      "next": "Implement speech UI/permission lifecycle and its actual failure branch; normal recognition remains unknown"
+    },
+    {
+      "id": "unit-review-cards",
+      "status": "observed",
+      "fact": "Review opens17 cards including speech/matching and repeated wrong questions; first card exposes your tell/correct tall",
+      "evidence": [
+        "source-third/third-review-unit.json",
+        "source-third/third-review-first-card.json"
+      ],
+      "next": "Explore remaining card types, playback and close/reopen; implement source-derived review rather than title-only settlement"
+    }
+  ]
+}
