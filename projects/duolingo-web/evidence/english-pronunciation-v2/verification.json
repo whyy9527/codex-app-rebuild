@@ -1,0 +1,31 @@
+{
+  "swift_build": "pass",
+  "core_business_checks": 21,
+  "framework_tests": 52,
+  "native_pronunciation_counts": {
+    "pass": 59,
+    "fail": 15,
+    "not_run": 4
+  },
+  "full_v18_counts": {
+    "pass": 78,
+    "fail": 19,
+    "not_run": 1492,
+    "unavailable": 0
+  },
+  "whole_image": "different",
+  "source_audio_buttons_observed": 39,
+  "source_audio_resource_mapping": "one completed invocation per isolated button window",
+  "native_output_observed_buttons": [
+    "pronunciation-sound-0"
+  ],
+  "audio_equality": "not_proven",
+  "fixture": "fixture-reference-en-zh-v10.json",
+  "remaining": [
+    "15 zero-tolerance button geometry differences",
+    "whole image including font/color differences",
+    "practice route/lesson not implemented; start still enters legacy generic destination",
+    "39-button output equality, progress and recovery unverified"
+  ],
+  "owned_recording_sha256": "74f5671bdd9d6234069b6a071908c36d3508f9abb2d5dda0ac2168a3890ef356"
+}

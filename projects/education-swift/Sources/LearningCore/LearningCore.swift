@@ -179,6 +179,7 @@ public struct CoursePathNode: Codable, Equatable, Sendable {
     public let lessonCount: Int?
 }
 public struct HomeProgressSnapshot: Codable, Equatable, Sendable {
+    public let streak: Int?
     public let completedLessons: Int
     public let gems: Int
     public let leagueTitle: String?

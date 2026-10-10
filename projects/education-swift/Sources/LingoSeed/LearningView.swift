@@ -13,7 +13,7 @@ struct LearningView: View {
             VStack(spacing: 0) {
                 if let lesson = model.lesson {
                     lessonPage(lesson)
-                } else if ["Learn", "Settings", "Guidebook"].contains(model.destination) {
+                } else if ["Learn", "Settings", "Guidebook", "Pronunciation"].contains(model.destination) {
                     ReferenceHome(model: model)
                 } else {
                     HStack(spacing: 0) {

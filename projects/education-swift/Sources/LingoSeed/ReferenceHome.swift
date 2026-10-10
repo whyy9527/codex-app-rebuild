@@ -27,7 +27,8 @@ struct ReferenceHome: View {
                 if model.destination == "Settings" { ReferenceSettings(model: model) }
                 else {
                 ScrollView {
-                    if model.destination == "Guidebook" { ReferenceGuidebook(model: model).padding(.horizontal, 24).padding(.top, 48) }
+                    if model.destination == "Pronunciation" { ReferencePronunciation(model: model).padding(.horizontal, 24).padding(.top, 43) }
+                    else if model.destination == "Guidebook" { ReferenceGuidebook(model: model).padding(.horizontal, 24).padding(.top, 48) }
                     else { path.padding(.horizontal, 24).padding(.top, 48) }
                 }
                     .frame(maxWidth: .infinity)
@@ -60,9 +61,9 @@ struct ReferenceHome: View {
                         }
                         Spacer(minLength: 0)
                     }.padding(.horizontal, 16).frame(height: 52)
-                        .foregroundStyle(item == "Learn" && ["Learn", "Guidebook"].contains(model.destination) ? blue : ReferenceStyle.secondaryInk)
-                        .background(item == "Learn" && ["Learn", "Guidebook"].contains(model.destination) ? Color(red: 221/255, green: 244/255, blue: 1) : .clear, in: RoundedRectangle(cornerRadius: 12))
-                        .overlay(RoundedRectangle(cornerRadius: 12).strokeBorder(item == "Learn" && ["Learn", "Guidebook"].contains(model.destination) ? Color(red: 132/255, green: 216/255, blue: 1) : .clear, lineWidth: 2))
+                        .foregroundStyle((item == model.destination || item == "Learn" && model.destination == "Guidebook") ? blue : ReferenceStyle.secondaryInk)
+                        .background((item == model.destination || item == "Learn" && model.destination == "Guidebook") ? Color(red: 221/255, green: 244/255, blue: 1) : .clear, in: RoundedRectangle(cornerRadius: 12))
+                        .overlay(RoundedRectangle(cornerRadius: 12).strokeBorder((item == model.destination || item == "Learn" && model.destination == "Guidebook") ? Color(red: 132/255, green: 216/255, blue: 1) : .clear, lineWidth: 2))
                         .contentShape(Rectangle())
                 }.buttonStyle(.plain).accessibilityLabel(chinese ? navigationLabel(item) : item).accessibilityIdentifier("nav-" + item.lowercased())
                 .onHover { inside in
@@ -202,7 +203,7 @@ struct ReferenceHome: View {
         VStack(alignment: .leading, spacing: 16) {
             HStack {
                 stat(model.course.home?.flagResource ?? "flag-spanish", chinese ? "5" : "1", color: ReferenceStyle.ink, width: 31)
-                Spacer(); stat("streak", completed > 0 ? "1" : "0", color: .orange, width: 23)
+                Spacer(); stat("streak", "\(homeSnapshot?.streak ?? (completed > 0 ? 1 : 0))", color: .orange, width: 23)
                 Spacer(); stat("gems", "\(homeSnapshot?.gems ?? (500 + completed * 5))", color: blue, width: 22)
                 Spacer(); stat("hearts", "\(model.progress.hearts)", color: .red, width: 28)
             }.padding(.horizontal, 12).padding(.bottom, 16)

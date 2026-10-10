@@ -162,6 +162,19 @@ if CommandLine.arguments.contains("--observe-pronunciation") {
     Thread.sleep(forTimeInterval: 0.5)
     states["en-zh-pronunciation"] = observe()
     try capture("pronunciation-window")
+    if let index = CommandLine.arguments.firstIndex(of: "--pronunciation-audio-recorder"), index + 1 < CommandLine.arguments.count {
+        let actions = output.appendingPathComponent("audio-actions.json")
+        try JSONSerialization.data(withJSONObject: ["pronunciation-sound-0"]).write(to: actions)
+        let recorder = Process()
+        recorder.executableURL = URL(fileURLWithPath: CommandLine.arguments[index + 1])
+        recorder.arguments = [String(child.processIdentifier), output.appendingPathComponent("phoneme.wav").path, "6", actions.path]
+        let audioLog = output.appendingPathComponent("audio-recorder.log")
+        FileManager.default.createFile(atPath: audioLog.path, contents: nil)
+        let handle = try FileHandle(forWritingTo: audioLog)
+        recorder.standardOutput = handle; recorder.standardError = handle
+        try recorder.run(); recorder.waitUntilExit()
+        precondition(recorder.terminationStatus == 0, "Owned pronunciation audio recording failed; preserve log")
+    }
     let receipt: [String: Any] = ["kind": "owned_native_ax_observation", "states": states,
         "candidate_binary_sha256": candidateSHA, "fixture_sha256": fixtureSHA,
         "observed_at": ISO8601DateFormatter().string(from: Date()),
