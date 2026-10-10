@@ -97,3 +97,8 @@ Guidebook从SwiftPM中的实测结构化内容读取，使用原版语音与发�
 英语主页配置从实际主页证据编译为`Course.home`与节点lessonCount，区分首节点总4课和当前已观察的lessonIDs，未观察课不编造ID/内容。Swift开始按钮先进入实际节点弹层；未接入第2课是已记录失败，不用首课重放冒充后续内容。原生观察器支持共同进度夹具、弹层状态/按钮enabled采样及显式参考color-scheme环境；普通用户System Default保持原义。源SVG下载处理HTTP gzip后再渲染，保留解码后原件与PNG哈希。
 
 源第二课出现初始API末3题与实际挑战翻译不一致。参考回放现在先核对实际DOM题型，发现分歧时保留证据并停止静态动作；仍需处理同类型内容变化和运行中需求更新，不能认为一次type检查已完成探索模型。orderTapComplete通过真实UI填空顺序被确认，原生对应能力尚待接入。
+
+
+第二课编译复用无导入写入副作用的`compile_questions`，`compile-english-second.py`以源UI接受反馈裁定实际题目，生成独立v2；v1原字节保持。Question新增可选indicator/example/exampleAudioResource/completionPrefix/completionSuffix，保存范例填空的固定句段及挑战标识，不改业务判题kind。词块按内在宽度换行，保持顺序；没有源语音的中文挑战提示不自动合成未知声音。资源下载支持显式manifest/out，避免覆盖冻结证据。
+
+原生观察器现实际从首课完成主页进入第二课。after-first主页与fresh课程回放分别保存，前端组合观察逐状态登记源回执；原始状态不匹配失败保留。第二课像素诊断包含实际挑战尾部，仍不当作视觉通过。范例按钮音频身份、挑战角色动画、同类型题面动态替换仍是待观察需求。

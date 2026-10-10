@@ -104,3 +104,6 @@ node projects/duolingo-web/explore-curriculum.mjs artifacts/reference-new.json -
 
 
 当前默认课程与验收扩展到v5，新增实际第三课13题和按上下文关联的31个原版语音资源。新发现的题间、结算和完成路径状态同样进入前端需求，尚未实现时继续阻止产品通过。见[实际会话与遗漏状态](evidence/exploration-v5/README.md)；v4与此前局部通过记录均为历史证据。
+
+
+当前英语默认夹具为`fixture-reference-en-zh-v2.json`，前两课各15道实际UI题目，第二课按现场挑战尾部而非初始API末尾编译。填空/挑战及开始弹层已接入，8项核心通过。前端v3在匹配状态128通过、105未覆盖；30对第二课截图均不同，未完成1:1。复跑、源证据及复盘见[第二课原生记录](evidence/english-second-native-v1/README.md)。

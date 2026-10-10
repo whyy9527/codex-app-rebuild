@@ -161,6 +161,40 @@ func actualEnglishTrajectory() throws {
     try check(roundTrip == source, "English presentation metadata failed Codable round-trip")
     print("PASS actual en/zh 15-question wrong-first/review trajectory and presentation metadata; frontend equivalence pending")
 }
+func actualEnglishSecondTrajectory() throws {
+    let source = try course(fixture: "fixture-reference-en-zh-v2.json")
+    try check(source.lessons.count == 2 && source.pathNodes?.first?.lessonIDs == ["lesson-1", "lesson-2"], "Second lesson lost its first-node membership")
+    let questions = source.lessons[1].questions
+    try check(questions.count == 15 && questions.suffix(3).allSatisfy { $0.sourceType == "translate" && $0.indicator == "挑战题" }, "Actual adaptive tail replaced by unvisited API tail")
+    let fill = questions[4]
+    try check(fill.sourceType == "orderTapComplete" && fill.example == "Tea with sugar." && fill.completionPrefix == "Coffee " && fill.completionSuffix == ".", "Observed fill-in context missing")
+    var progress = LearningProgress()
+    try check(!progress.isUnlocked(source, index: 1), "Second lesson unlocked before first completion")
+    progress.markCompleted(source, index: 0)
+    try check(progress.isUnlocked(source, index: 1), "First completion did not unlock actual second lesson")
+    var lesson = Lesson(course: source, lessonIndex: 1, hearts: 4)
+    var seen = [String](); var count = 0
+    while !lesson.complete {
+        if let interlude = lesson.interlude { seen.append(interlude.text); lesson.advance(); continue }
+        switch lesson.question.kind {
+        case .choice: lesson.choose(lesson.question.answer); lesson.submit()
+        case .wordTiles:
+            if lesson.question.sourceType == "orderTapComplete" {
+                let first = lesson.question.answerWords[0]
+                lesson.addWord(first); lesson.removeWord(first)
+                try check(lesson.selectedWords.isEmpty && !lesson.canSubmit, "Fill undo lost empty-answer boundary")
+            }
+            for id in lesson.question.answerWords { lesson.addWord(id) }; lesson.submit()
+        case .matching: throw CheckFailure.failed("Unvisited API matching question entered actual second trajectory")
+        }
+        try check(lesson.feedback == true, "Source accepted second-lesson answer rejected")
+        count += 1; lesson.advance()
+    }
+    try check(count == 15 && lesson.hearts == 4 && seen == ["你的辛勤付出得到了回报！", "你是最棒的！", "哎哟不错哦！要不要玩点刺激的？"], "Second trajectory or interludes lost")
+    let roundTrip = try JSONDecoder().decode(Course.self, from: JSONEncoder().encode(source))
+    try check(roundTrip == source, "Second-lesson presentation lost during round-trip")
+    print("PASS actual second lesson, fill undo, adaptive tail, three interludes and first-node unlock; frontend equivalence pending")
+}
 func legacyCourse() throws -> Course { try course() }
 do {
     try mistakeReview()
@@ -170,7 +204,8 @@ do {
     try unlocksAndLegacy()
     try observedInterludes()
     try actualEnglishTrajectory()
-    print("7 business checks passed; core layer only")
+    try actualEnglishSecondTrajectory()
+    print("8 business checks passed; core layer only")
 } catch {
     FileHandle.standardError.write(Data(("FAIL " + String(describing: error) + "\n").utf8))
     exit(1)

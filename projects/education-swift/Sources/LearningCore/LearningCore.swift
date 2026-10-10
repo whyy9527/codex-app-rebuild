@@ -35,7 +35,13 @@ public struct Question: Codable, Equatable, Sendable, Identifiable {
     public let sourceType: String?
     public let slowAudioResource: String?
     public let dialogueAvatars: [String]?
+    public let indicator: String?
+    public let example: String?
+    public let exampleAudioResource: String?
+    public let completionPrefix: String?
+    public let completionSuffix: String?
     enum CodingKeys: String, CodingKey {
+        case indicator, example, exampleAudioResource, completionPrefix, completionSuffix
         case id, kind, prompt, options, answer, words, pairs, explanation, hint, newWord, rightOrder, audioResource, sourceLanguage, characterResource, sourceType, slowAudioResource, dialogueAvatars
         case answerWords = "answer_words"
     }
@@ -59,6 +65,11 @@ public struct Question: Codable, Equatable, Sendable, Identifiable {
         slowAudioResource = try c.decodeIfPresent(String.self, forKey: .slowAudioResource)
         dialogueAvatars = try c.decodeIfPresent([String].self, forKey: .dialogueAvatars)
         characterResource = try c.decodeIfPresent(String.self, forKey: .characterResource)
+        indicator = try c.decodeIfPresent(String.self, forKey: .indicator)
+        example = try c.decodeIfPresent(String.self, forKey: .example)
+        exampleAudioResource = try c.decodeIfPresent(String.self, forKey: .exampleAudioResource)
+        completionPrefix = try c.decodeIfPresent(String.self, forKey: .completionPrefix)
+        completionSuffix = try c.decodeIfPresent(String.self, forKey: .completionSuffix)
     }
     public var correctText: String {
         switch kind {

@@ -203,8 +203,10 @@ struct LearningView: View {
     @ViewBuilder private func question(_ lesson: Lesson) -> some View {
         if lesson.reviewing {
             Text(copy("ONE MORE LOOK", "错题重练")).font(.caption.bold()).foregroundStyle(accent).accessibilityIdentifier("review-label")
+        } else if let indicator = lesson.question.indicator {
+            Text(indicator).font(ReferenceStyle.font(14, bold: true)).foregroundStyle(indicator == "挑战题" ? .red : .purple).accessibilityIdentifier("question-indicator")
         } else if lesson.question.newWord { Text(copy("NEW WORD", "新单词")).font(ReferenceStyle.font(14, bold: true)).foregroundStyle(.purple) }
-        Text(lesson.question.kind == .wordTiles && lesson.question.hint == nil && lesson.question.sourceType != "listenTap" ? "Build this phrase" : lesson.question.prompt).font(ReferenceStyle.font(28, bold: true))
+        Text(lesson.question.kind == .wordTiles && lesson.question.hint == nil && lesson.question.sourceType == nil ? "Build this phrase" : lesson.question.prompt).font(ReferenceStyle.font(28, bold: true))
             .accessibilityIdentifier("question-title").accessibilityValue(lesson.question.prompt)
         switch lesson.question.kind {
         case .choice: choices(lesson)
@@ -287,40 +289,64 @@ struct LearningView: View {
                         .buttonStyle(ReferenceButton(color: ReferenceStyle.blue)).accessibilityLabel(copy("Slow", "慢速播放")).accessibilityIdentifier("pronounce-slow")
                 }.frame(maxWidth: .infinity)
             } else {
-            HStack(spacing: 16) {
-                Group {
-                    if let character = lesson.question.characterResource { ReferenceStyle.image(character).resizable().scaledToFit() }
-                    else { SeedMascot().scaleEffect(0.7) }
-                }.frame(width: 120, height: 150)
-                Button { model.pronounce() } label: {
-                    HStack(spacing: 12) {
-                        Image(systemName: "speaker.wave.2.fill").foregroundStyle(.cyan)
-                        Text(lesson.question.hint ?? lesson.question.prompt).foregroundStyle(ink).multilineTextAlignment(.leading).accessibilityIdentifier("question-hint")
-                    }.font(.title3).padding(18)
-                        .overlay(RoundedRectangle(cornerRadius: 14).stroke(Color.gray.opacity(0.25), lineWidth: 2))
-                }.buttonStyle(.plain).accessibilityLabel(lesson.question.hint ?? "Read the instruction").accessibilityIdentifier("pronounce")
-            }
-            }
-            VStack(alignment: .leading, spacing: 12) {
-                if lesson.selectedWords.isEmpty { Text(chinese ? "" : "Choose words in order.").foregroundStyle(.secondary).frame(height: 42) }
-                LazyVGrid(columns: columns, alignment: .leading, spacing: 12) {
-                    ForEach(lesson.selectedWords, id: \.self) { id in
-                        Button(lesson.question.words.first { $0.id == id }!.text) { model.removeWord(id) }
-                            .buttonStyle(SeedTileStyle(selected: true)).disabled(lesson.feedback != nil)
-                            .accessibilityIdentifier("selected-word-" + id)
+                HStack(spacing: 16) {
+                    Group {
+                        if let character = lesson.question.characterResource { ReferenceStyle.image(character).resizable().scaledToFit() }
+                        else if !chinese { SeedMascot().scaleEffect(0.7) }
+                        else { Color.clear }
+                    }.frame(width: 120, height: 150)
+                    if let example = lesson.question.example {
+                        Button { model.playExample() } label: {
+                            phraseBubble(example, speaker: true)
+                        }.buttonStyle(.plain).accessibilityIdentifier("pronounce-example")
+                    } else if lesson.question.audioResource != nil || !chinese {
+                        Button { model.pronounce() } label: {
+                            phraseBubble(lesson.question.hint ?? lesson.question.prompt, speaker: true)
+                        }.buttonStyle(.plain).accessibilityIdentifier("pronounce")
+                    } else {
+                        phraseBubble(lesson.question.hint ?? lesson.question.prompt, speaker: false)
                     }
                 }
-            }.padding(.vertical, 12).frame(maxWidth: .infinity, minHeight: 108, alignment: .topLeading)
-                .overlay(alignment: .top) { Rectangle().fill(Color.gray.opacity(0.25)).frame(height: 2) }
-                .overlay(alignment: .bottom) { Rectangle().fill(Color.gray.opacity(0.25)).frame(height: 2) }
-            LazyVGrid(columns: columns, alignment: .leading, spacing: 12) {
+            }
+            if let prefix = lesson.question.completionPrefix {
+                HStack(spacing: 0) {
+                    Text(prefix).accessibilityIdentifier("completion-prefix")
+                    HStack(spacing: 8) {
+                        ForEach(lesson.selectedWords, id: \.self) { id in
+                            Button(lesson.question.words.first { $0.id == id }!.text) { model.removeWord(id) }
+                                .buttonStyle(SeedTileStyle(selected: true)).disabled(lesson.feedback != nil)
+                                .accessibilityIdentifier("selected-word-" + id)
+                        }
+                    }.frame(minWidth: 140, minHeight: 48)
+                        .overlay(alignment: .bottom) { Rectangle().fill(ReferenceStyle.border).frame(height: 2) }
+                    Text(lesson.question.completionSuffix ?? "").accessibilityIdentifier("completion-suffix")
+                }.font(ReferenceStyle.font(20)).frame(maxWidth: .infinity, minHeight: 108, alignment: .leading)
+            } else {
+                WordFlowLayout(centered: false) {
+                    ForEach(lesson.selectedWords, id: \.self) { id in
+                        Button(lesson.question.words.first { $0.id == id }!.text) { model.removeWord(id) }
+                            .buttonStyle(SeedTileStyle(selected: true)).fixedSize().disabled(lesson.feedback != nil)
+                            .accessibilityIdentifier("selected-word-" + id)
+                    }
+                }.padding(.vertical, 12).frame(maxWidth: .infinity, minHeight: 108, alignment: .topLeading)
+                    .overlay(alignment: .top) { Rectangle().fill(ReferenceStyle.border).frame(height: 2) }
+                    .overlay(alignment: .bottom) { Rectangle().fill(ReferenceStyle.border).frame(height: 2) }
+            }
+            WordFlowLayout(centered: true) {
                 ForEach(lesson.question.words) { word in
-                    Button(word.text) { model.addWord(word.id) }.buttonStyle(SeedTileStyle())
+                    Button(word.text) { model.addWord(word.id) }.buttonStyle(SeedTileStyle()).fixedSize()
                         .disabled(lesson.feedback != nil || lesson.selectedWords.contains(word.id)).accessibilityIdentifier("word-bank-" + word.id)
                 }
             }
             Text(chinese ? "" : "Tap a word in your phrase to put it back.").font(.callout).foregroundStyle(.secondary)
         }
+    }
+    private func phraseBubble(_ text: String, speaker: Bool) -> some View {
+        HStack(spacing: 12) {
+            if speaker { Image(systemName: "speaker.wave.2.fill").foregroundStyle(ReferenceStyle.blue) }
+            Text(text).foregroundStyle(ink).multilineTextAlignment(.leading).accessibilityIdentifier("question-hint")
+        }.font(ReferenceStyle.font(20)).padding(18)
+            .overlay(RoundedRectangle(cornerRadius: 14).stroke(ReferenceStyle.border, lineWidth: 2))
     }
     private func matching(_ lesson: Lesson) -> some View {
         VStack(alignment: .leading, spacing: 14) {
@@ -377,5 +403,40 @@ struct SeedTileStyle: ButtonStyle {
             }
             .overlay(RoundedRectangle(cornerRadius: 12).stroke(selected && enabled ? Color.cyan.opacity(0.5) : Color.gray.opacity(0.25), lineWidth: 2))
             .offset(y: configuration.isPressed ? 3 : 0)
+    }
+}
+
+// Intrinsic word widths preserve the observed sentence order and wrap only
+// when the available question width cannot hold the next tile.
+private struct WordFlowLayout: Layout {
+    var centered: Bool
+    private func rows(_ subviews: Subviews, width: CGFloat) -> [[Int]] {
+        var result: [[Int]] = [[]]; var used: CGFloat = 0
+        for i in subviews.indices {
+            let size = subviews[i].sizeThatFits(.unspecified)
+            let gap: CGFloat = result.last!.isEmpty ? 0 : 8
+            if used + gap + size.width > width && !result.last!.isEmpty { result.append([]); used = 0 }
+            used += (result.last!.isEmpty ? 0 : 8) + size.width; result[result.count - 1].append(i)
+        }
+        return result.filter { !$0.isEmpty }
+    }
+    func sizeThatFits(proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) -> CGSize {
+        let width = proposal.width ?? 600
+        let groups = rows(subviews, width: width)
+        let heights = groups.map { row in row.map { subviews[$0].sizeThatFits(.unspecified).height }.max() ?? 0 }
+        return CGSize(width: width, height: heights.reduce(0, +) + CGFloat(max(0, groups.count - 1)) * 8)
+    }
+    func placeSubviews(in bounds: CGRect, proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) {
+        var y = bounds.minY
+        for row in rows(subviews, width: bounds.width) {
+            let sizes = row.map { subviews[$0].sizeThatFits(.unspecified) }
+            let width = sizes.reduce(CGFloat(0)) { $0 + $1.width } + CGFloat(max(0, row.count - 1)) * 8
+            var x = bounds.minX + (centered ? max(0, (bounds.width - width) / 2) : 0)
+            for (i, size) in zip(row, sizes) {
+                subviews[i].place(at: CGPoint(x: x, y: y), proposal: ProposedViewSize(size))
+                x += size.width + 8
+            }
+            y += (sizes.map(\.height).max() ?? 0) + 8
+        }
     }
 }

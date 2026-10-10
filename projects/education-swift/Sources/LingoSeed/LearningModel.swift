@@ -56,6 +56,10 @@ import LearningCore
         guard let question = lesson?.question else { return }
         audio.speak(question.hint ?? question.prompt, language: question.sourceLanguage ?? course.speechLanguage, resource: slow ? question.slowAudioResource : question.audioResource)
     }
+    func playExample() {
+        guard let question = lesson?.question, let example = question.example, let resource = question.exampleAudioResource else { return }
+        audio.speak(example, language: course.speechLanguage, resource: resource)
+    }
     func pronounce() {
         guard let lesson else { return }
         let option = lesson.question.options.first { $0.id == lesson.selected }
@@ -77,7 +81,8 @@ import LearningCore
         playAutomaticPrompt()
     }
     private func playAutomaticPrompt() {
-        guard let question = lesson?.question, ["translate", "listenTap", "dialogue"].contains(question.sourceType ?? "") else { return }
+        guard let question = lesson?.question, ["translate", "listenTap", "dialogue", "orderTapComplete"].contains(question.sourceType ?? ""),
+              course.interfaceLanguage != "zh" || question.audioResource != nil else { return }
         playQuestion()
     }
     func submit() {

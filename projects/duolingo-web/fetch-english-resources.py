@@ -10,10 +10,12 @@ from urllib.request import urlopen
 
 p = argparse.ArgumentParser(description=__doc__)
 p.add_argument('--cli', required=True); p.add_argument('--session', required=True)
+p.add_argument('--manifest', default='projects/duolingo-web/reference-assets-en-zh-v1.json')
+p.add_argument('--out', default='projects/duolingo-web/evidence/english-v1/resources.json')
 a = p.parse_args()
 base = Path('projects/duolingo-web')
 out = Path('projects/education-swift/Sources/LingoSeed/Resources/Reference')
-rows = json.loads((base/'reference-assets-en-zh-v1.json').read_text())
+rows = json.loads(Path(a.manifest).read_text())
 def fetch(row):
     path = out/row['source_file']
     if not path.exists():
@@ -48,5 +50,7 @@ for row in rows:
     if row['kind'] != 'speech':
         row['rendered_file'] = row['name']+'.png'
         row['rendered_sha256'] = hashlib.sha256((out/row['rendered_file']).read_bytes()).hexdigest()
-(base/'evidence/english-v1/resources.json').write_text(json.dumps({'resources':rows,'render':'Original SVG, transparent180x180at3x in isolated context; native geometry still to verify'},indent=2)+'\n')
+receipt = Path(a.out)
+receipt.parent.mkdir(parents=True, exist_ok=True)
+receipt.write_text(json.dumps({'resources':rows,'render':'Original SVG, transparent180x180at3x in isolated context; native geometry still to verify'},indent=2)+'\n')
 print(json.dumps({'downloaded':len(rows),'rendered':len(images),'hashes_recorded':True}))

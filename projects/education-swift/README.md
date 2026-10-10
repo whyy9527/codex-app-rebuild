@@ -8,7 +8,7 @@
 
 ```sh
 swift build --package-path projects/education-swift --product LingoSeed
-projects/education-swift/.build/debug/LingoSeed --fixture projects/duolingo-web/fixture-reference-en-zh-v1.json --progress artifacts/lingoseed-english-demo/progress.json
+projects/education-swift/.build/debug/LingoSeed --fixture projects/duolingo-web/fixture-reference-en-zh-v2.json --progress artifacts/lingoseed-english-demo/progress.json
 swift run --package-path projects/education-swift LearningCoreChecks
 ```
 
@@ -111,3 +111,8 @@ projects/education-swift/.build/debug/LingoSeed --fixture projects/duolingo-web/
 ### 英语主页v2
 
 主页补入中文侧栏/卡片、发音与英语旗帜源素材、五节点顺序、首节点四课进度环及开始弹层。按首课完成且红心4的共同夹具，v2.1主页/弹层26项通过、1项失败、75项未执行；第2课开始仍失败，原版实际第2课已观察但尚未编译。首轮资源gzip、色彩环境、AX标签及点击范围失败均保留。使用`--reference-color-scheme light`匹配本次原版浏览器环境，普通用户默认外观保持System Default。源资源现36个（21音频、15SVG/PNG）。见[主页实测](../duolingo-web/evidence/english-home-v2/README.md)和[第二课实际尾部变化](../duolingo-web/evidence/english-second-v1/README.md)。
+
+
+### 英语第二课接入（当前默认）
+
+默认夹具现为`fixture-reference-en-zh-v2.json`，两课各15题；v1保留历史回归。第二课按实际UI尾部编译，包含范例填空、三道挑战及三处鼓励，首节点第2课可启动。8项核心及原生两课回放完成；前端匹配状态128通过、105未覆盖，第二课30对截图全有差异，整体仍失败。见[实际回执与命令](../duolingo-web/evidence/english-second-native-v1/README.md)。上述v1主页开始失败是保留的历史结果。
