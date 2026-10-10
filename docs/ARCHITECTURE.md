@@ -156,3 +156,8 @@ Question.feedbackReportReasons保存实际题型原因；LearningModel管理互�
 ### 真实次要输入模式
 
 Question可选keyboardAnswer/keyboardPrompt承载源接受的整句；Lesson用usingKeyboard及keyboardText与已有词库/填空分别保存状态。LearningModel转发切换，SwiftUI按实际模式换提示、输入和按钮。observe-frontend的显式exercise-input-modes通过AX/键盘采集四个中间态和实际反馈，与实现前冻结契约独立比较。当前仅两题探针已配置；默认课程、跨题偏好、完整评分器和视觉/声音仍缺，不由fallback补成已验证。源reload与DOM/AX冲突说明重置/采样本身也需要可追溯证据。[本批回执](../projects/duolingo-web/evidence/english-secondary-actions-v1/README.md)。
+
+
+### 多行输入与真实控件驱动
+
+ReferenceAnswerEditor拥有NSTextView，19px/400与600×170区域，关闭系统智能引号/替换，以delegate回写独立整句缓冲。原生探针针对这类转换使用自有窗口的单次真实鼠标点击，再读取实际状态；保留AX返回失败但动作执行、PID鼠标无效及系统弯引号导致评分失败的历史，不自动重试可能已执行的动作。Falstaff绑定来自当前renderer和解压CDN核验；旧lin文件名实际是Bea，身份误配已撤回。6项输入几何通过不代表整页/声音一致。[本批实测](../projects/duolingo-web/evidence/english-input-layout-v1/README.md)。

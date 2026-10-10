@@ -28,12 +28,15 @@ enum ReferenceStyle {
             }
         }
     }
-    static func font(_ size: CGFloat, bold: Bool = false) -> Font {
+    static func font(_ size: CGFloat, bold: Bool = false, weight: Double? = nil) -> Font {
+        Font(nativeFont(size, bold: bold, weight: weight))
+    }
+    static func nativeFont(_ size: CGFloat, bold: Bool = false, weight: Double? = nil) -> NSFont {
         let descriptor = CTFontDescriptorCreateWithAttributes([
             kCTFontNameAttribute: "DuolingoSans-Thin",
-            kCTFontVariationAttribute: [NSNumber(value: 0x77676874): NSNumber(value: bold ? 700 : 500)]
+            kCTFontVariationAttribute: [NSNumber(value: 0x77676874): NSNumber(value: weight ?? (bold ? 700 : 500))]
         ] as CFDictionary)
-        return Font(CTFontCreateWithFontDescriptor(descriptor, size, nil) as NSFont)
+        return CTFontCreateWithFontDescriptor(descriptor, size, nil) as NSFont
     }
     static func image(_ name: String) -> Image {
         guard let url = Bundle.module.url(forResource: name, withExtension: "png", subdirectory: "Reference"),
@@ -64,5 +67,22 @@ struct ReferenceButton: ButtonStyle {
             .compositingGroup()
             .shadow(color: color == ReferenceStyle.green ? Color(red: 70/255, green: 163/255, blue: 2/255) : Color(red: 24/255, green: 153/255, blue: 214/255), radius: 0, y: configuration.isPressed ? 0 : 4)
             .offset(y: configuration.isPressed ? 4 : 0)
+    }
+}
+
+/// Source footer: 150×50, 46-point face plus 4-point bottom edge.
+struct ReferenceCheckButton: ButtonStyle {
+    @Environment(\.isEnabled) private var enabled
+    func makeBody(configuration: Configuration) -> some View {
+        let pressed = configuration.isPressed || !enabled
+        configuration.label.font(ReferenceStyle.font(17, bold: true))
+            .frame(width: 150, height: 50)
+            .foregroundStyle(enabled ? .white : ReferenceStyle.disclosureInk)
+            .background(alignment: .top) {
+                RoundedRectangle(cornerRadius: 16).fill(enabled ? ReferenceStyle.green : ReferenceStyle.border)
+                    .frame(height: 46)
+                    .shadow(color: enabled ? Color(red: 70/255, green: 163/255, blue: 2/255) : .clear, radius: 0, y: pressed ? 0 : 4)
+            }
+            .offset(y: pressed ? 4 : 0)
     }
 }

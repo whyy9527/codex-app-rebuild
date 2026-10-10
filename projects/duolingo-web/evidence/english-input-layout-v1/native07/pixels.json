@@ -1,0 +1,105 @@
+{
+  "kind": "same-viewport-pixel-diagnostic",
+  "native_trajectory": "Actual isolated two-question UI probe; source skipped first question and has extra intervening challenges, hearts/progress/streak differ. Full-page diagnostic only; animation phase not synchronized.",
+  "viewport": [
+    1200,
+    732
+  ],
+  "normalization": "Crop native titlebar using measured content rect, downsample2x with Lanczos; reference pixels unchanged",
+  "rows": [
+    {
+      "question": "en-zh-secondary-keyboard",
+      "stage": "empty",
+      "source": "projects/duolingo-web/evidence/english-secondary-actions-v1/secondary-keyboard-empty.png",
+      "native": "en-zh-secondary-keyboard-empty.png",
+      "source_sha256": "98384c0b37e2791fb914b74339dc477f52278bb321367ad1f81ad19b50c7576c",
+      "native_sha256": "e3f05b95149c1e92c95c2cd22d945e2cb9716379661a369f74e33c4fb7782009",
+      "mean_absolute_rgb_difference": [
+        2.0839685792349725,
+        2.453483606557377,
+        2.928591757741348
+      ],
+      "status": "different"
+    },
+    {
+      "question": "en-zh-secondary-keyboard",
+      "stage": "filled",
+      "source": "projects/duolingo-web/evidence/english-secondary-actions-v1/secondary-keyboard-filled.png",
+      "native": "en-zh-secondary-keyboard-filled.png",
+      "source_sha256": "f2919b6855eef75172154d67dc51decb4d66827ed29c469f799707b86abefffd",
+      "native_sha256": "7b3972490311945a9c608251c89bafd63fb240e1456b06f202c57839d3f1a030",
+      "mean_absolute_rgb_difference": [
+        2.3503142076502734,
+        2.4780510018214934,
+        3.4165607923497268
+      ],
+      "status": "different"
+    },
+    {
+      "question": "en-zh-secondary-keyboard",
+      "stage": "reopened",
+      "source": "projects/duolingo-web/evidence/english-secondary-actions-v1/secondary-keyboard-reopened.png",
+      "native": "en-zh-secondary-keyboard-reopened.png",
+      "source_sha256": "d545924c380e0571b745228b921c173c8c3b484ca4188cf3ce8089f6a414bdba",
+      "native_sha256": "41a4dc60eed861f640dd05014952ef891744802f4ab5f54fe20135c5d8d8e990",
+      "mean_absolute_rgb_difference": [
+        2.3322950819672132,
+        2.478074908925319,
+        3.4363376593806922
+      ],
+      "status": "different"
+    },
+    {
+      "question": "en-zh-secondary-harder",
+      "stage": "empty",
+      "source": "projects/duolingo-web/evidence/english-secondary-actions-v1/secondary-harder-empty.png",
+      "native": "en-zh-secondary-harder-empty.png",
+      "source_sha256": "bf17e19cb6dc7e9814a794c8f332ab521c1e3c020004148c87024438c85f8cad",
+      "native_sha256": "a29e6e3834bbbe21828bdc310644413f3ec3e35122361e60556b0edb2e9474e3",
+      "mean_absolute_rgb_difference": [
+        3.5907980418943533,
+        2.285811703096539,
+        4.641679189435337
+      ],
+      "status": "different"
+    },
+    {
+      "question": "en-zh-secondary-harder",
+      "stage": "filled",
+      "source": "projects/duolingo-web/evidence/english-secondary-actions-v1/secondary-harder-filled.png",
+      "native": "en-zh-secondary-harder-filled.png",
+      "source_sha256": "a1b8d52fe40e7237e57ce6a22aee4a9a9b336a0dd024866afb064e080e8cd4bb",
+      "native_sha256": "91fb17b8706b052a6049c257ed0448646d4f9e4ad5cb1676a37f043c6aac0349",
+      "mean_absolute_rgb_difference": [
+        3.9401115664845174,
+        2.392752732240437,
+        5.211760018214936
+      ],
+      "status": "different"
+    },
+    {
+      "question": "en-zh-secondary-harder",
+      "stage": "reopened",
+      "source": "projects/duolingo-web/evidence/english-secondary-actions-v1/secondary-harder-reopened.png",
+      "native": "en-zh-secondary-harder-reopened.png",
+      "source_sha256": "1c9135dd73332f86d4d1ba3314daab63ef635e254402161290a91145e9a61d37",
+      "native_sha256": "0eeab9428b6ac7b178b0966b8ee5282d61d857e2d0a5dccdfd3dbaeb08b12ce7",
+      "mean_absolute_rgb_difference": [
+        3.9176662112932603,
+        2.373591757741348,
+        5.200217440801457
+      ],
+      "status": "different"
+    }
+  ],
+  "candidate_acceptance": "not_proven",
+  "limitations": [
+    "This is an actual pixel diagnostic, not a substitute for frontend acceptance",
+    "Animation frames and temporal sound not aligned",
+    "Font antialiasing differs across renderers; reported without tolerance or masking",
+    "Hearts tutorial, source interlude visuals and full completion chain remain incomplete",
+    "Source/probe hearts, progress and correct streak are not equivalent; full-page results are diagnostics, never product acceptance.",
+    "Lin actual full-body asset remains unresolved; rejected misleading historical filename binding.",
+    "Rive phase/timing and native/source acoustic output remain unverified."
+  ]
+}

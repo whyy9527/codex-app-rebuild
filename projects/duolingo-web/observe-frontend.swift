@@ -181,6 +181,23 @@ func press(_ id: String) throws {
           AXUIElementPerformAction(node, kAXPressAction as CFString) == .success else { throw ProbeError(message: "Cannot press " + id) }
     Thread.sleep(forTimeInterval: 0.08)
 }
+func clickOwnedControl(_ id: String) throws {
+    // Preserve failed AXPress attempts separately. Use one real screen click
+    // for TextEditor transitions, and verify the resulting state without retry.
+    try waitFor(id)
+    guard child.isRunning, let node = current().first(where: { (attr($0, kAXIdentifierAttribute) as? String) == id }),
+          attr(node, kAXEnabledAttribute) as? Bool == true,
+          let position = attr(node, kAXPositionAttribute), let size = attr(node, kAXSizeAttribute) else { throw ProbeError(message: "No enabled owned control: " + id) }
+    var point = CGPoint.zero; var dimensions = CGSize.zero
+    AXValueGetValue(position as! AXValue, .cgPoint, &point); AXValueGetValue(size as! AXValue, .cgSize, &dimensions)
+    let center = CGPoint(x: point.x + dimensions.width / 2, y: point.y + dimensions.height / 2)
+    pointerActions.append(["control": id, "center": [center.x, center.y], "delivery": "single screen click in owned frontmost window"])
+    for type in [CGEventType.leftMouseDown, .leftMouseUp] {
+        CGEvent(mouseEventSource: nil, mouseType: type, mouseCursorPosition: center, mouseButton: .left)?.post(tap: .cghidEventTap)
+        Thread.sleep(forTimeInterval: 0.1)
+    }
+}
+
 func selectAppearance(_ title: String) throws {
     guard movePointer(to: "dark-mode"), let center = pointerActions.last?["center"] as? [CGFloat] else { throw ProbeError(message: "No owned appearance control") }
     let point = CGPoint(x: center[0], y: center[1])
@@ -299,11 +316,11 @@ if CommandLine.arguments.contains("--walk-course") {
                         value["interactions"] = ["check_enabled": enabled("check"), "input_matches": inputMatches]
                         states[key + "-" + phase] = value; try capture(key + "-" + phase)
                     }
-                    try press("toggle-input-mode"); try recordMode("empty", expectedInput: "")
+                    try clickOwnedControl("toggle-input-mode"); try recordMode("empty", expectedInput: "")
                     try fillInput(answer); try recordMode("filled", expectedInput: answer)
-                    try press("toggle-input-mode"); try recordMode("returned", expectedInput: "")
-                    try press("toggle-input-mode"); try recordMode("reopened", expectedInput: answer)
-                    try press("check")
+                    try clickOwnedControl("toggle-input-mode"); try recordMode("returned", expectedInput: "")
+                    try clickOwnedControl("toggle-input-mode"); try recordMode("reopened", expectedInput: answer)
+                    try clickOwnedControl("check")
                 } else {
                 switch question["kind"] as? String {
                 case "text_entry":
@@ -441,7 +458,9 @@ if CommandLine.arguments.contains("--walk-course") {
                 }
                 if let i = CommandLine.arguments.firstIndex(of: "--stop-after-question-id"), i + 1 < CommandLine.arguments.count,
                    CommandLine.arguments[i + 1] == key { throw ObservationStop.afterQuestion(key) }
-                try press("continue")
+                if CommandLine.arguments.contains("--exercise-input-modes"), question["keyboardAnswer"] != nil {
+                    try clickOwnedControl("continue")
+                } else { try press("continue") }
                 if let interludes = definition["interludes"] as? [[String: String]], let interlude = interludes.first(where: { $0["afterQuestionID"] == key }) {
                     try waitFor("lesson-interlude", value: interlude["id"])
                     states[interlude["id"]!] = observe(); try capture(interlude["id"]! + "-window")

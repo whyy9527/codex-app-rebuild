@@ -10,6 +10,8 @@
 
 次要动作增量：实际探索键盘/词库、填空/整句、跳过和正常听音配对，新增listenIsolation缺口；两题原生切换已执行，48项仍14几何失败/4未验证，18项核心通过。默认课程集成、跳过重练/结算、后续第七课及真实RSI策略消融未完成。[证据与接续](../projects/duolingo-web/evidence/english-secondary-actions-v1/README.md)。
 
+整句布局增量：多行输入/角色行/底栏和连对阈值已修；6项输入区域精确几何通过，49项仍36pass/9fail/4not_run。实际Falstaff源Rive已核验接入；误用旧Lin文件名的Bea绑定已撤回。完整Lin、默认输入模式、源后续轨迹及RSI消融继续。[失败与复跑](../projects/duolingo-web/evidence/english-input-layout-v1/README.md)。
+
 | 阶段 | 已交付 | 验收与范围 |
 | --- | --- | --- |
 | 0 定位与改名 | 私有codex-app-rebuild；README、AGENTS、哲学、架构与研究来源 | Dream-RSI/Cordis及历史无收益保留；没有开源或部署。 |

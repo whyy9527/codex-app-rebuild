@@ -12,6 +12,8 @@
 
 新增真实次要动作探索：确认跳过不扣心、两种输入模式独立保留、正常听音配对及新的音频填空题型。Swift两题切换探针已实际运行；18项核心通过，共享48项为30通过/14几何失败/4未验证，默认课程尚未接入。重新加载换题及DOM/AX禁用冲突保留为模具反例。[源证据、原生失败与接续](projects/duolingo-web/evidence/english-secondary-actions-v1/README.md)。
 
+整句输入新增真实多行编辑器、角色行和源Falstaff Rive；原48项中6项输入区几何已精确通过，保留8项切换失败。加入角色几何后49项仍36pass/9fail/4not_run，6对整页仍不同。实际执行发现并修复macOS智能引号改写；旧文件名导致的Lin素材误配已撤回并保留失败。[本轮实际修正](projects/duolingo-web/evidence/english-input-layout-v1/README.md)。
+
 ## 方法
 
 观察原版 → 保存行为与证据 → 在原版验证验收 → 冻结本批规格 → 实现新版并按失败反馈迭代 → 独立验收与补充探索。

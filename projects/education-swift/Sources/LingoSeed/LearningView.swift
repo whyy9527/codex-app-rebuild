@@ -153,7 +153,7 @@ struct LearningView: View {
                 if !lesson.complete { Button { model.confirmingExit = true } label: { Image(systemName: "xmark").font(.title2.bold()).foregroundStyle(.gray) }.buttonStyle(.plain).accessibilityIdentifier("quit") }
                 ProgressView(value: lesson.complete ? 1 : lesson.reviewing ? 0.9 : Double(lesson.position) / Double(lesson.definition.questions.count)).tint(accent).scaleEffect(y: 2).accessibilityIdentifier("lesson-progress").accessibilityValue(lesson.complete ? "complete" : lesson.reviewing ? "review" : String(lesson.position))
                     .overlay(alignment: .top) {
-                        if chinese && lesson.feedback == true && lesson.correctStreak >= 5 {
+                        if chinese && lesson.feedback == true && lesson.correctStreak >= 2 {
                             Text("连对 \(lesson.correctStreak) 题").font(ReferenceStyle.font(17, bold: true)).foregroundStyle(.orange).offset(y: -24)
                                 .accessibilityIdentifier("correct-streak")
                         }
@@ -237,14 +237,23 @@ struct LearningView: View {
                 }
                 if lesson.question.sourceType == nil { Text(lesson.question.kind == .matching ? "Match all pairs to continue" : "Take your time. You’ve got this.").foregroundStyle(.secondary) }
                 Spacer()
-                if lesson.supportsInputMode {
-                    Button(lesson.question.kind == .wordTiles ? (lesson.usingKeyboard ? "使用词库" : "使用键盘") : (lesson.usingKeyboard ? "减少难度" : "加大难度")) { model.toggleInputMode() }
-                        .buttonStyle(.plain).accessibilityIdentifier("toggle-input-mode")
+                if lesson.question.kind != .matching {
+                    if chinese {
+                        Button("检查") { model.submit() }.buttonStyle(ReferenceCheckButton()).disabled(!lesson.canSubmit).accessibilityIdentifier("check").offset(y: 2)
+                    } else {
+                        Button("CHECK") { model.submit() }.buttonStyle(SeedButtonStyle(fill: accent)).disabled(!lesson.canSubmit).accessibilityIdentifier("check")
+                    }
                 }
-                Spacer()
-                if lesson.question.kind != .matching { Button(copy("CHECK", "检查")) { model.submit() }.buttonStyle(SeedButtonStyle(fill: accent)).disabled(!lesson.canSubmit).accessibilityIdentifier("check") }
             }
-        }.padding(.horizontal, 60).padding(.vertical, 28).frame(minHeight: 115)
+        }.frame(maxWidth: chinese ? 920 : .infinity).padding(.horizontal, chinese ? 24 : 60).frame(maxWidth: .infinity).padding(.vertical, 28).frame(minHeight: chinese ? 140 : 115)
+            .overlay {
+                if lesson.supportsInputMode && lesson.feedback == nil && !lesson.listeningDeclined {
+                    Button(lesson.question.kind == .wordTiles ? (lesson.usingKeyboard ? "使用词库" : "使用键盘") : (lesson.usingKeyboard ? "减少难度" : "加大难度")) { model.toggleInputMode() }
+                        .font(ReferenceStyle.font(17)).foregroundStyle(ReferenceStyle.disclosureInk)
+                        .frame(width: 150, height: 19.546875).contentShape(Rectangle()).offset(y: 2)
+                        .buttonStyle(.plain).accessibilityElement(children: .ignore).accessibilityAddTraits(.isButton).accessibilityLabel(lesson.question.kind == .wordTiles ? (lesson.usingKeyboard ? "使用词库" : "使用键盘") : (lesson.usingKeyboard ? "减少难度" : "加大难度")).accessibilityIdentifier("toggle-input-mode")
+                }
+            }
             .background(lesson.listeningDeclined ? Color(red: 1, green: 0.961, blue: 0.827) : lesson.feedback == nil ? Color.white : lesson.feedback == true ? Color(red: 0.843, green: 1, blue: 0.722) : Color(red: 1, green: 0.875, blue: 0.875))
             .overlay(alignment: .top) { Rectangle().fill(Color.gray.opacity(0.15)).frame(height: 2) }
     }
@@ -274,7 +283,7 @@ struct LearningView: View {
         } else if lesson.question.newWord { Text(copy("NEW WORD", "新单词")).font(ReferenceStyle.font(14, bold: true)).foregroundStyle(.purple) }
         // Source challenge-header: 32px/40px. Translation's character row follows
         // the heading directly; the old shared 28-point gap displaced it.
-        VStack(alignment: .leading, spacing: lesson.question.sourceType == "translate" ? 0 : 28) {
+        VStack(alignment: .leading, spacing: ["translate", "completeReverseTranslation"].contains(lesson.question.sourceType ?? "") ? 0 : 28) {
         Text(lesson.question.kind == .wordTiles && lesson.question.hint == nil && lesson.question.sourceType == nil ? "Build this phrase" : lesson.displayedPrompt).font(ReferenceStyle.font(32, bold: true))
             .frame(maxWidth: .infinity, minHeight: 40, maxHeight: 40, alignment: .leading)
             .accessibilityIdentifier("question-title").accessibilityValue(lesson.displayedPrompt)
@@ -291,7 +300,16 @@ struct LearningView: View {
     }
     @ViewBuilder private func textEntry(_ lesson: Lesson) -> some View {
         if let hint = lesson.question.hint {
-            Text(hint).font(ReferenceStyle.font(20)).accessibilityIdentifier("question-hint")
+            if chinese, let character = lesson.question.characterResource {
+                HStack(spacing: 0) {
+                    ReferenceCharacter(resource: character, feedback: lesson.feedback).id(lesson.question.id)
+                        .frame(width: ReferenceCharacter.size(for: character).width, height: ReferenceCharacter.size(for: character).height)
+                    phraseBubble(hint, speaker: false)
+                    Spacer(minLength: 0)
+                }.frame(height: 175).padding(.leading, 10)
+            } else {
+                Text(hint).font(ReferenceStyle.font(20)).accessibilityIdentifier("question-hint")
+            }
         }
         if lesson.question.sourceType == "listenComplete" {
             HStack(spacing: 28) {
@@ -301,6 +319,11 @@ struct LearningView: View {
                     .buttonStyle(SeedButtonStyle(fill: .cyan)).accessibilityIdentifier("pronounce-slow").accessibilityLabel("播放慢速")
             }
         }
+        if lesson.usingKeyboard {
+            ReferenceAnswerEditor(text: Binding(get: { model.lesson?.displayedInput ?? "" }, set: { model.enterText($0) }), enabled: lesson.feedback == nil)
+                .frame(height: 170).background(Color(white: 247/255), in: RoundedRectangle(cornerRadius: 10))
+                .overlay(RoundedRectangle(cornerRadius: 10).stroke(ReferenceStyle.border, lineWidth: 2))
+        } else {
         HStack(spacing: 6) {
             if let prefix = lesson.question.completionPrefix, !prefix.isEmpty, !lesson.usingKeyboard { Text(prefix).font(ReferenceStyle.font(20)).accessibilityIdentifier("completion-prefix") }
             TextField("", text: Binding(get: { model.lesson?.displayedInput ?? "" }, set: { model.enterText($0) }))
@@ -311,6 +334,7 @@ struct LearningView: View {
         }.frame(maxWidth: .infinity, minHeight: chinese ? 146 : nil, maxHeight: chinese ? 146 : nil, alignment: .topLeading).padding(chinese ? 12 : 20)
             .background(chinese ? Color(white: 247/255) : .clear, in: RoundedRectangle(cornerRadius: chinese ? 8 : 12))
             .overlay(RoundedRectangle(cornerRadius: chinese ? 8 : 12).stroke(Color.gray.opacity(0.25), lineWidth: 2))
+        }
     }
     @ViewBuilder private func choices(_ lesson: Lesson) -> some View {
         if lesson.question.sourceType == "dialogue" {
