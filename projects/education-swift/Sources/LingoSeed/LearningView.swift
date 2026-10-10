@@ -34,6 +34,7 @@ struct LearningView: View {
         }
         .frame(minWidth: 780, minHeight: 660)
         .foregroundStyle(ink).background(ReferenceStyle.background)
+        .overlay { if model.reportingQuestion { ReferenceQuestionReport(model: model) } }
         .preferredColorScheme(model.preferences.darkMode == "On" ? .dark : model.preferences.darkMode == "Off" ? .light : nil)
 
     }
@@ -208,6 +209,7 @@ struct LearningView: View {
                 VStack(alignment: .leading, spacing: 8) {
                     Text(decline.title).font(ReferenceStyle.font(22, bold: true)).accessibilityIdentifier("listening-declined")
                     Text(decline.body).font(ReferenceStyle.font(18))
+                    if chinese { ReferenceFeedbackActions(model: model, color: Color(red: 0.80, green: 0.47, blue: 0)) }
                 }.foregroundStyle(Color(red: 0.80, green: 0.47, blue: 0))
                 Spacer()
                 Button("继续") { model.advance() }.buttonStyle(ReferenceButton(color: Color(red: 1, green: 0.78, blue: 0))).accessibilityIdentifier("listening-continue")
@@ -218,6 +220,7 @@ struct LearningView: View {
                         .foregroundStyle(correct ? Color(red: 0.28, green: 0.62, blue: 0) : Color.red).accessibilityIdentifier("feedback").accessibilityValue(correct ? "correct" : "incorrect")
                     if !correct && lesson.question.kind == .textEntry { Text(lesson.question.correctText) }
                     Text(lesson.question.explanation)
+                    if chinese { ReferenceFeedbackActions(model: model, color: correct ? Color(red: 88/255, green: 167/255, blue: 0) : .red) }
                 }
                 Spacer()
                 Button(copy("CONTINUE", "继续")) { model.advance() }.buttonStyle(SeedButtonStyle(fill: correct ? accent : .red)).accessibilityIdentifier("continue")

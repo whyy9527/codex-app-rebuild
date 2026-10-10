@@ -139,3 +139,10 @@ listenMatch使用现有matching状态机及原版静态向量帧，左侧解析�
 Question可选listeningDecline仅配置已观察路径。Lesson保存独立未评分暂缓状态，禁止继续配对输入，advance不将其写入错误或重练；LearningModel的集成门槛同样接受该状态。实际题序由冻结夹具保存插入翻译→原填空，不依据API下一索引推测后续替换。15分钟是源提示，尚无已验证的计时规则或默认课程完整分支。
 
 观察器新增显式exercise-listening-decline与stop-after-question-id，回执区分局部停止与完整walk，默认不截断。通用截图比较入口可接受显式pairs manifest并保留整课进度背景不匹配限制。首次host advance失败、源AX提取错误及当前次要动作缺失均保留；同一22项契约在原版与Swift独立执行。[本批证据](../projects/duolingo-web/evidence/english-listening-decline-v1/README.md)。
+
+
+### 反馈动作与独立弹窗验证
+
+Question.feedbackReportReasons保存实际题型原因；LearningModel管理互斥可取消评价、弹窗选择及切题/关闭重置，ReferenceFeedbackActions负责源SVG图形、动作和多选弹窗。当前只冻结已观察糖题，不能用固定六项推断所有题型。提交服务、评价服务器效果未知。
+
+源探针采集可见button/input/label的实际pressed/checked/enabled及布局；原生观察器通过AX实际点击并读取选中/禁用状态，独立生成共享契约观测。父容器必须明确accessibilityElement(children: .contain)，避免其ID覆盖子控件；失败时观察器保存现场AX和截图。卡片像素工具仅在独立测得几何严格相同时比较，不设置通过容差，整页状态背景差异另行报告。[完整范围和回执](../projects/duolingo-web/evidence/english-feedback-actions-v1/README.md)。

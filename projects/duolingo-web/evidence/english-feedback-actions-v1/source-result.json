@@ -1,0 +1,225 @@
+{
+  "kind": "frontend_requirements",
+  "contract_digest": "04f6c73adca1c9626e0d654dacef97dccd57d0aa81d31f7ec40f060e2297afb7",
+  "observation_digest": "ffc9c22f23828106c337d5f6241d5c42f7c30756163b62b2a278ba3ab8305444",
+  "rows": [
+    {
+      "id": "en-zh-feedback-sugar-feedback-非常好！",
+      "state": "en-zh-feedback-sugar-feedback",
+      "status": "pass",
+      "expected": "非常好！"
+    },
+    {
+      "id": "en-zh-feedback-sugar-feedback-太简单",
+      "state": "en-zh-feedback-sugar-feedback",
+      "status": "pass",
+      "expected": "太简单"
+    },
+    {
+      "id": "en-zh-feedback-sugar-feedback-太难",
+      "state": "en-zh-feedback-sugar-feedback",
+      "status": "pass",
+      "expected": "太难"
+    },
+    {
+      "id": "en-zh-feedback-sugar-feedback-报错",
+      "state": "en-zh-feedback-sugar-feedback",
+      "status": "pass",
+      "expected": "报错"
+    },
+    {
+      "id": "en-zh-feedback-sugar-easy-easy_selected",
+      "state": "en-zh-feedback-sugar-easy",
+      "status": "pass",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "id": "en-zh-feedback-sugar-easy-hard_selected",
+      "state": "en-zh-feedback-sugar-easy",
+      "status": "pass",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "id": "en-zh-feedback-sugar-hard-easy_selected",
+      "state": "en-zh-feedback-sugar-hard",
+      "status": "pass",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "id": "en-zh-feedback-sugar-hard-hard_selected",
+      "state": "en-zh-feedback-sugar-hard",
+      "status": "pass",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "id": "en-zh-feedback-sugar-deselected-easy_selected",
+      "state": "en-zh-feedback-sugar-deselected",
+      "status": "pass",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "id": "en-zh-feedback-sugar-deselected-hard_selected",
+      "state": "en-zh-feedback-sugar-deselected",
+      "status": "pass",
+      "expected": false,
+      "actual": false
+    },
+    {
+      "id": "en-zh-feedback-sugar-report-open-reason-0",
+      "state": "en-zh-feedback-sugar-report-open",
+      "status": "pass",
+      "expected": "音频听起来不正确"
+    },
+    {
+      "id": "en-zh-feedback-sugar-report-open-reason-1",
+      "state": "en-zh-feedback-sugar-report-open",
+      "status": "pass",
+      "expected": "提示有误"
+    },
+    {
+      "id": "en-zh-feedback-sugar-report-open-reason-2",
+      "state": "en-zh-feedback-sugar-report-open",
+      "status": "pass",
+      "expected": "缺少音频"
+    },
+    {
+      "id": "en-zh-feedback-sugar-report-open-reason-3",
+      "state": "en-zh-feedback-sugar-report-open",
+      "status": "pass",
+      "expected": "提示缺失"
+    },
+    {
+      "id": "en-zh-feedback-sugar-report-open-reason-4",
+      "state": "en-zh-feedback-sugar-report-open",
+      "status": "pass",
+      "expected": "我的答案不应被接受"
+    },
+    {
+      "id": "en-zh-feedback-sugar-report-open-reason-5",
+      "state": "en-zh-feedback-sugar-report-open",
+      "status": "pass",
+      "expected": "其他问题"
+    },
+    {
+      "id": "en-zh-feedback-sugar-report-open-submit_disabled",
+      "state": "en-zh-feedback-sugar-report-open",
+      "status": "pass",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "id": "en-zh-feedback-sugar-report-open-geometry",
+      "state": "en-zh-feedback-sugar-report-open",
+      "status": "pass",
+      "expected": [
+        478.5,
+        202.5,
+        243,
+        327
+      ],
+      "actual": [
+        478.5,
+        202.5,
+        243,
+        327
+      ],
+      "delta_points": [
+        0.0,
+        0.0,
+        0,
+        0
+      ],
+      "reason": "Control geometry in content points only; other visual properties remain separate"
+    },
+    {
+      "id": "en-zh-feedback-sugar-report-other-other_checked",
+      "state": "en-zh-feedback-sugar-report-other",
+      "status": "pass",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "id": "en-zh-feedback-sugar-report-other-submit_enabled",
+      "state": "en-zh-feedback-sugar-report-other",
+      "status": "pass",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "id": "en-zh-feedback-sugar-report-two-both_checked",
+      "state": "en-zh-feedback-sugar-report-two",
+      "status": "pass",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "id": "en-zh-feedback-sugar-report-closed-report_closed",
+      "state": "en-zh-feedback-sugar-report-closed",
+      "status": "pass",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "id": "en-zh-feedback-sugar-report-closed-feedback",
+      "state": "en-zh-feedback-sugar-report-closed",
+      "status": "pass",
+      "expected": "非常好！"
+    },
+    {
+      "id": "en-zh-feedback-sugar-report-reopened-submit_disabled",
+      "state": "en-zh-feedback-sugar-report-reopened",
+      "status": "pass",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "id": "en-zh-feedback-sugar-report-reopened-all_unchecked",
+      "state": "en-zh-feedback-sugar-report-reopened",
+      "status": "pass",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "id": "feedback-same-state-pixels",
+      "state": "en-zh-feedback-sugar-feedback",
+      "status": "not_run",
+      "reason": "same-state-pixels remains unverified"
+    },
+    {
+      "id": "feedback-audio",
+      "state": "en-zh-feedback-sugar-feedback",
+      "status": "not_run",
+      "reason": "audio remains unverified"
+    },
+    {
+      "id": "feedback-other-challenge-report-options",
+      "state": "en-zh-feedback-sugar-feedback",
+      "status": "not_run",
+      "reason": "other-challenge-report-options remains unverified"
+    },
+    {
+      "id": "feedback-submission-service",
+      "state": "en-zh-feedback-sugar-feedback",
+      "status": "not_run",
+      "reason": "submission-service remains unverified"
+    },
+    {
+      "id": "feedback-difficulty-server-effect",
+      "state": "en-zh-feedback-sugar-feedback",
+      "status": "not_run",
+      "reason": "difficulty-server-effect remains unverified"
+    },
+    {
+      "id": "feedback-escape-and-outside-native-dismissal",
+      "state": "en-zh-feedback-sugar-feedback",
+      "status": "not_run",
+      "reason": "escape-and-outside-native-dismissal remains unverified"
+    }
+  ],
+  "status": "fail"
+}

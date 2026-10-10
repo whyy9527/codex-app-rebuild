@@ -390,6 +390,32 @@ if CommandLine.arguments.contains("--walk-course") {
                     for frame in 0..<12 { try capture(key + "-character-feedback-\(frame)"); Thread.sleep(forTimeInterval: 0.15) }
                 }
                 if course["interfaceLanguage"] as? String == "zh" { try capture(key + "-feedback") }
+                if CommandLine.arguments.contains("--exercise-feedback-actions") {
+                    func value(_ id: String) -> String? { current().first { (attr($0, kAXIdentifierAttribute) as? String) == id }.flatMap { attr($0, kAXValueAttribute) as? String } }
+                    func enabled(_ id: String) -> Bool { current().first { (attr($0, kAXIdentifierAttribute) as? String) == id }.flatMap { attr($0, kAXEnabledAttribute) as? Bool } ?? false }
+                    func checked(_ id: String) -> Bool { current().first { (attr($0, kAXIdentifierAttribute) as? String) == id }.flatMap { attr($0, kAXValueAttribute) as? NSNumber }?.intValue == 1 }
+                    for (action, name) in [("easy", "easy"), ("hard", "hard"), ("hard", "deselected")] {
+                        try press("feedback-" + action)
+                        var facts = observe(); facts["interactions"] = ["easy_selected": value("feedback-easy") == "selected", "hard_selected": value("feedback-hard") == "selected"]
+                        states[key + "-" + name] = facts; try capture(key + "-" + name)
+                    }
+                    try press("feedback-report"); try waitFor("report-submit")
+                    var facts = observe(); facts["interactions"] = ["submit_disabled": !enabled("report-submit")]
+                    states[key + "-report-open"] = facts; try capture(key + "-report-open")
+                    try press("report-reason-5")
+                    facts = observe(); facts["interactions"] = ["other_checked": checked("report-reason-5"), "submit_enabled": enabled("report-submit")]
+                    states[key + "-report-other"] = facts; try capture(key + "-report-other")
+                    try press("report-reason-0")
+                    facts = observe(); facts["interactions"] = ["both_checked": checked("report-reason-5") && checked("report-reason-0")]
+                    states[key + "-report-two"] = facts; try capture(key + "-report-two")
+                    try press("report-close")
+                    facts = observe(); facts["interactions"] = ["report_closed": !current().contains { (attr($0, kAXIdentifierAttribute) as? String) == "report-submit" }]
+                    states[key + "-report-closed"] = facts; try capture(key + "-report-closed")
+                    try press("feedback-report"); try waitFor("report-submit")
+                    facts = observe(); facts["interactions"] = ["submit_disabled": !enabled("report-submit"), "all_unchecked": (0..<6).allSatisfy { !checked("report-reason-\($0)") }]
+                    states[key + "-report-reopened"] = facts; try capture(key + "-report-reopened")
+                    try press("report-close")
+                }
                 if let i = CommandLine.arguments.firstIndex(of: "--stop-after-question-id"), i + 1 < CommandLine.arguments.count,
                    CommandLine.arguments[i + 1] == key { throw ObservationStop.afterQuestion(key) }
                 try press("continue")
@@ -467,7 +493,11 @@ if CommandLine.arguments.contains("--walk-course") {
         states["guidebook"] = observe(); try capture("guidebook-window")
         try press("close-guide"); try waitFor("course-entry")
     } catch ObservationStop.afterQuestion(let id) { stoppedAtQuestion = id }
-    catch { walkError = String(describing: error) }
+    catch {
+        walkError = String(describing: error)
+        states["walk-failure"] = observe()
+        try? capture("walk-failure-window")
+    }
 }
 let receipt: [String: Any] = ["kind": "owned_native_ax_observation", "states": states,
     "observed_at": ISO8601DateFormatter().string(from: Date()),

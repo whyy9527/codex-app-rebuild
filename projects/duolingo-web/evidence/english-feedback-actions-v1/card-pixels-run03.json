@@ -1,0 +1,119 @@
+{
+  "kind": "actual-report-card-pixel-diagnostic",
+  "rows": [
+    {
+      "state": "en-zh-feedback-sugar-report-open",
+      "expected_rect": [
+        478.5,
+        202.5,
+        243,
+        327
+      ],
+      "actual_rect": [
+        478.5,
+        202.5,
+        243,
+        327
+      ],
+      "status": "different",
+      "mean_absolute_rgb_difference": [
+        14.46234006397441,
+        14.46234006397441,
+        14.460803178728508
+      ],
+      "roi_pixels": [
+        478,
+        202,
+        722,
+        530
+      ]
+    },
+    {
+      "state": "en-zh-feedback-sugar-report-other",
+      "expected_rect": [
+        478.5,
+        202.5,
+        243,
+        327
+      ],
+      "actual_rect": [
+        478.5,
+        202.5,
+        243,
+        327
+      ],
+      "status": "different",
+      "mean_absolute_rgb_difference": [
+        19.100734706117553,
+        15.92046931227509,
+        20.54888044782087
+      ],
+      "roi_pixels": [
+        478,
+        202,
+        722,
+        530
+      ]
+    },
+    {
+      "state": "en-zh-feedback-sugar-report-two",
+      "expected_rect": [
+        478.5,
+        202.5,
+        243,
+        327
+      ],
+      "actual_rect": [
+        478.5,
+        202.5,
+        243,
+        327
+      ],
+      "status": "different",
+      "mean_absolute_rgb_difference": [
+        19.62987305077969,
+        16.20967862854858,
+        20.505660235905637
+      ],
+      "roi_pixels": [
+        478,
+        202,
+        722,
+        530
+      ]
+    },
+    {
+      "state": "en-zh-feedback-sugar-report-reopened",
+      "expected_rect": [
+        478.5,
+        202.5,
+        243,
+        327
+      ],
+      "actual_rect": [
+        478.5,
+        202.5,
+        243,
+        327
+      ],
+      "status": "different",
+      "mean_absolute_rgb_difference": [
+        14.46234006397441,
+        14.46234006397441,
+        14.460803178728508
+      ],
+      "roi_pixels": [
+        478,
+        202,
+        722,
+        530
+      ]
+    }
+  ],
+  "candidate_acceptance": "not_proven",
+  "limitations": [
+    "Card only, excludes close control and lesson background; full product state differs",
+    "Native measured titlebar crop and 2x downsample; original unchanged",
+    "No masks or passing tolerance; typography, checkbox strokes and antialiasing remain in comparison"
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "trajectory": "Actual sugar feedback and report UI; native single-question probe vs source five prior accepted answers",
+  "pairs": [
+    {
+      "stage": "feedback",
+      "source": "projects/duolingo-web/evidence/english-feedback-actions-v1/sugar-feedback.png",
+      "native": "en-zh-feedback-sugar-feedback.png"
+    },
+    {
+      "stage": "easy",
+      "source": "projects/duolingo-web/evidence/english-feedback-actions-v1/english-feedback-easy-selected.png",
+      "native": "en-zh-feedback-sugar-easy.png"
+    },
+    {
+      "stage": "hard",
+      "source": "projects/duolingo-web/evidence/english-feedback-actions-v1/english-feedback-hard-selected.png",
+      "native": "en-zh-feedback-sugar-hard.png"
+    },
+    {
+      "stage": "deselected",
+      "source": "projects/duolingo-web/evidence/english-feedback-actions-v1/english-feedback-deselected.png",
+      "native": "en-zh-feedback-sugar-deselected.png"
+    },
+    {
+      "stage": "report-open",
+      "source": "projects/duolingo-web/evidence/english-feedback-actions-v1/english-feedback-report-open.png",
+      "native": "en-zh-feedback-sugar-report-open.png"
+    },
+    {
+      "stage": "report-other",
+      "source": "projects/duolingo-web/evidence/english-feedback-actions-v1/english-feedback-report-other-selected.png",
+      "native": "en-zh-feedback-sugar-report-other.png"
+    },
+    {
+      "stage": "report-two",
+      "source": "projects/duolingo-web/evidence/english-feedback-actions-v1/english-feedback-report-two-selected.png",
+      "native": "en-zh-feedback-sugar-report-two.png"
+    },
+    {
+      "stage": "report-closed",
+      "source": "projects/duolingo-web/evidence/english-feedback-actions-v1/english-feedback-report-cancelled.png",
+      "native": "en-zh-feedback-sugar-report-closed.png"
+    },
+    {
+      "stage": "report-reopened",
+      "source": "projects/duolingo-web/evidence/english-feedback-actions-v1/english-feedback-report-reopened.png",
+      "native": "en-zh-feedback-sugar-report-reopened.png"
+    }
+  ],
+  "limitations": [
+    "Whole-lesson progress context differs; native probe has no source Oscar renderer/audio. Whole-page pairs do not prove same whole-product state.",
+    "Popup-card region can be compared at the independently matched source/native geometry; checkbox/typography pixels still require examination",
+    "No report submitted; submission service and backend effects unverified"
+  ]
+}

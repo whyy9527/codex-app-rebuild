@@ -8,6 +8,15 @@ import LearningCore
     var progress: LearningProgress
     var lesson: Lesson?
     var confirmingExit = false
+    var feedbackDifficulty: String?
+    var reportingQuestion = false
+    var selectedReportReasons = Set<Int>()
+    func rateDifficulty(_ value: String) {
+        guard lesson?.feedback != nil || lesson?.listeningDeclined == true else { return }
+        feedbackDifficulty = feedbackDifficulty == value ? nil : value
+    }
+    func openQuestionReport() { selectedReportReasons = []; reportingQuestion = true }
+    func closeQuestionReport() { reportingQuestion = false; selectedReportReasons = [] }
     var entryPending = false
     var settlement: SettlementFlow?
     var error: String?
@@ -85,6 +94,7 @@ import LearningCore
         guard progress.isUnlocked(course, index: index) else { return }
         lesson = Lesson(course: course, lessonIndex: index, hearts: progress.hearts)
         settlement = nil
+        feedbackDifficulty = nil; closeQuestionReport()
         confirmingExit = false
         entryPending = course.lessons[index].entry != nil
         audio.play(.tap)
@@ -113,6 +123,7 @@ import LearningCore
         let wasInterlude = lesson?.interlude != nil
         let wasDeferred = lesson?.deferredSpeech != nil
         lesson?.advance()
+        if lesson?.question.id != previousQuestion { feedbackDifficulty = nil; closeQuestionReport() }
         if let lesson, !lesson.complete, lesson.interlude == nil, (wasInterlude || wasDeferred || lesson.question.id != previousQuestion) { playAutomaticPrompt() }
         if let lesson, lesson.complete {
             audio.play(.complete)

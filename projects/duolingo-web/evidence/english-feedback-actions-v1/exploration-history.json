@@ -1,0 +1,535 @@
+{
+  "kind": "actual-source-feedback-actions-history",
+  "states": [
+    {
+      "id": "match",
+      "evidence": "projects/duolingo-web/evidence/english-listening-decline-v1/english-sixth-listening-before.json",
+      "actions": [
+        {
+          "id": "decline",
+          "description": "现在不做听力题"
+        },
+        {
+          "id": "play-1",
+          "description": "音频按钮1"
+        },
+        {
+          "id": "play-2",
+          "description": "音频按钮2"
+        },
+        {
+          "id": "play-3",
+          "description": "音频按钮3"
+        },
+        {
+          "id": "play-4",
+          "description": "音频按钮4"
+        }
+      ]
+    },
+    {
+      "id": "declined",
+      "evidence": "projects/duolingo-web/evidence/english-listening-decline-v1/english-sixth-listening-declined.json",
+      "actions": [
+        {
+          "id": "continue",
+          "description": "继续"
+        },
+        {
+          "id": "too-easy",
+          "description": "太简单"
+        },
+        {
+          "id": "too-hard",
+          "description": "太难"
+        },
+        {
+          "id": "report",
+          "description": "报错"
+        }
+      ]
+    },
+    {
+      "id": "adaptive",
+      "evidence": "projects/duolingo-web/evidence/english-listening-decline-v1/q3-answer.json",
+      "actions": [
+        {
+          "id": "answer",
+          "description": "咖啡 加 牛奶 / 检查"
+        },
+        {
+          "id": "skip",
+          "description": "跳过"
+        },
+        {
+          "id": "play",
+          "description": "当前题播放按钮"
+        }
+      ]
+    },
+    {
+      "id": "adaptive-feedback",
+      "evidence": "projects/duolingo-web/evidence/english-listening-decline-v1/q3-answer.json",
+      "actions": [
+        {
+          "id": "continue",
+          "description": "继续"
+        },
+        {
+          "id": "too-easy",
+          "description": "太简单"
+        },
+        {
+          "id": "too-hard",
+          "description": "太难"
+        },
+        {
+          "id": "report",
+          "description": "报错"
+        }
+      ]
+    },
+    {
+      "id": "fill",
+      "evidence": "projects/duolingo-web/evidence/english-listening-decline-v1/english-sixth-after-coffee-milk.json",
+      "actions": [
+        {
+          "id": "answer",
+          "description": "输入milk / 检查"
+        },
+        {
+          "id": "skip",
+          "description": "跳过"
+        },
+        {
+          "id": "harder",
+          "description": "加大难度"
+        }
+      ]
+    },
+    {
+      "id": "fill-feedback",
+      "evidence": "projects/duolingo-web/evidence/english-listening-decline-v1/english-sixth-milk-fill-accepted.json",
+      "actions": [
+        {
+          "id": "continue",
+          "description": "继续"
+        },
+        {
+          "id": "too-easy",
+          "description": "太简单"
+        },
+        {
+          "id": "too-hard",
+          "description": "太难"
+        },
+        {
+          "id": "report",
+          "description": "报错"
+        }
+      ]
+    },
+    {
+      "id": "sugar",
+      "evidence": "projects/duolingo-web/evidence/english-listening-decline-v1/english-sixth-sugar-after-fill.json",
+      "actions": [
+        {
+          "id": "answer",
+          "description": "选择糖 / 检查"
+        },
+        {
+          "id": "skip",
+          "description": "跳过"
+        },
+        {
+          "id": "play",
+          "description": "当前题播放按钮"
+        }
+      ]
+    },
+    {
+      "id": "sugar-feedback",
+      "evidence": "projects/duolingo-web/evidence/english-feedback-actions-v1/sugar-answer.json",
+      "actions": [
+        {
+          "id": "continue",
+          "description": "继续"
+        },
+        {
+          "id": "easy",
+          "description": "太简单"
+        },
+        {
+          "id": "hard",
+          "description": "太难"
+        },
+        {
+          "id": "report",
+          "description": "报错"
+        }
+      ]
+    },
+    {
+      "id": "easy",
+      "evidence": "projects/duolingo-web/evidence/english-feedback-actions-v1/english-feedback-easy-selected.json",
+      "actions": [
+        {
+          "id": "continue",
+          "description": "继续"
+        },
+        {
+          "id": "easy",
+          "description": "太简单"
+        },
+        {
+          "id": "hard",
+          "description": "太难"
+        },
+        {
+          "id": "report",
+          "description": "报错"
+        }
+      ]
+    },
+    {
+      "id": "hard",
+      "evidence": "projects/duolingo-web/evidence/english-feedback-actions-v1/english-feedback-hard-selected.json",
+      "actions": [
+        {
+          "id": "continue",
+          "description": "继续"
+        },
+        {
+          "id": "easy",
+          "description": "太简单"
+        },
+        {
+          "id": "hard",
+          "description": "太难"
+        },
+        {
+          "id": "report",
+          "description": "报错"
+        }
+      ]
+    },
+    {
+      "id": "deselected",
+      "evidence": "projects/duolingo-web/evidence/english-feedback-actions-v1/english-feedback-deselected.json",
+      "actions": [
+        {
+          "id": "continue",
+          "description": "继续"
+        },
+        {
+          "id": "easy",
+          "description": "太简单"
+        },
+        {
+          "id": "hard",
+          "description": "太难"
+        },
+        {
+          "id": "report",
+          "description": "报错"
+        }
+      ]
+    },
+    {
+      "id": "report-closed",
+      "evidence": "projects/duolingo-web/evidence/english-feedback-actions-v1/english-feedback-report-cancelled.json",
+      "actions": [
+        {
+          "id": "continue",
+          "description": "继续"
+        },
+        {
+          "id": "easy",
+          "description": "太简单"
+        },
+        {
+          "id": "hard",
+          "description": "太难"
+        },
+        {
+          "id": "report",
+          "description": "报错"
+        }
+      ]
+    },
+    {
+      "id": "report-open",
+      "evidence": "projects/duolingo-web/evidence/english-feedback-actions-v1/english-feedback-report-open.json",
+      "actions": [
+        {
+          "id": "reason-0",
+          "description": "音频听起来不正确"
+        },
+        {
+          "id": "reason-1",
+          "description": "提示有误"
+        },
+        {
+          "id": "reason-2",
+          "description": "缺少音频"
+        },
+        {
+          "id": "reason-3",
+          "description": "提示缺失"
+        },
+        {
+          "id": "reason-4",
+          "description": "我的答案不应被接受"
+        },
+        {
+          "id": "reason-5",
+          "description": "其他问题"
+        },
+        {
+          "id": "escape",
+          "description": "Escape关闭"
+        }
+      ]
+    },
+    {
+      "id": "report-other",
+      "evidence": "projects/duolingo-web/evidence/english-feedback-actions-v1/english-feedback-report-other-selected.json",
+      "actions": [
+        {
+          "id": "reason-0",
+          "description": "音频听起来不正确"
+        },
+        {
+          "id": "reason-1",
+          "description": "提示有误"
+        },
+        {
+          "id": "reason-2",
+          "description": "缺少音频"
+        },
+        {
+          "id": "reason-3",
+          "description": "提示缺失"
+        },
+        {
+          "id": "reason-4",
+          "description": "我的答案不应被接受"
+        },
+        {
+          "id": "reason-5",
+          "description": "其他问题"
+        },
+        {
+          "id": "escape",
+          "description": "Escape关闭"
+        },
+        {
+          "id": "submit",
+          "description": "提交（未执行，服务结果未知）"
+        }
+      ]
+    },
+    {
+      "id": "report-two",
+      "evidence": "projects/duolingo-web/evidence/english-feedback-actions-v1/english-feedback-report-two-selected.json",
+      "actions": [
+        {
+          "id": "reason-0",
+          "description": "音频听起来不正确"
+        },
+        {
+          "id": "reason-1",
+          "description": "提示有误"
+        },
+        {
+          "id": "reason-2",
+          "description": "缺少音频"
+        },
+        {
+          "id": "reason-3",
+          "description": "提示缺失"
+        },
+        {
+          "id": "reason-4",
+          "description": "我的答案不应被接受"
+        },
+        {
+          "id": "reason-5",
+          "description": "其他问题"
+        },
+        {
+          "id": "escape",
+          "description": "Escape关闭"
+        },
+        {
+          "id": "submit",
+          "description": "提交（未执行，服务结果未知）"
+        }
+      ]
+    },
+    {
+      "id": "report-reopened",
+      "evidence": "projects/duolingo-web/evidence/english-feedback-actions-v1/english-feedback-report-reopened.json",
+      "actions": [
+        {
+          "id": "reason-0",
+          "description": "音频听起来不正确"
+        },
+        {
+          "id": "reason-1",
+          "description": "提示有误"
+        },
+        {
+          "id": "reason-2",
+          "description": "缺少音频"
+        },
+        {
+          "id": "reason-3",
+          "description": "提示缺失"
+        },
+        {
+          "id": "reason-4",
+          "description": "我的答案不应被接受"
+        },
+        {
+          "id": "reason-5",
+          "description": "其他问题"
+        },
+        {
+          "id": "escape",
+          "description": "Escape关闭"
+        }
+      ]
+    }
+  ],
+  "transitions": [
+    {
+      "from": "match",
+      "action": "decline",
+      "to": "declined",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-listening-decline-v1/english-sixth-listening-declined.json"
+    },
+    {
+      "from": "declined",
+      "action": "continue",
+      "to": "adaptive",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-listening-decline-v1/english-sixth-after-listening-decline.json"
+    },
+    {
+      "from": "adaptive",
+      "action": "answer",
+      "to": "adaptive-feedback",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-listening-decline-v1/q3-answer.json"
+    },
+    {
+      "from": "adaptive-feedback",
+      "action": "continue",
+      "to": "fill",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-listening-decline-v1/english-sixth-after-coffee-milk.json"
+    },
+    {
+      "from": "fill",
+      "action": "answer",
+      "to": "fill-feedback",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-listening-decline-v1/english-sixth-milk-fill-accepted.json"
+    },
+    {
+      "from": "fill-feedback",
+      "action": "continue",
+      "to": "sugar",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-listening-decline-v1/english-sixth-sugar-after-fill.json"
+    },
+    {
+      "from": "sugar",
+      "action": "answer",
+      "to": "sugar-feedback",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-feedback-actions-v1/sugar-answer.json"
+    },
+    {
+      "from": "sugar-feedback",
+      "action": "easy",
+      "to": "easy",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-feedback-actions-v1/english-feedback-easy-selected.json"
+    },
+    {
+      "from": "easy",
+      "action": "hard",
+      "to": "hard",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-feedback-actions-v1/english-feedback-hard-selected.json"
+    },
+    {
+      "from": "hard",
+      "action": "hard",
+      "to": "deselected",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-feedback-actions-v1/english-feedback-deselected.json"
+    },
+    {
+      "from": "deselected",
+      "action": "report",
+      "to": "report-open",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-feedback-actions-v1/english-feedback-report-open.json"
+    },
+    {
+      "from": "report-open",
+      "action": "reason-5",
+      "to": "report-other",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-feedback-actions-v1/english-feedback-report-other-selected.json"
+    },
+    {
+      "from": "report-other",
+      "action": "reason-0",
+      "to": "report-two",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-feedback-actions-v1/english-feedback-report-two-selected.json"
+    },
+    {
+      "from": "report-two",
+      "action": "escape",
+      "to": "report-closed",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-feedback-actions-v1/english-feedback-report-cancelled.json"
+    },
+    {
+      "from": "report-closed",
+      "action": "report",
+      "to": "report-reopened",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-feedback-actions-v1/english-feedback-report-reopened.json"
+    },
+    {
+      "from": "report-reopened",
+      "action": "escape",
+      "to": "report-closed",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-feedback-actions-v1/english-feedback-final-cancelled.json"
+    }
+  ],
+  "policy_update": {
+    "prior": "Existing contracts checked main answer paths but omitted feedback actions",
+    "counterevidence": "Three feedback controls had no candidate implementation; repeated existing tests cannot reveal their states",
+    "choice": "Visit rating toggle, multi-select report, cancel and reopen on actual accepted sugar feedback; freeze independently observed state contract before implementation",
+    "status": "Agent-driven exploration revision; not autonomous RSI or matched-budget benefit evidence"
+  },
+  "unknown": [
+    "Full later replacements and source grader",
+    "15-minute expiry and persistence",
+    "Actual audio identity/output on adaptive question",
+    "Final sixth-lesson score/review/settlement",
+    "Report submission outcome/service",
+    "Rating persistence/server effect",
+    "Other challenge report reasons",
+    "Full-product same-state visuals/audio"
+  ]
+}

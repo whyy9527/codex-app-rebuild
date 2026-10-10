@@ -4,7 +4,7 @@
 
 原版Bea/Lucy的实际Rive全身动画已接入默认题库，官方Apple RiveRuntime锁定6.24.0。初次构建需联网下载SDK约108MB，SwiftPM自动将framework放到可执行文件旁；直接运行保留整个构建目录及资源bundle。角色变化已通过实际连续截图测量，动画时序、mouth/audio同步与其余角色仍未对齐。[当前渲染证据和失败](../duolingo-web/evidence/english-character-render-v1/README.md)。
 
-新增听力暂缓的未评分状态与已观察的插入题路径，当前只在fixture-listening-decline.json中冻结并验证；默认五课缺完整暂缓后的源轨迹，尚未冒充支持。核心增至16项；局部22项仍有3失败/6未验证。见[当前批次](../duolingo-web/evidence/english-listening-decline-v1/README.md)。
+新增听力暂缓的未评分状态与已观察的插入题路径，当前只在fixture-listening-decline.json中冻结并验证；默认五课缺完整暂缓后的源轨迹，尚未冒充支持。核心增至16项；局部22项回归16通过、0失败、6未验证。见[当前批次](../duolingo-web/evidence/english-listening-decline-v1/README.md)。
 
 ## 构建、运行与重置
 
@@ -134,3 +134,5 @@ projects/education-swift/.build/debug/LingoSeed --fixture projects/duolingo-web/
 新增text_entry可编辑/清空/提交后锁定，两个源确认输入值和正常/慢速语音已实际原生验证。独立输入probe不替换默认四课；完整判分和第二节点其余题型未完成。[证据与命令](../duolingo-web/evidence/english-input-native-v1/README.md)。
 
 听音配对已按源事实改为左侧播放、错配扣心并保存、重试与双侧锁定；自由输入补齐完整正确句与HOT重练接受。14项核心通过，配对组件14/0/4、重练组件7/0/3，均未整体通过。[实测](../duolingo-web/evidence/english-pairing-native-v1/README.md)。原版第五课已走完，默认仍四课，整课及口语暂缓/结算接入继续。
+
+反馈动作新增互斥可取消评价、多选报错及关闭重置；当前源证据只冻结糖题，其他题型选项和提交服务未完成。31项两端25通过/6未验证，像素仍不同。完整失败与复跑见[反馈动作批次](../duolingo-web/evidence/english-feedback-actions-v1/README.md)。

@@ -7,10 +7,15 @@ const out=resolve(arg('--out'));mkdirSync(dirname(out),{recursive:true});
 const callback=async page=>{
  const facts={observed_at:new Date().toISOString(),path:new URL(page.url()).pathname,
   viewport:page.viewportSize(),snapshot:await page.locator('body').ariaSnapshot()};
- facts.visible=await page.locator('[data-test],h1,h2,[role="dialog"]').evaluateAll(ns=>ns.filter(n=>n.checkVisibility()).map(n=>{
+ facts.visible=await page.locator('[data-test],h1,h2,[role="dialog"],button,input,label').evaluateAll(ns=>ns.filter(n=>n.checkVisibility()).map(n=>{
   const r=n.getBoundingClientRect(),css=getComputedStyle(n);
   return {test:n.getAttribute('data-test'),tag:n.tagName,role:n.getAttribute('role'),text:n.innerText,
-   rect:[r.x,r.y,r.width,r.height],css:{fontFamily:css.fontFamily,fontSize:css.fontSize,fontWeight:css.fontWeight,lineHeight:css.lineHeight,color:css.color,backgroundColor:css.backgroundColor}};
+   enabled:!n.disabled,pressed:n.getAttribute('aria-pressed'),checked:n.checked??null,
+   rect:[r.x,r.y,r.width,r.height],css:{fontFamily:css.fontFamily,fontSize:css.fontSize,fontWeight:css.fontWeight,lineHeight:css.lineHeight,color:css.color,backgroundColor:css.backgroundColor,borderRadius:css.borderRadius,borderWidth:css.borderWidth,borderColor:css.borderColor},
+   icons:n.tagName==='BUTTON'?[...n.querySelectorAll('svg')].map(svg=>svg.outerHTML):[],
+   images:n.tagName==='BUTTON'?[...n.querySelectorAll('img')].map(img=>({src:img.currentSrc||img.src,rect:img.getBoundingClientRect().toJSON()})):[],
+   iconDetails:n.tagName==='BUTTON'?[...n.querySelectorAll('svg')].map(svg=>({rect:svg.getBoundingClientRect().toJSON(),color:getComputedStyle(svg).color})):[],
+   ancestors:n.tagName==='BUTTON'?[n.parentElement,n.parentElement?.parentElement,n.parentElement?.parentElement?.parentElement].filter(Boolean).map(a=>({tag:a.tagName,rect:a.getBoundingClientRect().toJSON(),backgroundColor:getComputedStyle(a).backgroundColor,borderRadius:getComputedStyle(a).borderRadius,padding:getComputedStyle(a).padding,gap:getComputedStyle(a).gap})):[]};
  }));
  await page.screenshot({path:SCREENSHOT});
  return facts;

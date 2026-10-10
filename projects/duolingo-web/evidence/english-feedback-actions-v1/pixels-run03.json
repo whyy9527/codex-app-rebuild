@@ -1,0 +1,147 @@
+{
+  "kind": "same-viewport-pixel-diagnostic",
+  "native_trajectory": "Actual sugar feedback and report UI; native single-question probe vs source five prior accepted answers",
+  "viewport": [
+    1200,
+    732
+  ],
+  "normalization": "Crop native titlebar using measured content rect, downsample2x with Lanczos; reference pixels unchanged",
+  "rows": [
+    {
+      "question": null,
+      "stage": "feedback",
+      "source": "projects/duolingo-web/evidence/english-feedback-actions-v1/sugar-feedback.png",
+      "native": "en-zh-feedback-sugar-feedback.png",
+      "source_sha256": "ae1111bac62fc82a0a91a76f07685d846cd7907dc8bfb626a0248c0d1e8a7ee5",
+      "native_sha256": "016c14133ec1d1da9482aea3d458fd337e56f7d24988a4255e5be05af66bd239",
+      "mean_absolute_rgb_difference": [
+        7.406081511839709,
+        4.088333333333333,
+        9.54422131147541
+      ],
+      "status": "different"
+    },
+    {
+      "question": null,
+      "stage": "easy",
+      "source": "projects/duolingo-web/evidence/english-feedback-actions-v1/english-feedback-easy-selected.png",
+      "native": "en-zh-feedback-sugar-easy.png",
+      "source_sha256": "6280e7c0b040772e60165fdc5b1b6d3505bd58acd4d154494ac4e0bae38651d6",
+      "native_sha256": "3e210b6f260830553dc1bc6d26db50bc31d6e6289b30842653ffb372fc395f2a",
+      "mean_absolute_rgb_difference": [
+        7.717882513661202,
+        4.115434881602915,
+        10.123294626593808
+      ],
+      "status": "different"
+    },
+    {
+      "question": null,
+      "stage": "hard",
+      "source": "projects/duolingo-web/evidence/english-feedback-actions-v1/english-feedback-hard-selected.png",
+      "native": "en-zh-feedback-sugar-hard.png",
+      "source_sha256": "942acba5cddd29257c393142e13e389b4c3d0989e320cdade9bd0e94553d76c2",
+      "native_sha256": "9b2e424ed4b42d6b9fbf83c91a4e0efdfec0eea6f27b852140d8b2da2944ad1b",
+      "mean_absolute_rgb_difference": [
+        7.70681693989071,
+        4.108364071038252,
+        10.106701958105647
+      ],
+      "status": "different"
+    },
+    {
+      "question": null,
+      "stage": "deselected",
+      "source": "projects/duolingo-web/evidence/english-feedback-actions-v1/english-feedback-deselected.png",
+      "native": "en-zh-feedback-sugar-deselected.png",
+      "source_sha256": "468f8657eb62d0fdde8195481eb070dc9c08bf40c786750e832b986b0aedcafb",
+      "native_sha256": "016c14133ec1d1da9482aea3d458fd337e56f7d24988a4255e5be05af66bd239",
+      "mean_absolute_rgb_difference": [
+        7.694953324225866,
+        4.100640938069216,
+        10.08595286885246
+      ],
+      "status": "different"
+    },
+    {
+      "question": null,
+      "stage": "report-open",
+      "source": "projects/duolingo-web/evidence/english-feedback-actions-v1/english-feedback-report-open.png",
+      "native": "en-zh-feedback-sugar-report-open.png",
+      "source_sha256": "e6342f9b6e9916fd24e35ec0469305c369026b6b92e459038975a73da45e9109",
+      "native_sha256": "5d70ebba86b399e28b1fe0bc32fe6dbe315b41d316e324a1360773c22168e750",
+      "mean_absolute_rgb_difference": [
+        5.773795537340619,
+        3.6501434426229507,
+        7.307836976320583
+      ],
+      "status": "different"
+    },
+    {
+      "question": null,
+      "stage": "report-other",
+      "source": "projects/duolingo-web/evidence/english-feedback-actions-v1/english-feedback-report-other-selected.png",
+      "native": "en-zh-feedback-sugar-report-other.png",
+      "source_sha256": "831e33e6d34a004049058dff910b9732c852c4876167e8bc3d92c377dcef097f",
+      "native_sha256": "bfedab44e511d7674b34b9b89045f522b464c7ee6f34ca07fc7019bf6a9cbcd1",
+      "mean_absolute_rgb_difference": [
+        6.1993943533697635,
+        3.7918784153005465,
+        7.873411885245901
+      ],
+      "status": "different"
+    },
+    {
+      "question": null,
+      "stage": "report-two",
+      "source": "projects/duolingo-web/evidence/english-feedback-actions-v1/english-feedback-report-two-selected.png",
+      "native": "en-zh-feedback-sugar-report-two.png",
+      "source_sha256": "59f6d153a259361ef00e0d90b9e78ea7f0380043a77b91ed1ddfef1bea3c1c95",
+      "native_sha256": "76199d48d28e08ef4bc0ea08421464141a1a3f2e36d3f6f71468ecace243d2f1",
+      "mean_absolute_rgb_difference": [
+        6.247471539162113,
+        3.8121163479052824,
+        7.861369535519126
+      ],
+      "status": "different"
+    },
+    {
+      "question": null,
+      "stage": "report-closed",
+      "source": "projects/duolingo-web/evidence/english-feedback-actions-v1/english-feedback-report-cancelled.png",
+      "native": "en-zh-feedback-sugar-report-closed.png",
+      "source_sha256": "ff400709496233c1373da352ff36a95fad959fc54ed6ff51b88fc1497f8f734b",
+      "native_sha256": "016c14133ec1d1da9482aea3d458fd337e56f7d24988a4255e5be05af66bd239",
+      "mean_absolute_rgb_difference": [
+        7.690760473588343,
+        4.0955157103825135,
+        10.07960951730419
+      ],
+      "status": "different"
+    },
+    {
+      "question": null,
+      "stage": "report-reopened",
+      "source": "projects/duolingo-web/evidence/english-feedback-actions-v1/english-feedback-report-reopened.png",
+      "native": "en-zh-feedback-sugar-report-reopened.png",
+      "source_sha256": "ab69684923dd6e033322b7646f06332c08dfbee610c41b211db04318cafe35e3",
+      "native_sha256": "5d70ebba86b399e28b1fe0bc32fe6dbe315b41d316e324a1360773c22168e750",
+      "mean_absolute_rgb_difference": [
+        5.8076514116575595,
+        3.688205828779599,
+        7.344100637522769
+      ],
+      "status": "different"
+    }
+  ],
+  "candidate_acceptance": "not_proven",
+  "limitations": [
+    "This is an actual pixel diagnostic, not a substitute for frontend acceptance",
+    "Animation frames and temporal sound not aligned",
+    "Font antialiasing differs across renderers; reported without tolerance or masking",
+    "Hearts tutorial, source interlude visuals and full completion chain remain incomplete",
+    "Whole-lesson progress context differs; native probe has no source Oscar renderer/audio. Whole-page pairs do not prove same whole-product state.",
+    "Popup-card region can be compared at the independently matched source/native geometry; checkbox/typography pixels still require examination",
+    "No report submitted; submission service and backend effects unverified"
+  ]
+}

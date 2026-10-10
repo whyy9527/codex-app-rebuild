@@ -140,3 +140,8 @@ Swift默认已切真实en/zh首课15题，保留每题sourceType、逐选项图�
 第二节点输入增量：实际观察听音、反向填词接受与口语暂不练分支；原生输入组件12pass/6not_run，12项核心通过，六对像素仍不同。产品v7保留v6并增至578项，整体验收尚未重跑；默认四课未替换，完整第二节点和RSI策略消融仍待完成。[证据](../projects/duolingo-web/evidence/english-input-native-v1/README.md)。
 
 本批原版第五课实际完成：暂缓口语后插入替代翻译、两次扣心、只重练typed error、13经验/94%、任务30/30、5宝石、主页510及第二节点第2/4。候选配对14/0/4、热茶重练7/0/3，14项核心通过；完整第五课尚未编入默认。source history导出36 resolved/15 pending，不是RSI收益证据。[当前实测](../projects/duolingo-web/evidence/english-pairing-native-v1/README.md)。
+
+
+### 反馈次要动作的探索与交互接入
+
+实际访问评价切换/取消、报错多选、Escape关闭和重开重置。共享31项原版/原生均25pass、6not_run；九对整页及四对同几何弹窗仍different。听力暂缓回归16pass/6not_run，默认五课仍434pass/11fail/307not_run。保留两次原生AX失败及contain容器修复，不将交互通过称作视觉通过或RSI收益。历史前沿16resolved/60pending；从实际糖题已接受反馈继续第六课。完整默认分支、视觉/声学与真实探索消融仍未完成。[本批证据](../projects/duolingo-web/evidence/english-feedback-actions-v1/README.md)。
