@@ -128,15 +128,6 @@
       "evidence": "projects/duolingo-web/evidence/exploration-v4/preferences.yml"
     },
     {
-      "state": "preferences",
-      "action": {
-        "id": "dark-mode",
-        "description": "Select appearance and check System Default/On/Off"
-      },
-      "attempts": 0,
-      "evidence": "projects/duolingo-web/evidence/exploration-v4/preferences.yml"
-    },
-    {
       "state": "privacy",
       "action": {
         "id": "public-profile",
@@ -207,9 +198,27 @@
       },
       "attempts": 0,
       "evidence": "projects/duolingo-web/evidence/exploration-v4/third-lesson-picture-source.json"
+    },
+    {
+      "state": "lesson-3-green-feedback",
+      "action": {
+        "id": "continue",
+        "description": "Continue to discover the next question"
+      },
+      "attempts": 0,
+      "evidence": "projects/duolingo-web/evidence/exploration-v4/sound-effects-speech-green.json"
+    },
+    {
+      "state": "fresh-lesson-3-blue",
+      "action": {
+        "id": "resolve-blue",
+        "description": "Propose azul, then confirm feedback on the reference before adding knowledge"
+      },
+      "attempts": 0,
+      "evidence": "projects/duolingo-web/evidence/exploration-v4/multi-lesson-knowledge-01.json"
     }
   ],
-  "resolved_actions": 11,
+  "resolved_actions": 17,
   "completion": "unknown; an empty recorded frontier does not prove the whole app explored",
   "policy": "unvisited-first, observation order; not RSI self-improvement"
 }

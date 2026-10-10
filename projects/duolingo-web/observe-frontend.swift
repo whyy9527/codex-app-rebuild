@@ -12,16 +12,22 @@ precondition(!FileManager.default.fileExists(atPath: progress.path), "Use a fres
 if let seedIndex = CommandLine.arguments.firstIndex(of: "--seed-progress"), seedIndex + 1 < CommandLine.arguments.count {
     try Data(contentsOf: root.appendingPathComponent(CommandLine.arguments[seedIndex + 1])).write(to: progress, options: .withoutOverwriting)
 }
-let child = Process()
-child.executableURL = root.appendingPathComponent("projects/education-swift/.build/debug/LingoSeed")
+let childLog = output.appendingPathComponent("child.log")
+FileManager.default.createFile(atPath: childLog.path, contents: nil)
 let fixture = CommandLine.arguments.count > 2 ? CommandLine.arguments[2] : "projects/duolingo-web/fixture-reference-v4.json"
-child.arguments = ["--fixture", root.appendingPathComponent(fixture).path, "--progress", progress.path, "--render-metadata", output.appendingPathComponent("window.json").path]
-child.standardOutput = FileHandle.nullDevice
-FileManager.default.createFile(atPath: output.appendingPathComponent("child.log").path, contents: nil)
-child.standardError = try FileHandle(forWritingTo: output.appendingPathComponent("child.log"))
-try child.run()
-defer { if child.isRunning { child.terminate() } }
-let app = AXUIElementCreateApplication(child.processIdentifier)
+func launchChild() throws -> Process {
+    let process = Process()
+    process.executableURL = root.appendingPathComponent("projects/education-swift/.build/debug/LingoSeed")
+    process.arguments = ["--fixture", root.appendingPathComponent(fixture).path, "--progress", progress.path, "--render-metadata", output.appendingPathComponent("window.json").path]
+    process.standardOutput = FileHandle.nullDevice
+    let log = try FileHandle(forWritingTo: childLog); try log.seekToEnd()
+    process.standardError = log
+    try process.run()
+    return process
+}
+var child = try launchChild()
+defer { if child.isRunning { child.terminate(); child.waitUntilExit() } }
+var app = AXUIElementCreateApplication(child.processIdentifier)
 func attr(_ element: AXUIElement, _ name: String) -> AnyObject? {
     var result: CFTypeRef?
     guard AXUIElementCopyAttributeValue(element, name as CFString, &result) == .success else { return nil }
@@ -39,6 +45,7 @@ while Date() < deadline && !current().contains(where: { (attr($0, kAXIdentifierA
     Thread.sleep(forTimeInterval: 0.1)
 }
 precondition(current().contains(where: { (attr($0, kAXIdentifierAttribute) as? String) == "course-entry" }), "No child home observed")
+func configureWindow() {
 if let window = (attr(app, kAXWindowsAttribute) as? [AXUIElement])?.first {
     let metadata = try? Data(contentsOf: output.appendingPathComponent("window.json"))
     let value = metadata.flatMap { try? JSONSerialization.jsonObject(with: $0) as? [String: Any] }
@@ -52,6 +59,8 @@ Thread.sleep(forTimeInterval: 0.6)
 AXUIElementSetAttributeValue(app, kAXFrontmostAttribute as CFString, kCFBooleanTrue)
 if let window = (attr(app, kAXWindowsAttribute) as? [AXUIElement])?.first { AXUIElementPerformAction(window, kAXRaiseAction as CFString) }
 Thread.sleep(forTimeInterval: 0.2)
+}
+configureWindow()
 func capture(_ name: String) throws {
     var number: Int?
     let deadline = Date().addingTimeInterval(10)
@@ -70,7 +79,22 @@ func observe() -> [String: Any] {
     let strings = Set(current().flatMap { node in
         [kAXValueAttribute, kAXTitleAttribute, kAXDescriptionAttribute].compactMap { attr(node, $0) as? String }.filter { !$0.isEmpty }
     })
-    return ["accessible_text": strings.sorted()]
+    var elements: [String: Any] = [:]
+    let metadata = (try? Data(contentsOf: output.appendingPathComponent("window.json"))).flatMap { try? JSONSerialization.jsonObject(with: $0) as? [String: Any] }
+    let content = metadata?["content_rect_points"] as? [Double]
+    var origin = CGPoint.zero
+    if let window = (attr(app, kAXWindowsAttribute) as? [AXUIElement])?.first, let position = attr(window, kAXPositionAttribute) { AXValueGetValue(position as! AXValue, .cgPoint, &origin) }
+    for node in current() {
+        guard let id = attr(node, kAXIdentifierAttribute) as? String else { continue }
+        var element: [String: Any] = ["role": attr(node, kAXRoleAttribute) as? String ?? "", "value": attr(node, kAXValueAttribute) as? String ?? ""]
+        if let position = attr(node, kAXPositionAttribute), let size = attr(node, kAXSizeAttribute), let content {
+            var point = CGPoint.zero; var dimensions = CGSize.zero
+            AXValueGetValue(position as! AXValue, .cgPoint, &point); AXValueGetValue(size as! AXValue, .cgSize, &dimensions)
+            element["rect"] = [point.x - origin.x - content[0], point.y - origin.y - content[1], dimensions.width, dimensions.height]
+        }
+        elements[id] = element
+    }
+    return ["accessible_text": strings.sorted(), "elements": elements]
 }
 var pointerActions: [[String: Any]] = []
 func movePointer(to id: String) -> Bool {
@@ -121,12 +145,57 @@ func press(_ id: String) throws {
           AXUIElementPerformAction(node, kAXPressAction as CFString) == .success else { throw ProbeError(message: "Cannot press " + id) }
     Thread.sleep(forTimeInterval: 0.08)
 }
+func selectAppearance(_ title: String) throws {
+    guard movePointer(to: "dark-mode"), let center = pointerActions.last?["center"] as? [CGFloat] else { throw ProbeError(message: "No owned appearance control") }
+    let point = CGPoint(x: center[0], y: center[1])
+    for kind in [CGEventType.leftMouseDown, .leftMouseUp] {
+        CGEvent(mouseEventSource: nil, mouseType: kind, mouseCursorPosition: point, mouseButton: .left)?.post(tap: .cghidEventTap)
+        Thread.sleep(forTimeInterval: 0.1)
+    }
+    let end = Date().addingTimeInterval(5)
+    while Date() < end {
+        let focused = attr(app, kAXFocusedUIElementAttribute).map { nodes($0 as! AXUIElement) } ?? []
+        if let item = (current() + focused).first(where: { node in (attr(node, kAXRoleAttribute) as? String) == "AXMenuItem" && [kAXTitleAttribute, kAXValueAttribute, kAXDescriptionAttribute].contains { name in (attr(node, name) as? String) == title } }) {
+            guard AXUIElementPerformAction(item, kAXPressAction as CFString) == .success else { throw ProbeError(message: "Cannot select appearance " + title) }
+            try waitFor("dark-mode", value: title)
+            return
+        }
+        Thread.sleep(forTimeInterval: 0.05)
+    }
+    throw ProbeError(message: "No actual appearance menu item " + title)
+}
 if opened {
     _ = movePointer(to: "nav-more")
     try press("more-settings")
+    try waitFor("preferences-title")
     states["preferences"] = observe()
     try capture("preferences-window")
+    try JSONSerialization.data(withJSONObject: states["preferences"]!, options: .prettyPrinted).write(to: output.appendingPathComponent("preferences-initial.json"))
+    let switches = ["sound-effects", "animations", "motivational-messages", "listening-exercises"]
+    for id in switches { try waitFor(id, value: "on"); try press(id); try waitFor(id, value: "off") }
+    states["preferences-off"] = observe()
+    try selectAppearance("On")
+    states["preferences-dark"] = observe()
+    try capture("preferences-dark-window")
+    child.terminate(); child.waitUntilExit()
+    child = try launchChild(); app = AXUIElementCreateApplication(child.processIdentifier)
+    try waitFor("course-entry")
+    configureWindow()
+    if !current().contains(where: { (attr($0, kAXIdentifierAttribute) as? String) == "more-settings" }) { try press("nav-more") }
+    try press("more-settings"); try waitFor("preferences-title")
+    states["preferences-reopened"] = observe()
+    var reloaded: [String: Bool] = [:]
+    for id in switches {
+        let value = current().first { (attr($0, kAXIdentifierAttribute) as? String) == id }.flatMap { attr($0, kAXValueAttribute) as? String }
+        reloaded[id + "-off-persisted"] = value == "off"
+    }
+    reloaded["dark-mode-on-persisted"] = current().contains { (attr($0, kAXIdentifierAttribute) as? String) == "dark-mode" && (attr($0, kAXValueAttribute) as? String) == "On" }
+    states["preferences-reopened"]?["interactions"] = reloaded
+    try selectAppearance("Off")
+    try selectAppearance("System Default")
+    for id in switches { try press(id); try waitFor(id, value: "on") }
     try press("nav-learn")
+
 }
 var walkError: String?
 if CommandLine.arguments.contains("--walk-course") {

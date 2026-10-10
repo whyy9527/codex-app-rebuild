@@ -11,6 +11,15 @@ import LearningCore
     var error: String?
     var destination = "Learn"
     var showingGuide = false
+    var preferences = LearningPreferences()
+    private var preferencesURL: URL { store.url.appendingPathExtension("preferences.json") }
+    func savePreferences() {
+        audio.effectsEnabled = preferences.soundEffects
+        do {
+            try FileManager.default.createDirectory(at: preferencesURL.deletingLastPathComponent(), withIntermediateDirectories: true)
+            try JSONEncoder().encode(preferences).write(to: preferencesURL, options: .atomic)
+        } catch { self.error = "Preferences could not be saved." }
+    }
     let audio = LearningAudio()
     var muted = false
     private var audioPreferencesURL: URL { store.url.appendingPathExtension("audio.json") }
@@ -41,6 +50,8 @@ import LearningCore
     }
     init(course: Course, store: ProgressStore) throws {
         self.course = course; self.store = store; progress = try store.load()
+        if let data = try? Data(contentsOf: preferencesURL), let saved = try? JSONDecoder().decode(LearningPreferences.self, from: data) { preferences = saved }
+        audio.effectsEnabled = preferences.soundEffects
         if let data = try? Data(contentsOf: audioPreferencesURL), let saved = try? JSONDecoder().decode(Bool.self, from: data) { muted = saved; audio.muted = saved }
     }
     func begin(_ index: Int) {

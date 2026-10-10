@@ -6,6 +6,7 @@ audio equivalence from text checks.
 """
 import argparse
 import json
+import math
 from pathlib import Path
 
 from capabilities.exploration.storage import digest
@@ -45,6 +46,17 @@ def compare(root, contract, observed):
             actual = state.get('interactions', {}).get(requirement['field'])
             row.update(status='unavailable' if type(actual) is not bool else 'pass' if actual == requirement['expected'] else 'fail',
                        expected=requirement['expected'], actual=actual)
+        elif requirement['kind'] == 'element_geometry':
+            expected = requirement['rect']
+            tolerance = requirement['tolerance_points']
+            if not isinstance(expected, list) or len(expected) != 4 or not all(type(v) in (int, float) and math.isfinite(v) for v in expected) or type(tolerance) not in (int, float) or not math.isfinite(tolerance) or tolerance < 0:
+                raise ValueError('Invalid geometry contract')
+            actual = state.get('elements', {}).get(requirement['element'], {}).get('rect')
+            valid = isinstance(actual, list) and len(actual) == 4 and all(type(v) in (int, float) and math.isfinite(v) for v in actual)
+            delta = [abs(a - b) for a, b in zip(actual, expected)] if valid else None
+            row.update(status='unavailable' if not valid else 'pass' if max(delta) <= tolerance else 'fail',
+                       expected=expected, actual=actual, delta_points=delta,
+                       reason='Control geometry in content points only; other visual properties remain separate')
         else:
             raise ValueError('Unsupported frontend requirement: ' + requirement['kind'])
         rows.append(row)

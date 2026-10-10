@@ -88,8 +88,16 @@ python3 projects/duolingo-web/verify-product.py --out artifacts/product-new
 python3 -m capabilities.rebuild.discovery --history projects/duolingo-web/evidence/exploration-v4/history.json --out artifacts/frontier-new.json
 ```
 
-产品入口执行冻结业务 E2E，再启动隔离 Swift 子进程实际悬停/移出 More、进入 Settings、逐题完成当前西语课24题；分别执行主页/导航和144项课程文案契约。当前回执：业务12/12、课程文案144/144通过；主页/More 12项通过，Settings 7项失败，视觉/原版音频2项未验证，整体失败。源码和资源摘要均保持不变；未访问与不可用不能算通过。AX文案不证明视觉可见或1:1。
+产品入口执行冻结业务 E2E，隔离 Swift 子进程实际悬停/移出More、操作Preferences并重启、完成24题。当前业务12/12、课程文案144/144通过；主页/菜单/设置文案19项通过、视觉/原版音频2项未验证；偏好控件几何与恢复9项通过、课程效果1项未验证。同一偏好契约在原版最新记录为7通过、2失败、1未验证，原版反例也纳入统一结果，整体失败。源码、资源与明确列出的参考输入都记录期间完整性。
 
-当前默认夹具 `fixture-reference-v4.json` 由原版实际题面、选项和正确反馈编译；冻结v2回归继续用旧夹具。真实字体、主页图形和选择题图片已打包。`measure-visual.py`按实际窗口几何/Retina采样输出原始差异，未建立视觉通过判定。探索队列当前11状态、11转移、23待访问动作，仍是未访问优先策略，没有宣称RSI自改进。
+原版偏好采集使用独立Playwright CLI会话，从仓库根运行（CLI路径由实际安装提供）：
+
+```sh
+node projects/duolingo-web/observe-reference-preferences.mjs --cli <playwright-cli-or-wrapper> --session <owned-session> --out artifacts/reference-preferences-new.json
+python3 projects/duolingo-web/compile-reference-knowledge.py
+node projects/duolingo-web/explore-curriculum.mjs artifacts/reference-new.json --lessons 3
+```
+
+偏好采集会修改并恢复自有匿名访客的开关；保存请求200与最终刷新状态可能不一致，保留失败而非算通过。跨课探索读取原版正向反馈产生的词汇，已经实际完成前两课并在第三课发现green和未知blue；未知现场及当时知识均保存。默认Swift仍使用已完整采齐的前两课24题，继续补第三课，不能把现有数据量当成目标上限。RSI策略自改进与收益消融尚未完成。
 
 [探索与差异记录](evidence/exploration-v4/README.md)保存真实来源、待探索分支和本轮失败。

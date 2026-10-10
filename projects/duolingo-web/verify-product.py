@@ -24,6 +24,19 @@ def main():
     output.mkdir(parents=True, exist_ok=False)
     source = digest(manifest(root))
     resources = digest(input_manifest(root, ['projects/education-swift/Sources/LingoSeed/Resources/Reference']))
+    contract_paths = {'frontend': 'projects/duolingo-web/frontend-v4.json',
+                      'course': 'projects/duolingo-web/frontend-course-v4.json',
+                      'preferences': 'projects/duolingo-web/frontend-preferences-v4.1.json'}
+    contracts = {name: json.loads((root / path).read_text()) for name, path in contract_paths.items()}
+    fixture_path = 'projects/duolingo-web/fixture-reference-v4.json'
+    inputs = {fixture_path, *contract_paths.values()}
+    inputs.update(json.loads((root / fixture_path).read_text())['provenance']['evidence'])
+    reference_preferences_path = 'projects/duolingo-web/evidence/exploration-v4/preferences-reference-ack-04.json'
+    inputs.add(reference_preferences_path)
+    for contract in contracts.values():
+        inputs.update(path for row in contract['requirements'] for path in row['evidence'])
+    inputs = sorted(inputs)
+    reference_inputs = digest(input_manifest(root, inputs))
     business = subprocess.run([sys.executable, '-m', 'workflows.rebuild.cli', 'verify',
         '--workspace', '.', '--spec', 'projects/duolingo-web/spec-v2.json',
         '--targets', 'projects/duolingo-web/targets-v2.json', '--target', 'candidate',
@@ -33,26 +46,28 @@ def main():
     (output / 'business.log').write_text(business.stdout + business.stderr)
     probe = subprocess.run(['swift', 'projects/duolingo-web/observe-frontend.swift', str(output / 'frontend'),
                             'projects/duolingo-web/fixture-reference-v4.json', '--walk-course'],
-        capture_output=True, text=True, timeout=60)
+        capture_output=True, text=True, timeout=90)
     (output / 'frontend.log').write_text(probe.stdout + probe.stderr)
-    frontend = {'status': 'unavailable', 'reason': 'Actual native frontend probe failed'}
-    if probe.returncode == 0:
-        frontend = compare(root, json.loads((root / 'projects/duolingo-web/frontend-v4.json').read_text()),
-                           json.loads((output / 'frontend/observed.json').read_text()))
-    (output / 'frontend.json').write_text(json.dumps(frontend, ensure_ascii=False, indent=2) + '\n')
-    course = {'status': 'unavailable'}
-    if probe.returncode == 0:
-        course = compare(root, json.loads((root / 'projects/duolingo-web/frontend-course-v4.json').read_text()),
-                         json.loads((output / 'frontend/observed.json').read_text()))
-    (output / 'course.json').write_text(json.dumps(course, ensure_ascii=False, indent=2) + '\n')
+    checks = {}
+    for name, contract in contracts.items():
+        checks[name] = compare(root, contract, json.loads((output / 'frontend/observed.json').read_text())) if probe.returncode == 0 else {
+            'status': 'unavailable', 'reason': 'Actual native frontend probe failed'}
+        (output / (name + '.json')).write_text(json.dumps(checks[name], ensure_ascii=False, indent=2) + '\n')
+    checks['reference_preferences'] = compare(root, contracts['preferences'], json.loads((root / reference_preferences_path).read_text()))
+    (output / 'reference_preferences.json').write_text(json.dumps(checks['reference_preferences'], ensure_ascii=False, indent=2) + '\n')
     unchanged = source == digest(manifest(root))
     resources_unchanged = resources == digest(input_manifest(root, ['projects/education-swift/Sources/LingoSeed/Resources/Reference']))
+    inputs_unchanged = reference_inputs == digest(input_manifest(root, inputs))
     result = {'kind': 'combined_product_acceptance', 'source_digest': source,
         'source_unchanged': unchanged, 'resource_digest': resources, 'resources_unchanged': resources_unchanged,
-        'business_exit_code': business.returncode, 'course_copy_status': course['status'],
-        'frontend_status': frontend['status'],
-        'status': 'pass' if unchanged and resources_unchanged and business.returncode == 0 and frontend['status'] == 'pass' and course['status'] == 'pass' else 'fail',
+        'reference_inputs_digest': reference_inputs, 'reference_inputs_unchanged': inputs_unchanged,
+        'reference_inputs': inputs,
+        'business_exit_code': business.returncode, 'course_copy_status': checks['course']['status'],
+        'frontend_status': checks['frontend']['status'], 'preferences_status': checks['preferences']['status'],
+        'reference_preferences_status': checks['reference_preferences']['status'],
+        'status': 'pass' if unchanged and resources_unchanged and inputs_unchanged and business.returncode == 0 and all(check['status'] == 'pass' for check in checks.values()) else 'fail',
         'limitations': ['Frontend inventory expands with exploration',
+                        'Reference preferences replay is an actual dated observation, not a fresh online run',
                         'Current pending visual/audio requirements prevent product completion']}
     (output / 'result.json').write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\n')
     print(json.dumps(result, ensure_ascii=False))

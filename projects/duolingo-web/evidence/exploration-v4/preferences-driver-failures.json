@@ -1,0 +1,32 @@
+[
+  {
+    "probe": "preferences-native-01",
+    "error": "Native observation failed: ProbeError(message: \"No observed control: sound-effects\")",
+    "log_sha256": "0ae3e016694eb8da51b16fc461c721a97d7ab90e32520f071c6c5e2c764bc2cd"
+  },
+  {
+    "probe": "preferences-native-03",
+    "error": "Native observation failed: ProbeError(message: \"No observed control: more-settings\")",
+    "log_sha256": "53c99b83ecaeccb525f75194de274a19145f38edacd94174af8a24ab219af7fb"
+  },
+  {
+    "probe": "preferences-native-05",
+    "error": "Native observation failed: ProbeError(message: \"No actual appearance menu item On\")",
+    "log_sha256": "50df87bc3bf745eec3f57479e15d4418cbbd583cba0479f11f0f32d411f58541"
+  },
+  {
+    "probe": "preferences-native-08",
+    "error": "Native observation failed: ProbeError(message: \"No owned appearance control\")",
+    "log_sha256": "8cce3d008410ae025757e95221e0219569b7a7cce9094f63a478b3ea5ba5fc9a"
+  },
+  {
+    "probe": "reference-preferences-ack-01",
+    "error": "### Error\nTimeoutError: page.waitForResponse: Timeout 30000ms exceeded while waiting for event \"response\"",
+    "log_sha256": "f075ba6a9d5b8c0110d4c7d227ec6be85b985338992fba4a24ea6ad0a7883249"
+  },
+  {
+    "probe": "reference-preferences-ack-02",
+    "error": "### Error\nError: Preference save was not acknowledged",
+    "log_sha256": "ffb70f45defd5f49b028d0d57debb14173a4a5c213613e53e3fac82bc807b329"
+  }
+]

@@ -1,0 +1,161 @@
+{
+  "kind": "actual_reference_preferences_observation",
+  "states": {
+    "preferences": {
+      "accessible_text": [
+        "LEARN",
+        "LEADERBOARDS",
+        "QUESTS",
+        "SHOP",
+        "PROFILE",
+        "MORE",
+        "Account",
+        "Preferences",
+        "Privacy settings",
+        "Support",
+        "Help Center",
+        "Preferences",
+        "Lesson experience",
+        "Sound effects",
+        "Animations",
+        "Motivational messages",
+        "Listening exercises",
+        "Appearance",
+        "Dark mode",
+        "SYSTEM DEFAULT",
+        "System Default",
+        "On",
+        "Off"
+      ],
+      "elements": {
+        "sound-effects": {
+          "rect": [
+            704,
+            174,
+            56,
+            32
+          ],
+          "value": "false"
+        },
+        "animations": {
+          "rect": [
+            704,
+            230,
+            56,
+            32
+          ],
+          "value": "true"
+        },
+        "motivational-messages": {
+          "rect": [
+            704,
+            286,
+            56,
+            32
+          ],
+          "value": "true"
+        },
+        "listening-exercises": {
+          "rect": [
+            704,
+            342,
+            56,
+            32
+          ],
+          "value": "true"
+        }
+      }
+    },
+    "preferences-reopened": {
+      "interactions": {
+        "sound-effects-off-persisted": true,
+        "animations-off-persisted": true,
+        "motivational-messages-off-persisted": true,
+        "listening-exercises-off-persisted": true,
+        "dark-mode-on-persisted": true
+      }
+    }
+  },
+  "acknowledgements": [
+    {
+      "control": "Sound effects",
+      "status": 200,
+      "path": "/2023-05-23/users/:id",
+      "boolean_fields": {
+        "enableSoundEffects": true
+      }
+    },
+    {
+      "control": "Animations",
+      "status": 200,
+      "path": "/2023-05-23/users/:id",
+      "boolean_fields": {
+        "animationEnabled": true
+      }
+    },
+    {
+      "control": "Listening exercises",
+      "status": 200,
+      "path": "/2023-05-23/users/:id",
+      "boolean_fields": {
+        "enableSpeaker": true
+      }
+    },
+    {
+      "control": "Animations",
+      "status": 200,
+      "path": "/2023-05-23/users/:id",
+      "boolean_fields": {
+        "animationEnabled": false
+      }
+    },
+    {
+      "control": "Motivational messages",
+      "status": 200,
+      "path": "/rocks/1/containers/learning_app_ui_preferences/users/:id",
+      "boolean_fields": {}
+    },
+    {
+      "control": "Listening exercises",
+      "status": 200,
+      "path": "/2023-05-23/users/:id",
+      "boolean_fields": {
+        "enableSpeaker": false
+      }
+    },
+    {
+      "control": "Sound effects",
+      "status": 200,
+      "path": "/2023-05-23/users/:id",
+      "boolean_fields": {
+        "enableSoundEffects": true
+      }
+    },
+    {
+      "control": "Animations",
+      "status": 200,
+      "path": "/2023-05-23/users/:id",
+      "boolean_fields": {
+        "animationEnabled": true
+      }
+    },
+    {
+      "control": "Motivational messages",
+      "status": 200,
+      "path": "/rocks/1/containers/learning_app_ui_preferences/users/:id",
+      "boolean_fields": {}
+    },
+    {
+      "control": "Listening exercises",
+      "status": 200,
+      "path": "/2023-05-23/users/:id",
+      "boolean_fields": {
+        "enableSpeaker": true
+      }
+    }
+  ],
+  "actions": "Normalize, measure, toggle off and await save acknowledgement, select On, reload, read actual states, restore defaults",
+  "limitations": [
+    "Lesson effects not exercised; save acknowledgement differs from immediate UI state"
+  ]
+}

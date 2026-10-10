@@ -1,0 +1,83 @@
+{
+  "kind": "actual_reference_preferences_observation",
+  "states": {
+    "preferences": {
+      "accessible_text": [
+        "LEARN",
+        "LEADERBOARDS",
+        "QUESTS",
+        "SHOP",
+        "PROFILE",
+        "MORE",
+        "Account",
+        "Preferences",
+        "Privacy settings",
+        "Support",
+        "Help Center",
+        "Preferences",
+        "Lesson experience",
+        "Sound effects",
+        "Animations",
+        "Motivational messages",
+        "Listening exercises",
+        "Appearance",
+        "Dark mode",
+        "SYSTEM DEFAULT",
+        "System Default",
+        "On",
+        "Off"
+      ],
+      "elements": {
+        "sound-effects": {
+          "rect": [
+            704,
+            174,
+            56,
+            32
+          ],
+          "value": "true"
+        },
+        "animations": {
+          "rect": [
+            704,
+            230,
+            56,
+            32
+          ],
+          "value": "true"
+        },
+        "motivational-messages": {
+          "rect": [
+            704,
+            286,
+            56,
+            32
+          ],
+          "value": "true"
+        },
+        "listening-exercises": {
+          "rect": [
+            704,
+            342,
+            56,
+            32
+          ],
+          "value": "true"
+        }
+      }
+    },
+    "preferences-reopened": {
+      "interactions": {
+        "sound-effects-off-persisted": true,
+        "animations-off-persisted": true,
+        "motivational-messages-off-persisted": true,
+        "listening-exercises-off-persisted": false,
+        "dark-mode-on-persisted": true
+      }
+    }
+  },
+  "actions": "Normalize preferences, measure actual controls, toggle off and select On, reload, read actual state, restore defaults",
+  "limitations": [
+    "Lesson effects not exercised"
+  ]
+}

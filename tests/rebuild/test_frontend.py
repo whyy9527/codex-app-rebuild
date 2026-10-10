@@ -34,3 +34,14 @@ class FrontendRequirements(unittest.TestCase):
             for actual, expected in [(None, 'unavailable'), (1, 'unavailable'), (False, 'fail'), (True, 'pass')]:
                 observed = {'states': {'home': {'interactions': {'opened': actual}}}}
                 self.assertEqual(compare(root, contract, observed)['rows'][0]['status'], expected)
+
+    def test_control_geometry_rejects_displacement_and_missing_measurement(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / 'reference.txt').write_text('Measured content-relative switch rectangle')
+            contract = {'requirements': [{'id': 'switch', 'state': 'settings',
+                'kind': 'element_geometry', 'element': 'sound', 'rect': [704, 174, 56, 32],
+                'tolerance_points': 1, 'evidence': ['reference.txt']}]}
+            for actual, expected in [([704, 174.5, 56, 32], 'pass'), ([704, 190, 56, 32], 'fail'), (None, 'unavailable')]:
+                observed = {'states': {'settings': {'elements': {'sound': {'rect': actual}}}}}
+                self.assertEqual(compare(root, contract, observed)['rows'][0]['status'], expected)

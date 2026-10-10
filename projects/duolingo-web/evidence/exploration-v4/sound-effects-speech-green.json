@@ -1,0 +1,39 @@
+{
+  "soundEffects": false,
+  "before": "- button:\n  - img\n- progressbar:\n  - img\n- img\n- text: \"5\"\n- img\n- text: New word\n- heading \"Which one of these is “green”?\" [level=1]\n- radiogroup \"choice\":\n  - radio \"verde 1\":\n    - text: verde 1\n    - img\n    - img\n  - radio \"libro 2\":\n    - text: libro 2\n    - img\n    - img\n  - radio \"mamá 3\":\n    - text: mamá 3\n    - img\n    - img\n- button \"Skip\"\n- button \"Check\" [disabled]",
+  "pictures": [
+    {
+      "text": "verde\n1",
+      "backgrounds": [
+        "url(\"https://d2pur3iezf4d1j.cloudfront.net/images/c1fba0f6343b3c5392b4b556b40274fa\")"
+      ]
+    },
+    {
+      "text": "libro\n2",
+      "backgrounds": [
+        "url(\"https://d2pur3iezf4d1j.cloudfront.net/images/b5406351772e6898e0999b4028cbf799\")"
+      ]
+    },
+    {
+      "text": "mamá\n3",
+      "backgrounds": [
+        "url(\"https://d2pur3iezf4d1j.cloudfront.net/images/663d3893596e4841ad991ef1dc02ddbc\")"
+      ]
+    }
+  ],
+  "played": [
+    {
+      "src": "https://d1vq87e9lcf771.cloudfront.net/penelope/df18f70671bb059542074b38e4b4af3d",
+      "at": 62014.40000009537,
+      "muted": false,
+      "volume": 1
+    }
+  ],
+  "resources": [
+    "https://d35aaqx5ub95lt.cloudfront.net/sounds/0a27c1ee63dd220647e8410a0029aed2.mp3"
+  ],
+  "feedback": "- button:\n  - img\n- progressbar:\n  - img\n- img\n- text: \"5\"\n- img\n- text: New word\n- heading \"Which one of these is “green”?\" [level=1]\n- radiogroup \"choice\":\n  - radio \"verde 1\" [checked] [disabled]:\n    - text: verde 1\n    - img\n    - img\n  - radio \"libro 2\" [disabled]:\n    - text: libro 2\n    - img\n    - img\n  - radio \"mamá 3\" [disabled]:\n    - text: mamá 3\n    - img\n    - img\n- heading \"Great!\" [level=2]\n- button \"Too easy\"\n- button \"Too difficult\"\n- button \"Report\"\n- button \"Continue\"",
+  "limitations": [
+    "Media invocation/loading only; no output recording"
+  ]
+}

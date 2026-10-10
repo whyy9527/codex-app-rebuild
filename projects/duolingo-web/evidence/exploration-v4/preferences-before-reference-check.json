@@ -1,0 +1,31 @@
+{
+  "kind": "combined_product_acceptance",
+  "source_digest": "68ceeabadd7e6d923bd42da68baf7813090fdba1a48ba6dd37951348c21ddec3",
+  "source_unchanged": true,
+  "resource_digest": "0e1770769b177b8e3afb6c23ccd2541c6359d9209ef97d3d5350e78152d6209f",
+  "resources_unchanged": true,
+  "reference_inputs_digest": "6f434d03cb118f8efc79f5089b348cd0bf2a91a6e50682db75f1f47d509741e6",
+  "reference_inputs_unchanged": true,
+  "reference_inputs": [
+    "projects/duolingo-web/evidence/exploration-v4/curriculum-first.json",
+    "projects/duolingo-web/evidence/exploration-v4/curriculum-second-01.json",
+    "projects/duolingo-web/evidence/exploration-v4/curriculum-second-02.json",
+    "projects/duolingo-web/evidence/exploration-v4/more-hover-dismiss.json",
+    "projects/duolingo-web/evidence/exploration-v4/more-hover.yml",
+    "projects/duolingo-web/evidence/exploration-v4/preferences-interactions.json",
+    "projects/duolingo-web/evidence/exploration-v4/preferences.yml",
+    "projects/duolingo-web/fixture-reference-v4.json",
+    "projects/duolingo-web/frontend-course-v4.json",
+    "projects/duolingo-web/frontend-preferences-v4.1.json",
+    "projects/duolingo-web/frontend-v4.json"
+  ],
+  "business_exit_code": 0,
+  "course_copy_status": "pass",
+  "frontend_status": "fail",
+  "preferences_status": "fail",
+  "status": "fail",
+  "limitations": [
+    "Frontend inventory expands with exploration",
+    "Current pending visual/audio requirements prevent product completion"
+  ]
+}

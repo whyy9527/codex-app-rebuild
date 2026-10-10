@@ -1,11 +1,17 @@
 // Online UI driver, not a local replica. No expectations are supplied to this process.
 import { chromium } from 'playwright';
-import { writeFileSync } from 'node:fs';
+import { writeFileSync, readFileSync } from 'node:fs';
 
 const output=process.argv[2];
 if(!output)throw new Error('Explicit output path required');
 const entry = 'https://www.duolingo.com/course/es/en/Learn-Spanish';
-const vocabulary = { cat: 'gato', dog: 'perro', water: 'agua', milk: 'leche', mom: 'mamá', dad: 'papá', book: 'libro', house: 'casa', suitcase: 'maleta' };
+const knowledge = JSON.parse(readFileSync(new URL('./reference-vocabulary.json', import.meta.url),'utf8'));
+const vocabulary = Object.fromEntries(Object.entries(knowledge.entries).map(([english, entry])=>[english,entry.spanish]));
+// These five possessives were separately confirmed by the reference matching run.
+for(const word of ['dad','house','mom','cat','dog']) vocabulary['my '+word]='mi '+vocabulary[word];
+const lessonArgument=process.argv.indexOf('--lessons');
+const lessonBudget=lessonArgument<0?1:Number(process.argv[lessonArgument+1]);
+if(!Number.isInteger(lessonBudget)||lessonBudget<1)throw Error('Positive explicit lesson budget required');
 let browser, page;
 const trace = [];
 
@@ -209,20 +215,26 @@ const observed=[];
 let result;
 try {
  await openGuest(); await firstLesson(); await settle();
- for(let i=0;i<35;i++) {
-  if(await completeScreen()) {result={complete:true,observed,completion:await snapshot()};break;}
-  const k=await kind();
-  const row={step:i,kind:k,prompt:await questionIdentity(),before:await snapshot(),text:await current.innerText()};
-  if(k==='choice' && row.prompt.startsWith('Which one')) {
-    row.illustrations=await current.$$eval('[role="radio"]',es=>es.map(e=>({text:e.innerText,backgrounds:[e,...e.querySelectorAll('*')].map(n=>{const style=getComputedStyle(n),r=n.getBoundingClientRect();return {background:style.backgroundImage,size:style.backgroundSize,rect:[r.x,r.y,r.width,r.height]};}).filter(x=>x.background!=='none')})));
+ let completions=0;
+ for(let lesson=1;lesson<=lessonBudget;lesson++) {
+  for(let i=0;i<35;i++) {
+   if(await completeScreen()) {completions++;break;}
+   const k=await kind();
+   const row={lesson,step:i,kind:k,prompt:await questionIdentity(),before:await snapshot(),text:await current.innerText()};
+   if(k==='choice' && row.prompt.startsWith('Which one')) row.illustrations=await current.$$eval('[role="radio"]',es=>es.map(e=>({text:e.innerText,backgrounds:[e,...e.querySelectorAll('*')].map(n=>{const style=getComputedStyle(n),r=n.getBoundingClientRect();return {background:style.backgroundImage,size:style.backgroundSize,rect:[r.x,r.y,r.width,r.height]};}).filter(x=>x.background!=='none')})));
+   if(k==='word_tiles') row.hints=await page.locator('[data-test="hint-token"]').evaluateAll(es=>es.map(e=>e.getAttribute('aria-label')));
+   observed.push(row);
+   await answerCurrent();row.feedback=await snapshot();await advance();
   }
-  if(k==='word_tiles') row.hints=await page.locator('[data-test="hint-token"]').evaluateAll(es=>es.map(e=>e.getAttribute('aria-label')));
-  observed.push(row);
-  await answerCurrent(); row.feedback=await snapshot();
-  await advance();
+  if(!await completeScreen()) throw Error('Per-lesson action budget exhausted');
+  if(lesson===lessonBudget) {result={complete:true,completed_lessons:completions,observed,completion:await snapshot(),knowledge};break;}
+  // The reference has already acknowledged completion. Continue exploration at
+  // the actual next incomplete path node, rather than inventing its content.
+  await page.goto('https://www.duolingo.com/learn',{waitUntil:'domcontentloaded'});
+  await page.getByRole('button',{name:/Lesson [0-9]+ of [0-9]+/}).first().click();
+  await page.getByRole('link',{name:/Start/}).click();await settle();
  }
- result??={complete:false,reason:'35 questions reached',observed};
-} catch(error) { result={complete:false,error:String(error),observed}; }
+} catch(error) { result={complete:false,error:String(error),observed,blocked_state:page?await snapshot().catch(()=>null):null,knowledge}; }
 finally { await browser?.close(); }
 writeFileSync(output,JSON.stringify(result,null,2)+'\n',{flag:'wx'});
 console.log(JSON.stringify({complete:result.complete,questions:observed.length,error:result.error}));

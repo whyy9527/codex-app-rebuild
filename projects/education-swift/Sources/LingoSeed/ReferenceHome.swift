@@ -16,18 +16,21 @@ struct ReferenceHome: View {
             HStack(spacing: 0) {
                 sidebar.frame(width: geometry.size.width >= 1180 ? 254 : 88)
                 Rectangle().fill(ReferenceStyle.border).frame(width: 2)
+                if model.destination == "Settings" { ReferenceSettings(model: model) }
+                else {
                 ScrollView { path.padding(.horizontal, 24).padding(.top, 48) }
                     .frame(maxWidth: .infinity)
                 if geometry.size.width >= 1120 {
                     ScrollView { dashboard.padding(.top, 32) }
                         .frame(width: 368).padding(.horizontal, 24)
                 }
+                }
             }
             .overlay(alignment: .topLeading) {
                 if moreOpen { moreMenu.offset(x: geometry.size.width >= 1180 ? 238 : 72, y: 314).zIndex(10) }
             }
         }
-        .font(ReferenceStyle.font(17)).foregroundStyle(ReferenceStyle.ink).background(.white)
+        .font(ReferenceStyle.font(17)).foregroundStyle(ReferenceStyle.ink).background(ReferenceStyle.background)
     }
     private var sidebar: some View {
         VStack(alignment: .leading, spacing: 8) {
@@ -46,9 +49,9 @@ struct ReferenceHome: View {
                         }
                         Spacer(minLength: 0)
                     }.padding(.horizontal, 16).frame(height: 52)
-                        .foregroundStyle(item == "Learn" ? blue : Color(white: 119/255))
-                        .background(item == "Learn" ? Color(red: 221/255, green: 244/255, blue: 1) : .clear, in: RoundedRectangle(cornerRadius: 12))
-                        .overlay(RoundedRectangle(cornerRadius: 12).strokeBorder(item == "Learn" ? Color(red: 132/255, green: 216/255, blue: 1) : .clear, lineWidth: 2))
+                        .foregroundStyle(item == "Learn" && model.destination == "Learn" ? blue : ReferenceStyle.secondaryInk)
+                        .background(item == "Learn" && model.destination == "Learn" ? Color(red: 221/255, green: 244/255, blue: 1) : .clear, in: RoundedRectangle(cornerRadius: 12))
+                        .overlay(RoundedRectangle(cornerRadius: 12).strokeBorder(item == "Learn" && model.destination == "Learn" ? Color(red: 132/255, green: 216/255, blue: 1) : .clear, lineWidth: 2))
                 }.buttonStyle(.plain).accessibilityLabel(item).accessibilityIdentifier("nav-" + item.lowercased())
                 .onHover { inside in
                     if item == "More" { moreHovered = inside; if inside { moreOpen = true } else { dismissMenuLater() } }
@@ -67,7 +70,7 @@ struct ReferenceHome: View {
                     Text(title).font(ReferenceStyle.font(17, bold: true)).frame(maxWidth: .infinity, alignment: .leading).padding(16)
                 }.buttonStyle(.plain).accessibilityIdentifier("more-" + title.lowercased().replacingOccurrences(of: " ", with: "-"))
             }
-        }.frame(width: 240).background(.white, in: RoundedRectangle(cornerRadius: 16))
+        }.frame(width: 240).background(ReferenceStyle.background, in: RoundedRectangle(cornerRadius: 16))
             .overlay(RoundedRectangle(cornerRadius: 16).stroke(ReferenceStyle.border, lineWidth: 2))
             .shadow(color: .black.opacity(0.08), radius: 8, y: 4)
             .onHover { inside in menuHovered = inside; if !inside { dismissMenuLater() } }
@@ -117,7 +120,7 @@ struct ReferenceHome: View {
         return VStack(spacing: 0) {
             if index == 0 {
                 Text("START").font(ReferenceStyle.font(17, bold: true)).foregroundStyle(green)
-                    .frame(width: 78, height: 42).background(.white, in: RoundedRectangle(cornerRadius: 10))
+                    .frame(width: 78, height: 42).background(ReferenceStyle.background, in: RoundedRectangle(cornerRadius: 10))
                     .overlay(RoundedRectangle(cornerRadius: 10).stroke(ReferenceStyle.border, lineWidth: 2)).offset(y: -6)
             }
             Button { model.begin(lessonIndex) } label: {

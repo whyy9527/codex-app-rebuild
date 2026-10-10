@@ -1,0 +1,828 @@
+{
+  "complete": false,
+  "error": "Error: Unobserved choice prompt: Which one of these is “blue”?",
+  "observed": [
+    {
+      "lesson": 1,
+      "step": 0,
+      "kind": "choice",
+      "prompt": "Which one of these is “cat”?",
+      "before": "- button:\n  - img\n- progressbar:\n  - img\n- img\n- text: \"5\"\n- img\n- text: New word\n- heading \"Which one of these is “cat”?\" [level=1]\n- radiogroup \"choice\":\n  - radio \"gato 1\"\n  - radio \"mamá 2\"\n  - radio \"agua 3\"\n- button \"Skip\"\n- button \"Check\" [disabled]\n- img\n- text: Loading... 15 minutes a day can teach you a language. What can 15 minutes of social media do?",
+      "text": "NEW WORD\nWhich one of these is “cat”?\ngato\n1\nmamá\n2\nagua\n3",
+      "illustrations": [
+        {
+          "text": "gato\n1",
+          "backgrounds": [
+            {
+              "background": "url(\"https://d2pur3iezf4d1j.cloudfront.net/images/9aa862ebf2f8636383e54ce23d340db9\")",
+              "size": "contain",
+              "rect": [
+                326,
+                297,
+                142.65625,
+                160
+              ]
+            }
+          ]
+        },
+        {
+          "text": "mamá\n2",
+          "backgrounds": [
+            {
+              "background": "url(\"https://d2pur3iezf4d1j.cloudfront.net/images/663d3893596e4841ad991ef1dc02ddbc\")",
+              "size": "contain",
+              "rect": [
+                528.65625,
+                297,
+                142.671875,
+                160
+              ]
+            }
+          ]
+        },
+        {
+          "text": "agua\n3",
+          "backgrounds": [
+            {
+              "background": "url(\"https://d2pur3iezf4d1j.cloudfront.net/images/7afea32bcf0e8c6f9d446ad4aad416be\")",
+              "size": "contain",
+              "rect": [
+                731.328125,
+                297,
+                142.671875,
+                160
+              ]
+            }
+          ]
+        }
+      ],
+      "feedback": "- button:\n  - img\n- progressbar:\n  - img\n- img\n- text: \"5\"\n- img\n- text: New word\n- heading \"Which one of these is “cat”?\" [level=1]\n- radiogroup \"choice\":\n  - radio \"gato 1\" [checked] [disabled]:\n    - text: gato 1\n    - img\n    - img\n  - radio \"mamá 2\" [disabled]:\n    - text: mamá 2\n    - img\n    - img\n  - radio \"agua 3\" [disabled]:\n    - text: agua 3\n    - img\n    - img\n- heading \"Nicely done!\" [level=2]\n- button \"Too easy\"\n- button \"Too difficult\"\n- button \"Report\"\n- button \"Continue\""
+    },
+    {
+      "lesson": 1,
+      "step": 1,
+      "kind": "choice",
+      "prompt": "Which one of these is “dog”?",
+      "before": "- button:\n  - img\n- progressbar\n- img\n- text: \"5\"\n- img\n- text: New word\n- heading \"Which one of these is “dog”?\" [level=1]\n- radiogroup \"choice\":\n  - radio \"agua 1\":\n    - text: agua 1\n    - img\n    - img\n  - radio \"perro 2\":\n    - text: perro 2\n    - img\n    - img\n  - radio \"mamá 3\":\n    - text: mamá 3\n    - img\n    - img\n- button \"Skip\"\n- button \"Check\" [disabled]",
+      "text": "NEW WORD\nWhich one of these is “dog”?\nagua\n1\nperro\n2\nmamá\n3",
+      "illustrations": [
+        {
+          "text": "agua\n1",
+          "backgrounds": [
+            {
+              "background": "url(\"https://d2pur3iezf4d1j.cloudfront.net/images/7afea32bcf0e8c6f9d446ad4aad416be\")",
+              "size": "contain",
+              "rect": [
+                326,
+                297,
+                142.65625,
+                160
+              ]
+            }
+          ]
+        },
+        {
+          "text": "perro\n2",
+          "backgrounds": [
+            {
+              "background": "url(\"https://d2pur3iezf4d1j.cloudfront.net/images/d8adb479aed80e6420f566afea110eb1\")",
+              "size": "contain",
+              "rect": [
+                528.65625,
+                297,
+                142.671875,
+                160
+              ]
+            }
+          ]
+        },
+        {
+          "text": "mamá\n3",
+          "backgrounds": [
+            {
+              "background": "url(\"https://d2pur3iezf4d1j.cloudfront.net/images/663d3893596e4841ad991ef1dc02ddbc\")",
+              "size": "contain",
+              "rect": [
+                731.328125,
+                297,
+                142.671875,
+                160
+              ]
+            }
+          ]
+        }
+      ],
+      "feedback": "- button:\n  - img\n- progressbar:\n  - text: 2 in a row\n  - img\n- img\n- text: \"5\"\n- img\n- text: New word\n- heading \"Which one of these is “dog”?\" [level=1]\n- radiogroup \"choice\":\n  - radio \"agua 1\" [disabled]:\n    - text: agua 1\n    - img\n    - img\n  - radio \"perro 2\" [checked] [disabled]:\n    - text: perro 2\n    - img\n    - img\n  - radio \"mamá 3\" [disabled]:\n    - text: mamá 3\n    - img\n    - img\n- heading \"Awesome!\" [level=2]\n- button \"Too easy\"\n- button \"Too difficult\"\n- button \"Report\"\n- button \"Continue\""
+    },
+    {
+      "lesson": 1,
+      "step": 2,
+      "kind": "choice",
+      "prompt": "Which one of these is “water”?",
+      "before": "- button:\n  - img\n- progressbar\n- img\n- text: \"5\"\n- img\n- text: New word\n- heading \"Which one of these is “water”?\" [level=1]\n- radiogroup \"choice\":\n  - radio \"agua 1\":\n    - text: agua 1\n    - img\n    - img\n  - radio \"perro 2\":\n    - text: perro 2\n    - img\n    - img\n  - radio \"papá 3\":\n    - text: papá 3\n    - img\n    - img\n- button \"Skip\"\n- button \"Check\" [disabled]",
+      "text": "NEW WORD\nWhich one of these is “water”?\nagua\n1\nperro\n2\npapá\n3",
+      "illustrations": [
+        {
+          "text": "agua\n1",
+          "backgrounds": [
+            {
+              "background": "url(\"https://d2pur3iezf4d1j.cloudfront.net/images/7afea32bcf0e8c6f9d446ad4aad416be\")",
+              "size": "contain",
+              "rect": [
+                326,
+                297,
+                142.65625,
+                160
+              ]
+            }
+          ]
+        },
+        {
+          "text": "perro\n2",
+          "backgrounds": [
+            {
+              "background": "url(\"https://d2pur3iezf4d1j.cloudfront.net/images/d8adb479aed80e6420f566afea110eb1\")",
+              "size": "contain",
+              "rect": [
+                528.65625,
+                297,
+                142.671875,
+                160
+              ]
+            }
+          ]
+        },
+        {
+          "text": "papá\n3",
+          "backgrounds": [
+            {
+              "background": "url(\"https://d2pur3iezf4d1j.cloudfront.net/images/bcabd1e0ad46cf5e8ee8339f6c5579d1\")",
+              "size": "contain",
+              "rect": [
+                731.328125,
+                297,
+                142.671875,
+                160
+              ]
+            }
+          ]
+        }
+      ],
+      "feedback": "- button:\n  - img\n- progressbar:\n  - text: 3 in a row\n  - img\n- img\n- text: \"5\"\n- img\n- text: New word\n- heading \"Which one of these is “water”?\" [level=1]\n- radiogroup \"choice\":\n  - radio \"agua 1\" [checked] [disabled]:\n    - text: agua 1\n    - img\n    - img\n  - radio \"perro 2\" [disabled]:\n    - text: perro 2\n    - img\n    - img\n  - radio \"papá 3\" [disabled]:\n    - text: papá 3\n    - img\n    - img\n- heading \"Nicely done!\" [level=2]\n- button \"Too easy\"\n- button \"Too difficult\"\n- button \"Report\"\n- button \"Continue\""
+    },
+    {
+      "lesson": 1,
+      "step": 3,
+      "kind": "choice",
+      "prompt": "Which one of these is “milk”?",
+      "before": "- button:\n  - img\n- progressbar\n- img\n- text: \"5\"\n- img\n- text: New word\n- heading \"Which one of these is “milk”?\" [level=1]\n- radiogroup \"choice\":\n  - radio \"leche 1\":\n    - text: leche 1\n    - img\n    - img\n  - radio \"gato 2\":\n    - text: gato 2\n    - img\n    - img\n  - radio \"perro 3\":\n    - text: perro 3\n    - img\n    - img\n- button \"Skip\"\n- button \"Check\" [disabled]",
+      "text": "NEW WORD\nWhich one of these is “milk”?\nleche\n1\ngato\n2\nperro\n3",
+      "illustrations": [
+        {
+          "text": "leche\n1",
+          "backgrounds": [
+            {
+              "background": "url(\"https://d2pur3iezf4d1j.cloudfront.net/images/645fa42dcea02c7e2970a1285e321562\")",
+              "size": "contain",
+              "rect": [
+                326,
+                297,
+                142.65625,
+                160
+              ]
+            }
+          ]
+        },
+        {
+          "text": "gato\n2",
+          "backgrounds": [
+            {
+              "background": "url(\"https://d2pur3iezf4d1j.cloudfront.net/images/9aa862ebf2f8636383e54ce23d340db9\")",
+              "size": "contain",
+              "rect": [
+                528.65625,
+                297,
+                142.671875,
+                160
+              ]
+            }
+          ]
+        },
+        {
+          "text": "perro\n3",
+          "backgrounds": [
+            {
+              "background": "url(\"https://d2pur3iezf4d1j.cloudfront.net/images/d8adb479aed80e6420f566afea110eb1\")",
+              "size": "contain",
+              "rect": [
+                731.328125,
+                297,
+                142.671875,
+                160
+              ]
+            }
+          ]
+        }
+      ],
+      "feedback": "- button:\n  - img\n- progressbar:\n  - text: 4 in a row\n  - img\n- img\n- text: \"5\"\n- img\n- text: New word\n- heading \"Which one of these is “milk”?\" [level=1]\n- radiogroup \"choice\":\n  - radio \"leche 1\" [checked] [disabled]:\n    - text: leche 1\n    - img\n    - img\n  - radio \"gato 2\" [disabled]:\n    - text: gato 2\n    - img\n    - img\n  - radio \"perro 3\" [disabled]:\n    - text: perro 3\n    - img\n    - img\n- heading \"Amazing!\" [level=2]\n- button \"Too easy\"\n- button \"Too difficult\"\n- button \"Report\"\n- button \"Continue\""
+    },
+    {
+      "lesson": 1,
+      "step": 4,
+      "kind": "matching",
+      "prompt": "Select the matching pairs",
+      "before": "- button:\n  - img\n- progressbar\n- img\n- text: \"5\"\n- heading \"Select the matching pairs\" [level=1]\n- button \"1 milk\":\n  - text: 1 milk\n  - img\n  - img\n- button \"2 cat\":\n  - text: 2 cat\n  - img\n  - img\n- button \"3 water\":\n  - text: 3 water\n  - img\n  - img\n- button \"4 dog\":\n  - text: 4 dog\n  - img\n  - img\n- button \"5 mom\":\n  - text: 5 mom\n  - img\n  - img\n- button \"6 perro\":\n  - text: 6 perro\n  - img\n  - img\n- button \"7 mamá\":\n  - text: 7 mamá\n  - img\n  - img\n- button \"8 gato\":\n  - text: 8 gato\n  - img\n  - img\n- button \"9 leche\":\n  - text: 9 leche\n  - img\n  - img\n- button \"0 agua\":\n  - text: 0 agua\n  - img\n  - img\n- button \"Skip\"\n- button \"Check\" [disabled]",
+      "text": "Select the matching pairs\n1\nmilk\n2\ncat\n3\nwater\n4\ndog\n5\nmom\n6\nperro\n7\nmamá\n8\ngato\n9\nleche\n0\nagua",
+      "feedback": "- button:\n  - img\n- progressbar:\n  - text: 5 in a row\n  - img\n- img\n- text: \"5\"\n- heading \"Select the matching pairs\" [level=1]\n- button \"1 milk\" [disabled]:\n  - text: 1 milk\n  - img\n  - img\n- button \"2 cat\" [disabled]:\n  - text: 2 cat\n  - img\n  - img\n- button \"3 water\" [disabled]:\n  - text: 3 water\n  - img\n  - img\n- button \"4 dog\" [disabled]:\n  - text: 4 dog\n  - img\n  - img\n- button \"5 mom\" [disabled]:\n  - text: 5 mom\n  - img\n  - img\n- button \"6 perro\" [disabled]:\n  - text: 6 perro\n  - img\n  - img\n- button \"7 mamá\" [disabled]:\n  - text: 7 mamá\n  - img\n  - img\n- button \"8 gato\" [disabled]:\n  - text: 8 gato\n  - img\n  - img\n- button \"9 leche\" [disabled]:\n  - text: 9 leche\n  - img\n  - img\n- button \"0 agua\" [disabled]:\n  - text: 0 agua\n  - img\n  - img\n- heading \"Nice!\" [level=2]\n- button \"Too easy\"\n- button \"Too difficult\"\n- button \"Report\"\n- button \"Continue\""
+    },
+    {
+      "lesson": 1,
+      "step": 5,
+      "kind": "choice",
+      "prompt": "Select the correct meaning: dog",
+      "before": "- button:\n  - img\n- progressbar\n- img\n- text: \"5\"\n- heading \"Select the correct meaning\" [level=1]\n- text: dog\n- img\n- radiogroup \"choice\":\n  - radio \"1 perro\":\n    - text: 1 perro\n    - img\n    - img\n  - radio \"2 gato\":\n    - text: 2 gato\n    - img\n    - img\n  - radio \"3 agua\":\n    - text: 3 agua\n    - img\n    - img\n- img\n- text: Super impressive!\n- button \"Check\" [disabled]",
+      "text": "Select the correct meaning\ndog\n1\nperro\n2\ngato\n3\nagua",
+      "feedback": "- button:\n  - img\n- progressbar:\n  - text: 6 in a row\n  - img\n- img\n- text: \"5\"\n- heading \"Select the correct meaning\" [level=1]\n- text: dog\n- img\n- radiogroup \"choice\":\n  - radio \"1 perro\" [checked] [disabled]:\n    - text: 1 perro\n    - img\n    - img\n  - radio \"2 gato\" [disabled]:\n    - text: 2 gato\n    - img\n    - img\n  - radio \"3 agua\" [disabled]:\n    - text: 3 agua\n    - img\n    - img\n- heading \"Excellent!\" [level=2]\n- button \"Too easy\"\n- button \"Too difficult\"\n- button \"Report\"\n- button \"Continue\""
+    },
+    {
+      "lesson": 1,
+      "step": 6,
+      "kind": "choice",
+      "prompt": "Select the correct meaning: water",
+      "before": "- button:\n  - img\n- progressbar\n- img\n- text: \"5\"\n- heading \"Select the correct meaning\" [level=1]\n- text: water\n- img\n- radiogroup \"choice\":\n  - radio \"1 leche\":\n    - text: 1 leche\n    - img\n    - img\n  - radio \"2 agua\":\n    - text: 2 agua\n    - img\n    - img\n  - radio \"3 perro\":\n    - text: 3 perro\n    - img\n    - img\n- button \"Skip\"\n- button \"Check\" [disabled]",
+      "text": "Select the correct meaning\nwater\n1\nleche\n2\nagua\n3\nperro",
+      "feedback": "- button:\n  - img\n- progressbar:\n  - text: 7 in a row\n  - img\n- img\n- text: \"5\"\n- heading \"Select the correct meaning\" [level=1]\n- text: water\n- img\n- radiogroup \"choice\":\n  - radio \"1 leche\" [disabled]:\n    - text: 1 leche\n    - img\n    - img\n  - radio \"2 agua\" [checked] [disabled]:\n    - text: 2 agua\n    - img\n    - img\n  - radio \"3 perro\" [disabled]:\n    - text: 3 perro\n    - img\n    - img\n- heading \"Great job!\" [level=2]\n- button \"Too easy\"\n- button \"Too difficult\"\n- button \"Report\"\n- button \"Continue\""
+    },
+    {
+      "lesson": 1,
+      "step": 7,
+      "kind": "choice",
+      "prompt": "Which one of these is “mom”?",
+      "before": "- button:\n  - img\n- progressbar\n- img\n- text: \"5\"\n- img\n- text: New word\n- heading \"Which one of these is “mom”?\" [level=1]\n- radiogroup \"choice\":\n  - radio \"mamá 1\":\n    - text: mamá 1\n    - img\n    - img\n  - radio \"perro 2\":\n    - text: perro 2\n    - img\n    - img\n  - radio \"agua 3\":\n    - text: agua 3\n    - img\n    - img\n- button \"Skip\"\n- button \"Check\" [disabled]",
+      "text": "NEW WORD\nWhich one of these is “mom”?\nmamá\n1\nperro\n2\nagua\n3",
+      "illustrations": [
+        {
+          "text": "mamá\n1",
+          "backgrounds": [
+            {
+              "background": "url(\"https://d2pur3iezf4d1j.cloudfront.net/images/663d3893596e4841ad991ef1dc02ddbc\")",
+              "size": "contain",
+              "rect": [
+                326,
+                297,
+                142.65625,
+                160
+              ]
+            }
+          ]
+        },
+        {
+          "text": "perro\n2",
+          "backgrounds": [
+            {
+              "background": "url(\"https://d2pur3iezf4d1j.cloudfront.net/images/d8adb479aed80e6420f566afea110eb1\")",
+              "size": "contain",
+              "rect": [
+                528.65625,
+                297,
+                142.671875,
+                160
+              ]
+            }
+          ]
+        },
+        {
+          "text": "agua\n3",
+          "backgrounds": [
+            {
+              "background": "url(\"https://d2pur3iezf4d1j.cloudfront.net/images/7afea32bcf0e8c6f9d446ad4aad416be\")",
+              "size": "contain",
+              "rect": [
+                731.328125,
+                297,
+                142.671875,
+                160
+              ]
+            }
+          ]
+        }
+      ],
+      "feedback": "- button:\n  - img\n- progressbar: 8 in a row\n- img\n- text: \"5\"\n- img\n- text: New word\n- heading \"Which one of these is “mom”?\" [level=1]\n- radiogroup \"choice\":\n  - radio \"mamá 1\" [checked] [disabled]:\n    - text: mamá 1\n    - img\n    - img\n  - radio \"perro 2\" [disabled]:\n    - text: perro 2\n    - img\n    - img\n  - radio \"agua 3\" [disabled]:\n    - text: agua 3\n    - img\n    - img\n- heading \"Nice job!\" [level=2]\n- button \"Too easy\"\n- button \"Too difficult\"\n- button \"Report\"\n- button \"Continue\""
+    },
+    {
+      "lesson": 1,
+      "step": 8,
+      "kind": "choice",
+      "prompt": "Which one of these is “dad”?",
+      "before": "- button:\n  - img\n- progressbar\n- img\n- text: \"5\"\n- img\n- text: New word\n- heading \"Which one of these is “dad”?\" [level=1]\n- radiogroup \"choice\":\n  - radio \"papá 1\":\n    - text: papá 1\n    - img\n    - img\n  - radio \"leche 2\":\n    - text: leche 2\n    - img\n    - img\n  - radio \"gato 3\":\n    - text: gato 3\n    - img\n    - img\n- button \"Skip\"\n- button \"Check\" [disabled]",
+      "text": "NEW WORD\nWhich one of these is “dad”?\npapá\n1\nleche\n2\ngato\n3",
+      "illustrations": [
+        {
+          "text": "papá\n1",
+          "backgrounds": [
+            {
+              "background": "url(\"https://d2pur3iezf4d1j.cloudfront.net/images/bcabd1e0ad46cf5e8ee8339f6c5579d1\")",
+              "size": "contain",
+              "rect": [
+                326,
+                297,
+                142.65625,
+                160
+              ]
+            }
+          ]
+        },
+        {
+          "text": "leche\n2",
+          "backgrounds": [
+            {
+              "background": "url(\"https://d2pur3iezf4d1j.cloudfront.net/images/645fa42dcea02c7e2970a1285e321562\")",
+              "size": "contain",
+              "rect": [
+                528.65625,
+                297,
+                142.671875,
+                160
+              ]
+            }
+          ]
+        },
+        {
+          "text": "gato\n3",
+          "backgrounds": [
+            {
+              "background": "url(\"https://d2pur3iezf4d1j.cloudfront.net/images/9aa862ebf2f8636383e54ce23d340db9\")",
+              "size": "contain",
+              "rect": [
+                731.328125,
+                297,
+                142.671875,
+                160
+              ]
+            }
+          ]
+        }
+      ],
+      "feedback": "- button:\n  - img\n- progressbar: 9 in a row\n- img\n- text: \"5\"\n- img\n- text: New word\n- heading \"Which one of these is “dad”?\" [level=1]\n- radiogroup \"choice\":\n  - radio \"papá 1\" [checked] [disabled]:\n    - text: papá 1\n    - img\n    - img\n  - radio \"leche 2\" [disabled]:\n    - text: leche 2\n    - img\n    - img\n  - radio \"gato 3\" [disabled]:\n    - text: gato 3\n    - img\n    - img\n- heading \"Nice!\" [level=2]\n- button \"Too easy\"\n- button \"Too difficult\"\n- button \"Report\"\n- button \"Continue\""
+    },
+    {
+      "lesson": 1,
+      "step": 9,
+      "kind": "choice",
+      "prompt": "Select the correct meaning: dad",
+      "before": "- button:\n  - img\n- progressbar\n- img\n- text: \"5\"\n- heading \"Select the correct meaning\" [level=1]\n- text: dad\n- img\n- radiogroup \"choice\":\n  - radio \"1 leche\":\n    - text: 1 leche\n    - img\n    - img\n  - radio \"2 papá\":\n    - text: 2 papá\n    - img\n    - img\n  - radio \"3 mamá\":\n    - text: 3 mamá\n    - img\n    - img\n- button \"Skip\"\n- button \"Check\" [disabled]",
+      "text": "Select the correct meaning\ndad\n1\nleche\n2\npapá\n3\nmamá",
+      "feedback": "- button:\n  - img\n- progressbar:\n  - text: 10 in a row\n  - img\n- img\n- text: \"5\"\n- heading \"Select the correct meaning\" [level=1]\n- text: dad\n- img\n- radiogroup \"choice\":\n  - radio \"1 leche\" [disabled]:\n    - text: 1 leche\n    - img\n    - img\n  - radio \"2 papá\" [checked] [disabled]:\n    - text: 2 papá\n    - img\n    - img\n  - radio \"3 mamá\" [disabled]:\n    - text: 3 mamá\n    - img\n    - img\n- heading \"Nicely done!\" [level=2]\n- button \"Too easy\"\n- button \"Too difficult\"\n- button \"Report\"\n- button \"Continue\""
+    },
+    {
+      "lesson": 1,
+      "step": 10,
+      "kind": "choice",
+      "prompt": "Select the correct meaning: cat",
+      "before": "- button:\n  - img\n- progressbar\n- img\n- text: \"5\"\n- heading \"Select the correct meaning\" [level=1]\n- text: cat\n- img\n- radiogroup \"choice\":\n  - radio \"1 gato\":\n    - text: 1 gato\n    - img\n    - img\n  - radio \"2 agua\":\n    - text: 2 agua\n    - img\n    - img\n  - radio \"3 perro\":\n    - text: 3 perro\n    - img\n    - img\n- img\n- text: You worked hard and got 10 right in a row!\n- button \"Check\" [disabled]",
+      "text": "Select the correct meaning\ncat\n1\ngato\n2\nagua\n3\nperro",
+      "feedback": "- button:\n  - img\n- progressbar:\n  - text: 11 in a row\n  - img\n- img\n- text: \"5\"\n- heading \"Select the correct meaning\" [level=1]\n- text: cat\n- img\n- radiogroup \"choice\":\n  - radio \"1 gato\" [checked] [disabled]:\n    - text: 1 gato\n    - img\n    - img\n  - radio \"2 agua\" [disabled]:\n    - text: 2 agua\n    - img\n    - img\n  - radio \"3 perro\" [disabled]:\n    - text: 3 perro\n    - img\n    - img\n- heading \"Excellent!\" [level=2]\n- button \"Too easy\"\n- button \"Too difficult\"\n- button \"Report\"\n- button \"Continue\""
+    },
+    {
+      "lesson": 1,
+      "step": 11,
+      "kind": "matching",
+      "prompt": "Select the matching pairs",
+      "before": "- button:\n  - img\n- progressbar\n- img\n- text: \"5\"\n- heading \"Select the matching pairs\" [level=1]\n- button \"1 milk\":\n  - text: 1 milk\n  - img\n  - img\n- button \"2 water\":\n  - text: 2 water\n  - img\n  - img\n- button \"3 mom\":\n  - text: 3 mom\n  - img\n  - img\n- button \"4 cat\":\n  - text: 4 cat\n  - img\n  - img\n- button \"5 dog\":\n  - text: 5 dog\n  - img\n  - img\n- button \"6 gato\":\n  - text: 6 gato\n  - img\n  - img\n- button \"7 agua\":\n  - text: 7 agua\n  - img\n  - img\n- button \"8 leche\":\n  - text: 8 leche\n  - img\n  - img\n- button \"9 mamá\":\n  - text: 9 mamá\n  - img\n  - img\n- button \"0 perro\":\n  - text: 0 perro\n  - img\n  - img\n- button \"Skip\"\n- button \"Check\" [disabled]",
+      "text": "Select the matching pairs\n1\nmilk\n2\nwater\n3\nmom\n4\ncat\n5\ndog\n6\ngato\n7\nagua\n8\nleche\n9\nmamá\n0\nperro",
+      "feedback": "- button:\n  - img\n- progressbar:\n  - text: 12 in a row\n  - img\n- img\n- text: \"5\"\n- heading \"Select the matching pairs\" [level=1]\n- button \"1 milk\" [disabled]:\n  - text: 1 milk\n  - img\n  - img\n- button \"2 water\" [disabled]:\n  - text: 2 water\n  - img\n  - img\n- button \"3 mom\" [disabled]:\n  - text: 3 mom\n  - img\n  - img\n- button \"4 cat\" [disabled]:\n  - text: 4 cat\n  - img\n  - img\n- button \"5 dog\" [disabled]:\n  - text: 5 dog\n  - img\n  - img\n- button \"6 gato\" [disabled]:\n  - text: 6 gato\n  - img\n  - img\n- button \"7 agua\" [disabled]:\n  - text: 7 agua\n  - img\n  - img\n- button \"8 leche\" [disabled]:\n  - text: 8 leche\n  - img\n  - img\n- button \"9 mamá\" [disabled]:\n  - text: 9 mamá\n  - img\n  - img\n- button \"0 perro\" [disabled]:\n  - text: 0 perro\n  - img\n  - img\n- heading \"Correct!\" [level=2]\n- button \"Too easy\"\n- button \"Too difficult\"\n- button \"Report\"\n- button \"Continue\""
+    },
+    {
+      "lesson": 2,
+      "step": 0,
+      "kind": "choice",
+      "prompt": "Which one of these is “book”?",
+      "before": "- button:\n  - img\n- progressbar:\n  - img\n- img\n- text: \"5\"\n- img\n- text: New word\n- heading \"Which one of these is “book”?\" [level=1]\n- radiogroup \"choice\":\n  - radio \"libro 1\":\n    - text: libro 1\n    - img\n    - img\n  - radio \"agua 2\":\n    - text: agua 2\n    - img\n    - img\n  - radio \"perro 3\":\n    - text: perro 3\n    - img\n    - img\n- button \"Skip\"\n- button \"Check\" [disabled]\n- img\n- text: Loading... Duolingo is the world’s largest community of language learners.",
+      "text": "NEW WORD\nWhich one of these is “book”?\nlibro\n1\nagua\n2\nperro\n3",
+      "illustrations": [
+        {
+          "text": "libro\n1",
+          "backgrounds": [
+            {
+              "background": "url(\"https://d2pur3iezf4d1j.cloudfront.net/images/b5406351772e6898e0999b4028cbf799\")",
+              "size": "contain",
+              "rect": [
+                326,
+                297,
+                142.65625,
+                160
+              ]
+            }
+          ]
+        },
+        {
+          "text": "agua\n2",
+          "backgrounds": [
+            {
+              "background": "url(\"https://d2pur3iezf4d1j.cloudfront.net/images/7afea32bcf0e8c6f9d446ad4aad416be\")",
+              "size": "contain",
+              "rect": [
+                528.65625,
+                297,
+                142.671875,
+                160
+              ]
+            }
+          ]
+        },
+        {
+          "text": "perro\n3",
+          "backgrounds": [
+            {
+              "background": "url(\"https://d2pur3iezf4d1j.cloudfront.net/images/d8adb479aed80e6420f566afea110eb1\")",
+              "size": "contain",
+              "rect": [
+                731.328125,
+                297,
+                142.671875,
+                160
+              ]
+            }
+          ]
+        }
+      ],
+      "feedback": "- button:\n  - img\n- progressbar:\n  - img\n- img\n- text: \"5\"\n- img\n- text: New word\n- heading \"Which one of these is “book”?\" [level=1]\n- radiogroup \"choice\":\n  - radio \"libro 1\" [checked] [disabled]:\n    - text: libro 1\n    - img\n    - img\n  - radio \"agua 2\" [disabled]:\n    - text: agua 2\n    - img\n    - img\n  - radio \"perro 3\" [disabled]:\n    - text: perro 3\n    - img\n    - img\n- heading \"Awesome!\" [level=2]\n- button \"Too easy\"\n- button \"Too difficult\"\n- button \"Report\"\n- button \"Continue\"\n- img\n- text: Loading... Duolingo is the world’s largest community of language learners."
+    },
+    {
+      "lesson": 2,
+      "step": 1,
+      "kind": "choice",
+      "prompt": "Which one of these is “house”?",
+      "before": "- button:\n  - img\n- progressbar\n- img\n- text: \"5\"\n- img\n- text: New word\n- heading \"Which one of these is “house”?\" [level=1]\n- radiogroup \"choice\":\n  - radio \"perro 1\":\n    - text: perro 1\n    - img\n    - img\n  - radio \"libro 2\":\n    - text: libro 2\n    - img\n    - img\n  - radio \"casa 3\":\n    - text: casa 3\n    - img\n    - img\n- button \"Skip\"\n- button \"Check\" [disabled]",
+      "text": "NEW WORD\nWhich one of these is “house”?\nperro\n1\nlibro\n2\ncasa\n3",
+      "illustrations": [
+        {
+          "text": "perro\n1",
+          "backgrounds": [
+            {
+              "background": "url(\"https://d2pur3iezf4d1j.cloudfront.net/images/d8adb479aed80e6420f566afea110eb1\")",
+              "size": "contain",
+              "rect": [
+                326,
+                297,
+                142.65625,
+                160
+              ]
+            }
+          ]
+        },
+        {
+          "text": "libro\n2",
+          "backgrounds": [
+            {
+              "background": "url(\"https://d2pur3iezf4d1j.cloudfront.net/images/b5406351772e6898e0999b4028cbf799\")",
+              "size": "contain",
+              "rect": [
+                528.65625,
+                297,
+                142.671875,
+                160
+              ]
+            }
+          ]
+        },
+        {
+          "text": "casa\n3",
+          "backgrounds": [
+            {
+              "background": "url(\"https://d2pur3iezf4d1j.cloudfront.net/images/6d966ea1c0962c0b81bf2f1f82fc18fd\")",
+              "size": "contain",
+              "rect": [
+                731.328125,
+                297,
+                142.671875,
+                160
+              ]
+            }
+          ]
+        }
+      ],
+      "feedback": "- button:\n  - img\n- progressbar:\n  - text: 2 in a row\n  - img\n- img\n- text: \"5\"\n- img\n- text: New word\n- heading \"Which one of these is “house”?\" [level=1]\n- radiogroup \"choice\":\n  - radio \"perro 1\" [disabled]:\n    - text: perro 1\n    - img\n    - img\n  - radio \"libro 2\" [disabled]:\n    - text: libro 2\n    - img\n    - img\n  - radio \"casa 3\" [checked] [disabled]:\n    - text: casa 3\n    - img\n    - img\n- heading \"Amazing!\" [level=2]\n- button \"Too easy\"\n- button \"Too difficult\"\n- button \"Report\"\n- button \"Continue\""
+    },
+    {
+      "lesson": 2,
+      "step": 2,
+      "kind": "choice",
+      "prompt": "Which one of these is “suitcase”?",
+      "before": "- button:\n  - img\n- progressbar\n- img\n- text: \"5\"\n- img\n- text: New word\n- heading \"Which one of these is “suitcase”?\" [level=1]\n- radiogroup \"choice\":\n  - radio \"casa 1\":\n    - text: casa 1\n    - img\n    - img\n  - radio \"libro 2\":\n    - text: libro 2\n    - img\n    - img\n  - radio \"maleta 3\":\n    - text: maleta 3\n    - img\n    - img\n- button \"Skip\"\n- button \"Check\" [disabled]",
+      "text": "NEW WORD\nWhich one of these is “suitcase”?\ncasa\n1\nlibro\n2\nmaleta\n3",
+      "illustrations": [
+        {
+          "text": "casa\n1",
+          "backgrounds": [
+            {
+              "background": "url(\"https://d2pur3iezf4d1j.cloudfront.net/images/6d966ea1c0962c0b81bf2f1f82fc18fd\")",
+              "size": "contain",
+              "rect": [
+                326,
+                297,
+                142.65625,
+                160
+              ]
+            }
+          ]
+        },
+        {
+          "text": "libro\n2",
+          "backgrounds": [
+            {
+              "background": "url(\"https://d2pur3iezf4d1j.cloudfront.net/images/b5406351772e6898e0999b4028cbf799\")",
+              "size": "contain",
+              "rect": [
+                528.65625,
+                297,
+                142.671875,
+                160
+              ]
+            }
+          ]
+        },
+        {
+          "text": "maleta\n3",
+          "backgrounds": [
+            {
+              "background": "url(\"https://d2pur3iezf4d1j.cloudfront.net/images/a6c7cbf5ac78d674ecde39a066508ee2\")",
+              "size": "contain",
+              "rect": [
+                731.328125,
+                297,
+                142.671875,
+                160
+              ]
+            }
+          ]
+        }
+      ],
+      "feedback": "- button:\n  - img\n- progressbar: 3 in a row\n- img\n- text: \"5\"\n- img\n- text: New word\n- heading \"Which one of these is “suitcase”?\" [level=1]\n- radiogroup \"choice\":\n  - radio \"casa 1\" [disabled]:\n    - text: casa 1\n    - img\n    - img\n  - radio \"libro 2\" [disabled]:\n    - text: libro 2\n    - img\n    - img\n  - radio \"maleta 3\" [checked] [disabled]:\n    - text: maleta 3\n    - img\n    - img\n- heading \"Nice job!\" [level=2]\n- button \"Too easy\"\n- button \"Too difficult\"\n- button \"Report\"\n- button \"Continue\""
+    },
+    {
+      "lesson": 2,
+      "step": 3,
+      "kind": "matching",
+      "prompt": "Select the matching pairs",
+      "before": "- button:\n  - img\n- progressbar\n- img\n- text: \"5\"\n- heading \"Select the matching pairs\" [level=1]\n- button \"1 mom\":\n  - text: 1 mom\n  - img\n  - img\n- button \"2 dad\":\n  - text: 2 dad\n  - img\n  - img\n- button \"3 dog\":\n  - text: 3 dog\n  - img\n  - img\n- button \"4 book\":\n  - text: 4 book\n  - img\n  - img\n- button \"5 house\":\n  - text: 5 house\n  - img\n  - img\n- button \"6 mamá\":\n  - text: 6 mamá\n  - img\n  - img\n- button \"7 papá\":\n  - text: 7 papá\n  - img\n  - img\n- button \"8 casa\":\n  - text: 8 casa\n  - img\n  - img\n- button \"9 libro\":\n  - text: 9 libro\n  - img\n  - img\n- button \"0 perro\":\n  - text: 0 perro\n  - img\n  - img\n- button \"Skip\"\n- button \"Check\" [disabled]",
+      "text": "Select the matching pairs\n1\nmom\n2\ndad\n3\ndog\n4\nbook\n5\nhouse\n6\nmamá\n7\npapá\n8\ncasa\n9\nlibro\n0\nperro",
+      "feedback": "- button:\n  - img\n- progressbar:\n  - text: 4 in a row\n  - img\n- img\n- text: \"5\"\n- heading \"Select the matching pairs\" [level=1]\n- button \"1 mom\" [disabled]:\n  - text: 1 mom\n  - img\n  - img\n- button \"2 dad\" [disabled]:\n  - text: 2 dad\n  - img\n  - img\n- button \"3 dog\" [disabled]:\n  - text: 3 dog\n  - img\n  - img\n- button \"4 book\" [disabled]:\n  - text: 4 book\n  - img\n  - img\n- button \"5 house\" [disabled]:\n  - text: 5 house\n  - img\n  - img\n- button \"6 mamá\" [disabled]:\n  - text: 6 mamá\n  - img\n  - img\n- button \"7 papá\" [disabled]:\n  - text: 7 papá\n  - img\n  - img\n- button \"8 casa\" [disabled]:\n  - text: 8 casa\n  - img\n  - img\n- button \"9 libro\" [disabled]:\n  - text: 9 libro\n  - img\n  - img\n- button \"0 perro\" [disabled]:\n  - text: 0 perro\n  - img\n  - img\n- heading \"Great!\" [level=2]\n- button \"Too easy\"\n- button \"Too difficult\"\n- button \"Report\"\n- button \"Continue\""
+    },
+    {
+      "lesson": 2,
+      "step": 4,
+      "kind": "matching",
+      "prompt": "Select the matching pairs",
+      "before": "- button:\n  - img\n- progressbar\n- img\n- text: \"5\"\n- heading \"Select the matching pairs\" [level=1]\n- button \"1 milk\":\n  - text: 1 milk\n  - img\n  - img\n- button \"2 water\":\n  - text: 2 water\n  - img\n  - img\n- button \"3 cat\":\n  - text: 3 cat\n  - img\n  - img\n- button \"4 house\":\n  - text: 4 house\n  - img\n  - img\n- button \"5 suitcase\":\n  - text: 5 suitcase\n  - img\n  - img\n- button \"6 leche\":\n  - text: 6 leche\n  - img\n  - img\n- button \"7 maleta\":\n  - text: 7 maleta\n  - img\n  - img\n- button \"8 casa\":\n  - text: 8 casa\n  - img\n  - img\n- button \"9 agua\":\n  - text: 9 agua\n  - img\n  - img\n- button \"0 gato\":\n  - text: 0 gato\n  - img\n  - img\n- button \"Skip\"\n- button \"Check\" [disabled]",
+      "text": "Select the matching pairs\n1\nmilk\n2\nwater\n3\ncat\n4\nhouse\n5\nsuitcase\n6\nleche\n7\nmaleta\n8\ncasa\n9\nagua\n0\ngato",
+      "feedback": "- button:\n  - img\n- progressbar:\n  - text: 5 in a row\n  - img\n- img\n- text: \"5\"\n- heading \"Select the matching pairs\" [level=1]\n- button \"1 milk\" [disabled]:\n  - text: 1 milk\n  - img\n  - img\n- button \"2 water\" [disabled]:\n  - text: 2 water\n  - img\n  - img\n- button \"3 cat\" [disabled]:\n  - text: 3 cat\n  - img\n  - img\n- button \"4 house\" [disabled]:\n  - text: 4 house\n  - img\n  - img\n- button \"5 suitcase\" [disabled]:\n  - text: 5 suitcase\n  - img\n  - img\n- button \"6 leche\" [disabled]:\n  - text: 6 leche\n  - img\n  - img\n- button \"7 maleta\" [disabled]:\n  - text: 7 maleta\n  - img\n  - img\n- button \"8 casa\" [disabled]:\n  - text: 8 casa\n  - img\n  - img\n- button \"9 agua\" [disabled]:\n  - text: 9 agua\n  - img\n  - img\n- button \"0 gato\" [disabled]:\n  - text: 0 gato\n  - img\n  - img\n- heading \"Excellent!\" [level=2]\n- button \"Too easy\"\n- button \"Too difficult\"\n- button \"Report\"\n- button \"Continue\""
+    },
+    {
+      "lesson": 2,
+      "step": 5,
+      "kind": "word_tiles",
+      "prompt": "Write this in English",
+      "before": "- button:\n  - img\n- progressbar\n- img\n- text: \"5\"\n- img\n- text: New word\n- heading \"Write this in English\" [level=1]\n- button\n- img\n- button \"suitcase\"\n- button \"house\"\n- button \"my\"\n- button \"cat\"\n- img\n- text: Cool! 5 in a row!\n- button \"Check\" [disabled]",
+      "text": "NEW WORD\nWrite this in English\nmi maleta\nsuitcase\nhouse\nmy\ncat",
+      "hints": [
+        "mi",
+        "maleta"
+      ],
+      "feedback": "- button:\n  - img\n- progressbar:\n  - text: 6 in a row\n  - img\n- img\n- text: \"5\"\n- img\n- text: New word\n- heading \"Write this in English\" [level=1]\n- button:\n  - img\n- img\n- button \"suitcase\" [disabled]\n- button \"house\" [disabled]\n- button \"my\" [disabled]\n- button \"cat\" [disabled]\n- heading \"Nicely done!\" [level=2]\n- button \"Too easy\"\n- button \"Too difficult\"\n- button \"Report\"\n- button \"Continue\"\n- button \"my\" [disabled]\n- button \"suitcase\" [disabled]"
+    },
+    {
+      "lesson": 2,
+      "step": 6,
+      "kind": "choice",
+      "prompt": "Select the correct meaning: suitcase",
+      "before": "- button:\n  - img\n- progressbar\n- img\n- text: \"5\"\n- heading \"Select the correct meaning\" [level=1]\n- text: suitcase\n- img\n- radiogroup \"choice\":\n  - radio \"1 libro\":\n    - text: 1 libro\n    - img\n    - img\n  - radio \"2 casa\":\n    - text: 2 casa\n    - img\n    - img\n  - radio \"3 maleta\":\n    - text: 3 maleta\n    - img\n    - img\n- button \"Skip\"\n- button \"Check\" [disabled]",
+      "text": "Select the correct meaning\nsuitcase\n1\nlibro\n2\ncasa\n3\nmaleta",
+      "feedback": "- button:\n  - img\n- progressbar: 7 in a row\n- img\n- text: \"5\"\n- heading \"Select the correct meaning\" [level=1]\n- text: suitcase\n- img\n- radiogroup \"choice\":\n  - radio \"1 libro\" [disabled]:\n    - text: 1 libro\n    - img\n    - img\n  - radio \"2 casa\" [disabled]:\n    - text: 2 casa\n    - img\n    - img\n  - radio \"3 maleta\" [checked] [disabled]:\n    - text: 3 maleta\n    - img\n    - img\n- heading \"Great job!\" [level=2]\n- button \"Too easy\"\n- button \"Too difficult\"\n- button \"Report\"\n- button \"Continue\""
+    },
+    {
+      "lesson": 2,
+      "step": 7,
+      "kind": "word_tiles",
+      "prompt": "Write this in English",
+      "before": "- button:\n  - img\n- progressbar\n- img\n- text: \"5\"\n- heading \"Write this in English\" [level=1]\n- button:\n  - img\n- img\n- button \"house\"\n- button \"my\"\n- button \"book\"\n- button \"dog\"\n- button \"Skip\"\n- button \"Check\" [disabled]",
+      "text": "Write this in English\nmi casa\nhouse\nmy\nbook\ndog",
+      "hints": [
+        "mi",
+        "casa"
+      ],
+      "feedback": "- button:\n  - img\n- progressbar: 8 in a row\n- img\n- text: \"5\"\n- heading \"Write this in English\" [level=1]\n- button:\n  - img\n- img\n- button \"house\" [disabled]\n- button \"my\" [disabled]\n- button \"book\" [disabled]\n- button \"dog\" [disabled]\n- heading \"Nice!\" [level=2]\n- button \"Too easy\"\n- button \"Too difficult\"\n- button \"Report\"\n- button \"Continue\"\n- button \"my\" [disabled]\n- button \"house\" [disabled]"
+    },
+    {
+      "lesson": 2,
+      "step": 8,
+      "kind": "choice",
+      "prompt": "Select the correct meaning: house",
+      "before": "- button:\n  - img\n- progressbar\n- img\n- text: \"5\"\n- heading \"Select the correct meaning\" [level=1]\n- text: house\n- img\n- radiogroup \"choice\":\n  - radio \"1 maleta\":\n    - text: 1 maleta\n    - img\n    - img\n  - radio \"2 casa\":\n    - text: 2 casa\n    - img\n    - img\n  - radio \"3 libro\":\n    - text: 3 libro\n    - img\n    - img\n- button \"Skip\"\n- button \"Check\" [disabled]",
+      "text": "Select the correct meaning\nhouse\n1\nmaleta\n2\ncasa\n3\nlibro",
+      "feedback": "- button:\n  - img\n- progressbar: 9 in a row\n- img\n- text: \"5\"\n- heading \"Select the correct meaning\" [level=1]\n- text: house\n- img\n- radiogroup \"choice\":\n  - radio \"1 maleta\" [disabled]:\n    - text: 1 maleta\n    - img\n    - img\n  - radio \"2 casa\" [checked] [disabled]:\n    - text: 2 casa\n    - img\n    - img\n  - radio \"3 libro\" [disabled]:\n    - text: 3 libro\n    - img\n    - img\n- heading \"Awesome!\" [level=2]\n- button \"Too easy\"\n- button \"Too difficult\"\n- button \"Report\"\n- button \"Continue\""
+    },
+    {
+      "lesson": 2,
+      "step": 9,
+      "kind": "word_tiles",
+      "prompt": "Write this in English",
+      "before": "- button:\n  - img\n- progressbar\n- img\n- text: \"5\"\n- heading \"Write this in English\" [level=1]\n- button:\n  - img\n- img\n- button \"dog\"\n- button \"my\"\n- button \"cat\"\n- button \"book\"\n- button \"Skip\"\n- button \"Check\" [disabled]",
+      "text": "Write this in English\nmi libro\ndog\nmy\ncat\nbook",
+      "hints": [
+        "mi",
+        "libro"
+      ],
+      "feedback": "- button:\n  - img\n- progressbar:\n  - text: 10 in a row\n  - img\n- img\n- text: \"5\"\n- heading \"Write this in English\" [level=1]\n- button:\n  - img\n- img\n- button \"dog\" [disabled]\n- button \"my\" [disabled]\n- button \"cat\" [disabled]\n- button \"book\" [disabled]\n- heading \"Nice job!\" [level=2]\n- button \"Too easy\"\n- button \"Too difficult\"\n- button \"Report\"\n- button \"Continue\"\n- button \"my\" [disabled]\n- button \"book\" [disabled]"
+    },
+    {
+      "lesson": 2,
+      "step": 10,
+      "kind": "choice",
+      "prompt": "Select the correct meaning: book",
+      "before": "- button:\n  - img\n- progressbar\n- img\n- text: \"5\"\n- heading \"Select the correct meaning\" [level=1]\n- text: book\n- img\n- radiogroup \"choice\":\n  - radio \"1 agua\":\n    - text: 1 agua\n    - img\n    - img\n  - radio \"2 libro\":\n    - text: 2 libro\n    - img\n    - img\n  - radio \"3 perro\":\n    - text: 3 perro\n    - img\n    - img\n- img\n- text: 10 in a row! You’ve learned so much!\n- button \"Check\" [disabled]",
+      "text": "Select the correct meaning\nbook\n1\nagua\n2\nlibro\n3\nperro",
+      "feedback": "- button:\n  - img\n- progressbar: 11 in a row\n- img\n- text: \"5\"\n- heading \"Select the correct meaning\" [level=1]\n- text: book\n- img\n- radiogroup \"choice\":\n  - radio \"1 agua\" [disabled]:\n    - text: 1 agua\n    - img\n    - img\n  - radio \"2 libro\" [checked] [disabled]:\n    - text: 2 libro\n    - img\n    - img\n  - radio \"3 perro\" [disabled]:\n    - text: 3 perro\n    - img\n    - img\n- heading \"Nice!\" [level=2]\n- button \"Too easy\"\n- button \"Too difficult\"\n- button \"Report\"\n- button \"Continue\""
+    },
+    {
+      "lesson": 2,
+      "step": 11,
+      "kind": "matching",
+      "prompt": "Select the matching pairs",
+      "before": "- button:\n  - img\n- progressbar\n- img\n- text: \"5\"\n- heading \"Select the matching pairs\" [level=1]\n- button \"1 my dog\":\n  - text: 1 my dog\n  - img\n  - img\n- button \"2 my dad\":\n  - text: 2 my dad\n  - img\n  - img\n- button \"3 my house\":\n  - text: 3 my house\n  - img\n  - img\n- button \"4 my mom\":\n  - text: 4 my mom\n  - img\n  - img\n- button \"5 my cat\":\n  - text: 5 my cat\n  - img\n  - img\n- button \"6 mi perro\":\n  - text: 6 mi perro\n  - img\n  - img\n- button \"7 mi casa\":\n  - text: 7 mi casa\n  - img\n  - img\n- button \"8 mi papá\":\n  - text: 8 mi papá\n  - img\n  - img\n- button \"9 mi gato\":\n  - text: 9 mi gato\n  - img\n  - img\n- button \"0 mi mamá\":\n  - text: 0 mi mamá\n  - img\n  - img\n- button \"Skip\"\n- button \"Check\" [disabled]",
+      "text": "Select the matching pairs\n1\nmy dog\n2\nmy dad\n3\nmy house\n4\nmy mom\n5\nmy cat\n6\nmi perro\n7\nmi casa\n8\nmi papá\n9\nmi gato\n0\nmi mamá",
+      "feedback": "- button:\n  - img\n- progressbar:\n  - text: 12 in a row\n  - img\n- img\n- text: \"5\"\n- heading \"Select the matching pairs\" [level=1]\n- button \"1 my dog\" [disabled]:\n  - text: 1 my dog\n  - img\n  - img\n- button \"2 my dad\" [disabled]:\n  - text: 2 my dad\n  - img\n  - img\n- button \"3 my house\" [disabled]:\n  - text: 3 my house\n  - img\n  - img\n- button \"4 my mom\" [disabled]:\n  - text: 4 my mom\n  - img\n  - img\n- button \"5 my cat\" [disabled]:\n  - text: 5 my cat\n  - img\n  - img\n- button \"6 mi perro\" [disabled]:\n  - text: 6 mi perro\n  - img\n  - img\n- button \"7 mi casa\" [disabled]:\n  - text: 7 mi casa\n  - img\n  - img\n- button \"8 mi papá\" [disabled]:\n  - text: 8 mi papá\n  - img\n  - img\n- button \"9 mi gato\" [disabled]:\n  - text: 9 mi gato\n  - img\n  - img\n- button \"0 mi mamá\" [disabled]:\n  - text: 0 mi mamá\n  - img\n  - img\n- heading \"Good job!\" [level=2]\n- button \"Too easy\"\n- button \"Too difficult\"\n- button \"Report\"\n- button \"Continue\""
+    },
+    {
+      "lesson": 3,
+      "step": 0,
+      "kind": "choice",
+      "prompt": "Which one of these is “green”?",
+      "before": "- button:\n  - img\n- progressbar:\n  - img\n- img\n- text: \"5\"\n- img\n- text: New word\n- heading \"Which one of these is “green”?\" [level=1]\n- radiogroup \"choice\":\n  - radio \"mamá 1\":\n    - text: mamá 1\n    - img\n    - img\n  - radio \"maleta 2\":\n    - text: maleta 2\n    - img\n    - img\n  - radio \"verde 3\":\n    - text: verde 3\n    - img\n    - img\n- button \"Skip\"\n- button \"Check\" [disabled]",
+      "text": "NEW WORD\nWhich one of these is “green”?\nmamá\n1\nmaleta\n2\nverde\n3",
+      "illustrations": [
+        {
+          "text": "mamá\n1",
+          "backgrounds": [
+            {
+              "background": "url(\"https://d2pur3iezf4d1j.cloudfront.net/images/663d3893596e4841ad991ef1dc02ddbc\")",
+              "size": "contain",
+              "rect": [
+                326,
+                297,
+                142.65625,
+                160
+              ]
+            }
+          ]
+        },
+        {
+          "text": "maleta\n2",
+          "backgrounds": [
+            {
+              "background": "url(\"https://d2pur3iezf4d1j.cloudfront.net/images/a6c7cbf5ac78d674ecde39a066508ee2\")",
+              "size": "contain",
+              "rect": [
+                528.65625,
+                297,
+                142.671875,
+                160
+              ]
+            }
+          ]
+        },
+        {
+          "text": "verde\n3",
+          "backgrounds": [
+            {
+              "background": "url(\"https://d2pur3iezf4d1j.cloudfront.net/images/c1fba0f6343b3c5392b4b556b40274fa\")",
+              "size": "contain",
+              "rect": [
+                731.328125,
+                297,
+                142.671875,
+                160
+              ]
+            }
+          ]
+        }
+      ],
+      "feedback": "- button:\n  - img\n- progressbar:\n  - img\n- img\n- text: \"5\"\n- img\n- text: New word\n- heading \"Which one of these is “green”?\" [level=1]\n- radiogroup \"choice\":\n  - radio \"mamá 1\" [disabled]:\n    - text: mamá 1\n    - img\n    - img\n  - radio \"maleta 2\" [disabled]:\n    - text: maleta 2\n    - img\n    - img\n  - radio \"verde 3\" [checked] [disabled]:\n    - text: verde 3\n    - img\n    - img\n- heading \"Nice!\" [level=2]\n- button \"Too easy\"\n- button \"Too difficult\"\n- button \"Report\"\n- button \"Continue\""
+    },
+    {
+      "lesson": 3,
+      "step": 1,
+      "kind": "choice",
+      "prompt": "Which one of these is “blue”?",
+      "before": "- button:\n  - img\n- progressbar\n- img\n- text: \"5\"\n- img\n- text: New word\n- heading \"Which one of these is “blue”?\" [level=1]\n- radiogroup \"choice\":\n  - radio \"perro 1\":\n    - text: perro 1\n    - img\n    - img\n  - radio \"casa 2\":\n    - text: casa 2\n    - img\n    - img\n  - radio \"azul 3\":\n    - text: azul 3\n    - img\n    - img\n- button \"Skip\"\n- button \"Check\" [disabled]",
+      "text": "NEW WORD\nWhich one of these is “blue”?\nperro\n1\ncasa\n2\nazul\n3",
+      "illustrations": [
+        {
+          "text": "perro\n1",
+          "backgrounds": [
+            {
+              "background": "url(\"https://d2pur3iezf4d1j.cloudfront.net/images/d8adb479aed80e6420f566afea110eb1\")",
+              "size": "contain",
+              "rect": [
+                326,
+                297,
+                142.65625,
+                160
+              ]
+            }
+          ]
+        },
+        {
+          "text": "casa\n2",
+          "backgrounds": [
+            {
+              "background": "url(\"https://d2pur3iezf4d1j.cloudfront.net/images/6d966ea1c0962c0b81bf2f1f82fc18fd\")",
+              "size": "contain",
+              "rect": [
+                528.65625,
+                297,
+                142.671875,
+                160
+              ]
+            }
+          ]
+        },
+        {
+          "text": "azul\n3",
+          "backgrounds": [
+            {
+              "background": "url(\"https://d2pur3iezf4d1j.cloudfront.net/images/fc102c2c6544341f2b61659af8acb4c2\")",
+              "size": "contain",
+              "rect": [
+                731.328125,
+                297,
+                142.671875,
+                160
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "blocked_state": "- button:\n  - img\n- progressbar\n- img\n- text: \"5\"\n- img\n- text: New word\n- heading \"Which one of these is “blue”?\" [level=1]\n- radiogroup \"choice\":\n  - radio \"perro 1\":\n    - text: perro 1\n    - img\n    - img\n  - radio \"casa 2\":\n    - text: casa 2\n    - img\n    - img\n  - radio \"azul 3\":\n    - text: azul 3\n    - img\n    - img\n- button \"Skip\"\n- button \"Check\" [disabled]",
+  "knowledge": {
+    "source": "Actual checked choice in positive reference feedback",
+    "entries": {
+      "cat": {
+        "spanish": "gato",
+        "evidence": "projects/duolingo-web/evidence/exploration-v4/curriculum-first.json",
+        "step": 10
+      },
+      "dog": {
+        "spanish": "perro",
+        "evidence": "projects/duolingo-web/evidence/exploration-v4/curriculum-first.json",
+        "step": 5
+      },
+      "water": {
+        "spanish": "agua",
+        "evidence": "projects/duolingo-web/evidence/exploration-v4/curriculum-first.json",
+        "step": 6
+      },
+      "milk": {
+        "spanish": "leche",
+        "evidence": "projects/duolingo-web/evidence/exploration-v4/curriculum-first.json",
+        "step": 3
+      },
+      "mom": {
+        "spanish": "mamá",
+        "evidence": "projects/duolingo-web/evidence/exploration-v4/curriculum-first.json",
+        "step": 7
+      },
+      "dad": {
+        "spanish": "papá",
+        "evidence": "projects/duolingo-web/evidence/exploration-v4/curriculum-first.json",
+        "step": 9
+      },
+      "book": {
+        "spanish": "libro",
+        "evidence": "projects/duolingo-web/evidence/exploration-v4/curriculum-second-01.json",
+        "step": 10
+      },
+      "house": {
+        "spanish": "casa",
+        "evidence": "projects/duolingo-web/evidence/exploration-v4/curriculum-second-01.json",
+        "step": 8
+      },
+      "suitcase": {
+        "spanish": "maleta",
+        "evidence": "projects/duolingo-web/evidence/exploration-v4/curriculum-second-01.json",
+        "step": 6
+      },
+      "green": {
+        "spanish": "verde",
+        "evidence": "projects/duolingo-web/evidence/exploration-v4/sound-effects-speech-green.json",
+        "step": 0
+      }
+    },
+    "limitations": [
+      "Vocabulary learning is not exploration-policy self-improvement",
+      "Unknown prompts remain unresolved; no candidate answers are read"
+    ]
+  }
+}

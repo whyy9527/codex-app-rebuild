@@ -10,8 +10,17 @@ enum ReferenceStyle {
     }()
     static let green = Color(red: 88/255, green: 204/255, blue: 0)
     static let blue = Color(red: 28/255, green: 176/255, blue: 246/255)
-    static let border = Color(white: 229/255)
-    static let ink = Color(white: 75/255)
+    private static func adaptive(_ light: UInt32, _ dark: UInt32) -> Color {
+        Color(nsColor: NSColor(name: nil) { appearance in
+            let value = appearance.bestMatch(from: [.aqua, .darkAqua]) == .darkAqua ? dark : light
+            return NSColor(srgbRed: Double((value >> 16) & 255) / 255, green: Double((value >> 8) & 255) / 255, blue: Double(value & 255) / 255, alpha: 1)
+        })
+    }
+    static let border = adaptive(0xe5e5e5, 0x37464f)
+    static let ink = adaptive(0x4b4b4b, 0xf1f7fb)
+    static let secondaryInk = adaptive(0x777777, 0xdce6ec)
+    static let disclosureInk = adaptive(0xafafaf, 0x52656d)
+    static let background = adaptive(0xffffff, 0x131f24)
     static func registerFonts() {
         for name in ["font-0", "font-1"] {
             if let url = Bundle.module.url(forResource: name, withExtension: "ttf", subdirectory: "Reference") {

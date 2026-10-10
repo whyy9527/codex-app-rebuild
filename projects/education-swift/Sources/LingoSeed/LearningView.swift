@@ -11,7 +11,7 @@ struct LearningView: View {
             VStack(spacing: 0) {
                 if let lesson = model.lesson {
                     lessonPage(lesson)
-                } else if model.destination == "Learn" {
+                } else if ["Learn", "Settings"].contains(model.destination) {
                     ReferenceHome(model: model)
                 } else {
                     HStack(spacing: 0) {
@@ -31,7 +31,8 @@ struct LearningView: View {
             }
         }
         .frame(minWidth: 780, minHeight: 660)
-        .foregroundStyle(ink).background(.white)
+        .foregroundStyle(ink).background(ReferenceStyle.background)
+        .preferredColorScheme(model.preferences.darkMode == "On" ? .dark : model.preferences.darkMode == "Off" ? .light : nil)
         .sheet(isPresented: $model.showingGuide) {
             VStack(alignment: .leading, spacing: 24) {
                 Text("Unit guidebook").font(.largeTitle.bold()).accessibilityIdentifier("guide-title")

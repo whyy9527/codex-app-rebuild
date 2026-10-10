@@ -1,0 +1,159 @@
+{
+  "events": [
+    {
+      "control": "Sound effects",
+      "method": "PATCH",
+      "host": "www.duolingo.com",
+      "path": "/2023-05-23/users/:id",
+      "status": 200,
+      "body_keys": [
+        "signal",
+        "enableSoundEffects"
+      ],
+      "boolean_fields": {
+        "enableSoundEffects": false
+      }
+    },
+    {
+      "control": "Sound effects",
+      "method": "POST",
+      "host": "excess.duolingo.com",
+      "path": "/batch",
+      "status": 200,
+      "body_keys": [
+        "0"
+      ],
+      "boolean_fields": {}
+    },
+    {
+      "control": "Animations",
+      "method": "PATCH",
+      "host": "www.duolingo.com",
+      "path": "/2023-05-23/users/:id",
+      "status": 200,
+      "body_keys": [
+        "signal",
+        "animationEnabled"
+      ],
+      "boolean_fields": {
+        "animationEnabled": false
+      }
+    },
+    {
+      "control": "Animations",
+      "method": "POST",
+      "host": "excess.duolingo.com",
+      "path": "/batch",
+      "status": 200,
+      "body_keys": [
+        "0"
+      ],
+      "boolean_fields": {}
+    },
+    {
+      "control": "Motivational messages",
+      "method": "POST",
+      "host": "excess.duolingo.com",
+      "path": "/batch",
+      "status": 200,
+      "body_keys": [
+        "0"
+      ],
+      "boolean_fields": {}
+    },
+    {
+      "control": "Motivational messages",
+      "method": "POST",
+      "host": "excess.duolingo.com",
+      "path": "/batch",
+      "status": 200,
+      "body_keys": [
+        "0"
+      ],
+      "boolean_fields": {}
+    },
+    {
+      "control": "Motivational messages",
+      "method": "PATCH",
+      "host": "www.duolingo.com",
+      "path": "/rocks/1/containers/learning_app_ui_preferences/users/:id",
+      "status": 200,
+      "body_keys": [
+        "entries",
+        "generation_id"
+      ],
+      "boolean_fields": {}
+    },
+    {
+      "control": "Listening exercises",
+      "method": "PATCH",
+      "host": "www.duolingo.com",
+      "path": "/2023-05-23/users/:id",
+      "status": 200,
+      "body_keys": [
+        "signal",
+        "enableSpeaker"
+      ],
+      "boolean_fields": {
+        "enableSpeaker": false
+      }
+    },
+    {
+      "control": "Listening exercises",
+      "method": "POST",
+      "host": "excess.duolingo.com",
+      "path": "/batch",
+      "status": 200,
+      "body_keys": [
+        "0"
+      ],
+      "boolean_fields": {}
+    }
+  ],
+  "storage": [
+    {
+      "control": "Sound effects",
+      "changes": [
+        {
+          "key": "duo.state",
+          "type": "string",
+          "boolean_value": null,
+          "boolean_fields": {}
+        }
+      ]
+    },
+    {
+      "control": "Animations",
+      "changes": [
+        {
+          "key": "duo.state",
+          "type": "string",
+          "boolean_value": null,
+          "boolean_fields": {}
+        }
+      ]
+    },
+    {
+      "control": "Motivational messages",
+      "changes": [
+        {
+          "key": "duo.state",
+          "type": "string",
+          "boolean_value": null,
+          "boolean_fields": {}
+        }
+      ]
+    },
+    {
+      "control": "Listening exercises",
+      "changes": [
+        {
+          "key": "duo.state",
+          "type": "string",
+          "boolean_value": null,
+          "boolean_fields": {}
+        }
+      ]
+    }
+  ]
+}

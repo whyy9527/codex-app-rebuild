@@ -1,0 +1,40 @@
+{
+  "kind": "visual_difference_measurement",
+  "status": "diagnostic_only",
+  "reference_pixels": [
+    1200,
+    732
+  ],
+  "candidate_pixels": [
+    1200,
+    732
+  ],
+  "normalization": {
+    "window_crop_pixels": [
+      0,
+      64,
+      2400,
+      1528
+    ],
+    "sample_scale": 2.0,
+    "resampling": "LANCZOS",
+    "basis": "Actual NSWindow contentLayoutRect; no product pixels excluded"
+  },
+  "limitations": [
+    "No product pass verdict",
+    "Caller must establish same course/progress/preferences and animation state"
+  ],
+  "reference_sha256": "949c397062a082e3a29cbbb9a52df78d0a1ee4dcec9c0e0f2fda8c680aa15e48",
+  "window_sha256": "b3824a6132f875901f4929e97bc56922303deda02c6ddb8d964baa2bb7dbc7ff",
+  "metadata_sha256": "150c0a270a5dc04bf6b353d15d124e2e2b85e82ada79e25a8d11251f07e50d86",
+  "mean_absolute_rgb": [
+    1.1174260018214937,
+    0.8340846994535519,
+    0.9475159380692167
+  ],
+  "rms_rgb": [
+    8.970504249685453,
+    7.438007150056977,
+    7.854511975856341
+  ]
+}

@@ -28,7 +28,11 @@ import AVFoundation
         precondition(audio.play(.correct))
         try await Task.sleep(for: .milliseconds(70))
         precondition(audio.isPlaying && audio.playbackTime > 0)
+        audio.effectsEnabled = false
+        precondition(!audio.isPlaying && !audio.play(.correct) && !audio.muted)
+        audio.effectsEnabled = true
+        precondition(audio.play(.correct))
         audio.muted = true
-        print("PASS four distinct decodable WAV cues; actual player time advances; mute stops/blocks; unmute resumes. Acoustic output remains unverified.")
+        print("PASS four distinct decodable WAV cues; actual player time advances; mute stops/blocks; unmute resumes; effects switch stops/blocks independently of global mute. Acoustic output remains unverified.")
     }
 }

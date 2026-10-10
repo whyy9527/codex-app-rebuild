@@ -7,10 +7,11 @@ import AVFoundation
     private var player: AVAudioPlayer?
     private let speech = AVSpeechSynthesizer()
     var muted = false { didSet { if muted { player?.stop(); speech.stopSpeaking(at: .immediate) } } }
+    var effectsEnabled = true { didSet { if !effectsEnabled { player?.stop() } } }
     var isPlaying: Bool { player?.isPlaying ?? false }
     var playbackTime: TimeInterval { player?.currentTime ?? 0 }
     @discardableResult func play(_ cue: Cue) -> Bool {
-        guard !muted else { return false }
+        guard !muted && effectsEnabled else { return false }
         player?.stop()
         speech.stopSpeaking(at: .immediate)
         do {

@@ -71,3 +71,10 @@ python3 projects/duolingo-web/verify-product.py --out artifacts/product-new
 ```
 
 统一入口会因未完成的前端需求返回失败，这是当前实际状态。具体回执与未探索分支见[探索记录](../duolingo-web/evidence/exploration-v4/README.md)。
+
+
+### Preferences修正
+
+设置页使用原版布局、字体、四个开关和三项外观选择。`LearningPreferences`保存非全局静音的偏好，`LearningAudio.effectsEnabled`单独控制音效，原来的全局静音继续控制所有输出。`ReferenceSettings`通过实际AX动作验证四个开关关闭后重启恢复、Dark mode=On重启恢复，以及四个开关的内容坐标几何。
+
+这些检查不代表课程效果已实现：Animations、Motivational messages、Listening exercises目前只保存偏好。原版相同契约还暴露了保存200后刷新恢复旧值的反例，统一产品入口会一并报告。当前完整证据和未知见[偏好与探索记录](../duolingo-web/evidence/exploration-v4/README.md)。

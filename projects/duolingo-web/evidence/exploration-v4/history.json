@@ -97,6 +97,10 @@
         {
           "id": "dark-mode",
           "description": "Select appearance and check System Default/On/Off"
+        },
+        {
+          "id": "all-switches-reload",
+          "description": "Turn four preferences off, reload, read their states"
         }
       ]
     },
@@ -203,6 +207,66 @@
           "description": "Answer the first book question and discover subsequent states"
         }
       ]
+    },
+    {
+      "id": "preferences-off-reloaded",
+      "evidence": "projects/duolingo-web/evidence/exploration-v4/preferences-interactions.json",
+      "actions": [
+        {
+          "id": "appearance-on-reload",
+          "description": "Select On, reload and read appearance"
+        }
+      ]
+    },
+    {
+      "id": "preferences-dark-reloaded",
+      "evidence": "projects/duolingo-web/evidence/exploration-v4/preferences-interactions.json",
+      "actions": [
+        {
+          "id": "appearance-off-default-restore",
+          "description": "Select Off, restore System Default and four switches"
+        }
+      ]
+    },
+    {
+      "id": "lesson-3-green",
+      "evidence": "projects/duolingo-web/evidence/exploration-v4/sound-effects-speech-green.json",
+      "actions": [
+        {
+          "id": "select-verde",
+          "description": "Select verde with Sound effects off, submit, inspect feedback and media invocation"
+        }
+      ]
+    },
+    {
+      "id": "lesson-3-green-feedback",
+      "evidence": "projects/duolingo-web/evidence/exploration-v4/sound-effects-speech-green.json",
+      "actions": [
+        {
+          "id": "continue",
+          "description": "Continue to discover the next question"
+        }
+      ]
+    },
+    {
+      "id": "fresh-lesson-3-green-feedback",
+      "evidence": "projects/duolingo-web/evidence/exploration-v4/multi-lesson-knowledge-01.json",
+      "actions": [
+        {
+          "id": "continue",
+          "description": "Advance after automatically answering known green prompt"
+        }
+      ]
+    },
+    {
+      "id": "fresh-lesson-3-blue",
+      "evidence": "projects/duolingo-web/evidence/exploration-v4/multi-lesson-knowledge-01.json",
+      "actions": [
+        {
+          "id": "resolve-blue",
+          "description": "Propose azul, then confirm feedback on the reference before adding knowledge"
+        }
+      ]
     }
   ],
   "transitions": [
@@ -282,6 +346,55 @@
       "to": "lesson-3-first-question",
       "outcome": "observed",
       "evidence": "projects/duolingo-web/evidence/exploration-v4/third-lesson-picture-source.json"
+    },
+    {
+      "from": "preferences",
+      "action": "all-switches-reload",
+      "to": "preferences-off-reloaded",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/exploration-v4/preferences-interactions.json"
+    },
+    {
+      "from": "preferences",
+      "action": "dark-mode",
+      "to": "preferences-dark-reloaded",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/exploration-v4/preferences-interactions.json"
+    },
+    {
+      "from": "preferences-off-reloaded",
+      "action": "appearance-on-reload",
+      "to": "preferences-dark-reloaded",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/exploration-v4/preferences-interactions.json"
+    },
+    {
+      "from": "preferences-dark-reloaded",
+      "action": "appearance-off-default-restore",
+      "to": "preferences",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/exploration-v4/preferences-interactions.json"
+    },
+    {
+      "from": "home-two-complete",
+      "action": "lesson-3",
+      "to": "lesson-3-green",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/exploration-v4/sound-effects-speech-green.json"
+    },
+    {
+      "from": "lesson-3-green",
+      "action": "select-verde",
+      "to": "lesson-3-green-feedback",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/exploration-v4/sound-effects-speech-green.json"
+    },
+    {
+      "from": "fresh-lesson-3-green-feedback",
+      "action": "continue",
+      "to": "fresh-lesson-3-blue",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/exploration-v4/multi-lesson-knowledge-01.json"
     }
   ]
 }
