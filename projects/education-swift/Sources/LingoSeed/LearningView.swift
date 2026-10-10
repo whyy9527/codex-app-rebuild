@@ -134,7 +134,7 @@ struct LearningView: View {
     }
     @ViewBuilder private func lessonPage(_ lesson: Lesson) -> some View {
         if lesson.complete, let page = model.settlement?.current {
-            ReferenceSettlement(page: page, allCorrect: lesson.mistakesMade == 0, advance: model.advanceSettlement)
+            ReferenceSettlement(page: page, mistakesMade: lesson.mistakesMade, advance: model.advanceSettlement)
         } else if model.entryPending, let entry = lesson.definition.entry {
             VStack(spacing: 32) {
                 Spacer()
@@ -164,6 +164,14 @@ struct LearningView: View {
                             Text(interlude.text).font(ReferenceStyle.font(28, bold: true)).multilineTextAlignment(.center).accessibilityIdentifier("lesson-interlude").accessibilityValue(interlude.id)
                         }.frame(maxWidth: .infinity)
                     }
+                    else if let speech = lesson.deferredSpeech {
+                        VStack(alignment: .leading, spacing: 32) {
+                            Text(speech.title).font(ReferenceStyle.font(28, bold: true)).accessibilityIdentifier("speech-title").accessibilityValue(speech.id)
+                            Button { model.playQuestion() } label: { Label(speech.phrase, systemImage: "speaker.wave.2.fill") }.font(ReferenceStyle.font(22)).accessibilityIdentifier("speech-play")
+                            Button("点击并开始录音") { model.error = "录音与识别尚未接入。" }
+                                .buttonStyle(ReferenceButton(color: ReferenceStyle.blue)).disabled(lesson.speechDeclined).accessibilityIdentifier("speech-record")
+                        }
+                    }
                     else { question(lesson) }
                 }.padding(30).frame(maxWidth: 660).frame(maxWidth: .infinity)
             }
@@ -171,6 +179,22 @@ struct LearningView: View {
             if lesson.interlude != nil {
                 HStack { Spacer(); Button(copy("CONTINUE", "继续")) { model.advance() }.buttonStyle(ReferenceButton()).frame(width: 150).accessibilityIdentifier("interlude-continue") }
                     .padding(.horizontal, 60).padding(.vertical, 28).frame(minHeight: 115)
+                    .overlay(alignment: .top) { Rectangle().fill(ReferenceStyle.border).frame(height: 2) }
+            } else if let speech = lesson.deferredSpeech {
+                HStack {
+                    if lesson.speechDeclined {
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text(speech.closedTitle).font(ReferenceStyle.font(22, bold: true)).accessibilityIdentifier("speech-closed")
+                            Text(speech.closedBody).font(ReferenceStyle.font(18))
+                        }
+                        Spacer()
+                        Button("继续") { model.advance() }.buttonStyle(ReferenceButton()).accessibilityIdentifier("speech-continue")
+                    } else {
+                        Button(speech.declineLabel) { model.declineSpeech() }.buttonStyle(.plain).accessibilityIdentifier("speech-decline")
+                        Spacer()
+                        Button("检查") {}.buttonStyle(ReferenceButton()).disabled(true)
+                    }
+                }.padding(.horizontal, 60).padding(.vertical, 28).frame(minHeight: 115)
                     .overlay(alignment: .top) { Rectangle().fill(ReferenceStyle.border).frame(height: 2) }
             } else if !lesson.complete { answerBar(lesson) }
         }

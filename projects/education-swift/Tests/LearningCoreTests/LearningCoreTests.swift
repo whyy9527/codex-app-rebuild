@@ -341,6 +341,55 @@ func actualEnglishTypedReview() throws {
     print("PASS source cold rejection, full hot tea correction, review and HOT acceptance; broader grader unverified")
 }
 func legacyCourse() throws -> Course { try course() }
+func actualEnglishFifthTrajectory() throws {
+    let source = try course(fixture: "fixture-reference-en-zh-v6.json")
+    try check(source.lessons.map { $0.questions.count } == [15,15,15,12,15], "Captured five-course sequence changed")
+    var lesson = Lesson(course: source, lessonIndex: 4, hearts: 4)
+    var graded = 0, speeches = 0, introductions = 0
+    while !lesson.complete {
+        if let speech = lesson.deferredSpeech {
+            speeches += 1
+            try check(speech.phrase == "I'd like hot coffee." && lesson.question.id == "en-zh-l5-adaptive7", "Speech inserted at wrong source position")
+            let position = lesson.position
+            lesson.advance(); lesson.addWord(lesson.question.answerWords[0]); lesson.submit()
+            try check(lesson.position == position && lesson.selectedWords.isEmpty && lesson.feedback == nil && !lesson.canSubmit, "Ungraded speech leaked into answering")
+            lesson.declineSpeech(); lesson.advance()
+            try check(lesson.hearts == 4 && lesson.mistakesMade == 0 && lesson.deferredSpeech == nil, "Declining speech was graded or consumed a heart")
+            continue
+        }
+        if let interlude = lesson.interlude {
+            introductions += 1
+            try check(interlude.id == "en-zh-l5-review-intro" && lesson.reviewing && lesson.question.id == "en-zh-l5-q7", "Source review introduction or target wrong")
+            try check(!lesson.canSubmit && lesson.enteredText.isEmpty, "Review introduction exposes stale answer")
+            lesson.advance(); continue
+        }
+        let q = lesson.question
+        switch q.kind {
+        case .wordTiles: for id in q.answerWords { lesson.addWord(id) }; lesson.submit()
+        case .textEntry:
+            lesson.enterText(q.id == "en-zh-l5-q7" ? (lesson.reviewing ? "HOT" : "cold") : q.answer)
+            lesson.submit()
+        case .matching:
+            if q.id == "en-zh-l5-q8" { lesson.matchLeft(q.pairs[0].id); lesson.matchRight(q.pairs[1].id) }
+            for pair in q.pairs { lesson.matchLeft(pair.id); lesson.matchRight(pair.id) }
+        case .choice: throw CheckFailure.failed("Unexpected fifth choice task")
+        }
+        try check(lesson.feedback == (q.id != "en-zh-l5-q7" || lesson.reviewing), "Captured answer outcome changed")
+        graded += 1; lesson.advance()
+    }
+    try check(graded == 16 && speeches == 1 && introductions == 1 && lesson.hearts == 2 && lesson.mistakesMade == 2, "Full mixed-error fifth trajectory diverged")
+    var flow = SettlementFlow(pages: lesson.definition.settlement!)
+    var kinds = [String]()
+    while let page = flow.current { kinds.append(page.kind); flow.advance() }
+    try check(kinds == ["result","daily_quests","gems","profile"], "Fifth settlement ordering changed")
+    var progress = LearningProgress()
+    for index in source.lessons.indices { progress.markCompleted(source, index: index) }
+    try check(!progress.completedCourses.contains(source.id), "Remaining three uncompiled lessons credited")
+    try check(source.pathNodes?[1].lessonIDs == ["lesson-5"] && source.pathNodes?[1].lessonCount == 4, "Second-node source progress lost")
+    let roundTrip = try JSONDecoder().decode(Course.self, from: JSONEncoder().encode(source))
+    try check(roundTrip == source, "Speech/review metadata lost in round-trip")
+    print("PASS full fifth mixed-error trajectory: 15 graded questions + ungraded speech + one typed review; settlement/home metadata; frontend pending")
+}
 do {
     try mistakeReview()
     try persistence()
@@ -356,7 +405,8 @@ do {
     try actualEnglishInputStates()
     try actualEnglishAudioPairing()
     try actualEnglishTypedReview()
-    print("14 business checks passed; core layer only")
+    try actualEnglishFifthTrajectory()
+    print("15 business checks passed; core layer only")
 } catch {
     FileHandle.standardError.write(Data(("FAIL " + String(describing: error) + "\n").utf8))
     exit(1)

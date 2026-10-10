@@ -11,6 +11,7 @@ p.add_argument('--home-reference',help='Compare this actual home PNG with native
 lessons=p.add_mutually_exclusive_group()
 lessons.add_argument('--second-lesson', action='store_true', help='Compare actual second-lesson normal and adaptive question captures')
 lessons.add_argument('--third-lesson', action='store_true', help='Compare actual third-lesson normal and adaptive question captures')
+lessons.add_argument('--fifth-lesson', action='store_true', help='Compare captured fifth mixed-error trajectory, including speech and settlement')
 lessons.add_argument('--fourth-lesson', action='store_true', help='Compare actual fourth 12-question challenge')
 a=p.parse_args()
 native=Path(a.native);source=Path('projects/duolingo-web/evidence/english-v1')
@@ -21,7 +22,7 @@ if a.second_lesson: source=Path('projects/duolingo-web/evidence/english-second-v
 if a.third_lesson: source=Path('projects/duolingo-web/evidence/english-third-v1')
 if a.fourth_lesson: source=Path('projects/duolingo-web/evidence/english-fourth-v1')
 observations={}
-for number in ((2,3) if a.fourth_lesson else (1,2) if a.second_lesson or a.third_lesson else (1,2,3)):
+for number in (() if a.fifth_lesson else (2,3) if a.fourth_lesson else (1,2) if a.second_lesson or a.third_lesson else (1,2,3)):
     for row in json.loads((source/f'replay-{number:02}.json').read_text())['observed']:
         if 'feedback' in row: observations[row['index']]=row
 rows=[]
@@ -41,6 +42,36 @@ else:
         for index in (12,13,14):
             for stage in ('before','feedback'):
                 pairs.append((index,stage,source/f'reference-english-third-adaptive-{index}-{stage}.png',native/f'en-zh-l3-q{index}-{stage}.png'))
+if a.fifth_lesson:
+    assert not a.home_reference
+    source=Path('projects/duolingo-web/evidence/english-next-node-v1')
+    for filename in ['replay-01.json','replay-02.json','replay-04.json','replay-05.json']:
+        for row in json.loads((source/filename).read_text())['observed']:
+            if 'feedback' not in row: continue
+            for stage in ['before','feedback']:
+                pairs.append((row['index'],stage,source/Path(row['screenshot_'+stage]).name,native/f"en-zh-l5-q{row['index']}-{stage}.png"))
+    for original,candidate in [
+        ('reference-next-question-2-before','en-zh-l5-q2-before'),
+        ('reference-listen-complete-before','en-zh-l5-q3-before'),
+        ('reference-listen-complete-feedback','en-zh-l5-q3-feedback'),
+        ('reference-next-02-question-5-before','en-zh-l5-q5-before'),
+        ('reference-reverse-feedback','en-zh-l5-q5-feedback'),
+        ('reference-speak-before','en-zh-l5-speech6-before'),
+        ('reference-speak-declined','en-zh-l5-speech6-closed'),
+        ('reference-hot-tea-wrong','en-zh-l5-q7-feedback'),
+        ('reference-match8-before','en-zh-l5-q8-before'),
+        ('reference-match8-wrong','en-zh-l5-q8-wrong'),
+        ('reference-match8-feedback','en-zh-l5-q8-feedback'),
+        ('reference-match11-before','en-zh-l5-q11-before'),
+        ('reference-match11-feedback','en-zh-l5-q11-feedback'),
+        ('reference-original14-before','en-zh-l5-q14-before'),
+        ('reference-original14-feedback','en-zh-l5-q14-feedback'),
+        ('reference-review-hot-feedback','en-zh-l5-q7-review-feedback'),
+        ('reference-lesson5-complete-settled','en-zh-l5-complete-window'),
+        ('reference-five-gems-settled','en-zh-l5-gems-window'),
+        ('reference-profile','en-zh-l5-profile-window'),
+        ('reference-home-after-five-uncovered','home-after-lesson-5-window')]:
+        pairs.append((None,'fifth-'+original,source/(original+'.png'),native/(candidate+'.png')))
 for index,stage,original,candidate in pairs:
     with Image.open(original) as im: reference=im.convert('RGB')
     with Image.open(candidate) as im:
@@ -56,7 +87,7 @@ for index,stage,original,candidate in pairs:
                  'native_sha256':hashlib.sha256(candidate.read_bytes()).hexdigest(),
                  'mean_absolute_rgb_difference':mean,
                  'status':'identical' if all(hi==0 for lo,hi in extrema) else 'different'})
-result={'kind':'same-viewport-pixel-diagnostic','native_trajectory':'home after first lesson, hearts4' if a.home_reference else 'fourth lesson all 12 accepted, starting hearts4' if a.fourth_lesson else 'third lesson all accepted, starting hearts4' if a.third_lesson else 'second lesson all accepted, starting hearts4' if a.second_lesson else 'first question wrong sugar, then correct, retry coffee',
+result={'kind':'same-viewport-pixel-diagnostic','native_trajectory':'fifth lesson from hearts4, cold and wrong pair, HOT review, deferred speech' if a.fifth_lesson else 'home after first lesson, hearts4' if a.home_reference else 'fourth lesson all 12 accepted, starting hearts4' if a.fourth_lesson else 'third lesson all accepted, starting hearts4' if a.third_lesson else 'second lesson all accepted, starting hearts4' if a.second_lesson else 'first question wrong sugar, then correct, retry coffee',
         'viewport':[w,h],'normalization':'Crop native titlebar using measured content rect, downsample2x with Lanczos; reference pixels unchanged',
         'rows':rows,'candidate_acceptance':'not_proven',
         'limitations':['This is an actual pixel diagnostic, not a substitute for frontend acceptance',

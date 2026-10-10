@@ -26,3 +26,6 @@ python3 -m capabilities.rebuild.discovery --workspace . --history projects/duoli
 ```
 
 当前源浏览器停在无遮罩的第二节点第2/4弹窗，尚未启动下一课。下一步将这条完整轨迹编入默认第五课，并继续第二节点其余三课、口语识别及分支探索，保持完整1:1目标。
+
+
+后续实现更新：完整第五轨迹已编译为英语v6并接入默认Swift；源捕获记录保持原样，当前验证与仍未完成的分支见[第五课原生证据](../english-fifth-native-v1/README.md)。

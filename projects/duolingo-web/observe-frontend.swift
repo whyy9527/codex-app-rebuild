@@ -120,6 +120,29 @@ func movePointer(to id: String) -> Bool {
     try? JSONSerialization.data(withJSONObject: pointerActions, options: [.prettyPrinted]).write(to: output.appendingPathComponent("pointer.json"))
     return true
 }
+func fillInput(_ value: String) throws {
+    try waitFor("answer-input")
+    let input = current().first { (attr($0, kAXIdentifierAttribute) as? String) == "answer-input" }!
+    guard AXUIElementSetAttributeValue(input, kAXFocusedAttribute as CFString, kCFBooleanTrue) == .success else { throw ProbeError(message: "Cannot focus actual input") }
+    // AX value assignment changes the field but can bypass SwiftUI's editing binding.
+    // Send actual keyboard events to our isolated child instead.
+    for down in [true, false] {
+        let selectAll = CGEvent(keyboardEventSource: nil, virtualKey: 0, keyDown: down)!
+        selectAll.flags = .maskCommand; selectAll.postToPid(child.processIdentifier)
+    }
+    for down in [true, false] { CGEvent(keyboardEventSource: nil, virtualKey: 51, keyDown: down)!.postToPid(child.processIdentifier) }
+    if !value.isEmpty {
+        let chars = Array(value.utf16)
+        for down in [true, false] {
+            let event = CGEvent(keyboardEventSource: nil, virtualKey: 0, keyDown: down)!
+            chars.withUnsafeBufferPointer { event.keyboardSetUnicodeString(stringLength: chars.count, unicodeString: $0.baseAddress!) }
+            event.postToPid(child.processIdentifier)
+        }
+    }
+    try waitFor("answer-input", value: value)
+    Thread.sleep(forTimeInterval: 0.15)
+}
+
 var states = ["home": observe()]
 try capture("home-window")
 if CommandLine.arguments.contains("--observe-home-popover") {
@@ -245,7 +268,16 @@ if CommandLine.arguments.contains("--walk-course") {
             }
             let questions = definition["questions"] as! [[String: Any]]
             let wrongFirst = CommandLine.arguments.contains("--english-first-wrong") && course["interfaceLanguage"] as? String == "zh" && lessonIndex == 0
+            let fifthErrors = CommandLine.arguments.contains("--english-fifth-mixed-errors") && definition["id"] as? String == "lesson-5"
             for question in questions {
+                if let speeches = definition["deferredSpeech"] as? [[String: String]], let speech = speeches.first(where: { $0["beforeQuestionID"] == question["id"] as? String }) {
+                    let id = speech["id"]!
+                    try waitFor("speech-title", value: id)
+                    states[id] = observe(); try capture(id + "-before")
+                    try press("speech-decline"); try waitFor("speech-closed")
+                    states[id + "-closed"] = observe(); try capture(id + "-closed")
+                    try press("speech-continue")
+                }
                 try waitFor("question-title", value: question["prompt"] as? String)
                 let key = question["id"] as! String
                 states[key] = observe()
@@ -256,34 +288,12 @@ if CommandLine.arguments.contains("--walk-course") {
                     func enabled(_ id: String) -> Bool {
                         current().first { (attr($0, kAXIdentifierAttribute) as? String) == id }.flatMap { attr($0, kAXEnabledAttribute) as? Bool } ?? false
                     }
-                    func fill(_ value: String) throws {
-                        try waitFor("answer-input")
-                        let input = current().first { (attr($0, kAXIdentifierAttribute) as? String) == "answer-input" }!
-                        guard AXUIElementSetAttributeValue(input, kAXFocusedAttribute as CFString, kCFBooleanTrue) == .success else { throw ProbeError(message: "Cannot focus actual input") }
-                        // AX value assignment changes the field but can bypass SwiftUI's editing binding.
-                        // Send actual keyboard events to our isolated child instead.
-                        for down in [true, false] {
-                            let selectAll = CGEvent(keyboardEventSource: nil, virtualKey: 0, keyDown: down)!
-                            selectAll.flags = .maskCommand; selectAll.postToPid(child.processIdentifier)
-                        }
-                        for down in [true, false] { CGEvent(keyboardEventSource: nil, virtualKey: 51, keyDown: down)!.postToPid(child.processIdentifier) }
-                        if !value.isEmpty {
-                            let chars = Array(value.utf16)
-                            for down in [true, false] {
-                                let event = CGEvent(keyboardEventSource: nil, virtualKey: 0, keyDown: down)!
-                                chars.withUnsafeBufferPointer { event.keyboardSetUnicodeString(stringLength: chars.count, unicodeString: $0.baseAddress!) }
-                                event.postToPid(child.processIdentifier)
-                            }
-                        }
-                        try waitFor("answer-input", value: value)
-                        Thread.sleep(forTimeInterval: 0.15)
-                    }
                     var interactions = ["empty_check_disabled": !enabled("check")]
-                    try fill("Te"); interactions["nonempty_check_enabled"] = enabled("check")
-                    try fill(""); interactions["cleared_check_disabled"] = !enabled("check")
+                    try fillInput("Te"); interactions["nonempty_check_enabled"] = enabled("check")
+                    try fillInput(""); interactions["cleared_check_disabled"] = !enabled("check")
                     if CommandLine.arguments.contains("--exercise-typed-review") {
                         let heartsBefore = current().first { (attr($0, kAXIdentifierAttribute) as? String) == "hearts" }.flatMap { attr($0, kAXValueAttribute) as? String }.flatMap(Int.init)
-                        try fill("cold"); try press("check"); try waitFor("continue")
+                        try fillInput("cold"); try press("check"); try waitFor("continue")
                         let heartsAfter = current().first { (attr($0, kAXIdentifierAttribute) as? String) == "hearts" }.flatMap { attr($0, kAXValueAttribute) as? String }.flatMap(Int.init)
                         var wrong = observe(); wrong["interactions"] = ["heart_decremented_once": heartsBefore != nil && heartsAfter == heartsBefore! - 1, "submitted_input_locked": !enabled("answer-input")]
                         states[key + "-wrong"] = wrong; try capture(key + "-wrong")
@@ -291,8 +301,8 @@ if CommandLine.arguments.contains("--walk-course") {
                         var review = observe()
                         review["interactions"] = ["review_input_empty": current().first { (attr($0, kAXIdentifierAttribute) as? String) == "answer-input" }.flatMap { attr($0, kAXValueAttribute) as? String } == ""]
                         states[key + "-review"] = review; try capture(key + "-review")
-                        try fill("HOT")
-                    } else { try fill(question["answer"] as! String) }
+                        try fillInput("HOT")
+                    } else { try fillInput(fifthErrors && key == "en-zh-l5-q7" ? "cold" : question["answer"] as! String) }
                     var observed = observe(); observed["interactions"] = interactions
                     states[key + "-filled"] = observed; try capture(key + "-filled")
                     try press("check"); try waitFor("continue")
@@ -302,7 +312,7 @@ if CommandLine.arguments.contains("--walk-course") {
                     let pairs = question["pairs"] as! [[String: Any]]
                     func value(_ id: String) -> String? { current().first { (attr($0, kAXIdentifierAttribute) as? String) == id }.flatMap { attr($0, kAXValueAttribute) as? String } }
                     func enabled(_ id: String) -> Bool { current().first { (attr($0, kAXIdentifierAttribute) as? String) == id }.flatMap { attr($0, kAXEnabledAttribute) as? Bool } ?? false }
-                    if CommandLine.arguments.contains("--exercise-wrong-audio-pair"), question["sourceType"] as? String == "listenMatch", pairs.count > 1 {
+                    if (CommandLine.arguments.contains("--exercise-wrong-audio-pair") || (fifthErrors && key == "en-zh-l5-q8")), question["sourceType"] as? String == "listenMatch", pairs.count > 1 {
                         let a = pairs[0]["id"] as! String, b = pairs[1]["id"] as! String
                         let before = Int(value("hearts") ?? "")
                         try press("pair-left-" + a); try press("pair-right-" + b)
@@ -365,6 +375,16 @@ if CommandLine.arguments.contains("--walk-course") {
                     states[interlude["id"]!] = observe(); try capture(interlude["id"]! + "-window")
                     try press("interlude-continue")
                 }
+            }
+            if fifthErrors {
+                let intro = definition["reviewInterlude"] as! [String: String]
+                try waitFor("lesson-interlude", value: intro["id"])
+                states[intro["id"]!] = observe(); try capture(intro["id"]! + "-window")
+                try press("interlude-continue"); try waitFor("review-label")
+                states["en-zh-l5-q7-review"] = observe(); try capture("en-zh-l5-q7-review")
+                try fillInput("HOT"); try press("check"); try waitFor("continue")
+                states["en-zh-l5-q7-review-feedback"] = observe(); try capture("en-zh-l5-q7-review-feedback")
+                try press("continue")
             }
             if wrongFirst {
                 let first = questions[0]

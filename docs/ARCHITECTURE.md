@@ -1,5 +1,7 @@
 # 架构
 
+英语v6新增`DeferredSpeech`非评分状态与课末`reviewInterlude`，均由实际源轨迹编译；口语暂缓不能借用正确答案反馈推进。`compile-english-fifth.py`拥有第五轨迹及资源清单，`freeze-english-fifth.py`将源需求追加到共享前端v10；原生驱动实际操作五课、错误、重练与结算，同一观察分别计算全集与第五课子集，不能累计回执。录音识别和其他未实现分支继续明确记录。当前运行证据见[第五课原生验证](../projects/duolingo-web/evidence/english-fifth-native-v1/README.md)。
+
 ## 当前运行结构
 
 Codex 使用原生工具观察和修改；MCP 提供七个任务操作；短 Hook 在 SessionStart 提供协议、Stop 检查是否继续、UserPromptSubmit 捕获显式暂停。Hook 不执行长验收，不启动模型。

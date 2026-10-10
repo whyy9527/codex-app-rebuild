@@ -5,7 +5,7 @@ import LearningCore
 /// remain gaps; this renderer does not substitute the old mascot or a fake course.
 struct ReferenceSettlement: View {
     let page: SettlementPage
-    let allCorrect: Bool
+    let mistakesMade: Int
     let advance: () -> Void
     private let yellow = Color(red: 1, green: 0.78, blue: 0)
     private let orange = Color(red: 1, green: 0.58, blue: 0)
@@ -22,7 +22,7 @@ struct ReferenceSettlement: View {
                 }.frame(width: 340).padding(.bottom, 110)
             } else {
                 HStack {
-                    if page.kind == "result" || page.kind == "streak" { secondary }
+                    if ["result", "streak", "daily_quests", "gems"].contains(page.kind) { secondary }
                     Spacer()
                     Button(page.continueLabel, action: advance)
                         .buttonStyle(ReferenceButton(color: page.kind == "streak" ? ReferenceStyle.blue : ReferenceStyle.green))
@@ -47,12 +47,20 @@ struct ReferenceSettlement: View {
             VStack(spacing: 12) {
                 Color.clear.frame(width: 260, height: 200)
                 Text(page.title).font(ReferenceStyle.font(28, bold: true)).foregroundStyle(yellow).accessibilityIdentifier("lesson-complete").accessibilityValue(page.title)
+                if let body = page.body { Text(body).font(ReferenceStyle.font(18)) }
                 HStack(spacing: 16) {
-                    statistic("总经验", value: String(page.experience ?? 0), color: yellow)
-                    // The source's wrong-answer settlement formula is unobserved.
-                    statistic("超级棒", value: allCorrect ? "100%" : "—", color: ReferenceStyle.green)
+                    statistic("总经验", value: page.observedMistakes == nil || page.observedMistakes == mistakesMade ? String(page.experience ?? 0) : "—", color: yellow)
+                    // Frozen observed result only, never an inferred scoring formula.
+                    statistic(page.accuracyLabel ?? "超级棒", value: page.observedMistakes == mistakesMade && page.observedAccuracy != nil ? "\(page.observedAccuracy!)%" : mistakesMade == 0 && page.observedMistakes == nil ? "100%" : "—", color: ReferenceStyle.green)
                 }
             }.padding(.bottom, 36)
+        case "daily_quests":
+            VStack(spacing: 28) {
+                Text(page.title).font(ReferenceStyle.font(28, bold: true)).accessibilityIdentifier("settlement-title").accessibilityValue(page.title)
+                Text(page.body ?? "").font(ReferenceStyle.font(20))
+                ProgressView(value: 1).tint(yellow).frame(width: 360)
+                Text("30 / 30").font(ReferenceStyle.font(20, bold: true))
+            }
         case "score":
             VStack(spacing: 28) {
                 Text("5").font(ReferenceStyle.font(72, bold: true)).foregroundStyle(ReferenceStyle.green)

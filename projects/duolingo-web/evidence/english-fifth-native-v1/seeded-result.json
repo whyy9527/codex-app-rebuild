@@ -1,0 +1,889 @@
+{
+  "kind": "frontend_requirements",
+  "contract_digest": "4aa53680abd32a15a284e4117fa4f260daaa4ac86ecfe0b3dcfbc89e6b2a8347",
+  "observation_digest": "20873d33bc49b406701a9d380d0e2c8247eb6fd0a079015bb5b4b54cde0a8c07",
+  "rows": [
+    {
+      "id": "en-zh-l5-q0-heading",
+      "state": "en-zh-l5-q0",
+      "status": "pass",
+      "expected": "用中文（简体）写出这句话"
+    },
+    {
+      "id": "en-zh-l5-q0-prompt",
+      "state": "en-zh-l5-q0",
+      "status": "pass",
+      "expected": "Coffee, please!"
+    },
+    {
+      "id": "en-zh-l5-q0-word-0",
+      "state": "en-zh-l5-q0",
+      "status": "pass",
+      "expected": "咖啡"
+    },
+    {
+      "id": "en-zh-l5-q0-word-1",
+      "state": "en-zh-l5-q0",
+      "status": "pass",
+      "expected": "谢谢"
+    },
+    {
+      "id": "en-zh-l5-q0-word-2",
+      "state": "en-zh-l5-q0",
+      "status": "pass",
+      "expected": "热茶"
+    },
+    {
+      "id": "en-zh-l5-q0-feedback-feedback",
+      "state": "en-zh-l5-q0-feedback",
+      "status": "pass",
+      "expected": "正确！"
+    },
+    {
+      "id": "en-zh-l5-q0-visual",
+      "state": "en-zh-l5-q0",
+      "status": "not_run",
+      "reason": "Full source/native visual equality not established by text or path completion"
+    },
+    {
+      "id": "en-zh-l5-q0-interaction-branches",
+      "state": "en-zh-l5-q0",
+      "status": "not_run",
+      "reason": "Full source/native interaction-branches equality not established by text or path completion"
+    },
+    {
+      "id": "en-zh-l5-q0-actual-audio",
+      "state": "en-zh-l5-q0",
+      "status": "not_run",
+      "reason": "Full source/native actual-audio equality not established by text or path completion"
+    },
+    {
+      "id": "en-zh-l5-q1-heading",
+      "state": "en-zh-l5-q1",
+      "status": "pass",
+      "expected": "用英语写出这句话"
+    },
+    {
+      "id": "en-zh-l5-q1-prompt",
+      "state": "en-zh-l5-q1",
+      "status": "pass",
+      "expected": "欢迎"
+    },
+    {
+      "id": "en-zh-l5-q1-word-0",
+      "state": "en-zh-l5-q1",
+      "status": "pass",
+      "expected": "welcome"
+    },
+    {
+      "id": "en-zh-l5-q1-word-1",
+      "state": "en-zh-l5-q1",
+      "status": "pass",
+      "expected": "hello"
+    },
+    {
+      "id": "en-zh-l5-q1-feedback-feedback",
+      "state": "en-zh-l5-q1-feedback",
+      "status": "pass",
+      "expected": "真棒！"
+    },
+    {
+      "id": "en-zh-l5-q1-visual",
+      "state": "en-zh-l5-q1",
+      "status": "not_run",
+      "reason": "Full source/native visual equality not established by text or path completion"
+    },
+    {
+      "id": "en-zh-l5-q1-interaction-branches",
+      "state": "en-zh-l5-q1",
+      "status": "not_run",
+      "reason": "Full source/native interaction-branches equality not established by text or path completion"
+    },
+    {
+      "id": "en-zh-l5-q1-actual-audio",
+      "state": "en-zh-l5-q1",
+      "status": "not_run",
+      "reason": "Full source/native actual-audio equality not established by text or path completion"
+    },
+    {
+      "id": "en-zh-l5-q2-heading",
+      "state": "en-zh-l5-q2",
+      "status": "pass",
+      "expected": "选择配对"
+    },
+    {
+      "id": "en-zh-l5-q2-visual",
+      "state": "en-zh-l5-q2",
+      "status": "not_run",
+      "reason": "Full source/native visual equality not established by text or path completion"
+    },
+    {
+      "id": "en-zh-l5-q2-interaction-branches",
+      "state": "en-zh-l5-q2",
+      "status": "not_run",
+      "reason": "Full source/native interaction-branches equality not established by text or path completion"
+    },
+    {
+      "id": "en-zh-l5-q2-actual-audio",
+      "state": "en-zh-l5-q2",
+      "status": "not_run",
+      "reason": "Full source/native actual-audio equality not established by text or path completion"
+    },
+    {
+      "id": "en-zh-l5-q3-heading",
+      "state": "en-zh-l5-q3",
+      "status": "pass",
+      "expected": "输入所缺单词"
+    },
+    {
+      "id": "en-zh-l5-q3-completionSuffix",
+      "state": "en-zh-l5-q3",
+      "status": "pass",
+      "expected": "or coffee?"
+    },
+    {
+      "id": "en-zh-l5-q3-feedback-feedback",
+      "state": "en-zh-l5-q3-feedback",
+      "status": "pass",
+      "expected": "太棒了！"
+    },
+    {
+      "id": "en-zh-l5-q3-visual",
+      "state": "en-zh-l5-q3",
+      "status": "not_run",
+      "reason": "Full source/native visual equality not established by text or path completion"
+    },
+    {
+      "id": "en-zh-l5-q3-interaction-branches",
+      "state": "en-zh-l5-q3",
+      "status": "not_run",
+      "reason": "Full source/native interaction-branches equality not established by text or path completion"
+    },
+    {
+      "id": "en-zh-l5-q3-actual-audio",
+      "state": "en-zh-l5-q3",
+      "status": "not_run",
+      "reason": "Full source/native actual-audio equality not established by text or path completion"
+    },
+    {
+      "id": "en-zh-l5-q4-heading",
+      "state": "en-zh-l5-q4",
+      "status": "pass",
+      "expected": "用英语写出这句话"
+    },
+    {
+      "id": "en-zh-l5-q4-prompt",
+      "state": "en-zh-l5-q4",
+      "status": "pass",
+      "expected": "我想要茶，谢谢。"
+    },
+    {
+      "id": "en-zh-l5-q4-word-0",
+      "state": "en-zh-l5-q4",
+      "status": "pass",
+      "expected": "you're welcome"
+    },
+    {
+      "id": "en-zh-l5-q4-word-1",
+      "state": "en-zh-l5-q4",
+      "status": "pass",
+      "expected": "like"
+    },
+    {
+      "id": "en-zh-l5-q4-word-2",
+      "state": "en-zh-l5-q4",
+      "status": "pass",
+      "expected": "tea"
+    },
+    {
+      "id": "en-zh-l5-q4-word-3",
+      "state": "en-zh-l5-q4",
+      "status": "pass",
+      "expected": "please"
+    },
+    {
+      "id": "en-zh-l5-q4-word-4",
+      "state": "en-zh-l5-q4",
+      "status": "pass",
+      "expected": "I'd"
+    },
+    {
+      "id": "en-zh-l5-q4-feedback-feedback",
+      "state": "en-zh-l5-q4-feedback",
+      "status": "pass",
+      "expected": "非常好！"
+    },
+    {
+      "id": "en-zh-l5-q4-visual",
+      "state": "en-zh-l5-q4",
+      "status": "not_run",
+      "reason": "Full source/native visual equality not established by text or path completion"
+    },
+    {
+      "id": "en-zh-l5-q4-interaction-branches",
+      "state": "en-zh-l5-q4",
+      "status": "not_run",
+      "reason": "Full source/native interaction-branches equality not established by text or path completion"
+    },
+    {
+      "id": "en-zh-l5-q4-actual-audio",
+      "state": "en-zh-l5-q4",
+      "status": "not_run",
+      "reason": "Full source/native actual-audio equality not established by text or path completion"
+    },
+    {
+      "id": "en-zh-l5-q5-heading",
+      "state": "en-zh-l5-q5",
+      "status": "pass",
+      "expected": "输入所缺单词"
+    },
+    {
+      "id": "en-zh-l5-q5-prompt",
+      "state": "en-zh-l5-q5",
+      "status": "pass",
+      "expected": "我想要茶。"
+    },
+    {
+      "id": "en-zh-l5-q5-completionPrefix",
+      "state": "en-zh-l5-q5",
+      "status": "pass",
+      "expected": "I'd like"
+    },
+    {
+      "id": "en-zh-l5-q5-completionSuffix",
+      "state": "en-zh-l5-q5",
+      "status": "pass",
+      "expected": "."
+    },
+    {
+      "id": "en-zh-l5-q5-feedback-feedback",
+      "state": "en-zh-l5-q5-feedback",
+      "status": "pass",
+      "expected": "你太棒了！"
+    },
+    {
+      "id": "en-zh-l5-q5-visual",
+      "state": "en-zh-l5-q5",
+      "status": "not_run",
+      "reason": "Full source/native visual equality not established by text or path completion"
+    },
+    {
+      "id": "en-zh-l5-q5-interaction-branches",
+      "state": "en-zh-l5-q5",
+      "status": "not_run",
+      "reason": "Full source/native interaction-branches equality not established by text or path completion"
+    },
+    {
+      "id": "en-zh-l5-q5-actual-audio",
+      "state": "en-zh-l5-q5",
+      "status": "not_run",
+      "reason": "Full source/native actual-audio equality not established by text or path completion"
+    },
+    {
+      "id": "en-zh-l5-adaptive7-heading",
+      "state": "en-zh-l5-adaptive7",
+      "status": "pass",
+      "expected": "用中文（简体）写出这句话"
+    },
+    {
+      "id": "en-zh-l5-adaptive7-prompt",
+      "state": "en-zh-l5-adaptive7",
+      "status": "pass",
+      "expected": "Coffee, please."
+    },
+    {
+      "id": "en-zh-l5-adaptive7-word-0",
+      "state": "en-zh-l5-adaptive7",
+      "status": "pass",
+      "expected": "谢谢"
+    },
+    {
+      "id": "en-zh-l5-adaptive7-word-1",
+      "state": "en-zh-l5-adaptive7",
+      "status": "pass",
+      "expected": "不客气"
+    },
+    {
+      "id": "en-zh-l5-adaptive7-word-2",
+      "state": "en-zh-l5-adaptive7",
+      "status": "pass",
+      "expected": "咖啡"
+    },
+    {
+      "id": "en-zh-l5-adaptive7-feedback-feedback",
+      "state": "en-zh-l5-adaptive7-feedback",
+      "status": "pass",
+      "expected": "不错哦！"
+    },
+    {
+      "id": "en-zh-l5-adaptive7-visual",
+      "state": "en-zh-l5-adaptive7",
+      "status": "not_run",
+      "reason": "Full source/native visual equality not established by text or path completion"
+    },
+    {
+      "id": "en-zh-l5-adaptive7-interaction-branches",
+      "state": "en-zh-l5-adaptive7",
+      "status": "not_run",
+      "reason": "Full source/native interaction-branches equality not established by text or path completion"
+    },
+    {
+      "id": "en-zh-l5-adaptive7-actual-audio",
+      "state": "en-zh-l5-adaptive7",
+      "status": "not_run",
+      "reason": "Full source/native actual-audio equality not established by text or path completion"
+    },
+    {
+      "id": "en-zh-l5-q7-heading",
+      "state": "en-zh-l5-q7",
+      "status": "pass",
+      "expected": "输入所缺单词"
+    },
+    {
+      "id": "en-zh-l5-q7-prompt",
+      "state": "en-zh-l5-q7",
+      "status": "pass",
+      "expected": "热茶"
+    },
+    {
+      "id": "en-zh-l5-q7-completionSuffix",
+      "state": "en-zh-l5-q7",
+      "status": "pass",
+      "expected": "tea"
+    },
+    {
+      "id": "en-zh-l5-q7-review-feedback-feedback",
+      "state": "en-zh-l5-q7-review-feedback",
+      "status": "pass",
+      "expected": "正确！"
+    },
+    {
+      "id": "en-zh-l5-q7-visual",
+      "state": "en-zh-l5-q7",
+      "status": "not_run",
+      "reason": "Full source/native visual equality not established by text or path completion"
+    },
+    {
+      "id": "en-zh-l5-q7-interaction-branches",
+      "state": "en-zh-l5-q7",
+      "status": "not_run",
+      "reason": "Full source/native interaction-branches equality not established by text or path completion"
+    },
+    {
+      "id": "en-zh-l5-q7-actual-audio",
+      "state": "en-zh-l5-q7",
+      "status": "not_run",
+      "reason": "Full source/native actual-audio equality not established by text or path completion"
+    },
+    {
+      "id": "en-zh-l5-q8-heading",
+      "state": "en-zh-l5-q8",
+      "status": "pass",
+      "expected": "选择配对"
+    },
+    {
+      "id": "en-zh-l5-q8-feedback-feedback",
+      "state": "en-zh-l5-q8-feedback",
+      "status": "pass",
+      "expected": "不错哦！"
+    },
+    {
+      "id": "en-zh-l5-q8-visual",
+      "state": "en-zh-l5-q8",
+      "status": "not_run",
+      "reason": "Full source/native visual equality not established by text or path completion"
+    },
+    {
+      "id": "en-zh-l5-q8-interaction-branches",
+      "state": "en-zh-l5-q8",
+      "status": "not_run",
+      "reason": "Full source/native interaction-branches equality not established by text or path completion"
+    },
+    {
+      "id": "en-zh-l5-q8-actual-audio",
+      "state": "en-zh-l5-q8",
+      "status": "not_run",
+      "reason": "Full source/native actual-audio equality not established by text or path completion"
+    },
+    {
+      "id": "en-zh-l5-adaptive9-heading",
+      "state": "en-zh-l5-adaptive9",
+      "status": "pass",
+      "expected": "用中文（简体）写出这句话"
+    },
+    {
+      "id": "en-zh-l5-adaptive9-prompt",
+      "state": "en-zh-l5-adaptive9",
+      "status": "pass",
+      "expected": "tea"
+    },
+    {
+      "id": "en-zh-l5-adaptive9-word-0",
+      "state": "en-zh-l5-adaptive9",
+      "status": "pass",
+      "expected": "茶"
+    },
+    {
+      "id": "en-zh-l5-adaptive9-word-1",
+      "state": "en-zh-l5-adaptive9",
+      "status": "pass",
+      "expected": "热咖啡"
+    },
+    {
+      "id": "en-zh-l5-adaptive9-feedback-feedback",
+      "state": "en-zh-l5-adaptive9-feedback",
+      "status": "pass",
+      "expected": "真厉害！"
+    },
+    {
+      "id": "en-zh-l5-adaptive9-visual",
+      "state": "en-zh-l5-adaptive9",
+      "status": "not_run",
+      "reason": "Full source/native visual equality not established by text or path completion"
+    },
+    {
+      "id": "en-zh-l5-adaptive9-interaction-branches",
+      "state": "en-zh-l5-adaptive9",
+      "status": "not_run",
+      "reason": "Full source/native interaction-branches equality not established by text or path completion"
+    },
+    {
+      "id": "en-zh-l5-adaptive9-actual-audio",
+      "state": "en-zh-l5-adaptive9",
+      "status": "not_run",
+      "reason": "Full source/native actual-audio equality not established by text or path completion"
+    },
+    {
+      "id": "en-zh-l5-q10-heading",
+      "state": "en-zh-l5-q10",
+      "status": "pass",
+      "expected": "用中文（简体）写出这句话"
+    },
+    {
+      "id": "en-zh-l5-q10-prompt",
+      "state": "en-zh-l5-q10",
+      "status": "pass",
+      "expected": "coffee"
+    },
+    {
+      "id": "en-zh-l5-q10-word-0",
+      "state": "en-zh-l5-q10",
+      "status": "pass",
+      "expected": "热"
+    },
+    {
+      "id": "en-zh-l5-q10-word-1",
+      "state": "en-zh-l5-q10",
+      "status": "pass",
+      "expected": "咖啡"
+    },
+    {
+      "id": "en-zh-l5-q10-feedback-feedback",
+      "state": "en-zh-l5-q10-feedback",
+      "status": "pass",
+      "expected": "真棒！"
+    },
+    {
+      "id": "en-zh-l5-q10-visual",
+      "state": "en-zh-l5-q10",
+      "status": "not_run",
+      "reason": "Full source/native visual equality not established by text or path completion"
+    },
+    {
+      "id": "en-zh-l5-q10-interaction-branches",
+      "state": "en-zh-l5-q10",
+      "status": "not_run",
+      "reason": "Full source/native interaction-branches equality not established by text or path completion"
+    },
+    {
+      "id": "en-zh-l5-q10-actual-audio",
+      "state": "en-zh-l5-q10",
+      "status": "not_run",
+      "reason": "Full source/native actual-audio equality not established by text or path completion"
+    },
+    {
+      "id": "en-zh-l5-q11-heading",
+      "state": "en-zh-l5-q11",
+      "status": "pass",
+      "expected": "选择配对"
+    },
+    {
+      "id": "en-zh-l5-q11-feedback-feedback",
+      "state": "en-zh-l5-q11-feedback",
+      "status": "pass",
+      "expected": "非常好！"
+    },
+    {
+      "id": "en-zh-l5-q11-visual",
+      "state": "en-zh-l5-q11",
+      "status": "not_run",
+      "reason": "Full source/native visual equality not established by text or path completion"
+    },
+    {
+      "id": "en-zh-l5-q11-interaction-branches",
+      "state": "en-zh-l5-q11",
+      "status": "not_run",
+      "reason": "Full source/native interaction-branches equality not established by text or path completion"
+    },
+    {
+      "id": "en-zh-l5-q11-actual-audio",
+      "state": "en-zh-l5-q11",
+      "status": "not_run",
+      "reason": "Full source/native actual-audio equality not established by text or path completion"
+    },
+    {
+      "id": "en-zh-l5-q12-heading",
+      "state": "en-zh-l5-q12",
+      "status": "pass",
+      "expected": "用英语写出这句话"
+    },
+    {
+      "id": "en-zh-l5-q12-prompt",
+      "state": "en-zh-l5-q12",
+      "status": "pass",
+      "expected": "咖啡还是茶？"
+    },
+    {
+      "id": "en-zh-l5-q12-word-0",
+      "state": "en-zh-l5-q12",
+      "status": "pass",
+      "expected": "Coffee"
+    },
+    {
+      "id": "en-zh-l5-q12-word-1",
+      "state": "en-zh-l5-q12",
+      "status": "pass",
+      "expected": "with"
+    },
+    {
+      "id": "en-zh-l5-q12-word-2",
+      "state": "en-zh-l5-q12",
+      "status": "pass",
+      "expected": "or"
+    },
+    {
+      "id": "en-zh-l5-q12-word-3",
+      "state": "en-zh-l5-q12",
+      "status": "pass",
+      "expected": "tea"
+    },
+    {
+      "id": "en-zh-l5-q12-feedback-feedback",
+      "state": "en-zh-l5-q12-feedback",
+      "status": "pass",
+      "expected": "太棒了！"
+    },
+    {
+      "id": "en-zh-l5-q12-visual",
+      "state": "en-zh-l5-q12",
+      "status": "not_run",
+      "reason": "Full source/native visual equality not established by text or path completion"
+    },
+    {
+      "id": "en-zh-l5-q12-interaction-branches",
+      "state": "en-zh-l5-q12",
+      "status": "not_run",
+      "reason": "Full source/native interaction-branches equality not established by text or path completion"
+    },
+    {
+      "id": "en-zh-l5-q12-actual-audio",
+      "state": "en-zh-l5-q12",
+      "status": "not_run",
+      "reason": "Full source/native actual-audio equality not established by text or path completion"
+    },
+    {
+      "id": "en-zh-l5-adaptive13-heading",
+      "state": "en-zh-l5-adaptive13",
+      "status": "pass",
+      "expected": "用中文（简体）写出这句话"
+    },
+    {
+      "id": "en-zh-l5-adaptive13-prompt",
+      "state": "en-zh-l5-adaptive13",
+      "status": "pass",
+      "expected": "Tea, please!"
+    },
+    {
+      "id": "en-zh-l5-adaptive13-word-0",
+      "state": "en-zh-l5-adaptive13",
+      "status": "pass",
+      "expected": "茶"
+    },
+    {
+      "id": "en-zh-l5-adaptive13-word-1",
+      "state": "en-zh-l5-adaptive13",
+      "status": "pass",
+      "expected": "谢谢"
+    },
+    {
+      "id": "en-zh-l5-adaptive13-word-2",
+      "state": "en-zh-l5-adaptive13",
+      "status": "pass",
+      "expected": "不客气"
+    },
+    {
+      "id": "en-zh-l5-adaptive13-feedback-feedback",
+      "state": "en-zh-l5-adaptive13-feedback",
+      "status": "pass",
+      "expected": "太棒了！"
+    },
+    {
+      "id": "en-zh-l5-adaptive13-visual",
+      "state": "en-zh-l5-adaptive13",
+      "status": "not_run",
+      "reason": "Full source/native visual equality not established by text or path completion"
+    },
+    {
+      "id": "en-zh-l5-adaptive13-interaction-branches",
+      "state": "en-zh-l5-adaptive13",
+      "status": "not_run",
+      "reason": "Full source/native interaction-branches equality not established by text or path completion"
+    },
+    {
+      "id": "en-zh-l5-adaptive13-actual-audio",
+      "state": "en-zh-l5-adaptive13",
+      "status": "not_run",
+      "reason": "Full source/native actual-audio equality not established by text or path completion"
+    },
+    {
+      "id": "en-zh-l5-q14-heading",
+      "state": "en-zh-l5-q14",
+      "status": "pass",
+      "expected": "输入所缺单词"
+    },
+    {
+      "id": "en-zh-l5-q14-prompt",
+      "state": "en-zh-l5-q14",
+      "status": "pass",
+      "expected": "热茶还是咖啡？"
+    },
+    {
+      "id": "en-zh-l5-q14-completionPrefix",
+      "state": "en-zh-l5-q14",
+      "status": "pass",
+      "expected": "Hot tea or"
+    },
+    {
+      "id": "en-zh-l5-q14-completionSuffix",
+      "state": "en-zh-l5-q14",
+      "status": "pass",
+      "expected": "?"
+    },
+    {
+      "id": "en-zh-l5-q14-feedback-feedback",
+      "state": "en-zh-l5-q14-feedback",
+      "status": "pass",
+      "expected": "真棒！"
+    },
+    {
+      "id": "en-zh-l5-q14-visual",
+      "state": "en-zh-l5-q14",
+      "status": "not_run",
+      "reason": "Full source/native visual equality not established by text or path completion"
+    },
+    {
+      "id": "en-zh-l5-q14-interaction-branches",
+      "state": "en-zh-l5-q14",
+      "status": "not_run",
+      "reason": "Full source/native interaction-branches equality not established by text or path completion"
+    },
+    {
+      "id": "en-zh-l5-q14-actual-audio",
+      "state": "en-zh-l5-q14",
+      "status": "not_run",
+      "reason": "Full source/native actual-audio equality not established by text or path completion"
+    },
+    {
+      "id": "en-zh-l5-speech6-title",
+      "state": "en-zh-l5-speech6",
+      "status": "pass",
+      "expected": "朗读下面的句子"
+    },
+    {
+      "id": "en-zh-l5-speech6-phrase",
+      "state": "en-zh-l5-speech6",
+      "status": "pass",
+      "expected": "I'd like hot coffee."
+    },
+    {
+      "id": "en-zh-l5-speech6-declineLabel",
+      "state": "en-zh-l5-speech6",
+      "status": "pass",
+      "expected": "现在不做口语题"
+    },
+    {
+      "id": "en-zh-l5-speech6-closed-closedTitle",
+      "state": "en-zh-l5-speech6-closed",
+      "status": "pass",
+      "expected": "麦克风已关闭"
+    },
+    {
+      "id": "en-zh-l5-speech6-closed-closedBody",
+      "state": "en-zh-l5-speech6-closed",
+      "status": "pass",
+      "expected": "将在 15 分钟后恢复"
+    },
+    {
+      "id": "en-zh-l5-speech6-recording-recognition",
+      "state": "en-zh-l5-speech6",
+      "status": "not_run",
+      "reason": "Recording, recognition and timer expiry unobserved/unimplemented; deferred speech must not be counted correct"
+    },
+    {
+      "id": "en-zh-l5-review-intro-text",
+      "state": "en-zh-l5-review-intro",
+      "status": "pass",
+      "expected": "一起来复习一下之前你不太熟练的部分吧！"
+    },
+    {
+      "id": "en-zh-l5-q8-wrong-heart_decremented_once",
+      "state": "en-zh-l5-q8-wrong",
+      "status": "pass",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "id": "en-zh-l5-q8-wrong-unmatched_remains_available",
+      "state": "en-zh-l5-q8-wrong",
+      "status": "pass",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "id": "en-zh-l5-q8-wrong-wrong_pair_marked_incorrect",
+      "state": "en-zh-l5-q8-wrong",
+      "status": "pass",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "id": "en-zh-l5-complete-title",
+      "state": "en-zh-l5-complete",
+      "status": "pass",
+      "expected": "你莫不是特工？"
+    },
+    {
+      "id": "en-zh-l5-complete-body",
+      "state": "en-zh-l5-complete",
+      "status": "pass",
+      "expected": "本单元中，你完成了 4 项听力挑战"
+    },
+    {
+      "id": "en-zh-l5-complete-next",
+      "state": "en-zh-l5-complete",
+      "status": "pass",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "id": "en-zh-l5-complete-secondary",
+      "state": "en-zh-l5-complete",
+      "status": "fail",
+      "expected": true,
+      "actual": false
+    },
+    {
+      "id": "en-zh-l5-complete-visual-audio",
+      "state": "en-zh-l5-complete",
+      "status": "not_run",
+      "reason": "Same-state source/native image and actual acoustic equality remain unverified"
+    },
+    {
+      "id": "en-zh-l5-daily-quests-title",
+      "state": "en-zh-l5-daily-quests",
+      "status": "pass",
+      "expected": "所有每日特别任务都完成啦！"
+    },
+    {
+      "id": "en-zh-l5-daily-quests-body",
+      "state": "en-zh-l5-daily-quests",
+      "status": "pass",
+      "expected": "获取 30 经验"
+    },
+    {
+      "id": "en-zh-l5-daily-quests-next",
+      "state": "en-zh-l5-daily-quests",
+      "status": "pass",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "id": "en-zh-l5-daily-quests-secondary",
+      "state": "en-zh-l5-daily-quests",
+      "status": "fail",
+      "expected": true,
+      "actual": false
+    },
+    {
+      "id": "en-zh-l5-daily-quests-visual-audio",
+      "state": "en-zh-l5-daily-quests",
+      "status": "not_run",
+      "reason": "Same-state source/native image and actual acoustic equality remain unverified"
+    },
+    {
+      "id": "en-zh-l5-gems-title",
+      "state": "en-zh-l5-gems",
+      "status": "pass",
+      "expected": "你赚取了 5 颗宝石！"
+    },
+    {
+      "id": "en-zh-l5-gems-body",
+      "state": "en-zh-l5-gems",
+      "status": "pass",
+      "expected": "完成每日目标真不容易哦！"
+    },
+    {
+      "id": "en-zh-l5-gems-next",
+      "state": "en-zh-l5-gems",
+      "status": "pass",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "id": "en-zh-l5-gems-secondary",
+      "state": "en-zh-l5-gems",
+      "status": "fail",
+      "expected": true,
+      "actual": false
+    },
+    {
+      "id": "en-zh-l5-gems-visual-audio",
+      "state": "en-zh-l5-gems",
+      "status": "not_run",
+      "reason": "Same-state source/native image and actual acoustic equality remain unverified"
+    },
+    {
+      "id": "en-zh-l5-profile-title",
+      "state": "en-zh-l5-profile",
+      "status": "pass",
+      "expected": "来创建你的个人档案吧！"
+    },
+    {
+      "id": "en-zh-l5-profile-body",
+      "state": "en-zh-l5-profile",
+      "status": "pass",
+      "expected": "创建档案就能保存学习进度，随时都可以继续免费学习后续内容。"
+    },
+    {
+      "id": "en-zh-l5-profile-next",
+      "state": "en-zh-l5-profile",
+      "status": "pass",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "id": "en-zh-l5-profile-secondary",
+      "state": "en-zh-l5-profile",
+      "status": "fail",
+      "expected": true,
+      "actual": false
+    },
+    {
+      "id": "en-zh-l5-profile-visual-audio",
+      "state": "en-zh-l5-profile",
+      "status": "not_run",
+      "reason": "Same-state source/native image and actual acoustic equality remain unverified"
+    }
+  ],
+  "status": "fail"
+}

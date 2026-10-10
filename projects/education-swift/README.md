@@ -1,8 +1,6 @@
 # LingoSeed · Swift 教育基座
 
-可运行的 macOS SwiftUI 客户端。当前默认接入原版中文母语→英语四课57题（15/15/15/12），逐选项图片及语音均来自实际参考。支持听力拼词、对话、选择、翻译、配对、错题重练；主页、鼓励/红心教学、完整完成链、布局和实际声音仍未对齐。西语v6及原始夹具保留历史回归；局部业务通过不等于产品复刻完成。
-
-第四课已接入源观察的六页结算链并返回主页；次要动作尚未实现，第二节点内容尚未接入。当前前端341通过、8失败、205未覆盖，整体失败，五对结算像素均有差异。[当前实测](../duolingo-web/evidence/english-settlement-v1/README.md)。
+可运行的 macOS SwiftUI 客户端。当前默认接入原版中文母语→英语五课72题（15/15/15/12/15），另含一次未评分的口语暂缓状态。第五课按实际源轨迹实现插入题、听音配对扣心和重试、填空错题重练、每日任务/宝石/建档结算及返回主页。录音与识别尚未接入；该按钮会明确报告缺失，不伪造识别结果。原版字符、布局、完整图形动画和实际声音仍未对齐。[本批实测和复跑](../duolingo-web/evidence/english-fifth-native-v1/README.md)保留失败，不把课程子集与核心通过当作1:1完成。
 
 ## 构建、运行与重置
 
@@ -10,13 +8,13 @@
 
 ```sh
 swift build --package-path projects/education-swift --product LingoSeed
-projects/education-swift/.build/debug/LingoSeed --fixture projects/duolingo-web/fixture-reference-en-zh-v5.json --progress artifacts/lingoseed-english-demo/progress.json
+projects/education-swift/.build/debug/LingoSeed --fixture projects/duolingo-web/fixture-reference-en-zh-v6.json --progress artifacts/lingoseed-english-demo/progress.json
 swift run --package-path projects/education-swift LearningCoreChecks
 ```
 
 换一个尚不存在的 `--progress` 文件即可建立独立初态。普通运行默认保存到用户 Application Support 下 `LingoSeed/<fixture-name>/progress.json`，不同夹具不共享默认进度，不要将普通用户进度用作验收夹具。原生适配器始终使用临时题库/进度，关闭并清理自己启动的进程；reload 重开同一临时进度文件。
 
-本机缺少 XCTest / Swift Testing 模块；核心检查采用非零失败的 `LearningCoreChecks` 可执行入口。14项核心检查覆盖实际英语轨迹、题间状态、空答案与错题重练、存储往返、拼句/撤回/锁定、配对、课时解锁及旧数据兼容。它们不能替代原生 UI E2E。
+本机缺少 XCTest / Swift Testing 模块；核心检查采用非零失败的 `LearningCoreChecks` 可执行入口。15项核心检查覆盖实际英语轨迹、题间状态、空答案与错题重练、存储往返、拼句/撤回/锁定、配对、课时解锁及旧数据兼容。它们不能替代原生 UI E2E。
 
 ## 职责与扩展
 

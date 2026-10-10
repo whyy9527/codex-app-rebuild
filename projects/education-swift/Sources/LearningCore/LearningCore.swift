@@ -114,6 +114,19 @@ public struct SettlementPage: Codable, Equatable, Sendable, Identifiable {
     public let secondaryLabel: String?
     public let experience: Int?
     public let observedStreak: Int?
+    public let observedAccuracy: Int?
+    public let observedMistakes: Int?
+    public let accuracyLabel: String?
+}
+public struct DeferredSpeech: Codable, Equatable, Sendable, Identifiable {
+    public let id: String
+    public let beforeQuestionID: String
+    public let title: String
+    public let phrase: String
+    public let audioResource: String
+    public let declineLabel: String
+    public let closedTitle: String
+    public let closedBody: String
 }
 public struct SettlementFlow: Equatable, Sendable {
     public let pages: [SettlementPage]
@@ -130,6 +143,8 @@ public struct LessonDefinition: Codable, Equatable, Sendable, Identifiable {
     public let initialInterlude: LessonInterlude?
     public let entry: LessonEntry?
     public let settlement: [SettlementPage]?
+    public var deferredSpeech: [DeferredSpeech]? = nil
+    public var reviewInterlude: LessonInterlude? = nil
 }
 public struct CoursePathNode: Codable, Equatable, Sendable {
     public let kind: String
@@ -231,9 +246,19 @@ public struct Lesson: Equatable, Sendable {
     public private(set) var reviewing = false
     public private(set) var complete = false
     public private(set) var interlude: LessonInterlude?
+    private var handledSpeech = Set<String>()
+    public private(set) var speechDeclined = false
+    public var deferredSpeech: DeferredSpeech? {
+        guard !complete, !reviewing else { return nil }
+        return definition.deferredSpeech?.first { $0.beforeQuestionID == question.id && !handledSpeech.contains($0.id) }
+    }
+    public mutating func declineSpeech() {
+        guard deferredSpeech != nil else { return }
+        speechDeclined = true
+    }
     public var question: Question { definition.questions[position] }
     public var canSubmit: Bool {
-        guard feedback == nil, !complete, interlude == nil else { return false }
+        guard feedback == nil, !complete, interlude == nil, deferredSpeech == nil else { return false }
         switch question.kind {
         case .choice: return selected != nil
         case .wordTiles: return !selectedWords.isEmpty
@@ -247,26 +272,26 @@ public struct Lesson: Equatable, Sendable {
         self.interlude = course.lessons[lessonIndex].initialInterlude
     }
     public mutating func choose(_ id: String) {
-        guard question.kind == .choice, feedback == nil, !complete, interlude == nil, question.options.contains(where: { $0.id == id }) else { return }
+        guard question.kind == .choice, feedback == nil, !complete, interlude == nil, deferredSpeech == nil, question.options.contains(where: { $0.id == id }) else { return }
         selected = id
     }
     public mutating func enterText(_ text: String) {
-        guard question.kind == .textEntry, feedback == nil, !complete, interlude == nil else { return }
+        guard question.kind == .textEntry, feedback == nil, !complete, interlude == nil, deferredSpeech == nil else { return }
         enteredText = text
     }
     public mutating func addWord(_ id: String) {
-        guard question.kind == .wordTiles, feedback == nil, !complete, interlude == nil,
+        guard question.kind == .wordTiles, feedback == nil, !complete, interlude == nil, deferredSpeech == nil,
               question.words.contains(where: { $0.id == id }), !selectedWords.contains(id) else { return }
         selectedWords.append(id)
     }
     public mutating func removeWord(_ id: String) {
-        guard question.kind == .wordTiles, feedback == nil, !complete, interlude == nil else { return }
+        guard question.kind == .wordTiles, feedback == nil, !complete, interlude == nil, deferredSpeech == nil else { return }
         selectedWords.removeAll { $0 == id }
     }
     public mutating func matchLeft(_ id: String) { selectPair(id, left: true) }
     public mutating func matchRight(_ id: String) { selectPair(id, left: false) }
     private mutating func selectPair(_ id: String, left: Bool) {
-        guard question.kind == .matching, feedback == nil, !complete, interlude == nil,
+        guard question.kind == .matching, feedback == nil, !complete, interlude == nil, deferredSpeech == nil,
               question.pairs.contains(where: { $0.id == id }), !matchedPairs.contains(id) else { return }
         matchingHint = nil; incorrectMatch = nil
         if left { selectedLeft = id } else { selectedRight = id }
@@ -306,8 +331,14 @@ public struct Lesson: Equatable, Sendable {
     }
     public mutating func advance() {
         if interlude != nil { interlude = nil; return }
+        if let speech = deferredSpeech {
+            guard speechDeclined else { return }
+            handledSpeech.insert(speech.id); speechDeclined = false
+            return
+        }
         guard feedback != nil, !complete else { return }
         let answeredID = question.id
+        let enteringReview = !reviewing && position + 1 == definition.questions.count
         if reviewing {
             if feedback == true { review.removeAll { $0 == position } }
         } else if position + 1 < definition.questions.count {
@@ -315,7 +346,10 @@ public struct Lesson: Equatable, Sendable {
             interlude = definition.interludes?.first { $0.afterQuestionID == answeredID }
             return
         } else { reviewing = true }
-        if let next = review.first { position = next }
+        if let next = review.first {
+            position = next
+            if enteringReview { interlude = definition.reviewInterlude }
+        }
         else { complete = true }
         clearAnswer()
     }

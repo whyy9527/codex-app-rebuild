@@ -57,6 +57,10 @@ import LearningCore
         if let hearts = lesson?.hearts, hearts != progress.hearts { progress.hearts = hearts; save() }
     }
     func playQuestion(slow: Bool = false) {
+        if let speech = lesson?.deferredSpeech {
+            audio.speak(speech.phrase, language: course.speechLanguage, resource: speech.audioResource)
+            return
+        }
         guard let question = lesson?.question else { return }
         audio.speak(question.hint ?? question.prompt, language: question.sourceLanguage ?? course.speechLanguage, resource: slow ? question.slowAudioResource : question.audioResource)
     }
@@ -87,8 +91,9 @@ import LearningCore
         playAutomaticPrompt()
     }
     func acceptEntry() { entryPending = false; playAutomaticPrompt() }
+    func declineSpeech() { lesson?.declineSpeech() }
     private func playAutomaticPrompt() {
-        guard !entryPending, lesson?.interlude == nil, let question = lesson?.question, ["translate", "listenTap", "dialogue", "orderTapComplete"].contains(question.sourceType ?? ""),
+        guard !entryPending, lesson?.interlude == nil, lesson?.deferredSpeech == nil, let question = lesson?.question, ["translate", "listenTap", "dialogue", "orderTapComplete"].contains(question.sourceType ?? ""),
               course.interfaceLanguage != "zh" || question.audioResource != nil else { return }
         playQuestion()
     }
@@ -102,11 +107,12 @@ import LearningCore
         }
     }
     func advance() {
-        guard lesson?.feedback != nil || lesson?.interlude != nil else { return }
+        guard lesson?.feedback != nil || lesson?.interlude != nil || lesson?.speechDeclined == true else { return }
         let previousQuestion = lesson?.question.id
         let wasInterlude = lesson?.interlude != nil
+        let wasDeferred = lesson?.deferredSpeech != nil
         lesson?.advance()
-        if let lesson, !lesson.complete, lesson.interlude == nil, (wasInterlude || lesson.question.id != previousQuestion) { playAutomaticPrompt() }
+        if let lesson, !lesson.complete, lesson.interlude == nil, (wasInterlude || wasDeferred || lesson.question.id != previousQuestion) { playAutomaticPrompt() }
         if let lesson, lesson.complete {
             audio.play(.complete)
             if let pages = lesson.definition.settlement { settlement = SettlementFlow(pages: pages) }
