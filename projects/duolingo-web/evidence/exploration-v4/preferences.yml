@@ -1,0 +1,70 @@
+- generic [ref=f6e121]:
+  - generic [ref=f6e122]:
+    - link [ref=f6e124] [cursor=pointer]:
+      - /url: /learn
+    - generic [ref=f6e126]:
+      - link "Learn" [ref=f6e128] [cursor=pointer]:
+        - /url: /learn
+      - link "Leaderboards" [ref=f6e134] [cursor=pointer]:
+        - /url: /leaderboard
+      - link "Quests" [ref=f6e140] [cursor=pointer]:
+        - /url: /quests
+      - link "Shop" [ref=f6e146] [cursor=pointer]:
+        - /url: /shop
+      - link "Profile" [ref=f6e152] [cursor=pointer]:
+        - /url: /learn?sign-up
+      - button "More" [ref=f6e386]
+  - generic [ref=f6e387]:
+    - generic [ref=f6e389]:
+      - generic [ref=f6e390]:
+        - heading "Account" [level=2] [ref=f6e391]
+        - list [ref=f6e392]:
+          - listitem [ref=f6e393]:
+            - link "Preferences" [ref=f6e394] [cursor=pointer]:
+              - /url: /settings/account
+          - listitem [ref=f6e395]:
+            - link "Privacy settings" [ref=f6e396] [cursor=pointer]:
+              - /url: /settings/privacy
+      - generic [ref=f6e397]:
+        - heading "Support" [level=2] [ref=f6e398]
+        - list [ref=f6e399]:
+          - listitem [ref=f6e400]:
+            - link "Help Center" [ref=f6e401] [cursor=pointer]:
+              - /url: /help
+    - generic [ref=f6e403]:
+      - heading "Preferences" [level=1] [ref=f6e404]
+      - generic [ref=f6e405]:
+        - generic [ref=f6e406]:
+          - heading "Lesson experience" [level=2] [ref=f6e408]
+          - separator [ref=f6e409]
+        - list [ref=f6e410]:
+          - listitem [ref=f6e411]:
+            - generic [ref=f6e412]:
+              - generic [ref=f6e413]: Sound effects
+              - button "Sound effects" [pressed] [ref=f6e415] [cursor=pointer]
+          - listitem [ref=f6e417]:
+            - generic [ref=f6e418]:
+              - generic [ref=f6e419]: Animations
+              - button "Animations" [pressed] [ref=f6e421] [cursor=pointer]
+          - listitem [ref=f6e423]:
+            - generic [ref=f6e424]:
+              - generic [ref=f6e425]: Motivational messages
+              - button "Motivational messages" [pressed] [ref=f6e427] [cursor=pointer]
+          - listitem [ref=f6e429]:
+            - generic [ref=f6e430]:
+              - generic [ref=f6e431]: Listening exercises
+              - button "Listening exercises" [pressed] [ref=f6e433] [cursor=pointer]
+      - generic [ref=f6e435]:
+        - generic [ref=f6e436]:
+          - heading "Appearance" [level=2] [ref=f6e438]
+          - separator [ref=f6e439]
+        - list [ref=f6e440]:
+          - listitem [ref=f6e441]:
+            - generic [ref=f6e442]:
+              - generic [ref=f6e443]: Dark mode
+              - generic [ref=f6e445]:
+                - generic [ref=f6e446]: System Default
+                - combobox "Dark mode" [ref=f6e449] [cursor=pointer]:
+                  - option "System Default" [selected]
+                  - option "On"
+                  - option "Off"

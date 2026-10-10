@@ -1,0 +1,50 @@
+- generic [ref=f6e121]:
+  - generic [ref=f6e122]:
+    - link [ref=f6e124] [cursor=pointer]:
+      - /url: /learn
+    - generic [ref=f6e126]:
+      - link "Learn" [ref=f6e128] [cursor=pointer]:
+        - /url: /learn
+      - link "Leaderboards" [ref=f6e134] [cursor=pointer]:
+        - /url: /leaderboard
+      - link "Quests" [ref=f6e140] [cursor=pointer]:
+        - /url: /quests
+      - link "Shop" [ref=f6e146] [cursor=pointer]:
+        - /url: /shop
+      - link "Profile" [ref=f6e152] [cursor=pointer]:
+        - /url: /learn?sign-up
+      - button "More" [ref=f6e386]
+  - generic [ref=f6e387]:
+    - generic [ref=f6e389]:
+      - generic [ref=f6e390]:
+        - heading "Account" [level=2] [ref=f6e391]
+        - list [ref=f6e392]:
+          - listitem [ref=f6e393]:
+            - link "Preferences" [ref=f6e394] [cursor=pointer]:
+              - /url: /settings/account
+          - listitem [ref=f6e395]:
+            - link "Privacy settings" [active] [ref=f6e396] [cursor=pointer]:
+              - /url: /settings/privacy
+      - generic [ref=f6e397]:
+        - heading "Support" [level=2] [ref=f6e398]
+        - list [ref=f6e399]:
+          - listitem [ref=f6e400]:
+            - link "Help Center" [ref=f6e401] [cursor=pointer]:
+              - /url: /help
+    - generic [ref=f6e450]:
+      - heading "Privacy settings" [level=1] [ref=f6e451]
+      - generic [ref=f6e452]:
+        - list [ref=f6e453]:
+          - listitem [ref=f6e454]:
+            - generic [ref=f6e455]:
+              - generic [ref=f6e456]:
+                - generic [ref=f6e457]: Make my profile public
+                - generic [ref=f6e458]: Allow others to find your profile and follow you. Allows you to follow others. Enrolls you in public leaderboards.
+              - button "Make my profile public" [pressed] [ref=f6e459] [cursor=pointer]
+          - listitem [ref=f6e461]:
+            - generic [ref=f6e462]:
+              - generic [ref=f6e463]:
+                - generic [ref=f6e464]: Personalized ads
+                - generic [ref=f6e465]: Tracking and personalization for advertising
+              - button "Personalized ads" [pressed] [ref=f6e466] [cursor=pointer]
+        - button "Save changes" [disabled] [ref=f6e468]

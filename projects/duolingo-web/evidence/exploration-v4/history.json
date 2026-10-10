@@ -1,0 +1,170 @@
+{
+  "schema_version": 1,
+  "source": "Actual owned browser observations on 2026-10-10; controls listed from snapshots, unexecuted effects remain unknown",
+  "states": [
+    {
+      "id": "home",
+      "evidence": "projects/duolingo-web/evidence/exploration-v4/more-hover.yml",
+      "actions": [
+        {
+          "id": "more-hover",
+          "description": "Hover More"
+        },
+        {
+          "id": "guidebook",
+          "description": "Open unit guidebook"
+        },
+        {
+          "id": "lesson-2",
+          "description": "Start next lesson"
+        },
+        {
+          "id": "course-picker",
+          "description": "Open Spanish course selector"
+        },
+        {
+          "id": "hearts",
+          "description": "Open hearts status"
+        },
+        {
+          "id": "gems",
+          "description": "Open gems status"
+        },
+        {
+          "id": "unit-2",
+          "description": "Inspect Jump to Unit 2"
+        }
+      ]
+    },
+    {
+      "id": "more-open",
+      "evidence": "projects/duolingo-web/evidence/exploration-v4/more-hover.yml",
+      "actions": [
+        {
+          "id": "settings",
+          "description": "Open Settings"
+        },
+        {
+          "id": "help",
+          "description": "Open Help"
+        },
+        {
+          "id": "sign-in",
+          "description": "Open Sign in"
+        },
+        {
+          "id": "create-profile",
+          "description": "Open Create a profile"
+        },
+        {
+          "id": "english-test",
+          "description": "Open English Test link"
+        },
+        {
+          "id": "dismiss",
+          "description": "Move pointer out and verify dismissal"
+        }
+      ]
+    },
+    {
+      "id": "preferences",
+      "evidence": "projects/duolingo-web/evidence/exploration-v4/preferences.yml",
+      "actions": [
+        {
+          "id": "privacy",
+          "description": "Open Privacy settings"
+        },
+        {
+          "id": "sound-effects",
+          "description": "Toggle Sound effects and check reload persistence"
+        },
+        {
+          "id": "animations",
+          "description": "Toggle Animations and inspect lesson"
+        },
+        {
+          "id": "motivation",
+          "description": "Toggle Motivational messages and inspect lesson"
+        },
+        {
+          "id": "listening",
+          "description": "Toggle Listening exercises and inspect generated lesson"
+        },
+        {
+          "id": "dark-mode",
+          "description": "Select appearance and check System Default/On/Off"
+        }
+      ]
+    },
+    {
+      "id": "privacy",
+      "evidence": "projects/duolingo-web/evidence/exploration-v4/privacy.yml",
+      "actions": [
+        {
+          "id": "help-center",
+          "description": "Open Help Center"
+        },
+        {
+          "id": "public-profile",
+          "description": "Inspect public profile toggle and save enablement"
+        },
+        {
+          "id": "personalized-ads",
+          "description": "Inspect ads toggle and save enablement"
+        }
+      ]
+    },
+    {
+      "id": "help",
+      "evidence": "projects/duolingo-web/evidence/exploration-v4/help.yml",
+      "actions": [
+        {
+          "id": "course-change",
+          "description": "Expand Why did my course change?"
+        },
+        {
+          "id": "streak",
+          "description": "Expand What is a streak?"
+        },
+        {
+          "id": "reset-course",
+          "description": "Expand How do I remove or reset a course?"
+        },
+        {
+          "id": "support-request",
+          "description": "Open Send Feedback form"
+        }
+      ]
+    }
+  ],
+  "transitions": [
+    {
+      "from": "home",
+      "action": "more-hover",
+      "to": "more-open",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/exploration-v4/more-hover.yml"
+    },
+    {
+      "from": "more-open",
+      "action": "settings",
+      "to": "preferences",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/exploration-v4/preferences.yml"
+    },
+    {
+      "from": "preferences",
+      "action": "privacy",
+      "to": "privacy",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/exploration-v4/privacy.yml"
+    },
+    {
+      "from": "privacy",
+      "action": "help-center",
+      "to": "help",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/exploration-v4/help.yml"
+    }
+  ]
+}

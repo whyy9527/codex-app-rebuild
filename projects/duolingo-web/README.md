@@ -1,6 +1,9 @@
 # Duolingo 网页参考案例
 
-这是私有 Codex App Rebuild 的第一个真实业务案例。网页只作为行为参考，Swift 教育基座使用原创名称、课程与素材。已交付12条跨端冻结验收与可运行 SwiftUI 两课时教育基座；真实多阶段模型续跑已有[一次完整可行性证据](../model-pipeline/README.md)；[四组业务消融](../business-ablation/REPORT.md)已完成，均公开12/12与留出2/2、另1未知；N=1未观察到通过率收益。
+> 2026-10-10 更正：下文是历史局部验收记录，不能证明 1:1 复刻完成。用户指出探索不足、前端需求未进入 E2E、自行增加替代内容限制。现已撤回产品完成结论；当前原生 Goal 要求修正探索与模具。原始测试与失败证据保留。
+
+
+这是私有 Codex App Rebuild 的第一个真实业务案例。当前目标是网页到 Swift 的 1:1 复刻；此前原创课程与素材只是历史实现，不能作为复刻标准。已交付12条跨端冻结验收与可运行 SwiftUI 两课时教育基座；真实多阶段模型续跑已有[一次完整可行性证据](../model-pipeline/README.md)；[四组业务消融](../business-ablation/REPORT.md)已完成，均公开12/12与留出2/2、另1未知；N=1未观察到通过率收益。
 
 当前复现入口是文末的冻结 v2 命令。以下草案和首批运行记录保留探索历史；它们的范围与限制不代表当前 v2 尚未实现这些功能。回执证明记录时的源码与输入，后续代码变化需要重新验收。
 
@@ -41,7 +44,7 @@ python3 projects/duolingo-web/probe-reference.py --scenario choice-wrong --out p
 
 ## 正式首批跨端验收
 
-`spec-v1.1.json`、`fixture-v1.json` 与 `targets-v1.1.json` 是这一批的输入。原版使用线上西班牙语入门词汇，候选使用原创英语问候课；选择 correct/wrong 对应各自题面的明确映射，共享同一套场景和业务预期。线上题库无法注入，允许题面、选项顺序和课程内容不同，不能声称比较了相同题库。
+`spec-v1.1.json`、`fixture-v1.json` 与 `targets-v1.1.json` 是这一批的输入。原版使用线上西班牙语入门词汇，候选使用原创英语问候课；选择 correct/wrong 对应各自题面的明确映射，共享同一套场景和业务预期。历史测试允许题面、选项顺序和课程内容不同，因此不能声称比较了相同题库；这不授权当前 1:1 交付保留这些差异。
 
 先从仓库根构建当前产品，再运行实际原生验收：
 
@@ -77,3 +80,14 @@ v2 的 candidate 命令 `build-native.py` 先构建当前源码并记录源码/�
 六个实际界面及方法见 [界面检查](evidence/V2-DELIVERY.md)。检查涉及课程路径、选择、配对、解锁、拼句及反馈；截图不证明学习效果或模型能力。候选端 `{}` / null 进度误接受已单独复现并修复，冻结的五项存储启动检查通过；共享 v2 12项与 v1.2 5项回归通过（candidate-v2-02.json / candidate-v1.2-02.json）。见 [存储修复](evidence/PROGRESS-REPAIR.md)，未修改共享 Duolingo 断言。
 
 本轮最终复验：主产品原生12/12、核心5项及Python43项通过，当前回执和全部八项边界见[交付审计](../../docs/DELIVERY-AUDIT.md)。
+
+## 当前统一产品验收
+
+```sh
+python3 projects/duolingo-web/verify-product.py --out artifacts/product-new
+python3 -m capabilities.rebuild.discovery --history projects/duolingo-web/evidence/exploration-v4/history.json --out artifacts/frontier-new.json
+```
+
+产品入口执行冻结业务 E2E，再启动隔离 Swift 子进程采集主页/More 的 AX 文本，执行 `frontend-v4.json` 断言。任一失败或尚未验证，统一结果即失败。当前真实基线：业务12/12通过，原版10项文案在候选均失败，另3项未验证，整体失败；原版同一组10项均通过。AX 文本只验证可访问文案，不能证明视觉可见或 1:1；视觉、音色及悬停检查仍待实现，不用文案检查冒充它们。
+
+[探索与差异记录](evidence/exploration-v4/README.md)保存真实来源、待探索分支和本轮失败。
