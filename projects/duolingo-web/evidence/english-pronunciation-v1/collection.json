@@ -1,0 +1,22 @@
+{
+  "kind": "actual-source-one-level-branches",
+  "root_snapshot_hashes": [
+    "5140597b53688b271406e4d2bd15f313b22b3fe2a9d7cca1133bcf9175f150c1"
+  ],
+  "identical_root_snapshots": true,
+  "branches": [
+    {
+      "action": {
+        "id": "pronunciation",
+        "role": "link",
+        "name": "发音",
+        "operation": "click",
+        "label": "发音"
+      },
+      "before": "pronunciation-before.json",
+      "after": "pronunciation-after.json",
+      "before_path": "/learn",
+      "after_path": "/characters"
+    }
+  ]
+}

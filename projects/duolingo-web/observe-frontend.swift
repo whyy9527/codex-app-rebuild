@@ -157,6 +157,20 @@ func fillInput(_ value: String) throws {
 
 var states = ["home": observe()]
 try capture("home-window")
+if CommandLine.arguments.contains("--observe-pronunciation") {
+    try press("nav-pronunciation")
+    Thread.sleep(forTimeInterval: 0.5)
+    states["en-zh-pronunciation"] = observe()
+    try capture("pronunciation-window")
+    let receipt: [String: Any] = ["kind": "owned_native_ax_observation", "states": states,
+        "candidate_binary_sha256": candidateSHA, "fixture_sha256": fixtureSHA,
+        "observed_at": ISO8601DateFormatter().string(from: Date()),
+        "action": "Actual native pronunciation navigation click; collect page without supplying pass flags",
+        "limitations": ["AX and owned capture; no audio or visual equivalence"]]
+    try JSONSerialization.data(withJSONObject: receipt, options: [.prettyPrinted, .sortedKeys]).write(to: output.appendingPathComponent("observed.json"), options: .withoutOverwriting)
+    if child.isRunning { child.terminate(); child.waitUntilExit() }
+    return
+}
 if CommandLine.arguments.contains("--observe-home-popover") {
     try press("start-lesson"); try waitFor("start-lesson-confirm")
     var popover = observe()

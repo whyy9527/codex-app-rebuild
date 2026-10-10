@@ -1,0 +1,48 @@
+{
+  "selection_seal_sha256": "f4b0cc517997f22c2a9d666c7651e777815f60e118549e9419e0a5db2224faa5",
+  "selected_digests": {
+    "replay_feedback": "9417059602c1422ddd254d45505619085276378be42960c288d948a1c2f0c734",
+    "no_replay_feedback": "315e08a254636bc46dc1e4bc7c8713d050fde05925e9e66d55c7e52e79628f81"
+  },
+  "online_driver_sha256": "48d2855679f5957ab59c1c09d48094fc81af94625ca0a1a9e95832039464c467",
+  "source_driver_sha256": "a81b1c095b95f8d52a68865edd6ee058fe0fa06e042a4ad8e50165d78bbd90ce",
+  "evaluator_sha256": "38cedc71abe8821997a352a7979777ba4fbdeb07fd711b15ee24ccee723cfcc4",
+  "registration_sha256": "23d5bece74f149dacc06ca3a904d3805a7905fd37a82657ac8fb876e97036a93",
+  "kind": "repeated measurement on previously seen pages, not new holdout",
+  "actions": [
+    {
+      "id": "pronunciation",
+      "role": "link",
+      "name": "发音",
+      "operation": "click",
+      "label": "发音"
+    },
+    {
+      "id": "leaderboards",
+      "role": "link",
+      "name": "排行榜",
+      "operation": "click",
+      "label": "排行榜"
+    },
+    {
+      "id": "quests",
+      "role": "link",
+      "name": "特别任务",
+      "operation": "click",
+      "label": "特别任务"
+    },
+    {
+      "id": "profile",
+      "role": "link",
+      "name": "个人档案",
+      "operation": "click",
+      "label": "个人档案"
+    }
+  ],
+  "order": [
+    "replay_feedback",
+    "no_replay_feedback",
+    "no_replay_feedback",
+    "replay_feedback"
+  ]
+}

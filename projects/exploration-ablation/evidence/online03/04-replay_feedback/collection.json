@@ -1,0 +1,22 @@
+{
+  "kind": "actual-source-one-level-branches",
+  "root_snapshot_hashes": [
+    "5140597b53688b271406e4d2bd15f313b22b3fe2a9d7cca1133bcf9175f150c1"
+  ],
+  "identical_root_snapshots": true,
+  "branches": [
+    {
+      "action": {
+        "id": "leaderboards",
+        "role": "link",
+        "name": "排行榜",
+        "operation": "click",
+        "label": "排行榜"
+      },
+      "before": "leaderboards-before.json",
+      "after": "leaderboards-after.json",
+      "before_path": "/learn",
+      "after_path": "/leaderboard"
+    }
+  ]
+}
