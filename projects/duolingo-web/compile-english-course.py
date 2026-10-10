@@ -3,6 +3,7 @@ import hashlib
 import json
 from pathlib import Path
 import re
+from collections import Counter, defaultdict, deque
 
 BASE = Path(__file__).resolve().parent
 EV = BASE / 'evidence/english-v1'
@@ -20,6 +21,21 @@ def resource(url, kind):
     resources[stem] = {'url': url, 'kind': kind, 'name': stem,
                        'source_file': stem + ('.mp3' if kind == 'speech' else '.svg')}
     return stem + '.mp3' if kind == 'speech' else stem
+def compile_word_bank(choices, texts, answer):
+    assert Counter(texts) == Counter(v['text'] for v in choices)
+    source_items = defaultdict(deque)
+    for choice in choices: source_items[choice['text']].append(choice)
+    words = []
+    available = defaultdict(deque)
+    for j, text in enumerate(texts):
+        choice = source_items[text].popleft()
+        item = {'id': f'word-{j}', 'text': text}
+        if choice.get('tts'): item['audioResource'] = resource(choice['tts'], 'speech')
+        words.append(item); available[text].append(item['id'])
+    # Equal text can occur twice in the visible bank. Each occurrence has its
+    # own identity and can be selected once; never collapse it to a dictionary.
+    return words, [available[text].popleft() for text in answer]
+
 def compile_questions(source, rows, dialogues, prefix='en-zh-q'):
     questions = []
     for record in source['challenges']:
@@ -60,13 +76,9 @@ def compile_questions(source, rows, dialogues, prefix='en-zh-q'):
         elif c['type'] == 'orderTapComplete':
             q['kind'] = 'word_tiles'
             texts = [v.strip() for v in row['word_bank']]
-            choices = {v['text']: v for v in c['choices']}
-            assert set(texts) == set(choices)
-            q['words'] = [{'id': f'word-{j}', 'text': text,
-                           'audioResource': resource(choices[text]['tts'], 'speech')} for j,text in enumerate(texts)]
             answer = [t['text'] for t in c['displayTokens'] if t['isBlank']]
             assert [a['word'] for a in row['actions']] == answer
-            q['answer_words'] = [next(v['id'] for v in q['words'] if v['text'] == text) for text in answer]
+            q['words'], q['answer_words'] = compile_word_bank(c['choices'], texts, answer)
             blanks = [j for j,t in enumerate(c['displayTokens']) if t['isBlank']]
             q['completionPrefix'] = ''.join(t['text'] for t in c['displayTokens'][:blanks[0]])
             q['completionSuffix'] = ''.join(t['text'] for t in c['displayTokens'][blanks[-1]+1:])
@@ -76,16 +88,9 @@ def compile_questions(source, rows, dialogues, prefix='en-zh-q'):
             q['kind'] = 'word_tiles'
             if c['type'] == 'translate': q['hint'] = c['prompt']
             texts = [v.strip() for v in row['word_bank']]
-            choices = {v['text']: v for v in c['choices']}
-            assert len(choices) == len(c['choices']) and set(texts) == set(choices)
-            q['words'] = []
-            for j, text in enumerate(texts):
-                item = {'id': f'word-{j}', 'text': text}
-                if choices[text].get('tts'): item['audioResource'] = resource(choices[text]['tts'], 'speech')
-                q['words'].append(item)
             answer = [c['choices'][j]['text'] for j in c['correctIndices']]
             assert [a['word'] for a in row['actions']] == answer
-            q['answer_words'] = [next(v['id'] for v in q['words'] if v['text'] == t) for t in answer]
+            q['words'], q['answer_words'] = compile_word_bank(c['choices'], texts, answer)
         elif c['type'] == 'match':
             q['kind'] = 'matching'
             controls = [label(t) for t in re.findall(r'- button "(\d[^"\n]+)"', row['before'])]

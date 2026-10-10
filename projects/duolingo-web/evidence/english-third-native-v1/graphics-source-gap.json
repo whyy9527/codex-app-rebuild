@@ -1,0 +1,17 @@
+{
+  "source": "projects/duolingo-web/evidence/english-third-v1/session.json",
+  "source_sha256": "fb6c0e878c07efa4e03d803d22efb80335bf8d99c8163130f2308fa7649685c8",
+  "question": "en-zh-l3-q9",
+  "api_static_svg_title": "Junior - Cropped",
+  "dropped_character_fields": [
+    "challenge.9.character.url",
+    "challenge.9.character.correctAnimation",
+    "challenge.9.character.incorrectAnimation",
+    "challenge.9.character.idleAnimation",
+    "challenge.9.character.name",
+    "challenge.9.character.avatarIconImage",
+    "challenge.9.character.image.pdf"
+  ],
+  "finding": "Capture whitelist omitted character.url and idle/correct/incorrect animation fields. Their values were not retained, so no full-body resource mapping is established.",
+  "next_action": "Capture these public character fields on the next actual session, confirm against actual rendered state, then bind idle/correct/incorrect resource to UI. Do not infer Junior artwork from the three Duo Lottie names."
+}

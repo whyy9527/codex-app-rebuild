@@ -105,3 +105,8 @@ Guidebook从SwiftPM中的实测结构化内容读取，使用原版语音与发�
 
 
 参考回放现把API期望与独立DOM事实传给`reference-challenge-identity.mjs`，保留完整词库多重集；重复文本不去重。可读提示容器使用hint-token父容器innerText（叶textContent可能为空），否则明确降为文本存在证据。分歧在回答前保存，不能拿身份检查代替完整探索。`answer-reference-live.mjs`以现场词库和模型选择续探，正误回执先落盘，继续转移另行执行，避免过渡失败抹掉已作答证据。第三课历史已交给通用discovery消费者；未加入新策略池或声称完整RSI。
+
+
+第三课编译器复用无导入写入副作用的第二课builder，输出独立v3，不改v1/v2。compile_word_bank用多重集及逐文本出现队列保留UI顺序/重复身份；核心选择按ID、判题按词序/数量，源完整替代答案规则仍未知。Progress仅在不存在未编译路径时标记course完成，避免新增观察课被旧子集credit遮盖。
+
+原生观察器支持显式进度/起始课接续及重复词块AX检查；全程English回放从首课完成阶段保存home和对应开始弹层，保留home-initial，避免混用状态。角色API图可能为Cropped，不等同页面动画素材；实际Lottie资源需绑定具体状态后接入。

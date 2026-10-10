@@ -218,11 +218,21 @@ if CommandLine.arguments.contains("--walk-course") {
         let course = (json["data"] as! [String: Any])["candidate_course"] as! [String: Any]
         let lessons = course["lessons"] as! [[String: Any]]
         var capturedKinds = Set<String>()
-        for (lessonIndex, definition) in lessons.enumerated() {
+        let startIndex = CommandLine.arguments.firstIndex(of: "--start-lesson-index").map { Int(CommandLine.arguments[$0 + 1])! } ?? 0
+        precondition(lessons.indices.contains(startIndex), "Start lesson must exist in the explicit fixture")
+        for (lessonIndex, definition) in lessons.enumerated().dropFirst(startIndex) {
             let path = course["pathNodes"] as? [[String: Any]]
             let nodeIndex = path?.firstIndex { ($0["lessonIDs"] as? [String])?.contains(definition["id"] as! String) == true } ?? lessonIndex
             try press(nodeIndex == 0 ? "start-lesson" : "start-lesson-\(nodeIndex)")
-            if course["interfaceLanguage"] as? String == "zh" { try press("start-lesson-confirm") }
+            if course["interfaceLanguage"] as? String == "zh" {
+                if lessonIndex == 1 {
+                    var popover = observe()
+                    let start = current().first { (attr($0, kAXIdentifierAttribute) as? String) == "start-lesson-confirm" }
+                    popover["interactions"] = ["start_enabled": start.flatMap { attr($0, kAXEnabledAttribute) as? Bool } ?? false]
+                    states["en-zh-home-popover"] = popover; try capture("after-first-popover-window")
+                }
+                try press("start-lesson-confirm")
+            }
             let questions = definition["questions"] as! [[String: Any]]
             let wrongFirst = CommandLine.arguments.contains("--english-first-wrong") && course["interfaceLanguage"] as? String == "zh" && lessonIndex == 0
             for question in questions {
@@ -238,6 +248,31 @@ if CommandLine.arguments.contains("--walk-course") {
                         try press("pair-left-" + id); try press("pair-right-" + id)
                     }
                 case "word_tiles":
+                    if CommandLine.arguments.contains("--exercise-duplicate-words") {
+                        let words = question["words"] as! [[String: Any]]
+                        let grouped = Dictionary(grouping: words, by: { $0["text"] as! String })
+                        if let duplicates = grouped.values.first(where: { $0.count > 1 }) {
+                            let first = duplicates[0]["id"] as! String, second = duplicates[1]["id"] as! String
+                            func enabled(_ id: String) -> Bool? {
+                                current().first { (attr($0, kAXIdentifierAttribute) as? String) == id }.flatMap { attr($0, kAXEnabledAttribute) as? Bool }
+                            }
+                            try press("word-bank-" + first)
+                            var observed = observe()
+                            observed["interactions"] = ["used_occurrence_disabled": enabled("word-bank-" + first) == false,
+                                "other_occurrence_available": enabled("word-bank-" + second) == true]
+                            states[key + "-duplicate-first"] = observed
+                            try press("word-bank-" + second); try press("selected-word-" + first)
+                            observed = observe()
+                            observed["interactions"] = ["removed_occurrence_available": enabled("word-bank-" + first) == true,
+                                "other_occurrence_still_selected": enabled("word-bank-" + second) == false]
+                            states[key + "-duplicate-undo-one"] = observed; try capture(key + "-duplicate-undo-one")
+                            try press("selected-word-" + second)
+                            observed = observe()
+                            observed["interactions"] = ["empty_answer_disabled": enabled("check") == false,
+                                "both_occurrences_available": enabled("word-bank-" + first) == true && enabled("word-bank-" + second) == true]
+                            states[key + "-duplicate-empty"] = observed
+                        }
+                    }
                     for word in question["answer_words"] as! [String] { try press("word-bank-" + word) }
                     try press("check")
                 default:
@@ -269,6 +304,13 @@ if CommandLine.arguments.contains("--walk-course") {
             states["lesson-\(lessonIndex + 1)-complete"] = observe()
             try press("return-path")
             try waitFor("course-entry")
+            states["home-after-lesson-\(lessonIndex + 1)"] = observe()
+            if lessonIndex == 0 && course["interfaceLanguage"] as? String == "zh" {
+                // The frozen English home reference follows the first lesson.
+                // Keep initial facts; compare the same state from this run.
+                states["home-initial"] = states["home"]
+                states["home"] = observe(); try capture("after-first-home-window")
+            }
         }
         // Reference Guidebook was observed after the first node's three lessons.
         try press("open-guide"); try waitFor("guide-title")

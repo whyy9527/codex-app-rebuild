@@ -226,7 +226,11 @@ public struct Lesson: Equatable, Sendable {
     }
     public mutating func submit() {
         guard canSubmit else { return }
-        let correct = question.kind == .choice ? selected == question.answer : selectedWords == question.answerWords
+        // Tile IDs enforce one use per occurrence. Grading follows the visible
+        // word sequence so two indistinguishable copies can exchange positions.
+        let textByID = Dictionary(uniqueKeysWithValues: question.words.map { ($0.id, $0.text) })
+        let correct = question.kind == .choice ? selected == question.answer
+            : selectedWords.compactMap { textByID[$0] } == question.answerWords.compactMap { textByID[$0] }
         feedback = correct
         if !correct {
             hearts = max(0, hearts - 1)
@@ -284,7 +288,11 @@ public struct LearningProgress: Codable, Equatable, Sendable {
     @discardableResult public mutating func markCompleted(_ course: Course, index: Int) -> Bool {
         guard isUnlocked(course, index: index) else { return false }
         completedLessons[course.id, default: []].insert(course.lessons[index].id)
-        if completedCount(course) == course.lessons.count { completedCourses.insert(course.id) }
+        let hasUncompiledPath = course.pathNodes?.contains { node in
+            node.kind != "chest" && (node.lessonIDs.isEmpty || (node.lessonCount ?? node.lessonIDs.count) > node.lessonIDs.count)
+        } ?? false
+        if completedCount(course) == course.lessons.count && !hasUncompiledPath { completedCourses.insert(course.id) }
+        else { completedCourses.remove(course.id) }
         return true
     }
 }

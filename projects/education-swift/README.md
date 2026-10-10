@@ -8,7 +8,7 @@
 
 ```sh
 swift build --package-path projects/education-swift --product LingoSeed
-projects/education-swift/.build/debug/LingoSeed --fixture projects/duolingo-web/fixture-reference-en-zh-v2.json --progress artifacts/lingoseed-english-demo/progress.json
+projects/education-swift/.build/debug/LingoSeed --fixture projects/duolingo-web/fixture-reference-en-zh-v3.json --progress artifacts/lingoseed-english-demo/progress.json
 swift run --package-path projects/education-swift LearningCoreChecks
 ```
 
@@ -116,3 +116,8 @@ projects/education-swift/.build/debug/LingoSeed --fixture projects/duolingo-web/
 ### 英语第二课接入（当前默认）
 
 默认夹具现为`fixture-reference-en-zh-v2.json`，两课各15题；v1保留历史回归。第二课按实际UI尾部编译，包含范例填空、三道挑战及三处鼓励，首节点第2课可启动。8项核心及原生两课回放完成；前端匹配状态128通过、105未覆盖，第二课30对截图全有差异，整体仍失败。见[实际回执与命令](../duolingo-web/evidence/english-second-native-v1/README.md)。上述v1主页开始失败是保留的历史结果。
+
+
+### 当前默认：英语第三课
+
+默认`fixture-reference-en-zh-v3.json`为三课各15道实际题，支持重复词块独立选择/撤回。9项核心及原生完整三课回放通过；前端221通过、151未覆盖整体fail，第三课30对截图均有差异。完成三课不再错误标记未编译路径全部完成。旧v1/v2与先前失败保留。[实测、限制与命令](../duolingo-web/evidence/english-third-native-v1/README.md)。

@@ -107,3 +107,6 @@ node projects/duolingo-web/explore-curriculum.mjs artifacts/reference-new.json -
 
 
 当前英语默认夹具为`fixture-reference-en-zh-v2.json`，前两课各15道实际UI题目，第二课按现场挑战尾部而非初始API末尾编译。填空/挑战及开始弹层已接入，8项核心通过。前端v3在匹配状态128通过、105未覆盖；30对第二课截图均不同，未完成1:1。复跑、源证据及复盘见[第二课原生记录](evidence/english-second-native-v1/README.md)。
+
+
+当前默认已升级`fixture-reference-en-zh-v3.json`，前三课各15道实际UI题目。重复词块支持、9项核心及原生三课回放完成；前端v4当前221通过、151未覆盖，第三课30对截图均不同，整体仍fail。[第三课原生证据与接续](evidence/english-third-native-v1/README.md)。

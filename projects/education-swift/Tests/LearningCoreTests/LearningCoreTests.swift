@@ -195,6 +195,54 @@ func actualEnglishSecondTrajectory() throws {
     try check(roundTrip == source, "Second-lesson presentation lost during round-trip")
     print("PASS actual second lesson, fill undo, adaptive tail, three interludes and first-node unlock; frontend equivalence pending")
 }
+func actualEnglishThirdTrajectory() throws {
+    let source = try course(fixture: "fixture-reference-en-zh-v3.json")
+    try check(source.lessons.count == 3 && source.pathNodes?.first?.lessonIDs == ["lesson-1", "lesson-2", "lesson-3"], "Actual third lesson not connected to first node")
+    var progress = LearningProgress()
+    progress.markCompleted(source, index: 0)
+    try check(!progress.isUnlocked(source, index: 2), "Third lesson unlocked without second completion")
+    progress.markCompleted(source, index: 1)
+    try check(progress.isUnlocked(source, index: 2), "Third lesson unavailable after first two completions")
+    var lesson = Lesson(course: source, lessonIndex: 2, hearts: 4)
+    var count = 0; var interludes = [String]()
+    while !lesson.complete {
+        if let interlude = lesson.interlude { interludes.append(interlude.text); lesson.advance(); continue }
+        if lesson.question.id == "en-zh-l3-q9" {
+            let duplicates = lesson.question.words.filter { $0.text == "不要" }.map(\.id)
+            try check(duplicates.count == 2 && Set(duplicates).count == 2, "Repeated visible words collapsed")
+            lesson.addWord(duplicates[0]); lesson.addWord(duplicates[0])
+            try check(lesson.selectedWords.count == 1, "A tile occurrence was reused")
+            lesson.addWord(duplicates[1]); lesson.removeWord(duplicates[0])
+            try check(lesson.selectedWords == [duplicates[1]], "Undo removed both equal-text tiles")
+            lesson.removeWord(duplicates[1])
+            try check(!lesson.canSubmit, "Removing both repeated tiles left a submittable answer")
+            var missing = lesson
+            for id in lesson.question.answerWords where id != duplicates[1] { missing.addWord(id) }
+            missing.submit()
+            try check(missing.feedback == false, "Missing a repeated word was accepted")
+            for id in lesson.question.answerWords {
+                lesson.addWord(id == duplicates[0] ? duplicates[1] : id == duplicates[1] ? duplicates[0] : id)
+            }
+            lesson.submit()
+        } else {
+            switch lesson.question.kind {
+            case .choice: lesson.choose(lesson.question.answer); lesson.submit()
+            case .wordTiles: for id in lesson.question.answerWords { lesson.addWord(id) }; lesson.submit()
+            case .matching: throw CheckFailure.failed("Unobserved matching tail entered third actual trajectory")
+            }
+        }
+        try check(lesson.feedback == true, "Source accepted third-lesson word sequence rejected")
+        count += 1; lesson.advance()
+    }
+    try check(count == 15 && lesson.hearts == 4 && interludes.count == 3, "Third accepted trajectory or interludes lost")
+    progress.completedCourses.insert(source.id) // Old partial-fixture credit must be repaired.
+    progress.markCompleted(source, index: 2)
+    try check(progress.completedCount(source) == 3 && !progress.completedCourses.contains(source.id), "Observed three-lesson subset incorrectly credited the whole uncompiled path")
+    try check(source.lessons[2].questions.suffix(3).allSatisfy { $0.indicator == "挑战题" && $0.sourceLanguage == "zh" }, "Static API tail substituted for actual hard questions")
+    let roundTrip = try JSONDecoder().decode(Course.self, from: JSONEncoder().encode(source))
+    try check(roundTrip == source, "Third-course occurrence identities lost during round-trip")
+    print("PASS actual third lesson, duplicate-tile independence/undo/multiplicity/equivalent sequence, three interludes and unlock; full source grader unverified")
+}
 func legacyCourse() throws -> Course { try course() }
 do {
     try mistakeReview()
@@ -205,7 +253,8 @@ do {
     try observedInterludes()
     try actualEnglishTrajectory()
     try actualEnglishSecondTrajectory()
-    print("8 business checks passed; core layer only")
+    try actualEnglishThirdTrajectory()
+    print("9 business checks passed; core layer only")
 } catch {
     FileHandle.standardError.write(Data(("FAIL " + String(describing: error) + "\n").utf8))
     exit(1)

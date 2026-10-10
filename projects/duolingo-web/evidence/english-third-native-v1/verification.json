@@ -1,0 +1,27 @@
+{
+  "kind": "third-course-source-and-native-verification",
+  "old_v1_v2_files_byte_preserved": true,
+  "v3_deterministic_recompile": true,
+  "resources_hashed": 66,
+  "native_walk_error": null,
+  "duplicate_ax_interactions": {
+    "en-zh-l3-q9-duplicate-empty": {
+      "both_occurrences_available": true,
+      "empty_answer_disabled": true
+    },
+    "en-zh-l3-q9-duplicate-first": {
+      "other_occurrence_available": true,
+      "used_occurrence_disabled": true
+    },
+    "en-zh-l3-q9-duplicate-undo-one": {
+      "other_occurrence_still_selected": true,
+      "removed_occurrence_available": true
+    }
+  },
+  "uncompiled_path_not_credited_complete": true,
+  "limitations": [
+    "Native duplicate undo is observed; source undo/alternate identical occurrence grading not separately exercised",
+    "Core text-sequence grading is not a complete reproduction of source alternate-answer grader",
+    "Visual, acoustic, completion-chain and RSI policy equivalence remain unproven"
+  ]
+}
