@@ -1,0 +1,746 @@
+{
+  "observed_at": "2026-10-10T21:52:19.315Z",
+  "path": "/characters",
+  "viewport": {
+    "width": 1200,
+    "height": 732
+  },
+  "snapshot": "- link:\n  - /url: /learn\n  - img\n- link \"学习\":\n  - /url: /learn\n  - img\n  - text: 学习\n- link \"发音\":\n  - /url: /characters\n  - img\n  - text: 发音\n- link \"排行榜\":\n  - /url: /leaderboard\n  - img\n  - text: 排行榜\n- link \"特别任务\":\n  - /url: /quests\n  - img\n  - text: 特别任务\n- link \"宝石小店\":\n  - /url: /shop\n  - img\n  - text: 宝石小店\n- link \"个人档案\":\n  - /url: /learn?sign-up\n  - img\n  - text: 个人档案\n- button \"更多\":\n  - img\n  - text: 更多\n- img\n- button \"5\":\n  - img\n  - text: \"5\"\n- button \"2\":\n  - img\n  - text: \"2\"\n- button \"510\":\n  - img\n  - text: \"510\"\n- button \"3\":\n  - img\n  - text: \"3\"\n- heading \"青铜等级\" [level=2]\n- link \"查看排行榜\":\n  - /url: /leaderboard\n- img\n- paragraph: 这周的排行榜挑战赛即将开始！\n- text: 12 小时\n- heading \"每日特别任务\" [level=2]\n- link \"显示全部\":\n  - /url: /quests\n- img\n- text: 获取 30 经验\n- progressbar: 30 / 30 30 / 30\n- img\n- heading \"创建个人档案，保存学习进度！\" [level=2]\n- button \"创建档案\"\n- button \"登录\"\n- list:\n  - listitem:\n    - link \"关于我们\":\n      - /url: https://about.duolingo.com\n  - listitem:\n    - link \"宝石小店\":\n      - /url: https://store.duolingo.com/\n  - listitem:\n    - link \"有效性\":\n      - /url: /efficacy\n  - listitem:\n    - link \"招聘贤才\":\n      - /url: https://careers.duolingo.com\n  - listitem:\n    - link \"投资者\":\n      - /url: https://investors.duolingo.com\n  - listitem:\n    - link \"条款\":\n      - /url: /terms\n  - listitem:\n    - link \"隐私\":\n      - /url: /privacy",
+  "visible": [
+    {
+      "test": "home-nav",
+      "tag": "A",
+      "role": null,
+      "text": "学习",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        16,
+        92,
+        222,
+        52
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "500",
+        "lineHeight": "25px",
+        "color": "rgb(0, 0, 238)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(0, 0, 238)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": []
+    },
+    {
+      "test": "characters-nav",
+      "tag": "A",
+      "role": null,
+      "text": "发音",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        16,
+        152,
+        222,
+        52
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "500",
+        "lineHeight": "25px",
+        "color": "rgb(0, 0, 238)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(0, 0, 238)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": []
+    },
+    {
+      "test": "leaderboard-nav",
+      "tag": "A",
+      "role": null,
+      "text": "排行榜",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        16,
+        212,
+        222,
+        52
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "500",
+        "lineHeight": "25px",
+        "color": "rgb(0, 0, 238)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(0, 0, 238)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": []
+    },
+    {
+      "test": "quests-nav",
+      "tag": "A",
+      "role": null,
+      "text": "特别任务",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        16,
+        272,
+        222,
+        52
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "500",
+        "lineHeight": "25px",
+        "color": "rgb(0, 0, 238)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(0, 0, 238)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": []
+    },
+    {
+      "test": "shop-nav",
+      "tag": "A",
+      "role": null,
+      "text": "宝石小店",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        16,
+        332,
+        222,
+        52
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "500",
+        "lineHeight": "25px",
+        "color": "rgb(0, 0, 238)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(0, 0, 238)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": []
+    },
+    {
+      "test": "profile-tab",
+      "tag": "A",
+      "role": null,
+      "text": "个人档案",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        16,
+        392,
+        222,
+        52
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "500",
+        "lineHeight": "25px",
+        "color": "rgb(0, 0, 238)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(0, 0, 238)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": []
+    },
+    {
+      "test": "more-nav",
+      "tag": "DIV",
+      "role": null,
+      "text": "更多",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        16,
+        452,
+        222,
+        52
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "500",
+        "lineHeight": "25px",
+        "color": "rgb(175, 175, 175)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(175, 175, 175)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": []
+    },
+    {
+      "test": "courses-menu",
+      "tag": "DIV",
+      "role": null,
+      "text": "5",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        808,
+        24,
+        81.875,
+        44
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "500",
+        "lineHeight": "20px",
+        "color": "rgb(60, 60, 60)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(60, 60, 60)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": []
+    },
+    {
+      "test": "streak-menu",
+      "tag": "DIV",
+      "role": null,
+      "text": "2",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        911.9765625,
+        24,
+        67.546875,
+        44
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "500",
+        "lineHeight": "20px",
+        "color": "rgb(60, 60, 60)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(60, 60, 60)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": []
+    },
+    {
+      "test": "streak-stat",
+      "tag": "SPAN",
+      "role": null,
+      "text": "2",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        956.3046875,
+        36,
+        7.21875,
+        20
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "15px",
+        "fontWeight": "700",
+        "lineHeight": "20px",
+        "color": "rgb(255, 150, 0)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(255, 150, 0)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": []
+    },
+    {
+      "test": "lingot-menu",
+      "tag": "DIV",
+      "role": null,
+      "text": "510",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        1001.625,
+        24,
+        80.2734375,
+        44
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "500",
+        "lineHeight": "20px",
+        "color": "rgb(60, 60, 60)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(60, 60, 60)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": []
+    },
+    {
+      "test": "lingot-stat",
+      "tag": "SPAN",
+      "role": null,
+      "text": "510",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        1044.0234375,
+        36,
+        21.875,
+        20
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "15px",
+        "fontWeight": "700",
+        "lineHeight": "20px",
+        "color": "rgb(28, 176, 246)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(28, 176, 246)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": []
+    },
+    {
+      "test": "hearts-menu",
+      "tag": "DIV",
+      "role": null,
+      "text": "3",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        1104,
+        24,
+        72,
+        44
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "500",
+        "lineHeight": "20px",
+        "color": "rgb(60, 60, 60)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(60, 60, 60)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": []
+    },
+    {
+      "test": null,
+      "tag": "H2",
+      "role": null,
+      "text": "青铜等级",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        828,
+        112,
+        76,
+        28
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "19px",
+        "fontWeight": "700",
+        "lineHeight": "28px",
+        "color": "rgb(75, 75, 75)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(75, 75, 75)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": []
+    },
+    {
+      "test": "leaderboards-open",
+      "tag": "A",
+      "role": null,
+      "text": "查看排行榜",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        1077,
+        117,
+        79,
+        18
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "15px",
+        "fontWeight": "700",
+        "lineHeight": "18px",
+        "color": "rgb(28, 176, 246)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(28, 176, 246)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": []
+    },
+    {
+      "test": null,
+      "tag": "H2",
+      "role": null,
+      "text": "每日特别任务",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        828,
+        278,
+        114,
+        28
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "19px",
+        "fontWeight": "700",
+        "lineHeight": "28px",
+        "color": "rgb(75, 75, 75)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(75, 75, 75)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": []
+    },
+    {
+      "test": null,
+      "tag": "H2",
+      "role": null,
+      "text": "创建个人档案，保存学习进度！",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        828,
+        459,
+        328,
+        28
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "19px",
+        "fontWeight": "700",
+        "lineHeight": "28px",
+        "color": "rgb(75, 75, 75)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(75, 75, 75)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": []
+    },
+    {
+      "test": "create-profile-juicy",
+      "tag": "BUTTON",
+      "role": null,
+      "text": "创建档案",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        828,
+        511,
+        328,
+        50
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "15px",
+        "fontWeight": "700",
+        "lineHeight": "18px",
+        "color": "rgb(255, 255, 255)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "16px",
+        "borderWidth": "0px 0px 4px",
+        "borderColor": "rgba(0, 0, 0, 0)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": [
+        {
+          "tag": "DIV",
+          "rect": {
+            "x": 808,
+            "y": 439,
+            "width": 368,
+            "height": 202,
+            "top": 439,
+            "right": 1176,
+            "bottom": 641,
+            "left": 808
+          },
+          "backgroundColor": "rgb(255, 255, 255)",
+          "borderRadius": "16px",
+          "padding": "18px",
+          "gap": "normal"
+        },
+        {
+          "tag": "DIV",
+          "rect": {
+            "x": 808,
+            "y": 24,
+            "width": 368,
+            "height": 717,
+            "top": 24,
+            "right": 1176,
+            "bottom": 741,
+            "left": 808
+          },
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "gap": "16px"
+        },
+        {
+          "tag": "DIV",
+          "rect": {
+            "x": 808,
+            "y": 24,
+            "width": 368,
+            "height": 717,
+            "top": 24,
+            "right": 1176,
+            "bottom": 741,
+            "left": 808
+          },
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "gap": "normal"
+        }
+      ]
+    },
+    {
+      "test": "sign-in-juicy",
+      "tag": "BUTTON",
+      "role": null,
+      "text": "登录",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        828,
+        571,
+        328,
+        50
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "15px",
+        "fontWeight": "700",
+        "lineHeight": "18px",
+        "color": "rgb(255, 255, 255)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "16px",
+        "borderWidth": "0px 0px 4px",
+        "borderColor": "rgba(0, 0, 0, 0)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": [
+        {
+          "tag": "DIV",
+          "rect": {
+            "x": 808,
+            "y": 439,
+            "width": 368,
+            "height": 202,
+            "top": 439,
+            "right": 1176,
+            "bottom": 641,
+            "left": 808
+          },
+          "backgroundColor": "rgb(255, 255, 255)",
+          "borderRadius": "16px",
+          "padding": "18px",
+          "gap": "normal"
+        },
+        {
+          "tag": "DIV",
+          "rect": {
+            "x": 808,
+            "y": 24,
+            "width": 368,
+            "height": 717,
+            "top": 24,
+            "right": 1176,
+            "bottom": 741,
+            "left": 808
+          },
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "gap": "16px"
+        },
+        {
+          "tag": "DIV",
+          "rect": {
+            "x": 808,
+            "y": 24,
+            "width": 368,
+            "height": 717,
+            "top": 24,
+            "right": 1176,
+            "bottom": 741,
+            "left": 808
+          },
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "gap": "normal"
+        }
+      ]
+    },
+    {
+      "test": "footer-links",
+      "tag": "UL",
+      "role": null,
+      "text": "关于我们\n宝石小店\n有效性\n招聘贤才\n投资者\n条款\n隐私",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        818,
+        673,
+        348,
+        64
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "500",
+        "lineHeight": "20px",
+        "color": "rgb(60, 60, 60)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(60, 60, 60)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": []
+    },
+    {
+      "test": "drawer-backdrop",
+      "tag": "DIV",
+      "role": null,
+      "text": "",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        0,
+        0,
+        1200,
+        732
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "500",
+        "lineHeight": "20px",
+        "color": "rgb(60, 60, 60)",
+        "backgroundColor": "rgba(0, 0, 0, 0.4)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(60, 60, 60)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": []
+    }
+  ],
+  "screenshot": "pronunciation-after.png"
+}

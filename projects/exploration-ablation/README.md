@@ -16,3 +16,5 @@ python3 projects/exploration-ablation/run.py --codex "$CODEX_CLI_PATH" \
 首次批次因服务拒绝模型未产出策略，实际CLI横幅版本与命令版本不符；[失败回执](evidence/failure01/diagnostic.json)保留。02修订只显式绑定bundled CLI及哈希，先提交推送再调用，不能把失败隐藏为重试。
 
 02三次实际进程均成功，横幅模型/effort/CLI版本与注册一致；六个回放候选代理分数为70、34、4、70、70、40，控制组封存后回放为70。两组均选择了训练高分策略，尚不能宣称收益；[选择封存](evidence/model02/selection-seal.json)后才执行在线留出。
+
+02在线已执行，但首次发音仅采到加载空壳；两组实际动作相同，25对265原始计数不能作策略比较。正式结论为不可判定，见[实测报告](REPORT.md)和[采样审计](evidence/online02/audit.json)。下一批修复就绪检测并重新注册，不覆盖02。

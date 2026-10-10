@@ -1,0 +1,348 @@
+{
+  "interpretation": "inconclusive",
+  "online_comparison": "unavailable-render-phase-mismatch",
+  "raw_diagnostic_counts": {
+    "replay_feedback": 25,
+    "no_replay_feedback": 265
+  },
+  "policy_effect": null,
+  "reason": "Both policies selected pronunciation then leaderboards. First pronunciation capture contains only route shell; second contains phonetics content. Fixed 500ms wait did not establish ready state. Identical root snapshots do not establish cache/server equivalence. Raw status observed is not a valid causal comparison.",
+  "offline_scores": {
+    "replay_feedback": 70,
+    "no_replay_feedback": 70
+  },
+  "selected_full_candidate": "initial candidate 0, unchanged after refinement",
+  "product_quality": "not_measured",
+  "rerun_in_batch02": false,
+  "records": [
+    {
+      "source": "01-collector.log",
+      "original_sha256": "2e4509fa600009a78604338a3e1a455577436ea3a59aad713bc4b9c3f7fa7819",
+      "archived": false,
+      "archived_sha256": null,
+      "handling": "local only: raw log or leaderboard account imagery"
+    },
+    {
+      "source": "01-replay_feedback/collection.json",
+      "original_sha256": "c38bab219c870fa1fb9c7b1c148c56a460fd38a8dfbe0f70d24fa39ec4c8a37a",
+      "archived": true,
+      "archived_sha256": "c38bab219c870fa1fb9c7b1c148c56a460fd38a8dfbe0f70d24fa39ec4c8a37a",
+      "handling": "JSON account identifiers redacted; diagnostic counts preserved"
+    },
+    {
+      "source": "01-replay_feedback/pronunciation-action.raw.txt",
+      "original_sha256": "c5dd1d69d2c0e4a03da080e3aea67d64bc18c18bbbf23fbfa1abf717aecc4f12",
+      "archived": false,
+      "archived_sha256": null,
+      "handling": "local only: raw log or leaderboard account imagery"
+    },
+    {
+      "source": "01-replay_feedback/pronunciation-after.json",
+      "original_sha256": "dd8ede182356b02a9d3535fa39a8d2763e4b2751cf2f07e4af17f8bf98a971db",
+      "archived": true,
+      "archived_sha256": "dd8ede182356b02a9d3535fa39a8d2763e4b2751cf2f07e4af17f8bf98a971db",
+      "handling": "JSON account identifiers redacted; diagnostic counts preserved"
+    },
+    {
+      "source": "01-replay_feedback/pronunciation-after.png",
+      "original_sha256": "9a67ba730af843c0f61fee65ac98d08fc862fa7160e8313e28923dd2bb44c986",
+      "archived": true,
+      "archived_sha256": "9a67ba730af843c0f61fee65ac98d08fc862fa7160e8313e28923dd2bb44c986",
+      "handling": "unaltered pronunciation PNG"
+    },
+    {
+      "source": "01-replay_feedback/pronunciation-after.raw.txt",
+      "original_sha256": "15cef105e32f68a20291fa38e7f5794f3dc7beff908ff6b0374b005d880345ec",
+      "archived": false,
+      "archived_sha256": null,
+      "handling": "local only: raw log or leaderboard account imagery"
+    },
+    {
+      "source": "01-replay_feedback/pronunciation-before.json",
+      "original_sha256": "38b3a8dfe346cbc7bfd6fa16ed7b3e3de14c3b5306b5ec03e9183f39b41d4ad5",
+      "archived": true,
+      "archived_sha256": "38b3a8dfe346cbc7bfd6fa16ed7b3e3de14c3b5306b5ec03e9183f39b41d4ad5",
+      "handling": "JSON account identifiers redacted; diagnostic counts preserved"
+    },
+    {
+      "source": "01-replay_feedback/pronunciation-before.png",
+      "original_sha256": "d9613e0e2229b89b910705c4f61ca2a89ed158e7991620671411ffbb52158a2e",
+      "archived": true,
+      "archived_sha256": "d9613e0e2229b89b910705c4f61ca2a89ed158e7991620671411ffbb52158a2e",
+      "handling": "unaltered pronunciation PNG"
+    },
+    {
+      "source": "01-replay_feedback/pronunciation-before.raw.txt",
+      "original_sha256": "4bb985fd4df4126b51a83878d8b795053f1b06e77dfbfac4f5ed24b77281935f",
+      "archived": false,
+      "archived_sha256": null,
+      "handling": "local only: raw log or leaderboard account imagery"
+    },
+    {
+      "source": "01-replay_feedback/pronunciation-reset.raw.txt",
+      "original_sha256": "8d377de0a902be8daee0dd70ef1c7863391889e50b192c25a0d46e84295c39cc",
+      "archived": false,
+      "archived_sha256": null,
+      "handling": "local only: raw log or leaderboard account imagery"
+    },
+    {
+      "source": "01-replay_feedback-action.json",
+      "original_sha256": "b39e8f498f63ec91798be95533859efa03c5741ad589f58ddf53a960a5c6dd2d",
+      "archived": true,
+      "archived_sha256": "b39e8f498f63ec91798be95533859efa03c5741ad589f58ddf53a960a5c6dd2d",
+      "handling": "JSON account identifiers redacted; diagnostic counts preserved"
+    },
+    {
+      "source": "02-collector.log",
+      "original_sha256": "2e4509fa600009a78604338a3e1a455577436ea3a59aad713bc4b9c3f7fa7819",
+      "archived": false,
+      "archived_sha256": null,
+      "handling": "local only: raw log or leaderboard account imagery"
+    },
+    {
+      "source": "02-no_replay_feedback/collection.json",
+      "original_sha256": "c38bab219c870fa1fb9c7b1c148c56a460fd38a8dfbe0f70d24fa39ec4c8a37a",
+      "archived": true,
+      "archived_sha256": "c38bab219c870fa1fb9c7b1c148c56a460fd38a8dfbe0f70d24fa39ec4c8a37a",
+      "handling": "JSON account identifiers redacted; diagnostic counts preserved"
+    },
+    {
+      "source": "02-no_replay_feedback/pronunciation-action.raw.txt",
+      "original_sha256": "c5dd1d69d2c0e4a03da080e3aea67d64bc18c18bbbf23fbfa1abf717aecc4f12",
+      "archived": false,
+      "archived_sha256": null,
+      "handling": "local only: raw log or leaderboard account imagery"
+    },
+    {
+      "source": "02-no_replay_feedback/pronunciation-after.json",
+      "original_sha256": "ac14d81659b171cbf9d8462bfd5f0c472a60c23c70ab3146f32dc80dc6c84a42",
+      "archived": true,
+      "archived_sha256": "ac14d81659b171cbf9d8462bfd5f0c472a60c23c70ab3146f32dc80dc6c84a42",
+      "handling": "JSON account identifiers redacted; diagnostic counts preserved"
+    },
+    {
+      "source": "02-no_replay_feedback/pronunciation-after.png",
+      "original_sha256": "a15c49716aade0a4e9c18d6413ea32472ec0cc7ff210c0faea618298e6eaf6e7",
+      "archived": true,
+      "archived_sha256": "a15c49716aade0a4e9c18d6413ea32472ec0cc7ff210c0faea618298e6eaf6e7",
+      "handling": "unaltered pronunciation PNG"
+    },
+    {
+      "source": "02-no_replay_feedback/pronunciation-after.raw.txt",
+      "original_sha256": "0dc2ed06ee8e9725e1fc7f79181b7f259772a3cfc0e3aabcc95cb027228d3283",
+      "archived": false,
+      "archived_sha256": null,
+      "handling": "local only: raw log or leaderboard account imagery"
+    },
+    {
+      "source": "02-no_replay_feedback/pronunciation-before.json",
+      "original_sha256": "f0c08a26f3158205eb9c9750e02d4d743cc83e36f331ce38b5a8f4f5005a9771",
+      "archived": true,
+      "archived_sha256": "f0c08a26f3158205eb9c9750e02d4d743cc83e36f331ce38b5a8f4f5005a9771",
+      "handling": "JSON account identifiers redacted; diagnostic counts preserved"
+    },
+    {
+      "source": "02-no_replay_feedback/pronunciation-before.png",
+      "original_sha256": "32199a64a8f48f08a3a10f17af788aeb1eeed5c4f04f952031759dffb5c44610",
+      "archived": true,
+      "archived_sha256": "32199a64a8f48f08a3a10f17af788aeb1eeed5c4f04f952031759dffb5c44610",
+      "handling": "unaltered pronunciation PNG"
+    },
+    {
+      "source": "02-no_replay_feedback/pronunciation-before.raw.txt",
+      "original_sha256": "f02e8653dcd54290ea1b9f084da5932d123dbbf1add2e91fa4c94e11a772fd4b",
+      "archived": false,
+      "archived_sha256": null,
+      "handling": "local only: raw log or leaderboard account imagery"
+    },
+    {
+      "source": "02-no_replay_feedback/pronunciation-reset.raw.txt",
+      "original_sha256": "b96ab102ff560da3779d50d1a88ba9b7dd5c36b93259fb67e80849345de1db99",
+      "archived": false,
+      "archived_sha256": null,
+      "handling": "local only: raw log or leaderboard account imagery"
+    },
+    {
+      "source": "02-no_replay_feedback-action.json",
+      "original_sha256": "b39e8f498f63ec91798be95533859efa03c5741ad589f58ddf53a960a5c6dd2d",
+      "archived": true,
+      "archived_sha256": "b39e8f498f63ec91798be95533859efa03c5741ad589f58ddf53a960a5c6dd2d",
+      "handling": "JSON account identifiers redacted; diagnostic counts preserved"
+    },
+    {
+      "source": "03-collector.log",
+      "original_sha256": "ba8d19f38eb36ff08940de3ae64d582bf628f96a61a99ab9f02ac714d1e21b05",
+      "archived": false,
+      "archived_sha256": null,
+      "handling": "local only: raw log or leaderboard account imagery"
+    },
+    {
+      "source": "03-no_replay_feedback/collection.json",
+      "original_sha256": "bfb39b9d0a47d90c4dd5810432e5bfa0c85daf1ae8cf4d89ffa465f1069a698c",
+      "archived": true,
+      "archived_sha256": "bfb39b9d0a47d90c4dd5810432e5bfa0c85daf1ae8cf4d89ffa465f1069a698c",
+      "handling": "JSON account identifiers redacted; diagnostic counts preserved"
+    },
+    {
+      "source": "03-no_replay_feedback/leaderboards-action.raw.txt",
+      "original_sha256": "54cc980ac8c855701b34f22f54a46252b5e8344e4a50ad14f2d2152be58832c6",
+      "archived": false,
+      "archived_sha256": null,
+      "handling": "local only: raw log or leaderboard account imagery"
+    },
+    {
+      "source": "03-no_replay_feedback/leaderboards-after.json",
+      "original_sha256": "a81fd3f8253c391720d173fc46f3467035a6bd87e93197603544c3499980bf3f",
+      "archived": true,
+      "archived_sha256": "c86458302e6474c7da122e38db1ac338a8f7efdd19bc9c4be1d057b296d4e375",
+      "handling": "JSON account identifiers redacted; diagnostic counts preserved"
+    },
+    {
+      "source": "03-no_replay_feedback/leaderboards-after.png",
+      "original_sha256": "d9c8411665d0252f34c33bafc0f41ac364a390f4e3112ab8303c8140a57ff9fa",
+      "archived": false,
+      "archived_sha256": null,
+      "handling": "local only: raw log or leaderboard account imagery"
+    },
+    {
+      "source": "03-no_replay_feedback/leaderboards-after.raw.txt",
+      "original_sha256": "c2c42a22c38e4555077b7070cc80cd9ff07afb04759c54c7fb58cd58b99584a1",
+      "archived": false,
+      "archived_sha256": null,
+      "handling": "local only: raw log or leaderboard account imagery"
+    },
+    {
+      "source": "03-no_replay_feedback/leaderboards-before.json",
+      "original_sha256": "fcdca7ab1b471c86c4089633bbc7e1050fa4eb8a082c6e7828c4936695569f27",
+      "archived": true,
+      "archived_sha256": "fcdca7ab1b471c86c4089633bbc7e1050fa4eb8a082c6e7828c4936695569f27",
+      "handling": "JSON account identifiers redacted; diagnostic counts preserved"
+    },
+    {
+      "source": "03-no_replay_feedback/leaderboards-before.png",
+      "original_sha256": "2f68b806c3ae170ed5e6c2ab804c82d6fe5a1290fb2c32bd45077df1ec14e0e9",
+      "archived": false,
+      "archived_sha256": null,
+      "handling": "local only: raw log or leaderboard account imagery"
+    },
+    {
+      "source": "03-no_replay_feedback/leaderboards-before.raw.txt",
+      "original_sha256": "b310af0e41b7a1cc0765a724aa2f67732c099a736c7d2bb586a4f5e3b0f18217",
+      "archived": false,
+      "archived_sha256": null,
+      "handling": "local only: raw log or leaderboard account imagery"
+    },
+    {
+      "source": "03-no_replay_feedback/leaderboards-reset.raw.txt",
+      "original_sha256": "3ae41d445819743ded3ca6f3224b0cced08c126a546d4e01cec4c69d4be990d0",
+      "archived": false,
+      "archived_sha256": null,
+      "handling": "local only: raw log or leaderboard account imagery"
+    },
+    {
+      "source": "03-no_replay_feedback-action.json",
+      "original_sha256": "e432029d50368936bac013854d1f6741107414c5fc3d1095615582a60fa92e4c",
+      "archived": true,
+      "archived_sha256": "e432029d50368936bac013854d1f6741107414c5fc3d1095615582a60fa92e4c",
+      "handling": "JSON account identifiers redacted; diagnostic counts preserved"
+    },
+    {
+      "source": "04-collector.log",
+      "original_sha256": "ba8d19f38eb36ff08940de3ae64d582bf628f96a61a99ab9f02ac714d1e21b05",
+      "archived": false,
+      "archived_sha256": null,
+      "handling": "local only: raw log or leaderboard account imagery"
+    },
+    {
+      "source": "04-replay_feedback/collection.json",
+      "original_sha256": "bfb39b9d0a47d90c4dd5810432e5bfa0c85daf1ae8cf4d89ffa465f1069a698c",
+      "archived": true,
+      "archived_sha256": "bfb39b9d0a47d90c4dd5810432e5bfa0c85daf1ae8cf4d89ffa465f1069a698c",
+      "handling": "JSON account identifiers redacted; diagnostic counts preserved"
+    },
+    {
+      "source": "04-replay_feedback/leaderboards-action.raw.txt",
+      "original_sha256": "54cc980ac8c855701b34f22f54a46252b5e8344e4a50ad14f2d2152be58832c6",
+      "archived": false,
+      "archived_sha256": null,
+      "handling": "local only: raw log or leaderboard account imagery"
+    },
+    {
+      "source": "04-replay_feedback/leaderboards-after.json",
+      "original_sha256": "207e48403a80585cc4e5a912f95ce259c0a8d4e5064ccf310baa356a0b77a6a8",
+      "archived": true,
+      "archived_sha256": "a40c3ecd07f75ee309ca2c2d449298caaec1bb29b3b5e277861a08a7e62d8eca",
+      "handling": "JSON account identifiers redacted; diagnostic counts preserved"
+    },
+    {
+      "source": "04-replay_feedback/leaderboards-after.png",
+      "original_sha256": "d9c8411665d0252f34c33bafc0f41ac364a390f4e3112ab8303c8140a57ff9fa",
+      "archived": false,
+      "archived_sha256": null,
+      "handling": "local only: raw log or leaderboard account imagery"
+    },
+    {
+      "source": "04-replay_feedback/leaderboards-after.raw.txt",
+      "original_sha256": "50d86c97fd7abf86cbcdc0054ba6b667d5d348b70cf9a1f6f652e5c69c847560",
+      "archived": false,
+      "archived_sha256": null,
+      "handling": "local only: raw log or leaderboard account imagery"
+    },
+    {
+      "source": "04-replay_feedback/leaderboards-before.json",
+      "original_sha256": "44de75fbd2b38dad4b041a8f190a703e04c11184c9fd4d9d090bd149f1df6d26",
+      "archived": true,
+      "archived_sha256": "44de75fbd2b38dad4b041a8f190a703e04c11184c9fd4d9d090bd149f1df6d26",
+      "handling": "JSON account identifiers redacted; diagnostic counts preserved"
+    },
+    {
+      "source": "04-replay_feedback/leaderboards-before.png",
+      "original_sha256": "a3f6596f08156357031e85e647eae2438cfd7342434773c3eb6dae3d18f20e6e",
+      "archived": false,
+      "archived_sha256": null,
+      "handling": "local only: raw log or leaderboard account imagery"
+    },
+    {
+      "source": "04-replay_feedback/leaderboards-before.raw.txt",
+      "original_sha256": "138507aa46bcf95d722784b03705a39b7290a32224224fe3c7ab160fbb1cb141",
+      "archived": false,
+      "archived_sha256": null,
+      "handling": "local only: raw log or leaderboard account imagery"
+    },
+    {
+      "source": "04-replay_feedback/leaderboards-reset.raw.txt",
+      "original_sha256": "85dcecd83635a4e932775cad5f9f2c1e90c03b366eedff64a5c7e7c18748df90",
+      "archived": false,
+      "archived_sha256": null,
+      "handling": "local only: raw log or leaderboard account imagery"
+    },
+    {
+      "source": "04-replay_feedback-action.json",
+      "original_sha256": "e432029d50368936bac013854d1f6741107414c5fc3d1095615582a60fa92e4c",
+      "archived": true,
+      "archived_sha256": "e432029d50368936bac013854d1f6741107414c5fc3d1095615582a60fa92e4c",
+      "handling": "JSON account identifiers redacted; diagnostic counts preserved"
+    },
+    {
+      "source": "before-online-manifest.json",
+      "original_sha256": "6b17e16407c1c6903dda08f4e568463bbba46b436be241c5467ad4956fac9cc3",
+      "archived": true,
+      "archived_sha256": "6b17e16407c1c6903dda08f4e568463bbba46b436be241c5467ad4956fac9cc3",
+      "handling": "JSON account identifiers redacted; diagnostic counts preserved"
+    },
+    {
+      "source": "progress.json",
+      "original_sha256": "524eef31122e2b4f2d18e5f55651649bf26c45751c7cf9655da8ab175e41c39b",
+      "archived": true,
+      "archived_sha256": "02626abe424bf32a2c61be35b5b0b5a8687f460f09daf765e415697da37048fa",
+      "handling": "JSON account identifiers redacted; diagnostic counts preserved"
+    },
+    {
+      "source": "result.json",
+      "original_sha256": "473436b1524fb2bfbdc139bee391379803b7a71ccedef28bceef0baccbe5c2cb",
+      "archived": true,
+      "archived_sha256": "59221aee684080682bee0e7fb995353f849084301f3d50c6f3a42665a045b636",
+      "handling": "JSON account identifiers redacted; diagnostic counts preserved"
+    }
+  ]
+}
