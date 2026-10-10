@@ -1,0 +1,64 @@
+{
+  "kind": "actual-source-one-level-branches",
+  "root_snapshot_hashes": [
+    "a1c8720f478f2423dbdc416841d1a5cd5b54ea159644317ad64bfce79f1b03fb",
+    "a1c8720f478f2423dbdc416841d1a5cd5b54ea159644317ad64bfce79f1b03fb",
+    "a1c8720f478f2423dbdc416841d1a5cd5b54ea159644317ad64bfce79f1b03fb",
+    "a1c8720f478f2423dbdc416841d1a5cd5b54ea159644317ad64bfce79f1b03fb"
+  ],
+  "identical_root_snapshots": true,
+  "branches": [
+    {
+      "action": {
+        "id": "more",
+        "role": "button",
+        "name": "更多",
+        "operation": "hover",
+        "label": "更多菜单"
+      },
+      "before": "more-before.json",
+      "after": "more-after.json",
+      "before_path": "/learn",
+      "after_path": "/learn"
+    },
+    {
+      "action": {
+        "id": "gems",
+        "role": "button",
+        "name": "510",
+        "operation": "click",
+        "label": "宝石余额 510"
+      },
+      "before": "gems-before.json",
+      "after": "gems-after.json",
+      "before_path": "/learn",
+      "after_path": "/learn"
+    },
+    {
+      "action": {
+        "id": "hearts",
+        "role": "button",
+        "name": "3",
+        "operation": "click",
+        "label": "生命值 3"
+      },
+      "before": "hearts-before.json",
+      "after": "hearts-after.json",
+      "before_path": "/learn",
+      "after_path": "/learn"
+    },
+    {
+      "action": {
+        "id": "guidebook",
+        "role": "link",
+        "name": "打开这个部分的指南",
+        "operation": "click",
+        "label": "打开这个部分的指南"
+      },
+      "before": "guidebook-before.json",
+      "after": "guidebook-after.json",
+      "before_path": "/learn",
+      "after_path": "/guidebook/en/1"
+    }
+  ]
+}

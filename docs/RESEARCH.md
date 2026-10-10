@@ -37,3 +37,6 @@ git show 2ad5175:projects/self-improvement/REPORT.md
 
 
 第三课出现真实同类型换题和重复词块遗漏，已把失败、调整与续跑写入[实际探索历史](../projects/duolingo-web/evidence/english-third-v1/README.md)，供后续策略实验消费。当前调整由Codex依据现场选择，尚未实现Dream-RSI的历史树策略生成/离策略评估；身份回归和现场续跑不构成算法收益或真实探索消融结论。
+
+
+新增[真实源App分支实验](../projects/exploration-ablation/PROTOCOL.md)：先实际采集四个具有相同根快照的英语主页分支，再用真实模型生成受限分支分配策略、历史反馈改进及封存后在线部署。现有旧账本多为单路径并有状态/动作歧义，不直接当无偏模拟器。模型运行和收益必须以正式回执为准；准备采集与机制测试不能称为RSI收益。

@@ -1,0 +1,52 @@
+{
+  "type": "object",
+  "properties": {
+    "policies": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "rationale": {
+            "type": "string"
+          },
+          "rules": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "term": {
+                  "type": "string"
+                },
+                "weight": {
+                  "type": "number"
+                }
+              },
+              "required": [
+                "term",
+                "weight"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "repeat_penalty": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "id",
+          "rationale",
+          "rules",
+          "repeat_penalty"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "policies"
+  ],
+  "additionalProperties": false
+}

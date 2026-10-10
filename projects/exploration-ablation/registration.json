@@ -1,0 +1,49 @@
+{
+  "baseline_commit": "db4f95a",
+  "model": "gpt-6.1-sol",
+  "reasoning_effort": "medium",
+  "model_seconds_per_call": 180,
+  "candidates_per_call": 3,
+  "action_budget_per_replay": 2,
+  "online_action_budget_per_arm": 2,
+  "online_order": [
+    "replay_feedback",
+    "no_replay_feedback",
+    "no_replay_feedback",
+    "replay_feedback"
+  ],
+  "world_digest": "759173f917e35841d3c1bd0e62fe0e029c6c8f45995663d6015c8d54a11778ec",
+  "root_snapshot_hash": "a1c8720f478f2423dbdc416841d1a5cd5b54ea159644317ad64bfce79f1b03fb",
+  "training_actions": [
+    "more",
+    "gems",
+    "hearts",
+    "guidebook"
+  ],
+  "holdout_actions": [
+    "发音",
+    "排行榜",
+    "特别任务",
+    "个人档案"
+  ],
+  "holdout_outcomes": "not_observed_for_this_experiment",
+  "files": {
+    "projects/exploration-ablation/evidence/training01/more-before.png": "20a9fc8a81336d4a642e67da3ab4c9c0f2e77a0255d49c412ae05c842e4def63",
+    "projects/exploration-ablation/evidence/training01/guidebook-after.png": "2104d99c5a5db048f5b3791390f7b3867ca8bf5360b860dda7e410e92654cacb",
+    "projects/exploration-ablation/evidence/training01/guidebook-after.json": "e2360c5d36935b3f3428e57b44d189b2c534ba17db5041a7abbd55ab40313393",
+    "projects/exploration-ablation/evidence/training01/gems-before.png": "5f099376b9a496686e1aa6de558f98ab2642ae0d485e2ccc642b5e58d2747cd7",
+    "projects/exploration-ablation/evidence/training01/hearts-after.json": "1bc4cccc5d8c0f06208d462a6417e3c71daa8d106f2153cb896981188d571d22",
+    "projects/exploration-ablation/evidence/training01/hearts-before.png": "9c29d9becdeea099f080a740c3b629264141ceb6d3ea788923824af03b4281da",
+    "projects/exploration-ablation/evidence/training01/gems-after.json": "9230cd211c0a6a14bdaf39c943693bac25d485903a724ac8f2d253efb0a35e6c",
+    "projects/exploration-ablation/evidence/training01/guidebook-before.png": "24e1846e5fdb5690fb6fa0c927fd75fa03a5334614999c000e91e0445e202b50",
+    "projects/exploration-ablation/evidence/training01/guidebook-before.json": "f012816e9aac502d262983666b60f472dc0d98f547efb140eff29b4e9c41b88e",
+    "projects/exploration-ablation/evidence/training01/more-after.json": "ff8fec26558863b008962c08c59b9b957b99ee52c0816dc61788bff8ddf46862",
+    "projects/exploration-ablation/evidence/training01/hearts-after.png": "a77aa6e59d9e3d6f5a08912fdbf263b1c1e75c39d29dc22033ade6d24ad39e46",
+    "projects/exploration-ablation/evidence/training01/more-before.json": "dab80a9caf21c43ed046408cfac0028abdbf10b17620cee486da020a92968d03",
+    "projects/exploration-ablation/evidence/training01/gems-before.json": "279d368a9c2a1ac3a3fab90ec0e13ec118e84ebdd46fc523c4fc1ac0b0d4a1d7",
+    "projects/exploration-ablation/evidence/training01/gems-after.png": "34befba586a7df1135628f4f5c5a39cd0f25424c9bb57fc7e7e05ab0eb909172",
+    "projects/exploration-ablation/evidence/training01/more-after.png": "823d63ba115a224095621b802643839686670c1e96c321a3a1545a87c61cce96",
+    "projects/exploration-ablation/evidence/training01/collection.json": "a0fcebba083f842165bc7c1aab2ab4cf62c1bda5dbb09dfb94b5e2427be5906b",
+    "projects/exploration-ablation/evidence/training01/hearts-before.json": "6b8b0442827f4298a3ad93e651b30549a259d1c2a35f7868b162f920931c9506"
+  }
+}
