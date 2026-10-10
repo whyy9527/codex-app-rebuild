@@ -1,0 +1,90 @@
+{
+  "native_states": 81,
+  "walk_error": null,
+  "scope": "Actual full seventh from archived six-completed/hearts2 progress; not all seven from empty progress",
+  "candidate_binary_sha256": "1eba6bd09517a065d92a6d22c1746fd1c5e5b88c6fc303a6826785c1c84b5ae3",
+  "fixture_sha256": "4296d18dba787c4e672a72f5239c828f1e87221378c293ed7e8323d7e9c20edd",
+  "core_checks": 21,
+  "framework_tests": 50,
+  "frontend_v17_counts": {
+    "not_run": 1125,
+    "pass": 353,
+    "fail": 33
+  },
+  "new_feedback_assertions": [
+    {
+      "id": "en-zh-l7-q3-pixel-850,500",
+      "state": "en-zh-l7-q3",
+      "status": "pass",
+      "expected": [
+        255,
+        255,
+        255
+      ],
+      "actual": [
+        255,
+        255,
+        255
+      ],
+      "reason": "Exact screenshot pixel only; does not prove whole-image equivalence"
+    },
+    {
+      "id": "en-zh-l7-q3-pixel-301,500",
+      "state": "en-zh-l7-q3",
+      "status": "fail",
+      "expected": [
+        229,
+        229,
+        229
+      ],
+      "actual": [
+        230,
+        230,
+        230
+      ],
+      "reason": "Exact screenshot pixel only; does not prove whole-image equivalence"
+    },
+    {
+      "id": "en-zh-l7-q3-feedback-pixel-850,500",
+      "state": "en-zh-l7-q3-feedback",
+      "status": "pass",
+      "expected": [
+        215,
+        255,
+        184
+      ],
+      "actual": [
+        215,
+        255,
+        184
+      ],
+      "reason": "Exact screenshot pixel only; does not prove whole-image equivalence"
+    },
+    {
+      "id": "en-zh-l7-q3-feedback-pixel-301,500",
+      "state": "en-zh-l7-q3-feedback",
+      "status": "fail",
+      "expected": [
+        165,
+        237,
+        110
+      ],
+      "actual": [
+        167,
+        238,
+        112
+      ],
+      "reason": "Exact screenshot pixel only; does not prove whole-image equivalence"
+    },
+    {
+      "id": "en-zh-l7-q3-feedback-revealed-phrase",
+      "state": "en-zh-l7-q3-feedback",
+      "status": "pass",
+      "expected": "No ice, please."
+    }
+  ],
+  "visual_pairs": 2,
+  "visual_different": 2,
+  "actual_audio_equality": "not_proven",
+  "new_rsi_ablation": "not_run"
+}

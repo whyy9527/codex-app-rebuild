@@ -178,3 +178,8 @@ Swift默认已切真实en/zh首课15题，保留每题sourceType、逐选项图�
 ### 听力控件的选中与几何补漏
 
 v15保留1489项并增8项真实原版断言。独立原生radio2实际点击及接受，四项checked与四项零容差几何通过；保留alignmentRectInsets无效尝试。49框架、21业务检查通过。局部契约50pass/4fail/1443not_run，两对截图仍不同，尚缺听力暂缓、反馈补词/绿色及动态角色；不把前一构建七课结果移用到新构建。CoreText同配置回退PingFangSC-Semibold，源入口字号24而候选28，后续逐状态修复。[证据及复跑](../projects/duolingo-web/evidence/english-radio-layout-v1/README.md)。完整Goal active，真实RSI消融未执行。
+
+
+### 原版反馈补词、sRGB像素契约与第八课退出分支
+
+默认v9七课102题保留旧v8，新增实际反馈补词及正确静态波形。构建、21核心、50框架通过；从真实归档六课进度走完完整第七课81状态，无walk_error。v17保留全部旧要求并新增5项反馈及9项第八课退出/重进入口，共1511项；本次353pass/33fail/1125not_run。补词和两项背景色通过，两项边框仍零容差失败；两对整页仍不同。发现macOS ICC与浏览器未标记sRGB字节直接比较的模具错误，统一ICC→sRGB后仍保留旧失败和未修差异。真实访问第八课下次再说、返回主页并重进入口；尚未作答/集成。完整Goal active，RSI消融仍未执行。[回执及复跑](../projects/duolingo-web/evidence/english-radio-feedback-v1/README.md)。

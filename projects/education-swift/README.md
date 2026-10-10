@@ -1,8 +1,8 @@
 # LingoSeed · Swift 教育基座
 
-可运行的 macOS SwiftUI 客户端。当前默认 `fixture-reference-en-zh-v8.json` 包含原版中文母语→英语七课102道评分题，另有未评分的听力/口语暂缓状态。第七课接入正常听音配对、音频单选、跨题输入偏好、非惩罚跳过、原题重练、成就/建档结算；radio1声音、更多暂缓/录音分支、生命刷新和完整图形/实际声音仍未对齐。[当前实测和复跑](../duolingo-web/evidence/english-seventh-native-v1/README.md)保留原始失败；核心通过不代表1:1完成。
+可运行的 macOS SwiftUI 客户端。当前默认 `fixture-reference-en-zh-v9.json` 包含原版中文母语→英语七课102道评分题，另有未评分的听力/口语暂缓状态。第七课接入正常听音配对、音频单选、跨题输入偏好、非惩罚跳过、原题重练、成就/建档结算；radio1声音、更多暂缓/录音分支、生命刷新和完整图形/实际声音仍未对齐。[当前实测和复跑](../duolingo-web/evidence/english-seventh-native-v1/README.md)保留原始失败；核心通过不代表1:1完成。
 
-最新原生单选修复已通过实际 checked 及零容差几何8项要求，但两对图片仍有差异，见[控件补漏](../duolingo-web/evidence/english-radio-layout-v1/README.md)。上一构建的整课结果不移用为本构建整体验收。
+最新v9补齐实际反馈句及正确静态波形，实走完整第七课81状态，无walk_error；补词和背景色通过，边框与整页仍不同，见[最新反馈验证](../duolingo-web/evidence/english-radio-feedback-v1/README.md)。此前checked及几何8项结果保留为[控件补漏](../duolingo-web/evidence/english-radio-layout-v1/README.md)。不把旧构建或局部结果移用为本构建整体验收。
 
 原版Bea/Lucy的实际Rive全身动画已接入默认题库，官方Apple RiveRuntime锁定6.24.0。初次构建需联网下载SDK约108MB，SwiftPM自动将framework放到可执行文件旁；直接运行保留整个构建目录及资源bundle。角色变化已通过实际连续截图测量，动画时序、mouth/audio同步与其余角色仍未对齐。[当前渲染证据和失败](../duolingo-web/evidence/english-character-render-v1/README.md)。
 
@@ -14,7 +14,7 @@
 
 ```sh
 swift build --package-path projects/education-swift --product LingoSeed
-projects/education-swift/.build/debug/LingoSeed --fixture projects/duolingo-web/fixture-reference-en-zh-v8.json --progress artifacts/lingoseed-english-demo/progress.json
+projects/education-swift/.build/debug/LingoSeed --fixture projects/duolingo-web/fixture-reference-en-zh-v9.json --progress artifacts/lingoseed-english-demo/progress.json
 swift run --package-path projects/education-swift LearningCoreChecks
 ```
 

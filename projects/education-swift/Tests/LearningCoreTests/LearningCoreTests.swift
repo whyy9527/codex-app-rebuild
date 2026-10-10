@@ -504,7 +504,7 @@ func actualSkipReview() throws {
 }
 
 func actualSeventhTrajectory() throws {
-    let c = try course(fixture: "fixture-reference-en-zh-v8.json")
+    let c = try course(fixture: "fixture-reference-en-zh-v9.json")
     var lesson = Lesson(course: c, lessonIndex: 6, hearts: 2)
     let original = lesson.question.id
     lesson.skip(); lesson.advance()
@@ -513,6 +513,7 @@ func actualSeventhTrajectory() throws {
         if lesson.deferredSpeech != nil { lesson.declineSpeech(); lesson.advance() }
         if [1,4].contains(index) { lesson.toggleInputMode() }
         if [6,7,8,14].contains(index) { try check(lesson.usingKeyboard, "Source independent preference lost") }
+        if index == 3 { try check(lesson.displayedHint == "No __, please.", "Isolation answer revealed before submit") }
         if lesson.usingKeyboard { lesson.enterText(lesson.question.keyboardAnswer!); lesson.submit() }
         else {
             switch lesson.question.kind {
@@ -523,6 +524,7 @@ func actualSeventhTrajectory() throws {
             }
         }
         try check(lesson.feedback == true && lesson.hearts == 2 && lesson.mistakesMade == 0, "Seventh source accepted answer failed")
+        if index == 3 { try check(lesson.displayedHint == "No ice, please.", "Isolation accepted answer not revealed") }
         lesson.advance()
     }
     try check(lesson.reviewing && lesson.interlude != nil && lesson.question.id == original, "Seventh skipped q0 not queued at actual end")

@@ -71,3 +71,17 @@ class FrontendRequirements(unittest.TestCase):
             for value, expected in [(True, 'pass'), (False, 'fail'), (1, 'unavailable'), (None, 'unavailable')]:
                 observed = {'states': {'feedback': {'elements': {'option-1': {'checked': value}}}}}
                 self.assertEqual(compare(root, contract, observed)['rows'][0]['status'], expected)
+
+    def test_pixel_color_requires_rgb_measurement_and_rejects_wrong_feedback_color(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / 'reference.txt').write_text('Actual source correct-option background sampled from PNG')
+            contract = {'requirements': [{'id': 'color', 'state': 'feedback', 'kind': 'pixel_color',
+                'point': [850, 500], 'rgb': [215, 255, 184], 'evidence': ['reference.txt']}]}
+            for rgb, expected in [([215, 255, 184], 'pass'), ([229, 247, 252], 'fail'),
+                                  (True, 'unavailable'), ([215, True, 184], 'unavailable'), (None, 'unavailable')]:
+                observed = {'states': {'feedback': {'pixel_color_space': 'sRGB', 'pixel_samples': {'850,500': rgb}}}}
+                self.assertEqual(compare(root, contract, observed)['rows'][0]['status'], expected)
+
+            observed['states']['feedback'] = {'pixel_samples': {'850,500': [215, 255, 184]}}
+            self.assertEqual(compare(root, contract, observed)['rows'][0]['status'], 'unavailable')

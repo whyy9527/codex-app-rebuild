@@ -1,0 +1,21 @@
+{
+  "precondition": "Actual source after seventh, second node Lesson 4 of 4; eighth challenge entry already observed",
+  "actions": [
+    {
+      "action": "Click 下次再说",
+      "result": "/learn; Lesson 4 of 4 remains, gems510/hearts3 shown",
+      "evidence": "projects/duolingo-web/evidence/english-eighth-v1/eighth-entry-declined.json"
+    },
+    {
+      "action": "Click active Lesson 4 of 4 then 开始 +20 经验",
+      "result": "/lesson; same challenge entry title/actions visible",
+      "evidence": "projects/duolingo-web/evidence/english-eighth-v1/eighth-entry-reentered.json"
+    }
+  ],
+  "unknown": [
+    "Challenge has not been answered/completed",
+    "General XP or timer rules cannot be inferred from unchanged displayed counters",
+    "Candidate eighth entry/reentry not integrated",
+    "No RSI comparison performed"
+  ]
+}

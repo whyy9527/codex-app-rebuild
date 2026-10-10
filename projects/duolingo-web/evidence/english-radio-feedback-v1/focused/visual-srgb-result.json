@@ -1,0 +1,71 @@
+{
+  "kind": "same-viewport-pixel-diagnostic",
+  "native_trajectory": "Focused isolation q3, radio2 actual click accepted",
+  "viewport": [
+    1200,
+    732
+  ],
+  "normalization": "ICC to common sRGB; crop native titlebar using measured content rect, downsample2x with Lanczos; reference pixels unchanged",
+  "rows": [
+    {
+      "question": 3,
+      "stage": "before",
+      "source": "projects/duolingo-web/evidence/english-secondary-actions-v1/secondary-listen-isolation-before.png",
+      "native": "en-zh-l7-q3-before.png",
+      "source_sha256": "2226df897297b9d867719b2e89ea64b12ca59c6e932eac982039148e0037c0d7",
+      "native_sha256": "647ba70bf297b91253c5f529bda5e3c084eec43265ad795521aa0c12fbdd08f2",
+      "color_management": {
+        "source": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        },
+        "native": {
+          "input_profile": "Display",
+          "input_profile_sha256": "b6869613f44ea83b13cbd15652a1071c6bd85a37a5517bcbe7d1db1bcdc58e6f",
+          "comparison_space": "sRGB"
+        }
+      },
+      "mean_absolute_rgb_difference": [
+        3.2278779599271403,
+        2.652460154826958,
+        3.3039606102003645
+      ],
+      "status": "different"
+    },
+    {
+      "question": 3,
+      "stage": "feedback",
+      "source": "projects/duolingo-web/evidence/english-secondary-actions-v1/secondary-listen-isolation-feedback.png",
+      "native": "en-zh-l7-q3-feedback.png",
+      "source_sha256": "8bbb046be0169e0066b2165924b8e3b9af328e62d7d5dd197d38d628da7da4d7",
+      "native_sha256": "4a6d596ae4eb37d7e64b728127d23560c99666a2e20e5b09f0fc2a03e09434e9",
+      "color_management": {
+        "source": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        },
+        "native": {
+          "input_profile": "Display",
+          "input_profile_sha256": "b6869613f44ea83b13cbd15652a1071c6bd85a37a5517bcbe7d1db1bcdc58e6f",
+          "comparison_space": "sRGB"
+        }
+      },
+      "mean_absolute_rgb_difference": [
+        4.515445127504553,
+        3.3052572859744993,
+        6.12436247723133
+      ],
+      "status": "different"
+    }
+  ],
+  "candidate_acceptance": "not_proven",
+  "limitations": [
+    "This is an actual pixel diagnostic, not a substitute for frontend acceptance",
+    "Animation frames and temporal sound not aligned",
+    "Font antialiasing differs across renderers; reported without tolerance or masking",
+    "Hearts tutorial, source interlude visuals and full completion chain remain incomplete",
+    "Focused actual q3 before/feedback only; shortened curriculum changes hearts/progress/streak and is not full-course acceptance. No masking or pixel tolerance."
+  ]
+}

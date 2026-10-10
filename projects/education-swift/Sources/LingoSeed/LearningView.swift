@@ -349,15 +349,16 @@ struct LearningView: View {
                 Button { model.playQuestion() } label: {
                     HStack(spacing: 8) {
                         ReferenceStyle.image("en-match-speaker-source-frame").renderingMode(.template).resizable().frame(width: 24, height: 19).foregroundStyle(ReferenceStyle.blue)
-                        Text(lesson.question.hint ?? "").font(ReferenceStyle.font(19)).foregroundStyle(ReferenceStyle.ink)
+                        Text(lesson.displayedHint ?? "").font(ReferenceStyle.font(19)).foregroundStyle(ReferenceStyle.ink)
                     }.padding(14).overlay(RoundedRectangle(cornerRadius: 14).strokeBorder(ReferenceStyle.border, lineWidth: 2))
-                }.buttonStyle(.plain).accessibilityIdentifier("isolation-prompt")
+                }.buttonStyle(.plain).accessibilityIdentifier("isolation-prompt").accessibilityLabel(lesson.displayedHint ?? "")
                 Spacer()
             }.frame(height: 175)
             VStack(spacing: 8) {
                 ForEach(lesson.question.options) { option in
                     ReferenceAudioRadio(label: option.text, identifier: "option-" + option.id,
-                        waveform: option.imageResource, selected: lesson.selected == option.id,
+                        waveform: lesson.feedback == true && lesson.selected == option.id ? option.correctImageResource ?? option.imageResource : option.imageResource,
+                        correct: lesson.feedback == true, selected: lesson.selected == option.id,
                         enabled: lesson.feedback == nil, action: { model.choose(option.id) }).frame(height: 62)
                 }
             }

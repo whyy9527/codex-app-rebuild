@@ -14,7 +14,7 @@
     {
       "behavior": "Normal listenMatch + listenIsolation + listenComplete",
       "source": "Two normal matches accepted, radio2 accepted, No/goodbye blanks accepted",
-      "candidate": "Normal matches, radio2 and blanks integrated. Actual NSNumber checked observation and four zero-tolerance radio geometries now pass in focused native replay; feedback green/revealed ice, radio1 audio and full visual/audio equality remain incomplete"
+      "candidate": "Normal matches, radio2, blanks, actual checked states and radio geometry integrated. Feedback phrase and actual background color now pass after screenshot ICC->sRGB normalization; border samples still differ 1-2 RGB values, ice-token style/character/audio and radio1 remain incomplete."
     },
     {
       "behavior": "Speech decline inserts Thank you, replaces later Goodbye speech with bank translation",
@@ -38,6 +38,7 @@
     }
   ],
   "next_actions": [
+    "Continue eighth entry after actual decline/home/reentry branch; new nine frontend requirements remain unimplemented",
     "Continue actual eighth challenge entry; discover omitted behaviors rather than only replay known tests",
     "Recover radio1 audio and normal speech evidence; retain unknown heart-refresh trigger",
     "Compare actual native/source glyph fonts and repair existing geometry, graphics, animation and sound differences",
@@ -47,5 +48,6 @@
   "experiment": "No new RSI ablation run; prior papers/history/negative results retained",
   "skip_probe_evidence": "projects/duolingo-web/evidence/english-skip-native-v1/README.md",
   "full_seventh_evidence": "projects/duolingo-web/evidence/english-seventh-native-v1/README.md",
-  "radio_control_evidence": "projects/duolingo-web/evidence/english-radio-layout-v1/README.md"
+  "radio_control_evidence": "projects/duolingo-web/evidence/english-radio-layout-v1/README.md",
+  "feedback_color_evidence": "projects/duolingo-web/evidence/english-radio-feedback-v1/README.md"
 }

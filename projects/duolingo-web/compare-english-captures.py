@@ -4,6 +4,7 @@ import hashlib
 import json
 from pathlib import Path
 from PIL import Image, ImageChops, ImageStat
+from capture_color import srgb_image, profile_facts
 
 p=argparse.ArgumentParser(description=__doc__)
 p.add_argument('--native',required=True);p.add_argument('--out',required=True)
@@ -78,11 +79,13 @@ if a.fifth_lesson:
         ('reference-home-after-five-uncovered','home-after-lesson-5-window')]:
         pairs.append((None,'fifth-'+original,source/(original+'.png'),native/(candidate+'.png')))
 for index,stage,original,candidate in pairs:
-    with Image.open(original) as im: reference=im.convert('RGB')
+    with Image.open(original) as im:
+        source_profile=profile_facts(im);reference=srgb_image(im)
     with Image.open(candidate) as im:
         pixels=im.size
         assert pixels==(round(metadata['window_points'][0]*scale),round(metadata['window_points'][1]*scale))
-        rendered=im.crop(tuple(round(v*scale) for v in (x,y,x+w,y+h))).convert('RGB').resize((int(w),int(h)),Image.Resampling.LANCZOS)
+        native_profile=profile_facts(im)
+        rendered=srgb_image(im).crop(tuple(round(v*scale) for v in (x,y,x+w,y+h))).resize((int(w),int(h)),Image.Resampling.LANCZOS)
     assert reference.size==rendered.size
     diff=ImageChops.difference(reference,rendered)
     extrema=diff.getextrema();mean=ImageStat.Stat(diff).mean
@@ -90,10 +93,11 @@ for index,stage,original,candidate in pairs:
     rows.append({'question':index,'stage':stage,'source':original.as_posix(),
                  'native':candidate.name,'source_sha256':hashlib.sha256(original.read_bytes()).hexdigest(),
                  'native_sha256':hashlib.sha256(candidate.read_bytes()).hexdigest(),
+                 'color_management':{'source':source_profile,'native':native_profile},
                  'mean_absolute_rgb_difference':mean,
                  'status':'identical' if all(hi==0 for lo,hi in extrema) else 'different'})
 result={'kind':'same-viewport-pixel-diagnostic','native_trajectory':explicit['trajectory'] if explicit else 'fifth lesson from hearts4, cold and wrong pair, HOT review, deferred speech' if a.fifth_lesson else 'home after first lesson, hearts4' if a.home_reference else 'fourth lesson all 12 accepted, starting hearts4' if a.fourth_lesson else 'third lesson all accepted, starting hearts4' if a.third_lesson else 'second lesson all accepted, starting hearts4' if a.second_lesson else 'first question wrong sugar, then correct, retry coffee',
-        'viewport':[w,h],'normalization':'Crop native titlebar using measured content rect, downsample2x with Lanczos; reference pixels unchanged',
+        'viewport':[w,h],'normalization':'ICC to common sRGB; crop native titlebar using measured content rect, downsample2x with Lanczos; reference pixels unchanged',
         'rows':rows,'candidate_acceptance':'not_proven',
         'limitations':['This is an actual pixel diagnostic, not a substitute for frontend acceptance',
                        'Animation frames and temporal sound not aligned',

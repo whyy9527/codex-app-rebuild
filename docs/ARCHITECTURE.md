@@ -173,3 +173,6 @@ Lesson将词库键盘、填空整句偏好分别保存；clearAnswer清答案缓
 `compile-english-seventh.py`按真实源UI顺序扩展v8，而非直接照初始API顺序。`Question.reviewWordOrder`保留重练词库顺序，`Lesson.visibleWords`在重练阶段切换展示而不改变答案身份；`SettlementPage.levelLabel`保留额外成就级别。`ReferenceAudioRadio`使用原生NSButton radio承载选择/禁用语义，独立hosting视图绘制源波形帧，不把普通按钮冒充单选。
 
 共享前端v14新增`element_role`（DOM/AX语义归一）和`element_boolean`（必须实际布尔值），在同文字情况下仍能判错控件角色和禁用状态。源ARIA快照与旧`!n.disabled`采样冲突保留，后续采集读取`aria-disabled`；旧v13不覆盖或放宽。驱动用显式`sourceObservationPhase`把切换后的空输入与对应源时点比较，初始状态另外保留；原版与候选都不由测试期望值生成事实。题库、源资源与未观察分支仍分开记录。
+
+
+前端颜色事实来自实际PNG；`capture_color.py` 将嵌入ICC的macOS截图转换到参考CSS/sRGB空间，再按窗口几何采样。共同 `pixel_color` 契约要求显式sRGB与实际RGB，零容差比较采样点；不替代整图比较。旧raw RGB诊断保留为不同空间直接比较的反例。可选feedbackHint与Choice.correctImageResource表达已观察反馈阶段内容，不改变答题评分。

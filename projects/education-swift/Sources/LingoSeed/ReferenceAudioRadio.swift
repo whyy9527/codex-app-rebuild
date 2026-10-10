@@ -6,6 +6,7 @@ struct ReferenceAudioRadio: NSViewRepresentable {
     let label: String
     let identifier: String
     let waveform: String?
+    let correct: Bool
     let selected: Bool
     let enabled: Bool
     let action: () -> Void
@@ -70,22 +71,26 @@ struct ReferenceAudioRadio: NSViewRepresentable {
         button.setAccessibilityIdentifier(identifier)
         button.face.rootView = AnyView(face.accessibilityHidden(true))
     }
+    private var accepted: Bool { selected && correct }
+    private var edge: Color { accepted ? Color(.sRGB, red: 165/255, green: 237/255, blue: 110/255) : selected ? ReferenceStyle.blue : ReferenceStyle.border }
+    private var ink: Color { accepted ? Color(.sRGB, red: 88/255, green: 167/255, blue: 0) : ReferenceStyle.blue }
+    private var fill: Color { accepted ? Color(.sRGB, red: 215/255, green: 1, blue: 184/255) : selected ? Color.cyan.opacity(0.1) : .white }
     private var face: some View {
         ZStack(alignment: .leading) {
             Text(label).font(ReferenceStyle.font(14, bold: true))
-                .foregroundStyle(ReferenceStyle.disclosureInk)
+                .foregroundStyle(accepted ? ink : ReferenceStyle.disclosureInk)
                 .frame(width: 28, height: 28)
-                .overlay(RoundedRectangle(cornerRadius: 6).strokeBorder(ReferenceStyle.border, lineWidth: 2))
+                .overlay(RoundedRectangle(cornerRadius: 6).strokeBorder(edge, lineWidth: 2))
                 .padding(.leading, 18)
             HStack(spacing: 16) {
                 ReferenceStyle.image("en-match-speaker-source-frame").renderingMode(.template).resizable()
-                    .frame(width: 24, height: 19).foregroundStyle(ReferenceStyle.blue)
+                    .frame(width: 24, height: 19).foregroundStyle(ink)
                 if let waveform { ReferenceStyle.image(waveform).resizable().frame(width: 152, height: 30) }
             }.frame(maxWidth: .infinity)
         }.frame(height: 58)
-            .background(RoundedRectangle(cornerRadius: 12).fill(selected ? Color.cyan.opacity(0.1) : .white)
-                .shadow(color: ReferenceStyle.border, radius: 0, y: 4))
-            .overlay(RoundedRectangle(cornerRadius: 12).strokeBorder(selected ? ReferenceStyle.blue : ReferenceStyle.border, lineWidth: 2))
+            .background(RoundedRectangle(cornerRadius: 12).fill(fill)
+                .shadow(color: edge, radius: 0, y: 4))
+            .overlay(RoundedRectangle(cornerRadius: 12).strokeBorder(edge, lineWidth: 2))
             .frame(height: 62, alignment: .top)
     }
 }

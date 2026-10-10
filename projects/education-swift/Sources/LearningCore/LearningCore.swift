@@ -5,6 +5,7 @@ public struct Choice: Codable, Equatable, Sendable, Identifiable {
     public let text: String
     public let audioResource: String?
     public let imageResource: String?
+    public let correctImageResource: String?
 }
 public struct WordPair: Codable, Equatable, Sendable, Identifiable {
     public let id: String
@@ -33,6 +34,7 @@ public struct Question: Codable, Equatable, Sendable, Identifiable {
     public let pairs: [WordPair]
     public let explanation: String
     public let hint: String?
+    public let feedbackHint: String?
     public let newWord: Bool
     public let rightOrder: [String]?
     public let audioResource: String?
@@ -55,7 +57,7 @@ public struct Question: Codable, Equatable, Sendable, Identifiable {
     public let skipCorrectText: String?
     public let feedbackReportReasons: [String]?
     enum CodingKeys: String, CodingKey {
-        case reviewWordOrder, skipLabel, skipCorrectText
+        case feedbackHint, reviewWordOrder, skipLabel, skipCorrectText
         case keyboardAnswer, keyboardPrompt, correctFeedback, indicator, example, exampleAudioResource, completionPrefix, completionSuffix, listeningDecline, feedbackReportReasons
         case id, kind, prompt, options, answer, words, pairs, explanation, hint, newWord, rightOrder, audioResource, sourceLanguage, characterResource, sourceType, slowAudioResource, dialogueAvatars
         case answerWords = "answer_words"
@@ -72,6 +74,7 @@ public struct Question: Codable, Equatable, Sendable, Identifiable {
         pairs = try c.decodeIfPresent([WordPair].self, forKey: .pairs) ?? []
         explanation = try c.decode(String.self, forKey: .explanation)
         hint = try c.decodeIfPresent(String.self, forKey: .hint)
+        feedbackHint = try c.decodeIfPresent(String.self, forKey: .feedbackHint)
         newWord = try c.decodeIfPresent(Bool.self, forKey: .newWord) ?? false
         rightOrder = try c.decodeIfPresent([String].self, forKey: .rightOrder)
         audioResource = try c.decodeIfPresent(String.self, forKey: .audioResource)
@@ -304,6 +307,7 @@ public struct Lesson: Equatable, Sendable {
         speechDeclined = true
     }
     public var question: Question { definition.questions[position] }
+    public var displayedHint: String? { feedback == nil ? question.hint : question.feedbackHint ?? question.hint }
     public var visibleWords: [Choice] {
         guard reviewing, let order = question.reviewWordOrder else { return question.words }
         return order.compactMap { id in question.words.first { $0.id == id } }

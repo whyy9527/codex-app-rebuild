@@ -59,6 +59,16 @@ def compare(root, contract, observed):
             actual = state.get('elements', {}).get(requirement['element'], {}).get(field)
             row.update(status='unavailable' if type(actual) is not bool else 'pass' if actual == requirement['expected'] else 'fail',
                        expected=requirement['expected'], actual=actual)
+        elif requirement['kind'] == 'pixel_color':
+            point, expected = requirement['point'], requirement['rgb']
+            valid_point = isinstance(point, list) and len(point) == 2 and all(type(v) is int and v >= 0 for v in point)
+            valid_rgb = lambda rgb: isinstance(rgb, list) and len(rgb) == 3 and all(type(v) is int and 0 <= v <= 255 for v in rgb)
+            if not valid_point or not valid_rgb(expected):
+                raise ValueError('Invalid pixel color contract')
+            actual = state.get('pixel_samples', {}).get(','.join(map(str, point)))
+            row.update(status='unavailable' if not valid_rgb(actual) or state.get('pixel_color_space') != 'sRGB' else 'pass' if actual == expected else 'fail',
+                       expected=expected, actual=actual,
+                       reason='Exact screenshot pixel only; does not prove whole-image equivalence')
         elif requirement['kind'] == 'element_geometry':
             expected = requirement['rect']
             tolerance = requirement['tolerance_points']
