@@ -54,7 +54,7 @@ def compare(root, contract, observed):
                        expected=requirement['role'], actual=actual)
         elif requirement['kind'] == 'element_boolean':
             field = requirement['field']
-            if field != 'enabled' or type(requirement['expected']) is not bool:
+            if field not in ('enabled', 'checked') or type(requirement['expected']) is not bool:
                 raise ValueError('Unsupported element boolean contract')
             actual = state.get('elements', {}).get(requirement['element'], {}).get(field)
             row.update(status='unavailable' if type(actual) is not bool else 'pass' if actual == requirement['expected'] else 'fail',

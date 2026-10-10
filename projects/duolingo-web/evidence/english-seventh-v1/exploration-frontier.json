@@ -14,7 +14,7 @@
     {
       "behavior": "Normal listenMatch + listenIsolation + listenComplete",
       "source": "Two normal matches accepted, radio2 accepted, No/goodbye blanks accepted",
-      "candidate": "Normal matches, radio2 and blanks integrated and replayed; nine new control assertions pass. Radio1 audio, numeric selected-state observation and full visual/audio equality remain incomplete"
+      "candidate": "Normal matches, radio2 and blanks integrated. Actual NSNumber checked observation and four zero-tolerance radio geometries now pass in focused native replay; feedback green/revealed ice, radio1 audio and full visual/audio equality remain incomplete"
     },
     {
       "behavior": "Speech decline inserts Thank you, replaces later Goodbye speech with bank translation",
@@ -46,5 +46,6 @@
   ],
   "experiment": "No new RSI ablation run; prior papers/history/negative results retained",
   "skip_probe_evidence": "projects/duolingo-web/evidence/english-skip-native-v1/README.md",
-  "full_seventh_evidence": "projects/duolingo-web/evidence/english-seventh-native-v1/README.md"
+  "full_seventh_evidence": "projects/duolingo-web/evidence/english-seventh-native-v1/README.md",
+  "radio_control_evidence": "projects/duolingo-web/evidence/english-radio-layout-v1/README.md"
 }

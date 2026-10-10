@@ -6,7 +6,7 @@
 
 当前默认夹具为 `fixture-reference-en-zh-v8.json`：七课102道评分题，保留实际口语暂缓、听力暂缓、插入/替换题、独立输入偏好、跳过重练及结算路径。第七课15题与三页结算已原生走通，后续课程继续探索；不会把学完已编译课程标成整课程完成。
 
-前端契约v14保留v13全部1480项，再加入9项原版控件要求。比较涵盖文字、交互、几何、单选角色及启用状态；完整图像和实际声音仍有缺口。采集器已修正ARIA禁用状态和听力选项字段丢失，原始错误记录保留。源轨迹、原生失败、整课回归与复跑见[当前证据](projects/duolingo-web/evidence/english-seventh-native-v1/README.md)。
+前端契约v15保留v14全部1489项，再加入8项原版单选选中状态及几何要求。比较涵盖文字、交互、几何、单选角色、选中及启用状态；完整图像和实际声音仍有缺口。采集器已修正ARIA禁用状态和听力选项字段丢失，原始错误记录保留。最新听力控件的8项新断言在实际点击中通过，但两对截图仍不同；见[控件补漏及复跑](projects/duolingo-web/evidence/english-radio-layout-v1/README.md)。源轨迹、原生失败与上一构建的整课回归见[七课证据](projects/duolingo-web/evidence/english-seventh-native-v1/README.md)。
 
 Bea/Lucy、Falstaff和正确Lin的源Rive已绑定；更多角色、气泡、主页引导、radio1声音和生命刷新仍未对齐。不能用核心通过、控件几何通过或源语音文件已下载宣称1:1完成。原始RSI论文、机制实验及无收益结果见[研究来源](docs/RESEARCH.md)，新的真实探索策略消融仍待执行。
 
@@ -64,4 +64,4 @@ python3 -m unittest discover -v
 
 上一探索检查点实际完成原版英语第三课，发现重复词块及同题型动态换题；当时候选仍为前两课，v4为128通过、244未覆盖。此历史结果保留，最新候选见上文。[第三课探索与下一步](projects/duolingo-web/evidence/english-third-v1/README.md)。
 
-本轮默认七课同次实际回放430状态；前端1489项为985通过、69失败、435未覆盖。38对截图全部有差异，实际声音等价尚未证明；[完整回执及保留失败](projects/duolingo-web/evidence/english-seventh-native-v1/README.md)。
+上一构建默认七课同次实际回放430状态；前端1489项为985通过、69失败、435未覆盖。38对截图全部有差异，实际声音等价尚未证明；[完整回执及保留失败](projects/duolingo-web/evidence/english-seventh-native-v1/README.md)。

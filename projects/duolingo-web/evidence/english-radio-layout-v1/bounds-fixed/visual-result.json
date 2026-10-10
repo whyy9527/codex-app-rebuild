@@ -1,0 +1,47 @@
+{
+  "kind": "same-viewport-pixel-diagnostic",
+  "native_trajectory": "Focused isolation q3, radio2 actual click accepted",
+  "viewport": [
+    1200,
+    732
+  ],
+  "normalization": "Crop native titlebar using measured content rect, downsample2x with Lanczos; reference pixels unchanged",
+  "rows": [
+    {
+      "question": 3,
+      "stage": "before",
+      "source": "projects/duolingo-web/evidence/english-secondary-actions-v1/secondary-listen-isolation-before.png",
+      "native": "en-zh-l7-q3-before.png",
+      "source_sha256": "2226df897297b9d867719b2e89ea64b12ca59c6e932eac982039148e0037c0d7",
+      "native_sha256": "647ba70bf297b91253c5f529bda5e3c084eec43265ad795521aa0c12fbdd08f2",
+      "mean_absolute_rgb_difference": [
+        3.1819899817850636,
+        2.656709927140255,
+        3.2814264571949
+      ],
+      "status": "different"
+    },
+    {
+      "question": 3,
+      "stage": "feedback",
+      "source": "projects/duolingo-web/evidence/english-secondary-actions-v1/secondary-listen-isolation-feedback.png",
+      "native": "en-zh-l7-q3-feedback.png",
+      "source_sha256": "8bbb046be0169e0066b2165924b8e3b9af328e62d7d5dd197d38d628da7da4d7",
+      "native_sha256": "0da6ed68b2f1834b1d4cacaf7c062e2df79d2eca9273dee5bc7c69b51a0d4907",
+      "mean_absolute_rgb_difference": [
+        7.059731329690346,
+        3.9470560109289616,
+        10.075372267759564
+      ],
+      "status": "different"
+    }
+  ],
+  "candidate_acceptance": "not_proven",
+  "limitations": [
+    "This is an actual pixel diagnostic, not a substitute for frontend acceptance",
+    "Animation frames and temporal sound not aligned",
+    "Font antialiasing differs across renderers; reported without tolerance or masking",
+    "Hearts tutorial, source interlude visuals and full completion chain remain incomplete",
+    "Focused actual q3 before/feedback only; shortened curriculum changes hearts/progress/streak and is not full-course acceptance. No masking or pixel tolerance."
+  ]
+}

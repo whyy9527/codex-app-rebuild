@@ -95,6 +95,13 @@ func observe() -> [String: Any] {
     for node in current() {
         guard let id = attr(node, kAXIdentifierAttribute) as? String else { continue }
         var element: [String: Any] = ["enabled": attr(node, kAXEnabledAttribute) as? Bool ?? false, "role": attr(node, kAXRoleAttribute) as? String ?? "", "value": attr(node, kAXValueAttribute) as? String ?? ""]
+        // NSButton radios expose NSNumber, not text. Keep unknown values absent.
+        if element["role"] as? String == "AXRadioButton",
+           let value = attr(node, kAXValueAttribute) as? NSNumber,
+           [0, 1].contains(value.intValue) {
+            element["checked"] = value.intValue == 1
+            element["numeric_value"] = value
+        }
         if let position = attr(node, kAXPositionAttribute), let size = attr(node, kAXSizeAttribute), let content {
             var point = CGPoint.zero; var dimensions = CGSize.zero
             AXValueGetValue(position as! AXValue, .cgPoint, &point); AXValueGetValue(size as! AXValue, .cgSize, &dimensions)

@@ -60,3 +60,14 @@ class FrontendRequirements(unittest.TestCase):
             self.assertEqual([x['status'] for x in compare(root, contract, observed)['rows']], ['fail', 'fail'])
             observed['states']['feedback']['elements']['option-1'] = {'role': None, 'enabled': None}
             self.assertEqual([x['status'] for x in compare(root, contract, observed)['rows']], ['unavailable', 'unavailable'])
+
+    def test_checked_state_requires_boolean_measurement_and_detects_wrong_selection(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / 'reference.txt').write_text('Source radio 2 checked in accepted feedback')
+            contract = {'requirements': [{'id': 'checked', 'state': 'feedback',
+                'kind': 'element_boolean', 'element': 'option-1', 'field': 'checked',
+                'expected': True, 'evidence': ['reference.txt']}]}
+            for value, expected in [(True, 'pass'), (False, 'fail'), (1, 'unavailable'), (None, 'unavailable')]:
+                observed = {'states': {'feedback': {'elements': {'option-1': {'checked': value}}}}}
+                self.assertEqual(compare(root, contract, observed)['rows'][0]['status'], expected)

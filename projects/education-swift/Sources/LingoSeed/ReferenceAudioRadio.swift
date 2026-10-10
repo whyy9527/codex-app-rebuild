@@ -22,6 +22,12 @@ struct ReferenceAudioRadio: NSViewRepresentable {
         let face = PassiveHost(rootView: AnyView(EmptyView()))
         override func accessibilityRole() -> NSAccessibility.Role? { .radioButton }
         override func accessibilityValue() -> Any? { state == .on ? 1 : 0 }
+        // NSButton's default AX frame includes focus-ring padding outside its face.
+        // Match the actual interactive view bounds, as DOM getBoundingClientRect does.
+        override func accessibilityFrame() -> NSRect {
+            guard let window else { return super.accessibilityFrame() }
+            return window.convertToScreen(convert(bounds, to: nil))
+        }
         override var intrinsicContentSize: NSSize { NSSize(width: 600, height: 62) }
         // Native radio cell owns input/accessibility; the observed web face is custom.
         override func draw(_ dirtyRect: NSRect) {}

@@ -340,7 +340,7 @@ struct LearningView: View {
         }
     }
     private func isolation(_ lesson: Lesson) -> some View {
-        VStack(spacing: 36) {
+        VStack(spacing: 42.5) {
             HStack(spacing: 16) {
                 if let character = lesson.question.characterResource {
                     ReferenceCharacter(resource: character, feedback: lesson.feedback).id(lesson.question.id)
@@ -354,7 +354,7 @@ struct LearningView: View {
                 }.buttonStyle(.plain).accessibilityIdentifier("isolation-prompt")
                 Spacer()
             }.frame(height: 175)
-            VStack(spacing: 10) {
+            VStack(spacing: 8) {
                 ForEach(lesson.question.options) { option in
                     ReferenceAudioRadio(label: option.text, identifier: "option-" + option.id,
                         waveform: option.imageResource, selected: lesson.selected == option.id,

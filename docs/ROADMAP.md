@@ -173,3 +173,8 @@ Swift默认已切真实en/zh首课15题，保留每题sourceType、逐选项图�
 默认 v8 已接入七课102道计分题，真实从空进度回放430状态，无 walk_error。21项核心、48项框架检查通过。前端 v14 保留1480项旧需求并新增9项角色、enabled及Skip几何要求；最终985pass/69fail/435not_run，九项新增要求全部通过。第七课314/27/78；38对截图仍全部不同，声学等价未证明。保留构建失败误跑旧二进制的作废回执，严格构建入口及运行哈希防止复发。
 
 下一步从第八课实际挑战入口继续探索，同时修复已经发现的布局、字体、动画和音频差异；采齐 radio1、正常口语、偏好恢复及生命刷新原因。不能以扩大课程数量掩盖已有前端失败。真实匹配预算 RSI 探索消融仍未执行，完整 Goal active。[本次实际回执](../projects/duolingo-web/evidence/english-seventh-native-v1/README.md)。
+
+
+### 听力控件的选中与几何补漏
+
+v15保留1489项并增8项真实原版断言。独立原生radio2实际点击及接受，四项checked与四项零容差几何通过；保留alignmentRectInsets无效尝试。49框架、21业务检查通过。局部契约50pass/4fail/1443not_run，两对截图仍不同，尚缺听力暂缓、反馈补词/绿色及动态角色；不把前一构建七课结果移用到新构建。CoreText同配置回退PingFangSC-Semibold，源入口字号24而候选28，后续逐状态修复。[证据及复跑](../projects/duolingo-web/evidence/english-radio-layout-v1/README.md)。完整Goal active，真实RSI消融未执行。
