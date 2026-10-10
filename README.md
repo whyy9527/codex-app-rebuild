@@ -14,6 +14,8 @@
 
 整句输入新增真实多行编辑器、角色行和源Falstaff Rive；原48项中6项输入区几何已精确通过，保留8项切换失败。加入角色几何后49项仍36pass/9fail/4not_run，6对整页仍不同。实际执行发现并修复macOS智能引号改写；旧文件名导致的Lin素材误配已撤回并保留失败。[本轮实际修正](projects/duolingo-web/evidence/english-input-layout-v1/README.md)。
 
+第七课原版已完整完成并回主页：发现两种独立跨题输入偏好、跳过不扣心但入重练且结算100%、口语后的插入/替换题及额外成就页；真正Lin动画已核实接入。四题原生偏好路径28状态、19项核心通过，58项仍45pass/9fail/4not_run。源39状态/419项进入v13共1480项，现有六课为662pass/42fail/776not_run，第七课全程原生尚未接入。[实际轨迹、模具与复跑](projects/duolingo-web/evidence/english-seventh-v1/README.md)。
+
 ## 方法
 
 观察原版 → 保存行为与证据 → 在原版验证验收 → 冻结本批规格 → 实现新版并按失败反馈迭代 → 独立验收与补充探索。

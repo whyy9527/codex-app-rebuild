@@ -251,12 +251,16 @@ public struct Lesson: Equatable, Sendable {
     public private(set) var enteredText = ""
     public private(set) var keyboardText = ""
     public private(set) var usingKeyboard = false
+    private var prefersKeyboardForTiles = false
+    private var prefersFullSentence = false
     public var displayedInput: String { usingKeyboard ? keyboardText : enteredText }
     public var displayedPrompt: String { usingKeyboard ? (question.keyboardPrompt ?? question.prompt) : question.prompt }
     public var supportsInputMode: Bool { question.keyboardAnswer != nil && question.keyboardPrompt != nil && (question.kind == .wordTiles || question.kind == .textEntry) }
     public mutating func toggleInputMode() {
         guard supportsInputMode, feedback == nil, !complete, !listeningDeclined, interlude == nil, deferredSpeech == nil else { return }
         usingKeyboard.toggle()
+        if question.kind == .wordTiles { prefersKeyboardForTiles = usingKeyboard }
+        else if question.kind == .textEntry { prefersFullSentence = usingKeyboard }
     }
     public private(set) var matchedPairs = Set<String>()
     public private(set) var selectedLeft: String?
@@ -363,7 +367,8 @@ public struct Lesson: Equatable, Sendable {
         }
     }
     private mutating func clearAnswer() {
-        selected = nil; selectedWords = []; enteredText = ""; keyboardText = ""; usingKeyboard = false; matchedPairs = []
+        selected = nil; selectedWords = []; enteredText = ""; keyboardText = ""; matchedPairs = []
+        usingKeyboard = supportsInputMode && (question.kind == .wordTiles ? prefersKeyboardForTiles : prefersFullSentence)
         selectedLeft = nil; selectedRight = nil; matchingHint = nil; incorrectMatch = nil; feedback = nil; listeningDeclined = false
     }
     public mutating func advance() {

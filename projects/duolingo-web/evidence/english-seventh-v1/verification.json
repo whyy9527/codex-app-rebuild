@@ -1,0 +1,36 @@
+{
+  "swift_build": {
+    "exit_code": 0,
+    "product": "LingoSeed"
+  },
+  "core_checks": {
+    "exit_code": 0,
+    "checks": 19
+  },
+  "preferences_native": {
+    "states": 28,
+    "walk_error": null,
+    "contract": "frontend-english-secondary-v3.json",
+    "pass": 45,
+    "fail": 9,
+    "not_run": 4
+  },
+  "six_course_regression": {
+    "states": 273,
+    "walk_error": null,
+    "contract": "frontend-english-v13.json",
+    "new_seventh_not_covered": 419
+  },
+  "actual_lin_bundle": {
+    "sha256": "c47e42bcec34efea33de36432d6c53aeb0a4d87a0367cf177afe8dfa7ada7d54",
+    "matches_source": true
+  },
+  "goal": "active; full seventh native/visual/audio/RSI ablation incomplete",
+  "framework_checks": {
+    "command": "python3 -m unittest discover -v",
+    "exit_code": 0,
+    "tests": 47,
+    "seconds": 12.359,
+    "scope": "Framework/control regression, not Duolingo product completion"
+  }
+}

@@ -297,9 +297,23 @@ if CommandLine.arguments.contains("--walk-course") {
                     states[id + "-closed"] = observe(); states[id + "-declined"] = observe(); try capture(id + "-closed")
                     try press("speech-continue")
                 }
-                try waitFor("question-title", value: question["prompt"] as? String)
+                let modeProbe = CommandLine.arguments.contains("--exercise-input-modes") && question["keyboardAnswer"] != nil
+                if modeProbe {
+                    if let hint = question["hint"] as? String { try waitFor("question-hint", value: hint) }
+                    let full = current().first { (attr($0, kAXIdentifierAttribute) as? String) == "answer-input" }.flatMap { attr($0, kAXRoleAttribute) as? String } == "AXTextArea"
+                    try waitFor("question-title", value: (full ? question["keyboardPrompt"] : question["prompt"]) as? String)
+                    try waitFor("check")
+                } else { try waitFor("question-title", value: question["prompt"] as? String) }
                 let key = question["id"] as! String
-                states[key] = observe()
+                var initialObservation = observe()
+                if modeProbe {
+                    let input = current().first { (attr($0, kAXIdentifierAttribute) as? String) == "answer-input" }
+                    let full = input.flatMap { attr($0, kAXRoleAttribute) as? String } == "AXTextArea"
+                    let empty = input == nil ? question["kind"] as? String == "word_tiles" : input.flatMap { attr($0, kAXValueAttribute) as? String } == ""
+                    let enabled = current().first { (attr($0, kAXIdentifierAttribute) as? String) == "check" }.flatMap { attr($0, kAXEnabledAttribute) as? Bool } ?? false
+                    initialObservation["interactions"] = ["keyboard_mode": full, "empty_input": empty, "check_enabled": enabled]
+                }
+                states[key] = initialObservation
                 if CommandLine.arguments.contains("--capture-character-frames"), current().contains(where: { (attr($0, kAXIdentifierAttribute) as? String) == "question-character" }) {
                     for frame in 0..<12 { try capture(key + "-character-idle-\(frame)"); Thread.sleep(forTimeInterval: 0.15) }
                 }
@@ -316,10 +330,15 @@ if CommandLine.arguments.contains("--walk-course") {
                         value["interactions"] = ["check_enabled": enabled("check"), "input_matches": inputMatches]
                         states[key + "-" + phase] = value; try capture(key + "-" + phase)
                     }
-                    try clickOwnedControl("toggle-input-mode"); try recordMode("empty", expectedInput: "")
-                    try fillInput(answer); try recordMode("filled", expectedInput: answer)
-                    try clickOwnedControl("toggle-input-mode"); try recordMode("returned", expectedInput: "")
-                    try clickOwnedControl("toggle-input-mode"); try recordMode("reopened", expectedInput: answer)
+                    let full = current().first { (attr($0, kAXIdentifierAttribute) as? String) == "answer-input" }.flatMap { attr($0, kAXRoleAttribute) as? String } == "AXTextArea"
+                    if full {
+                        try fillInput(answer)
+                    } else {
+                        try clickOwnedControl("toggle-input-mode"); try recordMode("empty", expectedInput: "")
+                        try fillInput(answer); try recordMode("filled", expectedInput: answer)
+                        try clickOwnedControl("toggle-input-mode"); try recordMode("returned", expectedInput: "")
+                        try clickOwnedControl("toggle-input-mode"); try recordMode("reopened", expectedInput: answer)
+                    }
                     try clickOwnedControl("check")
                 } else {
                 switch question["kind"] as? String {

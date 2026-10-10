@@ -12,6 +12,8 @@
 
 整句布局增量：多行输入/角色行/底栏和连对阈值已修；6项输入区域精确几何通过，49项仍36pass/9fail/4not_run。实际Falstaff源Rive已核验接入；误用旧Lin文件名的Bea绑定已撤回。完整Lin、默认输入模式、源后续轨迹及RSI消融继续。[失败与复跑](../projects/duolingo-web/evidence/english-input-layout-v1/README.md)。
 
+第七课续探已实际闭环到主页；跳过与重练/100%结算、独立偏好、插入/替换、额外成就已冻结。真实Lin已接入，19项核心和28状态四题偏好路径通过；58项前端仍9fail/4not_run。v13增加419项第七课要求，完整六课仍662pass/42fail，新增整课需求未覆盖。下一步接入整课跳过/听力/替换/重练与结算，再修视觉声音并开展RSI策略消融。[证据](../projects/duolingo-web/evidence/english-seventh-v1/README.md)。
+
 | 阶段 | 已交付 | 验收与范围 |
 | --- | --- | --- |
 | 0 定位与改名 | 私有codex-app-rebuild；README、AGENTS、哲学、架构与研究来源 | Dream-RSI/Cordis及历史无收益保留；没有开源或部署。 |

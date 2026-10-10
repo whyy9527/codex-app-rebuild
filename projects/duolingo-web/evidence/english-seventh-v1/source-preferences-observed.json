@@ -1,0 +1,278 @@
+{
+  "states": {
+    "en-zh-secondary-keyboard-empty": {
+      "accessible_text": [
+        "使用词库"
+      ],
+      "interactions": {
+        "check_enabled": false,
+        "input_matches": true
+      },
+      "elements": {
+        "toggle-input-mode": {
+          "rect": [
+            524.9921875,
+            654.2265625,
+            150,
+            19.546875
+          ]
+        },
+        "answer-input": {
+          "rect": [
+            300,
+            336,
+            600,
+            170
+          ]
+        }
+      }
+    },
+    "en-zh-secondary-keyboard-filled": {
+      "accessible_text": [
+        "使用词库",
+        "Thank you."
+      ],
+      "interactions": {
+        "check_enabled": true,
+        "input_matches": true
+      },
+      "elements": {
+        "toggle-input-mode": {
+          "rect": [
+            524.9921875,
+            654.2265625,
+            150,
+            19.546875
+          ]
+        },
+        "answer-input": {
+          "rect": [
+            300,
+            336,
+            600,
+            170
+          ]
+        }
+      }
+    },
+    "en-zh-secondary-keyboard-returned": {
+      "accessible_text": [
+        "使用键盘"
+      ],
+      "interactions": {
+        "check_enabled": false,
+        "input_matches": true
+      },
+      "elements": {
+        "toggle-input-mode": {
+          "rect": [
+            524.9921875,
+            654.2265625,
+            150,
+            19.546875
+          ]
+        }
+      }
+    },
+    "en-zh-secondary-keyboard-reopened": {
+      "accessible_text": [
+        "使用词库",
+        "Thank you."
+      ],
+      "interactions": {
+        "check_enabled": true,
+        "input_matches": true
+      },
+      "elements": {
+        "toggle-input-mode": {
+          "rect": [
+            524.9921875,
+            654.2265625,
+            150,
+            19.546875
+          ]
+        },
+        "answer-input": {
+          "rect": [
+            300,
+            336,
+            600,
+            170
+          ]
+        }
+      }
+    },
+    "en-zh-secondary-keyboard-feedback": {
+      "accessible_text": [
+        "继续"
+      ],
+      "interactions": {
+        "accepted": true
+      }
+    },
+    "en-zh-secondary-harder-empty": {
+      "accessible_text": [
+        "减少难度"
+      ],
+      "interactions": {
+        "check_enabled": false,
+        "input_matches": true
+      },
+      "elements": {
+        "toggle-input-mode": {
+          "rect": [
+            524.9921875,
+            654.2265625,
+            150,
+            19.546875
+          ]
+        },
+        "answer-input": {
+          "rect": [
+            300,
+            336,
+            600,
+            170
+          ]
+        }
+      }
+    },
+    "en-zh-secondary-harder-filled": {
+      "accessible_text": [
+        "减少难度",
+        "I'd like water and coffee, please."
+      ],
+      "interactions": {
+        "check_enabled": true,
+        "input_matches": true
+      },
+      "elements": {
+        "toggle-input-mode": {
+          "rect": [
+            524.9921875,
+            654.2265625,
+            150,
+            19.546875
+          ]
+        },
+        "answer-input": {
+          "rect": [
+            300,
+            336,
+            600,
+            170
+          ]
+        }
+      }
+    },
+    "en-zh-secondary-harder-returned": {
+      "accessible_text": [
+        "加大难度"
+      ],
+      "interactions": {
+        "check_enabled": false,
+        "input_matches": true
+      },
+      "elements": {
+        "toggle-input-mode": {
+          "rect": [
+            524.9921875,
+            654.2265625,
+            150,
+            19.546875
+          ]
+        }
+      }
+    },
+    "en-zh-secondary-harder-reopened": {
+      "accessible_text": [
+        "减少难度",
+        "I'd like water and coffee, please."
+      ],
+      "interactions": {
+        "check_enabled": true,
+        "input_matches": true
+      },
+      "elements": {
+        "toggle-input-mode": {
+          "rect": [
+            524.9921875,
+            654.2265625,
+            150,
+            19.546875
+          ]
+        },
+        "answer-input": {
+          "rect": [
+            300,
+            336,
+            600,
+            170
+          ]
+        }
+      }
+    },
+    "en-zh-secondary-harder-feedback": {
+      "accessible_text": [
+        "继续"
+      ],
+      "interactions": {
+        "accepted": true
+      },
+      "elements": {
+        "question-character": {
+          "rect": [
+            295.08612060546875,
+            152.25,
+            129.79998779296875,
+            192.5
+          ]
+        }
+      }
+    },
+    "en-zh-secondary-harder": {
+      "accessible_text": [],
+      "elements": {},
+      "interactions": {
+        "keyboard_mode": false,
+        "empty_input": true,
+        "check_enabled": false
+      }
+    },
+    "en-zh-secondary-q6": {
+      "accessible_text": [],
+      "elements": {},
+      "interactions": {
+        "keyboard_mode": true,
+        "empty_input": true,
+        "check_enabled": false
+      }
+    },
+    "en-zh-secondary-q7": {
+      "accessible_text": [],
+      "elements": {},
+      "interactions": {
+        "keyboard_mode": true,
+        "empty_input": true,
+        "check_enabled": false
+      }
+    },
+    "en-zh-secondary-q6-feedback": {
+      "interactions": {
+        "accepted": true
+      },
+      "accessible_text": [
+        "继续"
+      ]
+    },
+    "en-zh-secondary-q7-feedback": {
+      "interactions": {
+        "accepted": true
+      },
+      "accessible_text": [
+        "继续"
+      ]
+    }
+  },
+  "note": "AX snapshot used for disabled state; DOM enabled conflicts preserved. Empty input_matches is only no submitted full answer, not a general value test."
+}

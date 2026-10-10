@@ -124,3 +124,6 @@ node projects/duolingo-web/explore-curriculum.mjs artifacts/reference-new.json -
 
 
 第七课次要动作增量已记录跳过不扣心、独立键盘/词库及难度缓冲、正常配对和listenIsolation缺口。两题原生探针18项核心通过；共享48项仍30pass/14fail/4not_run。默认课程未集成，完整第七课与RSI消融继续。[本批实际证据与复跑](evidence/english-secondary-actions-v1/README.md)。
+
+
+第七课原版完整轨迹已回主页，确认跨题独立偏好、跳过重练且100%结算、口语替换和额外成就；正确Lin Rive已绑定。四题偏好原生28状态/19项核心通过，58项仍45pass/9fail/4not_run。v13保留旧要求并增加419项第七课源需求，整课Swift接入仍待完成，不累计组件结果。[源轨迹、失败与复跑](evidence/english-seventh-v1/README.md)。

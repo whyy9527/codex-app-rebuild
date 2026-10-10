@@ -469,6 +469,21 @@ func actualSecondaryInputModes() throws {
     print("PASS actual keyboard/harder independent buffers, source accepted full answers and feedback lock")
 }
 
+func actualCrossQuestionPreferences() throws {
+    var lesson = Lesson(course: try course(fixture: "fixture-reference-en-zh-secondary-v3.json"), hearts: 2)
+    try check(!lesson.usingKeyboard, "Initial word bank must remain the source default")
+    lesson.toggleInputMode(); lesson.enterText("Thank you."); lesson.submit(); lesson.advance()
+    try check(!lesson.usingKeyboard && lesson.displayedPrompt == "输入所缺单词", "Tile preference must not change the initial fill difficulty")
+    lesson.toggleInputMode(); lesson.enterText("I'd like water and coffee, please."); lesson.submit(); lesson.advance()
+    try check(lesson.usingKeyboard && lesson.displayedInput.isEmpty && !lesson.canSubmit, "Source q6 must reopen keyboard with a fresh buffer")
+    lesson.enterText("No coffee, thank you."); lesson.submit(); lesson.advance()
+    try check(lesson.usingKeyboard && lesson.displayedPrompt == "用英语写出这句话" && lesson.displayedInput.isEmpty && !lesson.canSubmit, "Source q7 must independently retain full-sentence difficulty")
+    lesson.enterText("With ice?"); lesson.submit()
+    try check(lesson.feedback == true && lesson.hearts == 2 && lesson.mistakesMade == 0, "Observed full answer rejected after preference restoration")
+    lesson.advance(); try check(lesson.complete, "Preference trajectory did not finish")
+    print("PASS observed independent cross-question keyboard/full-sentence preferences and fresh buffers")
+}
+
 do {
     try mistakeReview()
     try persistence()
@@ -488,7 +503,8 @@ do {
     try actualListeningDeclinePrefix()
     try actualEnglishSixthDoubleDecline()
     try actualSecondaryInputModes()
-    print("18 business checks passed; core layer only")
+    try actualCrossQuestionPreferences()
+    print("19 business checks passed; core layer only")
 } catch {
     FileHandle.standardError.write(Data(("FAIL " + String(describing: error) + "\n").utf8))
     exit(1)

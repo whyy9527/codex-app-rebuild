@@ -161,3 +161,8 @@ Question可选keyboardAnswer/keyboardPrompt承载源接受的整句；Lesson用u
 ### 多行输入与真实控件驱动
 
 ReferenceAnswerEditor拥有NSTextView，19px/400与600×170区域，关闭系统智能引号/替换，以delegate回写独立整句缓冲。原生探针针对这类转换使用自有窗口的单次真实鼠标点击，再读取实际状态；保留AX返回失败但动作执行、PID鼠标无效及系统弯引号导致评分失败的历史，不自动重试可能已执行的动作。Falstaff绑定来自当前renderer和解压CDN核验；旧lin文件名实际是Bea，身份误配已撤回。6项输入几何通过不代表整页/声音一致。[本批实测](../projects/duolingo-web/evidence/english-input-layout-v1/README.md)。
+
+
+### 同课输入偏好与完整第七课需求
+
+Lesson将词库键盘、填空整句偏好分别保存；clearAnswer清答案缓冲，按新题支持的类型恢复对应模式，不支持切换的题不清偏好。原生驱动以当前新题提示和AXTextArea判断模式，不无条件切换。compile-input-preference-probe冻结四个实际题的跨题状态；freeze-seventh-frontend独立从完整原版回执生成39状态/419项及产品v13，组件通过不填补整课未执行。Lin绑定来自实际coffee and tea的API/PNG/renderer及CDN一致字节。源心数刷新、口语替换和额外结算继续作为显式未知/待实现状态。[本批](../projects/duolingo-web/evidence/english-seventh-v1/README.md)。
