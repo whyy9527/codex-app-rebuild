@@ -223,15 +223,18 @@ struct LearningView: View {
             } else if let correct = lesson.feedback {
                 Image(systemName: correct ? "checkmark.circle.fill" : "xmark.circle.fill").font(.system(size: 48)).foregroundStyle(correct ? accent : .red)
                 VStack(alignment: .leading, spacing: 8) {
-                    Text(correct ? (lesson.question.correctFeedback ?? copy("Well done!", "好棒！")) : (lesson.question.kind == .textEntry ? copy("Correct answer:", "正确答案：") : copy("Correct answer: \(lesson.question.correctText)", "正确答案：\(lesson.question.correctText)"))).font(.title2.bold())
+                    Text(correct ? (lesson.question.correctFeedback ?? copy("Well done!", "好棒！")) : ((lesson.skipped || lesson.question.kind == .textEntry) ? copy("Correct answer:", "正确答案：") : copy("Correct answer: \(lesson.question.correctText)", "正确答案：\(lesson.question.correctText)"))).font(.title2.bold())
                         .foregroundStyle(correct ? Color(red: 0.28, green: 0.62, blue: 0) : Color.red).accessibilityIdentifier("feedback").accessibilityValue(correct ? "correct" : "incorrect")
-                    if !correct && lesson.question.kind == .textEntry { Text(lesson.question.correctText) }
+                    if !correct && (lesson.skipped || lesson.question.kind == .textEntry) { Text(lesson.skipped ? (lesson.question.skipCorrectText ?? lesson.question.correctText) : lesson.question.correctText) }
                     Text(lesson.question.explanation)
                     if chinese { ReferenceFeedbackActions(model: model, color: correct ? Color(red: 88/255, green: 167/255, blue: 0) : .red) }
                 }
                 Spacer()
                 Button(copy("CONTINUE", "继续")) { model.advance() }.buttonStyle(SeedButtonStyle(fill: correct ? accent : .red)).accessibilityIdentifier("continue")
             } else {
+                if let label = lesson.question.skipLabel {
+                    Button(label) { model.skip() }.buttonStyle(ReferenceSkipButton()).accessibilityIdentifier("skip").offset(y: 2)
+                }
                 if let decline = lesson.question.listeningDecline {
                     Button(decline.label) { model.declineListening() }.buttonStyle(.plain).accessibilityIdentifier("listening-decline")
                 }
@@ -606,5 +609,19 @@ struct AudioPairButtonStyle: ButtonStyle {
             .background(RoundedRectangle(cornerRadius: 12).fill(incorrect ? Color.red.opacity(0.12) : matched ? Color.green.opacity(0.12) : selected ? Color.cyan.opacity(0.1) : .white))
             .overlay(RoundedRectangle(cornerRadius: 12).stroke(color.opacity(0.3), lineWidth: 2))
             .offset(y: configuration.isPressed ? 2 : 0)
+    }
+}
+
+struct ReferenceSkipButton: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label.font(ReferenceStyle.font(17, bold: true))
+            .foregroundStyle(ReferenceStyle.disclosureInk)
+            .frame(width: 150, height: 46)
+            .background(RoundedRectangle(cornerRadius: 16).fill(.white)
+                .shadow(color: ReferenceStyle.border, radius: 0, y: configuration.isPressed ? 0 : 4))
+            .overlay(RoundedRectangle(cornerRadius: 16).strokeBorder(ReferenceStyle.border, lineWidth: 2))
+            .offset(y: configuration.isPressed ? 4 : 0)
+            .frame(width: 150, height: 50, alignment: .top)
+            .contentShape(Rectangle())
     }
 }

@@ -1,0 +1,89 @@
+{
+  "kind": "same-viewport-pixel-diagnostic",
+  "native_trajectory": "One-question compressed skip/review probe, source whole lesson seven; native five hearts vs source two then three, native one correct vs source fifteen. Not a full-course same-state acceptance.",
+  "viewport": [
+    1200,
+    732
+  ],
+  "normalization": "Crop native titlebar using measured content rect, downsample2x with Lanczos; reference pixels unchanged",
+  "rows": [
+    {
+      "question": null,
+      "stage": "q0",
+      "source": "projects/duolingo-web/evidence/english-secondary-actions-v1/secondary-reset-q0.png",
+      "native": "en-zh-l7-q0-before.png",
+      "source_sha256": "96863afeefe282150cbcba44a89375d4570f7cdc6387c601837587be8b697210",
+      "native_sha256": "cd3870b7f78ee8f911104a0918312ed30d180a87697e68ec66405e3128c9964c",
+      "mean_absolute_rgb_difference": [
+        2.0862602459016393,
+        2.5290209471766847,
+        2.6295742258652095
+      ],
+      "status": "different"
+    },
+    {
+      "question": null,
+      "stage": "q0-skipped",
+      "source": "projects/duolingo-web/evidence/english-secondary-actions-v1/secondary-q0-skipped.png",
+      "native": "en-zh-l7-q0-skipped.png",
+      "source_sha256": "00483aad93fa7b0fd135b8475f3651bffee2dcf286e49795add33fca3cb26320",
+      "native_sha256": "5bc82ea618e9ffc42457d90e2221ab5dc11158f5b096a1a65e9e1a84dbb45348",
+      "mean_absolute_rgb_difference": [
+        3.409467213114754,
+        4.7897654826958105,
+        4.863942395264116
+      ],
+      "status": "different"
+    },
+    {
+      "question": null,
+      "stage": "review-intro",
+      "source": "projects/duolingo-web/evidence/english-seventh-v1/seventh-review-intro.png",
+      "native": "en-zh-l7-review-intro-window.png",
+      "source_sha256": "244359169ac5ec42b45f023ea0e84b8d849ddf9439ff3770ec8a72cadafc2933",
+      "native_sha256": "578a3134c34aab94f714119125d445d4d20c4ebab56a8053417c57485d39dc8b",
+      "mean_absolute_rgb_difference": [
+        5.794604963570127,
+        5.260391621129326,
+        12.134520719489982
+      ],
+      "status": "different"
+    },
+    {
+      "question": null,
+      "stage": "review-q0",
+      "source": "projects/duolingo-web/evidence/english-seventh-v1/seventh-review-q0-answer-before.png",
+      "native": "en-zh-l7-review-q0.png",
+      "source_sha256": "a16c67c60a6a999fa3dff529c6cc1be049949e0c743df18ee869b15e4d620bb5",
+      "native_sha256": "a5dbfd969c98e29a1dbdc644976d61bfcf71da76108990384b231d0f3ee3e993",
+      "mean_absolute_rgb_difference": [
+        3.526067850637523,
+        4.49004781420765,
+        8.98003301457195
+      ],
+      "status": "different"
+    },
+    {
+      "question": null,
+      "stage": "review-q0-feedback",
+      "source": "projects/duolingo-web/evidence/english-seventh-v1/seventh-review-q0-answer-feedback.png",
+      "native": "en-zh-l7-review-q0-feedback.png",
+      "source_sha256": "6a83037641b7e60c30733b5b8fc6376b42e2cd43cbb552a16ff45518efdedaaf",
+      "native_sha256": "2e68cbf78c39d41da1127fd8faacb7ccf483a9d715d69917359f4a307db02ea9",
+      "mean_absolute_rgb_difference": [
+        6.360373406193078,
+        5.530697859744991,
+        12.172872267759562
+      ],
+      "status": "different"
+    }
+  ],
+  "candidate_acceptance": "not_proven",
+  "limitations": [
+    "This is an actual pixel diagnostic, not a substitute for frontend acceptance",
+    "Animation frames and temporal sound not aligned",
+    "Font antialiasing differs across renderers; reported without tolerance or masking",
+    "Hearts tutorial, source interlude visuals and full completion chain remain incomplete",
+    "Compressed one-question probe omits intervening source challenges and external heart refresh; whole-image differences are diagnostics, not matched full-course acceptance."
+  ]
+}

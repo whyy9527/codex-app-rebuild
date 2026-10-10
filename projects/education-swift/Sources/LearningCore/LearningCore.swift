@@ -50,8 +50,11 @@ public struct Question: Codable, Equatable, Sendable, Identifiable {
     public let listeningDecline: ListeningDecline?
     public let keyboardAnswer: String?
     public let keyboardPrompt: String?
+    public let skipLabel: String?
+    public let skipCorrectText: String?
     public let feedbackReportReasons: [String]?
     enum CodingKeys: String, CodingKey {
+        case skipLabel, skipCorrectText
         case keyboardAnswer, keyboardPrompt, correctFeedback, indicator, example, exampleAudioResource, completionPrefix, completionSuffix, listeningDecline, feedbackReportReasons
         case id, kind, prompt, options, answer, words, pairs, explanation, hint, newWord, rightOrder, audioResource, sourceLanguage, characterResource, sourceType, slowAudioResource, dialogueAvatars
         case answerWords = "answer_words"
@@ -85,6 +88,8 @@ public struct Question: Codable, Equatable, Sendable, Identifiable {
         listeningDecline = try c.decodeIfPresent(ListeningDecline.self, forKey: .listeningDecline)
         keyboardAnswer = try c.decodeIfPresent(String.self, forKey: .keyboardAnswer)
         keyboardPrompt = try c.decodeIfPresent(String.self, forKey: .keyboardPrompt)
+        skipLabel = try c.decodeIfPresent(String.self, forKey: .skipLabel)
+        skipCorrectText = try c.decodeIfPresent(String.self, forKey: .skipCorrectText)
         feedbackReportReasons = try c.decodeIfPresent([String].self, forKey: .feedbackReportReasons)
     }
     public var correctText: String {
@@ -267,6 +272,7 @@ public struct Lesson: Equatable, Sendable {
     public private(set) var selectedRight: String?
     public private(set) var matchingHint: String?
     public private(set) var incorrectMatch: [String]?
+    public private(set) var skipped = false
     public private(set) var feedback: Bool?
     public private(set) var hearts: Int
     public private(set) var mistakesMade = 0
@@ -342,6 +348,13 @@ public struct Lesson: Equatable, Sendable {
             if matchedPairs.count == question.pairs.count { feedback = true; correctStreak += 1 }
         }
     }
+    public mutating func skip() {
+        guard question.skipLabel != nil, feedback == nil, !listeningDeclined, !complete, interlude == nil, deferredSpeech == nil else { return }
+        // Actual empty q0 skip queued review without spending a heart or an error.
+        // Mid-streak skip behavior remains unobserved.
+        skipped = true; feedback = false
+        if !review.contains(position) { review.append(position) }
+    }
     public mutating func submit() {
         guard canSubmit else { return }
         // Tile IDs enforce one use per occurrence. Grading follows the visible
@@ -369,7 +382,7 @@ public struct Lesson: Equatable, Sendable {
     private mutating func clearAnswer() {
         selected = nil; selectedWords = []; enteredText = ""; keyboardText = ""; matchedPairs = []
         usingKeyboard = supportsInputMode && (question.kind == .wordTiles ? prefersKeyboardForTiles : prefersFullSentence)
-        selectedLeft = nil; selectedRight = nil; matchingHint = nil; incorrectMatch = nil; feedback = nil; listeningDeclined = false
+        selectedLeft = nil; selectedRight = nil; matchingHint = nil; incorrectMatch = nil; feedback = nil; listeningDeclined = false; skipped = false
     }
     public mutating func advance() {
         if interlude != nil { interlude = nil; return }

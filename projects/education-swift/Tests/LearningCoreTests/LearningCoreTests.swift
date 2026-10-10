@@ -484,6 +484,25 @@ func actualCrossQuestionPreferences() throws {
     print("PASS observed independent cross-question keyboard/full-sentence preferences and fresh buffers")
 }
 
+func actualSkipReview() throws {
+    let c = try course(fixture: "fixture-reference-en-zh-skip-v1.json")
+    var lesson = Lesson(course: c, hearts: 2)
+    try check(!lesson.canSubmit, "Empty source question unexpectedly submittable")
+    lesson.skip(); lesson.skip()
+    try check(lesson.skipped && lesson.feedback == false && lesson.review == [0], "Skip must queue original question once")
+    try check(lesson.hearts == 2 && lesson.mistakesMade == 0, "Skip was incorrectly graded as a mistake")
+    try check(lesson.question.skipCorrectText == "茶和咖啡", "Source correction lost Chinese spacing")
+    lesson.advance()
+    try check(lesson.reviewing && !lesson.complete && lesson.interlude != nil && !lesson.skipped, "Skip bypassed review intro")
+    lesson.advance()
+    for word in lesson.question.answerWords { lesson.addWord(word) }
+    lesson.submit()
+    try check(lesson.feedback == true, "Source review answer rejected")
+    lesson.advance()
+    try check(lesson.complete && lesson.hearts == 2 && lesson.mistakesMade == 0 && lesson.review.isEmpty, "Skip review altered hearts/errors or remained incomplete")
+    print("PASS observed empty skip, no heart/error penalty, original-question review and correction")
+}
+
 do {
     try mistakeReview()
     try persistence()
@@ -504,7 +523,8 @@ do {
     try actualEnglishSixthDoubleDecline()
     try actualSecondaryInputModes()
     try actualCrossQuestionPreferences()
-    print("19 business checks passed; core layer only")
+    try actualSkipReview()
+    print("20 business checks passed; core layer only")
 } catch {
     FileHandle.standardError.write(Data(("FAIL " + String(describing: error) + "\n").utf8))
     exit(1)

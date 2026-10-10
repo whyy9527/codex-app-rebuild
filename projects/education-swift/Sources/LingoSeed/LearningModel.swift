@@ -109,6 +109,10 @@ import LearningCore
               course.interfaceLanguage != "zh" || question.audioResource != nil else { return }
         playQuestion()
     }
+    func skip() {
+        lesson?.skip()
+        // No source evidence yet for a skip effect; do not substitute incorrect audio.
+    }
     func submit() {
         guard lesson?.canSubmit == true, lesson?.feedback == nil else { return }
         lesson?.submit()

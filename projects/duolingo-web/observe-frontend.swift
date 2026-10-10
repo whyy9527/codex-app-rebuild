@@ -319,7 +319,15 @@ if CommandLine.arguments.contains("--walk-course") {
                 }
                 if let kind = (question["sourceType"] ?? question["kind"]) as? String, capturedKinds.insert(kind).inserted { try capture("question-" + kind) }
                 if course["interfaceLanguage"] as? String == "zh" { try capture(key + "-before") }
-                if CommandLine.arguments.contains("--exercise-input-modes"), let answer = question["keyboardAnswer"] as? String {
+                let skipProbe = CommandLine.arguments.contains("--exercise-source-skip") && key == "en-zh-l7-q0"
+                if skipProbe {
+                    let oldHearts = current().first { (attr($0, kAXIdentifierAttribute) as? String) == "hearts" }.flatMap { attr($0, kAXValueAttribute) as? String }
+                    try press("skip"); try waitFor("continue")
+                    let newHearts = current().first { (attr($0, kAXIdentifierAttribute) as? String) == "hearts" }.flatMap { attr($0, kAXValueAttribute) as? String }
+                    var skipped = observe()
+                    skipped["interactions"] = ["hearts_unchanged": oldHearts != nil && oldHearts == newHearts]
+                    states[key + "-skipped"] = skipped; try capture(key + "-skipped")
+                } else if CommandLine.arguments.contains("--exercise-input-modes"), let answer = question["keyboardAnswer"] as? String {
                     func enabled(_ id: String) -> Bool {
                         current().first { (attr($0, kAXIdentifierAttribute) as? String) == id }.flatMap { attr($0, kAXEnabledAttribute) as? Bool } ?? false
                     }
@@ -485,6 +493,22 @@ if CommandLine.arguments.contains("--walk-course") {
                     states[interlude["id"]!] = observe(); try capture(interlude["id"]! + "-window")
                     try press("interlude-continue")
                 }
+            }
+            if CommandLine.arguments.contains("--exercise-source-skip"), let first = questions.first, first["id"] as? String == "en-zh-l7-q0" {
+                let intro = definition["reviewInterlude"] as! [String: String]
+                try waitFor("lesson-interlude", value: intro["id"])
+                states[intro["id"]!] = observe(); try capture(intro["id"]! + "-window")
+                try press("interlude-continue"); try waitFor("review-label")
+                try waitFor("question-hint", value: first["hint"] as? String)
+                states["en-zh-l7-review-q0"] = observe(); try capture("en-zh-l7-review-q0")
+                var skipped = states["en-zh-l7-q0-skipped"]!
+                var facts = skipped["interactions"] as! [String: Bool]
+                facts["original_question_reviewed"] = current().contains { (attr($0, kAXIdentifierAttribute) as? String) == "review-label" }
+                skipped["interactions"] = facts; states["en-zh-l7-q0-skipped"] = skipped
+                for word in first["answer_words"] as! [String] { try press("word-bank-" + word) }
+                try press("check"); try waitFor("continue")
+                states["en-zh-l7-review-q0-feedback"] = observe(); try capture("en-zh-l7-review-q0-feedback")
+                try press("continue")
             }
             if fifthErrors {
                 let intro = definition["reviewInterlude"] as! [String: String]
