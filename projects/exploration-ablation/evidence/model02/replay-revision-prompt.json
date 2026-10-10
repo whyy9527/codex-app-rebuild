@@ -1,0 +1,296 @@
+{
+  "task": "Generate exploration allocation policies for a source-App frontend reconstruction task. Use only this message, no tools. Return exactly 3 distinct policy records, most promising first.",
+  "interface": "Each rule adds weight when its nonempty term occurs in the currently visible action label; subtract repeat_penalty times previous visits. Max score wins, ties in displayed action order. Policy cannot see unvisited outcomes. At most16 rules; weights[-10,10]; repeat_penalty[0,20]. Two visits to the root, one branch observation per visit.",
+  "objective": "Find novel source frontend facts efficiently. Number of deduplicated new AX lines and actual visible control enabled/checked/rect/CSS facts is a limited proxy; long pages may have advantage. Do not claim product completeness.",
+  "root_snapshot": "- link:\n  - /url: /learn\n  - img\n- link \"学习\":\n  - /url: /learn\n  - img\n  - text: 学习\n- link \"发音\":\n  - /url: /characters\n  - img\n  - text: 发音\n- link \"排行榜\":\n  - /url: /leaderboard\n  - img\n  - text: 排行榜\n- link \"特别任务\":\n  - /url: /quests\n  - img\n  - text: 特别任务\n- link \"宝石小店\":\n  - /url: /shop\n  - img\n  - text: 宝石小店\n- link \"个人档案\":\n  - /url: /learn?sign-up\n  - img\n  - text: 个人档案\n- button \"更多\":\n  - img\n  - text: 更多\n- img\n- button \"5\":\n  - img\n  - text: \"5\"\n- button \"2\":\n  - img\n  - text: \"2\"\n- button \"510\":\n  - img\n  - text: \"510\"\n- button \"3\":\n  - img\n  - text: \"3\"\n- heading \"青铜等级\" [level=2]\n- link \"查看排行榜\":\n  - /url: /leaderboard\n- img\n- paragraph: 这周的排行榜挑战赛即将开始！\n- text: 12 小时\n- heading \"每日特别任务\" [level=2]\n- link \"显示全部\":\n  - /url: /quests\n- img\n- text: 获取 30 经验\n- progressbar: 30 / 30 30 / 30\n- img\n- heading \"创建个人档案，保存学习进度！\" [level=2]\n- button \"创建档案\"\n- button \"登录\"\n- list:\n  - listitem:\n    - link \"关于我们\":\n      - /url: https://about.duolingo.com\n  - listitem:\n    - link \"宝石小店\":\n      - /url: https://store.duolingo.com/\n  - listitem:\n    - link \"有效性\":\n      - /url: /efficacy\n  - listitem:\n    - link \"招聘贤才\":\n      - /url: https://careers.duolingo.com\n  - listitem:\n    - link \"投资者\":\n      - /url: https://investors.duolingo.com\n  - listitem:\n    - link \"条款\":\n      - /url: /terms\n  - listitem:\n    - link \"隐私\":\n      - /url: /privacy\n- link \"第 1 阶段，第 1 部分\":\n  - /url: /sections\n  - img\n  - heading \"第 1 阶段，第 1 部分\" [level=1]\n- text: 提供或接受饮料\n- link \"打开这个部分的指南\":\n  - /url: /guidebook/en/1\n  - img \"指南\"\n  - text: 指南\n- img\n- button \"Lesson\":\n  - button \"Lesson\":\n    - img\n- button \"Lesson 4 of 4\":\n  - img\n  - button \"Lesson 4 of 4\"\n- button \"宝箱\" [disabled]:\n  - img\n- button \"Practice\":\n  - button \"Practice\"\n- button \"复习该部分\":\n  - button \"复习该部分\"\n- separator\n- heading \"谈论祖籍国家\" [level=2]\n- separator\n- link \"跳到第 2 部分\":\n  - /url: /lesson/unit/2/test\n- button \"Lesson\":\n  - button \"Lesson\"\n- button \"宝箱\" [disabled]:\n  - img\n- button \"Practice\":\n  - button \"Practice\"\n- button \"复习该部分\":\n  - button \"复习该部分\"\n- separator\n- heading \"介绍家庭成员\" [level=2]\n- separator\n- link \"跳到第 3 部分\":\n  - /url: /lesson/unit/3/test\n- button \"Lesson\":\n  - button \"Lesson\"\n- button \"宝箱\" [disabled]:\n  - img\n- button \"Practice\":\n  - button \"Practice\"\n- button \"复习该部分\":\n  - button \"复习该部分\"\n- paragraph: 下一级\n- heading \"第 2 阶段\" [level=2]\n- paragraph: 学会日常交流中基础的单词、短语和语法概念\n- button \"跳级到这儿？\"",
+  "available_actions": [
+    {
+      "id": "more",
+      "label": "更多菜单"
+    },
+    {
+      "id": "gems",
+      "label": "宝石余额 510"
+    },
+    {
+      "id": "hearts",
+      "label": "生命值 3"
+    },
+    {
+      "id": "guidebook",
+      "label": "打开这个部分的指南"
+    }
+  ],
+  "prior_candidates": [
+    {
+      "id": "guidebook_then_menu",
+      "rationale": "Prioritize instructional content, then menu structure. A hypothesis for novel frontend facts; long content may inflate the proxy without establishing completeness.",
+      "rules": [
+        {
+          "term": "指南",
+          "weight": 10
+        },
+        {
+          "term": "更多",
+          "weight": 9
+        },
+        {
+          "term": "生命值",
+          "weight": 6
+        },
+        {
+          "term": "宝石余额",
+          "weight": 5
+        }
+      ],
+      "repeat_penalty": 12
+    },
+    {
+      "id": "menu_then_hearts",
+      "rationale": "Prioritize navigation disclosure, then a resource control, sampling different interface types without assuming their unseen outcomes.",
+      "rules": [
+        {
+          "term": "更多",
+          "weight": 10
+        },
+        {
+          "term": "生命值",
+          "weight": 9
+        },
+        {
+          "term": "宝石余额",
+          "weight": 7
+        },
+        {
+          "term": "指南",
+          "weight": 6
+        }
+      ],
+      "repeat_penalty": 12
+    },
+    {
+      "id": "hearts_then_gems",
+      "rationale": "Compare two visible resource controls for new state and geometry facts. Their information yield remains unknown.",
+      "rules": [
+        {
+          "term": "生命值",
+          "weight": 10
+        },
+        {
+          "term": "宝石余额",
+          "weight": 9
+        },
+        {
+          "term": "更多",
+          "weight": 7
+        },
+        {
+          "term": "指南",
+          "weight": 6
+        }
+      ],
+      "repeat_penalty": 12
+    }
+  ],
+  "replay_feedback": [
+    {
+      "policy_digest": "9417059602c1422ddd254d45505619085276378be42960c288d948a1c2f0c734",
+      "budget": 2,
+      "score": 70,
+      "trace": [
+        {
+          "step": 1,
+          "action": "guidebook",
+          "new_atoms": 38,
+          "outcome": {
+            "atoms": [
+              "[\"ax\", \"button:\"]",
+              "[\"ax\", \"heading \\\"第 1 部分指南\\\" [level=2]\"]",
+              "[\"ax\", \"link \\\"返回\\\":\"]",
+              "[\"ax\", \"text: 咖啡，谢谢！\"]",
+              "[\"ax\", \"text: 来看看这一部分的语法点和重点语句吧！ 重点语句\"]",
+              "[\"ax\", \"text: 欢迎光临！\"]",
+              "[\"ax\", \"text: 水，谢谢。\"]",
+              "[\"ax\", \"text: 茶还是咖啡？\"]",
+              "[\"ax\", \"text: 谢谢你， 再见！\"]",
+              "[[\"BUTTON\", null, null, \"\"], \"css\", {\"backgroundColor\": \"rgba(0, 0, 0, 0)\", \"borderColor\": \"rgb(0, 0, 0)\", \"borderRadius\": \"0px\", \"borderWidth\": \"0px\", \"color\": \"rgb(0, 0, 0)\", \"fontFamily\": \"duolingo-sans, sans-serif\", \"fontSize\": \"17px\", \"fontWeight\": \"400\", \"lineHeight\": \"0px\"}]",
+              "[[\"BUTTON\", null, null, \"\"], \"enabled\", true]",
+              "[[\"BUTTON\", null, null, \"\"], \"rect\", [306, 378.03125, 29, 22]]",
+              "[[\"BUTTON\", null, null, \"\"], \"rect\", [306, 490.359375, 29, 22]]",
+              "[[\"BUTTON\", null, null, \"\"], \"rect\", [306, 602.6875, 29, 22]]",
+              "[[\"BUTTON\", null, null, \"\"], \"rect\", [306, 715.015625, 29, 22]]",
+              "[[\"BUTTON\", null, null, \"\"], \"rect\", [306, 827.34375, 29, 22]]",
+              "[[\"DIV\", null, \"back-arrow\", \"返回\"], \"checked\", null]",
+              "[[\"DIV\", null, \"back-arrow\", \"返回\"], \"css\", {\"backgroundColor\": \"rgba(0, 0, 0, 0)\", \"borderColor\": \"rgb(0, 0, 238)\", \"borderRadius\": \"0px\", \"borderWidth\": \"0px\", \"color\": \"rgb(0, 0, 238)\", \"fontFamily\": \"duolingo-sans, sans-serif\", \"fontSize\": \"17px\", \"fontWeight\": \"500\", \"lineHeight\": \"20px\"}]",
+              "[[\"DIV\", null, \"back-arrow\", \"返回\"], \"enabled\", true]",
+              "[[\"DIV\", null, \"back-arrow\", \"返回\"], \"rect\", [280, 59, 76, 27]]",
+              "[[\"DIV\", null, \"hint-token\", \"\"], \"checked\", null]",
+              "[[\"DIV\", null, \"hint-token\", \"\"], \"css\", {\"backgroundColor\": \"rgba(0, 0, 0, 0)\", \"borderColor\": \"rgb(60, 60, 60)\", \"borderRadius\": \"0px\", \"borderWidth\": \"0px\", \"color\": \"rgb(60, 60, 60)\", \"fontFamily\": \"duolingo-sans, sans-serif\", \"fontSize\": \"17px\", \"fontWeight\": \"500\", \"lineHeight\": \"20px\"}]",
+              "[[\"DIV\", null, \"hint-token\", \"\"], \"enabled\", true]",
+              "[[\"DIV\", null, \"hint-token\", \"\"], \"rect\", [345, 379.03125, 65.6796875, 24]]",
+              "[[\"DIV\", null, \"hint-token\", \"\"], \"rect\", [345, 491.359375, 24.640625, 24]]",
+              "[[\"DIV\", null, \"hint-token\", \"\"], \"rect\", [345, 603.6875, 46.5234375, 24]]",
+              "[[\"DIV\", null, \"hint-token\", \"\"], \"rect\", [345, 716.015625, 43.3359375, 24]]",
+              "[[\"DIV\", null, \"hint-token\", \"\"], \"rect\", [345, 828.34375, 41.84375, 24]]",
+              "[[\"DIV\", null, \"hint-token\", \"\"], \"rect\", [373.046875, 491.359375, 14.4765625, 24]]",
+              "[[\"DIV\", null, \"hint-token\", \"\"], \"rect\", [390.9296875, 491.359375, 45.375, 24]]",
+              "[[\"DIV\", null, \"hint-token\", \"\"], \"rect\", [391.7421875, 716.015625, 25.3671875, 24]]",
+              "[[\"DIV\", null, \"hint-token\", \"\"], \"rect\", [394.046875, 828.34375, 47.109375, 24]]",
+              "[[\"DIV\", null, \"hint-token\", \"\"], \"rect\", [398.7265625, 603.6875, 47.109375, 24]]",
+              "[[\"DIV\", null, \"hint-token\", \"\"], \"rect\", [424.3125, 716.015625, 60.7265625, 24]]",
+              "[[\"H2\", null, \"guidebook-header\", \"第 1 部分指南\"], \"checked\", null]",
+              "[[\"H2\", null, \"guidebook-header\", \"第 1 部分指南\"], \"css\", {\"backgroundColor\": \"rgba(0, 0, 0, 0)\", \"borderColor\": \"rgb(60, 60, 60)\", \"borderRadius\": \"0px\", \"borderWidth\": \"0px\", \"color\": \"rgb(60, 60, 60)\", \"fontFamily\": \"duolingo-sans, sans-serif\", \"fontSize\": \"25px\", \"fontWeight\": \"700\", \"lineHeight\": \"30px\"}]",
+              "[[\"H2\", null, \"guidebook-header\", \"第 1 部分指南\"], \"enabled\", true]",
+              "[[\"H2\", null, \"guidebook-header\", \"第 1 部分指南\"], \"rect\", [418, 152, 318, 30]]"
+            ],
+            "evidence": "guidebook-after.json",
+            "receipt_sha256": "e2360c5d36935b3f3428e57b44d189b2c534ba17db5041a7abbd55ab40313393"
+          }
+        },
+        {
+          "step": 2,
+          "action": "more",
+          "new_atoms": 32,
+          "outcome": {
+            "atoms": [
+              "[\"ax\", \"/url: https://englishtest.duolingo.com/\"]",
+              "[\"ax\", \"button \\\"帮助\\\"\"]",
+              "[\"ax\", \"button \\\"更多 多邻国英语测试 创建档案 设置 帮助 登录\\\":\"]",
+              "[\"ax\", \"button \\\"设置\\\"\"]",
+              "[\"ax\", \"link \\\"多邻国英语测试\\\":\"]",
+              "[\"ax\", \"text: 多邻国英语测试\"]",
+              "[[\"A\", null, \"det-nav\", \"多邻国英语测试\"], \"checked\", null]",
+              "[[\"A\", null, \"det-nav\", \"多邻国英语测试\"], \"css\", {\"backgroundColor\": \"rgba(0, 0, 0, 0)\", \"borderColor\": \"rgb(119, 119, 119)\", \"borderRadius\": \"0px\", \"borderWidth\": \"0px\", \"color\": \"rgb(119, 119, 119)\", \"fontFamily\": \"duolingo-sans, sans-serif\", \"fontSize\": \"15px\", \"fontWeight\": \"700\", \"lineHeight\": \"16px\"}]",
+              "[[\"A\", null, \"det-nav\", \"多邻国英语测试\"], \"enabled\", true]",
+              "[[\"A\", null, \"det-nav\", \"多邻国英语测试\"], \"rect\", [248, 452, 222.6015625, 52]]",
+              "[[\"BUTTON\", null, \"create-account-button\", \"创建档案\"], \"checked\", null]",
+              "[[\"BUTTON\", null, \"create-account-button\", \"创建档案\"], \"css\", {\"backgroundColor\": \"rgba(0, 0, 0, 0)\", \"borderColor\": \"rgb(119, 119, 119)\", \"borderRadius\": \"0px\", \"borderWidth\": \"0px\", \"color\": \"rgb(119, 119, 119)\", \"fontFamily\": \"duolingo-sans, sans-serif\", \"fontSize\": \"15px\", \"fontWeight\": \"700\", \"lineHeight\": \"16px\"}]",
+              "[[\"BUTTON\", null, \"create-account-button\", \"创建档案\"], \"enabled\", true]",
+              "[[\"BUTTON\", null, \"create-account-button\", \"创建档案\"], \"rect\", [248, 522, 222.6015625, 40]]",
+              "[[\"BUTTON\", null, \"help-button\", \"帮助\"], \"checked\", null]",
+              "[[\"BUTTON\", null, \"help-button\", \"帮助\"], \"css\", {\"backgroundColor\": \"rgba(0, 0, 0, 0)\", \"borderColor\": \"rgb(119, 119, 119)\", \"borderRadius\": \"0px\", \"borderWidth\": \"0px\", \"color\": \"rgb(119, 119, 119)\", \"fontFamily\": \"duolingo-sans, sans-serif\", \"fontSize\": \"15px\", \"fontWeight\": \"700\", \"lineHeight\": \"16px\"}]",
+              "[[\"BUTTON\", null, \"help-button\", \"帮助\"], \"enabled\", true]",
+              "[[\"BUTTON\", null, \"help-button\", \"帮助\"], \"rect\", [248, 602, 222.6015625, 40]]",
+              "[[\"BUTTON\", null, \"settings-button\", \"设置\"], \"checked\", null]",
+              "[[\"BUTTON\", null, \"settings-button\", \"设置\"], \"css\", {\"backgroundColor\": \"rgba(0, 0, 0, 0)\", \"borderColor\": \"rgb(119, 119, 119)\", \"borderRadius\": \"0px\", \"borderWidth\": \"0px\", \"color\": \"rgb(119, 119, 119)\", \"fontFamily\": \"duolingo-sans, sans-serif\", \"fontSize\": \"15px\", \"fontWeight\": \"700\", \"lineHeight\": \"16px\"}]",
+              "[[\"BUTTON\", null, \"settings-button\", \"设置\"], \"enabled\", true]",
+              "[[\"BUTTON\", null, \"settings-button\", \"设置\"], \"rect\", [248, 562, 222.6015625, 40]]",
+              "[[\"BUTTON\", null, \"sign-in-button\", \"登录\"], \"checked\", null]",
+              "[[\"BUTTON\", null, \"sign-in-button\", \"登录\"], \"css\", {\"backgroundColor\": \"rgba(0, 0, 0, 0)\", \"borderColor\": \"rgb(119, 119, 119)\", \"borderRadius\": \"0px\", \"borderWidth\": \"0px\", \"color\": \"rgb(119, 119, 119)\", \"fontFamily\": \"duolingo-sans, sans-serif\", \"fontSize\": \"15px\", \"fontWeight\": \"700\", \"lineHeight\": \"16px\"}]",
+              "[[\"BUTTON\", null, \"sign-in-button\", \"登录\"], \"enabled\", true]",
+              "[[\"BUTTON\", null, \"sign-in-button\", \"登录\"], \"rect\", [248, 642, 222.6015625, 40]]",
+              "[[\"DIV\", null, \"more-nav\", \"更多\\n多邻国英语测试\\n创建档案\\n设置\\n帮助\\n登录\"], \"checked\", null]",
+              "[[\"DIV\", null, \"more-nav\", \"更多\\n多邻国英语测试\\n创建档案\\n设置\\n帮助\\n登录\"], \"css\", {\"backgroundColor\": \"rgba(0, 0, 0, 0)\", \"borderColor\": \"rgb(175, 175, 175)\", \"borderRadius\": \"0px\", \"borderWidth\": \"0px\", \"color\": \"rgb(175, 175, 175)\", \"fontFamily\": \"duolingo-sans, sans-serif\", \"fontSize\": \"17px\", \"fontWeight\": \"500\", \"lineHeight\": \"25px\"}]",
+              "[[\"DIV\", null, \"more-nav\", \"更多\\n多邻国英语测试\\n创建档案\\n设置\\n帮助\\n登录\"], \"enabled\", true]",
+              "[[\"DIV\", null, \"more-nav\", \"更多\\n多邻国英语测试\\n创建档案\\n设置\\n帮助\\n登录\"], \"rect\", [16, 452, 222, 52]]",
+              "[[\"DIV\", null, \"skill-path-tooltip-unit-test\", \"跳级到这儿？\"], \"rect\", [453.46875, 1350.381591796875, 133.0625, 45]]",
+              "[[\"DIV\", null, \"skill-path-tooltip-unit-test\", \"跳级到这儿？\"], \"rect\", [453.46875, 746.928466796875, 133.0625, 45]]"
+            ],
+            "evidence": "more-after.json",
+            "receipt_sha256": "ff8fec26558863b008962c08c59b9b957b99ee52c0816dc61788bff8ddf46862"
+          }
+        }
+      ],
+      "interpretation": "Recorded frontend fact novelty proxy only; not requirement sufficiency, online gains or visual equivalence"
+    },
+    {
+      "policy_digest": "64147492ff0a199cf864657f92be74154460d6bc7dc769949a35d34dc0145bbc",
+      "budget": 2,
+      "score": 34,
+      "trace": [
+        {
+          "step": 1,
+          "action": "more",
+          "new_atoms": 32,
+          "outcome": {
+            "atoms": [
+              "[\"ax\", \"/url: https://englishtest.duolingo.com/\"]",
+              "[\"ax\", \"button \\\"帮助\\\"\"]",
+              "[\"ax\", \"button \\\"更多 多邻国英语测试 创建档案 设置 帮助 登录\\\":\"]",
+              "[\"ax\", \"button \\\"设置\\\"\"]",
+              "[\"ax\", \"link \\\"多邻国英语测试\\\":\"]",
+              "[\"ax\", \"text: 多邻国英语测试\"]",
+              "[[\"A\", null, \"det-nav\", \"多邻国英语测试\"], \"checked\", null]",
+              "[[\"A\", null, \"det-nav\", \"多邻国英语测试\"], \"css\", {\"backgroundColor\": \"rgba(0, 0, 0, 0)\", \"borderColor\": \"rgb(119, 119, 119)\", \"borderRadius\": \"0px\", \"borderWidth\": \"0px\", \"color\": \"rgb(119, 119, 119)\", \"fontFamily\": \"duolingo-sans, sans-serif\", \"fontSize\": \"15px\", \"fontWeight\": \"700\", \"lineHeight\": \"16px\"}]",
+              "[[\"A\", null, \"det-nav\", \"多邻国英语测试\"], \"enabled\", true]",
+              "[[\"A\", null, \"det-nav\", \"多邻国英语测试\"], \"rect\", [248, 452, 222.6015625, 52]]",
+              "[[\"BUTTON\", null, \"create-account-button\", \"创建档案\"], \"checked\", null]",
+              "[[\"BUTTON\", null, \"create-account-button\", \"创建档案\"], \"css\", {\"backgroundColor\": \"rgba(0, 0, 0, 0)\", \"borderColor\": \"rgb(119, 119, 119)\", \"borderRadius\": \"0px\", \"borderWidth\": \"0px\", \"color\": \"rgb(119, 119, 119)\", \"fontFamily\": \"duolingo-sans, sans-serif\", \"fontSize\": \"15px\", \"fontWeight\": \"700\", \"lineHeight\": \"16px\"}]",
+              "[[\"BUTTON\", null, \"create-account-button\", \"创建档案\"], \"enabled\", true]",
+              "[[\"BUTTON\", null, \"create-account-button\", \"创建档案\"], \"rect\", [248, 522, 222.6015625, 40]]",
+              "[[\"BUTTON\", null, \"help-button\", \"帮助\"], \"checked\", null]",
+              "[[\"BUTTON\", null, \"help-button\", \"帮助\"], \"css\", {\"backgroundColor\": \"rgba(0, 0, 0, 0)\", \"borderColor\": \"rgb(119, 119, 119)\", \"borderRadius\": \"0px\", \"borderWidth\": \"0px\", \"color\": \"rgb(119, 119, 119)\", \"fontFamily\": \"duolingo-sans, sans-serif\", \"fontSize\": \"15px\", \"fontWeight\": \"700\", \"lineHeight\": \"16px\"}]",
+              "[[\"BUTTON\", null, \"help-button\", \"帮助\"], \"enabled\", true]",
+              "[[\"BUTTON\", null, \"help-button\", \"帮助\"], \"rect\", [248, 602, 222.6015625, 40]]",
+              "[[\"BUTTON\", null, \"settings-button\", \"设置\"], \"checked\", null]",
+              "[[\"BUTTON\", null, \"settings-button\", \"设置\"], \"css\", {\"backgroundColor\": \"rgba(0, 0, 0, 0)\", \"borderColor\": \"rgb(119, 119, 119)\", \"borderRadius\": \"0px\", \"borderWidth\": \"0px\", \"color\": \"rgb(119, 119, 119)\", \"fontFamily\": \"duolingo-sans, sans-serif\", \"fontSize\": \"15px\", \"fontWeight\": \"700\", \"lineHeight\": \"16px\"}]",
+              "[[\"BUTTON\", null, \"settings-button\", \"设置\"], \"enabled\", true]",
+              "[[\"BUTTON\", null, \"settings-button\", \"设置\"], \"rect\", [248, 562, 222.6015625, 40]]",
+              "[[\"BUTTON\", null, \"sign-in-button\", \"登录\"], \"checked\", null]",
+              "[[\"BUTTON\", null, \"sign-in-button\", \"登录\"], \"css\", {\"backgroundColor\": \"rgba(0, 0, 0, 0)\", \"borderColor\": \"rgb(119, 119, 119)\", \"borderRadius\": \"0px\", \"borderWidth\": \"0px\", \"color\": \"rgb(119, 119, 119)\", \"fontFamily\": \"duolingo-sans, sans-serif\", \"fontSize\": \"15px\", \"fontWeight\": \"700\", \"lineHeight\": \"16px\"}]",
+              "[[\"BUTTON\", null, \"sign-in-button\", \"登录\"], \"enabled\", true]",
+              "[[\"BUTTON\", null, \"sign-in-button\", \"登录\"], \"rect\", [248, 642, 222.6015625, 40]]",
+              "[[\"DIV\", null, \"more-nav\", \"更多\\n多邻国英语测试\\n创建档案\\n设置\\n帮助\\n登录\"], \"checked\", null]",
+              "[[\"DIV\", null, \"more-nav\", \"更多\\n多邻国英语测试\\n创建档案\\n设置\\n帮助\\n登录\"], \"css\", {\"backgroundColor\": \"rgba(0, 0, 0, 0)\", \"borderColor\": \"rgb(175, 175, 175)\", \"borderRadius\": \"0px\", \"borderWidth\": \"0px\", \"color\": \"rgb(175, 175, 175)\", \"fontFamily\": \"duolingo-sans, sans-serif\", \"fontSize\": \"17px\", \"fontWeight\": \"500\", \"lineHeight\": \"25px\"}]",
+              "[[\"DIV\", null, \"more-nav\", \"更多\\n多邻国英语测试\\n创建档案\\n设置\\n帮助\\n登录\"], \"enabled\", true]",
+              "[[\"DIV\", null, \"more-nav\", \"更多\\n多邻国英语测试\\n创建档案\\n设置\\n帮助\\n登录\"], \"rect\", [16, 452, 222, 52]]",
+              "[[\"DIV\", null, \"skill-path-tooltip-unit-test\", \"跳级到这儿？\"], \"rect\", [453.46875, 1350.381591796875, 133.0625, 45]]",
+              "[[\"DIV\", null, \"skill-path-tooltip-unit-test\", \"跳级到这儿？\"], \"rect\", [453.46875, 746.928466796875, 133.0625, 45]]"
+            ],
+            "evidence": "more-after.json",
+            "receipt_sha256": "ff8fec26558863b008962c08c59b9b957b99ee52c0816dc61788bff8ddf46862"
+          }
+        },
+        {
+          "step": 2,
+          "action": "hearts",
+          "new_atoms": 2,
+          "outcome": {
+            "atoms": [
+              "[[\"DIV\", null, \"skill-path-tooltip-unit-test\", \"跳级到这儿？\"], \"rect\", [453.46875, 1353.895263671875, 133.0625, 45]]",
+              "[[\"DIV\", null, \"skill-path-tooltip-unit-test\", \"跳级到这儿？\"], \"rect\", [453.46875, 750.442138671875, 133.0625, 45]]"
+            ],
+            "evidence": "hearts-after.json",
+            "receipt_sha256": "1bc4cccc5d8c0f06208d462a6417e3c71daa8d106f2153cb896981188d571d22"
+          }
+        }
+      ],
+      "interpretation": "Recorded frontend fact novelty proxy only; not requirement sufficiency, online gains or visual equivalence"
+    },
+    {
+      "policy_digest": "02e15b3308542ae3efd5c2a5e1213a98ad67b1eb4c8e2d25f9c80035e4a932e2",
+      "budget": 2,
+      "score": 4,
+      "trace": [
+        {
+          "step": 1,
+          "action": "hearts",
+          "new_atoms": 2,
+          "outcome": {
+            "atoms": [
+              "[[\"DIV\", null, \"skill-path-tooltip-unit-test\", \"跳级到这儿？\"], \"rect\", [453.46875, 1353.895263671875, 133.0625, 45]]",
+              "[[\"DIV\", null, \"skill-path-tooltip-unit-test\", \"跳级到这儿？\"], \"rect\", [453.46875, 750.442138671875, 133.0625, 45]]"
+            ],
+            "evidence": "hearts-after.json",
+            "receipt_sha256": "1bc4cccc5d8c0f06208d462a6417e3c71daa8d106f2153cb896981188d571d22"
+          }
+        },
+        {
+          "step": 2,
+          "action": "gems",
+          "new_atoms": 2,
+          "outcome": {
+            "atoms": [
+              "[[\"DIV\", null, \"skill-path-tooltip-unit-test\", \"跳级到这儿？\"], \"rect\", [453.46875, 1352.600830078125, 133.0625, 45]]",
+              "[[\"DIV\", null, \"skill-path-tooltip-unit-test\", \"跳级到这儿？\"], \"rect\", [453.46875, 749.147705078125, 133.0625, 45]]"
+            ],
+            "evidence": "gems-after.json",
+            "receipt_sha256": "9230cd211c0a6a14bdaf39c943693bac25d485903a724ac8f2d253efb0a35e6c"
+          }
+        }
+      ],
+      "interpretation": "Recorded frontend fact novelty proxy only; not requirement sufficiency, online gains or visual equivalence"
+    }
+  ],
+  "instruction": "Use actual revealed replay feedback to revise the policies. Do not infer outcomes outside these recorded traces. Return3 revised policies."
+}

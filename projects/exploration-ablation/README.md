@@ -14,3 +14,5 @@ python3 projects/exploration-ablation/run.py --codex "$CODEX_CLI_PATH" \
 运行入口先核对冻结摘要。正式调用前必须提交推送本协议和基线。每次真实Codex CLI进程限180秒、read-only，原生横幅验证gpt-6.1-sol/medium；失败不换样本。控制组先封存，再提供反馈改进实验组。`selection-seal.json` 之后才可访问在线留出动作。该阶段尚未证明1:1复刻质量改善，后续产品实现对照仍待完成。
 
 首次批次因服务拒绝模型未产出策略，实际CLI横幅版本与命令版本不符；[失败回执](evidence/failure01/diagnostic.json)保留。02修订只显式绑定bundled CLI及哈希，先提交推送再调用，不能把失败隐藏为重试。
+
+02三次实际进程均成功，横幅模型/effort/CLI版本与注册一致；六个回放候选代理分数为70、34、4、70、70、40，控制组封存后回放为70。两组均选择了训练高分策略，尚不能宣称收益；[选择封存](evidence/model02/selection-seal.json)后才执行在线留出。

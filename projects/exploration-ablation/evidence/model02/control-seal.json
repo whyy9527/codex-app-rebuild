@@ -1,0 +1,27 @@
+{
+  "policy": {
+    "id": "guidebook_then_menu",
+    "rationale": "Sample the labeled guide, then menu disclosure for potentially different frontend facts. Yield is unknown; long content may inflate the proxy without showing completeness.",
+    "rules": [
+      {
+        "term": "指南",
+        "weight": 10
+      },
+      {
+        "term": "更多",
+        "weight": 8
+      },
+      {
+        "term": "生命值",
+        "weight": 5
+      },
+      {
+        "term": "宝石余额",
+        "weight": 4
+      }
+    ],
+    "repeat_penalty": 12
+  },
+  "digest": "315e08a254636bc46dc1e4bc7c8713d050fde05925e9e66d55c7e52e79628f81",
+  "reason": "Model preferred first candidate; no replay-feedback selection"
+}

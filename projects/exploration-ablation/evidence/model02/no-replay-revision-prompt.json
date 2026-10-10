@@ -1,0 +1,96 @@
+{
+  "task": "Generate exploration allocation policies for a source-App frontend reconstruction task. Use only this message, no tools. Return exactly 3 distinct policy records, most promising first.",
+  "interface": "Each rule adds weight when its nonempty term occurs in the currently visible action label; subtract repeat_penalty times previous visits. Max score wins, ties in displayed action order. Policy cannot see unvisited outcomes. At most16 rules; weights[-10,10]; repeat_penalty[0,20]. Two visits to the root, one branch observation per visit.",
+  "objective": "Find novel source frontend facts efficiently. Number of deduplicated new AX lines and actual visible control enabled/checked/rect/CSS facts is a limited proxy; long pages may have advantage. Do not claim product completeness.",
+  "root_snapshot": "- link:\n  - /url: /learn\n  - img\n- link \"学习\":\n  - /url: /learn\n  - img\n  - text: 学习\n- link \"发音\":\n  - /url: /characters\n  - img\n  - text: 发音\n- link \"排行榜\":\n  - /url: /leaderboard\n  - img\n  - text: 排行榜\n- link \"特别任务\":\n  - /url: /quests\n  - img\n  - text: 特别任务\n- link \"宝石小店\":\n  - /url: /shop\n  - img\n  - text: 宝石小店\n- link \"个人档案\":\n  - /url: /learn?sign-up\n  - img\n  - text: 个人档案\n- button \"更多\":\n  - img\n  - text: 更多\n- img\n- button \"5\":\n  - img\n  - text: \"5\"\n- button \"2\":\n  - img\n  - text: \"2\"\n- button \"510\":\n  - img\n  - text: \"510\"\n- button \"3\":\n  - img\n  - text: \"3\"\n- heading \"青铜等级\" [level=2]\n- link \"查看排行榜\":\n  - /url: /leaderboard\n- img\n- paragraph: 这周的排行榜挑战赛即将开始！\n- text: 12 小时\n- heading \"每日特别任务\" [level=2]\n- link \"显示全部\":\n  - /url: /quests\n- img\n- text: 获取 30 经验\n- progressbar: 30 / 30 30 / 30\n- img\n- heading \"创建个人档案，保存学习进度！\" [level=2]\n- button \"创建档案\"\n- button \"登录\"\n- list:\n  - listitem:\n    - link \"关于我们\":\n      - /url: https://about.duolingo.com\n  - listitem:\n    - link \"宝石小店\":\n      - /url: https://store.duolingo.com/\n  - listitem:\n    - link \"有效性\":\n      - /url: /efficacy\n  - listitem:\n    - link \"招聘贤才\":\n      - /url: https://careers.duolingo.com\n  - listitem:\n    - link \"投资者\":\n      - /url: https://investors.duolingo.com\n  - listitem:\n    - link \"条款\":\n      - /url: /terms\n  - listitem:\n    - link \"隐私\":\n      - /url: /privacy\n- link \"第 1 阶段，第 1 部分\":\n  - /url: /sections\n  - img\n  - heading \"第 1 阶段，第 1 部分\" [level=1]\n- text: 提供或接受饮料\n- link \"打开这个部分的指南\":\n  - /url: /guidebook/en/1\n  - img \"指南\"\n  - text: 指南\n- img\n- button \"Lesson\":\n  - button \"Lesson\":\n    - img\n- button \"Lesson 4 of 4\":\n  - img\n  - button \"Lesson 4 of 4\"\n- button \"宝箱\" [disabled]:\n  - img\n- button \"Practice\":\n  - button \"Practice\"\n- button \"复习该部分\":\n  - button \"复习该部分\"\n- separator\n- heading \"谈论祖籍国家\" [level=2]\n- separator\n- link \"跳到第 2 部分\":\n  - /url: /lesson/unit/2/test\n- button \"Lesson\":\n  - button \"Lesson\"\n- button \"宝箱\" [disabled]:\n  - img\n- button \"Practice\":\n  - button \"Practice\"\n- button \"复习该部分\":\n  - button \"复习该部分\"\n- separator\n- heading \"介绍家庭成员\" [level=2]\n- separator\n- link \"跳到第 3 部分\":\n  - /url: /lesson/unit/3/test\n- button \"Lesson\":\n  - button \"Lesson\"\n- button \"宝箱\" [disabled]:\n  - img\n- button \"Practice\":\n  - button \"Practice\"\n- button \"复习该部分\":\n  - button \"复习该部分\"\n- paragraph: 下一级\n- heading \"第 2 阶段\" [level=2]\n- paragraph: 学会日常交流中基础的单词、短语和语法概念\n- button \"跳级到这儿？\"",
+  "available_actions": [
+    {
+      "id": "more",
+      "label": "更多菜单"
+    },
+    {
+      "id": "gems",
+      "label": "宝石余额 510"
+    },
+    {
+      "id": "hearts",
+      "label": "生命值 3"
+    },
+    {
+      "id": "guidebook",
+      "label": "打开这个部分的指南"
+    }
+  ],
+  "prior_candidates": [
+    {
+      "id": "guidebook_then_menu",
+      "rationale": "Prioritize instructional content, then menu structure. A hypothesis for novel frontend facts; long content may inflate the proxy without establishing completeness.",
+      "rules": [
+        {
+          "term": "指南",
+          "weight": 10
+        },
+        {
+          "term": "更多",
+          "weight": 9
+        },
+        {
+          "term": "生命值",
+          "weight": 6
+        },
+        {
+          "term": "宝石余额",
+          "weight": 5
+        }
+      ],
+      "repeat_penalty": 12
+    },
+    {
+      "id": "menu_then_hearts",
+      "rationale": "Prioritize navigation disclosure, then a resource control, sampling different interface types without assuming their unseen outcomes.",
+      "rules": [
+        {
+          "term": "更多",
+          "weight": 10
+        },
+        {
+          "term": "生命值",
+          "weight": 9
+        },
+        {
+          "term": "宝石余额",
+          "weight": 7
+        },
+        {
+          "term": "指南",
+          "weight": 6
+        }
+      ],
+      "repeat_penalty": 12
+    },
+    {
+      "id": "hearts_then_gems",
+      "rationale": "Compare two visible resource controls for new state and geometry facts. Their information yield remains unknown.",
+      "rules": [
+        {
+          "term": "生命值",
+          "weight": 10
+        },
+        {
+          "term": "宝石余额",
+          "weight": 9
+        },
+        {
+          "term": "更多",
+          "weight": 7
+        },
+        {
+          "term": "指南",
+          "weight": 6
+        }
+      ],
+      "repeat_penalty": 12
+    }
+  ],
+  "instruction": "Revise the three policies from visible labels and prior candidates only. No evaluator feedback is supplied. Return preferred policy first."
+}
