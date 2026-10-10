@@ -3,7 +3,7 @@
 import {spawnSync} from 'node:child_process';
 import {writeFileSync,mkdirSync} from 'node:fs';
 import {resolve,dirname} from 'node:path';
-import {challengeIdentity} from './reference-challenge-identity.mjs';
+import {challengeIdentity,uncoveredReplayType} from './reference-challenge-identity.mjs';
 function arg(name,fallback){const i=process.argv.indexOf(name);return i<0?fallback:process.argv[i+1];}
 for(const name of ['--cli','--session','--out'])if(!arg(name))throw Error('Required: --cli PATH --session NAME --out PATH [--start-index N]');
 const uiLanguage=arg('--ui-language','en');
@@ -15,6 +15,7 @@ const output=resolve(arg('--out'));mkdirSync(dirname(output),{recursive:true});
 const callback = async page => {
  const labels=UI_LABELS;
  const identity=CHALLENGE_IDENTITY;
+ const uncovered=UNCOVERED_TYPE;
  const session=await page.evaluate(()=>window.__referenceSession);
  const observed=[],interludes=[];let failure=null;
  async function exactVisible(locator,text){
@@ -74,6 +75,10 @@ const callback = async page => {
     row.identity_playback=await page.evaluate(start=>window.__referenceMedia.slice(start),playbackStart);
     playedAudio.push(...new Set(row.identity_playback.map(m=>m.src).filter(Boolean)));
    }
+   if(uncovered(c.type,row.dom_type)){
+    row.coverage={kind:'uncovered_type',expected_type:c.type,actual_type:row.dom_type,next_action:'Observe and implement this type; do not classify an unsupported choice schema as source content drift.'};
+    throw new Error('Uncovered type: '+c.type);
+   }
    row.identity=identity(c,{type:row.dom_type,text:await challenge.innerText(),choices:visibleChoices,prompts,playedAudio});
    row.dom_fields=await challenge.locator('[data-test]').evaluateAll(ns=>ns.map(n=>({test:n.getAttribute('data-test'),text:n.textContent})));
    if(!row.identity.matches){row.divergence={kind:row.identity.reasons.includes('type_changed')?'type_changed':'same_type_content_changed',next_action:'Read current prompt and complete choice set; do not reuse captured answer. Record new observed branch before resuming.'};throw new Error('Reference UI diverged: '+row.identity.reasons.join(', '));}
@@ -108,7 +113,7 @@ const callback = async page => {
  }
  return {session,observed,interludes,failure,final:await page.locator('body').ariaSnapshot(),limitations:['One actual generated lesson instance; media invocations are not acoustic output evidence.']};
 };
-const code=callback.toString().replace('CHALLENGE_IDENTITY',challengeIdentity.toString()).replace('UI_LABELS',JSON.stringify(labels)).replace('START_INDEX',String(start)).replaceAll('SCREENSHOT_PREFIX',JSON.stringify(arg('--screenshot-prefix','reference-session')));
+const code=callback.toString().replace('CHALLENGE_IDENTITY',challengeIdentity.toString()).replace('UNCOVERED_TYPE',uncoveredReplayType.toString()).replace('UI_LABELS',JSON.stringify(labels)).replace('START_INDEX',String(start)).replaceAll('SCREENSHOT_PREFIX',JSON.stringify(arg('--screenshot-prefix','reference-session')));
 const result=spawnSync(arg('--cli'),['-s='+arg('--session'),'run-code',code],{cwd:resolve('artifacts/output/playwright'),encoding:'utf8',timeout:300000,maxBuffer:16*1024*1024});
 const raw=(result.stdout||'')+(result.stderr||'');writeFileSync(output+'.raw.txt',raw,{flag:'wx'});
 if(result.status!==0||!raw.includes('### Result\n'))throw Error('Unavailable replay; raw output retained, inspect current tab before resuming');

@@ -119,3 +119,5 @@ node projects/duolingo-web/explore-curriculum.mjs artifacts/reference-new.json -
 实际完成原版第四课12题，并发现挑战入口、复习说明、难题说明、英语分数、双倍经验奖励及传奇邀请。听力转录不可见造成的身份误判已用当前显式播放回执修正，文字题核对未放宽。保留失败、原版截图和角色idle/correct/incorrect动画来源。v5共519项：当前三课候选221pass、4fail、294not_run，整体fail；4个明确失败是三课后主页青铜/宝石差异。Swift第四课、视觉/声学等价和RSI探索机制消融尚待完成。见[第四课证据](evidence/english-fourth-v1/README.md)。Goal保持active。
 
 第二节点增量见[输入组件验证](evidence/english-input-native-v1/README.md)：实际源观察→text_entry→真实键盘原生验证，12pass/6not_run。产品v7共578项，完整第二节点、口语识别、视觉声学一致及真实RSI探索机制消融仍未完成。
+
+原版第二节点首课现已完整走通并回主页，15评分题+口语暂缓阶段及typed review均有证据。已修正候选听音配对扣心/左侧原音、完整输入纠错和HOT接受；14项核心通过，产品v9共606项。默认整课接入及RSI策略消融尚待完成。[最新轨迹与组件结果](evidence/english-pairing-native-v1/README.md)。

@@ -121,3 +121,5 @@ Guidebook从SwiftPM中的实测结构化内容读取，使用原版语音与发�
 回放器现在保留真实challenge canvas帧、边界与像素尺寸。原版全身角色的Canvas与接口裁切SVG/PDF不同；渲染器及动画资源绑定仍未知。此采集扩展修正素材探索遗漏，不等于已解决动画或证明RSI收益。[当前批次](../projects/duolingo-web/evidence/english-settlement-v1/README.md)。
 
 text_entry在Lesson中保存enteredText，输入编辑受反馈/题间边界保护，clearAnswer清除跨题残留。SwiftUI通过LearningModel绑定状态；原生驱动使用自有PID键盘事件，避免AX直接赋值绕过绑定。当前判分只对两例精确值有源证据，完整源grader待替换。独立输入probe只验证组件，默认题库不变；产品v7保留全部v6需求。[证据](../projects/duolingo-web/evidence/english-input-native-v1/README.md)。
+
+listenMatch使用现有matching状态机及原版静态向量帧，左侧解析精确原音、右侧保留独立排序；错配记录双方状态、扣心并由LearningModel立即保存。该实际混合错误轨迹不把已修正的配对再加入课末重练。text_entry按源HOT接受加入大小写比较，完整正确句保留固定前后缀；其他grader规则未知。回放器区分同题型未支持与真实题序失步，后者仍在作答前拦截。完整第五课含插入题/口语暂缓与新结算，尚待从trajectory编入默认；source history/frontier不表示RSI效果。[证据](../projects/duolingo-web/evidence/english-pairing-native-v1/README.md)。

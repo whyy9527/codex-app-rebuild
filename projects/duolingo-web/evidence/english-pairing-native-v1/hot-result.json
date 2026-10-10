@@ -1,0 +1,71 @@
+{
+  "kind": "frontend_requirements",
+  "contract_digest": "62784ac12f220eeba517afbbe842f277a499302b2bb08e20f86f423faa31f144",
+  "observation_digest": "e4a5b823fa5766cdf170791e1712183fa6ba516cb8deb6f656a61b19f08fbad4",
+  "rows": [
+    {
+      "id": "en-zh-node2-hot-review-wrong-正确答案：",
+      "state": "en-zh-node2-hot-review-wrong",
+      "status": "pass",
+      "expected": "正确答案："
+    },
+    {
+      "id": "en-zh-node2-hot-review-wrong-hot tea",
+      "state": "en-zh-node2-hot-review-wrong",
+      "status": "pass",
+      "expected": "hot tea"
+    },
+    {
+      "id": "en-zh-node2-hot-review-wrong-heart",
+      "state": "en-zh-node2-hot-review-wrong",
+      "status": "pass",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "id": "en-zh-node2-hot-review-wrong-locked",
+      "state": "en-zh-node2-hot-review-wrong",
+      "status": "pass",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "id": "en-zh-node2-hot-review-review-label",
+      "state": "en-zh-node2-hot-review-review",
+      "status": "pass",
+      "expected": "错题重练"
+    },
+    {
+      "id": "en-zh-node2-hot-review-review-empty",
+      "state": "en-zh-node2-hot-review-review",
+      "status": "pass",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "id": "en-zh-node2-hot-review-accepted",
+      "state": "en-zh-node2-hot-review-feedback",
+      "status": "pass",
+      "expected": "正确！"
+    },
+    {
+      "id": "en-zh-node2-hot-review-visual",
+      "state": "en-zh-node2-hot-review",
+      "status": "not_run",
+      "reason": "Typed review visual equality remains unverified"
+    },
+    {
+      "id": "en-zh-node2-hot-review-audio",
+      "state": "en-zh-node2-hot-review",
+      "status": "not_run",
+      "reason": "Typed review audio equality remains unverified"
+    },
+    {
+      "id": "en-zh-node2-hot-review-full-grader",
+      "state": "en-zh-node2-hot-review",
+      "status": "not_run",
+      "reason": "Typed review full-grader equality remains unverified"
+    }
+  ],
+  "status": "fail"
+}

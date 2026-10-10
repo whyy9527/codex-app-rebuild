@@ -79,7 +79,7 @@ public struct Question: Codable, Equatable, Sendable, Identifiable {
         case .choice: options.first { $0.id == answer }?.text ?? ""
         case .wordTiles: answerWords.compactMap { id in words.first { $0.id == id }?.text }.joined(separator: " ")
         case .matching: "All pairs matched"
-        case .textEntry: answer
+        case .textEntry: (completionPrefix ?? "") + answer + (completionSuffix ?? "")
         }
     }
     var valid: Bool {
@@ -223,6 +223,7 @@ public struct Lesson: Equatable, Sendable {
     public private(set) var selectedLeft: String?
     public private(set) var selectedRight: String?
     public private(set) var matchingHint: String?
+    public private(set) var incorrectMatch: [String]?
     public private(set) var feedback: Bool?
     public private(set) var hearts: Int
     public private(set) var mistakesMade = 0
@@ -267,11 +268,15 @@ public struct Lesson: Equatable, Sendable {
     private mutating func selectPair(_ id: String, left: Bool) {
         guard question.kind == .matching, feedback == nil, !complete, interlude == nil,
               question.pairs.contains(where: { $0.id == id }), !matchedPairs.contains(id) else { return }
-        matchingHint = nil
+        matchingHint = nil; incorrectMatch = nil
         if left { selectedLeft = id } else { selectedRight = id }
         if let a = selectedLeft, let b = selectedRight {
             if a == b { matchedPairs.insert(a) }
-            else { matchingHint = "Try a different pair." } // Product decision: unobserved wrong-pair penalty.
+            else if question.sourceType == "listenMatch" {
+                incorrectMatch = [a, b]
+                hearts = max(0, hearts - 1); mistakesMade += 1
+                // Observed mixed-error source retries this pair in-place and reviews only its typed error at lesson end.
+            } else { matchingHint = "Try a different pair." } // Historical text-pair penalty remains unobserved.
             selectedLeft = nil; selectedRight = nil
             if matchedPairs.count == question.pairs.count { feedback = true }
         }
@@ -285,7 +290,7 @@ public struct Lesson: Equatable, Sendable {
         switch question.kind {
         case .choice: correct = selected == question.answer
         case .wordTiles: correct = selectedWords.compactMap { textByID[$0] } == question.answerWords.compactMap { textByID[$0] }
-        case .textEntry: correct = enteredText == question.answer // Source-confirmed examples only; full source grader remains unverified.
+        case .textEntry: correct = enteredText.caseInsensitiveCompare(question.answer) == .orderedSame // HOT accepted for source hot; whitespace, punctuation and spelling tolerance remain unverified.
         case .matching: return
         }
         feedback = correct
@@ -297,7 +302,7 @@ public struct Lesson: Equatable, Sendable {
     }
     private mutating func clearAnswer() {
         selected = nil; selectedWords = []; enteredText = ""; matchedPairs = []
-        selectedLeft = nil; selectedRight = nil; matchingHint = nil; feedback = nil
+        selectedLeft = nil; selectedRight = nil; matchingHint = nil; incorrectMatch = nil; feedback = nil
     }
     public mutating func advance() {
         if interlude != nil { interlude = nil; return }

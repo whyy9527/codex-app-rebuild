@@ -49,11 +49,12 @@ import LearningCore
     func match(_ id: String, left: Bool) {
         let previous = lesson?.feedback
         if left { lesson?.matchLeft(id) } else { lesson?.matchRight(id) }
-        if !left, let pair = lesson?.question.pairs.first(where: { $0.id == id }), let resource = pair.audioResource {
+        if (lesson?.question.sourceType == "listenMatch" ? left : !left), let pair = lesson?.question.pairs.first(where: { $0.id == id }), let resource = pair.audioResource {
             audio.speak(pair.right, language: course.speechLanguage, resource: resource)
         } else {
-            audio.play(previous == nil && lesson?.feedback == true ? .correct : lesson?.matchingHint != nil ? .incorrect : .tap)
+            audio.play(previous == nil && lesson?.feedback == true ? .correct : (lesson?.matchingHint != nil || lesson?.incorrectMatch != nil) ? .incorrect : .tap)
         }
+        if let hearts = lesson?.hearts, hearts != progress.hearts { progress.hearts = hearts; save() }
     }
     func playQuestion(slow: Bool = false) {
         guard let question = lesson?.question else { return }

@@ -1,0 +1,699 @@
+{
+  "schema_version": 1,
+  "source": "Manually curated actions and transitions from actual owned English session receipts; not automatic discovery or RSI gain",
+  "states": [
+    {
+      "id": "speaking",
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/speak-entry.json",
+      "actions": [
+        {
+          "id": "record",
+          "description": "点击并开始录音"
+        },
+        {
+          "id": "decline",
+          "description": "现在不做口语题"
+        },
+        {
+          "id": "play",
+          "description": "播放当前口语范例"
+        }
+      ]
+    },
+    {
+      "id": "speaking-declined",
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/speak-declined.json",
+      "actions": [
+        {
+          "id": "continue",
+          "description": "继续到替代题"
+        }
+      ]
+    },
+    {
+      "id": "adaptive-translation",
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/adaptive7.json",
+      "actions": [
+        {
+          "id": "answer",
+          "description": "按当前Coffee, please.词库作答"
+        }
+      ]
+    },
+    {
+      "id": "adaptive-feedback",
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/adaptive7.json",
+      "actions": [
+        {
+          "id": "continue",
+          "description": "继续"
+        }
+      ]
+    },
+    {
+      "id": "listening-input",
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/listen-complete-entry.json",
+      "actions": [
+        {
+          "id": "normal-audio",
+          "description": "正常语速按钮"
+        },
+        {
+          "id": "slow-audio",
+          "description": "慢速按钮"
+        },
+        {
+          "id": "answer",
+          "description": "输入Tea并检查"
+        }
+      ]
+    },
+    {
+      "id": "listening-input-feedback",
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/listen-complete-response.json",
+      "actions": [
+        {
+          "id": "continue",
+          "description": "继续"
+        }
+      ]
+    },
+    {
+      "id": "typed-error",
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/hot-tea-wrong.json",
+      "actions": [
+        {
+          "id": "continue",
+          "description": "继续后续题目"
+        }
+      ]
+    },
+    {
+      "id": "audio-pairing",
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/listen-match8.json",
+      "actions": [
+        {
+          "id": "wrong-pair",
+          "description": "左侧1后选择热"
+        },
+        {
+          "id": "defer-listening",
+          "description": "现在不做听力题"
+        }
+      ]
+    },
+    {
+      "id": "audio-pairing-error",
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/listen-match8.json",
+      "actions": [
+        {
+          "id": "retry-and-match",
+          "description": "重放并完成当前四对"
+        }
+      ]
+    },
+    {
+      "id": "audio-pairing-complete",
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/listen-match8.json",
+      "actions": [
+        {
+          "id": "continue",
+          "description": "继续"
+        }
+      ]
+    },
+    {
+      "id": "review-intro",
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/after-original14.json",
+      "actions": [
+        {
+          "id": "continue",
+          "description": "进入错题重练"
+        }
+      ]
+    },
+    {
+      "id": "typed-review",
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/review-entry.json",
+      "actions": [
+        {
+          "id": "answer",
+          "description": "输入HOT并检查"
+        }
+      ]
+    },
+    {
+      "id": "typed-review-feedback",
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/review-hot.json",
+      "actions": [
+        {
+          "id": "continue",
+          "description": "结束该次重练"
+        }
+      ]
+    },
+    {
+      "id": "lesson-complete",
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/complete.json",
+      "actions": [
+        {
+          "id": "review",
+          "description": "回顾本单元"
+        },
+        {
+          "id": "continue",
+          "description": "继续结算"
+        }
+      ]
+    },
+    {
+      "id": "daily-quests-complete",
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/after-complete-settled.json",
+      "actions": [
+        {
+          "id": "review",
+          "description": "回顾本单元"
+        },
+        {
+          "id": "continue",
+          "description": "继续领取每日目标奖励"
+        }
+      ]
+    },
+    {
+      "id": "five-gems",
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/five-gems.json",
+      "actions": [
+        {
+          "id": "review",
+          "description": "回顾本单元"
+        },
+        {
+          "id": "continue",
+          "description": "继续"
+        }
+      ]
+    },
+    {
+      "id": "profile-prompt",
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/home-after-five.json",
+      "actions": [
+        {
+          "id": "create-profile",
+          "description": "创建档案"
+        },
+        {
+          "id": "later",
+          "description": "稍后再说"
+        }
+      ]
+    },
+    {
+      "id": "home-after-five",
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/home-after-five.json",
+      "actions": [
+        {
+          "id": "node2",
+          "description": "打开第二节点"
+        },
+        {
+          "id": "quests",
+          "description": "特别任务"
+        },
+        {
+          "id": "guidebook",
+          "description": "打开指南"
+        },
+        {
+          "id": "shop",
+          "description": "宝石小店"
+        }
+      ]
+    },
+    {
+      "id": "notification",
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/node2-after-five-popover.json",
+      "actions": [
+        {
+          "id": "enable",
+          "description": "打开通知"
+        },
+        {
+          "id": "later",
+          "description": "下次再说"
+        }
+      ]
+    },
+    {
+      "id": "home-uncovered",
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/node2-after-five-popover.json",
+      "actions": [
+        {
+          "id": "node2",
+          "description": "打开第二节点"
+        }
+      ]
+    },
+    {
+      "id": "next-lesson-popover",
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/node2-after-five-popover.json",
+      "actions": [
+        {
+          "id": "start",
+          "description": "开始 +10经验，第二节点第2/4课"
+        }
+      ]
+    },
+    {
+      "id": "translation4",
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/replay-02.json",
+      "actions": [
+        {
+          "id": "answer",
+          "description": "按现场词库作答"
+        }
+      ]
+    },
+    {
+      "id": "translation4-feedback",
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/replay-02.json",
+      "actions": [
+        {
+          "id": "continue",
+          "description": "继续"
+        }
+      ]
+    },
+    {
+      "id": "reverse5",
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/reverse-response.json",
+      "actions": [
+        {
+          "id": "answer",
+          "description": "输入tea并检查"
+        }
+      ]
+    },
+    {
+      "id": "reverse5-feedback",
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/reverse-response.json",
+      "actions": [
+        {
+          "id": "continue",
+          "description": "继续"
+        }
+      ]
+    },
+    {
+      "id": "typed-initial",
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/hot-tea-wrong.json",
+      "actions": [
+        {
+          "id": "answer-cold",
+          "description": "输入cold并检查"
+        }
+      ]
+    },
+    {
+      "id": "adaptive9",
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/adaptive9.json",
+      "actions": [
+        {
+          "id": "answer",
+          "description": "按现场tea词库作答"
+        }
+      ]
+    },
+    {
+      "id": "adaptive9-feedback",
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/adaptive9.json",
+      "actions": [
+        {
+          "id": "continue",
+          "description": "继续"
+        }
+      ]
+    },
+    {
+      "id": "translation10",
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/replay-04.json",
+      "actions": [
+        {
+          "id": "answer",
+          "description": "完成此实际观察题"
+        }
+      ]
+    },
+    {
+      "id": "translation10-feedback",
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/replay-04.json",
+      "actions": [
+        {
+          "id": "continue",
+          "description": "继续"
+        }
+      ]
+    },
+    {
+      "id": "audio-pairing11",
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/listen-match11.json",
+      "actions": [
+        {
+          "id": "answer",
+          "description": "完成此实际观察题"
+        }
+      ]
+    },
+    {
+      "id": "audio-pairing11-feedback",
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/listen-match11.json",
+      "actions": [
+        {
+          "id": "continue",
+          "description": "继续"
+        }
+      ]
+    },
+    {
+      "id": "translation12",
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/replay-05.json",
+      "actions": [
+        {
+          "id": "answer",
+          "description": "完成此实际观察题"
+        }
+      ]
+    },
+    {
+      "id": "translation12-feedback",
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/replay-05.json",
+      "actions": [
+        {
+          "id": "continue",
+          "description": "继续"
+        }
+      ]
+    },
+    {
+      "id": "adaptive13",
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/tail.json",
+      "actions": [
+        {
+          "id": "answer",
+          "description": "完成此实际观察题"
+        }
+      ]
+    },
+    {
+      "id": "adaptive13-feedback",
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/tail.json",
+      "actions": [
+        {
+          "id": "continue",
+          "description": "继续"
+        }
+      ]
+    },
+    {
+      "id": "reverse14",
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/original14.json",
+      "actions": [
+        {
+          "id": "answer",
+          "description": "完成此实际观察题"
+        }
+      ]
+    },
+    {
+      "id": "reverse14-feedback",
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/original14.json",
+      "actions": [
+        {
+          "id": "continue",
+          "description": "继续"
+        }
+      ]
+    }
+  ],
+  "transitions": [
+    {
+      "from": "speaking",
+      "action": "decline",
+      "to": "speaking-declined",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/speak-declined.json"
+    },
+    {
+      "from": "speaking-declined",
+      "action": "continue",
+      "to": "adaptive-translation",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/adaptive7.json"
+    },
+    {
+      "from": "adaptive-translation",
+      "action": "answer",
+      "to": "adaptive-feedback",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/adaptive7.json"
+    },
+    {
+      "from": "listening-input",
+      "action": "answer",
+      "to": "listening-input-feedback",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/listen-complete-response.json"
+    },
+    {
+      "from": "audio-pairing",
+      "action": "wrong-pair",
+      "to": "audio-pairing-error",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/listen-match8.json"
+    },
+    {
+      "from": "audio-pairing-error",
+      "action": "retry-and-match",
+      "to": "audio-pairing-complete",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/listen-match8.json"
+    },
+    {
+      "from": "review-intro",
+      "action": "continue",
+      "to": "typed-review",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/review-entry.json"
+    },
+    {
+      "from": "typed-review",
+      "action": "answer",
+      "to": "typed-review-feedback",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/review-hot.json"
+    },
+    {
+      "from": "typed-review-feedback",
+      "action": "continue",
+      "to": "lesson-complete",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/after-hot-review.json"
+    },
+    {
+      "from": "lesson-complete",
+      "action": "continue",
+      "to": "daily-quests-complete",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/after-complete-settled.json"
+    },
+    {
+      "from": "daily-quests-complete",
+      "action": "continue",
+      "to": "five-gems",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/five-gems.json"
+    },
+    {
+      "from": "five-gems",
+      "action": "continue",
+      "to": "profile-prompt",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/five-gems.json"
+    },
+    {
+      "from": "profile-prompt",
+      "action": "later",
+      "to": "home-after-five",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/home-after-five.json"
+    },
+    {
+      "from": "home-after-five",
+      "action": "node2",
+      "outcome": "unavailable",
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/node2-after-five-blocked.txt"
+    },
+    {
+      "from": "notification",
+      "action": "later",
+      "to": "home-uncovered",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/node2-after-five-popover.json"
+    },
+    {
+      "from": "home-uncovered",
+      "action": "node2",
+      "to": "next-lesson-popover",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/node2-after-five-popover.json"
+    },
+    {
+      "from": "listening-input-feedback",
+      "action": "continue",
+      "to": "translation4",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/replay-02.json"
+    },
+    {
+      "from": "translation4",
+      "action": "answer",
+      "to": "translation4-feedback",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/replay-02.json"
+    },
+    {
+      "from": "translation4-feedback",
+      "action": "continue",
+      "to": "reverse5",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/replay-02.json"
+    },
+    {
+      "from": "reverse5",
+      "action": "answer",
+      "to": "reverse5-feedback",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/reverse-response.json"
+    },
+    {
+      "from": "reverse5-feedback",
+      "action": "continue",
+      "to": "speaking",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/speak-entry.json"
+    },
+    {
+      "from": "adaptive-feedback",
+      "action": "continue",
+      "to": "typed-initial",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/hot-tea-wrong.json"
+    },
+    {
+      "from": "typed-initial",
+      "action": "answer-cold",
+      "to": "typed-error",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/hot-tea-wrong.json"
+    },
+    {
+      "from": "typed-error",
+      "action": "continue",
+      "to": "audio-pairing",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/listen-match8.json"
+    },
+    {
+      "from": "audio-pairing-complete",
+      "action": "continue",
+      "to": "adaptive9",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/after-match8.json"
+    },
+    {
+      "from": "adaptive9",
+      "action": "answer",
+      "to": "adaptive9-feedback",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/adaptive9.json"
+    },
+    {
+      "from": "adaptive9-feedback",
+      "action": "continue",
+      "to": "translation10",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/replay-04.json"
+    },
+    {
+      "from": "translation10",
+      "action": "answer",
+      "to": "translation10-feedback",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/replay-04.json"
+    },
+    {
+      "from": "translation10-feedback",
+      "action": "continue",
+      "to": "audio-pairing11",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/listen-match11.json"
+    },
+    {
+      "from": "audio-pairing11",
+      "action": "answer",
+      "to": "audio-pairing11-feedback",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/listen-match11.json"
+    },
+    {
+      "from": "audio-pairing11-feedback",
+      "action": "continue",
+      "to": "translation12",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/replay-05.json"
+    },
+    {
+      "from": "translation12",
+      "action": "answer",
+      "to": "translation12-feedback",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/replay-05.json"
+    },
+    {
+      "from": "translation12-feedback",
+      "action": "continue",
+      "to": "adaptive13",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/tail.json"
+    },
+    {
+      "from": "adaptive13",
+      "action": "answer",
+      "to": "adaptive13-feedback",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/tail.json"
+    },
+    {
+      "from": "adaptive13-feedback",
+      "action": "continue",
+      "to": "reverse14",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/original14.json"
+    },
+    {
+      "from": "reverse14",
+      "action": "answer",
+      "to": "reverse14-feedback",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/original14.json"
+    },
+    {
+      "from": "reverse14-feedback",
+      "action": "continue",
+      "to": "review-intro",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/after-original14.json"
+    }
+  ],
+  "unknown": "Recorded frontier is not complete product coverage; timer expiry, microphone recognition and remaining curriculum are unknown"
+}

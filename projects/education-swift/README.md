@@ -16,7 +16,7 @@ swift run --package-path projects/education-swift LearningCoreChecks
 
 换一个尚不存在的 `--progress` 文件即可建立独立初态。普通运行默认保存到用户 Application Support 下 `LingoSeed/<fixture-name>/progress.json`，不同夹具不共享默认进度，不要将普通用户进度用作验收夹具。原生适配器始终使用临时题库/进度，关闭并清理自己启动的进程；reload 重开同一临时进度文件。
 
-本机缺少 XCTest / Swift Testing 模块；核心检查采用非零失败的 `LearningCoreChecks` 可执行入口。12项核心检查覆盖实际英语轨迹、题间状态、空答案与错题重练、存储往返、拼句/撤回/锁定、配对、课时解锁及旧数据兼容。它们不能替代原生 UI E2E。
+本机缺少 XCTest / Swift Testing 模块；核心检查采用非零失败的 `LearningCoreChecks` 可执行入口。14项核心检查覆盖实际英语轨迹、题间状态、空答案与错题重练、存储往返、拼句/撤回/锁定、配对、课时解锁及旧数据兼容。它们不能替代原生 UI E2E。
 
 ## 职责与扩展
 
@@ -130,3 +130,5 @@ projects/education-swift/.build/debug/LingoSeed --fixture projects/duolingo-web/
 默认v4接入12题挑战、独立入口及开场/难题说明；四课原生从空进度走完，核心10项通过，统一前端303pass/8fail/208not_run，产品仍fail。主页三课后宝石505及青铜卡片已修正，70条公共源语音随默认应用资源纳入Git；结算链、下一节点、视觉及实际声音等价仍未完成。详见[本批验证与复跑](../duolingo-web/evidence/english-fourth-native-v1/README.md)。
 
 新增text_entry可编辑/清空/提交后锁定，两个源确认输入值和正常/慢速语音已实际原生验证。独立输入probe不替换默认四课；完整判分和第二节点其余题型未完成。[证据与命令](../duolingo-web/evidence/english-input-native-v1/README.md)。
+
+听音配对已按源事实改为左侧播放、错配扣心并保存、重试与双侧锁定；自由输入补齐完整正确句与HOT重练接受。14项核心通过，配对组件14/0/4、重练组件7/0/3，均未整体通过。[实测](../duolingo-web/evidence/english-pairing-native-v1/README.md)。原版第五课已走完，默认仍四课，整课及口语暂缓/结算接入继续。

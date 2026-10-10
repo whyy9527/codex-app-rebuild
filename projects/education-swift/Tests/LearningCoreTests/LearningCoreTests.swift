@@ -311,6 +311,35 @@ func actualEnglishInputStates() throws {
     try check(!progress.completedCourses.contains(source.id), "Component probe promoted to full original course completion")
     print("PASS observed input edit/clear/lock and two source accepted values; full grader and source mistake trajectory unverified")
 }
+func actualEnglishAudioPairing() throws {
+    let source = try course(fixture: "fixture-english-pairing-probe.json")
+    var lesson = Lesson(course: source, hearts: 3)
+    let a = lesson.question.pairs[0].id, b = lesson.question.pairs[1].id
+    lesson.matchLeft(a); lesson.matchRight(b)
+    try check(lesson.hearts == 2 && lesson.mistakesMade == 1 && lesson.incorrectMatch == [a, b], "Source audio mismatch must consume one heart and mark both controls")
+    try check(lesson.feedback == nil && lesson.matchedPairs.isEmpty, "Wrong pair ended the current task")
+    lesson.matchLeft(a); lesson.matchRight(a)
+    try check(lesson.hearts == 2 && lesson.matchedPairs.contains(a) && lesson.incorrectMatch == nil, "Source retry failed or cost another heart")
+    lesson.matchLeft(a); lesson.matchRight(a)
+    try check(lesson.hearts == 2 && lesson.matchedPairs.count == 1, "Disabled matched pair accepted new input")
+    for pair in lesson.question.pairs.dropFirst() { lesson.matchLeft(pair.id); lesson.matchRight(pair.id) }
+    try check(lesson.feedback == true && lesson.hearts == 2, "All source audio pairs did not finish")
+    let typed = try course(fixture: "fixture-english-input-probe.json").questions[1]
+    try check(typed.correctText == "I'd like tea.", "Typed correction lost the source fixed sentence")
+    print("PASS source audio matching wrong-heart, retry and disabled pairs; no extra pairing review observed in mixed-error source trajectory; acoustics unverified")
+}
+func actualEnglishTypedReview() throws {
+    let source = try course(fixture: "fixture-english-hot-review-probe.json")
+    var lesson = Lesson(course: source, hearts: 4)
+    lesson.enterText("cold"); lesson.submit()
+    try check(lesson.feedback == false && lesson.hearts == 3 && lesson.question.correctText == "hot tea", "Source cold rejection or full correction not reproduced")
+    lesson.advance()
+    try check(lesson.reviewing && lesson.enteredText.isEmpty && !lesson.canSubmit, "Typed error did not enter clean review")
+    lesson.enterText("HOT"); lesson.submit()
+    try check(lesson.feedback == true && lesson.hearts == 3, "Source accepted HOT rejected")
+    lesson.advance(); try check(lesson.complete, "Corrected source typed error cannot finish")
+    print("PASS source cold rejection, full hot tea correction, review and HOT acceptance; broader grader unverified")
+}
 func legacyCourse() throws -> Course { try course() }
 do {
     try mistakeReview()
@@ -325,7 +354,9 @@ do {
     try actualEnglishFourthTrajectory()
     try actualEnglishSettlement()
     try actualEnglishInputStates()
-    print("12 business checks passed; core layer only")
+    try actualEnglishAudioPairing()
+    try actualEnglishTypedReview()
+    print("14 business checks passed; core layer only")
 } catch {
     FileHandle.standardError.write(Data(("FAIL " + String(describing: error) + "\n").utf8))
     exit(1)

@@ -20,3 +20,9 @@ export function challengeIdentity(expected, actual) {
   return {matches: reasons.length === 0, reasons, expected: {type: expected.type, prompt: expected.prompt ?? null, choices},
     actual, prompt_check: expected.type === 'listenTap' ? 'exact source URL from current-question explicit playback; acoustic output not verified' : exactPrompts.length ? 'normalized equality with independently read visible hint container' : 'normalized presence in current challenge text; exact prompt identity not yet proven'};
 }
+
+// Unsupported same-type UI is a coverage gap, not evidence of content drift.
+export function uncoveredReplayType(expectedType, actualType) {
+  const supported = ['select','assist','dialogue','translate','listenTap','orderTapComplete','match'];
+  return !supported.includes(expectedType) && actualType.split(/\s+/).includes('challenge-' + expectedType);
+}

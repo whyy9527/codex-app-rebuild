@@ -281,16 +281,44 @@ if CommandLine.arguments.contains("--walk-course") {
                     var interactions = ["empty_check_disabled": !enabled("check")]
                     try fill("Te"); interactions["nonempty_check_enabled"] = enabled("check")
                     try fill(""); interactions["cleared_check_disabled"] = !enabled("check")
-                    try fill(question["answer"] as! String)
+                    if CommandLine.arguments.contains("--exercise-typed-review") {
+                        let heartsBefore = current().first { (attr($0, kAXIdentifierAttribute) as? String) == "hearts" }.flatMap { attr($0, kAXValueAttribute) as? String }.flatMap(Int.init)
+                        try fill("cold"); try press("check"); try waitFor("continue")
+                        let heartsAfter = current().first { (attr($0, kAXIdentifierAttribute) as? String) == "hearts" }.flatMap { attr($0, kAXValueAttribute) as? String }.flatMap(Int.init)
+                        var wrong = observe(); wrong["interactions"] = ["heart_decremented_once": heartsBefore != nil && heartsAfter == heartsBefore! - 1, "submitted_input_locked": !enabled("answer-input")]
+                        states[key + "-wrong"] = wrong; try capture(key + "-wrong")
+                        try press("continue"); try waitFor("review-label")
+                        var review = observe()
+                        review["interactions"] = ["review_input_empty": current().first { (attr($0, kAXIdentifierAttribute) as? String) == "answer-input" }.flatMap { attr($0, kAXValueAttribute) as? String } == ""]
+                        states[key + "-review"] = review; try capture(key + "-review")
+                        try fill("HOT")
+                    } else { try fill(question["answer"] as! String) }
                     var observed = observe(); observed["interactions"] = interactions
                     states[key + "-filled"] = observed; try capture(key + "-filled")
                     try press("check"); try waitFor("continue")
                     observed = observe(); observed["interactions"] = ["submitted_input_locked": !enabled("answer-input")]
                     states[key + "-submitted"] = observed
                 case "matching":
-                    for pair in question["pairs"] as! [[String: Any]] {
+                    let pairs = question["pairs"] as! [[String: Any]]
+                    func value(_ id: String) -> String? { current().first { (attr($0, kAXIdentifierAttribute) as? String) == id }.flatMap { attr($0, kAXValueAttribute) as? String } }
+                    func enabled(_ id: String) -> Bool { current().first { (attr($0, kAXIdentifierAttribute) as? String) == id }.flatMap { attr($0, kAXEnabledAttribute) as? Bool } ?? false }
+                    if CommandLine.arguments.contains("--exercise-wrong-audio-pair"), question["sourceType"] as? String == "listenMatch", pairs.count > 1 {
+                        let a = pairs[0]["id"] as! String, b = pairs[1]["id"] as! String
+                        let before = Int(value("hearts") ?? "")
+                        try press("pair-left-" + a); try press("pair-right-" + b)
+                        var observed = observe()
+                        observed["interactions"] = ["heart_decremented_once": before != nil && Int(value("hearts") ?? "") == before! - 1,
+                            "unmatched_remains_available": enabled("pair-left-" + a) && enabled("pair-right-" + b),
+                            "wrong_pair_marked_incorrect": value("pair-left-" + a) == "incorrect" && value("pair-right-" + b) == "incorrect"]
+                        states[key + "-wrong"] = observed; try capture(key + "-wrong")
+                    }
+                    for (index, pair) in pairs.enumerated() {
                         let id = pair["id"] as! String
                         try press("pair-left-" + id); try press("pair-right-" + id)
+                        if index == 0 {
+                            var observed = observe(); observed["interactions"] = ["matched_pair_disabled": !enabled("pair-left-" + id) && !enabled("pair-right-" + id)]
+                            states[key + "-paired-first"] = observed; try capture(key + "-paired-first")
+                        }
                     }
                 case "word_tiles":
                     if CommandLine.arguments.contains("--exercise-duplicate-words") {

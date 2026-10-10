@@ -1,0 +1,53 @@
+{
+  "viewport": [
+    1200,
+    732
+  ],
+  "normalization": "Measured content crop, Lanczos 2x downsample, source unchanged, no masks/tolerance",
+  "rows": [
+    {
+      "stage": "before",
+      "source": "projects/duolingo-web/evidence/english-next-node-v1/reference-match8-before.png",
+      "native": "en-zh-node2-match8-before.png",
+      "source_sha256": "a5391b39ab6cecbb4c3d44914bd96fb479760a0beaf64769a798dc6ed70b8916",
+      "native_sha256": "06bc60ff742d14c6b11a6e53a5dead53dfe2a01fd52ced05a57bb880ce6f2e56",
+      "mean_absolute_rgb_difference": [
+        4.6890152550091075,
+        2.8860348360655736,
+        4.640705828779599
+      ],
+      "status": "different"
+    },
+    {
+      "stage": "wrong",
+      "source": "projects/duolingo-web/evidence/english-next-node-v1/reference-match8-wrong.png",
+      "native": "en-zh-node2-match8-wrong.png",
+      "source_sha256": "17728120ab35eae6f8c4b1a35eac97ee7a6ddcedeaddb132871d3b8329d00d36",
+      "native_sha256": "4cd079a5ca39f69c20295e044309546b9413a7fc7791da1a94a7cad3da16e991",
+      "mean_absolute_rgb_difference": [
+        4.473057832422587,
+        3.5637909836065575,
+        5.410779826958105
+      ],
+      "status": "different"
+    },
+    {
+      "stage": "feedback",
+      "source": "projects/duolingo-web/evidence/english-next-node-v1/reference-match8-feedback.png",
+      "native": "en-zh-node2-match8-feedback.png",
+      "source_sha256": "d8aedd07c76dd5ebfb3d076ea28755124ff0a82608ce635e9be727f4e952885c",
+      "native_sha256": "ae00bdc9ac3b6c1292788a06c077344bcc1c486025c8cb3b97840292fda7799e",
+      "mean_absolute_rgb_difference": [
+        10.163165983606557,
+        3.971190801457195,
+        13.69122267759563
+      ],
+      "status": "different"
+    }
+  ],
+  "limits": [
+    "Same question, hearts3\u21922; global course progress differs in isolated component probe",
+    "Static source vector templates do not reproduce animated source frames",
+    "Not full-state 1:1 acceptance"
+  ]
+}

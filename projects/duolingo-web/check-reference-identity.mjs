@@ -3,7 +3,7 @@
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {fileURLToPath} from 'node:url';
-import {challengeIdentity} from './reference-challenge-identity.mjs';
+import {challengeIdentity,uncoveredReplayType} from './reference-challenge-identity.mjs';
 const base=fileURLToPath(new URL('./evidence/english-third-v1/',import.meta.url));
 const read=name=>JSON.parse(readFileSync(base+name,'utf8'));
 const session=read('session.json').session;
@@ -41,3 +41,18 @@ assert(challengeIdentity(listeningExpected,listening.identity.actual).reasons.in
 assert(challengeIdentity(listeningExpected,{...listening.identity.actual,playedAudio:[]}).reasons.includes('audio_identity_unverified'));
 assert(challengeIdentity({...listeningExpected,tts:'different-source'}, {...listening.identity.actual,playedAudio}).reasons.includes('audio_identity_unverified'));
 console.log('PASS actual listening transcript is hidden; current playback source required, absent/wrong audio rejected');
+
+const nextBase=fileURLToPath(new URL('./evidence/english-next-node-v1/',import.meta.url));
+const nextRead=name=>JSON.parse(readFileSync(nextBase+name,'utf8'));
+const unsupportedMatch=nextRead('replay-04.json').observed.find(r=>r.type==='listenMatch');
+assert(unsupportedMatch.actions.length===0);
+assert(uncoveredReplayType(unsupportedMatch.type,unsupportedMatch.dom_type));
+const changedAfterDecline=nextRead('replay-03.json').observed[0];
+assert.equal(uncoveredReplayType(changedAfterDecline.type,changedAfterDecline.dom_type),false);
+assert(changedAfterDecline.identity.reasons.includes('type_changed'));
+console.log('PASS actual unsupported audio schema distinguished from actual post-decline type drift; both preserve no-answer failure');
+const actualUncoveredReview=nextRead('review-entry.json').observed[0];
+assert.equal(actualUncoveredReview.coverage.kind,'uncovered_type');
+assert.equal(actualUncoveredReview.actions.length,0);
+assert.equal(actualUncoveredReview.identity,undefined);
+console.log('PASS actual corrected replay stops at unsupported typed review before grading or misclassifying its choices');

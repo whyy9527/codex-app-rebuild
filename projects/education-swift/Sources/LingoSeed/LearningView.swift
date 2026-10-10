@@ -182,8 +182,9 @@ struct LearningView: View {
             if let correct = lesson.feedback {
                 Image(systemName: correct ? "checkmark.circle.fill" : "xmark.circle.fill").font(.system(size: 48)).foregroundStyle(correct ? accent : .red)
                 VStack(alignment: .leading, spacing: 8) {
-                    Text(correct ? (lesson.question.correctFeedback ?? copy("Well done!", "好棒！")) : copy("Correct answer: \(lesson.question.correctText)", "正确答案：\(lesson.question.correctText)")).font(.title2.bold())
+                    Text(correct ? (lesson.question.correctFeedback ?? copy("Well done!", "好棒！")) : (lesson.question.kind == .textEntry ? copy("Correct answer:", "正确答案：") : copy("Correct answer: \(lesson.question.correctText)", "正确答案：\(lesson.question.correctText)"))).font(.title2.bold())
                         .foregroundStyle(correct ? Color(red: 0.28, green: 0.62, blue: 0) : Color.red).accessibilityIdentifier("feedback").accessibilityValue(correct ? "correct" : "incorrect")
+                    if !correct && lesson.question.kind == .textEntry { Text(lesson.question.correctText) }
                     Text(lesson.question.explanation)
                 }
                 Spacer()
@@ -386,7 +387,8 @@ struct LearningView: View {
         }.font(ReferenceStyle.font(20)).padding(18)
             .overlay(RoundedRectangle(cornerRadius: 14).stroke(ReferenceStyle.border, lineWidth: 2))
     }
-    private func matching(_ lesson: Lesson) -> some View {
+    @ViewBuilder private func matching(_ lesson: Lesson) -> some View {
+        if lesson.question.sourceType == "listenMatch" { audioMatching(lesson) } else {
         VStack(alignment: .leading, spacing: 14) {
             Text(lesson.matchingHint ?? "Choose an expression, then its meaning.").foregroundStyle(.secondary)
             HStack(alignment: .top, spacing: 20) {
@@ -406,6 +408,41 @@ struct LearningView: View {
                 }
             }
         }
+    }
+    }
+    private func audioMatching(_ lesson: Lesson) -> some View {
+        HStack(spacing: 32) {
+            VStack(spacing: 12) {
+                ForEach(Array(lesson.question.pairs.enumerated()), id: \.element.id) { index, pair in
+                    Button { model.match(pair.id, left: true) } label: {
+                        HStack(spacing: 14) {
+                            Text(String(index + 1)).font(ReferenceStyle.font(14, bold: true)).frame(width: 28, height: 28)
+                                .overlay(RoundedRectangle(cornerRadius: 6).stroke(Color.gray.opacity(0.25), lineWidth: 2))
+                            ReferenceStyle.image("en-match-speaker-source-frame").renderingMode(.template).resizable().frame(width: 24, height: 19).foregroundStyle(lesson.incorrectMatch?.first == pair.id ? Color.red : lesson.matchedPairs.contains(pair.id) ? Color.green : ReferenceStyle.blue)
+                            ReferenceStyle.image("en-match-waveform-source-frame").renderingMode(.template).resizable().frame(width: 81, height: 24).foregroundStyle(lesson.incorrectMatch?.first == pair.id ? Color.red : lesson.matchedPairs.contains(pair.id) ? Color.green : ReferenceStyle.blue)
+                            Spacer(minLength: 0)
+                        }.padding(.horizontal, 18).frame(width: 253, height: 56)
+                    }.buttonStyle(AudioPairButtonStyle(matched: lesson.matchedPairs.contains(pair.id), selected: lesson.selectedLeft == pair.id, incorrect: lesson.incorrectMatch?.first == pair.id))
+                        .disabled(lesson.feedback != nil || lesson.matchedPairs.contains(pair.id))
+                        .accessibilityIdentifier("pair-left-" + pair.id).accessibilityLabel(String(index + 1))
+                        .accessibilityValue(lesson.incorrectMatch?.first == pair.id ? "incorrect" : lesson.matchedPairs.contains(pair.id) ? "matched" : "available")
+                }
+            }
+            VStack(spacing: 12) {
+                ForEach(Array(orderedRightPairs(lesson.question).enumerated()), id: \.element.id) { index, pair in
+                    Button { model.match(pair.id, left: false) } label: {
+                        HStack {
+                            Text(String(index + 5)).font(ReferenceStyle.font(14, bold: true)).frame(width: 28, height: 28)
+                                .overlay(RoundedRectangle(cornerRadius: 6).stroke(Color.gray.opacity(0.25), lineWidth: 2))
+                            Text(pair.right).font(ReferenceStyle.font(20)).frame(maxWidth: .infinity)
+                        }.padding(.horizontal, 18).frame(width: 253, height: 56)
+                    }.buttonStyle(AudioPairButtonStyle(matched: lesson.matchedPairs.contains(pair.id), selected: lesson.selectedRight == pair.id, incorrect: lesson.incorrectMatch?.last == pair.id))
+                        .disabled(lesson.feedback != nil || lesson.matchedPairs.contains(pair.id))
+                        .accessibilityIdentifier("pair-right-" + pair.id).accessibilityLabel(pair.right)
+                        .accessibilityValue(lesson.incorrectMatch?.last == pair.id ? "incorrect" : lesson.matchedPairs.contains(pair.id) ? "matched" : "available")
+                }
+            }
+        }.frame(maxWidth: .infinity).padding(.top, 66.5)
     }
     private func orderedRightPairs(_ question: Question) -> [WordPair] {
         question.rightOrder?.compactMap { id in question.pairs.first { $0.id == id } } ?? Array(question.pairs.reversed())
@@ -476,5 +513,18 @@ private struct WordFlowLayout: Layout {
             }
             y += (sizes.map(\.height).max() ?? 0) + 8
         }
+    }
+}
+
+struct AudioPairButtonStyle: ButtonStyle {
+    var matched: Bool
+    var selected: Bool
+    var incorrect: Bool
+    func makeBody(configuration: Configuration) -> some View {
+        let color: Color = incorrect ? .red : matched ? Color(red: 0.35, green: 0.7, blue: 0) : selected ? ReferenceStyle.blue : Color.gray
+        configuration.label.foregroundStyle(color)
+            .background(RoundedRectangle(cornerRadius: 12).fill(incorrect ? Color.red.opacity(0.12) : matched ? Color.green.opacity(0.12) : selected ? Color.cyan.opacity(0.1) : .white))
+            .overlay(RoundedRectangle(cornerRadius: 12).stroke(color.opacity(0.3), lineWidth: 2))
+            .offset(y: configuration.isPressed ? 2 : 0)
     }
 }

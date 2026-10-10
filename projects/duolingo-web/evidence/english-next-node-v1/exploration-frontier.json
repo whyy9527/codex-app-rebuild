@@ -1,0 +1,143 @@
+{
+  "kind": "observed_exploration_frontier",
+  "pending": [
+    {
+      "state": "speaking",
+      "action": {
+        "id": "record",
+        "description": "点击并开始录音"
+      },
+      "attempts": 0,
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/speak-entry.json"
+    },
+    {
+      "state": "speaking",
+      "action": {
+        "id": "play",
+        "description": "播放当前口语范例"
+      },
+      "attempts": 0,
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/speak-entry.json"
+    },
+    {
+      "state": "listening-input",
+      "action": {
+        "id": "normal-audio",
+        "description": "正常语速按钮"
+      },
+      "attempts": 0,
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/listen-complete-entry.json"
+    },
+    {
+      "state": "listening-input",
+      "action": {
+        "id": "slow-audio",
+        "description": "慢速按钮"
+      },
+      "attempts": 0,
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/listen-complete-entry.json"
+    },
+    {
+      "state": "audio-pairing",
+      "action": {
+        "id": "defer-listening",
+        "description": "现在不做听力题"
+      },
+      "attempts": 0,
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/listen-match8.json"
+    },
+    {
+      "state": "lesson-complete",
+      "action": {
+        "id": "review",
+        "description": "回顾本单元"
+      },
+      "attempts": 0,
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/complete.json"
+    },
+    {
+      "state": "daily-quests-complete",
+      "action": {
+        "id": "review",
+        "description": "回顾本单元"
+      },
+      "attempts": 0,
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/after-complete-settled.json"
+    },
+    {
+      "state": "five-gems",
+      "action": {
+        "id": "review",
+        "description": "回顾本单元"
+      },
+      "attempts": 0,
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/five-gems.json"
+    },
+    {
+      "state": "profile-prompt",
+      "action": {
+        "id": "create-profile",
+        "description": "创建档案"
+      },
+      "attempts": 0,
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/home-after-five.json"
+    },
+    {
+      "state": "home-after-five",
+      "action": {
+        "id": "quests",
+        "description": "特别任务"
+      },
+      "attempts": 0,
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/home-after-five.json"
+    },
+    {
+      "state": "home-after-five",
+      "action": {
+        "id": "guidebook",
+        "description": "打开指南"
+      },
+      "attempts": 0,
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/home-after-five.json"
+    },
+    {
+      "state": "home-after-five",
+      "action": {
+        "id": "shop",
+        "description": "宝石小店"
+      },
+      "attempts": 0,
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/home-after-five.json"
+    },
+    {
+      "state": "notification",
+      "action": {
+        "id": "enable",
+        "description": "打开通知"
+      },
+      "attempts": 0,
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/node2-after-five-popover.json"
+    },
+    {
+      "state": "next-lesson-popover",
+      "action": {
+        "id": "start",
+        "description": "开始 +10经验，第二节点第2/4课"
+      },
+      "attempts": 0,
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/node2-after-five-popover.json"
+    },
+    {
+      "state": "home-after-five",
+      "action": {
+        "id": "node2",
+        "description": "打开第二节点"
+      },
+      "attempts": 1,
+      "evidence": "projects/duolingo-web/evidence/english-next-node-v1/home-after-five.json"
+    }
+  ],
+  "resolved_actions": 36,
+  "completion": "unknown; an empty recorded frontier does not prove the whole app explored",
+  "policy": "unvisited-first, observation order; not RSI self-improvement"
+}
