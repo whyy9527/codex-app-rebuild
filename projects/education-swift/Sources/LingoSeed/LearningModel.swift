@@ -106,8 +106,10 @@ import LearningCore
         let practice: Course
         do { practice = try JSONDecoder().decode(Course.self, from: data) }
         catch { self.error = "无法打开练习。"; NSLog("Practice definition decode failed: %@", String(describing: error)); return }
+        let index = progress.completedCount(practice)
+        guard practice.lessons.indices.contains(index) else { error = "无法加载下一次练习。"; return }
         isPronunciationPractice = true
-        lesson = Lesson(course: practice, lessonIndex: 0, hearts: progress.hearts)
+        lesson = Lesson(course: practice, lessonIndex: index, hearts: progress.hearts)
         settlement = nil; entryPending = false; confirmingExit = false
         feedbackDifficulty = nil; closeQuestionReport(); playQuestion()
     }
@@ -154,7 +156,11 @@ import LearningCore
         if let lesson, lesson.complete {
             audio.play(.complete)
             if let pages = lesson.definition.settlement { settlement = SettlementFlow(pages: pages) }
-            if !isPronunciationPractice { progress.markCompleted(course, index: lesson.lessonIndex); save() }
+            if isPronunciationPractice {
+                // Track observed sessions separately; this finite evidence set is not the full pronunciation course.
+                progress.completedLessons[lesson.course.id, default: []].insert(lesson.definition.id)
+                save()
+            } else { progress.markCompleted(course, index: lesson.lessonIndex); save() }
         }
     }
     func advanceSettlement() {

@@ -180,7 +180,10 @@ if CommandLine.arguments.contains("--observe-pronunciation") {
         var visits: [String: Int] = [:]
         let practiceURL = root.appendingPathComponent("projects/education-swift/Sources/LingoSeed/Resources/Reference/pronunciation-practice.json")
         let practice = try JSONSerialization.jsonObject(with: Data(contentsOf: practiceURL)) as! [String: Any]
-        let lessonDefinition = (practice["lessons"] as! [[String: Any]])[0]
+        let definitions = practice["lessons"] as! [[String: Any]]
+        let saved = try JSONSerialization.jsonObject(with: Data(contentsOf: progress)) as! [String: Any]
+        let completed = ((saved["completedLessons"] as? [String: [String]])?[practice["id"] as! String]) ?? []
+        guard let lessonDefinition = definitions.first(where: { !completed.contains($0["id"] as! String) }) else { throw ProbeError(message: "No compiled uncompleted practice") }
         let questions = lessonDefinition["questions"] as! [[String: Any]]
         for _ in 0..<30 {
             if current().contains(where: { (attr($0, kAXIdentifierAttribute) as? String) == "practice-settlement-title" }) { break }
@@ -219,7 +222,28 @@ if CommandLine.arguments.contains("--observe-pronunciation") {
         states["pronunciation-settlement"] = observe(); try capture("practice-settlement")
         try press("settlement-continue"); states["pronunciation-profile"] = observe(); try capture("practice-profile")
         try press("settlement-continue"); states["pronunciation-returned"] = observe(); try capture("practice-returned")
-        try press("pronunciation-start"); try waitFor("question-prompt", value: "p0"); try press("exit")
+        if CommandLine.arguments.contains("--verify-pronunciation-restart") {
+            let savedAfter = try JSONSerialization.jsonObject(with: Data(contentsOf: progress)) as! [String: Any]
+            let completedAfter = ((savedAfter["completedLessons"] as? [String: [String]])?[practice["id"] as! String]) ?? []
+            guard completedAfter.contains(lessonDefinition["id"] as! String),
+                  let next = definitions.first(where: { !completedAfter.contains($0["id"] as! String) }),
+                  let nextQuestion = (next["questions"] as? [[String: Any]])?.first else { throw ProbeError(message: "Practice completion not persisted or next unavailable") }
+            child.terminate(); child.waitUntilExit(); child = try launchChild(); app = AXUIElementCreateApplication(child.processIdentifier)
+            try waitFor("course-entry"); configureWindow(); try press("nav-pronunciation"); try press("pronunciation-start")
+            try waitFor("question-prompt", value: (nextQuestion["id"] as! String))
+            let nextState = observe()
+            let strings = nextState["accessible_text"] as? [String] ?? []
+            // The real controls must expose the next source options, rather than merely another p0 identifier.
+            for (optionIndex, option) in (nextQuestion["options"] as! [[String: Any]]).enumerated() {
+                try waitFor("option-" + (option["id"] as! String))
+                guard current().contains(where: { node in
+                    [kAXTitleAttribute,kAXValueAttribute,kAXDescriptionAttribute].contains { name in (attr(node,name) as? String) == "\(optionIndex + 1) \(option["text"] as! String)" }
+                }) else { throw ProbeError(message: "Next practice option text missing after restart") }
+            }
+            states["pronunciation-restarted-next"] = nextState; try capture("practice-restarted-next")
+            try JSONSerialization.data(withJSONObject: ["completed":completedAfter,"next_lesson":next["id"]!,"observed_text_count":strings.count], options: [.prettyPrinted,.sortedKeys]).write(to: output.appendingPathComponent("restart.json"), options:.withoutOverwriting)
+        } else { try press("pronunciation-start"); try waitFor("question-prompt", value: "p0") }
+        try press("exit")
         states["pronunciation-exit-returned"] = observe(); try capture("practice-exit-returned")
     }
     let receipt: [String: Any] = ["kind": "owned_native_ax_observation", "states": states,

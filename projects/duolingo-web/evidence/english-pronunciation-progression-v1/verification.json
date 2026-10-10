@@ -1,0 +1,41 @@
+{
+  "status": "partial",
+  "build": "pass",
+  "core_checks": 23,
+  "first_definition_unchanged": true,
+  "native_first_restart": {
+    "completed": [
+      "pronunciation-1"
+    ],
+    "next_lesson": "pronunciation-2",
+    "observed_text_count": 7
+  },
+  "native_second_restart": {
+    "completed": [
+      "pronunciation-2",
+      "pronunciation-1"
+    ],
+    "next_lesson": "pronunciation-3",
+    "observed_text_count": 7
+  },
+  "frontend_v22": {
+    "pass": 171,
+    "fail": 24,
+    "unavailable": 6,
+    "not_run": 1501
+  },
+  "same_state_image_pairs": {
+    "different": 6,
+    "total": 6
+  },
+  "source_return": "/characters",
+  "candidate_sha256": "cbfece1c9bc641592fed168027265d0a042bd8dfc64937cb1863b48bcd7aa0d5",
+  "limitations": [
+    "Observed sequence replay is not source adaptive selection equivalence",
+    "Phoneme progress not persisted",
+    "Normal speech recognition unavailable",
+    "Visual/audio equivalence unproven",
+    "Matched-budget frontend quality ablation pending",
+    "Fourth and subsequent session content not compiled; next session error is a known gap, not source behavior"
+  ]
+}

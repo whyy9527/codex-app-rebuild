@@ -562,6 +562,41 @@ func actualPronunciationPractice() throws {
     print("PASS pronunciation original 12-state base trajectory and four corrections; main progress isolation verified separately through native UI")
 }
 
+func laterPronunciationPractices() throws {
+    let package = URL(fileURLWithPath: #filePath).deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent()
+    let course = try JSONDecoder().decode(Course.self, from: Data(contentsOf: package.appendingPathComponent("Sources/LingoSeed/Resources/Reference/pronunciation-practice.json")))
+    try check(course.lessons.count == 3, "All three observed practices must compile")
+    for index in 1...2 {
+        var lesson = Lesson(course: course, lessonIndex: index, hearts: 3)
+        var reviewed = 0, speech = 0, graded = 0
+        for _ in 0..<40 {
+            if lesson.complete { break }
+            if lesson.deferredSpeech != nil { speech += 1; lesson.declineSpeech(); lesson.advance(); continue }
+            if lesson.question.kind == .matching {
+                for pair in lesson.question.pairs { lesson.matchLeft(pair.id); lesson.matchRight(pair.id) }
+            } else {
+                if lesson.reviewing { reviewed += 1 }
+                lesson.choose(lesson.reviewing ? lesson.question.answer : lesson.question.options[0].id); lesson.submit()
+            }
+            try check(lesson.feedback != nil, "Later practice failed to grade")
+            graded += 1; lesson.advance()
+        }
+        try check(lesson.complete && reviewed == (index == 1 ? 6 : 5) && speech == (index == 1 ? 0 : 1) && graded == (index == 1 ? 17 : 16), "Later practice source trajectory differs")
+    }
+    let directory = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+    defer { try? FileManager.default.removeItem(at: directory) }
+    let store = ProgressStore(url: directory.appendingPathComponent("progress.json"))
+    var progress = LearningProgress(); progress.hearts = 3
+    progress.completedLessons["duolingo-en-zh-unit-1"] = ["lesson-1"]
+    let initialMain = progress.completedLessons["duolingo-en-zh-unit-1"]
+    for index in 0...1 {
+        progress.completedLessons[course.id, default: []].insert(course.lessons[index].id)
+        try store.save(progress); progress = try store.load()
+        try check(progress.completedCount(course) == index + 1 && progress.hearts == 3 && progress.completedLessons["duolingo-en-zh-unit-1"] == initialMain && !progress.completedCourses.contains(course.id), "Practice restart progression leaked into main course or invented course completion")
+    }
+    print("PASS second/third observed practices, optional speech, six/five corrections and isolated persisted session selection; adaptive source selection remains unknown")
+}
+
 do {
     try mistakeReview()
     try persistence()
@@ -585,7 +620,8 @@ do {
     try actualSkipReview()
     try actualSeventhTrajectory()
     try actualPronunciationPractice()
-    print("22 business checks passed; core layer only")
+    try laterPronunciationPractices()
+    print("23 business checks passed; core layer only")
 } catch {
     FileHandle.standardError.write(Data(("FAIL " + String(describing: error) + "\n").utf8))
     exit(1)
