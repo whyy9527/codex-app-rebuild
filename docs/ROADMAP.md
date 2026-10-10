@@ -145,3 +145,8 @@ Swift默认已切真实en/zh首课15题，保留每题sourceType、逐选项图�
 ### 反馈次要动作的探索与交互接入
 
 实际访问评价切换/取消、报错多选、Escape关闭和重开重置。共享31项原版/原生均25pass、6not_run；九对整页及四对同几何弹窗仍different。听力暂缓回归16pass/6not_run，默认五课仍434pass/11fail/307not_run。保留两次原生AX失败及contain容器修复，不将交互通过称作视觉通过或RSI收益。历史前沿16resolved/60pending；从实际糖题已接受反馈继续第六课。完整默认分支、视觉/声学与真实探索消融仍未完成。[本批证据](../projects/duolingo-web/evidence/english-feedback-actions-v1/README.md)。
+
+
+### 第六课实际完成与契约增量
+
+实际续探完成第六课：听力及口语暂缓产生替换，三道挑战不同于API尾部；结算15经验/100%，直接建档后回主页，第二节点3/4、生命2、宝石510。冻结25状态/306新需求，源256pass/50not_run；v11共1058项，用上一批五课实际AX对照434pass/11fail/613not_run。默认仍五课，尚未编译第六课，不能用历史五课观测宣称新整课通过。探索历史42resolved/117pending，完整Goal active。[源轨迹、回执和接续](../projects/duolingo-web/evidence/english-sixth-v1/README.md)。

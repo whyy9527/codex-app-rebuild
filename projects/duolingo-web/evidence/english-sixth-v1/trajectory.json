@@ -1,0 +1,139 @@
+{
+  "kind": "actual-sixth-lesson-continuation",
+  "observed": [
+    {
+      "id": "q6",
+      "source_state": "en-zh-l6-q6",
+      "feedback_state": "en-zh-l6-q6-feedback",
+      "accepted_answer": [
+        "茶",
+        "加糖"
+      ],
+      "evidence": [
+        "projects/duolingo-web/evidence/english-sixth-v1/english-sixth-q6-answer.json"
+      ]
+    },
+    {
+      "id": "q7",
+      "source_state": "en-zh-l6-q7",
+      "feedback_state": "en-zh-l6-q7-feedback",
+      "accepted_answer": "milk",
+      "evidence": [
+        "projects/duolingo-web/evidence/english-sixth-v1/english-sixth-q7-before.json",
+        "projects/duolingo-web/evidence/english-sixth-v1/english-sixth-q7-feedback.json",
+        "projects/duolingo-web/evidence/english-sixth-v1/q7-input-action.json"
+      ]
+    },
+    {
+      "id": "q8",
+      "source_state": "en-zh-l6-q8",
+      "feedback_state": "en-zh-l6-q8-feedback",
+      "accepted_answer": [
+        "Good",
+        "morning",
+        "I'd",
+        "like",
+        "more",
+        "coffee",
+        "please"
+      ],
+      "evidence": [
+        "projects/duolingo-web/evidence/english-sixth-v1/english-sixth-q8-answer.json"
+      ]
+    },
+    {
+      "id": "q9",
+      "source_state": "en-zh-l6-q9",
+      "feedback_state": "en-zh-l6-q9-feedback",
+      "accepted_answer": [
+        "咖啡",
+        "加糖"
+      ],
+      "evidence": [
+        "projects/duolingo-web/evidence/english-sixth-v1/english-sixth-q9-adaptive-answer.json",
+        "projects/duolingo-web/evidence/english-sixth-v1/english-sixth-after-speech-decline.json"
+      ]
+    },
+    {
+      "id": "q10",
+      "source_state": "en-zh-l6-q10",
+      "feedback_state": "en-zh-l6-q10-feedback",
+      "accepted_answer": "milk",
+      "evidence": [
+        "projects/duolingo-web/evidence/english-sixth-v1/english-sixth-q10-answer.json",
+        "projects/duolingo-web/evidence/english-sixth-v1/english-sixth-after-q9-adaptive.json"
+      ]
+    },
+    {
+      "id": "q11",
+      "source_state": "en-zh-l6-q11",
+      "feedback_state": "en-zh-l6-q11-feedback",
+      "accepted_answer": [
+        "你好"
+      ],
+      "evidence": [
+        "projects/duolingo-web/evidence/english-sixth-v1/english-sixth-q11-answer.json",
+        "projects/duolingo-web/evidence/english-sixth-v1/english-sixth-after-q10.json"
+      ]
+    },
+    {
+      "id": "q12",
+      "source_state": "en-zh-l6-q12",
+      "feedback_state": "en-zh-l6-q12-feedback",
+      "accepted_answer": [
+        "你好"
+      ],
+      "evidence": [
+        "projects/duolingo-web/evidence/english-sixth-v1/english-sixth-q12-answer.json",
+        "projects/duolingo-web/evidence/english-sixth-v1/english-sixth-after-q11.json"
+      ]
+    },
+    {
+      "id": "q13",
+      "source_state": "en-zh-l6-q13",
+      "feedback_state": "en-zh-l6-q13-feedback",
+      "accepted_answer": "Good morning, I'd like coffee, please.",
+      "evidence": [
+        "projects/duolingo-web/evidence/english-sixth-v1/english-sixth-q13-answer.json",
+        "projects/duolingo-web/evidence/english-sixth-v1/english-sixth-after-entry.json"
+      ]
+    },
+    {
+      "id": "q14",
+      "source_state": "en-zh-l6-q14",
+      "feedback_state": "en-zh-l6-q14-feedback",
+      "accepted_answer": "Hello, I'd like more coffee, please.",
+      "evidence": [
+        "projects/duolingo-web/evidence/english-sixth-v1/english-sixth-q14-answer.json",
+        "projects/duolingo-web/evidence/english-sixth-v1/english-sixth-after-q13.json"
+      ]
+    },
+    {
+      "id": "q15",
+      "source_state": "en-zh-l6-q15",
+      "feedback_state": "en-zh-l6-q15-feedback",
+      "accepted_answer": "Good morning, I'd like more tea, please.",
+      "evidence": [
+        "projects/duolingo-web/evidence/english-sixth-v1/english-sixth-q15-answer.json",
+        "projects/duolingo-web/evidence/english-sixth-v1/english-sixth-after-q14.json"
+      ]
+    }
+  ],
+  "prior": "projects/duolingo-web/evidence/english-feedback-actions-v1/exploration-history.json",
+  "completion": {
+    "kind": "manual-inspection-of-actual-source-PNG",
+    "evidence": "english-sixth-complete.png",
+    "title": "完美！",
+    "body": "你练习全对，无错完成本单元",
+    "experience": 15,
+    "accuracy": 100,
+    "limitation": "Animated score digits are all present in AX; selected score is read from actual rendered PNG, not a grader formula"
+  },
+  "unknown": [
+    "Full normal-listening/speaking trajectories and transitions",
+    "15-minute expiry/persistence",
+    "Actual acoustic output and 1:1 render",
+    "General adaptation and score formulas"
+  ],
+  "next_source_state": "Home; second node Lesson 3 of 4, hearts2/gems510"
+}

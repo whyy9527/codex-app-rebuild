@@ -1,0 +1,1202 @@
+{
+  "kind": "actual-source-sixth-completed-history",
+  "states": [
+    {
+      "id": "match",
+      "evidence": "projects/duolingo-web/evidence/english-listening-decline-v1/english-sixth-listening-before.json",
+      "actions": [
+        {
+          "id": "decline",
+          "description": "现在不做听力题"
+        },
+        {
+          "id": "play-1",
+          "description": "音频按钮1"
+        },
+        {
+          "id": "play-2",
+          "description": "音频按钮2"
+        },
+        {
+          "id": "play-3",
+          "description": "音频按钮3"
+        },
+        {
+          "id": "play-4",
+          "description": "音频按钮4"
+        }
+      ]
+    },
+    {
+      "id": "declined",
+      "evidence": "projects/duolingo-web/evidence/english-listening-decline-v1/english-sixth-listening-declined.json",
+      "actions": [
+        {
+          "id": "continue",
+          "description": "继续"
+        },
+        {
+          "id": "too-easy",
+          "description": "太简单"
+        },
+        {
+          "id": "too-hard",
+          "description": "太难"
+        },
+        {
+          "id": "report",
+          "description": "报错"
+        }
+      ]
+    },
+    {
+      "id": "adaptive",
+      "evidence": "projects/duolingo-web/evidence/english-listening-decline-v1/q3-answer.json",
+      "actions": [
+        {
+          "id": "answer",
+          "description": "咖啡 加 牛奶 / 检查"
+        },
+        {
+          "id": "skip",
+          "description": "跳过"
+        },
+        {
+          "id": "play",
+          "description": "当前题播放按钮"
+        }
+      ]
+    },
+    {
+      "id": "adaptive-feedback",
+      "evidence": "projects/duolingo-web/evidence/english-listening-decline-v1/q3-answer.json",
+      "actions": [
+        {
+          "id": "continue",
+          "description": "继续"
+        },
+        {
+          "id": "too-easy",
+          "description": "太简单"
+        },
+        {
+          "id": "too-hard",
+          "description": "太难"
+        },
+        {
+          "id": "report",
+          "description": "报错"
+        }
+      ]
+    },
+    {
+      "id": "fill",
+      "evidence": "projects/duolingo-web/evidence/english-listening-decline-v1/english-sixth-after-coffee-milk.json",
+      "actions": [
+        {
+          "id": "answer",
+          "description": "输入milk / 检查"
+        },
+        {
+          "id": "skip",
+          "description": "跳过"
+        },
+        {
+          "id": "harder",
+          "description": "加大难度"
+        }
+      ]
+    },
+    {
+      "id": "fill-feedback",
+      "evidence": "projects/duolingo-web/evidence/english-listening-decline-v1/english-sixth-milk-fill-accepted.json",
+      "actions": [
+        {
+          "id": "continue",
+          "description": "继续"
+        },
+        {
+          "id": "too-easy",
+          "description": "太简单"
+        },
+        {
+          "id": "too-hard",
+          "description": "太难"
+        },
+        {
+          "id": "report",
+          "description": "报错"
+        }
+      ]
+    },
+    {
+      "id": "sugar",
+      "evidence": "projects/duolingo-web/evidence/english-listening-decline-v1/english-sixth-sugar-after-fill.json",
+      "actions": [
+        {
+          "id": "answer",
+          "description": "选择糖 / 检查"
+        },
+        {
+          "id": "skip",
+          "description": "跳过"
+        },
+        {
+          "id": "play",
+          "description": "当前题播放按钮"
+        }
+      ]
+    },
+    {
+      "id": "sugar-feedback",
+      "evidence": "projects/duolingo-web/evidence/english-feedback-actions-v1/sugar-answer.json",
+      "actions": [
+        {
+          "id": "continue",
+          "description": "继续"
+        },
+        {
+          "id": "easy",
+          "description": "太简单"
+        },
+        {
+          "id": "hard",
+          "description": "太难"
+        },
+        {
+          "id": "report",
+          "description": "报错"
+        }
+      ]
+    },
+    {
+      "id": "easy",
+      "evidence": "projects/duolingo-web/evidence/english-feedback-actions-v1/english-feedback-easy-selected.json",
+      "actions": [
+        {
+          "id": "continue",
+          "description": "继续"
+        },
+        {
+          "id": "easy",
+          "description": "太简单"
+        },
+        {
+          "id": "hard",
+          "description": "太难"
+        },
+        {
+          "id": "report",
+          "description": "报错"
+        }
+      ]
+    },
+    {
+      "id": "hard",
+      "evidence": "projects/duolingo-web/evidence/english-feedback-actions-v1/english-feedback-hard-selected.json",
+      "actions": [
+        {
+          "id": "continue",
+          "description": "继续"
+        },
+        {
+          "id": "easy",
+          "description": "太简单"
+        },
+        {
+          "id": "hard",
+          "description": "太难"
+        },
+        {
+          "id": "report",
+          "description": "报错"
+        }
+      ]
+    },
+    {
+      "id": "deselected",
+      "evidence": "projects/duolingo-web/evidence/english-feedback-actions-v1/english-feedback-deselected.json",
+      "actions": [
+        {
+          "id": "continue",
+          "description": "继续"
+        },
+        {
+          "id": "easy",
+          "description": "太简单"
+        },
+        {
+          "id": "hard",
+          "description": "太难"
+        },
+        {
+          "id": "report",
+          "description": "报错"
+        }
+      ]
+    },
+    {
+      "id": "report-closed",
+      "evidence": "projects/duolingo-web/evidence/english-feedback-actions-v1/english-feedback-report-cancelled.json",
+      "actions": [
+        {
+          "id": "continue",
+          "description": "继续"
+        },
+        {
+          "id": "easy",
+          "description": "太简单"
+        },
+        {
+          "id": "hard",
+          "description": "太难"
+        },
+        {
+          "id": "report",
+          "description": "报错"
+        }
+      ]
+    },
+    {
+      "id": "report-open",
+      "evidence": "projects/duolingo-web/evidence/english-feedback-actions-v1/english-feedback-report-open.json",
+      "actions": [
+        {
+          "id": "reason-0",
+          "description": "音频听起来不正确"
+        },
+        {
+          "id": "reason-1",
+          "description": "提示有误"
+        },
+        {
+          "id": "reason-2",
+          "description": "缺少音频"
+        },
+        {
+          "id": "reason-3",
+          "description": "提示缺失"
+        },
+        {
+          "id": "reason-4",
+          "description": "我的答案不应被接受"
+        },
+        {
+          "id": "reason-5",
+          "description": "其他问题"
+        },
+        {
+          "id": "escape",
+          "description": "Escape关闭"
+        }
+      ]
+    },
+    {
+      "id": "report-other",
+      "evidence": "projects/duolingo-web/evidence/english-feedback-actions-v1/english-feedback-report-other-selected.json",
+      "actions": [
+        {
+          "id": "reason-0",
+          "description": "音频听起来不正确"
+        },
+        {
+          "id": "reason-1",
+          "description": "提示有误"
+        },
+        {
+          "id": "reason-2",
+          "description": "缺少音频"
+        },
+        {
+          "id": "reason-3",
+          "description": "提示缺失"
+        },
+        {
+          "id": "reason-4",
+          "description": "我的答案不应被接受"
+        },
+        {
+          "id": "reason-5",
+          "description": "其他问题"
+        },
+        {
+          "id": "escape",
+          "description": "Escape关闭"
+        },
+        {
+          "id": "submit",
+          "description": "提交（未执行，服务结果未知）"
+        }
+      ]
+    },
+    {
+      "id": "report-two",
+      "evidence": "projects/duolingo-web/evidence/english-feedback-actions-v1/english-feedback-report-two-selected.json",
+      "actions": [
+        {
+          "id": "reason-0",
+          "description": "音频听起来不正确"
+        },
+        {
+          "id": "reason-1",
+          "description": "提示有误"
+        },
+        {
+          "id": "reason-2",
+          "description": "缺少音频"
+        },
+        {
+          "id": "reason-3",
+          "description": "提示缺失"
+        },
+        {
+          "id": "reason-4",
+          "description": "我的答案不应被接受"
+        },
+        {
+          "id": "reason-5",
+          "description": "其他问题"
+        },
+        {
+          "id": "escape",
+          "description": "Escape关闭"
+        },
+        {
+          "id": "submit",
+          "description": "提交（未执行，服务结果未知）"
+        }
+      ]
+    },
+    {
+      "id": "report-reopened",
+      "evidence": "projects/duolingo-web/evidence/english-feedback-actions-v1/english-feedback-report-reopened.json",
+      "actions": [
+        {
+          "id": "reason-0",
+          "description": "音频听起来不正确"
+        },
+        {
+          "id": "reason-1",
+          "description": "提示有误"
+        },
+        {
+          "id": "reason-2",
+          "description": "缺少音频"
+        },
+        {
+          "id": "reason-3",
+          "description": "提示缺失"
+        },
+        {
+          "id": "reason-4",
+          "description": "我的答案不应被接受"
+        },
+        {
+          "id": "reason-5",
+          "description": "其他问题"
+        },
+        {
+          "id": "escape",
+          "description": "Escape关闭"
+        }
+      ]
+    },
+    {
+      "id": "l6-q6",
+      "evidence": "projects/duolingo-web/evidence/english-sixth-v1/english-sixth-q6-answer.json",
+      "actions": [
+        {
+          "id": "answer",
+          "description": "输入/选择实测答案并检查"
+        },
+        {
+          "id": "skip",
+          "description": "跳过"
+        },
+        {
+          "id": "play",
+          "description": "当前题面播放按钮（未执行）"
+        }
+      ]
+    },
+    {
+      "id": "l6-q6-feedback",
+      "evidence": "projects/duolingo-web/evidence/english-sixth-v1/english-sixth-q6-answer.json",
+      "actions": [
+        {
+          "id": "continue",
+          "description": "继续"
+        },
+        {
+          "id": "easy",
+          "description": "太简单"
+        },
+        {
+          "id": "hard",
+          "description": "太难"
+        },
+        {
+          "id": "report",
+          "description": "报错"
+        }
+      ]
+    },
+    {
+      "id": "l6-q7",
+      "evidence": "projects/duolingo-web/evidence/english-sixth-v1/english-sixth-q7-before.json",
+      "actions": [
+        {
+          "id": "answer",
+          "description": "输入/选择实测答案并检查"
+        },
+        {
+          "id": "skip",
+          "description": "跳过"
+        },
+        {
+          "id": "harder",
+          "description": "加大难度"
+        }
+      ]
+    },
+    {
+      "id": "l6-q7-feedback",
+      "evidence": "projects/duolingo-web/evidence/english-sixth-v1/english-sixth-q7-feedback.json",
+      "actions": [
+        {
+          "id": "continue",
+          "description": "继续"
+        },
+        {
+          "id": "easy",
+          "description": "太简单"
+        },
+        {
+          "id": "hard",
+          "description": "太难"
+        },
+        {
+          "id": "report",
+          "description": "报错"
+        }
+      ]
+    },
+    {
+      "id": "l6-q8",
+      "evidence": "projects/duolingo-web/evidence/english-sixth-v1/english-sixth-q8-answer.json",
+      "actions": [
+        {
+          "id": "answer",
+          "description": "输入/选择实测答案并检查"
+        },
+        {
+          "id": "skip",
+          "description": "跳过"
+        },
+        {
+          "id": "keyboard",
+          "description": "使用键盘（未执行）"
+        }
+      ]
+    },
+    {
+      "id": "l6-q8-feedback",
+      "evidence": "projects/duolingo-web/evidence/english-sixth-v1/english-sixth-q8-answer.json",
+      "actions": [
+        {
+          "id": "continue",
+          "description": "继续"
+        },
+        {
+          "id": "easy",
+          "description": "太简单"
+        },
+        {
+          "id": "hard",
+          "description": "太难"
+        },
+        {
+          "id": "report",
+          "description": "报错"
+        }
+      ]
+    },
+    {
+      "id": "l6-speech",
+      "evidence": "projects/duolingo-web/evidence/english-sixth-v1/english-sixth-after-q8.json",
+      "actions": [
+        {
+          "id": "decline",
+          "description": "现在不做口语题"
+        }
+      ]
+    },
+    {
+      "id": "l6-speech-declined",
+      "evidence": "projects/duolingo-web/evidence/english-sixth-v1/english-sixth-q9-speech-declined.json",
+      "actions": [
+        {
+          "id": "continue",
+          "description": "继续"
+        },
+        {
+          "id": "easy",
+          "description": "太简单"
+        },
+        {
+          "id": "hard",
+          "description": "太难"
+        },
+        {
+          "id": "report",
+          "description": "报错"
+        }
+      ]
+    },
+    {
+      "id": "l6-q9",
+      "evidence": "projects/duolingo-web/evidence/english-sixth-v1/english-sixth-q9-adaptive-answer.json",
+      "actions": [
+        {
+          "id": "answer",
+          "description": "输入/选择实测答案并检查"
+        },
+        {
+          "id": "skip",
+          "description": "跳过"
+        },
+        {
+          "id": "play",
+          "description": "当前题面播放按钮（未执行）"
+        }
+      ]
+    },
+    {
+      "id": "l6-q9-feedback",
+      "evidence": "projects/duolingo-web/evidence/english-sixth-v1/english-sixth-q9-adaptive-answer.json",
+      "actions": [
+        {
+          "id": "continue",
+          "description": "继续"
+        },
+        {
+          "id": "easy",
+          "description": "太简单"
+        },
+        {
+          "id": "hard",
+          "description": "太难"
+        },
+        {
+          "id": "report",
+          "description": "报错"
+        }
+      ]
+    },
+    {
+      "id": "l6-q10",
+      "evidence": "projects/duolingo-web/evidence/english-sixth-v1/english-sixth-q10-answer.json",
+      "actions": [
+        {
+          "id": "answer",
+          "description": "输入/选择实测答案并检查"
+        },
+        {
+          "id": "skip",
+          "description": "跳过"
+        },
+        {
+          "id": "harder",
+          "description": "加大难度"
+        }
+      ]
+    },
+    {
+      "id": "l6-q10-feedback",
+      "evidence": "projects/duolingo-web/evidence/english-sixth-v1/english-sixth-q10-answer.json",
+      "actions": [
+        {
+          "id": "continue",
+          "description": "继续"
+        },
+        {
+          "id": "easy",
+          "description": "太简单"
+        },
+        {
+          "id": "hard",
+          "description": "太难"
+        },
+        {
+          "id": "report",
+          "description": "报错"
+        }
+      ]
+    },
+    {
+      "id": "l6-q11",
+      "evidence": "projects/duolingo-web/evidence/english-sixth-v1/english-sixth-q11-answer.json",
+      "actions": [
+        {
+          "id": "answer",
+          "description": "输入/选择实测答案并检查"
+        },
+        {
+          "id": "skip",
+          "description": "跳过"
+        },
+        {
+          "id": "play",
+          "description": "当前题面播放按钮（未执行）"
+        }
+      ]
+    },
+    {
+      "id": "l6-q11-feedback",
+      "evidence": "projects/duolingo-web/evidence/english-sixth-v1/english-sixth-q11-answer.json",
+      "actions": [
+        {
+          "id": "continue",
+          "description": "继续"
+        },
+        {
+          "id": "easy",
+          "description": "太简单"
+        },
+        {
+          "id": "hard",
+          "description": "太难"
+        },
+        {
+          "id": "report",
+          "description": "报错"
+        }
+      ]
+    },
+    {
+      "id": "l6-q12",
+      "evidence": "projects/duolingo-web/evidence/english-sixth-v1/english-sixth-q12-answer.json",
+      "actions": [
+        {
+          "id": "answer",
+          "description": "输入/选择实测答案并检查"
+        },
+        {
+          "id": "skip",
+          "description": "跳过"
+        },
+        {
+          "id": "play",
+          "description": "当前题面播放按钮（未执行）"
+        }
+      ]
+    },
+    {
+      "id": "l6-q12-feedback",
+      "evidence": "projects/duolingo-web/evidence/english-sixth-v1/english-sixth-q12-answer.json",
+      "actions": [
+        {
+          "id": "continue",
+          "description": "继续"
+        },
+        {
+          "id": "easy",
+          "description": "太简单"
+        },
+        {
+          "id": "hard",
+          "description": "太难"
+        },
+        {
+          "id": "report",
+          "description": "报错"
+        }
+      ]
+    },
+    {
+      "id": "l6-challenge-entry",
+      "evidence": "projects/duolingo-web/evidence/english-sixth-v1/english-sixth-challenge-entry.json",
+      "actions": [
+        {
+          "id": "continue",
+          "description": "继续"
+        }
+      ]
+    },
+    {
+      "id": "l6-q13",
+      "evidence": "projects/duolingo-web/evidence/english-sixth-v1/english-sixth-q13-answer.json",
+      "actions": [
+        {
+          "id": "answer",
+          "description": "输入/选择实测答案并检查"
+        },
+        {
+          "id": "skip",
+          "description": "跳过"
+        }
+      ]
+    },
+    {
+      "id": "l6-q13-feedback",
+      "evidence": "projects/duolingo-web/evidence/english-sixth-v1/english-sixth-q13-answer.json",
+      "actions": [
+        {
+          "id": "continue",
+          "description": "继续"
+        },
+        {
+          "id": "easy",
+          "description": "太简单"
+        },
+        {
+          "id": "hard",
+          "description": "太难"
+        },
+        {
+          "id": "report",
+          "description": "报错"
+        }
+      ]
+    },
+    {
+      "id": "l6-q14",
+      "evidence": "projects/duolingo-web/evidence/english-sixth-v1/english-sixth-q14-answer.json",
+      "actions": [
+        {
+          "id": "answer",
+          "description": "输入/选择实测答案并检查"
+        },
+        {
+          "id": "skip",
+          "description": "跳过"
+        }
+      ]
+    },
+    {
+      "id": "l6-q14-feedback",
+      "evidence": "projects/duolingo-web/evidence/english-sixth-v1/english-sixth-q14-answer.json",
+      "actions": [
+        {
+          "id": "continue",
+          "description": "继续"
+        },
+        {
+          "id": "easy",
+          "description": "太简单"
+        },
+        {
+          "id": "hard",
+          "description": "太难"
+        },
+        {
+          "id": "report",
+          "description": "报错"
+        }
+      ]
+    },
+    {
+      "id": "l6-q15",
+      "evidence": "projects/duolingo-web/evidence/english-sixth-v1/english-sixth-q15-answer.json",
+      "actions": [
+        {
+          "id": "answer",
+          "description": "输入/选择实测答案并检查"
+        },
+        {
+          "id": "skip",
+          "description": "跳过"
+        }
+      ]
+    },
+    {
+      "id": "l6-q15-feedback",
+      "evidence": "projects/duolingo-web/evidence/english-sixth-v1/english-sixth-q15-answer.json",
+      "actions": [
+        {
+          "id": "continue",
+          "description": "继续"
+        },
+        {
+          "id": "easy",
+          "description": "太简单"
+        },
+        {
+          "id": "hard",
+          "description": "太难"
+        },
+        {
+          "id": "report",
+          "description": "报错"
+        }
+      ]
+    },
+    {
+      "id": "l6-complete",
+      "evidence": "projects/duolingo-web/evidence/english-sixth-v1/english-sixth-complete.json",
+      "actions": [
+        {
+          "id": "continue",
+          "description": "继续"
+        },
+        {
+          "id": "review",
+          "description": "回顾本单元"
+        }
+      ]
+    },
+    {
+      "id": "l6-profile",
+      "evidence": "projects/duolingo-web/evidence/english-sixth-v1/english-sixth-profile.json",
+      "actions": [
+        {
+          "id": "later",
+          "description": "稍后再说"
+        },
+        {
+          "id": "create-profile",
+          "description": "创建档案"
+        }
+      ]
+    },
+    {
+      "id": "l6-home",
+      "evidence": "projects/duolingo-web/evidence/english-sixth-v1/english-sixth-home.json",
+      "actions": [
+        {
+          "id": "next-lesson",
+          "description": "Lesson 3 of 4"
+        },
+        {
+          "id": "pronunciation",
+          "description": "发音"
+        },
+        {
+          "id": "leaderboard",
+          "description": "排行榜"
+        },
+        {
+          "id": "quests",
+          "description": "特别任务"
+        },
+        {
+          "id": "shop",
+          "description": "宝石小店"
+        },
+        {
+          "id": "more",
+          "description": "更多"
+        }
+      ]
+    }
+  ],
+  "transitions": [
+    {
+      "from": "match",
+      "action": "decline",
+      "to": "declined",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-listening-decline-v1/english-sixth-listening-declined.json"
+    },
+    {
+      "from": "declined",
+      "action": "continue",
+      "to": "adaptive",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-listening-decline-v1/english-sixth-after-listening-decline.json"
+    },
+    {
+      "from": "adaptive",
+      "action": "answer",
+      "to": "adaptive-feedback",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-listening-decline-v1/q3-answer.json"
+    },
+    {
+      "from": "adaptive-feedback",
+      "action": "continue",
+      "to": "fill",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-listening-decline-v1/english-sixth-after-coffee-milk.json"
+    },
+    {
+      "from": "fill",
+      "action": "answer",
+      "to": "fill-feedback",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-listening-decline-v1/english-sixth-milk-fill-accepted.json"
+    },
+    {
+      "from": "fill-feedback",
+      "action": "continue",
+      "to": "sugar",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-listening-decline-v1/english-sixth-sugar-after-fill.json"
+    },
+    {
+      "from": "sugar",
+      "action": "answer",
+      "to": "sugar-feedback",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-feedback-actions-v1/sugar-answer.json"
+    },
+    {
+      "from": "sugar-feedback",
+      "action": "easy",
+      "to": "easy",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-feedback-actions-v1/english-feedback-easy-selected.json"
+    },
+    {
+      "from": "easy",
+      "action": "hard",
+      "to": "hard",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-feedback-actions-v1/english-feedback-hard-selected.json"
+    },
+    {
+      "from": "hard",
+      "action": "hard",
+      "to": "deselected",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-feedback-actions-v1/english-feedback-deselected.json"
+    },
+    {
+      "from": "deselected",
+      "action": "report",
+      "to": "report-open",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-feedback-actions-v1/english-feedback-report-open.json"
+    },
+    {
+      "from": "report-open",
+      "action": "reason-5",
+      "to": "report-other",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-feedback-actions-v1/english-feedback-report-other-selected.json"
+    },
+    {
+      "from": "report-other",
+      "action": "reason-0",
+      "to": "report-two",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-feedback-actions-v1/english-feedback-report-two-selected.json"
+    },
+    {
+      "from": "report-two",
+      "action": "escape",
+      "to": "report-closed",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-feedback-actions-v1/english-feedback-report-cancelled.json"
+    },
+    {
+      "from": "report-closed",
+      "action": "report",
+      "to": "report-reopened",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-feedback-actions-v1/english-feedback-report-reopened.json"
+    },
+    {
+      "from": "report-reopened",
+      "action": "escape",
+      "to": "report-closed",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-feedback-actions-v1/english-feedback-final-cancelled.json"
+    },
+    {
+      "from": "report-closed",
+      "action": "continue",
+      "to": "l6-q6",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-sixth-v1/english-sixth-q6-answer.json"
+    },
+    {
+      "from": "l6-q6",
+      "action": "answer",
+      "to": "l6-q6-feedback",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-sixth-v1/english-sixth-q6-answer.json"
+    },
+    {
+      "from": "l6-q6-feedback",
+      "action": "continue",
+      "to": "l6-q7",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-sixth-v1/english-sixth-q7-before.json"
+    },
+    {
+      "from": "l6-q7",
+      "action": "answer",
+      "to": "l6-q7-feedback",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-sixth-v1/english-sixth-q7-feedback.json"
+    },
+    {
+      "from": "l6-q7-feedback",
+      "action": "continue",
+      "to": "l6-q8",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-sixth-v1/english-sixth-q8-answer.json"
+    },
+    {
+      "from": "l6-q8",
+      "action": "answer",
+      "to": "l6-q8-feedback",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-sixth-v1/english-sixth-q8-answer.json"
+    },
+    {
+      "from": "l6-q8-feedback",
+      "action": "continue",
+      "to": "l6-speech",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-sixth-v1/english-sixth-after-q8.json"
+    },
+    {
+      "from": "l6-speech",
+      "action": "decline",
+      "to": "l6-speech-declined",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-sixth-v1/english-sixth-q9-speech-declined.json"
+    },
+    {
+      "from": "l6-speech-declined",
+      "action": "continue",
+      "to": "l6-q9",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-sixth-v1/english-sixth-q9-adaptive-answer.json"
+    },
+    {
+      "from": "l6-q9",
+      "action": "answer",
+      "to": "l6-q9-feedback",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-sixth-v1/english-sixth-q9-adaptive-answer.json"
+    },
+    {
+      "from": "l6-q9-feedback",
+      "action": "continue",
+      "to": "l6-q10",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-sixth-v1/english-sixth-q10-answer.json"
+    },
+    {
+      "from": "l6-q10",
+      "action": "answer",
+      "to": "l6-q10-feedback",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-sixth-v1/english-sixth-q10-answer.json"
+    },
+    {
+      "from": "l6-q10-feedback",
+      "action": "continue",
+      "to": "l6-q11",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-sixth-v1/english-sixth-q11-answer.json"
+    },
+    {
+      "from": "l6-q11",
+      "action": "answer",
+      "to": "l6-q11-feedback",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-sixth-v1/english-sixth-q11-answer.json"
+    },
+    {
+      "from": "l6-q11-feedback",
+      "action": "continue",
+      "to": "l6-q12",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-sixth-v1/english-sixth-q12-answer.json"
+    },
+    {
+      "from": "l6-q12",
+      "action": "answer",
+      "to": "l6-q12-feedback",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-sixth-v1/english-sixth-q12-answer.json"
+    },
+    {
+      "from": "l6-q12-feedback",
+      "action": "continue",
+      "to": "l6-challenge-entry",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-sixth-v1/english-sixth-challenge-entry.json"
+    },
+    {
+      "from": "l6-challenge-entry",
+      "action": "continue",
+      "to": "l6-q13",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-sixth-v1/english-sixth-q13-answer.json"
+    },
+    {
+      "from": "l6-q13",
+      "action": "answer",
+      "to": "l6-q13-feedback",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-sixth-v1/english-sixth-q13-answer.json"
+    },
+    {
+      "from": "l6-q13-feedback",
+      "action": "continue",
+      "to": "l6-q14",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-sixth-v1/english-sixth-q14-answer.json"
+    },
+    {
+      "from": "l6-q14",
+      "action": "answer",
+      "to": "l6-q14-feedback",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-sixth-v1/english-sixth-q14-answer.json"
+    },
+    {
+      "from": "l6-q14-feedback",
+      "action": "continue",
+      "to": "l6-q15",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-sixth-v1/english-sixth-q15-answer.json"
+    },
+    {
+      "from": "l6-q15",
+      "action": "answer",
+      "to": "l6-q15-feedback",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-sixth-v1/english-sixth-q15-answer.json"
+    },
+    {
+      "from": "l6-q15-feedback",
+      "action": "continue",
+      "to": "l6-complete",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-sixth-v1/english-sixth-complete.json"
+    },
+    {
+      "from": "l6-complete",
+      "action": "continue",
+      "to": "l6-profile",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-sixth-v1/english-sixth-profile.json"
+    },
+    {
+      "from": "l6-profile",
+      "action": "later",
+      "to": "l6-home",
+      "outcome": "observed",
+      "evidence": "projects/duolingo-web/evidence/english-sixth-v1/english-sixth-home.json"
+    }
+  ],
+  "policy_update": {
+    "prior": "Treat API tail and fifth settlement as possible continuation",
+    "counterevidence": "Actual sixth speech decline inserts translation, later listenMatch becomes hello translation, all three challenge prompts differ, completion skips prior daily/gem screens",
+    "choice": "Continue actual source using per-action positive receipts and fresh visible refs; freeze actual sixth text plus explicit visual/audio gaps before implementation",
+    "status": "Agent-driven feedback revision; autonomous RSI and matched-budget benefit remain unverified"
+  },
+  "unknown": [
+    "Normal listening/speech variants",
+    "15-minute expiry and persistence",
+    "Source audio output and visual equivalence",
+    "General score/adaptation/reward formulas",
+    "All remaining source app branches"
+  ]
+}
