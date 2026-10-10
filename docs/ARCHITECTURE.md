@@ -125,3 +125,10 @@ Guidebook从SwiftPM中的实测结构化内容读取，使用原版语音与发�
 text_entry在Lesson中保存enteredText，输入编辑受反馈/题间边界保护，clearAnswer清除跨题残留。SwiftUI通过LearningModel绑定状态；原生驱动使用自有PID键盘事件，避免AX直接赋值绕过绑定。当前判分只对两例精确值有源证据，完整源grader待替换。独立输入probe只验证组件，默认题库不变；产品v7保留全部v6需求。[证据](../projects/duolingo-web/evidence/english-input-native-v1/README.md)。
 
 listenMatch使用现有matching状态机及原版静态向量帧，左侧解析精确原音、右侧保留独立排序；错配记录双方状态、扣心并由LearningModel立即保存。该实际混合错误轨迹不把已修正的配对再加入课末重练。text_entry按源HOT接受加入大小写比较，完整正确句保留固定前后缀；其他grader规则未知。回放器区分同题型未支持与真实题序失步，后者仍在作答前拦截。完整第五课含插入题/口语暂缓与新结算，尚待从trajectory编入默认；source history/frontier不表示RSI效果。[证据](../projects/duolingo-web/evidence/english-pairing-native-v1/README.md)。
+
+
+### 实际Rive角色渲染器
+
+`capture-source-canvas.mjs`从当前challenge canvas导出透明绘图buffer和关联RIVE数据，compositor截图另存；公开CDN解压字节与buffer独立校验。`ReferenceCharacter`以旧角色资源身份映射实际动画资源/状态机/trigger/transform，SwiftPM精确依赖官方RiveRuntime6.24.0，LearningCore不依赖渲染SDK。当前仅Bea/Lucy配置，未映射角色仍是历史静态图，不宣称完整。
+
+原生观察器可采集12张真实idle/feedback窗口，`compare-character-render.py`按实际content rect归一化，并单独计算角色ROI帧变化和整页像素差；变化不能代替源相位/声学等价。独立角色契约保留零容差失败，默认五课v10仍整体fail。标题按实际32px/40px修正，同时回归配对几何。此批反例驱动探索更换探针，尚无自主探索策略或收益证据。[测量与接续](../projects/duolingo-web/evidence/english-character-render-v1/README.md)。

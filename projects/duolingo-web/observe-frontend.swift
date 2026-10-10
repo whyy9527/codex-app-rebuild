@@ -281,6 +281,9 @@ if CommandLine.arguments.contains("--walk-course") {
                 try waitFor("question-title", value: question["prompt"] as? String)
                 let key = question["id"] as! String
                 states[key] = observe()
+                if CommandLine.arguments.contains("--capture-character-frames"), current().contains(where: { (attr($0, kAXIdentifierAttribute) as? String) == "question-character" }) {
+                    for frame in 0..<12 { try capture(key + "-character-idle-\(frame)"); Thread.sleep(forTimeInterval: 0.15) }
+                }
                 if let kind = (question["sourceType"] ?? question["kind"]) as? String, capturedKinds.insert(kind).inserted { try capture("question-" + kind) }
                 if course["interfaceLanguage"] as? String == "zh" { try capture(key + "-before") }
                 switch question["kind"] as? String {
@@ -368,6 +371,9 @@ if CommandLine.arguments.contains("--walk-course") {
                 }
                 try waitFor("continue")
                 states[key + "-feedback"] = observe()
+                if CommandLine.arguments.contains("--capture-character-frames"), current().contains(where: { (attr($0, kAXIdentifierAttribute) as? String) == "question-character" }) {
+                    for frame in 0..<12 { try capture(key + "-character-feedback-\(frame)"); Thread.sleep(forTimeInterval: 0.15) }
+                }
                 if course["interfaceLanguage"] as? String == "zh" { try capture(key + "-feedback") }
                 try press("continue")
                 if let interludes = definition["interludes"] as? [[String: String]], let interlude = interludes.first(where: { $0["afterQuestionID"] == key }) {

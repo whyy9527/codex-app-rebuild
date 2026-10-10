@@ -1,0 +1,23 @@
+{
+  "problem": "Source full-body canvas and native cropped character SVG differ; blank/missing hero remains a separate unresolved issue",
+  "prior_hypothesis": "Public character.image.svg or character.url directly provides the rendered full-body character",
+  "counterevidence": [
+    "projects/duolingo-web/evidence/english-settlement-v1/character-pdf-inspection.json",
+    "projects/duolingo-web/evidence/english-next-node-v1/canvas-inspection.json"
+  ],
+  "revised_hypothesis": "The active canvas renderer owns a separate public animation buffer and configuration",
+  "actual_probe": "Inspect only active canvas React rendering props, export RIVE buffer, compare with decompressed public CDN file, export actual transparent drawing buffers",
+  "evidence": [
+    "bea-idle.json",
+    "bea-correct.json",
+    "asset-verification.json",
+    "lucy-idle.json",
+    "lucy-asset-verification.json"
+  ],
+  "outcome": "Observed source Rive asset, artboard, state machine, triggers, transforms; native playback implemented for BEA/LUCY",
+  "limitations": [
+    "One human/agent-driven hypothesis update, not an implemented autonomous exploration policy or RSI ablation",
+    "Canvas renderer timing and mouth/audio synchronization remain unverified",
+    "Original source sixth lesson only q0 accepted; q1 observed but not answered"
+  ]
+}

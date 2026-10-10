@@ -1,0 +1,80 @@
+{
+  "kind": "frontend_requirements",
+  "contract_digest": "94372282991bec933ee26ea4fbd14dc6d1a0d919f664acf2faff92a3655a4319",
+  "observation_digest": "53f3c7b25ecc83ab80d011e44d22823d5ed5edf6aeb3ababe8bc70a1c2824322",
+  "rows": [
+    {
+      "id": "en-zh-render-q0-heading",
+      "state": "en-zh-render-q0",
+      "status": "pass",
+      "expected": "用英语写出这句话"
+    },
+    {
+      "id": "en-zh-render-q0-hint",
+      "state": "en-zh-render-q0",
+      "status": "pass",
+      "expected": "牛奶"
+    },
+    {
+      "id": "en-zh-render-q0-geometry",
+      "state": "en-zh-render-q0",
+      "status": "fail",
+      "expected": [
+        301.8055419921875,
+        161,
+        118,
+        175
+      ],
+      "actual": [
+        302,
+        161,
+        118,
+        175
+      ],
+      "delta_points": [
+        0.1944580078125,
+        0,
+        0,
+        0
+      ],
+      "reason": "Control geometry in content points only; other visual properties remain separate"
+    },
+    {
+      "id": "en-zh-render-q0-feedback",
+      "state": "en-zh-render-q0-feedback",
+      "status": "pass",
+      "expected": "不错哦！"
+    },
+    {
+      "id": "en-zh-render-q0-visual",
+      "state": "en-zh-render-q0",
+      "status": "not_run",
+      "reason": "visual equality remains unverified"
+    },
+    {
+      "id": "en-zh-render-q0-source-animation-timing",
+      "state": "en-zh-render-q0",
+      "status": "not_run",
+      "reason": "source-animation-timing equality remains unverified"
+    },
+    {
+      "id": "en-zh-render-q0-actual-audio",
+      "state": "en-zh-render-q0",
+      "status": "not_run",
+      "reason": "actual-audio equality remains unverified"
+    },
+    {
+      "id": "en-zh-render-q0-wrong-feedback",
+      "state": "en-zh-render-q0",
+      "status": "not_run",
+      "reason": "wrong-feedback equality remains unverified"
+    },
+    {
+      "id": "en-zh-render-q0-mouth-sync",
+      "state": "en-zh-render-q0",
+      "status": "not_run",
+      "reason": "mouth-sync equality remains unverified"
+    }
+  ],
+  "status": "fail"
+}

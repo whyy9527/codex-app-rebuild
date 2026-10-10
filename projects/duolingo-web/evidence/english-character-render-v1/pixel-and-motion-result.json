@@ -1,0 +1,333 @@
+{
+  "kind": "actual-character-render-diagnostic",
+  "viewport": [
+    1200,
+    732
+  ],
+  "normalization": "Measured native titlebar crop, 2x downsample Lanczos; source unchanged",
+  "pixel_pairs": [
+    {
+      "state": "en-zh-render-q0",
+      "source": "bea-idle-page.png",
+      "native": "en-zh-render-q0-before.png",
+      "source_sha256": "0df6510a49df0e97cc8da249aea0242e22b5792a7bcd0efaa67313009ce0f192",
+      "native_sha256": "546bc05a32be46c01811f57cc3455058355e07b84579003e284a5351bce35621",
+      "mean_absolute_rgb_difference": [
+        2.155072859744991,
+        2.1894091530054647,
+        2.22136839708561
+      ],
+      "status": "different"
+    },
+    {
+      "state": "en-zh-render-q0-feedback",
+      "source": "bea-correct-page.png",
+      "native": "en-zh-render-q0-feedback.png",
+      "source_sha256": "a5bbc426869b0dc5d8bbc259a0647600a7b5ba1a8f25f99cc8414f999c3d5f0b",
+      "native_sha256": "d38df29169e30551a7d74fc6a8069583d64a794e9a3ba8f1f28994230a420bdf",
+      "mean_absolute_rgb_difference": [
+        6.477772085610201,
+        2.94633310564663,
+        8.520924408014572
+      ],
+      "status": "different"
+    }
+  ],
+  "native_character_motion": [
+    {
+      "state": "en-zh-render-q0",
+      "rect": [
+        302,
+        161,
+        118,
+        175
+      ],
+      "frames": 12,
+      "distinct_character_rgb_frames": 8,
+      "frame_hashes": {
+        "en-zh-render-q0-character-idle-0.png": "8eef0fa1968fa22aa2bcc2de8bafd174ffee92ce003bde2e29f9514acc49581d",
+        "en-zh-render-q0-character-idle-1.png": "8eef0fa1968fa22aa2bcc2de8bafd174ffee92ce003bde2e29f9514acc49581d",
+        "en-zh-render-q0-character-idle-10.png": "228c292b0547d35f12a1162b5a95d60fcae161ae77f5a81f20d1ee976a972ce5",
+        "en-zh-render-q0-character-idle-11.png": "8eef0fa1968fa22aa2bcc2de8bafd174ffee92ce003bde2e29f9514acc49581d",
+        "en-zh-render-q0-character-idle-2.png": "88769c9e9d39c8e7fbbd74b30389b76082ca9413e1ee42c06a135cf7f9fdc309",
+        "en-zh-render-q0-character-idle-3.png": "88769c9e9d39c8e7fbbd74b30389b76082ca9413e1ee42c06a135cf7f9fdc309",
+        "en-zh-render-q0-character-idle-4.png": "cfa11854f45c1ce68ca495144fbd19206d55683dd23349bc98c42f65d660d301",
+        "en-zh-render-q0-character-idle-5.png": "d1233a6a1e311efeb0f0e552a4c913d9d6c688253926912a3d06ce92004f26ae",
+        "en-zh-render-q0-character-idle-6.png": "409fc5e8f79082a3c190a55f1c3cd3a591ae1da0a21020aeb348cc37a199c280",
+        "en-zh-render-q0-character-idle-7.png": "7afa75e9b304ac2673e203c0188460deac9cf9330c898481143b39ee3b91bd2c",
+        "en-zh-render-q0-character-idle-8.png": "c9b6c5c209742a1e69cc32395aa0077e66bdf8e9bb41dcf7a1eebc73b05abb18",
+        "en-zh-render-q0-character-idle-9.png": "228c292b0547d35f12a1162b5a95d60fcae161ae77f5a81f20d1ee976a972ce5"
+      }
+    },
+    {
+      "state": "en-zh-render-q0-feedback",
+      "rect": [
+        302,
+        161,
+        118,
+        175
+      ],
+      "frames": 12,
+      "distinct_character_rgb_frames": 12,
+      "frame_hashes": {
+        "en-zh-render-q0-character-feedback-0.png": "0603a36086d54a5d6d2afd076ef2a5ca6cd6f1f4a7367a641287b90d40daa406",
+        "en-zh-render-q0-character-feedback-1.png": "eb478283f8ef989f14cd0727023bcd3601f12b4dbe206f8a12d636dea8a98660",
+        "en-zh-render-q0-character-feedback-10.png": "f7d149724c36394efc7d27ad9c14fd1fbe50124a100450cfad94452640b839dc",
+        "en-zh-render-q0-character-feedback-11.png": "ff0feb0e16f974c71dea78d630a3544ce465c409d09d951ef50f00d33ec29380",
+        "en-zh-render-q0-character-feedback-2.png": "899c66d3bfe3658c4602a929e31054fcfca9edcf6cf685ec54acf298d8f8ef41",
+        "en-zh-render-q0-character-feedback-3.png": "89318d8404e1e1f9375c421e9282cd146a9bd523b0decead91d9993ce6f8026e",
+        "en-zh-render-q0-character-feedback-4.png": "8fcfb989cbb64793479619e6a1094d131920f72cca216267bc675ab6c295d1fd",
+        "en-zh-render-q0-character-feedback-5.png": "498dd8d508368cf632fbbf41425646895c87377ffa8a81eb76bad6b68b49f9ec",
+        "en-zh-render-q0-character-feedback-6.png": "dd65e0b3db4dab6abf8efa21bfb32400073829be39f313ae4b8df8d3fee7a4c5",
+        "en-zh-render-q0-character-feedback-7.png": "a2fe9b46dfbb48e05d708151a913b7a2d98b5d3230671d01efd7a9ccdecd0ea2",
+        "en-zh-render-q0-character-feedback-8.png": "7d332830beab79c48d608a3160776b0d377811035bc27de5ed4552b473d99409",
+        "en-zh-render-q0-character-feedback-9.png": "e5d7e46be36049ae0152423a6c942b38931f9ab6265be5250e39eb49e77a29aa"
+      }
+    }
+  ],
+  "source_transparent_buffer_frames": [
+    {
+      "capture": "bea-idle.json",
+      "frames": 12,
+      "distinct_rgba_frames": 10,
+      "alpha_bounds": [
+        [
+          27,
+          11,
+          92,
+          165
+        ],
+        [
+          26,
+          11,
+          92,
+          165
+        ],
+        [
+          25,
+          11,
+          91,
+          165
+        ],
+        [
+          24,
+          11,
+          90,
+          165
+        ],
+        [
+          23,
+          11,
+          88,
+          165
+        ],
+        [
+          22,
+          11,
+          88,
+          165
+        ],
+        [
+          21,
+          11,
+          87,
+          165
+        ],
+        [
+          21,
+          11,
+          87,
+          165
+        ],
+        [
+          21,
+          11,
+          87,
+          165
+        ],
+        [
+          21,
+          11,
+          87,
+          165
+        ],
+        [
+          21,
+          11,
+          87,
+          165
+        ],
+        [
+          21,
+          11,
+          87,
+          165
+        ]
+      ]
+    },
+    {
+      "capture": "bea-correct.json",
+      "frames": 12,
+      "distinct_rgba_frames": 3,
+      "alpha_bounds": [
+        [
+          27,
+          11,
+          93,
+          165
+        ],
+        [
+          27,
+          11,
+          93,
+          165
+        ],
+        [
+          27,
+          11,
+          93,
+          165
+        ],
+        [
+          27,
+          11,
+          93,
+          165
+        ],
+        [
+          27,
+          11,
+          93,
+          165
+        ],
+        [
+          27,
+          11,
+          93,
+          165
+        ],
+        [
+          27,
+          11,
+          93,
+          165
+        ],
+        [
+          27,
+          11,
+          93,
+          165
+        ],
+        [
+          27,
+          11,
+          93,
+          165
+        ],
+        [
+          27,
+          11,
+          93,
+          165
+        ],
+        [
+          27,
+          11,
+          93,
+          165
+        ],
+        [
+          27,
+          11,
+          93,
+          165
+        ]
+      ]
+    },
+    {
+      "capture": "lucy-idle.json",
+      "frames": 12,
+      "distinct_rgba_frames": 4,
+      "alpha_bounds": [
+        [
+          22,
+          44,
+          94,
+          163
+        ],
+        [
+          22,
+          44,
+          94,
+          163
+        ],
+        [
+          22,
+          44,
+          94,
+          163
+        ],
+        [
+          22,
+          44,
+          94,
+          163
+        ],
+        [
+          22,
+          44,
+          94,
+          163
+        ],
+        [
+          22,
+          44,
+          94,
+          163
+        ],
+        [
+          22,
+          44,
+          94,
+          163
+        ],
+        [
+          22,
+          44,
+          94,
+          163
+        ],
+        [
+          22,
+          44,
+          94,
+          163
+        ],
+        [
+          22,
+          44,
+          94,
+          163
+        ],
+        [
+          22,
+          44,
+          94,
+          163
+        ],
+        [
+          22,
+          44,
+          94,
+          163
+        ]
+      ]
+    }
+  ],
+  "candidate_acceptance": "not_proven",
+  "limitations": [
+    "Different capture times; animation phases not aligned",
+    "Motion proves changing character pixels, not matching source state-machine timing or mouth/audio sync",
+    "Pixel differences include typography, layout, antialiasing and animation; no masks or passing tolerance"
+  ]
+}

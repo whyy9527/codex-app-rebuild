@@ -4,6 +4,8 @@
 
 当前英语v6默认五课72题，加一次未评分口语暂缓；第五课插入题、混合错误/重练、四页结算与返回主页已进入实现。15项核心通过；本批实际原生路径、共享前端v10的752项结果和失败由[第五课证据](../projects/duolingo-web/evidence/english-fifth-native-v1/README.md)维护。录音识别、第二节点后续三课、角色/动画、视觉声学等价、次要交互与真实探索策略消融未完成。旧四课与组件结果保留，不累计成一次通过率。
 
+最新角色批次：已确认Bea/Lucy独立Rive渲染buffer并接入默认五课，修复标题及角色纵向布局。当前五课214状态，434pass/11fail/307not_run；角色组件3pass/1fail/5not_run，仍有横向几何、实际像素/动画/声音差异。源第六课只完成第0题，停在第1题未答。完整失败、接续和复跑由[角色渲染批次](../projects/duolingo-web/evidence/english-character-render-v1/README.md)维护；RSI探索策略及匹配预算消融仍待完成。
+
 | 阶段 | 已交付 | 验收与范围 |
 | --- | --- | --- |
 | 0 定位与改名 | 私有codex-app-rebuild；README、AGENTS、哲学、架构与研究来源 | Dream-RSI/Cordis及历史无收益保留；没有开源或部署。 |

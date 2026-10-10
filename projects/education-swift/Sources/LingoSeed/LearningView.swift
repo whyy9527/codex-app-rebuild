@@ -166,7 +166,7 @@ struct LearningView: View {
                     }
                     else if let speech = lesson.deferredSpeech {
                         VStack(alignment: .leading, spacing: 32) {
-                            Text(speech.title).font(ReferenceStyle.font(28, bold: true)).accessibilityIdentifier("speech-title").accessibilityValue(speech.id)
+                            Text(speech.title).font(ReferenceStyle.font(32, bold: true)).frame(height: 40).accessibilityIdentifier("speech-title").accessibilityValue(speech.id)
                             Button { model.playQuestion() } label: { Label(speech.phrase, systemImage: "speaker.wave.2.fill") }.font(ReferenceStyle.font(22)).accessibilityIdentifier("speech-play")
                             Button("点击并开始录音") { model.error = "录音与识别尚未接入。" }
                                 .buttonStyle(ReferenceButton(color: ReferenceStyle.blue)).disabled(lesson.speechDeclined).accessibilityIdentifier("speech-record")
@@ -246,7 +246,11 @@ struct LearningView: View {
         } else if let indicator = lesson.question.indicator {
             Text(indicator).font(ReferenceStyle.font(14, bold: true)).foregroundStyle(indicator == "挑战题" ? .red : .purple).accessibilityIdentifier("question-indicator")
         } else if lesson.question.newWord { Text(copy("NEW WORD", "新单词")).font(ReferenceStyle.font(14, bold: true)).foregroundStyle(.purple) }
-        Text(lesson.question.kind == .wordTiles && lesson.question.hint == nil && lesson.question.sourceType == nil ? "Build this phrase" : lesson.question.prompt).font(ReferenceStyle.font(28, bold: true))
+        // Source challenge-header: 32px/40px. Translation's character row follows
+        // the heading directly; the old shared 28-point gap displaced it.
+        VStack(alignment: .leading, spacing: lesson.question.sourceType == "translate" ? 0 : 28) {
+        Text(lesson.question.kind == .wordTiles && lesson.question.hint == nil && lesson.question.sourceType == nil ? "Build this phrase" : lesson.question.prompt).font(ReferenceStyle.font(32, bold: true))
+            .frame(maxWidth: .infinity, minHeight: 40, maxHeight: 40, alignment: .leading)
             .accessibilityIdentifier("question-title").accessibilityValue(lesson.question.prompt)
         switch lesson.question.kind {
         case .choice: choices(lesson)
@@ -254,6 +258,7 @@ struct LearningView: View {
         case .matching: matching(lesson)
         case .textEntry: textEntry(lesson)
         }
+        }.padding(.top, 0.5)
         if lesson.question.kind == .choice && lesson.question.sourceType != "dialogue" {
             Button { model.pronounce() } label: { Label(lesson.selected == nil ? "Read the instruction" : "Listen again", systemImage: "speaker.wave.2.fill") }.buttonStyle(.plain).foregroundStyle(.cyan).accessibilityIdentifier("pronounce")
         }
@@ -285,7 +290,7 @@ struct LearningView: View {
             dialogue(lesson)
         } else if let hint = lesson.question.hint {
             HStack(spacing: 16) {
-                if let character = lesson.question.characterResource { ReferenceStyle.image(character).resizable().scaledToFit().frame(width: 120, height: 150) }
+                if let character = lesson.question.characterResource { ReferenceCharacter(resource: character, feedback: lesson.feedback).id(lesson.question.id).frame(width: ReferenceCharacter.size(for: character).width, height: ReferenceCharacter.size(for: character).height) }
                 Text(hint).font(ReferenceStyle.font(20)).accessibilityIdentifier("question-hint")
                     .padding(16).overlay(RoundedRectangle(cornerRadius: 14).stroke(ReferenceStyle.border, lineWidth: 2))
             }
@@ -354,10 +359,10 @@ struct LearningView: View {
             } else {
                 HStack(spacing: 16) {
                     Group {
-                        if let character = lesson.question.characterResource { ReferenceStyle.image(character).resizable().scaledToFit() }
+                        if let character = lesson.question.characterResource { ReferenceCharacter(resource: character, feedback: lesson.feedback).id(lesson.question.id) }
                         else if !chinese { SeedMascot().scaleEffect(0.7) }
                         else { Color.clear }
-                    }.frame(width: 120, height: 150)
+                    }.frame(width: ReferenceCharacter.size(for: lesson.question.characterResource).width, height: ReferenceCharacter.size(for: lesson.question.characterResource).height)
                     if let example = lesson.question.example {
                         Button { model.playExample() } label: {
                             phraseBubble(example, speaker: true)
@@ -369,7 +374,7 @@ struct LearningView: View {
                     } else {
                         phraseBubble(lesson.question.hint ?? lesson.question.prompt, speaker: false)
                     }
-                }
+                }.padding(.leading, ReferenceCharacter.hasAnimation(for: lesson.question.characterResource) ? 10 : 0)
             }
             if let prefix = lesson.question.completionPrefix {
                 HStack(spacing: 0) {
@@ -466,7 +471,7 @@ struct LearningView: View {
                         .accessibilityValue(lesson.incorrectMatch?.last == pair.id ? "incorrect" : lesson.matchedPairs.contains(pair.id) ? "matched" : "available")
                 }
             }
-        }.frame(maxWidth: .infinity).padding(.top, 66.5)
+        }.frame(maxWidth: .infinity).padding(.top, 59)
     }
     private func orderedRightPairs(_ question: Question) -> [WordPair] {
         question.rightOrder?.compactMap { id in question.pairs.first { $0.id == id } } ?? Array(question.pairs.reversed())

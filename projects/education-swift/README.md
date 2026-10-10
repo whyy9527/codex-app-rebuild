@@ -2,6 +2,8 @@
 
 可运行的 macOS SwiftUI 客户端。当前默认接入原版中文母语→英语五课72题（15/15/15/12/15），另含一次未评分的口语暂缓状态。第五课按实际源轨迹实现插入题、听音配对扣心和重试、填空错题重练、每日任务/宝石/建档结算及返回主页。录音与识别尚未接入；该按钮会明确报告缺失，不伪造识别结果。原版字符、布局、完整图形动画和实际声音仍未对齐。[本批实测和复跑](../duolingo-web/evidence/english-fifth-native-v1/README.md)保留失败，不把课程子集与核心通过当作1:1完成。
 
+原版Bea/Lucy的实际Rive全身动画已接入默认题库，官方Apple RiveRuntime锁定6.24.0。初次构建需联网下载SDK约108MB，SwiftPM自动将framework放到可执行文件旁；直接运行保留整个构建目录及资源bundle。角色变化已通过实际连续截图测量，动画时序、mouth/audio同步与其余角色仍未对齐。[当前渲染证据和失败](../duolingo-web/evidence/english-character-render-v1/README.md)。
+
 ## 构建、运行与重置
 
 从仓库根执行，macOS 14+、Swift 6 工具链：
