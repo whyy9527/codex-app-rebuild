@@ -119,3 +119,5 @@ Guidebook从SwiftPM中的实测结构化内容读取，使用原版语音与发�
 默认en/zh v5在四课57题基础上添加源观察的SettlementPage与独立SettlementFlow，LearningModel控制六页继续与返回主页，ReferenceSettlement负责呈现。题目判分与结算展示分开；observedStreak仅是现场快照，不承担日历算法。完成路径的源几何与两个弹窗存于证据，未接入第二节点不能重复旧内容冒充新课。前端v6保留全部v5断言并新增35项，当前341/8/205、整体fail。
 
 回放器现在保留真实challenge canvas帧、边界与像素尺寸。原版全身角色的Canvas与接口裁切SVG/PDF不同；渲染器及动画资源绑定仍未知。此采集扩展修正素材探索遗漏，不等于已解决动画或证明RSI收益。[当前批次](../projects/duolingo-web/evidence/english-settlement-v1/README.md)。
+
+text_entry在Lesson中保存enteredText，输入编辑受反馈/题间边界保护，clearAnswer清除跨题残留。SwiftUI通过LearningModel绑定状态；原生驱动使用自有PID键盘事件，避免AX直接赋值绕过绑定。当前判分只对两例精确值有源证据，完整源grader待替换。独立输入probe只验证组件，默认题库不变；产品v7保留全部v6需求。[证据](../projects/duolingo-web/evidence/english-input-native-v1/README.md)。

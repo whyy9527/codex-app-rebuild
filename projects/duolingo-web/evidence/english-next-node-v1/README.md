@@ -9,3 +9,5 @@ replay-01.json实际接受Coffee, please!→咖啡谢谢与欢迎→welcome两�
 Canvas检查与实际帧显示Falstaff/Oscar全身角色由118×175画布绘制，与character.image.svg及character.url的半身裁切图不同。reference-next-question-*-canvas-0.png是画布所在区域的实际截图，可能包含叠层/相邻元素，不是已经提取好的透明资源。发现公共WASM并未确认其具体渲染器或动画资源绑定。辅助CDN请求属于smart_tip_en_zs，不冒认动画文件。
 
 本轮发现改进了素材探索方向，还没有证明RSI策略收益。下一步读取当前听音填词的完整交互与错误/重练、观察口语/反向翻译，建立下一版需求与Swift题型；继续解决真实动画绑定、听感及跨端同状态验证。第二节点不复用第一节点旧课冒充完成。
+
+后续实测：listen-complete-response.json记录Te→清空→Tea与启用状态及正确反馈；replay-02实际接受第4题翻译并停在新型反向填词；reverse-response.json证明第5题tea接受。speak-entry/declined实际观察第6题及暂不口语分支，显示麦克风关闭与15分钟恢复，未触发录音/识别。输入能力及失败驱动修正见[实际原生输入验证](../english-input-native-v1/README.md)，完整第二节点仍未编译接入。前述“尚未输入”描述属于上一个检查点，现已由这些后续证据推进。

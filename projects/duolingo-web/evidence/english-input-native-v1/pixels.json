@@ -1,0 +1,98 @@
+{
+  "viewport": [
+    1200,
+    732
+  ],
+  "normalization": "Measured native titlebar crop and Lanczos 2x downsample; source pixels unchanged; no masking or pass tolerance",
+  "rows": [
+    {
+      "question": 3,
+      "stage": "before",
+      "source": "projects/duolingo-web/evidence/english-next-node-v1/reference-listen-complete-before.png",
+      "native": "en-zh-node2-q3-before.png",
+      "source_sha256": "e85a1808a77931fdad51d3cd7d936a4978da8f21205ea1b034ebad777c728ce4",
+      "native_sha256": "70844e6c449ec43cc2e4b4c320fb6bfb0c9d0e1bee95428c8047f104b004ad2d",
+      "mean_absolute_rgb_difference": [
+        8.216909153005464,
+        5.396915983606557,
+        5.966351320582878
+      ],
+      "status": "different"
+    },
+    {
+      "question": 3,
+      "stage": "filled",
+      "source": "projects/duolingo-web/evidence/english-next-node-v1/reference-listen-complete-filled.png",
+      "native": "en-zh-node2-q3-filled.png",
+      "source_sha256": "e4d2a8dd1741da1ccecf9ca200606673d88e49af84b11f542c3f11293f4ebc63",
+      "native_sha256": "adb9880a7174c56881a9f45318b117d72e9ae607cdc17e713104bd65485b980f",
+      "mean_absolute_rgb_difference": [
+        9.716336520947177,
+        5.720870901639344,
+        8.343598588342442
+      ],
+      "status": "different"
+    },
+    {
+      "question": 3,
+      "stage": "feedback",
+      "source": "projects/duolingo-web/evidence/english-next-node-v1/reference-listen-complete-feedback.png",
+      "native": "en-zh-node2-q3-feedback.png",
+      "source_sha256": "7ac9ca38e7e82a5a717098ac9bd37bbb8a0dfceac7f6fe42672b3724c9474516",
+      "native_sha256": "fe211255c93eddcb580d60e94f77bcbb20531b6bbf5cfadeb79cab8c43789f78",
+      "mean_absolute_rgb_difference": [
+        12.17196835154827,
+        6.149591302367941,
+        11.698479052823314
+      ],
+      "status": "different"
+    },
+    {
+      "question": 5,
+      "stage": "before",
+      "source": "projects/duolingo-web/evidence/english-next-node-v1/reference-next-02-question-5-before.png",
+      "native": "en-zh-node2-q5-before.png",
+      "source_sha256": "b19ef7b756fe8c55f080074200fea70ae6c11aa6ffdc244e63a9f6252f1b94ce",
+      "native_sha256": "9f29abed2746c7ba9703c037c79ccadb3a0f92abc11e68cd09ab1f0d830e5afc",
+      "mean_absolute_rgb_difference": [
+        5.591482240437158,
+        4.904191712204007,
+        7.6547700364298725
+      ],
+      "status": "different"
+    },
+    {
+      "question": 5,
+      "stage": "filled",
+      "source": "projects/duolingo-web/evidence/english-next-node-v1/reference-reverse-filled.png",
+      "native": "en-zh-node2-q5-filled.png",
+      "source_sha256": "1d40a80a633218a40f9070abdf0f081a5d391762f0872e424811ca3a74b223ad",
+      "native_sha256": "72811b9d8c71ce395ad787b533d9c1b5788b8285649f703c5c25430846107a6a",
+      "mean_absolute_rgb_difference": [
+        7.551841985428051,
+        5.370654599271402,
+        10.710073998178506
+      ],
+      "status": "different"
+    },
+    {
+      "question": 5,
+      "stage": "feedback",
+      "source": "projects/duolingo-web/evidence/english-next-node-v1/reference-reverse-feedback.png",
+      "native": "en-zh-node2-q5-feedback.png",
+      "source_sha256": "7c28ff1e826b08aa97601c7ec132a5333ea59cc09134405226df5da0c9d697f0",
+      "native_sha256": "27b95a3d6e23f1a4ce0f34bd6084590e51e7ca3a84062b9ad2d38b5837336858",
+      "mean_absolute_rgb_difference": [
+        9.717531876138434,
+        5.493818306010929,
+        13.69341985428051
+      ],
+      "status": "different"
+    }
+  ],
+  "candidate_acceptance": "not_proven",
+  "limitations": [
+    "Question content matched; global course progress and initial hearts differ in isolated component probe",
+    "Not full-state frontend acceptance"
+  ]
+}

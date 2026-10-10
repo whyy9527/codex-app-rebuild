@@ -15,6 +15,7 @@ public struct WordPair: Codable, Equatable, Sendable, Identifiable {
 public enum QuestionKind: String, Codable, Sendable {
     case choice, matching
     case wordTiles = "word_tiles"
+    case textEntry = "text_entry"
 }
 public struct Question: Codable, Equatable, Sendable, Identifiable {
     public let id: String
@@ -35,13 +36,14 @@ public struct Question: Codable, Equatable, Sendable, Identifiable {
     public let sourceType: String?
     public let slowAudioResource: String?
     public let dialogueAvatars: [String]?
+    public let correctFeedback: String?
     public let indicator: String?
     public let example: String?
     public let exampleAudioResource: String?
     public let completionPrefix: String?
     public let completionSuffix: String?
     enum CodingKeys: String, CodingKey {
-        case indicator, example, exampleAudioResource, completionPrefix, completionSuffix
+        case correctFeedback, indicator, example, exampleAudioResource, completionPrefix, completionSuffix
         case id, kind, prompt, options, answer, words, pairs, explanation, hint, newWord, rightOrder, audioResource, sourceLanguage, characterResource, sourceType, slowAudioResource, dialogueAvatars
         case answerWords = "answer_words"
     }
@@ -65,6 +67,7 @@ public struct Question: Codable, Equatable, Sendable, Identifiable {
         slowAudioResource = try c.decodeIfPresent(String.self, forKey: .slowAudioResource)
         dialogueAvatars = try c.decodeIfPresent([String].self, forKey: .dialogueAvatars)
         characterResource = try c.decodeIfPresent(String.self, forKey: .characterResource)
+        correctFeedback = try c.decodeIfPresent(String.self, forKey: .correctFeedback)
         indicator = try c.decodeIfPresent(String.self, forKey: .indicator)
         example = try c.decodeIfPresent(String.self, forKey: .example)
         exampleAudioResource = try c.decodeIfPresent(String.self, forKey: .exampleAudioResource)
@@ -76,12 +79,14 @@ public struct Question: Codable, Equatable, Sendable, Identifiable {
         case .choice: options.first { $0.id == answer }?.text ?? ""
         case .wordTiles: answerWords.compactMap { id in words.first { $0.id == id }?.text }.joined(separator: " ")
         case .matching: "All pairs matched"
+        case .textEntry: answer
         }
     }
     var valid: Bool {
         func unique(_ ids: [String]) -> Bool { !ids.isEmpty && ids.allSatisfy { !$0.isEmpty } && Set(ids).count == ids.count }
         guard !id.isEmpty, !prompt.isEmpty else { return false }
         switch kind {
+        case .textEntry: return !answer.isEmpty
         case .choice: return unique(options.map(\.id)) && options.contains { $0.id == answer }
         case .wordTiles: return unique(words.map(\.id)) && unique(answerWords) && answerWords.allSatisfy { id in words.contains { $0.id == id } }
         case .matching: return unique(pairs.map(\.id)) && pairs.allSatisfy { !$0.left.isEmpty && !$0.right.isEmpty }
@@ -213,6 +218,7 @@ public struct Lesson: Equatable, Sendable {
     public private(set) var position = 0
     public private(set) var selected: String?
     public private(set) var selectedWords = [String]()
+    public private(set) var enteredText = ""
     public private(set) var matchedPairs = Set<String>()
     public private(set) var selectedLeft: String?
     public private(set) var selectedRight: String?
@@ -231,6 +237,7 @@ public struct Lesson: Equatable, Sendable {
         case .choice: return selected != nil
         case .wordTiles: return !selectedWords.isEmpty
         case .matching: return false
+        case .textEntry: return !enteredText.isEmpty
         }
     }
     public init(course: Course, lessonIndex: Int = 0, hearts: Int = 5) {
@@ -241,6 +248,10 @@ public struct Lesson: Equatable, Sendable {
     public mutating func choose(_ id: String) {
         guard question.kind == .choice, feedback == nil, !complete, interlude == nil, question.options.contains(where: { $0.id == id }) else { return }
         selected = id
+    }
+    public mutating func enterText(_ text: String) {
+        guard question.kind == .textEntry, feedback == nil, !complete, interlude == nil else { return }
+        enteredText = text
     }
     public mutating func addWord(_ id: String) {
         guard question.kind == .wordTiles, feedback == nil, !complete, interlude == nil,
@@ -270,8 +281,13 @@ public struct Lesson: Equatable, Sendable {
         // Tile IDs enforce one use per occurrence. Grading follows the visible
         // word sequence so two indistinguishable copies can exchange positions.
         let textByID = Dictionary(uniqueKeysWithValues: question.words.map { ($0.id, $0.text) })
-        let correct = question.kind == .choice ? selected == question.answer
-            : selectedWords.compactMap { textByID[$0] } == question.answerWords.compactMap { textByID[$0] }
+        let correct: Bool
+        switch question.kind {
+        case .choice: correct = selected == question.answer
+        case .wordTiles: correct = selectedWords.compactMap { textByID[$0] } == question.answerWords.compactMap { textByID[$0] }
+        case .textEntry: correct = enteredText == question.answer // Source-confirmed examples only; full source grader remains unverified.
+        case .matching: return
+        }
         feedback = correct
         if !correct {
             mistakesMade += 1
@@ -280,7 +296,7 @@ public struct Lesson: Equatable, Sendable {
         }
     }
     private mutating func clearAnswer() {
-        selected = nil; selectedWords = []; matchedPairs = []
+        selected = nil; selectedWords = []; enteredText = ""; matchedPairs = []
         selectedLeft = nil; selectedRight = nil; matchingHint = nil; feedback = nil
     }
     public mutating func advance() {

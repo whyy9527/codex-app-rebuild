@@ -119,6 +119,7 @@ func observedInterludes() throws {
         case .choice: lesson.choose(lesson.question.answer); lesson.submit()
         case .wordTiles:
             for id in lesson.question.answerWords { lesson.addWord(id) }; lesson.submit()
+        case .textEntry: throw CheckFailure.failed("Typed input is not part of this frozen historical trajectory")
         case .matching:
             for pair in lesson.question.pairs { lesson.matchLeft(pair.id); lesson.matchRight(pair.id) }
         }
@@ -148,6 +149,7 @@ func actualEnglishTrajectory() throws {
         case .choice: lesson.choose(lesson.question.answer); lesson.submit()
         case .wordTiles:
             for id in lesson.question.answerWords { lesson.addWord(id) }; lesson.submit()
+        case .textEntry: throw CheckFailure.failed("Typed input is not part of this frozen historical trajectory")
         case .matching:
             for pair in lesson.question.pairs { lesson.matchLeft(pair.id); lesson.matchRight(pair.id) }
         }
@@ -185,6 +187,7 @@ func actualEnglishSecondTrajectory() throws {
                 try check(lesson.selectedWords.isEmpty && !lesson.canSubmit, "Fill undo lost empty-answer boundary")
             }
             for id in lesson.question.answerWords { lesson.addWord(id) }; lesson.submit()
+        case .textEntry: throw CheckFailure.failed("Typed input is not part of this frozen historical trajectory")
         case .matching: throw CheckFailure.failed("Unvisited API matching question entered actual second trajectory")
         }
         try check(lesson.feedback == true, "Source accepted second-lesson answer rejected")
@@ -228,6 +231,7 @@ func actualEnglishThirdTrajectory() throws {
             switch lesson.question.kind {
             case .choice: lesson.choose(lesson.question.answer); lesson.submit()
             case .wordTiles: for id in lesson.question.answerWords { lesson.addWord(id) }; lesson.submit()
+            case .textEntry: throw CheckFailure.failed("Typed input is not part of this frozen historical trajectory")
             case .matching: throw CheckFailure.failed("Unobserved matching tail entered third actual trajectory")
             }
         }
@@ -260,6 +264,7 @@ func actualEnglishFourthTrajectory() throws {
         switch lesson.question.kind {
         case .choice: lesson.choose(lesson.question.answer)
         case .wordTiles: for id in lesson.question.answerWords { lesson.addWord(id) }
+        case .textEntry: throw CheckFailure.failed("Typed input is not part of this frozen historical trajectory")
         case .matching: throw CheckFailure.failed("Fourth actual trajectory has no matching task")
         }
         lesson.submit(); try check(lesson.feedback == true, "Actual accepted fourth answer rejected")
@@ -289,6 +294,23 @@ func actualEnglishSettlement() throws {
     try check(lesson.mistakesMade == 1, "Incorrect attempt lost, potentially rendering false 100 percent")
     print("PASS source six-stage settlement sequence, terminal behavior, metadata and incorrect-attempt accounting; frontend/secondary branches pending")
 }
+func actualEnglishInputStates() throws {
+    let source = try course(fixture: "fixture-english-input-probe.json")
+    var lesson = Lesson(course: source, hearts: 4)
+    try check(!lesson.canSubmit, "Empty typed input submitted")
+    lesson.enterText("Te"); try check(lesson.canSubmit, "Nonempty input cannot submit")
+    lesson.enterText(""); try check(!lesson.canSubmit, "Clearing typed input leaves check enabled")
+    lesson.enterText("Tea"); lesson.submit()
+    try check(lesson.feedback == true && lesson.hearts == 4, "Source accepted Tea rejected")
+    lesson.enterText("changed"); try check(lesson.enteredText == "Tea", "Submitted input edited")
+    lesson.advance(); try check(lesson.enteredText.isEmpty && !lesson.canSubmit, "Input leaked into next state")
+    try check(lesson.question.completionPrefix == "I'd like " && lesson.question.completionSuffix == ".", "Source fixed sentence lost")
+    lesson.enterText("tea"); lesson.submit(); lesson.advance()
+    try check(lesson.complete, "Source accepted reverse input rejected")
+    var progress = LearningProgress(); progress.markCompleted(source, index: 0)
+    try check(!progress.completedCourses.contains(source.id), "Component probe promoted to full original course completion")
+    print("PASS observed input edit/clear/lock and two source accepted values; full grader and source mistake trajectory unverified")
+}
 func legacyCourse() throws -> Course { try course() }
 do {
     try mistakeReview()
@@ -302,7 +324,8 @@ do {
     try actualEnglishThirdTrajectory()
     try actualEnglishFourthTrajectory()
     try actualEnglishSettlement()
-    print("11 business checks passed; core layer only")
+    try actualEnglishInputStates()
+    print("12 business checks passed; core layer only")
 } catch {
     FileHandle.standardError.write(Data(("FAIL " + String(describing: error) + "\n").utf8))
     exit(1)

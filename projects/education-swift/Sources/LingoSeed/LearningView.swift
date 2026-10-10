@@ -182,14 +182,14 @@ struct LearningView: View {
             if let correct = lesson.feedback {
                 Image(systemName: correct ? "checkmark.circle.fill" : "xmark.circle.fill").font(.system(size: 48)).foregroundStyle(correct ? accent : .red)
                 VStack(alignment: .leading, spacing: 8) {
-                    Text(correct ? copy("Well done!", "好棒！") : copy("Correct answer: \(lesson.question.correctText)", "正确答案：\(lesson.question.correctText)")).font(.title2.bold())
+                    Text(correct ? (lesson.question.correctFeedback ?? copy("Well done!", "好棒！")) : copy("Correct answer: \(lesson.question.correctText)", "正确答案：\(lesson.question.correctText)")).font(.title2.bold())
                         .foregroundStyle(correct ? Color(red: 0.28, green: 0.62, blue: 0) : Color.red).accessibilityIdentifier("feedback").accessibilityValue(correct ? "correct" : "incorrect")
                     Text(lesson.question.explanation)
                 }
                 Spacer()
                 Button(copy("CONTINUE", "继续")) { model.advance() }.buttonStyle(SeedButtonStyle(fill: correct ? accent : .red)).accessibilityIdentifier("continue")
             } else {
-                Text(lesson.question.kind == .matching ? "Match all pairs to continue" : "Take your time. You’ve got this.").foregroundStyle(.secondary)
+                if lesson.question.sourceType == nil { Text(lesson.question.kind == .matching ? "Match all pairs to continue" : "Take your time. You’ve got this.").foregroundStyle(.secondary) }
                 Spacer()
                 if lesson.question.kind != .matching { Button(copy("CHECK", "检查")) { model.submit() }.buttonStyle(SeedButtonStyle(fill: accent)).disabled(!lesson.canSubmit).accessibilityIdentifier("check") }
             }
@@ -227,10 +227,33 @@ struct LearningView: View {
         case .choice: choices(lesson)
         case .wordTiles: words(lesson)
         case .matching: matching(lesson)
+        case .textEntry: textEntry(lesson)
         }
         if lesson.question.kind == .choice && lesson.question.sourceType != "dialogue" {
             Button { model.pronounce() } label: { Label(lesson.selected == nil ? "Read the instruction" : "Listen again", systemImage: "speaker.wave.2.fill") }.buttonStyle(.plain).foregroundStyle(.cyan).accessibilityIdentifier("pronounce")
         }
+    }
+    @ViewBuilder private func textEntry(_ lesson: Lesson) -> some View {
+        if let hint = lesson.question.hint {
+            Text(hint).font(ReferenceStyle.font(20)).accessibilityIdentifier("question-hint")
+        }
+        if lesson.question.sourceType == "listenComplete" {
+            HStack(spacing: 28) {
+                Button { model.playQuestion() } label: { Image(systemName: "speaker.wave.2.fill").font(.system(size: 36)).frame(width: 90, height: 78) }
+                    .buttonStyle(SeedButtonStyle(fill: .cyan)).accessibilityIdentifier("pronounce").accessibilityLabel("播放正常语速")
+                Button { model.playQuestion(slow: true) } label: { Image(systemName: "tortoise.fill").font(.system(size: 26)).frame(width: 56, height: 58) }
+                    .buttonStyle(SeedButtonStyle(fill: .cyan)).accessibilityIdentifier("pronounce-slow").accessibilityLabel("播放慢速")
+            }
+        }
+        HStack(spacing: 6) {
+            if let prefix = lesson.question.completionPrefix, !prefix.isEmpty { Text(prefix).font(ReferenceStyle.font(20)).accessibilityIdentifier("completion-prefix") }
+            TextField("", text: Binding(get: { model.lesson?.enteredText ?? "" }, set: { model.enterText($0) }))
+                .font(ReferenceStyle.font(20)).textFieldStyle(.plain).frame(width: 120)
+                .padding(.vertical, 8).overlay(alignment: .bottom) { Rectangle().fill(Color.gray.opacity(0.4)).frame(height: 2) }
+                .disabled(lesson.feedback != nil).accessibilityIdentifier("answer-input").accessibilityLabel("填写所缺单词")
+            if let suffix = lesson.question.completionSuffix { Text(suffix).font(ReferenceStyle.font(20)).accessibilityIdentifier("completion-suffix") }
+        }.frame(maxWidth: .infinity, alignment: .leading).padding(20)
+            .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color.gray.opacity(0.25), lineWidth: 2))
     }
     @ViewBuilder private func choices(_ lesson: Lesson) -> some View {
         if lesson.question.sourceType == "dialogue" {

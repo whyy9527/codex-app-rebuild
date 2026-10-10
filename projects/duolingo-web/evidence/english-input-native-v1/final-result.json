@@ -1,0 +1,121 @@
+{
+  "kind": "frontend_requirements",
+  "contract_digest": "4c15b91aa9556863fa055e1ce35cfbe73fe437ae12ae05171da13c806262c68f",
+  "observation_digest": "bd3e3a4300148b2283a66cd4ece080c4650e150a7847a37a50af00c7faddbf66",
+  "rows": [
+    {
+      "id": "en-zh-node2-q3-heading",
+      "state": "en-zh-node2-q3",
+      "status": "pass",
+      "expected": "输入所缺单词"
+    },
+    {
+      "id": "en-zh-node2-q3-fixed-suffix",
+      "state": "en-zh-node2-q3",
+      "status": "pass",
+      "expected": "or coffee?"
+    },
+    {
+      "id": "en-zh-node2-q3-filled-empty_check_disabled",
+      "state": "en-zh-node2-q3-filled",
+      "status": "pass",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "id": "en-zh-node2-q3-filled-nonempty_check_enabled",
+      "state": "en-zh-node2-q3-filled",
+      "status": "pass",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "id": "en-zh-node2-q3-filled-cleared_check_disabled",
+      "state": "en-zh-node2-q3-filled",
+      "status": "pass",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "id": "en-zh-node2-q3-submitted-locked",
+      "state": "en-zh-node2-q3-submitted",
+      "status": "pass",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "id": "en-zh-node2-q3-feedback-source-feedback",
+      "state": "en-zh-node2-q3-feedback",
+      "status": "pass",
+      "expected": "太棒了！"
+    },
+    {
+      "id": "en-zh-node2-q3-visual",
+      "state": "en-zh-node2-q3",
+      "status": "not_run",
+      "reason": "Source/candidate visual equivalence not proved by this input probe"
+    },
+    {
+      "id": "en-zh-node2-q3-audio",
+      "state": "en-zh-node2-q3",
+      "status": "not_run",
+      "reason": "Source/candidate audio equivalence not proved by this input probe"
+    },
+    {
+      "id": "en-zh-node2-q3-full-grader",
+      "state": "en-zh-node2-q3",
+      "status": "not_run",
+      "reason": "Source/candidate full-grader equivalence not proved by this input probe"
+    },
+    {
+      "id": "en-zh-node2-q5-heading",
+      "state": "en-zh-node2-q5",
+      "status": "pass",
+      "expected": "输入所缺单词"
+    },
+    {
+      "id": "en-zh-node2-q5-fixed-suffix",
+      "state": "en-zh-node2-q5",
+      "status": "pass",
+      "expected": "."
+    },
+    {
+      "id": "en-zh-node2-q5-prompt",
+      "state": "en-zh-node2-q5",
+      "status": "pass",
+      "expected": "我想要茶。"
+    },
+    {
+      "id": "en-zh-node2-q5-submitted-locked",
+      "state": "en-zh-node2-q5-submitted",
+      "status": "pass",
+      "expected": true,
+      "actual": true
+    },
+    {
+      "id": "en-zh-node2-q5-feedback-source-feedback",
+      "state": "en-zh-node2-q5-feedback",
+      "status": "pass",
+      "expected": "你太棒了！"
+    },
+    {
+      "id": "en-zh-node2-q5-visual",
+      "state": "en-zh-node2-q5",
+      "status": "not_run",
+      "reason": "Source/candidate visual equivalence not proved by this input probe"
+    },
+    {
+      "id": "en-zh-node2-q5-audio",
+      "state": "en-zh-node2-q5",
+      "status": "not_run",
+      "reason": "Source/candidate audio equivalence not proved by this input probe"
+    },
+    {
+      "id": "en-zh-node2-q5-full-grader",
+      "state": "en-zh-node2-q5",
+      "status": "not_run",
+      "reason": "Source/candidate full-grader equivalence not proved by this input probe"
+    }
+  ],
+  "status": "fail"
+}

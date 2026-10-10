@@ -89,7 +89,7 @@ func observe() -> [String: Any] {
     if let window = (attr(app, kAXWindowsAttribute) as? [AXUIElement])?.first, let position = attr(window, kAXPositionAttribute) { AXValueGetValue(position as! AXValue, .cgPoint, &origin) }
     for node in current() {
         guard let id = attr(node, kAXIdentifierAttribute) as? String else { continue }
-        var element: [String: Any] = ["role": attr(node, kAXRoleAttribute) as? String ?? "", "value": attr(node, kAXValueAttribute) as? String ?? ""]
+        var element: [String: Any] = ["enabled": attr(node, kAXEnabledAttribute) as? Bool ?? false, "role": attr(node, kAXRoleAttribute) as? String ?? "", "value": attr(node, kAXValueAttribute) as? String ?? ""]
         if let position = attr(node, kAXPositionAttribute), let size = attr(node, kAXSizeAttribute), let content {
             var point = CGPoint.zero; var dimensions = CGSize.zero
             AXValueGetValue(position as! AXValue, .cgPoint, &point); AXValueGetValue(size as! AXValue, .cgSize, &dimensions)
@@ -252,6 +252,41 @@ if CommandLine.arguments.contains("--walk-course") {
                 if let kind = (question["sourceType"] ?? question["kind"]) as? String, capturedKinds.insert(kind).inserted { try capture("question-" + kind) }
                 if course["interfaceLanguage"] as? String == "zh" { try capture(key + "-before") }
                 switch question["kind"] as? String {
+                case "text_entry":
+                    func enabled(_ id: String) -> Bool {
+                        current().first { (attr($0, kAXIdentifierAttribute) as? String) == id }.flatMap { attr($0, kAXEnabledAttribute) as? Bool } ?? false
+                    }
+                    func fill(_ value: String) throws {
+                        try waitFor("answer-input")
+                        let input = current().first { (attr($0, kAXIdentifierAttribute) as? String) == "answer-input" }!
+                        guard AXUIElementSetAttributeValue(input, kAXFocusedAttribute as CFString, kCFBooleanTrue) == .success else { throw ProbeError(message: "Cannot focus actual input") }
+                        // AX value assignment changes the field but can bypass SwiftUI's editing binding.
+                        // Send actual keyboard events to our isolated child instead.
+                        for down in [true, false] {
+                            let selectAll = CGEvent(keyboardEventSource: nil, virtualKey: 0, keyDown: down)!
+                            selectAll.flags = .maskCommand; selectAll.postToPid(child.processIdentifier)
+                        }
+                        for down in [true, false] { CGEvent(keyboardEventSource: nil, virtualKey: 51, keyDown: down)!.postToPid(child.processIdentifier) }
+                        if !value.isEmpty {
+                            let chars = Array(value.utf16)
+                            for down in [true, false] {
+                                let event = CGEvent(keyboardEventSource: nil, virtualKey: 0, keyDown: down)!
+                                chars.withUnsafeBufferPointer { event.keyboardSetUnicodeString(stringLength: chars.count, unicodeString: $0.baseAddress!) }
+                                event.postToPid(child.processIdentifier)
+                            }
+                        }
+                        try waitFor("answer-input", value: value)
+                        Thread.sleep(forTimeInterval: 0.15)
+                    }
+                    var interactions = ["empty_check_disabled": !enabled("check")]
+                    try fill("Te"); interactions["nonempty_check_enabled"] = enabled("check")
+                    try fill(""); interactions["cleared_check_disabled"] = !enabled("check")
+                    try fill(question["answer"] as! String)
+                    var observed = observe(); observed["interactions"] = interactions
+                    states[key + "-filled"] = observed; try capture(key + "-filled")
+                    try press("check"); try waitFor("continue")
+                    observed = observe(); observed["interactions"] = ["submitted_input_locked": !enabled("answer-input")]
+                    states[key + "-submitted"] = observed
                 case "matching":
                     for pair in question["pairs"] as! [[String: Any]] {
                         let id = pair["id"] as! String

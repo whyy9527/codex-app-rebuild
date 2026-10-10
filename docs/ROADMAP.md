@@ -132,3 +132,5 @@ Swift默认已切真实en/zh首课15题，保留每题sourceType、逐选项图�
 ### 英语第四课原生接入
 
 默认v4为57题，挑战入口/两处说明进入状态机；实际四课从空进度完成，核心10项通过。三课后主页505/青铜卡片修正，70个公开英语语音随Git交付。前端v5为303pass/8fail/208not_run，第四课24对截图全部不同；下一批直接修第四课完整结算与完成路径，再处理源动画、几何和实际声音。RSI消融未开展，完整Goal保持active。[实际证据](../projects/duolingo-web/evidence/english-fourth-native-v1/README.md)。
+
+第二节点输入增量：实际观察听音、反向填词接受与口语暂不练分支；原生输入组件12pass/6not_run，12项核心通过，六对像素仍不同。产品v7保留v6并增至578项，整体验收尚未重跑；默认四课未替换，完整第二节点和RSI策略消融仍待完成。[证据](../projects/duolingo-web/evidence/english-input-native-v1/README.md)。
