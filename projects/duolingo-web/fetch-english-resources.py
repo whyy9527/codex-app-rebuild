@@ -26,14 +26,14 @@ def fetch(row):
                 row['wire_sha256'] = hashlib.sha256(data).hexdigest()
                 row['content_encoding'] = 'gzip'
                 data = gzip.decompress(data)
-        if row['kind'] != 'speech': assert b'<svg' in data[:2000]
+        if row['kind'] not in ('speech', 'feedback'): assert b'<svg' in data[:2000]
         path.write_bytes(data)
     row['sha256'] = hashlib.sha256(path.read_bytes()).hexdigest()
     return row
 with concurrent.futures.ThreadPoolExecutor(max_workers=6) as pool:
     rows = list(pool.map(fetch, rows))
 images = [{'name': r['name'], 'svg': (out/r['source_file']).read_text(),
-           'target': str((out/(r['name']+'.png')).resolve())} for r in rows if r['kind'] != 'speech']
+           'target': str((out/(r['name']+'.png')).resolve())} for r in rows if r['kind'] not in ('speech', 'feedback') and not (out/(r['name']+'.png')).exists()]
 # Own tab is used only to reach its browser; asset rendering does not share
 # reference cookies, navigation or state.
 code = '''async page => {
@@ -47,7 +47,7 @@ code = '''async page => {
 r = subprocess.run([a.cli,'-s='+a.session,'run-code',code],cwd='artifacts/output/playwright',text=True,capture_output=True,timeout=90)
 if r.returncode or '### Result\n' not in r.stdout: raise RuntimeError('Asset rendering failed; inspect browser before retry')
 for row in rows:
-    if row['kind'] != 'speech':
+    if row['kind'] not in ('speech', 'feedback'):
         row['rendered_file'] = row['name']+'.png'
         row['rendered_sha256'] = hashlib.sha256((out/row['rendered_file']).read_bytes()).hexdigest()
 receipt = Path(a.out)

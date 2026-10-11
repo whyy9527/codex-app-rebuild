@@ -209,7 +209,7 @@ struct ReferenceHome: View {
                 Spacer(); stat("hearts", "\(model.progress.hearts)", color: .red, width: 28)
             }.padding(.horizontal, 12).padding(.bottom, 16)
             if model.destination == "Quests" {
-                ReferenceQuestMonthly { model.destination = "Practice" }
+                ReferenceQuestMonthly { model.beginGeneralPractice() }
             } else {
             card {
                 HStack {

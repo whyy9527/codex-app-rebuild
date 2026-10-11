@@ -87,7 +87,8 @@ final class AudioSink: NSObject, SCStreamOutput, @unchecked Sendable {
                     throw NSError(domain: "OwnedAudio", code: 2, userInfo: [NSLocalizedDescriptionKey: "Cannot press owned audio scenario control: " + id])
                 }
                 actions.append(["id": id, "elapsed_seconds": Date().timeIntervalSince(started)])
-                try await Task.sleep(for: .milliseconds(160))
+                let gap = CommandLine.arguments.count > 5 ? Double(CommandLine.arguments[5])! : 0.16
+                try await Task.sleep(for: .seconds(gap))
             }
         }
         let remaining = duration - Date().timeIntervalSince(started)

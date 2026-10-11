@@ -1,0 +1,21 @@
+{
+  "kind": "observed_native_trajectory_invariants",
+  "checks": {
+    "wrong_does_not_decrement_heart": true,
+    "before_reward_continue_hearts_3": true,
+    "after_reward_continue_hearts_4": true,
+    "main_six_unchanged": true,
+    "practice_completed_separately": true,
+    "real_restart_observed": true,
+    "source_keyboard_geometry": true
+  },
+  "source_evidence": [
+    "projects/duolingo-web/evidence/english-general-practice-v1/trace.json",
+    "projects/duolingo-web/evidence/english-general-practice-v1/heart-reward-continue.json",
+    "projects/duolingo-web/evidence/english-general-practice-native-v1/source-probe/wrong-assist-exit.json"
+  ],
+  "limitations": [
+    "Frozen one observed instance; no adaptive selection or reward cap formula proved",
+    "Exact pixels and acoustic equality are separate; core/trajectory pass cannot replace them"
+  ]
+}

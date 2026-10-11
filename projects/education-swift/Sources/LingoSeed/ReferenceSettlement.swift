@@ -7,6 +7,7 @@ struct ReferenceSettlement: View {
     let page: SettlementPage
     let mistakesMade: Int
     let advance: () -> Void
+    var retry: (() -> Void)? = nil
     private let yellow = Color(red: 1, green: 0.78, blue: 0)
     private let orange = Color(red: 1, green: 0.58, blue: 0)
     var body: some View {
@@ -24,6 +25,10 @@ struct ReferenceSettlement: View {
                 HStack {
                     if ["result", "streak", "daily_quests", "gems", "achievement"].contains(page.kind) { secondary }
                     Spacer()
+                    if let label = page.retryLabel, let retry {
+                        Button(label, action: retry).buttonStyle(ReferenceButton(color: ReferenceStyle.blue))
+                            .frame(width: 150).padding(.trailing, 30).accessibilityIdentifier("settlement-retry")
+                    }
                     Button(page.continueLabel, action: advance)
                         .buttonStyle(ReferenceButton(color: page.kind == "streak" ? ReferenceStyle.blue : ReferenceStyle.green))
                         .frame(width: 150).accessibilityIdentifier("settlement-continue")

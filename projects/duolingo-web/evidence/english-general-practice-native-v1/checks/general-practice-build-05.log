@@ -1,0 +1,22 @@
+[0/1] Planning build
+Building for debugging...
+[0/7] Write sources
+[1/7] Copying Reference
+[2/7] Write swift-version--1AB21518FC5DEDBE.txt
+[4/7] Emitting module LingoSeed
+[5/7] Compiling LingoSeed LearningView.swift
+<repo>/projects/education-swift/Sources/LingoSeed/LearningView.swift:330:9: error: 'ReferencePracticeControl' is inaccessible due to 'private' protection level
+328 |     }
+329 |     private func generalListeningButton(slow: Bool, size: CGFloat, iconSize: CGSize) -> some View {
+330 |         ReferencePracticeControl(label: slow ? "播放慢速" : "播放正常语速", identifier: slow ? "pronounce-slow" : "pronounce", enabled: true,
+    |         `- error: 'ReferencePracticeControl' is inaccessible due to 'private' protection level
+331 |             action: { model.playQuestion(slow: slow) }, face: AnyView(
+332 |                 ReferenceStyle.image(slow ? "general-listen-slow-source-frame" : "general-listen-normal-source-frame")
+
+<repo>/projects/education-swift/Sources/LingoSeed/ReferencePronunciationPractice.swift:233:16: note: 'ReferencePracticeControl' declared here
+231 | }
+232 |
+233 | private struct ReferencePracticeControl: NSViewRepresentable {
+    |                `- note: 'ReferencePracticeControl' declared here
+234 |     let label: String
+235 |     let identifier: String

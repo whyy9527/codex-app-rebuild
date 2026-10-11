@@ -6,9 +6,9 @@
 
 当前默认夹具为 `fixture-reference-en-zh-v11.json`：七课102道评分题，保留实际口语暂缓、听力暂缓、插入/替换题、独立输入偏好、跳过重练及结算路径。第七课15题与三页结算已原生走通，后续课程继续探索；不会把学完已编译课程标成整课程完成。
 
-特别任务页已从原版探索并替换英文占位内容，10文案/5几何通过；整图及其独立练习入口仍失败。[任务页、新发现与复跑](projects/duolingo-web/evidence/english-quests-v1/README.md)。
+特别任务页已从原版探索并替换英文占位内容，10文案/5几何通过；整图仍失败；独立练习入口随后接入，见下方新原生回执。[任务页、新发现与复跑](projects/duolingo-web/evidence/english-quests-v1/README.md)。
 
-独立 `/practice` 已实际走完口语暂缓、动态插入/替换、错误更正、结算及红心奖励；v28新增88项前端要求，Swift这条流程仍待实现。源证据通过不算候选通过。[实际轨迹、缺口和复跑](projects/duolingo-web/evidence/english-general-practice-v1/README.md)。
+独立 `/practice` 已从实际16题轨迹编译为单独Swift课程，从任务页进入，走通口语暂缓、插入/替换、故意错误更正、结算、红心奖励及真正重启。主六课保持不变；原版资源已捆绑，采集到自有应用实际输出。共同v28仍有整图等失败，不算1:1完成；实际自适应选题及正常口语等继续探索。[原版轨迹](projects/duolingo-web/evidence/english-general-practice-v1/README.md)、[原生回执、失败与复跑](projects/duolingo-web/evidence/english-general-practice-native-v1/README.md)。
 
 共同前端契约已接入真实PNG比较，缺图不可计为通过；发音卡片进一步按浏览器实际字体、字距、卡面和按下反馈修正，整图仍失败。[当前证据与复跑](projects/duolingo-web/evidence/english-pronunciation-typography-v1/README.md)。
 

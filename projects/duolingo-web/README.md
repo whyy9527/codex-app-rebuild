@@ -138,3 +138,8 @@ node projects/duolingo-web/explore-curriculum.mjs artifacts/reference-new.json -
 特别任务实际探索发现独立/practice四组听音配对，未与主课程混用。Swift任务页15项通过，整图/练习入口继续失败；v27保留全部旧要求新增18，当前默认v11仅增加六课倒计时快照。[源证据、失败与复跑](evidence/english-quests-v1/README.md)。
 
 真实GLOBAL_PRACTICE已走完整轨迹：16道评分题、口语暂缓、一次错误后的复习更正、5XP/94%截图结算、红心奖励和返回。初始API列表实际被插入/替换，图片命名未出现；键盘/词库也需分状态观察。v28保留1747旧项并追加88，候选新增状态全未访问；本批不改Swift，不把源88通过当产品通过。[轨迹、边界、工具修正及复跑](evidence/english-general-practice-v1/README.md)。
+
+
+## 独立练习的原生实现批次
+
+实际16道评分题现由`compile-general-practice.py`编译为独立夹具，任务页入口真实加载；本轮原生走通暂缓插题、挑战替换、错误复习、结算、红心和重启，主课六课不变。原版MP3与实际SVG帧绑定到相应控件，输出传输有自有子进程采集，麦克风关闭。所有前端要求仍由v28共同验证，整图未一致；不能把入口与流程通过当1:1。后续实际源探针发现新实例、听力暂缓标题以及答对后退出确认，保留失败与待实现分支。[证据、复盘和命令](evidence/english-general-practice-native-v1/README.md)。

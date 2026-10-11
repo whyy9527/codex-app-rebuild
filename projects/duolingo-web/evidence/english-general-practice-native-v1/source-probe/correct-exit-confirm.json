@@ -1,0 +1,6 @@
+{
+  "before": "- button:\n  - img\n- progressbar\n- heading \"选择正确的答案\" [level=1]\n- text: 牛奶\n- img\n- radiogroup \"choice\":\n  - radio \"1 sugar\":\n    - text: 1 sugar\n    - img\n    - img\n  - radio \"2 milk\":\n    - text: 2 milk\n    - img\n    - img\n  - radio \"3 hello\":\n    - text: 3 hello\n    - img\n    - img\n- button \"跳过\"\n- button \"检查\" [disabled]",
+  "feedback": "- button:\n  - img\n- progressbar\n- heading \"选择正确的答案\" [level=1]\n- text: 牛奶\n- img\n- radiogroup \"choice\":\n  - radio \"1 sugar\" [disabled]:\n    - text: 1 sugar\n    - img\n    - img\n  - radio \"2 milk\" [checked] [disabled]:\n    - text: 2 milk\n    - img\n    - img\n  - radio \"3 hello\" [disabled]:\n    - text: 3 hello\n    - img\n    - img\n- heading \"太棒了！\" [level=2]\n- button \"太简单\"\n- button \"太难\"\n- button \"报错\"\n- button \"继续\"",
+  "quit": "- button:\n  - img\n- progressbar:\n  - img\n- heading \"选择正确的答案\" [level=1]\n- text: 牛奶\n- img\n- radiogroup \"choice\":\n  - radio \"1 sugar\" [disabled]:\n    - text: 1 sugar\n    - img\n    - img\n  - radio \"2 milk\" [checked] [disabled]:\n    - text: 2 milk\n    - img\n    - img\n  - radio \"3 hello\" [disabled]:\n    - text: 3 hello\n    - img\n    - img\n- heading \"太棒了！\" [level=2]\n- button \"太简单\"\n- button \"太难\"\n- button \"报错\"\n- button \"继续\"",
+  "url": "https://www.duolingo.com/practice"
+}

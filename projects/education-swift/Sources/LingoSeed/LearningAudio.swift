@@ -7,12 +7,22 @@ import AVFoundation
     private var player: AVAudioPlayer?
     private let speech = AVSpeechSynthesizer()
     private var referenceSpeech: AVAudioPlayer?
+    private var referenceEffects: [AVAudioPlayer] = []
     private let resourceURL: (String) -> URL?
     init(resourceURL: @escaping (String) -> URL? = { _ in nil }) { self.resourceURL = resourceURL }
     var referenceSpeechPlaying: Bool { referenceSpeech?.isPlaying ?? false }
     var referencePlaybackTime: TimeInterval { referenceSpeech?.currentTime ?? 0 }
-    var muted = false { didSet { if muted { player?.stop(); referenceSpeech?.stop(); speech.stopSpeaking(at: .immediate) } } }
-    var effectsEnabled = true { didSet { if !effectsEnabled { player?.stop() } } }
+    var muted = false { didSet { if muted { player?.stop(); referenceSpeech?.stop(); referenceEffects.forEach { $0.stop() }; speech.stopSpeaking(at: .immediate) } } }
+    var effectsEnabled = true { didSet { if !effectsEnabled { player?.stop(); referenceEffects.forEach { $0.stop() } } } }
+    @discardableResult func playReferenceEffect(_ resource: String?) -> Bool {
+        guard !muted, effectsEnabled, let resource, let url = resourceURL(resource) else { return false }
+        do {
+            referenceEffects.removeAll { !$0.isPlaying }
+            let effect = try AVAudioPlayer(contentsOf: url)
+            effect.prepareToPlay(); referenceEffects.append(effect)
+            return effect.play()
+        } catch { NSLog("Reference effect playback failed: %@", error.localizedDescription); return false }
+    }
     var isPlaying: Bool { player?.isPlaying ?? false }
     var playbackTime: TimeInterval { player?.currentTime ?? 0 }
     @discardableResult func play(_ cue: Cue) -> Bool {

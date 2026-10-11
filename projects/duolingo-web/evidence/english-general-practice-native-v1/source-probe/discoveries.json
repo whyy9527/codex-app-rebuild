@@ -1,0 +1,58 @@
+{
+  "kind": "actual_source_followup",
+  "source": "Chinese native English guest web",
+  "observations": [
+    {
+      "behavior": "Reload or re-entry can change question instance; first assist or matching words differ",
+      "evidence": [
+        "entry.json",
+        "session.json",
+        "listening-declined.json"
+      ]
+    },
+    {
+      "behavior": "One incorrect assist then quit returns learn; visible hearts remain 4",
+      "evidence": [
+        "wrong-assist-exit.json",
+        "home-after-wrong.json"
+      ]
+    },
+    {
+      "behavior": "ListenMatch decline shows 听力题已跳过 / 将在 15 分钟后恢复, proceeds to assist 牛奶",
+      "evidence": [
+        "listening-declined.json"
+      ]
+    },
+    {
+      "behavior": "After decline and one correct assist, quit shows confirmation; confirmed quit returns learn",
+      "evidence": [
+        "correct-exit-confirm.json",
+        "correct-exit-settled.json",
+        "correct-exit-return.json"
+      ]
+    }
+  ],
+  "frontier": [
+    "New source instance/adaptive selection beyond frozen 16-question course",
+    "General listening-decline title currently differs in candidate; existing subtitle rule remains to verify elsewhere",
+    "Actual general-practice confirmation cancel/abandon UI replay",
+    "Reward cap and timing independent of natural hearts regeneration",
+    "Normal oral recognition/grading; not exercised with environmental input",
+    "Result secondary review/retry actual branches",
+    "Full pixel/character animation and actual source/candidate acoustic equality"
+  ],
+  "failures": [
+    {
+      "probe": "wrong-exit initial attempt",
+      "result": "Expected matching but actual assist; stopped before answering"
+    },
+    {
+      "probe": "correct-exit entry",
+      "result": "Used button role for source link; timeout, then observed snapshot and clicked actual link"
+    },
+    {
+      "probe": "correct-exit immediate snapshot",
+      "result": "Immediate snapshot had old challenge; separate settled capture observed modal. No second exit click."
+    }
+  ]
+}

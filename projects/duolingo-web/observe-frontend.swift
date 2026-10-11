@@ -175,10 +175,111 @@ try capture("home-window")
 if CommandLine.arguments.contains("--observe-quests") {
     try press("nav-quests"); Thread.sleep(forTimeInterval: 0.5)
     states["quests"] = observe(); try capture("quests")
+    if CommandLine.arguments.contains("--exercise-general-practice") {
+        let practiceURL = root.appendingPathComponent("projects/duolingo-web/fixture-reference-en-zh-general-practice-v1.json")
+        let practiceFixture = try JSONSerialization.jsonObject(with: Data(contentsOf: practiceURL)) as! [String: Any]
+        let practice = (practiceFixture["data"] as! [String: Any])["candidate_course"] as! [String: Any]
+        let definition = (practice["lessons"] as! [[String: Any]])[0]
+        let questions = definition["questions"] as! [[String: Any]]
+        let initialProgress = try Data(contentsOf: progress)
+        var failure: String?
+        do {
+            try press("quests-practice")
+            for question in questions {
+                let key = question["id"] as! String
+                if key == "general-practice-inserted" {
+                    try waitFor("speech-title", value: "general-practice-speech")
+                    states["general-practice-speech"] = observe(); try capture("general-practice-speech")
+                    try press("speech-decline"); try waitFor("speech-closed")
+                    states["general-practice-speech-declined"] = observe(); try capture("general-practice-speech-declined")
+                    try press("speech-continue")
+                }
+                if key == "general-practice-q6" {
+                    try waitFor("question-title", value: question["keyboardPrompt"] as? String)
+                    states["general-practice-keyboard"] = observe(); try capture("general-practice-keyboard")
+                    try clickOwnedControl("toggle-input-mode")
+                }
+                try waitFor(question["kind"] as? String == "matching" ? "question-prompt" : "question-title", value: question["kind"] as? String == "matching" ? key : question["prompt"] as? String)
+                states[key] = observe(); try capture(key)
+                if key == "general-practice-q0" { states["quests-practice-entry"] = states[key]; try capture("quests-practice-entry") }
+                switch question["kind"] as? String {
+                case "matching":
+                    let pairs = question["pairs"] as! [[String: Any]]
+                    if key == "general-practice-q0", let index = CommandLine.arguments.firstIndex(of: "--general-practice-audio-recorder"), index + 1 < CommandLine.arguments.count {
+                        let actions = output.appendingPathComponent("audio-actions.json")
+                        try JSONSerialization.data(withJSONObject: pairs.flatMap { ["pair-left-" + ($0["id"] as! String), "pair-right-" + ($0["id"] as! String)] }).write(to: actions, options: .withoutOverwriting)
+                        let recorder = Process()
+                        recorder.executableURL = URL(fileURLWithPath: CommandLine.arguments[index + 1])
+                        recorder.arguments = [String(child.processIdentifier), output.appendingPathComponent("general-practice.wav").path, "14", actions.path, "1.1"]
+                        let log = output.appendingPathComponent("audio-recorder.log")
+                        FileManager.default.createFile(atPath: log.path, contents: nil)
+                        let handle = try FileHandle(forWritingTo: log)
+                        recorder.standardOutput = handle; recorder.standardError = handle
+                        try recorder.run(); recorder.waitUntilExit()
+                        guard recorder.terminationStatus == 0 else { throw ProbeError(message: "Owned practice output recording failed; preserve log") }
+                    } else {
+                        for pair in pairs { try press("pair-left-" + (pair["id"] as! String)); try press("pair-right-" + (pair["id"] as! String)) }
+                    }
+                case "word_tiles":
+                    for word in question["answer_words"] as! [String] { try press("word-bank-" + word) }
+                    try press("check")
+                case "text_entry":
+                    try fillInput(key == "general-practice-replacement15" ? "water" : question["answer"] as! String)
+                    try press("check")
+                default:
+                    try press("option-" + (question["answer"] as! String)); try press("check")
+                }
+                try waitFor("continue")
+                states[key + "-feedback"] = observe(); try capture(key + "-feedback")
+                if key == "general-practice-replacement15" {
+                    try Data(contentsOf: progress).write(to: output.appendingPathComponent("progress-after-wrong.json"), options: .withoutOverwriting)
+                }
+                try press("continue")
+                if key == "general-practice-q12" {
+                    try waitFor("lesson-interlude", value: "general-practice-challenge-intro")
+                    states["general-practice-challenge-intro"] = observe(); try capture("general-practice-challenge-intro")
+                    try press("interlude-continue")
+                }
+            }
+            try waitFor("lesson-interlude", value: "general-practice-review-intro")
+            states["general-practice-review-intro"] = observe(); try capture("general-practice-review-intro")
+            try press("interlude-continue"); try waitFor("review-label")
+            states["general-practice-review"] = observe(); try capture("general-practice-review")
+            try fillInput(questions.last!["answer"] as! String); try press("check"); try waitFor("continue")
+            states["general-practice-review-feedback"] = observe(); try capture("general-practice-review-feedback")
+            try press("continue")
+            for (state, page) in zip(["general-practice-result", "general-practice-heart-reward", "general-practice-profile"], definition["settlement"] as! [[String: Any]]) {
+                try waitFor(page["kind"] as? String == "result" ? "lesson-complete" : "settlement-title", value: page["title"] as? String)
+                states[state] = observe(); try capture(state)
+                try Data(contentsOf: progress).write(to: output.appendingPathComponent(state + "-progress.json"), options: .withoutOverwriting)
+                try press("settlement-continue")
+            }
+            try waitFor("course-entry")
+            states["general-practice-home-return"] = observe(); try capture("general-practice-home-return")
+            child.terminate(); child.waitUntilExit()
+            child = try launchChild(); app = AXUIElementCreateApplication(child.processIdentifier)
+            try waitFor("course-entry"); configureWindow()
+            states["general-practice-home-restart"] = observe(); try capture("general-practice-home-restart")
+            try initialProgress.write(to: output.appendingPathComponent("progress-before.json"), options: .withoutOverwriting)
+        } catch {
+            failure = String(describing: error)
+            states["failure-boundary"] = observe(); try? capture("failure-boundary")
+        }
+        try bindCaptures(&states, names: ["home":"home-window"])
+        let receipt: [String: Any] = ["kind":"owned_native_ax_observation", "states":states,
+            "candidate_binary_sha256":candidateSHA, "fixture_sha256":fixtureSHA,
+            "general_fixture_sha256":SHA256.hash(data:try Data(contentsOf:practiceURL)).map{String(format:"%02x",$0)}.joined(),
+            "observed_at":ISO8601DateFormatter().string(from:Date()), "failure":failure as Any,
+            "action":"Actual Quests entry, independent practice, one wrong, correction, result/reward/profile and real child restart",
+            "limitations":["Observed finite source instance; adaptive selection, complete pixels and acoustic equality remain unproven"]]
+        try JSONSerialization.data(withJSONObject:receipt, options:[.prettyPrinted,.sortedKeys]).write(to:output.appendingPathComponent("observed.json"))
+        if let failure { throw ProbeError(message: failure) }
+        return
+    }
     if CommandLine.arguments.contains("--exercise-quests-practice") {
-        try press("quests-practice"); try waitFor("destination-title", value: "Practice")
+        try press("quests-practice"); try waitFor("question-prompt", value: "general-practice-q0")
         states["quests-practice-entry"] = observe(); try capture("quests-practice-entry")
-        try press("return-learn"); try waitFor("course-entry")
+        try press("exit"); try waitFor("course-entry")
         states["quests-practice-exited"] = observe(); try capture("quests-practice-exited")
     }
     try bindCaptures(&states, names: ["home":"home-window"])
@@ -186,7 +287,7 @@ if CommandLine.arguments.contains("--observe-quests") {
         "candidate_binary_sha256":candidateSHA, "fixture_sha256":fixtureSHA,
         "observed_at":ISO8601DateFormatter().string(from:Date()),
         "action":"Actual quests navigation and optional practice entry; no driver pass flags",
-        "limitations":["Actual AX and owned captures; general-practice route remains unimplemented"]]
+        "limitations":["Actual AX and owned captures; this entry-only run does not verify the full independent practice"]]
     try JSONSerialization.data(withJSONObject:receipt, options:[.prettyPrinted,.sortedKeys]).write(to:output.appendingPathComponent("observed.json"))
     return
 }

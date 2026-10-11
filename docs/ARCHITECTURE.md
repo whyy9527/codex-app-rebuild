@@ -211,4 +211,11 @@ Lesson将词库键盘、填空整句偏好分别保存；clearAnswer清答案缓
 
 ### 独立练习的实际轨迹
 
-capture-reference-session显式选择/lesson或/practice，保留白名单公共内容。reference-challenge-identity在作答前校验完整选项/实际媒体/填空上下文；replay按实际DOM类型识别插入/替换，未支持题型另记coverage。键盘态不被当空词库接受。freeze-general-practice从有反馈的真实回执生成前端规格及按实际顺序排列的trace，不将API预告列表当状态机。原版GLOBAL_PRACTICE已出现口语暂缓插入、挑战题替换、错题复习及红心奖励，需要独立于主课解锁/扣生命；Swift尚未接入。原生驱动将消费同一状态ID和要求，源自校验与旧候选重评估分别报告。[证据、模具和下一实施批次](../projects/duolingo-web/evidence/english-general-practice-v1/README.md)。
+capture-reference-session显式选择/lesson或/practice，保留白名单公共内容。reference-challenge-identity在作答前校验完整选项/实际媒体/填空上下文；replay按实际DOM类型识别插入/替换，未支持题型另记coverage。键盘态不被当空词库接受。freeze-general-practice从有反馈的真实回执生成前端规格及按实际顺序排列的trace，不将API预告列表当状态机。原版GLOBAL_PRACTICE已出现口语暂缓插入、挑战题替换、错题复习及红心奖励，需要独立于主课解锁/扣生命；该源采集批次尚未接入Swift。后续实现见下一段。源自校验与旧候选重评估分别报告。[证据、模具和下一实施批次](../projects/duolingo-web/evidence/english-general-practice-v1/README.md)。
+
+
+### 独立练习的Swift消费者
+
+`compile-general-practice.py`读取实际评分回执与动态替换，生成单独的Course夹具及原版媒体清单。Lesson沿用题型、独立输入偏好、暂缓和重练；每课程的mistakeHeartCost默认1，实际通用练习设0。LearningModel用sessionKind区分主课、发音和通用练习，任务入口加载单独课程，完成记录不解锁主课，实际奖励页继续才写入一颗心。当前只重放已观测实例，自适应题目生成及奖励上限并未实现。
+
+题目可带已观察的配对/反馈MP3，LearningAudio的原版效果播放器允许配对完成音与最终反馈并发；缺失原音不添加通用练习的合成点击。复用ReferencePronunciationPractice的头部和配对区，其余题型由共享题型渲染；这只是代码复用，不表示视觉一致。原生驱动实际点击/键入同一状态ID并采样PNG，失败时存实际边界。AXPress返回成功但键盘模式未切换的失败保留，单独重跑使用实际屏幕点击。自有应用输出采集仅筛选子进程、关闭麦克风，回执记录动作时序，不能从非零波形推出声学相等。[完整证据与边界](../projects/duolingo-web/evidence/english-general-practice-native-v1/README.md)。

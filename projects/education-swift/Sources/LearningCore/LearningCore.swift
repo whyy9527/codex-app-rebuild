@@ -24,6 +24,9 @@ public struct ListeningDecline: Codable, Equatable, Sendable {
     public let body: String
 }
 public struct Question: Codable, Equatable, Sendable, Identifiable {
+    public let matchedAudioResources: [String]?
+    public let correctFeedbackAudioResource: String?
+    public let incorrectFeedbackAudioResource: String?
     public let practiceAudioResources: [String]?
     public let practiceAudioLabels: [String]?
     public let id: String
@@ -59,6 +62,7 @@ public struct Question: Codable, Equatable, Sendable, Identifiable {
     public let skipCorrectText: String?
     public let feedbackReportReasons: [String]?
     enum CodingKeys: String, CodingKey {
+        case matchedAudioResources, correctFeedbackAudioResource, incorrectFeedbackAudioResource
         case practiceAudioResources, practiceAudioLabels, feedbackHint, reviewWordOrder, skipLabel, skipCorrectText
         case keyboardAnswer, keyboardPrompt, correctFeedback, indicator, example, exampleAudioResource, completionPrefix, completionSuffix, listeningDecline, feedbackReportReasons
         case id, kind, prompt, options, answer, words, pairs, explanation, hint, newWord, rightOrder, audioResource, sourceLanguage, characterResource, sourceType, slowAudioResource, dialogueAvatars
@@ -66,6 +70,9 @@ public struct Question: Codable, Equatable, Sendable, Identifiable {
     }
     public init(from decoder: Decoder) throws {
         let c = try decoder.container(keyedBy: CodingKeys.self)
+        matchedAudioResources = try c.decodeIfPresent([String].self, forKey: .matchedAudioResources)
+        correctFeedbackAudioResource = try c.decodeIfPresent(String.self, forKey: .correctFeedbackAudioResource)
+        incorrectFeedbackAudioResource = try c.decodeIfPresent(String.self, forKey: .incorrectFeedbackAudioResource)
         practiceAudioResources = try c.decodeIfPresent([String].self, forKey: .practiceAudioResources)
         practiceAudioLabels = try c.decodeIfPresent([String].self, forKey: .practiceAudioLabels)
         id = try c.decode(String.self, forKey: .id)
@@ -136,6 +143,7 @@ public struct LessonEntry: Codable, Equatable, Sendable, Identifiable {
     public let declineLabel: String
 }
 public struct SettlementPage: Codable, Equatable, Sendable, Identifiable {
+    public var retryLabel: String? = nil
     public let id: String
     public let kind: String
     public let title: String
@@ -167,6 +175,7 @@ public struct SettlementFlow: Equatable, Sendable {
     public mutating func advance() { if current != nil { position += 1 } }
 }
 public struct LessonDefinition: Codable, Equatable, Sendable, Identifiable {
+    public var initialKeyboardForTiles: Bool? = nil
     public let id: String
     public let title: String
     public let questions: [Question]
@@ -208,6 +217,7 @@ public struct HomePresentation: Codable, Equatable, Sendable {
     public let progressSnapshots: [HomeProgressSnapshot]?
 }
 public struct Course: Codable, Equatable, Sendable, Identifiable {
+    public let mistakeHeartCost: Int
     public let id: String
     public let title: String
     public let lessons: [LessonDefinition]
@@ -218,9 +228,10 @@ public struct Course: Codable, Equatable, Sendable, Identifiable {
     public let usesLegacyQuestions: Bool
     // Compatibility for the original single-lesson curriculum.
     public var questions: [Question] { lessons[0].questions }
-    enum CodingKeys: String, CodingKey { case id, title, lessons, questions, speechLanguage, pathNodes, interfaceLanguage, home }
+    enum CodingKeys: String, CodingKey { case id, title, lessons, questions, speechLanguage, pathNodes, interfaceLanguage, home, mistakeHeartCost }
     public init(from decoder: Decoder) throws {
         let c = try decoder.container(keyedBy: CodingKeys.self)
+        mistakeHeartCost = try c.decodeIfPresent(Int.self, forKey: .mistakeHeartCost) ?? 1
         id = try c.decode(String.self, forKey: .id)
         title = try c.decode(String.self, forKey: .title)
         home = try c.decodeIfPresent(HomePresentation.self, forKey: .home)
@@ -239,6 +250,7 @@ public struct Course: Codable, Equatable, Sendable, Identifiable {
     public func encode(to encoder: Encoder) throws {
         var c = encoder.container(keyedBy: CodingKeys.self)
         try c.encode(id, forKey: .id); try c.encode(title, forKey: .title)
+        try c.encode(mistakeHeartCost, forKey: .mistakeHeartCost)
         try c.encode(speechLanguage, forKey: .speechLanguage)
         try c.encodeIfPresent(interfaceLanguage, forKey: .interfaceLanguage)
         try c.encodeIfPresent(home, forKey: .home)
@@ -250,7 +262,7 @@ public struct Course: Codable, Equatable, Sendable, Identifiable {
         struct DataSection: Decodable { let candidate_course: Course }
         struct Fixture: Decodable { let data: DataSection }
         let course = try JSONDecoder().decode(Fixture.self, from: Data(contentsOf: url)).data.candidate_course
-        guard !course.id.isEmpty, !course.lessons.isEmpty,
+        guard !course.id.isEmpty, course.mistakeHeartCost >= 0, !course.lessons.isEmpty,
               Set(course.lessons.map(\.id)).count == course.lessons.count,
               course.lessons.allSatisfy({ lesson in
                   !lesson.id.isEmpty && !lesson.questions.isEmpty
@@ -332,6 +344,8 @@ public struct Lesson: Equatable, Sendable {
         precondition(course.lessons.indices.contains(lessonIndex) && hearts >= 0)
         self.course = course; self.lessonIndex = lessonIndex; self.hearts = hearts
         self.interlude = course.lessons[lessonIndex].initialInterlude
+        self.prefersKeyboardForTiles = course.lessons[lessonIndex].initialKeyboardForTiles ?? false
+        self.usingKeyboard = supportsInputMode && prefersKeyboardForTiles
     }
     public mutating func choose(_ id: String) {
         guard question.kind == .choice, feedback == nil, !listeningDeclined, !complete, interlude == nil, deferredSpeech == nil, question.options.contains(where: { $0.id == id }) else { return }
@@ -361,7 +375,7 @@ public struct Lesson: Equatable, Sendable {
             if a == b { matchedPairs.insert(a) }
             else if question.sourceType == "listenMatch" {
                 incorrectMatch = [a, b]
-                hearts = max(0, hearts - 1); mistakesMade += 1; correctStreak = 0
+                hearts = max(0, hearts - course.mistakeHeartCost); mistakesMade += 1; correctStreak = 0
                 // Observed mixed-error source retries this pair in-place and reviews only its typed error at lesson end.
             } else { matchingHint = "Try a different pair." } // Historical text-pair penalty remains unobserved.
             selectedLeft = nil; selectedRight = nil
@@ -395,7 +409,7 @@ public struct Lesson: Equatable, Sendable {
         correctStreak = correct ? correctStreak + 1 : 0
         if !correct {
             mistakesMade += 1
-            hearts = max(0, hearts - 1)
+            hearts = max(0, hearts - course.mistakeHeartCost)
             if !review.contains(position) { review.append(position) }
         }
     }

@@ -4,6 +4,8 @@ import LearningCore
 struct ReferencePronunciationPractice: View {
     @Bindable var model: LearningModel
     let lesson: Lesson
+    var otherQuestion: AnyView? = nil
+    var otherFooter: AnyView? = nil
     private var question: Question { lesson.question }
     var body: some View {
         GeometryReader { geometry in
@@ -16,13 +18,20 @@ struct ReferencePronunciationPractice: View {
                         .buttonStyle(.plain).accessibilityIdentifier("exit")
                     ProgressView(value: lesson.complete ? 1 : lesson.reviewing ? 0.9 : Double(lesson.position) / Double(lesson.definition.questions.count)).tint(ReferenceStyle.green).accessibilityIdentifier("lesson-progress")
                 }.frame(maxWidth: 1000).padding(.top, 50)
-                if let speech = lesson.deferredSpeech {
+                if let interlude = lesson.interlude {
+                    VStack(spacing: 28) {
+                        ReferenceStyle.image("duo-observed-frame").resizable().scaledToFit().frame(width: 180, height: 190)
+                        Text(interlude.text).font(ReferenceStyle.font(28, bold: true)).multilineTextAlignment(.center).accessibilityIdentifier("lesson-interlude").accessibilityValue(interlude.id)
+                    }.frame(width: 600).padding(.top, 80)
+                } else if let speech = lesson.deferredSpeech {
                     speechPanel(speech).padding(.top, 51)
                 } else if lesson.complete {
                     VStack(spacing: 24) {
                         Text(model.settlement?.current?.title ?? "").font(ReferenceStyle.font(32, bold: true)).accessibilityIdentifier("practice-settlement-title")
                         if let body = model.settlement?.current?.body { Text(body).font(ReferenceStyle.font(19)) }
                     }.padding(.top, 80)
+                } else if let otherQuestion, question.kind != .matching {
+                    otherQuestion.frame(width: 600).padding(.top, 51)
                 } else {
                     VStack(alignment: .leading, spacing: 0) {
                         Text(question.prompt).font(ReferenceStyle.font(32, bold: true)).frame(height: 40).accessibilityIdentifier("question-prompt").accessibilityValue(question.id)
@@ -43,7 +52,8 @@ struct ReferencePronunciationPractice: View {
                     }.frame(width: 600).padding(.top, 51)
                 }
                 Spacer(minLength: 0)
-                footer.frame(height: 140)
+                if let otherFooter, lesson.deferredSpeech == nil { otherFooter.frame(height: 140) }
+                else { footer.frame(height: 140) }
             }.frame(maxWidth: .infinity, maxHeight: .infinity)
                 .foregroundStyle(ReferenceStyle.ink).background(ReferenceStyle.background)
                 .overlay { if model.confirmingExit { exitConfirmation } }
@@ -171,7 +181,10 @@ struct ReferencePronunciationPractice: View {
         HStack {
             if let speech = lesson.deferredSpeech {
                 if lesson.speechDeclined {
-                    Text(speech.closedTitle).font(ReferenceStyle.font(22, bold: true)); Spacer()
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text(speech.closedTitle).font(ReferenceStyle.font(22, bold: true)).accessibilityIdentifier("speech-closed")
+                        if !speech.closedBody.isEmpty { Text(speech.closedBody).font(ReferenceStyle.font(18)) }
+                    }; Spacer()
                     Button("继续") { model.advance() }.buttonStyle(ReferenceCheckButton()).accessibilityIdentifier("speech-continue")
                 } else {
                     ReferencePracticeControl(label: "现在不做口语题", identifier: "speech-decline", enabled: true, action: { model.declineSpeech() },
@@ -217,7 +230,7 @@ private struct ReferencePracticeAudioButton: View {
     }
 }
 
-private struct ReferencePracticeControl: NSViewRepresentable {
+struct ReferencePracticeControl: NSViewRepresentable {
     let label: String
     let identifier: String
     let enabled: Bool

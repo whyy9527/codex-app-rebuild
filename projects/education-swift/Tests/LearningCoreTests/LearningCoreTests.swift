@@ -597,6 +597,39 @@ func laterPronunciationPractices() throws {
     print("PASS second/third observed practices, optional speech, six/five corrections and isolated persisted session selection; adaptive source selection remains unknown")
 }
 
+func actualGeneralPractice() throws {
+    let course = try course(fixture: "fixture-reference-en-zh-general-practice-v1.json")
+    try check(course.lessons[0].questions.count == 16 && course.mistakeHeartCost == 0, "Independent practice source definition differs")
+    var lesson = Lesson(course: course, hearts: 3)
+    var graded = 0, speech = 0, interludes = 0, keyboard = 0
+    for _ in 0..<64 {
+        if lesson.complete { break }
+        if lesson.interlude != nil { interludes += 1; lesson.advance(); continue }
+        if let pending = lesson.deferredSpeech {
+            try check(pending.phrase == "Tea, please.", "Wrong inserted speech identity")
+            speech += 1; lesson.declineSpeech(); lesson.advance(); continue
+        }
+        if lesson.question.id == "general-practice-q6" {
+            try check(lesson.usingKeyboard, "Observed initial keyboard mode lost")
+            keyboard += 1; lesson.toggleInputMode()
+        }
+        let wrong = lesson.question.id == "general-practice-replacement15" && !lesson.reviewing
+        switch lesson.question.kind {
+        case .choice: lesson.choose(lesson.question.answer)
+        case .wordTiles: for id in lesson.question.answerWords { lesson.addWord(id) }
+        case .matching:
+            for pair in lesson.question.pairs { lesson.matchLeft(pair.id); lesson.matchRight(pair.id) }
+        case .textEntry: lesson.enterText(wrong ? "water" : lesson.question.answer)
+        }
+        if lesson.question.kind != .matching { lesson.submit() }
+        try check(lesson.feedback == !wrong && lesson.hearts == 3, "Practice feedback or no-heart-cost differs: \(lesson.question.id), feedback=\(String(describing: lesson.feedback)), keyboard=\(lesson.usingKeyboard), hearts=\(lesson.hearts)")
+        graded += 1; lesson.advance()
+    }
+    try check(lesson.complete && graded == 17 && speech == 1 && interludes == 2 && keyboard == 1 && lesson.mistakesMade == 1, "Actual practice adaptive/decline/review trajectory differs")
+    try check(lesson.definition.settlement?.map(\.kind) == ["result", "practice_heart", "profile"], "Observed result/reward/profile sequence differs")
+    print("PASS independent general practice, initial keyboard/bank, speech insertion, challenge replacements, non-penalizing wrong and correction")
+}
+
 do {
     try mistakeReview()
     try persistence()
@@ -621,7 +654,8 @@ do {
     try actualSeventhTrajectory()
     try actualPronunciationPractice()
     try laterPronunciationPractices()
-    print("23 business checks passed; core layer only")
+    try actualGeneralPractice()
+    print("24 business checks passed; core layer only")
 } catch {
     FileHandle.standardError.write(Data(("FAIL " + String(describing: error) + "\n").utf8))
     exit(1)
