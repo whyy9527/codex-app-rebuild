@@ -154,7 +154,12 @@ struct ReferenceHome: View {
             }
             Button { if active || finished { lessonPopoverNode = lessonPopoverNode == index ? nil : index } } label: {
                 ReferenceStyle.image(finished ? model.course.home?.completedNodeResource ?? "star-active" : index == 4 ? "review-locked" : active ? "star-active" : "star-locked").resizable().scaledToFit().frame(width: 42, height: 34)
-                    .frame(width: 70, height: 56).background(active || finished ? green : ReferenceStyle.border, in: Ellipse())
+                    .frame(width: 70, height: finished ? 57 : 56).background {
+                        ZStack(alignment: .topLeading) {
+                            Ellipse().fill(active || finished ? green : ReferenceStyle.border)
+                            if finished { ReferenceStyle.image("en-home-completed-highlight").resizable().frame(width: 56, height: 46).offset(x: 6, y: 5) }
+                        }
+                    }
                     .compositingGroup().shadow(color: active || finished ? Color(red: 70/255, green: 163/255, blue: 2/255) : Color(white: 183/255), radius: 0, y: 8)
                     .frame(height: 65, alignment: .top).contentShape(Rectangle())
             }.buttonStyle(.plain).accessibilityLabel(index == 3 ? "Practice" : active ? "Lesson \(nodeDone + 1) of \(total)" : index == 4 ? "复习该部分" : "Lesson")
@@ -237,11 +242,11 @@ struct ReferenceHome: View {
                     Text(homeSnapshot?.leagueTitle ?? copy("Unlock Leaderboards!", "来解锁排行榜吧！")).font(ReferenceStyle.font(19, bold: true))
                     if let link = homeSnapshot?.leagueLink { Spacer(); Button(link) { model.destination = "Leaderboards" }.buttonStyle(.plain).font(ReferenceStyle.font(15, bold: true)).foregroundStyle(blue).accessibilityIdentifier("view-leaderboards") }
                 }
-                HStack(spacing: 20) {
-                    ReferenceStyle.image(homeSnapshot?.leagueResource ?? "league-locked").resizable().scaledToFit().frame(width: 70, height: 50)
+                HStack(spacing: homeSnapshot?.leagueCountdown == nil ? 20 : 12) {
+                    ReferenceStyle.image(homeSnapshot?.leagueResource ?? "league-locked").resizable().scaledToFit().frame(width: 70, height: homeSnapshot?.leagueCountdown == nil ? 50 : 58)
                     VStack(alignment: .leading, spacing: 8) {
                         Text(homeSnapshot?.leagueMessage ?? copy("Complete \(max(0, 3 - completed)) more lessons to start competing", "再学 \(max(0, 3 - completed)) 个单元，就能参加排行榜挑战了")).font(ReferenceStyle.font(17)).foregroundStyle(Color(white: 119/255)).lineSpacing(4)
-                        if let countdown = homeSnapshot?.leagueCountdown { Text(countdown).font(ReferenceStyle.font(15)).foregroundStyle(Color(white: 175/255)) }
+                        if let countdown = homeSnapshot?.leagueCountdown { Text(countdown).font(ReferenceStyle.font(17, bold: true)).foregroundStyle(Color(red: 1, green: 200/255, blue: 0)).accessibilityIdentifier("home-league-countdown") }
                     }
                 }.padding(.top, 12)
             }.frame(height: 150)

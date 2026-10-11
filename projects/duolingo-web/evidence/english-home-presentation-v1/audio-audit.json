@@ -1,0 +1,25 @@
+{
+  "scope": "Static audit of default eight-course English fixture and actual playback dispatch; not an acoustic test",
+  "fixture": "projects/duolingo-web/fixture-reference-en-zh-v13.json",
+  "fixture_sha256": "7dc77351c9492e937b91f6493faf6886026fc598f1617ffa96c53142a21bb8ce",
+  "graded_questions": 115,
+  "questions_with_correct_feedback_resource": 9,
+  "questions_with_incorrect_feedback_resource": 0,
+  "question_speech_resources": 45,
+  "option_speech_resources": 34,
+  "dispatch": "projects/education-swift/Sources/LingoSeed/LearningModel.swift",
+  "dispatch_sha256": "34b45d682444c51867c3b78d1dd3e65e847b13b8ac549431f6cc7123c6b8a9d6",
+  "facts": [
+    "submit uses observed effect resources only for isGeneralPractice; default course uses synthesized correct/incorrect cues",
+    "advance uses synthesized complete for non-general practice",
+    "word removal and some other actions use synthesized tap",
+    "LearningAudio.speak synthesizes when no source resource is provided"
+  ],
+  "limitations": [
+    "No owned-output capture at the time of this initial static audit; subsequent captures are separate evidence",
+    "Existing nonzero output proves output, not matching source waveform, trigger, order or mix",
+    "Original main-course effects/complete/tap actions must be observed and frozen before binding; unknown is not silent/pass",
+    "Speech resources do not prove actual audible output equivalence"
+  ],
+  "phase": "Before implementation; retained dispatch digest and facts"
+}

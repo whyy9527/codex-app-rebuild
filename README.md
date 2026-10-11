@@ -1,5 +1,7 @@
 # Codex App Rebuild
 
+主页采集补CSS伪元素，Swift接原完成节点高光；主课程修复已冻结的9题原音被忽略的问题。v46共2479项，最终主页37pass/17fail/2425not_run；真实q3录音相关性0.026→0.836仍有残差，整图/底色/倒计时继续失败。完整Goal active。[证据、负结果与复跑](projects/duolingo-web/evidence/english-home-presentation-v1/README.md)。
+
 注册年龄清除与密码显示/隐藏已按原版实际交互接入；另发现独立登录页含Apple与忘记密码，尚未实现。前端v45共2476项，最终两次20状态各116pass/31fail/2329not_run；整图仍失败，年龄图差异略增，不能称1:1。[最新证据与复跑](projects/duolingo-web/evidence/english-registration-controls-v1/README.md)。
 
 默认v13补实际开箱前后主页、原素材及持久化记录，原生真实开箱和重启已验证；前端v41共2373项，本轨迹34pass/17fail/2322not_run，下一Practice开始/建档及排行榜遮罩仍未实施。[最新失败、探索与复跑](projects/duolingo-web/evidence/english-chest-v1/README.md)。

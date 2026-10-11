@@ -41,6 +41,16 @@ const callback=async page=>{
   if(!n.checkVisibility()||background==='none'||r.width<=0||r.height<=0||r.bottom<=0||r.right<=0||r.top>=innerHeight||r.left>=innerWidth)return [];
   return [{tag:n.tagName,test:n.getAttribute('data-test'),rect:[r.x,r.y,r.width,r.height],backgroundImage:background,backgroundSize:c.backgroundSize,backgroundPosition:c.backgroundPosition,backgroundRepeat:c.backgroundRepeat}];
  }));
+ // Pseudo-elements can draw the actual control face without a DOM child.
+ facts.pseudo_elements=await page.locator('body *').evaluateAll(ns=>ns.flatMap(n=>{
+  const r=n.getBoundingClientRect();
+  if(!n.checkVisibility()||r.width<=0||r.height<=0||r.bottom<=0||r.right<=0||r.top>=innerHeight||r.left>=innerWidth)return [];
+  return ['::before','::after'].flatMap(p=>{const c=getComputedStyle(n,p);
+   if(c.content==='none'||c.content==='normal')return [];
+   return [{tag:n.tagName,test:n.getAttribute('data-test'),pseudo:p,parent_rect:[r.x,r.y,r.width,r.height],css:{content:c.content,width:c.width,height:c.height,top:c.top,left:c.left,color:c.color,backgroundColor:c.backgroundColor,backgroundImage:c.backgroundImage,borderRadius:c.borderRadius,transform:c.transform,boxShadow:c.boxShadow}}];
+  });
+ }));
+ facts.pseudo_limitations=['Computed CSS and parent bounds only; pseudo-elements have no independently measured DOM bounding rectangle.'];
  facts.visible=await page.locator('[data-test],h1,h2,[role],button,input,label').evaluateAll(ns=>ns.filter(n=>n.checkVisibility()).map(n=>{
   const r=n.getBoundingClientRect(),css=getComputedStyle(n);
   return {test:n.getAttribute('data-test'),tag:n.tagName,role:n.getAttribute('role'),text:n.innerText,

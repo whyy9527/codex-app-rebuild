@@ -176,9 +176,9 @@ import LearningCore
     func submit() {
         guard lesson?.canSubmit == true, lesson?.feedback == nil else { return }
         lesson?.submit()
-        if isGeneralPractice, let lesson {
+        if let lesson, isGeneralPractice || (lesson.feedback == true ? lesson.question.correctFeedbackAudioResource : lesson.question.incorrectFeedbackAudioResource) != nil {
             audio.playReferenceEffect(lesson.feedback == true ? lesson.question.correctFeedbackAudioResource : lesson.question.incorrectFeedbackAudioResource)
-            if lesson.question.sourceType == "assist", let correct = lesson.question.options.first(where: { $0.id == lesson.question.answer }), let resource = correct.audioResource {
+            if isGeneralPractice && lesson.question.sourceType == "assist", let correct = lesson.question.options.first(where: { $0.id == lesson.question.answer }), let resource = correct.audioResource {
                 audio.speak(correct.text, language: course.speechLanguage, resource: resource)
             }
         } else { audio.play(lesson?.feedback == true ? .correct : .incorrect) }

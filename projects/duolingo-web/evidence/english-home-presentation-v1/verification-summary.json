@@ -1,0 +1,396 @@
+{
+  "native": {
+    "native-initial": {
+      "states": 6,
+      "failure": null,
+      "binary_sha256": "ead448f45cdceb9ca16f2b5fde1d3b4a12b24db6b03767fd4461eb35bee48bc0",
+      "counts": {
+        "not_run": 2425,
+        "pass": 37,
+        "fail": 17
+      },
+      "new_pixels": [
+        {
+          "id": "home-base-pixel-v46",
+          "state": "chest-reloaded",
+          "status": "fail",
+          "expected": [
+            88,
+            204,
+            2
+          ],
+          "actual": [
+            88,
+            204,
+            4
+          ],
+          "reason": "Exact screenshot pixel only; does not prove whole-image equivalence"
+        },
+        {
+          "id": "home-highlight-pixel-v46",
+          "state": "chest-reloaded",
+          "status": "pass",
+          "expected": [
+            114,
+            214,
+            39
+          ],
+          "actual": [
+            114,
+            214,
+            39
+          ],
+          "reason": "Exact screenshot pixel only; does not prove whole-image equivalence"
+        },
+        {
+          "id": "home-countdown-pixel-v46",
+          "state": "chest-reloaded",
+          "status": "fail",
+          "expected": [
+            255,
+            200,
+            0
+          ],
+          "actual": [
+            255,
+            255,
+            255
+          ],
+          "reason": "Exact screenshot pixel only; does not prove whole-image equivalence"
+        }
+      ],
+      "failures": [
+        "home-v2-copy-10",
+        "home-v2-copy-11",
+        "home-v2-copy-12",
+        "home-v2-copy-15",
+        "home-v2-copy-16",
+        "chest-dismissed-control-element_geometry",
+        "chest-dismissed-whole-image_pixels",
+        "chest-after-click-control-element_geometry",
+        "chest-after-click-whole-image_pixels",
+        "chest-reloaded-control-element_geometry",
+        "chest-reloaded-whole-image_pixels",
+        "chest-practice-entry-control-element_geometry",
+        "chest-practice-entry-whole-image_pixels",
+        "chest-practice-entry-settled-start-element_geometry",
+        "chest-practice-entry-settled-whole-image_pixels",
+        "home-base-pixel-v46",
+        "home-countdown-pixel-v46"
+      ]
+    },
+    "audio-before": {
+      "states": 33,
+      "failure": "ProbeError(message: \"Actual review geometry did not change after scroll\")",
+      "binary_sha256": "05be4b054d2bb440864df05b3a60685716d9659b3ab984e89b243929bd92386d",
+      "counts": {
+        "not_run": 2352,
+        "pass": 118,
+        "fail": 9
+      },
+      "new_pixels": [
+        {
+          "id": "home-base-pixel-v46",
+          "state": "chest-reloaded",
+          "status": "not_run",
+          "reason": "Driver has not visited this reference state"
+        },
+        {
+          "id": "home-highlight-pixel-v46",
+          "state": "chest-reloaded",
+          "status": "not_run",
+          "reason": "Driver has not visited this reference state"
+        },
+        {
+          "id": "home-countdown-pixel-v46",
+          "state": "chest-reloaded",
+          "status": "not_run",
+          "reason": "Driver has not visited this reference state"
+        }
+      ],
+      "failures": [
+        "home-v2-copy-11",
+        "home-v2-copy-12",
+        "home-v2-copy-15",
+        "home-v2-copy-16",
+        "quests-text-3",
+        "quests-whole-image",
+        "level-practice-review-open-whole-image-image_pixels",
+        "level-practice-review-long-expanded-answer-element_geometry",
+        "level-practice-review-long-expanded-whole-image-image_pixels"
+      ]
+    },
+    "audio-ime-failed": {
+      "states": 15,
+      "failure": "ProbeError(message: \"No observed control: answer-input\")",
+      "binary_sha256": "c02ff86c812a8192a299bf279212c5b1f70bdcb63eff66491940a2806d04dfad",
+      "counts": {
+        "not_run": 2440,
+        "pass": 33,
+        "fail": 6
+      },
+      "new_pixels": [
+        {
+          "id": "home-base-pixel-v46",
+          "state": "chest-reloaded",
+          "status": "not_run",
+          "reason": "Driver has not visited this reference state"
+        },
+        {
+          "id": "home-highlight-pixel-v46",
+          "state": "chest-reloaded",
+          "status": "not_run",
+          "reason": "Driver has not visited this reference state"
+        },
+        {
+          "id": "home-countdown-pixel-v46",
+          "state": "chest-reloaded",
+          "status": "not_run",
+          "reason": "Driver has not visited this reference state"
+        }
+      ],
+      "failures": [
+        "home-v2-copy-11",
+        "home-v2-copy-12",
+        "home-v2-copy-15",
+        "home-v2-copy-16",
+        "quests-text-3",
+        "quests-whole-image"
+      ]
+    },
+    "eighth-final": {
+      "states": 41,
+      "failure": null,
+      "binary_sha256": "c02ff86c812a8192a299bf279212c5b1f70bdcb63eff66491940a2806d04dfad",
+      "counts": {
+        "not_run": 2329,
+        "pass": 133,
+        "fail": 17
+      },
+      "new_pixels": [
+        {
+          "id": "home-base-pixel-v46",
+          "state": "chest-reloaded",
+          "status": "not_run",
+          "reason": "Driver has not visited this reference state"
+        },
+        {
+          "id": "home-highlight-pixel-v46",
+          "state": "chest-reloaded",
+          "status": "not_run",
+          "reason": "Driver has not visited this reference state"
+        },
+        {
+          "id": "home-countdown-pixel-v46",
+          "state": "chest-reloaded",
+          "status": "not_run",
+          "reason": "Driver has not visited this reference state"
+        }
+      ],
+      "failures": [
+        "home-v2-copy-11",
+        "home-v2-copy-12",
+        "home-v2-copy-15",
+        "home-v2-copy-16",
+        "quests-text-3",
+        "quests-whole-image",
+        "level-practice-review-open-whole-image-image_pixels",
+        "level-practice-review-long-expanded-answer-element_geometry",
+        "level-practice-review-long-expanded-whole-image-image_pixels",
+        "eighth-score-progress-element_geometry",
+        "eighth-score-progress-image_pixels",
+        "eighth-boost-reward-element_geometry",
+        "eighth-boost-reward-image_pixels",
+        "eighth-legendary-offer-element_geometry",
+        "eighth-legendary-offer-image_pixels",
+        "eighth-profile-element_geometry",
+        "eighth-profile-image_pixels"
+      ]
+    },
+    "native-final": {
+      "states": 6,
+      "failure": null,
+      "binary_sha256": "c02ff86c812a8192a299bf279212c5b1f70bdcb63eff66491940a2806d04dfad",
+      "counts": {
+        "not_run": 2425,
+        "pass": 37,
+        "fail": 17
+      },
+      "new_pixels": [
+        {
+          "id": "home-base-pixel-v46",
+          "state": "chest-reloaded",
+          "status": "fail",
+          "expected": [
+            88,
+            204,
+            2
+          ],
+          "actual": [
+            88,
+            204,
+            0
+          ],
+          "reason": "Exact screenshot pixel only; does not prove whole-image equivalence"
+        },
+        {
+          "id": "home-highlight-pixel-v46",
+          "state": "chest-reloaded",
+          "status": "pass",
+          "expected": [
+            114,
+            214,
+            39
+          ],
+          "actual": [
+            114,
+            214,
+            39
+          ],
+          "reason": "Exact screenshot pixel only; does not prove whole-image equivalence"
+        },
+        {
+          "id": "home-countdown-pixel-v46",
+          "state": "chest-reloaded",
+          "status": "fail",
+          "expected": [
+            255,
+            200,
+            0
+          ],
+          "actual": [
+            255,
+            196,
+            1
+          ],
+          "reason": "Exact screenshot pixel only; does not prove whole-image equivalence"
+        }
+      ],
+      "failures": [
+        "home-v2-copy-10",
+        "home-v2-copy-11",
+        "home-v2-copy-12",
+        "home-v2-copy-15",
+        "home-v2-copy-16",
+        "chest-dismissed-control-element_geometry",
+        "chest-dismissed-whole-image_pixels",
+        "chest-after-click-control-element_geometry",
+        "chest-after-click-whole-image_pixels",
+        "chest-reloaded-control-element_geometry",
+        "chest-reloaded-whole-image_pixels",
+        "chest-practice-entry-control-element_geometry",
+        "chest-practice-entry-whole-image_pixels",
+        "chest-practice-entry-settled-start-element_geometry",
+        "chest-practice-entry-settled-whole-image_pixels",
+        "home-base-pixel-v46",
+        "home-countdown-pixel-v46"
+      ]
+    },
+    "registration-regression": {
+      "states": 20,
+      "failure": null,
+      "binary_sha256": "c02ff86c812a8192a299bf279212c5b1f70bdcb63eff66491940a2806d04dfad",
+      "counts": {
+        "not_run": 2329,
+        "pass": 117,
+        "fail": 33
+      },
+      "new_pixels": [
+        {
+          "id": "home-base-pixel-v46",
+          "state": "chest-reloaded",
+          "status": "fail",
+          "expected": [
+            88,
+            204,
+            2
+          ],
+          "actual": [
+            88,
+            204,
+            0
+          ],
+          "reason": "Exact screenshot pixel only; does not prove whole-image equivalence"
+        },
+        {
+          "id": "home-highlight-pixel-v46",
+          "state": "chest-reloaded",
+          "status": "pass",
+          "expected": [
+            114,
+            214,
+            39
+          ],
+          "actual": [
+            114,
+            214,
+            39
+          ],
+          "reason": "Exact screenshot pixel only; does not prove whole-image equivalence"
+        },
+        {
+          "id": "home-countdown-pixel-v46",
+          "state": "chest-reloaded",
+          "status": "fail",
+          "expected": [
+            255,
+            200,
+            0
+          ],
+          "actual": [
+            255,
+            196,
+            1
+          ],
+          "reason": "Exact screenshot pixel only; does not prove whole-image equivalence"
+        }
+      ],
+      "failures": [
+        "home-v2-copy-10",
+        "home-v2-copy-11",
+        "home-v2-copy-12",
+        "home-v2-copy-15",
+        "home-v2-copy-16",
+        "chest-dismissed-control-element_geometry",
+        "chest-dismissed-whole-image_pixels",
+        "chest-after-click-control-element_geometry",
+        "chest-after-click-whole-image_pixels",
+        "chest-reloaded-control-element_geometry",
+        "chest-reloaded-whole-image_pixels",
+        "chest-practice-entry-control-element_geometry",
+        "chest-practice-entry-whole-image_pixels",
+        "chest-practice-entry-settled-start-element_geometry",
+        "chest-practice-entry-settled-whole-image_pixels",
+        "chest-practice-start-profile-path-profile-create-element_geometry",
+        "chest-practice-start-profile-path-profile-later-element_geometry",
+        "chest-practice-start-profile-whole-image_pixels",
+        "chest-practice-profile-dismissed-whole-image_pixels",
+        "path-profile-background-geometry",
+        "path-age-form-whole-image_pixels",
+        "registration-filled-whole-image_pixels",
+        "registration-methods-registration-google-element_boolean",
+        "registration-methods-registration-facebook-element_boolean",
+        "registration-methods-whole-image_pixels",
+        "registration-email-whole-image_pixels",
+        "registration-email-invalid-whole-image_pixels",
+        "registration-clear-before-whole-image_pixels",
+        "registration-cleared-whole-image_pixels",
+        "registration-password-hidden-whole-image_pixels",
+        "registration-password-visible-whole-image_pixels",
+        "home-base-pixel-v46",
+        "home-countdown-pixel-v46"
+      ]
+    }
+  },
+  "checks": {
+    "core": 29,
+    "python": 58,
+    "node": 14,
+    "source_svg": 1
+  },
+  "limitations": [
+    "Exact whole images and original animation remain different",
+    "One q3 owned-output reference correlation is not acoustic equality; complete/tap and other feedback/speech remain incomplete",
+    "No new RSI mechanism ablation"
+  ]
+}

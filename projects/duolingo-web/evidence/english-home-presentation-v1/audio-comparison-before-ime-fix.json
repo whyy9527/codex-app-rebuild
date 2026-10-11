@@ -1,0 +1,79 @@
+{
+  "scope": "One actually triggered eighth-course q3 correct feedback; alignment search measures effect presence, not full acoustic equality",
+  "sample_rate": 48000,
+  "reference_self_check": {
+    "alignment_seconds": 0.0,
+    "normalized_correlation": 0.999999999999983,
+    "fitted_gain": 1.0,
+    "residual_rms": 0.0,
+    "reference_samples": 55977,
+    "recorded_samples": 55977
+  },
+  "files": {
+    "reference": {
+      "path": "projects/education-swift/Sources/LingoSeed/Resources/Reference/en-effect-086f72d3e2c92d602dfb.mp3",
+      "sha256": "c509a5957af198939ae868c9cf17676d00927d400b7c721ea08d3f734c39301e"
+    },
+    "before": {
+      "path": "projects/duolingo-web/evidence/english-home-presentation-v1/audio-before/eighth-feedback.wav",
+      "sha256": "ce9349101fdd84093a38ec2f0a082a048a23bf8afce33f6f4d0229700912f5c7"
+    },
+    "after": {
+      "path": "projects/duolingo-web/evidence/english-home-presentation-v1/audio-ime-failed/eighth-feedback.wav",
+      "sha256": "fb85f8748b1657ef8a2f171f3718c405f128da438218662b316d0107abcecbe1"
+    }
+  },
+  "before": {
+    "alignment_seconds": 0.2712291666666667,
+    "normalized_correlation": 0.0256061124944023,
+    "fitted_gain": 0.009413246369853556,
+    "residual_rms": 0.03230755890219937,
+    "reference_samples": 55977,
+    "recorded_samples": 360000,
+    "owned_capture_receipt": {
+      "duration_seconds": 7,
+      "filter": "Only explicitly selected child application",
+      "frames": 360000,
+      "kind": "owned_application_audio_loopback",
+      "microphone": false,
+      "peak": 0.13876548409461975,
+      "rms": 0.0099379552697723,
+      "samples": 720000,
+      "ui_actions": [
+        {
+          "elapsed_seconds": 0.13990509510040283,
+          "id": "check"
+        }
+      ]
+    }
+  },
+  "after": {
+    "alignment_seconds": 0.172,
+    "normalized_correlation": 0.8221252950259038,
+    "fitted_gain": 1.0135118752949572,
+    "residual_rms": 0.061700379976967853,
+    "reference_samples": 55977,
+    "recorded_samples": 348480,
+    "owned_capture_receipt": {
+      "duration_seconds": 7,
+      "filter": "Only explicitly selected child application",
+      "frames": 348480,
+      "kind": "owned_application_audio_loopback",
+      "microphone": false,
+      "peak": 1.0214812755584717,
+      "rms": 0.03863042185612176,
+      "samples": 696960,
+      "ui_actions": [
+        {
+          "elapsed_seconds": 0.06441605091094971,
+          "id": "check"
+        }
+      ]
+    }
+  },
+  "limitations": [
+    "Mono 48kHz ffmpeg decode; fitted timing/gain are reported, not treated as exact match",
+    "Mix/order/latency/volume and other cues remain unverified",
+    "Not an RSI mechanism ablation"
+  ]
+}

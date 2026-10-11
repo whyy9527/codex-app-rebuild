@@ -273,3 +273,8 @@ LessonDefinition的可选listeningDeclineReplacements由实例提供已观察替
 ### 清除与安全文本输入的共同契约
 
 v45由实际清除/显示隐藏动作结果及登录页面生成，冻结脚本断言原版probe而非从文案推测规则。NSSecureTextField只在实际reveal后核对abc，重新隐藏以真实AXSecureTextField证明；不为获取值改安全角色。输入view由真实编辑发布、初始化/显式clear/reveal身份重建，避免状态回放干扰在途输入。驱动输入和回顾滚轮先激活确认自有进程，不能把不活动窗口上的发送当执行成功；窗口截图失败抛错误而非trap。新增19登录要求保持未执行，原始失败/图像变差仍独立存档，不追加产品限制。[实测及反例](../projects/duolingo-web/evidence/english-registration-controls-v1/README.md)。
+
+
+### 伪元素与已冻结反馈音的实际消费
+
+可见采集新增CSS ::before/::after计算样式及父边界；不把父边界当伪元素独立实测矩形。v46在v45上追加3个源截图像素，旧整图失败不变。已完成节点按原SVG高光和57px卡面渲染，倒计时按源字体/图形几何调整；颜色采样仍独立走ICC→sRGB，不加容差。主课程submit在对应反馈资源存在时使用原音，否则保留现状并记录缺口；不再只允许通用练习消费已冻结资源。真实Check触发自有输出录音，单声道互相关/残差用于诊断原音出现，不充当声学一致性门槛。输入驱动临时选择已启用ASCII布局，defer恢复并保存回执；产品键盘规则不变。原生输入/滚动实际结果继续严格验证。[本批原始证据](../projects/duolingo-web/evidence/english-home-presentation-v1/README.md)。

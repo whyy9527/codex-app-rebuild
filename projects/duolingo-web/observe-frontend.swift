@@ -3,6 +3,7 @@ import AppKit
 import ApplicationServices
 import Foundation
 import CryptoKit
+import Carbon
 
 enum ObservationStop: Error { case afterQuestion(String) }
 func main() throws {
@@ -170,6 +171,21 @@ func fillInput(_ value: String, identifier: String = "answer-input", verifyValue
     try activateOwnedInputTarget()
     let input = current().first { (attr($0, kAXIdentifierAttribute) as? String) == identifier }!
     guard AXUIElementSetAttributeValue(input, kAXFocusedAttribute as CFString, kCFBooleanTrue) == .success else { throw ProbeError(message: "Cannot focus actual input") }
+    let previousSource = TISCopyCurrentKeyboardInputSource().takeRetainedValue()
+    let sourceID: (TISInputSource) -> String = { source in
+        guard let value = TISGetInputSourceProperty(source, kTISPropertyInputSourceID) else { return "unknown" }
+        return Unmanaged<CFString>.fromOpaque(value).takeUnretainedValue() as String
+    }
+    let layouts = TISCreateInputSourceList([kTISPropertyInputSourceType: kTISTypeKeyboardLayout!, kTISPropertyInputSourceIsASCIICapable: true, kTISPropertyInputSourceIsEnabled: true] as CFDictionary, false).takeRetainedValue() as! [TISInputSource]
+    guard let latin = layouts.first, TISSelectInputSource(latin) == noErr else { throw ProbeError(message: "No enabled ASCII test keyboard layout selected") }
+    defer {
+        let status = TISSelectInputSource(previousSource)
+        let receipt: [String: Any] = ["control":identifier,"previous":sourceID(previousSource),"temporary":sourceID(latin),"restore_status":status,"current_after_restore":sourceID(TISCopyCurrentKeyboardInputSource().takeRetainedValue()),"product_keyboard_rules_changed":false]
+        let file = output.appendingPathComponent("input-source.json")
+        var rows = (try? Data(contentsOf:file)).flatMap { try? JSONSerialization.jsonObject(with:$0) as? [[String:Any]] } ?? []
+        rows.append(receipt); try? JSONSerialization.data(withJSONObject:rows,options:[.prettyPrinted,.sortedKeys]).write(to:file)
+    }
+    Thread.sleep(forTimeInterval:0.15)
     // AX value assignment changes the field but can bypass SwiftUI's editing binding.
     // Send actual keyboard events to our isolated child instead.
     for down in [true, false] {
@@ -299,7 +315,16 @@ if CommandLine.arguments.contains("--observe-quests") {
                     for p in q["pairs"] as! [[String: Any]] { try press("pair-left-" + (p["id"] as! String)); try press("pair-right-" + (p["id"] as! String)) }
                 case "word_tiles":
                     for id in q["answer_words"] as! [String] { try press("word-bank-"+id) }
-                    try press("check")
+                    if eighthReview && key == "level-review-q3", let index = CommandLine.arguments.firstIndex(of: "--eighth-feedback-audio-recorder"), index + 1 < CommandLine.arguments.count {
+                        let actions = output.appendingPathComponent("audio-actions.json")
+                        try JSONSerialization.data(withJSONObject: ["check"]).write(to: actions, options: .withoutOverwriting)
+                        let recorder = Process(); recorder.executableURL = URL(fileURLWithPath: CommandLine.arguments[index+1])
+                        recorder.arguments = [String(child.processIdentifier), output.appendingPathComponent("eighth-feedback.wav").path, "7", actions.path]
+                        let log = output.appendingPathComponent("audio-recorder.log"); FileManager.default.createFile(atPath: log.path, contents: nil)
+                        let handle = try FileHandle(forWritingTo: log); recorder.standardOutput = handle; recorder.standardError = handle
+                        try recorder.run(); recorder.waitUntilExit()
+                        guard recorder.terminationStatus == 0 else { throw ProbeError(message: "Owned eighth feedback recording failed") }
+                    } else { try press("check") }
                 case "text_entry": try fillInput(q["answer"] as! String); try press("check")
                 default: try press("option-" + (errorReview && key == "error-review-q1" ? "1" : (q["answer"] as! String))); try press("check")
                 }
@@ -324,9 +349,9 @@ if CommandLine.arguments.contains("--observe-quests") {
             try saveReviewState((eighthReview ? "level" : errorReview ? "error" : "current")+"-practice-review-open")
             try press(eighthReview ? "review-card-7" : errorReview ? "review-card-1" : "review-card-8"); try waitFor("result-review-answer")
             try saveReviewState(eighthReview ? "level-practice-review-long-expanded" : errorReview ? "error-practice-review-wrong-expanded" : "current-practice-review-speech-expanded")
-            guard movePointer(to: "review-card-8") else { throw ProbeError(message: "Cannot target owned review scroll") }
             func scrollReview(_ amount: Int32, returned: Bool) throws {
                 try activateOwnedInputTarget()
+                guard movePointer(to: "review-card-8") else { throw ProbeError(message: "Cannot target active owned review scroll") }
                 guard let event = CGEvent(scrollWheelEvent2Source: nil, units: .pixel, wheelCount: 1, wheel1: amount, wheel2: 0, wheel3: 0),
                       let point = CGEvent(source: nil)?.location,
                       NSRunningApplication(processIdentifier: child.processIdentifier)?.isActive == true else {
