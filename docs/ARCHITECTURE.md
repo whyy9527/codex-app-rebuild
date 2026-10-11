@@ -227,3 +227,6 @@ capture-reference-session显式选择/lesson或/practice，保留白名单公共
 
 
 实际探索边界由`replay-reference-session.mjs --stop-before-type`表达；stopped与answered分开，观察到待探题不等于已评分。原版初始sessions字段只提供背景，暂缓后的插入与变题由独立可见页面/提交回执形成实际trace。`freeze-general-listening-decline.py`把这条已执行分支追加到v30，旧断言保留。文字Range/CSS与inlineSVG属于采集事实，不能替代PNG或实际字体解析；源投影自校验、旧候选重评、真实新原生执行分别保存。当前Swift仅支持listenMatch暂缓，listenTap插入与后续变题仍待接入，详见[冻结证据](../projects/duolingo-web/evidence/english-general-listening-decline-v1/README.md)。
+
+
+LessonDefinition的可选listeningDeclineReplacements由实例提供已观察替换；Lesson在当前位置保留替换用于复习，暂缓本身不评分。原有无替换配对路径保持推进。显式general-practice-fixture选择与主课程分离，默认资源不变，非自适应选题实现；原生驱动从真实任务页进入。v31追加enabled/角色/几何，图像断言保留，源投影与候选执行分别报告。[实现与证据](../projects/duolingo-web/evidence/english-general-listening-decline-native-v1/README.md)。

@@ -1,0 +1,8027 @@
+{
+  "action": "Actual Quests entry, listening decline and replacement, speech decline, sixteen graded questions, result/profile/home and actual child restart",
+  "candidate_binary_sha256": "f4c8d7041b3c33f8e106fa6b4375647d29ae3bba61e4590fc0ad65db317ed18e",
+  "failure": null,
+  "fixture_sha256": "950f0e0ea349fb9e937decc173673bb6eab9e9ed5bdd907060316cd1bad29f60",
+  "general_fixture_sha256": "8a2ddbdde05045acc3d54038c230baabb9b41e7c76117f6c1a25bc80e5d48403",
+  "kind": "owned_native_ax_observation",
+  "limitations": [
+    "Fixed observed instance; adaptive selection and non-decline future remain unverified",
+    "AX/PNG collection does not prove acoustic equality"
+  ],
+  "observed_at": "2026-10-11T03:06:36Z",
+  "states": {
+    "general-listening-decline-after-inserted": {
+      "accessible_text": [
+        "Good morning, hot coffee or with ice?",
+        "LingoSeed",
+        "general-listening-decline-speech",
+        "朗读下面的句子",
+        "检查",
+        "点击并开始录音",
+        "现在不做口语题"
+      ],
+      "capture": {
+        "backing_scale": 2,
+        "content_rect_points": [
+          0,
+          32,
+          1200,
+          732
+        ],
+        "path": "projects/duolingo-web/evidence/english-general-listening-decline-native-v1/native-02/general-listening-decline-after-inserted.png",
+        "window_points": [
+          1200,
+          764
+        ]
+      },
+      "elements": {
+        "exit": {
+          "enabled": true,
+          "rect": [
+            100,
+            51,
+            18,
+            18
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "lesson-progress": {
+          "enabled": true,
+          "rect": [
+            142,
+            50,
+            958,
+            20
+          ],
+          "role": "AXProgressIndicator",
+          "value": ""
+        },
+        "speech-decline": {
+          "enabled": true,
+          "rect": [
+            140,
+            639,
+            160.5,
+            50
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "speech-play": {
+          "enabled": true,
+          "rect": [
+            450,
+            322,
+            29,
+            22
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "speech-record": {
+          "enabled": true,
+          "rect": [
+            300,
+            416.5,
+            600,
+            70
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "speech-title": {
+          "enabled": true,
+          "rect": [
+            300,
+            122,
+            224,
+            38
+          ],
+          "role": "AXStaticText",
+          "value": "general-listening-decline-speech"
+        },
+        "SwiftUI._ConditionalContent<SwiftUI.SubscriptionView<(extension in Foundation):__C.NSNotificationCenter.Publisher, SwiftUI.ModifiedContent<LingoSeed.LearningView, SwiftUI._AppearanceActionModifier>>, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1": {
+          "enabled": false,
+          "rect": [
+            0,
+            -32,
+            1200,
+            764
+          ],
+          "role": "AXWindow",
+          "value": ""
+        }
+      }
+    },
+    "general-listening-decline-after-tap": {
+      "accessible_text": [
+        "LingoSeed",
+        "water and coffee",
+        "和",
+        "咖啡",
+        "检查",
+        "水",
+        "用中文（简体）写出这句话",
+        "跳过",
+        "还是"
+      ],
+      "capture": {
+        "backing_scale": 2,
+        "content_rect_points": [
+          0,
+          32,
+          1200,
+          732
+        ],
+        "path": "projects/duolingo-web/evidence/english-general-listening-decline-native-v1/native-02/general-listening-decline-after-tap.png",
+        "window_points": [
+          1200,
+          764
+        ]
+      },
+      "elements": {
+        "check": {
+          "enabled": false,
+          "rect": [
+            910,
+            643,
+            150,
+            46
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "exit": {
+          "enabled": true,
+          "rect": [
+            100,
+            51,
+            18,
+            18
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "lesson-progress": {
+          "enabled": true,
+          "rect": [
+            142,
+            50,
+            958,
+            20
+          ],
+          "role": "AXProgressIndicator",
+          "value": ""
+        },
+        "pronounce": {
+          "enabled": true,
+          "rect": [
+            435,
+            205.5,
+            221,
+            62
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "question-title": {
+          "enabled": true,
+          "rect": [
+            300,
+            122.5,
+            384,
+            38
+          ],
+          "role": "AXStaticText",
+          "value": "用中文（简体）写出这句话"
+        },
+        "skip": {
+          "enabled": true,
+          "rect": [
+            140,
+            639,
+            150,
+            50
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "SwiftUI._ConditionalContent<SwiftUI.SubscriptionView<(extension in Foundation):__C.NSNotificationCenter.Publisher, SwiftUI.ModifiedContent<LingoSeed.LearningView, SwiftUI._AppearanceActionModifier>>, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1": {
+          "enabled": false,
+          "rect": [
+            0,
+            -32,
+            1200,
+            764
+          ],
+          "role": "AXWindow",
+          "value": ""
+        },
+        "word-bank-word-0": {
+          "enabled": true,
+          "rect": [
+            488,
+            466.5,
+            43,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "word-bank-word-1": {
+          "enabled": true,
+          "rect": [
+            537,
+            466.5,
+            43,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "word-bank-word-2": {
+          "enabled": true,
+          "rect": [
+            586,
+            466.5,
+            60,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "word-bank-word-3": {
+          "enabled": true,
+          "rect": [
+            652,
+            466.5,
+            60,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        }
+      }
+    },
+    "general-listening-decline-challenge-interlude": {
+      "accessible_text": [
+        "LingoSeed",
+        "general-listening-decline-challenge",
+        "哎哟不错哦！要不要玩点刺激的？",
+        "继续"
+      ],
+      "capture": {
+        "backing_scale": 2,
+        "content_rect_points": [
+          0,
+          32,
+          1200,
+          732
+        ],
+        "path": "projects/duolingo-web/evidence/english-general-listening-decline-native-v1/native-02/general-listening-decline-challenge-interlude.png",
+        "window_points": [
+          1200,
+          764
+        ]
+      },
+      "elements": {
+        "exit": {
+          "enabled": true,
+          "rect": [
+            100,
+            51,
+            18,
+            18
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "interlude-continue": {
+          "enabled": true,
+          "rect": [
+            910,
+            637,
+            150,
+            46
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "lesson-interlude": {
+          "enabled": true,
+          "rect": [
+            390,
+            368,
+            420,
+            33
+          ],
+          "role": "AXStaticText",
+          "value": "general-listening-decline-challenge"
+        },
+        "lesson-progress": {
+          "enabled": true,
+          "rect": [
+            142,
+            50,
+            958,
+            20
+          ],
+          "role": "AXProgressIndicator",
+          "value": ""
+        },
+        "SwiftUI._ConditionalContent<SwiftUI.SubscriptionView<(extension in Foundation):__C.NSNotificationCenter.Publisher, SwiftUI.ModifiedContent<LingoSeed.LearningView, SwiftUI._AppearanceActionModifier>>, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1": {
+          "enabled": false,
+          "rect": [
+            0,
+            -32,
+            1200,
+            764
+          ],
+          "role": "AXWindow",
+          "value": ""
+        }
+      }
+    },
+    "general-listening-decline-coffee-milk": {
+      "accessible_text": [
+        "LIN",
+        "LingoSeed",
+        "coffee",
+        "milk",
+        "thank you",
+        "with",
+        "咖啡加牛奶",
+        "检查",
+        "用英语写出这句话",
+        "跳过"
+      ],
+      "capture": {
+        "backing_scale": 2,
+        "content_rect_points": [
+          0,
+          32,
+          1200,
+          732
+        ],
+        "path": "projects/duolingo-web/evidence/english-general-listening-decline-native-v1/native-02/general-listening-decline-coffee-milk.png",
+        "window_points": [
+          1200,
+          764
+        ]
+      },
+      "elements": {
+        "check": {
+          "enabled": false,
+          "rect": [
+            910,
+            643,
+            150,
+            46
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "exit": {
+          "enabled": true,
+          "rect": [
+            100,
+            51,
+            18,
+            18
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "lesson-progress": {
+          "enabled": true,
+          "rect": [
+            142,
+            50,
+            958,
+            20
+          ],
+          "role": "AXProgressIndicator",
+          "value": ""
+        },
+        "question-character": {
+          "enabled": true,
+          "rect": [
+            291.65,
+            159.875,
+            135.70000000000005,
+            201.25
+          ],
+          "role": "AXUnknown",
+          "value": ""
+        },
+        "question-hint": {
+          "enabled": true,
+          "rect": [
+            462,
+            237,
+            100,
+            24
+          ],
+          "role": "AXStaticText",
+          "value": "咖啡加牛奶"
+        },
+        "question-title": {
+          "enabled": true,
+          "rect": [
+            300,
+            122.5,
+            256,
+            38
+          ],
+          "role": "AXStaticText",
+          "value": "用英语写出这句话"
+        },
+        "skip": {
+          "enabled": true,
+          "rect": [
+            140,
+            639,
+            150,
+            50
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "SwiftUI._ConditionalContent<SwiftUI.SubscriptionView<(extension in Foundation):__C.NSNotificationCenter.Publisher, SwiftUI.ModifiedContent<LingoSeed.LearningView, SwiftUI._AppearanceActionModifier>>, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1": {
+          "enabled": false,
+          "rect": [
+            0,
+            -32,
+            1200,
+            764
+          ],
+          "role": "AXWindow",
+          "value": ""
+        },
+        "word-bank-word-0": {
+          "enabled": true,
+          "rect": [
+            444.5,
+            491.5,
+            75,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "word-bank-word-1": {
+          "enabled": true,
+          "rect": [
+            525.5,
+            491.5,
+            57.5,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "word-bank-word-2": {
+          "enabled": true,
+          "rect": [
+            589,
+            491.5,
+            101.5,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "word-bank-word-3": {
+          "enabled": true,
+          "rect": [
+            696.5,
+            491.5,
+            59,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        }
+      }
+    },
+    "general-listening-decline-coffee-milk-feedback": {
+      "accessible_text": [
+        "LIN",
+        "LingoSeed",
+        "Selected",
+        "coffee",
+        "correct",
+        "milk",
+        "thank you",
+        "unselected",
+        "with",
+        "咖啡加牛奶",
+        "太简单",
+        "太难",
+        "报错",
+        "棒棒哒！",
+        "用英语写出这句话",
+        "继续"
+      ],
+      "capture": {
+        "backing_scale": 2,
+        "content_rect_points": [
+          0,
+          32,
+          1200,
+          732
+        ],
+        "path": "projects/duolingo-web/evidence/english-general-listening-decline-native-v1/native-02/general-listening-decline-coffee-milk-feedback.png",
+        "window_points": [
+          1200,
+          764
+        ]
+      },
+      "elements": {
+        "checkmark.circle.fill": {
+          "enabled": true,
+          "rect": [
+            144,
+            638,
+            48,
+            48
+          ],
+          "role": "AXImage",
+          "value": ""
+        },
+        "continue": {
+          "enabled": true,
+          "rect": [
+            949,
+            635.5,
+            112,
+            53
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "exit": {
+          "enabled": true,
+          "rect": [
+            100,
+            51,
+            18,
+            18
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "feedback": {
+          "enabled": true,
+          "rect": [
+            226,
+            626.75,
+            59.5,
+            20.5
+          ],
+          "role": "AXStaticText",
+          "value": "correct"
+        },
+        "feedback-easy": {
+          "enabled": true,
+          "rect": [
+            229.3318328857422,
+            677.25,
+            72.66816711425781,
+            20
+          ],
+          "role": "AXButton",
+          "value": "unselected"
+        },
+        "feedback-hard": {
+          "enabled": true,
+          "rect": [
+            326.8316955566406,
+            677.25,
+            58.168304443359375,
+            20
+          ],
+          "role": "AXButton",
+          "value": "unselected"
+        },
+        "feedback-report": {
+          "enabled": true,
+          "rect": [
+            409,
+            677.25,
+            59,
+            20.25
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "lesson-progress": {
+          "enabled": true,
+          "rect": [
+            142,
+            50,
+            958,
+            20
+          ],
+          "role": "AXProgressIndicator",
+          "value": ""
+        },
+        "question-character": {
+          "enabled": true,
+          "rect": [
+            291.65,
+            159.875,
+            135.70000000000005,
+            201.25
+          ],
+          "role": "AXUnknown",
+          "value": ""
+        },
+        "question-hint": {
+          "enabled": true,
+          "rect": [
+            462,
+            237,
+            100,
+            24
+          ],
+          "role": "AXStaticText",
+          "value": "咖啡加牛奶"
+        },
+        "question-title": {
+          "enabled": true,
+          "rect": [
+            300,
+            122.5,
+            256,
+            38
+          ],
+          "role": "AXStaticText",
+          "value": "用英语写出这句话"
+        },
+        "selected-word-word-0": {
+          "enabled": false,
+          "rect": [
+            299,
+            371.5,
+            75,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "selected-word-word-1": {
+          "enabled": false,
+          "rect": [
+            445,
+            371.5,
+            57.5,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "selected-word-word-3": {
+          "enabled": false,
+          "rect": [
+            380,
+            371.5,
+            59,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "SwiftUI._ConditionalContent<SwiftUI.SubscriptionView<(extension in Foundation):__C.NSNotificationCenter.Publisher, SwiftUI.ModifiedContent<LingoSeed.LearningView, SwiftUI._AppearanceActionModifier>>, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1": {
+          "enabled": false,
+          "rect": [
+            0,
+            -32,
+            1200,
+            764
+          ],
+          "role": "AXWindow",
+          "value": ""
+        },
+        "word-bank-word-0": {
+          "enabled": false,
+          "rect": [
+            444.5,
+            491.5,
+            75,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "word-bank-word-1": {
+          "enabled": false,
+          "rect": [
+            525.5,
+            491.5,
+            57.5,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "word-bank-word-2": {
+          "enabled": false,
+          "rect": [
+            589,
+            491.5,
+            101.5,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "word-bank-word-3": {
+          "enabled": false,
+          "rect": [
+            696.5,
+            491.5,
+            59,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        }
+      }
+    },
+    "general-listening-decline-coffee-milk-feedback-detail": {
+      "accessible_text": [
+        "LIN",
+        "LingoSeed",
+        "Selected",
+        "coffee",
+        "correct",
+        "milk",
+        "thank you",
+        "unselected",
+        "with",
+        "咖啡加牛奶",
+        "太简单",
+        "太难",
+        "报错",
+        "棒棒哒！",
+        "用英语写出这句话",
+        "继续"
+      ],
+      "capture": {
+        "backing_scale": 2,
+        "content_rect_points": [
+          0,
+          32,
+          1200,
+          732
+        ],
+        "path": "projects/duolingo-web/evidence/english-general-listening-decline-native-v1/native-02/general-listening-decline-coffee-milk-feedback-detail.png",
+        "window_points": [
+          1200,
+          764
+        ]
+      },
+      "elements": {
+        "checkmark.circle.fill": {
+          "enabled": true,
+          "rect": [
+            144,
+            638,
+            48,
+            48
+          ],
+          "role": "AXImage",
+          "value": ""
+        },
+        "continue": {
+          "enabled": true,
+          "rect": [
+            949,
+            635.5,
+            112,
+            53
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "exit": {
+          "enabled": true,
+          "rect": [
+            100,
+            51,
+            18,
+            18
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "feedback": {
+          "enabled": true,
+          "rect": [
+            226,
+            626.75,
+            59.5,
+            20.5
+          ],
+          "role": "AXStaticText",
+          "value": "correct"
+        },
+        "feedback-easy": {
+          "enabled": true,
+          "rect": [
+            229.3318328857422,
+            677.25,
+            72.66816711425781,
+            20
+          ],
+          "role": "AXButton",
+          "value": "unselected"
+        },
+        "feedback-hard": {
+          "enabled": true,
+          "rect": [
+            326.8316955566406,
+            677.25,
+            58.168304443359375,
+            20
+          ],
+          "role": "AXButton",
+          "value": "unselected"
+        },
+        "feedback-report": {
+          "enabled": true,
+          "rect": [
+            409,
+            677.25,
+            59,
+            20.25
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "lesson-progress": {
+          "enabled": true,
+          "rect": [
+            142,
+            50,
+            958,
+            20
+          ],
+          "role": "AXProgressIndicator",
+          "value": ""
+        },
+        "question-character": {
+          "enabled": true,
+          "rect": [
+            291.65,
+            159.875,
+            135.70000000000005,
+            201.25
+          ],
+          "role": "AXUnknown",
+          "value": ""
+        },
+        "question-hint": {
+          "enabled": true,
+          "rect": [
+            462,
+            237,
+            100,
+            24
+          ],
+          "role": "AXStaticText",
+          "value": "咖啡加牛奶"
+        },
+        "question-title": {
+          "enabled": true,
+          "rect": [
+            300,
+            122.5,
+            256,
+            38
+          ],
+          "role": "AXStaticText",
+          "value": "用英语写出这句话"
+        },
+        "selected-word-word-0": {
+          "enabled": false,
+          "rect": [
+            299,
+            371.5,
+            75,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "selected-word-word-1": {
+          "enabled": false,
+          "rect": [
+            445,
+            371.5,
+            57.5,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "selected-word-word-3": {
+          "enabled": false,
+          "rect": [
+            380,
+            371.5,
+            59,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "SwiftUI._ConditionalContent<SwiftUI.SubscriptionView<(extension in Foundation):__C.NSNotificationCenter.Publisher, SwiftUI.ModifiedContent<LingoSeed.LearningView, SwiftUI._AppearanceActionModifier>>, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1": {
+          "enabled": false,
+          "rect": [
+            0,
+            -32,
+            1200,
+            764
+          ],
+          "role": "AXWindow",
+          "value": ""
+        },
+        "word-bank-word-0": {
+          "enabled": false,
+          "rect": [
+            444.5,
+            491.5,
+            75,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "word-bank-word-1": {
+          "enabled": false,
+          "rect": [
+            525.5,
+            491.5,
+            57.5,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "word-bank-word-2": {
+          "enabled": false,
+          "rect": [
+            589,
+            491.5,
+            101.5,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "word-bank-word-3": {
+          "enabled": false,
+          "rect": [
+            696.5,
+            491.5,
+            59,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        }
+      }
+    },
+    "general-listening-decline-goodbye": {
+      "accessible_text": [
+        "LingoSeed",
+        "使用英语键入",
+        "检查",
+        "用英语写出这句话",
+        "谢谢， 再见！",
+        "跳过"
+      ],
+      "capture": {
+        "backing_scale": 2,
+        "content_rect_points": [
+          0,
+          32,
+          1200,
+          732
+        ],
+        "path": "projects/duolingo-web/evidence/english-general-listening-decline-native-v1/native-02/general-listening-decline-goodbye.png",
+        "window_points": [
+          1200,
+          764
+        ]
+      },
+      "elements": {
+        "answer-input": {
+          "enabled": true,
+          "rect": [
+            312,
+            205.5,
+            576,
+            31
+          ],
+          "role": "AXTextField",
+          "value": ""
+        },
+        "check": {
+          "enabled": false,
+          "rect": [
+            910,
+            643,
+            150,
+            46
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "exit": {
+          "enabled": true,
+          "rect": [
+            100,
+            51,
+            18,
+            18
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "lesson-progress": {
+          "enabled": true,
+          "rect": [
+            142,
+            50,
+            958,
+            20
+          ],
+          "role": "AXProgressIndicator",
+          "value": ""
+        },
+        "question-hint": {
+          "enabled": true,
+          "rect": [
+            300,
+            161.5,
+            124,
+            24
+          ],
+          "role": "AXStaticText",
+          "value": "谢谢， 再见！"
+        },
+        "question-title": {
+          "enabled": true,
+          "rect": [
+            300,
+            122.5,
+            256,
+            38
+          ],
+          "role": "AXStaticText",
+          "value": "用英语写出这句话"
+        },
+        "skip": {
+          "enabled": true,
+          "rect": [
+            140,
+            639,
+            150,
+            50
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "SwiftUI._ConditionalContent<SwiftUI.SubscriptionView<(extension in Foundation):__C.NSNotificationCenter.Publisher, SwiftUI.ModifiedContent<LingoSeed.LearningView, SwiftUI._AppearanceActionModifier>>, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1": {
+          "enabled": false,
+          "rect": [
+            0,
+            -32,
+            1200,
+            764
+          ],
+          "role": "AXWindow",
+          "value": ""
+        }
+      }
+    },
+    "general-listening-decline-goodbye-feedback": {
+      "accessible_text": [
+        "LingoSeed",
+        "Selected",
+        "Thank you, goodbye!",
+        "correct",
+        "unselected",
+        "不错哦！",
+        "使用英语键入",
+        "太简单",
+        "太难",
+        "报错",
+        "用英语写出这句话",
+        "继续",
+        "谢谢， 再见！"
+      ],
+      "capture": {
+        "backing_scale": 2,
+        "content_rect_points": [
+          0,
+          32,
+          1200,
+          732
+        ],
+        "path": "projects/duolingo-web/evidence/english-general-listening-decline-native-v1/native-02/general-listening-decline-goodbye-feedback.png",
+        "window_points": [
+          1200,
+          764
+        ]
+      },
+      "elements": {
+        "answer-input": {
+          "enabled": false,
+          "rect": [
+            312,
+            205.5,
+            576,
+            31
+          ],
+          "role": "AXTextField",
+          "value": "Thank you, goodbye!"
+        },
+        "checkmark.circle.fill": {
+          "enabled": true,
+          "rect": [
+            144,
+            638,
+            48,
+            48
+          ],
+          "role": "AXImage",
+          "value": ""
+        },
+        "continue": {
+          "enabled": true,
+          "rect": [
+            949,
+            635.5,
+            112,
+            53
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "exit": {
+          "enabled": true,
+          "rect": [
+            100,
+            51,
+            18,
+            18
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "feedback": {
+          "enabled": true,
+          "rect": [
+            226,
+            626.75,
+            59.5,
+            20.5
+          ],
+          "role": "AXStaticText",
+          "value": "correct"
+        },
+        "feedback-easy": {
+          "enabled": true,
+          "rect": [
+            229.3318328857422,
+            677.25,
+            72.66816711425781,
+            20
+          ],
+          "role": "AXButton",
+          "value": "unselected"
+        },
+        "feedback-hard": {
+          "enabled": true,
+          "rect": [
+            326.8316955566406,
+            677.25,
+            58.168304443359375,
+            20
+          ],
+          "role": "AXButton",
+          "value": "unselected"
+        },
+        "feedback-report": {
+          "enabled": true,
+          "rect": [
+            409,
+            677.25,
+            59,
+            20.25
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "lesson-progress": {
+          "enabled": true,
+          "rect": [
+            142,
+            50,
+            958,
+            20
+          ],
+          "role": "AXProgressIndicator",
+          "value": ""
+        },
+        "question-hint": {
+          "enabled": true,
+          "rect": [
+            300,
+            161.5,
+            124,
+            24
+          ],
+          "role": "AXStaticText",
+          "value": "谢谢， 再见！"
+        },
+        "question-title": {
+          "enabled": true,
+          "rect": [
+            300,
+            122.5,
+            256,
+            38
+          ],
+          "role": "AXStaticText",
+          "value": "用英语写出这句话"
+        },
+        "SwiftUI._ConditionalContent<SwiftUI.SubscriptionView<(extension in Foundation):__C.NSNotificationCenter.Publisher, SwiftUI.ModifiedContent<LingoSeed.LearningView, SwiftUI._AppearanceActionModifier>>, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1": {
+          "enabled": false,
+          "rect": [
+            0,
+            -32,
+            1200,
+            764
+          ],
+          "role": "AXWindow",
+          "value": ""
+        }
+      }
+    },
+    "general-listening-decline-home-restart": {
+      "accessible_text": [
+        "12 小时",
+        "2",
+        "30 / 30",
+        "5",
+        "510",
+        "6",
+        "6 of 7 lessons complete",
+        "Lesson",
+        "Lesson 3 of 4",
+        "LingoSeed",
+        "Practice",
+        "个人档案",
+        "关于我们    宝石小店    有效性    招聘贤才\n\n投资者    条款    隐私",
+        "创建个人档案，保存学习进度！",
+        "创建档案",
+        "发音",
+        "复习该部分",
+        "学习",
+        "宝石小店",
+        "开始",
+        "指南",
+        "排行榜",
+        "提供或接受饮料",
+        "显示全部",
+        "更多",
+        "查看排行榜",
+        "每日特别任务",
+        "特别任务",
+        "登录",
+        "第 1 阶段，第 1 部分",
+        "获取 30 经验",
+        "谈论祖籍国家",
+        "这周的排行榜挑战赛即将开始！",
+        "青铜等级"
+      ],
+      "capture": {
+        "backing_scale": 2,
+        "content_rect_points": [
+          0,
+          32,
+          1200,
+          732
+        ],
+        "path": "projects/duolingo-web/evidence/english-general-listening-decline-native-v1/native-02/general-listening-decline-home-restart.png",
+        "window_points": [
+          1200,
+          764
+        ]
+      },
+      "elements": {
+        "completed-count": {
+          "enabled": true,
+          "rect": [
+            455.75,
+            687.1484375,
+            128.5,
+            15
+          ],
+          "role": "AXStaticText",
+          "value": "6"
+        },
+        "course-entry": {
+          "enabled": true,
+          "rect": [
+            296,
+            93.5,
+            154,
+            26
+          ],
+          "role": "AXStaticText",
+          "value": "提供或接受饮料"
+        },
+        "nav-leaderboards": {
+          "enabled": true,
+          "rect": [
+            16,
+            212,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-learn": {
+          "enabled": true,
+          "rect": [
+            16,
+            92,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-more": {
+          "enabled": true,
+          "rect": [
+            16,
+            452,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-profile": {
+          "enabled": true,
+          "rect": [
+            16,
+            392,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-pronunciation": {
+          "enabled": true,
+          "rect": [
+            16,
+            152,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-quests": {
+          "enabled": true,
+          "rect": [
+            16,
+            272,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-shop": {
+          "enabled": true,
+          "rect": [
+            16,
+            332,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "open-guide": {
+          "enabled": true,
+          "rect": [
+            649,
+            68,
+            96,
+            50
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "sign-in": {
+          "enabled": true,
+          "rect": [
+            828,
+            570,
+            328,
+            46
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "start-lesson": {
+          "enabled": true,
+          "rect": [
+            485,
+            162,
+            70,
+            65
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "start-lesson-1": {
+          "enabled": true,
+          "rect": [
+            440,
+            253,
+            70,
+            65
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "start-lesson-3": {
+          "enabled": true,
+          "rect": [
+            440,
+            462.5,
+            70,
+            65
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "start-lesson-4": {
+          "enabled": true,
+          "rect": [
+            485,
+            539.5,
+            70,
+            65
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "SwiftUI._ConditionalContent<SwiftUI.SubscriptionView<(extension in Foundation):__C.NSNotificationCenter.Publisher, SwiftUI.ModifiedContent<LingoSeed.LearningView, SwiftUI._AppearanceActionModifier>>, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1": {
+          "enabled": false,
+          "rect": [
+            0,
+            -32,
+            1200,
+            764
+          ],
+          "role": "AXWindow",
+          "value": ""
+        },
+        "view-leaderboards": {
+          "enabled": true,
+          "rect": [
+            1081,
+            114.5,
+            75,
+            18
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "view-profile": {
+          "enabled": true,
+          "rect": [
+            828,
+            510,
+            328,
+            46
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "view-quests": {
+          "enabled": true,
+          "rect": [
+            1096,
+            280.5,
+            60,
+            18
+          ],
+          "role": "AXButton",
+          "value": ""
+        }
+      }
+    },
+    "general-listening-decline-home-return": {
+      "accessible_text": [
+        "12 小时",
+        "2",
+        "30 / 30",
+        "5",
+        "510",
+        "6",
+        "6 of 7 lessons complete",
+        "Lesson",
+        "Lesson 3 of 4",
+        "LingoSeed",
+        "Practice",
+        "个人档案",
+        "关于我们    宝石小店    有效性    招聘贤才\n\n投资者    条款    隐私",
+        "创建个人档案，保存学习进度！",
+        "创建档案",
+        "发音",
+        "复习该部分",
+        "学习",
+        "宝石小店",
+        "开始",
+        "指南",
+        "排行榜",
+        "提供或接受饮料",
+        "显示全部",
+        "更多",
+        "查看排行榜",
+        "每日特别任务",
+        "特别任务",
+        "登录",
+        "第 1 阶段，第 1 部分",
+        "获取 30 经验",
+        "谈论祖籍国家",
+        "这周的排行榜挑战赛即将开始！",
+        "青铜等级"
+      ],
+      "capture": {
+        "backing_scale": 2,
+        "content_rect_points": [
+          0,
+          32,
+          1200,
+          732
+        ],
+        "path": "projects/duolingo-web/evidence/english-general-listening-decline-native-v1/native-02/general-listening-decline-home-return.png",
+        "window_points": [
+          1200,
+          764
+        ]
+      },
+      "elements": {
+        "completed-count": {
+          "enabled": true,
+          "rect": [
+            455.75,
+            687.1484375,
+            128.5,
+            15
+          ],
+          "role": "AXStaticText",
+          "value": "6"
+        },
+        "course-entry": {
+          "enabled": true,
+          "rect": [
+            296,
+            93.5,
+            154,
+            26
+          ],
+          "role": "AXStaticText",
+          "value": "提供或接受饮料"
+        },
+        "nav-leaderboards": {
+          "enabled": true,
+          "rect": [
+            16,
+            212,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-learn": {
+          "enabled": true,
+          "rect": [
+            16,
+            92,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-more": {
+          "enabled": true,
+          "rect": [
+            16,
+            452,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-profile": {
+          "enabled": true,
+          "rect": [
+            16,
+            392,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-pronunciation": {
+          "enabled": true,
+          "rect": [
+            16,
+            152,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-quests": {
+          "enabled": true,
+          "rect": [
+            16,
+            272,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-shop": {
+          "enabled": true,
+          "rect": [
+            16,
+            332,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "open-guide": {
+          "enabled": true,
+          "rect": [
+            649,
+            68,
+            96,
+            50
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "sign-in": {
+          "enabled": true,
+          "rect": [
+            828,
+            570,
+            328,
+            46
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "start-lesson": {
+          "enabled": true,
+          "rect": [
+            485,
+            162,
+            70,
+            65
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "start-lesson-1": {
+          "enabled": true,
+          "rect": [
+            440,
+            253,
+            70,
+            65
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "start-lesson-3": {
+          "enabled": true,
+          "rect": [
+            440,
+            462.5,
+            70,
+            65
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "start-lesson-4": {
+          "enabled": true,
+          "rect": [
+            485,
+            539.5,
+            70,
+            65
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "SwiftUI._ConditionalContent<SwiftUI.SubscriptionView<(extension in Foundation):__C.NSNotificationCenter.Publisher, SwiftUI.ModifiedContent<LingoSeed.LearningView, SwiftUI._AppearanceActionModifier>>, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1": {
+          "enabled": false,
+          "rect": [
+            0,
+            -32,
+            1200,
+            764
+          ],
+          "role": "AXWindow",
+          "value": ""
+        },
+        "view-leaderboards": {
+          "enabled": true,
+          "rect": [
+            1081,
+            114.5,
+            75,
+            18
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "view-profile": {
+          "enabled": true,
+          "rect": [
+            828,
+            510,
+            328,
+            46
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "view-quests": {
+          "enabled": true,
+          "rect": [
+            1096,
+            280.5,
+            60,
+            18
+          ],
+          "role": "AXButton",
+          "value": ""
+        }
+      }
+    },
+    "general-listening-decline-hot-tea": {
+      "accessible_text": [
+        "LingoSeed",
+        "使用英语键入",
+        "我想要热茶，谢谢。",
+        "挑战题",
+        "检查",
+        "用英语写出这句话",
+        "跳过"
+      ],
+      "capture": {
+        "backing_scale": 2,
+        "content_rect_points": [
+          0,
+          32,
+          1200,
+          732
+        ],
+        "path": "projects/duolingo-web/evidence/english-general-listening-decline-native-v1/native-02/general-listening-decline-hot-tea.png",
+        "window_points": [
+          1200,
+          764
+        ]
+      },
+      "elements": {
+        "answer-input": {
+          "enabled": true,
+          "rect": [
+            312,
+            273.5,
+            576,
+            31
+          ],
+          "role": "AXTextField",
+          "value": ""
+        },
+        "check": {
+          "enabled": false,
+          "rect": [
+            910,
+            643,
+            150,
+            46
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "exit": {
+          "enabled": true,
+          "rect": [
+            100,
+            51,
+            18,
+            18
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "lesson-progress": {
+          "enabled": true,
+          "rect": [
+            142,
+            50,
+            958,
+            20
+          ],
+          "role": "AXProgressIndicator",
+          "value": ""
+        },
+        "question-hint": {
+          "enabled": true,
+          "rect": [
+            300,
+            229.5,
+            180,
+            24
+          ],
+          "role": "AXStaticText",
+          "value": "我想要热茶，谢谢。"
+        },
+        "question-indicator": {
+          "enabled": true,
+          "rect": [
+            579,
+            121,
+            42,
+            17
+          ],
+          "role": "AXStaticText",
+          "value": "挑战题"
+        },
+        "question-title": {
+          "enabled": true,
+          "rect": [
+            300,
+            190.5,
+            256,
+            38
+          ],
+          "role": "AXStaticText",
+          "value": "用英语写出这句话"
+        },
+        "skip": {
+          "enabled": true,
+          "rect": [
+            140,
+            639,
+            150,
+            50
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "SwiftUI._ConditionalContent<SwiftUI.SubscriptionView<(extension in Foundation):__C.NSNotificationCenter.Publisher, SwiftUI.ModifiedContent<LingoSeed.LearningView, SwiftUI._AppearanceActionModifier>>, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1": {
+          "enabled": false,
+          "rect": [
+            0,
+            -32,
+            1200,
+            764
+          ],
+          "role": "AXWindow",
+          "value": ""
+        }
+      }
+    },
+    "general-listening-decline-hot-tea-feedback": {
+      "accessible_text": [
+        "I'd like hot tea, please.",
+        "LingoSeed",
+        "Selected",
+        "correct",
+        "unselected",
+        "你太棒了！",
+        "使用英语键入",
+        "太简单",
+        "太难",
+        "我想要热茶，谢谢。",
+        "报错",
+        "挑战题",
+        "用英语写出这句话",
+        "继续"
+      ],
+      "capture": {
+        "backing_scale": 2,
+        "content_rect_points": [
+          0,
+          32,
+          1200,
+          732
+        ],
+        "path": "projects/duolingo-web/evidence/english-general-listening-decline-native-v1/native-02/general-listening-decline-hot-tea-feedback.png",
+        "window_points": [
+          1200,
+          764
+        ]
+      },
+      "elements": {
+        "answer-input": {
+          "enabled": false,
+          "rect": [
+            312,
+            273.5,
+            576,
+            31
+          ],
+          "role": "AXTextField",
+          "value": "I'd like hot tea, please."
+        },
+        "checkmark.circle.fill": {
+          "enabled": true,
+          "rect": [
+            144,
+            638,
+            48,
+            48
+          ],
+          "role": "AXImage",
+          "value": ""
+        },
+        "continue": {
+          "enabled": true,
+          "rect": [
+            949,
+            635.5,
+            112,
+            53
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "exit": {
+          "enabled": true,
+          "rect": [
+            100,
+            51,
+            18,
+            18
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "feedback": {
+          "enabled": true,
+          "rect": [
+            226,
+            626.75,
+            76,
+            20.5
+          ],
+          "role": "AXStaticText",
+          "value": "correct"
+        },
+        "feedback-easy": {
+          "enabled": true,
+          "rect": [
+            229.3318328857422,
+            677.25,
+            72.66816711425781,
+            20
+          ],
+          "role": "AXButton",
+          "value": "unselected"
+        },
+        "feedback-hard": {
+          "enabled": true,
+          "rect": [
+            326.8316955566406,
+            677.25,
+            58.168304443359375,
+            20
+          ],
+          "role": "AXButton",
+          "value": "unselected"
+        },
+        "feedback-report": {
+          "enabled": true,
+          "rect": [
+            409,
+            677.25,
+            59,
+            20.25
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "lesson-progress": {
+          "enabled": true,
+          "rect": [
+            142,
+            50,
+            958,
+            20
+          ],
+          "role": "AXProgressIndicator",
+          "value": ""
+        },
+        "question-hint": {
+          "enabled": true,
+          "rect": [
+            300,
+            229.5,
+            180,
+            24
+          ],
+          "role": "AXStaticText",
+          "value": "我想要热茶，谢谢。"
+        },
+        "question-indicator": {
+          "enabled": true,
+          "rect": [
+            579,
+            121,
+            42,
+            17
+          ],
+          "role": "AXStaticText",
+          "value": "挑战题"
+        },
+        "question-title": {
+          "enabled": true,
+          "rect": [
+            300,
+            190.5,
+            256,
+            38
+          ],
+          "role": "AXStaticText",
+          "value": "用英语写出这句话"
+        },
+        "SwiftUI._ConditionalContent<SwiftUI.SubscriptionView<(extension in Foundation):__C.NSNotificationCenter.Publisher, SwiftUI.ModifiedContent<LingoSeed.LearningView, SwiftUI._AppearanceActionModifier>>, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1": {
+          "enabled": false,
+          "rect": [
+            0,
+            -32,
+            1200,
+            764
+          ],
+          "role": "AXWindow",
+          "value": ""
+        }
+      }
+    },
+    "general-listening-decline-ice-water": {
+      "accessible_text": [
+        "LingoSeed",
+        "使用英语键入",
+        "我想要冰水，谢谢。",
+        "挑战题",
+        "检查",
+        "用英语写出这句话",
+        "跳过"
+      ],
+      "capture": {
+        "backing_scale": 2,
+        "content_rect_points": [
+          0,
+          32,
+          1200,
+          732
+        ],
+        "path": "projects/duolingo-web/evidence/english-general-listening-decline-native-v1/native-02/general-listening-decline-ice-water.png",
+        "window_points": [
+          1200,
+          764
+        ]
+      },
+      "elements": {
+        "answer-input": {
+          "enabled": true,
+          "rect": [
+            312,
+            273.5,
+            576,
+            31
+          ],
+          "role": "AXTextField",
+          "value": ""
+        },
+        "check": {
+          "enabled": false,
+          "rect": [
+            910,
+            643,
+            150,
+            46
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "exit": {
+          "enabled": true,
+          "rect": [
+            100,
+            51,
+            18,
+            18
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "lesson-progress": {
+          "enabled": true,
+          "rect": [
+            142,
+            50,
+            958,
+            20
+          ],
+          "role": "AXProgressIndicator",
+          "value": ""
+        },
+        "question-hint": {
+          "enabled": true,
+          "rect": [
+            300,
+            229.5,
+            180,
+            24
+          ],
+          "role": "AXStaticText",
+          "value": "我想要冰水，谢谢。"
+        },
+        "question-indicator": {
+          "enabled": true,
+          "rect": [
+            579,
+            121,
+            42,
+            17
+          ],
+          "role": "AXStaticText",
+          "value": "挑战题"
+        },
+        "question-title": {
+          "enabled": true,
+          "rect": [
+            300,
+            190.5,
+            256,
+            38
+          ],
+          "role": "AXStaticText",
+          "value": "用英语写出这句话"
+        },
+        "skip": {
+          "enabled": true,
+          "rect": [
+            140,
+            639,
+            150,
+            50
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "SwiftUI._ConditionalContent<SwiftUI.SubscriptionView<(extension in Foundation):__C.NSNotificationCenter.Publisher, SwiftUI.ModifiedContent<LingoSeed.LearningView, SwiftUI._AppearanceActionModifier>>, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1": {
+          "enabled": false,
+          "rect": [
+            0,
+            -32,
+            1200,
+            764
+          ],
+          "role": "AXWindow",
+          "value": ""
+        }
+      }
+    },
+    "general-listening-decline-ice-water-feedback": {
+      "accessible_text": [
+        "I'd like water with ice, please.",
+        "LingoSeed",
+        "Selected",
+        "correct",
+        "unselected",
+        "使用英语键入",
+        "太简单",
+        "太难",
+        "我想要冰水，谢谢。",
+        "报错",
+        "挑战题",
+        "泰裤辣！",
+        "用英语写出这句话",
+        "继续"
+      ],
+      "capture": {
+        "backing_scale": 2,
+        "content_rect_points": [
+          0,
+          32,
+          1200,
+          732
+        ],
+        "path": "projects/duolingo-web/evidence/english-general-listening-decline-native-v1/native-02/general-listening-decline-ice-water-feedback.png",
+        "window_points": [
+          1200,
+          764
+        ]
+      },
+      "elements": {
+        "answer-input": {
+          "enabled": false,
+          "rect": [
+            312,
+            273.5,
+            576,
+            31
+          ],
+          "role": "AXTextField",
+          "value": "I'd like water with ice, please."
+        },
+        "checkmark.circle.fill": {
+          "enabled": true,
+          "rect": [
+            144,
+            638,
+            48,
+            48
+          ],
+          "role": "AXImage",
+          "value": ""
+        },
+        "continue": {
+          "enabled": true,
+          "rect": [
+            949,
+            635.5,
+            112,
+            53
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "exit": {
+          "enabled": true,
+          "rect": [
+            100,
+            51,
+            18,
+            18
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "feedback": {
+          "enabled": true,
+          "rect": [
+            226,
+            626.75,
+            59.5,
+            20.5
+          ],
+          "role": "AXStaticText",
+          "value": "correct"
+        },
+        "feedback-easy": {
+          "enabled": true,
+          "rect": [
+            229.3318328857422,
+            677.25,
+            72.66816711425781,
+            20
+          ],
+          "role": "AXButton",
+          "value": "unselected"
+        },
+        "feedback-hard": {
+          "enabled": true,
+          "rect": [
+            326.8316955566406,
+            677.25,
+            58.168304443359375,
+            20
+          ],
+          "role": "AXButton",
+          "value": "unselected"
+        },
+        "feedback-report": {
+          "enabled": true,
+          "rect": [
+            409,
+            677.25,
+            59,
+            20.25
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "lesson-progress": {
+          "enabled": true,
+          "rect": [
+            142,
+            50,
+            958,
+            20
+          ],
+          "role": "AXProgressIndicator",
+          "value": ""
+        },
+        "question-hint": {
+          "enabled": true,
+          "rect": [
+            300,
+            229.5,
+            180,
+            24
+          ],
+          "role": "AXStaticText",
+          "value": "我想要冰水，谢谢。"
+        },
+        "question-indicator": {
+          "enabled": true,
+          "rect": [
+            579,
+            121,
+            42,
+            17
+          ],
+          "role": "AXStaticText",
+          "value": "挑战题"
+        },
+        "question-title": {
+          "enabled": true,
+          "rect": [
+            300,
+            190.5,
+            256,
+            38
+          ],
+          "role": "AXStaticText",
+          "value": "用英语写出这句话"
+        },
+        "SwiftUI._ConditionalContent<SwiftUI.SubscriptionView<(extension in Foundation):__C.NSNotificationCenter.Publisher, SwiftUI.ModifiedContent<LingoSeed.LearningView, SwiftUI._AppearanceActionModifier>>, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1": {
+          "enabled": false,
+          "rect": [
+            0,
+            -32,
+            1200,
+            764
+          ],
+          "role": "AXWindow",
+          "value": ""
+        }
+      }
+    },
+    "general-listening-decline-inserted": {
+      "accessible_text": [
+        "LingoSeed",
+        "water and coffee",
+        "和",
+        "咖啡",
+        "检查",
+        "水",
+        "用中文（简体）写出这句话",
+        "跳过",
+        "还是"
+      ],
+      "capture": {
+        "backing_scale": 2,
+        "content_rect_points": [
+          0,
+          32,
+          1200,
+          732
+        ],
+        "path": "projects/duolingo-web/evidence/english-general-listening-decline-native-v1/native-02/general-listening-decline-inserted.png",
+        "window_points": [
+          1200,
+          764
+        ]
+      },
+      "elements": {
+        "check": {
+          "enabled": false,
+          "rect": [
+            910,
+            643,
+            150,
+            46
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "exit": {
+          "enabled": true,
+          "rect": [
+            100,
+            51,
+            18,
+            18
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "lesson-progress": {
+          "enabled": true,
+          "rect": [
+            142,
+            50,
+            958,
+            20
+          ],
+          "role": "AXProgressIndicator",
+          "value": ""
+        },
+        "pronounce": {
+          "enabled": true,
+          "rect": [
+            435,
+            205.5,
+            221,
+            62
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "question-title": {
+          "enabled": true,
+          "rect": [
+            300,
+            122.5,
+            384,
+            38
+          ],
+          "role": "AXStaticText",
+          "value": "用中文（简体）写出这句话"
+        },
+        "skip": {
+          "enabled": true,
+          "rect": [
+            140,
+            639,
+            150,
+            50
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "SwiftUI._ConditionalContent<SwiftUI.SubscriptionView<(extension in Foundation):__C.NSNotificationCenter.Publisher, SwiftUI.ModifiedContent<LingoSeed.LearningView, SwiftUI._AppearanceActionModifier>>, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1": {
+          "enabled": false,
+          "rect": [
+            0,
+            -32,
+            1200,
+            764
+          ],
+          "role": "AXWindow",
+          "value": ""
+        },
+        "word-bank-word-0": {
+          "enabled": true,
+          "rect": [
+            488,
+            466.5,
+            43,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "word-bank-word-1": {
+          "enabled": true,
+          "rect": [
+            537,
+            466.5,
+            43,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "word-bank-word-2": {
+          "enabled": true,
+          "rect": [
+            586,
+            466.5,
+            60,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "word-bank-word-3": {
+          "enabled": true,
+          "rect": [
+            652,
+            466.5,
+            60,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        }
+      }
+    },
+    "general-listening-decline-inserted-feedback": {
+      "accessible_text": [
+        "LingoSeed",
+        "Selected",
+        "correct",
+        "unselected",
+        "water and coffee",
+        "和",
+        "咖啡",
+        "太简单",
+        "太难",
+        "报错",
+        "水",
+        "用中文（简体）写出这句话",
+        "真厉害！",
+        "继续",
+        "还是"
+      ],
+      "capture": {
+        "backing_scale": 2,
+        "content_rect_points": [
+          0,
+          32,
+          1200,
+          732
+        ],
+        "path": "projects/duolingo-web/evidence/english-general-listening-decline-native-v1/native-02/general-listening-decline-inserted-feedback.png",
+        "window_points": [
+          1200,
+          764
+        ]
+      },
+      "elements": {
+        "checkmark.circle.fill": {
+          "enabled": true,
+          "rect": [
+            144,
+            638,
+            48,
+            48
+          ],
+          "role": "AXImage",
+          "value": ""
+        },
+        "continue": {
+          "enabled": true,
+          "rect": [
+            949,
+            635.5,
+            112,
+            53
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "exit": {
+          "enabled": true,
+          "rect": [
+            100,
+            51,
+            18,
+            18
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "feedback": {
+          "enabled": true,
+          "rect": [
+            226,
+            626.75,
+            59.5,
+            20.5
+          ],
+          "role": "AXStaticText",
+          "value": "correct"
+        },
+        "feedback-easy": {
+          "enabled": true,
+          "rect": [
+            229.3318328857422,
+            677.25,
+            72.66816711425781,
+            20
+          ],
+          "role": "AXButton",
+          "value": "unselected"
+        },
+        "feedback-hard": {
+          "enabled": true,
+          "rect": [
+            326.8316955566406,
+            677.25,
+            58.168304443359375,
+            20
+          ],
+          "role": "AXButton",
+          "value": "unselected"
+        },
+        "feedback-report": {
+          "enabled": true,
+          "rect": [
+            409,
+            677.25,
+            59,
+            20.25
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "lesson-progress": {
+          "enabled": true,
+          "rect": [
+            142,
+            50,
+            958,
+            20
+          ],
+          "role": "AXProgressIndicator",
+          "value": ""
+        },
+        "pronounce": {
+          "enabled": true,
+          "rect": [
+            435,
+            205.5,
+            221,
+            62
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "question-title": {
+          "enabled": true,
+          "rect": [
+            300,
+            122.5,
+            384,
+            38
+          ],
+          "role": "AXStaticText",
+          "value": "用中文（简体）写出这句话"
+        },
+        "selected-word-word-0": {
+          "enabled": false,
+          "rect": [
+            299,
+            346.5,
+            43,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "selected-word-word-1": {
+          "enabled": false,
+          "rect": [
+            348,
+            346.5,
+            43,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "selected-word-word-2": {
+          "enabled": false,
+          "rect": [
+            397,
+            346.5,
+            60,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "SwiftUI._ConditionalContent<SwiftUI.SubscriptionView<(extension in Foundation):__C.NSNotificationCenter.Publisher, SwiftUI.ModifiedContent<LingoSeed.LearningView, SwiftUI._AppearanceActionModifier>>, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1": {
+          "enabled": false,
+          "rect": [
+            0,
+            -32,
+            1200,
+            764
+          ],
+          "role": "AXWindow",
+          "value": ""
+        },
+        "word-bank-word-0": {
+          "enabled": false,
+          "rect": [
+            488,
+            466.5,
+            43,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "word-bank-word-1": {
+          "enabled": false,
+          "rect": [
+            537,
+            466.5,
+            43,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "word-bank-word-2": {
+          "enabled": false,
+          "rect": [
+            586,
+            466.5,
+            60,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "word-bank-word-3": {
+          "enabled": false,
+          "rect": [
+            652,
+            466.5,
+            60,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        }
+      }
+    },
+    "general-listening-decline-no-coffee": {
+      "accessible_text": [
+        "LingoSeed",
+        "No coffee, thank you.",
+        "不要",
+        "和",
+        "咖啡",
+        "检查",
+        "用中文（简体）写出这句话",
+        "谢谢",
+        "跳过"
+      ],
+      "capture": {
+        "backing_scale": 2,
+        "content_rect_points": [
+          0,
+          32,
+          1200,
+          732
+        ],
+        "path": "projects/duolingo-web/evidence/english-general-listening-decline-native-v1/native-02/general-listening-decline-no-coffee.png",
+        "window_points": [
+          1200,
+          764
+        ]
+      },
+      "elements": {
+        "check": {
+          "enabled": false,
+          "rect": [
+            910,
+            643,
+            150,
+            46
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "exit": {
+          "enabled": true,
+          "rect": [
+            100,
+            51,
+            18,
+            18
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "lesson-progress": {
+          "enabled": true,
+          "rect": [
+            142,
+            50,
+            958,
+            20
+          ],
+          "role": "AXProgressIndicator",
+          "value": ""
+        },
+        "question-hint": {
+          "enabled": true,
+          "rect": [
+            454,
+            224.5,
+            177,
+            24
+          ],
+          "role": "AXStaticText",
+          "value": "No coffee, thank you."
+        },
+        "question-title": {
+          "enabled": true,
+          "rect": [
+            300,
+            122.5,
+            384,
+            38
+          ],
+          "role": "AXStaticText",
+          "value": "用中文（简体）写出这句话"
+        },
+        "skip": {
+          "enabled": true,
+          "rect": [
+            140,
+            639,
+            150,
+            50
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "SwiftUI._ConditionalContent<SwiftUI.SubscriptionView<(extension in Foundation):__C.NSNotificationCenter.Publisher, SwiftUI.ModifiedContent<LingoSeed.LearningView, SwiftUI._AppearanceActionModifier>>, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1": {
+          "enabled": false,
+          "rect": [
+            0,
+            -32,
+            1200,
+            764
+          ],
+          "role": "AXWindow",
+          "value": ""
+        },
+        "word-bank-word-0": {
+          "enabled": true,
+          "rect": [
+            479.5,
+            466.5,
+            60,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "word-bank-word-1": {
+          "enabled": true,
+          "rect": [
+            545.5,
+            466.5,
+            43,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "word-bank-word-2": {
+          "enabled": true,
+          "rect": [
+            594.5,
+            466.5,
+            60,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "word-bank-word-3": {
+          "enabled": true,
+          "rect": [
+            660.5,
+            466.5,
+            60,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        }
+      }
+    },
+    "general-listening-decline-no-coffee-feedback": {
+      "accessible_text": [
+        "LingoSeed",
+        "No coffee, thank you.",
+        "Selected",
+        "correct",
+        "unselected",
+        "不要",
+        "和",
+        "咖啡",
+        "太简单",
+        "太难",
+        "报错",
+        "用中文（简体）写出这句话",
+        "真棒！",
+        "继续",
+        "谢谢"
+      ],
+      "capture": {
+        "backing_scale": 2,
+        "content_rect_points": [
+          0,
+          32,
+          1200,
+          732
+        ],
+        "path": "projects/duolingo-web/evidence/english-general-listening-decline-native-v1/native-02/general-listening-decline-no-coffee-feedback.png",
+        "window_points": [
+          1200,
+          764
+        ]
+      },
+      "elements": {
+        "checkmark.circle.fill": {
+          "enabled": true,
+          "rect": [
+            144,
+            638,
+            48,
+            48
+          ],
+          "role": "AXImage",
+          "value": ""
+        },
+        "continue": {
+          "enabled": true,
+          "rect": [
+            949,
+            635.5,
+            112,
+            53
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "exit": {
+          "enabled": true,
+          "rect": [
+            100,
+            51,
+            18,
+            18
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "feedback": {
+          "enabled": true,
+          "rect": [
+            226,
+            626.75,
+            42.5,
+            20.5
+          ],
+          "role": "AXStaticText",
+          "value": "correct"
+        },
+        "feedback-easy": {
+          "enabled": true,
+          "rect": [
+            229.3318328857422,
+            677.25,
+            72.66816711425781,
+            20
+          ],
+          "role": "AXButton",
+          "value": "unselected"
+        },
+        "feedback-hard": {
+          "enabled": true,
+          "rect": [
+            326.8316955566406,
+            677.25,
+            58.168304443359375,
+            20
+          ],
+          "role": "AXButton",
+          "value": "unselected"
+        },
+        "feedback-report": {
+          "enabled": true,
+          "rect": [
+            409,
+            677.25,
+            59,
+            20.25
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "lesson-progress": {
+          "enabled": true,
+          "rect": [
+            142,
+            50,
+            958,
+            20
+          ],
+          "role": "AXProgressIndicator",
+          "value": ""
+        },
+        "question-hint": {
+          "enabled": true,
+          "rect": [
+            454,
+            224.5,
+            177,
+            24
+          ],
+          "role": "AXStaticText",
+          "value": "No coffee, thank you."
+        },
+        "question-title": {
+          "enabled": true,
+          "rect": [
+            300,
+            122.5,
+            384,
+            38
+          ],
+          "role": "AXStaticText",
+          "value": "用中文（简体）写出这句话"
+        },
+        "selected-word-word-0": {
+          "enabled": false,
+          "rect": [
+            431,
+            346.5,
+            60,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "selected-word-word-2": {
+          "enabled": false,
+          "rect": [
+            299,
+            346.5,
+            60,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "selected-word-word-3": {
+          "enabled": false,
+          "rect": [
+            365,
+            346.5,
+            60,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "SwiftUI._ConditionalContent<SwiftUI.SubscriptionView<(extension in Foundation):__C.NSNotificationCenter.Publisher, SwiftUI.ModifiedContent<LingoSeed.LearningView, SwiftUI._AppearanceActionModifier>>, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1": {
+          "enabled": false,
+          "rect": [
+            0,
+            -32,
+            1200,
+            764
+          ],
+          "role": "AXWindow",
+          "value": ""
+        },
+        "word-bank-word-0": {
+          "enabled": false,
+          "rect": [
+            479.5,
+            466.5,
+            60,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "word-bank-word-1": {
+          "enabled": false,
+          "rect": [
+            545.5,
+            466.5,
+            43,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "word-bank-word-2": {
+          "enabled": false,
+          "rect": [
+            594.5,
+            466.5,
+            60,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "word-bank-word-3": {
+          "enabled": false,
+          "rect": [
+            660.5,
+            466.5,
+            60,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        }
+      }
+    },
+    "general-listening-decline-no-milk": {
+      "accessible_text": [
+        "LingoSeed",
+        "No",
+        "and",
+        "i'd like",
+        "milk",
+        "no",
+        "please",
+        "sugar",
+        "不要牛奶，也不要糖，谢谢。",
+        "检查",
+        "用英语写出这句话",
+        "跳过"
+      ],
+      "capture": {
+        "backing_scale": 2,
+        "content_rect_points": [
+          0,
+          32,
+          1200,
+          732
+        ],
+        "path": "projects/duolingo-web/evidence/english-general-listening-decline-native-v1/native-02/general-listening-decline-no-milk.png",
+        "window_points": [
+          1200,
+          764
+        ]
+      },
+      "elements": {
+        "check": {
+          "enabled": false,
+          "rect": [
+            910,
+            643,
+            150,
+            46
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "exit": {
+          "enabled": true,
+          "rect": [
+            100,
+            51,
+            18,
+            18
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "lesson-progress": {
+          "enabled": true,
+          "rect": [
+            142,
+            50,
+            958,
+            20
+          ],
+          "role": "AXProgressIndicator",
+          "value": ""
+        },
+        "question-hint": {
+          "enabled": true,
+          "rect": [
+            454,
+            224.5,
+            260,
+            24
+          ],
+          "role": "AXStaticText",
+          "value": "不要牛奶，也不要糖，谢谢。"
+        },
+        "question-title": {
+          "enabled": true,
+          "rect": [
+            300,
+            122.5,
+            256,
+            38
+          ],
+          "role": "AXStaticText",
+          "value": "用英语写出这句话"
+        },
+        "skip": {
+          "enabled": true,
+          "rect": [
+            140,
+            639,
+            150,
+            50
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "SwiftUI._ConditionalContent<SwiftUI.SubscriptionView<(extension in Foundation):__C.NSNotificationCenter.Publisher, SwiftUI.ModifiedContent<LingoSeed.LearningView, SwiftUI._AppearanceActionModifier>>, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1": {
+          "enabled": false,
+          "rect": [
+            0,
+            -32,
+            1200,
+            764
+          ],
+          "role": "AXWindow",
+          "value": ""
+        },
+        "word-bank-word-0": {
+          "enabled": true,
+          "rect": [
+            368.5,
+            466.5,
+            55,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "word-bank-word-1": {
+          "enabled": true,
+          "rect": [
+            429.5,
+            466.5,
+            45.5,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "word-bank-word-2": {
+          "enabled": true,
+          "rect": [
+            481,
+            466.5,
+            57.5,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "word-bank-word-3": {
+          "enabled": true,
+          "rect": [
+            544.5,
+            466.5,
+            48.5,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "word-bank-word-4": {
+          "enabled": true,
+          "rect": [
+            599,
+            466.5,
+            69.5,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "word-bank-word-5": {
+          "enabled": true,
+          "rect": [
+            674.5,
+            466.5,
+            77,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "word-bank-word-6": {
+          "enabled": true,
+          "rect": [
+            757.5,
+            466.5,
+            74,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        }
+      }
+    },
+    "general-listening-decline-no-milk-feedback": {
+      "accessible_text": [
+        "LingoSeed",
+        "No",
+        "Selected",
+        "and",
+        "correct",
+        "i'd like",
+        "milk",
+        "no",
+        "please",
+        "sugar",
+        "unselected",
+        "不要牛奶，也不要糖，谢谢。",
+        "太简单",
+        "太难",
+        "报错",
+        "用英语写出这句话",
+        "继续",
+        "非常好！"
+      ],
+      "capture": {
+        "backing_scale": 2,
+        "content_rect_points": [
+          0,
+          32,
+          1200,
+          732
+        ],
+        "path": "projects/duolingo-web/evidence/english-general-listening-decline-native-v1/native-02/general-listening-decline-no-milk-feedback.png",
+        "window_points": [
+          1200,
+          764
+        ]
+      },
+      "elements": {
+        "checkmark.circle.fill": {
+          "enabled": true,
+          "rect": [
+            144,
+            638,
+            48,
+            48
+          ],
+          "role": "AXImage",
+          "value": ""
+        },
+        "continue": {
+          "enabled": true,
+          "rect": [
+            949,
+            635.5,
+            112,
+            53
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "exit": {
+          "enabled": true,
+          "rect": [
+            100,
+            51,
+            18,
+            18
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "feedback": {
+          "enabled": true,
+          "rect": [
+            226,
+            626.75,
+            59.5,
+            20.5
+          ],
+          "role": "AXStaticText",
+          "value": "correct"
+        },
+        "feedback-easy": {
+          "enabled": true,
+          "rect": [
+            229.3318328857422,
+            677.25,
+            72.66816711425781,
+            20
+          ],
+          "role": "AXButton",
+          "value": "unselected"
+        },
+        "feedback-hard": {
+          "enabled": true,
+          "rect": [
+            326.8316955566406,
+            677.25,
+            58.168304443359375,
+            20
+          ],
+          "role": "AXButton",
+          "value": "unselected"
+        },
+        "feedback-report": {
+          "enabled": true,
+          "rect": [
+            409,
+            677.25,
+            59,
+            20.25
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "lesson-progress": {
+          "enabled": true,
+          "rect": [
+            142,
+            50,
+            958,
+            20
+          ],
+          "role": "AXProgressIndicator",
+          "value": ""
+        },
+        "question-hint": {
+          "enabled": true,
+          "rect": [
+            454,
+            224.5,
+            260,
+            24
+          ],
+          "role": "AXStaticText",
+          "value": "不要牛奶，也不要糖，谢谢。"
+        },
+        "question-title": {
+          "enabled": true,
+          "rect": [
+            300,
+            122.5,
+            256,
+            38
+          ],
+          "role": "AXStaticText",
+          "value": "用英语写出这句话"
+        },
+        "selected-word-word-0": {
+          "enabled": false,
+          "rect": [
+            417,
+            346.5,
+            55,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "selected-word-word-1": {
+          "enabled": false,
+          "rect": [
+            478,
+            346.5,
+            45.5,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "selected-word-word-2": {
+          "enabled": false,
+          "rect": [
+            353.5,
+            346.5,
+            57.5,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "selected-word-word-3": {
+          "enabled": false,
+          "rect": [
+            299,
+            346.5,
+            48.5,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "selected-word-word-4": {
+          "enabled": false,
+          "rect": [
+            529.5,
+            346.5,
+            69.5,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "selected-word-word-5": {
+          "enabled": false,
+          "rect": [
+            605,
+            346.5,
+            77,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "SwiftUI._ConditionalContent<SwiftUI.SubscriptionView<(extension in Foundation):__C.NSNotificationCenter.Publisher, SwiftUI.ModifiedContent<LingoSeed.LearningView, SwiftUI._AppearanceActionModifier>>, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1": {
+          "enabled": false,
+          "rect": [
+            0,
+            -32,
+            1200,
+            764
+          ],
+          "role": "AXWindow",
+          "value": ""
+        },
+        "word-bank-word-0": {
+          "enabled": false,
+          "rect": [
+            368.5,
+            466.5,
+            55,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "word-bank-word-1": {
+          "enabled": false,
+          "rect": [
+            429.5,
+            466.5,
+            45.5,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "word-bank-word-2": {
+          "enabled": false,
+          "rect": [
+            481,
+            466.5,
+            57.5,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "word-bank-word-3": {
+          "enabled": false,
+          "rect": [
+            544.5,
+            466.5,
+            48.5,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "word-bank-word-4": {
+          "enabled": false,
+          "rect": [
+            599,
+            466.5,
+            69.5,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "word-bank-word-5": {
+          "enabled": false,
+          "rect": [
+            674.5,
+            466.5,
+            77,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "word-bank-word-6": {
+          "enabled": false,
+          "rect": [
+            757.5,
+            466.5,
+            74,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        }
+      }
+    },
+    "general-listening-decline-no-water": {
+      "accessible_text": [
+        "LingoSeed",
+        "不要冰，不要水，谢谢。",
+        "使用英语键入",
+        "挑战题",
+        "检查",
+        "用英语写出这句话",
+        "跳过"
+      ],
+      "capture": {
+        "backing_scale": 2,
+        "content_rect_points": [
+          0,
+          32,
+          1200,
+          732
+        ],
+        "path": "projects/duolingo-web/evidence/english-general-listening-decline-native-v1/native-02/general-listening-decline-no-water.png",
+        "window_points": [
+          1200,
+          764
+        ]
+      },
+      "elements": {
+        "answer-input": {
+          "enabled": true,
+          "rect": [
+            312,
+            273.5,
+            576,
+            31
+          ],
+          "role": "AXTextField",
+          "value": ""
+        },
+        "check": {
+          "enabled": false,
+          "rect": [
+            910,
+            643,
+            150,
+            46
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "exit": {
+          "enabled": true,
+          "rect": [
+            100,
+            51,
+            18,
+            18
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "lesson-progress": {
+          "enabled": true,
+          "rect": [
+            142,
+            50,
+            958,
+            20
+          ],
+          "role": "AXProgressIndicator",
+          "value": ""
+        },
+        "question-hint": {
+          "enabled": true,
+          "rect": [
+            300,
+            229.5,
+            220,
+            24
+          ],
+          "role": "AXStaticText",
+          "value": "不要冰，不要水，谢谢。"
+        },
+        "question-indicator": {
+          "enabled": true,
+          "rect": [
+            579,
+            121,
+            42,
+            17
+          ],
+          "role": "AXStaticText",
+          "value": "挑战题"
+        },
+        "question-title": {
+          "enabled": true,
+          "rect": [
+            300,
+            190.5,
+            256,
+            38
+          ],
+          "role": "AXStaticText",
+          "value": "用英语写出这句话"
+        },
+        "skip": {
+          "enabled": true,
+          "rect": [
+            140,
+            639,
+            150,
+            50
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "SwiftUI._ConditionalContent<SwiftUI.SubscriptionView<(extension in Foundation):__C.NSNotificationCenter.Publisher, SwiftUI.ModifiedContent<LingoSeed.LearningView, SwiftUI._AppearanceActionModifier>>, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1": {
+          "enabled": false,
+          "rect": [
+            0,
+            -32,
+            1200,
+            764
+          ],
+          "role": "AXWindow",
+          "value": ""
+        }
+      }
+    },
+    "general-listening-decline-no-water-feedback": {
+      "accessible_text": [
+        "LingoSeed",
+        "No ice, no water, please.",
+        "Selected",
+        "correct",
+        "unselected",
+        "不要冰，不要水，谢谢。",
+        "使用英语键入",
+        "其他正确答案：",
+        "太简单",
+        "太难",
+        "报错",
+        "挑战题",
+        "用英语写出这句话",
+        "继续"
+      ],
+      "capture": {
+        "backing_scale": 2,
+        "content_rect_points": [
+          0,
+          32,
+          1200,
+          732
+        ],
+        "path": "projects/duolingo-web/evidence/english-general-listening-decline-native-v1/native-02/general-listening-decline-no-water-feedback.png",
+        "window_points": [
+          1200,
+          764
+        ]
+      },
+      "elements": {
+        "answer-input": {
+          "enabled": false,
+          "rect": [
+            312,
+            273.5,
+            576,
+            31
+          ],
+          "role": "AXTextField",
+          "value": "No ice, no water, please."
+        },
+        "checkmark.circle.fill": {
+          "enabled": true,
+          "rect": [
+            144,
+            638,
+            48,
+            48
+          ],
+          "role": "AXImage",
+          "value": ""
+        },
+        "continue": {
+          "enabled": true,
+          "rect": [
+            949,
+            635.5,
+            112,
+            53
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "exit": {
+          "enabled": true,
+          "rect": [
+            100,
+            51,
+            18,
+            18
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "feedback": {
+          "enabled": true,
+          "rect": [
+            226,
+            626.75,
+            110,
+            20.5
+          ],
+          "role": "AXStaticText",
+          "value": "correct"
+        },
+        "feedback-easy": {
+          "enabled": true,
+          "rect": [
+            229.3318328857422,
+            677.25,
+            72.66816711425781,
+            20
+          ],
+          "role": "AXButton",
+          "value": "unselected"
+        },
+        "feedback-hard": {
+          "enabled": true,
+          "rect": [
+            326.8316955566406,
+            677.25,
+            58.168304443359375,
+            20
+          ],
+          "role": "AXButton",
+          "value": "unselected"
+        },
+        "feedback-report": {
+          "enabled": true,
+          "rect": [
+            409,
+            677.25,
+            59,
+            20.25
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "lesson-progress": {
+          "enabled": true,
+          "rect": [
+            142,
+            50,
+            958,
+            20
+          ],
+          "role": "AXProgressIndicator",
+          "value": ""
+        },
+        "question-hint": {
+          "enabled": true,
+          "rect": [
+            300,
+            229.5,
+            220,
+            24
+          ],
+          "role": "AXStaticText",
+          "value": "不要冰，不要水，谢谢。"
+        },
+        "question-indicator": {
+          "enabled": true,
+          "rect": [
+            579,
+            121,
+            42,
+            17
+          ],
+          "role": "AXStaticText",
+          "value": "挑战题"
+        },
+        "question-title": {
+          "enabled": true,
+          "rect": [
+            300,
+            190.5,
+            256,
+            38
+          ],
+          "role": "AXStaticText",
+          "value": "用英语写出这句话"
+        },
+        "SwiftUI._ConditionalContent<SwiftUI.SubscriptionView<(extension in Foundation):__C.NSNotificationCenter.Publisher, SwiftUI.ModifiedContent<LingoSeed.LearningView, SwiftUI._AppearanceActionModifier>>, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1": {
+          "enabled": false,
+          "rect": [
+            0,
+            -32,
+            1200,
+            764
+          ],
+          "role": "AXWindow",
+          "value": ""
+        }
+      }
+    },
+    "general-listening-decline-profile": {
+      "accessible_text": [
+        "LingoSeed",
+        "创建档案",
+        "创建档案就能保存学习进度，随时都可以继续免费学习后续内容。",
+        "来创建你的个人档案吧！",
+        "稍后再说"
+      ],
+      "capture": {
+        "backing_scale": 2,
+        "content_rect_points": [
+          0,
+          32,
+          1200,
+          732
+        ],
+        "path": "projects/duolingo-web/evidence/english-general-listening-decline-native-v1/native-02/general-listening-decline-profile.png",
+        "window_points": [
+          1200,
+          764
+        ]
+      },
+      "elements": {
+        "settlement-continue": {
+          "enabled": true,
+          "rect": [
+            430,
+            576,
+            340,
+            46
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "settlement-secondary": {
+          "enabled": true,
+          "rect": [
+            524,
+            511,
+            152,
+            50
+          ],
+          "role": "AXStaticText",
+          "value": "创建档案"
+        },
+        "settlement-title": {
+          "enabled": true,
+          "rect": [
+            446,
+            166,
+            308,
+            33
+          ],
+          "role": "AXStaticText",
+          "value": "来创建你的个人档案吧！"
+        },
+        "SwiftUI._ConditionalContent<SwiftUI.SubscriptionView<(extension in Foundation):__C.NSNotificationCenter.Publisher, SwiftUI.ModifiedContent<LingoSeed.LearningView, SwiftUI._AppearanceActionModifier>>, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1": {
+          "enabled": false,
+          "rect": [
+            0,
+            -32,
+            1200,
+            764
+          ],
+          "role": "AXWindow",
+          "value": ""
+        }
+      }
+    },
+    "general-listening-decline-result": {
+      "accessible_text": [
+        "100%",
+        "5",
+        "LingoSeed",
+        "你练习全对，无错完成本单元",
+        "回顾本单元",
+        "完美！",
+        "总经验",
+        "继续",
+        "超级棒",
+        "重新练习"
+      ],
+      "capture": {
+        "backing_scale": 2,
+        "content_rect_points": [
+          0,
+          32,
+          1200,
+          732
+        ],
+        "path": "projects/duolingo-web/evidence/english-general-listening-decline-native-v1/native-02/general-listening-decline-result.png",
+        "window_points": [
+          1200,
+          764
+        ]
+      },
+      "elements": {
+        "lesson-complete": {
+          "enabled": true,
+          "rect": [
+            558,
+            298.5,
+            84,
+            33
+          ],
+          "role": "AXStaticText",
+          "value": "完美！"
+        },
+        "settlement-continue": {
+          "enabled": true,
+          "rect": [
+            910,
+            639,
+            150,
+            46
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "settlement-retry": {
+          "enabled": true,
+          "rect": [
+            722,
+            639,
+            150,
+            46
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "settlement-secondary": {
+          "enabled": true,
+          "rect": [
+            139,
+            637,
+            152,
+            50
+          ],
+          "role": "AXStaticText",
+          "value": "回顾本单元"
+        },
+        "SwiftUI._ConditionalContent<SwiftUI.SubscriptionView<(extension in Foundation):__C.NSNotificationCenter.Publisher, SwiftUI.ModifiedContent<LingoSeed.LearningView, SwiftUI._AppearanceActionModifier>>, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1": {
+          "enabled": false,
+          "rect": [
+            0,
+            -32,
+            1200,
+            764
+          ],
+          "role": "AXWindow",
+          "value": ""
+        }
+      }
+    },
+    "general-listening-decline-speech-declined-with-text": {
+      "accessible_text": [
+        "Good morning, hot coffee or with ice?",
+        "LingoSeed",
+        "general-listening-decline-speech",
+        "将在 15 分钟后恢复",
+        "朗读下面的句子",
+        "点击并开始录音",
+        "继续",
+        "麦克风已关闭"
+      ],
+      "capture": {
+        "backing_scale": 2,
+        "content_rect_points": [
+          0,
+          32,
+          1200,
+          732
+        ],
+        "path": "projects/duolingo-web/evidence/english-general-listening-decline-native-v1/native-02/general-listening-decline-speech-declined-with-text.png",
+        "window_points": [
+          1200,
+          764
+        ]
+      },
+      "elements": {
+        "exit": {
+          "enabled": true,
+          "rect": [
+            100,
+            51,
+            18,
+            18
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "lesson-progress": {
+          "enabled": true,
+          "rect": [
+            142,
+            50,
+            958,
+            20
+          ],
+          "role": "AXProgressIndicator",
+          "value": ""
+        },
+        "speech-closed": {
+          "enabled": true,
+          "rect": [
+            140,
+            634,
+            132,
+            26
+          ],
+          "role": "AXStaticText",
+          "value": "麦克风已关闭"
+        },
+        "speech-continue": {
+          "enabled": true,
+          "rect": [
+            910,
+            637,
+            150,
+            46
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "speech-play": {
+          "enabled": true,
+          "rect": [
+            450,
+            322,
+            29,
+            22
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "speech-record": {
+          "enabled": false,
+          "rect": [
+            300,
+            416.5,
+            600,
+            70
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "speech-title": {
+          "enabled": true,
+          "rect": [
+            300,
+            122,
+            224,
+            38
+          ],
+          "role": "AXStaticText",
+          "value": "general-listening-decline-speech"
+        },
+        "SwiftUI._ConditionalContent<SwiftUI.SubscriptionView<(extension in Foundation):__C.NSNotificationCenter.Publisher, SwiftUI.ModifiedContent<LingoSeed.LearningView, SwiftUI._AppearanceActionModifier>>, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1": {
+          "enabled": false,
+          "rect": [
+            0,
+            -32,
+            1200,
+            764
+          ],
+          "role": "AXWindow",
+          "value": ""
+        }
+      }
+    },
+    "general-listening-decline-tap-before": {
+      "accessible_text": [
+        "LingoSeed",
+        "and",
+        "coffee",
+        "good morning",
+        "water",
+        "使用键盘",
+        "播放慢速",
+        "播放正常语速",
+        "检查",
+        "现在不做听力题",
+        "选择听到的内容"
+      ],
+      "capture": {
+        "backing_scale": 2,
+        "content_rect_points": [
+          0,
+          32,
+          1200,
+          732
+        ],
+        "path": "projects/duolingo-web/evidence/english-general-listening-decline-native-v1/native-02/general-listening-decline-tap-before.png",
+        "window_points": [
+          1200,
+          764
+        ]
+      },
+      "elements": {
+        "check": {
+          "enabled": false,
+          "rect": [
+            910,
+            643,
+            150,
+            46
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "exit": {
+          "enabled": true,
+          "rect": [
+            100,
+            51,
+            18,
+            18
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "lesson-progress": {
+          "enabled": true,
+          "rect": [
+            142,
+            50,
+            958,
+            20
+          ],
+          "role": "AXProgressIndicator",
+          "value": ""
+        },
+        "listening-decline": {
+          "enabled": true,
+          "rect": [
+            140,
+            654,
+            90.5,
+            16
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "pronounce": {
+          "enabled": true,
+          "rect": [
+            507,
+            185,
+            100,
+            100
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "pronounce-slow": {
+          "enabled": true,
+          "rect": [
+            623,
+            215,
+            70,
+            70
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "question-title": {
+          "enabled": true,
+          "rect": [
+            300,
+            122.5,
+            224,
+            38
+          ],
+          "role": "AXStaticText",
+          "value": "选择听到的内容"
+        },
+        "SwiftUI._ConditionalContent<SwiftUI.SubscriptionView<(extension in Foundation):__C.NSNotificationCenter.Publisher, SwiftUI.ModifiedContent<LingoSeed.LearningView, SwiftUI._AppearanceActionModifier>>, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1": {
+          "enabled": false,
+          "rect": [
+            0,
+            -32,
+            1200,
+            764
+          ],
+          "role": "AXWindow",
+          "value": ""
+        },
+        "toggle-input-mode": {
+          "enabled": true,
+          "rect": [
+            525,
+            654,
+            150,
+            20
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "word-bank-word-0": {
+          "enabled": true,
+          "rect": [
+            425.5,
+            440,
+            55,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "word-bank-word-1": {
+          "enabled": true,
+          "rect": [
+            486.5,
+            440,
+            132.5,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "word-bank-word-2": {
+          "enabled": true,
+          "rect": [
+            625,
+            440,
+            69,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "word-bank-word-3": {
+          "enabled": true,
+          "rect": [
+            700,
+            440,
+            75,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        }
+      }
+    },
+    "general-listening-decline-tap-declined": {
+      "accessible_text": [
+        "LingoSeed",
+        "and",
+        "coffee",
+        "good morning",
+        "unselected",
+        "water",
+        "听力题已跳过",
+        "太简单",
+        "太难",
+        "将在 15 分钟后恢复",
+        "报错",
+        "播放慢速",
+        "播放正常语速",
+        "继续",
+        "选择听到的内容"
+      ],
+      "capture": {
+        "backing_scale": 2,
+        "content_rect_points": [
+          0,
+          32,
+          1200,
+          732
+        ],
+        "path": "projects/duolingo-web/evidence/english-general-listening-decline-native-v1/native-02/general-listening-decline-tap-declined.png",
+        "window_points": [
+          1200,
+          764
+        ]
+      },
+      "elements": {
+        "exit": {
+          "enabled": true,
+          "rect": [
+            100,
+            51,
+            18,
+            18
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "feedback-easy": {
+          "enabled": true,
+          "rect": [
+            239.33181762695312,
+            688,
+            72.66818237304688,
+            20
+          ],
+          "role": "AXButton",
+          "value": "unselected"
+        },
+        "feedback-hard": {
+          "enabled": true,
+          "rect": [
+            336.8316650390625,
+            688,
+            58.1683349609375,
+            20
+          ],
+          "role": "AXButton",
+          "value": "unselected"
+        },
+        "feedback-report": {
+          "enabled": true,
+          "rect": [
+            419,
+            688,
+            59,
+            20
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "lesson-progress": {
+          "enabled": true,
+          "rect": [
+            142,
+            50,
+            958,
+            20
+          ],
+          "role": "AXProgressIndicator",
+          "value": ""
+        },
+        "listening-continue": {
+          "enabled": true,
+          "rect": [
+            910,
+            637,
+            150,
+            50
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "listening-declined": {
+          "enabled": true,
+          "rect": [
+            236,
+            616.25,
+            144,
+            28
+          ],
+          "role": "AXStaticText",
+          "value": "听力题已跳过"
+        },
+        "pronounce": {
+          "enabled": true,
+          "rect": [
+            507,
+            185,
+            100,
+            100
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "pronounce-slow": {
+          "enabled": true,
+          "rect": [
+            623,
+            215,
+            70,
+            70
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "question-title": {
+          "enabled": true,
+          "rect": [
+            300,
+            122.5,
+            224,
+            38
+          ],
+          "role": "AXStaticText",
+          "value": "选择听到的内容"
+        },
+        "SwiftUI._ConditionalContent<SwiftUI.SubscriptionView<(extension in Foundation):__C.NSNotificationCenter.Publisher, SwiftUI.ModifiedContent<LingoSeed.LearningView, SwiftUI._AppearanceActionModifier>>, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1": {
+          "enabled": false,
+          "rect": [
+            0,
+            -32,
+            1200,
+            764
+          ],
+          "role": "AXWindow",
+          "value": ""
+        },
+        "word-bank-word-0": {
+          "enabled": false,
+          "rect": [
+            425.5,
+            440,
+            55,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "word-bank-word-1": {
+          "enabled": false,
+          "rect": [
+            486.5,
+            440,
+            132.5,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "word-bank-word-2": {
+          "enabled": false,
+          "rect": [
+            625,
+            440,
+            69,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "word-bank-word-3": {
+          "enabled": false,
+          "rect": [
+            700,
+            440,
+            75,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        }
+      }
+    },
+    "general-listening-decline-tea-coffee": {
+      "accessible_text": [
+        "LingoSeed",
+        "tea and coffee",
+        "不",
+        "和",
+        "咖啡",
+        "检查",
+        "用中文（简体）写出这句话",
+        "茶",
+        "跳过"
+      ],
+      "capture": {
+        "backing_scale": 2,
+        "content_rect_points": [
+          0,
+          32,
+          1200,
+          732
+        ],
+        "path": "projects/duolingo-web/evidence/english-general-listening-decline-native-v1/native-02/general-listening-decline-tea-coffee.png",
+        "window_points": [
+          1200,
+          764
+        ]
+      },
+      "elements": {
+        "check": {
+          "enabled": false,
+          "rect": [
+            910,
+            643,
+            150,
+            46
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "exit": {
+          "enabled": true,
+          "rect": [
+            100,
+            51,
+            18,
+            18
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "lesson-progress": {
+          "enabled": true,
+          "rect": [
+            142,
+            50,
+            958,
+            20
+          ],
+          "role": "AXProgressIndicator",
+          "value": ""
+        },
+        "pronounce": {
+          "enabled": true,
+          "rect": [
+            435,
+            205.5,
+            199.5,
+            62
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "question-title": {
+          "enabled": true,
+          "rect": [
+            300,
+            122.5,
+            384,
+            38
+          ],
+          "role": "AXStaticText",
+          "value": "用中文（简体）写出这句话"
+        },
+        "skip": {
+          "enabled": true,
+          "rect": [
+            140,
+            639,
+            150,
+            50
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "SwiftUI._ConditionalContent<SwiftUI.SubscriptionView<(extension in Foundation):__C.NSNotificationCenter.Publisher, SwiftUI.ModifiedContent<LingoSeed.LearningView, SwiftUI._AppearanceActionModifier>>, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1": {
+          "enabled": false,
+          "rect": [
+            0,
+            -32,
+            1200,
+            764
+          ],
+          "role": "AXWindow",
+          "value": ""
+        },
+        "word-bank-word-0": {
+          "enabled": true,
+          "rect": [
+            496.5,
+            466.5,
+            60,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "word-bank-word-1": {
+          "enabled": true,
+          "rect": [
+            562.5,
+            466.5,
+            43,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "word-bank-word-2": {
+          "enabled": true,
+          "rect": [
+            611.5,
+            466.5,
+            43,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "word-bank-word-3": {
+          "enabled": true,
+          "rect": [
+            660.5,
+            466.5,
+            43,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        }
+      }
+    },
+    "general-listening-decline-tea-coffee-feedback": {
+      "accessible_text": [
+        "LingoSeed",
+        "Selected",
+        "correct",
+        "tea and coffee",
+        "unselected",
+        "不",
+        "你太棒了！",
+        "和",
+        "咖啡",
+        "太简单",
+        "太难",
+        "报错",
+        "用中文（简体）写出这句话",
+        "继续",
+        "茶"
+      ],
+      "capture": {
+        "backing_scale": 2,
+        "content_rect_points": [
+          0,
+          32,
+          1200,
+          732
+        ],
+        "path": "projects/duolingo-web/evidence/english-general-listening-decline-native-v1/native-02/general-listening-decline-tea-coffee-feedback.png",
+        "window_points": [
+          1200,
+          764
+        ]
+      },
+      "elements": {
+        "checkmark.circle.fill": {
+          "enabled": true,
+          "rect": [
+            144,
+            638,
+            48,
+            48
+          ],
+          "role": "AXImage",
+          "value": ""
+        },
+        "continue": {
+          "enabled": true,
+          "rect": [
+            949,
+            635.5,
+            112,
+            53
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "exit": {
+          "enabled": true,
+          "rect": [
+            100,
+            51,
+            18,
+            18
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "feedback": {
+          "enabled": true,
+          "rect": [
+            226,
+            626.75,
+            76,
+            20.5
+          ],
+          "role": "AXStaticText",
+          "value": "correct"
+        },
+        "feedback-easy": {
+          "enabled": true,
+          "rect": [
+            229.3318328857422,
+            677.25,
+            72.66816711425781,
+            20
+          ],
+          "role": "AXButton",
+          "value": "unselected"
+        },
+        "feedback-hard": {
+          "enabled": true,
+          "rect": [
+            326.8316955566406,
+            677.25,
+            58.168304443359375,
+            20
+          ],
+          "role": "AXButton",
+          "value": "unselected"
+        },
+        "feedback-report": {
+          "enabled": true,
+          "rect": [
+            409,
+            677.25,
+            59,
+            20.25
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "lesson-progress": {
+          "enabled": true,
+          "rect": [
+            142,
+            50,
+            958,
+            20
+          ],
+          "role": "AXProgressIndicator",
+          "value": ""
+        },
+        "pronounce": {
+          "enabled": true,
+          "rect": [
+            435,
+            205.5,
+            199.5,
+            62
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "question-title": {
+          "enabled": true,
+          "rect": [
+            300,
+            122.5,
+            384,
+            38
+          ],
+          "role": "AXStaticText",
+          "value": "用中文（简体）写出这句话"
+        },
+        "selected-word-word-0": {
+          "enabled": false,
+          "rect": [
+            397,
+            346.5,
+            60,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "selected-word-word-1": {
+          "enabled": false,
+          "rect": [
+            299,
+            346.5,
+            43,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "selected-word-word-3": {
+          "enabled": false,
+          "rect": [
+            348,
+            346.5,
+            43,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "SwiftUI._ConditionalContent<SwiftUI.SubscriptionView<(extension in Foundation):__C.NSNotificationCenter.Publisher, SwiftUI.ModifiedContent<LingoSeed.LearningView, SwiftUI._AppearanceActionModifier>>, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1": {
+          "enabled": false,
+          "rect": [
+            0,
+            -32,
+            1200,
+            764
+          ],
+          "role": "AXWindow",
+          "value": ""
+        },
+        "word-bank-word-0": {
+          "enabled": false,
+          "rect": [
+            496.5,
+            466.5,
+            60,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "word-bank-word-1": {
+          "enabled": false,
+          "rect": [
+            562.5,
+            466.5,
+            43,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "word-bank-word-2": {
+          "enabled": false,
+          "rect": [
+            611.5,
+            466.5,
+            43,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "word-bank-word-3": {
+          "enabled": false,
+          "rect": [
+            660.5,
+            466.5,
+            43,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        }
+      }
+    },
+    "general-listening-decline-water-tea": {
+      "accessible_text": [
+        "LingoSeed",
+        "water and tea",
+        "和",
+        "检查",
+        "水",
+        "用中文（简体）写出这句话",
+        "糖",
+        "茶",
+        "跳过"
+      ],
+      "capture": {
+        "backing_scale": 2,
+        "content_rect_points": [
+          0,
+          32,
+          1200,
+          732
+        ],
+        "path": "projects/duolingo-web/evidence/english-general-listening-decline-native-v1/native-02/general-listening-decline-water-tea.png",
+        "window_points": [
+          1200,
+          764
+        ]
+      },
+      "elements": {
+        "check": {
+          "enabled": false,
+          "rect": [
+            910,
+            643,
+            150,
+            46
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "exit": {
+          "enabled": true,
+          "rect": [
+            100,
+            51,
+            18,
+            18
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "lesson-progress": {
+          "enabled": true,
+          "rect": [
+            142,
+            50,
+            958,
+            20
+          ],
+          "role": "AXProgressIndicator",
+          "value": ""
+        },
+        "question-hint": {
+          "enabled": true,
+          "rect": [
+            454,
+            224.5,
+            116.5,
+            24
+          ],
+          "role": "AXStaticText",
+          "value": "water and tea"
+        },
+        "question-title": {
+          "enabled": true,
+          "rect": [
+            300,
+            122.5,
+            384,
+            38
+          ],
+          "role": "AXStaticText",
+          "value": "用中文（简体）写出这句话"
+        },
+        "skip": {
+          "enabled": true,
+          "rect": [
+            140,
+            639,
+            150,
+            50
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "SwiftUI._ConditionalContent<SwiftUI.SubscriptionView<(extension in Foundation):__C.NSNotificationCenter.Publisher, SwiftUI.ModifiedContent<LingoSeed.LearningView, SwiftUI._AppearanceActionModifier>>, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1": {
+          "enabled": false,
+          "rect": [
+            0,
+            -32,
+            1200,
+            764
+          ],
+          "role": "AXWindow",
+          "value": ""
+        },
+        "word-bank-word-0": {
+          "enabled": true,
+          "rect": [
+            505,
+            466.5,
+            43,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "word-bank-word-1": {
+          "enabled": true,
+          "rect": [
+            554,
+            466.5,
+            43,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "word-bank-word-2": {
+          "enabled": true,
+          "rect": [
+            603,
+            466.5,
+            43,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "word-bank-word-3": {
+          "enabled": true,
+          "rect": [
+            652,
+            466.5,
+            43,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        }
+      }
+    },
+    "general-listening-decline-water-tea-feedback": {
+      "accessible_text": [
+        "LingoSeed",
+        "Selected",
+        "correct",
+        "unselected",
+        "water and tea",
+        "和",
+        "太简单",
+        "太难",
+        "报错",
+        "水",
+        "用中文（简体）写出这句话",
+        "真厉害！",
+        "糖",
+        "继续",
+        "茶"
+      ],
+      "capture": {
+        "backing_scale": 2,
+        "content_rect_points": [
+          0,
+          32,
+          1200,
+          732
+        ],
+        "path": "projects/duolingo-web/evidence/english-general-listening-decline-native-v1/native-02/general-listening-decline-water-tea-feedback.png",
+        "window_points": [
+          1200,
+          764
+        ]
+      },
+      "elements": {
+        "checkmark.circle.fill": {
+          "enabled": true,
+          "rect": [
+            144,
+            638,
+            48,
+            48
+          ],
+          "role": "AXImage",
+          "value": ""
+        },
+        "continue": {
+          "enabled": true,
+          "rect": [
+            949,
+            635.5,
+            112,
+            53
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "exit": {
+          "enabled": true,
+          "rect": [
+            100,
+            51,
+            18,
+            18
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "feedback": {
+          "enabled": true,
+          "rect": [
+            226,
+            626.75,
+            59.5,
+            20.5
+          ],
+          "role": "AXStaticText",
+          "value": "correct"
+        },
+        "feedback-easy": {
+          "enabled": true,
+          "rect": [
+            229.3318328857422,
+            677.25,
+            72.66816711425781,
+            20
+          ],
+          "role": "AXButton",
+          "value": "unselected"
+        },
+        "feedback-hard": {
+          "enabled": true,
+          "rect": [
+            326.8316955566406,
+            677.25,
+            58.168304443359375,
+            20
+          ],
+          "role": "AXButton",
+          "value": "unselected"
+        },
+        "feedback-report": {
+          "enabled": true,
+          "rect": [
+            409,
+            677.25,
+            59,
+            20.25
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "lesson-progress": {
+          "enabled": true,
+          "rect": [
+            142,
+            50,
+            958,
+            20
+          ],
+          "role": "AXProgressIndicator",
+          "value": ""
+        },
+        "question-hint": {
+          "enabled": true,
+          "rect": [
+            454,
+            224.5,
+            116.5,
+            24
+          ],
+          "role": "AXStaticText",
+          "value": "water and tea"
+        },
+        "question-title": {
+          "enabled": true,
+          "rect": [
+            300,
+            122.5,
+            384,
+            38
+          ],
+          "role": "AXStaticText",
+          "value": "用中文（简体）写出这句话"
+        },
+        "selected-word-word-0": {
+          "enabled": false,
+          "rect": [
+            299,
+            346.5,
+            43,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "selected-word-word-1": {
+          "enabled": false,
+          "rect": [
+            348,
+            346.5,
+            43,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "selected-word-word-3": {
+          "enabled": false,
+          "rect": [
+            397,
+            346.5,
+            43,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "SwiftUI._ConditionalContent<SwiftUI.SubscriptionView<(extension in Foundation):__C.NSNotificationCenter.Publisher, SwiftUI.ModifiedContent<LingoSeed.LearningView, SwiftUI._AppearanceActionModifier>>, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1": {
+          "enabled": false,
+          "rect": [
+            0,
+            -32,
+            1200,
+            764
+          ],
+          "role": "AXWindow",
+          "value": ""
+        },
+        "word-bank-word-0": {
+          "enabled": false,
+          "rect": [
+            505,
+            466.5,
+            43,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "word-bank-word-1": {
+          "enabled": false,
+          "rect": [
+            554,
+            466.5,
+            43,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "word-bank-word-2": {
+          "enabled": false,
+          "rect": [
+            603,
+            466.5,
+            43,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "word-bank-word-3": {
+          "enabled": false,
+          "rect": [
+            652,
+            466.5,
+            43,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        }
+      }
+    },
+    "general-listening-prefix-0": {
+      "accessible_text": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5 咖啡",
+        "6 茶",
+        "7 热",
+        "8 欢迎",
+        "LingoSeed",
+        "general-listening-prefix-0",
+        "检查",
+        "选择配对"
+      ],
+      "capture": {
+        "backing_scale": 2,
+        "content_rect_points": [
+          0,
+          32,
+          1200,
+          732
+        ],
+        "path": "projects/duolingo-web/evidence/english-general-listening-decline-native-v1/native-02/general-listening-prefix-0.png",
+        "window_points": [
+          1200,
+          764
+        ]
+      },
+      "elements": {
+        "check": {
+          "enabled": false,
+          "rect": [
+            910,
+            643,
+            150,
+            46
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "exit": {
+          "enabled": true,
+          "rect": [
+            100,
+            51,
+            18,
+            18
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "lesson-progress": {
+          "enabled": true,
+          "rect": [
+            142,
+            50,
+            958,
+            20
+          ],
+          "role": "AXProgressIndicator",
+          "value": ""
+        },
+        "pair-left-0": {
+          "enabled": true,
+          "rect": [
+            330,
+            247,
+            255,
+            58
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "pair-left-1": {
+          "enabled": true,
+          "rect": [
+            330,
+            315,
+            255,
+            58
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "pair-left-2": {
+          "enabled": true,
+          "rect": [
+            330,
+            383,
+            255,
+            58
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "pair-left-3": {
+          "enabled": true,
+          "rect": [
+            330,
+            451,
+            255,
+            58
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "pair-right-0": {
+          "enabled": true,
+          "rect": [
+            615,
+            247,
+            255,
+            58
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "pair-right-1": {
+          "enabled": true,
+          "rect": [
+            615,
+            451,
+            255,
+            58
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "pair-right-2": {
+          "enabled": true,
+          "rect": [
+            615,
+            383,
+            255,
+            58
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "pair-right-3": {
+          "enabled": true,
+          "rect": [
+            615,
+            315,
+            255,
+            58
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "question-prompt": {
+          "enabled": true,
+          "rect": [
+            300,
+            122,
+            128,
+            38
+          ],
+          "role": "AXStaticText",
+          "value": "general-listening-prefix-0"
+        },
+        "SwiftUI._ConditionalContent<SwiftUI.SubscriptionView<(extension in Foundation):__C.NSNotificationCenter.Publisher, SwiftUI.ModifiedContent<LingoSeed.LearningView, SwiftUI._AppearanceActionModifier>>, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1": {
+          "enabled": false,
+          "rect": [
+            0,
+            -32,
+            1200,
+            764
+          ],
+          "role": "AXWindow",
+          "value": ""
+        }
+      }
+    },
+    "general-listening-prefix-0-feedback": {
+      "accessible_text": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5 咖啡",
+        "6 茶",
+        "7 热",
+        "8 欢迎",
+        "LingoSeed",
+        "Selected",
+        "correct",
+        "general-listening-prefix-0",
+        "unselected",
+        "不错哦！",
+        "太简单",
+        "太难",
+        "报错",
+        "继续",
+        "选择配对"
+      ],
+      "capture": {
+        "backing_scale": 2,
+        "content_rect_points": [
+          0,
+          32,
+          1200,
+          732
+        ],
+        "path": "projects/duolingo-web/evidence/english-general-listening-decline-native-v1/native-02/general-listening-prefix-0-feedback.png",
+        "window_points": [
+          1200,
+          764
+        ]
+      },
+      "elements": {
+        "checkmark.circle.fill": {
+          "enabled": true,
+          "rect": [
+            144,
+            638,
+            48,
+            48
+          ],
+          "role": "AXImage",
+          "value": ""
+        },
+        "continue": {
+          "enabled": true,
+          "rect": [
+            949,
+            635.5,
+            112,
+            53
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "exit": {
+          "enabled": true,
+          "rect": [
+            100,
+            51,
+            18,
+            18
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "feedback": {
+          "enabled": true,
+          "rect": [
+            226,
+            626.75,
+            59.5,
+            20.5
+          ],
+          "role": "AXStaticText",
+          "value": "correct"
+        },
+        "feedback-easy": {
+          "enabled": true,
+          "rect": [
+            229.3318328857422,
+            677.25,
+            72.66816711425781,
+            20
+          ],
+          "role": "AXButton",
+          "value": "unselected"
+        },
+        "feedback-hard": {
+          "enabled": true,
+          "rect": [
+            326.8316955566406,
+            677.25,
+            58.168304443359375,
+            20
+          ],
+          "role": "AXButton",
+          "value": "unselected"
+        },
+        "feedback-report": {
+          "enabled": true,
+          "rect": [
+            409,
+            677.25,
+            59,
+            20.25
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "lesson-progress": {
+          "enabled": true,
+          "rect": [
+            142,
+            50,
+            958,
+            20
+          ],
+          "role": "AXProgressIndicator",
+          "value": ""
+        },
+        "pair-left-0": {
+          "enabled": false,
+          "rect": [
+            330,
+            247,
+            255,
+            58
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "pair-left-1": {
+          "enabled": false,
+          "rect": [
+            330,
+            315,
+            255,
+            58
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "pair-left-2": {
+          "enabled": false,
+          "rect": [
+            330,
+            383,
+            255,
+            58
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "pair-left-3": {
+          "enabled": false,
+          "rect": [
+            330,
+            451,
+            255,
+            58
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "pair-right-0": {
+          "enabled": false,
+          "rect": [
+            615,
+            247,
+            255,
+            58
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "pair-right-1": {
+          "enabled": false,
+          "rect": [
+            615,
+            451,
+            255,
+            58
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "pair-right-2": {
+          "enabled": false,
+          "rect": [
+            615,
+            383,
+            255,
+            58
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "pair-right-3": {
+          "enabled": false,
+          "rect": [
+            615,
+            315,
+            255,
+            58
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "question-prompt": {
+          "enabled": true,
+          "rect": [
+            300,
+            122,
+            128,
+            38
+          ],
+          "role": "AXStaticText",
+          "value": "general-listening-prefix-0"
+        },
+        "SwiftUI._ConditionalContent<SwiftUI.SubscriptionView<(extension in Foundation):__C.NSNotificationCenter.Publisher, SwiftUI.ModifiedContent<LingoSeed.LearningView, SwiftUI._AppearanceActionModifier>>, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1": {
+          "enabled": false,
+          "rect": [
+            0,
+            -32,
+            1200,
+            764
+          ],
+          "role": "AXWindow",
+          "value": ""
+        }
+      }
+    },
+    "general-listening-prefix-1": {
+      "accessible_text": [
+        "LUCY",
+        "LingoSeed",
+        "hello",
+        "hot",
+        "not selected",
+        "tea",
+        "你好",
+        "检查",
+        "跳过",
+        "选择正确的答案"
+      ],
+      "capture": {
+        "backing_scale": 2,
+        "content_rect_points": [
+          0,
+          32,
+          1200,
+          732
+        ],
+        "path": "projects/duolingo-web/evidence/english-general-listening-decline-native-v1/native-02/general-listening-prefix-1.png",
+        "window_points": [
+          1200,
+          764
+        ]
+      },
+      "elements": {
+        "check": {
+          "enabled": false,
+          "rect": [
+            910,
+            643,
+            150,
+            46
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "exit": {
+          "enabled": true,
+          "rect": [
+            100,
+            51,
+            18,
+            18
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "lesson-progress": {
+          "enabled": true,
+          "rect": [
+            142,
+            50,
+            958,
+            20
+          ],
+          "role": "AXProgressIndicator",
+          "value": ""
+        },
+        "option-0": {
+          "enabled": true,
+          "rect": [
+            299,
+            391.5,
+            602,
+            56
+          ],
+          "role": "AXButton",
+          "value": "not selected"
+        },
+        "option-1": {
+          "enabled": true,
+          "rect": [
+            299,
+            457.5,
+            602,
+            56
+          ],
+          "role": "AXButton",
+          "value": "not selected"
+        },
+        "option-2": {
+          "enabled": true,
+          "rect": [
+            299,
+            523.5,
+            602,
+            56
+          ],
+          "role": "AXButton",
+          "value": "not selected"
+        },
+        "question-character": {
+          "enabled": true,
+          "rect": [
+            278.2,
+            184,
+            141.60000000000002,
+            210
+          ],
+          "role": "AXUnknown",
+          "value": ""
+        },
+        "question-hint": {
+          "enabled": true,
+          "rect": [
+            450,
+            265,
+            40,
+            24
+          ],
+          "role": "AXStaticText",
+          "value": "你好"
+        },
+        "question-title": {
+          "enabled": true,
+          "rect": [
+            300,
+            122.5,
+            224,
+            38
+          ],
+          "role": "AXStaticText",
+          "value": "选择正确的答案"
+        },
+        "skip": {
+          "enabled": true,
+          "rect": [
+            140,
+            639,
+            150,
+            50
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "SwiftUI._ConditionalContent<SwiftUI.SubscriptionView<(extension in Foundation):__C.NSNotificationCenter.Publisher, SwiftUI.ModifiedContent<LingoSeed.LearningView, SwiftUI._AppearanceActionModifier>>, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1": {
+          "enabled": false,
+          "rect": [
+            0,
+            -32,
+            1200,
+            764
+          ],
+          "role": "AXWindow",
+          "value": ""
+        }
+      }
+    },
+    "general-listening-prefix-1-feedback": {
+      "accessible_text": [
+        "LUCY",
+        "LingoSeed",
+        "Selected",
+        "correct",
+        "hello",
+        "hot",
+        "not selected",
+        "selected",
+        "tea",
+        "unselected",
+        "你好",
+        "太简单",
+        "太难",
+        "好棒！",
+        "报错",
+        "继续",
+        "选择正确的答案"
+      ],
+      "capture": {
+        "backing_scale": 2,
+        "content_rect_points": [
+          0,
+          32,
+          1200,
+          732
+        ],
+        "path": "projects/duolingo-web/evidence/english-general-listening-decline-native-v1/native-02/general-listening-prefix-1-feedback.png",
+        "window_points": [
+          1200,
+          764
+        ]
+      },
+      "elements": {
+        "checkmark.circle.fill": {
+          "enabled": true,
+          "rect": [
+            144,
+            638,
+            48,
+            48
+          ],
+          "role": "AXImage",
+          "value": ""
+        },
+        "continue": {
+          "enabled": true,
+          "rect": [
+            949,
+            635.5,
+            112,
+            53
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "exit": {
+          "enabled": true,
+          "rect": [
+            100,
+            51,
+            18,
+            18
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "feedback": {
+          "enabled": true,
+          "rect": [
+            226,
+            626.75,
+            42.5,
+            20.5
+          ],
+          "role": "AXStaticText",
+          "value": "correct"
+        },
+        "feedback-easy": {
+          "enabled": true,
+          "rect": [
+            229.3318328857422,
+            677.25,
+            72.66816711425781,
+            20
+          ],
+          "role": "AXButton",
+          "value": "unselected"
+        },
+        "feedback-hard": {
+          "enabled": true,
+          "rect": [
+            326.8316955566406,
+            677.25,
+            58.168304443359375,
+            20
+          ],
+          "role": "AXButton",
+          "value": "unselected"
+        },
+        "feedback-report": {
+          "enabled": true,
+          "rect": [
+            409,
+            677.25,
+            59,
+            20.25
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "lesson-progress": {
+          "enabled": true,
+          "rect": [
+            142,
+            50,
+            958,
+            20
+          ],
+          "role": "AXProgressIndicator",
+          "value": ""
+        },
+        "option-0": {
+          "enabled": false,
+          "rect": [
+            299,
+            391.5,
+            602,
+            56
+          ],
+          "role": "AXButton",
+          "value": "selected"
+        },
+        "option-1": {
+          "enabled": false,
+          "rect": [
+            299,
+            457.5,
+            602,
+            56
+          ],
+          "role": "AXButton",
+          "value": "not selected"
+        },
+        "option-2": {
+          "enabled": false,
+          "rect": [
+            299,
+            523.5,
+            602,
+            56
+          ],
+          "role": "AXButton",
+          "value": "not selected"
+        },
+        "question-character": {
+          "enabled": true,
+          "rect": [
+            278.2,
+            184,
+            141.60000000000002,
+            210
+          ],
+          "role": "AXUnknown",
+          "value": ""
+        },
+        "question-hint": {
+          "enabled": true,
+          "rect": [
+            450,
+            265,
+            40,
+            24
+          ],
+          "role": "AXStaticText",
+          "value": "你好"
+        },
+        "question-title": {
+          "enabled": true,
+          "rect": [
+            300,
+            122.5,
+            224,
+            38
+          ],
+          "role": "AXStaticText",
+          "value": "选择正确的答案"
+        },
+        "SwiftUI._ConditionalContent<SwiftUI.SubscriptionView<(extension in Foundation):__C.NSNotificationCenter.Publisher, SwiftUI.ModifiedContent<LingoSeed.LearningView, SwiftUI._AppearanceActionModifier>>, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1": {
+          "enabled": false,
+          "rect": [
+            0,
+            -32,
+            1200,
+            764
+          ],
+          "role": "AXWindow",
+          "value": ""
+        }
+      }
+    },
+    "general-listening-prefix-2": {
+      "accessible_text": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5 热",
+        "6 茶",
+        "7 欢迎",
+        "8 你好",
+        "LingoSeed",
+        "general-listening-prefix-2",
+        "检查",
+        "选择配对"
+      ],
+      "capture": {
+        "backing_scale": 2,
+        "content_rect_points": [
+          0,
+          32,
+          1200,
+          732
+        ],
+        "path": "projects/duolingo-web/evidence/english-general-listening-decline-native-v1/native-02/general-listening-prefix-2.png",
+        "window_points": [
+          1200,
+          764
+        ]
+      },
+      "elements": {
+        "check": {
+          "enabled": false,
+          "rect": [
+            910,
+            643,
+            150,
+            46
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "exit": {
+          "enabled": true,
+          "rect": [
+            100,
+            51,
+            18,
+            18
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "lesson-progress": {
+          "enabled": true,
+          "rect": [
+            142,
+            50,
+            958,
+            20
+          ],
+          "role": "AXProgressIndicator",
+          "value": ""
+        },
+        "pair-left-0": {
+          "enabled": true,
+          "rect": [
+            330,
+            247,
+            255,
+            58
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "pair-left-1": {
+          "enabled": true,
+          "rect": [
+            330,
+            315,
+            255,
+            58
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "pair-left-2": {
+          "enabled": true,
+          "rect": [
+            330,
+            383,
+            255,
+            58
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "pair-left-3": {
+          "enabled": true,
+          "rect": [
+            330,
+            451,
+            255,
+            58
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "pair-right-0": {
+          "enabled": true,
+          "rect": [
+            615,
+            315,
+            255,
+            58
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "pair-right-1": {
+          "enabled": true,
+          "rect": [
+            615,
+            451,
+            255,
+            58
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "pair-right-2": {
+          "enabled": true,
+          "rect": [
+            615,
+            247,
+            255,
+            58
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "pair-right-3": {
+          "enabled": true,
+          "rect": [
+            615,
+            383,
+            255,
+            58
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "question-prompt": {
+          "enabled": true,
+          "rect": [
+            300,
+            122,
+            128,
+            38
+          ],
+          "role": "AXStaticText",
+          "value": "general-listening-prefix-2"
+        },
+        "SwiftUI._ConditionalContent<SwiftUI.SubscriptionView<(extension in Foundation):__C.NSNotificationCenter.Publisher, SwiftUI.ModifiedContent<LingoSeed.LearningView, SwiftUI._AppearanceActionModifier>>, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1": {
+          "enabled": false,
+          "rect": [
+            0,
+            -32,
+            1200,
+            764
+          ],
+          "role": "AXWindow",
+          "value": ""
+        }
+      }
+    },
+    "general-listening-prefix-2-feedback": {
+      "accessible_text": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5 热",
+        "6 茶",
+        "7 欢迎",
+        "8 你好",
+        "LingoSeed",
+        "Selected",
+        "correct",
+        "general-listening-prefix-2",
+        "unselected",
+        "太简单",
+        "太难",
+        "报错",
+        "正确！",
+        "继续",
+        "选择配对"
+      ],
+      "capture": {
+        "backing_scale": 2,
+        "content_rect_points": [
+          0,
+          32,
+          1200,
+          732
+        ],
+        "path": "projects/duolingo-web/evidence/english-general-listening-decline-native-v1/native-02/general-listening-prefix-2-feedback.png",
+        "window_points": [
+          1200,
+          764
+        ]
+      },
+      "elements": {
+        "checkmark.circle.fill": {
+          "enabled": true,
+          "rect": [
+            144,
+            638,
+            48,
+            48
+          ],
+          "role": "AXImage",
+          "value": ""
+        },
+        "continue": {
+          "enabled": true,
+          "rect": [
+            949,
+            635.5,
+            112,
+            53
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "exit": {
+          "enabled": true,
+          "rect": [
+            100,
+            51,
+            18,
+            18
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "feedback": {
+          "enabled": true,
+          "rect": [
+            226,
+            626.75,
+            42.5,
+            20.5
+          ],
+          "role": "AXStaticText",
+          "value": "correct"
+        },
+        "feedback-easy": {
+          "enabled": true,
+          "rect": [
+            229.3318328857422,
+            677.25,
+            72.66816711425781,
+            20
+          ],
+          "role": "AXButton",
+          "value": "unselected"
+        },
+        "feedback-hard": {
+          "enabled": true,
+          "rect": [
+            326.8316955566406,
+            677.25,
+            58.168304443359375,
+            20
+          ],
+          "role": "AXButton",
+          "value": "unselected"
+        },
+        "feedback-report": {
+          "enabled": true,
+          "rect": [
+            409,
+            677.25,
+            59,
+            20.25
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "lesson-progress": {
+          "enabled": true,
+          "rect": [
+            142,
+            50,
+            958,
+            20
+          ],
+          "role": "AXProgressIndicator",
+          "value": ""
+        },
+        "pair-left-0": {
+          "enabled": false,
+          "rect": [
+            330,
+            247,
+            255,
+            58
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "pair-left-1": {
+          "enabled": false,
+          "rect": [
+            330,
+            315,
+            255,
+            58
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "pair-left-2": {
+          "enabled": false,
+          "rect": [
+            330,
+            383,
+            255,
+            58
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "pair-left-3": {
+          "enabled": false,
+          "rect": [
+            330,
+            451,
+            255,
+            58
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "pair-right-0": {
+          "enabled": false,
+          "rect": [
+            615,
+            315,
+            255,
+            58
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "pair-right-1": {
+          "enabled": false,
+          "rect": [
+            615,
+            451,
+            255,
+            58
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "pair-right-2": {
+          "enabled": false,
+          "rect": [
+            615,
+            247,
+            255,
+            58
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "pair-right-3": {
+          "enabled": false,
+          "rect": [
+            615,
+            383,
+            255,
+            58
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "question-prompt": {
+          "enabled": true,
+          "rect": [
+            300,
+            122,
+            128,
+            38
+          ],
+          "role": "AXStaticText",
+          "value": "general-listening-prefix-2"
+        },
+        "SwiftUI._ConditionalContent<SwiftUI.SubscriptionView<(extension in Foundation):__C.NSNotificationCenter.Publisher, SwiftUI.ModifiedContent<LingoSeed.LearningView, SwiftUI._AppearanceActionModifier>>, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1": {
+          "enabled": false,
+          "rect": [
+            0,
+            -32,
+            1200,
+            764
+          ],
+          "role": "AXWindow",
+          "value": ""
+        }
+      }
+    },
+    "general-listening-prefix-3": {
+      "accessible_text": [
+        "Hello!",
+        "LingoSeed",
+        "你好",
+        "检查",
+        "用中文（简体）写出这句话",
+        "跳过",
+        "还要"
+      ],
+      "capture": {
+        "backing_scale": 2,
+        "content_rect_points": [
+          0,
+          32,
+          1200,
+          732
+        ],
+        "path": "projects/duolingo-web/evidence/english-general-listening-decline-native-v1/native-02/general-listening-prefix-3.png",
+        "window_points": [
+          1200,
+          764
+        ]
+      },
+      "elements": {
+        "check": {
+          "enabled": false,
+          "rect": [
+            910,
+            643,
+            150,
+            46
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "exit": {
+          "enabled": true,
+          "rect": [
+            100,
+            51,
+            18,
+            18
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "lesson-progress": {
+          "enabled": true,
+          "rect": [
+            142,
+            50,
+            958,
+            20
+          ],
+          "role": "AXProgressIndicator",
+          "value": ""
+        },
+        "pronounce": {
+          "enabled": true,
+          "rect": [
+            435,
+            205.5,
+            127.5,
+            62
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "question-title": {
+          "enabled": true,
+          "rect": [
+            300,
+            122.5,
+            384,
+            38
+          ],
+          "role": "AXStaticText",
+          "value": "用中文（简体）写出这句话"
+        },
+        "skip": {
+          "enabled": true,
+          "rect": [
+            140,
+            639,
+            150,
+            50
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "SwiftUI._ConditionalContent<SwiftUI.SubscriptionView<(extension in Foundation):__C.NSNotificationCenter.Publisher, SwiftUI.ModifiedContent<LingoSeed.LearningView, SwiftUI._AppearanceActionModifier>>, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1": {
+          "enabled": false,
+          "rect": [
+            0,
+            -32,
+            1200,
+            764
+          ],
+          "role": "AXWindow",
+          "value": ""
+        },
+        "word-bank-word-0": {
+          "enabled": true,
+          "rect": [
+            537,
+            466.5,
+            60,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "word-bank-word-1": {
+          "enabled": true,
+          "rect": [
+            603,
+            466.5,
+            60,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        }
+      }
+    },
+    "general-listening-prefix-3-feedback": {
+      "accessible_text": [
+        "Hello!",
+        "LingoSeed",
+        "Selected",
+        "correct",
+        "unselected",
+        "不错哦！",
+        "你好",
+        "太简单",
+        "太难",
+        "报错",
+        "用中文（简体）写出这句话",
+        "继续",
+        "还要"
+      ],
+      "capture": {
+        "backing_scale": 2,
+        "content_rect_points": [
+          0,
+          32,
+          1200,
+          732
+        ],
+        "path": "projects/duolingo-web/evidence/english-general-listening-decline-native-v1/native-02/general-listening-prefix-3-feedback.png",
+        "window_points": [
+          1200,
+          764
+        ]
+      },
+      "elements": {
+        "checkmark.circle.fill": {
+          "enabled": true,
+          "rect": [
+            144,
+            638,
+            48,
+            48
+          ],
+          "role": "AXImage",
+          "value": ""
+        },
+        "continue": {
+          "enabled": true,
+          "rect": [
+            949,
+            635.5,
+            112,
+            53
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "exit": {
+          "enabled": true,
+          "rect": [
+            100,
+            51,
+            18,
+            18
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "feedback": {
+          "enabled": true,
+          "rect": [
+            226,
+            626.75,
+            59.5,
+            20.5
+          ],
+          "role": "AXStaticText",
+          "value": "correct"
+        },
+        "feedback-easy": {
+          "enabled": true,
+          "rect": [
+            229.3318328857422,
+            677.25,
+            72.66816711425781,
+            20
+          ],
+          "role": "AXButton",
+          "value": "unselected"
+        },
+        "feedback-hard": {
+          "enabled": true,
+          "rect": [
+            326.8316955566406,
+            677.25,
+            58.168304443359375,
+            20
+          ],
+          "role": "AXButton",
+          "value": "unselected"
+        },
+        "feedback-report": {
+          "enabled": true,
+          "rect": [
+            409,
+            677.25,
+            59,
+            20.25
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "lesson-progress": {
+          "enabled": true,
+          "rect": [
+            142,
+            50,
+            958,
+            20
+          ],
+          "role": "AXProgressIndicator",
+          "value": ""
+        },
+        "pronounce": {
+          "enabled": true,
+          "rect": [
+            435,
+            205.5,
+            127.5,
+            62
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "question-title": {
+          "enabled": true,
+          "rect": [
+            300,
+            122.5,
+            384,
+            38
+          ],
+          "role": "AXStaticText",
+          "value": "用中文（简体）写出这句话"
+        },
+        "selected-word-word-1": {
+          "enabled": false,
+          "rect": [
+            299,
+            346.5,
+            60,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "SwiftUI._ConditionalContent<SwiftUI.SubscriptionView<(extension in Foundation):__C.NSNotificationCenter.Publisher, SwiftUI.ModifiedContent<LingoSeed.LearningView, SwiftUI._AppearanceActionModifier>>, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1": {
+          "enabled": false,
+          "rect": [
+            0,
+            -32,
+            1200,
+            764
+          ],
+          "role": "AXWindow",
+          "value": ""
+        },
+        "word-bank-word-0": {
+          "enabled": false,
+          "rect": [
+            537,
+            466.5,
+            60,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "word-bank-word-1": {
+          "enabled": false,
+          "rect": [
+            603,
+            466.5,
+            60,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        }
+      }
+    },
+    "general-listening-prefix-4": {
+      "accessible_text": [
+        "1",
+        "2",
+        "LingoSeed",
+        "No __, please.",
+        "检查",
+        "选择音频填空"
+      ],
+      "capture": {
+        "backing_scale": 2,
+        "content_rect_points": [
+          0,
+          32,
+          1200,
+          732
+        ],
+        "path": "projects/duolingo-web/evidence/english-general-listening-decline-native-v1/native-02/general-listening-prefix-4.png",
+        "window_points": [
+          1200,
+          764
+        ]
+      },
+      "elements": {
+        "check": {
+          "enabled": false,
+          "rect": [
+            910,
+            643,
+            150,
+            46
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "exit": {
+          "enabled": true,
+          "rect": [
+            100,
+            51,
+            18,
+            18
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "isolation-prompt": {
+          "enabled": true,
+          "rect": [
+            434,
+            251.5,
+            169,
+            51
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "lesson-progress": {
+          "enabled": true,
+          "rect": [
+            142,
+            50,
+            958,
+            20
+          ],
+          "role": "AXProgressIndicator",
+          "value": ""
+        },
+        "option-0": {
+          "checked": false,
+          "enabled": true,
+          "numeric_value": 0,
+          "rect": [
+            300,
+            407,
+            600,
+            62
+          ],
+          "role": "AXRadioButton",
+          "value": ""
+        },
+        "option-1": {
+          "checked": false,
+          "enabled": true,
+          "numeric_value": 0,
+          "rect": [
+            300,
+            477,
+            600,
+            62
+          ],
+          "role": "AXRadioButton",
+          "value": ""
+        },
+        "question-title": {
+          "enabled": true,
+          "rect": [
+            300,
+            122.5,
+            192,
+            38
+          ],
+          "role": "AXStaticText",
+          "value": "选择音频填空"
+        },
+        "SwiftUI._ConditionalContent<SwiftUI.SubscriptionView<(extension in Foundation):__C.NSNotificationCenter.Publisher, SwiftUI.ModifiedContent<LingoSeed.LearningView, SwiftUI._AppearanceActionModifier>>, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1": {
+          "enabled": false,
+          "rect": [
+            0,
+            -32,
+            1200,
+            764
+          ],
+          "role": "AXWindow",
+          "value": ""
+        }
+      }
+    },
+    "general-listening-prefix-4-feedback": {
+      "accessible_text": [
+        "1",
+        "2",
+        "LingoSeed",
+        "No __, please.",
+        "Selected",
+        "correct",
+        "unselected",
+        "你太棒了！",
+        "太简单",
+        "太难",
+        "意思是： 不要冰，谢谢。",
+        "报错",
+        "继续",
+        "选择音频填空"
+      ],
+      "capture": {
+        "backing_scale": 2,
+        "content_rect_points": [
+          0,
+          32,
+          1200,
+          732
+        ],
+        "path": "projects/duolingo-web/evidence/english-general-listening-decline-native-v1/native-02/general-listening-prefix-4-feedback.png",
+        "window_points": [
+          1200,
+          764
+        ]
+      },
+      "elements": {
+        "checkmark.circle.fill": {
+          "enabled": true,
+          "rect": [
+            144,
+            638,
+            48,
+            48
+          ],
+          "role": "AXImage",
+          "value": ""
+        },
+        "continue": {
+          "enabled": true,
+          "rect": [
+            949,
+            635.5,
+            112,
+            53
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "exit": {
+          "enabled": true,
+          "rect": [
+            100,
+            51,
+            18,
+            18
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "feedback": {
+          "enabled": true,
+          "rect": [
+            226,
+            625.75,
+            76,
+            20.5
+          ],
+          "role": "AXStaticText",
+          "value": "correct"
+        },
+        "feedback-easy": {
+          "enabled": true,
+          "rect": [
+            229.3318328857422,
+            678.25,
+            72.66816711425781,
+            20
+          ],
+          "role": "AXButton",
+          "value": "unselected"
+        },
+        "feedback-hard": {
+          "enabled": true,
+          "rect": [
+            326.8316955566406,
+            678.25,
+            58.168304443359375,
+            20
+          ],
+          "role": "AXButton",
+          "value": "unselected"
+        },
+        "feedback-report": {
+          "enabled": true,
+          "rect": [
+            409,
+            678.25,
+            59,
+            20.25
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "isolation-prompt": {
+          "enabled": true,
+          "rect": [
+            434,
+            251.5,
+            169,
+            51
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "lesson-progress": {
+          "enabled": true,
+          "rect": [
+            142,
+            50,
+            958,
+            20
+          ],
+          "role": "AXProgressIndicator",
+          "value": ""
+        },
+        "option-0": {
+          "checked": true,
+          "enabled": false,
+          "numeric_value": 1,
+          "rect": [
+            300,
+            407,
+            600,
+            62
+          ],
+          "role": "AXRadioButton",
+          "value": ""
+        },
+        "option-1": {
+          "checked": false,
+          "enabled": false,
+          "numeric_value": 0,
+          "rect": [
+            300,
+            477,
+            600,
+            62
+          ],
+          "role": "AXRadioButton",
+          "value": ""
+        },
+        "question-title": {
+          "enabled": true,
+          "rect": [
+            300,
+            122.5,
+            192,
+            38
+          ],
+          "role": "AXStaticText",
+          "value": "选择音频填空"
+        },
+        "SwiftUI._ConditionalContent<SwiftUI.SubscriptionView<(extension in Foundation):__C.NSNotificationCenter.Publisher, SwiftUI.ModifiedContent<LingoSeed.LearningView, SwiftUI._AppearanceActionModifier>>, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1": {
+          "enabled": false,
+          "rect": [
+            0,
+            -32,
+            1200,
+            764
+          ],
+          "role": "AXWindow",
+          "value": ""
+        }
+      }
+    },
+    "general-listening-prefix-5": {
+      "accessible_text": [
+        "FALSTAFF",
+        "LingoSeed",
+        "milk and sugar",
+        "和",
+        "检查",
+        "水",
+        "牛奶",
+        "用中文（简体）写出这句话",
+        "糖",
+        "跳过"
+      ],
+      "capture": {
+        "backing_scale": 2,
+        "content_rect_points": [
+          0,
+          32,
+          1200,
+          732
+        ],
+        "path": "projects/duolingo-web/evidence/english-general-listening-decline-native-v1/native-02/general-listening-prefix-5.png",
+        "window_points": [
+          1200,
+          764
+        ]
+      },
+      "elements": {
+        "check": {
+          "enabled": false,
+          "rect": [
+            910,
+            643,
+            150,
+            46
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "exit": {
+          "enabled": true,
+          "rect": [
+            100,
+            51,
+            18,
+            18
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "lesson-progress": {
+          "enabled": true,
+          "rect": [
+            142,
+            50,
+            958,
+            20
+          ],
+          "role": "AXProgressIndicator",
+          "value": ""
+        },
+        "pronounce": {
+          "enabled": true,
+          "rect": [
+            443,
+            218,
+            202,
+            62
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "question-character": {
+          "enabled": true,
+          "rect": [
+            295.1,
+            152.75,
+            129.79999999999995,
+            192.5
+          ],
+          "role": "AXUnknown",
+          "value": ""
+        },
+        "question-title": {
+          "enabled": true,
+          "rect": [
+            300,
+            122.5,
+            384,
+            38
+          ],
+          "role": "AXStaticText",
+          "value": "用中文（简体）写出这句话"
+        },
+        "skip": {
+          "enabled": true,
+          "rect": [
+            140,
+            639,
+            150,
+            50
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "SwiftUI._ConditionalContent<SwiftUI.SubscriptionView<(extension in Foundation):__C.NSNotificationCenter.Publisher, SwiftUI.ModifiedContent<LingoSeed.LearningView, SwiftUI._AppearanceActionModifier>>, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1": {
+          "enabled": false,
+          "rect": [
+            0,
+            -32,
+            1200,
+            764
+          ],
+          "role": "AXWindow",
+          "value": ""
+        },
+        "word-bank-word-0": {
+          "enabled": true,
+          "rect": [
+            496.5,
+            491.5,
+            60,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "word-bank-word-1": {
+          "enabled": true,
+          "rect": [
+            562.5,
+            491.5,
+            43,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "word-bank-word-2": {
+          "enabled": true,
+          "rect": [
+            611.5,
+            491.5,
+            43,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "word-bank-word-3": {
+          "enabled": true,
+          "rect": [
+            660.5,
+            491.5,
+            43,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        }
+      }
+    },
+    "general-listening-prefix-5-feedback": {
+      "accessible_text": [
+        "FALSTAFF",
+        "LingoSeed",
+        "Selected",
+        "correct",
+        "milk and sugar",
+        "unselected",
+        "和",
+        "太简单",
+        "太难",
+        "报错",
+        "正确！",
+        "水",
+        "牛奶",
+        "用中文（简体）写出这句话",
+        "糖",
+        "继续"
+      ],
+      "capture": {
+        "backing_scale": 2,
+        "content_rect_points": [
+          0,
+          32,
+          1200,
+          732
+        ],
+        "path": "projects/duolingo-web/evidence/english-general-listening-decline-native-v1/native-02/general-listening-prefix-5-feedback.png",
+        "window_points": [
+          1200,
+          764
+        ]
+      },
+      "elements": {
+        "checkmark.circle.fill": {
+          "enabled": true,
+          "rect": [
+            144,
+            638,
+            48,
+            48
+          ],
+          "role": "AXImage",
+          "value": ""
+        },
+        "continue": {
+          "enabled": true,
+          "rect": [
+            949,
+            635.5,
+            112,
+            53
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "exit": {
+          "enabled": true,
+          "rect": [
+            100,
+            51,
+            18,
+            18
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "feedback": {
+          "enabled": true,
+          "rect": [
+            226,
+            626.75,
+            42.5,
+            20.5
+          ],
+          "role": "AXStaticText",
+          "value": "correct"
+        },
+        "feedback-easy": {
+          "enabled": true,
+          "rect": [
+            229.3318328857422,
+            677.25,
+            72.66816711425781,
+            20
+          ],
+          "role": "AXButton",
+          "value": "unselected"
+        },
+        "feedback-hard": {
+          "enabled": true,
+          "rect": [
+            326.8316955566406,
+            677.25,
+            58.168304443359375,
+            20
+          ],
+          "role": "AXButton",
+          "value": "unselected"
+        },
+        "feedback-report": {
+          "enabled": true,
+          "rect": [
+            409,
+            677.25,
+            59,
+            20.25
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "lesson-progress": {
+          "enabled": true,
+          "rect": [
+            142,
+            50,
+            958,
+            20
+          ],
+          "role": "AXProgressIndicator",
+          "value": ""
+        },
+        "pronounce": {
+          "enabled": true,
+          "rect": [
+            443,
+            218,
+            202,
+            62
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "question-character": {
+          "enabled": true,
+          "rect": [
+            295.1,
+            152.75,
+            129.79999999999995,
+            192.5
+          ],
+          "role": "AXUnknown",
+          "value": ""
+        },
+        "question-title": {
+          "enabled": true,
+          "rect": [
+            300,
+            122.5,
+            384,
+            38
+          ],
+          "role": "AXStaticText",
+          "value": "用中文（简体）写出这句话"
+        },
+        "selected-word-word-0": {
+          "enabled": false,
+          "rect": [
+            299,
+            371.5,
+            60,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "selected-word-word-2": {
+          "enabled": false,
+          "rect": [
+            365,
+            371.5,
+            43,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "selected-word-word-3": {
+          "enabled": false,
+          "rect": [
+            414,
+            371.5,
+            43,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "SwiftUI._ConditionalContent<SwiftUI.SubscriptionView<(extension in Foundation):__C.NSNotificationCenter.Publisher, SwiftUI.ModifiedContent<LingoSeed.LearningView, SwiftUI._AppearanceActionModifier>>, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1": {
+          "enabled": false,
+          "rect": [
+            0,
+            -32,
+            1200,
+            764
+          ],
+          "role": "AXWindow",
+          "value": ""
+        },
+        "word-bank-word-0": {
+          "enabled": false,
+          "rect": [
+            496.5,
+            491.5,
+            60,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "word-bank-word-1": {
+          "enabled": false,
+          "rect": [
+            562.5,
+            491.5,
+            43,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "word-bank-word-2": {
+          "enabled": false,
+          "rect": [
+            611.5,
+            491.5,
+            43,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "word-bank-word-3": {
+          "enabled": false,
+          "rect": [
+            660.5,
+            491.5,
+            43,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        }
+      }
+    },
+    "home": {
+      "accessible_text": [
+        "12 小时",
+        "2",
+        "30 / 30",
+        "5",
+        "510",
+        "6",
+        "6 of 7 lessons complete",
+        "Lesson",
+        "Lesson 3 of 4",
+        "LingoSeed",
+        "Practice",
+        "个人档案",
+        "关于我们    宝石小店    有效性    招聘贤才\n\n投资者    条款    隐私",
+        "创建个人档案，保存学习进度！",
+        "创建档案",
+        "发音",
+        "复习该部分",
+        "学习",
+        "宝石小店",
+        "开始",
+        "指南",
+        "排行榜",
+        "提供或接受饮料",
+        "显示全部",
+        "更多",
+        "查看排行榜",
+        "每日特别任务",
+        "特别任务",
+        "登录",
+        "第 1 阶段，第 1 部分",
+        "获取 30 经验",
+        "谈论祖籍国家",
+        "这周的排行榜挑战赛即将开始！",
+        "青铜等级"
+      ],
+      "capture": {
+        "backing_scale": 2,
+        "content_rect_points": [
+          0,
+          32,
+          1200,
+          732
+        ],
+        "path": "projects/duolingo-web/evidence/english-general-listening-decline-native-v1/native-02/home-window.png",
+        "window_points": [
+          1200,
+          764
+        ]
+      },
+      "elements": {
+        "completed-count": {
+          "enabled": true,
+          "rect": [
+            455.75,
+            687.1484375,
+            128.5,
+            15
+          ],
+          "role": "AXStaticText",
+          "value": "6"
+        },
+        "course-entry": {
+          "enabled": true,
+          "rect": [
+            296,
+            93.5,
+            154,
+            26
+          ],
+          "role": "AXStaticText",
+          "value": "提供或接受饮料"
+        },
+        "nav-leaderboards": {
+          "enabled": true,
+          "rect": [
+            16,
+            212,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-learn": {
+          "enabled": true,
+          "rect": [
+            16,
+            92,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-more": {
+          "enabled": true,
+          "rect": [
+            16,
+            452,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-profile": {
+          "enabled": true,
+          "rect": [
+            16,
+            392,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-pronunciation": {
+          "enabled": true,
+          "rect": [
+            16,
+            152,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-quests": {
+          "enabled": true,
+          "rect": [
+            16,
+            272,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-shop": {
+          "enabled": true,
+          "rect": [
+            16,
+            332,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "open-guide": {
+          "enabled": true,
+          "rect": [
+            649,
+            68,
+            96,
+            50
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "sign-in": {
+          "enabled": true,
+          "rect": [
+            828,
+            570,
+            328,
+            46
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "start-lesson": {
+          "enabled": true,
+          "rect": [
+            485,
+            162,
+            70,
+            65
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "start-lesson-1": {
+          "enabled": true,
+          "rect": [
+            440,
+            253,
+            70,
+            65
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "start-lesson-3": {
+          "enabled": true,
+          "rect": [
+            440,
+            462.5,
+            70,
+            65
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "start-lesson-4": {
+          "enabled": true,
+          "rect": [
+            485,
+            539.5,
+            70,
+            65
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "SwiftUI._ConditionalContent<SwiftUI.SubscriptionView<(extension in Foundation):__C.NSNotificationCenter.Publisher, SwiftUI.ModifiedContent<LingoSeed.LearningView, SwiftUI._AppearanceActionModifier>>, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1": {
+          "enabled": false,
+          "rect": [
+            0,
+            -32,
+            1200,
+            764
+          ],
+          "role": "AXWindow",
+          "value": ""
+        },
+        "view-leaderboards": {
+          "enabled": true,
+          "rect": [
+            1081,
+            114.5,
+            75,
+            18
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "view-profile": {
+          "enabled": true,
+          "rect": [
+            828,
+            510,
+            328,
+            46
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "view-quests": {
+          "enabled": true,
+          "rect": [
+            1096,
+            280.5,
+            60,
+            18
+          ],
+          "role": "AXButton",
+          "value": ""
+        }
+      }
+    },
+    "quests": {
+      "accessible_text": [
+        "14 小时",
+        "2",
+        "30 / 30",
+        "5",
+        "510",
+        "LingoSeed",
+        "个人档案",
+        "关于我们",
+        "去学个单元",
+        "发音",
+        "学习",
+        "完成特别任务，获取奖励！特别任务每天都会更新哦！",
+        "宝石小店",
+        "就是你了！",
+        "快开始你的每月挑战，独家徽章尽入囊中！",
+        "投资者",
+        "招聘贤才",
+        "排行榜",
+        "更多",
+        "更多特别任务即将解锁",
+        "有效性",
+        "条款",
+        "每日特别任务",
+        "每月挑战稍后揭秘！",
+        "特别任务",
+        "获取 30 经验",
+        "隐私"
+      ],
+      "capture": {
+        "backing_scale": 2,
+        "content_rect_points": [
+          0,
+          32,
+          1200,
+          732
+        ],
+        "path": "projects/duolingo-web/evidence/english-general-listening-decline-native-v1/native-02/quests.png",
+        "window_points": [
+          1200,
+          764
+        ]
+      },
+      "elements": {
+        "nav-leaderboards": {
+          "enabled": true,
+          "rect": [
+            16,
+            212,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-learn": {
+          "enabled": true,
+          "rect": [
+            16,
+            92,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-more": {
+          "enabled": true,
+          "rect": [
+            16,
+            452,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-profile": {
+          "enabled": true,
+          "rect": [
+            16,
+            392,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-pronunciation": {
+          "enabled": true,
+          "rect": [
+            16,
+            152,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-quests": {
+          "enabled": true,
+          "rect": [
+            16,
+            272,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-shop": {
+          "enabled": true,
+          "rect": [
+            16,
+            332,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "quests-banner": {
+          "enabled": true,
+          "rect": [
+            280,
+            24,
+            480,
+            232
+          ],
+          "role": "AXGroup",
+          "value": ""
+        },
+        "quests-daily": {
+          "enabled": true,
+          "rect": [
+            280,
+            326,
+            480,
+            113
+          ],
+          "role": "AXGroup",
+          "value": ""
+        },
+        "quests-locked": {
+          "enabled": true,
+          "rect": [
+            280,
+            455,
+            480,
+            100
+          ],
+          "role": "AXGroup",
+          "value": ""
+        },
+        "quests-monthly": {
+          "enabled": true,
+          "rect": [
+            808,
+            92,
+            368,
+            248
+          ],
+          "role": "AXGroup",
+          "value": ""
+        },
+        "quests-practice": {
+          "enabled": true,
+          "rect": [
+            830,
+            280,
+            324,
+            50
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "SwiftUI._ConditionalContent<SwiftUI.SubscriptionView<(extension in Foundation):__C.NSNotificationCenter.Publisher, SwiftUI.ModifiedContent<LingoSeed.LearningView, SwiftUI._AppearanceActionModifier>>, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1": {
+          "enabled": false,
+          "rect": [
+            0,
+            -32,
+            1200,
+            764
+          ],
+          "role": "AXWindow",
+          "value": ""
+        }
+      }
+    }
+  }
+}

@@ -100,3 +100,6 @@ v3 增加了主页、音频和截图，却仍然以自己选择的课程、素�
 ### 初始API题单不能代替执行轨迹
 
 listenTap暂缓后会插入翻译；口语暂缓后的翻译还不是原口语句。之前仅有listenMatch按钮与直接advance的实现漏掉了实际状态转移，不是补按钮就能修好。此次先在真实题型边界停止，再逐步操作/记录接受反馈，冻结新轨迹，保留候选全未访问的34项。源自检不算候选通过，手工选择分支不算RSI收益。文字几何/CSS和inlineSVG也补入采集，实际字体解析与动画可见性继续独立验证。[证据](../projects/duolingo-web/evidence/english-general-listening-decline-v1/README.md)。
+
+
+听力替换核心通过后，真实原生仍把播放控件拉到286点、继续按钮拉到524点；这再次说明核心语义与前端要求须独立验收。实际修正按钮后，又测出词库y440而原版405，需继续改答题线和间距，而不是拿新通过数掩盖整图失败。三个完整原生批次及默认回归保留，源像素断言未放宽；显式观察实例仍不能证明通用自适应选择。[证据](../projects/duolingo-web/evidence/english-general-listening-decline-native-v1/README.md)。

@@ -27,6 +27,9 @@ func launchChild() throws -> Process {
     if let index = CommandLine.arguments.firstIndex(of: "--reference-color-scheme"), index + 1 < CommandLine.arguments.count {
         process.arguments! += ["--reference-color-scheme", CommandLine.arguments[index + 1]]
     }
+    if CommandLine.arguments.contains("--exercise-general-listening-decline") {
+        process.arguments! += ["--general-practice-fixture", root.appendingPathComponent("projects/duolingo-web/fixture-reference-en-zh-general-listening-decline-v1.json").path]
+    }
     if CommandLine.arguments.contains("--exercise-speech-denied") { process.arguments! += ["--verify-speech-denied"] }
     process.standardOutput = FileHandle.nullDevice
     let log = try FileHandle(forWritingTo: childLog); try log.seekToEnd()
@@ -175,6 +178,84 @@ try capture("home-window")
 if CommandLine.arguments.contains("--observe-quests") {
     try press("nav-quests"); Thread.sleep(forTimeInterval: 0.5)
     states["quests"] = observe(); try capture("quests")
+    if CommandLine.arguments.contains("--exercise-general-listening-decline") {
+        let practiceURL = root.appendingPathComponent("projects/duolingo-web/fixture-reference-en-zh-general-listening-decline-v1.json")
+        let fixtureData = try JSONSerialization.jsonObject(with: Data(contentsOf: practiceURL)) as! [String: Any]
+        let practice = (fixtureData["data"] as! [String: Any])["candidate_course"] as! [String: Any]
+        let definition = (practice["lessons"] as! [[String: Any]])[0]
+        let replacements = definition["listeningDeclineReplacements"] as! [String: [String: Any]]
+        var failure: String?
+        let before = try Data(contentsOf: progress)
+        func saveState(_ name: String) throws { states[name] = observe(); try capture(name) }
+        do {
+            try press("quests-practice")
+            for original in definition["questions"] as! [[String: Any]] {
+                var question = original
+                if let replacement = replacements[original["id"] as! String] {
+                    try waitFor("listening-decline")
+                    try saveState("general-listening-decline-tap-before")
+                    try press("listening-decline"); try waitFor("listening-declined", value: "听力题已跳过")
+                    try saveState("general-listening-decline-tap-declined")
+                    try press("listening-continue")
+                    question = replacement
+                    try waitFor("question-title", value: replacement["prompt"] as? String)
+                    try saveState("general-listening-decline-after-tap")
+                }
+                if question["id"] as? String == "general-listening-decline-water-tea" {
+                    try waitFor("speech-title", value: "general-listening-decline-speech")
+                    try saveState("general-listening-decline-after-inserted")
+                    try press("speech-decline"); try waitFor("speech-closed")
+                    try saveState("general-listening-decline-speech-declined-with-text")
+                    try press("speech-continue")
+                }
+                let key = question["id"] as! String
+                try waitFor(question["kind"] as? String == "matching" ? "question-prompt" : "question-title", value: question["kind"] as? String == "matching" ? key : question["prompt"] as? String)
+                try saveState(key)
+                switch question["kind"] as? String {
+                case "matching":
+                    for pair in question["pairs"] as! [[String: Any]] { try press("pair-left-" + (pair["id"] as! String)); try press("pair-right-" + (pair["id"] as! String)) }
+                case "word_tiles":
+                    for word in question["answer_words"] as! [String] { try press("word-bank-" + word) }
+                    try press("check")
+                case "text_entry":
+                    try fillInput(question["answer"] as! String); try press("check")
+                default:
+                    try press("option-" + (question["answer"] as! String)); try press("check")
+                }
+                try waitFor("continue")
+                try saveState(key + "-feedback")
+                if key == "general-listening-decline-coffee-milk" { try saveState("general-listening-decline-coffee-milk-feedback-detail") }
+                try press("continue")
+                if key == "general-listening-decline-goodbye" {
+                    try waitFor("lesson-interlude", value: "general-listening-decline-challenge")
+                    try saveState("general-listening-decline-challenge-interlude"); try press("interlude-continue")
+                }
+            }
+            for (state, page) in zip(["general-listening-decline-result", "general-listening-decline-profile"], definition["settlement"] as! [[String: Any]]) {
+                try waitFor(page["kind"] as? String == "result" ? "lesson-complete" : "settlement-title", value: page["title"] as? String)
+                try saveState(state); try press("settlement-continue")
+            }
+            try waitFor("course-entry"); try saveState("general-listening-decline-home-return")
+            try before.write(to: output.appendingPathComponent("progress-before.json"), options: .withoutOverwriting)
+            try Data(contentsOf: progress).write(to: output.appendingPathComponent("progress-after.json"), options: .withoutOverwriting)
+            child.terminate(); child.waitUntilExit(); child = try launchChild(); app = AXUIElementCreateApplication(child.processIdentifier)
+            try waitFor("course-entry"); configureWindow(); try saveState("general-listening-decline-home-restart")
+            try Data(contentsOf: progress).write(to: output.appendingPathComponent("progress-after-restart.json"), options: .withoutOverwriting)
+        } catch {
+            failure = String(describing: error); states["failure-boundary"] = observe(); try? capture("failure-boundary")
+        }
+        try bindCaptures(&states, names: ["home":"home-window"])
+        let receipt: [String: Any] = ["kind":"owned_native_ax_observation", "states":states,
+            "candidate_binary_sha256":candidateSHA, "fixture_sha256":fixtureSHA,
+            "general_fixture_sha256":SHA256.hash(data:try Data(contentsOf:practiceURL)).map{String(format:"%02x",$0)}.joined(),
+            "observed_at":ISO8601DateFormatter().string(from:Date()), "failure":failure as Any,
+            "action":"Actual Quests entry, listening decline and replacement, speech decline, sixteen graded questions, result/profile/home and actual child restart",
+            "limitations":["Fixed observed instance; adaptive selection and non-decline future remain unverified", "AX/PNG collection does not prove acoustic equality"]]
+        try JSONSerialization.data(withJSONObject:receipt, options:[.prettyPrinted,.sortedKeys]).write(to:output.appendingPathComponent("observed.json"), options:.withoutOverwriting)
+        print("Collected listening-decline native states: \(states.count); failure=\(failure ?? "none")")
+        if failure != nil { exit(1) }
+        return
+    }
     if CommandLine.arguments.contains("--exercise-general-practice") {
         let practiceURL = root.appendingPathComponent("projects/duolingo-web/fixture-reference-en-zh-general-practice-v2.json")
         let practiceFixture = try JSONSerialization.jsonObject(with: Data(contentsOf: practiceURL)) as! [String: Any]

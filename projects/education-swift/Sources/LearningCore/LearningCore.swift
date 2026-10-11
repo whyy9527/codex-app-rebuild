@@ -19,6 +19,7 @@ public enum QuestionKind: String, Codable, Sendable {
     case textEntry = "text_entry"
 }
 public struct ListeningDecline: Codable, Equatable, Sendable {
+    public let imageResource: String?
     public let label: String
     public let title: String
     public let body: String
@@ -176,6 +177,7 @@ public struct SettlementFlow: Equatable, Sendable {
     public mutating func advance() { if current != nil { position += 1 } }
 }
 public struct LessonDefinition: Codable, Equatable, Sendable, Identifiable {
+    public var listeningDeclineReplacements: [String: Question]? = nil
     public var initialKeyboardForTiles: Bool? = nil
     public let id: String
     public let title: String
@@ -269,6 +271,10 @@ public struct Course: Codable, Equatable, Sendable, Identifiable {
                   !lesson.id.isEmpty && !lesson.questions.isEmpty
                     && Set(lesson.questions.map(\.id)).count == lesson.questions.count
                     && lesson.questions.allSatisfy(\.valid)
+                    && (lesson.listeningDeclineReplacements ?? [:]).allSatisfy { id, replacement in
+                        lesson.questions.contains { $0.id == id && $0.listeningDecline != nil }
+                            && replacement.valid && replacement.listeningDecline == nil
+                    }
               }) else { throw CocoaError(.fileReadCorruptFile) }
         return course
     }
@@ -312,9 +318,10 @@ public struct Lesson: Equatable, Sendable {
     private var handledSpeech = Set<String>()
     public private(set) var speechDeclined = false
     public private(set) var listeningDeclined = false
+    private var replacedQuestions = [Int: Question]()
     public mutating func declineListening() {
-        guard question.listeningDecline != nil, question.sourceType == "listenMatch",
-              feedback == nil, !complete, interlude == nil, deferredSpeech == nil else { return }
+        guard question.listeningDecline != nil,
+              feedback == nil, !listeningDeclined, !complete, interlude == nil, deferredSpeech == nil else { return }
         listeningDeclined = true
     }
     public var deferredSpeech: DeferredSpeech? {
@@ -325,7 +332,7 @@ public struct Lesson: Equatable, Sendable {
         guard deferredSpeech != nil else { return }
         speechDeclined = true
     }
-    public var question: Question { definition.questions[position] }
+    public var question: Question { replacedQuestions[position] ?? definition.questions[position] }
     public var displayedHint: String? { feedback == nil ? question.hint : question.feedbackHint ?? question.hint }
     public var visibleWords: [Choice] {
         guard reviewing, let order = question.reviewWordOrder else { return question.words }
@@ -427,6 +434,14 @@ public struct Lesson: Equatable, Sendable {
             return
         }
         guard feedback != nil || listeningDeclined, !complete else { return }
+        if listeningDeclined, let replacement = definition.listeningDeclineReplacements?[question.id] {
+            // The skipped listening question is not graded. Its observed
+            // translation occupies the same position and remains available
+            // for a later wrong-answer review instead of restoring listening.
+            replacedQuestions[position] = replacement
+            clearAnswer()
+            return
+        }
         let answeredID = question.id
         let enteringReview = !reviewing && position + 1 == definition.questions.count
         if reviewing {

@@ -148,7 +148,10 @@ import LearningCore
         playAutomaticPrompt()
     }
     func beginGeneralPractice() {
-        guard let url = Bundle.module.url(forResource: "general-practice", withExtension: "json", subdirectory: "Reference") else { error = "无法打开练习。"; return }
+        let explicit = CommandLine.arguments.firstIndex(of: "--general-practice-fixture").flatMap { index in
+            index + 1 < CommandLine.arguments.count ? URL(fileURLWithPath: CommandLine.arguments[index + 1]) : nil
+        }
+        guard let url = explicit ?? Bundle.module.url(forResource: "general-practice", withExtension: "json", subdirectory: "Reference") else { error = "无法打开练习。"; return }
         do {
             let practice = try Course.readFixture(url)
             sessionKind = .generalPractice

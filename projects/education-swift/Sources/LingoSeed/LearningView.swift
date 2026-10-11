@@ -55,6 +55,30 @@ struct LearningView: View {
                 Button("继续") { model.advance() }.buttonStyle(ReferenceCheckButton()).accessibilityIdentifier("interlude-continue")
             }.padding(.horizontal, 140).frame(maxWidth: .infinity, maxHeight: .infinity)
                 .overlay(alignment: .top) { Rectangle().fill(ReferenceStyle.border).frame(height: 2) }
+        } else if lesson.listeningDeclined, let decline = lesson.question.listeningDecline {
+            GeometryReader { geometry in
+                let left = (geometry.size.width - 920) / 2
+                let brown = Color(red: 205/255, green: 121/255, blue: 0)
+                ZStack(alignment: .topLeading) {
+                    Color(red: 1, green: 0.961, blue: 0.827)
+                    if let image = decline.imageResource {
+                        ReferenceStyle.image(image).resizable().frame(width: 41, height: 31)
+                            .frame(width: 80, height: 80).background(.white, in: Circle()).offset(x: left, y: 30)
+                    }
+                    Text(decline.title).font(ReferenceStyle.font(24, bold: true)).foregroundStyle(brown)
+                        .frame(width: 320, height: 30, alignment: .leading).offset(x: left + 96, y: 23.25)
+                        .accessibilityIdentifier("listening-declined")
+                    Text(decline.body).font(ReferenceStyle.font(17)).foregroundStyle(brown)
+                        .offset(x: left + 96, y: 55)
+                    ReferenceFeedbackActions(model: model, color: brown).offset(x: left + 96, y: 96)
+                    ReferencePracticeControl(label: "继续", identifier: "listening-continue", enabled: true,
+                        action: { model.advance() }, face: AnyView(Text("继续").font(ReferenceStyle.font(17, bold: true)).foregroundStyle(.white)
+                            .frame(width: 150, height: 46).background(RoundedRectangle(cornerRadius: 16).fill(Color(red: 1, green: 0.784, blue: 0)))
+                            .shadow(color: Color(red: 229/255, green: 163/255, blue: 0), radius: 0, y: 4)
+                            .frame(height: 50, alignment: .top)))
+                        .frame(width: 150, height: 50).offset(x: geometry.size.width - left - 150, y: 45)
+                }
+            }
         } else { answerBar(lesson) }
     }
     private func sidebar(compact: Bool) -> some View {
@@ -255,7 +279,17 @@ struct LearningView: View {
                     Button(label) { model.skip() }.buttonStyle(ReferenceSkipButton()).accessibilityIdentifier("skip").offset(y: 2)
                 }
                 if let decline = lesson.question.listeningDecline {
+                    if model.isGeneralPractice {
+                        ReferencePracticeControl(label: decline.label, identifier: "listening-decline", enabled: true,
+                            action: { model.declineListening() }, face: AnyView(Text(decline.label).font(ReferenceStyle.font(17, bold: true)).tracking(0.8)
+                                .foregroundStyle(ReferenceStyle.disclosureInk).frame(width: 160.6015625, height: 46)
+                                .background(RoundedRectangle(cornerRadius: 16).fill(.white))
+                                .overlay(RoundedRectangle(cornerRadius: 16).strokeBorder(ReferenceStyle.border, lineWidth: 2))
+                                .shadow(color: ReferenceStyle.border, radius: 0, y: 2).frame(height: 50, alignment: .top)))
+                            .frame(width: 160.6015625, height: 50)
+                    } else {
                     Button(decline.label) { model.declineListening() }.buttonStyle(.plain).accessibilityIdentifier("listening-decline")
+                    }
                 }
                 if lesson.question.sourceType == nil { Text(lesson.question.kind == .matching ? "Match all pairs to continue" : "Take your time. You’ve got this.").foregroundStyle(.secondary) }
                 Spacer()
@@ -405,7 +439,7 @@ struct LearningView: View {
             TextField("", text: Binding(get: { model.lesson?.displayedInput ?? "" }, set: { model.enterText($0) }))
                 .font(ReferenceStyle.font(chinese ? 17 : 20)).textFieldStyle(.plain).frame(maxWidth: lesson.usingKeyboard || lesson.question.completionPrefix == nil ? .infinity : 120)
                 .padding(.vertical, 8).overlay(alignment: .bottom) { Rectangle().fill(Color.gray.opacity(0.4)).frame(height: 2) }
-                .disabled(lesson.feedback != nil).accessibilityIdentifier("answer-input").accessibilityLabel(chinese ? (!lesson.usingKeyboard && lesson.question.completionPrefix != nil ? (lesson.question.completionPrefix ?? "") + (lesson.question.completionSuffix ?? "") : "使用英语键入") : "填写所缺单词")
+                .disabled(lesson.feedback != nil || lesson.listeningDeclined).accessibilityIdentifier("answer-input").accessibilityLabel(chinese ? (!lesson.usingKeyboard && lesson.question.completionPrefix != nil ? (lesson.question.completionPrefix ?? "") + (lesson.question.completionSuffix ?? "") : "使用英语键入") : "填写所缺单词")
             if let suffix = lesson.question.completionSuffix, !lesson.usingKeyboard { Text(suffix).font(ReferenceStyle.font(20)).accessibilityIdentifier("completion-suffix") }
         }.frame(maxWidth: .infinity, minHeight: chinese ? 146 : nil, maxHeight: chinese ? 146 : nil, alignment: .topLeading).padding(chinese ? 12 : 20)
             .background(chinese ? Color(white: 247/255) : .clear, in: RoundedRectangle(cornerRadius: chinese ? 8 : 12))
@@ -501,15 +535,41 @@ struct LearningView: View {
             }.padding(.top, 12)
         }
     }
-    private func words(_ lesson: Lesson) -> some View {
+    private func generalListeningWords(_ lesson: Lesson) -> some View {
+            VStack(spacing: 0) {
+                generalListeningControls
+                WordFlowLayout(centered: false) {
+                    ForEach(lesson.selectedWords, id: \.self) { id in
+                        Button(lesson.question.words.first { $0.id == id }!.text) { model.removeWord(id) }
+                            .buttonStyle(ReferenceListeningTile()).fixedSize().disabled(lesson.feedback != nil || lesson.listeningDeclined)
+                            .accessibilityIdentifier("selected-word-" + id)
+                    }
+                }.frame(maxWidth: .infinity, minHeight: 52, maxHeight: 52, alignment: .bottomLeading)
+                    .overlay(alignment: .bottom) { Rectangle().fill(ReferenceStyle.border).frame(height: 2) }
+                WordFlowLayout(centered: true) {
+                    ForEach(lesson.visibleWords) { word in
+                        Button(word.text) { model.addWord(word.id) }.buttonStyle(ReferenceListeningTile()).fixedSize()
+                            .disabled(lesson.feedback != nil || lesson.listeningDeclined || lesson.selectedWords.contains(word.id))
+                            .accessibilityIdentifier("word-bank-" + word.id)
+                    }
+                }.padding(.top, 68)
+            }
+    }
+    @ViewBuilder private func words(_ lesson: Lesson) -> some View {
+        if model.isGeneralPractice && lesson.question.sourceType == "listenTap" {
+            generalListeningWords(lesson)
+        } else {
         VStack(alignment: .leading, spacing: 24) {
             if lesson.question.sourceType == "listenTap" {
+                if model.isGeneralPractice { generalListeningControls }
+                else {
                 HStack(spacing: 28) {
                     Button { model.playQuestion() } label: { Image(systemName: "speaker.wave.2.fill").font(.system(size: 54)).frame(width: 110, height: 110) }
                         .buttonStyle(ReferenceButton(color: ReferenceStyle.blue)).accessibilityLabel(copy("Listen", "播放")).accessibilityIdentifier("pronounce")
                     Button { model.playQuestion(slow: true) } label: { Image(systemName: "tortoise.fill").font(.system(size: 28)).frame(width: 64, height: 64) }
                         .buttonStyle(ReferenceButton(color: ReferenceStyle.blue)).accessibilityLabel(copy("Slow", "慢速播放")).accessibilityIdentifier("pronounce-slow")
                 }.frame(maxWidth: .infinity)
+                }
             } else {
                 HStack(spacing: 16) {
                     Group {
@@ -536,7 +596,7 @@ struct LearningView: View {
                     HStack(spacing: 8) {
                         ForEach(lesson.selectedWords, id: \.self) { id in
                             Button(lesson.question.words.first { $0.id == id }!.text) { model.removeWord(id) }
-                                .buttonStyle(SeedTileStyle(selected: true)).disabled(lesson.feedback != nil)
+                                .buttonStyle(SeedTileStyle(selected: true)).disabled(lesson.feedback != nil || lesson.listeningDeclined)
                                 .accessibilityIdentifier("selected-word-" + id)
                         }
                     }.frame(minWidth: 140, minHeight: 48)
@@ -547,7 +607,7 @@ struct LearningView: View {
                 WordFlowLayout(centered: false) {
                     ForEach(lesson.selectedWords, id: \.self) { id in
                         Button(lesson.question.words.first { $0.id == id }!.text) { model.removeWord(id) }
-                            .buttonStyle(SeedTileStyle(selected: true)).fixedSize().disabled(lesson.feedback != nil)
+                            .buttonStyle(SeedTileStyle(selected: true)).fixedSize().disabled(lesson.feedback != nil || lesson.listeningDeclined)
                             .accessibilityIdentifier("selected-word-" + id)
                     }
                 }.padding(.vertical, 12).frame(maxWidth: .infinity, minHeight: 108, alignment: .topLeading)
@@ -557,10 +617,11 @@ struct LearningView: View {
             WordFlowLayout(centered: true) {
                 ForEach(lesson.visibleWords) { word in
                     Button(word.text) { model.addWord(word.id) }.buttonStyle(SeedTileStyle()).fixedSize()
-                        .disabled(lesson.feedback != nil || lesson.selectedWords.contains(word.id)).accessibilityIdentifier("word-bank-" + word.id)
+                        .disabled(lesson.feedback != nil || lesson.listeningDeclined || lesson.selectedWords.contains(word.id)).accessibilityIdentifier("word-bank-" + word.id)
                 }
             }
             Text(chinese ? "" : "Tap a word in your phrase to put it back.").font(.callout).foregroundStyle(.secondary)
+        }
         }
     }
     private func phraseBubble(_ text: String, speaker: Bool) -> some View {
@@ -649,6 +710,18 @@ struct SeedButtonStyle: ButtonStyle {
             }
             .overlay(RoundedRectangle(cornerRadius: 13).stroke(Color.black.opacity(0.12), lineWidth: 2))
             .offset(y: configuration.isPressed ? 4 : 0)
+    }
+}
+
+struct ReferenceListeningTile: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label.font(ReferenceStyle.font(19, weight: 400)).lineLimit(1)
+            .padding(.horizontal, 16).frame(height: 47.84375)
+            .foregroundStyle(ReferenceStyle.ink)
+            .background(RoundedRectangle(cornerRadius: 12).fill(ReferenceStyle.background)
+                .overlay(RoundedRectangle(cornerRadius: 12).strokeBorder(ReferenceStyle.border, lineWidth: 2)))
+            .shadow(color: ReferenceStyle.border, radius: 0, y: configuration.isPressed ? 0 : 2)
+            .frame(height: 51.84375, alignment: .top)
     }
 }
 

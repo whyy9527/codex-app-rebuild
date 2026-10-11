@@ -1,0 +1,12 @@
+Building for debugging...
+[0/6] Write sources
+[1/6] Write swift-version--1AB21518FC5DEDBE.txt
+[3/6] Emitting module LingoSeed
+[4/6] Compiling LingoSeed LearningView.swift
+<workspace>/projects/education-swift/Sources/LingoSeed/LearningView.swift:595:89: error: the compiler is unable to type-check this expression in reasonable time; try breaking up the expression into distinct sub-expressions
+593 |                     HStack(spacing: 8) {
+594 |                         ForEach(lesson.selectedWords, id: \.self) { id in
+595 |                             Button(lesson.question.words.first { $0.id == id }!.text) { model.removeWord(id) }
+    |                                                                                         `- error: the compiler is unable to type-check this expression in reasonable time; try breaking up the expression into distinct sub-expressions
+596 |                                 .buttonStyle(SeedTileStyle(selected: true)).disabled(lesson.feedback != nil || lesson.listeningDeclined)
+597 |                                 .accessibilityIdentifier("selected-word-" + id)

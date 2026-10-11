@@ -153,3 +153,6 @@ node projects/duolingo-web/explore-curriculum.mjs artifacts/reference-new.json -
 ## 听力暂缓与v30
 
 从实际listenTap边界停止，探索暂缓→插入翻译→口语暂缓→变题→全对结算→建档提示→返回。v30增28状态/34要求，旧1851完整保留。源34自检通过不能当候选通过；旧native重评89pass/55fail/1741not_run，新34全未运行。下一步实现冻结的状态转移及原生驱动，不只补按钮；实例选择、计时恢复与奖励条件继续探索。[实际证据与复跑](evidence/english-general-listening-decline-v1/README.md)。
+
+
+听力替换状态机已实现：暂缓未评分，继续转实际翻译，复习保留替换题。显式观察实例45原生状态/真实重启，默认47状态回归；v31新增18控件断言，整图仍失败。实例选择/未暂缓未来仍未知，未替换默认实例假装自适应算法完成。[验证、剩余差异和命令](evidence/english-general-listening-decline-native-v1/README.md)。

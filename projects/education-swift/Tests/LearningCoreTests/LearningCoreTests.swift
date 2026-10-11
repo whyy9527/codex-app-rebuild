@@ -630,6 +630,44 @@ func actualGeneralPractice() throws {
     print("PASS independent general practice, initial keyboard/bank, speech insertion, challenge replacements, non-penalizing wrong and correction")
 }
 
+func actualListeningDeclineReplacement() throws {
+    let source = try course(fixture: "fixture-reference-en-zh-general-listening-decline-v1.json")
+    for injectWrong in [false, true] {
+        var lesson = Lesson(course: source, hearts: 5)
+        var graded = 0, declines = 0, speeches = 0
+        for _ in 0..<48 {
+            if lesson.complete { break }
+            if lesson.interlude != nil { lesson.advance(); continue }
+            if let speech = lesson.deferredSpeech {
+                try check(speech.phrase == "Good morning, hot coffee or with ice?", "Source speech changed")
+                speeches += 1; lesson.declineSpeech(); lesson.advance(); continue
+            }
+            if lesson.question.id == "general-listening-prefix-6" {
+                let before = lesson
+                lesson.declineListening(); lesson.addWord(lesson.question.answerWords[0]); lesson.submit()
+                try check(lesson.listeningDeclined && !lesson.canSubmit && lesson.selectedWords.isEmpty && lesson.feedback == nil, "Declined listening still accepts input")
+                try check(lesson.hearts == before.hearts && lesson.correctStreak == before.correctStreak && lesson.position == before.position, "Decline was graded or advanced")
+                lesson.advance(); declines += 1
+                try check(lesson.question.id == "general-listening-decline-inserted" && lesson.position == before.position && !lesson.listeningDeclined, "Observed translation was skipped")
+            }
+            let wrong = injectWrong && lesson.question.id == "general-listening-decline-inserted" && !lesson.reviewing
+            if lesson.reviewing { try check(lesson.question.id == "general-listening-decline-inserted", "Review restored skipped listening instead of translation") }
+            switch lesson.question.kind {
+            case .matching: for pair in lesson.question.pairs { lesson.matchLeft(pair.id); lesson.matchRight(pair.id) }
+            case .choice: lesson.choose(lesson.question.answer); lesson.submit()
+            case .wordTiles:
+                for id in wrong ? Array(lesson.question.answerWords.prefix(1)) : lesson.question.answerWords { lesson.addWord(id) }
+                lesson.submit()
+            case .textEntry: lesson.enterText(lesson.question.answer); lesson.submit()
+            }
+            try check(lesson.feedback == !wrong && lesson.hearts == 5, "Replacement grading or zero heart cost changed")
+            graded += 1; lesson.advance()
+        }
+        try check(lesson.complete && declines == 1 && speeches == 1 && graded == (injectWrong ? 17 : 16), "Listening replacement trajectory incomplete")
+    }
+    print("PASS actual listening replacement trajectory and separate wrong-review state invariant")
+}
+
 do {
     try mistakeReview()
     try persistence()
@@ -655,7 +693,8 @@ do {
     try actualPronunciationPractice()
     try laterPronunciationPractices()
     try actualGeneralPractice()
-    print("24 business checks passed; core layer only")
+    try actualListeningDeclineReplacement()
+    print("25 business checks passed; core layer only")
 } catch {
     FileHandle.standardError.write(Data(("FAIL " + String(describing: error) + "\n").utf8))
     exit(1)

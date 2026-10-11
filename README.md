@@ -75,3 +75,6 @@ python3 -m unittest discover -v
 上一探索检查点实际完成原版英语第三课，发现重复词块及同题型动态换题；当时候选仍为前两课，v4为128通过、244未覆盖。此历史结果保留，最新候选见上文。[第三课探索与下一步](projects/duolingo-web/evidence/english-third-v1/README.md)。
 
 上一构建默认七课同次实际回放430状态；前端1489项为985通过、69失败、435未覆盖。38对截图全部有差异，实际声音等价尚未证明；[完整回执及保留失败](projects/duolingo-web/evidence/english-seventh-native-v1/README.md)。
+
+
+听力暂缓替换已接入Swift核心，并用显式观察实例从任务页走完45状态和真实重启；默认练习47状态回归也执行通过。v31保留旧要求增18项控件检查，最终新分支22pass/30fail，28整图全fail；仍未完成1:1或自适应实例选择。[实现、负结果与复跑](projects/duolingo-web/evidence/english-general-listening-decline-native-v1/README.md)。

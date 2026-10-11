@@ -279,3 +279,8 @@ v15保留1489项并增8项真实原版断言。独立原生radio2实际点击及
 ### 听力暂缓的实际插入与自适应反例
 
 由缺暂缓入口的失败反馈选择实际listenTap分支，驱动前六题后明确停住，继续真实探索完成16评分题/两次暂缓/全对结算/稍后建档返回。听力暂缓插入water and coffee翻译，口语暂缓后的water and tea并非原口语句翻译，否定固定题单/直接跳过模型。采集器补文字Range/CSS及inlineSVG；v30保留1851旧项增34/28状态，源自检34pass，旧native重评89pass/55fail/1741not_run，新34全未运行。新状态机及原生验证尚待实施，不以探索回执冒充复刻完成；15分钟恢复/奖励上限/自适应选择仍未知。原论文与负消融保留，完整Goal active。[实际轨迹、模具与下一实施批次](../projects/duolingo-web/evidence/english-general-listening-decline-v1/README.md)。
+
+
+### 听力替换实施及前端反例修复
+
+可选实例替换接入Lesson，暂缓不评分，翻译位置与错误复习保持；显式原版观察实例45原生状态和真实重启，默认实例47状态回归均无驱动失败。修复286点播放宽条、524点黄色继续及词库纵向偏移；原版MP3/黄色勾绑定，类型检查超时负日志保留。v31保留1885旧项增18，共1903；最终56pass/35fail/1812not_run，新52为22pass30fail且28整图全fail。25核心/56框架通过，字体/图形/进度/替换音频、正常口语、通用实例选择及真实探索效果继续，完整Goal active。[详细验证及复跑](../projects/duolingo-web/evidence/english-general-listening-decline-native-v1/README.md)。

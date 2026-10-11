@@ -1,0 +1,929 @@
+{
+  "states": {
+    "general-listening-decline-tap-before": {
+      "snapshot": "- button:\n  - img\n- progressbar\n- heading \"选择听到的内容\" [level=1]\n- button:\n  - img\n- button:\n  - img\n- button \"and\"\n- button \"good morning\"\n- button \"water\"\n- button \"coffee\"\n- button \"现在不做听力题\"\n- button \"使用键盘\"\n- button \"检查\" [disabled]",
+      "accessible_text": [
+        "选择听到的内容",
+        "and",
+        "good morning",
+        "water",
+        "coffee",
+        "现在不做听力题",
+        "使用键盘",
+        "检查"
+      ],
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-general-listening-decline-v1/tap-before.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      },
+      "elements": {
+        "word-bank-word-0": {
+          "role": "button",
+          "enabled": true,
+          "rect": [
+            398.0234375,
+            405.078125,
+            65.7734375,
+            51.84375
+          ]
+        },
+        "word-bank-word-1": {
+          "role": "button",
+          "enabled": true,
+          "rect": [
+            471.796875,
+            405.078125,
+            145.578125,
+            51.84375
+          ]
+        },
+        "word-bank-word-2": {
+          "role": "button",
+          "enabled": true,
+          "rect": [
+            625.375,
+            405.078125,
+            81.8984375,
+            51.84375
+          ]
+        },
+        "word-bank-word-3": {
+          "role": "button",
+          "enabled": true,
+          "rect": [
+            715.2734375,
+            405.078125,
+            86.6953125,
+            51.84375
+          ]
+        },
+        "pronounce": {
+          "role": "button",
+          "enabled": true,
+          "rect": [
+            507,
+            185,
+            100,
+            100
+          ]
+        },
+        "pronounce-slow": {
+          "role": "button",
+          "enabled": true,
+          "rect": [
+            623,
+            215,
+            70,
+            70
+          ]
+        },
+        "listening-decline": {
+          "role": "button",
+          "enabled": true,
+          "rect": [
+            140,
+            639,
+            160.6015625,
+            50
+          ]
+        }
+      }
+    },
+    "general-listening-decline-tap-declined": {
+      "snapshot": "- button:\n  - img\n- progressbar:\n  - img\n- heading \"选择听到的内容\" [level=1]\n- button:\n  - img\n- button:\n  - img\n- button \"and\" [disabled]\n- button \"good morning\" [disabled]\n- button \"water\" [disabled]\n- button \"coffee\" [disabled]\n- heading \"听力题已跳过\" [level=2]\n- text: 将在 15 分钟后恢复\n- button \"太简单\"\n- button \"太难\"\n- button \"报错\"\n- button \"继续\"",
+      "accessible_text": [
+        "选择听到的内容",
+        "and",
+        "good morning",
+        "water",
+        "coffee",
+        "听力题已跳过",
+        "太简单",
+        "太难",
+        "报错",
+        "继续",
+        "将在 15 分钟后恢复"
+      ],
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-general-listening-decline-v1/tap-declined.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      },
+      "elements": {
+        "word-bank-word-0": {
+          "role": "button",
+          "enabled": false,
+          "rect": [
+            398.0234375,
+            405.078125,
+            65.7734375,
+            51.84375
+          ]
+        },
+        "word-bank-word-1": {
+          "role": "button",
+          "enabled": false,
+          "rect": [
+            471.796875,
+            405.078125,
+            145.578125,
+            51.84375
+          ]
+        },
+        "word-bank-word-2": {
+          "role": "button",
+          "enabled": false,
+          "rect": [
+            625.375,
+            405.078125,
+            81.8984375,
+            51.84375
+          ]
+        },
+        "word-bank-word-3": {
+          "role": "button",
+          "enabled": false,
+          "rect": [
+            715.2734375,
+            405.078125,
+            86.6953125,
+            51.84375
+          ]
+        },
+        "pronounce": {
+          "role": "button",
+          "enabled": true,
+          "rect": [
+            507,
+            185,
+            100,
+            100
+          ]
+        },
+        "pronounce-slow": {
+          "role": "button",
+          "enabled": true,
+          "rect": [
+            623,
+            215,
+            70,
+            70
+          ]
+        },
+        "listening-continue": {
+          "role": "button",
+          "enabled": true,
+          "rect": [
+            909.9921875,
+            637,
+            150,
+            50
+          ]
+        }
+      }
+    },
+    "general-listening-decline-after-tap": {
+      "snapshot": "- button:\n  - img\n- progressbar\n- heading \"用中文（简体）写出这句话\" [level=1]\n- button:\n  - img\n- img\n- button \"水\"\n- button \"和\"\n- button \"咖啡\"\n- button \"还是\"\n- button \"跳过\"\n- button \"检查\" [disabled]",
+      "accessible_text": [
+        "用中文（简体）写出这句话",
+        "水",
+        "和",
+        "咖啡",
+        "还是",
+        "跳过",
+        "检查"
+      ],
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-general-listening-decline-v1/after-tap.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "general-listening-decline-after-inserted": {
+      "snapshot": "- button:\n  - img\n- progressbar\n- heading \"朗读下面的句子\" [level=1]\n- button:\n  - img\n- img\n- button \"点击并开始录音\":\n  - img\n  - text: 点击并开始录音\n  - img\n  - img\n- button \"现在不做口语题\"\n- button \"检查\" [disabled]",
+      "accessible_text": [
+        "朗读下面的句子",
+        "点击并开始录音",
+        "现在不做口语题",
+        "检查",
+        "点击并开始录音"
+      ],
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-general-listening-decline-v1/after-inserted.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "general-listening-decline-speech-declined-with-text": {
+      "snapshot": "- button:\n  - img\n- progressbar:\n  - img\n- heading \"朗读下面的句子\" [level=1]\n- button:\n  - img\n- img\n- button \"点击并开始录音\" [disabled]:\n  - img\n  - text: 点击并开始录音\n  - img\n  - img\n- heading \"麦克风已关闭\" [level=2]\n- text: 将在 15 分钟后恢复\n- button \"太简单\"\n- button \"太难\"\n- button \"报错\"\n- button \"继续\"",
+      "accessible_text": [
+        "朗读下面的句子",
+        "点击并开始录音",
+        "麦克风已关闭",
+        "太简单",
+        "太难",
+        "报错",
+        "继续",
+        "点击并开始录音",
+        "将在 15 分钟后恢复"
+      ],
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-general-listening-decline-v1/speech-declined-with-text.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "general-listening-decline-coffee-milk-feedback-detail": {
+      "snapshot": "- button:\n  - img\n- progressbar:\n  - text: 连对 10 题\n  - img\n- heading \"用英语写出这句话\" [level=1]\n- img\n- button \"coffee\" [disabled]\n- button \"with\" [disabled]\n- button \"milk\" [disabled]\n- button \"coffee\" [disabled]\n- button \"milk\" [disabled]\n- button \"thank you\" [disabled]\n- button \"with\" [disabled]\n- heading \"棒棒哒！\" [level=2]\n- button \"太简单\"\n- button \"太难\"\n- button \"报错\"\n- button \"继续\"",
+      "accessible_text": [
+        "用英语写出这句话",
+        "coffee",
+        "with",
+        "milk",
+        "coffee",
+        "milk",
+        "thank you",
+        "with",
+        "棒棒哒！",
+        "太简单",
+        "太难",
+        "报错",
+        "继续",
+        "连对 10 题"
+      ],
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-general-listening-decline-v1/coffee-milk-feedback-detail.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "general-listening-decline-challenge-interlude": {
+      "snapshot": "- button:\n  - img\n- progressbar:\n  - img\n- img\n- text: 哎哟不错哦！要不要玩点刺激的？\n- button \"继续\"",
+      "accessible_text": [
+        "继续",
+        "哎哟不错哦！要不要玩点刺激的？"
+      ],
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-general-listening-decline-v1/challenge-interlude.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "general-listening-decline-result": {
+      "snapshot": "- img\n- text: 完美！ 你练习全对，无错完成本单元 总经验\n- img\n- text: 0 1 2 3 4 5 6 7 8 9 超级棒\n- img\n- text: 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 %\n- button \"回顾本单元\"\n- button \"重新练习\"\n- button \"继续\"",
+      "accessible_text": [
+        "回顾本单元",
+        "重新练习",
+        "继续",
+        "完美！ 你练习全对，无错完成本单元 总经验",
+        "0 1 2 3 4 5 6 7 8 9 超级棒",
+        "0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 %"
+      ],
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-general-listening-decline-v1/result.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "general-listening-decline-inserted": {
+      "snapshot": "- button:\n  - img\n- progressbar\n- heading \"用中文（简体）写出这句话\" [level=1]\n- button:\n  - img\n- img\n- button \"水\"\n- button \"和\"\n- button \"咖啡\"\n- button \"还是\"\n- button \"跳过\"\n- button \"检查\" [disabled]",
+      "accessible_text": [
+        "用中文（简体）写出这句话",
+        "水",
+        "和",
+        "咖啡",
+        "还是",
+        "跳过",
+        "检查"
+      ],
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-general-listening-decline-v1/inserted-before.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "general-listening-decline-inserted-feedback": {
+      "snapshot": "- button:\n  - img\n- progressbar:\n  - text: 连对 7 题\n  - img\n- heading \"用中文（简体）写出这句话\" [level=1]\n- button:\n  - img\n- img\n- button \"水\" [disabled]\n- button \"和\" [disabled]\n- button \"咖啡\" [disabled]\n- button \"还是\" [disabled]\n- heading \"真厉害！\" [level=2]\n- button \"太简单\"\n- button \"太难\"\n- button \"报错\"\n- button \"继续\"\n- button \"水\" [disabled]\n- button \"和\" [disabled]\n- button \"咖啡\" [disabled]",
+      "accessible_text": [
+        "用中文（简体）写出这句话",
+        "水",
+        "和",
+        "咖啡",
+        "还是",
+        "真厉害！",
+        "太简单",
+        "太难",
+        "报错",
+        "继续",
+        "水",
+        "和",
+        "咖啡",
+        "连对 7 题"
+      ],
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-general-listening-decline-v1/inserted-feedback.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "general-listening-decline-water-tea": {
+      "snapshot": "- button:\n  - img\n- progressbar\n- heading \"用中文（简体）写出这句话\" [level=1]\n- button:\n  - img\n- img\n- button \"水\"\n- button \"和\"\n- button \"糖\"\n- button \"茶\"\n- button \"跳过\"\n- button \"检查\" [disabled]",
+      "accessible_text": [
+        "用中文（简体）写出这句话",
+        "水",
+        "和",
+        "糖",
+        "茶",
+        "跳过",
+        "检查"
+      ],
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-general-listening-decline-v1/water-tea-before.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "general-listening-decline-water-tea-feedback": {
+      "snapshot": "- button:\n  - img\n- progressbar: 连对 8 题\n- heading \"用中文（简体）写出这句话\" [level=1]\n- button:\n  - img\n- img\n- button \"水\" [disabled]\n- button \"和\" [disabled]\n- button \"糖\" [disabled]\n- button \"茶\" [disabled]\n- heading \"真厉害！\" [level=2]\n- button \"太简单\"\n- button \"太难\"\n- button \"报错\"\n- button \"继续\"\n- button \"水\" [disabled]\n- button \"和\" [disabled]\n- button \"茶\" [disabled]",
+      "accessible_text": [
+        "用中文（简体）写出这句话",
+        "水",
+        "和",
+        "糖",
+        "茶",
+        "真厉害！",
+        "太简单",
+        "太难",
+        "报错",
+        "继续",
+        "水",
+        "和",
+        "茶"
+      ],
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-general-listening-decline-v1/water-tea-feedback.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "general-listening-decline-tea-coffee": {
+      "snapshot": "- button:\n  - img\n- progressbar\n- heading \"用中文（简体）写出这句话\" [level=1]\n- button:\n  - img\n- img\n- button \"咖啡\"\n- button \"茶\"\n- button \"不\"\n- button \"和\"\n- button \"跳过\"\n- button \"检查\" [disabled]",
+      "accessible_text": [
+        "用中文（简体）写出这句话",
+        "咖啡",
+        "茶",
+        "不",
+        "和",
+        "跳过",
+        "检查"
+      ],
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-general-listening-decline-v1/tea-coffee-before.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "general-listening-decline-tea-coffee-feedback": {
+      "snapshot": "- button:\n  - img\n- progressbar: 连对 9 题\n- heading \"用中文（简体）写出这句话\" [level=1]\n- button:\n  - img\n- img\n- button \"咖啡\" [disabled]\n- button \"茶\" [disabled]\n- button \"不\" [disabled]\n- button \"和\" [disabled]\n- heading \"你太棒了！\" [level=2]\n- button \"太简单\"\n- button \"太难\"\n- button \"报错\"\n- button \"继续\"\n- button \"茶\" [disabled]\n- button \"和\" [disabled]\n- button \"咖啡\" [disabled]",
+      "accessible_text": [
+        "用中文（简体）写出这句话",
+        "咖啡",
+        "茶",
+        "不",
+        "和",
+        "你太棒了！",
+        "太简单",
+        "太难",
+        "报错",
+        "继续",
+        "茶",
+        "和",
+        "咖啡"
+      ],
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-general-listening-decline-v1/tea-coffee-feedback.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "general-listening-decline-coffee-milk": {
+      "snapshot": "- button:\n  - img\n- progressbar\n- heading \"用英语写出这句话\" [level=1]\n- img\n- button \"coffee\"\n- button \"milk\"\n- button \"thank you\"\n- button \"with\"\n- button \"跳过\"\n- button \"使用键盘\"\n- button \"检查\" [disabled]",
+      "accessible_text": [
+        "用英语写出这句话",
+        "coffee",
+        "milk",
+        "thank you",
+        "with",
+        "跳过",
+        "使用键盘",
+        "检查"
+      ],
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-general-listening-decline-v1/coffee-milk-before.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "general-listening-decline-coffee-milk-feedback": {
+      "snapshot": "- button:\n  - img\n- progressbar:\n  - text: 连对 10 题\n  - img\n- heading \"用英语写出这句话\" [level=1]\n- img\n- button \"coffee\" [disabled]\n- button \"milk\" [disabled]\n- button \"thank you\" [disabled]\n- button \"with\" [disabled]\n- heading \"棒棒哒！\" [level=2]\n- button \"太简单\"\n- button \"太难\"\n- button \"报错\"\n- button \"继续\"\n- button \"coffee\" [disabled]\n- button \"with\" [disabled]\n- button \"milk\" [disabled]",
+      "accessible_text": [
+        "用英语写出这句话",
+        "coffee",
+        "milk",
+        "thank you",
+        "with",
+        "棒棒哒！",
+        "太简单",
+        "太难",
+        "报错",
+        "继续",
+        "coffee",
+        "with",
+        "milk",
+        "连对 10 题"
+      ],
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-general-listening-decline-v1/coffee-milk-feedback.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "general-listening-decline-no-coffee": {
+      "snapshot": "- button:\n  - img\n- progressbar\n- heading \"用中文（简体）写出这句话\" [level=1]\n- button:\n  - img\n- img\n- button \"谢谢\"\n- button \"和\"\n- button \"不要\"\n- button \"咖啡\"\n- button \"跳过\"\n- button \"检查\" [disabled]",
+      "accessible_text": [
+        "用中文（简体）写出这句话",
+        "谢谢",
+        "和",
+        "不要",
+        "咖啡",
+        "跳过",
+        "检查"
+      ],
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-general-listening-decline-v1/no-coffee-before.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "general-listening-decline-no-coffee-feedback": {
+      "snapshot": "- button:\n  - img\n- progressbar: 连对 11 题\n- heading \"用中文（简体）写出这句话\" [level=1]\n- button:\n  - img\n- img\n- button \"谢谢\" [disabled]\n- button \"和\" [disabled]\n- button \"不要\" [disabled]\n- button \"咖啡\" [disabled]\n- heading \"真棒！\" [level=2]\n- button \"太简单\"\n- button \"太难\"\n- button \"报错\"\n- button \"继续\"\n- button \"不要\" [disabled]\n- button \"咖啡\" [disabled]\n- button \"谢谢\" [disabled]",
+      "accessible_text": [
+        "用中文（简体）写出这句话",
+        "谢谢",
+        "和",
+        "不要",
+        "咖啡",
+        "真棒！",
+        "太简单",
+        "太难",
+        "报错",
+        "继续",
+        "不要",
+        "咖啡",
+        "谢谢"
+      ],
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-general-listening-decline-v1/no-coffee-feedback.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "general-listening-decline-no-milk": {
+      "snapshot": "- button:\n  - img\n- progressbar\n- heading \"用英语写出这句话\" [level=1]\n- img\n- button \"and\"\n- button \"no\"\n- button \"milk\"\n- button \"No\"\n- button \"sugar\"\n- button \"please\"\n- button \"i'd like\"\n- button \"跳过\"\n- button \"使用键盘\"\n- button \"检查\" [disabled]",
+      "accessible_text": [
+        "用英语写出这句话",
+        "and",
+        "no",
+        "milk",
+        "No",
+        "sugar",
+        "please",
+        "i'd like",
+        "跳过",
+        "使用键盘",
+        "检查"
+      ],
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-general-listening-decline-v1/no-milk-before.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "general-listening-decline-no-milk-feedback": {
+      "snapshot": "- button:\n  - img\n- progressbar: 连对 12 题\n- heading \"用英语写出这句话\" [level=1]\n- img\n- button \"and\" [disabled]\n- button \"no\" [disabled]\n- button \"milk\" [disabled]\n- button \"No\" [disabled]\n- button \"sugar\" [disabled]\n- button \"please\" [disabled]\n- button \"i'd like\" [disabled]\n- heading \"非常好！\" [level=2]\n- button \"太简单\"\n- button \"太难\"\n- button \"报错\"\n- button \"继续\"\n- button \"No\" [disabled]\n- button \"milk\" [disabled]\n- button \"and\" [disabled]\n- button \"no\" [disabled]\n- button \"sugar\" [disabled]\n- button \"please\" [disabled]",
+      "accessible_text": [
+        "用英语写出这句话",
+        "and",
+        "no",
+        "milk",
+        "No",
+        "sugar",
+        "please",
+        "i'd like",
+        "非常好！",
+        "太简单",
+        "太难",
+        "报错",
+        "继续",
+        "No",
+        "milk",
+        "and",
+        "no",
+        "sugar",
+        "please"
+      ],
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-general-listening-decline-v1/no-milk-feedback.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "general-listening-decline-goodbye": {
+      "snapshot": "- button:\n  - img\n- progressbar\n- heading \"用英语写出这句话\" [level=1]\n- img\n- textbox \"使用英语键入\"\n- button \"跳过\"\n- button \"检查\" [disabled]",
+      "accessible_text": [
+        "用英语写出这句话",
+        "使用英语键入",
+        "跳过",
+        "检查"
+      ],
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-general-listening-decline-v1/goodbye-before.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "general-listening-decline-goodbye-feedback": {
+      "snapshot": "- button:\n  - img\n- progressbar: 连对 13 题\n- heading \"用英语写出这句话\" [level=1]\n- img\n- textbox \"使用英语键入\" [disabled]: Thank you, goodbye!\n- heading \"不错哦！\" [level=2]\n- button \"太简单\"\n- button \"太难\"\n- button \"报错\"\n- button \"继续\"",
+      "accessible_text": [
+        "用英语写出这句话",
+        "使用英语键入",
+        "不错哦！",
+        "太简单",
+        "太难",
+        "报错",
+        "继续"
+      ],
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-general-listening-decline-v1/goodbye-feedback.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "general-listening-decline-hot-tea": {
+      "snapshot": "- button:\n  - img\n- progressbar\n- img\n- text: 挑战题\n- heading \"用英语写出这句话\" [level=1]\n- img\n- textbox \"使用英语键入\"\n- button \"跳过\"\n- button \"检查\" [disabled]",
+      "accessible_text": [
+        "用英语写出这句话",
+        "使用英语键入",
+        "跳过",
+        "检查",
+        "挑战题"
+      ],
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-general-listening-decline-v1/hot-tea-before.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "general-listening-decline-hot-tea-feedback": {
+      "snapshot": "- button:\n  - img\n- progressbar:\n  - text: 连对 14 题\n  - img\n- img\n- text: 挑战题\n- heading \"用英语写出这句话\" [level=1]\n- img\n- textbox \"使用英语键入\" [disabled]: I'd like hot tea, please.\n- heading \"你太棒了！\" [level=2]\n- button \"太简单\"\n- button \"太难\"\n- button \"报错\"\n- button \"继续\"",
+      "accessible_text": [
+        "用英语写出这句话",
+        "使用英语键入",
+        "你太棒了！",
+        "太简单",
+        "太难",
+        "报错",
+        "继续",
+        "连对 14 题",
+        "挑战题"
+      ],
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-general-listening-decline-v1/hot-tea-feedback.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "general-listening-decline-ice-water": {
+      "snapshot": "- button:\n  - img\n- progressbar\n- img\n- text: 挑战题\n- heading \"用英语写出这句话\" [level=1]\n- img\n- textbox \"使用英语键入\"\n- button \"跳过\"\n- button \"检查\" [disabled]",
+      "accessible_text": [
+        "用英语写出这句话",
+        "使用英语键入",
+        "跳过",
+        "检查",
+        "挑战题"
+      ],
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-general-listening-decline-v1/ice-water-before.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "general-listening-decline-ice-water-feedback": {
+      "snapshot": "- button:\n  - img\n- progressbar:\n  - text: 连对 15 题\n  - img\n- img\n- text: 挑战题\n- heading \"用英语写出这句话\" [level=1]\n- img\n- textbox \"使用英语键入\" [disabled]: I'd like water with ice, please.\n- heading \"泰裤辣！\" [level=2]\n- button \"太简单\"\n- button \"太难\"\n- button \"报错\"\n- button \"继续\"",
+      "accessible_text": [
+        "用英语写出这句话",
+        "使用英语键入",
+        "泰裤辣！",
+        "太简单",
+        "太难",
+        "报错",
+        "继续",
+        "连对 15 题",
+        "挑战题"
+      ],
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-general-listening-decline-v1/ice-water-feedback.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "general-listening-decline-no-water": {
+      "snapshot": "- button:\n  - img\n- progressbar\n- img\n- text: 挑战题\n- heading \"用英语写出这句话\" [level=1]\n- img\n- textbox \"使用英语键入\"\n- button \"跳过\"\n- button \"检查\" [disabled]",
+      "accessible_text": [
+        "用英语写出这句话",
+        "使用英语键入",
+        "跳过",
+        "检查",
+        "挑战题"
+      ],
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-general-listening-decline-v1/no-water-before.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "general-listening-decline-no-water-feedback": {
+      "snapshot": "- button:\n  - img\n- progressbar:\n  - text: 连对 16 题\n  - img\n- img\n- text: 挑战题\n- heading \"用英语写出这句话\" [level=1]\n- img\n- textbox \"使用英语键入\" [disabled]: No ice, no water, please.\n- heading \"其他正确答案：\" [level=2]\n- text: No ice and no water, please.\n- button \"太简单\"\n- button \"太难\"\n- button \"报错\"\n- button \"继续\"",
+      "accessible_text": [
+        "用英语写出这句话",
+        "使用英语键入",
+        "其他正确答案：",
+        "太简单",
+        "太难",
+        "报错",
+        "继续",
+        "连对 16 题",
+        "挑战题",
+        "No ice and no water, please."
+      ],
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-general-listening-decline-v1/no-water-feedback.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    }
+  }
+}

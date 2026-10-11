@@ -1,0 +1,12 @@
+{
+  "checks": {
+    "main_progress_unchanged": true,
+    "hearts_unchanged": true,
+    "actual_restart_persisted": true,
+    "independent_practice_completed": true
+  },
+  "diagnostic_corrections": [
+    "First standalone comparison used a historical main-course id and failed KeyError; current fixture inspected.",
+    "Second comparison compared serialized set arrays in order; corrected to semantic set comparison. Neither failure was an app failure."
+  ]
+}
