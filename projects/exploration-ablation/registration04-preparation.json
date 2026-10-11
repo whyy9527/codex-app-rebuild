@@ -1,0 +1,30 @@
+{
+  "kind": "batch04-before-training-preparation",
+  "baseline_commit": "5564ce1583a0e8b68f9d28df9e5771e00fbb6e34",
+  "model": "gpt-6.1-sol",
+  "reasoning_effort": "medium",
+  "supported_pair_verified_from_installed_catalog": true,
+  "cli_version": "codex-cli 0.162.0-alpha.17.2",
+  "cli_binary_sha256": "0d5ac7aae20c4eda6242428d5e218c55ba96d8763fda2a271088ff37104b9d28",
+  "training_actions": 4,
+  "model_calls": 3,
+  "candidates_per_call": 3,
+  "model_seconds_per_call": 180,
+  "branch_budget_per_policy": 2,
+  "online_order": [
+    "replay_feedback",
+    "no_replay_feedback",
+    "no_replay_feedback",
+    "replay_feedback"
+  ],
+  "online_outcomes": "not_observed_for_this_experiment",
+  "files": {
+    "projects/exploration-ablation/PROTOCOL04.md": "74202bff1c1fd6fbb00a0a052da35e89d4fc429341a00ece90dcc4d976bb81da",
+    "projects/exploration-ablation/collect-guide04.mjs": "b43d9aa782a52e914247bc985e8062fbbfb88e813e182c1906d61b5b28ce3a62",
+    "projects/exploration-ablation/replay04.py": "87a4251bf4197ca96d36d0c40392e4bbd7accc3ea4bc8fd416d6d3acc75eb875",
+    "projects/exploration-ablation/actions04-training.json": "599d74925a8d21478eeab2d620ea9a9e5b3539d8059766fd2bcbeef1692ad630",
+    "projects/exploration-ablation/actions04-online.json": "ed2a467b99e39ed18dfdc8c49db1d0a27b5908cac02dd510916209f9e8f869bc",
+    "projects/exploration-ablation/model-worker.py": "0fd7545c2d659515df9d0e26c06c7008ec66b0dd9eddddb650b0ff996feb2b40",
+    "projects/exploration-ablation/policy-schema.json": "5b57167ffdf96ff40e5fe64b47b42df585ae7d49bb59e9c542925085640e06e8"
+  }
+}
