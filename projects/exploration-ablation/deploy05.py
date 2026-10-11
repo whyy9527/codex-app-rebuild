@@ -5,13 +5,16 @@ sys.path.insert(0,str(Path(__file__).resolve().parent))
 from replay import choose,digest
 P=Path('projects/exploration-ablation')
 spec=importlib.util.spec_from_file_location('model_worker',P/'model-worker.py');worker=importlib.util.module_from_spec(spec);spec.loader.exec_module(worker);call_worker=worker.call_worker
-p=argparse.ArgumentParser();p.add_argument('--phase',choices=['initial','revise','deploy'],required=True);p.add_argument('--step',type=int,choices=[1,2]);p.add_argument('--out',required=True);p.add_argument('--root',required=True);p.add_argument('--codex-binary');p.add_argument('--cli');p.add_argument('--session');a=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('--phase',choices=['initial','revise','deploy'],required=True);p.add_argument('--step',type=int,choices=[1,2]);p.add_argument('--out',required=True);p.add_argument('--root',required=True);p.add_argument('--codex-binary');p.add_argument('--cli');p.add_argument('--session');p.add_argument('--registration',default=str(P/'registration05.json'));a=p.parse_args()
 out=Path(a.out);out.mkdir(parents=True,exist_ok=True)
 def read(p):return json.loads(Path(p).read_text())
 def write(p,d):
  with Path(p).open('x') as f:f.write(json.dumps(d,ensure_ascii=False,indent=2)+'\n')
-r=read(P/'registration05.json');actions=read(P/'actions05.json');root=read(a.root)
+r=read(a.registration);actions=read(P/'actions05.json');root=read(a.root)
+def root_identity(s):
+ return {'path':s['path'],'stats':[(x['name'],x['rect']) for x in s['actions'] if x['role']=='button' and x['rect'][1]==24 and x['name'].isdigit()],'panel':next(x for x in s['scroll_regions'] if x['rect']==[360,48,480,636])}
 assert hashlib.sha256(root['snapshot'].encode()).hexdigest()==r['root_snapshot_sha256']
+if 'root_identity_digest' in r:assert digest(root_identity(root))==r['root_identity_digest']
 if a.phase in ['initial','revise']:
  step=1 if a.phase=='initial' else 2;assert not (out/f'seal{step}.json').exists();assert not (out/f'worker{step}').exists(), 'One model attempt per phase; preserve any running/failed worker'
  prior=[read(n) for n in r['past_feedback']]
@@ -40,8 +43,11 @@ def capture(name):
  (out/(name+'-collector.log')).write_text(x.stdout+x.stderr)
  if x.returncode:raise RuntimeError('Source capture unavailable')
  s=read(out/(name+'.json'));assert s['capture_state_consistent'];return s
-ui(f'step{step}-reset',"async page=>{await page.locator('[data-test=close-button]').click();await page.getByRole('button',{name:'1',exact:true}).hover();await page.getByRole('button',{name:'查看更多',exact:true}).click();await page.getByText('连胜日历',{exact:true}).waitFor();await page.mouse.move(600,100);return {snapshot:await page.locator('body').ariaSnapshot()};}")
-before=capture(f'step{step}-before');assert before['path']=='/learn' and hashlib.sha256(before['snapshot'].encode()).hexdigest()==r['root_snapshot_sha256'];assert any(s['scrollTop']==0 and s['rect']==[360,48,480,636] for s in before['scroll_regions'])
+ui(f'step{step}-reset',"async page=>{await page.mouse.move(600,610);await page.mouse.wheel(0,-1200);await page.waitForTimeout(300);const c=await page.locator('[data-test=close-button]').boundingBox();if(c.y<0)throw Error('Close still outside viewport');await page.mouse.click(c.x+c.width/2,c.y+c.height/2);const b=await page.getByRole('button',{name:'1',exact:true}).boundingBox();await page.mouse.move(b.x+b.width/2,b.y+b.height/2);await page.getByText('查看更多',{exact:true}).waitFor();const d=await page.getByRole('button',{name:'查看更多',exact:true}).boundingBox();await page.mouse.click(d.x+d.width/2,d.y+d.height/2);await page.getByText('连胜日历',{exact:true}).waitFor();await page.mouse.move(600,100);return {snapshot:await page.locator('body').ariaSnapshot()};}")
+before=capture(f'step{step}-before');assert before['path']=='/learn'
+if 'root_identity_digest' in r:assert digest(root_identity(before))==r['root_identity_digest']
+else:assert hashlib.sha256(before['snapshot'].encode()).hexdigest()==r['root_snapshot_sha256']
+assert any(s['scrollTop']==0 and s['rect']==[360,48,480,636] for s in before['scroll_regions'])
 action=seal['action']
 if action['operation']=='wheel':code="async page=>{await page.mouse.move(600,610);await page.mouse.wheel(0,700);await page.waitForTimeout(500);return {snapshot:await page.locator('body').ariaSnapshot()};}"
 else:

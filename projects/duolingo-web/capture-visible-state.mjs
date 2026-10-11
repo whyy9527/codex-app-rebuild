@@ -26,6 +26,9 @@ const callback=async page=>{
   if(!n.checkVisibility({checkOpacity:true,checkVisibilityCSS:true})||!/(auto|scroll)/.test(c.overflowY)||n.scrollHeight<=n.clientHeight)return [];
   return [{tag:n.tagName,role:n.getAttribute('role'),rect:[r.x,r.y,r.width,r.height],scrollTop:n.scrollTop,clientHeight:n.clientHeight,scrollHeight:n.scrollHeight}];
  }));
+ // Scope exploration identity to the actual scroll surface without erasing backdrop evidence.
+ const scrollIndices=await page.locator('body *').evaluateAll(ns=>ns.flatMap((n,index)=>{const c=getComputedStyle(n),r=n.getBoundingClientRect();return n.checkVisibility({checkOpacity:true,checkVisibilityCSS:true})&&/(auto|scroll)/.test(c.overflowY)&&n.scrollHeight>n.clientHeight?[{index,rect:[r.x,r.y,r.width,r.height]}]:[];}));
+ for(const region of facts.scroll_regions){const found=scrollIndices.find(x=>JSON.stringify(x.rect)===JSON.stringify(region.rect));if(found)region.snapshot=await page.locator('body *').nth(found.index).ariaSnapshot();}
  // Inventory every currently visible interactive entry, including plain links.
  // State-scoped identities retain duplicate controls instead of collapsing names.
  // Full rendered canonical controls are a separate exploration inventory.
