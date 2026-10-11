@@ -1,0 +1,61 @@
+{
+  "step": 2,
+  "policy": {
+    "id": "unexecuted-keyboard-next",
+    "rationale": "The wheel action reached scrollTop 416 and exposed goal and club text. Prior activation failures make unexecuted keyboard focus and Enter paths the next priority; their outcomes remain unknown.",
+    "rules": [
+      {
+        "term": "focus Enter 连胜日历 下个月",
+        "weight": 10
+      },
+      {
+        "term": "focus Enter 连胜日历 上个月",
+        "weight": 8
+      },
+      {
+        "term": "click 连胜日历 上个月",
+        "weight": 6
+      },
+      {
+        "term": "wheel 连胜日历",
+        "weight": -8
+      }
+    ],
+    "repeat_penalty": 16
+  },
+  "policy_digest": "7910241a4059b4b27ef97bb0582e4e37950b5947588a6f3de536d35c6d5ec26f",
+  "action": {
+    "id": "focus-next",
+    "label": "focus Enter 连胜日历 下个月 未探索 键盘焦点和视觉反馈",
+    "operation": "focus_key",
+    "index": 1,
+    "rect": [
+      792,
+      436,
+      14,
+      14
+    ]
+  },
+  "action_digest": "9676ad68ce8d2d67ef400984b54e943c3cfe9969c185802f75433fde369c74e0",
+  "registration_digest": "c87e7bbc0f330be3fbc0ec4a5810d2574702c1d4dff66dca629255f71faa25d1",
+  "worker_receipt": {
+    "worker": "revision05",
+    "cli_version": "codex-cli 0.162.1",
+    "cli_binary_sha256": "74c6a6d263f40d65f99c27a815275f5b4ed0bcc2baecc396b4cf3255498bdfc0",
+    "exit_code": 0,
+    "timed_out": false,
+    "wall_seconds": 19.299738040892407,
+    "runtime_header": {
+      "model": "gpt-6.1-sol",
+      "reasoning effort": "medium",
+      "provider": "openai"
+    },
+    "reported_tokens_used": 34682,
+    "input_output_cache_breakdown": "unknown",
+    "fee": "unknown"
+  },
+  "selection": "First returned policy; no unseen reward selection",
+  "visits": {
+    "wheel-bottom": 1
+  }
+}
