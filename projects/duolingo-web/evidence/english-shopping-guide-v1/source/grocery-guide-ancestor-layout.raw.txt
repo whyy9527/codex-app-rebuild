@@ -1,0 +1,12 @@
+### Result
+{"ancestors":[{"tag":"H2","class":"_3mhBP","rect":[418,162.5078125,318,30],"padding":"0px","margin":"0px 0px 8px"},{"tag":"DIV","class":"","rect":[418,162.5078125,318,91.203125],"padding":"0px","margin":"0px"},{"tag":"DIV","class":"_1RzHq","rect":[418,152,318,112.21875],"padding":"0px","margin":"24px 24px 24px 8px"},{"tag":"DIV","class":"_1XBrR","rect":[280,128,480,160.21875],"padding":"0px","margin":"24px 0px"},{"tag":"DIV","class":"_3U7kY","rect":[280,24,480,976.859375],"padding":"0px 0px 48px","margin":"0px"},{"tag":"DIV","class":"_2HEhk","rect":[280,24,480,976.859375],"padding":"0px","margin":"0px"},{"tag":"DIV","class":"wl71D","rect":[256,24,944,1000.859375],"padding":"0px 24px 24px","margin":"0px"}],"document_height":1025,"scrollY":0}
+### Ran Playwright code
+```js
+await (async page=>{await page.getByRole("link",{name:"打开这个部分的指南",exact:true}).click();await page.waitForFunction(()=>!!document.querySelector("[data-test=guidebook-header]"));return await page.evaluate(()=>{let n=document.querySelector("[data-test=guidebook-header]");const a=[];for(let i=0;n&&i<7;i++,n=n.parentElement){const r=n.getBoundingClientRect(),c=getComputedStyle(n);a.push({tag:n.tagName,class:n.className,rect:[r.x,r.y,r.width,r.height],padding:c.padding,margin:c.margin})}return {ancestors:a,document_height:document.documentElement.scrollHeight,scrollY}})})(page);
+```
+### Page
+- Page URL: https://www.duolingo.com/guidebook/en/11
+- Page Title: 多邻国 - 学得轻松，学有所成的英语 课程！
+- Console: 48 errors, 0 warnings
+### Events
+- New console entries: .playwright-cli/console-2026-10-11T17-34-43-881Z.log#L80-L81

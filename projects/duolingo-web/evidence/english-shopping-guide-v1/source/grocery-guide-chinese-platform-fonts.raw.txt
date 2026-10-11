@@ -1,0 +1,12 @@
+### Result
+[{"label":"subtitle","fonts":[{"familyName":"PingFang SC","postScriptName":"PingFangSC-Medium","isCustomFont":false,"glyphCount":18}]},{"label":"translation","fonts":[]}]
+### Ran Playwright code
+```js
+await (async page=>{const cdp=await page.context().newCDPSession(page);try{await cdp.send("DOM.enable");await cdp.send("CSS.enable");await cdp.send("DOM.getDocument");const out=[];for(const [label,expression] of [["subtitle","document.querySelector(\"[data-test=guidebook-header]\").parentElement.lastElementChild"],["translation","[...document.querySelectorAll(\"button\")].find(n=>n.innerText.trim()===\"\"&&n.getBoundingClientRect().x>270&&n.getBoundingClientRect().x<760).parentElement.parentElement.lastElementChild"]]){const r=await cdp.send("Runtime.evaluate",{expression,returnByValue:false});const n=await cdp.send("DOM.requestNode",{objectId:r.result.objectId});out.push({label,...await cdp.send("CSS.getPlatformFontsForNode",{nodeId:n.nodeId})});}return out}finally{await cdp.detach()}})(page);
+```
+### Page
+- Page URL: https://www.duolingo.com/guidebook/en/11
+- Page Title: 多邻国 - 学得轻松，学有所成的英语 课程！
+- Console: 63 errors, 0 warnings
+### Events
+- New console entries: .playwright-cli/console-2026-10-11T17-34-43-881Z.log#L95-L96

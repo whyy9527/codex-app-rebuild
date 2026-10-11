@@ -1,0 +1,12 @@
+### Result
+[{"label":"english","nodeId":54,"fonts":[{"familyName":"Duolingo Sans Thin","postScriptName":"DuolingoSans-Thin_wght1900000","isCustomFont":true,"glyphCount":32}]},{"label":"heading","nodeId":58,"fonts":[{"familyName":"Duolingo Sans Thin","postScriptName":"DuolingoSans-Bold","isCustomFont":true,"glyphCount":3},{"familyName":"PingFang SC","postScriptName":"PingFangSC-Semibold","isCustomFont":false,"glyphCount":5}]},{"label":"translation","nodeId":53,"fonts":[]}]
+### Ran Playwright code
+```js
+await (async page=>{const cdp=await page.context().newCDPSession(page);try{await cdp.send("DOM.enable");await cdp.send("CSS.enable");await cdp.send("DOM.getDocument");const out=[];for(const [label,expression] of [["english","document.querySelector(\"[data-test=hint-token][aria-label=hat]\").parentElement"],["heading","document.querySelector(\"[data-test=guidebook-header]\")"],["translation","document.querySelector(\"[data-test=hint-token][aria-label=hat]\").parentElement.parentElement.parentElement.lastElementChild"]]){const r=await cdp.send("Runtime.evaluate",{expression,returnByValue:false});const n=await cdp.send("DOM.requestNode",{objectId:r.result.objectId});out.push({label,nodeId:n.nodeId,...await cdp.send("CSS.getPlatformFontsForNode",{nodeId:n.nodeId})});}return out}finally{await cdp.detach()}})(page);
+```
+### Page
+- Page URL: https://www.duolingo.com/guidebook/en/11
+- Page Title: 多邻国 - 学得轻松，学有所成的英语 课程！
+- Console: 61 errors, 0 warnings
+### Events
+- New console entries: .playwright-cli/console-2026-10-11T17-34-43-881Z.log#L85-L94

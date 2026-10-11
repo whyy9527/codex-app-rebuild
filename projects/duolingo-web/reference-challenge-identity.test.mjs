@@ -59,3 +59,26 @@ test('actual placement name and picture completion are supported only with curre
   assert.equal(challengeIdentity(c,{...r.identity.actual,text:'different prompt',prompts:[]}).matches,false);
  }
 });
+
+// Real second grocery instance: the correct complete sentence is intentionally
+// absent from the unfilled DOM; two adjacent missing words share one gap.
+test('observed multiword gap identifies scaffold and example without accepting drift',()=>{
+ const d=JSON.parse(readFileSync(new URL('evidence/english-shopping-guide-v1/source/grocery-next-current-02.json',import.meta.url)));
+ const c=d.session.challenges[0].content,a=d.observed[0].identity.actual;
+ assert.equal(challengeIdentity(c,a).matches,true);
+ for(const changed of [
+  {...a,completionScaffold:{...a.completionScaffold,text:'No, a .'}},
+  {...a,completionScaffold:{...a.completionScaffold,blankCount:3}},
+  {...a,prompts:['Hi, I need a jacket.']},
+  {...a,choices:['need','hat','hat']},
+ ])assert.equal(challengeIdentity(c,changed).matches,false);
+ assert.equal(challengeIdentity(c,{...a,completionScaffold:null}).matches,false);
+});
+
+test('actual fragmented tap sentence keeps lexical and word-bank identity',()=>{
+ const d=JSON.parse(readFileSync(new URL('evidence/english-shopping-guide-v1/source/grocery-next-current-05.json',import.meta.url)));
+ const c=d.session.challenges.at(-1).content,a=d.observed.at(-1).identity.actual;
+ assert.equal(challengeIdentity(c,a).matches,true);
+ assert.equal(challengeIdentity(c,{...a,text:a.text.replace('sale','rent')}).matches,false);
+ assert.equal(challengeIdentity(c,{...a,choices:['scarf','brother','sugar','sugar']}).matches,false);
+});

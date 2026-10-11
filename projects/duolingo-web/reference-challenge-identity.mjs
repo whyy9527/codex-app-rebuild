@@ -23,14 +23,22 @@ export function challengeIdentity(expected, actual) {
       const visibleSentence = expected.displayTokens.filter(t => !t.isBlank).map(t => t.text).join('');
       if (!normalize(actual.text).includes(normalize(visibleSentence))) reasons.push('completion_context_changed');
     }
+  } else if (expected.type==='orderTapComplete') {
+    const scaffold=actual.completionScaffold;
+    const compact=value=>normalize(value).replace(/\s/g,'');
+    const context=(expected.displayTokens??[]).filter(t=>!t.isBlank).map(t=>t.text).join('');
+    let runs=0,inBlank=false;
+    for(const token of expected.displayTokens??[]){if(token.isBlank){if(!inBlank)runs++;inBlank=true;}else if(token.text.trim()){inBlank=false;}}
+    if(!scaffold||!context.trim()||compact(scaffold.text)!==compact(context)||scaffold.blankCount!==runs)reasons.push('completion_structure_changed');
+    if(!expected.example||!exactPrompts.some(p=>normalize(p)===normalize(expected.example)))reasons.push('completion_example_changed');
   } else if (prompt && exactPrompts.length && !exactPrompts.some(p => normalize(p) === normalize(prompt))) reasons.push('prompt_changed');
   else if (prompt && !exactPrompts.length && !normalize(actual.text).includes(normalize(prompt))) reasons.push('prompt_not_visible');
   if (expected.type==='tapComplete') {
     const context=(expected.displayTokens??[]).filter(t=>!t.isBlank).map(t=>t.text).join('');
-    if (!context.trim() || !normalize(actual.text).includes(normalize(context))) reasons.push('completion_context_changed');
+    if (!context.trim() || !normalize(actual.text).replace(/\s/g,'').includes(normalize(context).replace(/\s/g,''))) reasons.push('completion_context_changed');
   }
   return {matches: reasons.length === 0, reasons, expected: {type: expected.type, prompt, choices},
-    actual, prompt_check: audioPrompt ? 'exact source URL from current-question explicit playback; acoustic output not verified' : exactPrompts.length ? 'normalized equality with independently read visible hint container' : 'normalized presence in current challenge text; exact prompt identity not yet proven'};
+    actual, prompt_check: expected.type==='orderTapComplete' ? 'Exact visible scaffold (whitespace ignored), blank runs, example and complete word-bank multiplicity; full answer is not yet visible' : audioPrompt ? 'exact source URL from current-question explicit playback; acoustic output not verified' : exactPrompts.length ? 'normalized equality with independently read visible hint container' : 'normalized presence in current challenge text; exact prompt identity not yet proven'};
 }
 
 // Unsupported same-type UI is a coverage gap, not evidence of content drift.

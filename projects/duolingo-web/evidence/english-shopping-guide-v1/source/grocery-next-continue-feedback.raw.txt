@@ -1,0 +1,12 @@
+### Result
+"- button:\n  - img\n- progressbar\n- img\n- text: \"4\"\n- heading \"选择正确的答案\" [level=1]\n- text: 想要\n- img\n- radiogroup \"choice\":\n  - radio \"1 want\"\n  - radio \"2 rabbit\"\n  - radio \"3 little\"\n- img\n- text: 新词形\n- heading \"找规律，跟着练\" [level=1]\n- button:\n  - img\n- img\n- button \"I\" [disabled]\n- button \"need\" [disabled]\n- button \"hat\" [disabled]\n- button \"need\" [disabled]\n- button \"hat\" [disabled]\n- button \"I\" [disabled]\n- button \"检查\" [disabled]"
+### Ran Playwright code
+```js
+await (async page => { await page.getByRole("button",{name:"继续",exact:true}).click(); return await page.locator("body").ariaSnapshot(); })(page);
+```
+### Page
+- Page URL: https://www.duolingo.com/lesson
+- Page Title: 多邻国 - 学得轻松，学有所成的英语 课程！
+- Console: 79 errors, 0 warnings
+### Events
+- New console entries: artifacts/output/playwright/.playwright-cli/console-2026-10-11T17-34-43-881Z.log#L107-L112

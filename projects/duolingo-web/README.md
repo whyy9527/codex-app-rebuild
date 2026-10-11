@@ -1,5 +1,9 @@
 # Duolingo 网页参考案例
 
+原版购物指南与下一实例探索补出逐字英文、28词语焦点库存和多词空格驱动遗漏。Swift接五段原语音、原指南与播放动画；v66严格验收142pass／28fail，3整图仍失败，完整Goal继续。[最新证据及复跑](evidence/english-shopping-guide-v1/README.md)。
+
+下列为历史批次记录，不能作为当前完成率。
+
 最新购物与主页探索：原版延迟指南遮罩暴露旧ready条件遗漏；Swift第二阶段路径接原动画，购物32状态实际跑通，严格前端仍189pass／165fail，29整图均失败，完整Goal继续。[证据与复跑](evidence/english-stage2-path-v1/README.md)。
 
 本批从原版阶段2主页继续探索，发现锁定故事弹层、购物指南、电台引发的滚动与虚拟化库存，以及任务重载差异。Swift已补阶段解锁、10分／530宝石和重启恢复；主页路径、指南及实际音效仍有缺口。v64保留全部旧断言，完整Goal继续。[最新证据、失败与复跑](evidence/english-stage2-home-v1/README.md)。

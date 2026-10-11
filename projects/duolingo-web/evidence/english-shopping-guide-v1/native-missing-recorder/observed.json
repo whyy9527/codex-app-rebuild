@@ -1,0 +1,826 @@
+{
+  "attempts" : [
+    {
+      "failure" : "Error Domain=NSCocoaErrorDomain Code=4 \"The file “shopping-owned-audio” doesn’t exist.\" UserInfo={NSFilePath=\/Users\/haoyangwu\/Desktop\/codex-exploration-lab\/artifacts\/shopping-owned-audio}",
+      "id" : "actual-shopping-guide-five-plays-scroll-return"
+    }
+  ],
+  "candidate_binary_sha256" : "cb932050aa599793592374d03de60a1f98fbd29e009a8e3b62ba1f937051736a",
+  "failure" : "[[\"failure\": \"Error Domain=NSCocoaErrorDomain Code=4 \\\"The file “shopping-owned-audio” doesn’t exist.\\\" UserInfo={NSFilePath=\/Users\/haoyangwu\/Desktop\/codex-exploration-lab\/artifacts\/shopping-owned-audio}\", \"id\": \"actual-shopping-guide-five-plays-scroll-return\"]]",
+  "fixture_sha256" : "b7242d0e130112d54b1e17714bf21c35045e58f8874948917b0b09f971282bda",
+  "kind" : "owned_native_ax_observation",
+  "limitations" : [
+    "No acoustic equality claim; actual images retain clock and animation phase differences"
+  ],
+  "scenario_sha256" : "62a8d75ceb19a7401daebe1a19709f3c402b9bf4b8bbfa2f409611411ca262f8",
+  "seed_preferences_sha256" : null,
+  "states" : {
+    "shopping-guide-top" : {
+      "accessible_text" : [
+        "1",
+        "10",
+        "10 \/ 10",
+        "5",
+        "505",
+        "Excuse me, how much is this hat?",
+        "I need a new jacket.",
+        "Is this store open today?",
+        "LingoSeed",
+        "Oh, this store is expensive!",
+        "This red shirt is on sale.",
+        "个人档案",
+        "关于我们    宝石小店    有效性    招聘贤才\n\n投资者    条款    隐私",
+        "创建个人档案，保存学习进度！",
+        "创建档案",
+        "发音",
+        "哦，这家店很贵！",
+        "学个单元就能上本周排行榜，跟其他小伙伴一决高低！",
+        "学习",
+        "宝石小店",
+        "我需要一件新夹克。",
+        "排行榜",
+        "显示全部",
+        "更多",
+        "来看看这一部分的语法点和重点语句吧！",
+        "查看排行榜",
+        "每日特别任务",
+        "特别任务",
+        "登录",
+        "第 1 部分指南",
+        "获取 10 经验",
+        "请问，这顶帽子多少钱？",
+        "返回",
+        "这件红色的衬衫在打折。",
+        "这家店今天开门吗？",
+        "重点语句",
+        "青铜等级"
+      ],
+      "capture" : {
+        "backing_scale" : 2,
+        "content_rect_points" : [
+          0,
+          32,
+          1200,
+          732
+        ],
+        "path" : "artifacts\/shopping-guide-native-01\/shopping-guide-top.png",
+        "window_points" : [
+          1200,
+          764
+        ]
+      },
+      "capture_attempts" : [
+        {
+          "attempt" : 1,
+          "expected" : [
+            2400,
+            1528
+          ],
+          "path" : "shopping-guide-top-capture-1.png",
+          "pixels" : [
+            2400,
+            1528
+          ]
+        }
+      ],
+      "control_inventory" : [
+        {
+          "enabled" : true,
+          "identifier" : "nav-learn",
+          "name" : "学习",
+          "rect" : [
+            16,
+            92,
+            222,
+            52
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : "nav-pronunciation",
+          "name" : "发音",
+          "rect" : [
+            16,
+            152,
+            222,
+            52
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : "nav-leaderboards",
+          "name" : "排行榜",
+          "rect" : [
+            16,
+            212,
+            222,
+            52
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : "nav-quests",
+          "name" : "特别任务",
+          "rect" : [
+            16,
+            272,
+            222,
+            52
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : "nav-shop",
+          "name" : "宝石小店",
+          "rect" : [
+            16,
+            332,
+            222,
+            52
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : "nav-profile",
+          "name" : "个人档案",
+          "rect" : [
+            16,
+            392,
+            222,
+            52
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : "nav-more",
+          "name" : "更多",
+          "rect" : [
+            16,
+            452,
+            222,
+            52
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : "guide-speech-0",
+          "name" : "",
+          "rect" : [
+            306,
+            399,
+            29,
+            22
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : "guide-speech-1",
+          "name" : "",
+          "rect" : [
+            306,
+            511.5,
+            29,
+            22
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : "guide-speech-2",
+          "name" : "",
+          "rect" : [
+            306,
+            623.5,
+            29,
+            22
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : "guide-speech-3",
+          "name" : "",
+          "rect" : [
+            306,
+            736,
+            29,
+            22
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : "guide-speech-4",
+          "name" : "",
+          "rect" : [
+            306,
+            848.5,
+            29,
+            22
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : "close-guide",
+          "name" : "返回",
+          "rect" : [
+            280,
+            59,
+            76,
+            27
+          ],
+          "role" : "AXLink",
+          "value" : ""
+        },
+        {
+          "enabled" : false,
+          "identifier" : null,
+          "name" : "",
+          "rect" : [
+            767,
+            0,
+            0,
+            0
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : false,
+          "identifier" : null,
+          "name" : "",
+          "rect" : [
+            767,
+            0,
+            0,
+            0
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : false,
+          "identifier" : null,
+          "name" : "",
+          "rect" : [
+            775,
+            528,
+            6,
+            201
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : false,
+          "identifier" : null,
+          "name" : "",
+          "rect" : [
+            775,
+            3,
+            6,
+            0
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : "view-leaderboards",
+          "name" : "查看排行榜",
+          "rect" : [
+            1081,
+            114.5,
+            75,
+            18
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : "view-quests",
+          "name" : "显示全部",
+          "rect" : [
+            1096,
+            280.5,
+            60,
+            18
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : "view-profile",
+          "name" : "创建档案",
+          "rect" : [
+            828,
+            510,
+            328,
+            46
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : "sign-in",
+          "name" : "登录",
+          "rect" : [
+            828,
+            570,
+            328,
+            46
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : null,
+          "name" : "",
+          "rect" : [
+            8,
+            -24,
+            16,
+            16
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : null,
+          "name" : "",
+          "rect" : [
+            54,
+            -24,
+            16,
+            16
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : null,
+          "name" : "",
+          "rect" : [
+            31,
+            -24,
+            16,
+            16
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        }
+      ],
+      "control_inventory_limitations" : [
+        "Actual AX controls include nodes without developer identifiers; no invocation or hit-test coverage inferred"
+      ],
+      "elements" : {
+        "close-guide" : {
+          "enabled" : true,
+          "rect" : [
+            280,
+            59,
+            76,
+            27
+          ],
+          "role" : "AXLink",
+          "value" : ""
+        },
+        "guide-speech-0" : {
+          "enabled" : true,
+          "rect" : [
+            306,
+            399,
+            29,
+            22
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "guide-speech-1" : {
+          "enabled" : true,
+          "rect" : [
+            306,
+            511.5,
+            29,
+            22
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "guide-speech-2" : {
+          "enabled" : true,
+          "rect" : [
+            306,
+            623.5,
+            29,
+            22
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "guide-speech-3" : {
+          "enabled" : true,
+          "rect" : [
+            306,
+            736,
+            29,
+            22
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "guide-speech-4" : {
+          "enabled" : true,
+          "rect" : [
+            306,
+            848.5,
+            29,
+            22
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "guide-title" : {
+          "enabled" : true,
+          "rect" : [
+            418,
+            163.0078125,
+            146.5,
+            29
+          ],
+          "role" : "AXStaticText",
+          "value" : "第 1 部分指南"
+        },
+        "nav-leaderboards" : {
+          "enabled" : true,
+          "rect" : [
+            16,
+            212,
+            222,
+            52
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "nav-learn" : {
+          "enabled" : true,
+          "rect" : [
+            16,
+            92,
+            222,
+            52
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "nav-more" : {
+          "enabled" : true,
+          "rect" : [
+            16,
+            452,
+            222,
+            52
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "nav-profile" : {
+          "enabled" : true,
+          "rect" : [
+            16,
+            392,
+            222,
+            52
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "nav-pronunciation" : {
+          "enabled" : true,
+          "rect" : [
+            16,
+            152,
+            222,
+            52
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "nav-quests" : {
+          "enabled" : true,
+          "rect" : [
+            16,
+            272,
+            222,
+            52
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "nav-shop" : {
+          "enabled" : true,
+          "rect" : [
+            16,
+            332,
+            222,
+            52
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "shopping-guide-action-1" : {
+          "enabled" : true,
+          "native_identifier" : "nav-learn",
+          "rect" : [
+            16,
+            92,
+            222,
+            52
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "shopping-guide-action-12" : {
+          "enabled" : true,
+          "native_identifier" : "view-leaderboards",
+          "rect" : [
+            1081,
+            114.5,
+            75,
+            18
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "shopping-guide-action-13" : {
+          "enabled" : true,
+          "native_identifier" : "view-quests",
+          "rect" : [
+            1096,
+            280.5,
+            60,
+            18
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "shopping-guide-action-23" : {
+          "enabled" : true,
+          "native_identifier" : "close-guide",
+          "rect" : [
+            280,
+            59,
+            76,
+            27
+          ],
+          "role" : "AXLink",
+          "value" : ""
+        },
+        "shopping-guide-action-24" : {
+          "enabled" : true,
+          "native_identifier" : "guide-speech-0",
+          "rect" : [
+            306,
+            399,
+            29,
+            22
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "shopping-guide-action-25" : {
+          "enabled" : true,
+          "native_identifier" : "guide-speech-1",
+          "rect" : [
+            306,
+            511.5,
+            29,
+            22
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "shopping-guide-action-26" : {
+          "enabled" : true,
+          "native_identifier" : "guide-speech-2",
+          "rect" : [
+            306,
+            623.5,
+            29,
+            22
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "shopping-phrase-0-english" : {
+          "enabled" : true,
+          "rect" : [
+            345,
+            400.046875,
+            238.5,
+            20
+          ],
+          "role" : "AXStaticText",
+          "value" : "Excuse me, how much is this hat?"
+        },
+        "shopping-phrase-0-translation" : {
+          "enabled" : true,
+          "rect" : [
+            345,
+            431.546875,
+            187,
+            20
+          ],
+          "role" : "AXStaticText",
+          "value" : "请问，这顶帽子多少钱？"
+        },
+        "shopping-phrase-1-english" : {
+          "enabled" : true,
+          "rect" : [
+            345,
+            512.375,
+            166.5,
+            20
+          ],
+          "role" : "AXStaticText",
+          "value" : "This red shirt is on sale."
+        },
+        "shopping-phrase-1-translation" : {
+          "enabled" : true,
+          "rect" : [
+            345,
+            543.875,
+            187,
+            20
+          ],
+          "role" : "AXStaticText",
+          "value" : "这件红色的衬衫在打折。"
+        },
+        "shopping-phrase-2-english" : {
+          "enabled" : true,
+          "rect" : [
+            345,
+            624.703125,
+            139.5,
+            20
+          ],
+          "role" : "AXStaticText",
+          "value" : "I need a new jacket."
+        },
+        "shopping-phrase-2-translation" : {
+          "enabled" : true,
+          "rect" : [
+            345,
+            656.203125,
+            153,
+            20
+          ],
+          "role" : "AXStaticText",
+          "value" : "我需要一件新夹克。"
+        },
+        "shopping-phrase-3-english" : {
+          "enabled" : true,
+          "rect" : [
+            345,
+            737.03125,
+            189,
+            20
+          ],
+          "role" : "AXStaticText",
+          "value" : "Oh, this store is expensive!"
+        },
+        "shopping-phrase-3-translation" : {
+          "enabled" : true,
+          "rect" : [
+            345,
+            768.53125,
+            136,
+            20
+          ],
+          "role" : "AXStaticText",
+          "value" : "哦，这家店很贵！"
+        },
+        "shopping-phrase-4-english" : {
+          "enabled" : true,
+          "rect" : [
+            345,
+            849.359375,
+            175,
+            20
+          ],
+          "role" : "AXStaticText",
+          "value" : "Is this store open today?"
+        },
+        "shopping-phrase-4-translation" : {
+          "enabled" : true,
+          "rect" : [
+            345,
+            880.859375,
+            153,
+            20
+          ],
+          "role" : "AXStaticText",
+          "value" : "这家店今天开门吗？"
+        },
+        "sign-in" : {
+          "enabled" : true,
+          "rect" : [
+            828,
+            570,
+            328,
+            46
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "SwiftUI._ConditionalContent<SwiftUI.SubscriptionView<(extension in Foundation):__C.NSNotificationCenter.Publisher, SwiftUI.ModifiedContent<LingoSeed.LearningView, SwiftUI._AppearanceActionModifier>>, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1" : {
+          "enabled" : false,
+          "rect" : [
+            0,
+            -32,
+            1200,
+            764
+          ],
+          "role" : "AXWindow",
+          "value" : ""
+        },
+        "view-leaderboards" : {
+          "enabled" : true,
+          "rect" : [
+            1081,
+            114.5,
+            75,
+            18
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "view-profile" : {
+          "enabled" : true,
+          "rect" : [
+            828,
+            510,
+            328,
+            46
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "view-quests" : {
+          "enabled" : true,
+          "rect" : [
+            1096,
+            280.5,
+            60,
+            18
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        }
+      },
+      "interactions" : {
+        "completed_popover_present" : false,
+        "exit_confirmation_present" : false,
+        "footer_status_visible" : false,
+        "guest_error_present" : false,
+        "guest_introduction_present" : false,
+        "guest_languages_present" : false,
+        "guest_profile_present" : false,
+        "home_course_present" : false,
+        "learn_present" : false,
+        "legendary_present" : false,
+        "practice_present" : false,
+        "profile_present" : false,
+        "status_clear_visible" : false,
+        "status_selected" : false
+      }
+    }
+  }
+}

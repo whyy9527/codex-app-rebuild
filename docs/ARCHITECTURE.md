@@ -321,3 +321,6 @@ LessonDefinition的可选ObservedPlacementOutcome只保存已有全对实例的�
 
 
 第二阶段购物闭环由`compile-stage2-grocery.py`把实际当前题观察和回顾卡编为共同实例，`freeze-stage2-grocery.py`将真实页面与题目前后图追加至v65。`ReferenceStageTwoPath`消费源节点坐标及原Lottie，`observedHomeSnapshot`在实际完成、零错误、走完结算后持久化购物后主页，旧夹具兼容。此字段是已观察实例结果，不是奖励公式。原版延迟指南coach说明route／heading ready不足；当前购物驱动仍未覆盖该遮罩，后续采集要保留稳定时间线与遮挡状态。完整证据入口见该案例README。
+
+
+购物指南观察器将ARIA语义、渲染整句和焦点候选分开：`capture-visible-state.mjs`记录逐字aria-hidden文本的真实父级整句及roleless tabindex，不推断释义成功。`compile-shopping-guide.py`从实际五次播放与布局生成Swift数据／资产清单；`freeze-shopping-guide.py`保留v65追加v66。`ReferenceShoppingGuide.swift`消费原素材／语音，`observe-frontend.swift`可在真实触发动作期间录制自有应用输出。`compile-shopping-guide-frontier.py`接历史和未解决分支，不把库存或无弹层当通过。购物多词填空独立识别句架／示例／空格数／词库，再选择实际空格并从限定词库填词；拒绝／未知反馈保留，不能用预读未来题代替探索。

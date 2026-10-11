@@ -1,0 +1,31 @@
+{
+  "source": "Actual guide frontend failures and second grocery rendered observations; no future sequence read",
+  "next": [
+    {
+      "branch": "Current second grocery instance",
+      "reason": "Actual orderTapComplete driver rejected, then later instance accepted after repair; current Swift still replays first instance",
+      "work": "Freeze newly observed question states and connect matching native instance; continue current source without resetting progress"
+    },
+    {
+      "branch": "Guide/home frontend",
+      "reason": "28 failures and three image failures; title font change worsened top image",
+      "work": "Compare actual same-state layout, link roles, right-column scroll and remaining glyphs; retain whole-image failures"
+    },
+    {
+      "branch": "Guide hint words",
+      "reason": "28 focusable controls newly exposed; actual hat hover/click/Enter no popup",
+      "work": "Explore other observed words and focus transitions rather than invent dictionary behavior"
+    },
+    {
+      "branch": "First-stage English guide and lower home path",
+      "reason": "Old guide renderer and unexplored story/radio branches remain",
+      "work": "Observe original English guide and reachable navigation before implementation"
+    }
+  ],
+  "unverified": [
+    "Independent original reset equivalence",
+    "Original browser acoustic output",
+    "Matched-budget RSI discovery effect and ablation"
+  ],
+  "do_not_infer": "Resolved driver identity is not full frontend verification, adaptive course selection, or RSI gain"
+}

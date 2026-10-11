@@ -292,6 +292,19 @@ if let index = CommandLine.arguments.firstIndex(of: "--exercise-home-journey"), 
                     guard let before,let after else {throw ProbeError(message:"Owned scroll anchor unavailable after bounded live re-observation")}
                     guard before != after else {throw ProbeError(message:"Owned scroll did not move measured anchor")}
                 }
+                else if step["operation"] as? String == "record_audio" {
+                    guard let index=CommandLine.arguments.firstIndex(of:"--audio-recorder"),index+1<CommandLine.arguments.count,
+                          let name=step["recording"] as? String,name.range(of:"^[a-z0-9-]+$",options:.regularExpression) != nil,
+                          let duration=step["duration_seconds"] as? Int,duration>0 && duration<=30 else {throw ProbeError(message:"Owned recorder, local filename and bounded duration required")}
+                    let actions=output.appendingPathComponent(name+"-actions.json")
+                    try JSONSerialization.data(withJSONObject:[control]).write(to:actions,options:.withoutOverwriting)
+                    let recorder=Process();recorder.executableURL=root.appendingPathComponent(CommandLine.arguments[index+1])
+                    recorder.arguments=[String(child.processIdentifier),output.appendingPathComponent(name+".wav").path,String(duration),actions.path]
+                    let log=output.appendingPathComponent(name+".log");FileManager.default.createFile(atPath:log.path,contents:nil)
+                    let handle=try FileHandle(forWritingTo:log);recorder.standardOutput=handle;recorder.standardError=handle
+                    try recorder.run();recorder.waitUntilExit()
+                    guard recorder.terminationStatus==0 else {throw ProbeError(message:"Owned application recording failed; preserve actual log")}
+                }
                 else if step["operation"] as? String == "observe" { /* Capture the already reached state without another action. */ }
                 else if step["operation"] as? String == "hover" { guard movePointer(to:control) else { throw ProbeError(message:"Missing hover target") } }
                 else { try press(control) }

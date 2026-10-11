@@ -28,18 +28,19 @@ const callback=async page=>{
  // State-scoped identities retain duplicate controls instead of collapsing names.
  // Full rendered canonical controls are a separate exploration inventory.
  // CSS visibility does not establish viewport reachability or execution.
- facts.control_inventory=await page.locator('a[href],button,input,[role="button"],[role="radio"],[role="link"]').evaluateAll(ns=>ns.filter(n=>n.checkVisibility({checkOpacity:true,checkVisibilityCSS:true})).map((n,index)=>{
+ facts.control_inventory=await page.locator('a[href],button,input,[role="button"],[role="radio"],[role="link"],[tabindex]:not([tabindex="-1"])').evaluateAll(ns=>ns.filter(n=>n.checkVisibility({checkOpacity:true,checkVisibilityCSS:true})).map((n,index)=>{
   const r=n.getBoundingClientRect(),hit=document.elementFromPoint(r.x+r.width/2,r.y+r.height/2);
   return {index,tag:n.tagName,test:n.getAttribute('data-test'),href:n.getAttribute('href'),explicit_role:n.getAttribute('role'),input_type:n.tagName==='INPUT'?n.type:null,name:n.getAttribute('aria-label')||n.innerText||n.getAttribute('placeholder')||'',enabled:!n.disabled&&n.getAttribute('aria-disabled')!=='true',rect:[r.x,r.y,r.width,r.height],intersects_viewport:r.width>0&&r.height>0&&r.bottom>0&&r.right>0&&r.top<innerHeight&&r.left<innerWidth,center_hit:!!hit&&(hit===n||n.contains(hit))};
  }));
- facts.control_inventory_limitations=['Rendered DOM inventory only; offscreen or obscured controls are not executed coverage; pointer-only candidates remain in actions.'];
+ facts.control_inventory_limitations=['Rendered DOM inventory only; offscreen or obscured controls are not executed coverage; Focus inventory and pointer-only candidates do not establish interaction semantics.'];
  facts.actions=await page.locator('body').evaluate(body=>{
   const canonical='a[href],button,input,[role="button"],[role="checkbox"],[role="radio"]';
   const standard=[...body.querySelectorAll(canonical)];
   // Actual source "清除" is a roleless pointer span. Keep outer pointer candidates
   // as unclassified actions, without inventing button roles or click semantics.
   const pointers=[...body.querySelectorAll('*')].filter(n=>!n.closest(canonical)&&getComputedStyle(n).cursor==='pointer'&&(!n.parentElement||getComputedStyle(n.parentElement).cursor!=='pointer'));
-  const ns=[...standard,...pointers];
+  const focusable=[...body.querySelectorAll('[tabindex]:not([tabindex="-1"])')].filter(n=>!n.matches(canonical));
+  const ns=[...new Set([...standard,...focusable,...pointers])];
   const counts=new Map();return ns.flatMap(n=>{
    const r=n.getBoundingClientRect();if(!n.checkVisibility({checkOpacity:true,checkVisibilityCSS:true})||r.width<=0||r.height<=0||r.bottom<=0||r.right<=0||r.top>=innerHeight||r.left>=innerWidth)return [];
    const test=n.getAttribute('data-test'),href=n.getAttribute('href');
@@ -48,7 +49,7 @@ const callback=async page=>{
    const identity=test?'test:'+test:href?'href:'+href:(pointer?'pointer:':'')+n.tagName+':'+name;
    const ordinal=counts.get(identity)||0;counts.set(identity,ordinal+1);
    const hit=document.elementFromPoint(r.x+r.width/2,r.y+r.height/2);
-   return [{id:identity+'#'+ordinal,test,href,name,...(pointer?{kind:'pointer_candidate',semantic_role:'unclassified',limitations:'CSS cursor candidate; actual click outcome must be explored'}:{}),hit_test:!!hit&&(hit===n||n.contains(hit)),tag:n.tagName,role:n.getAttribute('role')||(n.tagName==='A'?'link':n.tagName==='INPUT'?'textbox':pointer?null:'button'),enabled:!n.disabled&&n.getAttribute('aria-disabled')!=='true',checked:typeof n.checked==='boolean'?n.checked:n.hasAttribute('aria-checked')?n.getAttribute('aria-checked')==='true':null,rect:[r.x,r.y,r.width,r.height]}];
+   return [{id:identity+'#'+ordinal,test,href,name,...(pointer?{kind:n.tabIndex>=0?'focus_candidate':'pointer_candidate',semantic_role:'unclassified',limitations:'Observed focus/cursor candidate; actual interaction outcome must be explored'}:{}),hit_test:!!hit&&(hit===n||n.contains(hit)),tag:n.tagName,role:n.getAttribute('role')||(n.tagName==='A'?'link':n.tagName==='INPUT'?'textbox':pointer?null:'button'),enabled:!n.disabled&&n.getAttribute('aria-disabled')!=='true',checked:typeof n.checked==='boolean'?n.checked:n.hasAttribute('aria-checked')?n.getAttribute('aria-checked')==='true':null,rect:[r.x,r.y,r.width,r.height]}];
   });
  });
  // Generic text blocks (reward titles, subtitles and hints) were missing
@@ -66,6 +67,9 @@ const callback=async page=>{
     css:{fontFamily:c.fontFamily,fontSize:c.fontSize,fontWeight:c.fontWeight,fontVariationSettings:c.fontVariationSettings,lineHeight:c.lineHeight,color:c.color,letterSpacing:c.letterSpacing}});
   }return rows;
  });
+ // Letter spans can be aria-hidden while a visible sentence is split into
+ // roleless focusable word overlays. Preserve the actual rendered group too.
+ facts.rendered_text_groups=await page.locator('[data-test="hint-token"]').evaluateAll(ns=>[...new Set(ns.map(n=>n.parentElement))].filter(n=>n.checkVisibility({checkOpacity:true,checkVisibilityCSS:true})).map(n=>{const r=n.getBoundingClientRect();return {text:n.innerText,rect:[r.x,r.y,r.width,r.height],tokens:[...n.querySelectorAll('[data-test="hint-token"]')].map(t=>({label:t.getAttribute('aria-label'),tabindex:t.tabIndex})),source:'Actual rendered parent text; no ARIA sentence or interaction success inferred'};}));
  facts.text_run_limitations=['DOM text ranges and computed CSS are not OCR or actual fallback font resolution; clipped animation digits may still appear.'];
  // Artwork outside buttons was absent from the old mold. Keep visible media
  // geometry and public resource identity without reading application state.

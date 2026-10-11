@@ -1,0 +1,12 @@
+### Result
+{"fonts":[{"familyName":"PingFang SC","postScriptName":"PingFangSC-Regular","isCustomFont":false,"glyphCount":11}]}
+### Ran Playwright code
+```js
+await (async page=>{const cdp=await page.context().newCDPSession(page);try{await cdp.send("DOM.enable");await cdp.send("CSS.enable");await cdp.send("DOM.getDocument");const r=await cdp.send("Runtime.evaluate",{expression:"[...document.querySelectorAll(\"span\")].find(n=>n.childElementCount===0&&n.textContent===\"请问，这顶帽子多少钱？\")",returnByValue:false});const n=await cdp.send("DOM.requestNode",{objectId:r.result.objectId});return await cdp.send("CSS.getPlatformFontsForNode",{nodeId:n.nodeId})}finally{await cdp.detach()}})(page);
+```
+### Page
+- Page URL: https://www.duolingo.com/guidebook/en/11
+- Page Title: 多邻国 - 学得轻松，学有所成的英语 课程！
+- Console: 66 errors, 0 warnings
+### Events
+- New console entries: .playwright-cli/console-2026-10-11T17-34-43-881Z.log#L98-L99

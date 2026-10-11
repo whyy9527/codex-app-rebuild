@@ -123,10 +123,19 @@ const callback = async page => {
    let visibleChoices=c.type==='listenMatch' ? await challenge.locator('[data-test="challenge-tap-token-text"]').allTextContents()
     : radioTexts.length ? radioTexts.map(t=>t.trim().replace(/^\d\s*|\s*\d$/g,'').trim()) : bankTexts.length ? bankTexts : buttons.filter(t=>t.trim()&&! [labels.check,labels.continue,'跳过','Skip','使用键盘','Use keyboard'].includes(t.trim()));
    const prompts=await challenge.locator('[data-test=hint-token]').evaluateAll(ns=>[...new Set(ns.map(n=>n.parentElement.innerText.trim()).filter(Boolean))]);
+   const completionScaffold=c.type==='orderTapComplete'?await challenge.evaluate(n=>{
+    const selector='[aria-label="Selected gap"],[aria-label="Click to select this gap"]';
+    const gaps=[...n.querySelectorAll(selector)].filter(g=>g.checkVisibility({checkOpacity:true,checkVisibilityCSS:true}));
+    if(!gaps.length||!gaps.every(g=>g.parentElement===gaps[0].parentElement))return null;
+    const parent=gaps[0].parentElement;
+    const text=[...parent.children].filter(v=>!v.matches(selector)&&!v.matches('[data-test="word-bank"]')&&!v.querySelector('[data-test="word-bank"]')).map(v=>v.innerText).join('');
+    return {text,blankCount:gaps.length,source:'Actual visible gap parent children excluding gaps and word bank'};
+   }):null;
+
    if(!prompts.length && c.type==='select'){const quoted=row.heading.match(/[“「](.+?)[”」]/);if(quoted)prompts.push(quoted[1]);}
    const playedAudio=[];
    if(!row.dom_type.split(/\s+/).includes('challenge-'+c.type)){
-    row.identity=identity(c,{type:row.dom_type,text:await challenge.innerText(),choices:visibleChoices,prompts,playedAudio});
+    row.identity=identity(c,{type:row.dom_type,text:await challenge.innerText(),choices:visibleChoices,prompts,playedAudio,completionScaffold});
     row.divergence={kind:'type_changed',next_action:'Observe the inserted or replacement challenge before any type-specific interaction.'};
     throw Error('Reference UI diverged: type_changed');
    }
@@ -157,7 +166,7 @@ const callback = async page => {
     row.coverage={kind:'uncovered_type',expected_type:c.type,actual_type:row.dom_type,next_action:'Observe and implement this type; do not classify an unsupported choice schema as source content drift.'};
     throw new Error('Uncovered type: '+c.type);
    }
-   row.identity=identity(c,{type:row.dom_type,text:await challenge.innerText(),choices:visibleChoices,prompts,playedAudio});
+   row.identity=identity(c,{type:row.dom_type,text:await challenge.innerText(),choices:visibleChoices,prompts,playedAudio,completionScaffold});
    row.dom_fields=await challenge.locator('[data-test]').evaluateAll(ns=>ns.map(n=>({test:n.getAttribute('data-test'),text:n.textContent})));
    if(!row.identity.matches){row.divergence={kind:row.identity.reasons.includes('type_changed')?'type_changed':'same_type_content_changed',next_action:'Read current prompt and complete choice set; do not reuse captured answer. Record new observed branch before resuming.'};throw new Error('Reference UI diverged: '+row.identity.reasons.join(', '));}
    if(['listen','listenComplete'].includes(c.type)){
@@ -188,10 +197,19 @@ const callback = async page => {
     }
     await page.getByRole('button',{name:labels.check,exact:true}).click();
    }else if(['orderTapComplete','tapComplete'].includes(c.type)){
-    const blanks=c.displayTokens.filter(token=>token.isBlank).map(token=>token.text);
-    row.word_bank=[];
-    for(const choice of c.choices){const button=page.getByRole('button',{name:choice.text,exact:true});await button.waitFor();row.word_bank.push(await button.textContent());}
-    for(const text of blanks){await page.getByRole('button',{name:text,exact:true}).click();row.actions.push({word:text});}
+    const groups=[];let current=null;
+    for(const token of c.displayTokens){
+     if(token.isBlank){if(!current){current=[];groups.push(current);}current.push(token.text);}
+     else if(token.text.trim())current=null;
+    }
+    row.word_bank=await bank.getByRole('button').allTextContents();
+    const gaps=challenge.locator('[aria-label="Selected gap"],[aria-label="Click to select this gap"]');
+    if(c.type==='orderTapComplete'&&await gaps.count()!==groups.length)throw Error('Actual gap structure changed before answer');
+    for(let index=0;index<groups.length;index++){
+     if(c.type==='orderTapComplete'){await gaps.nth(index).click();row.actions.push({gap:index});}
+     for(const text of groups[index]){const occurrence=await clickWord(bank,text);row.actions.push({word:text,occurrence,gap:index});}
+    }
+    row.answer_before_check=await challenge.innerText();
     await page.getByRole('button',{name:labels.check,exact:true}).click();
    }else if(c.type==='listenMatch'){
     const left=challenge.getByRole('button').filter({hasNot:page.locator('[data-test="challenge-tap-token-text"]')});

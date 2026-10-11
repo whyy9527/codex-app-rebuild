@@ -1,0 +1,12 @@
+### Result
+{"path":"/lesson","snapshot":"- button:\n  - img\n- progressbar:\n  - img\n- img\n- text: \"5\"\n- img\n- text: 新单词\n- heading \"用中文（简体）写出这句话\" [level=1]\n- button:\n  - img\n- img\n- button \"夹克\"\n- button \"的\"\n- button \"红色\"\n- button \"帽子\"\n- button \"一件\"\n- button \"跳过\"\n- button \"检查\" [disabled]"}
+### Ran Playwright code
+```js
+await (async page=>{await page.getByRole("link",{name:"开始 +10 经验",exact:true}).click();await page.waitForFunction(()=>document.querySelectorAll("[data-test~=challenge]").length===1);return {path:new URL(page.url()).pathname,snapshot:await page.locator("body").ariaSnapshot()}})(page);
+```
+### Page
+- Page URL: https://www.duolingo.com/lesson
+- Page Title: 多邻国 - 学得轻松，学有所成的英语 课程！
+- Console: 70 errors, 0 warnings
+### Events
+- New console entries: .playwright-cli/console-2026-10-11T17-34-43-881Z.log#L103

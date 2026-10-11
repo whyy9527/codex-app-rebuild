@@ -1,0 +1,30 @@
+### Page
+- Page URL: https://www.duolingo.com/lesson
+- Page Title: 多邻国 - 学得轻松，学有所成的英语 课程！
+- Console: 80 errors, 0 warnings
+### Snapshot
+```yaml
+- generic [ref=f15e5]:
+  - generic [ref=f15e8]:
+    - button [ref=f15e9] [cursor=pointer]
+    - progressbar [ref=f15e11]
+    - generic [ref=f15e17]: "4"
+  - generic [ref=f15e24]:
+    - heading "朗读下面的句子" [level=1] [ref=f15e26]
+    - generic [ref=f15e27]:
+      - generic [ref=f15e35]:
+        - button [ref=f15e38] [cursor=pointer]
+        - generic [ref=f15e52]:
+          - text: Oh, this store is closed.
+          - generic "Oh" [ref=f15e53]
+          - generic "this" [ref=f15e54]
+          - generic "store" [ref=f15e55]
+          - generic "is" [ref=f15e56]
+          - generic "closed" [ref=f15e57]
+      - button [ref=f15e62] [cursor=pointer]
+  - generic [ref=f15e72]:
+    - button "现在不做口语题" [ref=f15e74] [cursor=pointer]
+    - button "检查" [disabled] [active] [ref=f15e77]
+```
+### Events
+- New console entries: .playwright-cli/console-2026-10-11T17-34-43-881Z.log#L113

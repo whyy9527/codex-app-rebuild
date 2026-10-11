@@ -54,7 +54,10 @@ struct ReferenceHome: View {
                     else if model.destination == "Guest profile" { ReferenceGuestProfile(avatar:{model.destination="Guest avatar"},achievements:{model.destination = "Guest achievements error"},avatarState:model.preferences.avatarState,animations:model.preferences.animations,languages:{guestLanguages=true}).padding(.horizontal,24).padding(.top,24) }
                     else if model.destination == "Shop" { ReferenceShop(gems: homeGems, create: { authentication = "profile" }).padding(.top,40) }
                     else if model.destination == "Quests" { ReferenceQuests(snapshot: homeSnapshot).padding(.horizontal, 24).padding(.top, 24) }
-                    else if model.destination == "Guidebook" { ReferenceGuidebook(model: model).padding(.horizontal, 24).padding(.top, 48) }
+                    else if model.destination == "Guidebook" {
+                        if chinese && model.placementOutcome?.activeStage == 2 { ReferenceShoppingGuide(model:model).padding(.horizontal,24).padding(.top,24).padding(.bottom,24) }
+                        else { ReferenceGuidebook(model: model).padding(.horizontal, 24).padding(.top, 48) }
+                    }
                     else { path.padding(.horizontal, 24).padding(.top, 48) }
                 }
                     .frame(minWidth:model.destination == "Sections" ? 564 : nil,maxWidth:model.destination == "Sections" ? 564 : .infinity)
@@ -337,7 +340,7 @@ struct ReferenceHome: View {
                 }.padding(.top, 12)
             }.frame(height: 201)
             }
-            if model.destination == "Quests" { questsFooter.padding(.top, 18) }
+            if chinese || model.destination == "Quests" { questsFooter.padding(.top, 18) }
             else {
                 Text(copy("ABOUT    BLOG    STORE    EFFICACY    CAREERS\n\nINVESTORS    TERMS    PRIVACY", "关于我们    宝石小店    有效性    招聘贤才\n\n投资者    条款    隐私")).font(ReferenceStyle.font(12, bold: true)).foregroundStyle(Color(white: 175/255)).frame(maxWidth: .infinity).multilineTextAlignment(.center).padding(.top, 18)
             }
