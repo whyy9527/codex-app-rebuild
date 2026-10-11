@@ -1,0 +1,129 @@
+{
+  "steps": [
+    {
+      "receipt": "replay-0.json",
+      "type": "listenMatch",
+      "prompt": null,
+      "answered": 1,
+      "failure": null,
+      "outcome": "current_challenge_replayed"
+    },
+    {
+      "receipt": "replay-1.json",
+      "type": "assist",
+      "prompt": "你好",
+      "answered": 1,
+      "failure": null,
+      "outcome": "current_challenge_replayed"
+    },
+    {
+      "receipt": "replay-2.json",
+      "type": "listenMatch",
+      "prompt": null,
+      "answered": 1,
+      "failure": null,
+      "outcome": "current_challenge_replayed"
+    },
+    {
+      "receipt": "replay-3.json",
+      "type": "assist",
+      "prompt": "不客气",
+      "answered": 1,
+      "failure": null,
+      "outcome": "current_challenge_replayed"
+    },
+    {
+      "receipt": "replay-4.json",
+      "type": "translate",
+      "prompt": "coffee with milk",
+      "answered": 1,
+      "failure": null,
+      "outcome": "current_challenge_replayed"
+    },
+    {
+      "receipt": "replay-5.json",
+      "type": "listenTap",
+      "prompt": "Thank you, goodbye!",
+      "answered": 1,
+      "failure": null,
+      "outcome": "current_challenge_replayed"
+    },
+    {
+      "receipt": "replay-6.json",
+      "type": "translate",
+      "prompt": "You're welcome, goodbye!",
+      "answered": 1,
+      "failure": null,
+      "outcome": "current_challenge_replayed"
+    },
+    {
+      "receipt": "replay-7.json",
+      "type": "listenTap",
+      "prompt": "With ice?",
+      "answered": 1,
+      "failure": null,
+      "outcome": "current_challenge_replayed"
+    },
+    {
+      "receipt": "replay-8.json",
+      "type": "speak",
+      "prompt": "Hot, please.",
+      "answered": 0,
+      "failure": "Error: Uncovered type: speak",
+      "outcome": "failed"
+    },
+    {
+      "receipt": "replay-9.json",
+      "type": "translate",
+      "prompt": "tea with sugar",
+      "answered": 1,
+      "failure": null,
+      "outcome": "current_challenge_replayed"
+    },
+    {
+      "receipt": "replay-10.json",
+      "type": "translate",
+      "prompt": "热茶",
+      "answered": 1,
+      "failure": null,
+      "outcome": "current_challenge_replayed"
+    },
+    {
+      "receipt": "replay-11.json",
+      "type": "translate",
+      "prompt": "Coffee, please.",
+      "answered": 1,
+      "failure": null,
+      "outcome": "current_challenge_replayed"
+    },
+    {
+      "receipt": "replay-12.json",
+      "type": "translate",
+      "prompt": "咖啡加牛奶",
+      "answered": 1,
+      "failure": null,
+      "outcome": "current_challenge_replayed"
+    },
+    {
+      "receipt": "replay-13.json",
+      "type": "listenComplete",
+      "prompt": "No ice, please.",
+      "answered": 1,
+      "failure": null,
+      "outcome": "current_challenge_replayed"
+    }
+  ],
+  "accepted": 13,
+  "found_target_isolation": false,
+  "current_boundary": "Challenge translate 茶加糖 after actual challenge-intro continue; not answered",
+  "manual_transitions": [
+    "Reload already completed after modal; no second reload attempted",
+    "Actual speech decline Hot, please. -> 麦克风已关闭; Continue -> tea with sugar translation",
+    "Actual challenge intro Continue -> 茶加糖 translation"
+  ],
+  "limitations": [
+    "Current public solutions used; not a blind exploration or RSI effectiveness result.",
+    "No current session list captured: reload modal caused CLI return before Result, source was inspected before continuation.",
+    "Current-only needs a visible challenge: interlude fails before action; operator separately observed/continued it."
+  ]
+}

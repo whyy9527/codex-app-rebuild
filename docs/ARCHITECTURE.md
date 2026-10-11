@@ -236,3 +236,5 @@ LessonDefinition的可选listeningDeclineReplacements由实例提供已观察替
 `public-reference-challenge`拥有公共字段投影，session捕获和当前题捕获共享；`rendered-reference-challenge`只从唯一可见challenge的renderer取题目、核对DOM类型，不用初始序列或challengeState回退。`--current-only`把当时内容交给既有身份校验和真实UI作答，保留单步接受、未覆盖、主动边界三种不同结果，不改写初始session。公共答案不作为盲探索效果证据。
 
 `import-current-character.py`连接当前公共角色与实际renderer绑定：下载公开Rive并核对实测缓冲SHA后才进入Swift资源映射。资源身份、原生可见运动、同状态几何、像素和时序分别验证，不能互相代替。原生可选按指定resource采样实际自有窗口，q5动作期12帧，不注入Lesson状态。当前Eddy绑定已生效但全图差异没有改善。[实际源、新驱动与负结果](../projects/duolingo-web/evidence/english-current-challenge-v1/README.md)。
+
+`Question.isolationPromptTokens`为可选显示数据，从源token和blankRange编译，保留空格/标点/缺词/可提示词身份，不改变答案或评分。通用夹具v3带该数据；`ReferenceIsolationPhrase`按真实词宽留白，正确反馈显示绿色原词，播放控件仅覆盖原版29×22区域。只有带数据的通用题使用新行/气泡/分隔线布局，旧夹具保持旧路径。v32追加9条源几何和语义，整图与暂缓缺失继续明确失败/不可验证；当前题模式在无challenge引导页仍不能自动续接。[验证与局限](../projects/duolingo-web/evidence/english-isolation-presentation-v1/README.md)。

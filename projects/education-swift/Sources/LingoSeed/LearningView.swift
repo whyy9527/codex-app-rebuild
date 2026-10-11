@@ -339,7 +339,7 @@ struct LearningView: View {
         } else if lesson.question.newWord { Text(copy("NEW WORD", "新单词")).font(ReferenceStyle.font(14, bold: true)).foregroundStyle(.purple) }
         // Source challenge-header: 32px/40px. Translation's character row follows
         // the heading directly; the old shared 28-point gap displaced it.
-        VStack(alignment: .leading, spacing: ["translate", "completeReverseTranslation"].contains(lesson.question.sourceType ?? "") || (model.isGeneralPractice && lesson.question.sourceType == "listen") ? 0 : model.isGeneralPractice && lesson.question.sourceType == "listenTap" ? 23.5 : 28) {
+        VStack(alignment: .leading, spacing: ["translate", "completeReverseTranslation"].contains(lesson.question.sourceType ?? "") || (model.isGeneralPractice && lesson.question.sourceType == "listen") ? 0 : model.isGeneralPractice && lesson.question.sourceType == "listenTap" ? 23.5 : model.isGeneralPractice && lesson.question.sourceType == "listenIsolation" && lesson.question.isolationPromptTokens != nil ? 32 : 28) {
         Text(lesson.question.kind == .wordTiles && lesson.question.hint == nil && lesson.question.sourceType == nil ? "Build this phrase" : lesson.displayedPrompt).font(ReferenceStyle.font(32, bold: true))
             .frame(maxWidth: .infinity, minHeight: 40, maxHeight: 40, alignment: .leading)
             .accessibilityIdentifier("question-title").accessibilityValue(lesson.displayedPrompt)
@@ -446,7 +446,29 @@ struct LearningView: View {
             .overlay(RoundedRectangle(cornerRadius: chinese ? 8 : 12).stroke(Color.gray.opacity(0.25), lineWidth: 2))
         }
     }
-    private func isolation(_ lesson: Lesson) -> some View {
+    @ViewBuilder private func isolation(_ lesson: Lesson) -> some View {
+        if model.isGeneralPractice, let tokens = lesson.question.isolationPromptTokens {
+            VStack(spacing: 0) {
+                HStack(spacing: 0) {
+                    if let character = lesson.question.characterResource {
+                        ReferenceCharacter(resource: character, feedback: lesson.feedback).id(lesson.question.id)
+                            .frame(width: 118, height: 175)
+                    }
+                    HStack(spacing: 8) {
+                        ReferencePracticeControl(label: "播放音频", identifier: "isolation-prompt", enabled: true,
+                            action: { model.playQuestion() }, face: AnyView(ReferenceStyle.image("en-match-speaker-source-frame")
+                                .renderingMode(.template).resizable().frame(width: 29, height: 22).foregroundStyle(ReferenceStyle.blue)))
+                            .frame(width: 29, height: 22)
+                        ReferenceIsolationPhrase(tokens: tokens, correct: lesson.feedback == true)
+                    }.padding(.horizontal, 16).frame(height: 56)
+                        .background(ReferenceIsolationBubble().fill(ReferenceStyle.background))
+                        .overlay(ReferenceIsolationBubble().stroke(ReferenceStyle.border, lineWidth: 2))
+                    Spacer(minLength: 0)
+                }.padding(.leading, 16).frame(height: 175)
+                Rectangle().fill(ReferenceStyle.border).frame(height: 2).padding(.bottom, 36)
+                isolationOptions(lesson)
+            }
+        } else {
         VStack(spacing: 42.5) {
             HStack(spacing: 16) {
                 if let character = lesson.question.characterResource {
@@ -461,7 +483,12 @@ struct LearningView: View {
                 }.buttonStyle(.plain).accessibilityIdentifier("isolation-prompt").accessibilityLabel(lesson.displayedHint ?? "")
                 Spacer()
             }.frame(height: 175)
-            VStack(spacing: 8) {
+            isolationOptions(lesson)
+        }
+        }
+    }
+    private func isolationOptions(_ lesson: Lesson) -> some View {
+        VStack(spacing: 8) {
                 ForEach(lesson.question.options) { option in
                     ReferenceAudioRadio(label: option.text, identifier: "option-" + option.id,
                         waveform: lesson.feedback == true && lesson.selected == option.id ? option.correctImageResource ?? option.imageResource : option.imageResource,
@@ -469,7 +496,6 @@ struct LearningView: View {
                         enabled: lesson.feedback == nil, action: { model.choose(option.id) }).frame(height: 62)
                 }
             }
-        }
     }
     @ViewBuilder private func choices(_ lesson: Lesson) -> some View {
         if lesson.question.sourceType == "listenIsolation" {

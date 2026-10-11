@@ -78,6 +78,7 @@ for index in [0, 1, 2, 3, 4, 5, 6, 8, 9, 10, 11, 12]:
         q.update(kind='choice', hint=sentence.replace(''.join(t['value'] for t in blank), '__'),
                  options=[dict(id=str(o['index']), text=str(o['index']+1), audioResource=c.resource(o['played_audio'][0], 'speech'), imageResource=f'en-seventh-isolation-wave-{o["index"]+1}') for o in row['audio_options']],
                  answer=str(next(o['index'] for o in row['audio_options'] if o['text']==raw['options'][raw['correctIndex']]['text'])), explanation='意思是： '+raw['solutionTranslation'])
+        q['isolationPromptTokens'] = [dict(text=t['value'], isBlank=raw['blankRangeStart'] <= i < raw['blankRangeEnd'], underlined=bool(t.get('tts'))) for i, t in enumerate(raw['tokens'])]
     elif raw['type'] in ['translate', 'listenTap']:
         choices = [dict(text=v) if isinstance(v, str) else v for v in raw['choices']]
         answer = [choices[i]['text'] for i in raw['correctIndices']]
@@ -135,6 +136,6 @@ lesson = dict(id='general-practice-1', title='英语练习', questions=questions
                 dict(id='general-practice-profile', kind='profile', title='来创建你的个人档案吧！', body='创建档案就能保存学习进度，随时都可以继续免费学习后续内容。', continueLabel='稍后再说', secondaryLabel='创建档案')])
 fixture = dict(provenance=dict(source='Actual GLOBAL_PRACTICE 16 graded, speech-decline insertion, challenge replacements, one wrong and review, result and heart reward', evidence=['projects/duolingo-web/evidence/english-general-practice-v1/README.md','projects/duolingo-web/evidence/english-general-practice-native-v1/source-probe/wrong-assist-exit.json'], unknown='Adaptive selection, normal oral, new instances, general reward cap/score rules, full pixels and actual acoustic equality; original SVGs for visually identified inserted/replacement characters are not proof of exact animation frames.'),
     data=dict(candidate_course=dict(id='duolingo-en-zh-global-practice', title='英语练习', speechLanguage='en', interfaceLanguage='zh', mistakeHeartCost=0, lessons=[lesson])))
-for path, value in [(BASE/'fixture-reference-en-zh-general-practice-v2.json',fixture), (BUNDLE/'general-practice.json',fixture), (BASE/'reference-assets-en-zh-general-practice-v2.json',list(c.resources.values()))]:
+for path, value in [(BASE/'fixture-reference-en-zh-general-practice-v3.json',fixture), (BUNDLE/'general-practice.json',fixture), (BASE/'reference-assets-en-zh-general-practice-v3.json',list(c.resources.values()))]:
     path.write_text(json.dumps(value,ensure_ascii=False,indent=2)+'\n')
 print(json.dumps(dict(graded_questions=len(questions), resources=len(c.resources))))

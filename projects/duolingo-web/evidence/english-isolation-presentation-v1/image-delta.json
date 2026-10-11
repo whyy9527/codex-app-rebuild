@@ -1,0 +1,47 @@
+{
+  "rows": [
+    {
+      "requirement": "general-practice-q5-image",
+      "state": "general-practice-q5",
+      "baseline_rgb": [
+        3.0506819216757743,
+        2.300268670309654,
+        3.324540072859745
+      ],
+      "candidate_rgb": [
+        2.759797358834244,
+        1.5171322859744991,
+        2.423206967213115
+      ],
+      "status": "fail",
+      "final_rgb": [
+        2.757422586520947,
+        1.5166177140255008,
+        2.4194751821493625
+      ]
+    },
+    {
+      "requirement": "general-practice-q5-feedback-image",
+      "state": "general-practice-q5-feedback",
+      "baseline_rgb": [
+        4.024784836065574,
+        3.018893442622951,
+        5.795516848816029
+      ],
+      "candidate_rgb": [
+        3.7050910746812384,
+        1.9663148907103825,
+        4.531238615664845
+      ],
+      "status": "fail",
+      "final_rgb": [
+        3.711818078324226,
+        1.981676912568306,
+        4.550556693989071
+      ]
+    }
+  ],
+  "limitations": [
+    "Same-state whole screenshots, ICC to sRGB and measured window geometry only. Animation phase unaligned; no masks, tolerance or alignment search. This is one presentation change, not RSI effectiveness."
+  ]
+}

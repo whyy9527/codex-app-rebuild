@@ -24,7 +24,13 @@ public struct ListeningDecline: Codable, Equatable, Sendable {
     public let title: String
     public let body: String
 }
+public struct IsolationPromptToken: Codable, Equatable, Sendable {
+    public let text: String
+    public let isBlank: Bool
+    public let underlined: Bool
+}
 public struct Question: Codable, Equatable, Sendable, Identifiable {
+    public let isolationPromptTokens: [IsolationPromptToken]?
     public let matchedAudioResources: [String]?
     public let correctFeedbackAudioResource: String?
     public let incorrectFeedbackAudioResource: String?
@@ -63,6 +69,7 @@ public struct Question: Codable, Equatable, Sendable, Identifiable {
     public let skipCorrectText: String?
     public let feedbackReportReasons: [String]?
     enum CodingKeys: String, CodingKey {
+        case isolationPromptTokens
         case matchedAudioResources, correctFeedbackAudioResource, incorrectFeedbackAudioResource
         case practiceAudioResources, practiceAudioLabels, feedbackHint, reviewWordOrder, skipLabel, skipCorrectText
         case keyboardAnswer, keyboardPrompt, correctFeedback, indicator, example, exampleAudioResource, completionPrefix, completionSuffix, listeningDecline, feedbackReportReasons
@@ -71,6 +78,7 @@ public struct Question: Codable, Equatable, Sendable, Identifiable {
     }
     public init(from decoder: Decoder) throws {
         let c = try decoder.container(keyedBy: CodingKeys.self)
+        isolationPromptTokens = try c.decodeIfPresent([IsolationPromptToken].self, forKey: .isolationPromptTokens)
         matchedAudioResources = try c.decodeIfPresent([String].self, forKey: .matchedAudioResources)
         correctFeedbackAudioResource = try c.decodeIfPresent(String.self, forKey: .correctFeedbackAudioResource)
         incorrectFeedbackAudioResource = try c.decodeIfPresent(String.self, forKey: .incorrectFeedbackAudioResource)

@@ -16,6 +16,8 @@
 
 驱动已支持读取当前实际显示题目并单步回放，用于暂缓后初始题单无法定位的插入题；实际接受后遇到未覆盖口语，保存未覆盖回执。Eddy原版Rive按源缓冲摘要导入，实际原生动画已出现，整图差异仍失败且部分略增。[当前题探索、资源及负结果](projects/duolingo-web/evidence/english-current-challenge-v1/README.md)。
 
+默认通用夹具v3补原版听音填空token、绿色缺词反馈、气泡及分隔线，播放和两组选项几何精确通过；v32仍有整图失败和缺失的暂缓入口。源另一实例13题未遇到目标题，当前题驱动在引导页仍需外层接续，未证明探索充分。[前端实测与探索反例](projects/duolingo-web/evidence/english-isolation-presentation-v1/README.md)。
+
 共同前端契约已接入真实PNG比较，缺图不可计为通过；发音卡片进一步按浏览器实际字体、字距、卡面和按下反馈修正，整图仍失败。[当前证据与复跑](projects/duolingo-web/evidence/english-pronunciation-typography-v1/README.md)。
 
 前端契约保留旧要求并持续追加源观察；最新口语权限及发音退出分支已接入实际原生验证。反例探测区分全错直接退出与已获得正确进度后的确认，取消保持题目状态。几何、整图和声音仍有失败/未覆盖，正常录音评分与推进未完成。[最新证据、探索反例与复跑](projects/duolingo-web/evidence/english-practice-exit-v1/README.md)，逐批结果由[Roadmap](docs/ROADMAP.md)维护；不累计旧构建回执填当前未执行项。

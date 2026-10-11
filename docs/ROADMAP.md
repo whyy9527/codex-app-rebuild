@@ -288,3 +288,7 @@ v15保留1489项并增8项真实原版断言。独立原生radio2实际点击及
 ### 当前题续接与原版Eddy运动
 
 新实例前五题实际接受，听力暂缓后插入Good morning翻译。新增当前可见renderer公共字段采集和单步回放，真实答对后遇到未支持speak留0作答未覆盖回执；显式停止亦0作答，无录音。共享投影覆盖旧两实例，9 Node通过；历史观察计划中的原创素材/缩小范围限制已撤回。原版Eddy公开Rive与实际缓冲236733字节SHA一致后导入；默认47原生状态及真实重启完成，角色区域待机/反馈各12种实际帧，q12角色仍缺。56 Python/构建/25核心通过；共同v31仍89pass/55fail/1759not_run，q5整图差异略增保留，气泡/下划线/分隔线/暂缓入口与几何继续。新插入实例还未进入候选共享契约；下一批接当前题分支与正常口语、修实际前端及声音，真实探索效果未证明。完整Goal active。[回执、负结果、frontier与复跑](../projects/duolingo-web/evidence/english-current-challenge-v1/README.md)。
+
+### 听音填空前端与未发现目标题的探索
+
+先从已有原版DOM/PNG冻结v32，保留1903旧项追加9，旧候选新增2pass4fail3unavailable。实际token编译通用夹具v3，补独立29×22播放、角色包装位置、气泡尖角/虚线/缺词正确绿色及分隔线；不改评分数据。默认47状态及真实重启执行完成，新增5pass1fail3unavailable，共94pass56fail1759not_run3unavailable。角色仍差0.0138794点，暂缓入口仍缺，整图均fail但两张差异下降。构建02限定无token实例仍旧间距，最终同一二进制45状态暂缓回归56pass35fail1821not_run、默认47状态再次重启计数仍94/56/1759/3；前轮回执保留。25核心/56 Python通过。源另一实例当前题实际答对13题仍没遇到听音填空，口语Hot please暂缓后插tea with sugar；引导页当前模式动作前失败需人工接续，现停挑战“茶加糖”未答。下一步补该闭环、听音填空暂缓规则与剩余前端/声学，不当RSI收益或完成，完整Goal active。[源反例、前端与复跑](../projects/duolingo-web/evidence/english-isolation-presentation-v1/README.md)。

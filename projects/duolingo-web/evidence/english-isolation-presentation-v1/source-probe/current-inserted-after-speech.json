@@ -1,0 +1,110 @@
+{
+  "observed_at": "2026-10-11T03:40:40.087Z",
+  "path": "/practice",
+  "viewport": {
+    "width": 1200,
+    "height": 732
+  },
+  "snapshot": "- button:\n  - img\n- progressbar\n- heading \"用中文（简体）写出这句话\" [level=1]\n- button:\n  - img\n- img\n- button \"欢迎\"\n- button \"茶\"\n- button \"加糖\"\n- button \"跳过\"\n- button \"检查\" [disabled]",
+  "dom_type": "challenge challenge-translate",
+  "visible_text": "用中文（简体）写出这句话\ntea with sugar\n欢迎\n茶\n加糖",
+  "content": {
+    "prompt": "tea with sugar",
+    "correctSolutions": [
+      "茶加糖"
+    ],
+    "correctTokens": [
+      "茶",
+      "加糖"
+    ],
+    "choices": [
+      {
+        "text": "茶"
+      },
+      {
+        "text": "加糖"
+      },
+      {
+        "text": "欢迎"
+      }
+    ],
+    "correctIndices": [
+      0,
+      1
+    ],
+    "sourceLanguage": "en",
+    "targetLanguage": "zh",
+    "tokens": [
+      {
+        "value": "tea",
+        "tts": "https://d1vq87e9lcf771.cloudfront.net/eddyen/583f299988a289dc687a96665bfeecdb",
+        "hintTable": {}
+      },
+      {
+        "value": " "
+      },
+      {
+        "value": "with",
+        "tts": "https://d1vq87e9lcf771.cloudfront.net/eddyen/1550dccc1dd3fc2ec71f9683d211ce10",
+        "hintTable": {}
+      },
+      {
+        "value": " "
+      },
+      {
+        "value": "sugar",
+        "tts": "https://d1vq87e9lcf771.cloudfront.net/eddyen/9d84f58c33b3aeb891db06c04292afb1",
+        "hintTable": {}
+      }
+    ],
+    "tts": "https://d1vq87e9lcf771.cloudfront.net/eddyen/69e939d9cd727dd94f2362de2d42b3d9",
+    "character": {
+      "url": "https://d2pur3iezf4d1j.cloudfront.net/images/b53f870ed38105349d4d83edf682d77f",
+      "image": {
+        "svg": "https://d2pur3iezf4d1j.cloudfront.net/images/096d0b1f6280b962cd7080a7736dd2bb"
+      },
+      "gender": "MALE",
+      "correctAnimation": "https://simg-ssl.duolingo.com/lottie/Eddy_CORRECT_Cropped_Cheer.json",
+      "incorrectAnimation": "https://simg-ssl.duolingo.com/lottie/Coach_INCORRECT_Cropped.json",
+      "idleAnimation": "https://simg-ssl.duolingo.com/lottie/Eddy_IDLE_Cropped.json",
+      "name": "EDDY",
+      "avatarIconImage": {
+        "svg": "https://simg-ssl.duolingo.com/world-characters/avatars/eddy_avatar_icon.svg"
+      }
+    },
+    "type": "translate",
+    "newWords": []
+  },
+  "omitted_keys": [
+    "challenge.0.compactTranslations",
+    "challenge.0.wrongTokens",
+    "challenge.0.grader",
+    "challenge.0.taggedKcIds",
+    "challenge.0.challengeDisplaySettings",
+    "challenge.0.weakWordPromptRanges",
+    "challenge.0.isSpeakerUniversal",
+    "challenge.0.id",
+    "challenge.0.challengeResponseTrackingProperties",
+    "challenge.0.metadata",
+    "challenge.0.progressUpdates",
+    "challenge.0.sentenceId",
+    "challenge.0.challengeGeneratorIdentifier",
+    "challenge.0.worldCharacterShown",
+    "challenge.0.startTime",
+    "challenge.0.tokens.0.hintTable.headers",
+    "challenge.0.tokens.0.hintTable.rows",
+    "challenge.0.tokens.2.hintTable.headers",
+    "challenge.0.tokens.2.hintTable.rows",
+    "challenge.0.tokens.4.hintTable.headers",
+    "challenge.0.tokens.4.hintTable.rows",
+    "challenge.0.character.riveAnimation",
+    "challenge.0.character.image.pdf",
+    "challenge.0.character.avatarIconImage.pdf"
+  ],
+  "source": "Current rendered challenge public fields; initial session/future sequence and challengeState not read",
+  "limitations": [
+    "Public content may include grading solutions, not an independent blind exploration score.",
+    "DOM linkage proves current type/content association, not pixels, actual audio output or an adaptive algorithm."
+  ],
+  "screenshot": "current-inserted-after-speech.png"
+}
