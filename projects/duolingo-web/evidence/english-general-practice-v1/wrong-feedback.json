@@ -1,0 +1,944 @@
+{
+  "observed_at": "2026-10-11T01:39:48.164Z",
+  "path": "/practice",
+  "viewport": {
+    "width": 1200,
+    "height": 732
+  },
+  "snapshot": "- button:\n  - img\n- progressbar\n- img\n- text: 挑战题\n- heading \"用英语写出这句话\" [level=1]\n- img\n- textbox \"使用英语键入\" [disabled]: water\n- heading \"正确答案：\" [level=2]\n- text: Good morning, I'd like coffee with milk.\n- button \"太简单\"\n- button \"太难\"\n- button \"报错\"\n- button \"继续\"",
+  "media": [
+    {
+      "tag": "IMG",
+      "alt": null,
+      "test": null,
+      "src": "https://d35aaqx5ub95lt.cloudfront.net/images/4af31393cf9dee6fd35c07fc7155d404.svg",
+      "source_kind": "url",
+      "rect": [
+        100,
+        50,
+        18,
+        18
+      ],
+      "objectFit": "fill",
+      "intrinsic": [
+        20,
+        20
+      ]
+    },
+    {
+      "tag": "svg",
+      "alt": null,
+      "test": null,
+      "src": null,
+      "source_kind": null,
+      "rect": [
+        300,
+        121,
+        32,
+        32
+      ],
+      "objectFit": "fill",
+      "intrinsic": null
+    },
+    {
+      "tag": "CANVAS",
+      "alt": null,
+      "test": null,
+      "src": null,
+      "source_kind": null,
+      "rect": [
+        295.08612060546875,
+        192.25,
+        129.79998779296875,
+        192.5
+      ],
+      "objectFit": "fill",
+      "intrinsic": [
+        118,
+        175
+      ]
+    },
+    {
+      "tag": "svg",
+      "alt": null,
+      "test": null,
+      "src": null,
+      "source_kind": null,
+      "rect": [
+        412,
+        272.5,
+        18,
+        20
+      ],
+      "objectFit": "fill",
+      "intrinsic": null
+    },
+    {
+      "tag": "IMG",
+      "alt": "",
+      "test": null,
+      "src": "https://d35aaqx5ub95lt.cloudfront.net/images/9a4bf74a74e801ca35402f2c2837e24c.svg",
+      "source_kind": "url",
+      "rect": [
+        165,
+        648,
+        31,
+        31
+      ],
+      "objectFit": "fill",
+      "intrinsic": [
+        30,
+        30
+      ]
+    },
+    {
+      "tag": "svg",
+      "alt": null,
+      "test": null,
+      "src": null,
+      "source_kind": null,
+      "rect": [
+        236,
+        687.25,
+        20,
+        20
+      ],
+      "objectFit": "fill",
+      "intrinsic": null
+    },
+    {
+      "tag": "svg",
+      "alt": null,
+      "test": null,
+      "src": null,
+      "source_kind": null,
+      "rect": [
+        332.40625,
+        687.25,
+        20,
+        20
+      ],
+      "objectFit": "fill",
+      "intrinsic": null
+    }
+  ],
+  "visible": [
+    {
+      "test": "quit-button",
+      "tag": "BUTTON",
+      "role": null,
+      "text": "",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        100,
+        50,
+        18,
+        18
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "400",
+        "lineHeight": "19.55px",
+        "color": "rgb(0, 0, 0)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(0, 0, 0)"
+      },
+      "icons": [],
+      "images": [
+        {
+          "src": "https://d35aaqx5ub95lt.cloudfront.net/images/4af31393cf9dee6fd35c07fc7155d404.svg",
+          "rect": {
+            "x": 100,
+            "y": 50,
+            "width": 18,
+            "height": 18,
+            "top": 50,
+            "right": 118,
+            "bottom": 68,
+            "left": 100
+          }
+        }
+      ],
+      "iconDetails": [],
+      "ancestors": [
+        {
+          "tag": "DIV",
+          "rect": {
+            "x": 100,
+            "y": 50,
+            "width": 1000,
+            "height": 18,
+            "top": 50,
+            "right": 1100,
+            "bottom": 68,
+            "left": 100
+          },
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "gap": "24px"
+        },
+        {
+          "tag": "DIV",
+          "rect": {
+            "x": 60,
+            "y": 0,
+            "width": 1080,
+            "height": 68,
+            "top": 0,
+            "right": 1140,
+            "bottom": 68,
+            "left": 60
+          },
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "50px 40px 0px",
+          "gap": "normal"
+        },
+        {
+          "tag": "DIV",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 1200,
+            "height": 100,
+            "top": 0,
+            "right": 1200,
+            "bottom": 100,
+            "left": 0
+          },
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "gap": "normal"
+        }
+      ]
+    },
+    {
+      "test": "challenge challenge-translate",
+      "tag": "DIV",
+      "role": null,
+      "text": "挑战题\n用英语写出这句话\n早上好，我想要咖啡加牛奶。",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        0,
+        100,
+        1200,
+        492
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "19px",
+        "fontWeight": "500",
+        "lineHeight": "20px",
+        "color": "rgb(60, 60, 60)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(60, 60, 60)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": []
+    },
+    {
+      "test": "challenge-header",
+      "tag": "H1",
+      "role": null,
+      "text": "用英语写出这句话",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        300,
+        161,
+        600,
+        40
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "32px",
+        "fontWeight": "700",
+        "lineHeight": "40px",
+        "color": "rgb(60, 60, 60)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(60, 60, 60)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": []
+    },
+    {
+      "test": "hint-token",
+      "tag": "DIV",
+      "role": null,
+      "text": "",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        444,
+        276.5,
+        60,
+        27.5
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "20px",
+        "fontWeight": "500",
+        "lineHeight": "32px",
+        "color": "rgb(75, 75, 75)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(75, 75, 75)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": []
+    },
+    {
+      "test": "hint-token",
+      "tag": "DIV",
+      "role": null,
+      "text": "",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        524,
+        276.5,
+        20,
+        27.5
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "20px",
+        "fontWeight": "500",
+        "lineHeight": "32px",
+        "color": "rgb(75, 75, 75)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(75, 75, 75)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": []
+    },
+    {
+      "test": "hint-token",
+      "tag": "DIV",
+      "role": null,
+      "text": "",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        544,
+        276.5,
+        40,
+        27.5
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "20px",
+        "fontWeight": "500",
+        "lineHeight": "32px",
+        "color": "rgb(75, 75, 75)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(75, 75, 75)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": []
+    },
+    {
+      "test": "hint-token",
+      "tag": "DIV",
+      "role": null,
+      "text": "",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        584,
+        276.5,
+        40,
+        27.5
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "20px",
+        "fontWeight": "500",
+        "lineHeight": "32px",
+        "color": "rgb(75, 75, 75)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(75, 75, 75)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": []
+    },
+    {
+      "test": "hint-token",
+      "tag": "DIV",
+      "role": null,
+      "text": "",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        624,
+        276.5,
+        20,
+        27.5
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "20px",
+        "fontWeight": "500",
+        "lineHeight": "32px",
+        "color": "rgb(75, 75, 75)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(75, 75, 75)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": []
+    },
+    {
+      "test": "hint-token",
+      "tag": "DIV",
+      "role": null,
+      "text": "",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        644,
+        276.5,
+        40,
+        27.5
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "20px",
+        "fontWeight": "500",
+        "lineHeight": "32px",
+        "color": "rgb(75, 75, 75)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(75, 75, 75)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": []
+    },
+    {
+      "test": "challenge-translate-input",
+      "tag": "TEXTAREA",
+      "role": null,
+      "text": "",
+      "enabled": false,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        300,
+        376,
+        600,
+        170
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "19px",
+        "fontWeight": "400",
+        "lineHeight": "24px",
+        "color": "rgb(60, 60, 60)",
+        "backgroundColor": "rgb(247, 247, 247)",
+        "borderRadius": "10px",
+        "borderWidth": "2px",
+        "borderColor": "rgb(229, 229, 229)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": []
+    },
+    {
+      "test": "blame blame-incorrect",
+      "tag": "DIV",
+      "role": null,
+      "text": "正确答案：\nGood morning, I'd like coffee with milk.\n太简单\n太难\n报错",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        140,
+        615.25,
+        732.796875,
+        93.5
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "500",
+        "lineHeight": "20px",
+        "color": "rgb(60, 60, 60)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(60, 60, 60)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": []
+    },
+    {
+      "test": null,
+      "tag": "H2",
+      "role": null,
+      "text": "正确答案：",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        236,
+        615.25,
+        320,
+        30
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "24px",
+        "fontWeight": "700",
+        "lineHeight": "30px",
+        "color": "rgb(234, 43, 43)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(234, 43, 43)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": []
+    },
+    {
+      "test": null,
+      "tag": "BUTTON",
+      "role": null,
+      "text": "太简单",
+      "enabled": true,
+      "pressed": "false",
+      "checked": null,
+      "rect": [
+        236,
+        687.25,
+        72.40625,
+        21.5
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "400",
+        "lineHeight": "0px",
+        "color": "rgb(234, 43, 43)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(234, 43, 43)"
+      },
+      "icons": [
+        "<svg aria-hidden=\"true\" class=\"_2-7I9\" fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" viewBox=\"0 0 24 24\"><path d=\"M5 8h6l-6 8h6\"></path><path d=\"M15 13h4l-4 5h4\"></path></svg>"
+      ],
+      "images": [],
+      "iconDetails": [
+        {
+          "rect": {
+            "x": 236,
+            "y": 687.25,
+            "width": 20,
+            "height": 20,
+            "top": 687.25,
+            "right": 256,
+            "bottom": 707.25,
+            "left": 236
+          },
+          "color": "rgb(234, 43, 43)"
+        }
+      ],
+      "ancestors": [
+        {
+          "tag": "DIV",
+          "rect": {
+            "x": 236,
+            "y": 687.25,
+            "width": 153.0078125,
+            "height": 21.5,
+            "top": 687.25,
+            "right": 389.0078125,
+            "bottom": 708.75,
+            "left": 236
+          },
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "gap": "24px"
+        },
+        {
+          "tag": "DIV",
+          "rect": {
+            "x": 236,
+            "y": 687.25,
+            "width": 233.609375,
+            "height": 21.5,
+            "top": 687.25,
+            "right": 469.609375,
+            "bottom": 708.75,
+            "left": 236
+          },
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "gap": "24px"
+        },
+        {
+          "tag": "DIV",
+          "rect": {
+            "x": 236,
+            "y": 615.25,
+            "width": 636.796875,
+            "height": 93.5,
+            "top": 615.25,
+            "right": 872.796875,
+            "bottom": 708.75,
+            "left": 236
+          },
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "gap": "16px"
+        }
+      ]
+    },
+    {
+      "test": null,
+      "tag": "BUTTON",
+      "role": null,
+      "text": "太难",
+      "enabled": true,
+      "pressed": "false",
+      "checked": null,
+      "rect": [
+        332.40625,
+        687.25,
+        56.6015625,
+        21.5
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "400",
+        "lineHeight": "0px",
+        "color": "rgb(234, 43, 43)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(234, 43, 43)"
+      },
+      "icons": [
+        "<svg aria-hidden=\"true\" class=\"_2-7I9\" fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" viewBox=\"0 0 24 24\"><path d=\"m8 3 4 8 5-5 5 15H2L8 3z\"></path></svg>"
+      ],
+      "images": [],
+      "iconDetails": [
+        {
+          "rect": {
+            "x": 332.40625,
+            "y": 687.25,
+            "width": 20,
+            "height": 20,
+            "top": 687.25,
+            "right": 352.40625,
+            "bottom": 707.25,
+            "left": 332.40625
+          },
+          "color": "rgb(234, 43, 43)"
+        }
+      ],
+      "ancestors": [
+        {
+          "tag": "DIV",
+          "rect": {
+            "x": 236,
+            "y": 687.25,
+            "width": 153.0078125,
+            "height": 21.5,
+            "top": 687.25,
+            "right": 389.0078125,
+            "bottom": 708.75,
+            "left": 236
+          },
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "gap": "24px"
+        },
+        {
+          "tag": "DIV",
+          "rect": {
+            "x": 236,
+            "y": 687.25,
+            "width": 233.609375,
+            "height": 21.5,
+            "top": 687.25,
+            "right": 469.609375,
+            "bottom": 708.75,
+            "left": 236
+          },
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "gap": "24px"
+        },
+        {
+          "tag": "DIV",
+          "rect": {
+            "x": 236,
+            "y": 615.25,
+            "width": 636.796875,
+            "height": 93.5,
+            "top": 615.25,
+            "right": 872.796875,
+            "bottom": 708.75,
+            "left": 236
+          },
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "gap": "16px"
+        }
+      ]
+    },
+    {
+      "test": null,
+      "tag": "BUTTON",
+      "role": null,
+      "text": "报错",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        413.0078125,
+        687.25,
+        56.6015625,
+        21.5
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "400",
+        "lineHeight": "0px",
+        "color": "rgb(234, 43, 43)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(234, 43, 43)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": [
+        {
+          "tag": "DIV",
+          "rect": {
+            "x": 413.0078125,
+            "y": 687.25,
+            "width": 56.6015625,
+            "height": 21.5,
+            "top": 687.25,
+            "right": 469.609375,
+            "bottom": 708.75,
+            "left": 413.0078125
+          },
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "gap": "24px"
+        },
+        {
+          "tag": "DIV",
+          "rect": {
+            "x": 236,
+            "y": 687.25,
+            "width": 233.609375,
+            "height": 21.5,
+            "top": 687.25,
+            "right": 469.609375,
+            "bottom": 708.75,
+            "left": 236
+          },
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "gap": "24px"
+        },
+        {
+          "tag": "DIV",
+          "rect": {
+            "x": 236,
+            "y": 615.25,
+            "width": 636.796875,
+            "height": 93.5,
+            "top": 615.25,
+            "right": 872.796875,
+            "bottom": 708.75,
+            "left": 236
+          },
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "gap": "16px"
+        }
+      ]
+    },
+    {
+      "test": "player-next",
+      "tag": "BUTTON",
+      "role": null,
+      "text": "继续",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        909.9921875,
+        637,
+        150,
+        50
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "700",
+        "lineHeight": "20.4px",
+        "color": "rgb(255, 255, 255)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "16px",
+        "borderWidth": "0px 0px 4px",
+        "borderColor": "rgba(0, 0, 0, 0)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": [
+        {
+          "tag": "DIV",
+          "rect": {
+            "x": 909.9921875,
+            "y": 637,
+            "width": 150,
+            "height": 50,
+            "top": 637,
+            "right": 1059.9921875,
+            "bottom": 687,
+            "left": 909.9921875
+          },
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "gap": "normal"
+        },
+        {
+          "tag": "DIV",
+          "rect": {
+            "x": 100,
+            "y": 592,
+            "width": 1000,
+            "height": 140,
+            "top": 592,
+            "right": 1100,
+            "bottom": 732,
+            "left": 100
+          },
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "0px 40px",
+          "gap": "8px 16px"
+        },
+        {
+          "tag": "DIV",
+          "rect": {
+            "x": 0,
+            "y": 592,
+            "width": 1200,
+            "height": 140,
+            "top": 592,
+            "right": 1200,
+            "bottom": 732,
+            "left": 0
+          },
+          "backgroundColor": "rgb(255, 223, 224)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "gap": "normal"
+        }
+      ]
+    },
+    {
+      "test": "drawer-backdrop",
+      "tag": "DIV",
+      "role": null,
+      "text": "",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        0,
+        0,
+        1200,
+        732
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "500",
+        "lineHeight": "20px",
+        "color": "rgb(60, 60, 60)",
+        "backgroundColor": "rgba(0, 0, 0, 0.4)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(60, 60, 60)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": []
+    }
+  ],
+  "screenshot": "wrong-feedback.png"
+}

@@ -1,12 +1,15 @@
 // Submit a model-chosen answer to the actually visible word bank. Persist the
 // acceptance receipt before any transition; continue is a separate operation.
 import {spawnSync} from 'node:child_process';
-import {writeFileSync,mkdirSync} from 'node:fs';
+import {writeFileSync,mkdirSync,existsSync} from 'node:fs';
 import {resolve,dirname} from 'node:path';
 function arg(name){const i=process.argv.indexOf(name);if(i<0)throw Error('Required '+name);return process.argv[i+1];}
 const words=JSON.parse(arg('--words')), output=resolve(arg('--out'));
 if(!Array.isArray(words)||!words.length||!words.every(w=>typeof w==='string'&&w))throw Error('Nonempty word sequence required');
 mkdirSync(dirname(output),{recursive:true});
+const prefix=resolve('artifacts/output/playwright',arg('--screenshot-prefix'));
+for(const path of [output,output+'.raw.txt',...['before','feedback'].map(s=>prefix+'-'+s+'.png')])
+ if(existsSync(path))throw Error('Output already exists; choose fresh receipt and screenshot stems before any action');
 const callback=async page=>{
  const actions=WORDS, prefix=PREFIX;
  await page.waitForFunction(()=>document.querySelectorAll('[data-test~="challenge"]').length===1);
@@ -30,7 +33,7 @@ const callback=async page=>{
  await page.screenshot({path:prefix+'-feedback.png'});
  return {before,text,prompts,choices,images,clicks,feedback,rejected,next_action:'Receipt saved before transition. Inspect acceptance then continue separately; no assumed next question.'};
 };
-const code=callback.toString().replace('WORDS',JSON.stringify(words)).replace('PREFIX',JSON.stringify(arg('--screenshot-prefix')));
+const code=callback.toString().replace('WORDS',JSON.stringify(words)).replace('PREFIX',JSON.stringify(prefix));
 const r=spawnSync(arg('--cli'),['-s='+arg('--session'),'run-code',code],{cwd:resolve('artifacts/output/playwright'),encoding:'utf8',timeout:90000,maxBuffer:4*1024*1024});
 const raw=(r.stdout||'')+(r.stderr||'');writeFileSync(output+'.raw.txt',raw,{flag:'wx'});
 if(r.status!==0||!raw.includes('### Result\n'))throw Error('Submission receipt unavailable; inspect current UI, do not repeat answer blindly');

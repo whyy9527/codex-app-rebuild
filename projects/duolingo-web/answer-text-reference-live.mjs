@@ -5,7 +5,9 @@ import {writeFileSync,mkdirSync,existsSync} from 'node:fs';
 import {resolve,dirname} from 'node:path';
 function arg(name){const i=process.argv.indexOf(name);if(i<0||!process.argv[i+1])throw Error('Required '+name);return process.argv[i+1];}
 const output=resolve(arg('--out'));mkdirSync(dirname(output),{recursive:true});
-if(existsSync(output)||existsSync(output+'.raw.txt'))throw Error('Output already exists; inspect prior receipt before any action');
+const prefix=resolve(arg('--screenshot-prefix'));
+for(const path of [output,output+'.raw.txt',output+'.intent.json',...['before','filled','feedback'].map(s=>prefix+'-'+s+'.png')])
+ if(existsSync(path))throw Error('Output already exists; choose fresh receipt and screenshot stems before any action');
 writeFileSync(output+'.intent.json',JSON.stringify({label:arg('--label'),input:arg('--text'),created_at:new Date().toISOString()})+'\n',{flag:'wx'});
 const callback=async page=>{
  const label=LABEL,value=VALUE,prefix=PREFIX;
@@ -24,7 +26,7 @@ const callback=async page=>{
  await page.screenshot({path:prefix+'-feedback.png'});
  return {before,visible_text,prompts,input_label:label,input:value,feedback,rejected,next_action:'Inspect receipt before a separate Continue action'};
 };
-const code=callback.toString().replace('LABEL',JSON.stringify(arg('--label'))).replace('VALUE',JSON.stringify(arg('--text'))).replace('PREFIX',JSON.stringify(resolve(arg('--screenshot-prefix'))));
+const code=callback.toString().replace('LABEL',JSON.stringify(arg('--label'))).replace('VALUE',JSON.stringify(arg('--text'))).replace('PREFIX',JSON.stringify(prefix));
 const r=spawnSync(arg('--cli'),['-s='+arg('--session'),'run-code',code],{cwd:resolve('artifacts/output/playwright'),encoding:'utf8',timeout:90000,maxBuffer:4*1024*1024});
 const raw=(r.stdout||'')+(r.stderr||'');writeFileSync(output+'.raw.txt',raw,{flag:'wx'});
 if(r.status!==0||!raw.includes('### Result\n'))throw Error('Receipt unavailable; inspect current page without blindly resubmitting');

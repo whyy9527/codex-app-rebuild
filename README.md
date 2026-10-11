@@ -8,6 +8,8 @@
 
 特别任务页已从原版探索并替换英文占位内容，10文案/5几何通过；整图及其独立练习入口仍失败。[任务页、新发现与复跑](projects/duolingo-web/evidence/english-quests-v1/README.md)。
 
+独立 `/practice` 已实际走完口语暂缓、动态插入/替换、错误更正、结算及红心奖励；v28新增88项前端要求，Swift这条流程仍待实现。源证据通过不算候选通过。[实际轨迹、缺口和复跑](projects/duolingo-web/evidence/english-general-practice-v1/README.md)。
+
 共同前端契约已接入真实PNG比较，缺图不可计为通过；发音卡片进一步按浏览器实际字体、字距、卡面和按下反馈修正，整图仍失败。[当前证据与复跑](projects/duolingo-web/evidence/english-pronunciation-typography-v1/README.md)。
 
 前端契约保留旧要求并持续追加源观察；最新口语权限及发音退出分支已接入实际原生验证。反例探测区分全错直接退出与已获得正确进度后的确认，取消保持题目状态。几何、整图和声音仍有失败/未覆盖，正常录音评分与推进未完成。[最新证据、探索反例与复跑](projects/duolingo-web/evidence/english-practice-exit-v1/README.md)，逐批结果由[Roadmap](docs/ROADMAP.md)维护；不累计旧构建回执填当前未执行项。

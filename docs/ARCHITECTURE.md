@@ -207,4 +207,8 @@ Lesson将词库键盘、填空整句偏好分别保存；clearAnswer清答案缓
 
 ### 特别任务页与快照边界
 
-中文Quests路由进入ReferenceHome，ReferenceQuests为中栏、ReferenceQuestMonthly为右栏；状态栏复用，footer使用源链接。HomeProgressSnapshot新增可选questCountdown，compile-quests-page从源DOM及原六课seed生成v11，旧v10不改、课程不改。导航观察与发音共用bindCaptures绑定真实PNG/元数据，不供pass。源/practice独立于主课/发音，现仅观察首题及退出，候选标题失败，未接完整练习；下一批需真实采样再编译。源码/实际原生/全规格与子集结果各自保存，不累计不同轨迹覆盖。[本批真实失败](../projects/duolingo-web/evidence/english-quests-v1/README.md)。
+中文Quests路由进入ReferenceHome，ReferenceQuests为中栏、ReferenceQuestMonthly为右栏；状态栏复用，footer使用源链接。HomeProgressSnapshot新增可选questCountdown，compile-quests-page从源DOM及原六课seed生成v11，旧v10不改、课程不改。导航观察与发音共用bindCaptures绑定真实PNG/元数据，不供pass。此批首次发现独立/practice，首题及退出已观察，候选标题失败。源码/实际原生/全规格与子集结果各自保存，不累计不同轨迹覆盖。[该批真实失败](../projects/duolingo-web/evidence/english-quests-v1/README.md)。
+
+### 独立练习的实际轨迹
+
+capture-reference-session显式选择/lesson或/practice，保留白名单公共内容。reference-challenge-identity在作答前校验完整选项/实际媒体/填空上下文；replay按实际DOM类型识别插入/替换，未支持题型另记coverage。键盘态不被当空词库接受。freeze-general-practice从有反馈的真实回执生成前端规格及按实际顺序排列的trace，不将API预告列表当状态机。原版GLOBAL_PRACTICE已出现口语暂缓插入、挑战题替换、错题复习及红心奖励，需要独立于主课解锁/扣生命；Swift尚未接入。原生驱动将消费同一状态ID和要求，源自校验与旧候选重评估分别报告。[证据、模具和下一实施批次](../projects/duolingo-web/evidence/english-general-practice-v1/README.md)。

@@ -1,0 +1,7 @@
+{
+  "observed_at": "2026-10-11T01:40:29.376Z",
+  "action": "继续",
+  "source_ref": "f145e597",
+  "before": "### Page\n- Page URL: https://www.duolingo.com/practice\n- Page Title: 多邻国 - 学得轻松，学有所成的英语 课程！\n- Console: 17 errors, 0 warnings\n### Snapshot\n```yaml\n- generic [ref=f145e5]:\n  - generic [ref=f145e8]:\n    - button [ref=f145e9] [cursor=pointer]\n    - progressbar [ref=f145e11]\n  - generic [ref=f145e17]: 一起来复习一下之前你不太熟练的部分吧！\n  - button \"继续\" [active] [ref=f145e597] [cursor=pointer]\n```\n### Events\n- New console entries: .playwright-cli/console-2026-10-10T14-04-32-757Z.log#L1010\n",
+  "after": "### Page\n- Page URL: https://www.duolingo.com/practice\n- Page Title: 多邻国 - 学得轻松，学有所成的英语 课程！\n- Console: 17 errors, 0 warnings\n### Snapshot\n```yaml\n- generic [ref=f145e5]:\n  - generic [ref=f145e8]:\n    - button [ref=f145e9] [cursor=pointer]\n    - progressbar [ref=f145e11]\n  - generic [ref=f145e605]:\n    - generic [ref=f145e606]:\n      - generic [ref=f145e607]: 错题重练\n      - heading \"用英语写出这句话\" [level=1] [ref=f145e611]\n    - generic [ref=f145e612]:\n      - generic [ref=f145e622]:\n        - text: 早上好，我想要咖啡加牛奶。\n        - generic \"早上好\" [ref=f145e623]\n        - generic \"我\" [ref=f145e624]\n        - generic \"想要\" [ref=f145e625]\n        - generic \"咖啡\" [ref=f145e626]\n        - generic \"加\" [ref=f145e627]\n        - generic \"牛奶\" [ref=f145e628]\n      - textbox \"使用英语键入\" [active] [ref=f145e634]\n  - generic [ref=f145e66]:\n    - button \"跳过\" [ref=f145e636] [cursor=pointer]\n    - button \"检查\" [disabled] [ref=f145e638]\n```\n"
+}

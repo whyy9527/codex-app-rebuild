@@ -1,8 +1,8 @@
 // Replay a captured public reference session and retain actual UI ordering and interludes.
 // Run after capture-reference-session.mjs on the same owned tab. Resume explicitly by index.
 import {spawnSync} from 'node:child_process';
-import {writeFileSync,mkdirSync} from 'node:fs';
-import {resolve,dirname} from 'node:path';
+import {writeFileSync,mkdirSync,existsSync,readdirSync} from 'node:fs';
+import {resolve,dirname,basename} from 'node:path';
 import {challengeIdentity,uncoveredReplayType} from './reference-challenge-identity.mjs';
 function arg(name,fallback){const i=process.argv.indexOf(name);return i<0?fallback:process.argv[i+1];}
 for(const name of ['--cli','--session','--out'])if(!arg(name))throw Error('Required: --cli PATH --session NAME --out PATH [--start-index N]');
@@ -12,6 +12,11 @@ const labels=uiLanguage==='zh'?{check:'检查',continue:'继续'}:{check:'Check'
 const start=Number(arg('--start-index','0'));
 if(!Number.isInteger(start)||start<0)throw Error('Invalid start index');
 const output=resolve(arg('--out'));mkdirSync(dirname(output),{recursive:true});
+for(const suffix of ['', '.raw.txt'])if(existsSync(output+suffix))throw Error('Replay output already exists; choose a fresh output before any source action');
+const screenshotPrefix=arg('--screenshot-prefix','reference-session');
+const absolutePrefix=resolve('artifacts/output/playwright',screenshotPrefix);
+if(existsSync(dirname(absolutePrefix))&&readdirSync(dirname(absolutePrefix)).some(n=>n.startsWith(basename(absolutePrefix)+'-question-')))
+ throw Error('Replay screenshots already exist; choose a fresh prefix before any source action');
 const callback = async page => {
  const labels=UI_LABELS;
  const identity=CHALLENGE_IDENTITY;
@@ -62,11 +67,30 @@ const callback = async page => {
    const bank=challenge.locator('[data-test="word-bank"]');
    const bankTexts=await bank.getByRole('button').allTextContents();
    const buttons=await challenge.getByRole('button').allTextContents();
-   const visibleChoices=radioTexts.length ? radioTexts.map(t=>t.trim().replace(/^\d\s*|\s*\d$/g,'').trim()) : bankTexts.length ? bankTexts : buttons.filter(t=>t.trim()&&! [labels.check,labels.continue,'跳过','Skip','使用键盘','Use keyboard'].includes(t.trim()));
+   let visibleChoices=c.type==='listenMatch' ? await challenge.locator('[data-test="challenge-tap-token-text"]').allTextContents()
+    : radioTexts.length ? radioTexts.map(t=>t.trim().replace(/^\d\s*|\s*\d$/g,'').trim()) : bankTexts.length ? bankTexts : buttons.filter(t=>t.trim()&&! [labels.check,labels.continue,'跳过','Skip','使用键盘','Use keyboard'].includes(t.trim()));
    const prompts=await challenge.locator('[data-test=hint-token]').evaluateAll(ns=>[...new Set(ns.map(n=>n.parentElement.innerText.trim()).filter(Boolean))]);
    if(!prompts.length && c.type==='select'){const quoted=row.heading.match(/[“「](.+?)[”」]/);if(quoted)prompts.push(quoted[1]);}
    const playedAudio=[];
-   if(c.type==='listenTap'){
+   if(!row.dom_type.split(/\s+/).includes('challenge-'+c.type)){
+    row.identity=identity(c,{type:row.dom_type,text:await challenge.innerText(),choices:visibleChoices,prompts,playedAudio});
+    row.divergence={kind:'type_changed',next_action:'Observe the inserted or replacement challenge before any type-specific interaction.'};
+    throw Error('Reference UI diverged: type_changed');
+   }
+   if(c.type==='listenIsolation'){
+    const radios=challenge.getByRole('radio');
+    if(await radios.count()!==c.options.length)throw Error('Audio option count differs');
+    row.audio_options=[];visibleChoices=[];
+    for(let j=0;j<c.options.length;j++){
+     const start=await page.evaluate(()=>window.__referenceMedia.length);
+     await radios.nth(j).click();
+     await page.waitForFunction(start=>window.__referenceMedia.slice(start).some(m=>m.src.startsWith('https://d1vq87e9lcf771.cloudfront.net/')),start);
+     const urls=await page.evaluate(start=>[...new Set(window.__referenceMedia.slice(start).map(m=>m.src).filter(u=>u.startsWith('https://d1vq87e9lcf771.cloudfront.net/')))],start);
+     const options=c.options.filter(o=>urls.includes(o.tts));if(options.length!==1)throw Error('Audio option identity is not unique');
+     visibleChoices.push(options[0].text);row.audio_options.push({index:j,text:options[0].text,played_audio:urls,rect:await radios.nth(j).boundingBox()});
+    }
+   }
+   if(['listenTap','listen','listenComplete'].includes(c.type)){
     // Observed normal-speaker SVG, independently inspected on the real source.
     const speaker=challenge.getByRole('button').filter({has:page.locator('svg[viewBox="0 0 94 73"]')});
     const playbackStart=await page.evaluate(()=>window.__referenceMedia.length);
@@ -82,7 +106,18 @@ const callback = async page => {
    row.identity=identity(c,{type:row.dom_type,text:await challenge.innerText(),choices:visibleChoices,prompts,playedAudio});
    row.dom_fields=await challenge.locator('[data-test]').evaluateAll(ns=>ns.map(n=>({test:n.getAttribute('data-test'),text:n.textContent})));
    if(!row.identity.matches){row.divergence={kind:row.identity.reasons.includes('type_changed')?'type_changed':'same_type_content_changed',next_action:'Read current prompt and complete choice set; do not reuse captured answer. Record new observed branch before resuming.'};throw new Error('Reference UI diverged: '+row.identity.reasons.join(', '));}
-   if(['select','assist','dialogue'].includes(c.type)){
+   if(['listen','listenComplete'].includes(c.type)){
+    const input=challenge.getByRole('textbox');if(await input.count()!==1||!await input.isEnabled())throw Error('Expected one enabled source text field');
+    const value=c.type==='listen' ? c.prompt : c.displayTokens.filter(t=>t.isBlank).map(t=>t.text).join('');
+    if(!value)throw Error('Missing text solution');
+    row.text_input={value,label:await input.getAttribute('placeholder'),rect:await input.boundingBox()};
+    await input.fill(value);row.actions.push({input:value});
+    await page.getByRole('button',{name:labels.check,exact:true}).click();
+   }else if(c.type==='listenIsolation'){
+    const target=row.audio_options.filter(o=>o.text===c.options[c.correctIndex].text);if(target.length!==1)throw Error('Correct audio option not unique');
+    await challenge.getByRole('radio').nth(target[0].index).click();row.actions.push({select_audio:target[0]});
+    await page.getByRole('button',{name:labels.check,exact:true}).click();
+   }else if(['select','assist','dialogue'].includes(c.type)){
     const choice=c.choices[c.correctIndex],text=typeof choice==='string'?choice:choice.phrase;
     await exactVisible(page.getByRole('radio'),text);row.actions.push({select:text});
     await page.getByRole('button',{name:labels.check,exact:true}).click();
@@ -97,6 +132,22 @@ const callback = async page => {
     for(const choice of c.choices){const button=page.getByRole('button',{name:choice.text,exact:true});await button.waitFor();row.word_bank.push(await button.textContent());}
     for(const text of blanks){await page.getByRole('button',{name:text,exact:true}).click();row.actions.push({word:text});}
     await page.getByRole('button',{name:labels.check,exact:true}).click();
+   }else if(c.type==='listenMatch'){
+    const left=challenge.getByRole('button').filter({hasNot:page.locator('[data-test="challenge-tap-token-text"]')});
+    const right=challenge.getByRole('button').filter({has:page.locator('[data-test="challenge-tap-token-text"]')});
+    if(await left.count()!==c.pairs.length||await right.count()!==c.pairs.length)throw Error('Observed audio columns differ from captured pairs');
+    row.right_text=await right.locator('[data-test="challenge-tap-token-text"]').allTextContents();
+    row.pair_audio_order=[];row.left_rects=[];row.right_rects=[];
+    for(let j=0;j<c.pairs.length;j++){
+     row.left_rects.push(await left.nth(j).boundingBox());row.right_rects.push(await right.nth(j).boundingBox());
+     const start=await page.evaluate(()=>window.__referenceMedia.length);
+     await left.nth(j).click();
+     await page.waitForFunction(start=>window.__referenceMedia.slice(start).some(m=>m.src.startsWith('https://d1vq87e9lcf771.cloudfront.net/')),start);
+     const urls=await page.evaluate(start=>[...new Set(window.__referenceMedia.slice(start).map(m=>m.src).filter(u=>u.startsWith('https://d1vq87e9lcf771.cloudfront.net/')))],start);
+     const matches=c.pairs.filter(p=>urls.includes(p.tts));if(matches.length!==1)throw Error('Actual played audio has no unique pair identity');
+     const target=right.filter({hasText:matches[0].translation});if(await target.count()!==1)throw Error('Actual right target not unique');
+     await target.click();row.pair_audio_order.push({left_index:j,played_audio:urls,translation:matches[0].translation});
+    }
    }else if(c.type==='match'){
 
     row.button_order=await page.getByRole('button').allTextContents();
@@ -113,7 +164,7 @@ const callback = async page => {
  }
  return {session,observed,interludes,failure,final:await page.locator('body').ariaSnapshot(),limitations:['One actual generated lesson instance; media invocations are not acoustic output evidence.']};
 };
-const code=callback.toString().replace('CHALLENGE_IDENTITY',challengeIdentity.toString()).replace('UNCOVERED_TYPE',uncoveredReplayType.toString()).replace('UI_LABELS',JSON.stringify(labels)).replace('START_INDEX',String(start)).replaceAll('SCREENSHOT_PREFIX',JSON.stringify(arg('--screenshot-prefix','reference-session')));
+const code=callback.toString().replace('CHALLENGE_IDENTITY',challengeIdentity.toString()).replace('UNCOVERED_TYPE',uncoveredReplayType.toString()).replace('UI_LABELS',JSON.stringify(labels)).replace('START_INDEX',String(start)).replaceAll('SCREENSHOT_PREFIX',JSON.stringify(screenshotPrefix));
 const result=spawnSync(arg('--cli'),['-s='+arg('--session'),'run-code',code],{cwd:resolve('artifacts/output/playwright'),encoding:'utf8',timeout:300000,maxBuffer:16*1024*1024});
 const raw=(result.stdout||'')+(result.stderr||'');writeFileSync(output+'.raw.txt',raw,{flag:'wx'});
 if(result.status!==0||!raw.includes('### Result\n'))throw Error('Unavailable replay; raw output retained, inspect current tab before resuming');

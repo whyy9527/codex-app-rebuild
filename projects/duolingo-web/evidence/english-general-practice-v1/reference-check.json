@@ -1,0 +1,1498 @@
+{
+  "kind": "frontend_requirements",
+  "contract_digest": "1aa1ef62f5392041b63c57a32b999a9c6466cc8301e966fb4c1f3520e58face9",
+  "observation_digest": "d37fbd55d54898a7b84d8c0b6b45a94bd8efd98f711a7ad0629ce7591d5d2a84",
+  "rows": [
+    {
+      "id": "general-practice-q0-image",
+      "state": "general-practice-q0",
+      "status": "pass",
+      "reference_sha256": "e126d906ce24d088939f7c9f169e79b2266d3504f5c4e63ab04b70cf6d552bb1",
+      "capture_sha256": "e126d906ce24d088939f7c9f169e79b2266d3504f5c4e63ab04b70cf6d552bb1",
+      "mean_absolute_rgb_difference": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "profiles": {
+        "reference": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        },
+        "candidate": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        }
+      },
+      "normalization": "ICC to sRGB; measured titlebar crop and backing-scale downsample; no masks, alignment search or tolerance",
+      "reason": "Actual same-state image pixels only; sound, animation timing and unvisited states remain separate"
+    },
+    {
+      "id": "general-practice-q0-heading",
+      "state": "general-practice-q0",
+      "status": "pass",
+      "expected": "选择配对"
+    },
+    {
+      "id": "general-practice-q0-feedback-image",
+      "state": "general-practice-q0-feedback",
+      "status": "pass",
+      "reference_sha256": "53824a564155218e2c2043d6980e4659f15b1ca60587d21aecc538e928dee258",
+      "capture_sha256": "53824a564155218e2c2043d6980e4659f15b1ca60587d21aecc538e928dee258",
+      "mean_absolute_rgb_difference": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "profiles": {
+        "reference": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        },
+        "candidate": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        }
+      },
+      "normalization": "ICC to sRGB; measured titlebar crop and backing-scale downsample; no masks, alignment search or tolerance",
+      "reason": "Actual same-state image pixels only; sound, animation timing and unvisited states remain separate"
+    },
+    {
+      "id": "general-practice-q0-feedback-heading",
+      "state": "general-practice-q0-feedback",
+      "status": "pass",
+      "expected": "太棒了！"
+    },
+    {
+      "id": "general-practice-q0-pair-left-0",
+      "state": "general-practice-q0",
+      "status": "pass",
+      "expected": [
+        330,
+        247,
+        255,
+        58
+      ],
+      "actual": [
+        330,
+        247,
+        255,
+        58
+      ],
+      "delta_points": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "reason": "Control geometry in content points only; other visual properties remain separate"
+    },
+    {
+      "id": "general-practice-q0-pair-left-1",
+      "state": "general-practice-q0",
+      "status": "pass",
+      "expected": [
+        330,
+        315,
+        255,
+        58
+      ],
+      "actual": [
+        330,
+        315,
+        255,
+        58
+      ],
+      "delta_points": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "reason": "Control geometry in content points only; other visual properties remain separate"
+    },
+    {
+      "id": "general-practice-q0-pair-left-2",
+      "state": "general-practice-q0",
+      "status": "pass",
+      "expected": [
+        330,
+        383,
+        255,
+        58
+      ],
+      "actual": [
+        330,
+        383,
+        255,
+        58
+      ],
+      "delta_points": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "reason": "Control geometry in content points only; other visual properties remain separate"
+    },
+    {
+      "id": "general-practice-q0-pair-left-3",
+      "state": "general-practice-q0",
+      "status": "pass",
+      "expected": [
+        330,
+        451,
+        255,
+        58
+      ],
+      "actual": [
+        330,
+        451,
+        255,
+        58
+      ],
+      "delta_points": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "reason": "Control geometry in content points only; other visual properties remain separate"
+    },
+    {
+      "id": "general-practice-q0-pair-right-2",
+      "state": "general-practice-q0",
+      "status": "pass",
+      "expected": [
+        615,
+        247,
+        255,
+        58
+      ],
+      "actual": [
+        615,
+        247,
+        255,
+        58
+      ],
+      "delta_points": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "reason": "Control geometry in content points only; other visual properties remain separate"
+    },
+    {
+      "id": "general-practice-q0-pair-right-1",
+      "state": "general-practice-q0",
+      "status": "pass",
+      "expected": [
+        615,
+        315,
+        255,
+        58
+      ],
+      "actual": [
+        615,
+        315,
+        255,
+        58
+      ],
+      "delta_points": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "reason": "Control geometry in content points only; other visual properties remain separate"
+    },
+    {
+      "id": "general-practice-q0-pair-right-3",
+      "state": "general-practice-q0",
+      "status": "pass",
+      "expected": [
+        615,
+        383,
+        255,
+        58
+      ],
+      "actual": [
+        615,
+        383,
+        255,
+        58
+      ],
+      "delta_points": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "reason": "Control geometry in content points only; other visual properties remain separate"
+    },
+    {
+      "id": "general-practice-q0-pair-right-0",
+      "state": "general-practice-q0",
+      "status": "pass",
+      "expected": [
+        606.4508056640625,
+        449.05548095703125,
+        272.098388671875,
+        61.8890380859375
+      ],
+      "actual": [
+        606.4508056640625,
+        449.05548095703125,
+        272.098388671875,
+        61.8890380859375
+      ],
+      "delta_points": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reason": "Control geometry in content points only; other visual properties remain separate"
+    },
+    {
+      "id": "general-practice-q1-image",
+      "state": "general-practice-q1",
+      "status": "pass",
+      "reference_sha256": "3fb4d71b92f5ff246300658b7a76787d10a1e0639ae529b2c553330ec81b30b4",
+      "capture_sha256": "3fb4d71b92f5ff246300658b7a76787d10a1e0639ae529b2c553330ec81b30b4",
+      "mean_absolute_rgb_difference": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "profiles": {
+        "reference": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        },
+        "candidate": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        }
+      },
+      "normalization": "ICC to sRGB; measured titlebar crop and backing-scale downsample; no masks, alignment search or tolerance",
+      "reason": "Actual same-state image pixels only; sound, animation timing and unvisited states remain separate"
+    },
+    {
+      "id": "general-practice-q1-heading",
+      "state": "general-practice-q1",
+      "status": "pass",
+      "expected": "选择正确的答案"
+    },
+    {
+      "id": "general-practice-q1-feedback-image",
+      "state": "general-practice-q1-feedback",
+      "status": "pass",
+      "reference_sha256": "7d9383ed28f776cb78a6e00b2e6ab60ee6b6900ddfa61bbf7751d6c693420678",
+      "capture_sha256": "7d9383ed28f776cb78a6e00b2e6ab60ee6b6900ddfa61bbf7751d6c693420678",
+      "mean_absolute_rgb_difference": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "profiles": {
+        "reference": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        },
+        "candidate": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        }
+      },
+      "normalization": "ICC to sRGB; measured titlebar crop and backing-scale downsample; no masks, alignment search or tolerance",
+      "reason": "Actual same-state image pixels only; sound, animation timing and unvisited states remain separate"
+    },
+    {
+      "id": "general-practice-q1-feedback-heading",
+      "state": "general-practice-q1-feedback",
+      "status": "pass",
+      "expected": "棒棒哒！"
+    },
+    {
+      "id": "general-practice-q2-image",
+      "state": "general-practice-q2",
+      "status": "pass",
+      "reference_sha256": "11cb143bfcd6c1618f1ccdbee3a695683184aae45db9bda3a279bd33bd0a0132",
+      "capture_sha256": "11cb143bfcd6c1618f1ccdbee3a695683184aae45db9bda3a279bd33bd0a0132",
+      "mean_absolute_rgb_difference": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "profiles": {
+        "reference": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        },
+        "candidate": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        }
+      },
+      "normalization": "ICC to sRGB; measured titlebar crop and backing-scale downsample; no masks, alignment search or tolerance",
+      "reason": "Actual same-state image pixels only; sound, animation timing and unvisited states remain separate"
+    },
+    {
+      "id": "general-practice-q2-heading",
+      "state": "general-practice-q2",
+      "status": "pass",
+      "expected": "选择配对"
+    },
+    {
+      "id": "general-practice-q2-feedback-image",
+      "state": "general-practice-q2-feedback",
+      "status": "pass",
+      "reference_sha256": "3929b9aaf4da9849885ad76c35622963211e88943bc5027a8102ccf025f332eb",
+      "capture_sha256": "3929b9aaf4da9849885ad76c35622963211e88943bc5027a8102ccf025f332eb",
+      "mean_absolute_rgb_difference": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "profiles": {
+        "reference": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        },
+        "candidate": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        }
+      },
+      "normalization": "ICC to sRGB; measured titlebar crop and backing-scale downsample; no masks, alignment search or tolerance",
+      "reason": "Actual same-state image pixels only; sound, animation timing and unvisited states remain separate"
+    },
+    {
+      "id": "general-practice-q2-feedback-heading",
+      "state": "general-practice-q2-feedback",
+      "status": "pass",
+      "expected": "棒棒哒！"
+    },
+    {
+      "id": "general-practice-q3-image",
+      "state": "general-practice-q3",
+      "status": "pass",
+      "reference_sha256": "8ddc3405f07fd1e96817aa5d7b8df1929e7886b38ea1d389a1ac46c398aebac5",
+      "capture_sha256": "8ddc3405f07fd1e96817aa5d7b8df1929e7886b38ea1d389a1ac46c398aebac5",
+      "mean_absolute_rgb_difference": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "profiles": {
+        "reference": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        },
+        "candidate": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        }
+      },
+      "normalization": "ICC to sRGB; measured titlebar crop and backing-scale downsample; no masks, alignment search or tolerance",
+      "reason": "Actual same-state image pixels only; sound, animation timing and unvisited states remain separate"
+    },
+    {
+      "id": "general-practice-q3-heading",
+      "state": "general-practice-q3",
+      "status": "pass",
+      "expected": "选择正确的答案"
+    },
+    {
+      "id": "general-practice-q3-feedback-image",
+      "state": "general-practice-q3-feedback",
+      "status": "pass",
+      "reference_sha256": "a129c7325afc2d11748ca397329b62c8a087d5bb3cdad284bd2c378adbfebf5a",
+      "capture_sha256": "a129c7325afc2d11748ca397329b62c8a087d5bb3cdad284bd2c378adbfebf5a",
+      "mean_absolute_rgb_difference": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "profiles": {
+        "reference": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        },
+        "candidate": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        }
+      },
+      "normalization": "ICC to sRGB; measured titlebar crop and backing-scale downsample; no masks, alignment search or tolerance",
+      "reason": "Actual same-state image pixels only; sound, animation timing and unvisited states remain separate"
+    },
+    {
+      "id": "general-practice-q3-feedback-heading",
+      "state": "general-practice-q3-feedback",
+      "status": "pass",
+      "expected": "真棒！"
+    },
+    {
+      "id": "general-practice-q4-image",
+      "state": "general-practice-q4",
+      "status": "pass",
+      "reference_sha256": "b699234d04f7359cb80254b9f7709cd1e475bb5bfca9b5cda50165a436b07ff0",
+      "capture_sha256": "b699234d04f7359cb80254b9f7709cd1e475bb5bfca9b5cda50165a436b07ff0",
+      "mean_absolute_rgb_difference": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "profiles": {
+        "reference": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        },
+        "candidate": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        }
+      },
+      "normalization": "ICC to sRGB; measured titlebar crop and backing-scale downsample; no masks, alignment search or tolerance",
+      "reason": "Actual same-state image pixels only; sound, animation timing and unvisited states remain separate"
+    },
+    {
+      "id": "general-practice-q4-heading",
+      "state": "general-practice-q4",
+      "status": "pass",
+      "expected": "用中文（简体）写出这句话"
+    },
+    {
+      "id": "general-practice-q4-feedback-image",
+      "state": "general-practice-q4-feedback",
+      "status": "pass",
+      "reference_sha256": "4f97fc8cb7b88a7773843a02c5e6da792bf90ede3fa349ef8ce055f256df518e",
+      "capture_sha256": "4f97fc8cb7b88a7773843a02c5e6da792bf90ede3fa349ef8ce055f256df518e",
+      "mean_absolute_rgb_difference": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "profiles": {
+        "reference": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        },
+        "candidate": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        }
+      },
+      "normalization": "ICC to sRGB; measured titlebar crop and backing-scale downsample; no masks, alignment search or tolerance",
+      "reason": "Actual same-state image pixels only; sound, animation timing and unvisited states remain separate"
+    },
+    {
+      "id": "general-practice-q4-feedback-heading",
+      "state": "general-practice-q4-feedback",
+      "status": "pass",
+      "expected": "非常好！"
+    },
+    {
+      "id": "general-practice-q5-image",
+      "state": "general-practice-q5",
+      "status": "pass",
+      "reference_sha256": "c93d69c888211870e652e14f3e4d4cbd931c8eab6a24629c6396eac1950af208",
+      "capture_sha256": "c93d69c888211870e652e14f3e4d4cbd931c8eab6a24629c6396eac1950af208",
+      "mean_absolute_rgb_difference": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "profiles": {
+        "reference": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        },
+        "candidate": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        }
+      },
+      "normalization": "ICC to sRGB; measured titlebar crop and backing-scale downsample; no masks, alignment search or tolerance",
+      "reason": "Actual same-state image pixels only; sound, animation timing and unvisited states remain separate"
+    },
+    {
+      "id": "general-practice-q5-heading",
+      "state": "general-practice-q5",
+      "status": "pass",
+      "expected": "选择音频填空"
+    },
+    {
+      "id": "general-practice-q5-feedback-image",
+      "state": "general-practice-q5-feedback",
+      "status": "pass",
+      "reference_sha256": "59d890a02f5049e8b3917c54efb6ad3cd6fbd37b59eeb9c68aaa2b257600f7c4",
+      "capture_sha256": "59d890a02f5049e8b3917c54efb6ad3cd6fbd37b59eeb9c68aaa2b257600f7c4",
+      "mean_absolute_rgb_difference": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "profiles": {
+        "reference": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        },
+        "candidate": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        }
+      },
+      "normalization": "ICC to sRGB; measured titlebar crop and backing-scale downsample; no masks, alignment search or tolerance",
+      "reason": "Actual same-state image pixels only; sound, animation timing and unvisited states remain separate"
+    },
+    {
+      "id": "general-practice-q5-feedback-heading",
+      "state": "general-practice-q5-feedback",
+      "status": "pass",
+      "expected": "正确！"
+    },
+    {
+      "id": "general-practice-q6-image",
+      "state": "general-practice-q6",
+      "status": "pass",
+      "reference_sha256": "8d094634376ea5dece35d3c332cdb5b7556a8f48e0825bffef2e8ffd7be89d87",
+      "capture_sha256": "8d094634376ea5dece35d3c332cdb5b7556a8f48e0825bffef2e8ffd7be89d87",
+      "mean_absolute_rgb_difference": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "profiles": {
+        "reference": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        },
+        "candidate": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        }
+      },
+      "normalization": "ICC to sRGB; measured titlebar crop and backing-scale downsample; no masks, alignment search or tolerance",
+      "reason": "Actual same-state image pixels only; sound, animation timing and unvisited states remain separate"
+    },
+    {
+      "id": "general-practice-q6-heading",
+      "state": "general-practice-q6",
+      "status": "pass",
+      "expected": "选择听到的内容"
+    },
+    {
+      "id": "general-practice-q6-feedback-image",
+      "state": "general-practice-q6-feedback",
+      "status": "pass",
+      "reference_sha256": "1a1e9bb91f3d890a5c565b73b8b4e41e3deff7ef5200a45c80b096218ba468da",
+      "capture_sha256": "1a1e9bb91f3d890a5c565b73b8b4e41e3deff7ef5200a45c80b096218ba468da",
+      "mean_absolute_rgb_difference": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "profiles": {
+        "reference": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        },
+        "candidate": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        }
+      },
+      "normalization": "ICC to sRGB; measured titlebar crop and backing-scale downsample; no masks, alignment search or tolerance",
+      "reason": "Actual same-state image pixels only; sound, animation timing and unvisited states remain separate"
+    },
+    {
+      "id": "general-practice-q6-feedback-heading",
+      "state": "general-practice-q6-feedback",
+      "status": "pass",
+      "expected": "棒棒哒！"
+    },
+    {
+      "id": "general-practice-q8-image",
+      "state": "general-practice-q8",
+      "status": "pass",
+      "reference_sha256": "e43da8262a34c6ac6a919459c7e2aae338c7152dd54315b9df52673d3d83a8f5",
+      "capture_sha256": "e43da8262a34c6ac6a919459c7e2aae338c7152dd54315b9df52673d3d83a8f5",
+      "mean_absolute_rgb_difference": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "profiles": {
+        "reference": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        },
+        "candidate": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        }
+      },
+      "normalization": "ICC to sRGB; measured titlebar crop and backing-scale downsample; no masks, alignment search or tolerance",
+      "reason": "Actual same-state image pixels only; sound, animation timing and unvisited states remain separate"
+    },
+    {
+      "id": "general-practice-q8-heading",
+      "state": "general-practice-q8",
+      "status": "pass",
+      "expected": "选择听到的内容"
+    },
+    {
+      "id": "general-practice-q8-feedback-image",
+      "state": "general-practice-q8-feedback",
+      "status": "pass",
+      "reference_sha256": "78df37f10f161caa96764a3ea0ff84df9efbfc402f747c28b3f1de36c9b21019",
+      "capture_sha256": "78df37f10f161caa96764a3ea0ff84df9efbfc402f747c28b3f1de36c9b21019",
+      "mean_absolute_rgb_difference": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "profiles": {
+        "reference": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        },
+        "candidate": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        }
+      },
+      "normalization": "ICC to sRGB; measured titlebar crop and backing-scale downsample; no masks, alignment search or tolerance",
+      "reason": "Actual same-state image pixels only; sound, animation timing and unvisited states remain separate"
+    },
+    {
+      "id": "general-practice-q8-feedback-heading",
+      "state": "general-practice-q8-feedback",
+      "status": "pass",
+      "expected": "太棒了！"
+    },
+    {
+      "id": "general-practice-q9-image",
+      "state": "general-practice-q9",
+      "status": "pass",
+      "reference_sha256": "a75523e0eba9fad64ec9a2569281961707c12c60eb552ff4b83de82f8346a7f7",
+      "capture_sha256": "a75523e0eba9fad64ec9a2569281961707c12c60eb552ff4b83de82f8346a7f7",
+      "mean_absolute_rgb_difference": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "profiles": {
+        "reference": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        },
+        "candidate": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        }
+      },
+      "normalization": "ICC to sRGB; measured titlebar crop and backing-scale downsample; no masks, alignment search or tolerance",
+      "reason": "Actual same-state image pixels only; sound, animation timing and unvisited states remain separate"
+    },
+    {
+      "id": "general-practice-q9-heading",
+      "state": "general-practice-q9",
+      "status": "pass",
+      "expected": "用英语写出这句话"
+    },
+    {
+      "id": "general-practice-q9-feedback-image",
+      "state": "general-practice-q9-feedback",
+      "status": "pass",
+      "reference_sha256": "cab66fc88186bba0c709b96a74f30391614ef936c2d8d059621233c96650a568",
+      "capture_sha256": "cab66fc88186bba0c709b96a74f30391614ef936c2d8d059621233c96650a568",
+      "mean_absolute_rgb_difference": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "profiles": {
+        "reference": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        },
+        "candidate": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        }
+      },
+      "normalization": "ICC to sRGB; measured titlebar crop and backing-scale downsample; no masks, alignment search or tolerance",
+      "reason": "Actual same-state image pixels only; sound, animation timing and unvisited states remain separate"
+    },
+    {
+      "id": "general-practice-q9-feedback-heading",
+      "state": "general-practice-q9-feedback",
+      "status": "pass",
+      "expected": "泰裤辣！"
+    },
+    {
+      "id": "general-practice-q11-image",
+      "state": "general-practice-q11",
+      "status": "pass",
+      "reference_sha256": "9cff24ff08ab999967a526b372b748c4479aba7194d79a4d5a02f8067a7831e1",
+      "capture_sha256": "9cff24ff08ab999967a526b372b748c4479aba7194d79a4d5a02f8067a7831e1",
+      "mean_absolute_rgb_difference": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "profiles": {
+        "reference": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        },
+        "candidate": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        }
+      },
+      "normalization": "ICC to sRGB; measured titlebar crop and backing-scale downsample; no masks, alignment search or tolerance",
+      "reason": "Actual same-state image pixels only; sound, animation timing and unvisited states remain separate"
+    },
+    {
+      "id": "general-practice-q11-heading",
+      "state": "general-practice-q11",
+      "status": "pass",
+      "expected": "键入你听到的内容"
+    },
+    {
+      "id": "general-practice-q11-feedback-image",
+      "state": "general-practice-q11-feedback",
+      "status": "pass",
+      "reference_sha256": "cce8a021017071ec475c73cbc8d47df727a9605bd3105061fb6d999e7d486765",
+      "capture_sha256": "cce8a021017071ec475c73cbc8d47df727a9605bd3105061fb6d999e7d486765",
+      "mean_absolute_rgb_difference": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "profiles": {
+        "reference": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        },
+        "candidate": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        }
+      },
+      "normalization": "ICC to sRGB; measured titlebar crop and backing-scale downsample; no masks, alignment search or tolerance",
+      "reason": "Actual same-state image pixels only; sound, animation timing and unvisited states remain separate"
+    },
+    {
+      "id": "general-practice-q11-feedback-heading",
+      "state": "general-practice-q11-feedback",
+      "status": "pass",
+      "expected": "真厉害！"
+    },
+    {
+      "id": "general-practice-q12-image",
+      "state": "general-practice-q12",
+      "status": "pass",
+      "reference_sha256": "93bba657081f9a33baa1bfd88533d3a30917432653a35c0971e8384f585518e5",
+      "capture_sha256": "93bba657081f9a33baa1bfd88533d3a30917432653a35c0971e8384f585518e5",
+      "mean_absolute_rgb_difference": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "profiles": {
+        "reference": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        },
+        "candidate": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        }
+      },
+      "normalization": "ICC to sRGB; measured titlebar crop and backing-scale downsample; no masks, alignment search or tolerance",
+      "reason": "Actual same-state image pixels only; sound, animation timing and unvisited states remain separate"
+    },
+    {
+      "id": "general-practice-q12-heading",
+      "state": "general-practice-q12",
+      "status": "pass",
+      "expected": "输入所缺单词"
+    },
+    {
+      "id": "general-practice-q12-feedback-image",
+      "state": "general-practice-q12-feedback",
+      "status": "pass",
+      "reference_sha256": "c268c09a60041b3a33dc03be083b46e9a0ab99e50ba1116e20bce44e670be223",
+      "capture_sha256": "c268c09a60041b3a33dc03be083b46e9a0ab99e50ba1116e20bce44e670be223",
+      "mean_absolute_rgb_difference": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "profiles": {
+        "reference": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        },
+        "candidate": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        }
+      },
+      "normalization": "ICC to sRGB; measured titlebar crop and backing-scale downsample; no masks, alignment search or tolerance",
+      "reason": "Actual same-state image pixels only; sound, animation timing and unvisited states remain separate"
+    },
+    {
+      "id": "general-practice-q12-feedback-heading",
+      "state": "general-practice-q12-feedback",
+      "status": "pass",
+      "expected": "不错哦！"
+    },
+    {
+      "id": "general-practice-inserted-image",
+      "state": "general-practice-inserted",
+      "status": "pass",
+      "reference_sha256": "2061ec2c2c7487fd77ccea4ee7a049ef406172f7f5d2d2d188375c758f4c2152",
+      "capture_sha256": "2061ec2c2c7487fd77ccea4ee7a049ef406172f7f5d2d2d188375c758f4c2152",
+      "mean_absolute_rgb_difference": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "profiles": {
+        "reference": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        },
+        "candidate": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        }
+      },
+      "normalization": "ICC to sRGB; measured titlebar crop and backing-scale downsample; no masks, alignment search or tolerance",
+      "reason": "Actual same-state image pixels only; sound, animation timing and unvisited states remain separate"
+    },
+    {
+      "id": "general-practice-inserted-heading",
+      "state": "general-practice-inserted",
+      "status": "pass",
+      "expected": "用中文（简体）写出这句话"
+    },
+    {
+      "id": "general-practice-inserted-feedback-image",
+      "state": "general-practice-inserted-feedback",
+      "status": "pass",
+      "reference_sha256": "91f79d53b9f1bbbded67e192ca2372fef3ac64a20959891dc27c98692c7899ad",
+      "capture_sha256": "91f79d53b9f1bbbded67e192ca2372fef3ac64a20959891dc27c98692c7899ad",
+      "mean_absolute_rgb_difference": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "profiles": {
+        "reference": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        },
+        "candidate": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        }
+      },
+      "normalization": "ICC to sRGB; measured titlebar crop and backing-scale downsample; no masks, alignment search or tolerance",
+      "reason": "Actual same-state image pixels only; sound, animation timing and unvisited states remain separate"
+    },
+    {
+      "id": "general-practice-inserted-feedback-heading",
+      "state": "general-practice-inserted-feedback",
+      "status": "pass",
+      "expected": "你太棒了！"
+    },
+    {
+      "id": "general-practice-q10-image",
+      "state": "general-practice-q10",
+      "status": "pass",
+      "reference_sha256": "220a662e45be192bd466b0b3d6d12d663c317c4abd3c8b96cdaa84dafc5dbb97",
+      "capture_sha256": "220a662e45be192bd466b0b3d6d12d663c317c4abd3c8b96cdaa84dafc5dbb97",
+      "mean_absolute_rgb_difference": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "profiles": {
+        "reference": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        },
+        "candidate": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        }
+      },
+      "normalization": "ICC to sRGB; measured titlebar crop and backing-scale downsample; no masks, alignment search or tolerance",
+      "reason": "Actual same-state image pixels only; sound, animation timing and unvisited states remain separate"
+    },
+    {
+      "id": "general-practice-q10-heading",
+      "state": "general-practice-q10",
+      "status": "pass",
+      "expected": "输入所缺单词"
+    },
+    {
+      "id": "general-practice-q10-feedback-image",
+      "state": "general-practice-q10-feedback",
+      "status": "pass",
+      "reference_sha256": "a288f7ab64743deb3b548ccdddba03f82c38889442888f85ccb7c4f2bf25904c",
+      "capture_sha256": "a288f7ab64743deb3b548ccdddba03f82c38889442888f85ccb7c4f2bf25904c",
+      "mean_absolute_rgb_difference": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "profiles": {
+        "reference": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        },
+        "candidate": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        }
+      },
+      "normalization": "ICC to sRGB; measured titlebar crop and backing-scale downsample; no masks, alignment search or tolerance",
+      "reason": "Actual same-state image pixels only; sound, animation timing and unvisited states remain separate"
+    },
+    {
+      "id": "general-practice-q10-feedback-heading",
+      "state": "general-practice-q10-feedback",
+      "status": "pass",
+      "expected": "泰裤辣！"
+    },
+    {
+      "id": "general-practice-replacement13-image",
+      "state": "general-practice-replacement13",
+      "status": "pass",
+      "reference_sha256": "80dac1787ebbad96885168d80f90db88c844faa92527a14ea1da57e3222ad868",
+      "capture_sha256": "80dac1787ebbad96885168d80f90db88c844faa92527a14ea1da57e3222ad868",
+      "mean_absolute_rgb_difference": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "profiles": {
+        "reference": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        },
+        "candidate": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        }
+      },
+      "normalization": "ICC to sRGB; measured titlebar crop and backing-scale downsample; no masks, alignment search or tolerance",
+      "reason": "Actual same-state image pixels only; sound, animation timing and unvisited states remain separate"
+    },
+    {
+      "id": "general-practice-replacement13-heading",
+      "state": "general-practice-replacement13",
+      "status": "pass",
+      "expected": "用英语写出这句话"
+    },
+    {
+      "id": "general-practice-replacement13-feedback-image",
+      "state": "general-practice-replacement13-feedback",
+      "status": "pass",
+      "reference_sha256": "d763e7cf924f65b7f5186b1938fba8cb5a0383fb191f498418415171c46f9909",
+      "capture_sha256": "d763e7cf924f65b7f5186b1938fba8cb5a0383fb191f498418415171c46f9909",
+      "mean_absolute_rgb_difference": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "profiles": {
+        "reference": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        },
+        "candidate": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        }
+      },
+      "normalization": "ICC to sRGB; measured titlebar crop and backing-scale downsample; no masks, alignment search or tolerance",
+      "reason": "Actual same-state image pixels only; sound, animation timing and unvisited states remain separate"
+    },
+    {
+      "id": "general-practice-replacement13-feedback-heading",
+      "state": "general-practice-replacement13-feedback",
+      "status": "pass",
+      "expected": "正确！"
+    },
+    {
+      "id": "general-practice-replacement14-image",
+      "state": "general-practice-replacement14",
+      "status": "pass",
+      "reference_sha256": "363f54c8b7baf36f702a39bf2b1011b3f8fe351afd05dee8e258e165e1fc1401",
+      "capture_sha256": "363f54c8b7baf36f702a39bf2b1011b3f8fe351afd05dee8e258e165e1fc1401",
+      "mean_absolute_rgb_difference": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "profiles": {
+        "reference": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        },
+        "candidate": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        }
+      },
+      "normalization": "ICC to sRGB; measured titlebar crop and backing-scale downsample; no masks, alignment search or tolerance",
+      "reason": "Actual same-state image pixels only; sound, animation timing and unvisited states remain separate"
+    },
+    {
+      "id": "general-practice-replacement14-heading",
+      "state": "general-practice-replacement14",
+      "status": "pass",
+      "expected": "用英语写出这句话"
+    },
+    {
+      "id": "general-practice-replacement14-feedback-image",
+      "state": "general-practice-replacement14-feedback",
+      "status": "pass",
+      "reference_sha256": "8e305c3a9772f96518276bdcd3455e022eb4814caaf0b85829e760bb741d2d82",
+      "capture_sha256": "8e305c3a9772f96518276bdcd3455e022eb4814caaf0b85829e760bb741d2d82",
+      "mean_absolute_rgb_difference": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "profiles": {
+        "reference": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        },
+        "candidate": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        }
+      },
+      "normalization": "ICC to sRGB; measured titlebar crop and backing-scale downsample; no masks, alignment search or tolerance",
+      "reason": "Actual same-state image pixels only; sound, animation timing and unvisited states remain separate"
+    },
+    {
+      "id": "general-practice-replacement14-feedback-heading",
+      "state": "general-practice-replacement14-feedback",
+      "status": "pass",
+      "expected": "其他正确答案："
+    },
+    {
+      "id": "general-practice-replacement15-image",
+      "state": "general-practice-replacement15",
+      "status": "pass",
+      "reference_sha256": "3a43fe0f9dda1b30c2aa453fd89ab5b8e830ba21054b15666ffa1fbb14862dd8",
+      "capture_sha256": "3a43fe0f9dda1b30c2aa453fd89ab5b8e830ba21054b15666ffa1fbb14862dd8",
+      "mean_absolute_rgb_difference": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "profiles": {
+        "reference": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        },
+        "candidate": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        }
+      },
+      "normalization": "ICC to sRGB; measured titlebar crop and backing-scale downsample; no masks, alignment search or tolerance",
+      "reason": "Actual same-state image pixels only; sound, animation timing and unvisited states remain separate"
+    },
+    {
+      "id": "general-practice-replacement15-heading",
+      "state": "general-practice-replacement15",
+      "status": "pass",
+      "expected": "用英语写出这句话"
+    },
+    {
+      "id": "general-practice-replacement15-feedback-image",
+      "state": "general-practice-replacement15-feedback",
+      "status": "pass",
+      "reference_sha256": "b27ef90248e93b58b462d0c186a5df0ef8650deccdd46ea3688b0e7947715caf",
+      "capture_sha256": "b27ef90248e93b58b462d0c186a5df0ef8650deccdd46ea3688b0e7947715caf",
+      "mean_absolute_rgb_difference": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "profiles": {
+        "reference": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        },
+        "candidate": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        }
+      },
+      "normalization": "ICC to sRGB; measured titlebar crop and backing-scale downsample; no masks, alignment search or tolerance",
+      "reason": "Actual same-state image pixels only; sound, animation timing and unvisited states remain separate"
+    },
+    {
+      "id": "general-practice-replacement15-feedback-heading",
+      "state": "general-practice-replacement15-feedback",
+      "status": "pass",
+      "expected": "正确答案："
+    },
+    {
+      "id": "general-practice-review-image",
+      "state": "general-practice-review",
+      "status": "pass",
+      "reference_sha256": "59ac34c78e0ab8145dc23c48c937951690d7d1dad20e2626d9f3c1c0654ecaad",
+      "capture_sha256": "59ac34c78e0ab8145dc23c48c937951690d7d1dad20e2626d9f3c1c0654ecaad",
+      "mean_absolute_rgb_difference": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "profiles": {
+        "reference": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        },
+        "candidate": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        }
+      },
+      "normalization": "ICC to sRGB; measured titlebar crop and backing-scale downsample; no masks, alignment search or tolerance",
+      "reason": "Actual same-state image pixels only; sound, animation timing and unvisited states remain separate"
+    },
+    {
+      "id": "general-practice-review-heading",
+      "state": "general-practice-review",
+      "status": "pass",
+      "expected": "用英语写出这句话"
+    },
+    {
+      "id": "general-practice-review-feedback-image",
+      "state": "general-practice-review-feedback",
+      "status": "pass",
+      "reference_sha256": "28e2608b2c80d720fd1427c4b94a2cc32537b766b0c22a6fd1a058aad72a00b2",
+      "capture_sha256": "28e2608b2c80d720fd1427c4b94a2cc32537b766b0c22a6fd1a058aad72a00b2",
+      "mean_absolute_rgb_difference": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "profiles": {
+        "reference": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        },
+        "candidate": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        }
+      },
+      "normalization": "ICC to sRGB; measured titlebar crop and backing-scale downsample; no masks, alignment search or tolerance",
+      "reason": "Actual same-state image pixels only; sound, animation timing and unvisited states remain separate"
+    },
+    {
+      "id": "general-practice-review-feedback-heading",
+      "state": "general-practice-review-feedback",
+      "status": "pass",
+      "expected": "真棒！"
+    },
+    {
+      "id": "general-practice-keyboard-image",
+      "state": "general-practice-keyboard",
+      "status": "pass",
+      "reference_sha256": "daf06e7d2a5cf1f20c4123e4cbeae5e1e19f9185d808ba89c640f20e7e18ac14",
+      "capture_sha256": "daf06e7d2a5cf1f20c4123e4cbeae5e1e19f9185d808ba89c640f20e7e18ac14",
+      "mean_absolute_rgb_difference": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "profiles": {
+        "reference": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        },
+        "candidate": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        }
+      },
+      "normalization": "ICC to sRGB; measured titlebar crop and backing-scale downsample; no masks, alignment search or tolerance",
+      "reason": "Actual same-state image pixels only; sound, animation timing and unvisited states remain separate"
+    },
+    {
+      "id": "general-practice-keyboard-input",
+      "state": "general-practice-keyboard",
+      "status": "pass",
+      "expected": [
+        300,
+        355,
+        600,
+        170
+      ],
+      "actual": [
+        300,
+        355,
+        600,
+        170
+      ],
+      "delta_points": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "reason": "Control geometry in content points only; other visual properties remain separate"
+    },
+    {
+      "id": "general-practice-speech-image",
+      "state": "general-practice-speech",
+      "status": "pass",
+      "reference_sha256": "ad17806971a9949e20f5506c145139f1d12efa2f52e61cf405e1cf050bdbd30f",
+      "capture_sha256": "ad17806971a9949e20f5506c145139f1d12efa2f52e61cf405e1cf050bdbd30f",
+      "mean_absolute_rgb_difference": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "profiles": {
+        "reference": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        },
+        "candidate": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        }
+      },
+      "normalization": "ICC to sRGB; measured titlebar crop and backing-scale downsample; no masks, alignment search or tolerance",
+      "reason": "Actual same-state image pixels only; sound, animation timing and unvisited states remain separate"
+    },
+    {
+      "id": "general-practice-review-intro-image",
+      "state": "general-practice-review-intro",
+      "status": "pass",
+      "reference_sha256": "2e76e2f715b07a23dc4588eaccb802bcd8c08c17b14e3d7a5b925fc2f869b5d7",
+      "capture_sha256": "2e76e2f715b07a23dc4588eaccb802bcd8c08c17b14e3d7a5b925fc2f869b5d7",
+      "mean_absolute_rgb_difference": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "profiles": {
+        "reference": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        },
+        "candidate": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        }
+      },
+      "normalization": "ICC to sRGB; measured titlebar crop and backing-scale downsample; no masks, alignment search or tolerance",
+      "reason": "Actual same-state image pixels only; sound, animation timing and unvisited states remain separate"
+    },
+    {
+      "id": "general-practice-result-image",
+      "state": "general-practice-result",
+      "status": "pass",
+      "reference_sha256": "ae93bad4fda0fb0c1a8d6cfbd581f2a915699823cb82890d18b600c0f81633fb",
+      "capture_sha256": "ae93bad4fda0fb0c1a8d6cfbd581f2a915699823cb82890d18b600c0f81633fb",
+      "mean_absolute_rgb_difference": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "profiles": {
+        "reference": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        },
+        "candidate": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        }
+      },
+      "normalization": "ICC to sRGB; measured titlebar crop and backing-scale downsample; no masks, alignment search or tolerance",
+      "reason": "Actual same-state image pixels only; sound, animation timing and unvisited states remain separate"
+    },
+    {
+      "id": "general-practice-heart-reward-image",
+      "state": "general-practice-heart-reward",
+      "status": "pass",
+      "reference_sha256": "3ce78d0cb2cc69cdc97f5430d78f3273d9f3837a477a1f08178528f36b51e8fc",
+      "capture_sha256": "3ce78d0cb2cc69cdc97f5430d78f3273d9f3837a477a1f08178528f36b51e8fc",
+      "mean_absolute_rgb_difference": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "profiles": {
+        "reference": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        },
+        "candidate": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        }
+      },
+      "normalization": "ICC to sRGB; measured titlebar crop and backing-scale downsample; no masks, alignment search or tolerance",
+      "reason": "Actual same-state image pixels only; sound, animation timing and unvisited states remain separate"
+    },
+    {
+      "id": "general-practice-profile-image",
+      "state": "general-practice-profile",
+      "status": "pass",
+      "reference_sha256": "8aa61e3165da58e879176b688429bdc22a16f0b35d92173ec2ec3f9f5f2a7a59",
+      "capture_sha256": "8aa61e3165da58e879176b688429bdc22a16f0b35d92173ec2ec3f9f5f2a7a59",
+      "mean_absolute_rgb_difference": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "profiles": {
+        "reference": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        },
+        "candidate": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        }
+      },
+      "normalization": "ICC to sRGB; measured titlebar crop and backing-scale downsample; no masks, alignment search or tolerance",
+      "reason": "Actual same-state image pixels only; sound, animation timing and unvisited states remain separate"
+    },
+    {
+      "id": "general-practice-speech-copy",
+      "state": "general-practice-speech",
+      "status": "pass",
+      "expected": "现在不做口语题"
+    },
+    {
+      "id": "general-practice-review-intro-copy",
+      "state": "general-practice-review-intro",
+      "status": "pass",
+      "expected": "一起来复习一下之前你不太熟练的部分吧！"
+    },
+    {
+      "id": "general-practice-heart-reward-copy",
+      "state": "general-practice-heart-reward",
+      "status": "pass",
+      "expected": "你又获取了一颗红心！ 学习新单元需要红心！"
+    },
+    {
+      "id": "general-practice-result-copy",
+      "state": "general-practice-result",
+      "status": "pass",
+      "expected": "重新练习"
+    },
+    {
+      "id": "general-practice-profile-copy",
+      "state": "general-practice-profile",
+      "status": "pass",
+      "expected": "稍后再说"
+    }
+  ],
+  "status": "pass"
+}

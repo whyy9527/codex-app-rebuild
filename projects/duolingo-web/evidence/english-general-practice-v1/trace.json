@@ -1,0 +1,337 @@
+{
+  "route": "/practice",
+  "session_type": "GLOBAL_PRACTICE",
+  "accepted_receipts": 16,
+  "rejected_receipts": 1,
+  "receipts": [
+    {
+      "id": "general-practice-q0",
+      "api_index": 0,
+      "source_type": "listenMatch",
+      "actions": [
+        {
+          "pair": {
+            "left_index": 0,
+            "played_audio": [
+              "https://d1vq87e9lcf771.cloudfront.net/miranda/68544a04ae4502ac014342338234ebd4"
+            ],
+            "translation": "你好"
+          }
+        },
+        {
+          "pair": {
+            "left_index": 1,
+            "played_audio": [
+              "https://d1vq87e9lcf771.cloudfront.net/miranda/5a642b17f3d75eebbfcdb07b26327b6c"
+            ],
+            "translation": "茶"
+          }
+        },
+        {
+          "pair": {
+            "left_index": 2,
+            "played_audio": [
+              "https://d1vq87e9lcf771.cloudfront.net/harrison/fd03b8555cf102bc752a090bf64a6f81"
+            ],
+            "translation": "热"
+          }
+        },
+        {
+          "pair": {
+            "left_index": 3,
+            "played_audio": [
+              "https://d1vq87e9lcf771.cloudfront.net/miranda/470bd900f86e50354c7ae7659ef96ab8"
+            ],
+            "translation": "欢迎"
+          }
+        }
+      ],
+      "receipt": "replay.json",
+      "accepted": true
+    },
+    {
+      "id": "general-practice-q1",
+      "api_index": 1,
+      "source_type": "assist",
+      "actions": [
+        {
+          "select": "hot"
+        }
+      ],
+      "receipt": "replay.json",
+      "accepted": true
+    },
+    {
+      "id": "general-practice-q2",
+      "api_index": 2,
+      "source_type": "listenMatch",
+      "actions": [
+        {
+          "pair": {
+            "left_index": 0,
+            "played_audio": [
+              "https://d1vq87e9lcf771.cloudfront.net/miranda/5c4b35c4e7a5d8b8d32fb1e9d1fff6d3"
+            ],
+            "translation": "咖啡"
+          }
+        },
+        {
+          "pair": {
+            "left_index": 1,
+            "played_audio": [
+              "https://d1vq87e9lcf771.cloudfront.net/miranda/1e98d4a348c99786b74fd6e5feb43148"
+            ],
+            "translation": "热"
+          }
+        },
+        {
+          "pair": {
+            "left_index": 2,
+            "played_audio": [
+              "https://d1vq87e9lcf771.cloudfront.net/miranda/5a642b17f3d75eebbfcdb07b26327b6c"
+            ],
+            "translation": "茶"
+          }
+        },
+        {
+          "pair": {
+            "left_index": 3,
+            "played_audio": [
+              "https://d1vq87e9lcf771.cloudfront.net/miranda/470bd900f86e50354c7ae7659ef96ab8"
+            ],
+            "translation": "欢迎"
+          }
+        }
+      ],
+      "receipt": "replay.json",
+      "accepted": true
+    },
+    {
+      "id": "general-practice-q3",
+      "api_index": 3,
+      "source_type": "assist",
+      "actions": [
+        {
+          "select": "hello"
+        }
+      ],
+      "receipt": "replay.json",
+      "accepted": true
+    },
+    {
+      "id": "general-practice-q4",
+      "api_index": 4,
+      "source_type": "translate",
+      "actions": [
+        {
+          "word": "谢谢",
+          "occurrence": 0
+        }
+      ],
+      "receipt": "replay.json",
+      "accepted": true
+    },
+    {
+      "id": "general-practice-q5",
+      "api_index": 5,
+      "source_type": "listenIsolation",
+      "actions": [
+        {
+          "select_audio": {
+            "index": 1,
+            "text": "ice",
+            "played_audio": [
+              "https://d1vq87e9lcf771.cloudfront.net/eddyen/1517c4ee7ea6c3bf8cb4d4218e906c78"
+            ],
+            "rect": {
+              "x": 300,
+              "y": 476.5,
+              "width": 600,
+              "height": 62
+            }
+          }
+        }
+      ],
+      "receipt": "replay-from-5.json",
+      "accepted": true
+    },
+    {
+      "id": "general-practice-q6",
+      "api_index": 6,
+      "source_type": "listenTap",
+      "actions": [
+        {
+          "word": "Hello",
+          "occurrence": 0
+        },
+        {
+          "word": "good",
+          "occurrence": 0
+        },
+        {
+          "word": "morning",
+          "occurrence": 0
+        }
+      ],
+      "receipt": "replay-from-6.json",
+      "accepted": true
+    },
+    {
+      "id": "general-practice-inserted",
+      "receipt": "inserted-answer.json",
+      "accepted": true,
+      "input": null,
+      "clicks": [
+        {
+          "word": "茶",
+          "occurrence": 0
+        },
+        {
+          "word": "谢谢",
+          "occurrence": 0
+        }
+      ],
+      "prompts": [
+        "Tea, please."
+      ]
+    },
+    {
+      "id": "general-practice-q8",
+      "api_index": 8,
+      "source_type": "listenTap",
+      "actions": [
+        {
+          "word": "Hot",
+          "occurrence": 0
+        },
+        {
+          "word": "tea",
+          "occurrence": 0
+        },
+        {
+          "word": "or",
+          "occurrence": 0
+        },
+        {
+          "word": "coffee",
+          "occurrence": 0
+        }
+      ],
+      "receipt": "replay-from-8-after-inserted.json",
+      "accepted": true
+    },
+    {
+      "id": "general-practice-q9",
+      "api_index": 9,
+      "source_type": "translate",
+      "actions": [
+        {
+          "word": "I'd",
+          "occurrence": 0
+        },
+        {
+          "word": "like",
+          "occurrence": 0
+        },
+        {
+          "word": "water",
+          "occurrence": 0
+        },
+        {
+          "word": "and",
+          "occurrence": 0
+        },
+        {
+          "word": "coffee",
+          "occurrence": 0
+        },
+        {
+          "word": "please",
+          "occurrence": 0
+        }
+      ],
+      "receipt": "replay-from-8-after-inserted.json",
+      "accepted": true
+    },
+    {
+      "id": "general-practice-q10",
+      "receipt": "complete-answer.json",
+      "accepted": true,
+      "input": "Tea",
+      "clicks": null,
+      "prompts": []
+    },
+    {
+      "id": "general-practice-q11",
+      "api_index": 11,
+      "source_type": "listen",
+      "actions": [
+        {
+          "input": "Coffee or tea?"
+        }
+      ],
+      "receipt": "replay-from-11.json",
+      "accepted": true
+    },
+    {
+      "id": "general-practice-q12",
+      "api_index": 12,
+      "source_type": "listenComplete",
+      "actions": [
+        {
+          "input": "and"
+        }
+      ],
+      "receipt": "replay-from-11.json",
+      "accepted": true
+    },
+    {
+      "id": "general-practice-replacement13",
+      "receipt": "replacement-answer.json",
+      "accepted": true,
+      "input": "I'd like coffee with ice, please.",
+      "clicks": null,
+      "prompts": [
+        "我想要咖啡加冰，谢谢。"
+      ]
+    },
+    {
+      "id": "general-practice-replacement14",
+      "receipt": "replacement14-answer.json",
+      "accepted": true,
+      "input": "No ice, no water, please.",
+      "clicks": null,
+      "prompts": [
+        "不要冰，不要水，谢谢。"
+      ]
+    },
+    {
+      "id": "general-practice-replacement15",
+      "receipt": "replacement15-wrong.json",
+      "accepted": false,
+      "input": "water",
+      "clicks": null,
+      "prompts": [
+        "早上好，我想要咖啡加牛奶。"
+      ]
+    },
+    {
+      "id": "general-practice-review",
+      "receipt": "review-answer.json",
+      "accepted": true,
+      "input": "Good morning, I'd like coffee with milk.",
+      "clicks": null,
+      "prompts": [
+        "早上好，我想要咖啡加牛奶。"
+      ]
+    }
+  ],
+  "ordering": "Actual executed graded trajectory; speech-decline occurs between q6 and inserted. Challenge interlude precedes replacement13; review interlude precedes review.",
+  "speech_decline_receipt": "speech-decline.json",
+  "limitations": [
+    "One actual session, not the adaptive selection algorithm.",
+    "Media play invocations do not prove acoustic output.",
+    "complete-before.png and replacement-before.png were overwritten by later pre-answer captures of the same respective states; earlier DOM-to-frame timing unavailable. Original JSON retained; replay q10 frame retained separately.",
+    "Original name and last API translations were replaced; their UI remains unobserved."
+  ]
+}
