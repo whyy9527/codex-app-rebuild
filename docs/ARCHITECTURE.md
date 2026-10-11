@@ -1,5 +1,7 @@
 # 架构
 
+主页模具增加真实action inventory与journey：`capture-visible-state.mjs`采可见链接/按钮/输入和后续hit-test；`capture-home-journey.mjs`消费事前策略选择，采目标与真实返回；`coverage.py`把库存、前端契约与独立结果连接，未映射动作保留unmodeled。`LearningView`拥有最外层原生路由，组件存在不表示路由接入；本批实际Shop失败暴露并修复该消费者缺口。独立练习bundle v4只追加已观察的错误配对原音；`capture-source-pairing-audio.mjs`同步录音READY和实际源动作。来源、未覆盖与输出限制见[证据](../projects/duolingo-web/evidence/english-home-journey-v1/README.md)。
+
 共同时间场景`home-clock-scenario-v1.json`保存原版DOM文案变化时刻，v14快照保存源排行榜期限，LearningCore计算文案；SwiftUI按秒刷新，原生驱动仅在显式场景里传入参考时刻。`capture-home-clock.mjs`在独立源上下文使用持续前进的Date偏移，保留真实RAF/timer。暂停/固定时钟曾无法加载原版，失败仍存；文案时刻不等于动效相位，v48整图继续严格失败。[实际证据](../projects/duolingo-web/evidence/english-home-clock-v1/README.md)。
 
 英语v6新增`DeferredSpeech`非评分状态与课末`reviewInterlude`，均由实际源轨迹编译；口语暂缓不能借用正确答案反馈推进。`compile-english-fifth.py`拥有第五轨迹及资源清单，`freeze-english-fifth.py`将源需求追加到共享前端v10；原生驱动实际操作五课、错误、重练与结算，同一观察分别计算全集与第五课子集，不能累计回执。录音识别和其他未实现分支继续明确记录。当前运行证据见[第五课原生验证](../projects/duolingo-web/evidence/english-fifth-native-v1/README.md)。

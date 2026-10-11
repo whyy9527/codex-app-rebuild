@@ -23,7 +23,7 @@ struct LearningView: View {
                         }
                     }
                     else { lessonPage(lesson) }
-                } else if ["Learn", "Settings", "Guidebook", "Pronunciation"].contains(model.destination)
+                } else if ["Learn", "Settings", "Guidebook", "Pronunciation", "Shop", "Forgot password"].contains(model.destination)
                     || (model.destination == "Quests" && model.course.interfaceLanguage == "zh") {
                     ReferenceHome(model: model)
                 } else {

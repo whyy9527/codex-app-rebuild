@@ -1,0 +1,5147 @@
+{
+  "observed_at": "2026-10-11T09:46:23.470Z",
+  "path": "/learn",
+  "viewport": null,
+  "snapshot": "- link:\n  - /url: /learn\n  - img\n- link \"学习\":\n  - /url: /learn\n  - img\n  - text: 学习\n- link \"发音\":\n  - /url: /characters\n  - img\n  - text: 发音\n- link \"排行榜\":\n  - /url: /leaderboard\n  - img\n  - text: 排行榜\n- link \"特别任务\":\n  - /url: /quests\n  - img\n  - text: 特别任务\n- link \"宝石小店\":\n  - /url: /shop\n  - img\n  - text: 宝石小店\n- link \"个人档案\":\n  - /url: /learn?sign-up\n  - img\n  - text: 个人档案\n- button \"更多\":\n  - img\n  - text: 更多\n- img\n- button \"5\":\n  - img\n  - text: \"5\"\n- button \"2\":\n  - img\n  - text: \"2\"\n- button \"525\":\n  - img\n  - text: \"525\"\n- button \"5\":\n  - img\n  - text: \"5\"\n- heading \"青铜等级\" [level=2]\n- link \"查看排行榜\":\n  - /url: /leaderboard\n- img\n- paragraph: 这周的排行榜挑战赛即将开始！\n- text: 13 分钟\n- heading \"每日特别任务\" [level=2]\n- link \"显示全部\":\n  - /url: /quests\n- img\n- text: 获取 30 经验\n- progressbar: 30 / 30 30 / 30\n- img\n- heading \"创建个人档案，保存学习进度！\" [level=2]\n- button \"创建档案\"\n- button \"登录\"\n- list:\n  - listitem:\n    - link \"关于我们\":\n      - /url: https://about.duolingo.com\n  - listitem:\n    - link \"宝石小店\":\n      - /url: https://store.duolingo.com/\n  - listitem:\n    - link \"有效性\":\n      - /url: /efficacy\n  - listitem:\n    - link \"招聘贤才\":\n      - /url: https://careers.duolingo.com\n  - listitem:\n    - link \"投资者\":\n      - /url: https://investors.duolingo.com\n  - listitem:\n    - link \"条款\":\n      - /url: /terms\n  - listitem:\n    - link \"隐私\":\n      - /url: /privacy\n- link \"第 1 阶段，第 1 部分\":\n  - /url: /sections\n  - img\n  - heading \"第 1 阶段，第 1 部分\" [level=1]\n- text: 提供或接受饮料\n- link \"打开这个部分的指南\":\n  - /url: /guidebook/en/1\n  - img \"指南\"\n  - text: 指南\n- img\n- button \"Lesson\":\n  - button \"Lesson\":\n    - img\n- button \"Lesson\":\n  - button \"Lesson\":\n    - img\n- button \"宝箱\" [disabled]:\n  - img\n- button \"Practice\":\n  - img\n  - button \"Practice\"\n- button \"复习该部分\":\n  - button \"复习该部分\"\n- separator\n- heading \"谈论祖籍国家\" [level=2]\n- separator\n- link \"跳到第 2 部分\":\n  - /url: /lesson/unit/2/test\n- button \"Lesson\":\n  - button \"Lesson\"\n- button \"宝箱\" [disabled]:\n  - img\n- button \"Practice\":\n  - button \"Practice\"\n- button \"复习该部分\":\n  - button \"复习该部分\"\n- separator\n- heading \"介绍家庭成员\" [level=2]\n- separator\n- link \"跳到第 3 部分\":\n  - /url: /lesson/unit/3/test\n- button \"Lesson\":\n  - button \"Lesson\"\n- button \"宝箱\" [disabled]:\n  - img\n- button \"Practice\":\n  - button \"Practice\"\n- button \"复习该部分\":\n  - button \"复习该部分\"\n- paragraph: 下一级\n- heading \"第 2 阶段\" [level=2]\n- paragraph: 学会日常交流中基础的单词、短语和语法概念\n- button \"跳级到这儿？\"",
+  "actions": [
+    {
+      "id": "href:/learn#0",
+      "test": null,
+      "href": "/learn",
+      "name": "",
+      "tag": "A",
+      "role": "link",
+      "enabled": true,
+      "rect": [
+        32,
+        32,
+        128,
+        30
+      ]
+    },
+    {
+      "id": "test:home-nav#0",
+      "test": "home-nav",
+      "href": "/learn",
+      "name": "学习",
+      "tag": "A",
+      "role": "link",
+      "enabled": true,
+      "rect": [
+        16,
+        92,
+        222,
+        52
+      ]
+    },
+    {
+      "id": "test:characters-nav#0",
+      "test": "characters-nav",
+      "href": "/characters",
+      "name": "发音",
+      "tag": "A",
+      "role": "link",
+      "enabled": true,
+      "rect": [
+        16,
+        152,
+        222,
+        52
+      ]
+    },
+    {
+      "id": "test:leaderboard-nav#0",
+      "test": "leaderboard-nav",
+      "href": "/leaderboard",
+      "name": "排行榜",
+      "tag": "A",
+      "role": "link",
+      "enabled": true,
+      "rect": [
+        16,
+        212,
+        222,
+        52
+      ]
+    },
+    {
+      "id": "test:quests-nav#0",
+      "test": "quests-nav",
+      "href": "/quests",
+      "name": "特别任务",
+      "tag": "A",
+      "role": "link",
+      "enabled": true,
+      "rect": [
+        16,
+        272,
+        222,
+        52
+      ]
+    },
+    {
+      "id": "test:shop-nav#0",
+      "test": "shop-nav",
+      "href": "/shop",
+      "name": "宝石小店",
+      "tag": "A",
+      "role": "link",
+      "enabled": true,
+      "rect": [
+        16,
+        332,
+        222,
+        52
+      ]
+    },
+    {
+      "id": "test:profile-tab#0",
+      "test": "profile-tab",
+      "href": "/learn?sign-up",
+      "name": "个人档案",
+      "tag": "A",
+      "role": "link",
+      "enabled": true,
+      "rect": [
+        16,
+        392,
+        222,
+        52
+      ]
+    },
+    {
+      "id": "SPAN:更多#0",
+      "test": null,
+      "href": null,
+      "name": "更多",
+      "tag": "SPAN",
+      "role": "button",
+      "enabled": true,
+      "rect": [
+        16,
+        452,
+        222,
+        52
+      ]
+    },
+    {
+      "id": "SPAN:5#0",
+      "test": null,
+      "href": null,
+      "name": "5",
+      "tag": "SPAN",
+      "role": "button",
+      "enabled": true,
+      "rect": [
+        800,
+        24,
+        81.875,
+        44
+      ]
+    },
+    {
+      "id": "SPAN:2#0",
+      "test": null,
+      "href": null,
+      "name": "2",
+      "tag": "SPAN",
+      "role": "button",
+      "enabled": true,
+      "rect": [
+        903.9453125,
+        24,
+        67.546875,
+        44
+      ]
+    },
+    {
+      "id": "SPAN:525#0",
+      "test": null,
+      "href": null,
+      "name": "525",
+      "tag": "SPAN",
+      "role": "button",
+      "enabled": true,
+      "rect": [
+        993.5546875,
+        24,
+        80.375,
+        44
+      ]
+    },
+    {
+      "id": "SPAN:5#1",
+      "test": null,
+      "href": null,
+      "name": "5",
+      "tag": "SPAN",
+      "role": "button",
+      "enabled": true,
+      "rect": [
+        1096,
+        24,
+        72,
+        44
+      ]
+    },
+    {
+      "id": "test:leaderboards-open#0",
+      "test": "leaderboards-open",
+      "href": "/leaderboard",
+      "name": "查看排行榜",
+      "tag": "A",
+      "role": "link",
+      "enabled": true,
+      "rect": [
+        1069,
+        117,
+        79,
+        18
+      ]
+    },
+    {
+      "id": "href:/quests#0",
+      "test": null,
+      "href": "/quests",
+      "name": "显示全部",
+      "tag": "A",
+      "role": "link",
+      "enabled": true,
+      "rect": [
+        1084.796875,
+        283,
+        63.203125,
+        18
+      ]
+    },
+    {
+      "id": "test:create-profile-juicy#0",
+      "test": "create-profile-juicy",
+      "href": null,
+      "name": "创建档案",
+      "tag": "BUTTON",
+      "role": "button",
+      "enabled": true,
+      "rect": [
+        820,
+        511,
+        328,
+        50
+      ]
+    },
+    {
+      "id": "test:sign-in-juicy#0",
+      "test": "sign-in-juicy",
+      "href": null,
+      "name": "登录",
+      "tag": "BUTTON",
+      "role": "button",
+      "enabled": true,
+      "rect": [
+        820,
+        571,
+        328,
+        50
+      ]
+    },
+    {
+      "id": "href:https://about.duolingo.com#0",
+      "test": null,
+      "href": "https://about.duolingo.com",
+      "name": "关于我们",
+      "tag": "A",
+      "role": "link",
+      "enabled": true,
+      "rect": [
+        827,
+        676.5,
+        52,
+        15.5
+      ]
+    },
+    {
+      "id": "href:https://store.duolingo.com/#0",
+      "test": null,
+      "href": "https://store.duolingo.com/",
+      "name": "宝石小店",
+      "tag": "A",
+      "role": "link",
+      "enabled": true,
+      "rect": [
+        899,
+        676.5,
+        52,
+        15.5
+      ]
+    },
+    {
+      "id": "href:/efficacy#0",
+      "test": null,
+      "href": "/efficacy",
+      "name": "有效性",
+      "tag": "A",
+      "role": "link",
+      "enabled": true,
+      "rect": [
+        971,
+        676.5,
+        39,
+        15.5
+      ]
+    },
+    {
+      "id": "href:https://careers.duolingo.com#0",
+      "test": null,
+      "href": "https://careers.duolingo.com",
+      "name": "招聘贤才",
+      "tag": "A",
+      "role": "link",
+      "enabled": true,
+      "rect": [
+        1030,
+        676.5,
+        52,
+        15.5
+      ]
+    },
+    {
+      "id": "href:https://investors.duolingo.com#0",
+      "test": null,
+      "href": "https://investors.duolingo.com",
+      "name": "投资者",
+      "tag": "A",
+      "role": "link",
+      "enabled": true,
+      "rect": [
+        1102,
+        676.5,
+        39,
+        15.5
+      ]
+    },
+    {
+      "id": "href:/sections#0",
+      "test": null,
+      "href": "/sections",
+      "name": "第 1 阶段，第 1 部分",
+      "tag": "A",
+      "role": "link",
+      "enabled": true,
+      "rect": [
+        296,
+        64,
+        326.3984375,
+        24
+      ]
+    },
+    {
+      "id": "test:guidebook-button-1#0",
+      "test": "guidebook-button-1",
+      "href": "/guidebook/en/1",
+      "name": "打开这个部分的指南",
+      "tag": "A",
+      "role": "link",
+      "enabled": true,
+      "rect": [
+        638.3984375,
+        66,
+        97.6015625,
+        54
+      ]
+    },
+    {
+      "id": "DIV:#0",
+      "test": null,
+      "href": null,
+      "name": "",
+      "tag": "DIV",
+      "role": "button",
+      "enabled": true,
+      "rect": [
+        481,
+        162,
+        70,
+        65
+      ]
+    },
+    {
+      "id": "test:skill-path-level-0 skill-path-level-skill#0",
+      "test": "skill-path-level-0 skill-path-level-skill",
+      "href": null,
+      "name": "Lesson",
+      "tag": "BUTTON",
+      "role": "button",
+      "enabled": true,
+      "rect": [
+        481,
+        162,
+        70,
+        65
+      ]
+    },
+    {
+      "id": "DIV:#1",
+      "test": null,
+      "href": null,
+      "name": "",
+      "tag": "DIV",
+      "role": "button",
+      "enabled": true,
+      "rect": [
+        436.1171875,
+        238.8515625,
+        70,
+        65
+      ]
+    },
+    {
+      "id": "test:skill-path-level-1 skill-path-level-skill#0",
+      "test": "skill-path-level-1 skill-path-level-skill",
+      "href": null,
+      "name": "Lesson",
+      "tag": "BUTTON",
+      "role": "button",
+      "enabled": true,
+      "rect": [
+        436.1171875,
+        238.8515625,
+        70,
+        65
+      ]
+    },
+    {
+      "id": "BUTTON:宝箱#0",
+      "test": null,
+      "href": null,
+      "name": "宝箱",
+      "tag": "BUTTON",
+      "role": "button",
+      "enabled": false,
+      "rect": [
+        406,
+        324.2265625,
+        80,
+        90
+      ]
+    },
+    {
+      "id": "DIV:开始#0",
+      "test": null,
+      "href": null,
+      "name": "开始",
+      "tag": "DIV",
+      "role": "button",
+      "enabled": true,
+      "rect": [
+        422.1171875,
+        434.6015625,
+        98,
+        93
+      ]
+    },
+    {
+      "id": "test:skill-path-level-3 skill-path-level-practice#0",
+      "test": "skill-path-level-3 skill-path-level-practice",
+      "href": null,
+      "name": "Practice",
+      "tag": "BUTTON",
+      "role": "button",
+      "enabled": true,
+      "rect": [
+        436.1171875,
+        448.6015625,
+        70,
+        65
+      ]
+    },
+    {
+      "id": "DIV:#2",
+      "test": null,
+      "href": null,
+      "name": "",
+      "tag": "DIV",
+      "role": "button",
+      "enabled": true,
+      "rect": [
+        481,
+        539.453125,
+        70,
+        65
+      ]
+    },
+    {
+      "id": "test:skill-path-level-4 skill-path-level-unit_review#0",
+      "test": "skill-path-level-4 skill-path-level-unit_review",
+      "href": null,
+      "name": "复习该部分",
+      "tag": "BUTTON",
+      "role": "button",
+      "enabled": true,
+      "rect": [
+        481,
+        539.453125,
+        70,
+        65
+      ]
+    }
+  ],
+  "text_runs": [
+    {
+      "text": "学习",
+      "tag": "SPAN",
+      "test": null,
+      "rect": [
+        84,
+        109,
+        31.6015625,
+        18
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "15px",
+        "fontWeight": "700",
+        "fontVariationSettings": "normal",
+        "lineHeight": "25px",
+        "color": "rgb(28, 176, 246)",
+        "letterSpacing": "0.8px"
+      }
+    },
+    {
+      "text": "发音",
+      "tag": "SPAN",
+      "test": null,
+      "rect": [
+        84,
+        169,
+        31.6015625,
+        18
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "15px",
+        "fontWeight": "700",
+        "fontVariationSettings": "normal",
+        "lineHeight": "25px",
+        "color": "rgb(119, 119, 119)",
+        "letterSpacing": "0.8px"
+      }
+    },
+    {
+      "text": "排行榜",
+      "tag": "SPAN",
+      "test": null,
+      "rect": [
+        84,
+        229,
+        47.40625,
+        18
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "15px",
+        "fontWeight": "700",
+        "fontVariationSettings": "normal",
+        "lineHeight": "25px",
+        "color": "rgb(119, 119, 119)",
+        "letterSpacing": "0.8px"
+      }
+    },
+    {
+      "text": "特别任务",
+      "tag": "SPAN",
+      "test": null,
+      "rect": [
+        84,
+        289,
+        63.203125,
+        18
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "15px",
+        "fontWeight": "700",
+        "fontVariationSettings": "normal",
+        "lineHeight": "25px",
+        "color": "rgb(119, 119, 119)",
+        "letterSpacing": "0.8px"
+      }
+    },
+    {
+      "text": "宝石小店",
+      "tag": "SPAN",
+      "test": null,
+      "rect": [
+        84,
+        349,
+        63.203125,
+        18
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "15px",
+        "fontWeight": "700",
+        "fontVariationSettings": "normal",
+        "lineHeight": "25px",
+        "color": "rgb(119, 119, 119)",
+        "letterSpacing": "0.8px"
+      }
+    },
+    {
+      "text": "个人档案",
+      "tag": "SPAN",
+      "test": null,
+      "rect": [
+        84,
+        409,
+        63.203125,
+        18
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "15px",
+        "fontWeight": "700",
+        "fontVariationSettings": "normal",
+        "lineHeight": "25px",
+        "color": "rgb(119, 119, 119)",
+        "letterSpacing": "0.8px"
+      }
+    },
+    {
+      "text": "更多",
+      "tag": "SPAN",
+      "test": null,
+      "rect": [
+        84,
+        469,
+        31.6015625,
+        18
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "15px",
+        "fontWeight": "700",
+        "fontVariationSettings": "normal",
+        "lineHeight": "25px",
+        "color": "rgb(119, 119, 119)",
+        "letterSpacing": "0.8px"
+      }
+    },
+    {
+      "text": "5",
+      "tag": "SPAN",
+      "test": null,
+      "rect": [
+        858,
+        36.5,
+        7.875,
+        19
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "700",
+        "fontVariationSettings": "normal",
+        "lineHeight": "24px",
+        "color": "rgb(75, 75, 75)",
+        "letterSpacing": "normal"
+      }
+    },
+    {
+      "text": "2",
+      "tag": "SPAN",
+      "test": "streak-stat",
+      "rect": [
+        948.2734375,
+        37,
+        7.21875,
+        18
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "15px",
+        "fontWeight": "700",
+        "fontVariationSettings": "normal",
+        "lineHeight": "20px",
+        "color": "rgb(255, 150, 0)",
+        "letterSpacing": "normal"
+      }
+    },
+    {
+      "text": "525",
+      "tag": "SPAN",
+      "test": "lingot-stat",
+      "rect": [
+        1035.953125,
+        37,
+        21.9765625,
+        18
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "15px",
+        "fontWeight": "700",
+        "fontVariationSettings": "normal",
+        "lineHeight": "20px",
+        "color": "rgb(28, 176, 246)",
+        "letterSpacing": "normal"
+      }
+    },
+    {
+      "text": "5",
+      "tag": "SPAN",
+      "test": null,
+      "rect": [
+        1144.6171875,
+        37,
+        7.3828125,
+        18
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "15px",
+        "fontWeight": "700",
+        "fontVariationSettings": "normal",
+        "lineHeight": "20px",
+        "color": "rgb(255, 75, 75)",
+        "letterSpacing": "normal"
+      }
+    },
+    {
+      "text": "青铜等级",
+      "tag": "H2",
+      "test": null,
+      "rect": [
+        820,
+        114.5,
+        76,
+        22.5
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "19px",
+        "fontWeight": "700",
+        "fontVariationSettings": "normal",
+        "lineHeight": "28px",
+        "color": "rgb(75, 75, 75)",
+        "letterSpacing": "normal"
+      }
+    },
+    {
+      "text": "查看排行榜",
+      "tag": "A",
+      "test": "leaderboards-open",
+      "rect": [
+        1069,
+        117,
+        79,
+        18
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "15px",
+        "fontWeight": "700",
+        "fontVariationSettings": "normal",
+        "lineHeight": "18px",
+        "color": "rgb(28, 176, 246)",
+        "letterSpacing": "0.8px"
+      }
+    },
+    {
+      "text": "这周的排行榜挑战赛即将开始！",
+      "tag": "P",
+      "test": null,
+      "rect": [
+        902,
+        170.5,
+        238,
+        20
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "500",
+        "fontVariationSettings": "normal",
+        "lineHeight": "25px",
+        "color": "rgb(119, 119, 119)",
+        "letterSpacing": "normal"
+      }
+    },
+    {
+      "text": "13 分钟",
+      "tag": "SPAN",
+      "test": null,
+      "rect": [
+        902,
+        197,
+        53.4375,
+        20
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "700",
+        "fontVariationSettings": "normal",
+        "lineHeight": "20px",
+        "color": "rgb(255, 150, 0)",
+        "letterSpacing": "normal"
+      }
+    },
+    {
+      "text": "每日特别任务",
+      "tag": "H2",
+      "test": null,
+      "rect": [
+        820,
+        280.5,
+        114,
+        22.5
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "19px",
+        "fontWeight": "700",
+        "fontVariationSettings": "normal",
+        "lineHeight": "28px",
+        "color": "rgb(75, 75, 75)",
+        "letterSpacing": "normal"
+      }
+    },
+    {
+      "text": "显示全部",
+      "tag": "A",
+      "test": null,
+      "rect": [
+        1084.796875,
+        283,
+        63.203125,
+        18
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "15px",
+        "fontWeight": "700",
+        "fontVariationSettings": "normal",
+        "lineHeight": "18px",
+        "color": "rgb(28, 176, 246)",
+        "letterSpacing": "0.8px"
+      }
+    },
+    {
+      "text": "获取 30 经验",
+      "tag": "SPAN",
+      "test": null,
+      "rect": [
+        902,
+        332,
+        91.4453125,
+        20
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "700",
+        "fontVariationSettings": "normal",
+        "lineHeight": "24px",
+        "color": "rgb(75, 75, 75)",
+        "letterSpacing": "normal"
+      }
+    },
+    {
+      "text": "30 / 30",
+      "tag": "SPAN",
+      "test": null,
+      "rect": [
+        983.76953125,
+        369,
+        43.4609375,
+        16.5
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "14px",
+        "fontWeight": "700",
+        "fontVariationSettings": "normal",
+        "lineHeight": "18px",
+        "color": "rgb(175, 175, 175)",
+        "letterSpacing": "0.56px"
+      }
+    },
+    {
+      "text": "30 / 30",
+      "tag": "SPAN",
+      "test": null,
+      "rect": [
+        983.76953125,
+        369,
+        43.4609375,
+        16.5
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "14px",
+        "fontWeight": "700",
+        "fontVariationSettings": "normal",
+        "lineHeight": "18px",
+        "color": "rgb(205, 121, 0)",
+        "letterSpacing": "0.56px"
+      }
+    },
+    {
+      "text": "创建个人档案，保存学习进度！",
+      "tag": "H2",
+      "test": null,
+      "rect": [
+        820,
+        461.5,
+        266,
+        22.5
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "19px",
+        "fontWeight": "700",
+        "fontVariationSettings": "normal",
+        "lineHeight": "28px",
+        "color": "rgb(75, 75, 75)",
+        "letterSpacing": "normal"
+      }
+    },
+    {
+      "text": "创建档案",
+      "tag": "SPAN",
+      "test": null,
+      "rect": [
+        952.3984375,
+        525,
+        63.203125,
+        18
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "15px",
+        "fontWeight": "700",
+        "fontVariationSettings": "normal",
+        "lineHeight": "18px",
+        "color": "rgb(255, 255, 255)",
+        "letterSpacing": "0.8px"
+      }
+    },
+    {
+      "text": "登录",
+      "tag": "SPAN",
+      "test": null,
+      "rect": [
+        968.1953125,
+        585,
+        31.6015625,
+        18
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "15px",
+        "fontWeight": "700",
+        "fontVariationSettings": "normal",
+        "lineHeight": "18px",
+        "color": "rgb(255, 255, 255)",
+        "letterSpacing": "0.8px"
+      }
+    },
+    {
+      "text": "关于我们",
+      "tag": "A",
+      "test": null,
+      "rect": [
+        827,
+        676.5,
+        52,
+        15.5
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "13px",
+        "fontWeight": "700",
+        "fontVariationSettings": "normal",
+        "lineHeight": "16px",
+        "color": "rgb(175, 175, 175)",
+        "letterSpacing": "normal"
+      }
+    },
+    {
+      "text": "宝石小店",
+      "tag": "A",
+      "test": null,
+      "rect": [
+        899,
+        676.5,
+        52,
+        15.5
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "13px",
+        "fontWeight": "700",
+        "fontVariationSettings": "normal",
+        "lineHeight": "16px",
+        "color": "rgb(175, 175, 175)",
+        "letterSpacing": "normal"
+      }
+    },
+    {
+      "text": "有效性",
+      "tag": "A",
+      "test": null,
+      "rect": [
+        971,
+        676.5,
+        39,
+        15.5
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "13px",
+        "fontWeight": "700",
+        "fontVariationSettings": "normal",
+        "lineHeight": "16px",
+        "color": "rgb(175, 175, 175)",
+        "letterSpacing": "normal"
+      }
+    },
+    {
+      "text": "招聘贤才",
+      "tag": "A",
+      "test": null,
+      "rect": [
+        1030,
+        676.5,
+        52,
+        15.5
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "13px",
+        "fontWeight": "700",
+        "fontVariationSettings": "normal",
+        "lineHeight": "16px",
+        "color": "rgb(175, 175, 175)",
+        "letterSpacing": "normal"
+      }
+    },
+    {
+      "text": "投资者",
+      "tag": "A",
+      "test": null,
+      "rect": [
+        1102,
+        676.5,
+        39,
+        15.5
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "13px",
+        "fontWeight": "700",
+        "fontVariationSettings": "normal",
+        "lineHeight": "16px",
+        "color": "rgb(175, 175, 175)",
+        "letterSpacing": "normal"
+      }
+    },
+    {
+      "text": "第 1 阶段，第 1 部分",
+      "tag": "H1",
+      "test": null,
+      "rect": [
+        320,
+        66.5,
+        139.046875,
+        19
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "700",
+        "fontVariationSettings": "normal",
+        "lineHeight": "24px",
+        "color": "rgb(255, 255, 255)",
+        "letterSpacing": "normal"
+      }
+    },
+    {
+      "text": "提供或接受饮料",
+      "tag": "SPAN",
+      "test": null,
+      "rect": [
+        296,
+        95,
+        154,
+        26
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "22px",
+        "fontWeight": "700",
+        "fontVariationSettings": "normal",
+        "lineHeight": "28px",
+        "color": "rgb(255, 255, 255)",
+        "letterSpacing": "normal"
+      }
+    },
+    {
+      "text": "指南",
+      "tag": "SPAN",
+      "test": null,
+      "rect": [
+        688.3984375,
+        83,
+        31.6015625,
+        18
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "15px",
+        "fontWeight": "700",
+        "fontVariationSettings": "normal",
+        "lineHeight": "18px",
+        "color": "rgb(255, 255, 255)",
+        "letterSpacing": "0.8px"
+      }
+    },
+    {
+      "text": "开始",
+      "tag": "DIV",
+      "test": null,
+      "rect": [
+        453.6015625,
+        411.8428955078125,
+        35.0234375,
+        20
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "700",
+        "fontVariationSettings": "normal",
+        "lineHeight": "17px",
+        "color": "rgb(88, 204, 2)",
+        "letterSpacing": "0.51px"
+      }
+    },
+    {
+      "text": "谈论祖籍国家",
+      "tag": "H2",
+      "test": null,
+      "rect": [
+        459,
+        666.1484375,
+        114,
+        22.5
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "19px",
+        "fontWeight": "700",
+        "fontVariationSettings": "normal",
+        "lineHeight": "26.6px",
+        "color": "rgb(175, 175, 175)",
+        "letterSpacing": "normal"
+      }
+    }
+  ],
+  "text_run_limitations": [
+    "DOM text ranges and computed CSS are not OCR or actual fallback font resolution; clipped animation digits may still appear."
+  ],
+  "media": [
+    {
+      "tag": "IMG",
+      "svg": null,
+      "alt": null,
+      "test": null,
+      "src": "https://d35aaqx5ub95lt.cloudfront.net/vendor/70a4be81077a8037698067f583816ff9.svg",
+      "source_kind": "url",
+      "rect": [
+        32,
+        32,
+        128,
+        30
+      ],
+      "objectFit": "fill",
+      "intrinsic": [
+        300,
+        70
+      ]
+    },
+    {
+      "tag": "IMG",
+      "svg": null,
+      "alt": null,
+      "test": null,
+      "src": "https://d35aaqx5ub95lt.cloudfront.net/vendor/784035717e2ff1d448c0f6cc4efc89fb.svg",
+      "source_kind": "url",
+      "rect": [
+        32,
+        102,
+        32,
+        32
+      ],
+      "objectFit": "fill",
+      "intrinsic": [
+        32,
+        32
+      ]
+    },
+    {
+      "tag": "IMG",
+      "svg": null,
+      "alt": null,
+      "test": null,
+      "src": "https://d35aaqx5ub95lt.cloudfront.net/vendor/3b4928101472fce4e9edac920c1b3817.svg",
+      "source_kind": "url",
+      "rect": [
+        32,
+        162,
+        32,
+        32
+      ],
+      "objectFit": "fill",
+      "intrinsic": [
+        41,
+        40
+      ]
+    },
+    {
+      "tag": "IMG",
+      "svg": null,
+      "alt": null,
+      "test": null,
+      "src": "https://d35aaqx5ub95lt.cloudfront.net/vendor/ca9178510134b4b0893dbac30b6670aa.svg",
+      "source_kind": "url",
+      "rect": [
+        32,
+        222,
+        32,
+        32
+      ],
+      "objectFit": "fill",
+      "intrinsic": [
+        46,
+        46
+      ]
+    },
+    {
+      "tag": "IMG",
+      "svg": null,
+      "alt": null,
+      "test": null,
+      "src": "https://d35aaqx5ub95lt.cloudfront.net/vendor/7ef36bae3f9d68fc763d3451b5167836.svg",
+      "source_kind": "url",
+      "rect": [
+        32,
+        282,
+        32,
+        32
+      ],
+      "objectFit": "fill",
+      "intrinsic": [
+        32,
+        32
+      ]
+    },
+    {
+      "tag": "IMG",
+      "svg": null,
+      "alt": null,
+      "test": null,
+      "src": "https://d35aaqx5ub95lt.cloudfront.net/vendor/0e58a94dda219766d98c7796b910beee.svg",
+      "source_kind": "url",
+      "rect": [
+        32,
+        342,
+        32,
+        32
+      ],
+      "objectFit": "fill",
+      "intrinsic": [
+        46,
+        46
+      ]
+    },
+    {
+      "tag": "IMG",
+      "svg": null,
+      "alt": null,
+      "test": null,
+      "src": "https://d35aaqx5ub95lt.cloudfront.net/vendor/24e0dcdc06870ead47b3600f0d41eb5b.svg",
+      "source_kind": "url",
+      "rect": [
+        32,
+        402,
+        32,
+        32
+      ],
+      "objectFit": "fill",
+      "intrinsic": [
+        46,
+        46
+      ]
+    },
+    {
+      "tag": "IMG",
+      "svg": null,
+      "alt": null,
+      "test": null,
+      "src": "https://d35aaqx5ub95lt.cloudfront.net/vendor/7159c0b5d4250a5aea4f396d53f17f0c.svg",
+      "source_kind": "url",
+      "rect": [
+        32,
+        462,
+        32,
+        32
+      ],
+      "objectFit": "fill",
+      "intrinsic": [
+        46,
+        46
+      ]
+    },
+    {
+      "tag": "IMG",
+      "svg": null,
+      "alt": null,
+      "test": null,
+      "src": "https://d35aaqx5ub95lt.cloudfront.net/vendor/bbe17e16aa4a106032d8e3521eaed13e.svg",
+      "source_kind": "url",
+      "rect": [
+        813,
+        34.0390625,
+        31,
+        23.9140625
+      ],
+      "objectFit": "fill",
+      "intrinsic": [
+        70,
+        54
+      ]
+    },
+    {
+      "tag": "IMG",
+      "svg": null,
+      "alt": null,
+      "test": null,
+      "src": "https://d35aaqx5ub95lt.cloudfront.net/images/icons/398e4298a3b39ce566050e5c041949ef.svg",
+      "source_kind": "url",
+      "rect": [
+        913.9453125,
+        32,
+        23.328125,
+        28
+      ],
+      "objectFit": "fill",
+      "intrinsic": [
+        25,
+        30
+      ]
+    },
+    {
+      "tag": "IMG",
+      "svg": null,
+      "alt": null,
+      "test": null,
+      "src": "https://d35aaqx5ub95lt.cloudfront.net/images/gems/45c14e05be9c1af1d7d0b54c6eed7eee.svg",
+      "source_kind": "url",
+      "rect": [
+        1003.5546875,
+        32,
+        22.3984375,
+        28
+      ],
+      "objectFit": "fill",
+      "intrinsic": [
+        24,
+        30
+      ]
+    },
+    {
+      "tag": "IMG",
+      "svg": null,
+      "alt": null,
+      "test": null,
+      "src": "https://d35aaqx5ub95lt.cloudfront.net/images/hearts/8fdba477c56a8eeb23f0f7e67fdec6d9.svg",
+      "source_kind": "url",
+      "rect": [
+        1106,
+        32,
+        28,
+        28
+      ],
+      "objectFit": "fill",
+      "intrinsic": [
+        34,
+        34
+      ]
+    },
+    {
+      "tag": "IMG",
+      "svg": null,
+      "alt": null,
+      "test": null,
+      "src": "https://d35aaqx5ub95lt.cloudfront.net/images/leagues/f9bf9df3d907eac95f75ec4ac6edc5c5.svg",
+      "source_kind": "url",
+      "rect": [
+        820,
+        164,
+        70,
+        58
+      ],
+      "objectFit": "fill",
+      "intrinsic": [
+        68,
+        116
+      ]
+    },
+    {
+      "tag": "IMG",
+      "svg": null,
+      "alt": null,
+      "test": null,
+      "src": "https://d35aaqx5ub95lt.cloudfront.net/images/goals/2b5a211d830a24fab92e291d50f65d1d.svg",
+      "source_kind": "url",
+      "rect": [
+        820,
+        331.5,
+        60,
+        60
+      ],
+      "objectFit": "fill",
+      "intrinsic": [
+        56,
+        56
+      ]
+    },
+    {
+      "tag": "IMG",
+      "svg": null,
+      "alt": null,
+      "test": null,
+      "src": "https://d35aaqx5ub95lt.cloudfront.net/images/goals/33af8ba58d22f3ea21279e9a84756833.svg",
+      "source_kind": "url",
+      "rect": [
+        1109,
+        358,
+        35,
+        35
+      ],
+      "objectFit": "fill",
+      "intrinsic": [
+        34,
+        36
+      ]
+    },
+    {
+      "tag": "IMG",
+      "svg": null,
+      "alt": null,
+      "test": null,
+      "src": "https://d35aaqx5ub95lt.cloudfront.net/images/path/icons/e013fd27fc6bd1d2fea85fe707b615cd.svg",
+      "source_kind": "url",
+      "rect": [
+        296,
+        68,
+        16,
+        16
+      ],
+      "objectFit": "fill",
+      "intrinsic": [
+        16,
+        16
+      ]
+    },
+    {
+      "tag": "IMG",
+      "svg": null,
+      "alt": "指南",
+      "test": null,
+      "src": "https://d35aaqx5ub95lt.cloudfront.net/images/path/5b531828e59ae83aadb3d88e6b3a98a8.svg",
+      "source_kind": "url",
+      "rect": [
+        652.3984375,
+        80,
+        24,
+        24
+      ],
+      "objectFit": "fill",
+      "intrinsic": [
+        24,
+        24
+      ]
+    },
+    {
+      "tag": "svg",
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" viewBox=\"0 0 1080 1080\" width=\"1080\" height=\"1080\" preserveAspectRatio=\"xMidYMid meet\" style=\"width: 100%; height: 100%; transform: translate3d(0px, 0px, 0px); content-visibility: visible;\"><defs><clipPath id=\"__lottie_element_277\"><rect width=\"1080\" height=\"1080\" x=\"0\" y=\"0\"></rect></clipPath><g id=\"__lottie_element_280\"><g clip-path=\"url(#__lottie_element_281)\" transform=\"matrix(0.997529923915863,0.07024292647838593,-0.07024292647838593,0.997529923915863,44.628570556640625,-35.23516845703125)\" opacity=\"1\" style=\"display: block;\"><g transform=\"matrix(0.9093050956726074,-0.03555647283792496,0.03555647283792496,0.9093050956726074,550.5601806640625,549.309814453125)\" opacity=\"1\" style=\"display: block;\"><path fill=\"rgb(88,204,2)\" fill-opacity=\"1\" d=\" M-4.207733154296875,-238.17141723632812 C18.887466430664062,-237.30633544921875 23.90907859802246,-242.89317321777344 47.15408706665039,-247.043701171875 C62.831180572509766,-250.07472229003906 82.5940170288086,-252.34823608398438 102.34286499023438,-246.95947265625 C120.24596405029297,-242.1085205078125 139.85768127441406,-229.3052520751953 151.8234405517578,-214.68408203125 C159.71328735351562,-205.04266357421875 166.21368408203125,-193.19924926757812 170.0737762451172,-182.53732299804688 C175.20945739746094,-168.35169982910156 174.99282836914062,-154.08424377441406 174.09518432617188,-145.19752502441406 C174.09518432617188,-145.19752502441406 168.0192413330078,-22.780288696289062 168.0192413330078,-22.780288696289062 C168.0192413330078,124.16770935058594 44.11600112915039,164.04400634765625 -12.883000373840332,165.51499938964844 C-69.88200378417969,164.04400634765625 -182.89559936523438,121.47789001464844 -182.89559936523438,-25.470111846923828 C-182.89559936523438,-25.470111846923828 -176.445068359375,-175.00303649902344 -176.445068359375,-175.00303649902344 C-172.16416931152344,-225.8892822265625 -73.4072036743164,-241.67913818359375 -4.207733154296875,-238.17141723632812z M-24.687236785888672,-248.31239318847656 C-8.497689247131348,-241.42176818847656 6.640267372131348,-235.33026123046875 29.026939392089844,-233.4795684814453 C86.14076232910156,-228.7580108642578 179.4049072265625,-190.8350372314453 175.75717163085938,-146.71389770507812 C175.75717163085938,-146.71389770507812 168.4349822998047,-23.159622192382812 168.4349822998047,-23.159622192382812 C168.4349822998047,123.78837585449219 44.11695861816406,164.04400634765625 -12.883000373840332,165.51499938964844 C-69.88200378417969,164.04400634765625 -190.6920623779297,120.4874038696289 -182.91378784179688,-25.073535919189453 C-182.91378784179688,-25.073535919189453 -176.03028869628906,-175.38140869140625 -176.03028869628906,-175.38140869140625 C-175.39991760253906,-186.1818084716797 -168.71823120117188,-203.6279754638672 -158.1332550048828,-219.15762329101562 C-151.12930297851562,-229.43319702148438 -139.0438995361328,-240.2587127685547 -127.4577865600586,-247.45144653320312 C-114.85236358642578,-255.27777099609375 -98.1621322631836,-262.792236328125 -79.91168975830078,-261.89794921875 C-57.6466064453125,-261.0881652832031 -39.962921142578125,-254.80137634277344 -24.687236785888672,-248.31239318847656z\"></path><path fill=\"rgb(88,204,2)\" fill-opacity=\"1\" d=\" M-24.687236785888672,-248.31239318847656 C-8.497689247131348,-241.42176818847656 6.640267372131348,-235.33026123046875 29.026939392089844,-233.4795684814453 C86.14076232910156,-228.7580108642578 179.4049072265625,-190.8350372314453 175.75717163085938,-146.71389770507812 C175.75717163085938,-146.71389770507812 168.4349822998047,-23.159622192382812 168.4349822998047,-23.159622192382812 C168.4349822998047,123.78837585449219 44.11695861816406,164.04400634765625 -12.883000373840332,165.51499938964844 C-69.88200378417969,164.04400634765625 -190.6920623779297,120.4874038696289 -182.91378784179688,-25.073535919189453 C-182.91378784179688,-25.073535919189453 -176.03028869628906,-175.38140869140625 -176.03028869628906,-175.38140869140625 C-175.39991760253906,-186.1818084716797 -168.71823120117188,-203.6279754638672 -158.1332550048828,-219.15762329101562 C-151.12930297851562,-229.43319702148438 -139.0438995361328,-240.2587127685547 -127.4577865600586,-247.45144653320312 C-114.85236358642578,-255.27777099609375 -98.1621322631836,-262.792236328125 -79.91168975830078,-261.89794921875 C-57.6466064453125,-261.0881652832031 -39.962921142578125,-254.80137634277344 -24.687236785888672,-248.31239318847656z\"></path></g></g></g><clipPath id=\"__lottie_element_281\"><path d=\"M0,0 L1080,0 L1080,1080 L0,1080z\"></path></clipPath><mask id=\"__lottie_element_280_1\" mask-type=\"alpha\"><use xlink:href=\"#__lottie_element_280\"></use></mask><g id=\"__lottie_element_291\"><g clip-path=\"url(#__lottie_element_295)\" transform=\"matrix(1.0474052429199219,0.07375499606132507,-0.07375499606132507,1.0474052429199219,14.005207061767578,-77.60843658447266)\" opacity=\"1\" style=\"display: block;\"><g transform=\"matrix(0.9100000262260437,0,0,0.9100000262260437,546,556)\" opacity=\"1\" style=\"display: block;\"><g opacity=\"1\" transform=\"matrix(1,0,0,1,0,0)\"><path fill=\"rgb(75,75,75)\" fill-opacity=\"1\" d=\" M-69.16690063476562,1.7383952140808105 C-69.13744354248047,-24.642946243286133 -76.94126892089844,-32.35021209716797 -91.21622467041016,-34.0124626159668 C-111.8818359375,-35.32679748535156 -107.99911499023438,-15.045388221740723 -107.33203125,-1.33590829372406 C-106.91236114501953,7.2077741622924805 -105.83797454833984,10.653215408325195 -103.43324279785156,15.665699005126953 C-98.9301528930664,25.050329208374023 -91.64459228515625,29.82432746887207 -83.7884292602539,29.101457595825195 C-77.90139770507812,28.69723129272461 -74.41183471679688,26.0919246673584 -71.58258056640625,20.284774780273438 C-69.2938461303711,15.58629035949707 -69.1786117553711,11.076274871826172 -69.16690063476562,1.7383952140808105z\"></path></g><g opacity=\"1\" transform=\"matrix(1,0,0,1,0,0)\"><path fill=\"rgb(75,75,75)\" fill-opacity=\"1\" d=\" M10.266188621520996,21.525115966796875 C8.018312454223633,-6.572937965393066 15.192790985107422,-13.23027229309082 30.13759994506836,-15.545910835266113 C51.54706954956055,-19.246984481811523 53.23584747314453,-0.2044089436531067 54.124794006347656,11.144189834594727 C54.813533782958984,19.941410064697266 54.189125061035156,27.696937561035156 52.201656341552734,33.06452941894531 C48.16530227661133,43.96650695800781 41.0402717590332,46.45823287963867 33.27301025390625,47.80327224731445 C27.446985244750977,48.7213020324707 20.053607940673828,45.817352294921875 16.688915252685547,41.38438034057617 C13.63058090209961,37.355289459228516 10.999876976013184,30.69746208190918 10.266188621520996,21.525115966796875z\"></path></g></g></g></g><clipPath id=\"__lottie_element_295\"><path d=\"M0,0 L1080,0 L1080,1080 L0,1080z\"></path></clipPath><mask id=\"__lottie_element_291_1\" mask-type=\"alpha\"><use xlink:href=\"#__lottie_element_291\"></use></mask></defs><g clip-path=\"url(#__lottie_element_277)\"><g transform=\"matrix(0.9100000262260437,0,0,0.9100000262260437,552,550)\" opacity=\"0.3\" style=\"display: block;\"><path fill=\"rgb(175,175,175)\" fill-opacity=\"1\" d=\" M-10.402999877929688,-78.9219970703125 C101.64700317382812,-78.9219970703125 192.48199462890625,-8.196999549865723 192.48199462890625,79.0469970703125 C192.48199462890625,166.29100036621094 101.64700317382812,237.01699829101562 -10.402999877929688,237.01699829101562 C-122.4530029296875,237.01699829101562 -213.28799438476562,166.29100036621094 -213.28799438476562,79.0469970703125 C-213.28799438476562,-8.196999549865723 -122.4530029296875,-78.9219970703125 -10.402999877929688,-78.9219970703125z\"></path></g><g transform=\"matrix(1,0,0,1,0,0)\" opacity=\"1\" style=\"display: block;\"><g opacity=\"1\" transform=\"matrix(1,0,0,1,677.6719970703125,537.677001953125)\"><path stroke-linecap=\"round\" stroke-linejoin=\"miter\" fill-opacity=\"0\" stroke-miterlimit=\"4\" stroke=\"rgb(244,144,0)\" stroke-opacity=\"1\" stroke-width=\"54\" d=\" M-66.5,143.5 C-66.5,143.5 -80.78199768066406,134.05499267578125 -80.78199768066406,134.05499267578125\"></path></g><g opacity=\"1\" transform=\"matrix(1,0,0,1,540.8619995117188,538.677001953125)\"><path stroke-linecap=\"round\" stroke-linejoin=\"miter\" fill-opacity=\"0\" stroke-miterlimit=\"4\" stroke=\"rgb(244,144,0)\" stroke-opacity=\"1\" stroke-width=\"54\" d=\" M-68.5,142.5 C-68.5,142.5 -45,107.5 -45,107.5\"></path></g></g><g transform=\"matrix(0.9086291790008545,0.049931012094020844,-0.049931012094020844,0.9086291790008545,557.0943603515625,549.9715576171875)\" opacity=\"1\" style=\"display: block;\"><path fill=\"rgb(88,204,2)\" fill-opacity=\"1\" d=\" M-158.28599548339844,-119.43199920654297 C-173.91400146484375,-84.0989990234375 -241.84100341796875,33.880001068115234 -241.84100341796875,47.854000091552734 C-241.84100341796875,58.17900085449219 -235.78399658203125,77.86599731445312 -200.26600646972656,77.86599731445312 C-188.31300354003906,77.86599731445312 -178.50799560546875,73.93499755859375 -170.8159942626953,68.55500030517578 C-160.22300720214844,61.14500045776367 -156.88900756835938,53.5369987487793 -150.97999572753906,44.54999923706055 C-145.0709991455078,35.5629997253418 -143.21499633789062,30.23900032043457 -139.84300231933594,23.36400032043457 C-136.4709930419922,16.48900032043457 -138.56199645996094,-99.25399780273438 -158.28599548339844,-119.43199920654297z\"></path><path stroke-linecap=\"butt\" stroke-linejoin=\"miter\" fill-opacity=\"0\" stroke-miterlimit=\"4\" stroke=\"rgb(255,0,0)\" stroke-opacity=\"1\" stroke-width=\"0\" d=\" M-158.28599548339844,-119.43199920654297 C-173.91400146484375,-84.0989990234375 -241.84100341796875,33.880001068115234 -241.84100341796875,47.854000091552734 C-241.84100341796875,58.17900085449219 -235.78399658203125,77.86599731445312 -200.26600646972656,77.86599731445312 C-188.31300354003906,77.86599731445312 -178.50799560546875,73.93499755859375 -170.8159942626953,68.55500030517578 C-160.22300720214844,61.14500045776367 -156.88900756835938,53.5369987487793 -150.97999572753906,44.54999923706055 C-145.0709991455078,35.5629997253418 -143.21499633789062,30.23900032043457 -139.84300231933594,23.36400032043457 C-136.4709930419922,16.48900032043457 -138.56199645996094,-99.25399780273438 -158.28599548339844,-119.43199920654297z\"></path></g><g transform=\"matrix(0.9060426354408264,0.08477512001991272,-0.08477512001991272,0.9060426354408264,556.2192993164062,549.6143188476562)\" opacity=\"1\" style=\"display: block;\"><path fill=\"rgb(88,204,2)\" fill-opacity=\"1\" d=\" M125.21700286865234,44.54999923706055 C127.13099670410156,49.180999755859375 131.0780029296875,55.74399948120117 137.09100341796875,61.821998596191406 C145.49600219726562,70.31800079345703 157.93800354003906,77.86599731445312 174.5019989013672,77.86599731445312 C210.02200317382812,77.86599731445312 216.07699584960938,58.17900085449219 216.07699584960938,47.854000091552734 C216.07699584960938,33.880001068115234 177.3470001220703,-37.59199905395508 157.98199462890625,-75.49700164794922 C157.98199462890625,-75.49700164794922 124.1760025024414,-87.91200256347656 125.2750015258789,15.385000228881836\"></path></g><g mask=\"url(#__lottie_element_280_1)\" style=\"display: block;\"><g transform=\"matrix(0.907752275466919,0.06392106413841248,-0.06392106413841248,0.907752275466919,556.6315307617188,552.1796875)\" opacity=\"1\"><g opacity=\"1\" transform=\"matrix(1,0,0,1,0,0)\"><path fill=\"rgb(88,204,2)\" fill-opacity=\"1\" d=\" M392.85699462890625,-448.35150146484375 C392.85699462890625,-448.35150146484375 392.85699462890625,448.35150146484375 392.85699462890625,448.35150146484375 C392.85699462890625,448.35150146484375 -392.85699462890625,448.35150146484375 -392.85699462890625,448.35150146484375 C-392.85699462890625,448.35150146484375 -392.85699462890625,-448.35150146484375 -392.85699462890625,-448.35150146484375 C-392.85699462890625,-448.35150146484375 392.85699462890625,-448.35150146484375 392.85699462890625,-448.35150146484375z\"></path></g><g opacity=\"1\" transform=\"matrix(1,0,0,1,0,0)\"><path fill=\"rgb(137,226,25)\" fill-opacity=\"1\" d=\" M46.33985137939453,-124.42574310302734 C31.442026138305664,-124.33439636230469 0.17851488292217255,-60.874717712402344 -42.004661560058594,-62.87424850463867 C-85.74866485595703,-64.31593322753906 -94.8667221069336,-131.51095581054688 -112.45742797851562,-139.26773071289062 C-123.24015808105469,-145.0838623046875 -125.3705825805664,-120.57891845703125 -125.68864440917969,-109.96855163574219 C-129.4148712158203,-115.5519790649414 -137.5000762939453,-126.06901550292969 -142.41494750976562,-127.67082977294922 C-146.90240478515625,-129.32022094726562 -149.8284912109375,-118.33638000488281 -150.26242065429688,-111.91668701171875 C-150.43772888183594,-109.32159423828125 -150.43760681152344,-107.41079711914062 -149.48565673828125,-100.59829711914062 C-157.69834899902344,-98.04484558105469 -174.34776306152344,-85.39616394042969 -175.59439086914062,-61.85832595825195 C-176.6315460205078,-41.98661804199219 -173.1228790283203,-13.670607566833496 -169.83416748046875,0.0015531093813478947 C-163.98565673828125,26.921411514282227 -149.28363037109375,45.3255615234375 -121.86941528320312,52.4294548034668 C-99.03120422363281,58.47581100463867 -70.928466796875,48.1631965637207 -65.28861999511719,38.51374816894531 C-65.28861999511719,38.51374816894531 -27.284574508666992,42.32865905761719 -27.284574508666992,42.32865905761719 C-22.960126876831055,51.172237396240234 -3.195687770843506,78.13703918457031 33.311458587646484,80.14332580566406 C69.68687438964844,82.87330627441406 98.81780242919922,61.55060577392578 105.75016784667969,31.570005416870117 C109.6219711303711,15.018932342529297 108.76728820800781,-8.901811599731445 107.4871826171875,-31.938573837280273 C105.97808837890625,-59.44879913330078 93.96939086914062,-75.47447967529297 87.3217544555664,-81.42615509033203 C88.18986511230469,-82.4266586303711 87.07715606689453,-81.5743179321289 88.08008575439453,-90.09789276123047 C89.33399963378906,-100.75235748291016 84.43609619140625,-111.73552703857422 79.57968139648438,-111.8209457397461 C73.71886444091797,-111.67466735839844 66.99605560302734,-104.20928192138672 61.14502716064453,-98.13357543945312 C58.031864166259766,-110.15933227539062 57.75387191772461,-123.97840881347656 46.33985137939453,-124.42574310302734z\"></path></g></g></g><g transform=\"matrix(0.8938632011413574,0.1706126183271408,-0.1706126183271408,0.8938632011413574,545.632080078125,540.514404296875)\" opacity=\"1\" style=\"display: block;\"><path fill=\"rgb(137,226,25)\" fill-opacity=\"1\" d=\" M-28.465999603271484,129.71099853515625 C-28.465999603271484,125.322998046875 -59.42499923706055,119.4520034790039 -71.4229965209961,119.4520034790039 C-82.59300231933594,119.4520034790039 -67.56099700927734,138.55099487304688 -49.702999114990234,138.55099487304688 C-32.74100112915039,138.55099487304688 -28.465999603271484,132.61399841308594 -28.465999603271484,129.71099853515625z M4.998000144958496,129.71099853515625 C4.998000144958496,125.322998046875 35.957000732421875,119.4520034790039 47.95500183105469,119.4520034790039 C59.125,119.4520034790039 44.09400177001953,138.55099487304688 26.235000610351562,138.55099487304688 C9.27299976348877,138.55099487304688 4.998000144958496,132.61399841308594 4.998000144958496,129.71099853515625z M-26.260000228881836,147.26100158691406 C-31.89900016784668,146.281005859375 -34.53499984741211,147.79100036621094 -34.53499984741211,150.99000549316406 C-34.53499984741211,156.31700134277344 -20.951000213623047,159.0989990234375 -11.366999626159668,159.0989990234375 C-1.7829999923706055,159.0989990234375 10.972999572753906,154.718994140625 10.972999572753906,150.99000549316406 C10.972999572753906,148.0070037841797 8.369999885559082,147.031005859375 6.629000186920166,147.26100158691406 C-2.609999895095825,148.4810028076172 -21.226999282836914,148.13600158691406 -26.260000228881836,147.26100158691406z\"></path></g><g style=\"display: none;\"><g><path></path></g></g><g style=\"display: none;\"><g><path stroke-linecap=\"round\" stroke-linejoin=\"round\" fill-opacity=\"0\"></path></g><g><path stroke-linecap=\"round\" stroke-linejoin=\"round\" fill-opacity=\"0\"></path></g></g><g style=\"display: none;\"><path></path><path stroke-linecap=\"round\" stroke-linejoin=\"round\" fill-opacity=\"0\"></path></g><g transform=\"matrix(0.9531398415565491,0.0671171173453331,-0.0671171173453331,0.9531398415565491,544.2847290039062,545.664794921875)\" opacity=\"1\" style=\"display: block;\"><g opacity=\"1\" transform=\"matrix(1,0,0,1,0,0)\"><path fill=\"rgb(255,255,255)\" fill-opacity=\"1\" d=\" M-65.50718688964844,-25.999711990356445 C-68.0849380493164,-58.341712951660156 -87.29959106445312,-77.65550994873047 -110.69982147216797,-75.93755340576172 C-132.3616485595703,-74.3405532836914 -141.78297424316406,-57.712974548339844 -140.4390106201172,-36.345436096191406 C-139.5424041748047,-22.079837799072266 -138.1486358642578,-9.399711608886719 -136.8067626953125,4.393242359161377 C-135.88717651367188,8.899693489074707 -95.65036010742188,37.17623519897461 -84.46824645996094,41.884971618652344 C-73.91854095458984,41.33322525024414 -60.677616119384766,30.565807342529297 -61.57563781738281,15.619793891906738 C-62.74923324584961,3.2748777866363525 -63.77719497680664,-8.781991004943848 -65.50718688964844,-25.999711990356445z\"></path></g><g opacity=\"1\" transform=\"matrix(1,0,0,1,0,0)\"><path fill=\"rgb(255,255,255)\" fill-opacity=\"1\" d=\" M-2.607935905456543,-2.6040172576904297 C-3.9816665649414062,-26.669687271118164 10.308568954467773,-52.23820877075195 45.64967346191406,-57.8714599609375 C73.965087890625,-61.957645416259766 92.90245056152344,-47.39445877075195 95.26475524902344,-22.08618927001953 C96.97090148925781,-6.486830711364746 97.05765533447266,-1.9714041948318481 96.596435546875,9.31269359588623 C95.4258041381836,38.62355041503906 77.42857360839844,54.28720474243164 55.47092819213867,58.65141296386719 C32.69291305541992,63.207733154296875 2.5315020084381104,58.87327575683594 -0.27081093192100525,27.149080276489258 C-0.9349201321601868,19.424453735351562 -1.5751705169677734,11.1870698928833 -2.607935905456543,-2.6040172576904297z\"></path></g></g><g style=\"display: block;\" transform=\"matrix(0.999811589717865,-0.019285686314105988,0.019285686314105988,0.999811589717865,537.1524658203125,541.0732421875)\" opacity=\"1\"><path fill=\"rgb(137,226,25)\" fill-opacity=\"1\" d=\" M102.75,45.75 C102.75,45.75 75.75,59 13,60.25 C22,68.25 47,71.25 65.5,71.25 C84,71.25 102.75,45.75 102.75,45.75z\"></path></g><g mask=\"url(#__lottie_element_291_1)\" style=\"display: block;\"><g transform=\"matrix(0.9531398415565491,0.0671171173453331,-0.0671171173453331,0.9531398415565491,544.3570556640625,545.7398681640625)\" opacity=\"1\"><g opacity=\"1\" transform=\"matrix(1,0,0,1,0,0)\"><path fill=\"rgb(75,75,75)\" fill-opacity=\"1\" d=\" M373.0769958496094,-252.197998046875 C373.0769958496094,-252.197998046875 373.0769958496094,252.197998046875 373.0769958496094,252.197998046875 C373.0769958496094,252.197998046875 -373.0769958496094,252.197998046875 -373.0769958496094,252.197998046875 C-373.0769958496094,252.197998046875 -373.0769958496094,-252.197998046875 -373.0769958496094,-252.197998046875 C-373.0769958496094,-252.197998046875 373.0769958496094,-252.197998046875 373.0769958496094,-252.197998046875z\"></path></g><g opacity=\"1\" transform=\"matrix(1,0,0,1,0,0)\"><path fill=\"rgb(255,255,255)\" fill-opacity=\"1\" d=\" M-103.35879516601562,-40.281620025634766 C-96.50611877441406,-40.281620025634766 -90.95072174072266,-33.62461853027344 -90.95072174072266,-25.413618087768555 C-90.95072174072266,-17.202619552612305 -96.50611877441406,-10.545619010925293 -103.35879516601562,-10.545619010925293 C-110.21147155761719,-10.545619010925293 -115.7668685913086,-17.202619552612305 -115.7668685913086,-25.413618087768555 C-115.7668685913086,-33.62461853027344 -110.21147155761719,-40.281620025634766 -103.35879516601562,-40.281620025634766z\"></path></g><g opacity=\"1\" transform=\"matrix(1,0,0,1,0,0)\"><path fill=\"rgb(255,255,255)\" fill-opacity=\"1\" d=\" M18.918195724487305,-22.03931427001953 C10.707196235656738,-22.03931427001953 4.049238681793213,-15.38231372833252 4.049238681793213,-7.171313762664795 C4.049238681793213,1.0396862030029297 10.707196235656738,7.696686267852783 18.918195724487305,7.696686267852783 C27.129196166992188,7.696686267852783 33.786197662353516,1.0396862030029297 33.786197662353516,-7.171313762664795 C33.786197662353516,-15.38231372833252 27.129196166992188,-22.03931427001953 18.918195724487305,-22.03931427001953z\"></path></g></g></g><g transform=\"matrix(0.907752275466919,0.06392106413841248,-0.06392106413841248,0.907752275466919,522.2757568359375,542.9810180664062)\" opacity=\"1\" style=\"display: block;\"><g opacity=\"1\" transform=\"matrix(1,0,0,1,0,0)\"><path fill=\"rgb(244,144,0)\" fill-opacity=\"1\" d=\" M-12.27400016784668,27.406999588012695 C2.2019999027252197,27.201000213623047 13.994000434875488,39.07400131225586 13.994000434875488,53.78499984741211 C13.994000434875488,68.49600219726562 2.431999921798706,80.71199798583984 -12.258000373840332,80.74199676513672 C-26.74799919128418,80.76599884033203 -38.47999954223633,68.84600067138672 -38.47999954223633,54.1349983215332 C-38.47999954223633,39.42399978637695 -26.738000869750977,27.610000610351562 -12.27400016784668,27.406999588012695z\"></path></g><g opacity=\"1\" transform=\"matrix(1,0,0,1,0,0)\"><path fill=\"rgb(176,104,0)\" fill-opacity=\"1\" d=\" M-11.342000007629395,41.5 C-4.829999923706055,41.5 0.4480000138282776,46.87900161743164 0.4480000138282776,53.51300048828125 C0.4480000138282776,60.14699935913086 -4.829999923706055,65.5250015258789 -11.342000007629395,65.5250015258789 C-17.854000091552734,65.5250015258789 -23.131999969482422,60.14699935913086 -23.131999969482422,53.51300048828125 C-23.131999969482422,46.87900161743164 -17.854000091552734,41.5 -11.342000007629395,41.5z\"></path></g><g opacity=\"1\" transform=\"matrix(1,0,0,1,0,0)\"><path fill=\"rgb(255,194,0)\" fill-opacity=\"1\" d=\" M19.294803619384766,48.75324630737305 C20.364639282226562,38.07596206665039 4.392860412597656,21.839412689208984 -13.504691123962402,22.206010818481445 C-34.21452713012695,22.581470489501953 -44.90070724487305,35.37258529663086 -44.90070724487305,44.143585205078125 C-44.90070724487305,49.431583404541016 -27.024194717407227,66.94493103027344 -18.08072853088379,66.75868225097656 C-6.490735054016113,67.22348022460938 18.583633422851562,54.93345260620117 19.294803619384766,48.75324630737305z\"></path></g><g opacity=\"1\" transform=\"matrix(1,0,0,1,0,0)\"><path stroke-linecap=\"round\" stroke-linejoin=\"miter\" fill-opacity=\"0\" stroke-miterlimit=\"4\" stroke=\"rgb(255,222,0)\" stroke-opacity=\"1\" stroke-width=\"15.445\" d=\" M-19.034000396728516,39.60599899291992 C-16.511999130249023,38.066001892089844 -9.932000160217285,36.09400177001953 -4.074999809265137,38.98400115966797\"></path></g></g></g></svg>",
+      "alt": null,
+      "test": null,
+      "src": null,
+      "source_kind": null,
+      "rect": [
+        502,
+        224.85546875,
+        234,
+        288.7578125
+      ],
+      "objectFit": "fill",
+      "intrinsic": null
+    },
+    {
+      "tag": "svg",
+      "svg": "<svg width=\"56\" height=\"46\" viewBox=\"0 0 56 46\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M34.2346 3.25135C35.3157 2.1269 34.7053 0.276787 33.1512 0.143156C32.0512 0.0485729 30.9331 0 29.8002 0C13.342 0 0 10.2517 0 22.8979C0 26.3985 1.02236 29.7157 2.85016 32.6827C3.47761 33.7012 4.88715 33.7751 5.71626 32.9128L34.2346 3.25135Z\" fill=\"currentColor\"></path><path d=\"M55.0954 12.5231C53.3548 9.61289 49.8186 6.8733 47.2219 5.21074C46.2417 4.58319 44.9772 4.77038 44.1616 5.60066C34.5035 15.4328 18.3374 31.8498 12.05 38.0427C10.9724 39.1041 10.996 40.8688 12.249 41.716C16.2271 44.4058 20.9121 45.5851 23.4852 45.9072C24.1853 45.9949 24.8657 45.7259 25.3691 45.2315C34.775 35.9934 50.2041 19.9015 54.7166 15.0879C55.3787 14.3818 55.5923 13.3539 55.0954 12.5231Z\" fill=\"currentColor\"></path></svg>",
+      "alt": null,
+      "test": null,
+      "src": null,
+      "source_kind": null,
+      "rect": [
+        487,
+        167,
+        56,
+        46
+      ],
+      "objectFit": "fill",
+      "intrinsic": null
+    },
+    {
+      "tag": "IMG",
+      "svg": null,
+      "alt": "",
+      "test": null,
+      "src": "https://d35aaqx5ub95lt.cloudfront.net/images/path/icons/bfa591f6854b4de08e1656b3e8ca084f.svg",
+      "source_kind": "url",
+      "rect": [
+        495,
+        173.5,
+        42,
+        34
+      ],
+      "objectFit": "fill",
+      "intrinsic": [
+        42,
+        34
+      ]
+    },
+    {
+      "tag": "svg",
+      "svg": "<svg width=\"56\" height=\"46\" viewBox=\"0 0 56 46\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M34.2346 3.25135C35.3157 2.1269 34.7053 0.276787 33.1512 0.143156C32.0512 0.0485729 30.9331 0 29.8002 0C13.342 0 0 10.2517 0 22.8979C0 26.3985 1.02236 29.7157 2.85016 32.6827C3.47761 33.7012 4.88715 33.7751 5.71626 32.9128L34.2346 3.25135Z\" fill=\"currentColor\"></path><path d=\"M55.0954 12.5231C53.3548 9.61289 49.8186 6.8733 47.2219 5.21074C46.2417 4.58319 44.9772 4.77038 44.1616 5.60066C34.5035 15.4328 18.3374 31.8498 12.05 38.0427C10.9724 39.1041 10.996 40.8688 12.249 41.716C16.2271 44.4058 20.9121 45.5851 23.4852 45.9072C24.1853 45.9949 24.8657 45.7259 25.3691 45.2315C34.775 35.9934 50.2041 19.9015 54.7166 15.0879C55.3787 14.3818 55.5923 13.3539 55.0954 12.5231Z\" fill=\"currentColor\"></path></svg>",
+      "alt": null,
+      "test": null,
+      "src": null,
+      "source_kind": null,
+      "rect": [
+        442.1171875,
+        243.8515625,
+        56,
+        46
+      ],
+      "objectFit": "fill",
+      "intrinsic": null
+    },
+    {
+      "tag": "IMG",
+      "svg": null,
+      "alt": "",
+      "test": null,
+      "src": "https://d35aaqx5ub95lt.cloudfront.net/images/path/icons/bfa591f6854b4de08e1656b3e8ca084f.svg",
+      "source_kind": "url",
+      "rect": [
+        450.1171875,
+        250.3515625,
+        42,
+        34
+      ],
+      "objectFit": "fill",
+      "intrinsic": [
+        42,
+        34
+      ]
+    },
+    {
+      "tag": "IMG",
+      "svg": null,
+      "alt": null,
+      "test": null,
+      "src": "https://d35aaqx5ub95lt.cloudfront.net/images/path/8e1b4675455a4e453aac3681e0f5599e.svg",
+      "source_kind": "url",
+      "rect": [
+        406,
+        318.2265625,
+        80,
+        90
+      ],
+      "objectFit": "fill",
+      "intrinsic": [
+        80,
+        90
+      ]
+    },
+    {
+      "tag": "svg",
+      "svg": "<svg class=\"_2FMGJ\" viewBox=\"0 0 100 100\"><defs><clipPath id=\"clip-session/ProgressRing2\"><path d=\"M3.061616997868383e-15,-50L2.5717582782094417e-15,-42Z\"></path></clipPath></defs><g transform=\"translate(50, 50)\"><path d=\"M3.061616997868383e-15,-50A50,50,0,1,1,-3.061616997868383e-15,50A50,50,0,1,1,3.061616997868383e-15,-50M-7.715274834628325e-15,-42A42,42,0,1,0,7.715274834628325e-15,42A42,42,0,1,0,-7.715274834628325e-15,-42Z\" fill=\"rgb(var(--color-swan))\"></path><circle clip-path=\"url(#clip-session/ProgressRing2)\" cx=\"-3.9949609477190866\" cy=\"-45.82619651494328\" fill=\"rgb(var(--color-snow))\" r=\"4\"></circle><path d=\"M3.061616997868383e-15,-50L2.5717582782094417e-15,-42Z\" fill=\"var(--path-unit-character-color)\"></path></g></svg>",
+      "alt": null,
+      "test": null,
+      "src": null,
+      "source_kind": null,
+      "rect": [
+        422.1171875,
+        434.74755859375,
+        98,
+        92.7080078125
+      ],
+      "objectFit": "fill",
+      "intrinsic": null
+    },
+    {
+      "tag": "IMG",
+      "svg": null,
+      "alt": "",
+      "test": null,
+      "src": "https://d35aaqx5ub95lt.cloudfront.net/images/path/icons/ef9c771afdb674f0ff82fae25c6a7b0a.svg",
+      "source_kind": "url",
+      "rect": [
+        450.1171875,
+        460.1015625,
+        42,
+        34
+      ],
+      "objectFit": "fill",
+      "intrinsic": [
+        42,
+        34
+      ]
+    },
+    {
+      "tag": "IMG",
+      "svg": null,
+      "alt": "",
+      "test": null,
+      "src": "https://d35aaqx5ub95lt.cloudfront.net/images/path/icons/7d84afaa096ff1f1d3f8c86d6c2c9542.svg",
+      "source_kind": "url",
+      "rect": [
+        495,
+        550.953125,
+        42,
+        34
+      ],
+      "objectFit": "fill",
+      "intrinsic": [
+        42,
+        34
+      ]
+    },
+    {
+      "tag": "IMG",
+      "svg": null,
+      "alt": "",
+      "test": null,
+      "src": "https://d35aaqx5ub95lt.cloudfront.net/images/pathCharacters/locked/34443969dabd59f00795cc94457c1b3b.svg",
+      "source_kind": "url",
+      "rect": [
+        296,
+        870.30859375,
+        234,
+        260.7578125
+      ],
+      "objectFit": "fill",
+      "intrinsic": [
+        1080,
+        1080
+      ]
+    },
+    {
+      "tag": "IMG",
+      "svg": null,
+      "alt": "",
+      "test": null,
+      "src": "https://d35aaqx5ub95lt.cloudfront.net/images/path/icons/5e4203031e39fc43d94371565fd0d369.svg",
+      "source_kind": "url",
+      "rect": [
+        495,
+        804.953125,
+        42,
+        34
+      ],
+      "objectFit": "fill",
+      "intrinsic": [
+        42,
+        34
+      ]
+    },
+    {
+      "tag": "IMG",
+      "svg": null,
+      "alt": "",
+      "test": null,
+      "src": "https://d35aaqx5ub95lt.cloudfront.net/images/path/icons/ddd21f172a2db0f5ef169c09b4d3badb.svg",
+      "source_kind": "url",
+      "rect": [
+        539.8828125,
+        881.8046875,
+        42,
+        34
+      ],
+      "objectFit": "fill",
+      "intrinsic": [
+        31,
+        29
+      ]
+    },
+    {
+      "tag": "IMG",
+      "svg": null,
+      "alt": null,
+      "test": null,
+      "src": "https://d35aaqx5ub95lt.cloudfront.net/images/path/b841637c196f5be786d8b8578a42ffbf.svg",
+      "source_kind": "url",
+      "rect": [
+        546,
+        960.6796875,
+        80,
+        90
+      ],
+      "objectFit": "fill",
+      "intrinsic": [
+        80,
+        90
+      ]
+    },
+    {
+      "tag": "IMG",
+      "svg": null,
+      "alt": "",
+      "test": null,
+      "src": "https://d35aaqx5ub95lt.cloudfront.net/images/path/icons/ddd21f172a2db0f5ef169c09b4d3badb.svg",
+      "source_kind": "url",
+      "rect": [
+        539.8828125,
+        1077.5546875,
+        42,
+        34
+      ],
+      "objectFit": "fill",
+      "intrinsic": [
+        31,
+        29
+      ]
+    },
+    {
+      "tag": "IMG",
+      "svg": null,
+      "alt": "",
+      "test": null,
+      "src": "https://d35aaqx5ub95lt.cloudfront.net/images/path/icons/7d84afaa096ff1f1d3f8c86d6c2c9542.svg",
+      "source_kind": "url",
+      "rect": [
+        495,
+        1154.40625,
+        42,
+        34
+      ],
+      "objectFit": "fill",
+      "intrinsic": [
+        42,
+        34
+      ]
+    },
+    {
+      "tag": "IMG",
+      "svg": null,
+      "alt": "",
+      "test": null,
+      "src": "https://d35aaqx5ub95lt.cloudfront.net/images/pathCharacters/locked/f1a8ca7d22677f84c9781b7e9034f688.svg",
+      "source_kind": "url",
+      "rect": [
+        502,
+        1473.76171875,
+        234,
+        260.7578125
+      ],
+      "objectFit": "fill",
+      "intrinsic": [
+        1080,
+        1080
+      ]
+    },
+    {
+      "tag": "IMG",
+      "svg": null,
+      "alt": "",
+      "test": null,
+      "src": "https://d35aaqx5ub95lt.cloudfront.net/images/path/icons/5e4203031e39fc43d94371565fd0d369.svg",
+      "source_kind": "url",
+      "rect": [
+        495,
+        1408.40625,
+        42,
+        34
+      ],
+      "objectFit": "fill",
+      "intrinsic": [
+        42,
+        34
+      ]
+    },
+    {
+      "tag": "IMG",
+      "svg": null,
+      "alt": "",
+      "test": null,
+      "src": "https://d35aaqx5ub95lt.cloudfront.net/images/path/icons/ddd21f172a2db0f5ef169c09b4d3badb.svg",
+      "source_kind": "url",
+      "rect": [
+        450.1171875,
+        1485.2578125,
+        42,
+        34
+      ],
+      "objectFit": "fill",
+      "intrinsic": [
+        31,
+        29
+      ]
+    },
+    {
+      "tag": "IMG",
+      "svg": null,
+      "alt": null,
+      "test": null,
+      "src": "https://d35aaqx5ub95lt.cloudfront.net/images/path/b841637c196f5be786d8b8578a42ffbf.svg",
+      "source_kind": "url",
+      "rect": [
+        406,
+        1564.1328125,
+        80,
+        90
+      ],
+      "objectFit": "fill",
+      "intrinsic": [
+        80,
+        90
+      ]
+    },
+    {
+      "tag": "IMG",
+      "svg": null,
+      "alt": "",
+      "test": null,
+      "src": "https://d35aaqx5ub95lt.cloudfront.net/images/path/icons/ddd21f172a2db0f5ef169c09b4d3badb.svg",
+      "source_kind": "url",
+      "rect": [
+        450.1171875,
+        1681.0078125,
+        42,
+        34
+      ],
+      "objectFit": "fill",
+      "intrinsic": [
+        31,
+        29
+      ]
+    },
+    {
+      "tag": "IMG",
+      "svg": null,
+      "alt": "",
+      "test": null,
+      "src": "https://d35aaqx5ub95lt.cloudfront.net/images/path/icons/7d84afaa096ff1f1d3f8c86d6c2c9542.svg",
+      "source_kind": "url",
+      "rect": [
+        495,
+        1757.859375,
+        42,
+        34
+      ],
+      "objectFit": "fill",
+      "intrinsic": [
+        42,
+        34
+      ]
+    },
+    {
+      "tag": "IMG",
+      "svg": null,
+      "alt": "",
+      "test": null,
+      "src": "https://d35aaqx5ub95lt.cloudfront.net/images/path/icons/42790390eb3178780c3620661860e84b.svg",
+      "source_kind": "url",
+      "rect": [
+        446.53125,
+        7512.9140625,
+        21,
+        25
+      ],
+      "objectFit": "fill",
+      "intrinsic": [
+        13,
+        16
+      ]
+    }
+  ],
+  "background_media": [],
+  "pseudo_elements": [
+    {
+      "tag": "DIV",
+      "test": null,
+      "pseudo": "::before",
+      "parent_rect": [
+        800,
+        24,
+        368,
+        717
+      ],
+      "css": {
+        "content": "\"\"",
+        "width": "368px",
+        "height": "0px",
+        "top": "auto",
+        "left": "auto",
+        "color": "rgb(60, 60, 60)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "borderRadius": "0px",
+        "transform": "none",
+        "boxShadow": "none"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "test": "create-profile-juicy",
+      "pseudo": "::before",
+      "parent_rect": [
+        820,
+        511,
+        328,
+        50
+      ],
+      "css": {
+        "content": "\"\"",
+        "width": "328px",
+        "height": "46px",
+        "top": "0px",
+        "left": "0px",
+        "color": "rgb(88, 167, 0)",
+        "backgroundColor": "rgb(88, 204, 2)",
+        "backgroundImage": "none",
+        "borderRadius": "16px",
+        "transform": "none",
+        "boxShadow": "rgb(88, 167, 0) 0px 4px 0px 0px"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "test": "sign-in-juicy",
+      "pseudo": "::before",
+      "parent_rect": [
+        820,
+        571,
+        328,
+        50
+      ],
+      "css": {
+        "content": "\"\"",
+        "width": "328px",
+        "height": "46px",
+        "top": "0px",
+        "left": "0px",
+        "color": "rgb(24, 153, 214)",
+        "backgroundColor": "rgb(28, 176, 246)",
+        "backgroundImage": "none",
+        "borderRadius": "16px",
+        "transform": "none",
+        "boxShadow": "rgb(24, 153, 214) 0px 4px 0px 0px"
+      }
+    },
+    {
+      "tag": "A",
+      "test": "guidebook-button-1",
+      "pseudo": "::before",
+      "parent_rect": [
+        638.3984375,
+        66,
+        97.6015625,
+        54
+      ],
+      "css": {
+        "content": "\"\"",
+        "width": "97.6016px",
+        "height": "52px",
+        "top": "-2px",
+        "left": "-2px",
+        "color": "rgba(0, 0, 0, 0.2)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "none",
+        "borderRadius": "16px",
+        "transform": "none",
+        "boxShadow": "rgba(0, 0, 0, 0.2) 0px 2px 0px 0px"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "test": "skill-path-level-0 skill-path-level-skill",
+      "pseudo": "::before",
+      "parent_rect": [
+        481,
+        162,
+        70,
+        65
+      ],
+      "css": {
+        "content": "\"\"",
+        "width": "70px",
+        "height": "8px",
+        "top": "28.5px",
+        "left": "0px",
+        "color": "rgb(0, 0, 0)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), linear-gradient(rgb(88, 204, 2), rgb(88, 204, 2))",
+        "borderRadius": "0px",
+        "transform": "none",
+        "boxShadow": "none"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "test": "skill-path-level-0 skill-path-level-skill",
+      "pseudo": "::after",
+      "parent_rect": [
+        481,
+        162,
+        70,
+        65
+      ],
+      "css": {
+        "content": "\"\"",
+        "width": "70px",
+        "height": "57px",
+        "top": "0px",
+        "left": "0px",
+        "color": "rgb(0, 0, 0)",
+        "backgroundColor": "rgb(88, 204, 2)",
+        "backgroundImage": "none",
+        "borderRadius": "50%",
+        "transform": "none",
+        "boxShadow": "rgba(0, 0, 0, 0.2) 0px 8px 0px 0px, rgb(88, 204, 2) 0px 8px 0px 0px"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "test": "skill-path-level-1 skill-path-level-skill",
+      "pseudo": "::before",
+      "parent_rect": [
+        436.1171875,
+        238.8515625,
+        70,
+        65
+      ],
+      "css": {
+        "content": "\"\"",
+        "width": "70px",
+        "height": "8px",
+        "top": "28.5px",
+        "left": "0px",
+        "color": "rgb(0, 0, 0)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), linear-gradient(rgb(88, 204, 2), rgb(88, 204, 2))",
+        "borderRadius": "0px",
+        "transform": "none",
+        "boxShadow": "none"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "test": "skill-path-level-1 skill-path-level-skill",
+      "pseudo": "::after",
+      "parent_rect": [
+        436.1171875,
+        238.8515625,
+        70,
+        65
+      ],
+      "css": {
+        "content": "\"\"",
+        "width": "70px",
+        "height": "57px",
+        "top": "0px",
+        "left": "0px",
+        "color": "rgb(0, 0, 0)",
+        "backgroundColor": "rgb(88, 204, 2)",
+        "backgroundImage": "none",
+        "borderRadius": "50%",
+        "transform": "none",
+        "boxShadow": "rgba(0, 0, 0, 0.2) 0px 8px 0px 0px, rgb(88, 204, 2) 0px 8px 0px 0px"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "test": "skill-path-level-3 skill-path-level-practice",
+      "pseudo": "::before",
+      "parent_rect": [
+        436.1171875,
+        448.6015625,
+        70,
+        65
+      ],
+      "css": {
+        "content": "\"\"",
+        "width": "70px",
+        "height": "8px",
+        "top": "28.5px",
+        "left": "0px",
+        "color": "rgb(0, 0, 0)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), linear-gradient(rgb(88, 204, 2), rgb(88, 204, 2))",
+        "borderRadius": "0px",
+        "transform": "none",
+        "boxShadow": "none"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "test": "skill-path-level-3 skill-path-level-practice",
+      "pseudo": "::after",
+      "parent_rect": [
+        436.1171875,
+        448.6015625,
+        70,
+        65
+      ],
+      "css": {
+        "content": "\"\"",
+        "width": "70px",
+        "height": "57px",
+        "top": "0px",
+        "left": "0px",
+        "color": "rgb(0, 0, 0)",
+        "backgroundColor": "rgb(88, 204, 2)",
+        "backgroundImage": "none",
+        "borderRadius": "50%",
+        "transform": "none",
+        "boxShadow": "rgba(0, 0, 0, 0.2) 0px 8px 0px 0px, rgb(88, 204, 2) 0px 8px 0px 0px"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "test": "skill-path-level-4 skill-path-level-unit_review",
+      "pseudo": "::before",
+      "parent_rect": [
+        481,
+        539.453125,
+        70,
+        65
+      ],
+      "css": {
+        "content": "\"\"",
+        "width": "70px",
+        "height": "8px",
+        "top": "28.5px",
+        "left": "0px",
+        "color": "rgb(0, 0, 0)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "backgroundImage": "linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), linear-gradient(rgb(229, 229, 229), rgb(229, 229, 229))",
+        "borderRadius": "0px",
+        "transform": "none",
+        "boxShadow": "none"
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "test": "skill-path-level-4 skill-path-level-unit_review",
+      "pseudo": "::after",
+      "parent_rect": [
+        481,
+        539.453125,
+        70,
+        65
+      ],
+      "css": {
+        "content": "\"\"",
+        "width": "70px",
+        "height": "57px",
+        "top": "0px",
+        "left": "0px",
+        "color": "rgb(0, 0, 0)",
+        "backgroundColor": "rgb(229, 229, 229)",
+        "backgroundImage": "none",
+        "borderRadius": "50%",
+        "transform": "none",
+        "boxShadow": "rgba(0, 0, 0, 0.2) 0px 8px 0px 0px, rgb(229, 229, 229) 0px 8px 0px 0px"
+      }
+    }
+  ],
+  "pseudo_limitations": [
+    "Computed CSS and parent bounds only; pseudo-elements have no independently measured DOM bounding rectangle."
+  ],
+  "visible": [
+    {
+      "test": "home-nav",
+      "tag": "A",
+      "role": null,
+      "text": "学习",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        16,
+        92,
+        222,
+        52
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "500",
+        "lineHeight": "25px",
+        "color": "rgb(0, 0, 238)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(0, 0, 238)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": []
+    },
+    {
+      "test": "characters-nav",
+      "tag": "A",
+      "role": null,
+      "text": "发音",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        16,
+        152,
+        222,
+        52
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "500",
+        "lineHeight": "25px",
+        "color": "rgb(0, 0, 238)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(0, 0, 238)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": []
+    },
+    {
+      "test": "leaderboard-nav",
+      "tag": "A",
+      "role": null,
+      "text": "排行榜",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        16,
+        212,
+        222,
+        52
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "500",
+        "lineHeight": "25px",
+        "color": "rgb(0, 0, 238)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(0, 0, 238)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": []
+    },
+    {
+      "test": "quests-nav",
+      "tag": "A",
+      "role": null,
+      "text": "特别任务",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        16,
+        272,
+        222,
+        52
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "500",
+        "lineHeight": "25px",
+        "color": "rgb(0, 0, 238)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(0, 0, 238)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": []
+    },
+    {
+      "test": "shop-nav",
+      "tag": "A",
+      "role": null,
+      "text": "宝石小店",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        16,
+        332,
+        222,
+        52
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "500",
+        "lineHeight": "25px",
+        "color": "rgb(0, 0, 238)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(0, 0, 238)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": []
+    },
+    {
+      "test": "profile-tab",
+      "tag": "A",
+      "role": null,
+      "text": "个人档案",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        16,
+        392,
+        222,
+        52
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "500",
+        "lineHeight": "25px",
+        "color": "rgb(0, 0, 238)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(0, 0, 238)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": []
+    },
+    {
+      "test": "more-nav",
+      "tag": "DIV",
+      "role": null,
+      "text": "更多",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        16,
+        452,
+        222,
+        52
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "500",
+        "lineHeight": "25px",
+        "color": "rgb(175, 175, 175)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(175, 175, 175)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": []
+    },
+    {
+      "test": null,
+      "tag": "SPAN",
+      "role": "button",
+      "text": "更多",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        16,
+        452,
+        222,
+        52
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "500",
+        "lineHeight": "25px",
+        "color": "rgb(175, 175, 175)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(175, 175, 175)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": []
+    },
+    {
+      "test": "home",
+      "tag": "DIV",
+      "role": null,
+      "text": "5\n2\n525\n5\n青铜等级\n查看排行榜\n\n这周的排行榜挑战赛即将开始！\n\n13 分钟\n每日特别任务\n显示全部\n获取 30 经验\n30 / 30\n30 / 30\n创建个人档案，保存学习进度！\n创建档案\n登录\n关于我们\n宝石小店\n有效性\n招聘贤才\n投资者\n条款\n隐私\n第 1 阶段，第 1 部分\n提供或接受饮料\n指南\n开始\n谈论祖籍国家\n跳级到这儿？\n介绍家庭成员\n跳级到这儿？\n\n下一级\n\n第  2  阶段\n\n学会日常交流中基础的单词、短语和语法概念\n\n跳级到这儿？",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        256,
+        24,
+        936,
+        7724.4140625
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "500",
+        "lineHeight": "20px",
+        "color": "rgb(60, 60, 60)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(60, 60, 60)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": []
+    },
+    {
+      "test": "courses-menu",
+      "tag": "DIV",
+      "role": null,
+      "text": "5",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        800,
+        24,
+        81.875,
+        44
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "500",
+        "lineHeight": "20px",
+        "color": "rgb(60, 60, 60)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(60, 60, 60)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": []
+    },
+    {
+      "test": null,
+      "tag": "SPAN",
+      "role": "button",
+      "text": "5",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        800,
+        24,
+        81.875,
+        44
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "500",
+        "lineHeight": "20px",
+        "color": "rgb(60, 60, 60)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "12px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(60, 60, 60)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": []
+    },
+    {
+      "test": "streak-menu",
+      "tag": "DIV",
+      "role": null,
+      "text": "2",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        903.9453125,
+        24,
+        67.546875,
+        44
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "500",
+        "lineHeight": "20px",
+        "color": "rgb(60, 60, 60)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(60, 60, 60)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": []
+    },
+    {
+      "test": null,
+      "tag": "SPAN",
+      "role": "button",
+      "text": "2",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        903.9453125,
+        24,
+        67.546875,
+        44
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "500",
+        "lineHeight": "20px",
+        "color": "rgb(60, 60, 60)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "12px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(60, 60, 60)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": []
+    },
+    {
+      "test": "streak-stat",
+      "tag": "SPAN",
+      "role": null,
+      "text": "2",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        948.2734375,
+        36,
+        7.21875,
+        20
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "15px",
+        "fontWeight": "700",
+        "lineHeight": "20px",
+        "color": "rgb(255, 150, 0)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(255, 150, 0)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": []
+    },
+    {
+      "test": "lingot-menu",
+      "tag": "DIV",
+      "role": null,
+      "text": "525",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        993.5546875,
+        24,
+        80.375,
+        44
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "500",
+        "lineHeight": "20px",
+        "color": "rgb(60, 60, 60)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(60, 60, 60)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": []
+    },
+    {
+      "test": null,
+      "tag": "SPAN",
+      "role": "button",
+      "text": "525",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        993.5546875,
+        24,
+        80.375,
+        44
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "500",
+        "lineHeight": "20px",
+        "color": "rgb(60, 60, 60)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "12px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(60, 60, 60)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": []
+    },
+    {
+      "test": "lingot-stat",
+      "tag": "SPAN",
+      "role": null,
+      "text": "525",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        1035.953125,
+        36,
+        21.9765625,
+        20
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "15px",
+        "fontWeight": "700",
+        "lineHeight": "20px",
+        "color": "rgb(28, 176, 246)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(28, 176, 246)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": []
+    },
+    {
+      "test": "hearts-menu",
+      "tag": "DIV",
+      "role": null,
+      "text": "5",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        1096,
+        24,
+        72,
+        44
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "500",
+        "lineHeight": "20px",
+        "color": "rgb(60, 60, 60)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(60, 60, 60)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": []
+    },
+    {
+      "test": null,
+      "tag": "SPAN",
+      "role": "button",
+      "text": "5",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        1096,
+        24,
+        72,
+        44
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "500",
+        "lineHeight": "20px",
+        "color": "rgb(60, 60, 60)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "12px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(60, 60, 60)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": []
+    },
+    {
+      "test": null,
+      "tag": "H2",
+      "role": null,
+      "text": "青铜等级",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        820,
+        112,
+        76,
+        28
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "19px",
+        "fontWeight": "700",
+        "lineHeight": "28px",
+        "color": "rgb(75, 75, 75)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(75, 75, 75)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": []
+    },
+    {
+      "test": "leaderboards-open",
+      "tag": "A",
+      "role": null,
+      "text": "查看排行榜",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        1069,
+        117,
+        79,
+        18
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "15px",
+        "fontWeight": "700",
+        "lineHeight": "18px",
+        "color": "rgb(28, 176, 246)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(28, 176, 246)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": []
+    },
+    {
+      "test": null,
+      "tag": "H2",
+      "role": null,
+      "text": "每日特别任务",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        820,
+        278,
+        114,
+        28
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "19px",
+        "fontWeight": "700",
+        "lineHeight": "28px",
+        "color": "rgb(75, 75, 75)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(75, 75, 75)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": []
+    },
+    {
+      "test": null,
+      "tag": "DIV",
+      "role": "progressbar",
+      "text": "30 / 30\n30 / 30",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        902,
+        368.5,
+        207,
+        18
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "500",
+        "lineHeight": "20px",
+        "color": "rgb(60, 60, 60)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(60, 60, 60)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": []
+    },
+    {
+      "test": null,
+      "tag": "H2",
+      "role": null,
+      "text": "创建个人档案，保存学习进度！",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        820,
+        459,
+        328,
+        28
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "19px",
+        "fontWeight": "700",
+        "lineHeight": "28px",
+        "color": "rgb(75, 75, 75)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(75, 75, 75)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": []
+    },
+    {
+      "test": "create-profile-juicy",
+      "tag": "BUTTON",
+      "role": null,
+      "text": "创建档案",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        820,
+        511,
+        328,
+        50
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "15px",
+        "fontWeight": "700",
+        "lineHeight": "18px",
+        "color": "rgb(255, 255, 255)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "16px",
+        "borderWidth": "0px 0px 4px",
+        "borderColor": "rgba(0, 0, 0, 0)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": [
+        {
+          "tag": "DIV",
+          "rect": {
+            "x": 800,
+            "y": 439,
+            "width": 368,
+            "height": 202,
+            "top": 439,
+            "right": 1168,
+            "bottom": 641,
+            "left": 800
+          },
+          "backgroundColor": "rgb(255, 255, 255)",
+          "borderRadius": "16px",
+          "padding": "18px",
+          "gap": "normal"
+        },
+        {
+          "tag": "DIV",
+          "rect": {
+            "x": 800,
+            "y": 24,
+            "width": 368,
+            "height": 717,
+            "top": 24,
+            "right": 1168,
+            "bottom": 741,
+            "left": 800
+          },
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "gap": "16px"
+        },
+        {
+          "tag": "DIV",
+          "rect": {
+            "x": 800,
+            "y": 24,
+            "width": 368,
+            "height": 717,
+            "top": 24,
+            "right": 1168,
+            "bottom": 741,
+            "left": 800
+          },
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "gap": "normal"
+        }
+      ]
+    },
+    {
+      "test": "sign-in-juicy",
+      "tag": "BUTTON",
+      "role": null,
+      "text": "登录",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        820,
+        571,
+        328,
+        50
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "15px",
+        "fontWeight": "700",
+        "lineHeight": "18px",
+        "color": "rgb(255, 255, 255)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "16px",
+        "borderWidth": "0px 0px 4px",
+        "borderColor": "rgba(0, 0, 0, 0)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": [
+        {
+          "tag": "DIV",
+          "rect": {
+            "x": 800,
+            "y": 439,
+            "width": 368,
+            "height": 202,
+            "top": 439,
+            "right": 1168,
+            "bottom": 641,
+            "left": 800
+          },
+          "backgroundColor": "rgb(255, 255, 255)",
+          "borderRadius": "16px",
+          "padding": "18px",
+          "gap": "normal"
+        },
+        {
+          "tag": "DIV",
+          "rect": {
+            "x": 800,
+            "y": 24,
+            "width": 368,
+            "height": 717,
+            "top": 24,
+            "right": 1168,
+            "bottom": 741,
+            "left": 800
+          },
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "gap": "16px"
+        },
+        {
+          "tag": "DIV",
+          "rect": {
+            "x": 800,
+            "y": 24,
+            "width": 368,
+            "height": 717,
+            "top": 24,
+            "right": 1168,
+            "bottom": 741,
+            "left": 800
+          },
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "gap": "normal"
+        }
+      ]
+    },
+    {
+      "test": "footer-links",
+      "tag": "UL",
+      "role": null,
+      "text": "关于我们\n宝石小店\n有效性\n招聘贤才\n投资者\n条款\n隐私",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        810,
+        673,
+        348,
+        64
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "500",
+        "lineHeight": "20px",
+        "color": "rgb(60, 60, 60)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(60, 60, 60)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": []
+    },
+    {
+      "test": null,
+      "tag": "H1",
+      "role": null,
+      "text": "第 1 阶段，第 1 部分",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        320,
+        64,
+        139.046875,
+        24
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "16px",
+        "fontWeight": "700",
+        "lineHeight": "24px",
+        "color": "rgb(255, 255, 255)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(255, 255, 255)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": []
+    },
+    {
+      "test": "guidebook-button-1",
+      "tag": "A",
+      "role": null,
+      "text": "指南",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        638.3984375,
+        66,
+        97.6015625,
+        54
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "15px",
+        "fontWeight": "700",
+        "lineHeight": "18px",
+        "color": "rgb(255, 255, 255)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "16px",
+        "borderWidth": "2px 2px 4px",
+        "borderColor": "rgba(0, 0, 0, 0)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": []
+    },
+    {
+      "test": "skill-path",
+      "tag": "DIV",
+      "role": null,
+      "text": "开始\n谈论祖籍国家\n跳级到这儿？\n介绍家庭成员\n跳级到这儿？",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        280,
+        138,
+        472,
+        7211.4140625
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "500",
+        "lineHeight": "20px",
+        "color": "rgb(60, 60, 60)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(60, 60, 60)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": []
+    },
+    {
+      "test": "skill-path-unit-0",
+      "tag": "SECTION",
+      "role": null,
+      "text": "开始",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        280,
+        138,
+        472,
+        490.453125
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "500",
+        "lineHeight": "20px",
+        "color": "rgb(60, 60, 60)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(60, 60, 60)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": []
+    },
+    {
+      "test": null,
+      "tag": "DIV",
+      "role": "button",
+      "text": "",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        481,
+        162,
+        70,
+        65
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "500",
+        "lineHeight": "20px",
+        "color": "rgb(60, 60, 60)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(60, 60, 60)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": []
+    },
+    {
+      "test": "skill-path-level-0 skill-path-level-skill",
+      "tag": "BUTTON",
+      "role": null,
+      "text": "",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        481,
+        162,
+        70,
+        65
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "400",
+        "lineHeight": "19.55px",
+        "color": "rgb(0, 0, 0)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(0, 0, 0)"
+      },
+      "icons": [
+        "<svg width=\"56\" height=\"46\" viewBox=\"0 0 56 46\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M34.2346 3.25135C35.3157 2.1269 34.7053 0.276787 33.1512 0.143156C32.0512 0.0485729 30.9331 0 29.8002 0C13.342 0 0 10.2517 0 22.8979C0 26.3985 1.02236 29.7157 2.85016 32.6827C3.47761 33.7012 4.88715 33.7751 5.71626 32.9128L34.2346 3.25135Z\" fill=\"currentColor\"></path><path d=\"M55.0954 12.5231C53.3548 9.61289 49.8186 6.8733 47.2219 5.21074C46.2417 4.58319 44.9772 4.77038 44.1616 5.60066C34.5035 15.4328 18.3374 31.8498 12.05 38.0427C10.9724 39.1041 10.996 40.8688 12.249 41.716C16.2271 44.4058 20.9121 45.5851 23.4852 45.9072C24.1853 45.9949 24.8657 45.7259 25.3691 45.2315C34.775 35.9934 50.2041 19.9015 54.7166 15.0879C55.3787 14.3818 55.5923 13.3539 55.0954 12.5231Z\" fill=\"currentColor\"></path></svg>"
+      ],
+      "images": [
+        {
+          "src": "https://d35aaqx5ub95lt.cloudfront.net/images/path/icons/bfa591f6854b4de08e1656b3e8ca084f.svg",
+          "rect": {
+            "x": 495,
+            "y": 173.5,
+            "width": 42,
+            "height": 34,
+            "top": 173.5,
+            "right": 537,
+            "bottom": 207.5,
+            "left": 495
+          }
+        }
+      ],
+      "iconDetails": [
+        {
+          "rect": {
+            "x": 487,
+            "y": 167,
+            "width": 56,
+            "height": 46,
+            "top": 167,
+            "right": 543,
+            "bottom": 213,
+            "left": 487
+          },
+          "color": "rgb(114, 214, 39)"
+        }
+      ],
+      "ancestors": [
+        {
+          "tag": "DIV",
+          "rect": {
+            "x": 481,
+            "y": 162,
+            "width": 70,
+            "height": 65,
+            "top": 162,
+            "right": 551,
+            "bottom": 227,
+            "left": 481
+          },
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "gap": "normal"
+        },
+        {
+          "tag": "DIV",
+          "rect": {
+            "x": 481,
+            "y": 162,
+            "width": 70,
+            "height": 65,
+            "top": 162,
+            "right": 551,
+            "bottom": 227,
+            "left": 481
+          },
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "gap": "normal"
+        },
+        {
+          "tag": "DIV",
+          "rect": {
+            "x": 481,
+            "y": 162,
+            "width": 70,
+            "height": 65,
+            "top": 162,
+            "right": 551,
+            "bottom": 227,
+            "left": 481
+          },
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "gap": "normal"
+        }
+      ]
+    },
+    {
+      "test": null,
+      "tag": "DIV",
+      "role": "button",
+      "text": "",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        436.1171875,
+        238.8515625,
+        70,
+        65
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "500",
+        "lineHeight": "20px",
+        "color": "rgb(60, 60, 60)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(60, 60, 60)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": []
+    },
+    {
+      "test": "skill-path-level-1 skill-path-level-skill",
+      "tag": "BUTTON",
+      "role": null,
+      "text": "",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        436.1171875,
+        238.8515625,
+        70,
+        65
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "400",
+        "lineHeight": "19.55px",
+        "color": "rgb(0, 0, 0)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(0, 0, 0)"
+      },
+      "icons": [
+        "<svg width=\"56\" height=\"46\" viewBox=\"0 0 56 46\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M34.2346 3.25135C35.3157 2.1269 34.7053 0.276787 33.1512 0.143156C32.0512 0.0485729 30.9331 0 29.8002 0C13.342 0 0 10.2517 0 22.8979C0 26.3985 1.02236 29.7157 2.85016 32.6827C3.47761 33.7012 4.88715 33.7751 5.71626 32.9128L34.2346 3.25135Z\" fill=\"currentColor\"></path><path d=\"M55.0954 12.5231C53.3548 9.61289 49.8186 6.8733 47.2219 5.21074C46.2417 4.58319 44.9772 4.77038 44.1616 5.60066C34.5035 15.4328 18.3374 31.8498 12.05 38.0427C10.9724 39.1041 10.996 40.8688 12.249 41.716C16.2271 44.4058 20.9121 45.5851 23.4852 45.9072C24.1853 45.9949 24.8657 45.7259 25.3691 45.2315C34.775 35.9934 50.2041 19.9015 54.7166 15.0879C55.3787 14.3818 55.5923 13.3539 55.0954 12.5231Z\" fill=\"currentColor\"></path></svg>"
+      ],
+      "images": [
+        {
+          "src": "https://d35aaqx5ub95lt.cloudfront.net/images/path/icons/bfa591f6854b4de08e1656b3e8ca084f.svg",
+          "rect": {
+            "x": 450.1171875,
+            "y": 250.3515625,
+            "width": 42,
+            "height": 34,
+            "top": 250.3515625,
+            "right": 492.1171875,
+            "bottom": 284.3515625,
+            "left": 450.1171875
+          }
+        }
+      ],
+      "iconDetails": [
+        {
+          "rect": {
+            "x": 442.1171875,
+            "y": 243.8515625,
+            "width": 56,
+            "height": 46,
+            "top": 243.8515625,
+            "right": 498.1171875,
+            "bottom": 289.8515625,
+            "left": 442.1171875
+          },
+          "color": "rgb(114, 214, 39)"
+        }
+      ],
+      "ancestors": [
+        {
+          "tag": "DIV",
+          "rect": {
+            "x": 436.1171875,
+            "y": 238.8515625,
+            "width": 70,
+            "height": 65,
+            "top": 238.8515625,
+            "right": 506.1171875,
+            "bottom": 303.8515625,
+            "left": 436.1171875
+          },
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "gap": "normal"
+        },
+        {
+          "tag": "DIV",
+          "rect": {
+            "x": 436.1171875,
+            "y": 238.8515625,
+            "width": 70,
+            "height": 65,
+            "top": 238.8515625,
+            "right": 506.1171875,
+            "bottom": 303.8515625,
+            "left": 436.1171875
+          },
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "gap": "normal"
+        },
+        {
+          "tag": "DIV",
+          "rect": {
+            "x": 436.1171875,
+            "y": 238.8515625,
+            "width": 70,
+            "height": 65,
+            "top": 238.8515625,
+            "right": 506.1171875,
+            "bottom": 303.8515625,
+            "left": 436.1171875
+          },
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "gap": "normal"
+        }
+      ]
+    },
+    {
+      "test": null,
+      "tag": "BUTTON",
+      "role": null,
+      "text": "",
+      "enabled": false,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        406,
+        324.2265625,
+        80,
+        90
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "400",
+        "lineHeight": "19.55px",
+        "color": "rgba(16, 16, 16, 0.3)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgba(16, 16, 16, 0.3)"
+      },
+      "icons": [],
+      "images": [
+        {
+          "src": "https://d35aaqx5ub95lt.cloudfront.net/images/path/8e1b4675455a4e453aac3681e0f5599e.svg",
+          "rect": {
+            "x": 406,
+            "y": 318.2265625,
+            "width": 80,
+            "height": 90,
+            "top": 318.2265625,
+            "right": 486,
+            "bottom": 408.2265625,
+            "left": 406
+          }
+        }
+      ],
+      "iconDetails": [],
+      "ancestors": [
+        {
+          "tag": "DIV",
+          "rect": {
+            "x": 406,
+            "y": 324.2265625,
+            "width": 80,
+            "height": 90,
+            "top": 324.2265625,
+            "right": 486,
+            "bottom": 414.2265625,
+            "left": 406
+          },
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "gap": "normal"
+        },
+        {
+          "tag": "DIV",
+          "rect": {
+            "x": 280,
+            "y": 138,
+            "width": 472,
+            "height": 490.453125,
+            "top": 138,
+            "right": 752,
+            "bottom": 628.453125,
+            "left": 280
+          },
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "0px 16px",
+          "gap": "normal"
+        },
+        {
+          "tag": "SECTION",
+          "rect": {
+            "x": 280,
+            "y": 138,
+            "width": 472,
+            "height": 490.453125,
+            "top": 138,
+            "right": 752,
+            "bottom": 628.453125,
+            "left": 280
+          },
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "gap": "normal"
+        }
+      ]
+    },
+    {
+      "test": null,
+      "tag": "DIV",
+      "role": "button",
+      "text": "开始",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        422.1171875,
+        434.6015625,
+        98,
+        93
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "500",
+        "lineHeight": "20px",
+        "color": "rgb(60, 60, 60)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(60, 60, 60)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": []
+    },
+    {
+      "test": "skill-path-level-3 skill-path-level-practice",
+      "tag": "BUTTON",
+      "role": null,
+      "text": "",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        436.1171875,
+        448.6015625,
+        70,
+        65
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "400",
+        "lineHeight": "19.55px",
+        "color": "rgb(0, 0, 0)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(0, 0, 0)"
+      },
+      "icons": [],
+      "images": [
+        {
+          "src": "https://d35aaqx5ub95lt.cloudfront.net/images/path/icons/ef9c771afdb674f0ff82fae25c6a7b0a.svg",
+          "rect": {
+            "x": 450.1171875,
+            "y": 460.1015625,
+            "width": 42,
+            "height": 34,
+            "top": 460.1015625,
+            "right": 492.1171875,
+            "bottom": 494.1015625,
+            "left": 450.1171875
+          }
+        }
+      ],
+      "iconDetails": [],
+      "ancestors": [
+        {
+          "tag": "DIV",
+          "rect": {
+            "x": 436.1171875,
+            "y": 448.6015625,
+            "width": 70,
+            "height": 65,
+            "top": 448.6015625,
+            "right": 506.1171875,
+            "bottom": 513.6015625,
+            "left": 436.1171875
+          },
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "gap": "normal"
+        },
+        {
+          "tag": "DIV",
+          "rect": {
+            "x": 422.1171875,
+            "y": 434.6015625,
+            "width": 98,
+            "height": 93,
+            "top": 434.6015625,
+            "right": 520.1171875,
+            "bottom": 527.6015625,
+            "left": 422.1171875
+          },
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "gap": "normal"
+        },
+        {
+          "tag": "DIV",
+          "rect": {
+            "x": 422.1171875,
+            "y": 434.6015625,
+            "width": 98,
+            "height": 93,
+            "top": 434.6015625,
+            "right": 520.1171875,
+            "bottom": 527.6015625,
+            "left": 422.1171875
+          },
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "gap": "normal"
+        }
+      ]
+    },
+    {
+      "test": null,
+      "tag": "DIV",
+      "role": "button",
+      "text": "",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        481,
+        539.453125,
+        70,
+        65
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "500",
+        "lineHeight": "20px",
+        "color": "rgb(60, 60, 60)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(60, 60, 60)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": []
+    },
+    {
+      "test": "skill-path-level-4 skill-path-level-unit_review",
+      "tag": "BUTTON",
+      "role": null,
+      "text": "",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        481,
+        539.453125,
+        70,
+        65
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "400",
+        "lineHeight": "19.55px",
+        "color": "rgb(0, 0, 0)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(0, 0, 0)"
+      },
+      "icons": [],
+      "images": [
+        {
+          "src": "https://d35aaqx5ub95lt.cloudfront.net/images/path/icons/7d84afaa096ff1f1d3f8c86d6c2c9542.svg",
+          "rect": {
+            "x": 495,
+            "y": 550.953125,
+            "width": 42,
+            "height": 34,
+            "top": 550.953125,
+            "right": 537,
+            "bottom": 584.953125,
+            "left": 495
+          }
+        }
+      ],
+      "iconDetails": [],
+      "ancestors": [
+        {
+          "tag": "DIV",
+          "rect": {
+            "x": 481,
+            "y": 539.453125,
+            "width": 70,
+            "height": 65,
+            "top": 539.453125,
+            "right": 551,
+            "bottom": 604.453125,
+            "left": 481
+          },
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "gap": "normal"
+        },
+        {
+          "tag": "DIV",
+          "rect": {
+            "x": 481,
+            "y": 539.453125,
+            "width": 70,
+            "height": 65,
+            "top": 539.453125,
+            "right": 551,
+            "bottom": 604.453125,
+            "left": 481
+          },
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "gap": "normal"
+        },
+        {
+          "tag": "DIV",
+          "rect": {
+            "x": 481,
+            "y": 539.453125,
+            "width": 70,
+            "height": 65,
+            "top": 539.453125,
+            "right": 551,
+            "bottom": 604.453125,
+            "left": 481
+          },
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "gap": "normal"
+        }
+      ]
+    },
+    {
+      "test": "skill-path-unit-1",
+      "tag": "SECTION",
+      "role": null,
+      "text": "谈论祖籍国家\n跳级到这儿？",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        280,
+        628.453125,
+        472,
+        603.453125
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "500",
+        "lineHeight": "20px",
+        "color": "rgb(60, 60, 60)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(60, 60, 60)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": []
+    },
+    {
+      "test": null,
+      "tag": "H2",
+      "role": null,
+      "text": "谈论祖籍国家",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        459,
+        664.1484375,
+        114,
+        26.6015625
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "19px",
+        "fontWeight": "700",
+        "lineHeight": "26.6px",
+        "color": "rgb(175, 175, 175)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(175, 175, 175)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": []
+    },
+    {
+      "test": "skill-path-state-unit_test skill-path-unit-test-1",
+      "tag": "A",
+      "role": null,
+      "text": "跳级到这儿？",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        481,
+        793.453125,
+        70,
+        65
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "500",
+        "lineHeight": "20px",
+        "color": "rgb(0, 0, 238)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(0, 0, 238)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": []
+    },
+    {
+      "test": "skill-path-tooltip-unit-test",
+      "tag": "DIV",
+      "role": null,
+      "text": "跳级到这儿？",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        449.46875,
+        744.3213500976562,
+        133.0625,
+        45
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "500",
+        "lineHeight": "20px",
+        "color": "rgb(0, 0, 238)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(0, 0, 238)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": []
+    },
+    {
+      "test": null,
+      "tag": "DIV",
+      "role": "button",
+      "text": "",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        525.8828125,
+        870.3046875,
+        70,
+        65
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "500",
+        "lineHeight": "20px",
+        "color": "rgb(60, 60, 60)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(60, 60, 60)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": []
+    },
+    {
+      "test": "skill-path-level-1 skill-path-level-skill",
+      "tag": "BUTTON",
+      "role": null,
+      "text": "",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        525.8828125,
+        870.3046875,
+        70,
+        65
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "400",
+        "lineHeight": "19.55px",
+        "color": "rgb(0, 0, 0)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(0, 0, 0)"
+      },
+      "icons": [],
+      "images": [
+        {
+          "src": "https://d35aaqx5ub95lt.cloudfront.net/images/path/icons/ddd21f172a2db0f5ef169c09b4d3badb.svg",
+          "rect": {
+            "x": 539.8828125,
+            "y": 881.8046875,
+            "width": 42,
+            "height": 34,
+            "top": 881.8046875,
+            "right": 581.8828125,
+            "bottom": 915.8046875,
+            "left": 539.8828125
+          }
+        }
+      ],
+      "iconDetails": [],
+      "ancestors": [
+        {
+          "tag": "DIV",
+          "rect": {
+            "x": 525.8828125,
+            "y": 870.3046875,
+            "width": 70,
+            "height": 65,
+            "top": 870.3046875,
+            "right": 595.8828125,
+            "bottom": 935.3046875,
+            "left": 525.8828125
+          },
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "gap": "normal"
+        },
+        {
+          "tag": "DIV",
+          "rect": {
+            "x": 525.8828125,
+            "y": 870.3046875,
+            "width": 70,
+            "height": 65,
+            "top": 870.3046875,
+            "right": 595.8828125,
+            "bottom": 935.3046875,
+            "left": 525.8828125
+          },
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "gap": "normal"
+        },
+        {
+          "tag": "DIV",
+          "rect": {
+            "x": 525.8828125,
+            "y": 870.3046875,
+            "width": 70,
+            "height": 65,
+            "top": 870.3046875,
+            "right": 595.8828125,
+            "bottom": 935.3046875,
+            "left": 525.8828125
+          },
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "gap": "normal"
+        }
+      ]
+    },
+    {
+      "test": null,
+      "tag": "BUTTON",
+      "role": null,
+      "text": "",
+      "enabled": false,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        546,
+        955.6796875,
+        80,
+        90
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "400",
+        "lineHeight": "19.55px",
+        "color": "rgba(16, 16, 16, 0.3)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgba(16, 16, 16, 0.3)"
+      },
+      "icons": [],
+      "images": [
+        {
+          "src": "https://d35aaqx5ub95lt.cloudfront.net/images/path/b841637c196f5be786d8b8578a42ffbf.svg",
+          "rect": {
+            "x": 546,
+            "y": 960.6796875,
+            "width": 80,
+            "height": 90,
+            "top": 960.6796875,
+            "right": 626,
+            "bottom": 1050.6796875,
+            "left": 546
+          }
+        }
+      ],
+      "iconDetails": [],
+      "ancestors": [
+        {
+          "tag": "DIV",
+          "rect": {
+            "x": 546,
+            "y": 955.6796875,
+            "width": 80,
+            "height": 90,
+            "top": 955.6796875,
+            "right": 626,
+            "bottom": 1045.6796875,
+            "left": 546
+          },
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "gap": "normal"
+        },
+        {
+          "tag": "DIV",
+          "rect": {
+            "x": 280,
+            "y": 726.453125,
+            "width": 472,
+            "height": 505.453125,
+            "top": 726.453125,
+            "right": 752,
+            "bottom": 1231.90625,
+            "left": 280
+          },
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "0px 16px",
+          "gap": "normal"
+        },
+        {
+          "tag": "SECTION",
+          "rect": {
+            "x": 280,
+            "y": 628.453125,
+            "width": 472,
+            "height": 603.453125,
+            "top": 628.453125,
+            "right": 752,
+            "bottom": 1231.90625,
+            "left": 280
+          },
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "gap": "normal"
+        }
+      ]
+    },
+    {
+      "test": null,
+      "tag": "DIV",
+      "role": "button",
+      "text": "",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        525.8828125,
+        1066.0546875,
+        70,
+        65
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "500",
+        "lineHeight": "20px",
+        "color": "rgb(60, 60, 60)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(60, 60, 60)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": []
+    },
+    {
+      "test": "skill-path-level-3 skill-path-level-practice",
+      "tag": "BUTTON",
+      "role": null,
+      "text": "",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        525.8828125,
+        1066.0546875,
+        70,
+        65
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "400",
+        "lineHeight": "19.55px",
+        "color": "rgb(0, 0, 0)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(0, 0, 0)"
+      },
+      "icons": [],
+      "images": [
+        {
+          "src": "https://d35aaqx5ub95lt.cloudfront.net/images/path/icons/ddd21f172a2db0f5ef169c09b4d3badb.svg",
+          "rect": {
+            "x": 539.8828125,
+            "y": 1077.5546875,
+            "width": 42,
+            "height": 34,
+            "top": 1077.5546875,
+            "right": 581.8828125,
+            "bottom": 1111.5546875,
+            "left": 539.8828125
+          }
+        }
+      ],
+      "iconDetails": [],
+      "ancestors": [
+        {
+          "tag": "DIV",
+          "rect": {
+            "x": 525.8828125,
+            "y": 1066.0546875,
+            "width": 70,
+            "height": 65,
+            "top": 1066.0546875,
+            "right": 595.8828125,
+            "bottom": 1131.0546875,
+            "left": 525.8828125
+          },
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "gap": "normal"
+        },
+        {
+          "tag": "DIV",
+          "rect": {
+            "x": 525.8828125,
+            "y": 1066.0546875,
+            "width": 70,
+            "height": 65,
+            "top": 1066.0546875,
+            "right": 595.8828125,
+            "bottom": 1131.0546875,
+            "left": 525.8828125
+          },
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "gap": "normal"
+        },
+        {
+          "tag": "DIV",
+          "rect": {
+            "x": 525.8828125,
+            "y": 1066.0546875,
+            "width": 70,
+            "height": 65,
+            "top": 1066.0546875,
+            "right": 595.8828125,
+            "bottom": 1131.0546875,
+            "left": 525.8828125
+          },
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "gap": "normal"
+        }
+      ]
+    },
+    {
+      "test": null,
+      "tag": "DIV",
+      "role": "button",
+      "text": "",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        481,
+        1142.90625,
+        70,
+        65
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "500",
+        "lineHeight": "20px",
+        "color": "rgb(60, 60, 60)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(60, 60, 60)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": []
+    },
+    {
+      "test": "skill-path-level-4 skill-path-level-unit_review",
+      "tag": "BUTTON",
+      "role": null,
+      "text": "",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        481,
+        1142.90625,
+        70,
+        65
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "400",
+        "lineHeight": "19.55px",
+        "color": "rgb(0, 0, 0)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(0, 0, 0)"
+      },
+      "icons": [],
+      "images": [
+        {
+          "src": "https://d35aaqx5ub95lt.cloudfront.net/images/path/icons/7d84afaa096ff1f1d3f8c86d6c2c9542.svg",
+          "rect": {
+            "x": 495,
+            "y": 1154.40625,
+            "width": 42,
+            "height": 34,
+            "top": 1154.40625,
+            "right": 537,
+            "bottom": 1188.40625,
+            "left": 495
+          }
+        }
+      ],
+      "iconDetails": [],
+      "ancestors": [
+        {
+          "tag": "DIV",
+          "rect": {
+            "x": 481,
+            "y": 1142.90625,
+            "width": 70,
+            "height": 65,
+            "top": 1142.90625,
+            "right": 551,
+            "bottom": 1207.90625,
+            "left": 481
+          },
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "gap": "normal"
+        },
+        {
+          "tag": "DIV",
+          "rect": {
+            "x": 481,
+            "y": 1142.90625,
+            "width": 70,
+            "height": 65,
+            "top": 1142.90625,
+            "right": 551,
+            "bottom": 1207.90625,
+            "left": 481
+          },
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "gap": "normal"
+        },
+        {
+          "tag": "DIV",
+          "rect": {
+            "x": 481,
+            "y": 1142.90625,
+            "width": 70,
+            "height": 65,
+            "top": 1142.90625,
+            "right": 551,
+            "bottom": 1207.90625,
+            "left": 481
+          },
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "gap": "normal"
+        }
+      ]
+    },
+    {
+      "test": "skill-path-unit-2",
+      "tag": "SECTION",
+      "role": null,
+      "text": "介绍家庭成员\n跳级到这儿？",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        280,
+        1231.90625,
+        472,
+        603.453125
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "500",
+        "lineHeight": "20px",
+        "color": "rgb(60, 60, 60)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(60, 60, 60)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": []
+    },
+    {
+      "test": null,
+      "tag": "H2",
+      "role": null,
+      "text": "介绍家庭成员",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        459,
+        1267.6015625,
+        114,
+        26.6015625
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "19px",
+        "fontWeight": "700",
+        "lineHeight": "26.6px",
+        "color": "rgb(175, 175, 175)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(175, 175, 175)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": []
+    },
+    {
+      "test": "skill-path-state-unit_test skill-path-unit-test-2",
+      "tag": "A",
+      "role": null,
+      "text": "跳级到这儿？",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        481,
+        1396.90625,
+        70,
+        65
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "500",
+        "lineHeight": "20px",
+        "color": "rgb(0, 0, 238)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(0, 0, 238)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": []
+    },
+    {
+      "test": "skill-path-tooltip-unit-test",
+      "tag": "DIV",
+      "role": null,
+      "text": "跳级到这儿？",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        449.46875,
+        1347.7744140625,
+        133.0625,
+        45
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "500",
+        "lineHeight": "20px",
+        "color": "rgb(0, 0, 238)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(0, 0, 238)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": []
+    },
+    {
+      "test": null,
+      "tag": "DIV",
+      "role": "button",
+      "text": "",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        436.1171875,
+        1473.7578125,
+        70,
+        65
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "500",
+        "lineHeight": "20px",
+        "color": "rgb(60, 60, 60)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(60, 60, 60)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": []
+    },
+    {
+      "test": "skill-path-level-1 skill-path-level-skill",
+      "tag": "BUTTON",
+      "role": null,
+      "text": "",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        436.1171875,
+        1473.7578125,
+        70,
+        65
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "400",
+        "lineHeight": "19.55px",
+        "color": "rgb(0, 0, 0)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(0, 0, 0)"
+      },
+      "icons": [],
+      "images": [
+        {
+          "src": "https://d35aaqx5ub95lt.cloudfront.net/images/path/icons/ddd21f172a2db0f5ef169c09b4d3badb.svg",
+          "rect": {
+            "x": 450.1171875,
+            "y": 1485.2578125,
+            "width": 42,
+            "height": 34,
+            "top": 1485.2578125,
+            "right": 492.1171875,
+            "bottom": 1519.2578125,
+            "left": 450.1171875
+          }
+        }
+      ],
+      "iconDetails": [],
+      "ancestors": [
+        {
+          "tag": "DIV",
+          "rect": {
+            "x": 436.1171875,
+            "y": 1473.7578125,
+            "width": 70,
+            "height": 65,
+            "top": 1473.7578125,
+            "right": 506.1171875,
+            "bottom": 1538.7578125,
+            "left": 436.1171875
+          },
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "gap": "normal"
+        },
+        {
+          "tag": "DIV",
+          "rect": {
+            "x": 436.1171875,
+            "y": 1473.7578125,
+            "width": 70,
+            "height": 65,
+            "top": 1473.7578125,
+            "right": 506.1171875,
+            "bottom": 1538.7578125,
+            "left": 436.1171875
+          },
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "gap": "normal"
+        },
+        {
+          "tag": "DIV",
+          "rect": {
+            "x": 436.1171875,
+            "y": 1473.7578125,
+            "width": 70,
+            "height": 65,
+            "top": 1473.7578125,
+            "right": 506.1171875,
+            "bottom": 1538.7578125,
+            "left": 436.1171875
+          },
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "gap": "normal"
+        }
+      ]
+    },
+    {
+      "test": null,
+      "tag": "BUTTON",
+      "role": null,
+      "text": "",
+      "enabled": false,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        406,
+        1559.1328125,
+        80,
+        90
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "400",
+        "lineHeight": "19.55px",
+        "color": "rgba(16, 16, 16, 0.3)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgba(16, 16, 16, 0.3)"
+      },
+      "icons": [],
+      "images": [
+        {
+          "src": "https://d35aaqx5ub95lt.cloudfront.net/images/path/b841637c196f5be786d8b8578a42ffbf.svg",
+          "rect": {
+            "x": 406,
+            "y": 1564.1328125,
+            "width": 80,
+            "height": 90,
+            "top": 1564.1328125,
+            "right": 486,
+            "bottom": 1654.1328125,
+            "left": 406
+          }
+        }
+      ],
+      "iconDetails": [],
+      "ancestors": [
+        {
+          "tag": "DIV",
+          "rect": {
+            "x": 406,
+            "y": 1559.1328125,
+            "width": 80,
+            "height": 90,
+            "top": 1559.1328125,
+            "right": 486,
+            "bottom": 1649.1328125,
+            "left": 406
+          },
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "gap": "normal"
+        },
+        {
+          "tag": "DIV",
+          "rect": {
+            "x": 280,
+            "y": 1329.90625,
+            "width": 472,
+            "height": 505.453125,
+            "top": 1329.90625,
+            "right": 752,
+            "bottom": 1835.359375,
+            "left": 280
+          },
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "0px 16px",
+          "gap": "normal"
+        },
+        {
+          "tag": "SECTION",
+          "rect": {
+            "x": 280,
+            "y": 1231.90625,
+            "width": 472,
+            "height": 603.453125,
+            "top": 1231.90625,
+            "right": 752,
+            "bottom": 1835.359375,
+            "left": 280
+          },
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "gap": "normal"
+        }
+      ]
+    },
+    {
+      "test": null,
+      "tag": "DIV",
+      "role": "button",
+      "text": "",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        436.1171875,
+        1669.5078125,
+        70,
+        65
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "500",
+        "lineHeight": "20px",
+        "color": "rgb(60, 60, 60)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(60, 60, 60)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": []
+    },
+    {
+      "test": "skill-path-level-3 skill-path-level-practice",
+      "tag": "BUTTON",
+      "role": null,
+      "text": "",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        436.1171875,
+        1669.5078125,
+        70,
+        65
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "400",
+        "lineHeight": "19.55px",
+        "color": "rgb(0, 0, 0)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(0, 0, 0)"
+      },
+      "icons": [],
+      "images": [
+        {
+          "src": "https://d35aaqx5ub95lt.cloudfront.net/images/path/icons/ddd21f172a2db0f5ef169c09b4d3badb.svg",
+          "rect": {
+            "x": 450.1171875,
+            "y": 1681.0078125,
+            "width": 42,
+            "height": 34,
+            "top": 1681.0078125,
+            "right": 492.1171875,
+            "bottom": 1715.0078125,
+            "left": 450.1171875
+          }
+        }
+      ],
+      "iconDetails": [],
+      "ancestors": [
+        {
+          "tag": "DIV",
+          "rect": {
+            "x": 436.1171875,
+            "y": 1669.5078125,
+            "width": 70,
+            "height": 65,
+            "top": 1669.5078125,
+            "right": 506.1171875,
+            "bottom": 1734.5078125,
+            "left": 436.1171875
+          },
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "gap": "normal"
+        },
+        {
+          "tag": "DIV",
+          "rect": {
+            "x": 436.1171875,
+            "y": 1669.5078125,
+            "width": 70,
+            "height": 65,
+            "top": 1669.5078125,
+            "right": 506.1171875,
+            "bottom": 1734.5078125,
+            "left": 436.1171875
+          },
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "gap": "normal"
+        },
+        {
+          "tag": "DIV",
+          "rect": {
+            "x": 436.1171875,
+            "y": 1669.5078125,
+            "width": 70,
+            "height": 65,
+            "top": 1669.5078125,
+            "right": 506.1171875,
+            "bottom": 1734.5078125,
+            "left": 436.1171875
+          },
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "gap": "normal"
+        }
+      ]
+    },
+    {
+      "test": null,
+      "tag": "DIV",
+      "role": "button",
+      "text": "",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        481,
+        1746.359375,
+        70,
+        65
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "500",
+        "lineHeight": "20px",
+        "color": "rgb(60, 60, 60)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(60, 60, 60)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": []
+    },
+    {
+      "test": "skill-path-level-4 skill-path-level-unit_review",
+      "tag": "BUTTON",
+      "role": null,
+      "text": "",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        481,
+        1746.359375,
+        70,
+        65
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "17px",
+        "fontWeight": "400",
+        "lineHeight": "19.55px",
+        "color": "rgb(0, 0, 0)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(0, 0, 0)"
+      },
+      "icons": [],
+      "images": [
+        {
+          "src": "https://d35aaqx5ub95lt.cloudfront.net/images/path/icons/7d84afaa096ff1f1d3f8c86d6c2c9542.svg",
+          "rect": {
+            "x": 495,
+            "y": 1757.859375,
+            "width": 42,
+            "height": 34,
+            "top": 1757.859375,
+            "right": 537,
+            "bottom": 1791.859375,
+            "left": 495
+          }
+        }
+      ],
+      "iconDetails": [],
+      "ancestors": [
+        {
+          "tag": "DIV",
+          "rect": {
+            "x": 481,
+            "y": 1746.359375,
+            "width": 70,
+            "height": 65,
+            "top": 1746.359375,
+            "right": 551,
+            "bottom": 1811.359375,
+            "left": 481
+          },
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "gap": "normal"
+        },
+        {
+          "tag": "DIV",
+          "rect": {
+            "x": 481,
+            "y": 1746.359375,
+            "width": 70,
+            "height": 65,
+            "top": 1746.359375,
+            "right": 551,
+            "bottom": 1811.359375,
+            "left": 481
+          },
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "gap": "normal"
+        },
+        {
+          "tag": "DIV",
+          "rect": {
+            "x": 481,
+            "y": 1746.359375,
+            "width": 70,
+            "height": 65,
+            "top": 1746.359375,
+            "right": 551,
+            "bottom": 1811.359375,
+            "left": 481
+          },
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "gap": "normal"
+        }
+      ]
+    },
+    {
+      "test": null,
+      "tag": "H2",
+      "role": null,
+      "text": "第  2  阶段",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        479.53125,
+        7509.4140625,
+        105.9296875,
+        32
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "25px",
+        "fontWeight": "700",
+        "lineHeight": "32px",
+        "color": "rgb(119, 119, 119)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "borderWidth": "0px",
+        "borderColor": "rgb(119, 119, 119)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": []
+    },
+    {
+      "test": null,
+      "tag": "BUTTON",
+      "role": null,
+      "text": "跳级到这儿？",
+      "enabled": true,
+      "pressed": null,
+      "checked": null,
+      "rect": [
+        312,
+        7636.4140625,
+        408,
+        50
+      ],
+      "css": {
+        "fontFamily": "duolingo-sans, sans-serif",
+        "fontSize": "15px",
+        "fontWeight": "700",
+        "lineHeight": "18px",
+        "color": "rgb(28, 176, 246)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "16px",
+        "borderWidth": "2px 2px 4px",
+        "borderColor": "rgba(0, 0, 0, 0)"
+      },
+      "icons": [],
+      "images": [],
+      "iconDetails": [],
+      "ancestors": [
+        {
+          "tag": "DIV",
+          "rect": {
+            "x": 280,
+            "y": 7429.4140625,
+            "width": 472,
+            "height": 295,
+            "top": 7429.4140625,
+            "right": 752,
+            "bottom": 7724.4140625,
+            "left": 280
+          },
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "16px",
+          "padding": "36px 30px",
+          "gap": "normal"
+        },
+        {
+          "tag": "DIV",
+          "rect": {
+            "x": 280,
+            "y": 24,
+            "width": 472,
+            "height": 7700.4140625,
+            "top": 24,
+            "right": 752,
+            "bottom": 7724.4140625,
+            "left": 280
+          },
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "0px",
+          "gap": "normal"
+        },
+        {
+          "tag": "DIV",
+          "rect": {
+            "x": 256,
+            "y": 24,
+            "width": 936,
+            "height": 7724.4140625,
+            "top": 24,
+            "right": 1192,
+            "bottom": 7748.4140625,
+            "left": 256
+          },
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "borderRadius": "0px",
+          "padding": "0px 24px 24px",
+          "gap": "48px"
+        }
+      ]
+    }
+  ],
+  "screenshot": "shop-before.png"
+}

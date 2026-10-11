@@ -1,0 +1,1582 @@
+{
+  "attempts": [
+    {
+      "failure": "ProbeError(message: \"No observed control: registration-back\")",
+      "id": "profile"
+    },
+    {
+      "failure": "ProbeError(message: \"No observed control: login-close\")",
+      "id": "login"
+    },
+    {
+      "failure": null,
+      "id": "shop"
+    },
+    {
+      "failure": null,
+      "id": "more"
+    }
+  ],
+  "candidate_binary_sha256": "9db769f28c769831d21aa1310b9115e8f8cfc3c015f36a83c24c50f8c9de97b9",
+  "failure": "[[\"id\": \"profile\", \"failure\": \"ProbeError(message: \\\"No observed control: registration-back\\\")\"], [\"id\": \"login\", \"failure\": \"ProbeError(message: \\\"No observed control: login-close\\\")\"]]",
+  "fixture_sha256": "b7242d0e130112d54b1e17714bf21c35045e58f8874948917b0b09f971282bda",
+  "kind": "owned_native_ax_observation",
+  "limitations": [
+    "No acoustic equality claim; actual images retain clock and animation phase differences"
+  ],
+  "scenario_sha256": "a93e71f7211e94ad0eecae7be74c03232815ea5a62834c4906f597ee82b27cb5",
+  "states": {
+    "journey-login": {
+      "accessible_text": [
+        "5",
+        "8 lessons complete",
+        "80",
+        "Back to learning",
+        "Complete a lesson",
+        "Course goal",
+        "EN",
+        "Hear words and feedback as you learn. Your preference is saved on this device.",
+        "Leaderboards",
+        "Learn",
+        "Learn at your own pace. Every completed lesson is saved on this device.",
+        "Learning sounds",
+        "LingoSeed",
+        "LingoSeed · original lessons and sounds, inspired by the reference learning flow.",
+        "More",
+        "Profile",
+        "Quests",
+        "Shop",
+        "Sign in",
+        "Sound on",
+        "Turn sound off",
+        "VIEW PROFILE",
+        "VIEW QUESTS",
+        "Your learning milestones",
+        "Your local profile works offline. Online accounts and competitive rankings are not connected.",
+        "Your progress stays with you",
+        "lingoseed",
+        "on"
+      ],
+      "capture": {
+        "backing_scale": 2,
+        "content_rect_points": [
+          0,
+          32,
+          1200,
+          732
+        ],
+        "path": "projects/duolingo-web/evidence/english-home-journey-v1/native-before/journey-login.png",
+        "window_points": [
+          1200,
+          764
+        ]
+      },
+      "elements": {
+        "destination-title": {
+          "enabled": true,
+          "rect": [
+            342.5,
+            36.25,
+            82,
+            31
+          ],
+          "role": "AXStaticText",
+          "value": "Sign in"
+        },
+        "ellipsis.circle.fill": {
+          "enabled": true,
+          "rect": [
+            286,
+            33,
+            37.5,
+            37.5
+          ],
+          "role": "AXImage",
+          "value": ""
+        },
+        "nav-leaderboards": {
+          "enabled": true,
+          "rect": [
+            45.5,
+            197,
+            149.5,
+            25
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-learn": {
+          "enabled": true,
+          "rect": [
+            40.5,
+            121,
+            89.5,
+            27
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-more": {
+          "enabled": true,
+          "rect": [
+            43,
+            499.5,
+            82,
+            26
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-profile": {
+          "enabled": true,
+          "rect": [
+            43,
+            424.5,
+            99,
+            26
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-quests": {
+          "enabled": true,
+          "rect": [
+            43.5,
+            271,
+            97,
+            27
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-shop": {
+          "enabled": true,
+          "rect": [
+            41.5,
+            347,
+            82,
+            28.5
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "return-learn": {
+          "enabled": true,
+          "rect": [
+            282,
+            404,
+            173,
+            53
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "settings-sound": {
+          "enabled": true,
+          "rect": [
+            305,
+            262,
+            161,
+            53
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "sound-toggle": {
+          "enabled": true,
+          "rect": [
+            41,
+            677,
+            82,
+            16
+          ],
+          "role": "AXButton",
+          "value": "on"
+        },
+        "SwiftUI._ConditionalContent<SwiftUI.SubscriptionView<(extension in Foundation):__C.NSNotificationCenter.Publisher, SwiftUI.ModifiedContent<LingoSeed.LearningView, SwiftUI._AppearanceActionModifier>>, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1": {
+          "enabled": false,
+          "rect": [
+            0,
+            -32,
+            1200,
+            764
+          ],
+          "role": "AXWindow",
+          "value": ""
+        },
+        "view-profile": {
+          "enabled": true,
+          "rect": [
+            848,
+            613,
+            161,
+            53
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "view-quests": {
+          "enabled": true,
+          "rect": [
+            849,
+            433,
+            88,
+            16
+          ],
+          "role": "AXButton",
+          "value": ""
+        }
+      }
+    },
+    "journey-more": {
+      "accessible_text": [
+        "11 分钟",
+        "2",
+        "30 / 30",
+        "5",
+        "525",
+        "8",
+        "8 of 8 lessons complete",
+        "Create a profile",
+        "Duo",
+        "Duolingo English Test",
+        "Help",
+        "Lesson",
+        "LingoSeed",
+        "Practice",
+        "Settings",
+        "Sign in",
+        "个人档案",
+        "关于我们    宝石小店    有效性    招聘贤才\n\n投资者    条款    隐私",
+        "创建个人档案，保存学习进度！",
+        "创建档案",
+        "发音",
+        "复习该部分",
+        "学习",
+        "宝石小店",
+        "宝箱",
+        "开始",
+        "指南",
+        "排行榜",
+        "提供或接受饮料",
+        "显示全部",
+        "更多",
+        "查看排行榜",
+        "每日特别任务",
+        "特别任务",
+        "登录",
+        "第 1 阶段，第 1 部分",
+        "获取 30 经验",
+        "谈论祖籍国家",
+        "这周的排行榜挑战赛即将开始！",
+        "青铜等级"
+      ],
+      "capture": {
+        "backing_scale": 2,
+        "content_rect_points": [
+          0,
+          32,
+          1200,
+          732
+        ],
+        "path": "projects/duolingo-web/evidence/english-home-journey-v1/native-before/journey-more.png",
+        "window_points": [
+          1200,
+          764
+        ]
+      },
+      "elements": {
+        "completed-count": {
+          "enabled": true,
+          "rect": [
+            455.5,
+            687.1484375,
+            129,
+            15
+          ],
+          "role": "AXStaticText",
+          "value": "8"
+        },
+        "course-entry": {
+          "enabled": true,
+          "rect": [
+            296,
+            93.5,
+            154,
+            26
+          ],
+          "role": "AXStaticText",
+          "value": "提供或接受饮料"
+        },
+        "home-duo-animation": {
+          "enabled": true,
+          "rect": [
+            506,
+            225,
+            238,
+            288.5
+          ],
+          "role": "AXUnknown",
+          "value": ""
+        },
+        "home-league-countdown": {
+          "enabled": true,
+          "rect": [
+            910,
+            197,
+            53.5,
+            20
+          ],
+          "role": "AXStaticText",
+          "value": "11 分钟"
+        },
+        "more-create-a-profile": {
+          "enabled": true,
+          "rect": [
+            254,
+            382,
+            112.5,
+            20
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "more-duolingo-english-test": {
+          "enabled": true,
+          "rect": [
+            254,
+            330,
+            157.5,
+            20
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "more-help": {
+          "enabled": true,
+          "rect": [
+            254,
+            486,
+            34.5,
+            20
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "more-settings": {
+          "enabled": true,
+          "rect": [
+            254,
+            434,
+            62,
+            20
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "more-sign-in": {
+          "enabled": true,
+          "rect": [
+            254,
+            538,
+            49,
+            20
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-leaderboards": {
+          "enabled": true,
+          "rect": [
+            16,
+            212,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-learn": {
+          "enabled": true,
+          "rect": [
+            16,
+            92,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-more": {
+          "enabled": true,
+          "rect": [
+            16,
+            452,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-profile": {
+          "enabled": true,
+          "rect": [
+            16,
+            392,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-pronunciation": {
+          "enabled": true,
+          "rect": [
+            16,
+            152,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-quests": {
+          "enabled": true,
+          "rect": [
+            16,
+            272,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-shop": {
+          "enabled": true,
+          "rect": [
+            16,
+            332,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "open-guide": {
+          "enabled": true,
+          "rect": [
+            649,
+            68,
+            96,
+            50
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "path-chest": {
+          "enabled": false,
+          "rect": [
+            410,
+            324,
+            80,
+            90
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "sign-in": {
+          "enabled": true,
+          "rect": [
+            828,
+            570,
+            328,
+            46
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "start-lesson": {
+          "enabled": true,
+          "rect": [
+            485,
+            162,
+            70,
+            65
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "start-lesson-1": {
+          "enabled": true,
+          "rect": [
+            440,
+            239,
+            70,
+            65
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "start-lesson-3": {
+          "enabled": true,
+          "rect": [
+            440,
+            448.5,
+            70,
+            65
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "start-lesson-4": {
+          "enabled": true,
+          "rect": [
+            485,
+            539.5,
+            70,
+            65
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "SwiftUI._ConditionalContent<SwiftUI.SubscriptionView<(extension in Foundation):__C.NSNotificationCenter.Publisher, SwiftUI.ModifiedContent<LingoSeed.LearningView, SwiftUI._AppearanceActionModifier>>, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1": {
+          "enabled": false,
+          "rect": [
+            0,
+            -32,
+            1200,
+            764
+          ],
+          "role": "AXWindow",
+          "value": ""
+        },
+        "view-leaderboards": {
+          "enabled": true,
+          "rect": [
+            1081,
+            114.5,
+            75,
+            18
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "view-profile": {
+          "enabled": true,
+          "rect": [
+            828,
+            510,
+            328,
+            46
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "view-quests": {
+          "enabled": true,
+          "rect": [
+            1096,
+            280.5,
+            60,
+            18
+          ],
+          "role": "AXButton",
+          "value": ""
+        }
+      }
+    },
+    "journey-more-return": {
+      "accessible_text": [
+        "11 分钟",
+        "2",
+        "30 / 30",
+        "5",
+        "525",
+        "8",
+        "8 of 8 lessons complete",
+        "Duo",
+        "Lesson",
+        "LingoSeed",
+        "Practice",
+        "个人档案",
+        "关于我们    宝石小店    有效性    招聘贤才\n\n投资者    条款    隐私",
+        "创建个人档案，保存学习进度！",
+        "创建档案",
+        "发音",
+        "复习该部分",
+        "学习",
+        "宝石小店",
+        "宝箱",
+        "开始",
+        "指南",
+        "排行榜",
+        "提供或接受饮料",
+        "显示全部",
+        "更多",
+        "查看排行榜",
+        "每日特别任务",
+        "特别任务",
+        "登录",
+        "第 1 阶段，第 1 部分",
+        "获取 30 经验",
+        "谈论祖籍国家",
+        "这周的排行榜挑战赛即将开始！",
+        "青铜等级"
+      ],
+      "capture": {
+        "backing_scale": 2,
+        "content_rect_points": [
+          0,
+          32,
+          1200,
+          732
+        ],
+        "path": "projects/duolingo-web/evidence/english-home-journey-v1/native-before/journey-more-return.png",
+        "window_points": [
+          1200,
+          764
+        ]
+      },
+      "elements": {
+        "completed-count": {
+          "enabled": true,
+          "rect": [
+            455.5,
+            687.1484375,
+            129,
+            15
+          ],
+          "role": "AXStaticText",
+          "value": "8"
+        },
+        "course-entry": {
+          "enabled": true,
+          "rect": [
+            296,
+            93.5,
+            154,
+            26
+          ],
+          "role": "AXStaticText",
+          "value": "提供或接受饮料"
+        },
+        "home-duo-animation": {
+          "enabled": true,
+          "rect": [
+            506,
+            225,
+            238,
+            288.5
+          ],
+          "role": "AXUnknown",
+          "value": ""
+        },
+        "home-league-countdown": {
+          "enabled": true,
+          "rect": [
+            910,
+            197,
+            53.5,
+            20
+          ],
+          "role": "AXStaticText",
+          "value": "11 分钟"
+        },
+        "nav-leaderboards": {
+          "enabled": true,
+          "rect": [
+            16,
+            212,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-learn": {
+          "enabled": true,
+          "rect": [
+            16,
+            92,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-more": {
+          "enabled": true,
+          "rect": [
+            16,
+            452,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-profile": {
+          "enabled": true,
+          "rect": [
+            16,
+            392,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-pronunciation": {
+          "enabled": true,
+          "rect": [
+            16,
+            152,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-quests": {
+          "enabled": true,
+          "rect": [
+            16,
+            272,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-shop": {
+          "enabled": true,
+          "rect": [
+            16,
+            332,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "open-guide": {
+          "enabled": true,
+          "rect": [
+            649,
+            68,
+            96,
+            50
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "path-chest": {
+          "enabled": false,
+          "rect": [
+            410,
+            324,
+            80,
+            90
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "sign-in": {
+          "enabled": true,
+          "rect": [
+            828,
+            570,
+            328,
+            46
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "start-lesson": {
+          "enabled": true,
+          "rect": [
+            485,
+            162,
+            70,
+            65
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "start-lesson-1": {
+          "enabled": true,
+          "rect": [
+            440,
+            239,
+            70,
+            65
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "start-lesson-3": {
+          "enabled": true,
+          "rect": [
+            440,
+            448.5,
+            70,
+            65
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "start-lesson-4": {
+          "enabled": true,
+          "rect": [
+            485,
+            539.5,
+            70,
+            65
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "SwiftUI._ConditionalContent<SwiftUI.SubscriptionView<(extension in Foundation):__C.NSNotificationCenter.Publisher, SwiftUI.ModifiedContent<LingoSeed.LearningView, SwiftUI._AppearanceActionModifier>>, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1": {
+          "enabled": false,
+          "rect": [
+            0,
+            -32,
+            1200,
+            764
+          ],
+          "role": "AXWindow",
+          "value": ""
+        },
+        "view-leaderboards": {
+          "enabled": true,
+          "rect": [
+            1081,
+            114.5,
+            75,
+            18
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "view-profile": {
+          "enabled": true,
+          "rect": [
+            828,
+            510,
+            328,
+            46
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "view-quests": {
+          "enabled": true,
+          "rect": [
+            1096,
+            280.5,
+            60,
+            18
+          ],
+          "role": "AXButton",
+          "value": ""
+        }
+      }
+    },
+    "journey-profile": {
+      "accessible_text": [
+        "5",
+        "5 hearts",
+        "8 completed lessons",
+        "8 lessons complete",
+        "80",
+        "Account",
+        "Back to learning",
+        "Complete a lesson",
+        "Course goal",
+        "EN",
+        "Everyday practice, at your pace.",
+        "Leaderboards",
+        "Learn",
+        "Learn at your own pace. Every completed lesson is saved on this device.",
+        "LingoSeed",
+        "Local learner",
+        "More",
+        "Profile",
+        "Progress is saved on this device. Account synchronization is not connected.",
+        "Quests",
+        "Seed, your learning companion",
+        "Shop",
+        "Sound on",
+        "VIEW PROFILE",
+        "VIEW QUESTS",
+        "Your learning",
+        "Your learning milestones",
+        "Your local profile works offline. Online accounts and competitive rankings are not connected.",
+        "Your progress stays with you",
+        "lingoseed",
+        "on"
+      ],
+      "capture": {
+        "backing_scale": 2,
+        "content_rect_points": [
+          0,
+          32,
+          1200,
+          732
+        ],
+        "path": "projects/duolingo-web/evidence/english-home-journey-v1/native-before/journey-profile.png",
+        "window_points": [
+          1200,
+          764
+        ]
+      },
+      "elements": {
+        "destination-title": {
+          "enabled": true,
+          "rect": [
+            342.5,
+            36.25,
+            79,
+            31
+          ],
+          "role": "AXStaticText",
+          "value": "Profile"
+        },
+        "nav-leaderboards": {
+          "enabled": true,
+          "rect": [
+            45.5,
+            197,
+            149.5,
+            25
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-learn": {
+          "enabled": true,
+          "rect": [
+            40.5,
+            121,
+            89.5,
+            27
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-more": {
+          "enabled": true,
+          "rect": [
+            43,
+            499.5,
+            82,
+            26
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-profile": {
+          "enabled": true,
+          "rect": [
+            23,
+            406.5,
+            206,
+            62
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-quests": {
+          "enabled": true,
+          "rect": [
+            43.5,
+            271,
+            97,
+            27
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-shop": {
+          "enabled": true,
+          "rect": [
+            41.5,
+            347,
+            82,
+            28.5
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "person.crop.circle.fill": {
+          "enabled": true,
+          "rect": [
+            286,
+            33,
+            37.5,
+            37.5
+          ],
+          "role": "AXImage",
+          "value": ""
+        },
+        "return-learn": {
+          "enabled": true,
+          "rect": [
+            282,
+            492,
+            173,
+            53
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "sound-toggle": {
+          "enabled": true,
+          "rect": [
+            41,
+            677,
+            82,
+            16
+          ],
+          "role": "AXButton",
+          "value": "on"
+        },
+        "SwiftUI._ConditionalContent<SwiftUI.SubscriptionView<(extension in Foundation):__C.NSNotificationCenter.Publisher, SwiftUI.ModifiedContent<LingoSeed.LearningView, SwiftUI._AppearanceActionModifier>>, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1": {
+          "enabled": false,
+          "rect": [
+            0,
+            -32,
+            1200,
+            764
+          ],
+          "role": "AXWindow",
+          "value": ""
+        },
+        "view-profile": {
+          "enabled": true,
+          "rect": [
+            848,
+            613,
+            161,
+            53
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "view-quests": {
+          "enabled": true,
+          "rect": [
+            849,
+            433,
+            88,
+            16
+          ],
+          "role": "AXButton",
+          "value": ""
+        }
+      }
+    },
+    "journey-shop": {
+      "accessible_text": [
+        "5",
+        "5 hearts",
+        "8 lessons complete",
+        "80",
+        "Back to learning",
+        "Complete a lesson",
+        "Course goal",
+        "EN",
+        "Everything here is free to practice.",
+        "Hearts",
+        "Leaderboards",
+        "Learn",
+        "Learn at your own pace. Every completed lesson is saved on this device.",
+        "LingoSeed",
+        "More",
+        "Practice is always open",
+        "Profile",
+        "Purchases and subscriptions are not connected.",
+        "Quests",
+        "Return to your course whenever you are ready.",
+        "START A LESSON",
+        "Shop",
+        "Sound on",
+        "VIEW PROFILE",
+        "VIEW QUESTS",
+        "Your learning milestones",
+        "Your local profile works offline. Online accounts and competitive rankings are not connected.",
+        "Your progress stays with you",
+        "lingoseed",
+        "on",
+        "storefront.fill"
+      ],
+      "capture": {
+        "backing_scale": 2,
+        "content_rect_points": [
+          0,
+          32,
+          1200,
+          732
+        ],
+        "path": "projects/duolingo-web/evidence/english-home-journey-v1/native-before/journey-shop.png",
+        "window_points": [
+          1200,
+          764
+        ]
+      },
+      "elements": {
+        "destination-practice": {
+          "enabled": true,
+          "rect": [
+            305,
+            418.5,
+            184,
+            53
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "destination-title": {
+          "enabled": true,
+          "rect": [
+            349.5,
+            38,
+            63.5,
+            31
+          ],
+          "role": "AXStaticText",
+          "value": "Shop"
+        },
+        "nav-leaderboards": {
+          "enabled": true,
+          "rect": [
+            45.5,
+            197,
+            149.5,
+            25
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-learn": {
+          "enabled": true,
+          "rect": [
+            40.5,
+            121,
+            89.5,
+            27
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-more": {
+          "enabled": true,
+          "rect": [
+            43,
+            499.5,
+            82,
+            26
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-profile": {
+          "enabled": true,
+          "rect": [
+            43,
+            424.5,
+            99,
+            26
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-quests": {
+          "enabled": true,
+          "rect": [
+            43.5,
+            271,
+            97,
+            27
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-shop": {
+          "enabled": true,
+          "rect": [
+            23,
+            329,
+            206,
+            64.5
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "return-learn": {
+          "enabled": true,
+          "rect": [
+            282,
+            518.5,
+            173,
+            53
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "sound-toggle": {
+          "enabled": true,
+          "rect": [
+            41,
+            677,
+            82,
+            16
+          ],
+          "role": "AXButton",
+          "value": "on"
+        },
+        "storefront.fill": {
+          "enabled": true,
+          "rect": [
+            287.5,
+            33,
+            41.5,
+            41
+          ],
+          "role": "AXImage",
+          "value": ""
+        },
+        "SwiftUI._ConditionalContent<SwiftUI.SubscriptionView<(extension in Foundation):__C.NSNotificationCenter.Publisher, SwiftUI.ModifiedContent<LingoSeed.LearningView, SwiftUI._AppearanceActionModifier>>, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1": {
+          "enabled": false,
+          "rect": [
+            0,
+            -32,
+            1200,
+            764
+          ],
+          "role": "AXWindow",
+          "value": ""
+        },
+        "view-profile": {
+          "enabled": true,
+          "rect": [
+            848,
+            613,
+            161,
+            53
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "view-quests": {
+          "enabled": true,
+          "rect": [
+            849,
+            433,
+            88,
+            16
+          ],
+          "role": "AXButton",
+          "value": ""
+        }
+      }
+    },
+    "journey-shop-return": {
+      "accessible_text": [
+        "11 分钟",
+        "2",
+        "30 / 30",
+        "5",
+        "525",
+        "8",
+        "8 of 8 lessons complete",
+        "Duo",
+        "Lesson",
+        "LingoSeed",
+        "Practice",
+        "个人档案",
+        "关于我们    宝石小店    有效性    招聘贤才\n\n投资者    条款    隐私",
+        "创建个人档案，保存学习进度！",
+        "创建档案",
+        "发音",
+        "复习该部分",
+        "学习",
+        "宝石小店",
+        "宝箱",
+        "开始",
+        "指南",
+        "排行榜",
+        "提供或接受饮料",
+        "显示全部",
+        "更多",
+        "查看排行榜",
+        "每日特别任务",
+        "特别任务",
+        "登录",
+        "第 1 阶段，第 1 部分",
+        "获取 30 经验",
+        "谈论祖籍国家",
+        "这周的排行榜挑战赛即将开始！",
+        "青铜等级"
+      ],
+      "capture": {
+        "backing_scale": 2,
+        "content_rect_points": [
+          0,
+          32,
+          1200,
+          732
+        ],
+        "path": "projects/duolingo-web/evidence/english-home-journey-v1/native-before/journey-shop-return.png",
+        "window_points": [
+          1200,
+          764
+        ]
+      },
+      "elements": {
+        "completed-count": {
+          "enabled": true,
+          "rect": [
+            455.5,
+            687.1484375,
+            129,
+            15
+          ],
+          "role": "AXStaticText",
+          "value": "8"
+        },
+        "course-entry": {
+          "enabled": true,
+          "rect": [
+            296,
+            93.5,
+            154,
+            26
+          ],
+          "role": "AXStaticText",
+          "value": "提供或接受饮料"
+        },
+        "home-duo-animation": {
+          "enabled": true,
+          "rect": [
+            506,
+            225,
+            238,
+            288.5
+          ],
+          "role": "AXUnknown",
+          "value": ""
+        },
+        "home-league-countdown": {
+          "enabled": true,
+          "rect": [
+            910,
+            197,
+            53.5,
+            20
+          ],
+          "role": "AXStaticText",
+          "value": "11 分钟"
+        },
+        "nav-leaderboards": {
+          "enabled": true,
+          "rect": [
+            16,
+            212,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-learn": {
+          "enabled": true,
+          "rect": [
+            16,
+            92,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-more": {
+          "enabled": true,
+          "rect": [
+            16,
+            452,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-profile": {
+          "enabled": true,
+          "rect": [
+            16,
+            392,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-pronunciation": {
+          "enabled": true,
+          "rect": [
+            16,
+            152,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-quests": {
+          "enabled": true,
+          "rect": [
+            16,
+            272,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-shop": {
+          "enabled": true,
+          "rect": [
+            16,
+            332,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "open-guide": {
+          "enabled": true,
+          "rect": [
+            649,
+            68,
+            96,
+            50
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "path-chest": {
+          "enabled": false,
+          "rect": [
+            410,
+            324,
+            80,
+            90
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "sign-in": {
+          "enabled": true,
+          "rect": [
+            828,
+            570,
+            328,
+            46
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "start-lesson": {
+          "enabled": true,
+          "rect": [
+            485,
+            162,
+            70,
+            65
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "start-lesson-1": {
+          "enabled": true,
+          "rect": [
+            440,
+            239,
+            70,
+            65
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "start-lesson-3": {
+          "enabled": true,
+          "rect": [
+            440,
+            448.5,
+            70,
+            65
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "start-lesson-4": {
+          "enabled": true,
+          "rect": [
+            485,
+            539.5,
+            70,
+            65
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "SwiftUI._ConditionalContent<SwiftUI.SubscriptionView<(extension in Foundation):__C.NSNotificationCenter.Publisher, SwiftUI.ModifiedContent<LingoSeed.LearningView, SwiftUI._AppearanceActionModifier>>, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1": {
+          "enabled": false,
+          "rect": [
+            0,
+            -32,
+            1200,
+            764
+          ],
+          "role": "AXWindow",
+          "value": ""
+        },
+        "view-leaderboards": {
+          "enabled": true,
+          "rect": [
+            1081,
+            114.5,
+            75,
+            18
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "view-profile": {
+          "enabled": true,
+          "rect": [
+            828,
+            510,
+            328,
+            46
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "view-quests": {
+          "enabled": true,
+          "rect": [
+            1096,
+            280.5,
+            60,
+            18
+          ],
+          "role": "AXButton",
+          "value": ""
+        }
+      }
+    }
+  }
+}

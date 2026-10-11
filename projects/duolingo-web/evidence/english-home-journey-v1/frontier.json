@@ -1,0 +1,69 @@
+{
+  "source": "Actual source actions and failed frontend consumers; no full-app completeness claim",
+  "policy": "Choose unmodeled actionable transitions and failed whole journeys before repeating isolated text/clock checks",
+  "items": [
+    {
+      "id": "completed-node",
+      "evidence": [
+        "discoveries/completed-node.json",
+        "discoveries/completed-node.png"
+      ],
+      "observed": "Completed lesson opens practice +5 XP / Legendary +40 XP popover",
+      "next": "Observe each action separately, including guest interruption and actual return; freeze shared transitions before replacing native restart",
+      "status": "unmodeled"
+    },
+    {
+      "id": "leaderboard",
+      "evidence": [
+        "action-inventory.json"
+      ],
+      "observed": "Root navigation exists; native route still old prototype",
+      "next": "Re-observe source state and interactions at common viewport; freeze destination and return, then implement actual route consumer",
+      "status": "unmodeled"
+    },
+    {
+      "id": "nested-auth",
+      "evidence": [
+        "source/login-after.json",
+        "source/profile-after.json",
+        "source/more-after.json"
+      ],
+      "next": "Execute visible login/register/forgot and menu destinations, record outcomes and collect frontend contracts; remote service behavior not yet implemented",
+      "status": "unmodeled"
+    },
+    {
+      "id": "homepage-visuals",
+      "evidence": [
+        "native-final/validation.json"
+      ],
+      "next": "Use failed same-state whole images and geometry to correct typography, layout, color and animation/time fixtures; keep exact comparisons",
+      "status": "fail"
+    },
+    {
+      "id": "practice-whole-journey",
+      "evidence": [
+        "general-regression/validation.json"
+      ],
+      "next": "Inspect original corresponding question/feedback/settlement states and fix 53 actual failures; retain 3 unavailable facts",
+      "status": "fail"
+    },
+    {
+      "id": "source-audio",
+      "evidence": [
+        "source-sound/action.json",
+        "source-sound/source.wav.json",
+        "sound-analysis.json"
+      ],
+      "next": "Diagnose task-owned browser output/filter with synchronized actual trigger; collect original output before scoring acoustic equality",
+      "status": "unavailable"
+    }
+  ],
+  "selection_feedback": "exploration-feedback.json",
+  "action_inventory": "action-inventory.json",
+  "validation_owner": "verification-summary.json",
+  "limits": [
+    "Observed action-state count is not independent feature count",
+    "No causal RSI improvement established",
+    "Controls behind overlays require hit-test evidence before execution"
+  ]
+}

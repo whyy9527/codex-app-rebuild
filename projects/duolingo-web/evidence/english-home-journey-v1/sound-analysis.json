@@ -1,0 +1,41 @@
+{
+  "scope": "Actual native wrong-pair output vs public original Match_Incorrect resource; no original/candidate acoustic equality claim",
+  "native_output_vs_original_resource": {
+    "alignment_seconds": 0.16047916666666667,
+    "normalized_correlation": 0.9999998833722737,
+    "fitted_gain": 1.0000007761794414,
+    "residual_rms": 1.7406655824567517e-05,
+    "reference_samples": 17618,
+    "recorded_samples": 254400
+  },
+  "source_output": {
+    "peak": 0.0,
+    "status": "unavailable despite successful source media.play; do not score zero as silence"
+  },
+  "owned_native_receipt": {
+    "duration_seconds": 5,
+    "filter": "Only explicitly selected child application",
+    "frames": 254400,
+    "kind": "owned_application_audio_loopback",
+    "microphone": false,
+    "peak": 0.4755166172981262,
+    "rms": 0.006706627951951552,
+    "samples": 508800,
+    "ui_actions": [
+      {
+        "elapsed_seconds": 0.046492934226989746,
+        "id": "pair-right-1"
+      }
+    ]
+  },
+  "files": {
+    "projects/education-swift/Sources/LingoSeed/Resources/Reference/en-match-incorrect.mp3": "275ff328e1920f8f5824ee704d4ba38e60e49cc886676c4ef233d91400a71810",
+    "projects/duolingo-web/evidence/english-home-journey-v1/native-audio/matching-error.wav": "eabf6e3b1f1e38dcfe8289923d78ac80728c2b657e2a32a0b67c0dc3f7a2212e",
+    "projects/duolingo-web/evidence/english-home-journey-v1/source-sound/source.wav": "4e72d6931ebee146b5c895331c4678b9695417e3997d4000b0d60687cf77693c"
+  },
+  "limits": [
+    "Alignment/gain fitted diagnostically only",
+    "Source loopback zero; no causal audio or RSI gain claim",
+    "Original current question differs from preserved default general instance; source cue transfer is explicit inference"
+  ]
+}

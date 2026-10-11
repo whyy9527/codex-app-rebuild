@@ -1,0 +1,199 @@
+{
+  "candidate_binary_sha256": "afc78f015a5802ff5be55994253cbaf9f7f6f8347aefb5b27036cf4b8c76dbd9",
+  "failure": null,
+  "fixture_sha256": "b7242d0e130112d54b1e17714bf21c35045e58f8874948917b0b09f971282bda",
+  "general_fixture_sha256": "ec3a1d552818c5fd6e367e430fa36d4090c64b91c38263e5a5b9dfe6da3f9edf",
+  "kind": "owned_native_ax_observation",
+  "limitations": [
+    "Original browser loopback unavailable; candidate output vs original resource is diagnostic only"
+  ],
+  "states": {
+    "matching-error": {
+      "accessible_text": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5 热",
+        "6 茶",
+        "7 欢迎",
+        "8 你好",
+        "LingoSeed",
+        "general-practice-q0",
+        "检查",
+        "现在不做听力题",
+        "选择配对"
+      ],
+      "capture": {
+        "backing_scale": 2,
+        "content_rect_points": [
+          0,
+          32,
+          1200,
+          732
+        ],
+        "path": "projects/duolingo-web/evidence/english-home-journey-v1/native-audio/matching-error.png",
+        "window_points": [
+          1200,
+          764
+        ]
+      },
+      "elements": {
+        "check": {
+          "enabled": false,
+          "rect": [
+            910,
+            643,
+            150,
+            46
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "exit": {
+          "enabled": true,
+          "rect": [
+            100,
+            51,
+            18,
+            18
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "lesson-progress": {
+          "enabled": true,
+          "rect": [
+            142,
+            50,
+            958,
+            20
+          ],
+          "role": "AXProgressIndicator",
+          "value": ""
+        },
+        "listening-decline": {
+          "enabled": true,
+          "rect": [
+            140,
+            637,
+            161,
+            50
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "pair-left-0": {
+          "enabled": true,
+          "rect": [
+            330,
+            247,
+            255,
+            58
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "pair-left-1": {
+          "enabled": true,
+          "rect": [
+            330,
+            315,
+            255,
+            58
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "pair-left-2": {
+          "enabled": true,
+          "rect": [
+            330,
+            383,
+            255,
+            58
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "pair-left-3": {
+          "enabled": true,
+          "rect": [
+            330,
+            451,
+            255,
+            58
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "pair-right-0": {
+          "enabled": true,
+          "rect": [
+            615,
+            451,
+            255,
+            58
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "pair-right-1": {
+          "enabled": true,
+          "rect": [
+            615,
+            315,
+            255,
+            58
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "pair-right-2": {
+          "enabled": true,
+          "rect": [
+            615,
+            247,
+            255,
+            58
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "pair-right-3": {
+          "enabled": true,
+          "rect": [
+            615,
+            383,
+            255,
+            58
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "question-prompt": {
+          "enabled": true,
+          "rect": [
+            300,
+            122,
+            128,
+            38
+          ],
+          "role": "AXStaticText",
+          "value": "general-practice-q0"
+        },
+        "SwiftUI._ConditionalContent<SwiftUI.SubscriptionView<(extension in Foundation):__C.NSNotificationCenter.Publisher, SwiftUI.ModifiedContent<LingoSeed.LearningView, SwiftUI._AppearanceActionModifier>>, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1": {
+          "enabled": false,
+          "rect": [
+            0,
+            -32,
+            1200,
+            764
+          ],
+          "role": "AXWindow",
+          "value": ""
+        }
+      }
+    }
+  }
+}

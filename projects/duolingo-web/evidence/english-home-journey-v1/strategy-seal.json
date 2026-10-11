@@ -1,0 +1,15 @@
+{
+  "baseline_commit": "db2f209",
+  "generated_by": "Current Codex session, before Shop/Profile/More/Login online branch collection; not an independent worker experiment",
+  "training_evidence": ["projects/exploration-ablation/evidence/model02/selection-seal.json", "projects/exploration-ablation/REPORT.md", "projects/duolingo-web/evidence/english-home-clock-v1/frontier.json"],
+  "feedback": "Prior atom-count replay preferred Guidebook+More (70), whereas More+Hearts (34) and Hearts+Gems (4) scored less. Long content inflated proxy; product code still routes Shop/Profile/Sign in to the path. Previously sampled /leaderboard excluded from unseen outcomes.",
+  "candidates": [
+    {"id":"old-content-proxy","order":["guidebook","more","hearts","gems"],"reason":"Original sealed replay winner; content volume does not establish interaction coverage"},
+    {"id":"unvisited-display-order","order":["shop","profile","more","login"],"reason":"Unvisited frontend entry points in observed home order"},
+    {"id":"missing-consumer-feedback","order":["profile","login","shop","more"],"reason":"Use historical path-fallback defects to prioritize actual destination changes and modal/return interactions over repeated content capture"}
+  ],
+  "selected": "missing-consumer-feedback",
+  "online_budget": {"root_actions":4,"followups":"Only currently observed close/back or menu controls; record all actions and new unvisited branches"},
+  "evaluation": "Count newly evidenced independent interaction/presentation requirements and executable candidate failures; do not score text atoms as independent features. Preserve all unknown/audio evidence gaps.",
+  "limits": "Actual feedback-guided model strategy revision and online deployment, not full Dream-RSI, not an ablation or demonstrated causal gain. No outcome of unvisited branches used for selection."
+}

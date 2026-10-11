@@ -3,6 +3,7 @@ import SwiftUI
 
 struct ReferenceRegistration: View {
     let close: () -> Void
+    var showLogin: (() -> Void)? = nil
     @State private var step = 0
     @State private var age = ""
     @State private var name = ""
@@ -21,9 +22,9 @@ struct ReferenceRegistration: View {
                     ReferenceStyle.image(step == 0 ? "en-path-profile-close" : "en-registration-back").resizable().frame(width: step == 0 ? 16 : 17, height: step == 0 ? 16 : 17)
                 }.buttonStyle(.plain).frame(width: 20, height: 21.5).offset(x: 28, y: 30).accessibilityLabel(step == 0 ? "关闭" : "返回").accessibilityIdentifier("registration-back")
                 if step != 1 {
-                    Text("登录").font(ReferenceStyle.font(15, bold: true)).foregroundStyle(ReferenceStyle.blue)
+                    Button(action: { showLogin?() }) { Text("登录").font(ReferenceStyle.font(15, bold: true)).foregroundStyle(ReferenceStyle.blue)
                         .frame(width: 67.6015625, height: 46).overlay(RoundedRectangle(cornerRadius: 16).strokeBorder(ReferenceStyle.border, lineWidth: 2))
-                        .offset(x: geometry.size.width - 97.6015625, y: 30)
+                        .offset(x: geometry.size.width - 97.6015625, y: 30) }.buttonStyle(.plain).accessibilityIdentifier("registration-switch-login")
                 }
                 Group {
                     if step == 0 { agePage }
@@ -113,7 +114,7 @@ struct ReferenceRegistration: View {
     }
 }
 
-private struct RegistrationTextField: NSViewRepresentable {
+struct RegistrationTextField: NSViewRepresentable {
     @Binding var text: String
     let placeholder: String
     let identifier: String

@@ -1,0 +1,4044 @@
+{
+  "kind": "frontend_action_coverage",
+  "rows": [
+    {
+      "state": "home-eight-opened",
+      "action": {
+        "id": "href:/learn#0",
+        "test": null,
+        "href": "/learn",
+        "name": "",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          32,
+          32,
+          128,
+          30
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "home-eight-opened",
+      "action": {
+        "id": "test:home-nav#0",
+        "test": "home-nav",
+        "href": "/learn",
+        "name": "学习",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          16,
+          92,
+          222,
+          52
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "home-eight-opened",
+      "action": {
+        "id": "test:characters-nav#0",
+        "test": "characters-nav",
+        "href": "/characters",
+        "name": "发音",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          16,
+          152,
+          222,
+          52
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "home-eight-opened",
+      "action": {
+        "id": "test:leaderboard-nav#0",
+        "test": "leaderboard-nav",
+        "href": "/leaderboard",
+        "name": "排行榜",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          16,
+          212,
+          222,
+          52
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "home-eight-opened",
+      "action": {
+        "id": "test:quests-nav#0",
+        "test": "quests-nav",
+        "href": "/quests",
+        "name": "特别任务",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          16,
+          272,
+          222,
+          52
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "home-eight-opened",
+      "action": {
+        "id": "test:shop-nav#0",
+        "test": "shop-nav",
+        "href": "/shop",
+        "name": "宝石小店",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          16,
+          332,
+          222,
+          52
+        ]
+      },
+      "journeys": [
+        "shop"
+      ],
+      "status": "fail",
+      "requirements": {
+        "journey-shop-audio-output": "not_run",
+        "journey-shop-copy-0": "fail",
+        "journey-shop-copy-1": "fail",
+        "journey-shop-copy-2": "fail",
+        "journey-shop-copy-3": "fail",
+        "journey-shop-return-copy-0": "pass",
+        "journey-shop-return-copy-1": "pass",
+        "journey-shop-return-whole": "fail",
+        "journey-shop-shop-create-profile-enabled": "unavailable",
+        "journey-shop-shop-create-profile-rect": "unavailable",
+        "journey-shop-shop-create-profile-role": "unavailable",
+        "journey-shop-whole": "fail"
+      }
+    },
+    {
+      "state": "home-eight-opened",
+      "action": {
+        "id": "test:profile-tab#0",
+        "test": "profile-tab",
+        "href": "/learn?sign-up",
+        "name": "个人档案",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          16,
+          392,
+          222,
+          52
+        ]
+      },
+      "journeys": [
+        "profile"
+      ],
+      "status": "fail",
+      "requirements": {
+        "journey-profile-audio-output": "not_run",
+        "journey-profile-copy-0": "fail",
+        "journey-profile-path-age-input-enabled": "unavailable",
+        "journey-profile-path-age-input-rect": "unavailable",
+        "journey-profile-path-age-input-role": "unavailable",
+        "journey-profile-path-age-next-enabled": "unavailable",
+        "journey-profile-path-age-next-rect": "unavailable",
+        "journey-profile-path-age-next-role": "unavailable",
+        "journey-profile-registration-back-enabled": "unavailable",
+        "journey-profile-registration-back-rect": "unavailable",
+        "journey-profile-registration-back-role": "unavailable",
+        "journey-profile-registration-switch-login-enabled": "unavailable",
+        "journey-profile-registration-switch-login-rect": "unavailable",
+        "journey-profile-registration-switch-login-role": "unavailable",
+        "journey-profile-return-copy-0": "not_run",
+        "journey-profile-return-copy-1": "not_run",
+        "journey-profile-return-whole": "not_run",
+        "journey-profile-whole": "fail"
+      }
+    },
+    {
+      "state": "home-eight-opened",
+      "action": {
+        "id": "SPAN:更多#0",
+        "test": null,
+        "href": null,
+        "name": "更多",
+        "tag": "SPAN",
+        "role": "button",
+        "enabled": true,
+        "rect": [
+          16,
+          452,
+          222,
+          52
+        ]
+      },
+      "journeys": [
+        "more"
+      ],
+      "status": "fail",
+      "requirements": {
+        "journey-more-audio-output": "not_run",
+        "journey-more-copy-0": "fail",
+        "journey-more-copy-1": "pass",
+        "journey-more-copy-2": "fail",
+        "journey-more-copy-3": "fail",
+        "journey-more-copy-4": "pass",
+        "journey-more-more-create-a-profile-enabled": "pass",
+        "journey-more-more-create-a-profile-rect": "fail",
+        "journey-more-more-create-a-profile-role": "pass",
+        "journey-more-more-duolingo-english-test-enabled": "pass",
+        "journey-more-more-duolingo-english-test-rect": "fail",
+        "journey-more-more-duolingo-english-test-role": "fail",
+        "journey-more-more-help-enabled": "pass",
+        "journey-more-more-help-rect": "fail",
+        "journey-more-more-help-role": "pass",
+        "journey-more-more-settings-enabled": "pass",
+        "journey-more-more-settings-rect": "fail",
+        "journey-more-more-settings-role": "pass",
+        "journey-more-more-sign-in-enabled": "pass",
+        "journey-more-more-sign-in-rect": "fail",
+        "journey-more-more-sign-in-role": "pass",
+        "journey-more-return-copy-0": "pass",
+        "journey-more-return-copy-1": "pass",
+        "journey-more-return-whole": "fail",
+        "journey-more-whole": "fail"
+      }
+    },
+    {
+      "state": "home-eight-opened",
+      "action": {
+        "id": "SPAN:5#0",
+        "test": null,
+        "href": null,
+        "name": "5",
+        "tag": "SPAN",
+        "role": "button",
+        "enabled": true,
+        "rect": [
+          808,
+          24,
+          81.875,
+          44
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "home-eight-opened",
+      "action": {
+        "id": "SPAN:2#0",
+        "test": null,
+        "href": null,
+        "name": "2",
+        "tag": "SPAN",
+        "role": "button",
+        "enabled": true,
+        "rect": [
+          911.9453125,
+          24,
+          67.546875,
+          44
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "home-eight-opened",
+      "action": {
+        "id": "SPAN:525#0",
+        "test": null,
+        "href": null,
+        "name": "525",
+        "tag": "SPAN",
+        "role": "button",
+        "enabled": true,
+        "rect": [
+          1001.5546875,
+          24,
+          80.375,
+          44
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "home-eight-opened",
+      "action": {
+        "id": "SPAN:5#1",
+        "test": null,
+        "href": null,
+        "name": "5",
+        "tag": "SPAN",
+        "role": "button",
+        "enabled": true,
+        "rect": [
+          1104,
+          24,
+          72,
+          44
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "home-eight-opened",
+      "action": {
+        "id": "test:leaderboards-open#0",
+        "test": "leaderboards-open",
+        "href": "/leaderboard",
+        "name": "查看排行榜",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          1077,
+          117,
+          79,
+          18
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "home-eight-opened",
+      "action": {
+        "id": "href:/quests#0",
+        "test": null,
+        "href": "/quests",
+        "name": "显示全部",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          1092.796875,
+          283,
+          63.203125,
+          18
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "home-eight-opened",
+      "action": {
+        "id": "test:create-profile-juicy#0",
+        "test": "create-profile-juicy",
+        "href": null,
+        "name": "创建档案",
+        "tag": "BUTTON",
+        "role": "button",
+        "enabled": true,
+        "rect": [
+          828,
+          511,
+          328,
+          50
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "home-eight-opened",
+      "action": {
+        "id": "test:sign-in-juicy#0",
+        "test": "sign-in-juicy",
+        "href": null,
+        "name": "登录",
+        "tag": "BUTTON",
+        "role": "button",
+        "enabled": true,
+        "rect": [
+          828,
+          571,
+          328,
+          50
+        ]
+      },
+      "journeys": [
+        "login"
+      ],
+      "status": "fail",
+      "requirements": {
+        "journey-login-audio-output": "not_run",
+        "journey-login-copy-0": "fail",
+        "journey-login-copy-1": "fail",
+        "journey-login-copy-2": "fail",
+        "journey-login-copy-3": "fail",
+        "journey-login-copy-4": "fail",
+        "journey-login-login-address-enabled": "unavailable",
+        "journey-login-login-address-rect": "unavailable",
+        "journey-login-login-address-role": "unavailable",
+        "journey-login-login-apple-enabled": "unavailable",
+        "journey-login-login-apple-rect": "unavailable",
+        "journey-login-login-apple-role": "unavailable",
+        "journey-login-login-close-enabled": "unavailable",
+        "journey-login-login-close-rect": "unavailable",
+        "journey-login-login-close-role": "unavailable",
+        "journey-login-login-facebook-enabled": "unavailable",
+        "journey-login-login-facebook-rect": "unavailable",
+        "journey-login-login-facebook-role": "unavailable",
+        "journey-login-login-forgot-enabled": "unavailable",
+        "journey-login-login-forgot-rect": "unavailable",
+        "journey-login-login-forgot-role": "unavailable",
+        "journey-login-login-google-enabled": "unavailable",
+        "journey-login-login-google-rect": "unavailable",
+        "journey-login-login-google-role": "unavailable",
+        "journey-login-login-password-enabled": "unavailable",
+        "journey-login-login-password-rect": "unavailable",
+        "journey-login-login-password-role": "unavailable",
+        "journey-login-login-signup-enabled": "unavailable",
+        "journey-login-login-signup-rect": "unavailable",
+        "journey-login-login-signup-role": "unavailable",
+        "journey-login-login-submit-enabled": "unavailable",
+        "journey-login-login-submit-rect": "unavailable",
+        "journey-login-login-submit-role": "unavailable",
+        "journey-login-return-copy-0": "not_run",
+        "journey-login-return-copy-1": "not_run",
+        "journey-login-return-whole": "not_run",
+        "journey-login-whole": "fail"
+      }
+    },
+    {
+      "state": "home-eight-opened",
+      "action": {
+        "id": "href:https://about.duolingo.com#0",
+        "test": null,
+        "href": "https://about.duolingo.com",
+        "name": "关于我们",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          835,
+          676.5,
+          52,
+          15.5
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "home-eight-opened",
+      "action": {
+        "id": "href:https://store.duolingo.com/#0",
+        "test": null,
+        "href": "https://store.duolingo.com/",
+        "name": "宝石小店",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          907,
+          676.5,
+          52,
+          15.5
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "home-eight-opened",
+      "action": {
+        "id": "href:/efficacy#0",
+        "test": null,
+        "href": "/efficacy",
+        "name": "有效性",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          979,
+          676.5,
+          39,
+          15.5
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "home-eight-opened",
+      "action": {
+        "id": "href:https://careers.duolingo.com#0",
+        "test": null,
+        "href": "https://careers.duolingo.com",
+        "name": "招聘贤才",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          1038,
+          676.5,
+          52,
+          15.5
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "home-eight-opened",
+      "action": {
+        "id": "href:https://investors.duolingo.com#0",
+        "test": null,
+        "href": "https://investors.duolingo.com",
+        "name": "投资者",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          1110,
+          676.5,
+          39,
+          15.5
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "home-eight-opened",
+      "action": {
+        "id": "href:/terms#0",
+        "test": null,
+        "href": "/terms",
+        "name": "条款",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          956,
+          708.5,
+          26,
+          15.5
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "home-eight-opened",
+      "action": {
+        "id": "href:/privacy#0",
+        "test": null,
+        "href": "/privacy",
+        "name": "隐私",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          1002,
+          708.5,
+          26,
+          15.5
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "home-eight-opened",
+      "action": {
+        "id": "href:/sections#0",
+        "test": null,
+        "href": "/sections",
+        "name": "第 1 阶段，第 1 部分",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          296,
+          64,
+          334.3984375,
+          24
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "home-eight-opened",
+      "action": {
+        "id": "test:guidebook-button-1#0",
+        "test": "guidebook-button-1",
+        "href": "/guidebook/en/1",
+        "name": "打开这个部分的指南",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          646.3984375,
+          66,
+          97.6015625,
+          54
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "home-eight-opened",
+      "action": {
+        "id": "DIV:#0",
+        "test": null,
+        "href": null,
+        "name": "",
+        "tag": "DIV",
+        "role": "button",
+        "enabled": true,
+        "rect": [
+          485,
+          162,
+          70,
+          65
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "home-eight-opened",
+      "action": {
+        "id": "test:skill-path-level-0 skill-path-level-skill#0",
+        "test": "skill-path-level-0 skill-path-level-skill",
+        "href": null,
+        "name": "Lesson",
+        "tag": "BUTTON",
+        "role": "button",
+        "enabled": true,
+        "rect": [
+          485,
+          162,
+          70,
+          65
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "home-eight-opened",
+      "action": {
+        "id": "DIV:#1",
+        "test": null,
+        "href": null,
+        "name": "",
+        "tag": "DIV",
+        "role": "button",
+        "enabled": true,
+        "rect": [
+          440.1171875,
+          238.8515625,
+          70,
+          65
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "home-eight-opened",
+      "action": {
+        "id": "test:skill-path-level-1 skill-path-level-skill#0",
+        "test": "skill-path-level-1 skill-path-level-skill",
+        "href": null,
+        "name": "Lesson",
+        "tag": "BUTTON",
+        "role": "button",
+        "enabled": true,
+        "rect": [
+          440.1171875,
+          238.8515625,
+          70,
+          65
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "home-eight-opened",
+      "action": {
+        "id": "BUTTON:宝箱#0",
+        "test": null,
+        "href": null,
+        "name": "宝箱",
+        "tag": "BUTTON",
+        "role": "button",
+        "enabled": false,
+        "rect": [
+          410,
+          324.2265625,
+          80,
+          90
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "home-eight-opened",
+      "action": {
+        "id": "DIV:开始#0",
+        "test": null,
+        "href": null,
+        "name": "开始",
+        "tag": "DIV",
+        "role": "button",
+        "enabled": true,
+        "rect": [
+          426.1171875,
+          434.6015625,
+          98,
+          93
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "home-eight-opened",
+      "action": {
+        "id": "test:skill-path-level-3 skill-path-level-practice#0",
+        "test": "skill-path-level-3 skill-path-level-practice",
+        "href": null,
+        "name": "Practice",
+        "tag": "BUTTON",
+        "role": "button",
+        "enabled": true,
+        "rect": [
+          440.1171875,
+          448.6015625,
+          70,
+          65
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "home-eight-opened",
+      "action": {
+        "id": "DIV:#2",
+        "test": null,
+        "href": null,
+        "name": "",
+        "tag": "DIV",
+        "role": "button",
+        "enabled": true,
+        "rect": [
+          485,
+          539.453125,
+          70,
+          65
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "home-eight-opened",
+      "action": {
+        "id": "test:skill-path-level-4 skill-path-level-unit_review#0",
+        "test": "skill-path-level-4 skill-path-level-unit_review",
+        "href": null,
+        "name": "复习该部分",
+        "tag": "BUTTON",
+        "role": "button",
+        "enabled": true,
+        "rect": [
+          485,
+          539.453125,
+          70,
+          65
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-profile",
+      "action": {
+        "id": "href:/learn#0",
+        "test": null,
+        "href": "/learn",
+        "name": "",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          32,
+          32,
+          128,
+          30
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-profile",
+      "action": {
+        "id": "test:home-nav#0",
+        "test": "home-nav",
+        "href": "/learn",
+        "name": "学习",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          16,
+          92,
+          222,
+          52
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-profile",
+      "action": {
+        "id": "test:characters-nav#0",
+        "test": "characters-nav",
+        "href": "/characters",
+        "name": "发音",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          16,
+          152,
+          222,
+          52
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-profile",
+      "action": {
+        "id": "test:leaderboard-nav#0",
+        "test": "leaderboard-nav",
+        "href": "/leaderboard",
+        "name": "排行榜",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          16,
+          212,
+          222,
+          52
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-profile",
+      "action": {
+        "id": "test:quests-nav#0",
+        "test": "quests-nav",
+        "href": "/quests",
+        "name": "特别任务",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          16,
+          272,
+          222,
+          52
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-profile",
+      "action": {
+        "id": "test:shop-nav#0",
+        "test": "shop-nav",
+        "href": "/shop",
+        "name": "宝石小店",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          16,
+          332,
+          222,
+          52
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-profile",
+      "action": {
+        "id": "test:profile-tab#0",
+        "test": "profile-tab",
+        "href": "/learn?sign-up",
+        "name": "个人档案",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          16,
+          392,
+          222,
+          52
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-profile",
+      "action": {
+        "id": "SPAN:更多#0",
+        "test": null,
+        "href": null,
+        "name": "更多",
+        "tag": "SPAN",
+        "role": "button",
+        "enabled": true,
+        "rect": [
+          16,
+          452,
+          222,
+          52
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-profile",
+      "action": {
+        "id": "SPAN:5#0",
+        "test": null,
+        "href": null,
+        "name": "5",
+        "tag": "SPAN",
+        "role": "button",
+        "enabled": true,
+        "rect": [
+          808,
+          24,
+          81.875,
+          44
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-profile",
+      "action": {
+        "id": "SPAN:2#0",
+        "test": null,
+        "href": null,
+        "name": "2",
+        "tag": "SPAN",
+        "role": "button",
+        "enabled": true,
+        "rect": [
+          911.9453125,
+          24,
+          67.546875,
+          44
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-profile",
+      "action": {
+        "id": "SPAN:525#0",
+        "test": null,
+        "href": null,
+        "name": "525",
+        "tag": "SPAN",
+        "role": "button",
+        "enabled": true,
+        "rect": [
+          1001.5546875,
+          24,
+          80.375,
+          44
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-profile",
+      "action": {
+        "id": "SPAN:5#1",
+        "test": null,
+        "href": null,
+        "name": "5",
+        "tag": "SPAN",
+        "role": "button",
+        "enabled": true,
+        "rect": [
+          1104,
+          24,
+          72,
+          44
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-profile",
+      "action": {
+        "id": "test:leaderboards-open#0",
+        "test": "leaderboards-open",
+        "href": "/leaderboard",
+        "name": "查看排行榜",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          1077,
+          117,
+          79,
+          18
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-profile",
+      "action": {
+        "id": "href:/quests#0",
+        "test": null,
+        "href": "/quests",
+        "name": "显示全部",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          1092.796875,
+          283,
+          63.203125,
+          18
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-profile",
+      "action": {
+        "id": "test:create-profile-juicy#0",
+        "test": "create-profile-juicy",
+        "href": null,
+        "name": "创建档案",
+        "tag": "BUTTON",
+        "role": "button",
+        "enabled": true,
+        "rect": [
+          828,
+          511,
+          328,
+          50
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-profile",
+      "action": {
+        "id": "test:sign-in-juicy#0",
+        "test": "sign-in-juicy",
+        "href": null,
+        "name": "登录",
+        "tag": "BUTTON",
+        "role": "button",
+        "enabled": true,
+        "rect": [
+          828,
+          571,
+          328,
+          50
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-profile",
+      "action": {
+        "id": "href:https://about.duolingo.com#0",
+        "test": null,
+        "href": "https://about.duolingo.com",
+        "name": "关于我们",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          835,
+          676.5,
+          52,
+          15.5
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-profile",
+      "action": {
+        "id": "href:https://store.duolingo.com/#0",
+        "test": null,
+        "href": "https://store.duolingo.com/",
+        "name": "宝石小店",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          907,
+          676.5,
+          52,
+          15.5
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-profile",
+      "action": {
+        "id": "href:/efficacy#0",
+        "test": null,
+        "href": "/efficacy",
+        "name": "有效性",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          979,
+          676.5,
+          39,
+          15.5
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-profile",
+      "action": {
+        "id": "href:https://careers.duolingo.com#0",
+        "test": null,
+        "href": "https://careers.duolingo.com",
+        "name": "招聘贤才",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          1038,
+          676.5,
+          52,
+          15.5
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-profile",
+      "action": {
+        "id": "href:https://investors.duolingo.com#0",
+        "test": null,
+        "href": "https://investors.duolingo.com",
+        "name": "投资者",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          1110,
+          676.5,
+          39,
+          15.5
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-profile",
+      "action": {
+        "id": "href:/terms#0",
+        "test": null,
+        "href": "/terms",
+        "name": "条款",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          956,
+          708.5,
+          26,
+          15.5
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-profile",
+      "action": {
+        "id": "href:/privacy#0",
+        "test": null,
+        "href": "/privacy",
+        "name": "隐私",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          1002,
+          708.5,
+          26,
+          15.5
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-profile",
+      "action": {
+        "id": "href:/sections#0",
+        "test": null,
+        "href": "/sections",
+        "name": "第 1 阶段，第 1 部分",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          296,
+          64,
+          334.3984375,
+          24
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-profile",
+      "action": {
+        "id": "test:guidebook-button-1#0",
+        "test": "guidebook-button-1",
+        "href": "/guidebook/en/1",
+        "name": "打开这个部分的指南",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          646.3984375,
+          66,
+          97.6015625,
+          54
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-profile",
+      "action": {
+        "id": "DIV:#0",
+        "test": null,
+        "href": null,
+        "name": "",
+        "tag": "DIV",
+        "role": "button",
+        "enabled": true,
+        "rect": [
+          485,
+          162,
+          70,
+          65
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-profile",
+      "action": {
+        "id": "test:skill-path-level-0 skill-path-level-skill#0",
+        "test": "skill-path-level-0 skill-path-level-skill",
+        "href": null,
+        "name": "Lesson",
+        "tag": "BUTTON",
+        "role": "button",
+        "enabled": true,
+        "rect": [
+          485,
+          162,
+          70,
+          65
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-profile",
+      "action": {
+        "id": "DIV:#1",
+        "test": null,
+        "href": null,
+        "name": "",
+        "tag": "DIV",
+        "role": "button",
+        "enabled": true,
+        "rect": [
+          440.1171875,
+          238.8515625,
+          70,
+          65
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-profile",
+      "action": {
+        "id": "test:skill-path-level-1 skill-path-level-skill#0",
+        "test": "skill-path-level-1 skill-path-level-skill",
+        "href": null,
+        "name": "Lesson",
+        "tag": "BUTTON",
+        "role": "button",
+        "enabled": true,
+        "rect": [
+          440.1171875,
+          238.8515625,
+          70,
+          65
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-profile",
+      "action": {
+        "id": "BUTTON:宝箱#0",
+        "test": null,
+        "href": null,
+        "name": "宝箱",
+        "tag": "BUTTON",
+        "role": "button",
+        "enabled": false,
+        "rect": [
+          410,
+          324.2265625,
+          80,
+          90
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-profile",
+      "action": {
+        "id": "DIV:开始#0",
+        "test": null,
+        "href": null,
+        "name": "开始",
+        "tag": "DIV",
+        "role": "button",
+        "enabled": true,
+        "rect": [
+          426.1171875,
+          434.6015625,
+          98,
+          93
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-profile",
+      "action": {
+        "id": "test:skill-path-level-3 skill-path-level-practice#0",
+        "test": "skill-path-level-3 skill-path-level-practice",
+        "href": null,
+        "name": "Practice",
+        "tag": "BUTTON",
+        "role": "button",
+        "enabled": true,
+        "rect": [
+          440.1171875,
+          448.6015625,
+          70,
+          65
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-profile",
+      "action": {
+        "id": "DIV:#2",
+        "test": null,
+        "href": null,
+        "name": "",
+        "tag": "DIV",
+        "role": "button",
+        "enabled": true,
+        "rect": [
+          485,
+          539.453125,
+          70,
+          65
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-profile",
+      "action": {
+        "id": "test:skill-path-level-4 skill-path-level-unit_review#0",
+        "test": "skill-path-level-4 skill-path-level-unit_review",
+        "href": null,
+        "name": "复习该部分",
+        "tag": "BUTTON",
+        "role": "button",
+        "enabled": true,
+        "rect": [
+          485,
+          539.453125,
+          70,
+          65
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-profile",
+      "action": {
+        "id": "test:sign-up-button#0",
+        "test": "sign-up-button",
+        "href": null,
+        "name": "登录",
+        "tag": "BUTTON",
+        "role": "button",
+        "enabled": true,
+        "rect": [
+          1102.3984375,
+          30,
+          67.6015625,
+          50
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-profile",
+      "action": {
+        "id": "test:age-input#0",
+        "test": "age-input",
+        "href": null,
+        "name": "年龄",
+        "tag": "INPUT",
+        "role": "textbox",
+        "enabled": true,
+        "rect": [
+          414.5,
+          254.5,
+          371,
+          44
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-profile",
+      "action": {
+        "id": "href:/privacy#1",
+        "test": null,
+        "href": "/privacy",
+        "name": "隐私政策",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          684.5,
+          331,
+          64,
+          19
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-profile",
+      "action": {
+        "id": "test:continue-button#0",
+        "test": "continue-button",
+        "href": null,
+        "name": "下一步",
+        "tag": "BUTTON",
+        "role": "button",
+        "enabled": false,
+        "rect": [
+          412.5,
+          376.5,
+          375,
+          50
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-profile",
+      "action": {
+        "id": "href:https://www.duolingo.com/terms?wantsPlainInfo=1#0",
+        "test": null,
+        "href": "https://www.duolingo.com/terms?wantsPlainInfo=1",
+        "name": "服务条款",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          614,
+          464,
+          56,
+          16.5
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-profile",
+      "action": {
+        "id": "href:https://www.duolingo.com/privacy?wantsPlainInfo=1#0",
+        "test": null,
+        "href": "https://www.duolingo.com/privacy?wantsPlainInfo=1",
+        "name": "隐私政策",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          684,
+          464,
+          56,
+          16.5
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-profile",
+      "action": {
+        "id": "href:https://policies.google.com/privacy#0",
+        "test": null,
+        "href": "https://policies.google.com/privacy",
+        "name": "隐私政策",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          688.5859375,
+          504,
+          56,
+          16.5
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-profile",
+      "action": {
+        "id": "href:https://policies.google.com/terms#0",
+        "test": null,
+        "href": "https://policies.google.com/terms",
+        "name": "服务条款",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          544,
+          504,
+          242.5859375,
+          36.5
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-login",
+      "action": {
+        "id": "href:/learn#0",
+        "test": null,
+        "href": "/learn",
+        "name": "",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          32,
+          32,
+          128,
+          30
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-login",
+      "action": {
+        "id": "test:home-nav#0",
+        "test": "home-nav",
+        "href": "/learn",
+        "name": "学习",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          16,
+          92,
+          222,
+          52
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-login",
+      "action": {
+        "id": "test:characters-nav#0",
+        "test": "characters-nav",
+        "href": "/characters",
+        "name": "发音",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          16,
+          152,
+          222,
+          52
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-login",
+      "action": {
+        "id": "test:leaderboard-nav#0",
+        "test": "leaderboard-nav",
+        "href": "/leaderboard",
+        "name": "排行榜",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          16,
+          212,
+          222,
+          52
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-login",
+      "action": {
+        "id": "test:quests-nav#0",
+        "test": "quests-nav",
+        "href": "/quests",
+        "name": "特别任务",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          16,
+          272,
+          222,
+          52
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-login",
+      "action": {
+        "id": "test:shop-nav#0",
+        "test": "shop-nav",
+        "href": "/shop",
+        "name": "宝石小店",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          16,
+          332,
+          222,
+          52
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-login",
+      "action": {
+        "id": "test:profile-tab#0",
+        "test": "profile-tab",
+        "href": "/learn?sign-up",
+        "name": "个人档案",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          16,
+          392,
+          222,
+          52
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-login",
+      "action": {
+        "id": "SPAN:更多#0",
+        "test": null,
+        "href": null,
+        "name": "更多",
+        "tag": "SPAN",
+        "role": "button",
+        "enabled": true,
+        "rect": [
+          16,
+          452,
+          222,
+          52
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-login",
+      "action": {
+        "id": "SPAN:5#0",
+        "test": null,
+        "href": null,
+        "name": "5",
+        "tag": "SPAN",
+        "role": "button",
+        "enabled": true,
+        "rect": [
+          808,
+          24,
+          81.875,
+          44
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-login",
+      "action": {
+        "id": "SPAN:2#0",
+        "test": null,
+        "href": null,
+        "name": "2",
+        "tag": "SPAN",
+        "role": "button",
+        "enabled": true,
+        "rect": [
+          911.9453125,
+          24,
+          67.546875,
+          44
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-login",
+      "action": {
+        "id": "SPAN:525#0",
+        "test": null,
+        "href": null,
+        "name": "525",
+        "tag": "SPAN",
+        "role": "button",
+        "enabled": true,
+        "rect": [
+          1001.5546875,
+          24,
+          80.375,
+          44
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-login",
+      "action": {
+        "id": "SPAN:5#1",
+        "test": null,
+        "href": null,
+        "name": "5",
+        "tag": "SPAN",
+        "role": "button",
+        "enabled": true,
+        "rect": [
+          1104,
+          24,
+          72,
+          44
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-login",
+      "action": {
+        "id": "test:leaderboards-open#0",
+        "test": "leaderboards-open",
+        "href": "/leaderboard",
+        "name": "查看排行榜",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          1077,
+          117,
+          79,
+          18
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-login",
+      "action": {
+        "id": "href:/quests#0",
+        "test": null,
+        "href": "/quests",
+        "name": "显示全部",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          1092.796875,
+          283,
+          63.203125,
+          18
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-login",
+      "action": {
+        "id": "test:create-profile-juicy#0",
+        "test": "create-profile-juicy",
+        "href": null,
+        "name": "创建档案",
+        "tag": "BUTTON",
+        "role": "button",
+        "enabled": true,
+        "rect": [
+          828,
+          511,
+          328,
+          50
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-login",
+      "action": {
+        "id": "test:sign-in-juicy#0",
+        "test": "sign-in-juicy",
+        "href": null,
+        "name": "登录",
+        "tag": "BUTTON",
+        "role": "button",
+        "enabled": true,
+        "rect": [
+          828,
+          571,
+          328,
+          50
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-login",
+      "action": {
+        "id": "href:https://about.duolingo.com#0",
+        "test": null,
+        "href": "https://about.duolingo.com",
+        "name": "关于我们",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          835,
+          676.5,
+          52,
+          15.5
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-login",
+      "action": {
+        "id": "href:https://store.duolingo.com/#0",
+        "test": null,
+        "href": "https://store.duolingo.com/",
+        "name": "宝石小店",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          907,
+          676.5,
+          52,
+          15.5
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-login",
+      "action": {
+        "id": "href:/efficacy#0",
+        "test": null,
+        "href": "/efficacy",
+        "name": "有效性",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          979,
+          676.5,
+          39,
+          15.5
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-login",
+      "action": {
+        "id": "href:https://careers.duolingo.com#0",
+        "test": null,
+        "href": "https://careers.duolingo.com",
+        "name": "招聘贤才",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          1038,
+          676.5,
+          52,
+          15.5
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-login",
+      "action": {
+        "id": "href:https://investors.duolingo.com#0",
+        "test": null,
+        "href": "https://investors.duolingo.com",
+        "name": "投资者",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          1110,
+          676.5,
+          39,
+          15.5
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-login",
+      "action": {
+        "id": "href:/terms#0",
+        "test": null,
+        "href": "/terms",
+        "name": "条款",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          956,
+          708.5,
+          26,
+          15.5
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-login",
+      "action": {
+        "id": "href:/privacy#0",
+        "test": null,
+        "href": "/privacy",
+        "name": "隐私",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          1002,
+          708.5,
+          26,
+          15.5
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-login",
+      "action": {
+        "id": "href:/sections#0",
+        "test": null,
+        "href": "/sections",
+        "name": "第 1 阶段，第 1 部分",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          296,
+          64,
+          334.3984375,
+          24
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-login",
+      "action": {
+        "id": "test:guidebook-button-1#0",
+        "test": "guidebook-button-1",
+        "href": "/guidebook/en/1",
+        "name": "打开这个部分的指南",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          646.3984375,
+          66,
+          97.6015625,
+          54
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-login",
+      "action": {
+        "id": "DIV:#0",
+        "test": null,
+        "href": null,
+        "name": "",
+        "tag": "DIV",
+        "role": "button",
+        "enabled": true,
+        "rect": [
+          485,
+          162,
+          70,
+          65
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-login",
+      "action": {
+        "id": "test:skill-path-level-0 skill-path-level-skill#0",
+        "test": "skill-path-level-0 skill-path-level-skill",
+        "href": null,
+        "name": "Lesson",
+        "tag": "BUTTON",
+        "role": "button",
+        "enabled": true,
+        "rect": [
+          485,
+          162,
+          70,
+          65
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-login",
+      "action": {
+        "id": "DIV:#1",
+        "test": null,
+        "href": null,
+        "name": "",
+        "tag": "DIV",
+        "role": "button",
+        "enabled": true,
+        "rect": [
+          440.1171875,
+          238.8515625,
+          70,
+          65
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-login",
+      "action": {
+        "id": "test:skill-path-level-1 skill-path-level-skill#0",
+        "test": "skill-path-level-1 skill-path-level-skill",
+        "href": null,
+        "name": "Lesson",
+        "tag": "BUTTON",
+        "role": "button",
+        "enabled": true,
+        "rect": [
+          440.1171875,
+          238.8515625,
+          70,
+          65
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-login",
+      "action": {
+        "id": "BUTTON:宝箱#0",
+        "test": null,
+        "href": null,
+        "name": "宝箱",
+        "tag": "BUTTON",
+        "role": "button",
+        "enabled": false,
+        "rect": [
+          410,
+          324.2265625,
+          80,
+          90
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-login",
+      "action": {
+        "id": "DIV:开始#0",
+        "test": null,
+        "href": null,
+        "name": "开始",
+        "tag": "DIV",
+        "role": "button",
+        "enabled": true,
+        "rect": [
+          426.1171875,
+          434.6015625,
+          98,
+          93
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-login",
+      "action": {
+        "id": "test:skill-path-level-3 skill-path-level-practice#0",
+        "test": "skill-path-level-3 skill-path-level-practice",
+        "href": null,
+        "name": "Practice",
+        "tag": "BUTTON",
+        "role": "button",
+        "enabled": true,
+        "rect": [
+          440.1171875,
+          448.6015625,
+          70,
+          65
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-login",
+      "action": {
+        "id": "DIV:#2",
+        "test": null,
+        "href": null,
+        "name": "",
+        "tag": "DIV",
+        "role": "button",
+        "enabled": true,
+        "rect": [
+          485,
+          539.453125,
+          70,
+          65
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-login",
+      "action": {
+        "id": "test:skill-path-level-4 skill-path-level-unit_review#0",
+        "test": "skill-path-level-4 skill-path-level-unit_review",
+        "href": null,
+        "name": "复习该部分",
+        "tag": "BUTTON",
+        "role": "button",
+        "enabled": true,
+        "rect": [
+          485,
+          539.453125,
+          70,
+          65
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-login",
+      "action": {
+        "id": "test:sign-up-button#0",
+        "test": "sign-up-button",
+        "href": null,
+        "name": "注册",
+        "tag": "BUTTON",
+        "role": "button",
+        "enabled": true,
+        "rect": [
+          1102.3984375,
+          30,
+          67.6015625,
+          50
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-login",
+      "action": {
+        "id": "test:email-input#0",
+        "test": "email-input",
+        "href": null,
+        "name": "邮箱或用户名",
+        "tag": "INPUT",
+        "role": "textbox",
+        "enabled": true,
+        "rect": [
+          414.5,
+          122.5,
+          371,
+          44
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-login",
+      "action": {
+        "id": "test:password-input#0",
+        "test": "password-input",
+        "href": null,
+        "name": "密码",
+        "tag": "INPUT",
+        "role": "textbox",
+        "enabled": true,
+        "rect": [
+          414.5,
+          182.5,
+          297.0390625,
+          56
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-login",
+      "action": {
+        "id": "test:forgot-password#0",
+        "test": "forgot-password",
+        "href": "/forgot_password",
+        "name": "忘记密码？",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          709.5390625,
+          182.5,
+          61.9609375,
+          56
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-login",
+      "action": {
+        "id": "test:register-button#0",
+        "test": "register-button",
+        "href": null,
+        "name": "登录",
+        "tag": "BUTTON",
+        "role": "button",
+        "enabled": true,
+        "rect": [
+          412.5,
+          264.5,
+          375,
+          50
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-login",
+      "action": {
+        "id": "test:login-with-google#0",
+        "test": "login-with-google",
+        "href": null,
+        "name": "通过谷歌登录",
+        "tag": "BUTTON",
+        "role": "button",
+        "enabled": true,
+        "rect": [
+          412.5,
+          374.5,
+          375,
+          50
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-login",
+      "action": {
+        "id": "test:login-with-facebook#0",
+        "test": "login-with-facebook",
+        "href": null,
+        "name": "通过 FACEBOOK 登录",
+        "tag": "BUTTON",
+        "role": "button",
+        "enabled": true,
+        "rect": [
+          412.5,
+          439.5,
+          375,
+          50
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-login",
+      "action": {
+        "id": "test:login-with-apple#0",
+        "test": "login-with-apple",
+        "href": null,
+        "name": "使用 APPLE 登录",
+        "tag": "BUTTON",
+        "role": "button",
+        "enabled": true,
+        "rect": [
+          412.5,
+          504.5,
+          375,
+          50
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-login",
+      "action": {
+        "id": "href:https://www.duolingo.com/terms?wantsPlainInfo=1#0",
+        "test": null,
+        "href": "https://www.duolingo.com/terms?wantsPlainInfo=1",
+        "name": "服务条款",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          614,
+          596,
+          56,
+          16.5
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-login",
+      "action": {
+        "id": "href:https://www.duolingo.com/privacy?wantsPlainInfo=1#0",
+        "test": null,
+        "href": "https://www.duolingo.com/privacy?wantsPlainInfo=1",
+        "name": "隐私政策",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          684,
+          596,
+          56,
+          16.5
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-login",
+      "action": {
+        "id": "href:https://policies.google.com/privacy#0",
+        "test": null,
+        "href": "https://policies.google.com/privacy",
+        "name": "隐私政策",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          688.5859375,
+          636,
+          56,
+          16.5
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-login",
+      "action": {
+        "id": "href:https://policies.google.com/terms#0",
+        "test": null,
+        "href": "https://policies.google.com/terms",
+        "name": "服务条款",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          544,
+          636,
+          242.5859375,
+          36.5
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-shop",
+      "action": {
+        "id": "href:/learn#0",
+        "test": null,
+        "href": "/learn",
+        "name": "",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          32,
+          32,
+          128,
+          30
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-shop",
+      "action": {
+        "id": "test:home-nav#0",
+        "test": "home-nav",
+        "href": "/learn",
+        "name": "学习",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          16,
+          92,
+          222,
+          52
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-shop",
+      "action": {
+        "id": "test:characters-nav#0",
+        "test": "characters-nav",
+        "href": "/characters",
+        "name": "发音",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          16,
+          152,
+          222,
+          52
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-shop",
+      "action": {
+        "id": "test:leaderboard-nav#0",
+        "test": "leaderboard-nav",
+        "href": "/leaderboard",
+        "name": "排行榜",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          16,
+          212,
+          222,
+          52
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-shop",
+      "action": {
+        "id": "test:quests-nav#0",
+        "test": "quests-nav",
+        "href": "/quests",
+        "name": "特别任务",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          16,
+          272,
+          222,
+          52
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-shop",
+      "action": {
+        "id": "test:shop-nav#0",
+        "test": "shop-nav",
+        "href": "/shop",
+        "name": "宝石小店",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          16,
+          332,
+          222,
+          52
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-shop",
+      "action": {
+        "id": "test:profile-tab#0",
+        "test": "profile-tab",
+        "href": "/learn?sign-up",
+        "name": "个人档案",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          16,
+          392,
+          222,
+          52
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-shop",
+      "action": {
+        "id": "SPAN:更多#0",
+        "test": null,
+        "href": null,
+        "name": "更多",
+        "tag": "SPAN",
+        "role": "button",
+        "enabled": true,
+        "rect": [
+          16,
+          452,
+          222,
+          52
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-shop",
+      "action": {
+        "id": "SPAN:5#0",
+        "test": null,
+        "href": null,
+        "name": "5",
+        "tag": "SPAN",
+        "role": "button",
+        "enabled": true,
+        "rect": [
+          808,
+          24,
+          81.875,
+          44
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-shop",
+      "action": {
+        "id": "SPAN:2#0",
+        "test": null,
+        "href": null,
+        "name": "2",
+        "tag": "SPAN",
+        "role": "button",
+        "enabled": true,
+        "rect": [
+          911.9453125,
+          24,
+          67.546875,
+          44
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-shop",
+      "action": {
+        "id": "SPAN:525#0",
+        "test": null,
+        "href": null,
+        "name": "525",
+        "tag": "SPAN",
+        "role": "button",
+        "enabled": true,
+        "rect": [
+          1001.5546875,
+          24,
+          80.375,
+          44
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-shop",
+      "action": {
+        "id": "SPAN:5#1",
+        "test": null,
+        "href": null,
+        "name": "5",
+        "tag": "SPAN",
+        "role": "button",
+        "enabled": true,
+        "rect": [
+          1104,
+          24,
+          72,
+          44
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-shop",
+      "action": {
+        "id": "test:leaderboards-open#0",
+        "test": "leaderboards-open",
+        "href": "/leaderboard",
+        "name": "查看排行榜",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          1077,
+          117,
+          79,
+          18
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-shop",
+      "action": {
+        "id": "href:/quests#0",
+        "test": null,
+        "href": "/quests",
+        "name": "显示全部",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          1092.796875,
+          283,
+          63.203125,
+          18
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-shop",
+      "action": {
+        "id": "test:create-profile-juicy#0",
+        "test": "create-profile-juicy",
+        "href": null,
+        "name": "创建档案",
+        "tag": "BUTTON",
+        "role": "button",
+        "enabled": true,
+        "rect": [
+          828,
+          511,
+          328,
+          50
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-shop",
+      "action": {
+        "id": "test:sign-in-juicy#0",
+        "test": "sign-in-juicy",
+        "href": null,
+        "name": "登录",
+        "tag": "BUTTON",
+        "role": "button",
+        "enabled": true,
+        "rect": [
+          828,
+          571,
+          328,
+          50
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-shop",
+      "action": {
+        "id": "href:https://about.duolingo.com#0",
+        "test": null,
+        "href": "https://about.duolingo.com",
+        "name": "关于我们",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          835,
+          676.5,
+          52,
+          15.5
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-shop",
+      "action": {
+        "id": "href:https://store.duolingo.com/#0",
+        "test": null,
+        "href": "https://store.duolingo.com/",
+        "name": "宝石小店",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          907,
+          676.5,
+          52,
+          15.5
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-shop",
+      "action": {
+        "id": "href:/efficacy#0",
+        "test": null,
+        "href": "/efficacy",
+        "name": "有效性",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          979,
+          676.5,
+          39,
+          15.5
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-shop",
+      "action": {
+        "id": "href:https://careers.duolingo.com#0",
+        "test": null,
+        "href": "https://careers.duolingo.com",
+        "name": "招聘贤才",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          1038,
+          676.5,
+          52,
+          15.5
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-shop",
+      "action": {
+        "id": "href:https://investors.duolingo.com#0",
+        "test": null,
+        "href": "https://investors.duolingo.com",
+        "name": "投资者",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          1110,
+          676.5,
+          39,
+          15.5
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-shop",
+      "action": {
+        "id": "href:/terms#0",
+        "test": null,
+        "href": "/terms",
+        "name": "条款",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          956,
+          708.5,
+          26,
+          15.5
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-shop",
+      "action": {
+        "id": "href:/privacy#0",
+        "test": null,
+        "href": "/privacy",
+        "name": "隐私",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          1002,
+          708.5,
+          26,
+          15.5
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-shop",
+      "action": {
+        "id": "test:create-profile-juicy#1",
+        "test": "create-profile-juicy",
+        "href": null,
+        "name": "创建档案",
+        "tag": "BUTTON",
+        "role": "button",
+        "enabled": true,
+        "rect": [
+          387,
+          220,
+          266,
+          50
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-shop",
+      "action": {
+        "id": "test:purchase-button#0",
+        "test": "purchase-button",
+        "href": null,
+        "name": "已满",
+        "tag": "BUTTON",
+        "role": "button",
+        "enabled": false,
+        "rect": [
+          610,
+          115,
+          150,
+          50
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-shop",
+      "action": {
+        "id": "test:purchase-button#1",
+        "test": "purchase-button",
+        "href": null,
+        "name": "已装备",
+        "tag": "BUTTON",
+        "role": "button",
+        "enabled": false,
+        "rect": [
+          610,
+          343.5,
+          150,
+          50
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-more",
+      "action": {
+        "id": "href:/learn#0",
+        "test": null,
+        "href": "/learn",
+        "name": "",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          32,
+          32,
+          128,
+          30
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-more",
+      "action": {
+        "id": "test:home-nav#0",
+        "test": "home-nav",
+        "href": "/learn",
+        "name": "学习",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          16,
+          92,
+          222,
+          52
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-more",
+      "action": {
+        "id": "test:characters-nav#0",
+        "test": "characters-nav",
+        "href": "/characters",
+        "name": "发音",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          16,
+          152,
+          222,
+          52
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-more",
+      "action": {
+        "id": "test:leaderboard-nav#0",
+        "test": "leaderboard-nav",
+        "href": "/leaderboard",
+        "name": "排行榜",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          16,
+          212,
+          222,
+          52
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-more",
+      "action": {
+        "id": "test:quests-nav#0",
+        "test": "quests-nav",
+        "href": "/quests",
+        "name": "特别任务",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          16,
+          272,
+          222,
+          52
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-more",
+      "action": {
+        "id": "test:shop-nav#0",
+        "test": "shop-nav",
+        "href": "/shop",
+        "name": "宝石小店",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          16,
+          332,
+          222,
+          52
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-more",
+      "action": {
+        "id": "test:profile-tab#0",
+        "test": "profile-tab",
+        "href": "/learn?sign-up",
+        "name": "个人档案",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          16,
+          392,
+          222,
+          52
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-more",
+      "action": {
+        "id": "SPAN:更多\n多邻国英语测试\n创建档案\n设置\n帮助\n登录#0",
+        "test": null,
+        "href": null,
+        "name": "更多\n多邻国英语测试\n创建档案\n设置\n帮助\n登录",
+        "tag": "SPAN",
+        "role": "button",
+        "enabled": true,
+        "rect": [
+          16,
+          452,
+          222,
+          52
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-more",
+      "action": {
+        "id": "test:det-nav#0",
+        "test": "det-nav",
+        "href": "https://englishtest.duolingo.com/",
+        "name": "多邻国英语测试",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          248,
+          452,
+          222.6015625,
+          52
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-more",
+      "action": {
+        "id": "test:create-account-button#0",
+        "test": "create-account-button",
+        "href": null,
+        "name": "创建档案",
+        "tag": "BUTTON",
+        "role": "button",
+        "enabled": true,
+        "rect": [
+          248,
+          522,
+          222.6015625,
+          40
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-more",
+      "action": {
+        "id": "test:settings-button#0",
+        "test": "settings-button",
+        "href": null,
+        "name": "设置",
+        "tag": "BUTTON",
+        "role": "button",
+        "enabled": true,
+        "rect": [
+          248,
+          562,
+          222.6015625,
+          40
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-more",
+      "action": {
+        "id": "test:help-button#0",
+        "test": "help-button",
+        "href": null,
+        "name": "帮助",
+        "tag": "BUTTON",
+        "role": "button",
+        "enabled": true,
+        "rect": [
+          248,
+          602,
+          222.6015625,
+          40
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-more",
+      "action": {
+        "id": "test:sign-in-button#0",
+        "test": "sign-in-button",
+        "href": null,
+        "name": "登录",
+        "tag": "BUTTON",
+        "role": "button",
+        "enabled": true,
+        "rect": [
+          248,
+          642,
+          222.6015625,
+          40
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-more",
+      "action": {
+        "id": "SPAN:5#0",
+        "test": null,
+        "href": null,
+        "name": "5",
+        "tag": "SPAN",
+        "role": "button",
+        "enabled": true,
+        "rect": [
+          808,
+          24,
+          81.875,
+          44
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-more",
+      "action": {
+        "id": "SPAN:2#0",
+        "test": null,
+        "href": null,
+        "name": "2",
+        "tag": "SPAN",
+        "role": "button",
+        "enabled": true,
+        "rect": [
+          911.9453125,
+          24,
+          67.546875,
+          44
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-more",
+      "action": {
+        "id": "SPAN:525#0",
+        "test": null,
+        "href": null,
+        "name": "525",
+        "tag": "SPAN",
+        "role": "button",
+        "enabled": true,
+        "rect": [
+          1001.5546875,
+          24,
+          80.375,
+          44
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-more",
+      "action": {
+        "id": "SPAN:5#1",
+        "test": null,
+        "href": null,
+        "name": "5",
+        "tag": "SPAN",
+        "role": "button",
+        "enabled": true,
+        "rect": [
+          1104,
+          24,
+          72,
+          44
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-more",
+      "action": {
+        "id": "test:leaderboards-open#0",
+        "test": "leaderboards-open",
+        "href": "/leaderboard",
+        "name": "查看排行榜",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          1077,
+          117,
+          79,
+          18
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-more",
+      "action": {
+        "id": "href:/quests#0",
+        "test": null,
+        "href": "/quests",
+        "name": "显示全部",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          1092.796875,
+          283,
+          63.203125,
+          18
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-more",
+      "action": {
+        "id": "test:create-profile-juicy#0",
+        "test": "create-profile-juicy",
+        "href": null,
+        "name": "创建档案",
+        "tag": "BUTTON",
+        "role": "button",
+        "enabled": true,
+        "rect": [
+          828,
+          511,
+          328,
+          50
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-more",
+      "action": {
+        "id": "test:sign-in-juicy#0",
+        "test": "sign-in-juicy",
+        "href": null,
+        "name": "登录",
+        "tag": "BUTTON",
+        "role": "button",
+        "enabled": true,
+        "rect": [
+          828,
+          571,
+          328,
+          50
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-more",
+      "action": {
+        "id": "href:https://about.duolingo.com#0",
+        "test": null,
+        "href": "https://about.duolingo.com",
+        "name": "关于我们",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          835,
+          676.5,
+          52,
+          15.5
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-more",
+      "action": {
+        "id": "href:https://store.duolingo.com/#0",
+        "test": null,
+        "href": "https://store.duolingo.com/",
+        "name": "宝石小店",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          907,
+          676.5,
+          52,
+          15.5
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-more",
+      "action": {
+        "id": "href:/efficacy#0",
+        "test": null,
+        "href": "/efficacy",
+        "name": "有效性",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          979,
+          676.5,
+          39,
+          15.5
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-more",
+      "action": {
+        "id": "href:https://careers.duolingo.com#0",
+        "test": null,
+        "href": "https://careers.duolingo.com",
+        "name": "招聘贤才",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          1038,
+          676.5,
+          52,
+          15.5
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-more",
+      "action": {
+        "id": "href:https://investors.duolingo.com#0",
+        "test": null,
+        "href": "https://investors.duolingo.com",
+        "name": "投资者",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          1110,
+          676.5,
+          39,
+          15.5
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-more",
+      "action": {
+        "id": "href:/terms#0",
+        "test": null,
+        "href": "/terms",
+        "name": "条款",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          956,
+          708.5,
+          26,
+          15.5
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-more",
+      "action": {
+        "id": "href:/privacy#0",
+        "test": null,
+        "href": "/privacy",
+        "name": "隐私",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          1002,
+          708.5,
+          26,
+          15.5
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-more",
+      "action": {
+        "id": "href:/sections#0",
+        "test": null,
+        "href": "/sections",
+        "name": "第 1 阶段，第 1 部分",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          296,
+          64,
+          334.3984375,
+          24
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-more",
+      "action": {
+        "id": "test:guidebook-button-1#0",
+        "test": "guidebook-button-1",
+        "href": "/guidebook/en/1",
+        "name": "打开这个部分的指南",
+        "tag": "A",
+        "role": "link",
+        "enabled": true,
+        "rect": [
+          646.3984375,
+          66,
+          97.6015625,
+          54
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-more",
+      "action": {
+        "id": "DIV:#0",
+        "test": null,
+        "href": null,
+        "name": "",
+        "tag": "DIV",
+        "role": "button",
+        "enabled": true,
+        "rect": [
+          485,
+          162,
+          70,
+          65
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-more",
+      "action": {
+        "id": "test:skill-path-level-0 skill-path-level-skill#0",
+        "test": "skill-path-level-0 skill-path-level-skill",
+        "href": null,
+        "name": "Lesson",
+        "tag": "BUTTON",
+        "role": "button",
+        "enabled": true,
+        "rect": [
+          485,
+          162,
+          70,
+          65
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-more",
+      "action": {
+        "id": "DIV:#1",
+        "test": null,
+        "href": null,
+        "name": "",
+        "tag": "DIV",
+        "role": "button",
+        "enabled": true,
+        "rect": [
+          440.1171875,
+          238.8515625,
+          70,
+          65
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-more",
+      "action": {
+        "id": "test:skill-path-level-1 skill-path-level-skill#0",
+        "test": "skill-path-level-1 skill-path-level-skill",
+        "href": null,
+        "name": "Lesson",
+        "tag": "BUTTON",
+        "role": "button",
+        "enabled": true,
+        "rect": [
+          440.1171875,
+          238.8515625,
+          70,
+          65
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-more",
+      "action": {
+        "id": "BUTTON:宝箱#0",
+        "test": null,
+        "href": null,
+        "name": "宝箱",
+        "tag": "BUTTON",
+        "role": "button",
+        "enabled": false,
+        "rect": [
+          410,
+          324.2265625,
+          80,
+          90
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-more",
+      "action": {
+        "id": "DIV:开始#0",
+        "test": null,
+        "href": null,
+        "name": "开始",
+        "tag": "DIV",
+        "role": "button",
+        "enabled": true,
+        "rect": [
+          426.1171875,
+          434.6015625,
+          98,
+          93
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-more",
+      "action": {
+        "id": "test:skill-path-level-3 skill-path-level-practice#0",
+        "test": "skill-path-level-3 skill-path-level-practice",
+        "href": null,
+        "name": "Practice",
+        "tag": "BUTTON",
+        "role": "button",
+        "enabled": true,
+        "rect": [
+          440.1171875,
+          448.6015625,
+          70,
+          65
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-more",
+      "action": {
+        "id": "DIV:#2",
+        "test": null,
+        "href": null,
+        "name": "",
+        "tag": "DIV",
+        "role": "button",
+        "enabled": true,
+        "rect": [
+          485,
+          539.453125,
+          70,
+          65
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    },
+    {
+      "state": "journey-more",
+      "action": {
+        "id": "test:skill-path-level-4 skill-path-level-unit_review#0",
+        "test": "skill-path-level-4 skill-path-level-unit_review",
+        "href": null,
+        "name": "复习该部分",
+        "tag": "BUTTON",
+        "role": "button",
+        "enabled": true,
+        "rect": [
+          485,
+          539.453125,
+          70,
+          65
+        ]
+      },
+      "journeys": [],
+      "status": "unmodeled",
+      "requirements": {}
+    }
+  ],
+  "completion": "unknown; only observed controls, never full-app completeness",
+  "counts": {
+    "pass": 0,
+    "fail": 4,
+    "not_run": 0,
+    "unavailable": 0,
+    "unmodeled": 183
+  }
+}

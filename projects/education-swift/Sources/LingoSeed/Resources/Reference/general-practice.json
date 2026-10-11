@@ -5,7 +5,15 @@
       "projects/duolingo-web/evidence/english-general-practice-v1/README.md",
       "projects/duolingo-web/evidence/english-general-practice-native-v1/source-probe/wrong-assist-exit.json"
     ],
-    "unknown": "Adaptive selection, normal oral, new instances, general reward cap/score rules, full pixels and actual acoustic equality; original SVGs for visually identified inserted/replacement characters are not proof of exact animation frames."
+    "unknown": "Adaptive selection, normal oral, new instances, general reward cap/score rules, full pixels and actual acoustic equality; original SVGs for visually identified inserted/replacement characters are not proof of exact animation frames.",
+    "matching_incorrect_sound": {
+      "source": "projects/duolingo-web/evidence/english-home-journey-v1/source-sound/resource.json",
+      "questions": [
+        "general-practice-q0",
+        "general-practice-q2"
+      ],
+      "limits": "Source widget cue observed in another current instance; per-question source audio output equality still unavailable."
+    }
   },
   "data": {
     "candidate_course": {
@@ -69,7 +77,8 @@
                 "title": "听力练习已关闭",
                 "body": "将在 15 分钟后恢复"
               },
-              "correctFeedbackAudioResource": "en-effect-086f72d3e2c92d602dfb.mp3"
+              "correctFeedbackAudioResource": "en-effect-086f72d3e2c92d602dfb.mp3",
+              "incorrectFeedbackAudioResource": "en-match-incorrect.mp3"
             },
             {
               "id": "general-practice-q1",
@@ -149,7 +158,8 @@
                 "title": "听力练习已关闭",
                 "body": "将在 15 分钟后恢复"
               },
-              "correctFeedbackAudioResource": "en-effect-086f72d3e2c92d602dfb.mp3"
+              "correctFeedbackAudioResource": "en-effect-086f72d3e2c92d602dfb.mp3",
+              "incorrectFeedbackAudioResource": "en-match-incorrect.mp3"
             },
             {
               "id": "general-practice-q3",

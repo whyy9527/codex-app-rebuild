@@ -1,5 +1,7 @@
 # LingoSeed · Swift 教育基座
 
+主页根入口已接年龄页、独立登录、客态宝石小店和中文更多菜单，8个实际往返状态完成，v49仍有23项失败。默认独立练习bundle为v4，保留原v3题目并绑定原版听音配对错误音；已采到实际错误动作输出，未证明完整源声学一致性。登录服务/OAuth、排行榜/传奇等仍未完成。[本批验证](../duolingo-web/evidence/english-home-journey-v1/README.md)。
+
 本轮补原版小时/分钟/秒倒计时及共同时间夹具，默认课程v14保留八课115题；前端v48保留旧2486项并新增9项。实际原生文案3pass，几何/整图6fail，未计动效相位或RSI收益。30核心通过，完整Goal active。[源观察、失败控制与复跑](../duolingo-web/evidence/english-home-clock-v1/README.md)。
 
 注册年龄清除与密码显示/隐藏已按原版实际交互接入；另发现独立登录页含Apple与忘记密码，尚未实现。前端v45共2476项，最终两次20状态各116pass/31fail/2329not_run；整图仍失败，年龄图差异略增，不能称1:1。[最新证据与复跑](../duolingo-web/evidence/english-registration-controls-v1/README.md)。

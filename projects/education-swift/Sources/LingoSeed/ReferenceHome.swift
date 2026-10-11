@@ -15,6 +15,7 @@ struct ReferenceHome: View {
     @State private var moreHovered = false
     @State private var menuHovered = false
     @State private var showingPathProfile = false
+    @State private var authentication: String?
     private var completed: Int { model.progress.completedCount(model.course) }
     private var homeSnapshot: HomeProgressSnapshot? { model.course.home?.progressSnapshots?.first { $0.completedLessons == completed } }
     private var referenceClock: Date? {
@@ -34,9 +35,11 @@ struct ReferenceHome: View {
                 sidebar.frame(width: geometry.size.width >= 1180 ? 254 : 88)
                 Rectangle().fill(ReferenceStyle.border).frame(width: 2)
                 if model.destination == "Settings" { ReferenceSettings(model: model) }
+                else if model.destination == "Forgot password" { ReferenceForgotPassword() }
                 else {
                 ScrollView {
                     if model.destination == "Pronunciation" { ReferencePronunciation(model: model).padding(.horizontal, 24).padding(.top, 43) }
+                    else if model.destination == "Shop" { ReferenceShop(gems: chestOpened ? (pathChest?.afterGems ?? homeSnapshot?.gems ?? 0) : (homeSnapshot?.gems ?? 0), create: { authentication = "profile" }).padding(.top,40) }
                     else if model.destination == "Quests" { ReferenceQuests(snapshot: homeSnapshot).padding(.horizontal, 24).padding(.top, 24) }
                     else if model.destination == "Guidebook" { ReferenceGuidebook(model: model).padding(.horizontal, 24).padding(.top, 48) }
                     else { path.padding(.horizontal, 24).padding(.top, 48) }
@@ -50,7 +53,9 @@ struct ReferenceHome: View {
             }
             .overlay(alignment: .topLeading) {
                 if showingPathProfile { ReferencePathProfile(close: { showingPathProfile = false }).frame(width: geometry.size.width, height: geometry.size.height).zIndex(20) }
-                if moreOpen { moreMenu.offset(x: geometry.size.width >= 1180 ? 238 : 72, y: 314).zIndex(10) }
+                if moreOpen { moreMenu.offset(x: geometry.size.width >= 1180 ? 238 : 72, y: 438).zIndex(10) }
+                if authentication == "profile" { ReferenceRegistration(close:{ authentication = nil },showLogin:{ authentication = "login" }).zIndex(30) }
+                if authentication == "login" { ReferenceLogin(close:{ authentication = nil },signup:{ authentication = "profile" },forgot:{ authentication = nil; model.destination = "Forgot password" }).zIndex(30) }
             }
         }
         .font(ReferenceStyle.font(17)).foregroundStyle(ReferenceStyle.ink).background(ReferenceStyle.background)
@@ -62,6 +67,7 @@ struct ReferenceHome: View {
             ForEach(chinese ? ["Learn", "Pronunciation", "Leaderboards", "Quests", "Shop", "Profile", "More"] : ["Learn", "Leaderboards", "Quests", "Shop", "Profile", "More"], id: \.self) { item in
                 Button {
                     if item == "More" { moreOpen.toggle() }
+                    else if item == "Profile" { authentication = "profile"; moreOpen = false }
                     else { model.destination = item; moreOpen = false }
                 } label: {
                     HStack(spacing: 20) {
@@ -88,16 +94,26 @@ struct ReferenceHome: View {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) { if !moreHovered && !menuHovered { moreOpen = false } }
     }
     private var moreMenu: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            ForEach(["Duolingo English Test", "Create a profile", "Settings", "Help", "Sign in"], id: \.self) { title in
-                Button { model.destination = title; moreOpen = false } label: {
-                    Text(title).font(ReferenceStyle.font(17, bold: true)).frame(maxWidth: .infinity, alignment: .leading).padding(16)
-                }.buttonStyle(.plain).accessibilityIdentifier("more-" + title.lowercased().replacingOccurrences(of: " ", with: "-"))
+        VStack(alignment:.leading,spacing:0) {
+            Link(destination:URL(string:"https://englishtest.duolingo.com/")!) {
+                HStack(spacing:20) { ReferenceStyle.image("en-menu-test").resizable().frame(width:32,height:32);Text("多邻国英语测试").font(ReferenceStyle.font(15,bold:true)).tracking(0.8) }
+                    .frame(width:222.6015625,height:52).contentShape(Rectangle())
+            }.accessibilityIdentifier("more-duolingo-english-test").padding(.bottom,18)
+            ForEach(["Create a profile","Settings","Help","Sign in"],id:\.self) { title in
+                Button {
+                    if title == "Create a profile" { authentication = "profile" }
+                    else if title == "Sign in" { authentication = "login" }
+                    else { model.destination = title }
+                    moreOpen = false
+                } label: {
+                    Text(["Create a profile":"创建档案","Settings":"设置","Help":"帮助","Sign in":"登录"][title]!)
+                        .font(ReferenceStyle.font(15,bold:true)).frame(width:182.6015625,height:40,alignment:.leading).padding(.horizontal,20)
+                }.buttonStyle(.plain).accessibilityIdentifier("more-"+title.lowercased().replacingOccurrences(of:" ",with:"-"))
             }
-        }.frame(width: 240).background(ReferenceStyle.background, in: RoundedRectangle(cornerRadius: 16))
-            .overlay(RoundedRectangle(cornerRadius: 16).stroke(ReferenceStyle.border, lineWidth: 2))
-            .shadow(color: .black.opacity(0.08), radius: 8, y: 4)
-            .onHover { inside in menuHovered = inside; if !inside { dismissMenuLater() } }
+        }.padding(.horizontal,10).padding(.top,14).padding(.bottom,10)
+            .foregroundStyle(ReferenceStyle.secondaryInk).background(.white,in:RoundedRectangle(cornerRadius:16))
+            .overlay(RoundedRectangle(cornerRadius:16).strokeBorder(ReferenceStyle.border,lineWidth:2))
+            .onHover { menuHovered = $0; if !$0 { dismissMenuLater() } }
     }
     private var path: some View {
         VStack(spacing: 0) {
@@ -280,8 +296,8 @@ struct ReferenceHome: View {
             card {
                 Text(copy("Create a profile to save your progress!", "创建个人档案，保存学习进度！")).font(ReferenceStyle.font(19, bold: true))
                 VStack(spacing: 14) {
-                    Button(copy("CREATE A PROFILE", "创建档案")) { model.destination = "Create a profile" }.buttonStyle(ReferenceButton()).accessibilityIdentifier("view-profile")
-                    Button(copy("SIGN IN", "登录")) { model.destination = "Sign in" }.buttonStyle(ReferenceButton(color: blue)).accessibilityIdentifier("sign-in")
+                    Button(copy("CREATE A PROFILE", "创建档案")) { authentication = "profile" }.buttonStyle(ReferenceButton()).accessibilityIdentifier("view-profile")
+                    Button(copy("SIGN IN", "登录")) { authentication = "login" }.buttonStyle(ReferenceButton(color: blue)).accessibilityIdentifier("sign-in")
                 }.padding(.top, 12)
             }.frame(height: 201)
             }

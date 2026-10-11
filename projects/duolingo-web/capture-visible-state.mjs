@@ -8,6 +8,19 @@ for(const suffix of ['.raw.txt','.json','.png'])if(existsSync(out+suffix))throw 
 const callback=async page=>{
  const facts={observed_at:new Date().toISOString(),path:new URL(page.url()).pathname,
   viewport:page.viewportSize(),snapshot:await page.locator('body').ariaSnapshot()};
+ // Inventory every currently visible interactive entry, including plain links.
+ // State-scoped identities retain duplicate controls instead of collapsing names.
+ facts.actions=await page.locator('a[href],button,input,[role="button"],[role="checkbox"],[role="radio"]').evaluateAll(ns=>{
+  const counts=new Map();return ns.flatMap(n=>{
+   const r=n.getBoundingClientRect();if(!n.checkVisibility({checkOpacity:true,checkVisibilityCSS:true})||r.width<=0||r.height<=0||r.bottom<=0||r.right<=0||r.top>=innerHeight||r.left>=innerWidth)return [];
+   const test=n.getAttribute('data-test'),href=n.getAttribute('href');
+   const name=n.getAttribute('aria-label')||n.innerText||n.getAttribute('placeholder')||n.querySelector('img')?.alt||'';
+   const identity=test?'test:'+test:href?'href:'+href:n.tagName+':'+name;
+   const ordinal=counts.get(identity)||0;counts.set(identity,ordinal+1);
+   const hit=document.elementFromPoint(r.x+r.width/2,r.y+r.height/2);
+   return [{id:identity+'#'+ordinal,test,href,name,hit_test:!!hit&&(hit===n||n.contains(hit)),tag:n.tagName,role:n.getAttribute('role')||(n.tagName==='A'?'link':n.tagName==='INPUT'?'textbox':'button'),enabled:!n.disabled&&n.getAttribute('aria-disabled')!=='true',rect:[r.x,r.y,r.width,r.height]}];
+  });
+ });
  // Generic text blocks (reward titles, subtitles and hints) were missing
  // from the element selector. Read actual rendered text ranges, never hidden
  // application state, and keep their own computed typography.
@@ -15,7 +28,7 @@ const callback=async page=>{
   const walker=document.createTreeWalker(body,NodeFilter.SHOW_TEXT),rows=[];
   for(let n=walker.nextNode();n;n=walker.nextNode()){
    const p=n.parentElement,text=n.textContent.trim();
-   if(!text||!p||['SCRIPT','STYLE','NOSCRIPT'].includes(p.tagName)||!p.checkVisibility())continue;
+   if(!text||!p||['SCRIPT','STYLE','NOSCRIPT'].includes(p.tagName)||!p.checkVisibility({checkOpacity:true,checkVisibilityCSS:true}))continue;
    const range=document.createRange();range.selectNodeContents(n);const r=range.getBoundingClientRect();
    if(r.width<=0||r.height<=0||r.bottom<=0||r.right<=0||r.top>=innerHeight||r.left>=innerWidth)continue;
    const c=getComputedStyle(p);
@@ -26,7 +39,7 @@ const callback=async page=>{
  facts.text_run_limitations=['DOM text ranges and computed CSS are not OCR or actual fallback font resolution; clipped animation digits may still appear.'];
  // Artwork outside buttons was absent from the old mold. Keep visible media
  // geometry and public resource identity without reading application state.
- facts.media=await page.locator('img,svg,canvas').evaluateAll(ns=>ns.filter(n=>n.checkVisibility()).map(n=>{
+ facts.media=await page.locator('img,svg,canvas').evaluateAll(ns=>ns.filter(n=>n.checkVisibility({checkOpacity:true,checkVisibilityCSS:true})).map(n=>{
   const r=n.getBoundingClientRect(),css=getComputedStyle(n);
   const src=n.tagName==='IMG'?(n.currentSrc||n.src):null;
   return {tag:n.tagName,svg:n.tagName.toLowerCase()==='svg'?n.outerHTML:null,alt:n.getAttribute('alt'),test:n.getAttribute('data-test'),
@@ -38,20 +51,20 @@ const callback=async page=>{
  // CSS artwork (for example profile Duo) is not an img/svg/canvas node.
  facts.background_media=await page.locator('body *').evaluateAll(ns=>ns.flatMap(n=>{
   const r=n.getBoundingClientRect(),c=getComputedStyle(n),background=c.backgroundImage;
-  if(!n.checkVisibility()||background==='none'||r.width<=0||r.height<=0||r.bottom<=0||r.right<=0||r.top>=innerHeight||r.left>=innerWidth)return [];
+  if(!n.checkVisibility({checkOpacity:true,checkVisibilityCSS:true})||background==='none'||r.width<=0||r.height<=0||r.bottom<=0||r.right<=0||r.top>=innerHeight||r.left>=innerWidth)return [];
   return [{tag:n.tagName,test:n.getAttribute('data-test'),rect:[r.x,r.y,r.width,r.height],backgroundImage:background,backgroundSize:c.backgroundSize,backgroundPosition:c.backgroundPosition,backgroundRepeat:c.backgroundRepeat}];
  }));
  // Pseudo-elements can draw the actual control face without a DOM child.
  facts.pseudo_elements=await page.locator('body *').evaluateAll(ns=>ns.flatMap(n=>{
   const r=n.getBoundingClientRect();
-  if(!n.checkVisibility()||r.width<=0||r.height<=0||r.bottom<=0||r.right<=0||r.top>=innerHeight||r.left>=innerWidth)return [];
+  if(!n.checkVisibility({checkOpacity:true,checkVisibilityCSS:true})||r.width<=0||r.height<=0||r.bottom<=0||r.right<=0||r.top>=innerHeight||r.left>=innerWidth)return [];
   return ['::before','::after'].flatMap(p=>{const c=getComputedStyle(n,p);
    if(c.content==='none'||c.content==='normal')return [];
    return [{tag:n.tagName,test:n.getAttribute('data-test'),pseudo:p,parent_rect:[r.x,r.y,r.width,r.height],css:{content:c.content,width:c.width,height:c.height,top:c.top,left:c.left,color:c.color,backgroundColor:c.backgroundColor,backgroundImage:c.backgroundImage,borderRadius:c.borderRadius,transform:c.transform,boxShadow:c.boxShadow}}];
   });
  }));
  facts.pseudo_limitations=['Computed CSS and parent bounds only; pseudo-elements have no independently measured DOM bounding rectangle.'];
- facts.visible=await page.locator('[data-test],h1,h2,[role],button,input,label').evaluateAll(ns=>ns.filter(n=>n.checkVisibility()).map(n=>{
+ facts.visible=await page.locator('[data-test],h1,h2,[role],button,input,label').evaluateAll(ns=>ns.filter(n=>n.checkVisibility({checkOpacity:true,checkVisibilityCSS:true})).map(n=>{
   const r=n.getBoundingClientRect(),css=getComputedStyle(n);
   return {test:n.getAttribute('data-test'),tag:n.tagName,role:n.getAttribute('role'),text:n.innerText,
    enabled:!n.disabled&&n.getAttribute('aria-disabled')!=='true',pressed:n.getAttribute('aria-pressed'),checked:n.checked??null,

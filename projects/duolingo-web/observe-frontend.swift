@@ -222,6 +222,35 @@ func captureGeneralCharacterFrames(_ key: String, _ stage: String, _ question: [
     for frame in 0..<12 { try capture(key + "-character-" + stage + "-\(frame)"); Thread.sleep(forTimeInterval: 0.15) }
 }
 
+if let index = CommandLine.arguments.firstIndex(of: "--exercise-home-journey"), index + 1 < CommandLine.arguments.count {
+    let scenarioURL = root.appendingPathComponent(CommandLine.arguments[index + 1])
+    let scenario = try JSONSerialization.jsonObject(with: Data(contentsOf: scenarioURL)) as! [String: Any]
+    let journeys = scenario["journeys"] as! [[String: Any]]
+    var states: [String: [String: Any]] = [:]; var attempts: [[String: Any]] = []
+    for (index, journey) in journeys.enumerated() {
+        if index > 0 { child.terminate(); child.waitUntilExit(); child = try launchChild(); app = AXUIElementCreateApplication(child.processIdentifier) }
+        try waitFor("path-chest"); configureWindow()
+        let id = journey["id"] as! String
+        do {
+            let control = journey["native_action"] as! String
+            if journey["operation"] as? String == "hover" { guard movePointer(to:control) else { throw ProbeError(message:"Missing hover target") } }
+            else { try press(control) }
+            Thread.sleep(forTimeInterval:0.7)
+            let after = "journey-" + id; states[after] = observe(); try capture(after)
+            try press(journey["native_return"] as! String); Thread.sleep(forTimeInterval:0.7)
+            let back = after + "-return"; states[back] = observe(); try capture(back)
+            attempts.append(["id":id,"failure":NSNull()])
+        } catch { attempts.append(["id":id,"failure":String(describing:error)]) }
+    }
+    try bindCaptures(&states)
+    let failures = attempts.filter { !($0["failure"] is NSNull) }
+    let receipt: [String: Any] = ["kind":"owned_native_ax_observation", "states":states,"attempts":attempts,
+        "candidate_binary_sha256":candidateSHA,"fixture_sha256":fixtureSHA,"scenario_sha256":SHA256.hash(data:try Data(contentsOf:scenarioURL)).map{String(format:"%02x",$0)}.joined(),
+        "failure":failures.isEmpty ? NSNull() : String(describing:failures),"limitations":["No acoustic equality claim; actual images retain clock and animation phase differences"]]
+    try JSONSerialization.data(withJSONObject:receipt,options:[.prettyPrinted,.sortedKeys]).write(to:output.appendingPathComponent("observed.json"),options:.withoutOverwriting)
+    print("Collected \(states.count) actual home journey states, \(failures.count) unavailable returns")
+    return
+}
 if let scenario = clockScenario, let rows = scenario["states"] as? [[String: Any]] {
     var states: [String: [String: Any]] = [:]; var failure: String?
     do {
@@ -242,6 +271,21 @@ if let scenario = clockScenario, let rows = scenario["states"] as? [[String: Any
     try JSONSerialization.data(withJSONObject:receipt,options:[.prettyPrinted,.sortedKeys]).write(to:output.appendingPathComponent("observed.json"),options:.withoutOverwriting)
     print("Collected \(states.count) actual home clock states")
     if let failure { throw ProbeError(message:failure) }; return
+}
+if let index = CommandLine.arguments.firstIndex(of:"--exercise-matching-audio"), index+1 < CommandLine.arguments.count {
+    try press("nav-quests"); try waitFor("quests-practice"); try press("quests-practice"); try waitFor("pair-left-0")
+    try press("pair-left-0"); Thread.sleep(forTimeInterval:1.5)
+    let actions = output.appendingPathComponent("audio-actions.json")
+    try JSONSerialization.data(withJSONObject:["pair-right-1"]).write(to:actions)
+    let recorder=Process();recorder.executableURL=URL(fileURLWithPath:CommandLine.arguments[index+1])
+    recorder.arguments=[String(child.processIdentifier),output.appendingPathComponent("matching-error.wav").path,"5",actions.path]
+    let log=output.appendingPathComponent("recorder.log");FileManager.default.createFile(atPath:log.path,contents:nil)
+    recorder.standardOutput=try FileHandle(forWritingTo:log);recorder.standardError=recorder.standardOutput
+    try recorder.run();recorder.waitUntilExit()
+    guard recorder.terminationStatus==0 else { throw ProbeError(message:"Owned matching error audio recorder failed") }
+    var states=["matching-error":observe()];try capture("matching-error");try bindCaptures(&states)
+    let receipt:[String:Any] = ["kind":"owned_native_ax_observation","states":states,"failure":NSNull(),"candidate_binary_sha256":candidateSHA,"fixture_sha256":fixtureSHA,"general_fixture_sha256":SHA256.hash(data:try Data(contentsOf:root.appendingPathComponent("projects/education-swift/Sources/LingoSeed/Resources/Reference/general-practice.json"))).map{String(format:"%02x",$0)}.joined(),"limitations":["Original browser loopback unavailable; candidate output vs original resource is diagnostic only"]]
+    try JSONSerialization.data(withJSONObject:receipt,options:[.prettyPrinted,.sortedKeys]).write(to:output.appendingPathComponent("observed.json"));return
 }
 if CommandLine.arguments.contains("--exercise-home-motion") || CommandLine.arguments.contains("--exercise-path-chest") { try waitFor("path-chest") }
 let initialHomeState = CommandLine.arguments.contains("--seed-progress") ? "seeded-home" : "home"
@@ -546,7 +590,7 @@ if CommandLine.arguments.contains("--observe-quests") {
         return
     }
     if CommandLine.arguments.contains("--exercise-general-practice") {
-        let practiceURL = root.appendingPathComponent("projects/duolingo-web/fixture-reference-en-zh-general-practice-v3.json")
+        let practiceURL = root.appendingPathComponent("projects/duolingo-web/fixture-reference-en-zh-general-practice-v4.json")
         let practiceFixture = try JSONSerialization.jsonObject(with: Data(contentsOf: practiceURL)) as! [String: Any]
         let practice = (practiceFixture["data"] as! [String: Any])["candidate_course"] as! [String: Any]
         let definition = (practice["lessons"] as! [[String: Any]])[0]

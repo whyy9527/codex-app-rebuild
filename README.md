@@ -1,5 +1,7 @@
 # Codex App Rebuild
 
+本轮转向主页动作与前端模具：接入个人档案/登录/宝石小店/中文更多菜单，实际8个往返状态完成；v49保留旧要求，新增92项，65pass/23fail，整图继续失败。补动作覆盖报告，未建模控件不因现有测试通过而消失；历史反馈实际引导探索发现已完成节点的传奇/练习弹层和缺失错误配对原音。默认独立练习已播放原版Match_Incorrect，但源浏览器声学比较仍不可用，RSI因果收益未证明。[证据、失败及复跑](projects/duolingo-web/evidence/english-home-journey-v1/README.md)。
+
 本轮补原版小时/分钟/秒倒计时及共同时间夹具，默认课程v14保留八课115题；前端v48保留旧2486项并新增9项。实际原生文案3pass，几何/整图6fail，未计动效相位或RSI收益。30核心通过，完整Goal active。[源观察、失败控制与复跑](projects/duolingo-web/evidence/english-home-clock-v1/README.md)。
 
 主页Duo已从静态帧替换为原版Lottie资源，真实截图确认运动；严格几何及6张整图仍fail。v47共2486项，发现时间/动效相位夹具缺口，未把运动当成1:1或RSI收益。[动效证据、反例与复跑](projects/duolingo-web/evidence/english-home-motion-v1/README.md)。
