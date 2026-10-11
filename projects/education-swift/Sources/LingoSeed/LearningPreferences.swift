@@ -10,4 +10,5 @@ struct LearningPreferences: Codable {
     var darkMode = "System Default"
     var leaderboardStatus: Int?
     var avatarSkin: Int?
+    var avatarState: [String:Int]?
 }

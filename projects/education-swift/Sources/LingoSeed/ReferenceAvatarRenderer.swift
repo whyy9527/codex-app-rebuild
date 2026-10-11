@@ -14,11 +14,16 @@ import RiveRuntime
               let values = try? JSONDecoder().decode([String:Int].self,from:bytes) else { return [:] }
         return values
     }()
-    init() {
+    private static let file: Result<RiveFile, Error> = Result {
+        guard let url=Bundle.module.url(forResource:"en-avatar-builder",withExtension:"riv",subdirectory:"Reference") else {throw CocoaError(.fileNoSuchFile)}
+        return try RiveFile(data:Data(contentsOf:url),loadCdn:false)
+    }
+    let machine: String
+    init(machine: String = "SMAvatar") {
+        self.machine = machine
         do {
-            guard let url = Bundle.module.url(forResource:"en-avatar-builder",withExtension:"riv",subdirectory:"Reference") else { throw CocoaError(.fileNoSuchFile) }
-            let file = try RiveFile(data:Data(contentsOf:url),loadCdn:false)
-            model = RiveViewModel(RiveModel(riveFile:file),stateMachineName:"SMAvatar",fit:.cover,alignment:.center,autoPlay:true)
+            let file = try Self.file.get()
+            model = RiveViewModel(RiveModel(riveFile:file),stateMachineName:machine,fit:.cover,alignment:.center,autoPlay:true)
             defaultAnimation = Double(model?.numberInput(named:"ENG_ONLY_Animation")?.value() ?? 0)
             error = nil
         } catch {
@@ -27,15 +32,13 @@ import RiveRuntime
             self.error = "原版头像动画载入失败"
         }
     }
-    func update(skin: Int, animations: Bool) {
-        var values = Self.initial
-        // Actual source IMAGE button values run from15 down to1.
-        values["SkinTone"] = 15-skin
-        values["ENG_ONLY_Zoom"] = 3
+    func update(states: [String:Int], animations: Bool) {
+        var values = Self.initial.merging(states,uniquingKeysWith: {_,new in new})
+        values["ENG_ONLY_Zoom"] = states["ENG_ONLY_Zoom"] ?? (machine == "SMAvatar" ? 3 : 1)
         for (name,value) in values { model?.setInput(name,value:Double(value)) }
         model?.setInput("ENG_ONLY_Animation",value:animations ? defaultAnimation : 0)
         inputSnapshot = measuredInputs
-        if CommandLine.arguments.contains("--render-metadata") {
+        if machine == "SMAvatar" && CommandLine.arguments.contains("--render-metadata") {
             // Read the runtime numbers after applying inputs; never emit pass flags.
             let line = "avatar-runtime-inputs " + inputSnapshot + "\n"
             FileHandle.standardError.write(Data(line.utf8))
@@ -53,7 +56,7 @@ import RiveRuntime
 }
 
 struct ReferenceAvatarRenderer: View {
-    let skin: Int
+    let states: [String:Int]
     let animations: Bool
     @StateObject private var player = SourceAvatarPlayer()
     var body: some View {
@@ -61,12 +64,31 @@ struct ReferenceAvatarRenderer: View {
             if let model = player.model { RiveViewRepresentable(viewModel:model) }
             else { Text(player.error ?? "原版头像动画不可用") }
         }
-        .onAppear { player.update(skin:skin,animations:animations) }
-        .onChange(of:skin) { _,_ in player.update(skin:skin,animations:animations) }
-        .onChange(of:animations) { _,_ in player.update(skin:skin,animations:animations) }
+        .onAppear { player.update(states:states,animations:animations) }
+        .onChange(of:states) { _,_ in player.update(states:states,animations:animations) }
+        .onChange(of:animations) { _,_ in player.update(states:states,animations:animations) }
         .accessibilityElement(children:.ignore)
         .accessibilityLabel(player.model == nil ? "unavailable" : "SMAvatar")
         .accessibilityValue(player.inputSnapshot)
         .accessibilityIdentifier("avatar-preview")
+    }
+}
+
+/// Original feature-button overrides use SMButtons and disable motion. Each
+/// instance has its own artboard, while sharing the immutable parsed source file.
+struct ReferenceAvatarThumbnail: View {
+    let states: [String:Int]
+    @StateObject private var player = SourceAvatarPlayer(machine:"SMButtons")
+    private func update() {
+        player.update(states:states,animations:false)
+        player.model?.riveView?.advance(delta:0)
+        player.model?.riveView?.advance(delta:0)
+        player.model?.pause()
+    }
+    var body: some View {
+        Group {
+            if let model=player.model {RiveViewRepresentable(viewModel:model)}
+            else {Text(player.error ?? "原版缩略图不可用")}
+        }.onAppear {update()}.onChange(of:states) {_,_ in update()}.accessibilityHidden(true)
     }
 }

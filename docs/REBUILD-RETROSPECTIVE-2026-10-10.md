@@ -1,5 +1,7 @@
 # 复刻交付反思 · 2026-10-10
 
+进一步实际反例：九分类库存不等于组合保存正确；完整组合又暴露外层滚动崩溃，radio单点修正没有解决。保留失败再跑同一源旅程，最终15状态才打通；17组恢复正确仍有267前端失败。历史反馈应把未执行的跨页消费和声音送回探索队列，而不是把库存和通过率当产品完成。[本批证据](../projects/duolingo-web/evidence/english-avatar-composition-v1/README.md)。
+
 “完整题单能跑完”仍不足以覆盖前端：本批44状态执行后查看截图，发现六个听力暂缓按钮被编译器漏掉。追加源断言并修夹具后六项才通过；36张新增整图仍失败。另一个反例是打乱列的稳定配对ID不可按行号映射，模具错误的分数变化不算产品进步。[证据](../projects/duolingo-web/evidence/english-leaderboard-practice-instance-v1/README.md)。
 
 进一步反例：只枚举按钮会漏掉无 role 的悬停清除；复用历史练习题单会掩盖当前入口内容差异。修正是实际操作并保存源证据、追加共同前端断言、保留失败，再实施。Swift 状态保存已通过真实重启，当前练习内容与整图仍失败。原版声音采集三配置无输出，原生阳性对照有效，不能将这个差异解释为原版没有声音。[本批证据](../projects/duolingo-web/evidence/english-leaderboard-state-v1/README.md)。

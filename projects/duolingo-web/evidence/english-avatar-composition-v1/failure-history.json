@@ -1,0 +1,154 @@
+[
+  {
+    "run": 2,
+    "candidate_binary_sha256": "fb2f5b191032aaca3d96884efabca635b57793c185a17783d58e128d881c29a6",
+    "attempts": [
+      {
+        "failure": "ProbeError(message: \"Owned scroll did not move measured anchor\")",
+        "id": "avatar-composition"
+      }
+    ],
+    "captured_states": [
+      "avatar-composition-selected-0",
+      "avatar-composition-selected-1",
+      "avatar-composition-selected-2",
+      "avatar-composition-selected-3"
+    ],
+    "scrolls": [
+      {
+        "target": "avatar-options",
+        "after": [
+          849,
+          464,
+          132,
+          130
+        ],
+        "before": [
+          849,
+          1616,
+          132,
+          130
+        ],
+        "anchor": "avatar-choice-Nose Piercing-1",
+        "pixels": -1152
+      },
+      {
+        "before": [
+          1040,
+          804,
+          136,
+          48
+        ],
+        "target": "avatar-preview",
+        "pixels": -500,
+        "anchor": "avatar-done",
+        "after": null
+      }
+    ],
+    "exception_excerpt": "Terminating app due to uncaught exception 'NSGenericException', reason: 'The window has been marked as needing another Update Constraints in Window pass, but it has already had more Update Constraints in Window passes than there are views in the window. \n<SwiftUI.AppKitWindow: 0x101ca1a60> 0x1b840 (112704) {{135, 122}, {1200, 764}} en'\n*** First throw call stack:\n(\n\t0   CoreFoundation                      0"
+  },
+  {
+    "run": 3,
+    "candidate_binary_sha256": "fb2f5b191032aaca3d96884efabca635b57793c185a17783d58e128d881c29a6",
+    "attempts": [
+      {
+        "failure": "ProbeError(message: \"Owned scroll anchor unavailable after bounded live re-observation\")",
+        "id": "avatar-composition"
+      }
+    ],
+    "captured_states": [
+      "avatar-composition-selected-0",
+      "avatar-composition-selected-1",
+      "avatar-composition-selected-2",
+      "avatar-composition-selected-3"
+    ],
+    "scrolls": [
+      {
+        "child_running": true,
+        "target": "avatar-options",
+        "pixels": -1152,
+        "before": [
+          849,
+          1616,
+          132,
+          130
+        ],
+        "anchor": "avatar-choice-Nose Piercing-1",
+        "after": [
+          849,
+          464,
+          132,
+          130
+        ],
+        "samples": 1
+      },
+      {
+        "after": null,
+        "target": "avatar-preview",
+        "pixels": -500,
+        "child_running": false,
+        "samples": 1,
+        "before": [
+          1040,
+          804,
+          136,
+          48
+        ],
+        "anchor": "avatar-done"
+      }
+    ],
+    "exception_excerpt": "Terminating app due to uncaught exception 'NSGenericException', reason: 'The window has been marked as needing another Update Constraints in Window pass, but it has already had more Update Constraints in Window passes than there are views in the window. \n<SwiftUI.AppKitWindow: 0x10173b060> 0x1b853 (112723) {{135, 122}, {1200, 764}} en'\n*** First throw call stack:\n(\n\t0   CoreFoundation                      0"
+  },
+  {
+    "run": 4,
+    "candidate_binary_sha256": "68a06b65312e247a6b2691f93a576dae81b9b927f9b2c007cbd4932e99dbaffd",
+    "attempts": [
+      {
+        "failure": "ProbeError(message: \"Owned scroll anchor unavailable after bounded live re-observation\")",
+        "id": "avatar-composition"
+      }
+    ],
+    "captured_states": [
+      "avatar-composition-selected-0",
+      "avatar-composition-selected-1",
+      "avatar-composition-selected-2",
+      "avatar-composition-selected-3"
+    ],
+    "scrolls": [
+      {
+        "target": "avatar-options",
+        "after": [
+          849,
+          462,
+          132,
+          132
+        ],
+        "before": [
+          849,
+          1614,
+          132,
+          132
+        ],
+        "samples": 1,
+        "pixels": -1152,
+        "anchor": "avatar-choice-Nose Piercing-1",
+        "child_running": true
+      },
+      {
+        "before": [
+          1040,
+          804,
+          136,
+          48
+        ],
+        "target": "avatar-preview",
+        "samples": 1,
+        "child_running": false,
+        "pixels": -500,
+        "after": null,
+        "anchor": "avatar-done"
+      }
+    ],
+    "exception_excerpt": "Terminating app due to uncaught exception 'NSGenericException', reason: 'The window has been marked as needing another Update Constraints in Window pass, but it has already had more Update Constraints in Window passes than there are views in the window. \n<SwiftUI.AppKitWindow: 0x1058ba2e0> 0x1b863 (112739) {{135, 122}, {1200, 764}} en'\n*** First throw call stack:\n(\n\t0   CoreFoundation                      0"
+  }
+]

@@ -1,5 +1,7 @@
 # Roadmap
 
+本批从九分类库存推进到真实组合／滚动／保存／重载，修复外滚约束循环崩溃；最终15状态，17组恢复及27项检查通过。v60仍1222pass/267fail/5905not_run，15整图全fail；旧保存回归76pass。接续优先实际档案／主页头像消费、未访问交互及原版声音，完整Goal仍active。[源证据、失败和接续](../projects/duolingo-web/evidence/english-avatar-composition-v1/README.md)。
+
 继续按历史遗漏探索排行榜练习，实际完成16题＋1口语暂缓，编译完整显式实例并验证44个原生状态；截图又发现六道题漏掉听力暂缓按钮，已补回。v54共3084项，本轨迹177pass/39fail，整图全部仍失败；默认自适应选题尚未实现。[实际证据及复跑](../projects/duolingo-web/evidence/english-leaderboard-practice-instance-v1/README.md)。
 
 排行榜继续实际补漏：发现无角色悬停清除、选择／清除跨刷新保存，以及练习入口当前题目与历史默认实例不同。Swift 状态持久化已实测；v52 共2848项，当前同一二进制两次会话7状态73pass/22fail，整图和当前题目仍失败，1:1未完成。[证据、失败与复跑](../projects/duolingo-web/evidence/english-leaderboard-state-v1/README.md)。

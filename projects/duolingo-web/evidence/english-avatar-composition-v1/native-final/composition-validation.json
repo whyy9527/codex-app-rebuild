@@ -1,0 +1,218 @@
+{
+  "rows": [
+    {
+      "name": "completed journey",
+      "actual": [
+        {
+          "failure": null,
+          "id": "avatar-composition"
+        }
+      ],
+      "expected": [
+        {
+          "id": "avatar-composition",
+          "failure": null
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "captured state count",
+      "actual": 15,
+      "expected": 15,
+      "passed": true
+    },
+    {
+      "name": "stored composition",
+      "actual": {
+        "EyeColor": 1,
+        "Nose Piercing": 1,
+        "GlassesColor": 1,
+        "FacialHairColor": 1,
+        "Body": 3,
+        "Piercings": 0,
+        "FacialHair": 0,
+        "Headwear": 0,
+        "SkinTone": 14,
+        "MainHairColor": 1,
+        "Expression": 1,
+        "HeadwearColor": 1,
+        "ClothingColor": 1,
+        "MainHair": 59,
+        "Glasses": 0,
+        "Wrinkles": 0,
+        "BackgroundColor": 2
+      },
+      "expected": {
+        "SkinTone": 14,
+        "Body": 3,
+        "EyeColor": 1,
+        "Expression": 1,
+        "MainHairColor": 1,
+        "MainHair": 59,
+        "GlassesColor": 1,
+        "Glasses": 0,
+        "Wrinkles": 0,
+        "Piercings": 0,
+        "Nose Piercing": 1,
+        "FacialHairColor": 1,
+        "FacialHair": 0,
+        "HeadwearColor": 1,
+        "Headwear": 0,
+        "ClothingColor": 1,
+        "BackgroundColor": 2
+      },
+      "passed": true
+    },
+    {
+      "name": "legacy skin compatibility",
+      "actual": 1,
+      "expected": 1,
+      "passed": true
+    },
+    {
+      "name": "final live Rive SkinTone",
+      "actual": 14,
+      "expected": 14,
+      "passed": true
+    },
+    {
+      "name": "final live Rive Body",
+      "actual": 3,
+      "expected": 3,
+      "passed": true
+    },
+    {
+      "name": "final live Rive EyeColor",
+      "actual": 1,
+      "expected": 1,
+      "passed": true
+    },
+    {
+      "name": "final live Rive Expression",
+      "actual": 1,
+      "expected": 1,
+      "passed": true
+    },
+    {
+      "name": "final live Rive MainHairColor",
+      "actual": 1,
+      "expected": 1,
+      "passed": true
+    },
+    {
+      "name": "final live Rive MainHair",
+      "actual": 59,
+      "expected": 59,
+      "passed": true
+    },
+    {
+      "name": "final live Rive GlassesColor",
+      "actual": 1,
+      "expected": 1,
+      "passed": true
+    },
+    {
+      "name": "final live Rive Glasses",
+      "actual": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "name": "final live Rive Wrinkles",
+      "actual": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "name": "final live Rive Piercings",
+      "actual": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "name": "final live Rive Nose Piercing",
+      "actual": 1,
+      "expected": 1,
+      "passed": true
+    },
+    {
+      "name": "final live Rive FacialHairColor",
+      "actual": 1,
+      "expected": 1,
+      "passed": true
+    },
+    {
+      "name": "final live Rive FacialHair",
+      "actual": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "name": "final live Rive HeadwearColor",
+      "actual": 1,
+      "expected": 1,
+      "passed": true
+    },
+    {
+      "name": "final live Rive Headwear",
+      "actual": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "name": "final live Rive ClothingColor",
+      "actual": 1,
+      "expected": 1,
+      "passed": true
+    },
+    {
+      "name": "final live Rive BackgroundColor",
+      "actual": 2,
+      "expected": 2,
+      "passed": true
+    },
+    {
+      "name": "preview zoom",
+      "actual": 3,
+      "expected": 3,
+      "passed": true
+    },
+    {
+      "name": "two actual scrolls",
+      "actual": 2,
+      "expected": 2,
+      "passed": true
+    },
+    {
+      "name": "scroll 0 survived",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "scroll 0 measured movement",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "scroll 1 survived",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "scroll 1 measured movement",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "limits": [
+    "Readback and storage are not pixel/audio equivalence",
+    "Only this observed combination, not arbitrary combinations",
+    "Use verify-avatar-inventory.py separately for restored AX selection states"
+  ]
+}

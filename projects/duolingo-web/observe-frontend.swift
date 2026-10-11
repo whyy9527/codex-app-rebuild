@@ -246,7 +246,33 @@ if let index = CommandLine.arguments.firstIndex(of: "--exercise-home-journey"), 
                 }
                 try activateOwnedInputTarget()
                 let control = step["native_action"] as! String
-                if step["operation"] as? String == "hover" { guard movePointer(to:control) else { throw ProbeError(message:"Missing hover target") } }
+                if step["operation"] as? String == "scroll" {
+                    let anchor = step["scroll_anchor"] as! String
+                    let amount = (step["scroll_pixels"] as! NSNumber).int32Value
+                    let before = ((observe()["elements"] as? [String:Any])?[anchor] as? [String:Any])?["rect"] as? [Double]
+                    guard movePointer(to:control), NSRunningApplication(processIdentifier:child.processIdentifier)?.isActive == true,
+                          let event = CGEvent(scrollWheelEvent2Source:nil,units:.pixel,wheelCount:1,wheel1:amount,wheel2:0,wheel3:0),
+                          let point = CGEvent(source:nil)?.location else {throw ProbeError(message:"No active owned scroll target")}
+                    event.location=point;event.post(tap:.cghidEventTap)
+                    Thread.sleep(forTimeInterval:0.7)
+                    var after: [Double]?
+                    let scrollDeadline=Date().addingTimeInterval(8)
+                    var samples=0
+                    repeat {
+                        after=((observe()["elements"] as? [String:Any])?[anchor] as? [String:Any])?["rect"] as? [Double]
+                        samples += 1
+                        if let before,let after,before != after {break}
+                        if !child.isRunning {break}
+                        Thread.sleep(forTimeInterval:0.1)
+                    } while Date() < scrollDeadline
+                    let file=output.appendingPathComponent("scroll.json")
+                    var rows=(try? Data(contentsOf:file)).flatMap {try? JSONSerialization.jsonObject(with:$0) as? [[String:Any]]} ?? []
+                    rows.append(["target":control,"anchor":anchor,"pixels":amount,"before":before as Any,"after":after as Any,"samples":samples,"child_running":child.isRunning])
+                    try JSONSerialization.data(withJSONObject:rows,options:[.prettyPrinted]).write(to:file)
+                    guard let before,let after else {throw ProbeError(message:"Owned scroll anchor unavailable after bounded live re-observation")}
+                    guard before != after else {throw ProbeError(message:"Owned scroll did not move measured anchor")}
+                }
+                else if step["operation"] as? String == "hover" { guard movePointer(to:control) else { throw ProbeError(message:"Missing hover target") } }
                 else { try press(control) }
                 Thread.sleep(forTimeInterval:0.7)
                 if let state = step["state"] as? String {

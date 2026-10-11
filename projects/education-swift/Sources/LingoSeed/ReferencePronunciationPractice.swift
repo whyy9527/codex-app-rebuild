@@ -237,6 +237,7 @@ struct ReferencePracticeControl: NSViewRepresentable {
     let action: () -> Void
     let face: AnyView
     var role: NSAccessibility.Role = .button
+    var fixedFaceSize = false
     final class Coordinator: NSObject {
         var action: () -> Void
         init(_ action: @escaping () -> Void) { self.action = action }
@@ -274,6 +275,7 @@ struct ReferencePracticeControl: NSViewRepresentable {
         button.setButtonType(.momentaryPushIn)
         button.target = context.coordinator
         button.action = #selector(Coordinator.play(_:))
+        if fixedFaceSize { button.face.sizingOptions = [] }
         button.addSubview(button.face)
         button.face.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([

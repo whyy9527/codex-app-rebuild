@@ -1,0 +1,77 @@
+avatar-runtime-inputs {"BackgroundColor":1,"Body":1,"ClothingColor":1,"ENG_ONLY_Animation":1,"ENG_ONLY_Zoom":3,"Expression":1,"EyeColor":1,"FacialHair":0,"FacialHairColor":1,"Glasses":0,"GlassesColor":1,"Headwear":0,"HeadwearColor":1,"MainHair":58,"MainHairColor":1,"Nose Piercing":0,"Piercings":0,"SkinTone":15,"Wrinkles":0}
+avatar-runtime-inputs {"BackgroundColor":1,"Body":1,"ClothingColor":1,"ENG_ONLY_Animation":1,"ENG_ONLY_Zoom":3,"Expression":1,"EyeColor":1,"FacialHair":0,"FacialHairColor":1,"Glasses":0,"GlassesColor":1,"Headwear":0,"HeadwearColor":1,"MainHair":58,"MainHairColor":1,"Nose Piercing":0,"Piercings":0,"SkinTone":14,"Wrinkles":0}
+avatar-runtime-inputs {"BackgroundColor":1,"Body":1,"ClothingColor":1,"ENG_ONLY_Animation":1,"ENG_ONLY_Zoom":3,"Expression":1,"EyeColor":1,"FacialHair":0,"FacialHairColor":1,"Glasses":0,"GlassesColor":1,"Headwear":0,"HeadwearColor":1,"MainHair":58,"MainHairColor":1,"Nose Piercing":0,"Piercings":0,"SkinTone":14,"Wrinkles":0}
+Context leak detected, CoreAnalytics returned false
+avatar-runtime-inputs {"BackgroundColor":1,"Body":3,"ClothingColor":1,"ENG_ONLY_Animation":1,"ENG_ONLY_Zoom":3,"Expression":1,"EyeColor":1,"FacialHair":0,"FacialHairColor":1,"Glasses":0,"GlassesColor":1,"Headwear":0,"HeadwearColor":1,"MainHair":58,"MainHairColor":1,"Nose Piercing":0,"Piercings":0,"SkinTone":14,"Wrinkles":0}
+avatar-runtime-inputs {"BackgroundColor":1,"Body":3,"ClothingColor":1,"ENG_ONLY_Animation":1,"ENG_ONLY_Zoom":3,"Expression":1,"EyeColor":1,"FacialHair":0,"FacialHairColor":1,"Glasses":0,"GlassesColor":1,"Headwear":0,"HeadwearColor":1,"MainHair":59,"MainHairColor":1,"Nose Piercing":0,"Piercings":0,"SkinTone":14,"Wrinkles":0}
+avatar-runtime-inputs {"BackgroundColor":1,"Body":3,"ClothingColor":1,"ENG_ONLY_Animation":1,"ENG_ONLY_Zoom":3,"Expression":1,"EyeColor":1,"FacialHair":0,"FacialHairColor":1,"Glasses":0,"GlassesColor":1,"Headwear":0,"HeadwearColor":1,"MainHair":59,"MainHairColor":1,"Nose Piercing":1,"Piercings":0,"SkinTone":14,"Wrinkles":0}
+avatar-runtime-inputs {"BackgroundColor":2,"Body":3,"ClothingColor":1,"ENG_ONLY_Animation":1,"ENG_ONLY_Zoom":3,"Expression":1,"EyeColor":1,"FacialHair":0,"FacialHairColor":1,"Glasses":0,"GlassesColor":1,"Headwear":0,"HeadwearColor":1,"MainHair":59,"MainHairColor":1,"Nose Piercing":1,"Piercings":0,"SkinTone":14,"Wrinkles":0}
+*** Terminating app due to uncaught exception 'NSGenericException', reason: 'The window has been marked as needing another Update Constraints in Window pass, but it has already had more Update Constraints in Window passes than there are views in the window.
+<SwiftUI.AppKitWindow: 0x1058ba2e0> 0x1b863 (112739) {{135, 122}, {1200, 764}} en'
+*** First throw call stack:
+(
+	0   CoreFoundation                      0x000000018916b1f0 __exceptionPreprocess + 176
+	1   libobjc.A.dylib                     0x0000000188be691c objc_exception_throw + 88
+	2   CoreFoundation                      0x000000018916b0e0 +[NSException exceptionWithName:reason:userInfo:] + 0
+	3   AppKit                              0x000000018e18e458 -[NSWindow(NSDisplayCycle) _postWindowNeedsUpdateConstraints] + 1716
+	4   AppKit                              0x000000018d54cf3c -[NSView _informContainerThatSubviewsNeedUpdateConstraints] + 64
+	5   AppKit                              0x000000018d54cec0 -[NSView setNeedsUpdateConstraints:] + 468
+	6   SwiftUI                             0x00000001becef9b4 $s7SwiftUI13NSHostingViewC14setNeedsUpdateyyF + 176
+	7   SwiftUI                             0x00000001bed03190 $s7SwiftUI13NSHostingViewC13requestUpdate5afterySd_tF + 676
+	8   SwiftUICore                         0x00000002366a9e10 $s7SwiftUI13ViewGraphHostC17LayoutInvalidatorV10invalidateyyF + 152
+	9   SwiftUI                             0x00000001bef53e74 $s7SwiftUI22AppKitPlatformViewHostC16invalidateLayoutyyF + 528
+	10  SwiftUI                             0x00000001bef542e4 $s7SwiftUI22AppKitPlatformViewHostC25enqueueLayoutInvalidationyyFyycfU_ + 64
+	11  SwiftUICore                         0x00000002369f0d44 $s7SwiftUI6UpdateO15dispatchActionsyyFZ + 1660
+	12  SwiftUICore                         0x00000002369efb68 $s7SwiftUI6UpdateO3endyyFZ + 72
+	13  SwiftUICore                         0x00000002369ef898 $s7SwiftUI6UpdateO13enqueueAction6reason_s6UInt32VAA16CustomEventTraceV0eI4TypeO6ReasonOSg_yyctFZ + 204
+	14  SwiftUI                             0x00000001bef54250 $s7SwiftUI22AppKitPlatformViewHostC25enqueueLayoutInvalidationyyF + 908
+	15  SwiftUI                             0x00000001bef54c44 $s7SwiftUI22AppKitPlatformViewHostC034_layoutMetricsInvalidatedForHostedF0yyF + 544
+	16  SwiftUI                             0x00000001bef54c80 $s7SwiftUI22AppKitPlatformViewHostC034_layoutMetricsInvalidatedForHostedF0yyFTo + 28
+	17  AppKit                              0x000000018e5e01a4 -[_NSConstraintBasedLayoutHostingView constraintsDidChangeInEngine:] + 84
+	18  CoreAutoLayout                      0x00000001938dd0f0 -[NSISEngine tryToChangeConstraintSuchThatMarker:isReplacedByMarkerPlusDelta:undoHandler:] + 100
+	19  CoreAutoLayout                      0x00000001938fed28 -[NSLayoutConstraint _tryToChangeContainerGeometryWithUndoHandler:] + 252
+	20  CoreAutoLayout                      0x00000001938ff1e0 -[NSLayoutConstraint _setSymbolicConstant:constant:symbolicConstantMultiplier:] + 556
+	21  CoreAutoLayout                      0x00000001938ff2d4 -[NSLayoutConstraint setConstant:] + 84
+	22  SwiftUI                             0x00000001becfefa0 $s7SwiftUI13NSHostingViewC15SizeConstraints33_32B6F54841135BB466A5C1362EB89D05LLV6update4fromyACyxG_tF + 600
+	23  SwiftUI                             0x00000001bed005cc $s7SwiftUI13NSHostingViewC32_willUpdateConstraintsForSubtreeyyF + 752
+	24  SwiftUI                             0x00000001bed006f4 $s7SwiftUI13NSHostingViewC32_willUpdateConstraintsForSubtreeyyFTo + 28
+	25  AppKit                              0x000000018d5b4e7c -[NSView _updateConstraintsForSubtreeIfNeededCollectingViewsWithInvalidBaselines:] + 84
+	26  AppKit                              0x000000018d5b4f9c -[NSView _updateConstraintsForSubtreeIfNeededCollectingViewsWithInvalidBaselines:] + 372
+	27  AppKit                              0x000000018d5b4f9c -[NSView _updateConstraintsForSubtreeIfNeededCollectingViewsWithInvalidBaselines:] + 372
+	28  AppKit                              0x000000018d5c11e4 __82-[NSView _updateConstraintsForSubtreeIfNeededCollectingViewsWithInvalidBaselines:]_block_invoke + 228
+	29  CoreAutoLayout                      0x00000001938da9f8 -[NSISEngine withBehaviors:performModifications:] + 88
+	30  AppKit                              0x000000018d5b4ef4 -[NSView _updateConstraintsForSubtreeIfNeededCollectingViewsWithInvalidBaselines:] + 204
+	31  AppKit                              0x000000018d5b4f9c -[NSView _updateConstraintsForSubtreeIfNeededCollectingViewsWithInvalidBaselines:] + 372
+	32  AppKit                              0x000000018d5b4f9c -[NSView _updateConstraintsForSubtreeIfNeededCollectingViewsWithInvalidBaselines:] + 372
+	33  AppKit                              0x000000018d5b4f9c -[NSView _updateConstraintsForSubtreeIfNeededCollectingViewsWithInvalidBaselines:] + 372
+	34  AppKit                              0x000000018d5b4f9c -[NSView _updateConstraintsForSubtreeIfNeededCollectingViewsWithInvalidBaselines:] + 372
+	35  AppKit                              0x000000018d5b4f9c -[NSView _updateConstraintsForSubtreeIfNeededCollectingViewsWithInvalidBaselines:] + 372
+	36  AppKit                              0x000000018d5b4f9c -[NSView _updateConstraintsForSubtreeIfNeededCollectingViewsWithInvalidBaselines:] + 372
+	37  AppKit                              0x000000018d5b4f9c -[NSView _updateConstraintsForSubtreeIfNeededCollectingViewsWithInvalidBaselines:] + 372
+	38  AppKit                              0x000000018e25ba2c __45-[NSView updateConstraintsForSubtreeIfNeeded]_block_invoke_2 + 52
+	39  AppKit                              0x000000018d5b4c8c __45-[NSView updateConstraintsForSubtreeIfNeeded]_block_invoke + 224
+	40  AppKit                              0x000000018d5732d8 NSPerformVisuallyAtomicChange + 128
+	41  AppKit                              0x000000018d5b4ba0 -[NSView updateConstraintsForSubtreeIfNeeded] + 96
+	42  AppKit                              0x000000018e53adf4 -[NSWindow(NSConstraintBasedLayoutInternal) updateConstraintsIfNeeded] + 172
+	43  AppKit                              0x000000018d5d5504 __NSWindowGetDisplayCycleObserverForUpdateConstraints_block_invoke + 364
+	44  AppKit                              0x000000018d5d5364 NSDisplayCycleObserverInvoke + 168
+	45  AppKit                              0x000000018d5d4fe0 NSDisplayCycleFlush + 656
+	46  QuartzCore                          0x0000000193132d9c _ZN2CA11Transaction19run_commit_handlersE18CATransactionPhase + 120
+	47  QuartzCore                          0x00000001931313d8 _ZN2CA11Transaction6commitEv + 324
+	48  QuartzCore                          0x000000019332f2bc _ZN2CA11Transaction25flush_as_runloop_observerEb + 140
+	49  AppKit                              0x000000018de6c0c8 stepTransactionFlush + 220
+	50  UpdateCycle                         0x00000002810b92f4 _ZN2UC10DriverCore18continueProcessingEv + 84
+	51  CoreFoundation                      0x00000001890fc344 __CFRUNLOOP_IS_CALLING_OUT_TO_AN_OBSERVER_CALLBACK_FUNCTION__ + 36
+	52  CoreFoundation                      0x00000001890fc240 __CFRunLoopDoObservers + 648
+	53  CoreFoundation                      0x00000001891ce234 _CFRunLoopRunSpecificWithOptions + 484
+	54  HIToolbox                           0x0000000195ee7560 RunCurrentEventLoopInMode + 320
+	55  HIToolbox                           0x0000000195eea8bc ReceiveNextEventCommon + 488
+	56  HIToolbox                           0x000000019607414c _BlockUntilNextEventMatchingListInMode + 48
+	57  AppKit                              0x000000018dbde3d0 _DPSBlockUntilNextEventMatchingListInMode + 228
+	58  AppKit                              0x000000018d532084 _DPSNextEvent + 576
+	59  AppKit                              0x000000018e0c796c -[NSApplication(NSEventRouting) _nextEventMatchingEventMask:untilDate:inMode:dequeue:] + 688
+	60  AppKit                              0x000000018e0c7678 -[NSApplication(NSEventRouting) nextEventMatchingMask:untilDate:inMode:dequeue:] + 72
+	61  AppKit                              0x000000018d52513c -[NSApplication run] + 368
+	62  AppKit                              0x000000018d4fd7b0 NSApplicationMain + 880
+	63  SwiftUI                             0x0
+libc++abi: terminating due to uncaught exception of type NSException
