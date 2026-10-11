@@ -35,7 +35,7 @@ const callback=async page=>{
    rect:[r.x,r.y,r.width,r.height],objectFit:css.objectFit,
    intrinsic:n.tagName==='IMG'?[n.naturalWidth,n.naturalHeight]:n.tagName==='CANVAS'?[n.width,n.height]:null};
  }));
- facts.visible=await page.locator('[data-test],h1,h2,[role="dialog"],button,input,label').evaluateAll(ns=>ns.filter(n=>n.checkVisibility()).map(n=>{
+ facts.visible=await page.locator('[data-test],h1,h2,[role],button,input,label').evaluateAll(ns=>ns.filter(n=>n.checkVisibility()).map(n=>{
   const r=n.getBoundingClientRect(),css=getComputedStyle(n);
   return {test:n.getAttribute('data-test'),tag:n.tagName,role:n.getAttribute('role'),text:n.innerText,
    enabled:!n.disabled&&n.getAttribute('aria-disabled')!=='true',pressed:n.getAttribute('aria-pressed'),checked:n.checked??null,

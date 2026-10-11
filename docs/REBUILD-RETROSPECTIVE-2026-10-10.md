@@ -111,3 +111,5 @@ listenTap暂缓后会插入翻译；口语暂缓后的翻译还不是原口语�
 Eddy公开Rive与源实际缓冲逐字节一致，绑定后候选真实窗口已出现运动，但q5全图差异反增：资产身份正确不代表包装布局、气泡、文字装饰、分隔线或动画阶段正确。旧radio几何接近，角色却偏16点，不能统一移动整个区域补偿。保留实际图像负结果和q12未渲染，而非以资源数和回归状态数解释完成度；当前公共答案回放也不证明自主探索收益。[证据及下一步](../projects/duolingo-web/evidence/english-current-challenge-v1/README.md)。
 
 听音填空进一步暴露原先“整个气泡按钮”与原版独立speaker语义不同，且答对后未显示绿色缺词。按原版token、DOM和PNG修正后，speaker及两radio矩形精确通过，但整图仍不同、暂缓仍缺；局部几何不能代替前端完整性。源再次连续13题没有目标题，是实际探索的负结果，不能因原计划需要便假设它出现。当前renderer模式遇到引导页动作前失败，仍需要外层流程接续，单题成功不能冒充无监督闭环。[实际结果](../projects/duolingo-web/evidence/english-isolation-presentation-v1/README.md)。
+
+下一批当前模式真正跨过一次引导页，仍在口语人工交接，不能直接称完整自动化。实际访问回顾才发现17张成绩卡，暂缓口语也有绿色原句答案展示；旧采集器连DIV按钮都没记录。问题在模具漏采和分支未访，不是再加范围限制。修采集并冻结111新项后，旧候选全未运行，源自检不代替候选；下一批先补实际历史与回顾交互。两套实例未遇到listenIsolation的负结果保留，仍未证明RSI收益。[证据](../projects/duolingo-web/evidence/english-current-walk-v1/README.md)。

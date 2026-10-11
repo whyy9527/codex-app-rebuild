@@ -1,0 +1,89 @@
+{
+  "date": "2026-10-11",
+  "goal": "active; full 1:1 and exploration criteria unchanged",
+  "continued_previous_instance": {
+    "accepted_this_batch": 3,
+    "accepted_previous_batch": 13,
+    "result": "All accepted; result not automatically continued"
+  },
+  "review": {
+    "cards": 17,
+    "graded_questions": 16,
+    "declined_speech": "Hot, please.",
+    "actual_expanded_your_answer": "Hot, please.",
+    "actual_expanded_correct_answer": "Hot, please.",
+    "meaning": "Source display observation, not speech grading evidence",
+    "collector_before": 17,
+    "collector_after": 35,
+    "limitation": "Layout visibility includes offviewport cards; full screenshot covers viewport only"
+  },
+  "retry": {
+    "action": "Actual source result Retry",
+    "accepted_before_speech": 6,
+    "speech_prompt": "Good morning, I'd like water and tea.",
+    "speech": "Unsupported; manually declined; no recording",
+    "accepted_after_speech": 10,
+    "automatic_interludes": 1,
+    "result": "uncovered_current_state; no result Continue action",
+    "listenIsolation_seen": false
+  },
+  "negative_results": [
+    "Both current walks stopped at result with exit1 and actual screenshot, not complete",
+    "Speech still needs manual handoff",
+    "First speech decline click had stale CLI ref after capture; no action; fresh snapshot then actual decline",
+    "No listenIsolation in either instance; no waveform or decline evidence collected",
+    "No new model ablation; no RSI benefit claim"
+  ],
+  "frontier": [
+    {
+      "branch": "Result Review",
+      "status": "observed; frozen v33; native not_run",
+      "next": "Implement actual history including declined-speech display, cards and close; same-state Swift proof"
+    },
+    {
+      "branch": "Result Retry",
+      "status": "observed; new adaptive instance, not identical question list",
+      "next": "Keep current-renderer iteration; compare new-instance progression/reward"
+    },
+    {
+      "branch": "Exercise challenge intro",
+      "status": "actual automated Continue once",
+      "next": "Other unobserved intros remain observation tasks"
+    },
+    {
+      "branch": "listenIsolation decline and wave",
+      "status": "not found in this retry",
+      "next": "Explore other actual instances; do not fabricate source type"
+    },
+    {
+      "branch": "Normal speech grading",
+      "status": "not implemented",
+      "next": "Observe and implement permitted original grading flow; no environment recording"
+    },
+    {
+      "branch": "Review tooltip trigger",
+      "status": "Click expanded oral; later pointer over listening card showed answer",
+      "next": "Separate hover/focus/click behavior with fresh source observation; do not assume click-only"
+    }
+  ],
+  "contract": {
+    "parent": "english-v32",
+    "revision": "english-v33",
+    "preserved": 1912,
+    "added": 111,
+    "total": 2023,
+    "new_source_pass": 111,
+    "new_native_not_run": 111
+  },
+  "verification": {
+    "python": 56,
+    "node": 12,
+    "swift": "No changes or new native run; existing native-final re-evaluated only",
+    "candidate_counts": {
+      "pass": 94,
+      "fail": 56,
+      "not_run": 1870,
+      "unavailable": 3
+    }
+  }
+}

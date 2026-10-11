@@ -4,6 +4,8 @@
 
 ## 当前运行结构
 
+案例当前题驱动通过`reference-current-step.mjs`从实际可见route/DOM判断题目或已观察引导页，每步再读取当前renderer公共题目；`--current-steps`仅限制这次调用操作数。真实重练已跨过引导页，未知结算与口语仍留下未覆盖回执，不靠预读初始题单推进。采集器收集实际`[role]`，补上成绩单DIV按钮；v33冻结原版事实，新增111项候选未运行。详细[续跑证据](../projects/duolingo-web/evidence/english-current-walk-v1/README.md)。
+
 Codex 使用原生工具观察和修改；MCP 提供七个任务操作；短 Hook 在 SessionStart 提供协议、Stop 检查是否继续、UserPromptSubmit 捕获显式暂停。Hook 不执行长验收，不启动模型。
 
 | 所有者 | 职责 |

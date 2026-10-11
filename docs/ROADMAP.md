@@ -292,3 +292,7 @@ v15保留1489项并增8项真实原版断言。独立原生radio2实际点击及
 ### 听音填空前端与未发现目标题的探索
 
 先从已有原版DOM/PNG冻结v32，保留1903旧项追加9，旧候选新增2pass4fail3unavailable。实际token编译通用夹具v3，补独立29×22播放、角色包装位置、气泡尖角/虚线/缺词正确绿色及分隔线；不改评分数据。默认47状态及真实重启执行完成，新增5pass1fail3unavailable，共94pass56fail1759not_run3unavailable。角色仍差0.0138794点，暂缓入口仍缺，整图均fail但两张差异下降。构建02限定无token实例仍旧间距，最终同一二进制45状态暂缓回归56pass35fail1821not_run、默认47状态再次重启计数仍94/56/1759/3；前轮回执保留。25核心/56 Python通过。源另一实例当前题实际答对13题仍没遇到听音填空，口语Hot please暂缓后插tea with sugar；引导页当前模式动作前失败需人工接续，现停挑战“茶加糖”未答。下一步补该闭环、听音填空暂缓规则与剩余前端/声学，不当RSI收益或完成，完整Goal active。[源反例、前端与复跑](../projects/duolingo-web/evidence/english-isolation-presentation-v1/README.md)。
+
+### 当前题连续驱动与成绩单前端盲区
+
+前批余下3题实际接受并到结算；回顾发现17卡含暂缓口语，展开仍显示原句为双方答案，仅为展示证据。采集器补实际DIV角色，v33原样保留1912旧项追加111，总2023，源新增全pass、旧候选新增全not_run。真实重练新实例先接受6题，口语未覆盖后人工暂缓，再接受10题并自动接一次挑战引导页，结算保存未覆盖不自动继续。两实例仍没找到listenIsolation，波形/该题暂缓规则未采到。12Node/56Python通过，冻结字节复现；无Swift修改或新原生运行，旧native-final重评94pass56fail1870not_run3unavailable。下一批实现实际历史/回顾、触发和滚动、重练及继续其它未访分支，不把此批当完整无监督或RSI收益。完整Goal active，原论文/负消融保留。[真实动作、模具、frontier与复跑](../projects/duolingo-web/evidence/english-current-walk-v1/README.md)。

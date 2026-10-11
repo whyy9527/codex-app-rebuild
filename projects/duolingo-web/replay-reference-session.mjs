@@ -6,6 +6,7 @@ import {resolve,dirname,basename} from 'node:path';
 import {challengeIdentity,uncoveredReplayType} from './reference-challenge-identity.mjs';
 import {publicChallenge} from './public-reference-challenge.mjs';
 import {renderedChallenge} from './rendered-reference-challenge.mjs';
+import {currentFlowDecision,keyboardTranslationValue} from './reference-current-step.mjs';
 function arg(name,fallback){const i=process.argv.indexOf(name);return i<0?fallback:process.argv[i+1];}
 for(const name of ['--cli','--session','--out'])if(!arg(name))throw Error('Required: --cli PATH --session NAME --out PATH [--start-index N]');
 const uiLanguage=arg('--ui-language','en');
@@ -14,6 +15,8 @@ const labels=uiLanguage==='zh'?{check:'检查',continue:'继续'}:{check:'Check'
 const stopBeforeType=arg('--stop-before-type','');
 if(stopBeforeType&&!/^[A-Za-z][A-Za-z0-9]*$/.test(stopBeforeType))throw Error('Invalid stop-before type');
 const currentOnly=process.argv.includes('--current-only');
+const currentSteps=Number(arg('--current-steps','1'));
+if(!Number.isSafeInteger(currentSteps)||currentSteps<1||(!currentOnly&&arg('--current-steps')))throw Error('Current steps require current-only and an explicit positive integer step budget');
 const start=Number(arg('--start-index','0'));
 if(currentOnly&&start!==0)throw Error('Current-only replay cannot resume an initial-session index');
 if(!Number.isInteger(start)||start<0)throw Error('Invalid start index');
@@ -21,7 +24,7 @@ const output=resolve(arg('--out'));mkdirSync(dirname(output),{recursive:true});
 for(const suffix of ['', '.raw.txt'])if(existsSync(output+suffix))throw Error('Replay output already exists; choose a fresh output before any source action');
 const screenshotPrefix=arg('--screenshot-prefix','reference-session');
 const absolutePrefix=resolve('artifacts/output/playwright',screenshotPrefix);
-if(existsSync(dirname(absolutePrefix))&&readdirSync(dirname(absolutePrefix)).some(n=>n.startsWith(basename(absolutePrefix)+'-question-')))
+if(existsSync(dirname(absolutePrefix))&&readdirSync(dirname(absolutePrefix)).some(n=>n.startsWith(basename(absolutePrefix)+'-')))
  throw Error('Replay screenshots already exist; choose a fresh prefix before any source action');
 const callback = async page => {
  const labels=UI_LABELS;
@@ -30,11 +33,18 @@ const callback = async page => {
  const currentOnly=CURRENT_ONLY;
  const publicOnly=PUBLIC_CHALLENGE;
  const readRendered=READ_RENDERED;
+ const flowDecision=FLOW_DECISION;
+ const keyboardValue=KEYBOARD_VALUE;
  const currentNode=page.locator('[data-test~="challenge"]');
- if(currentOnly&&(await currentNode.count()!==1||!await currentNode.isVisible()))throw Error('One visible current challenge required; no source action executed');
- const live=currentOnly?await currentNode.evaluate(readRendered,publicOnly.toString()):null;
- const session=live?{source:'Current rendered challenge; one step only, no initial-session or future-sequence read',challenges:[{index:0,content:live.content}],current_observation:live}:await page.evaluate(()=>window.__referenceSession);
+ const session=currentOnly?{source:'Current rendered challenges; no initial-session or future-sequence read',challenges:[]}:await page.evaluate(()=>window.__referenceSession);
+ if(currentOnly)await page.evaluate(()=>{
+  if(window.__referenceMediaInstalled)return;
+  window.__referenceMediaInstalled=true;window.__referenceMedia=[];
+  const play=HTMLMediaElement.prototype.play;
+  HTMLMediaElement.prototype.play=function(...args){window.__referenceMedia.push({src:this.currentSrc||this.src,at:performance.now(),muted:this.muted,volume:this.volume});return play.apply(this,args)};
+ });
  const observed=[],interludes=[];let failure=null,stopped=null;
+ let currentMediaCursor=currentOnly?await page.evaluate(()=>window.__referenceMedia.length):0;
  async function exactVisible(locator,text){
    const labels=await locator.allTextContents();
    const indices=labels.flatMap((label,i)=>label.trim().replace(/^\d\s*|\s*\d$/g,'').trim()===text?[i]:[]);
@@ -49,21 +59,50 @@ const callback = async page => {
    }
    throw new Error('No available occurrence of word: '+text);
  }
- for(const record of session.challenges.filter(row=>row.index>=START_INDEX)){
-  const c=record.content,row={index:record.index,type:c.type,actions:[]};observed.push(row);
+ const records=currentOnly?Array.from({length:CURRENT_STEPS},(_,index)=>({index})):session.challenges.filter(row=>row.index>=START_INDEX);
+ for(const record of records){
+  let c=record.content;const row={index:record.index,actions:[]};
   try{
+   if(currentOnly){
+    await page.waitForFunction(labels=>{
+     const nodes=[...document.querySelectorAll('[data-test~="challenge"]')].filter(n=>n.checkVisibility());
+     const next=document.querySelector('[data-test="player-next"]');
+     return !['/practice','/lesson'].includes(location.pathname)||(nodes.length===1&&next?.textContent.trim()===labels.check)||(nodes.length===0&&next?.textContent.trim()===labels.continue);
+    },labels,{timeout:15000});
+    const facts=await page.evaluate(labels=>{
+     const nodes=[...document.querySelectorAll('[data-test~="challenge"]')].filter(n=>n.checkVisibility());
+     const buttons=[...document.querySelectorAll('button')].filter(n=>n.checkVisibility()&&n.innerText.trim()===labels.continue);
+     return {path:location.pathname,challenge_count:nodes.length,challenge_visible:nodes.length===1,
+      heading_count:[...document.querySelectorAll('h1')].filter(n=>n.checkVisibility()).length,
+      dialog_count:[...document.querySelectorAll('[role="dialog"]')].filter(n=>n.checkVisibility()).length,
+      next_text:document.querySelector('[data-test="player-next"]')?.textContent.trim(),
+      continue_count:buttons.length,continue_enabled:buttons.length===1&&!buttons[0].disabled&&buttons[0].getAttribute('aria-disabled')!=='true',body_text:document.body.innerText};
+    },labels);
+    const decision=flowDecision(facts,labels);
+    if(decision.kind!=='challenge'){
+     const receipt={index:record.index,facts,decision,snapshot:await page.locator('body').ariaSnapshot(),screenshot:SCREENSHOT_PREFIX+'-interlude-'+record.index+'.png'};
+     await page.screenshot({path:receipt.screenshot});
+     if(decision.kind!=='interlude'){stopped={kind:'uncovered_state',...receipt};break;}
+     await page.getByRole('button',{name:labels.continue,exact:true}).click();
+     receipt.action='Actual observed introduction Continue';interludes.push(receipt);continue;
+    }
+    const live=await currentNode.evaluate(readRendered,publicOnly.toString());
+    c=live.content;record.content=c;session.challenges.push({...record,current_observation:live});
+   }else{
    for(let transition=0;transition<6;transition++){
     await page.waitForFunction(labels=>{const n=document.querySelectorAll('[data-test="challenge-header"]').length,b=document.querySelector('[data-test="player-next"]');return b&&((n===1&&document.querySelectorAll('[data-test~="challenge"]').length===1&&b.textContent.trim()===labels.check)||(n===0&&b.textContent.trim()===labels.continue));},labels);
     if(await page.getByRole('heading',{level:1}).count()===1)break;
     interludes.push({before_index:record.index,snapshot:await page.locator('body').ariaSnapshot()});
     await page.getByRole('button',{name:labels.continue,exact:true}).click();
    }
+   }
+   row.type=c.type;observed.push(row);
    await page.getByRole('heading',{level:1}).waitFor();
    row.before=await page.locator('body').ariaSnapshot();
    row.heading=await page.getByRole('heading',{level:1}).textContent();
    row.dom_type=await page.locator('[data-test~="challenge"]').getAttribute('data-test');
    row.images=await page.locator('[data-test~="challenge"] img').evaluateAll(ns=>ns.map(n=>({alt:n.alt,src:n.currentSrc||n.src})));
-   row.media_before=await page.evaluate(()=>window.__referenceMedia.slice());
+   row.media_before=currentOnly?await page.evaluate(start=>window.__referenceMedia.slice(start),currentMediaCursor):await page.evaluate(()=>window.__referenceMedia.slice());
    row.screenshot_before=SCREENSHOT_PREFIX+'-question-'+record.index+'-before.png';
    await page.screenshot({path:row.screenshot_before});
    row.canvases=[];
@@ -135,9 +174,16 @@ const callback = async page => {
     await exactVisible(page.getByRole('radio'),text);row.actions.push({select:text});
     await page.getByRole('button',{name:labels.check,exact:true}).click();
    }else if(['translate','listenTap'].includes(c.type)){
+    const input=challenge.getByRole('textbox');
+    const value=keyboardValue(c,{textbox_count:await input.count(),textbox_enabled:await input.count()===1&&await input.isEnabled(),bank_count:bankTexts.length});
+    if(value!==null){
+     row.text_input={value,label:await input.getAttribute('placeholder'),rect:await input.boundingBox()};
+     await input.fill(value);row.actions.push({input:value});
+    }else{
     const bank=page.locator('[data-test="word-bank"]');row.word_bank=await bank.getByRole('button').allTextContents();
     for(const index of c.correctIndices){const choice=c.choices[index],text=typeof choice==='string'?choice:choice.text;
      const occurrence=await clickWord(bank,text);row.actions.push({word:text,occurrence});}
+    }
     await page.getByRole('button',{name:labels.check,exact:true}).click();
    }else if(c.type==='orderTapComplete'){
     const blanks=c.displayTokens.filter(token=>token.isBlank).map(token=>token.text);
@@ -171,17 +217,22 @@ const callback = async page => {
    row.media=await page.evaluate(start=>window.__referenceMedia.slice(start),mediaStart);
    row.screenshot_feedback=SCREENSHOT_PREFIX+'-question-'+record.index+'-feedback.png';
    await page.screenshot({path:row.screenshot_feedback});
-   if(await page.locator('[data-test~="blame-incorrect"]').count())throw new Error('Source answer rejected');
+   row.rejected=await page.locator('[data-test~="blame-incorrect"]').count()>0;
+   if(row.rejected)throw new Error('Source answer rejected');
+   if(currentOnly)currentMediaCursor=await page.evaluate(()=>window.__referenceMedia.length);
    await page.getByRole('button',{name:labels.continue,exact:true}).click();
   }catch(error){failure=String(error);break;}
  }
- return {session,observed,interludes,failure,stopped,answered:observed.filter(r=>r.feedback).length,outcome:failure?'failed':stopped?'stopped_at_requested_boundary':currentOnly?'current_challenge_replayed':'replayed_captured_records',final:await page.locator('body').ariaSnapshot(),limitations:['One actual generated lesson instance; media invocations are not acoustic output evidence.']};
+ return {session,observed,interludes,failure,stopped,answered:observed.filter(r=>r.feedback).length,accepted:observed.filter(r=>r.feedback&&r.rejected===false).length,
+  step_budget:currentOnly?CURRENT_STEPS:null,steps_completed:observed.filter(r=>r.feedback).length+interludes.length,
+  outcome:failure?'failed':stopped?.kind==='uncovered_state'?'uncovered_current_state':stopped?'stopped_at_requested_boundary':currentOnly?(interludes.length&&!observed.length?'current_interlude_replayed':CURRENT_STEPS===1?'current_challenge_replayed':'current_steps_replayed'):'replayed_captured_records',
+  final:await page.locator('body').ariaSnapshot(),limitations:['Actual generated exercise observations; public solutions are not blind exploration evidence. Media invocations are not acoustic output evidence. Unknown result/profile pages are preserved without clicking Continue. Current-mode media_before contains only events since this invocation or the previous feedback; unrelated earlier history is not duplicated.']};
 };
-const code=callback.toString().replace('CURRENT_ONLY',JSON.stringify(currentOnly)).replace('PUBLIC_CHALLENGE',publicChallenge.toString()).replace('READ_RENDERED',renderedChallenge.toString()).replace('CHALLENGE_IDENTITY',challengeIdentity.toString()).replace('UNCOVERED_TYPE',uncoveredReplayType.toString()).replace('UI_LABELS',JSON.stringify(labels)).replace('START_INDEX',String(start)).replace('STOP_BEFORE_TYPE',JSON.stringify(stopBeforeType)).replaceAll('SCREENSHOT_PREFIX',JSON.stringify(screenshotPrefix));
+const code=callback.toString().replace('CURRENT_ONLY',JSON.stringify(currentOnly)).replaceAll('CURRENT_STEPS',String(currentSteps)).replace('FLOW_DECISION',currentFlowDecision.toString()).replace('KEYBOARD_VALUE',keyboardTranslationValue.toString()).replace('PUBLIC_CHALLENGE',publicChallenge.toString()).replace('READ_RENDERED',renderedChallenge.toString()).replace('CHALLENGE_IDENTITY',challengeIdentity.toString()).replace('UNCOVERED_TYPE',uncoveredReplayType.toString()).replace('UI_LABELS',JSON.stringify(labels)).replace('START_INDEX',String(start)).replace('STOP_BEFORE_TYPE',JSON.stringify(stopBeforeType)).replaceAll('SCREENSHOT_PREFIX',JSON.stringify(screenshotPrefix));
 const result=spawnSync(arg('--cli'),['-s='+arg('--session'),'run-code',code],{cwd:resolve('artifacts/output/playwright'),encoding:'utf8',timeout:300000,maxBuffer:16*1024*1024});
 const raw=(result.stdout||'')+(result.stderr||'');writeFileSync(output+'.raw.txt',raw,{flag:'wx'});
 if(result.status!==0||!raw.includes('### Result\n'))throw Error('Unavailable replay; raw output retained, inspect current tab before resuming');
 const facts=JSON.parse(raw.split('### Result\n')[1].split('\n### Ran')[0]);
 writeFileSync(output,JSON.stringify({...facts,observed_at:new Date().toISOString()},null,2)+'\n',{flag:'wx'});
-console.log(JSON.stringify({observed:facts.observed.length,interludes:facts.interludes.length,failure:facts.failure,stopped:facts.stopped,answered:facts.answered,outcome:facts.outcome}));
-if(facts.failure)process.exitCode=1;
+console.log(JSON.stringify({observed:facts.observed.length,interludes:facts.interludes.length,failure:facts.failure,stopped:facts.stopped,answered:facts.answered,accepted:facts.accepted,steps_completed:facts.steps_completed,step_budget:facts.step_budget,outcome:facts.outcome}));
+if(facts.failure||facts.stopped?.kind==='uncovered_state')process.exitCode=1;
