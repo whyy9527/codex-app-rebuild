@@ -9,6 +9,8 @@ for(const name of ['--cli','--session','--out'])if(!arg(name))throw Error('Requi
 const uiLanguage=arg('--ui-language','en');
 if(!['en','zh'].includes(uiLanguage))throw Error('Unsupported UI language: '+uiLanguage);
 const labels=uiLanguage==='zh'?{check:'检查',continue:'继续'}:{check:'Check',continue:'Continue'};
+const stopBeforeType=arg('--stop-before-type','');
+if(stopBeforeType&&!/^[A-Za-z][A-Za-z0-9]*$/.test(stopBeforeType))throw Error('Invalid stop-before type');
 const start=Number(arg('--start-index','0'));
 if(!Number.isInteger(start)||start<0)throw Error('Invalid start index');
 const output=resolve(arg('--out'));mkdirSync(dirname(output),{recursive:true});
@@ -22,7 +24,7 @@ const callback = async page => {
  const identity=CHALLENGE_IDENTITY;
  const uncovered=UNCOVERED_TYPE;
  const session=await page.evaluate(()=>window.__referenceSession);
- const observed=[],interludes=[];let failure=null;
+ const observed=[],interludes=[];let failure=null,stopped=null;
  async function exactVisible(locator,text){
    const labels=await locator.allTextContents();
    const indices=labels.flatMap((label,i)=>label.trim().replace(/^\d\s*|\s*\d$/g,'').trim()===text?[i]:[]);
@@ -77,6 +79,7 @@ const callback = async page => {
     row.divergence={kind:'type_changed',next_action:'Observe the inserted or replacement challenge before any type-specific interaction.'};
     throw Error('Reference UI diverged: type_changed');
    }
+   if(c.type===STOP_BEFORE_TYPE){stopped={index:record.index,type:c.type,reason:'Requested exploration boundary; current type observed, no answer submitted'};break;}
    if(c.type==='listenIsolation'){
     const radios=challenge.getByRole('radio');
     if(await radios.count()!==c.options.length)throw Error('Audio option count differs');
@@ -162,13 +165,13 @@ const callback = async page => {
    await page.getByRole('button',{name:labels.continue,exact:true}).click();
   }catch(error){failure=String(error);break;}
  }
- return {session,observed,interludes,failure,final:await page.locator('body').ariaSnapshot(),limitations:['One actual generated lesson instance; media invocations are not acoustic output evidence.']};
+ return {session,observed,interludes,failure,stopped,answered:observed.filter(r=>r.feedback).length,outcome:failure?'failed':stopped?'stopped_at_requested_boundary':'replayed_captured_records',final:await page.locator('body').ariaSnapshot(),limitations:['One actual generated lesson instance; media invocations are not acoustic output evidence.']};
 };
-const code=callback.toString().replace('CHALLENGE_IDENTITY',challengeIdentity.toString()).replace('UNCOVERED_TYPE',uncoveredReplayType.toString()).replace('UI_LABELS',JSON.stringify(labels)).replace('START_INDEX',String(start)).replaceAll('SCREENSHOT_PREFIX',JSON.stringify(screenshotPrefix));
+const code=callback.toString().replace('CHALLENGE_IDENTITY',challengeIdentity.toString()).replace('UNCOVERED_TYPE',uncoveredReplayType.toString()).replace('UI_LABELS',JSON.stringify(labels)).replace('START_INDEX',String(start)).replace('STOP_BEFORE_TYPE',JSON.stringify(stopBeforeType)).replaceAll('SCREENSHOT_PREFIX',JSON.stringify(screenshotPrefix));
 const result=spawnSync(arg('--cli'),['-s='+arg('--session'),'run-code',code],{cwd:resolve('artifacts/output/playwright'),encoding:'utf8',timeout:300000,maxBuffer:16*1024*1024});
 const raw=(result.stdout||'')+(result.stderr||'');writeFileSync(output+'.raw.txt',raw,{flag:'wx'});
 if(result.status!==0||!raw.includes('### Result\n'))throw Error('Unavailable replay; raw output retained, inspect current tab before resuming');
 const facts=JSON.parse(raw.split('### Result\n')[1].split('\n### Ran')[0]);
 writeFileSync(output,JSON.stringify({...facts,observed_at:new Date().toISOString()},null,2)+'\n',{flag:'wx'});
-console.log(JSON.stringify({observed:facts.observed.length,interludes:facts.interludes.length,failure:facts.failure}));
+console.log(JSON.stringify({observed:facts.observed.length,interludes:facts.interludes.length,failure:facts.failure,stopped:facts.stopped,answered:facts.answered,outcome:facts.outcome}));
 if(facts.failure)process.exitCode=1;

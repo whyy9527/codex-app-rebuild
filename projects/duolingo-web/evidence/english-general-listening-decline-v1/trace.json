@@ -1,0 +1,207 @@
+{
+  "route": "/practice",
+  "session_type": "GLOBAL_PRACTICE",
+  "prefix_receipt": "replay-to-tap.json",
+  "prefix_graded_count": 6,
+  "listening_action": "decline listenTap; continue to water and coffee translation",
+  "speech_action": "decline speak; continue to water and tea translation",
+  "subsequent_graded": [
+    {
+      "id": "general-listening-decline-inserted",
+      "receipt": "inserted-answer.json",
+      "accepted": true,
+      "prompts": [
+        "water and coffee"
+      ],
+      "input": null,
+      "clicks": [
+        {
+          "word": "水",
+          "occurrence": 0
+        },
+        {
+          "word": "和",
+          "occurrence": 0
+        },
+        {
+          "word": "咖啡",
+          "occurrence": 0
+        }
+      ]
+    },
+    {
+      "id": "general-listening-decline-water-tea",
+      "receipt": "water-tea-answer.json",
+      "accepted": true,
+      "prompts": [
+        "water and tea"
+      ],
+      "input": null,
+      "clicks": [
+        {
+          "word": "水",
+          "occurrence": 0
+        },
+        {
+          "word": "和",
+          "occurrence": 0
+        },
+        {
+          "word": "茶",
+          "occurrence": 0
+        }
+      ]
+    },
+    {
+      "id": "general-listening-decline-tea-coffee",
+      "receipt": "tea-coffee-answer.json",
+      "accepted": true,
+      "prompts": [
+        "tea and coffee"
+      ],
+      "input": null,
+      "clicks": [
+        {
+          "word": "茶",
+          "occurrence": 0
+        },
+        {
+          "word": "和",
+          "occurrence": 0
+        },
+        {
+          "word": "咖啡",
+          "occurrence": 0
+        }
+      ]
+    },
+    {
+      "id": "general-listening-decline-coffee-milk",
+      "receipt": "coffee-milk-answer.json",
+      "accepted": true,
+      "prompts": [
+        "咖啡加牛奶"
+      ],
+      "input": null,
+      "clicks": [
+        {
+          "word": "coffee",
+          "occurrence": 0
+        },
+        {
+          "word": "with",
+          "occurrence": 0
+        },
+        {
+          "word": "milk",
+          "occurrence": 0
+        }
+      ]
+    },
+    {
+      "id": "general-listening-decline-no-coffee",
+      "receipt": "no-coffee-answer.json",
+      "accepted": true,
+      "prompts": [
+        "No coffee, thank you."
+      ],
+      "input": null,
+      "clicks": [
+        {
+          "word": "不要",
+          "occurrence": 0
+        },
+        {
+          "word": "咖啡",
+          "occurrence": 0
+        },
+        {
+          "word": "谢谢",
+          "occurrence": 0
+        }
+      ]
+    },
+    {
+      "id": "general-listening-decline-no-milk",
+      "receipt": "no-milk-answer.json",
+      "accepted": true,
+      "prompts": [
+        "不要牛奶，也不要糖，谢谢。"
+      ],
+      "input": null,
+      "clicks": [
+        {
+          "word": "No",
+          "occurrence": 0
+        },
+        {
+          "word": "milk",
+          "occurrence": 0
+        },
+        {
+          "word": "and",
+          "occurrence": 0
+        },
+        {
+          "word": "no",
+          "occurrence": 0
+        },
+        {
+          "word": "sugar",
+          "occurrence": 0
+        },
+        {
+          "word": "please",
+          "occurrence": 0
+        }
+      ]
+    },
+    {
+      "id": "general-listening-decline-goodbye",
+      "receipt": "goodbye-answer.json",
+      "accepted": true,
+      "prompts": [
+        "谢谢， 再见！"
+      ],
+      "input": "Thank you, goodbye!",
+      "clicks": null
+    },
+    {
+      "id": "general-listening-decline-hot-tea",
+      "receipt": "hot-tea-answer.json",
+      "accepted": true,
+      "prompts": [
+        "我想要热茶，谢谢。"
+      ],
+      "input": "I'd like hot tea, please.",
+      "clicks": null
+    },
+    {
+      "id": "general-listening-decline-ice-water",
+      "receipt": "ice-water-answer.json",
+      "accepted": true,
+      "prompts": [
+        "我想要冰水，谢谢。"
+      ],
+      "input": "I'd like water with ice, please.",
+      "clicks": null
+    },
+    {
+      "id": "general-listening-decline-no-water",
+      "receipt": "no-water-answer.json",
+      "accepted": true,
+      "prompts": [
+        "不要冰，不要水，谢谢。"
+      ],
+      "input": "No ice, no water, please.",
+      "clicks": null
+    }
+  ],
+  "total_graded": 16,
+  "limitations": [
+    "One actual session, not adaptive selection or a reset algorithm.",
+    "Source projection is not native verification.",
+    "15 minute recovery was displayed, not independently timed.",
+    "No original or candidate acoustic equality measured in this branch."
+  ]
+}

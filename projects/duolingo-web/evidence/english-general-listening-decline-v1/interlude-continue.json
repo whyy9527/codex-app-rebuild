@@ -1,0 +1,7 @@
+{
+  "observed_at": "2026-10-11T02:50:14.217Z",
+  "action": "继续",
+  "source_ref": "f155e211",
+  "before": "### Page\n- Page URL: https://www.duolingo.com/practice\n- Page Title: 多邻国 - 学得轻松，学有所成的英语 课程！\n- Console: 19 errors, 0 warnings\n### Snapshot\n```yaml\n- generic [ref=f155e5]:\n  - generic [ref=f155e8]:\n    - button [ref=f155e9] [cursor=pointer]\n    - progressbar [ref=f155e11]\n  - generic [ref=f155e18]: 哎哟不错哦！要不要玩点刺激的？\n  - button \"继续\" [active] [ref=f155e211] [cursor=pointer]\n```\n### Events\n- New console entries: .playwright-cli/console-2026-10-10T14-04-32-757Z.log#L1102\n",
+  "after": "### Page\n- Page URL: https://www.duolingo.com/practice\n- Page Title: 多邻国 - 学得轻松，学有所成的英语 课程！\n- Console: 19 errors, 0 warnings\n### Snapshot\n```yaml\n- generic [ref=f155e5]:\n  - generic [ref=f155e8]:\n    - button [ref=f155e9] [cursor=pointer]\n    - progressbar [ref=f155e11]\n  - generic [ref=f155e219]:\n    - generic [ref=f155e220]:\n      - generic [ref=f155e221]: 挑战题\n      - heading \"用英语写出这句话\" [level=1] [ref=f155e225]\n    - generic [ref=f155e226]:\n      - generic [ref=f155e236]:\n        - text: 我想要热茶，谢谢。\n        - generic \"我\" [ref=f155e237]\n        - generic \"想要\" [ref=f155e238]\n        - generic \"热茶\" [ref=f155e239]\n        - generic \"谢谢\" [ref=f155e240]\n      - textbox \"使用英语键入\" [active] [ref=f155e246]\n  - generic [ref=f155e128]:\n    - button \"跳过\" [ref=f155e248] [cursor=pointer]\n    - button \"检查\" [disabled] [ref=f155e250]\n```\n"
+}

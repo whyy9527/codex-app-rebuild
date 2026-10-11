@@ -224,3 +224,6 @@ capture-reference-session显式选择/lesson或/practice，保留白名单公共
 ### 奖励媒体与普通听写布局
 
 通用练习夹具v2给SettlementPage增加可选heartResources，直接编译实际奖励页五个IMG URL；旧夹具v1保留，主课程v11不改。共同前端v29在v28上追加五个图形及三个footer控件的几何/角色/enabled/文案要求。布局实现与验收不合并：回顾仍未实现动作，静态文本的role会明确失败。普通listen根据原版固定画面使用已有Bea Rive、白色分段播放及多行输入，listenTap保留独立蓝色播放布局；相同音频字段不决定相同UI。各轮整图比较与错误合并的负结果保留在[展示修正证据](../projects/duolingo-web/evidence/english-general-practice-presentation-v1/README.md)。
+
+
+实际探索边界由`replay-reference-session.mjs --stop-before-type`表达；stopped与answered分开，观察到待探题不等于已评分。原版初始sessions字段只提供背景，暂缓后的插入与变题由独立可见页面/提交回执形成实际trace。`freeze-general-listening-decline.py`把这条已执行分支追加到v30，旧断言保留。文字Range/CSS与inlineSVG属于采集事实，不能替代PNG或实际字体解析；源投影自校验、旧候选重评、真实新原生执行分别保存。当前Swift仅支持listenMatch暂缓，listenTap插入与后续变题仍待接入，详见[冻结证据](../projects/duolingo-web/evidence/english-general-listening-decline-v1/README.md)。

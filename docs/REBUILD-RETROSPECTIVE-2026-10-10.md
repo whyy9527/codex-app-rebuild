@@ -95,3 +95,8 @@ v3 增加了主页、音频和截图，却仍然以自己选择的课程、素�
 ### 相近题型复用也会背离原版
 
 普通listen与listenTap都有两个音频和文本框，首次因此共享蓝色布局，完整原生操作通过而整图误差反增。回看源PNG才看到Bea和白色分段气泡，按实际画面拆分后整图误差下降但未通过。奖励页第二份源快照也证明回顾/重练不是瞬间残影；旧模具仅验继续和标题，漏了图形和角色。本批新增16项而没有放宽旧项，回顾仍是静态文本故role明确失败。需要实际访问这些动作，不能把文字/几何改善或一次人工反例修正当自主RSI有效。[负结果、源参考与最终回放](../projects/duolingo-web/evidence/english-general-practice-presentation-v1/README.md)。
+
+
+### 初始API题单不能代替执行轨迹
+
+listenTap暂缓后会插入翻译；口语暂缓后的翻译还不是原口语句。之前仅有listenMatch按钮与直接advance的实现漏掉了实际状态转移，不是补按钮就能修好。此次先在真实题型边界停止，再逐步操作/记录接受反馈，冻结新轨迹，保留候选全未访问的34项。源自检不算候选通过，手工选择分支不算RSI收益。文字几何/CSS和inlineSVG也补入采集，实际字体解析与动画可见性继续独立验证。[证据](../projects/duolingo-web/evidence/english-general-listening-decline-v1/README.md)。

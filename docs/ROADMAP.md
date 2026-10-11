@@ -274,3 +274,8 @@ v15保留1489项并增8项真实原版断言。独立原生radio2实际点击及
 ### 通用奖励图形与普通听写展示
 
 核对既有源固定参考及11秒后快照，补五心图形和奖励页保留底栏，v29原样保留1835旧项增16。通用夹具v2/50原版资源，旧v1及主课v11保留。错误地共享listenTap蓝控件使普通listen整图误差上升，保留native-01负结果后按源PNG拆成Bea Rive/白色分段播放/多行输入，native-02完整47状态与真实重启走通。红心整图RGB约3.76→0.70，听写约4.51→2.00仍fail；五心0.25点及回顾静态角色等新失败原样保留。89pass/55fail/1707not_run/0unavailable，新16为7pass9fail；40练习整图全fail。构建/24核心/56 Python通过。听力暂缓入口仍缺、回顾/重练实际语义、字体/动画/进度与声学等继续，完整Goal active，未宣称RSI收益。[证据与复跑](../projects/duolingo-web/evidence/english-general-practice-presentation-v1/README.md)。
+
+
+### 听力暂缓的实际插入与自适应反例
+
+由缺暂缓入口的失败反馈选择实际listenTap分支，驱动前六题后明确停住，继续真实探索完成16评分题/两次暂缓/全对结算/稍后建档返回。听力暂缓插入water and coffee翻译，口语暂缓后的water and tea并非原口语句翻译，否定固定题单/直接跳过模型。采集器补文字Range/CSS及inlineSVG；v30保留1851旧项增34/28状态，源自检34pass，旧native重评89pass/55fail/1741not_run，新34全未运行。新状态机及原生验证尚待实施，不以探索回执冒充复刻完成；15分钟恢复/奖励上限/自适应选择仍未知。原论文与负消融保留，完整Goal active。[实际轨迹、模具与下一实施批次](../projects/duolingo-web/evidence/english-general-listening-decline-v1/README.md)。

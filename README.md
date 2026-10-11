@@ -12,6 +12,8 @@
 
 通用练习红心页已补原版图形与保留的底栏，普通听写改用Bea旁的白色分段播放和多行输入；v29原样保留旧要求并追加16项。最终完整回放通过，但共同前端仍89pass/55fail/1707not_run，整图全部有差异；错误共享布局的负结果保留。[展示修正、剩余差异和复跑](projects/duolingo-web/evidence/english-general-practice-presentation-v1/README.md)。
 
+实际探索听力暂缓发现它会插入翻译并改变后续题单，不能沿初始API固定推进。v30保留1851旧项增34；本轮只冻结源轨迹，Swift新分支尚未实现，新34项候选全未运行。原论文、负面消融与完整Goal保留。[反例、模具和下一实施批次](projects/duolingo-web/evidence/english-general-listening-decline-v1/README.md)。
+
 共同前端契约已接入真实PNG比较，缺图不可计为通过；发音卡片进一步按浏览器实际字体、字距、卡面和按下反馈修正，整图仍失败。[当前证据与复跑](projects/duolingo-web/evidence/english-pronunciation-typography-v1/README.md)。
 
 前端契约保留旧要求并持续追加源观察；最新口语权限及发音退出分支已接入实际原生验证。反例探测区分全错直接退出与已获得正确进度后的确认，取消保持题目状态。几何、整图和声音仍有失败/未覆盖，正常录音评分与推进未完成。[最新证据、探索反例与复跑](projects/duolingo-web/evidence/english-practice-exit-v1/README.md)，逐批结果由[Roadmap](docs/ROADMAP.md)维护；不累计旧构建回执填当前未执行项。

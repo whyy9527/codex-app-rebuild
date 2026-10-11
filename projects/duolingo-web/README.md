@@ -148,3 +148,8 @@ node projects/duolingo-web/explore-curriculum.mjs artifacts/reference-new.json -
 ## 通用练习展示与v29
 
 后续固定源参考检查补出奖励页五颗心和保留的三个底栏控件，v29增16并保留全部1835旧项。夹具v2增原版心形资源，旧v1不覆盖，主v11不变。普通听写现按原版Bea/白色分段播放/多行文本框展示，错误合并布局的负结果保留。完整47状态回放、24核心和56 Python通过，前端89/55/1707仍fail，40整图全部不同；听力暂缓入口和回顾动作等继续补齐。[验证和命令](evidence/english-general-practice-presentation-v1/README.md)。
+
+
+## 听力暂缓与v30
+
+从实际listenTap边界停止，探索暂缓→插入翻译→口语暂缓→变题→全对结算→建档提示→返回。v30增28状态/34要求，旧1851完整保留。源34自检通过不能当候选通过；旧native重评89pass/55fail/1741not_run，新34全未运行。下一步实现冻结的状态转移及原生驱动，不只补按钮；实例选择、计时恢复与奖励条件继续探索。[实际证据与复跑](evidence/english-general-listening-decline-v1/README.md)。

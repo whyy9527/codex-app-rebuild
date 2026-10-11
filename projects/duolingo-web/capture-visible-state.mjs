@@ -8,12 +8,28 @@ for(const suffix of ['.raw.txt','.json','.png'])if(existsSync(out+suffix))throw 
 const callback=async page=>{
  const facts={observed_at:new Date().toISOString(),path:new URL(page.url()).pathname,
   viewport:page.viewportSize(),snapshot:await page.locator('body').ariaSnapshot()};
+ // Generic text blocks (reward titles, subtitles and hints) were missing
+ // from the element selector. Read actual rendered text ranges, never hidden
+ // application state, and keep their own computed typography.
+ facts.text_runs=await page.locator('body').evaluate(body=>{
+  const walker=document.createTreeWalker(body,NodeFilter.SHOW_TEXT),rows=[];
+  for(let n=walker.nextNode();n;n=walker.nextNode()){
+   const p=n.parentElement,text=n.textContent.trim();
+   if(!text||!p||['SCRIPT','STYLE','NOSCRIPT'].includes(p.tagName)||!p.checkVisibility())continue;
+   const range=document.createRange();range.selectNodeContents(n);const r=range.getBoundingClientRect();
+   if(r.width<=0||r.height<=0||r.bottom<=0||r.right<=0||r.top>=innerHeight||r.left>=innerWidth)continue;
+   const c=getComputedStyle(p);
+   rows.push({text,tag:p.tagName,test:p.getAttribute('data-test'),rect:[r.x,r.y,r.width,r.height],
+    css:{fontFamily:c.fontFamily,fontSize:c.fontSize,fontWeight:c.fontWeight,fontVariationSettings:c.fontVariationSettings,lineHeight:c.lineHeight,color:c.color,letterSpacing:c.letterSpacing}});
+  }return rows;
+ });
+ facts.text_run_limitations=['DOM text ranges and computed CSS are not OCR or actual fallback font resolution; clipped animation digits may still appear.'];
  // Artwork outside buttons was absent from the old mold. Keep visible media
  // geometry and public resource identity without reading application state.
  facts.media=await page.locator('img,svg,canvas').evaluateAll(ns=>ns.filter(n=>n.checkVisibility()).map(n=>{
   const r=n.getBoundingClientRect(),css=getComputedStyle(n);
   const src=n.tagName==='IMG'?(n.currentSrc||n.src):null;
-  return {tag:n.tagName,alt:n.getAttribute('alt'),test:n.getAttribute('data-test'),
+  return {tag:n.tagName,svg:n.tagName.toLowerCase()==='svg'?n.outerHTML:null,alt:n.getAttribute('alt'),test:n.getAttribute('data-test'),
    src:src&&!src.startsWith('data:')&&!src.startsWith('blob:')?src:null,
    source_kind:src?.startsWith('data:')?'inline':src?.startsWith('blob:')?'blob':src?'url':null,
    rect:[r.x,r.y,r.width,r.height],objectFit:css.objectFit,
