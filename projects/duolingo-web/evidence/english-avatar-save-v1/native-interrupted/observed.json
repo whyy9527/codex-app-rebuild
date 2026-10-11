@@ -1,0 +1,1002 @@
+{
+  "attempts" : [
+    {
+      "failure" : "ProbeError(message: \"Cannot press avatar-skin-1\")",
+      "id" : "avatar-save"
+    }
+  ],
+  "candidate_binary_sha256" : "55819e2a63bfb9810d73229086aaadc9c044bb5b28a89ed9ba5ab40d37aab175",
+  "failure" : "[[\"failure\": \"ProbeError(message: \\\"Cannot press avatar-skin-1\\\")\", \"id\": \"avatar-save\"]]",
+  "fixture_sha256" : "b7242d0e130112d54b1e17714bf21c35045e58f8874948917b0b09f971282bda",
+  "kind" : "owned_native_ax_observation",
+  "limitations" : [
+    "No acoustic equality claim; actual images retain clock and animation phase differences"
+  ],
+  "scenario_sha256" : "64f158ea9a9f566c22a9d3cb7d8c3d78babebcf3cbc6d7c211a34feed4755aa1",
+  "states" : {
+    "avatar-native-skin-0" : {
+      "accessible_text" : [
+        "LingoSeed",
+        "个人档案",
+        "创建虚拟头像",
+        "发音",
+        "学习",
+        "完成",
+        "宝石小店",
+        "排行榜",
+        "更多",
+        "特别任务",
+        "肤色"
+      ],
+      "capture" : {
+        "backing_scale" : 2,
+        "content_rect_points" : [
+          0,
+          32,
+          1200,
+          732
+        ],
+        "path" : "artifacts\/avatar-save-native-01\/avatar-native-skin-0.png",
+        "window_points" : [
+          1200,
+          764
+        ]
+      },
+      "capture_attempts" : [
+        {
+          "attempt" : 1,
+          "expected" : [
+            2400,
+            1528
+          ],
+          "path" : "avatar-native-skin-0-capture-1.png",
+          "pixels" : [
+            2400,
+            1528
+          ]
+        }
+      ],
+      "elements" : {
+        "avatar-back" : {
+          "enabled" : true,
+          "rect" : [
+            280,
+            24,
+            24,
+            32
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "avatar-done" : {
+          "enabled" : true,
+          "rect" : [
+            1040,
+            472,
+            136,
+            48
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "avatar-preview" : {
+          "enabled" : true,
+          "rect" : [
+            282,
+            82,
+            372,
+            352
+          ],
+          "role" : "AXImage",
+          "value" : ""
+        },
+        "avatar-skin-0" : {
+          "checked" : true,
+          "enabled" : true,
+          "numeric_value" : 1,
+          "rect" : [
+            691,
+            211,
+            56,
+            54
+          ],
+          "role" : "AXRadioButton",
+          "value" : ""
+        },
+        "avatar-skin-1" : {
+          "checked" : false,
+          "enabled" : true,
+          "numeric_value" : 0,
+          "rect" : [
+            769.5,
+            211,
+            56,
+            54
+          ],
+          "role" : "AXRadioButton",
+          "value" : ""
+        },
+        "avatar-skin-2" : {
+          "checked" : false,
+          "enabled" : true,
+          "numeric_value" : 0,
+          "rect" : [
+            848,
+            211,
+            56,
+            54
+          ],
+          "role" : "AXRadioButton",
+          "value" : ""
+        },
+        "avatar-skin-3" : {
+          "checked" : false,
+          "enabled" : true,
+          "numeric_value" : 0,
+          "rect" : [
+            926,
+            211,
+            56,
+            54
+          ],
+          "role" : "AXRadioButton",
+          "value" : ""
+        },
+        "avatar-skin-4" : {
+          "checked" : false,
+          "enabled" : true,
+          "numeric_value" : 0,
+          "rect" : [
+            1004.5,
+            211,
+            56,
+            54
+          ],
+          "role" : "AXRadioButton",
+          "value" : ""
+        },
+        "avatar-skin-5" : {
+          "checked" : false,
+          "enabled" : true,
+          "numeric_value" : 0,
+          "rect" : [
+            1083,
+            211,
+            56,
+            54
+          ],
+          "role" : "AXRadioButton",
+          "value" : ""
+        },
+        "avatar-skin-6" : {
+          "checked" : false,
+          "enabled" : true,
+          "numeric_value" : 0,
+          "rect" : [
+            691,
+            283,
+            56,
+            54
+          ],
+          "role" : "AXRadioButton",
+          "value" : ""
+        },
+        "avatar-skin-7" : {
+          "checked" : false,
+          "enabled" : true,
+          "numeric_value" : 0,
+          "rect" : [
+            769.5,
+            283,
+            56,
+            54
+          ],
+          "role" : "AXRadioButton",
+          "value" : ""
+        },
+        "avatar-skin-8" : {
+          "checked" : false,
+          "enabled" : true,
+          "numeric_value" : 0,
+          "rect" : [
+            848,
+            283,
+            56,
+            54
+          ],
+          "role" : "AXRadioButton",
+          "value" : ""
+        },
+        "avatar-skin-9" : {
+          "checked" : false,
+          "enabled" : true,
+          "numeric_value" : 0,
+          "rect" : [
+            926,
+            283,
+            56,
+            54
+          ],
+          "role" : "AXRadioButton",
+          "value" : ""
+        },
+        "avatar-skin-10" : {
+          "checked" : false,
+          "enabled" : true,
+          "numeric_value" : 0,
+          "rect" : [
+            1004.5,
+            283,
+            56,
+            54
+          ],
+          "role" : "AXRadioButton",
+          "value" : ""
+        },
+        "avatar-skin-11" : {
+          "checked" : false,
+          "enabled" : true,
+          "numeric_value" : 0,
+          "rect" : [
+            1083,
+            283,
+            56,
+            54
+          ],
+          "role" : "AXRadioButton",
+          "value" : ""
+        },
+        "avatar-skin-12" : {
+          "checked" : false,
+          "enabled" : true,
+          "numeric_value" : 0,
+          "rect" : [
+            691,
+            355,
+            56,
+            54
+          ],
+          "role" : "AXRadioButton",
+          "value" : ""
+        },
+        "avatar-skin-13" : {
+          "checked" : false,
+          "enabled" : true,
+          "numeric_value" : 0,
+          "rect" : [
+            769.5,
+            355,
+            56,
+            54
+          ],
+          "role" : "AXRadioButton",
+          "value" : ""
+        },
+        "avatar-skin-14" : {
+          "checked" : false,
+          "enabled" : true,
+          "numeric_value" : 0,
+          "rect" : [
+            848,
+            355,
+            56,
+            54
+          ],
+          "role" : "AXRadioButton",
+          "value" : ""
+        },
+        "nav-leaderboards" : {
+          "enabled" : true,
+          "rect" : [
+            16,
+            212,
+            222,
+            52
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "nav-learn" : {
+          "enabled" : true,
+          "rect" : [
+            16,
+            92,
+            222,
+            52
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "nav-more" : {
+          "enabled" : true,
+          "rect" : [
+            16,
+            452,
+            222,
+            52
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "nav-profile" : {
+          "enabled" : true,
+          "rect" : [
+            16,
+            392,
+            222,
+            52
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "nav-pronunciation" : {
+          "enabled" : true,
+          "rect" : [
+            16,
+            152,
+            222,
+            52
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "nav-quests" : {
+          "enabled" : true,
+          "rect" : [
+            16,
+            272,
+            222,
+            52
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "nav-shop" : {
+          "enabled" : true,
+          "rect" : [
+            16,
+            332,
+            222,
+            52
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "SwiftUI._ConditionalContent<SwiftUI.SubscriptionView<(extension in Foundation):__C.NSNotificationCenter.Publisher, SwiftUI.ModifiedContent<LingoSeed.LearningView, SwiftUI._AppearanceActionModifier>>, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1" : {
+          "enabled" : false,
+          "rect" : [
+            0,
+            -32,
+            1200,
+            764
+          ],
+          "role" : "AXWindow",
+          "value" : ""
+        }
+      },
+      "interactions" : {
+        "completed_popover_present" : false,
+        "exit_confirmation_present" : false,
+        "footer_status_visible" : false,
+        "guest_error_present" : false,
+        "guest_introduction_present" : false,
+        "guest_profile_present" : false,
+        "learn_present" : false,
+        "legendary_present" : false,
+        "practice_present" : false,
+        "profile_present" : false,
+        "status_clear_visible" : false,
+        "status_selected" : false
+      }
+    },
+    "profile-frontier-avatar-reloaded-checked" : {
+      "accessible_text" : [
+        "LingoSeed",
+        "个人档案",
+        "创建虚拟头像",
+        "发音",
+        "学习",
+        "完成",
+        "宝石小店",
+        "排行榜",
+        "更多",
+        "特别任务",
+        "肤色"
+      ],
+      "capture" : {
+        "backing_scale" : 2,
+        "content_rect_points" : [
+          0,
+          32,
+          1200,
+          732
+        ],
+        "path" : "artifacts\/avatar-save-native-01\/profile-frontier-avatar-reloaded-checked.png",
+        "window_points" : [
+          1200,
+          764
+        ]
+      },
+      "capture_attempts" : [
+        {
+          "attempt" : 1,
+          "expected" : [
+            2400,
+            1528
+          ],
+          "path" : "profile-frontier-avatar-reloaded-checked-capture-1.png",
+          "pixels" : [
+            2400,
+            1528
+          ]
+        }
+      ],
+      "elements" : {
+        "avatar-back" : {
+          "enabled" : true,
+          "rect" : [
+            280,
+            24,
+            24,
+            32
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "avatar-done" : {
+          "enabled" : false,
+          "rect" : [
+            1040,
+            472,
+            136,
+            48
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "avatar-preview" : {
+          "enabled" : true,
+          "rect" : [
+            282,
+            82,
+            372,
+            352
+          ],
+          "role" : "AXImage",
+          "value" : ""
+        },
+        "avatar-skin-0" : {
+          "checked" : true,
+          "enabled" : true,
+          "numeric_value" : 1,
+          "rect" : [
+            691,
+            211,
+            56,
+            54
+          ],
+          "role" : "AXRadioButton",
+          "value" : ""
+        },
+        "avatar-skin-1" : {
+          "checked" : false,
+          "enabled" : true,
+          "numeric_value" : 0,
+          "rect" : [
+            769.5,
+            211,
+            56,
+            54
+          ],
+          "role" : "AXRadioButton",
+          "value" : ""
+        },
+        "avatar-skin-2" : {
+          "checked" : false,
+          "enabled" : true,
+          "numeric_value" : 0,
+          "rect" : [
+            848,
+            211,
+            56,
+            54
+          ],
+          "role" : "AXRadioButton",
+          "value" : ""
+        },
+        "avatar-skin-3" : {
+          "checked" : false,
+          "enabled" : true,
+          "numeric_value" : 0,
+          "rect" : [
+            926,
+            211,
+            56,
+            54
+          ],
+          "role" : "AXRadioButton",
+          "value" : ""
+        },
+        "avatar-skin-4" : {
+          "checked" : false,
+          "enabled" : true,
+          "numeric_value" : 0,
+          "rect" : [
+            1004.5,
+            211,
+            56,
+            54
+          ],
+          "role" : "AXRadioButton",
+          "value" : ""
+        },
+        "avatar-skin-5" : {
+          "checked" : false,
+          "enabled" : true,
+          "numeric_value" : 0,
+          "rect" : [
+            1083,
+            211,
+            56,
+            54
+          ],
+          "role" : "AXRadioButton",
+          "value" : ""
+        },
+        "avatar-skin-6" : {
+          "checked" : false,
+          "enabled" : true,
+          "numeric_value" : 0,
+          "rect" : [
+            691,
+            283,
+            56,
+            54
+          ],
+          "role" : "AXRadioButton",
+          "value" : ""
+        },
+        "avatar-skin-7" : {
+          "checked" : false,
+          "enabled" : true,
+          "numeric_value" : 0,
+          "rect" : [
+            769.5,
+            283,
+            56,
+            54
+          ],
+          "role" : "AXRadioButton",
+          "value" : ""
+        },
+        "avatar-skin-8" : {
+          "checked" : false,
+          "enabled" : true,
+          "numeric_value" : 0,
+          "rect" : [
+            848,
+            283,
+            56,
+            54
+          ],
+          "role" : "AXRadioButton",
+          "value" : ""
+        },
+        "avatar-skin-9" : {
+          "checked" : false,
+          "enabled" : true,
+          "numeric_value" : 0,
+          "rect" : [
+            926,
+            283,
+            56,
+            54
+          ],
+          "role" : "AXRadioButton",
+          "value" : ""
+        },
+        "avatar-skin-10" : {
+          "checked" : false,
+          "enabled" : true,
+          "numeric_value" : 0,
+          "rect" : [
+            1004.5,
+            283,
+            56,
+            54
+          ],
+          "role" : "AXRadioButton",
+          "value" : ""
+        },
+        "avatar-skin-11" : {
+          "checked" : false,
+          "enabled" : true,
+          "numeric_value" : 0,
+          "rect" : [
+            1083,
+            283,
+            56,
+            54
+          ],
+          "role" : "AXRadioButton",
+          "value" : ""
+        },
+        "avatar-skin-12" : {
+          "checked" : false,
+          "enabled" : true,
+          "numeric_value" : 0,
+          "rect" : [
+            691,
+            355,
+            56,
+            54
+          ],
+          "role" : "AXRadioButton",
+          "value" : ""
+        },
+        "avatar-skin-13" : {
+          "checked" : false,
+          "enabled" : true,
+          "numeric_value" : 0,
+          "rect" : [
+            769.5,
+            355,
+            56,
+            54
+          ],
+          "role" : "AXRadioButton",
+          "value" : ""
+        },
+        "avatar-skin-14" : {
+          "checked" : false,
+          "enabled" : true,
+          "numeric_value" : 0,
+          "rect" : [
+            848,
+            355,
+            56,
+            54
+          ],
+          "role" : "AXRadioButton",
+          "value" : ""
+        },
+        "nav-leaderboards" : {
+          "enabled" : true,
+          "rect" : [
+            16,
+            212,
+            222,
+            52
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "nav-learn" : {
+          "enabled" : true,
+          "rect" : [
+            16,
+            92,
+            222,
+            52
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "nav-more" : {
+          "enabled" : true,
+          "rect" : [
+            16,
+            452,
+            222,
+            52
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "nav-profile" : {
+          "enabled" : true,
+          "rect" : [
+            16,
+            392,
+            222,
+            52
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "nav-pronunciation" : {
+          "enabled" : true,
+          "rect" : [
+            16,
+            152,
+            222,
+            52
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "nav-quests" : {
+          "enabled" : true,
+          "rect" : [
+            16,
+            272,
+            222,
+            52
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "nav-shop" : {
+          "enabled" : true,
+          "rect" : [
+            16,
+            332,
+            222,
+            52
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "profile-action-8" : {
+          "enabled" : true,
+          "native_identifier" : "avatar-back",
+          "rect" : [
+            280,
+            24,
+            24,
+            32
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "profile-action-9" : {
+          "checked" : true,
+          "enabled" : true,
+          "native_identifier" : "avatar-skin-0",
+          "numeric_value" : 1,
+          "rect" : [
+            691,
+            211,
+            56,
+            54
+          ],
+          "role" : "AXRadioButton",
+          "value" : ""
+        },
+        "profile-action-10" : {
+          "checked" : false,
+          "enabled" : true,
+          "native_identifier" : "avatar-skin-1",
+          "numeric_value" : 0,
+          "rect" : [
+            769.5,
+            211,
+            56,
+            54
+          ],
+          "role" : "AXRadioButton",
+          "value" : ""
+        },
+        "profile-action-11" : {
+          "checked" : false,
+          "enabled" : true,
+          "native_identifier" : "avatar-skin-2",
+          "numeric_value" : 0,
+          "rect" : [
+            848,
+            211,
+            56,
+            54
+          ],
+          "role" : "AXRadioButton",
+          "value" : ""
+        },
+        "profile-action-12" : {
+          "checked" : false,
+          "enabled" : true,
+          "native_identifier" : "avatar-skin-3",
+          "numeric_value" : 0,
+          "rect" : [
+            926,
+            211,
+            56,
+            54
+          ],
+          "role" : "AXRadioButton",
+          "value" : ""
+        },
+        "profile-action-13" : {
+          "checked" : false,
+          "enabled" : true,
+          "native_identifier" : "avatar-skin-4",
+          "numeric_value" : 0,
+          "rect" : [
+            1004.5,
+            211,
+            56,
+            54
+          ],
+          "role" : "AXRadioButton",
+          "value" : ""
+        },
+        "profile-action-14" : {
+          "checked" : false,
+          "enabled" : true,
+          "native_identifier" : "avatar-skin-5",
+          "numeric_value" : 0,
+          "rect" : [
+            1083,
+            211,
+            56,
+            54
+          ],
+          "role" : "AXRadioButton",
+          "value" : ""
+        },
+        "profile-action-15" : {
+          "checked" : false,
+          "enabled" : true,
+          "native_identifier" : "avatar-skin-6",
+          "numeric_value" : 0,
+          "rect" : [
+            691,
+            283,
+            56,
+            54
+          ],
+          "role" : "AXRadioButton",
+          "value" : ""
+        },
+        "profile-action-16" : {
+          "checked" : false,
+          "enabled" : true,
+          "native_identifier" : "avatar-skin-7",
+          "numeric_value" : 0,
+          "rect" : [
+            769.5,
+            283,
+            56,
+            54
+          ],
+          "role" : "AXRadioButton",
+          "value" : ""
+        },
+        "profile-action-17" : {
+          "checked" : false,
+          "enabled" : true,
+          "native_identifier" : "avatar-skin-8",
+          "numeric_value" : 0,
+          "rect" : [
+            848,
+            283,
+            56,
+            54
+          ],
+          "role" : "AXRadioButton",
+          "value" : ""
+        },
+        "profile-action-18" : {
+          "checked" : false,
+          "enabled" : true,
+          "native_identifier" : "avatar-skin-9",
+          "numeric_value" : 0,
+          "rect" : [
+            926,
+            283,
+            56,
+            54
+          ],
+          "role" : "AXRadioButton",
+          "value" : ""
+        },
+        "profile-action-19" : {
+          "checked" : false,
+          "enabled" : true,
+          "native_identifier" : "avatar-skin-10",
+          "numeric_value" : 0,
+          "rect" : [
+            1004.5,
+            283,
+            56,
+            54
+          ],
+          "role" : "AXRadioButton",
+          "value" : ""
+        },
+        "profile-action-20" : {
+          "checked" : false,
+          "enabled" : true,
+          "native_identifier" : "avatar-skin-11",
+          "numeric_value" : 0,
+          "rect" : [
+            1083,
+            283,
+            56,
+            54
+          ],
+          "role" : "AXRadioButton",
+          "value" : ""
+        },
+        "profile-action-21" : {
+          "checked" : false,
+          "enabled" : true,
+          "native_identifier" : "avatar-skin-12",
+          "numeric_value" : 0,
+          "rect" : [
+            691,
+            355,
+            56,
+            54
+          ],
+          "role" : "AXRadioButton",
+          "value" : ""
+        },
+        "profile-action-22" : {
+          "checked" : false,
+          "enabled" : true,
+          "native_identifier" : "avatar-skin-13",
+          "numeric_value" : 0,
+          "rect" : [
+            769.5,
+            355,
+            56,
+            54
+          ],
+          "role" : "AXRadioButton",
+          "value" : ""
+        },
+        "profile-action-23" : {
+          "checked" : false,
+          "enabled" : true,
+          "native_identifier" : "avatar-skin-14",
+          "numeric_value" : 0,
+          "rect" : [
+            848,
+            355,
+            56,
+            54
+          ],
+          "role" : "AXRadioButton",
+          "value" : ""
+        },
+        "profile-action-24" : {
+          "enabled" : false,
+          "native_identifier" : "avatar-done",
+          "rect" : [
+            1040,
+            472,
+            136,
+            48
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "SwiftUI._ConditionalContent<SwiftUI.SubscriptionView<(extension in Foundation):__C.NSNotificationCenter.Publisher, SwiftUI.ModifiedContent<LingoSeed.LearningView, SwiftUI._AppearanceActionModifier>>, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1" : {
+          "enabled" : false,
+          "rect" : [
+            0,
+            -32,
+            1200,
+            764
+          ],
+          "role" : "AXWindow",
+          "value" : ""
+        }
+      },
+      "interactions" : {
+        "completed_popover_present" : false,
+        "exit_confirmation_present" : false,
+        "footer_status_visible" : false,
+        "guest_error_present" : false,
+        "guest_introduction_present" : false,
+        "guest_profile_present" : false,
+        "learn_present" : false,
+        "legendary_present" : false,
+        "practice_present" : false,
+        "profile_present" : false,
+        "status_clear_visible" : false,
+        "status_selected" : false
+      }
+    }
+  }
+}

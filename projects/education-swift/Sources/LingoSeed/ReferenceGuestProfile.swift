@@ -19,6 +19,7 @@ struct GuestProfileSnapshot: Decodable {
 }
 
 struct ReferenceGuestProfile: View {
+    let avatar: () -> Void
     let achievements: () -> Void
     var body: some View {
         if let snapshot = GuestProfileSnapshot.observed {
@@ -27,7 +28,7 @@ struct ReferenceGuestProfile: View {
                     RoundedRectangle(cornerRadius:16).fill(Color(red:221/255,green:244/255,blue:1))
                     ReferenceStyle.image("en-guest-avatar").resizable().frame(width:166.125,height:266).offset(y:39)
                     HStack { Spacer();ReferenceStyle.image("en-guest-edit").resizable().frame(width:18,height:18).padding(14).background(RoundedRectangle(cornerRadius:16).stroke(Color.black.opacity(0.3),lineWidth:2)).padding(16) }
-                }.frame(width:480,height:224).clipShape(RoundedRectangle(cornerRadius:15))
+                }.frame(width:480,height:224).clipShape(RoundedRectangle(cornerRadius:15)).overlay { ReferencePracticeControl(label:"",identifier:"guest-profile-avatar",enabled:true,action:avatar,face:AnyView(Color.clear)).frame(width:220,height:224) }
                 HStack {
                     Text(snapshot.joined).accessibilityIdentifier("guest-profile-joined").font(ReferenceStyle.font(17)).foregroundStyle(ReferenceStyle.secondaryInk)
                     Spacer()
@@ -80,6 +81,7 @@ struct ReferenceGuestProfile: View {
 }
 
 struct ReferenceGuestProfileIntroduction: View {
+    let start: () -> Void
     let later: () -> Void
     var body: some View {
         ZStack {
@@ -87,8 +89,7 @@ struct ReferenceGuestProfileIntroduction: View {
             VStack(spacing:0) {
                 ReferenceStyle.image("en-guest-intro").resizable().frame(width:336,height:160).padding(.top,40)
                 Text("制作专属虚拟头像！").font(ReferenceStyle.font(24,bold:true)).padding(.top,18)
-                // Avatar creation is still an uncovered native branch; do not report it as implemented.
-                Text("开始").font(ReferenceStyle.font(15,bold:true)).foregroundStyle(.white).frame(width:336,height:46).background(ReferenceStyle.blue,in:RoundedRectangle(cornerRadius:16)).shadow(color:Color(red:24/255,green:153/255,blue:214/255),radius:0,y:4).padding(.top,32)
+                ReferencePracticeControl(label:"开始",identifier:"guest-profile-start",enabled:true,action:start,face:AnyView(Text("开始").font(ReferenceStyle.font(15,bold:true)).foregroundStyle(.white).frame(width:336,height:46).background(ReferenceStyle.blue,in:RoundedRectangle(cornerRadius:16)).compositingGroup().shadow(color:Color(red:24/255,green:153/255,blue:214/255),radius:0,y:4).frame(height:50,alignment:.top))).frame(width:336,height:50).padding(.top,32)
                 ReferencePracticeControl(label:"下次再说",identifier:"guest-profile-later",enabled:true,action:later,face:AnyView(Text("下次再说").font(ReferenceStyle.font(15,bold:true)).foregroundStyle(ReferenceStyle.blue))).frame(width:336,height:32).padding(.top,20)
                 Spacer(minLength:0)
             }.frame(width:384,height:402.5).background(.white,in:RoundedRectangle(cornerRadius:16))

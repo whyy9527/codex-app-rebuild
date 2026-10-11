@@ -40,14 +40,15 @@ struct ReferenceHome: View {
             HStack(spacing: 0) {
                 sidebar.frame(width: geometry.size.width >= 1180 ? 254 : 88)
                 Rectangle().fill(ReferenceStyle.border).frame(width: 2)
-                if model.destination == "Settings" { ReferenceSettings(model: model) }
+                if model.destination == "Guest avatar" { ReferenceGuestAvatar(savedSkin:Binding(get:{model.preferences.avatarSkin},set:{model.preferences.avatarSkin=$0;model.savePreferences()}),sidebarWidth:geometry.size.width >= 1180 ? 256 : 90,leave:{model.destination="Guest achievements error"}) }
+                else if model.destination == "Settings" { ReferenceSettings(model: model) }
                 else if model.destination == "Guest achievements error" { ReferenceGuestAchievementsError() }
                 else if model.destination == "Forgot password" { ReferenceForgotPassword() }
                 else {
                 ScrollView {
                     if model.destination == "Pronunciation" { ReferencePronunciation(model: model).padding(.horizontal, 24).padding(.top, 43) }
-                    else if model.destination == "Leaderboards" { ReferenceLeaderboard(selectedStatus:selectedLeaderboardStatus,practice:{ model.beginGeneralPractice() },profile:{ model.destination = "Guest profile"; if !guestIntroductionSeen { guestIntroduction = true; guestIntroductionSeen = true } }).padding(.horizontal,24).padding(.top,24) }
-                    else if model.destination == "Guest profile" { ReferenceGuestProfile(achievements:{model.destination = "Guest achievements error"}).padding(.horizontal,24).padding(.top,24) }
+                    else if model.destination == "Leaderboards" { ReferenceLeaderboard(selectedStatus:selectedLeaderboardStatus,practice:{ model.beginGeneralPractice() },profile:{ model.destination = "Guest profile"; if model.preferences.avatarSkin == nil && !guestIntroductionSeen { guestIntroduction = true; guestIntroductionSeen = true } }).padding(.horizontal,24).padding(.top,24) }
+                    else if model.destination == "Guest profile" { ReferenceGuestProfile(avatar:{model.destination="Guest avatar"},achievements:{model.destination = "Guest achievements error"}).padding(.horizontal,24).padding(.top,24) }
                     else if model.destination == "Shop" { ReferenceShop(gems: chestOpened ? (pathChest?.afterGems ?? homeSnapshot?.gems ?? 0) : (homeSnapshot?.gems ?? 0), create: { authentication = "profile" }).padding(.top,40) }
                     else if model.destination == "Quests" { ReferenceQuests(snapshot: homeSnapshot).padding(.horizontal, 24).padding(.top, 24) }
                     else if model.destination == "Guidebook" { ReferenceGuidebook(model: model).padding(.horizontal, 24).padding(.top, 48) }
@@ -70,7 +71,7 @@ struct ReferenceHome: View {
                 if showingLegendary { ReferenceLegendary(hearts:model.progress.hearts,start:{ showingLegendary = false; showingPathProfile = true },quit:{ showingLegendary = false }).zIndex(19) }
                 if showingPathProfile { ReferencePathProfile(close: { showingPathProfile = false }).frame(width: geometry.size.width, height: geometry.size.height).zIndex(20) }
                 if moreOpen { moreMenu.offset(x: geometry.size.width >= 1180 ? 238 : 72, y: 438).zIndex(10) }
-                if guestIntroduction { ReferenceGuestProfileIntroduction(later:{guestIntroduction = false}).frame(width:geometry.size.width,height:geometry.size.height).zIndex(29) }
+                if guestIntroduction { ReferenceGuestProfileIntroduction(start:{guestIntroduction=false;model.destination="Guest avatar"},later:{guestIntroduction = false}).frame(width:geometry.size.width,height:geometry.size.height).zIndex(29) }
                 if authentication == "profile" { ReferenceRegistration(close:{ authentication = nil },showLogin:{ authentication = "login" }).zIndex(30) }
                 if authentication == "login" { ReferenceLogin(close:{ authentication = nil },signup:{ authentication = "profile" },forgot:{ authentication = nil; model.destination = "Forgot password" }).zIndex(30) }
             }

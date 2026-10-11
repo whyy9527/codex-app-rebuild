@@ -1,0 +1,40 @@
+{
+  "revision": "english-v58",
+  "requirements": 4303,
+  "parent_requirements_preserved": 3855,
+  "new_requirements": 448,
+  "actual_native_states": 21,
+  "source_projection": {
+    "pass": 442,
+    "new_pending": 6
+  },
+  "flow_validation": {
+    "pass": 76,
+    "fail": 0
+  },
+  "native_final": {
+    "not_run": 3787,
+    "fail": 92,
+    "pass": 331,
+    "unavailable": 93
+  },
+  "profile_regression": {
+    "not_run": 4106,
+    "fail": 10,
+    "pass": 93,
+    "unavailable": 94
+  },
+  "same_binary_sha256": "c0c1a581d5f37a68c07a2ec03ab70ca050e14655794e83a1d1b482380753c57c",
+  "checks": [
+    "build04 and30corechecks",
+    "actual15skin selections",
+    "actual saved1 survives restart/discard",
+    "freeze byte repeat",
+    "10publicSVG/PNG and45canvas hashes"
+  ],
+  "limits": [
+    "All6compared screenshots fail; remaining inspected states are not extra source image passes",
+    "Static source-state previews do not reproduce animated renderer or other categories",
+    "No acoustic or RSI causal benefit claim"
+  ]
+}
