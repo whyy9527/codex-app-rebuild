@@ -186,7 +186,8 @@ struct LearningView: View {
     }
     @ViewBuilder private func lessonPage(_ lesson: Lesson) -> some View {
         if lesson.complete, let page = model.settlement?.current {
-            ReferenceSettlement(page: page, mistakesMade: lesson.mistakesMade, advance: model.advanceSettlement)
+            ReferenceSettlement(page: page, mistakesMade: lesson.mistakesMade, advance: model.advanceSettlement,
+                                review: lesson.resultReviewEntries.isEmpty ? nil : { showingResultReview = true })
         } else if model.entryPending, let entry = lesson.definition.entry {
             VStack(spacing: 32) {
                 Spacer()

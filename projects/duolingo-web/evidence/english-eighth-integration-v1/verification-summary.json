@@ -1,0 +1,122 @@
+{
+  "native": {
+    "native-baseline": {
+      "states": 41,
+      "failure": null,
+      "binary_sha256": "abca7e56ac69c5f22cba56a22afe13b53341d55204ef271710e62ccf0acb7558",
+      "counts": {
+        "not_run": 2171,
+        "pass": 133,
+        "fail": 17
+      },
+      "failed_requirements": [
+        "home-v2-copy-11",
+        "home-v2-copy-12",
+        "home-v2-copy-15",
+        "home-v2-copy-16",
+        "quests-text-3",
+        "quests-whole-image",
+        "level-practice-review-open-whole-image-image_pixels",
+        "level-practice-review-long-expanded-answer-element_geometry",
+        "level-practice-review-long-expanded-whole-image-image_pixels",
+        "eighth-score-progress-element_geometry",
+        "eighth-score-progress-image_pixels",
+        "eighth-boost-reward-element_geometry",
+        "eighth-boost-reward-image_pixels",
+        "eighth-legendary-offer-element_geometry",
+        "eighth-legendary-offer-image_pixels",
+        "eighth-profile-element_geometry",
+        "eighth-profile-image_pixels"
+      ]
+    },
+    "native-final": {
+      "states": 41,
+      "failure": null,
+      "binary_sha256": "11630f310252c52f4c9a767b8f3e7f692d321c424e3391901bfccf9f9d9181cb",
+      "counts": {
+        "not_run": 2171,
+        "pass": 133,
+        "fail": 17
+      },
+      "failed_requirements": [
+        "home-v2-copy-11",
+        "home-v2-copy-12",
+        "home-v2-copy-15",
+        "home-v2-copy-16",
+        "quests-text-3",
+        "quests-whole-image",
+        "level-practice-review-open-whole-image-image_pixels",
+        "level-practice-review-long-expanded-answer-element_geometry",
+        "level-practice-review-long-expanded-whole-image-image_pixels",
+        "eighth-score-progress-element_geometry",
+        "eighth-score-progress-image_pixels",
+        "eighth-boost-reward-element_geometry",
+        "eighth-boost-reward-image_pixels",
+        "eighth-legendary-offer-element_geometry",
+        "eighth-legendary-offer-image_pixels",
+        "eighth-profile-element_geometry",
+        "eighth-profile-image_pixels"
+      ]
+    },
+    "regression-current": {
+      "states": 44,
+      "failure": null,
+      "binary_sha256": "11630f310252c52f4c9a767b8f3e7f692d321c424e3391901bfccf9f9d9181cb",
+      "counts": {
+        "not_run": 2167,
+        "pass": 147,
+        "fail": 7
+      },
+      "failed_requirements": [
+        "home-v2-copy-11",
+        "home-v2-copy-12",
+        "home-v2-copy-15",
+        "home-v2-copy-16",
+        "quests-whole-image",
+        "current-practice-review-open-whole-image-image_pixels",
+        "current-practice-review-speech-expanded-whole-image-image_pixels"
+      ]
+    },
+    "regression-error": {
+      "states": 49,
+      "failure": null,
+      "binary_sha256": "11630f310252c52f4c9a767b8f3e7f692d321c424e3391901bfccf9f9d9181cb",
+      "counts": {
+        "not_run": 2099,
+        "pass": 212,
+        "fail": 10
+      },
+      "failed_requirements": [
+        "home-v2-copy-11",
+        "home-v2-copy-12",
+        "home-v2-copy-15",
+        "home-v2-copy-16",
+        "quests-whole-image",
+        "error-practice-review-open-whole-image-image_pixels",
+        "error-practice-review-open-card-background-pixel_color",
+        "error-practice-review-wrong-expanded-whole-image-image_pixels",
+        "error-practice-review-wrong-expanded-card-background-pixel_color",
+        "error-practice-review-correction-expanded-whole-image-image_pixels"
+      ]
+    }
+  },
+  "checks": {
+    "swift_business": 28,
+    "python": 56,
+    "node": 14,
+    "resources_sha_verified": 26,
+    "source_contract": {
+      "pass_count": 508,
+      "fail": 0,
+      "not_run": 1799,
+      "unavailable": 14
+    }
+  },
+  "limitations": [
+    "No acoustic output verification in this batch",
+    "No new RSI ablation or benefit claim",
+    "Default general practice review metadata still absent",
+    "Eighth question frontend contracts not all frozen",
+    "Unlocked chest, legendary start, normal oral and adaptive choice remain frontier"
+  ]
+}

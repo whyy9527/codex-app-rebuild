@@ -730,6 +730,31 @@ func actualErrorResultHistory() throws {
     print("PASS actual 18-card history preserves wrong coffee and corrected hot separately")
 }
 
+func actualEighthCourse() throws {
+    let source = try course(fixture: "fixture-reference-en-zh-v12.json")
+    let old = try course(fixture: "fixture-reference-en-zh-v11.json")
+    try check(Array(source.lessons.prefix(7)) == old.lessons, "New default rewrote old seven lessons")
+    var lesson = Lesson(course: source, lessonIndex: 7, hearts: 5)
+    var graded = 0
+    while !lesson.complete && graded < 20 {
+        if lesson.deferredSpeech != nil { lesson.declineSpeech(); lesson.advance(); continue }
+        let q = lesson.question
+        switch q.kind {
+        case .choice: lesson.choose(q.answer); lesson.submit()
+        case .wordTiles: for id in q.answerWords { lesson.addWord(id) }; lesson.submit()
+        case .textEntry: lesson.enterText(q.answer); lesson.submit()
+        case .matching: for p in q.pairs { lesson.matchLeft(p.id); lesson.matchRight(p.id) }
+        }
+        try check(lesson.feedback == true, "Actual eighth answer rejected")
+        graded += 1; lesson.advance()
+    }
+    let entries = lesson.resultReviewEntries
+    try check(lesson.complete && graded == 12 && entries.count == 13 && lesson.hearts == 5, "Actual eighth trajectory changed")
+    try check(entries[1].declined && entries[1].accepted == nil && entries[7].answer == "I'd like coffee with milk and sugar.", "Speech or full reverse answer lost")
+    try check(lesson.definition.settlement?.map(\.kind) == ["result","score_progress","boost","legendary","profile"], "Observed post-result sequence lost")
+    print("PASS default eighth course retains seven lessons, twelve accepted, deferred speech and thirteen-card history")
+}
+
 do {
     try mistakeReview()
     try persistence()
@@ -758,7 +783,8 @@ do {
     try actualListeningDeclineReplacement()
     try actualCurrentResultHistory()
     try actualErrorResultHistory()
-    print("27 business checks passed; core layer only")
+    try actualEighthCourse()
+    print("28 business checks passed; core layer only")
 } catch {
     FileHandle.standardError.write(Data(("FAIL " + String(describing: error) + "\n").utf8))
     exit(1)

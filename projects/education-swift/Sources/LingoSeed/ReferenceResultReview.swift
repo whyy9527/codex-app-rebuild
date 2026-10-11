@@ -47,6 +47,9 @@ struct ReferenceResultReview: View {
         }
     }
     private func card(_ entry: ResultReviewEntry, index: Int, viewportHeight: CGFloat) -> some View {
+        let headerHeight = max(25, textHeight(entry.presentation.title, width: 100))
+        let promptHeight = textHeight(entry.presentation.prompt, width: 135)
+        let anchorTop = 15 + headerHeight + 15
         let wrong = entry.accepted == false
         let cardFill = wrong ? Color(red: 1, green: 223/255, blue: 224/255) : fill
         let cardInk = wrong ? Color(red: 234/255, green: 43/255, blue: 43/255) : ink
@@ -58,10 +61,10 @@ struct ReferenceResultReview: View {
                         RoundedRectangle(cornerRadius: 10, style: .circular).fill(cardFill)
                         VStack(alignment: .leading, spacing: 15) {
                             Text(entry.presentation.title).font(ReferenceStyle.font(17)).frame(width: 100, alignment: .leading)
-                                .fixedSize(horizontal: false, vertical: true)
+                                .frame(height: headerHeight, alignment: .topLeading)
                             if !entry.presentation.prompt.isEmpty {
                                 Text(entry.presentation.prompt).font(ReferenceStyle.font(17, weight: 400))
-                                    .frame(width: 135, alignment: .leading).fixedSize(horizontal: false, vertical: true)
+                                    .frame(width: 135, height: promptHeight, alignment: .topLeading)
                             }
                         }.foregroundStyle(cardInk).padding(15)
                         ReferenceStyle.image(wrong ? "en-result-review-wrong" : "en-result-review-check").resizable().frame(width: wrong ? 10 : 12, height: wrong ? 10 : 12)
@@ -85,12 +88,21 @@ struct ReferenceResultReview: View {
         }.overlay(alignment: .topLeading) {
             if expanded == entry.id {
                 GeometryReader { position in
-                    let below = position.frame(in: .named("review-viewport")).minY + 78 + 136 <= viewportHeight
+                    let belowOffset = anchorTop + promptHeight + 8
+                    let below = position.frame(in: .named("review-viewport")).minY + belowOffset + 136 <= viewportHeight - 8
                     answerTooltip(entry, below: below)
-                        .offset(x: (165 - tooltipWidth(entry)) / 2, y: below ? 78 : -74)
+                        .offset(x: ((165 - tooltipWidth(entry)) / 2).rounded(), y: below ? belowOffset : anchorTop - 8 - 136)
                 }
             }
         }
+    }
+    private func textHeight(_ text: String, width: CGFloat) -> CGFloat {
+        guard !text.isEmpty else { return 0 }
+        let paragraph = NSMutableParagraphStyle()
+        paragraph.minimumLineHeight = 20; paragraph.maximumLineHeight = 20
+        let bounds = (text as NSString).boundingRect(with: NSSize(width: width, height: .greatestFiniteMagnitude),
+            options: [.usesLineFragmentOrigin], attributes: [.font: ReferenceStyle.nativeFont(17), .paragraphStyle: paragraph])
+        return ceil(bounds.height / 20) * 20
     }
     private func tooltipWidth(_ entry: ResultReviewEntry) -> CGFloat {
         let font = ReferenceStyle.nativeFont(17, weight: 400)
@@ -111,7 +123,7 @@ struct ReferenceResultReview: View {
                     p.addLine(to: CGPoint(x: 7, y: below ? 0 : 7))
                     p.addLine(to: CGPoint(x: 14, y: below ? 7 : 0))
                 }.fill(.white).frame(width: 14, height: 7).offset(y: below ? -6 : 6)
-            }.accessibilityIdentifier("result-review-answer")
+            }.accessibilityElement(children: .contain).accessibilityIdentifier("result-review-answer")
     }
     private func answerGroup(_ label: String, value: String) -> some View {
         VStack(alignment: .leading, spacing: 0) {

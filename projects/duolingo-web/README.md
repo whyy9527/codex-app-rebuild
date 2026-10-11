@@ -1,6 +1,6 @@
 # Duolingo 网页参考案例
 
-当前默认是中文母语→英语v10七课102道评分题，并接原版发音页及发音练习。共享前端v22共1702项，仍未达到1:1；当前运行证据与复跑见[第二次探索及配对修复](evidence/english-pronunciation-matching-v1/README.md)，完整进展见[Roadmap](../../docs/ROADMAP.md)。下文首批v2及其他旧批次保留历史状态，不代表当前默认交付。
+当前默认中文母语→英语v12八课115题，共同前端v38有2321项；第八课轨迹133pass/17fail/2171not_run，仍未1:1。[最新实际证据与复跑](evidence/english-eighth-integration-v1/README.md)，完整进展见[Roadmap](../../docs/ROADMAP.md)。历史批次不代表当前构建。
 
 > 2026-10-10 更正：下文是历史局部验收记录，不能证明 1:1 复刻完成。用户指出探索不足、前端需求未进入 E2E、自行增加替代内容限制。现已撤回产品完成结论；当前原生 Goal 要求修正探索与模具。原始测试与失败证据保留。
 

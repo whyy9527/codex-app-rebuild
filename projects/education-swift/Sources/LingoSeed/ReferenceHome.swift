@@ -132,9 +132,10 @@ struct ReferenceHome: View {
         let total = node?.lessonCount ?? model.course.home?.firstNodeLessonCount ?? 4
         let nodeDone = node?.lessonIDs.filter { model.progress.completedLessons[model.course.id, default: []].contains($0) }.count ?? completed
         let next = model.course.lessons.indices.first { !model.progress.isCompleted(model.course, index: $0) }
-        let activeIndex = firstNodeCompleted ? 1 : 0
+        let secondComplete = model.course.pathNodes?.dropFirst().first.map { $0.lessonIDs.count == $0.lessonCount && $0.lessonIDs.allSatisfy { model.progress.completedLessons[model.course.id, default: []].contains($0) } } ?? false
+        let activeIndex = firstNodeCompleted ? (secondComplete ? 2 : 1) : 0
         let active = index == activeIndex
-        let finished = firstNodeCompleted && index == 0
+        let finished = node?.kind == "lesson" && nodeDone >= total
         return ZStack {
             if active {
                 Circle().stroke(ReferenceStyle.border, lineWidth: 7).padding(3.5)

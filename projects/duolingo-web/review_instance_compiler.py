@@ -55,6 +55,11 @@ def compile_question(c, effect, raw, row, card, question_id):
             # Exact canonical answer, including punctuation, comes from current public data.
             answer = raw.get('correctSolutions', [raw['prompt']])[0]
         audio = [q['audioResource']] if raw['type'] == 'listenTap' else []
+    elif raw['type'] == 'completeReverseTranslation':
+        answer = ''.join(t['text'] for t in raw['displayTokens'])
+        assert row['text_input']['value'] == answer and title == '完成翻译' and prompt == raw['prompt']
+        q.update(kind='text_entry', hint=raw['prompt'], answer=answer)
+        audio = []
     elif raw['type'] == 'listen':
         assert row['text_input']['value'] == raw['prompt']
         q.update(kind='text_entry', answer=raw['prompt'])

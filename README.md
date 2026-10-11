@@ -4,7 +4,7 @@
 
 探索原产品，把用户可观察的业务与前端需求变成可独立运行的代码化模具，用历史反馈改进探索，再让 Codex 重建 App。仓库保持私有；改名不代表开源或发布。
 
-当前默认夹具为 `fixture-reference-en-zh-v11.json`：七课102道评分题，保留实际口语暂缓、听力暂缓、插入/替换题、独立输入偏好、跳过重练及结算路径。第七课15题与三页结算已原生走通，后续课程继续探索；不会把学完已编译课程标成整课程完成。
+当前默认夹具为 `fixture-reference-en-zh-v12.json`：八课115道评分题，保留前七课，补实际第八单元12题、口语暂缓、13卡回顾及后续结算和真实重启。仍未达到1:1：本轨迹前端133pass/17fail/2171not_run，结算图形、按钮及解锁宝箱等继续修复；不能把学完已编译课程标成整课程完成。[当前证据与复跑](projects/duolingo-web/evidence/english-eighth-integration-v1/README.md)。
 
 特别任务页已从原版探索并替换英文占位内容，10文案/5几何通过；整图仍失败；独立练习入口随后接入，见下方新原生回执。[任务页、新发现与复跑](projects/duolingo-web/evidence/english-quests-v1/README.md)。
 

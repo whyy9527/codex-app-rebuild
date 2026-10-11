@@ -248,3 +248,8 @@ LessonDefinition的可选listeningDeclineReplacements由实例提供已观察替
 
 
 当前题驱动从真实可见facts识别已观察的等级复习入口，入口动作计入显式步预算并保存独立回执。`completeReverseTranslation`已观察的全句文本框模式使用全部公开displayTokens，而不是照listenComplete仅填isBlank；类型与当前提示独立核验，之后实际接受反馈才记覆盖。原版新13卡/长浮层冻结v37供下一批候选接入，未访问仍not_run。成绩回顾Escape通过实际关闭按钮的系统取消快捷键处理；仅挂未获响应的覆盖视图事件曾实测失败。[源与原生证据](../projects/duolingo-web/evidence/english-home-frontier-v1/README.md)。
+
+
+### 默认第八单元和未完成的前端
+
+原版13卡后实际走分数进度→经验宝→传奇邀请→建档→主页，两个Lesson完成且宝箱可打开，证明应接默认第八课，不能再作为独立演示。v12保留前七课，实际共115评分题（纠正旧102计数）；主课回顾接真实历史，8/8重启仍不标整课程完成。v38保留2298旧项追加23，共2321；41状态修改前/后均133pass/17fail/2171not_run，长浮层整图差异下降但仍失败，箭头AX边界、结算图形/按钮及解锁宝箱未齐。同一二进制17/18卡44/49状态回归，28核心/56Python/14Node及26原资源SHA通过。逐题前端、正常口语、自适应、声音与未访分支继续；不算RSI收益或完成，完整Goal active。[证据与frontier](../projects/duolingo-web/evidence/english-eighth-integration-v1/README.md)。

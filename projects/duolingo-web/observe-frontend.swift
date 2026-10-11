@@ -14,8 +14,9 @@ precondition(!FileManager.default.fileExists(atPath: progress.path), "Use a fres
 if let seedIndex = CommandLine.arguments.firstIndex(of: "--seed-progress"), seedIndex + 1 < CommandLine.arguments.count {
     try Data(contentsOf: root.appendingPathComponent(CommandLine.arguments[seedIndex + 1])).write(to: progress, options: .withoutOverwriting)
 }
+let eighthReview = CommandLine.arguments.contains("--exercise-eighth-review")
 let errorReview = CommandLine.arguments.contains("--exercise-error-review")
-let reviewInstance = errorReview ? "error-review" : "current-review"
+let reviewInstance = eighthReview ? "level-review" : errorReview ? "error-review" : "current-review"
 let childLog = output.appendingPathComponent("child.log")
 FileManager.default.createFile(atPath: childLog.path, contents: nil)
 let fixture = CommandLine.arguments.count > 2 ? CommandLine.arguments[2] : "projects/duolingo-web/fixture-reference-v6.json"
@@ -191,17 +192,22 @@ try capture("home-window")
 if CommandLine.arguments.contains("--observe-quests") {
     try press("nav-quests"); Thread.sleep(forTimeInterval: 0.5)
     states["quests"] = observe(); try capture("quests")
-    if CommandLine.arguments.contains("--exercise-current-review") || errorReview {
-        let practiceURL = root.appendingPathComponent("projects/duolingo-web/fixture-reference-en-zh-" + reviewInstance + "-v1.json")
+    if CommandLine.arguments.contains("--exercise-current-review") || errorReview || eighthReview {
+        let practiceURL = root.appendingPathComponent(eighthReview ? fixture : "projects/duolingo-web/fixture-reference-en-zh-" + reviewInstance + "-v1.json")
         let data = try JSONSerialization.jsonObject(with: Data(contentsOf: practiceURL)) as! [String: Any]
         let course = (data["data"] as! [String: Any])["candidate_course"] as! [String: Any]
-        let definition = (course["lessons"] as! [[String: Any]])[0]
+        let definitions = course["lessons"] as! [[String: Any]]
+        let definition = eighthReview ? definitions.last! : definitions[0]
         let questions = definition["questions"] as! [[String: Any]]
         let speech = (definition["deferredSpeech"] as! [[String: Any]])[0]
         var failure: String?
         func saveReviewState(_ key: String) throws { states[key] = observe(); try capture(key) }
         do {
-            try press("quests-practice")
+            if eighthReview {
+                try press("nav-learn"); try waitFor("start-lesson-1")
+                try press("start-lesson-1"); try waitFor("start-lesson-confirm"); try press("start-lesson-confirm")
+                try waitFor("lesson-entry"); try saveReviewState("eighth-entry"); try press("lesson-entry-start")
+            } else { try press("quests-practice") }
             for q in questions {
                 let key = q["id"] as! String
                 if key == speech["beforeQuestionID"] as? String {
@@ -240,9 +246,9 @@ if CommandLine.arguments.contains("--observe-quests") {
             }
             try waitFor("lesson-complete", value: errorReview ? "你莫不是特工？" : "完美！"); try saveReviewState(reviewInstance+"-result")
             try press("settlement-secondary"); try waitFor("result-review-title")
-            try saveReviewState((errorReview ? "error" : "current")+"-practice-review-open")
-            try press(errorReview ? "review-card-1" : "review-card-8"); try waitFor("result-review-answer")
-            try saveReviewState(errorReview ? "error-practice-review-wrong-expanded" : "current-practice-review-speech-expanded")
+            try saveReviewState((eighthReview ? "level" : errorReview ? "error" : "current")+"-practice-review-open")
+            try press(eighthReview ? "review-card-7" : errorReview ? "review-card-1" : "review-card-8"); try waitFor("result-review-answer")
+            try saveReviewState(eighthReview ? "level-practice-review-long-expanded" : errorReview ? "error-practice-review-wrong-expanded" : "current-practice-review-speech-expanded")
             guard movePointer(to: "review-card-8") else { throw ProbeError(message: "Cannot target owned review scroll") }
             func scrollReview(_ amount: Int32, returned: Bool) throws {
                 guard let event = CGEvent(scrollWheelEvent2Source: nil, units: .pixel, wheelCount: 1, wheel1: amount, wheel2: 0, wheel3: 0),
@@ -285,8 +291,18 @@ if CommandLine.arguments.contains("--observe-quests") {
             } else { try press("result-review-close") }
             try waitFor("lesson-complete")
             try saveReviewState(reviewInstance+"-closed")
-            try press("settlement-retry"); try waitFor("question-prompt", value: reviewInstance+"-q0")
-            try saveReviewState(reviewInstance+"-retried")
+            if eighthReview {
+                for (key, title) in [("eighth-score-progress","离提升你的英语分数又近了一步！"),("eighth-boost-reward","到手一个经验宝！"),("eighth-legendary-offer","来向我们展示你的传奇实力吧"),("eighth-profile","来创建你的个人档案吧！")] {
+                    try press("settlement-continue"); try waitFor("settlement-title", value: title); try saveReviewState(key)
+                }
+                try press("settlement-continue"); try waitFor("course-entry"); try saveReviewState("eighth-home")
+                try Data(contentsOf:progress).write(to:output.appendingPathComponent("progress-after.json"))
+                child.terminate(); child.waitUntilExit(); child = try launchChild(); app = AXUIElementCreateApplication(child.processIdentifier)
+                try waitFor("course-entry"); configureWindow(); try saveReviewState("eighth-home-restart")
+            } else {
+                try press("settlement-retry"); try waitFor("question-prompt", value: reviewInstance+"-q0")
+                try saveReviewState(reviewInstance+"-retried")
+            }
         } catch {
             failure = String(describing: error); states["failure-boundary"] = observe(); try? capture("failure-boundary")
         }
@@ -295,7 +311,7 @@ if CommandLine.arguments.contains("--observe-quests") {
             "candidate_binary_sha256":candidateSHA, "fixture_sha256":fixtureSHA,
             "general_fixture_sha256":SHA256.hash(data:try Data(contentsOf:practiceURL)).map{String(format:"%02x",$0)}.joined(),
             "observed_at":ISO8601DateFormatter().string(from:Date()), "failure":failure as Any,
-            "action":errorReview ? "Actual first wrong coffee, corrected hot, distinct 18 cards, scroll, close and retry" : "Actual 16-question instance, speech decline, 17-card review, expanded speech, close and retry",
+            "action":eighthReview ? "Actual default eighth lesson, entry, speech decline, twelve accepted, thirteen cards, long answer, post-result pages, home and real restart" : errorReview ? "Actual first wrong coffee, corrected hot, distinct 18 cards, scroll, close and retry" : "Actual 16-question instance, speech decline, 17-card review, expanded speech, close and retry",
             "limitations":["Explicit observed instance; retry uses that instance, not verified adaptive selection; no acoustic equality proof"]]
         try JSONSerialization.data(withJSONObject:receipt, options:[.prettyPrinted,.sortedKeys]).write(to:output.appendingPathComponent("observed.json"))
         if let failure { throw ProbeError(message: failure) }

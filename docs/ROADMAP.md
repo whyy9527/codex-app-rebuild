@@ -308,3 +308,8 @@ v15保留1489项并增8项真实原版断言。独立原生radio2实际点击及
 ### 改换等级复习入口与Escape取消
 
 上一轮为实际进展。本轮按多次通用练习缺listenIsolation的历史改换路径：Practice锁定，4/4开始重复建档提示，直接读取实际提供的/lesson显示等级复习入口。当前题驱动接入口，先speak未覆盖、实际暂缓，再遇completeReverseTranslation停下；按真实空文本框和截图修完整句模式，4该类型真实接受，共12接受1暂缓13卡，仍无目标题。采到长浮层274.07×136且距卡顶103点，短样本78点规则不通用。v36新增Escape2项，基线及onExitCommand各49状态false，按钮系统取消快捷键最终49状态true；v36全212pass10fail1988not_run，旧17卡同二进制44状态147pass7fail2056not_run。v37继续冻结13卡/长浮层88项共2298，候选88全not_run；源485pass0fail1799not_run14unavailable。构建/27核心/56Python/14Node及双冻结复现完成，无新消融/RSI收益或声学结论。下一批优先接新等级复习与默认成绩元数据，修长锚点，再继续其它入口/未知题型、正常口语和整图声音；完整Goal active。[证据、frontier及复跑](../projects/duolingo-web/evidence/english-home-frontier-v1/README.md)。
+
+
+### 默认第八单元和未完成的前端
+
+原版13卡后实际走分数进度→经验宝→传奇邀请→建档→主页，两个Lesson完成且宝箱可打开，证明应接默认第八课，不能再作为独立演示。v12保留前七课，实际共115评分题（纠正旧102计数）；主课回顾接真实历史，8/8重启仍不标整课程完成。v38保留2298旧项追加23，共2321；41状态修改前/后均133pass/17fail/2171not_run，长浮层整图差异下降但仍失败，箭头AX边界、结算图形/按钮及解锁宝箱未齐。同一二进制17/18卡44/49状态回归，28核心/56Python/14Node及26原资源SHA通过。逐题前端、正常口语、自适应、声音与未访分支继续；不算RSI收益或完成，完整Goal active。[证据与frontier](../projects/duolingo-web/evidence/english-eighth-integration-v1/README.md)。
