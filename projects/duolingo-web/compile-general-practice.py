@@ -122,16 +122,19 @@ for number, filename, character_index in [(13,'replacement-answer.json',15),(14,
     assert not row['rejected']
     questions.append(dict(id=f'general-practice-replacement{number}', kind='text_entry', sourceType='translate', sourceLanguage='zh', prompt=heading(row['before'],1), hint=row['prompts'][0], answer=row['input'], explanation='', correctFeedback=heading(row['feedback'],2), indicator='挑战题', skipLabel='跳过', characterResource=c.resource(source[character_index]['content']['character']['image']['svg'],'image')))
 assert len(questions) == 16
+reward = read('after-settlement.json')
+heart_resources = [c.resource(m['src'], 'home') for m in reward['media']]
+assert len(heart_resources) == 5
 result = read('settlement-visual.json')
 lesson = dict(id='general-practice-1', title='英语练习', questions=questions, initialKeyboardForTiles=True,
     deferredSpeech=[dict(id='general-practice-speech', beforeQuestionID='general-practice-inserted', title='朗读下面的句子', phrase=speech['prompt'], audioResource=c.resource(speech['tts'],'speech'), declineLabel='现在不做口语题', closedTitle='麦克风已关闭', closedBody='将在 15 分钟后恢复')],
     interludes=[dict(id='general-practice-challenge-intro', afterQuestionID='general-practice-q12', text='哎哟不错哦！要不要玩点刺激的？')],
     reviewInterlude=dict(id='general-practice-review-intro', afterQuestionID=questions[-1]['id'], text='一起来复习一下之前你不太熟练的部分吧！'),
     settlement=[dict(id='general-practice-result', kind='result', title=result['title'], body=result['body'], continueLabel='继续', secondaryLabel='回顾本单元', retryLabel='重新练习', experience=result['experience'], observedAccuracy=result['accuracy'], observedMistakes=1, accuracyLabel='棒棒哒！'),
-                dict(id='general-practice-heart', kind='practice_heart', title='你又获取了一颗红心！', body='学习新单元需要红心！', continueLabel='继续'),
+                dict(id='general-practice-heart', kind='practice_heart', title='你又获取了一颗红心！', body='学习新单元需要红心！', continueLabel='继续', secondaryLabel='回顾本单元', retryLabel='重新练习', heartResources=heart_resources),
                 dict(id='general-practice-profile', kind='profile', title='来创建你的个人档案吧！', body='创建档案就能保存学习进度，随时都可以继续免费学习后续内容。', continueLabel='稍后再说', secondaryLabel='创建档案')])
 fixture = dict(provenance=dict(source='Actual GLOBAL_PRACTICE 16 graded, speech-decline insertion, challenge replacements, one wrong and review, result and heart reward', evidence=['projects/duolingo-web/evidence/english-general-practice-v1/README.md','projects/duolingo-web/evidence/english-general-practice-native-v1/source-probe/wrong-assist-exit.json'], unknown='Adaptive selection, normal oral, new instances, general reward cap/score rules, full pixels and actual acoustic equality; original SVGs for visually identified inserted/replacement characters are not proof of exact animation frames.'),
     data=dict(candidate_course=dict(id='duolingo-en-zh-global-practice', title='英语练习', speechLanguage='en', interfaceLanguage='zh', mistakeHeartCost=0, lessons=[lesson])))
-for path, value in [(BASE/'fixture-reference-en-zh-general-practice-v1.json',fixture), (BUNDLE/'general-practice.json',fixture), (BASE/'reference-assets-en-zh-general-practice-v1.json',list(c.resources.values()))]:
+for path, value in [(BASE/'fixture-reference-en-zh-general-practice-v2.json',fixture), (BUNDLE/'general-practice.json',fixture), (BASE/'reference-assets-en-zh-general-practice-v2.json',list(c.resources.values()))]:
     path.write_text(json.dumps(value,ensure_ascii=False,indent=2)+'\n')
 print(json.dumps(dict(graded_questions=len(questions), resources=len(c.resources))))

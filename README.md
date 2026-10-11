@@ -10,6 +10,8 @@
 
 独立 `/practice` 已从实际16题轨迹编译为单独Swift课程，从任务页进入，走通口语暂缓、插入/替换、故意错误更正、结算、红心奖励及真正重启。主六课保持不变；原版资源已捆绑，采集到自有应用实际输出。共同v28仍有整图等失败，不算1:1完成；实际自适应选题及正常口语等继续探索。[原版轨迹](projects/duolingo-web/evidence/english-general-practice-v1/README.md)、[原生回执、失败与复跑](projects/duolingo-web/evidence/english-general-practice-native-v1/README.md)。
 
+通用练习红心页已补原版图形与保留的底栏，普通听写改用Bea旁的白色分段播放和多行输入；v29原样保留旧要求并追加16项。最终完整回放通过，但共同前端仍89pass/55fail/1707not_run，整图全部有差异；错误共享布局的负结果保留。[展示修正、剩余差异和复跑](projects/duolingo-web/evidence/english-general-practice-presentation-v1/README.md)。
+
 共同前端契约已接入真实PNG比较，缺图不可计为通过；发音卡片进一步按浏览器实际字体、字距、卡面和按下反馈修正，整图仍失败。[当前证据与复跑](projects/duolingo-web/evidence/english-pronunciation-typography-v1/README.md)。
 
 前端契约保留旧要求并持续追加源观察；最新口语权限及发音退出分支已接入实际原生验证。反例探测区分全错直接退出与已获得正确进度后的确认，取消保持题目状态。几何、整图和声音仍有失败/未覆盖，正常录音评分与推进未完成。[最新证据、探索反例与复跑](projects/duolingo-web/evidence/english-practice-exit-v1/README.md)，逐批结果由[Roadmap](docs/ROADMAP.md)维护；不累计旧构建回执填当前未执行项。

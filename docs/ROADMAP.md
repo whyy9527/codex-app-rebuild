@@ -269,3 +269,8 @@ v15保留1489项并增8项真实原版断言。独立原生radio2实际点击及
 ### 独立练习Swift轨迹与前端负结果
 
 从实际16评分题编译独立Course，接任务入口、口语暂缓插题/挑战替换/一次错误重练、实际结算与红心，47原生状态走通并真正重启，主六课不变。48原版资源和实际播放SVG帧入库，自有输出采集仅证明动作期有声音，不证明声学一致。API参考答案误生成键盘入口被核心/原生共同抓住，按源可见控件修复；AXPress未切换、资源重渲染漂移、private构建和间距漏计失败均保留。56 Python/4 Node/24核心/构建通过，发音52状态回归退出0但共同契约179/32/1624仍失败。最终通用轨迹全量81pass/47fail/1707not_run，新增46pass/42fail、40整图全fail；输入框修到原版精确矩形不能代替1:1。源另发现新实例、听力暂缓后插入assist及答对后退出确认；候选暂缓标题/实例选择、角色图形、正常口语和真实自主探索效果仍待补齐。完整Goal active，原论文及负消融保留。[源、实现、失败、frontier和复跑](../projects/duolingo-web/evidence/english-general-practice-native-v1/README.md)。
+
+
+### 通用奖励图形与普通听写展示
+
+核对既有源固定参考及11秒后快照，补五心图形和奖励页保留底栏，v29原样保留1835旧项增16。通用夹具v2/50原版资源，旧v1及主课v11保留。错误地共享listenTap蓝控件使普通listen整图误差上升，保留native-01负结果后按源PNG拆成Bea Rive/白色分段播放/多行输入，native-02完整47状态与真实重启走通。红心整图RGB约3.76→0.70，听写约4.51→2.00仍fail；五心0.25点及回顾静态角色等新失败原样保留。89pass/55fail/1707not_run/0unavailable，新16为7pass9fail；40练习整图全fail。构建/24核心/56 Python通过。听力暂缓入口仍缺、回顾/重练实际语义、字体/动画/进度与声学等继续，完整Goal active，未宣称RSI收益。[证据与复跑](../projects/duolingo-web/evidence/english-general-practice-presentation-v1/README.md)。

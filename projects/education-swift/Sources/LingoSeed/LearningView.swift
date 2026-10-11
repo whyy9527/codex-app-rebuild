@@ -305,7 +305,7 @@ struct LearningView: View {
         } else if lesson.question.newWord { Text(copy("NEW WORD", "新单词")).font(ReferenceStyle.font(14, bold: true)).foregroundStyle(.purple) }
         // Source challenge-header: 32px/40px. Translation's character row follows
         // the heading directly; the old shared 28-point gap displaced it.
-        VStack(alignment: .leading, spacing: ["translate", "completeReverseTranslation"].contains(lesson.question.sourceType ?? "") ? 0 : model.isGeneralPractice && lesson.question.sourceType == "listenTap" ? 23.5 : 28) {
+        VStack(alignment: .leading, spacing: ["translate", "completeReverseTranslation"].contains(lesson.question.sourceType ?? "") || (model.isGeneralPractice && lesson.question.sourceType == "listen") ? 0 : model.isGeneralPractice && lesson.question.sourceType == "listenTap" ? 23.5 : 28) {
         Text(lesson.question.kind == .wordTiles && lesson.question.hint == nil && lesson.question.sourceType == nil ? "Build this phrase" : lesson.displayedPrompt).font(ReferenceStyle.font(32, bold: true))
             .frame(maxWidth: .infinity, minHeight: 40, maxHeight: 40, alignment: .leading)
             .accessibilityIdentifier("question-title").accessibilityValue(lesson.displayedPrompt)
@@ -337,6 +337,14 @@ struct LearningView: View {
                     .frame(height: size, alignment: .top)))
             .frame(width: size, height: size)
     }
+    private func splitListeningButton(slow: Bool, width: CGFloat) -> some View {
+        ReferencePracticeControl(label: slow ? "播放慢速" : "播放正常语速", identifier: slow ? "pronounce-slow" : "pronounce", enabled: true,
+            action: { model.playQuestion(slow: slow) }, face: AnyView(
+                ReferenceStyle.image(slow ? "general-listen-slow-source-frame" : "general-listen-normal-source-frame")
+                    .renderingMode(.template).resizable().frame(width: slow ? 42 : 29, height: slow ? 23.046875 : 22.5390625)
+                    .foregroundStyle(ReferenceStyle.blue).frame(width: width, height: 66)))
+            .frame(width: width, height: 66)
+    }
     @ViewBuilder private func textEntry(_ lesson: Lesson) -> some View {
         if let hint = lesson.question.hint {
             if chinese, let character = lesson.question.characterResource {
@@ -350,7 +358,28 @@ struct LearningView: View {
                 Text(hint).font(ReferenceStyle.font(20)).accessibilityIdentifier("question-hint")
             }
         }
-        if model.isGeneralPractice && lesson.question.sourceType == "listenTap" {
+        if model.isGeneralPractice && lesson.question.sourceType == "listen" {
+            HStack(spacing: 0) {
+                if let character = lesson.question.characterResource {
+                    ReferenceCharacter(resource: character, feedback: lesson.feedback).id(lesson.question.id)
+                        .frame(width: 118, height: 175)
+                }
+                HStack(spacing: 0) {
+                    splitListeningButton(slow: false, width: 80)
+                    Rectangle().fill(ReferenceStyle.border).frame(width: 2, height: 66)
+                    splitListeningButton(slow: true, width: 88)
+                }.frame(width: 170, height: 66)
+                    .background(RoundedRectangle(cornerRadius: 16, style: .circular).fill(.white))
+                    .overlay(RoundedRectangle(cornerRadius: 16, style: .circular).strokeBorder(ReferenceStyle.border, lineWidth: 2))
+                    .overlay(alignment: .leading) {
+                        ZStack {
+                            Path { p in p.move(to: CGPoint(x: 9, y: 0)); p.addLine(to: CGPoint(x: 1, y: 8)); p.addLine(to: CGPoint(x: 9, y: 16)); p.closeSubpath() }.fill(.white)
+                            Path { p in p.move(to: CGPoint(x: 9, y: 0)); p.addLine(to: CGPoint(x: 1, y: 8)); p.addLine(to: CGPoint(x: 9, y: 16)) }.stroke(ReferenceStyle.border, lineWidth: 2)
+                        }.frame(width: 10, height: 16).offset(x: -8).accessibilityHidden(true)
+                    }
+                Spacer(minLength: 0)
+            }.frame(height: 175).padding(.leading, 10)
+        } else if model.isGeneralPractice && lesson.question.sourceType == "listenTap" {
             generalListeningControls.padding(.bottom, 46.5)
         } else if lesson.question.sourceType == "listenComplete" {
             HStack(spacing: 28) {
@@ -360,8 +389,14 @@ struct LearningView: View {
                     .buttonStyle(SeedButtonStyle(fill: .cyan)).accessibilityIdentifier("pronounce-slow").accessibilityLabel("播放慢速")
             }
         }
-        if lesson.usingKeyboard {
+        if lesson.usingKeyboard || (model.isGeneralPractice && lesson.question.sourceType == "listen") {
             ReferenceAnswerEditor(text: Binding(get: { model.lesson?.displayedInput ?? "" }, set: { model.enterText($0) }), enabled: lesson.feedback == nil)
+                .overlay(alignment: .topLeading) {
+                    if model.isGeneralPractice && lesson.displayedInput.isEmpty {
+                        Text("使用英语键入").font(ReferenceStyle.font(19, weight: 400)).foregroundStyle(ReferenceStyle.disclosureInk)
+                            .padding(.horizontal, 14).padding(.vertical, 12).allowsHitTesting(false).accessibilityHidden(true)
+                    }
+                }
                 .frame(height: 170).background(Color(white: 247/255), in: RoundedRectangle(cornerRadius: 10))
                 .overlay(RoundedRectangle(cornerRadius: 10).stroke(ReferenceStyle.border, lineWidth: 2))
         } else {

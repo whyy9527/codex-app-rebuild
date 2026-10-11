@@ -143,6 +143,7 @@ public struct LessonEntry: Codable, Equatable, Sendable, Identifiable {
     public let declineLabel: String
 }
 public struct SettlementPage: Codable, Equatable, Sendable, Identifiable {
+    public var heartResources: [String]? = nil
     public var retryLabel: String? = nil
     public let id: String
     public let kind: String

@@ -15,7 +15,9 @@ struct ReferenceSettlement: View {
             Spacer(minLength: 0)
             content.frame(maxWidth: 660).frame(maxWidth: .infinity)
             Spacer(minLength: 0)
-            if page.kind == "profile" {
+            if page.kind == "practice_heart" {
+                heartRewardFooter
+            } else if page.kind == "profile" {
                 VStack(spacing: 16) {
                     secondary
                     Button(page.continueLabel, action: advance).buttonStyle(ReferenceButton(color: ReferenceStyle.blue))
@@ -23,7 +25,7 @@ struct ReferenceSettlement: View {
                 }.frame(width: 340).padding(.bottom, 110)
             } else {
                 HStack {
-                    if ["result", "streak", "daily_quests", "gems", "achievement"].contains(page.kind) { secondary }
+                    if ["result", "streak", "daily_quests", "gems", "achievement", "practice_heart"].contains(page.kind) { secondary }
                     Spacer()
                     if let label = page.retryLabel, let retry {
                         Button(label, action: retry).buttonStyle(ReferenceButton(color: ReferenceStyle.blue))
@@ -37,6 +39,26 @@ struct ReferenceSettlement: View {
             }
         }.background(ReferenceStyle.background)
     }
+    private var heartRewardFooter: some View {
+        HStack(spacing: 0) {
+            secondary.frame(width: 150, height: 50)
+            Spacer(minLength: 0)
+            HStack(spacing: 37.1953125) {
+                if let label = page.retryLabel, let retry { rewardControl(label, id: "settlement-retry", color: ReferenceStyle.blue, action: retry) }
+                rewardControl(page.continueLabel, id: "settlement-continue", color: ReferenceStyle.green, action: advance)
+            }
+        }.padding(.horizontal, 140).offset(y: 2).frame(height: 140)
+            .overlay(alignment: .top) { Rectangle().fill(ReferenceStyle.border).frame(height: 2) }
+    }
+    private func rewardControl(_ label: String, id: String, color: Color, action: @escaping () -> Void) -> some View {
+        ReferencePracticeControl(label: label, identifier: id, enabled: true, action: action, face: AnyView(
+            Text(label).font(ReferenceStyle.font(17, bold: true)).foregroundStyle(.white)
+                .frame(width: 150, height: 46)
+                .background(RoundedRectangle(cornerRadius: 16, style: .circular).fill(color)
+                    .shadow(color: color == ReferenceStyle.green ? Color(red: 70/255, green: 163/255, blue: 2/255) : Color(red: 24/255, green: 153/255, blue: 214/255), radius: 0, y: 4))
+                .frame(height: 50, alignment: .top)))
+            .frame(width: 150, height: 50)
+    }
     @ViewBuilder private var secondary: some View {
         if let label = page.secondaryLabel {
             // Visible source affordance only; the branch is not implemented or
@@ -44,6 +66,7 @@ struct ReferenceSettlement: View {
             Text(label).font(ReferenceStyle.font(16, bold: true)).foregroundStyle(ReferenceStyle.disclosureInk)
                 .frame(minWidth: 150, minHeight: 48)
                 .overlay(RoundedRectangle(cornerRadius: 15).stroke(ReferenceStyle.border, lineWidth: 2))
+                .accessibilityIdentifier("settlement-secondary")
         }
     }
     @ViewBuilder private var content: some View {
@@ -59,6 +82,22 @@ struct ReferenceSettlement: View {
                     statistic(page.accuracyLabel ?? "超级棒", value: page.observedMistakes == mistakesMade && page.observedAccuracy != nil ? "\(page.observedAccuracy!)%" : mistakesMade == 0 && page.observedMistakes == nil ? "100%" : "—", color: ReferenceStyle.green)
                 }
             }.padding(.bottom, 36)
+        case "practice_heart":
+            ZStack(alignment: .top) {
+                HStack(spacing: 0) {
+                    ForEach(Array((page.heartResources ?? []).enumerated()), id: \.offset) { index, resource in
+                        ReferenceStyle.image(resource).resizable().frame(width: 80, height: 80)
+                            .accessibilityIdentifier("settlement-heart-" + String(index))
+                    }
+                }.offset(y: 202.75)
+                VStack(spacing: 20) {
+                    Text(page.title).font(ReferenceStyle.font(32, bold: true))
+                        .accessibilityIdentifier("settlement-title").accessibilityValue(page.title)
+                    Text(page.body ?? "").font(ReferenceStyle.font(17)).foregroundStyle(ReferenceStyle.secondaryInk)
+                }.accessibilityElement(children: .combine)
+                    .accessibilityLabel(page.title + " " + (page.body ?? ""))
+                    .offset(y: 307.75)
+            }.frame(height: 592, alignment: .top)
         case "daily_quests":
             VStack(spacing: 28) {
                 Text(page.title).font(ReferenceStyle.font(28, bold: true)).accessibilityIdentifier("settlement-title").accessibilityValue(page.title)

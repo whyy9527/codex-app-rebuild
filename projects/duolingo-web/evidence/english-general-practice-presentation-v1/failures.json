@@ -1,0 +1,25 @@
+{
+  "failures": [
+    {
+      "phase": "initial compiler run",
+      "result": "Image helper rejected d35aaqx5ub95lt heart SVG under character image prefix d2pur3iezf4d1j; compilation stopped before fixture write",
+      "fix": "Use existing static home/icon resource kind for the recorded heart SVG origin; no provider allowlist expansion"
+    },
+    {
+      "phase": "native-01 plain listen presentation",
+      "result": "Incorrectly reused listenTap blue controls and position355; whole RGB mean became worse in listen q11",
+      "evidence": "native-01/frontend-v29.json and image-delta.json",
+      "source_counterexample": "projects/duolingo-web/evidence/english-general-practice-v1/resume11-question-11-before.png shows Bea, white split playback, and multiline field below the character row",
+      "fix": "Separate plain listen from listenTap and reuse original Bea Rive and recorded speaker frames; final native-02 remains separately evaluated"
+    }
+  ],
+  "unknown": [
+    "Exact animation timestamps of the fixed source frame",
+    "Actual secondary review action; candidate remains text, role assertion reports this separately",
+    "Retry adaptive session selection beyond frozen instance",
+    "Full source/candidate acoustic equality",
+    "Original listening-decline control missing in listen/listenTap candidate; original visible affordance confirmed in existing snapshots, post-action branches still to explore",
+    "Native image geometry snapping leaves source202.75 vs actual203; font, border, fractional button positions and animation timing differ"
+  ],
+  "scope": "Presentation changes against actual existing fixed source; no new source navigation in this batch"
+}

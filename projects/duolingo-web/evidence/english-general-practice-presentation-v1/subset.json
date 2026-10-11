@@ -1,0 +1,236 @@
+{
+  "revision": "english-v29",
+  "scope": "Actual general practice reward hearts and retained result footer; all v28 requirements unchanged.",
+  "requirements": [
+    {
+      "id": "general-practice-reward-settlement-heart-0",
+      "state": "general-practice-heart-reward",
+      "kind": "element_geometry",
+      "element": "settlement-heart-0",
+      "rect": [
+        400,
+        202.75,
+        80,
+        80
+      ],
+      "tolerance_points": 0,
+      "evidence": [
+        "projects/duolingo-web/evidence/english-general-practice-v1/after-settlement.json",
+        "projects/duolingo-web/evidence/english-general-practice-v1/heart-reward-continue.json"
+      ]
+    },
+    {
+      "id": "general-practice-reward-settlement-heart-1",
+      "state": "general-practice-heart-reward",
+      "kind": "element_geometry",
+      "element": "settlement-heart-1",
+      "rect": [
+        480,
+        202.75,
+        80,
+        80
+      ],
+      "tolerance_points": 0,
+      "evidence": [
+        "projects/duolingo-web/evidence/english-general-practice-v1/after-settlement.json",
+        "projects/duolingo-web/evidence/english-general-practice-v1/heart-reward-continue.json"
+      ]
+    },
+    {
+      "id": "general-practice-reward-settlement-heart-2",
+      "state": "general-practice-heart-reward",
+      "kind": "element_geometry",
+      "element": "settlement-heart-2",
+      "rect": [
+        560,
+        202.75,
+        80,
+        80
+      ],
+      "tolerance_points": 0,
+      "evidence": [
+        "projects/duolingo-web/evidence/english-general-practice-v1/after-settlement.json",
+        "projects/duolingo-web/evidence/english-general-practice-v1/heart-reward-continue.json"
+      ]
+    },
+    {
+      "id": "general-practice-reward-settlement-heart-3",
+      "state": "general-practice-heart-reward",
+      "kind": "element_geometry",
+      "element": "settlement-heart-3",
+      "rect": [
+        640,
+        202.75,
+        80,
+        80
+      ],
+      "tolerance_points": 0,
+      "evidence": [
+        "projects/duolingo-web/evidence/english-general-practice-v1/after-settlement.json",
+        "projects/duolingo-web/evidence/english-general-practice-v1/heart-reward-continue.json"
+      ]
+    },
+    {
+      "id": "general-practice-reward-settlement-heart-4",
+      "state": "general-practice-heart-reward",
+      "kind": "element_geometry",
+      "element": "settlement-heart-4",
+      "rect": [
+        720,
+        202.75,
+        80,
+        80
+      ],
+      "tolerance_points": 0,
+      "evidence": [
+        "projects/duolingo-web/evidence/english-general-practice-v1/after-settlement.json",
+        "projects/duolingo-web/evidence/english-general-practice-v1/heart-reward-continue.json"
+      ]
+    },
+    {
+      "id": "general-practice-reward-settlement-secondary-element_geometry",
+      "state": "general-practice-heart-reward",
+      "kind": "element_geometry",
+      "element": "settlement-secondary",
+      "evidence": [
+        "projects/duolingo-web/evidence/english-general-practice-v1/after-settlement.json",
+        "projects/duolingo-web/evidence/english-general-practice-v1/heart-reward-continue.json"
+      ],
+      "rect": [
+        140,
+        639,
+        150,
+        50
+      ],
+      "tolerance_points": 0
+    },
+    {
+      "id": "general-practice-reward-settlement-secondary-element_role",
+      "state": "general-practice-heart-reward",
+      "kind": "element_role",
+      "element": "settlement-secondary",
+      "evidence": [
+        "projects/duolingo-web/evidence/english-general-practice-v1/after-settlement.json",
+        "projects/duolingo-web/evidence/english-general-practice-v1/heart-reward-continue.json"
+      ],
+      "role": "button"
+    },
+    {
+      "id": "general-practice-reward-settlement-secondary-element_boolean",
+      "state": "general-practice-heart-reward",
+      "kind": "element_boolean",
+      "element": "settlement-secondary",
+      "evidence": [
+        "projects/duolingo-web/evidence/english-general-practice-v1/after-settlement.json",
+        "projects/duolingo-web/evidence/english-general-practice-v1/heart-reward-continue.json"
+      ],
+      "field": "enabled",
+      "expected": true
+    },
+    {
+      "id": "general-practice-reward-settlement-secondary-copy",
+      "state": "general-practice-heart-reward",
+      "kind": "accessible_text",
+      "text": "回顾本单元",
+      "evidence": [
+        "projects/duolingo-web/evidence/english-general-practice-v1/after-settlement.json",
+        "projects/duolingo-web/evidence/english-general-practice-v1/heart-reward-continue.json"
+      ]
+    },
+    {
+      "id": "general-practice-reward-settlement-retry-element_geometry",
+      "state": "general-practice-heart-reward",
+      "kind": "element_geometry",
+      "element": "settlement-retry",
+      "evidence": [
+        "projects/duolingo-web/evidence/english-general-practice-v1/after-settlement.json",
+        "projects/duolingo-web/evidence/english-general-practice-v1/heart-reward-continue.json"
+      ],
+      "rect": [
+        722.796875,
+        639,
+        150,
+        50
+      ],
+      "tolerance_points": 0
+    },
+    {
+      "id": "general-practice-reward-settlement-retry-element_role",
+      "state": "general-practice-heart-reward",
+      "kind": "element_role",
+      "element": "settlement-retry",
+      "evidence": [
+        "projects/duolingo-web/evidence/english-general-practice-v1/after-settlement.json",
+        "projects/duolingo-web/evidence/english-general-practice-v1/heart-reward-continue.json"
+      ],
+      "role": "button"
+    },
+    {
+      "id": "general-practice-reward-settlement-retry-element_boolean",
+      "state": "general-practice-heart-reward",
+      "kind": "element_boolean",
+      "element": "settlement-retry",
+      "evidence": [
+        "projects/duolingo-web/evidence/english-general-practice-v1/after-settlement.json",
+        "projects/duolingo-web/evidence/english-general-practice-v1/heart-reward-continue.json"
+      ],
+      "field": "enabled",
+      "expected": true
+    },
+    {
+      "id": "general-practice-reward-settlement-retry-copy",
+      "state": "general-practice-heart-reward",
+      "kind": "accessible_text",
+      "text": "重新练习",
+      "evidence": [
+        "projects/duolingo-web/evidence/english-general-practice-v1/after-settlement.json",
+        "projects/duolingo-web/evidence/english-general-practice-v1/heart-reward-continue.json"
+      ]
+    },
+    {
+      "id": "general-practice-reward-settlement-continue-element_geometry",
+      "state": "general-practice-heart-reward",
+      "kind": "element_geometry",
+      "element": "settlement-continue",
+      "evidence": [
+        "projects/duolingo-web/evidence/english-general-practice-v1/after-settlement.json",
+        "projects/duolingo-web/evidence/english-general-practice-v1/heart-reward-continue.json"
+      ],
+      "rect": [
+        909.9921875,
+        639,
+        150,
+        50
+      ],
+      "tolerance_points": 0
+    },
+    {
+      "id": "general-practice-reward-settlement-continue-element_role",
+      "state": "general-practice-heart-reward",
+      "kind": "element_role",
+      "element": "settlement-continue",
+      "evidence": [
+        "projects/duolingo-web/evidence/english-general-practice-v1/after-settlement.json",
+        "projects/duolingo-web/evidence/english-general-practice-v1/heart-reward-continue.json"
+      ],
+      "role": "button"
+    },
+    {
+      "id": "general-practice-reward-settlement-continue-element_boolean",
+      "state": "general-practice-heart-reward",
+      "kind": "element_boolean",
+      "element": "settlement-continue",
+      "evidence": [
+        "projects/duolingo-web/evidence/english-general-practice-v1/after-settlement.json",
+        "projects/duolingo-web/evidence/english-general-practice-v1/heart-reward-continue.json"
+      ],
+      "field": "enabled",
+      "expected": true
+    }
+  ],
+  "parent_revision": "english-v28",
+  "changes": {
+    "added": 16,
+    "source": "Existing actual fixed reference, including footer confirmed in a second source snapshot"
+  }
+}

@@ -219,3 +219,8 @@ capture-reference-session显式选择/lesson或/practice，保留白名单公共
 `compile-general-practice.py`读取实际评分回执与动态替换，生成单独的Course夹具及原版媒体清单。Lesson沿用题型、独立输入偏好、暂缓和重练；每课程的mistakeHeartCost默认1，实际通用练习设0。LearningModel用sessionKind区分主课、发音和通用练习，任务入口加载单独课程，完成记录不解锁主课，实际奖励页继续才写入一颗心。当前只重放已观测实例，自适应题目生成及奖励上限并未实现。
 
 题目可带已观察的配对/反馈MP3，LearningAudio的原版效果播放器允许配对完成音与最终反馈并发；缺失原音不添加通用练习的合成点击。复用ReferencePronunciationPractice的头部和配对区，其余题型由共享题型渲染；这只是代码复用，不表示视觉一致。原生驱动实际点击/键入同一状态ID并采样PNG，失败时存实际边界。AXPress返回成功但键盘模式未切换的失败保留，单独重跑使用实际屏幕点击。自有应用输出采集仅筛选子进程、关闭麦克风，回执记录动作时序，不能从非零波形推出声学相等。[完整证据与边界](../projects/duolingo-web/evidence/english-general-practice-native-v1/README.md)。
+
+
+### 奖励媒体与普通听写布局
+
+通用练习夹具v2给SettlementPage增加可选heartResources，直接编译实际奖励页五个IMG URL；旧夹具v1保留，主课程v11不改。共同前端v29在v28上追加五个图形及三个footer控件的几何/角色/enabled/文案要求。布局实现与验收不合并：回顾仍未实现动作，静态文本的role会明确失败。普通listen根据原版固定画面使用已有Bea Rive、白色分段播放及多行输入，listenTap保留独立蓝色播放布局；相同音频字段不决定相同UI。各轮整图比较与错误合并的负结果保留在[展示修正证据](../projects/duolingo-web/evidence/english-general-practice-presentation-v1/README.md)。

@@ -1,0 +1,59 @@
+{
+  "rows": [
+    {
+      "id": "general-practice-heart-reward-image",
+      "baseline": {
+        "rgb_mean": [
+          3.3724396630236795,
+          4.262184653916211,
+          3.6387465846994536
+        ],
+        "status": "fail"
+      },
+      "wrong_shared_layout": {
+        "rgb_mean": [
+          0.7145913023679417,
+          0.7531204462659381,
+          0.6294444444444445
+        ],
+        "status": "fail"
+      },
+      "final": {
+        "rgb_mean": [
+          0.7145913023679417,
+          0.7531204462659381,
+          0.6294444444444445
+        ],
+        "status": "fail"
+      }
+    },
+    {
+      "id": "general-practice-q11-image",
+      "baseline": {
+        "rgb_mean": [
+          4.119956739526412,
+          4.159760928961749,
+          5.236944444444444
+        ],
+        "status": "fail"
+      },
+      "wrong_shared_layout": {
+        "rgb_mean": [
+          6.030426912568306,
+          3.970066029143898,
+          4.0567964480874315
+        ],
+        "status": "fail"
+      },
+      "final": {
+        "rgb_mean": [
+          1.567207422586521,
+          1.6970878870673953,
+          2.7408265027322405
+        ],
+        "status": "fail"
+      }
+    }
+  ],
+  "claim": "Diagnostic difference only; every exact image still fails; same frozen source and unchanged zero-tolerance comparison"
+}

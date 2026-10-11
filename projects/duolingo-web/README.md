@@ -143,3 +143,8 @@ node projects/duolingo-web/explore-curriculum.mjs artifacts/reference-new.json -
 ## 独立练习的原生实现批次
 
 实际16道评分题现由`compile-general-practice.py`编译为独立夹具，任务页入口真实加载；本轮原生走通暂缓插题、挑战替换、错误复习、结算、红心和重启，主课六课不变。原版MP3与实际SVG帧绑定到相应控件，输出传输有自有子进程采集，麦克风关闭。所有前端要求仍由v28共同验证，整图未一致；不能把入口与流程通过当1:1。后续实际源探针发现新实例、听力暂缓标题以及答对后退出确认，保留失败与待实现分支。[证据、复盘和命令](evidence/english-general-practice-native-v1/README.md)。
+
+
+## 通用练习展示与v29
+
+后续固定源参考检查补出奖励页五颗心和保留的三个底栏控件，v29增16并保留全部1835旧项。夹具v2增原版心形资源，旧v1不覆盖，主v11不变。普通听写现按原版Bea/白色分段播放/多行文本框展示，错误合并布局的负结果保留。完整47状态回放、24核心和56 Python通过，前端89/55/1707仍fail，40整图全部不同；听力暂缓入口和回顾动作等继续补齐。[验证和命令](evidence/english-general-practice-presentation-v1/README.md)。

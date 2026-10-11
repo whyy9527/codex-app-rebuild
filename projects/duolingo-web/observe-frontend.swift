@@ -176,7 +176,7 @@ if CommandLine.arguments.contains("--observe-quests") {
     try press("nav-quests"); Thread.sleep(forTimeInterval: 0.5)
     states["quests"] = observe(); try capture("quests")
     if CommandLine.arguments.contains("--exercise-general-practice") {
-        let practiceURL = root.appendingPathComponent("projects/duolingo-web/fixture-reference-en-zh-general-practice-v1.json")
+        let practiceURL = root.appendingPathComponent("projects/duolingo-web/fixture-reference-en-zh-general-practice-v2.json")
         let practiceFixture = try JSONSerialization.jsonObject(with: Data(contentsOf: practiceURL)) as! [String: Any]
         let practice = (practiceFixture["data"] as! [String: Any])["candidate_course"] as! [String: Any]
         let definition = (practice["lessons"] as! [[String: Any]])[0]

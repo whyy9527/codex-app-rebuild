@@ -598,7 +598,7 @@ func laterPronunciationPractices() throws {
 }
 
 func actualGeneralPractice() throws {
-    let course = try course(fixture: "fixture-reference-en-zh-general-practice-v1.json")
+    let course = try course(fixture: "fixture-reference-en-zh-general-practice-v2.json")
     try check(course.lessons[0].questions.count == 16 && course.mistakeHeartCost == 0, "Independent practice source definition differs")
     var lesson = Lesson(course: course, hearts: 3)
     var graded = 0, speech = 0, interludes = 0, keyboard = 0
