@@ -23,6 +23,16 @@ def profile_facts(image):
             'comparison_space': 'sRGB'}
 
 
+def compatible_geometry(capture, pixels):
+    rect, scale, window = (capture.get(k) for k in ('content_rect_points', 'backing_scale', 'window_points'))
+    finite = lambda v: type(v) in (int, float) and math.isfinite(v)
+    return (isinstance(rect, list) and len(rect) == 4 and all(finite(v) for v in rect)
+            and rect[0] >= 0 and rect[1] >= 0 and rect[2:] == pixels
+            and finite(scale) and scale > 0 and isinstance(window, list) and len(window) == 2
+            and all(finite(v) and v > 0 for v in window)
+            and rect[0] + rect[2] <= window[0] and rect[1] + rect[3] <= window[1])
+
+
 def compare_capture(root, requirement, state):
     root = Path(root).resolve()
     try:
@@ -38,19 +48,23 @@ def compare_capture(root, requirement, state):
         return {'status': 'unavailable', 'reason': 'Driver did not collect a capture file'}
     candidate_path = local_file(root, capture['path'], must_exist=False)
     rect, scale, window = (capture.get(k) for k in ('content_rect_points', 'backing_scale', 'window_points'))
-    finite = lambda v: type(v) in (int, float) and math.isfinite(v)
-    if (not isinstance(rect, list) or len(rect) != 4 or not all(finite(v) for v in rect)
-            or rect[0] < 0 or rect[1] < 0 or rect[2:] != pixels
-            or not finite(scale) or scale <= 0 or not isinstance(window, list) or len(window) != 2
-            or not all(finite(v) and v > 0 for v in window)
-            or rect[0] + rect[2] > window[0] or rect[1] + rect[3] > window[1]):
+    if not compatible_geometry(capture, pixels):
         return {'status': 'unavailable', 'reason': 'Missing or incompatible measured capture geometry'}
+    source_capture = requirement.get('reference_capture')
+    if source_capture is not None and (not isinstance(source_capture, dict) or not compatible_geometry(source_capture, pixels)):
+        raise ValueError('Invalid measured reference capture geometry')
     try:
         with Image.open(reference_path) as im:
-            if im.size != tuple(pixels):
+            if source_capture is None and im.size != tuple(pixels):
                 raise ValueError('Reference image does not match frozen viewport')
             reference_profile = profile_facts(im)
             reference = srgb_image(im)
+            if source_capture is not None:
+                source_scale = source_capture['backing_scale']
+                if im.size != tuple(round(v * source_scale) for v in source_capture['window_points']):
+                    raise ValueError('Reference image does not match measured window and scale')
+                x, y, w, h = source_capture['content_rect_points']
+                reference = reference.crop(tuple(round(v * source_scale) for v in (x, y, x+w, y+h))).resize(tuple(pixels), Image.Resampling.LANCZOS)
         with Image.open(candidate_path) as im:
             if im.size != tuple(round(v * scale) for v in window):
                 return {'status': 'unavailable', 'reason': 'Capture size does not match measured window and scale'}
@@ -66,5 +80,5 @@ def compare_capture(root, requirement, state):
             'capture_sha256': hashlib.sha256(candidate_path.read_bytes()).hexdigest(),
             'mean_absolute_rgb_difference': ImageStat.Stat(difference).mean,
             'profiles': {'reference': reference_profile, 'candidate': candidate_profile},
-            'normalization': 'ICC to sRGB; measured titlebar crop and backing-scale downsample; no masks, alignment search or tolerance',
+            'normalization': 'ICC to sRGB; measured content crop and backing-scale downsample on each declared capture; no masks, alignment search or tolerance',
             'reason': 'Actual same-state image pixels only; sound, animation timing and unvisited states remain separate'}

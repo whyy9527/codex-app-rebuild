@@ -140,3 +140,6 @@ python3 -m unittest discover -v
 
 
 听力暂缓替换已接入Swift核心，并用显式观察实例从任务页走完45状态和真实重启；默认练习47状态回归也执行通过。v31保留旧要求增18项控件检查，最终新分支22pass/30fail，28整图全fail；仍未完成1:1或自适应实例选择。[实现、负结果与复跑](projects/duolingo-web/evidence/english-general-listening-decline-native-v1/README.md)。
+
+
+最新探索／验收反馈：真实RSI04的两组语义代理新增均0，未观察到收益；后续实际Tab探针确认计分器漏掉焦点、Swift词语缺对应控件。v73追加实测尺寸／焦点／整图共同契约，严格指南结果61pass／30fail／79unavailable，整图仍失败，完整复刻继续。见[真实04报告](projects/exploration-ablation/REPORT04.md)及[产品前端缺口](projects/duolingo-web/evidence/english-guide-probes-v1/README.md)，不能以测试通过或文字无变化宣称1:1。

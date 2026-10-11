@@ -1,0 +1,16 @@
+### Result
+{"test":"hint-token","name":"welcome","focus_visible":true}
+### Ran Playwright code
+```js
+await (async page => { if(await page.locator("[data-test=hint-token]").nth(0).getAttribute("aria-label")!=="Hi") throw Error("Source identity mismatch"); await page.locator("[data-test=hint-token]").nth(0).focus(); await page.keyboard.press("Tab"); return await page.evaluate(()=>({test:document.activeElement.getAttribute("data-test"),name:document.activeElement.getAttribute("aria-label"),focus_visible:document.activeElement.matches(":focus-visible")})); })(page);
+```
+### Open tabs
+- 0: [多邻国 - 学得轻松，学有所成的英语 课程！](https://www.duolingo.com/lesson)
+- 1: [多邻国 - 学得轻松，学有所成的英语 课程！](https://www.duolingo.com/lesson)
+- 2: (current) [多邻国 - 学得轻松，学有所成的英语 课程！](https://www.duolingo.com/guidebook/en/12)
+### Page
+- Page URL: https://www.duolingo.com/guidebook/en/12
+- Page Title: 多邻国 - 学得轻松，学有所成的英语 课程！
+- Console: 9 errors, 0 warnings
+### Events
+- New console entries: .playwright-cli/console-2026-10-11T21-39-47-310Z.log#L41

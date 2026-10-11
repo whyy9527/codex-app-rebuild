@@ -108,6 +108,10 @@ const callback=async page=>{
    iconDetails:n.tagName==='BUTTON'?[...n.querySelectorAll('svg')].map(svg=>({rect:svg.getBoundingClientRect().toJSON(),color:getComputedStyle(svg).color})):[],
    ancestors:n.tagName==='BUTTON'?[n.parentElement,n.parentElement?.parentElement,n.parentElement?.parentElement?.parentElement].filter(Boolean).map(a=>({tag:a.tagName,rect:a.getBoundingClientRect().toJSON(),backgroundColor:getComputedStyle(a).backgroundColor,borderRadius:getComputedStyle(a).borderRadius,padding:getComputedStyle(a).padding,gap:getComputedStyle(a).gap})):[]};
  }));
+ // viewportSize() is null for an actual browser window. Measure CSS content
+ // and DPR at capture time rather than infer them from PNG dimensions later.
+ facts.focus=await page.evaluate(()=>{const n=document.activeElement,r=n?.getBoundingClientRect(),c=n?getComputedStyle(n):null;return {tag:n?.tagName,test:n?.getAttribute('data-test'),name:n?.getAttribute('aria-label')||'',tab_index:n?.tabIndex,focus_visible:n?.matches(':focus-visible'),rect:r?[r.x,r.y,r.width,r.height]:null,css:c?{outline:c.outline,boxShadow:c.boxShadow}:null};});
+ facts.capture_geometry=await page.evaluate(()=>({content_rect_points:[0,0,innerWidth,innerHeight],window_points:[innerWidth,innerHeight],backing_scale:devicePixelRatio}));
  await page.screenshot({path:SCREENSHOT});
  return facts;
 };

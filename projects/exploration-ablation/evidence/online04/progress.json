@@ -1,0 +1,76 @@
+{
+  "traces": [
+    {
+      "step": 1,
+      "arm": "replay_feedback",
+      "action": {
+        "id": "hover-living",
+        "label": "hover living",
+        "operation": "hover",
+        "index": 6,
+        "text": "living"
+      },
+      "new_atoms": 0,
+      "total_atoms": 0,
+      "wall_seconds": 9.80622391612269,
+      "root_snapshot_sha256": "8d5089c60e3e7c33639808b1e75627f597de9afccef44e28e2bfafa71b5de920",
+      "before": "01-replay_feedback/hover-living-before.json",
+      "after": "01-replay_feedback/hover-living-after.json",
+      "revealed_atoms": []
+    },
+    {
+      "step": 2,
+      "arm": "no_replay_feedback",
+      "action": {
+        "id": "enter-room",
+        "label": "Enter room",
+        "operation": "Enter",
+        "index": 7,
+        "text": "room"
+      },
+      "new_atoms": 0,
+      "total_atoms": 0,
+      "wall_seconds": 10.781793291913345,
+      "root_snapshot_sha256": "8d5089c60e3e7c33639808b1e75627f597de9afccef44e28e2bfafa71b5de920",
+      "before": "02-no_replay_feedback/enter-room-before.json",
+      "after": "02-no_replay_feedback/enter-room-after.json",
+      "revealed_atoms": []
+    },
+    {
+      "step": 3,
+      "arm": "no_replay_feedback",
+      "action": {
+        "id": "click-your",
+        "label": "click Your",
+        "operation": "click",
+        "index": 5,
+        "text": "Your"
+      },
+      "new_atoms": 0,
+      "total_atoms": 0,
+      "wall_seconds": 13.34854849986732,
+      "root_snapshot_sha256": "8d5089c60e3e7c33639808b1e75627f597de9afccef44e28e2bfafa71b5de920",
+      "before": "03-no_replay_feedback/click-your-before.json",
+      "after": "03-no_replay_feedback/click-your-after.json",
+      "revealed_atoms": []
+    },
+    {
+      "step": 4,
+      "arm": "replay_feedback",
+      "action": {
+        "id": "enter-room",
+        "label": "Enter room",
+        "operation": "Enter",
+        "index": 7,
+        "text": "room"
+      },
+      "new_atoms": 0,
+      "total_atoms": 0,
+      "wall_seconds": 10.800117500126362,
+      "root_snapshot_sha256": "8d5089c60e3e7c33639808b1e75627f597de9afccef44e28e2bfafa71b5de920",
+      "before": "04-replay_feedback/enter-room-before.json",
+      "after": "04-replay_feedback/enter-room-after.json",
+      "revealed_atoms": []
+    }
+  ]
+}
