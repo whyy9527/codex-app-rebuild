@@ -1,0 +1,98 @@
+{
+  "observed_at": "2026-10-11T03:21:46.928Z",
+  "path": "/practice",
+  "viewport": {
+    "width": 1200,
+    "height": 732
+  },
+  "snapshot": "- button:\n  - img\n- progressbar\n- heading \"用中文（简体）写出这句话\" [level=1]\n- button:\n  - img\n- img\n- button \"而且\"\n- button \"早上好\"\n- button \"跳过\"\n- button \"检查\" [disabled]",
+  "dom_type": "challenge challenge-translate",
+  "visible_text": "用中文（简体）写出这句话\nGood morning!\n而且\n早上好",
+  "content": {
+    "prompt": "Good morning!",
+    "correctSolutions": [
+      "早上好！"
+    ],
+    "correctTokens": [
+      "早上好"
+    ],
+    "choices": [
+      {
+        "text": "早上好"
+      },
+      {
+        "text": "而且"
+      }
+    ],
+    "correctIndices": [
+      0
+    ],
+    "sourceLanguage": "en",
+    "targetLanguage": "zh",
+    "tokens": [
+      {
+        "value": "Good",
+        "tts": "https://d1vq87e9lcf771.cloudfront.net/eddyen/8ae445c865ff50847563964c016f5cb9",
+        "hintTable": {}
+      },
+      {
+        "value": " "
+      },
+      {
+        "value": "morning",
+        "tts": "https://d1vq87e9lcf771.cloudfront.net/eddyen/d8f478901980a33cef2dff9864593fb5",
+        "hintTable": {}
+      },
+      {
+        "value": "!"
+      }
+    ],
+    "tts": "https://d1vq87e9lcf771.cloudfront.net/eddyen/7aa69b26fed835635e59288b7d33ac2b",
+    "character": {
+      "url": "https://d2pur3iezf4d1j.cloudfront.net/images/b53f870ed38105349d4d83edf682d77f",
+      "image": {
+        "svg": "https://d2pur3iezf4d1j.cloudfront.net/images/096d0b1f6280b962cd7080a7736dd2bb"
+      },
+      "gender": "MALE",
+      "correctAnimation": "https://simg-ssl.duolingo.com/lottie/Eddy_CORRECT_Cropped_Cheer.json",
+      "incorrectAnimation": "https://simg-ssl.duolingo.com/lottie/Coach_INCORRECT_Cropped.json",
+      "idleAnimation": "https://simg-ssl.duolingo.com/lottie/Eddy_IDLE_Cropped.json",
+      "name": "EDDY",
+      "avatarIconImage": {
+        "svg": "https://simg-ssl.duolingo.com/world-characters/avatars/eddy_avatar_icon.svg"
+      }
+    },
+    "type": "translate",
+    "newWords": []
+  },
+  "omitted_keys": [
+    "challenge.0.compactTranslations",
+    "challenge.0.wrongTokens",
+    "challenge.0.grader",
+    "challenge.0.taggedKcIds",
+    "challenge.0.challengeDisplaySettings",
+    "challenge.0.weakWordPromptRanges",
+    "challenge.0.isSpeakerUniversal",
+    "challenge.0.id",
+    "challenge.0.challengeResponseTrackingProperties",
+    "challenge.0.metadata",
+    "challenge.0.progressUpdates",
+    "challenge.0.sentenceId",
+    "challenge.0.challengeGeneratorIdentifier",
+    "challenge.0.worldCharacterShown",
+    "challenge.0.startTime",
+    "challenge.0.tokens.0.hintTable.headers",
+    "challenge.0.tokens.0.hintTable.rows",
+    "challenge.0.tokens.2.hintTable.headers",
+    "challenge.0.tokens.2.hintTable.rows",
+    "challenge.0.character.riveAnimation",
+    "challenge.0.character.image.pdf",
+    "challenge.0.character.avatarIconImage.pdf"
+  ],
+  "source": "Current rendered challenge public fields; initial session/future sequence and challengeState not read",
+  "limitations": [
+    "Public content may include grading solutions, not an independent blind exploration score.",
+    "DOM linkage proves current type/content association, not pixels, actual audio output or an adaptive algorithm."
+  ],
+  "screenshot": "inserted-current.png"
+}

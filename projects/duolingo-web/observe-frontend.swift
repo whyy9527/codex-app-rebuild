@@ -173,6 +173,14 @@ func fillInput(_ value: String) throws {
     Thread.sleep(forTimeInterval: 0.15)
 }
 
+func captureGeneralCharacterFrames(_ key: String, _ stage: String, _ question: [String: Any]) throws {
+    guard CommandLine.arguments.contains("--capture-character-frames"),
+          let index = CommandLine.arguments.firstIndex(of: "--character-frame-resource"), index + 1 < CommandLine.arguments.count,
+          question["characterResource"] as? String == CommandLine.arguments[index + 1],
+          current().contains(where: { (attr($0, kAXIdentifierAttribute) as? String) == "question-character" }) else { return }
+    for frame in 0..<12 { try capture(key + "-character-" + stage + "-\(frame)"); Thread.sleep(forTimeInterval: 0.15) }
+}
+
 var states = ["home": observe()]
 try capture("home-window")
 if CommandLine.arguments.contains("--observe-quests") {
@@ -283,6 +291,7 @@ if CommandLine.arguments.contains("--observe-quests") {
                 try waitFor(question["kind"] as? String == "matching" ? "question-prompt" : "question-title", value: question["kind"] as? String == "matching" ? key : question["prompt"] as? String)
                 states[key] = observe(); try capture(key)
                 if key == "general-practice-q0" { states["quests-practice-entry"] = states[key]; try capture("quests-practice-entry") }
+                try captureGeneralCharacterFrames(key, "idle", question)
                 switch question["kind"] as? String {
                 case "matching":
                     let pairs = question["pairs"] as! [[String: Any]]
@@ -312,6 +321,7 @@ if CommandLine.arguments.contains("--observe-quests") {
                 }
                 try waitFor("continue")
                 states[key + "-feedback"] = observe(); try capture(key + "-feedback")
+                try captureGeneralCharacterFrames(key, "feedback", question)
                 if key == "general-practice-replacement15" {
                     try Data(contentsOf: progress).write(to: output.appendingPathComponent("progress-after-wrong.json"), options: .withoutOverwriting)
                 }

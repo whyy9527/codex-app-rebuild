@@ -1,0 +1,58 @@
+{
+  "observed_at": "2026-10-11T03:20:16.245Z",
+  "path": "/practice",
+  "viewport": {
+    "width": 1200,
+    "height": 732
+  },
+  "snapshot": "- button:\n  - img\n- progressbar\n- heading \"选择听到的内容\" [level=1]\n- button:\n  - img\n- button:\n  - img\n- button \"morning\"\n- button \"please\"\n- button \"Good\"\n- button \"现在不做听力题\"\n- button \"使用键盘\"\n- button \"检查\" [disabled]",
+  "dom_type": "challenge challenge-listenTap",
+  "visible_text": "选择听到的内容\nmorning\nplease\nGood",
+  "content": {
+    "prompt": "Good morning!",
+    "correctTokens": [
+      "Good",
+      "morning"
+    ],
+    "choices": [
+      {
+        "text": "Good",
+        "tts": "https://d1vq87e9lcf771.cloudfront.net/miranda/58b234acd056871e8f97fd1ea6bb622f"
+      },
+      {
+        "text": "morning",
+        "tts": "https://d1vq87e9lcf771.cloudfront.net/miranda/a6f4932554276ca071a84e5e3f5712a4"
+      },
+      {
+        "text": "please",
+        "tts": "https://d1vq87e9lcf771.cloudfront.net/miranda/418800edd9afc7e8fa4c950f61b93c38"
+      }
+    ],
+    "correctIndices": [
+      0,
+      1
+    ],
+    "solutionTranslation": "早上好！",
+    "tts": "https://d1vq87e9lcf771.cloudfront.net/miranda/534a353a8354181dac4c8d1a957f95f5",
+    "slowTts": "https://d1vq87e9lcf771.cloudfront.net/miranda/7af8dbdc73eeef4930c52b1f044a4039",
+    "type": "listenTap",
+    "newWords": []
+  },
+  "omitted_keys": [
+    "challenge.0.wrongTokens",
+    "challenge.0.grader",
+    "challenge.0.id",
+    "challenge.0.challengeResponseTrackingProperties",
+    "challenge.0.metadata",
+    "challenge.0.progressUpdates",
+    "challenge.0.sentenceId",
+    "challenge.0.challengeGeneratorIdentifier",
+    "challenge.0.startTime"
+  ],
+  "source": "Current rendered challenge public fields; initial session/future sequence and challengeState not read",
+  "limitations": [
+    "Public content may include grading solutions, not an independent blind exploration score.",
+    "DOM linkage proves current type/content association, not pixels, actual audio output or an adaptive algorithm."
+  ],
+  "screenshot": "listening-current.png"
+}

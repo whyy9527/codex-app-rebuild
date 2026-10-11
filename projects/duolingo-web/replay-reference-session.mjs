@@ -1,9 +1,11 @@
 // Replay a captured public reference session and retain actual UI ordering and interludes.
-// Run after capture-reference-session.mjs on the same owned tab. Resume explicitly by index.
+// Initial-list mode follows capture-reference-session.mjs; current-only reads the visible renderer independently.
 import {spawnSync} from 'node:child_process';
 import {writeFileSync,mkdirSync,existsSync,readdirSync} from 'node:fs';
 import {resolve,dirname,basename} from 'node:path';
 import {challengeIdentity,uncoveredReplayType} from './reference-challenge-identity.mjs';
+import {publicChallenge} from './public-reference-challenge.mjs';
+import {renderedChallenge} from './rendered-reference-challenge.mjs';
 function arg(name,fallback){const i=process.argv.indexOf(name);return i<0?fallback:process.argv[i+1];}
 for(const name of ['--cli','--session','--out'])if(!arg(name))throw Error('Required: --cli PATH --session NAME --out PATH [--start-index N]');
 const uiLanguage=arg('--ui-language','en');
@@ -11,7 +13,9 @@ if(!['en','zh'].includes(uiLanguage))throw Error('Unsupported UI language: '+uiL
 const labels=uiLanguage==='zh'?{check:'检查',continue:'继续'}:{check:'Check',continue:'Continue'};
 const stopBeforeType=arg('--stop-before-type','');
 if(stopBeforeType&&!/^[A-Za-z][A-Za-z0-9]*$/.test(stopBeforeType))throw Error('Invalid stop-before type');
+const currentOnly=process.argv.includes('--current-only');
 const start=Number(arg('--start-index','0'));
+if(currentOnly&&start!==0)throw Error('Current-only replay cannot resume an initial-session index');
 if(!Number.isInteger(start)||start<0)throw Error('Invalid start index');
 const output=resolve(arg('--out'));mkdirSync(dirname(output),{recursive:true});
 for(const suffix of ['', '.raw.txt'])if(existsSync(output+suffix))throw Error('Replay output already exists; choose a fresh output before any source action');
@@ -23,7 +27,13 @@ const callback = async page => {
  const labels=UI_LABELS;
  const identity=CHALLENGE_IDENTITY;
  const uncovered=UNCOVERED_TYPE;
- const session=await page.evaluate(()=>window.__referenceSession);
+ const currentOnly=CURRENT_ONLY;
+ const publicOnly=PUBLIC_CHALLENGE;
+ const readRendered=READ_RENDERED;
+ const currentNode=page.locator('[data-test~="challenge"]');
+ if(currentOnly&&(await currentNode.count()!==1||!await currentNode.isVisible()))throw Error('One visible current challenge required; no source action executed');
+ const live=currentOnly?await currentNode.evaluate(readRendered,publicOnly.toString()):null;
+ const session=live?{source:'Current rendered challenge; one step only, no initial-session or future-sequence read',challenges:[{index:0,content:live.content}],current_observation:live}:await page.evaluate(()=>window.__referenceSession);
  const observed=[],interludes=[];let failure=null,stopped=null;
  async function exactVisible(locator,text){
    const labels=await locator.allTextContents();
@@ -165,9 +175,9 @@ const callback = async page => {
    await page.getByRole('button',{name:labels.continue,exact:true}).click();
   }catch(error){failure=String(error);break;}
  }
- return {session,observed,interludes,failure,stopped,answered:observed.filter(r=>r.feedback).length,outcome:failure?'failed':stopped?'stopped_at_requested_boundary':'replayed_captured_records',final:await page.locator('body').ariaSnapshot(),limitations:['One actual generated lesson instance; media invocations are not acoustic output evidence.']};
+ return {session,observed,interludes,failure,stopped,answered:observed.filter(r=>r.feedback).length,outcome:failure?'failed':stopped?'stopped_at_requested_boundary':currentOnly?'current_challenge_replayed':'replayed_captured_records',final:await page.locator('body').ariaSnapshot(),limitations:['One actual generated lesson instance; media invocations are not acoustic output evidence.']};
 };
-const code=callback.toString().replace('CHALLENGE_IDENTITY',challengeIdentity.toString()).replace('UNCOVERED_TYPE',uncoveredReplayType.toString()).replace('UI_LABELS',JSON.stringify(labels)).replace('START_INDEX',String(start)).replace('STOP_BEFORE_TYPE',JSON.stringify(stopBeforeType)).replaceAll('SCREENSHOT_PREFIX',JSON.stringify(screenshotPrefix));
+const code=callback.toString().replace('CURRENT_ONLY',JSON.stringify(currentOnly)).replace('PUBLIC_CHALLENGE',publicChallenge.toString()).replace('READ_RENDERED',renderedChallenge.toString()).replace('CHALLENGE_IDENTITY',challengeIdentity.toString()).replace('UNCOVERED_TYPE',uncoveredReplayType.toString()).replace('UI_LABELS',JSON.stringify(labels)).replace('START_INDEX',String(start)).replace('STOP_BEFORE_TYPE',JSON.stringify(stopBeforeType)).replaceAll('SCREENSHOT_PREFIX',JSON.stringify(screenshotPrefix));
 const result=spawnSync(arg('--cli'),['-s='+arg('--session'),'run-code',code],{cwd:resolve('artifacts/output/playwright'),encoding:'utf8',timeout:300000,maxBuffer:16*1024*1024});
 const raw=(result.stdout||'')+(result.stderr||'');writeFileSync(output+'.raw.txt',raw,{flag:'wx'});
 if(result.status!==0||!raw.includes('### Result\n'))throw Error('Unavailable replay; raw output retained, inspect current tab before resuming');

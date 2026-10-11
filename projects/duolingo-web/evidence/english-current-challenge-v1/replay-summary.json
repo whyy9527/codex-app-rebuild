@@ -1,0 +1,38 @@
+{
+  "replay-to-listening.json": {
+    "answered": 5,
+    "outcome": "stopped_at_requested_boundary",
+    "failure": null,
+    "stopped": {
+      "index": 5,
+      "type": "listenTap",
+      "reason": "Requested exploration boundary; current type observed, no answer submitted"
+    },
+    "observed": 6
+  },
+  "replay-current-inserted.json": {
+    "answered": 1,
+    "outcome": "current_challenge_replayed",
+    "failure": null,
+    "stopped": null,
+    "observed": 1
+  },
+  "replay-current-next-boundary.json": {
+    "answered": 0,
+    "outcome": "failed",
+    "failure": "Error: Uncovered type: speak",
+    "stopped": null,
+    "observed": 1
+  },
+  "replay-current-requested-boundary.json": {
+    "answered": 0,
+    "outcome": "stopped_at_requested_boundary",
+    "failure": null,
+    "stopped": {
+      "index": 0,
+      "type": "speak",
+      "reason": "Requested exploration boundary; current type observed, no answer submitted"
+    },
+    "observed": 1
+  }
+}

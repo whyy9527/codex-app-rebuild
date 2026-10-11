@@ -230,3 +230,9 @@ capture-reference-session显式选择/lesson或/practice，保留白名单公共
 
 
 LessonDefinition的可选listeningDeclineReplacements由实例提供已观察替换；Lesson在当前位置保留替换用于复习，暂缓本身不评分。原有无替换配对路径保持推进。显式general-practice-fixture选择与主课程分离，默认资源不变，非自适应选题实现；原生驱动从真实任务页进入。v31追加enabled/角色/几何，图像断言保留，源投影与候选执行分别报告。[实现与证据](../projects/duolingo-web/evidence/english-general-listening-decline-native-v1/README.md)。
+
+### 当前渲染题与资源身份
+
+`public-reference-challenge`拥有公共字段投影，session捕获和当前题捕获共享；`rendered-reference-challenge`只从唯一可见challenge的renderer取题目、核对DOM类型，不用初始序列或challengeState回退。`--current-only`把当时内容交给既有身份校验和真实UI作答，保留单步接受、未覆盖、主动边界三种不同结果，不改写初始session。公共答案不作为盲探索效果证据。
+
+`import-current-character.py`连接当前公共角色与实际renderer绑定：下载公开Rive并核对实测缓冲SHA后才进入Swift资源映射。资源身份、原生可见运动、同状态几何、像素和时序分别验证，不能互相代替。原生可选按指定resource采样实际自有窗口，q5动作期12帧，不注入Lesson状态。当前Eddy绑定已生效但全图差异没有改善。[实际源、新驱动与负结果](../projects/duolingo-web/evidence/english-current-challenge-v1/README.md)。

@@ -1,0 +1,67 @@
+{
+  "rows": [
+    {
+      "requirement": "general-practice-q5-image",
+      "state": "general-practice-q5",
+      "baseline": [
+        3.035710382513661,
+        2.1232126593806924,
+        3.142377049180328
+      ],
+      "candidate": [
+        3.0506819216757743,
+        2.300268670309654,
+        3.324540072859745
+      ],
+      "status": "fail"
+    },
+    {
+      "requirement": "general-practice-q5-feedback-image",
+      "state": "general-practice-q5-feedback",
+      "baseline": [
+        4.016821493624772,
+        2.776535746812386,
+        5.542708333333334
+      ],
+      "candidate": [
+        4.024784836065574,
+        3.018893442622951,
+        5.795516848816029
+      ],
+      "status": "fail"
+    },
+    {
+      "requirement": "general-practice-q12-image",
+      "state": "general-practice-q12",
+      "baseline": [
+        8.633861566484518,
+        3.8048588342440803,
+        4.468250227686703
+      ],
+      "candidate": [
+        8.627677595628416,
+        3.806256830601093,
+        4.47713456284153
+      ],
+      "status": "fail"
+    },
+    {
+      "requirement": "general-practice-q12-feedback-image",
+      "state": "general-practice-q12-feedback",
+      "baseline": [
+        9.78816256830601,
+        4.509660746812386,
+        6.091305783242259
+      ],
+      "candidate": [
+        9.78816256830601,
+        4.509660746812386,
+        6.091305783242259
+      ],
+      "status": "fail"
+    }
+  ],
+  "limitations": [
+    "Whole same-state screenshots after ICC/geometry normalization; no mask or alignment search. Animation phase not aligned; this is an asset-binding regression diagnostic, not RSI effect or a claim of causal pixel improvement."
+  ]
+}
