@@ -1,5 +1,7 @@
 # 研究来源与实现边界
 
+原版探索确认状态底色、悬停、双徽章和段落内边距遗漏，v55保留3084旧项追加104。最终两状态87pass/15fail，整图仍失败；同一二进制5个重启状态及10个主页分支完成。保留字体猜测被否定、图片溢出和内边距差异略增的负结果；下一步优先未访问个人档案/主页分支及声音，未宣称1:1或RSI因果收益。[证据与复跑](../projects/duolingo-web/evidence/english-leaderboard-visual-v1/README.md)。
+
 历史题目差异引导本批重访排行榜练习，真实取得16评分题、暂缓口语及17卡回顾；截图反馈再发现六个漏编译的暂缓入口。初始右列别名错误纠正产生的分数变化不计作产品改善或RSI收益。实际模型匹配预算消融未执行，原论文及负结果继续保留。[证据](../projects/duolingo-web/evidence/english-leaderboard-practice-instance-v1/README.md)。
 
 本批由历史反馈选择排行榜状态与练习入口，实际发现角色清单漏掉的清除控件和当前选题差异，已转成可失败契约。它是探索闭环的一次实际产出，不是 RSI 因果收益；独立模型与匹配预算对照未执行。三个源音频配置零输出与原生阳性对照保留负结果，根因未知。[本批证据](../projects/duolingo-web/evidence/english-leaderboard-state-v1/README.md)。

@@ -1,5 +1,7 @@
 # 架构
 
+原版探索确认状态底色、悬停、双徽章和段落内边距遗漏，v55保留3084旧项追加104。最终两状态87pass/15fail，整图仍失败；同一二进制5个重启状态及10个主页分支完成。保留字体猜测被否定、图片溢出和内边距差异略增的负结果；下一步优先未访问个人档案/主页分支及声音，未宣称1:1或RSI因果收益。[证据与复跑](../projects/duolingo-web/evidence/english-leaderboard-visual-v1/README.md)。
+
 完整当前实例由逐题公共内容和实际接受反馈编译，原版与原生共用显式题单；驱动支持review-instance及排行榜入口。右列控件须按实际配对身份映射，不能把视觉行号当稳定ID。显式实例、默认自适应选题与真实声学验证分开，不能互相替代。[证据](../projects/duolingo-web/evidence/english-leaderboard-practice-instance-v1/README.md)。
 
 采集器增加无角色 pointer 候选与命中证据，供探索决策，不自动赋予按钮语义。v51 状态清除／持久化与 v52 当前练习入口契约逐版保留旧要求；原生旅程支持同偏好重启。当前练习新题不从旧完整实例拼接，两个隔离会话的同二进制观测合并显式保留来源，不冒充连续旅程。[本批证据](../projects/duolingo-web/evidence/english-leaderboard-state-v1/README.md)。

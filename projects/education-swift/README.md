@@ -1,5 +1,7 @@
 # LingoSeed · Swift 教育基座
 
+原版探索确认状态底色、悬停、双徽章和段落内边距遗漏，v55保留3084旧项追加104。最终两状态87pass/15fail，整图仍失败；同一二进制5个重启状态及10个主页分支完成。保留字体猜测被否定、图片溢出和内边距差异略增的负结果；下一步优先未访问个人档案/主页分支及声音，未宣称1:1或RSI因果收益。[证据与复跑](../duolingo-web/evidence/english-leaderboard-visual-v1/README.md)。
+
 继续按历史遗漏探索排行榜练习，实际完成16题＋1口语暂缓，编译完整显式实例并验证44个原生状态；截图又发现六道题漏掉听力暂缓按钮，已补回。v54共3084项，本轨迹177pass/39fail，整图全部仍失败；默认自适应选题尚未实现。[实际证据及复跑](../duolingo-web/evidence/english-leaderboard-practice-instance-v1/README.md)。
 
 排行榜继续实际补漏：发现无角色悬停清除、选择／清除跨刷新保存，以及练习入口当前题目与历史默认实例不同。Swift 状态持久化已实测；v52 共2848项，当前同一二进制两次会话7状态73pass/22fail，整图和当前题目仍失败，1:1未完成。[证据、失败与复跑](../duolingo-web/evidence/english-leaderboard-state-v1/README.md)。

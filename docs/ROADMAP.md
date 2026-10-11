@@ -347,3 +347,8 @@ v15保留1489项并增8项真实原版断言。独立原生radio2实际点击及
 ### 注册输入控件、独立登录发现与焦点反例
 
 由v44整图/缺失输入控件选择原版新探索：实际年龄清除禁Next，密码abc显示/隐藏保值，登录另含Apple/忘记密码，未提交帐号。v45保留2433旧项增43共2476，实施前冻结；3原inline SVG按原色/尺寸导入。候选清除/reveal与真实安全文本框已接，补源输入padding/字体及背景独立投影；自定义cell不可编辑、截图trap、两次年龄只到2和回顾失去活动目标等失败均保留。驱动输入/滚动激活并确认自有进程，最终同二进制两次20状态各116pass/31fail/2329not_run；新增20pass4整图fail19登录not_run。八课41状态回归无驱动失败，133pass/17fail/2326not_run。29核心/58Python/14Node/构建通过；邮箱整图差异下降，年龄图略增，负结果保留。不能宣称1:1或RSI收益，完整Goal active。[源、逐构建证据、frontier与复跑](../projects/duolingo-web/evidence/english-registration-controls-v1/README.md)。
+
+
+### 原版状态面板的前端遗漏
+
+原版探索确认状态底色、悬停、双徽章和段落内边距遗漏，v55保留3084旧项追加104。最终两状态87pass/15fail，整图仍失败；同一二进制5个重启状态及10个主页分支完成。保留字体猜测被否定、图片溢出和内边距差异略增的负结果；下一步优先未访问个人档案/主页分支及声音，未宣称1:1或RSI因果收益。[证据与frontier](../projects/duolingo-web/evidence/english-leaderboard-visual-v1/README.md)。

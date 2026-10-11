@@ -1,0 +1,24 @@
+{
+  "failures": [
+    {
+      "kind": "CDP-node-identity",
+      "result": "First CSS.getPlatformFontsForNode request lacked frontend nodeId; DOM.getDocument/backend-to-frontend mapping corrected; no font conclusions from failed call"
+    },
+    {
+      "kind": "new-tab-viewport",
+      "result": "Initial font probe viewport=null; resize to1200x732 before any geometry/image freeze. Initial node boxes diagnostic only"
+    },
+    {
+      "kind": "native-interrupted",
+      "result": "Owned child missing after first selected capture; terminal driver receipt retained. No crash cause established. Fresh old-binary run completed2states"
+    },
+    {
+      "kind": "intrinsic-size-regression",
+      "result": "First NSImageView bridge used intrinsic128x86 despite SwiftUI frame; image error increased. Preserve negative run; explicit proposed size then corrected visual bounds; strict AX geometry still enlarged2points"
+    },
+    {
+      "kind": "font-hypothesis-rejected",
+      "result": "Source CDP PingFang SC Semibold/Medium match CoreText fallback probe; no speculative global font replacement"
+    }
+  ]
+}

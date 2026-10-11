@@ -1,0 +1,75 @@
+{
+  "contract": "english-v55",
+  "requirements": 3188,
+  "parent_requirements_unchanged": 3084,
+  "new_requirements": 104,
+  "runs": {
+    "state-regression": {
+      "not_run": 3143,
+      "fail": 10,
+      "pass": 35
+    },
+    "native-first": {
+      "not_run": 3086,
+      "fail": 16,
+      "pass": 86
+    },
+    "native-before": {
+      "not_run": 3086,
+      "fail": 15,
+      "pass": 86,
+      "unavailable": 1
+    },
+    "native-sized": {
+      "not_run": 3086,
+      "fail": 15,
+      "pass": 87
+    },
+    "branches-regression": {
+      "not_run": 3046,
+      "fail": 23,
+      "pass": 119
+    },
+    "native-intrinsic-failed": {
+      "not_run": 3086,
+      "fail": 15,
+      "pass": 87
+    },
+    "native-final": {
+      "not_run": 3086,
+      "fail": 15,
+      "pass": 87
+    }
+  },
+  "limits": [
+    "Separate state runs are not cumulative whole-product coverage.",
+    "No full 1:1 or RSI causal benefit established.",
+    "Actual source/native audio equality remains unavailable."
+  ],
+  "image_mae_rgb": {
+    "before": {
+      "selected": [
+        2.5176753,
+        2.2454964,
+        2.8098566
+      ],
+      "cleared": [
+        2.3115039,
+        2.1104246,
+        2.5799886
+      ]
+    },
+    "final": {
+      "selected": [
+        1.8117668,
+        1.7566746,
+        1.9185166
+      ],
+      "cleared": [
+        1.8621869,
+        1.7657036,
+        1.9051844
+      ]
+    }
+  }
+}
