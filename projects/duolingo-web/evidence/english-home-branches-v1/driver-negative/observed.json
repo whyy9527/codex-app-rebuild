@@ -1,0 +1,17 @@
+{
+  "attempts": [
+    {
+      "failure": "ProbeError(message: \"No observed control: verification-intentionally-missing-control\")",
+      "id": "harness-negative"
+    }
+  ],
+  "candidate_binary_sha256": "b3f2a5b8fddb5690fc023439dcf67f7f0316808385783ee3bade572fb6d97050",
+  "failure": "[[\"id\": \"harness-negative\", \"failure\": \"ProbeError(message: \\\"No observed control: verification-intentionally-missing-control\\\")\"]]",
+  "fixture_sha256": "b7242d0e130112d54b1e17714bf21c35045e58f8874948917b0b09f971282bda",
+  "kind": "owned_native_ax_observation",
+  "limitations": [
+    "No acoustic equality claim; actual images retain clock and animation phase differences"
+  ],
+  "scenario_sha256": "e2ef89fa5890df9bc28a099b53688a405449537f4e8672d0e77cdb1e504c9b3d",
+  "states": {}
+}

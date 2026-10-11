@@ -1,0 +1,191 @@
+{
+  "scope": "Same source-observed journeys; no full-app or acoustic completion claim",
+  "runs": {
+    "native-before": {
+      "states": 2,
+      "driver_failure": "[[\"failure\": \"ProbeError(message: \\\"No observed control: completed-practice\\\")\", \"id\": \"completed-branches\"], [\"id\": \"leaderboard\", \"failure\": \"ProbeError(message: \\\"No observed control: leaderboard-status-0\\\")\"]]",
+      "attempts": [
+        {
+          "failure": "ProbeError(message: \"No observed control: completed-practice\")",
+          "id": "completed-branches"
+        },
+        {
+          "failure": "ProbeError(message: \"No observed control: leaderboard-status-0\")",
+          "id": "leaderboard"
+        }
+      ],
+      "candidate_binary_sha256": "afc78f015a5802ff5be55994253cbaf9f7f6f8347aefb5b27036cf4b8c76dbd9",
+      "fixture_sha256": "b7242d0e130112d54b1e17714bf21c35045e58f8874948917b0b09f971282bda",
+      "frontend_counts": {
+        "not_run": 2708,
+        "fail": 8,
+        "pass": 11,
+        "unavailable": 12
+      },
+      "coverage_counts": {
+        "pass": 0,
+        "fail": 0,
+        "not_run": 9,
+        "unavailable": 0,
+        "unmodeled": 349
+      },
+      "validation": "projects/duolingo-web/evidence/english-home-branches-v1/native-before/validation.json"
+    },
+    "native-first": {
+      "states": 10,
+      "driver_failure": null,
+      "attempts": [
+        {
+          "failure": null,
+          "id": "completed-branches"
+        },
+        {
+          "failure": null,
+          "id": "leaderboard"
+        }
+      ],
+      "candidate_binary_sha256": "13c15a861409faa8823b559415a5f77a42f4c59cbd99e6902e93bfb36132a4e3",
+      "fixture_sha256": "b7242d0e130112d54b1e17714bf21c35045e58f8874948917b0b09f971282bda",
+      "frontend_counts": {
+        "not_run": 2597,
+        "unavailable": 3,
+        "pass": 116,
+        "fail": 23
+      },
+      "coverage_counts": {
+        "pass": 0,
+        "fail": 8,
+        "not_run": 0,
+        "unavailable": 1,
+        "unmodeled": 349
+      },
+      "validation": "projects/duolingo-web/evidence/english-home-branches-v1/native-first/validation.json"
+    },
+    "native-final": {
+      "states": 10,
+      "driver_failure": null,
+      "attempts": [
+        {
+          "failure": null,
+          "id": "completed-branches"
+        },
+        {
+          "failure": null,
+          "id": "leaderboard"
+        }
+      ],
+      "candidate_binary_sha256": "b3f2a5b8fddb5690fc023439dcf67f7f0316808385783ee3bade572fb6d97050",
+      "fixture_sha256": "b7242d0e130112d54b1e17714bf21c35045e58f8874948917b0b09f971282bda",
+      "frontend_counts": {
+        "not_run": 2597,
+        "fail": 23,
+        "pass": 119
+      },
+      "coverage_counts": {
+        "pass": 0,
+        "fail": 9,
+        "not_run": 0,
+        "unavailable": 0,
+        "unmodeled": 349
+      },
+      "validation": "projects/duolingo-web/evidence/english-home-branches-v1/native-final/validation.json"
+    },
+    "home-regression": {
+      "states": 8,
+      "driver_failure": null,
+      "attempts": [
+        {
+          "failure": null,
+          "id": "profile"
+        },
+        {
+          "failure": null,
+          "id": "login"
+        },
+        {
+          "failure": null,
+          "id": "shop"
+        },
+        {
+          "failure": null,
+          "id": "more"
+        }
+      ],
+      "candidate_binary_sha256": "b3f2a5b8fddb5690fc023439dcf67f7f0316808385783ee3bade572fb6d97050",
+      "fixture_sha256": "b7242d0e130112d54b1e17714bf21c35045e58f8874948917b0b09f971282bda",
+      "frontend_counts": {
+        "not_run": 2651,
+        "fail": 23,
+        "pass": 65
+      },
+      "coverage_counts": {
+        "pass": 0,
+        "fail": 0,
+        "not_run": 9,
+        "unavailable": 0,
+        "unmodeled": 349
+      },
+      "validation": "projects/duolingo-web/evidence/english-home-branches-v1/home-regression/validation.json"
+    },
+    "chest-regression": {
+      "states": 8,
+      "driver_failure": null,
+      "attempts": null,
+      "candidate_binary_sha256": "b3f2a5b8fddb5690fc023439dcf67f7f0316808385783ee3bade572fb6d97050",
+      "fixture_sha256": "7dc77351c9492e937b91f6493faf6886026fc598f1617ffa96c53142a21bb8ce",
+      "frontend_counts": {
+        "not_run": 2695,
+        "fail": 17,
+        "pass": 27
+      },
+      "coverage_counts": {
+        "pass": 0,
+        "fail": 0,
+        "not_run": 9,
+        "unavailable": 0,
+        "unmodeled": 349
+      },
+      "validation": "projects/duolingo-web/evidence/english-home-branches-v1/chest-regression/validation.json"
+    },
+    "driver-negative": {
+      "states": 0,
+      "driver_failure": "[[\"id\": \"harness-negative\", \"failure\": \"ProbeError(message: \\\"No observed control: verification-intentionally-missing-control\\\")\"]]",
+      "attempts": [
+        {
+          "failure": "ProbeError(message: \"No observed control: verification-intentionally-missing-control\")",
+          "id": "harness-negative"
+        }
+      ],
+      "candidate_binary_sha256": "b3f2a5b8fddb5690fc023439dcf67f7f0316808385783ee3bade572fb6d97050",
+      "fixture_sha256": "b7242d0e130112d54b1e17714bf21c35045e58f8874948917b0b09f971282bda",
+      "frontend_counts": {
+        "not_run": 2739
+      },
+      "coverage_counts": {
+        "pass": 0,
+        "fail": 0,
+        "not_run": 9,
+        "unavailable": 0,
+        "unmodeled": 349
+      },
+      "validation": "projects/duolingo-web/evidence/english-home-branches-v1/driver-negative/validation.json"
+    }
+  },
+  "swift_core_checks": 30,
+  "swift_build": "success",
+  "frozen_parent_requirements_unchanged": 2587,
+  "total_requirements": 2739,
+  "source_consistency_only": {
+    "not_run": 1813,
+    "pass": 909,
+    "unavailable": 17
+  },
+  "driver_negative": "Intentional nonexistent control, actual exit1 and zero states; harness validation, not product defect/RSI ablation",
+  "limits": [
+    "All new whole-images still fail",
+    "Source status backend persistence and reset unknown",
+    "Audio transitions pending",
+    "No controlled RSI causal gain",
+    "Native first UI capture had three genuine unavailable size mismatches; final all ten sizes match; OS cause unknown"
+  ]
+}

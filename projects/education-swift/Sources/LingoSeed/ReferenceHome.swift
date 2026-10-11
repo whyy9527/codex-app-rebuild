@@ -16,6 +16,8 @@ struct ReferenceHome: View {
     @State private var menuHovered = false
     @State private var showingPathProfile = false
     @State private var authentication: String?
+    @State private var showingLegendary = false
+    @State private var selectedLeaderboardStatus: Int?
     private var completed: Int { model.progress.completedCount(model.course) }
     private var homeSnapshot: HomeProgressSnapshot? { model.course.home?.progressSnapshots?.first { $0.completedLessons == completed } }
     private var referenceClock: Date? {
@@ -39,6 +41,7 @@ struct ReferenceHome: View {
                 else {
                 ScrollView {
                     if model.destination == "Pronunciation" { ReferencePronunciation(model: model).padding(.horizontal, 24).padding(.top, 43) }
+                    else if model.destination == "Leaderboards" { ReferenceLeaderboard(selectedStatus:$selectedLeaderboardStatus,practice:{ model.beginGeneralPractice() }).padding(.horizontal,24).padding(.top,24) }
                     else if model.destination == "Shop" { ReferenceShop(gems: chestOpened ? (pathChest?.afterGems ?? homeSnapshot?.gems ?? 0) : (homeSnapshot?.gems ?? 0), create: { authentication = "profile" }).padding(.top,40) }
                     else if model.destination == "Quests" { ReferenceQuests(snapshot: homeSnapshot).padding(.horizontal, 24).padding(.top, 24) }
                     else if model.destination == "Guidebook" { ReferenceGuidebook(model: model).padding(.horizontal, 24).padding(.top, 48) }
@@ -46,12 +49,17 @@ struct ReferenceHome: View {
                 }
                     .frame(maxWidth: .infinity)
                 if geometry.size.width >= 1120 {
-                    ScrollView { dashboard.padding(.top, 32) }
+                    ScrollView {
+                        if model.destination == "Leaderboards" {
+                            VStack(spacing:24) { dashboardStats.frame(height:44); ReferenceLeaderboardStatus(selectedStatus:$selectedLeaderboardStatus); questsFooter.padding(.top,10) }.padding(.top,24)
+                        } else { dashboard.padding(.top,32) }
+                    }
                         .frame(width: 368).padding(.horizontal, 24)
                 }
                 }
             }
             .overlay(alignment: .topLeading) {
+                if showingLegendary { ReferenceLegendary(hearts:model.progress.hearts,start:{ showingLegendary = false; showingPathProfile = true },quit:{ showingLegendary = false }).zIndex(19) }
                 if showingPathProfile { ReferencePathProfile(close: { showingPathProfile = false }).frame(width: geometry.size.width, height: geometry.size.height).zIndex(20) }
                 if moreOpen { moreMenu.offset(x: geometry.size.width >= 1180 ? 238 : 72, y: 438).zIndex(10) }
                 if authentication == "profile" { ReferenceRegistration(close:{ authentication = nil },showLogin:{ authentication = "login" }).zIndex(30) }
@@ -68,7 +76,7 @@ struct ReferenceHome: View {
                 Button {
                     if item == "More" { moreOpen.toggle() }
                     else if item == "Profile" { authentication = "profile"; moreOpen = false }
-                    else { model.destination = item; moreOpen = false }
+                    else { model.destination = item; moreOpen = false; if item == "Learn" || item == "Leaderboards" { lessonPopoverNode = nil } }
                 } label: {
                     HStack(spacing: 20) {
                         ReferenceStyle.image(item == "Pronunciation" ? (model.course.home?.pronunciationResource ?? "nav-test") : "nav-" + item.lowercased()).resizable().scaledToFit().frame(width: 32, height: 32)
@@ -193,13 +201,10 @@ struct ReferenceHome: View {
                     .overlay(RoundedRectangle(cornerRadius: 10).stroke(ReferenceStyle.border, lineWidth: 2)).offset(y: -61)
             }
             if lessonPopoverNode == index {
-                VStack(alignment: .leading, spacing: 5) {
-                    Text(model.course.title).font(ReferenceStyle.font(19, bold: true))
-                    if finished {
-                        Text("完成传奇挑战，展示你的传奇实力").font(ReferenceStyle.font(17))
-                        Text("练习 +5 经验").font(ReferenceStyle.font(17, bold: true)).padding(.top, 14)
-                        Text("晋升传奇 +40 经验").font(ReferenceStyle.font(17, bold: true)).padding(.top, 14)
-                    } else {
+                if finished { completedPopover.offset(y:157.1015625) } else {
+                    VStack(alignment: .leading, spacing: 5) {
+                        Text(model.course.title).font(ReferenceStyle.font(19, bold: true))
+
                         Text(index == 3 && chestOpened ? "第 1/2 单元" : "第 \(nodeDone + 1)/\(total) 单元").font(ReferenceStyle.font(17))
                         if index == 3 && chestOpened {
                             ReferencePracticeControl(label: "开始 +10 经验", identifier: "start-lesson-confirm", enabled: true,
@@ -213,10 +218,19 @@ struct ReferenceHome: View {
                                 .buttonStyle(SeedButtonStyle(fill: .white, foreground: green)).frame(maxWidth: .infinity).padding(.top, 14)
                                 .disabled(next == nil).accessibilityIdentifier("start-lesson-confirm")
                         }
-                    }
-                }.foregroundStyle(.white).padding(16).frame(width: 294).background(green, in: RoundedRectangle(cornerRadius: 15)).offset(x: index == 3 && chestOpened ? 45 : 0, y: 134)
+                    }.foregroundStyle(.white).padding(16).frame(width: 294).background(green, in: RoundedRectangle(cornerRadius: 15)).offset(x: index == 3 && chestOpened ? 45 : 0, y: 134)
+                }
             }
         }.frame(width: active ? 100 : 70, height: active ? 100 : 65).zIndex(lessonPopoverNode == index ? 2 : 0)
+    }
+    private var completedPopover: some View {
+        ZStack(alignment:.topLeading) {
+            RoundedRectangle(cornerRadius:15).fill(green)
+            Text(model.course.title).font(ReferenceStyle.font(19,bold:true)).frame(width:263,height:26.6015625,alignment:.leading).offset(x:16,y:16)
+            Text("完成传奇挑战，展示你的传奇实力").font(ReferenceStyle.font(17)).frame(width:263,height:26.6015625,alignment:.leading).offset(x:16,y:42.6015625)
+            ReferencePracticeControl(label:"练习 +5 经验",identifier:"completed-practice",enabled:true,action:{ showingPathProfile = true },face:AnyView(Text("练习 +5 经验").font(ReferenceStyle.font(15,bold:true)).tracking(0.8).foregroundStyle(green).frame(width:263,height:46).background { RoundedRectangle(cornerRadius:16).fill(.white).shadow(color:ReferenceStyle.border,radius:0,y:4) }.frame(height:50,alignment:.top)),role:.link).frame(width:263,height:50).offset(x:16,y:85.203125)
+            ReferencePracticeControl(label:"晋升传奇 +40 经验",identifier:"completed-legendary",enabled:true,action:{ showingLegendary = true },face:AnyView(Text("晋升传奇 +40 经验").font(ReferenceStyle.font(15,bold:true)).tracking(0.8).foregroundStyle(Color(red:174/255,green:104/255,blue:2/255)).frame(width:263,height:46).background { RoundedRectangle(cornerRadius:16).fill(Color(red:1,green:200/255,blue:0)).shadow(color:Color(red:231/255,green:166/255,blue:1/255),radius:0,y:4) }.frame(height:50,alignment:.top))).frame(width:263,height:50).offset(x:16,y:151.203125)
+        }.frame(width:295,height:217.203125,alignment:.topLeading).foregroundStyle(.white)
     }
     private func pathNode(_ index: Int) -> some View {
         let node = model.course.pathNodes?.indices.contains(index) == true ? model.course.pathNodes?[index] : nil
@@ -249,14 +263,17 @@ struct ReferenceHome: View {
                 .accessibilityIdentifier(index == 0 ? "start-lesson" : "start-lesson-\(index)")
         }.frame(width: 100, height: index == 0 ? 132 : 70)
     }
-    private var dashboard: some View {
-        VStack(alignment: .leading, spacing: 16) {
+    private var dashboardStats: some View {
             HStack {
                 stat(model.course.home?.flagResource ?? "flag-spanish", chinese ? "5" : "1", color: ReferenceStyle.ink, width: 31)
                 Spacer(); stat("streak", "\(homeSnapshot?.streak ?? (completed > 0 ? 1 : 0))", color: .orange, width: 23)
                 Spacer(); stat("gems", "\(chestOpened ? pathChest?.afterGems ?? 0 : homeSnapshot?.gems ?? (500 + completed * 5))", color: blue, width: 22)
                 Spacer(); stat("hearts", "\(model.progress.hearts)", color: .red, width: 28)
-            }.padding(.horizontal, 12).padding(.bottom, 16)
+            }.padding(.horizontal, 12)
+    }
+    private var dashboard: some View {
+        VStack(alignment: .leading, spacing: 16) {
+            dashboardStats.padding(.bottom,16)
             if model.destination == "Quests" {
                 ReferenceQuestMonthly { model.beginGeneralPractice() }
             } else {

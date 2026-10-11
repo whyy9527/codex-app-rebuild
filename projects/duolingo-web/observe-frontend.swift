@@ -4,6 +4,7 @@ import ApplicationServices
 import Foundation
 import CryptoKit
 import Carbon
+import ImageIO
 
 enum ObservationStop: Error { case afterQuestion(String) }
 func main() throws {
@@ -232,13 +233,43 @@ if let index = CommandLine.arguments.firstIndex(of: "--exercise-home-journey"), 
         try waitFor("path-chest"); configureWindow()
         let id = journey["id"] as! String
         do {
-            let control = journey["native_action"] as! String
-            if journey["operation"] as? String == "hover" { guard movePointer(to:control) else { throw ProbeError(message:"Missing hover target") } }
-            else { try press(control) }
-            Thread.sleep(forTimeInterval:0.7)
-            let after = "journey-" + id; states[after] = observe(); try capture(after)
-            try press(journey["native_return"] as! String); Thread.sleep(forTimeInterval:0.7)
-            let back = after + "-return"; states[back] = observe(); try capture(back)
+            let steps = journey["steps"] as? [[String: Any]] ?? [
+                ["native_action":journey["native_action"]!, "operation":journey["operation"] ?? "click", "state":"journey-" + id],
+                ["native_action":journey["native_return"]!, "state":"journey-" + id + "-return"]]
+            for step in steps {
+                try activateOwnedInputTarget()
+                let control = step["native_action"] as! String
+                if step["operation"] as? String == "hover" { guard movePointer(to:control) else { throw ProbeError(message:"Missing hover target") } }
+                else { try press(control) }
+                Thread.sleep(forTimeInterval:0.7)
+                if let state = step["state"] as? String {
+                    var facts = observe()
+                    let elements = facts["elements"] as? [String: Any] ?? [:]
+                    let profile = elements["path-profile-later"] != nil
+                    let legendary = !profile && elements["legendary-quit"] != nil
+                    facts["interactions"] = ["profile_present":profile, "legendary_present":legendary,
+                        "completed_popover_present": !profile && !legendary && elements["completed-practice"] != nil,
+                        "status_selected":elements["leaderboard-selected-status"] != nil]
+                    var captureAttempts: [[String: Any]] = []
+                    var validCapture = false
+                    let metadata = try JSONSerialization.jsonObject(with:Data(contentsOf:output.appendingPathComponent("window.json"))) as! [String: Any]
+                    let points = metadata["window_points"] as! [Double]; let scale = metadata["backing_scale"] as! Double
+                    let expected = points.map { Int(($0 * scale).rounded()) }
+                    for attempt in 1...8 {
+                        let name = state + "-capture-" + String(attempt); try capture(name)
+                        let url = output.appendingPathComponent(name + ".png")
+                        let source = CGImageSourceCreateWithURL(url as CFURL,nil)!
+                        let properties = CGImageSourceCopyPropertiesAtIndex(source,0,nil)! as NSDictionary
+                        let actual = [(properties[kCGImagePropertyPixelWidth] as! NSNumber).intValue,(properties[kCGImagePropertyPixelHeight] as! NSNumber).intValue]
+                        captureAttempts.append(["attempt":attempt,"pixels":actual,"expected":expected,"path":url.lastPathComponent])
+                        if actual == expected { try FileManager.default.copyItem(at:url,to:output.appendingPathComponent(state + ".png"));validCapture = true;break }
+                        Thread.sleep(forTimeInterval:0.5)
+                    }
+                    facts["capture_attempts"] = captureAttempts
+                    states[state] = facts
+                    guard validCapture else { throw ProbeError(message:"Owned capture never matched measured viewport: " + state) }
+                }
+            }
             attempts.append(["id":id,"failure":NSNull()])
         } catch { attempts.append(["id":id,"failure":String(describing:error)]) }
     }
@@ -248,7 +279,8 @@ if let index = CommandLine.arguments.firstIndex(of: "--exercise-home-journey"), 
         "candidate_binary_sha256":candidateSHA,"fixture_sha256":fixtureSHA,"scenario_sha256":SHA256.hash(data:try Data(contentsOf:scenarioURL)).map{String(format:"%02x",$0)}.joined(),
         "failure":failures.isEmpty ? NSNull() : String(describing:failures),"limitations":["No acoustic equality claim; actual images retain clock and animation phase differences"]]
     try JSONSerialization.data(withJSONObject:receipt,options:[.prettyPrinted,.sortedKeys]).write(to:output.appendingPathComponent("observed.json"),options:.withoutOverwriting)
-    print("Collected \(states.count) actual home journey states, \(failures.count) unavailable returns")
+    print("Collected \(states.count) actual home journey states, \(failures.count) failed journeys")
+    if !failures.isEmpty { throw ProbeError(message:"Home journey execution failed; inspect observed.json attempts") }
     return
 }
 if let scenario = clockScenario, let rows = scenario["states"] as? [[String: Any]] {

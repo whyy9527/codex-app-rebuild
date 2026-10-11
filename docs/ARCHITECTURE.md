@@ -1,5 +1,7 @@
 # 架构
 
+v50的`home-branches-scenarios-v1.json`由原版逐步观察冻结，原生多步驱动保存中间状态、模态可操作层、每次截图尺寸和失败，再分别运行前端比较与动作覆盖。失败旅程非零退出；AX能调用超出内容区的控件，因此动作成功须与几何和整图分开。Swift的完成节点／Legendary／Leaderboard由ReferenceHome实际消费，服务端状态和未探索动作仍由frontier记录。[实现与证据](../projects/duolingo-web/evidence/english-home-branches-v1/README.md)。
+
 主页模具增加真实action inventory与journey：`capture-visible-state.mjs`采可见链接/按钮/输入和后续hit-test；`capture-home-journey.mjs`消费事前策略选择，采目标与真实返回；`coverage.py`把库存、前端契约与独立结果连接，未映射动作保留unmodeled。`LearningView`拥有最外层原生路由，组件存在不表示路由接入；本批实际Shop失败暴露并修复该消费者缺口。独立练习bundle v4只追加已观察的错误配对原音；`capture-source-pairing-audio.mjs`同步录音READY和实际源动作。来源、未覆盖与输出限制见[证据](../projects/duolingo-web/evidence/english-home-journey-v1/README.md)。
 
 共同时间场景`home-clock-scenario-v1.json`保存原版DOM文案变化时刻，v14快照保存源排行榜期限，LearningCore计算文案；SwiftUI按秒刷新，原生驱动仅在显式场景里传入参考时刻。`capture-home-clock.mjs`在独立源上下文使用持续前进的Date偏移，保留真实RAF/timer。暂停/固定时钟曾无法加载原版，失败仍存；文案时刻不等于动效相位，v48整图继续严格失败。[实际证据](../projects/duolingo-web/evidence/english-home-clock-v1/README.md)。

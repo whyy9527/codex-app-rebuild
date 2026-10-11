@@ -1,0 +1,44 @@
+{
+  "based_on": [
+    "exploration-feedback.json",
+    "action-inventory.json",
+    "native-final/validation.json"
+  ],
+  "next": [
+    {
+      "id": "leaderboard-practice",
+      "status": "unmodeled",
+      "source": "source/leaderboard.json",
+      "next": "Execute actual practice link, freeze matching current course content and exit/return; existing model handler not acceptance proof"
+    },
+    {
+      "id": "status-reset-persistence",
+      "status": "unmodeled",
+      "source": "source/leaderboard-status.json",
+      "next": "Observe hover/clear and reload; prepare common initial status; remaining eleven button outcomes unverified"
+    },
+    {
+      "id": "guest-create-close",
+      "status": "partly covered",
+      "next": "Observe create/close from both completed practice and Legendary interruptions, including navigation return"
+    },
+    {
+      "id": "homepage-whole-images",
+      "status": "fail",
+      "source": "native-final/validation.json",
+      "next": "Correct 23 geometry/whole-image differences using source facts; retain all assertions"
+    },
+    {
+      "id": "actual-source-audio",
+      "status": "unavailable",
+      "source": "projects/duolingo-web/evidence/english-home-journey-v1/source-sound",
+      "next": "Verify owned browser audio process/filter and synchronized actual output; do not equate zero loopback with silence"
+    },
+    {
+      "id": "RSI-ablation",
+      "status": "not_run",
+      "next": "Fix baseline and preseal common task budgets/evaluation before controlled mechanism removal; current before/after UI implementation is not RSI ablation"
+    }
+  ],
+  "completion": "Full goal remains active; action inventory is finite observation, not full requirements universe"
+}

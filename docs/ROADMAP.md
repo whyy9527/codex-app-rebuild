@@ -1,5 +1,7 @@
 # Roadmap
 
+已推进完成节点、传奇挑战页及排行榜：原版真实分支→v50共享10状态→Swift实际路由／动作；119pass/23fail，整图仍失败。下一轮探索排行榜练习、状态清除与保存、建档嵌套和原版声学输出，继续处理主页及练习整页差异。[证据与队列](../projects/duolingo-web/evidence/english-home-branches-v1/README.md)。
+
 当前优先主页入口→目标前端→真实返回和声音，避免继续只修倒计时。v49四旅程8状态65pass/23fail/2499not_run，动作库存保留未建模；独立练习错误配对原音已真实输出，源浏览器loopback仍不可用。已完成节点/传奇、排行榜、登录嵌套动作、声学链路和严格整图继续进入探索闭环；不是1:1完成或RSI收益。[本批证据与下一选择](../projects/duolingo-web/evidence/english-home-journey-v1/README.md)。
 
 本轮补原版小时/分钟/秒倒计时及共同时间夹具，默认课程v14保留八课115题；前端v48保留旧2486项并新增9项。实际原生文案3pass，几何/整图6fail，未计动效相位或RSI收益。30核心通过，完整Goal active。[源观察、失败控制与复跑](../projects/duolingo-web/evidence/english-home-clock-v1/README.md)。

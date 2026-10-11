@@ -1,0 +1,35 @@
+{
+  "failures": [
+    {
+      "action": "Initial learn readiness",
+      "error": "waitFor heading 提供或接受饮料 timed out; current root has text, not that heading",
+      "resolution": "Snapshot and capture actual home; no page restart or fake completion"
+    },
+    {
+      "action": "First Legendary attempt after Later",
+      "error": "Clicked completed node although Later preserved popover; toggled closed, Legendary detached/not stable; 30sec timeout",
+      "evidence": "source/legendary-failed.json",
+      "resolution": "Observed current state, reopened node once, then separate Legendary click succeeded"
+    },
+    {
+      "action": "Capture naming",
+      "error": "Legendary raw evidence stem already existed",
+      "resolution": "Preserved failed raw under legendary-failed; new capture stem separate"
+    },
+    {
+      "action": "Original asset conversion",
+      "error": "ImageMagick could not render SVG embedded data image; HTTP body sometimes gzip encoded",
+      "resolution": "Decoded HTTP gzip and rendered original SVG with CairoSVG2.9.1 scale3; recorded response/SVG/PNG hashes; no replacement art"
+    },
+    {
+      "action": "First native new journey capture",
+      "error": "Three actual PNGs were1020x648 while metadata expected2400x1528; comparator marked unavailable",
+      "resolution": "Added owned-app activation and bounded pixel-dimension verification; final all10 captures matched on first attempt; exact OS scaling cause not established"
+    },
+    {
+      "action": "Initial chest regression configuration",
+      "error": "Supplied nonexistent historical progress seed; command exited1 before running UI",
+      "resolution": "Preserved configuration failure; use verified english-chest-v1/progress-seed.json with fresh output"
+    }
+  ]
+}
