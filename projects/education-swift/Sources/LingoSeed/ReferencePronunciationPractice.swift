@@ -18,7 +18,7 @@ struct ReferencePronunciationPractice: View {
                         .buttonStyle(.plain).accessibilityIdentifier("exit")
                     ProgressView(value: lesson.complete ? 1 : lesson.reviewing ? 0.9 : Double(lesson.position) / Double(lesson.definition.questions.count)).tint(ReferenceStyle.green).accessibilityIdentifier("lesson-progress")
                     if model.isObservedCourse {
-                        HStack(spacing:8) {ReferenceStyle.image("heart").resizable().frame(width:32,height:28);Text(String(lesson.hearts)).font(ReferenceStyle.font(17,bold:true)).foregroundStyle(Color(red:1,green:75/255,blue:75/255))}.accessibilityIdentifier("course-hearts").accessibilityValue(String(lesson.hearts))
+                        HStack(spacing:8) {ReferenceStyle.image("en-home-088202fb75fb12b0eec8").resizable().frame(width:32,height:32);Text(String(lesson.hearts)).font(ReferenceStyle.font(17,bold:true)).foregroundStyle(Color(red:1,green:75/255,blue:75/255))}.accessibilityIdentifier("course-hearts").accessibilityValue(String(lesson.hearts))
                     } else if model.isPlacement {
                         HStack(spacing: 5) {
                             ForEach(0..<(model.isUnitPlacement ? 5 : 3), id: \.self) { i in
@@ -41,7 +41,8 @@ struct ReferencePronunciationPractice: View {
                         if let body = model.settlement?.current?.body { Text(body).font(ReferenceStyle.font(19)) }
                     }.padding(.top, 80)
                 } else if let otherQuestion, question.kind != .matching {
-                    otherQuestion.frame(width: 600).padding(.top, model.isPlacement ? 48.5 : 51)
+                    // Ordinary assist source: heading block117 +40 +175 character row => first radio332.
+                    otherQuestion.frame(width: 600).padding(.top, model.isObservedCourse ? (question.sourceType == "assist" ? 34.5 : 47) : model.isPlacement ? 48.5 : 51)
                 } else {
                     VStack(alignment: .leading, spacing: 0) {
                         Text(question.prompt).font(ReferenceStyle.font(32, bold: true)).frame(height: 40).accessibilityIdentifier("question-prompt").accessibilityValue(question.id)

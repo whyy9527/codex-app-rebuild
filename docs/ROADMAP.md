@@ -1,5 +1,7 @@
 # Roadmap
 
+2026-10-12前端修复：40状态0驱动失败，30项radio／跳过验证通过；同v71失败282→236，仍35整图fail。v72补五个探索状态至17092项；第三课首题空跳过保持4心，后续未探索，提醒未实现；真实模型04仍待执行。 [证据与复跑](../projects/duolingo-web/evidence/english-unit12-frontend-repair-v1/README.md)。
+
 2026-10-12第二课补漏：12判分题／1口语暂缓／2鼓励／13回顾，主页3of6持久化；40原生状态0驱动失败，严格543pass／282fail／14752not_run／923unavailable。继续第三课、提醒遮挡契约、字体布局与声音，保持完整Goal active。 [证据与复跑](../projects/duolingo-web/evidence/english-unit12-lesson2-v1/README.md)。
 
 最新进展（2026-10-12）：补原版单元12独立指南、17判分题／口语暂缓／18回顾卡、普通课程4生命与课后主页恢复；三次实际原生录音验证原资源及1／0.35／0.5增益。最终46状态旅程无执行失败；v70共15255项，258pass／178fail／547unavailable，45整图全fail。继续探索发现延迟发音遮罩、电台“公寓参观”锁定弹层、下一课图片选择，已纳入契约及frontier；逐题回放开始保留前端几何、CSS、命中与裁剪事实。完整Goal仍active，1:1及新RSI因果收益未完成。[证据、差异与复跑](../projects/duolingo-web/evidence/english-unit12-content-v1/README.md)。

@@ -334,3 +334,6 @@ LessonDefinition的可选ObservedPlacementOutcome只保存已有全对实例的�
 
 
 第二课源轨迹由compile-unit12-lesson2.py编译为独立实例；orderTapComplete保留预填前后缀，回顾拼回完整句。前端v71追加逐题答前／反馈事实，compile-unit12-lesson2-frontier.py承接旧历史和真实遮挡失败。原生遮罩由可访问NSView接真实鼠标事件，使用实际高亮路径判断导航／外部关闭；pending准备不等于已复现原版延迟和滚动。
+
+
+普通assist与placement共用有原版来源的radio布局，原课程的header生命资源及32×32尺寸由实际DOM确定。review_instance_compiler仅从实际frontend_before动作采skipLabel，不为所有题型添加。v72保留v71并加入刷新提醒及第三课空跳过，源发现由compile-unit12-repair-frontier.py延续；measure-lesson2-owned-audio.py分别测两个真实UI动作的原语音资源存在，不把资源相关性当作原版声学等价。

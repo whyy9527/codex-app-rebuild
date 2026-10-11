@@ -1,0 +1,46 @@
+{
+  "status": "pass",
+  "checks": [
+    {
+      "name": "all40states and no failed journeys",
+      "pass_": true
+    },
+    {
+      "name": "actual pointer navigation preserves coach",
+      "pass_": true
+    },
+    {
+      "name": "outside click dismisses coach",
+      "pass_": true
+    },
+    {
+      "name": "radio title/body and disabled action",
+      "pass_": true
+    },
+    {
+      "name": "unit12-lesson2-home-after lesson3of6 and coach absent",
+      "pass_": true
+    },
+    {
+      "name": "unit12-lesson2-home-restarted lesson3of6 and coach absent",
+      "pass_": true
+    },
+    {
+      "name": "second course persisted without losing first",
+      "pass_": true
+    },
+    {
+      "name": "ordinary course preserves four hearts",
+      "pass_": true
+    },
+    {
+      "name": "coach dismissal persisted",
+      "pass_": true
+    }
+  ],
+  "observation_sha256": "3c32716c39131d68f84e2d06bdcc05872e3774ab13082ad95c58f77c8ce95ec9",
+  "limitations": [
+    "Prepared pending coach does not reproduce source onset delay or matching493.5point background scroll.",
+    "This verifies these UI outcomes only; strict whole-image/audio equality and unexplored branches remain open."
+  ]
+}

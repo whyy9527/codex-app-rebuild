@@ -119,5 +119,9 @@ def compile_question(c, effect, raw, row, card, question_id):
         audio = [q['audioResource']]
     else:
         raise ValueError(raw['type'])
+    skips=[a for a in row.get('frontend_before',{}).get('actions',[]) if a['name']=='跳过']
+    if skips:
+        assert len(skips)==1 and skips[0]['enabled']
+        q['skipLabel']=skips[0]['name']
     q['resultReview'] = dict(title=title, prompt=prompt, correctAnswer=answer, audioResources=audio)
     return q

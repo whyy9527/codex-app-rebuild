@@ -1,0 +1,76 @@
+{
+  "scope": "Original resource presence in owned Swift output after real selection/grading; source acoustic equality remains unverified",
+  "recordings": [
+    {
+      "recording": "lesson2-select-living-room",
+      "resource": "en-speech-5b38a102a81a10f39964.mp3",
+      "resource_sha256": "39031184acaec895a9cb0608e07025869027f51a0699fe9581750bfd614dcae8",
+      "recording_sha256": "60f6bbda9c2a66c3a3a5f9e28dba9a8458de3b0bc1a15173eb61e1dc7e9cf67b",
+      "metrics": {
+        "alignment_seconds": 0.21639583333333334,
+        "normalized_correlation": 0.9999999549580308,
+        "fitted_gain": 0.9999978888780319,
+        "residual_rms": 4.0181748086871814e-05,
+        "reference_samples": 52992,
+        "recorded_samples": 256320
+      },
+      "owned_capture": {
+        "duration_seconds": 5,
+        "excludes_current_process_audio": true,
+        "filter": "Only explicitly selected owned application/window",
+        "filter_mode": "application",
+        "frames": 256320,
+        "kind": "owned_application_audio_loopback",
+        "microphone": false,
+        "owned_pid": 16819,
+        "peak": 0.41202643513679504,
+        "rms": 0.04304315998891425,
+        "samples": 512640,
+        "ui_actions": [
+          {
+            "elapsed_seconds": 0.10742902755737305,
+            "id": "option-0"
+          }
+        ]
+      }
+    },
+    {
+      "recording": "lesson2-assist-feedback",
+      "resource": "en-speech-c5171f9d75ab08664919.mp3",
+      "resource_sha256": "fe48dd282d5947ed6d190062d22f5b2ca4dc7de8f2b87d56ea711aa24d871512",
+      "recording_sha256": "326bf46257c3ea3d127a7c6c7babb9b56f317319a93579120ef4b4b7a4c25455",
+      "metrics": {
+        "alignment_seconds": 0.17889583333333334,
+        "normalized_correlation": 0.9999923993208403,
+        "fitted_gain": 0.9999511168169098,
+        "residual_rms": 0.00018180663258040702,
+        "reference_samples": 57600,
+        "recorded_samples": 252480
+      },
+      "owned_capture": {
+        "duration_seconds": 5,
+        "excludes_current_process_audio": true,
+        "filter": "Only explicitly selected owned application/window",
+        "filter_mode": "application",
+        "frames": 252480,
+        "kind": "owned_application_audio_loopback",
+        "microphone": false,
+        "owned_pid": 16819,
+        "peak": 0.3303544521331787,
+        "rms": 0.01574896837000835,
+        "samples": 504960,
+        "ui_actions": [
+          {
+            "elapsed_seconds": 0.07114410400390625,
+            "id": "check"
+          }
+        ]
+      }
+    }
+  ],
+  "limitations": [
+    "No source acoustic output recorded",
+    "No completion-effect or every-question sound equivalence inferred",
+    "Missed original media event windows remain unknown; no substitute effect added"
+  ]
+}

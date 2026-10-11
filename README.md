@@ -1,5 +1,7 @@
 # Codex App Rebuild
 
+最新进展：修普通选择题radio布局、生命图标和遗漏跳过控件；未放宽的v71失败282→236，整图仍未通过。实录两次自有应用语音输出，继续探索第三课跳过。 [证据与复跑](projects/duolingo-web/evidence/english-unit12-frontend-repair-v1/README.md)。
+
 最新进展：真实完成不同内容的第二课及逐题前端采集，Swift40状态回放无驱动失败；严格验收282fail，尚未1:1。新增提醒遮挡进入探索队列，RSI真实匹配实验仍待执行。 [证据与复跑](projects/duolingo-web/evidence/english-unit12-lesson2-v1/README.md)。
 
 最新进展（2026-10-12）：补原版单元12独立指南、17判分题／口语暂缓／18回顾卡、普通课程4生命与课后主页恢复；三次实际原生录音验证原资源及1／0.35／0.5增益。最终46状态旅程无执行失败；v70共15255项，258pass／178fail／547unavailable，45整图全fail。继续探索发现延迟发音遮罩、电台“公寓参观”锁定弹层、下一课图片选择，已纳入契约及frontier；逐题回放开始保留前端几何、CSS、命中与裁剪事实。完整Goal仍active，1:1及新RSI因果收益未完成。[证据、差异与复跑](projects/duolingo-web/evidence/english-unit12-content-v1/README.md)。

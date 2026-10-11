@@ -360,7 +360,7 @@ struct LearningView: View {
         } else if lesson.question.newWord { Text(copy("NEW WORD", "新单词")).font(ReferenceStyle.font(14, bold: true)).foregroundStyle(.purple) }
         // Source challenge-header: 32px/40px. Translation's character row follows
         // the heading directly; the old shared 28-point gap displaced it.
-        VStack(alignment: .leading, spacing: (model.isPlacement && lesson.question.sourceType == "assist") || ["translate", "completeReverseTranslation"].contains(lesson.question.sourceType ?? "") || (model.isReferenceSession && lesson.question.sourceType == "listen") ? 0 : model.isReferenceSession && lesson.question.sourceType == "listenTap" ? 23.5 : model.isReferenceSession && lesson.question.sourceType == "listenIsolation" && lesson.question.isolationPromptTokens != nil ? 32 : 28) {
+        VStack(alignment: .leading, spacing: (model.isReferenceSession && lesson.question.sourceType == "assist") || ["translate", "completeReverseTranslation"].contains(lesson.question.sourceType ?? "") || (model.isReferenceSession && lesson.question.sourceType == "listen") ? 0 : model.isReferenceSession && lesson.question.sourceType == "listenTap" ? 23.5 : model.isReferenceSession && lesson.question.sourceType == "listenIsolation" && lesson.question.isolationPromptTokens != nil ? 32 : 28) {
         Text(lesson.question.kind == .wordTiles && lesson.question.hint == nil && lesson.question.sourceType == nil ? "Build this phrase" : lesson.displayedPrompt).font(ReferenceStyle.font(32, bold: true))
             .frame(maxWidth: .infinity, minHeight: 40, maxHeight: 40, alignment: .leading)
             .accessibilityIdentifier("question-title").accessibilityValue(lesson.displayedPrompt)
@@ -552,7 +552,7 @@ struct LearningView: View {
                     }
                 }.padding(.top,80)
             }
-        } else if model.isPlacement && lesson.question.sourceType == "assist" {
+        } else if model.isReferenceSession && lesson.question.sourceType == "assist" {
             HStack(spacing: 16) {
                 if let character = lesson.question.characterResource {
                     ReferenceCharacter(resource: character, feedback: lesson.feedback).id(lesson.question.id)
