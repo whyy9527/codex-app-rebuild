@@ -1,0 +1,16 @@
+### Result
+[{"innerText":"","textContent":"","html":"<div class=\"tFegI _2IGwo XxgPa _33wyM\" tabindex=\"0\" data-test=\"hint-token\" aria-label=\"Hi\" style=\"height: 24px; left: 0px; top: 0px; width: 14.4062px;\"></div>"},{"innerText":"","textContent":"","html":"<div class=\"tFegI _2IGwo XxgPa _33wyM\" tabindex=\"0\" data-test=\"hint-token\" aria-label=\"welcome\" style=\"height: 24px; left: 21.6094px; top: 0px; width: 64.3281px;\"></div>"},{"innerText":"","textContent":"","html":"<div class=\"tFegI _2IGwo XxgPa _33wyM\" tabindex=\"0\" data-test=\"hint-token\" aria-label=\"to\" style=\"height: 24px; left: 89.3438px; top: 0px; width: 14.7812px;\"></div>"},{"innerText":"","textContent":"","html":"<div class=\"tFegI _2IGwo XxgPa _33wyM\" tabindex=\"0\" data-test=\"hint-token\" aria-label=\"my\" style=\"height: 24px; left: 107.531px; top: 0px; width: 21.4531px;\"></div>"},{"innerText":"","textContent":"","html":"<div class=\"tFegI _2IGwo XxgPa _33wyM\" tabindex=\"0\" data-test=\"hint-token\" aria-label=\"apartment\" style=\"height: 24px; left: 132.391px; top: 0px; width: 75.5859px;\"></div>"},{"innerText":"","textContent":"","html":"<div class=\"tFegI _2IGwo XxgPa _33wyM\" tabindex=\"0\" data-test=\"hint-token\" aria-label=\"Your\" style=\"height: 24px; left: 0px; top: 0px; width: 31.75px;\"></div>"},{"innerText":"","textContent":"","html":"<div class=\"tFegI _2IGwo XxgPa _33wyM\" tabindex=\"0\" data-test=\"hint-token\" aria-label=\"living\" style=\"height: 24px; left: 35.1562px; top: 0px; width: 38.4922px;\"></div>"},{"innerText":"","textContent":"","html":"<div class=\"tFegI _2IGwo XxgPa _33wyM\" tabindex=\"0\" data-test=\"hint-token\" aria-label=\"room\" style=\"height: 24px; left: 77.0547px; top: 0px; width: 36.9141px;\"></div>"},{"innerText":"","textContent":"","html":"<div class=\"tFegI _2IGwo XxgPa _33wyM\" tabindex=\"0\" data-test=\"hint-token\" aria-label=\"is\" style=\"height: 24px; left: 117.375px; top: 0px; width: 11.6797px;\"></div>"}]
+### Ran Playwright code
+```js
+await (async page=>await page.locator('[data-test=hint-token]').evaluateAll(ns=>ns.slice(0,9).map(n=>({innerText:n.innerText,textContent:n.textContent,html:n.outerHTML.slice(0,800)}))))(page);
+```
+### Open tabs
+- 0: [多邻国 - 学得轻松，学有所成的英语 课程！](https://www.duolingo.com/lesson)
+- 1: [多邻国 - 学得轻松，学有所成的英语 课程！](https://www.duolingo.com/lesson)
+- 2: (current) [多邻国 - 学得轻松，学有所成的英语 课程！](https://www.duolingo.com/guidebook/en/12)
+### Page
+- Page URL: https://www.duolingo.com/guidebook/en/12
+- Page Title: 多邻国 - 学得轻松，学有所成的英语 课程！
+- Console: 2 errors, 0 warnings
+### Events
+- New console entries: .playwright-cli/console-2026-10-11T21-39-47-310Z.log#L3
