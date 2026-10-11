@@ -1,0 +1,25 @@
+{
+  "journeys": [
+    {
+      "id": "current-pronunciation-entry",
+      "steps": [
+        {
+          "native_action": "course-entry",
+          "operation": "observe",
+          "state": "entry-home"
+        },
+        {
+          "native_action": "nav-pronunciation",
+          "state": "pronunciation-current-entry"
+        },
+        {
+          "native_action": "pronunciation-start",
+          "operation": "record_audio",
+          "state": "pronunciation-current-first",
+          "recording": "pronunciation-entry-speech",
+          "duration_seconds": 8
+        }
+      ]
+    }
+  ]
+}

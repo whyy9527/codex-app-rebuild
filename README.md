@@ -143,3 +143,5 @@ python3 -m unittest discover -v
 
 
 最新探索／验收反馈：真实RSI04的两组语义代理新增均0，未观察到收益；后续实际Tab探针确认计分器漏掉焦点、Swift词语缺对应控件。v73追加实测尺寸／焦点／整图共同契约，严格指南结果61pass／30fail／79unavailable，整图仍失败，完整复刻继续。见[真实04报告](projects/exploration-ablation/REPORT04.md)及[产品前端缺口](projects/duolingo-web/evidence/english-guide-probes-v1/README.md)，不能以测试通过或文字无变化宣称1:1。
+
+当前发音复查进一步修正开始入口为原版264×48链接，并实际进入dock/deck；自有应用语音输出与源事件对应资源相关约0.999974。v74整图仍失败，不能称1:1，见[当前发音证据](projects/duolingo-web/evidence/english-pronunciation-current-v1/README.md)。

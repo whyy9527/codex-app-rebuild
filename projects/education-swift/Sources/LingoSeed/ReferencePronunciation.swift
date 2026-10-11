@@ -23,13 +23,14 @@ struct ReferencePronunciation: View {
                 .frame(maxWidth: .infinity).frame(height: 51.1953125)
             Text("磨耳朵，练就地道英语发音").font(ReferenceStyle.font(19))
                 .foregroundStyle(ReferenceStyle.secondaryInk).frame(height: 26.59375).padding(.top, 10)
-            Button { model.beginPronunciation() } label: {
+            ReferencePracticeControl(label:"开始 +10 经验",identifier:"pronunciation-start",enabled:true,action:{model.beginPronunciation()},face:AnyView(
                 Text("开始 +10 经验").font(ReferenceStyle.font(16, bold: true)).tracking(0.64)
                     .foregroundStyle(.white).frame(width: 264, height: 44)
                     .background(ReferenceStyle.blue, in: RoundedRectangle(cornerRadius: 16, style: .circular))
                     .shadow(color: Color(red: 24/255, green: 153/255, blue: 214/255), radius: 0, y: 4)
-            }.buttonStyle(.plain).accessibilityIdentifier("pronunciation-start")
-                .padding(.top, 20).padding(.bottom, 33)
+                    .frame(width:264,height:48,alignment:.top)
+            ),role:.link,fixedFaceSize:true).frame(width:264,height:48)
+                .padding(.top, 20).padding(.bottom, 29)
             section("元音")
             section("辅音")
         }.foregroundStyle(ReferenceStyle.ink)

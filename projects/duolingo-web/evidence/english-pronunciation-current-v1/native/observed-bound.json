@@ -1,0 +1,3146 @@
+{
+  "attempts": [
+    {
+      "failure": null,
+      "id": "current-pronunciation-entry"
+    }
+  ],
+  "candidate_binary_sha256": "a3360227c1cfc09ab8dacbbe47e9e05039a410940993321253e5a117324c150e",
+  "failure": null,
+  "fixture_sha256": "b7242d0e130112d54b1e17714bf21c35045e58f8874948917b0b09f971282bda",
+  "kind": "owned_native_ax_observation",
+  "limitations": [
+    "No acoustic equality claim; actual images retain clock and animation phase differences"
+  ],
+  "scenario_sha256": "f897d2cda5930c19bf1a25724771393af47a92c1b13243441a2dd0f5e00ac8ab",
+  "seed_preferences_sha256": "973f22500f6e4f5fdabfbb9a4fc00b794b50cd804bb24b6d3c4a97d65b91b8aa",
+  "states": {
+    "entry-home": {
+      "accessible_text": [
+        "1",
+        "10",
+        "10 / 10",
+        "4",
+        "505",
+        "Lesson",
+        "Lesson 3 of 6",
+        "LingoSeed",
+        "Practice",
+        "个人档案",
+        "关于我们",
+        "创建个人档案，保存学习进度！",
+        "创建档案",
+        "发音",
+        "复习该部分",
+        "学个单元就能上本周排行榜，跟其他小伙伴一决高低！",
+        "学习",
+        "宝石小店",
+        "宝箱",
+        "小故事",
+        "开始",
+        "投资者",
+        "招聘贤才",
+        "指南",
+        "排行榜",
+        "描述你的家居布局",
+        "显示全部",
+        "更多",
+        "有效性",
+        "条款",
+        "查看排行榜",
+        "每日特别任务",
+        "特别任务",
+        "电台",
+        "登录",
+        "第 2 阶段，第 2 部分",
+        "获取 10 经验",
+        "隐私",
+        "青铜等级"
+      ],
+      "capture": {
+        "backing_scale": 2,
+        "content_rect_points": [
+          0,
+          32,
+          1200,
+          732
+        ],
+        "path": "artifacts/pronunciation-current-followup/native/entry-home.png",
+        "window_points": [
+          1200,
+          764
+        ]
+      },
+      "capture_attempts": [
+        {
+          "attempt": 1,
+          "expected": [
+            2400,
+            1528
+          ],
+          "path": "entry-home-capture-1.png",
+          "pixels": [
+            2400,
+            1528
+          ]
+        }
+      ],
+      "control_inventory": [
+        {
+          "enabled": true,
+          "identifier": "nav-learn",
+          "name": "学习",
+          "rect": [
+            16,
+            92,
+            222,
+            52
+          ],
+          "role": "AXLink",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": "nav-pronunciation",
+          "name": "发音",
+          "rect": [
+            16,
+            152,
+            222,
+            52
+          ],
+          "role": "AXLink",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": "nav-leaderboards",
+          "name": "排行榜",
+          "rect": [
+            16,
+            212,
+            222,
+            52
+          ],
+          "role": "AXLink",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": "nav-quests",
+          "name": "特别任务",
+          "rect": [
+            16,
+            272,
+            222,
+            52
+          ],
+          "role": "AXLink",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": "nav-shop",
+          "name": "宝石小店",
+          "rect": [
+            16,
+            332,
+            222,
+            52
+          ],
+          "role": "AXLink",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": "nav-profile",
+          "name": "个人档案",
+          "rect": [
+            16,
+            392,
+            222,
+            52
+          ],
+          "role": "AXLink",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": "nav-more",
+          "name": "更多",
+          "rect": [
+            16,
+            452,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": "open-sections",
+          "name": "第 2 阶段，第 2 部分",
+          "rect": [
+            296,
+            40,
+            330,
+            24
+          ],
+          "role": "AXLink",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": "open-guide",
+          "name": "指南",
+          "rect": [
+            649,
+            44,
+            96,
+            50
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": "view-leaderboards",
+          "name": "查看排行榜",
+          "rect": [
+            1077,
+            117,
+            79,
+            18
+          ],
+          "role": "AXLink",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": "view-quests",
+          "name": "显示全部",
+          "rect": [
+            1093,
+            283,
+            63,
+            18
+          ],
+          "role": "AXLink",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": "unit12-path-0",
+          "name": "Lesson 3 of 6",
+          "rect": [
+            485,
+            317,
+            70,
+            65
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": "unit12-path-1",
+          "name": "Lesson",
+          "rect": [
+            530,
+            408,
+            70,
+            65
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": "unit12-path-2",
+          "name": "电台",
+          "rect": [
+            555,
+            493.5,
+            70,
+            65
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": "view-profile",
+          "name": "创建档案",
+          "rect": [
+            828,
+            520,
+            328,
+            46
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": "unit12-path-3",
+          "name": "Practice",
+          "rect": [
+            530,
+            579,
+            70,
+            65
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": "sign-in",
+          "name": "登录",
+          "rect": [
+            828,
+            580,
+            328,
+            46
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        {
+          "enabled": false,
+          "identifier": "path-chest",
+          "name": "宝箱",
+          "rect": [
+            480,
+            655.5,
+            80,
+            90
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": null,
+          "name": "关于我们",
+          "rect": [
+            835,
+            684.5,
+            52,
+            15
+          ],
+          "role": "AXLink",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": null,
+          "name": "宝石小店",
+          "rect": [
+            907,
+            684.5,
+            52,
+            15
+          ],
+          "role": "AXLink",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": null,
+          "name": "有效性",
+          "rect": [
+            979,
+            684.5,
+            39,
+            15
+          ],
+          "role": "AXLink",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": null,
+          "name": "招聘贤才",
+          "rect": [
+            1038,
+            684.5,
+            52,
+            15
+          ],
+          "role": "AXLink",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": null,
+          "name": "投资者",
+          "rect": [
+            1110,
+            684.5,
+            39,
+            15
+          ],
+          "role": "AXLink",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": null,
+          "name": "条款",
+          "rect": [
+            956,
+            716.5,
+            26,
+            15
+          ],
+          "role": "AXLink",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": null,
+          "name": "隐私",
+          "rect": [
+            1002,
+            716.5,
+            26,
+            15
+          ],
+          "role": "AXLink",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": "unit12-path-4",
+          "name": "电台",
+          "rect": [
+            440,
+            757.5,
+            70,
+            65
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": "unit12-path-5",
+          "name": "Practice",
+          "rect": [
+            415,
+            843,
+            70,
+            65
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": "unit12-path-6",
+          "name": "电台",
+          "rect": [
+            440,
+            928,
+            70,
+            65
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": "unit12-path-7",
+          "name": "复习该部分",
+          "rect": [
+            485,
+            1005,
+            70,
+            65
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": "unit12-path-8",
+          "name": "小故事",
+          "rect": [
+            440,
+            1336,
+            70,
+            65
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        {
+          "enabled": false,
+          "identifier": "unit12-chest-1",
+          "name": "宝箱",
+          "rect": [
+            410,
+            1421.5,
+            80,
+            90
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": "unit12-path-9",
+          "name": "Lesson",
+          "rect": [
+            440,
+            1531.5,
+            70,
+            65
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": "unit12-path-10",
+          "name": "小故事",
+          "rect": [
+            485,
+            1608.5,
+            70,
+            65
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": "unit12-path-11",
+          "name": "Practice",
+          "rect": [
+            530,
+            1685.5,
+            70,
+            65
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": "unit12-path-12",
+          "name": "电台",
+          "rect": [
+            555,
+            1770.5,
+            70,
+            65
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": "unit12-path-13",
+          "name": "Practice",
+          "rect": [
+            530,
+            1856,
+            70,
+            65
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        {
+          "enabled": false,
+          "identifier": "unit12-chest-2",
+          "name": "宝箱",
+          "rect": [
+            480,
+            1933,
+            80,
+            90
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": "unit12-path-14",
+          "name": "复习该部分",
+          "rect": [
+            485,
+            2047,
+            70,
+            65
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        {
+          "enabled": false,
+          "identifier": null,
+          "name": "",
+          "rect": [
+            1183,
+            0,
+            0,
+            0
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        {
+          "enabled": false,
+          "identifier": null,
+          "name": "",
+          "rect": [
+            1183,
+            0,
+            0,
+            0
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        {
+          "enabled": false,
+          "identifier": null,
+          "name": "",
+          "rect": [
+            1191,
+            245.5,
+            6,
+            476
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        {
+          "enabled": false,
+          "identifier": null,
+          "name": "",
+          "rect": [
+            1191,
+            3,
+            6,
+            0
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": null,
+          "name": "",
+          "rect": [
+            8,
+            -24,
+            16,
+            16
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": null,
+          "name": "",
+          "rect": [
+            54,
+            -24,
+            16,
+            16
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": null,
+          "name": "",
+          "rect": [
+            31,
+            -24,
+            16,
+            16
+          ],
+          "role": "AXButton",
+          "value": ""
+        }
+      ],
+      "control_inventory_limitations": [
+        "Actual AX controls include nodes without developer identifiers; no invocation or hit-test coverage inferred"
+      ],
+      "elements": {
+        "course-entry": {
+          "enabled": true,
+          "rect": [
+            296,
+            72,
+            176,
+            26
+          ],
+          "role": "AXStaticText",
+          "value": "描述你的家居布局"
+        },
+        "nav-leaderboards": {
+          "enabled": true,
+          "rect": [
+            16,
+            212,
+            222,
+            52
+          ],
+          "role": "AXLink",
+          "value": ""
+        },
+        "nav-learn": {
+          "enabled": true,
+          "rect": [
+            16,
+            92,
+            222,
+            52
+          ],
+          "role": "AXLink",
+          "value": ""
+        },
+        "nav-more": {
+          "enabled": true,
+          "rect": [
+            16,
+            452,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-profile": {
+          "enabled": true,
+          "rect": [
+            16,
+            392,
+            222,
+            52
+          ],
+          "role": "AXLink",
+          "value": ""
+        },
+        "nav-pronunciation": {
+          "enabled": true,
+          "rect": [
+            16,
+            152,
+            222,
+            52
+          ],
+          "role": "AXLink",
+          "value": ""
+        },
+        "nav-quests": {
+          "enabled": true,
+          "rect": [
+            16,
+            272,
+            222,
+            52
+          ],
+          "role": "AXLink",
+          "value": ""
+        },
+        "nav-shop": {
+          "enabled": true,
+          "rect": [
+            16,
+            332,
+            222,
+            52
+          ],
+          "role": "AXLink",
+          "value": ""
+        },
+        "open-guide": {
+          "enabled": true,
+          "rect": [
+            649,
+            44,
+            96,
+            50
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "open-sections": {
+          "enabled": true,
+          "rect": [
+            296,
+            40,
+            330,
+            24
+          ],
+          "role": "AXLink",
+          "value": ""
+        },
+        "path-chest": {
+          "enabled": false,
+          "rect": [
+            480,
+            655.5,
+            80,
+            90
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "sign-in": {
+          "enabled": true,
+          "rect": [
+            828,
+            580,
+            328,
+            46
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "stage2-character-animation": {
+          "enabled": true,
+          "rect": [
+            506,
+            1336,
+            238,
+            260.5
+          ],
+          "role": "AXImage",
+          "value": ""
+        },
+        "stage2-path-start-label": {
+          "enabled": true,
+          "rect": [
+            481,
+            271,
+            78,
+            42
+          ],
+          "role": "AXStaticText",
+          "value": "开始"
+        },
+        "SwiftUI._ConditionalContent<SwiftUI.SubscriptionView<(extension in Foundation):__C.NSNotificationCenter.Publisher, SwiftUI.ModifiedContent<LingoSeed.LearningView, SwiftUI._AppearanceActionModifier>>, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1": {
+          "enabled": false,
+          "rect": [
+            0,
+            -32,
+            1200,
+            764
+          ],
+          "role": "AXWindow",
+          "value": ""
+        },
+        "unit12-chest-1": {
+          "enabled": false,
+          "rect": [
+            410,
+            1421.5,
+            80,
+            90
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "unit12-chest-2": {
+          "enabled": false,
+          "rect": [
+            480,
+            1933,
+            80,
+            90
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "unit12-path-0": {
+          "enabled": true,
+          "rect": [
+            485,
+            317,
+            70,
+            65
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "unit12-path-1": {
+          "enabled": true,
+          "rect": [
+            530,
+            408,
+            70,
+            65
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "unit12-path-2": {
+          "enabled": true,
+          "rect": [
+            555,
+            493.5,
+            70,
+            65
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "unit12-path-3": {
+          "enabled": true,
+          "rect": [
+            530,
+            579,
+            70,
+            65
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "unit12-path-4": {
+          "enabled": true,
+          "rect": [
+            440,
+            757.5,
+            70,
+            65
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "unit12-path-5": {
+          "enabled": true,
+          "rect": [
+            415,
+            843,
+            70,
+            65
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "unit12-path-6": {
+          "enabled": true,
+          "rect": [
+            440,
+            928,
+            70,
+            65
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "unit12-path-7": {
+          "enabled": true,
+          "rect": [
+            485,
+            1005,
+            70,
+            65
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "unit12-path-8": {
+          "enabled": true,
+          "rect": [
+            440,
+            1336,
+            70,
+            65
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "unit12-path-9": {
+          "enabled": true,
+          "rect": [
+            440,
+            1531.5,
+            70,
+            65
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "unit12-path-10": {
+          "enabled": true,
+          "rect": [
+            485,
+            1608.5,
+            70,
+            65
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "unit12-path-11": {
+          "enabled": true,
+          "rect": [
+            530,
+            1685.5,
+            70,
+            65
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "unit12-path-12": {
+          "enabled": true,
+          "rect": [
+            555,
+            1770.5,
+            70,
+            65
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "unit12-path-13": {
+          "enabled": true,
+          "rect": [
+            530,
+            1856,
+            70,
+            65
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "unit12-path-14": {
+          "enabled": true,
+          "rect": [
+            485,
+            2047,
+            70,
+            65
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "view-leaderboards": {
+          "enabled": true,
+          "rect": [
+            1077,
+            117,
+            79,
+            18
+          ],
+          "role": "AXLink",
+          "value": ""
+        },
+        "view-profile": {
+          "enabled": true,
+          "rect": [
+            828,
+            520,
+            328,
+            46
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "view-quests": {
+          "enabled": true,
+          "rect": [
+            1093,
+            283,
+            63,
+            18
+          ],
+          "role": "AXLink",
+          "value": ""
+        }
+      },
+      "interactions": {
+        "completed_popover_present": false,
+        "exit_confirmation_present": false,
+        "footer_status_visible": false,
+        "guest_error_present": false,
+        "guest_introduction_present": false,
+        "guest_languages_present": false,
+        "guest_profile_present": false,
+        "home_course_present": true,
+        "learn_present": false,
+        "legendary_present": false,
+        "practice_present": false,
+        "profile_present": false,
+        "status_clear_visible": false,
+        "status_selected": false
+      }
+    },
+    "pronunciation-current-entry": {
+      "accessible_text": [
+        "1",
+        "10",
+        "10 / 10",
+        "4",
+        "505",
+        "LingoSeed",
+        "aɪ time 0",
+        "aʊ cow 0",
+        "b book 0",
+        "d day 0",
+        "eɪ say 0",
+        "f fish 0",
+        "g go 0",
+        "h home 0",
+        "i sheep 0",
+        "j you 0",
+        "k key 0",
+        "l lion 0",
+        "m moon 0",
+        "n nose 0",
+        "oʊ boat 0",
+        "p pig 0",
+        "s see 0",
+        "t time 0",
+        "u food 0",
+        "v very 0",
+        "w water 0",
+        "z zoo 0",
+        "æ cat 0",
+        "ð then 0",
+        "ŋ sing 0",
+        "ɑ hot 0",
+        "ɔɪ boy 0",
+        "ə about 0",
+        "ɚ bird 0",
+        "ɛ bed 0",
+        "ɪ ship 0",
+        "ɹ red 0",
+        "ʃ shoe 0",
+        "ʊ foot 0",
+        "ʌ but 0",
+        "ʒ measure 0",
+        "ʤ job 0",
+        "ʧ chair 0",
+        "θ think 0",
+        "一起来学英语发音！",
+        "个人档案",
+        "元音",
+        "关于我们",
+        "创建个人档案，保存学习进度！",
+        "创建档案",
+        "发音",
+        "学个单元就能上本周排行榜，跟其他小伙伴一决高低！",
+        "学习",
+        "宝石小店",
+        "开始 +10 经验",
+        "投资者",
+        "招聘贤才",
+        "排行榜",
+        "显示全部",
+        "更多",
+        "有效性",
+        "条款",
+        "查看排行榜",
+        "每日特别任务",
+        "特别任务",
+        "登录",
+        "磨耳朵，练就地道英语发音",
+        "获取 10 经验",
+        "辅音",
+        "隐私",
+        "青铜等级"
+      ],
+      "capture": {
+        "backing_scale": 2,
+        "content_rect_points": [
+          0,
+          32,
+          1200,
+          732
+        ],
+        "path": "artifacts/pronunciation-current-followup/native/pronunciation-current-entry.png",
+        "window_points": [
+          1200,
+          764
+        ]
+      },
+      "capture_attempts": [
+        {
+          "attempt": 1,
+          "expected": [
+            2400,
+            1528
+          ],
+          "path": "pronunciation-current-entry-capture-1.png",
+          "pixels": [
+            2400,
+            1528
+          ]
+        }
+      ],
+      "control_inventory": [
+        {
+          "enabled": true,
+          "identifier": "nav-learn",
+          "name": "学习",
+          "rect": [
+            16,
+            92,
+            222,
+            52
+          ],
+          "role": "AXLink",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": "nav-pronunciation",
+          "name": "发音",
+          "rect": [
+            16,
+            152,
+            222,
+            52
+          ],
+          "role": "AXLink",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": "nav-leaderboards",
+          "name": "排行榜",
+          "rect": [
+            16,
+            212,
+            222,
+            52
+          ],
+          "role": "AXLink",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": "nav-quests",
+          "name": "特别任务",
+          "rect": [
+            16,
+            272,
+            222,
+            52
+          ],
+          "role": "AXLink",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": "nav-shop",
+          "name": "宝石小店",
+          "rect": [
+            16,
+            332,
+            222,
+            52
+          ],
+          "role": "AXLink",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": "nav-profile",
+          "name": "个人档案",
+          "rect": [
+            16,
+            392,
+            222,
+            52
+          ],
+          "role": "AXLink",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": "nav-more",
+          "name": "更多",
+          "rect": [
+            16,
+            452,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": "view-leaderboards",
+          "name": "查看排行榜",
+          "rect": [
+            1077,
+            117,
+            79,
+            18
+          ],
+          "role": "AXLink",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": "pronunciation-start",
+          "name": "开始 +10 经验",
+          "rect": [
+            388,
+            151,
+            264,
+            48
+          ],
+          "role": "AXLink",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": "pronunciation-sound-0",
+          "name": "ɑ hot 0",
+          "rect": [
+            280,
+            292,
+            154.5,
+            68
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": "pronunciation-sound-1",
+          "name": "æ cat 0",
+          "rect": [
+            442.5,
+            292,
+            155,
+            68
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": "pronunciation-sound-2",
+          "name": "ʌ but 0",
+          "rect": [
+            605.5,
+            292,
+            154.5,
+            68
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": "view-quests",
+          "name": "显示全部",
+          "rect": [
+            1093,
+            283,
+            63,
+            18
+          ],
+          "role": "AXLink",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": "pronunciation-sound-3",
+          "name": "ɛ bed 0",
+          "rect": [
+            280,
+            368,
+            154.5,
+            68
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": "pronunciation-sound-4",
+          "name": "eɪ say 0",
+          "rect": [
+            442.5,
+            368,
+            155,
+            68
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": "pronunciation-sound-5",
+          "name": "ɚ bird 0",
+          "rect": [
+            605.5,
+            368,
+            154.5,
+            68
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": "pronunciation-sound-6",
+          "name": "ɪ ship 0",
+          "rect": [
+            280,
+            444,
+            154.5,
+            68
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": "pronunciation-sound-7",
+          "name": "i sheep 0",
+          "rect": [
+            442.5,
+            444,
+            155,
+            68
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": "pronunciation-sound-8",
+          "name": "ə about 0",
+          "rect": [
+            605.5,
+            444,
+            154.5,
+            68
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": "pronunciation-sound-9",
+          "name": "oʊ boat 0",
+          "rect": [
+            280,
+            520,
+            154.5,
+            68
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": "pronunciation-sound-10",
+          "name": "ʊ foot 0",
+          "rect": [
+            442.5,
+            520,
+            155,
+            68
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": "pronunciation-sound-11",
+          "name": "u food 0",
+          "rect": [
+            605.5,
+            520,
+            154.5,
+            68
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": "view-profile",
+          "name": "创建档案",
+          "rect": [
+            828,
+            520,
+            328,
+            46
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": "pronunciation-sound-12",
+          "name": "aʊ cow 0",
+          "rect": [
+            280,
+            596,
+            154.5,
+            68
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": "pronunciation-sound-13",
+          "name": "aɪ time 0",
+          "rect": [
+            442.5,
+            596,
+            155,
+            68
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": "pronunciation-sound-14",
+          "name": "ɔɪ boy 0",
+          "rect": [
+            605.5,
+            596,
+            154.5,
+            68
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": "sign-in",
+          "name": "登录",
+          "rect": [
+            828,
+            580,
+            328,
+            46
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": null,
+          "name": "关于我们",
+          "rect": [
+            835,
+            684.5,
+            52,
+            15
+          ],
+          "role": "AXLink",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": null,
+          "name": "宝石小店",
+          "rect": [
+            907,
+            684.5,
+            52,
+            15
+          ],
+          "role": "AXLink",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": null,
+          "name": "有效性",
+          "rect": [
+            979,
+            684.5,
+            39,
+            15
+          ],
+          "role": "AXLink",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": null,
+          "name": "招聘贤才",
+          "rect": [
+            1038,
+            684.5,
+            52,
+            15
+          ],
+          "role": "AXLink",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": null,
+          "name": "投资者",
+          "rect": [
+            1110,
+            684.5,
+            39,
+            15
+          ],
+          "role": "AXLink",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": null,
+          "name": "条款",
+          "rect": [
+            956,
+            716.5,
+            26,
+            15
+          ],
+          "role": "AXLink",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": null,
+          "name": "隐私",
+          "rect": [
+            1002,
+            716.5,
+            26,
+            15
+          ],
+          "role": "AXLink",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": "pronunciation-sound-15",
+          "name": "b book 0",
+          "rect": [
+            280,
+            728,
+            154.5,
+            68
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": "pronunciation-sound-16",
+          "name": "ʧ chair 0",
+          "rect": [
+            442.5,
+            728,
+            155,
+            68
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": "pronunciation-sound-17",
+          "name": "d day 0",
+          "rect": [
+            605.5,
+            728,
+            154.5,
+            68
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": "pronunciation-sound-18",
+          "name": "f fish 0",
+          "rect": [
+            280,
+            804,
+            154.5,
+            68
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": "pronunciation-sound-19",
+          "name": "g go 0",
+          "rect": [
+            442.5,
+            804,
+            155,
+            68
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": "pronunciation-sound-20",
+          "name": "h home 0",
+          "rect": [
+            605.5,
+            804,
+            154.5,
+            68
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": "pronunciation-sound-21",
+          "name": "ʤ job 0",
+          "rect": [
+            280,
+            880,
+            154.5,
+            68
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": "pronunciation-sound-22",
+          "name": "k key 0",
+          "rect": [
+            442.5,
+            880,
+            155,
+            68
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": "pronunciation-sound-23",
+          "name": "l lion 0",
+          "rect": [
+            605.5,
+            880,
+            154.5,
+            68
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": "pronunciation-sound-24",
+          "name": "m moon 0",
+          "rect": [
+            280,
+            956,
+            154.5,
+            68
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": "pronunciation-sound-25",
+          "name": "n nose 0",
+          "rect": [
+            442.5,
+            956,
+            155,
+            68
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": "pronunciation-sound-26",
+          "name": "ŋ sing 0",
+          "rect": [
+            605.5,
+            956,
+            154.5,
+            68
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": "pronunciation-sound-27",
+          "name": "p pig 0",
+          "rect": [
+            280,
+            1032,
+            154.5,
+            68
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": "pronunciation-sound-28",
+          "name": "ɹ red 0",
+          "rect": [
+            442.5,
+            1032,
+            155,
+            68
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": "pronunciation-sound-29",
+          "name": "s see 0",
+          "rect": [
+            605.5,
+            1032,
+            154.5,
+            68
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": "pronunciation-sound-30",
+          "name": "ʒ measure 0",
+          "rect": [
+            280,
+            1108,
+            154.5,
+            68
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": "pronunciation-sound-31",
+          "name": "ʃ shoe 0",
+          "rect": [
+            442.5,
+            1108,
+            155,
+            68
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": "pronunciation-sound-32",
+          "name": "t time 0",
+          "rect": [
+            605.5,
+            1108,
+            154.5,
+            68
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": "pronunciation-sound-33",
+          "name": "ð then 0",
+          "rect": [
+            280,
+            1184,
+            154.5,
+            68
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": "pronunciation-sound-34",
+          "name": "θ think 0",
+          "rect": [
+            442.5,
+            1184,
+            155,
+            68
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": "pronunciation-sound-35",
+          "name": "v very 0",
+          "rect": [
+            605.5,
+            1184,
+            154.5,
+            68
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": "pronunciation-sound-36",
+          "name": "w water 0",
+          "rect": [
+            280,
+            1260,
+            154.5,
+            68
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": "pronunciation-sound-37",
+          "name": "j you 0",
+          "rect": [
+            442.5,
+            1260,
+            155,
+            68
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": "pronunciation-sound-38",
+          "name": "z zoo 0",
+          "rect": [
+            605.5,
+            1260,
+            154.5,
+            68
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        {
+          "enabled": false,
+          "identifier": null,
+          "name": "",
+          "rect": [
+            1183,
+            0,
+            0,
+            0
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        {
+          "enabled": false,
+          "identifier": null,
+          "name": "",
+          "rect": [
+            1183,
+            0,
+            0,
+            0
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        {
+          "enabled": false,
+          "identifier": null,
+          "name": "",
+          "rect": [
+            1191,
+            400,
+            6,
+            321.5
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        {
+          "enabled": false,
+          "identifier": null,
+          "name": "",
+          "rect": [
+            1191,
+            3,
+            6,
+            0
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": null,
+          "name": "",
+          "rect": [
+            8,
+            -24,
+            16,
+            16
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": null,
+          "name": "",
+          "rect": [
+            54,
+            -24,
+            16,
+            16
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": null,
+          "name": "",
+          "rect": [
+            31,
+            -24,
+            16,
+            16
+          ],
+          "role": "AXButton",
+          "value": ""
+        }
+      ],
+      "control_inventory_limitations": [
+        "Actual AX controls include nodes without developer identifiers; no invocation or hit-test coverage inferred"
+      ],
+      "elements": {
+        "nav-leaderboards": {
+          "enabled": true,
+          "rect": [
+            16,
+            212,
+            222,
+            52
+          ],
+          "role": "AXLink",
+          "value": ""
+        },
+        "nav-learn": {
+          "enabled": true,
+          "rect": [
+            16,
+            92,
+            222,
+            52
+          ],
+          "role": "AXLink",
+          "value": ""
+        },
+        "nav-more": {
+          "enabled": true,
+          "rect": [
+            16,
+            452,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-profile": {
+          "enabled": true,
+          "rect": [
+            16,
+            392,
+            222,
+            52
+          ],
+          "role": "AXLink",
+          "value": ""
+        },
+        "nav-pronunciation": {
+          "enabled": true,
+          "rect": [
+            16,
+            152,
+            222,
+            52
+          ],
+          "role": "AXLink",
+          "value": ""
+        },
+        "nav-quests": {
+          "enabled": true,
+          "rect": [
+            16,
+            272,
+            222,
+            52
+          ],
+          "role": "AXLink",
+          "value": ""
+        },
+        "nav-shop": {
+          "enabled": true,
+          "rect": [
+            16,
+            332,
+            222,
+            52
+          ],
+          "role": "AXLink",
+          "value": ""
+        },
+        "pronunciation-sound-0": {
+          "enabled": true,
+          "rect": [
+            280,
+            292,
+            154.5,
+            68
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "pronunciation-sound-1": {
+          "enabled": true,
+          "rect": [
+            442.5,
+            292,
+            155,
+            68
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "pronunciation-sound-2": {
+          "enabled": true,
+          "rect": [
+            605.5,
+            292,
+            154.5,
+            68
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "pronunciation-sound-3": {
+          "enabled": true,
+          "rect": [
+            280,
+            368,
+            154.5,
+            68
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "pronunciation-sound-4": {
+          "enabled": true,
+          "rect": [
+            442.5,
+            368,
+            155,
+            68
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "pronunciation-sound-5": {
+          "enabled": true,
+          "rect": [
+            605.5,
+            368,
+            154.5,
+            68
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "pronunciation-sound-6": {
+          "enabled": true,
+          "rect": [
+            280,
+            444,
+            154.5,
+            68
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "pronunciation-sound-7": {
+          "enabled": true,
+          "rect": [
+            442.5,
+            444,
+            155,
+            68
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "pronunciation-sound-8": {
+          "enabled": true,
+          "rect": [
+            605.5,
+            444,
+            154.5,
+            68
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "pronunciation-sound-9": {
+          "enabled": true,
+          "rect": [
+            280,
+            520,
+            154.5,
+            68
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "pronunciation-sound-10": {
+          "enabled": true,
+          "rect": [
+            442.5,
+            520,
+            155,
+            68
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "pronunciation-sound-11": {
+          "enabled": true,
+          "rect": [
+            605.5,
+            520,
+            154.5,
+            68
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "pronunciation-sound-12": {
+          "enabled": true,
+          "rect": [
+            280,
+            596,
+            154.5,
+            68
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "pronunciation-sound-13": {
+          "enabled": true,
+          "rect": [
+            442.5,
+            596,
+            155,
+            68
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "pronunciation-sound-14": {
+          "enabled": true,
+          "rect": [
+            605.5,
+            596,
+            154.5,
+            68
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "pronunciation-sound-15": {
+          "enabled": true,
+          "rect": [
+            280,
+            728,
+            154.5,
+            68
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "pronunciation-sound-16": {
+          "enabled": true,
+          "rect": [
+            442.5,
+            728,
+            155,
+            68
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "pronunciation-sound-17": {
+          "enabled": true,
+          "rect": [
+            605.5,
+            728,
+            154.5,
+            68
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "pronunciation-sound-18": {
+          "enabled": true,
+          "rect": [
+            280,
+            804,
+            154.5,
+            68
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "pronunciation-sound-19": {
+          "enabled": true,
+          "rect": [
+            442.5,
+            804,
+            155,
+            68
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "pronunciation-sound-20": {
+          "enabled": true,
+          "rect": [
+            605.5,
+            804,
+            154.5,
+            68
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "pronunciation-sound-21": {
+          "enabled": true,
+          "rect": [
+            280,
+            880,
+            154.5,
+            68
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "pronunciation-sound-22": {
+          "enabled": true,
+          "rect": [
+            442.5,
+            880,
+            155,
+            68
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "pronunciation-sound-23": {
+          "enabled": true,
+          "rect": [
+            605.5,
+            880,
+            154.5,
+            68
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "pronunciation-sound-24": {
+          "enabled": true,
+          "rect": [
+            280,
+            956,
+            154.5,
+            68
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "pronunciation-sound-25": {
+          "enabled": true,
+          "rect": [
+            442.5,
+            956,
+            155,
+            68
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "pronunciation-sound-26": {
+          "enabled": true,
+          "rect": [
+            605.5,
+            956,
+            154.5,
+            68
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "pronunciation-sound-27": {
+          "enabled": true,
+          "rect": [
+            280,
+            1032,
+            154.5,
+            68
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "pronunciation-sound-28": {
+          "enabled": true,
+          "rect": [
+            442.5,
+            1032,
+            155,
+            68
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "pronunciation-sound-29": {
+          "enabled": true,
+          "rect": [
+            605.5,
+            1032,
+            154.5,
+            68
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "pronunciation-sound-30": {
+          "enabled": true,
+          "rect": [
+            280,
+            1108,
+            154.5,
+            68
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "pronunciation-sound-31": {
+          "enabled": true,
+          "rect": [
+            442.5,
+            1108,
+            155,
+            68
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "pronunciation-sound-32": {
+          "enabled": true,
+          "rect": [
+            605.5,
+            1108,
+            154.5,
+            68
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "pronunciation-sound-33": {
+          "enabled": true,
+          "rect": [
+            280,
+            1184,
+            154.5,
+            68
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "pronunciation-sound-34": {
+          "enabled": true,
+          "rect": [
+            442.5,
+            1184,
+            155,
+            68
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "pronunciation-sound-35": {
+          "enabled": true,
+          "rect": [
+            605.5,
+            1184,
+            154.5,
+            68
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "pronunciation-sound-36": {
+          "enabled": true,
+          "rect": [
+            280,
+            1260,
+            154.5,
+            68
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "pronunciation-sound-37": {
+          "enabled": true,
+          "rect": [
+            442.5,
+            1260,
+            155,
+            68
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "pronunciation-sound-38": {
+          "enabled": true,
+          "rect": [
+            605.5,
+            1260,
+            154.5,
+            68
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "pronunciation-start": {
+          "enabled": true,
+          "rect": [
+            388,
+            151,
+            264,
+            48
+          ],
+          "role": "AXLink",
+          "value": ""
+        },
+        "sign-in": {
+          "enabled": true,
+          "rect": [
+            828,
+            580,
+            328,
+            46
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "SwiftUI._ConditionalContent<SwiftUI.SubscriptionView<(extension in Foundation):__C.NSNotificationCenter.Publisher, SwiftUI.ModifiedContent<LingoSeed.LearningView, SwiftUI._AppearanceActionModifier>>, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1": {
+          "enabled": false,
+          "rect": [
+            0,
+            -32,
+            1200,
+            764
+          ],
+          "role": "AXWindow",
+          "value": ""
+        },
+        "view-leaderboards": {
+          "enabled": true,
+          "rect": [
+            1077,
+            117,
+            79,
+            18
+          ],
+          "role": "AXLink",
+          "value": ""
+        },
+        "view-profile": {
+          "enabled": true,
+          "rect": [
+            828,
+            520,
+            328,
+            46
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "view-quests": {
+          "enabled": true,
+          "rect": [
+            1093,
+            283,
+            63,
+            18
+          ],
+          "role": "AXLink",
+          "value": ""
+        },
+        "pronunciation-current-entry-action-1": {
+          "enabled": true,
+          "rect": [
+            16,
+            92,
+            222,
+            52
+          ],
+          "role": "AXLink",
+          "value": "",
+          "native_identifier": "nav-learn"
+        },
+        "pronunciation-current-entry-action-2": {
+          "enabled": true,
+          "rect": [
+            16,
+            152,
+            222,
+            52
+          ],
+          "role": "AXLink",
+          "value": "",
+          "native_identifier": "nav-pronunciation"
+        },
+        "pronunciation-current-entry-action-3": {
+          "enabled": true,
+          "rect": [
+            16,
+            212,
+            222,
+            52
+          ],
+          "role": "AXLink",
+          "value": "",
+          "native_identifier": "nav-leaderboards"
+        },
+        "pronunciation-current-entry-action-4": {
+          "enabled": true,
+          "rect": [
+            16,
+            272,
+            222,
+            52
+          ],
+          "role": "AXLink",
+          "value": "",
+          "native_identifier": "nav-quests"
+        },
+        "pronunciation-current-entry-action-6": {
+          "enabled": true,
+          "rect": [
+            16,
+            392,
+            222,
+            52
+          ],
+          "role": "AXLink",
+          "value": "",
+          "native_identifier": "nav-profile"
+        },
+        "pronunciation-current-entry-action-7": {
+          "enabled": true,
+          "rect": [
+            16,
+            452,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": "",
+          "native_identifier": "nav-more"
+        },
+        "pronunciation-current-entry-action-23": {
+          "enabled": true,
+          "rect": [
+            388,
+            151,
+            264,
+            48
+          ],
+          "role": "AXLink",
+          "value": "",
+          "native_identifier": "pronunciation-start"
+        }
+      },
+      "interactions": {
+        "completed_popover_present": false,
+        "exit_confirmation_present": false,
+        "footer_status_visible": false,
+        "guest_error_present": false,
+        "guest_introduction_present": false,
+        "guest_languages_present": false,
+        "guest_profile_present": false,
+        "home_course_present": false,
+        "learn_present": false,
+        "legendary_present": false,
+        "practice_present": false,
+        "profile_present": false,
+        "status_clear_visible": false,
+        "status_selected": false
+      }
+    },
+    "pronunciation-current-first": {
+      "accessible_text": [
+        "1 dock",
+        "2 deck",
+        "LingoSeed",
+        "p0",
+        "你听到了什么？",
+        "检查",
+        "跳过"
+      ],
+      "capture": {
+        "backing_scale": 2,
+        "content_rect_points": [
+          0,
+          32,
+          1200,
+          732
+        ],
+        "path": "artifacts/pronunciation-current-followup/native/pronunciation-current-first.png",
+        "window_points": [
+          1200,
+          764
+        ]
+      },
+      "capture_attempts": [
+        {
+          "attempt": 1,
+          "expected": [
+            2400,
+            1528
+          ],
+          "path": "pronunciation-current-first-capture-1.png",
+          "pixels": [
+            2400,
+            1528
+          ]
+        }
+      ],
+      "control_inventory": [
+        {
+          "enabled": true,
+          "identifier": "exit",
+          "name": "",
+          "rect": [
+            100,
+            51,
+            18,
+            18
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": "practice-play-0",
+          "name": "",
+          "rect": [
+            530,
+            266,
+            140,
+            136
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        {
+          "checked": false,
+          "enabled": true,
+          "identifier": "option-p0-o0",
+          "name": "1 dock",
+          "numeric_value": 0,
+          "rect": [
+            300,
+            430,
+            296,
+            60
+          ],
+          "role": "AXRadioButton",
+          "value": ""
+        },
+        {
+          "checked": false,
+          "enabled": true,
+          "identifier": "option-p0-o1",
+          "name": "2 deck",
+          "numeric_value": 0,
+          "rect": [
+            604,
+            430,
+            296,
+            60
+          ],
+          "role": "AXRadioButton",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": "skip",
+          "name": "跳过",
+          "rect": [
+            140,
+            637,
+            150,
+            50
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        {
+          "enabled": false,
+          "identifier": "check",
+          "name": "检查",
+          "rect": [
+            910,
+            641,
+            150,
+            46
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": null,
+          "name": "",
+          "rect": [
+            8,
+            -24,
+            16,
+            16
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": null,
+          "name": "",
+          "rect": [
+            54,
+            -24,
+            16,
+            16
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        {
+          "enabled": true,
+          "identifier": null,
+          "name": "",
+          "rect": [
+            31,
+            -24,
+            16,
+            16
+          ],
+          "role": "AXButton",
+          "value": ""
+        }
+      ],
+      "control_inventory_limitations": [
+        "Actual AX controls include nodes without developer identifiers; no invocation or hit-test coverage inferred"
+      ],
+      "elements": {
+        "check": {
+          "enabled": false,
+          "rect": [
+            910,
+            641,
+            150,
+            46
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "exit": {
+          "enabled": true,
+          "rect": [
+            100,
+            51,
+            18,
+            18
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "lesson-progress": {
+          "enabled": true,
+          "rect": [
+            142,
+            50,
+            958,
+            20
+          ],
+          "role": "AXProgressIndicator",
+          "value": ""
+        },
+        "option-p0-o0": {
+          "checked": false,
+          "enabled": true,
+          "numeric_value": 0,
+          "rect": [
+            300,
+            430,
+            296,
+            60
+          ],
+          "role": "AXRadioButton",
+          "value": ""
+        },
+        "option-p0-o1": {
+          "checked": false,
+          "enabled": true,
+          "numeric_value": 0,
+          "rect": [
+            604,
+            430,
+            296,
+            60
+          ],
+          "role": "AXRadioButton",
+          "value": ""
+        },
+        "practice-play-0": {
+          "enabled": true,
+          "rect": [
+            530,
+            266,
+            140,
+            136
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "question-prompt": {
+          "enabled": true,
+          "rect": [
+            300,
+            122,
+            224,
+            38
+          ],
+          "role": "AXStaticText",
+          "value": "p0"
+        },
+        "skip": {
+          "enabled": true,
+          "rect": [
+            140,
+            637,
+            150,
+            50
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "SwiftUI._ConditionalContent<SwiftUI.SubscriptionView<(extension in Foundation):__C.NSNotificationCenter.Publisher, SwiftUI.ModifiedContent<LingoSeed.LearningView, SwiftUI._AppearanceActionModifier>>, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1": {
+          "enabled": false,
+          "rect": [
+            0,
+            -32,
+            1200,
+            764
+          ],
+          "role": "AXWindow",
+          "value": ""
+        },
+        "pronunciation-current-first-action-0": {
+          "enabled": true,
+          "rect": [
+            100,
+            51,
+            18,
+            18
+          ],
+          "role": "AXButton",
+          "value": "",
+          "native_identifier": "exit"
+        },
+        "pronunciation-current-first-action-1": {
+          "enabled": true,
+          "rect": [
+            530,
+            266,
+            140,
+            136
+          ],
+          "role": "AXButton",
+          "value": "",
+          "native_identifier": "practice-play-0"
+        },
+        "pronunciation-current-first-action-2": {
+          "checked": false,
+          "enabled": true,
+          "numeric_value": 0,
+          "rect": [
+            300,
+            430,
+            296,
+            60
+          ],
+          "role": "AXRadioButton",
+          "value": "",
+          "native_identifier": "option-p0-o0"
+        },
+        "pronunciation-current-first-action-3": {
+          "checked": false,
+          "enabled": true,
+          "numeric_value": 0,
+          "rect": [
+            604,
+            430,
+            296,
+            60
+          ],
+          "role": "AXRadioButton",
+          "value": "",
+          "native_identifier": "option-p0-o1"
+        },
+        "pronunciation-current-first-action-4": {
+          "enabled": true,
+          "rect": [
+            140,
+            637,
+            150,
+            50
+          ],
+          "role": "AXButton",
+          "value": "",
+          "native_identifier": "skip"
+        },
+        "pronunciation-current-first-action-5": {
+          "enabled": false,
+          "rect": [
+            910,
+            641,
+            150,
+            46
+          ],
+          "role": "AXButton",
+          "value": "",
+          "native_identifier": "check"
+        }
+      },
+      "interactions": {
+        "completed_popover_present": false,
+        "exit_confirmation_present": false,
+        "footer_status_visible": false,
+        "guest_error_present": false,
+        "guest_introduction_present": false,
+        "guest_languages_present": false,
+        "guest_profile_present": false,
+        "home_course_present": false,
+        "learn_present": false,
+        "legendary_present": false,
+        "practice_present": false,
+        "profile_present": false,
+        "status_clear_visible": false,
+        "status_selected": false
+      }
+    }
+  },
+  "alias_binding": {
+    "source_sha256": "93e4902f74c69b2fc781ef41991eb7047e409afa828347e439761cd838aba651",
+    "manifest_sha256": "e3505b25fb6629d72c93ba447490eac4fabc17587582672b2ab1f5784d1e0584",
+    "bound": [
+      {
+        "state": "pronunciation-current-entry",
+        "element": "pronunciation-current-entry-action-1",
+        "native": "nav-learn"
+      },
+      {
+        "state": "pronunciation-current-entry",
+        "element": "pronunciation-current-entry-action-2",
+        "native": "nav-pronunciation"
+      },
+      {
+        "state": "pronunciation-current-entry",
+        "element": "pronunciation-current-entry-action-3",
+        "native": "nav-leaderboards"
+      },
+      {
+        "state": "pronunciation-current-entry",
+        "element": "pronunciation-current-entry-action-4",
+        "native": "nav-quests"
+      },
+      {
+        "state": "pronunciation-current-entry",
+        "element": "pronunciation-current-entry-action-6",
+        "native": "nav-profile"
+      },
+      {
+        "state": "pronunciation-current-entry",
+        "element": "pronunciation-current-entry-action-7",
+        "native": "nav-more"
+      },
+      {
+        "state": "pronunciation-current-entry",
+        "element": "pronunciation-current-entry-action-23",
+        "native": "pronunciation-start"
+      },
+      {
+        "state": "pronunciation-current-first",
+        "element": "pronunciation-current-first-action-0",
+        "native": "exit"
+      },
+      {
+        "state": "pronunciation-current-first",
+        "element": "pronunciation-current-first-action-1",
+        "native": "practice-play-0"
+      },
+      {
+        "state": "pronunciation-current-first",
+        "element": "pronunciation-current-first-action-2",
+        "native": "option-p0-o0"
+      },
+      {
+        "state": "pronunciation-current-first",
+        "element": "pronunciation-current-first-action-3",
+        "native": "option-p0-o1"
+      },
+      {
+        "state": "pronunciation-current-first",
+        "element": "pronunciation-current-first-action-4",
+        "native": "skip"
+      },
+      {
+        "state": "pronunciation-current-first",
+        "element": "pronunciation-current-first-action-5",
+        "native": "check"
+      }
+    ],
+    "unresolved": [],
+    "scope": "Only names are bound; raw roles, values, rects and capture paths remain measured facts"
+  }
+}

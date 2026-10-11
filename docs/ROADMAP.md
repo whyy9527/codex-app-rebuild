@@ -421,3 +421,8 @@ Swift接阶段列表、原素材、独立跳级实例及结算，最终同二进
 ### 2026-10-12：真实RSI反馈04与前端观察维度缺口
 
 04事前提交注册、训练冻结和模型封存后，实际执行3模型调用（73787 reported tokens）与4在线动作，两组各2、序列不同、语义代理0／0，无收益结论。旧02／03保留。后续真实Tab探针发现原版welcome焦点、Swift词语仅下划线路径，说明文字新增指标遗漏交互；不能围绕计分器局部优化代替复刻。采集器增加实测CSS/DPR及焦点；v73保留17092旧项新增343，共17435，实际匹配指南61pass／30fail／79unavailable，键盘状态未接原生，整图仍fail。65Python／21Node及旧v72状态／图像指标逐项回归通过。146状态／69边／3963待探索动作；04分组探针独立记录，不冒充pointer覆盖。下一批优先源发音完整练习链／实际音频、主页下层／故事／电台与第三课后续，策略应直接消费前端失败与未知；继续Swift实现及真正产品质量消融。完整Goal active，[证据与复跑](../projects/duolingo-web/evidence/english-guide-probes-v1/README.md)、[04负结果](../projects/exploration-ablation/REPORT04.md)。
+
+
+### 当前发音入口及真实语音复查
+
+核对当前代码纠正“缺发音专用页”的过时判断：已存在页面和三套观察顺序，未知是自适应／后续加载／正常口语及进度和1:1。当前源零音标进度实际dock/deck，不能称第四顺序实例。按源将开始按钮改为264×48链接，真实3状态0驱动失败并进入首题；完整y差0.2109375点保持fail。v74保留17435新增217，共17652；69pass／41fail／17437not_run／105unavailable、两整图fail。实际自有应用入口录音与源media.play对应原资源相关0.99997426，不推断源声学等价或全音效。35核心及构建通过，完整Goal active，继续跨页面前端／声音／遗漏探索。[证据及复跑](../projects/duolingo-web/evidence/english-pronunciation-current-v1/README.md)。
