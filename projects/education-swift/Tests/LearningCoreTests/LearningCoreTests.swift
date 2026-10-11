@@ -770,6 +770,20 @@ func observedPathChest() throws {
     print("PASS actual path chest prerequisites, one-time opening, persisted state and old progress compatibility")
 }
 
+func observedHomeClock() throws {
+    let source = try course(fixture: "fixture-reference-en-zh-v14.json")
+    guard let snapshot = source.home?.progressSnapshots?.first(where: { $0.completedLessons == 8 }) else { throw CheckFailure.failed("Missing eight-completion home") }
+    let projects = URL(fileURLWithPath: #filePath).deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent()
+    let scenario = try JSONSerialization.jsonObject(with: Data(contentsOf: projects.appendingPathComponent("duolingo-web/home-clock-scenario-v1.json"))) as! [String: Any]
+    for row in scenario["states"] as! [[String: Any]] {
+        let date = Date(timeIntervalSince1970: (row["epoch_milliseconds"] as! Double) / 1000)
+        try check(snapshot.leagueCountdownText(at:date) == row["expected_text"] as? String, "Countdown differs from actual original mutation epoch")
+    }
+    let legacy = try course(fixture: "fixture-reference-en-zh-v13.json").home?.progressSnapshots?.first(where: { $0.completedLessons == 8 })
+    try check(legacy?.leagueCountdownText(at: .distantFuture) == legacy?.leagueCountdown, "Legacy frozen reference changed")
+    print("PASS actual original countdown epochs and legacy fixture compatibility")
+}
+
 do {
     try mistakeReview()
     try persistence()
@@ -800,7 +814,8 @@ do {
     try actualErrorResultHistory()
     try actualEighthCourse()
     try observedPathChest()
-    print("29 business checks passed; core layer only")
+    try observedHomeClock()
+    print("30 business checks passed; core layer only")
 } catch {
     FileHandle.standardError.write(Data(("FAIL " + String(describing: error) + "\n").utf8))
     exit(1)

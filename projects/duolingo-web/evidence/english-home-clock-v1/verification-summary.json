@@ -1,0 +1,69 @@
+{
+  "native-before": {
+    "states": 3,
+    "failure": null,
+    "candidate_binary_sha256": "0f666b3c6bbeb31415f691a57851784d08550d5c3ac476b4078dad1de0cc369e",
+    "fixture_sha256": "b7242d0e130112d54b1e17714bf21c35045e58f8874948917b0b09f971282bda",
+    "status": {
+      "not_run": 2486,
+      "fail": 9
+    }
+  },
+  "native-clock-first": {
+    "states": 3,
+    "failure": null,
+    "candidate_binary_sha256": "cc8e118a40c4f07ef258937b0caccc33ea0dd63db14f1ff905e4bfaa7a7d0d47",
+    "fixture_sha256": "b7242d0e130112d54b1e17714bf21c35045e58f8874948917b0b09f971282bda",
+    "status": {
+      "not_run": 2486,
+      "pass": 3,
+      "fail": 6
+    }
+  },
+  "native-final": {
+    "states": 3,
+    "failure": null,
+    "candidate_binary_sha256": "9db769f28c769831d21aa1310b9115e8f8cfc3c015f36a83c24c50f8c9de97b9",
+    "fixture_sha256": "b7242d0e130112d54b1e17714bf21c35045e58f8874948917b0b09f971282bda",
+    "status": {
+      "not_run": 2486,
+      "pass": 3,
+      "fail": 6
+    }
+  },
+  "chest-final": {
+    "states": 6,
+    "failure": null,
+    "candidate_binary_sha256": "9db769f28c769831d21aa1310b9115e8f8cfc3c015f36a83c24c50f8c9de97b9",
+    "fixture_sha256": "7dc77351c9492e937b91f6493faf6886026fc598f1617ffa96c53142a21bb8ce",
+    "status": {
+      "not_run": 2464,
+      "fail": 12,
+      "pass": 19
+    }
+  },
+  "source_consistency": {
+    "not_run": 1799,
+    "pass": 679,
+    "unavailable": 17
+  },
+  "core": "30 checks passed",
+  "freeze": "Contract/reference/scenario byte-identical on regeneration",
+  "limitations": [
+    "Source/native animation phase not controlled; three strict geometry and whole-image failures remain.",
+    "After deadline rollover not observed. Stored timestamp is a dated source fixture, not an invented live service.",
+    "No new RSI ablation or exploration-gain claim."
+  ],
+  "chest-opened-seed": {
+    "states": 6,
+    "failure": null,
+    "candidate_binary_sha256": "9db769f28c769831d21aa1310b9115e8f8cfc3c015f36a83c24c50f8c9de97b9",
+    "fixture_sha256": "7dc77351c9492e937b91f6493faf6886026fc598f1617ffa96c53142a21bb8ce",
+    "status": {
+      "not_run": 2464,
+      "fail": 14,
+      "pass": 17
+    },
+    "classification": "Harness selected already-open progress for before-opening contract; two extra mismatches are not product regression."
+  }
+}

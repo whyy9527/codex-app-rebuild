@@ -230,6 +230,14 @@ public struct HomeProgressSnapshot: Codable, Equatable, Sendable {
     public let leagueLink: String?
     public let leagueMessage: String?
     public let leagueCountdown: String?
+    public let leagueCountdownEndEpochMilliseconds: Double?
+    public func leagueCountdownText(at date: Date) -> String? {
+        guard let deadline = leagueCountdownEndEpochMilliseconds else { return leagueCountdown }
+        let seconds = max(0, Int(floor((deadline - date.timeIntervalSince1970 * 1000) / 1000)))
+        if seconds >= 3600 { return "\(seconds / 3600) 小时" }
+        if seconds >= 60 { return "\(seconds / 60) 分钟" }
+        return "\(seconds) 秒"
+    }
     public let leagueResource: String?
     public let questTarget: Int?
     public let questProgress: Int?

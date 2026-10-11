@@ -1,10 +1,12 @@
 # LingoSeed · Swift 教育基座
 
+本轮补原版小时/分钟/秒倒计时及共同时间夹具，默认课程v14保留八课115题；前端v48保留旧2486项并新增9项。实际原生文案3pass，几何/整图6fail，未计动效相位或RSI收益。30核心通过，完整Goal active。[源观察、失败控制与复跑](../duolingo-web/evidence/english-home-clock-v1/README.md)。
+
 注册年龄清除与密码显示/隐藏已按原版实际交互接入；另发现独立登录页含Apple与忘记密码，尚未实现。前端v45共2476项，最终两次20状态各116pass/31fail/2329not_run；整图仍失败，年龄图差异略增，不能称1:1。[最新证据与复跑](../duolingo-web/evidence/english-registration-controls-v1/README.md)。
 
 默认v13补实际开箱前后主页、原素材及持久化记录，原生真实开箱和重启已验证；前端v41共2373项，本轨迹34pass/17fail/2322not_run，下一Practice开始/建档及排行榜遮罩仍未实施。[最新失败、探索与复跑](../duolingo-web/evidence/english-chest-v1/README.md)。
 
-可运行的macOS SwiftUI客户端。当前默认 `fixture-reference-en-zh-v13.json` 为中文母语→英语八课115题；新增实际第八课、13卡历史回顾、结算及真实重启。前端仍133pass/17fail/2171not_run，结算图形/按钮与宝箱等未对齐，音频资源身份不等于实际输出验证。[当前验证及复跑](../duolingo-web/evidence/english-eighth-integration-v1/README.md)。
+可运行的macOS SwiftUI客户端。当前默认 `fixture-reference-en-zh-v14.json` 为中文母语→英语八课115题；新增实际第八课、13卡历史回顾、结算及真实重启。前端仍133pass/17fail/2171not_run，结算图形/按钮与宝箱等未对齐，音频资源身份不等于实际输出验证。[当前验证及复跑](../duolingo-web/evidence/english-eighth-integration-v1/README.md)。
 
 当前发音练习按三次原版轨迹编译、独立保存，完成首套后重启实际进入sip/zip。口语拒绝/关闭/暂缓及发音练习退出已接入原生验证；全错直接退出，已获得正确进度时确认，取消保留题目状态；正常录音识别只有基础接线，尚未接评分和推进，不能称正常口语完成。前端、角色及实际声音仍有差异，见[最新证据与复跑](../duolingo-web/evidence/english-practice-exit-v1/README.md)。第四/第五套及原版自适应规则继续探索；旧第七课全程结果不移用到当前构建。
 
@@ -18,7 +20,7 @@
 
 ```sh
 swift build --package-path projects/education-swift --product LingoSeed
-projects/education-swift/.build/debug/LingoSeed --fixture projects/duolingo-web/fixture-reference-en-zh-v13.json --progress artifacts/lingoseed-english-demo/progress.json
+projects/education-swift/.build/debug/LingoSeed --fixture projects/duolingo-web/fixture-reference-en-zh-v14.json --progress artifacts/lingoseed-english-demo/progress.json
 swift run --package-path projects/education-swift LearningCoreChecks
 ```
 

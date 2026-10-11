@@ -1,5 +1,7 @@
 # Roadmap
 
+本轮补原版小时/分钟/秒倒计时及共同时间夹具，默认课程v14保留八课115题；前端v48保留旧2486项并新增9项。实际原生文案3pass，几何/整图6fail，未计动效相位或RSI收益。30核心通过，完整Goal active。[源观察、失败控制与复跑](../projects/duolingo-web/evidence/english-home-clock-v1/README.md)。
+
 主页Duo已从静态帧替换为原版Lottie资源，真实截图确认运动；严格几何及6张整图仍fail。v47共2486项，发现时间/动效相位夹具缺口，未把运动当成1:1或RSI收益。[动效证据、反例与复跑](../projects/duolingo-web/evidence/english-home-motion-v1/README.md)。
 
 主页采集补CSS伪元素，Swift接原完成节点高光；主课程修复已冻结的9题原音被忽略的问题。v46共2479项，最终主页37pass/17fail/2425not_run；真实q3录音相关性0.026→0.836仍有残差，整图/底色/倒计时继续失败。完整Goal active。[证据、负结果与复跑](../projects/duolingo-web/evidence/english-home-presentation-v1/README.md)。

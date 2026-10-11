@@ -17,6 +17,11 @@ struct ReferenceHome: View {
     @State private var showingPathProfile = false
     private var completed: Int { model.progress.completedCount(model.course) }
     private var homeSnapshot: HomeProgressSnapshot? { model.course.home?.progressSnapshots?.first { $0.completedLessons == completed } }
+    private var referenceClock: Date? {
+        guard let index = CommandLine.arguments.firstIndex(of: "--reference-clock-milliseconds"),
+              index + 1 < CommandLine.arguments.count, let epoch = Double(CommandLine.arguments[index + 1]) else { return nil }
+        return Date(timeIntervalSince1970: epoch / 1000)
+    }
     private var firstNodeCompleted: Bool { chinese && completed >= (model.course.home?.firstNodeLessonCount ?? 4) }
     private var chestReady: Bool { model.progress.isPathChestReady(model.course) }
     private var chestOpened: Bool { model.progress.isPathChestOpened(model.course) }
@@ -248,7 +253,13 @@ struct ReferenceHome: View {
                     ReferenceStyle.image(homeSnapshot?.leagueResource ?? "league-locked").resizable().scaledToFit().frame(width: 70, height: homeSnapshot?.leagueCountdown == nil ? 50 : 58)
                     VStack(alignment: .leading, spacing: 8) {
                         Text(homeSnapshot?.leagueMessage ?? copy("Complete \(max(0, 3 - completed)) more lessons to start competing", "再学 \(max(0, 3 - completed)) 个单元，就能参加排行榜挑战了")).font(ReferenceStyle.font(17)).foregroundStyle(Color(white: 119/255)).lineSpacing(4)
-                        if let countdown = homeSnapshot?.leagueCountdown { Text(countdown).font(ReferenceStyle.font(17, bold: true)).foregroundStyle(Color(red: 1, green: 200/255, blue: 0)).accessibilityIdentifier("home-league-countdown") }
+                        if let snapshot = homeSnapshot, snapshot.leagueCountdown != nil {
+                            TimelineView(.periodic(from: .now, by: 1)) { context in
+                                Text(snapshot.leagueCountdownText(at: referenceClock ?? context.date) ?? "")
+                                    .font(ReferenceStyle.font(17, bold: true)).foregroundStyle(Color(red: 1, green: 200/255, blue: 0))
+                                    .offset(y: 1).accessibilityIdentifier("home-league-countdown")
+                            }
+                        }
                     }
                 }.padding(.top, 12)
             }.frame(height: 150)

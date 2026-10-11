@@ -1,0 +1,25 @@
+{
+  "negative_controls": [
+    {
+      "probe": "Playwright clock install/pause in original context",
+      "result": "Clock affects entire context; second page renderer sustained CPU and commands remained live. Only owned crashed renderer terminated; original page restored/resumed; no product inference."
+    },
+    {
+      "probe": "cookies/localStorage clone; normal clock",
+      "result": "No homepage SVG within 5s; insufficient source reconstruction or timing, cause unknown."
+    },
+    {
+      "probe": "session/indexedDB/UA/locale/timezone clone, normal clock",
+      "result": "Actual full homepage loaded within 20s."
+    },
+    {
+      "probe": "Playwright fixed time with full clone",
+      "result": "20s SVG timeout; exact cause unknown."
+    },
+    {
+      "probe": "custom fixed Date with real timers",
+      "result": "20s SVG timeout and failed diagnostic screenshot; exact cause unknown."
+    }
+  ],
+  "positive_control": "Full source reconstruction with progressing Date offset yielded three stable labels in two runs. No evidence for pausing animation phase or RSI gain."
+}

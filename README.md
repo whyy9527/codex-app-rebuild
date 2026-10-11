@@ -1,5 +1,7 @@
 # Codex App Rebuild
 
+本轮补原版小时/分钟/秒倒计时及共同时间夹具，默认课程v14保留八课115题；前端v48保留旧2486项并新增9项。实际原生文案3pass，几何/整图6fail，未计动效相位或RSI收益。30核心通过，完整Goal active。[源观察、失败控制与复跑](projects/duolingo-web/evidence/english-home-clock-v1/README.md)。
+
 主页Duo已从静态帧替换为原版Lottie资源，真实截图确认运动；严格几何及6张整图仍fail。v47共2486项，发现时间/动效相位夹具缺口，未把运动当成1:1或RSI收益。[动效证据、反例与复跑](projects/duolingo-web/evidence/english-home-motion-v1/README.md)。
 
 主页采集补CSS伪元素，Swift接原完成节点高光；主课程修复已冻结的9题原音被忽略的问题。v46共2479项，最终主页37pass/17fail/2425not_run；真实q3录音相关性0.026→0.836仍有残差，整图/底色/倒计时继续失败。完整Goal active。[证据、负结果与复跑](projects/duolingo-web/evidence/english-home-presentation-v1/README.md)。
@@ -12,7 +14,7 @@
 
 探索原产品，把用户可观察的业务与前端需求变成可独立运行的代码化模具，用历史反馈改进探索，再让 Codex 重建 App。仓库保持私有；改名不代表开源或发布。
 
-当前默认夹具为 `fixture-reference-en-zh-v13.json`：八课115道评分题，保留前七课，补实际第八单元12题、口语暂缓、13卡回顾及后续结算和真实重启。仍未达到1:1：本轨迹前端133pass/17fail/2171not_run，结算图形、按钮及解锁宝箱等继续修复；不能把学完已编译课程标成整课程完成。[当前证据与复跑](projects/duolingo-web/evidence/english-eighth-integration-v1/README.md)。
+当前默认夹具为 `fixture-reference-en-zh-v14.json`：八课115道评分题，保留前七课，补实际第八单元12题、口语暂缓、13卡回顾及后续结算和真实重启。仍未达到1:1：本轨迹前端133pass/17fail/2171not_run，结算图形、按钮及解锁宝箱等继续修复；不能把学完已编译课程标成整课程完成。[当前证据与复跑](projects/duolingo-web/evidence/english-eighth-integration-v1/README.md)。
 
 特别任务页已从原版探索并替换英文占位内容，10文案/5几何通过；整图仍失败；独立练习入口随后接入，见下方新原生回执。[任务页、新发现与复跑](projects/duolingo-web/evidence/english-quests-v1/README.md)。
 

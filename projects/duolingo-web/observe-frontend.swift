@@ -20,14 +20,23 @@ let errorReview = CommandLine.arguments.contains("--exercise-error-review")
 let reviewInstance = eighthReview ? "level-review" : errorReview ? "error-review" : "current-review"
 let childLog = output.appendingPathComponent("child.log")
 FileManager.default.createFile(atPath: childLog.path, contents: nil)
-let fixture = CommandLine.arguments.count > 2 ? CommandLine.arguments[2] : "projects/duolingo-web/fixture-reference-v6.json"
+let fixture = CommandLine.arguments.count > 2 ? CommandLine.arguments[2] : "projects/duolingo-web/fixture-reference-en-zh-v14.json"
 let candidateURL = root.appendingPathComponent("projects/education-swift/.build/debug/LingoSeed")
 let candidateSHA = SHA256.hash(data: try Data(contentsOf: candidateURL)).map { String(format: "%02x", $0) }.joined()
 let fixtureSHA = SHA256.hash(data: try Data(contentsOf: root.appendingPathComponent(fixture))).map { String(format: "%02x", $0) }.joined()
+var clockScenario: [String: Any]?
+var referenceClockMilliseconds: NSNumber?
+if let index = CommandLine.arguments.firstIndex(of: "--exercise-home-clock"), index + 1 < CommandLine.arguments.count {
+    clockScenario = try JSONSerialization.jsonObject(with: Data(contentsOf: root.appendingPathComponent(CommandLine.arguments[index + 1]))) as? [String: Any]
+    guard let rows = clockScenario?["states"] as? [[String: Any]], !rows.isEmpty,
+          let epoch = rows[0]["epoch_milliseconds"] as? NSNumber else { throw NSError(domain:"Clock scenario missing states",code:1) }
+    referenceClockMilliseconds = epoch
+}
 func launchChild() throws -> Process {
     let process = Process()
     process.executableURL = candidateURL
     process.arguments = ["--fixture", root.appendingPathComponent(fixture).path, "--progress", progress.path, "--render-metadata", output.appendingPathComponent("window.json").path]
+    if let epoch = referenceClockMilliseconds { process.arguments! += ["--reference-clock-milliseconds", epoch.stringValue] }
     if let index = CommandLine.arguments.firstIndex(of: "--reference-color-scheme"), index + 1 < CommandLine.arguments.count {
         process.arguments! += ["--reference-color-scheme", CommandLine.arguments[index + 1]]
     }
@@ -213,6 +222,27 @@ func captureGeneralCharacterFrames(_ key: String, _ stage: String, _ question: [
     for frame in 0..<12 { try capture(key + "-character-" + stage + "-\(frame)"); Thread.sleep(forTimeInterval: 0.15) }
 }
 
+if let scenario = clockScenario, let rows = scenario["states"] as? [[String: Any]] {
+    var states: [String: [String: Any]] = [:]; var failure: String?
+    do {
+        for (index, row) in rows.enumerated() {
+            guard let key = row["id"] as? String, let epoch = row["epoch_milliseconds"] as? NSNumber else { throw ProbeError(message:"Invalid clock state") }
+            if index > 0 {
+                child.terminate(); child.waitUntilExit(); referenceClockMilliseconds = epoch
+                child = try launchChild(); app = AXUIElementCreateApplication(child.processIdentifier)
+            }
+            try waitFor("path-chest"); configureWindow(); try waitFor("home-league-countdown")
+            states[key] = observe(); try capture(key)
+        }
+    } catch { failure = String(describing:error) }
+    try bindCaptures(&states)
+    let receipt: [String: Any] = ["kind":"owned_native_ax_observation", "states":states, "scenario":scenario,
+        "candidate_binary_sha256":candidateSHA,"fixture_sha256":fixtureSHA,"failure":failure as Any? ?? NSNull(),
+        "limitations":["Clock fixture controls label epoch, not source/native animation phase"]]
+    try JSONSerialization.data(withJSONObject:receipt,options:[.prettyPrinted,.sortedKeys]).write(to:output.appendingPathComponent("observed.json"),options:.withoutOverwriting)
+    print("Collected \(states.count) actual home clock states")
+    if let failure { throw ProbeError(message:failure) }; return
+}
 if CommandLine.arguments.contains("--exercise-home-motion") || CommandLine.arguments.contains("--exercise-path-chest") { try waitFor("path-chest") }
 let initialHomeState = CommandLine.arguments.contains("--seed-progress") ? "seeded-home" : "home"
 var states = [initialHomeState: observe()]
