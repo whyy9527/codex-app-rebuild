@@ -140,3 +140,21 @@ class FrontendRequirements(unittest.TestCase):
         from capabilities.rebuild.images import compare_capture
         with patch.dict('sys.modules', {'PIL': None}):
             self.assertEqual(compare_capture(Path('.'), {}, {})['status'], 'unavailable')
+
+    def test_relative_geometry_measures_actual_motion_not_a_driver_pass_flag(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / 'source.txt').write_text('Actual card mouse-down moves two points; mouse-up restores origin')
+            requirement = {'id': 'down', 'state': 'pressed', 'relative_to_state': 'idle',
+                'kind': 'element_geometry', 'element': 'card', 'rect': [0, 2, 0, 0],
+                'tolerance_points': 0, 'evidence': ['source.txt']}
+            observed = {'states': {'idle': {'elements': {'card': {'rect': [10, 20, 40, 68]}}},
+                'pressed': {'status': 'pass', 'elements': {'card': {'rect': [10, 20, 40, 68]}}}}}
+            contract = {'requirements': [requirement]}
+            self.assertEqual(compare(root, contract, observed)['rows'][0]['status'], 'fail')
+            observed['states']['pressed']['elements']['card']['rect'][1] = 22
+            self.assertEqual(compare(root, contract, observed)['rows'][0]['status'], 'pass')
+            observed['states']['idle']['elements']['card']['rect'][1] = True
+            self.assertEqual(compare(root, contract, observed)['rows'][0]['status'], 'unavailable')
+            observed['states'].pop('idle')
+            self.assertEqual(compare(root, contract, observed)['rows'][0]['status'], 'not_run')

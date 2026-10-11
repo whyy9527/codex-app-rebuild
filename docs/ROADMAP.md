@@ -251,3 +251,8 @@ v15保留1489项并增8项真实原版断言。独立原生radio2实际点击及
 ### 发音卡片实际样式与共同图像验收
 
 原版39卡DOM/CSS确认19px音标、15px单词、5px间隔及68px按钮；Swift修正字号/行高/点击区域，实际AX64→68。旧参考与当前æ cat区域逐像素相同，当前在线非零增长不冒充零进度全页一致。模具新增image_pixels实际读取PNG及测量元数据，ICC转换由通用provider拥有，缺图/依赖不可算pass。v25具体化1个旧pending并追加7图，旧可执行要求不变。完整55 Python、Swift构建/23核心及61原生状态通过执行；共同契约192pass/35fail/1498not_run/0unavailable，8图全fail，卡片区域和整页差异下降但未1:1。新增失败是扩大实际验收，不宣称产品回归或RSI收益。可移植回执重绑定PNG路径且逐字节核验，完整Goal active。[证据、图片与复跑](../projects/duolingo-web/evidence/english-pronunciation-cards-v1/README.md)。
+
+
+### 实际字体解析及按住卡片补漏
+
+前批残留字形偏粗促使改用实际platform font/CoreText探针：CSS500实际Latin轴400，但中文副标题实际Medium，故只修卡片音标/英文为400与0.8px字距，保留中文。源按住移动2px且2px阴影消失，候选修66点卡面/2点阴影并加实际按下反馈；源CSS圆角与SDK默认continuous不同，本页显式circular。v26保留全部1725旧项增4，源几何4/4，56框架/构建/23核心通过，最终64原生状态194pass/37fail/1498not_run/0unavailable；新增位移两项pass、绝对几何两项fail，8图仍fail。卡片区域差异约1.846→0.734、整页下降，不能代替1:1。首轮CGFloat类型错误及中间构建完整保留，原论文/负面消融不变。下一步继续未访问导航/主课、音标增长及前端/音频缺口；Goal active。[源发现与复跑](../projects/duolingo-web/evidence/english-pronunciation-typography-v1/README.md)。

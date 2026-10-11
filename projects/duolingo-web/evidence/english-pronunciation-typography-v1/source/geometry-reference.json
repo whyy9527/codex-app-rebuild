@@ -1,0 +1,106 @@
+{
+  "kind": "frontend_requirements",
+  "contract_digest": "42eb3cd53027c57f1a88682b8bd71ba2dcd694290e2dbd95f00d5a48e807591f",
+  "observation_digest": "65f43c7f6ccbead5f6701747db117058f270a85f9af424e9675b7da93d17c01d",
+  "rows": [
+    {
+      "id": "pronunciation-card-hover-geometry",
+      "state": "pronunciation-card-hover",
+      "status": "pass",
+      "expected": [
+        442.6640625,
+        291.7890625,
+        154.6640625,
+        68
+      ],
+      "actual": [
+        442.6640625,
+        291.7890625,
+        154.6640625,
+        68
+      ],
+      "delta_points": [
+        0.0,
+        0.0,
+        0.0,
+        0
+      ],
+      "reason": "Control geometry in content points only; other visual properties remain separate"
+    },
+    {
+      "id": "pronunciation-card-pressed-geometry",
+      "state": "pronunciation-card-pressed",
+      "status": "pass",
+      "expected": [
+        442.6640625,
+        293.7890625,
+        154.6640625,
+        68
+      ],
+      "actual": [
+        442.6640625,
+        293.7890625,
+        154.6640625,
+        68
+      ],
+      "delta_points": [
+        0.0,
+        0.0,
+        0.0,
+        0
+      ],
+      "reason": "Control geometry in content points only; other visual properties remain separate"
+    },
+    {
+      "id": "pronunciation-card-pressed-translation",
+      "state": "pronunciation-card-pressed",
+      "relative_to_state": "pronunciation-card-hover",
+      "status": "pass",
+      "expected": [
+        0,
+        2,
+        0,
+        0
+      ],
+      "actual": [
+        0.0,
+        2.0,
+        0.0,
+        0
+      ],
+      "delta_points": [
+        0.0,
+        0.0,
+        0.0,
+        0
+      ],
+      "reason": "Control geometry in content points only; other visual properties remain separate"
+    },
+    {
+      "id": "pronunciation-card-released-translation",
+      "state": "pronunciation-card-released",
+      "relative_to_state": "pronunciation-card-hover",
+      "status": "pass",
+      "expected": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "actual": [
+        0.0,
+        0.0,
+        0.0,
+        0
+      ],
+      "delta_points": [
+        0.0,
+        0.0,
+        0.0,
+        0
+      ],
+      "reason": "Control geometry in content points only; other visual properties remain separate"
+    }
+  ],
+  "status": "pass"
+}

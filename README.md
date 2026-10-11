@@ -6,7 +6,7 @@
 
 当前默认夹具为 `fixture-reference-en-zh-v10.json`：七课102道评分题，保留实际口语暂缓、听力暂缓、插入/替换题、独立输入偏好、跳过重练及结算路径。第七课15题与三页结算已原生走通，后续课程继续探索；不会把学完已编译课程标成整课程完成。
 
-共同前端契约已接入真实PNG比较，缺图不可计为通过；发音卡片按原版字号与68点点击区域修正，整图仍失败。[当前证据与复跑](projects/duolingo-web/evidence/english-pronunciation-cards-v1/README.md)。
+共同前端契约已接入真实PNG比较，缺图不可计为通过；发音卡片进一步按浏览器实际字体、字距、卡面和按下反馈修正，整图仍失败。[当前证据与复跑](projects/duolingo-web/evidence/english-pronunciation-typography-v1/README.md)。
 
 前端契约保留旧要求并持续追加源观察；最新口语权限及发音退出分支已接入实际原生验证。反例探测区分全错直接退出与已获得正确进度后的确认，取消保持题目状态。几何、整图和声音仍有失败/未覆盖，正常录音评分与推进未完成。[最新证据、探索反例与复跑](projects/duolingo-web/evidence/english-practice-exit-v1/README.md)，逐批结果由[Roadmap](docs/ROADMAP.md)维护；不累计旧构建回执填当前未执行项。
 

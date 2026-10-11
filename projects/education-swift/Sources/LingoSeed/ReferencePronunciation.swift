@@ -24,9 +24,9 @@ struct ReferencePronunciation: View {
             Text("磨耳朵，练就地道英语发音").font(ReferenceStyle.font(19))
                 .foregroundStyle(ReferenceStyle.secondaryInk).frame(height: 26.59375).padding(.top, 10)
             Button { model.beginPronunciation() } label: {
-                Text("开始 +10 经验").font(ReferenceStyle.font(15, bold: true))
+                Text("开始 +10 经验").font(ReferenceStyle.font(16, bold: true)).tracking(0.64)
                     .foregroundStyle(.white).frame(width: 264, height: 44)
-                    .background(ReferenceStyle.blue, in: RoundedRectangle(cornerRadius: 16))
+                    .background(ReferenceStyle.blue, in: RoundedRectangle(cornerRadius: 16, style: .circular))
                     .shadow(color: Color(red: 24/255, green: 153/255, blue: 214/255), radius: 0, y: 4)
             }.buttonStyle(.plain).accessibilityIdentifier("pronunciation-start")
                 .padding(.top, 20).padding(.bottom, 33)
@@ -50,20 +50,30 @@ struct ReferencePronunciation: View {
                         if let resource = phoneme.audio { model.audio.speak(phoneme.symbol, resource: resource) }
                     } label: {
                         VStack(spacing: 0) {
-                            Text(phoneme.symbol).font(ReferenceStyle.font(19)).foregroundStyle(ReferenceStyle.ink).frame(height: 19)
-                            Text(phoneme.word).font(ReferenceStyle.font(15)).foregroundStyle(ReferenceStyle.disclosureInk).frame(height: 15)
+                            // Browser CSS 500 resolves to Latin axis 400; keep Chinese fallback weights elsewhere.
+                            Text(phoneme.symbol).font(ReferenceStyle.font(19, weight: 400)).tracking(0.8).foregroundStyle(ReferenceStyle.ink).frame(height: 19)
+                            Text(phoneme.word).font(ReferenceStyle.font(15, weight: 400)).tracking(0.8).foregroundStyle(ReferenceStyle.disclosureInk).frame(height: 15)
                             Capsule().fill(ReferenceStyle.border).frame(width: 40, height: 8).padding(.top, 5)
                         }.padding(.top, 12).frame(maxWidth: .infinity).frame(height: 68, alignment: .top)
-                            .background(alignment: .top) {
-                                RoundedRectangle(cornerRadius: 16).fill(ReferenceStyle.background).frame(height: 64)
-                                    .shadow(color: ReferenceStyle.border, radius: 0, y: 4)
-                            }
-                            .overlay(alignment: .top) { RoundedRectangle(cornerRadius: 16).strokeBorder(ReferenceStyle.border, lineWidth: 2).frame(height: 64) }
                             .contentShape(Rectangle())
-                    }.buttonStyle(.plain).accessibilityLabel(phoneme.source_label).accessibilityIdentifier(phoneme.element)
+                    }.buttonStyle(ReferencePronunciationCardStyle()).accessibilityLabel(phoneme.source_label).accessibilityIdentifier(phoneme.element)
                     }}
                 }
             }.padding(.top, 20)
         }
+    }
+}
+
+private struct ReferencePronunciationCardStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .background(alignment: .top) {
+                RoundedRectangle(cornerRadius: 16, style: .circular).fill(ReferenceStyle.background).frame(height: 66)
+                    .shadow(color: ReferenceStyle.border, radius: 0, y: configuration.isPressed ? 0 : 2)
+            }
+            .overlay(alignment: .top) {
+                RoundedRectangle(cornerRadius: 16, style: .circular).strokeBorder(ReferenceStyle.border, lineWidth: 2).frame(height: 66)
+            }
+            .offset(y: configuration.isPressed ? 2 : 0)
     }
 }

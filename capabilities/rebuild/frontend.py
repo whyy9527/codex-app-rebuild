@@ -79,6 +79,17 @@ def compare(root, contract, observed):
                 raise ValueError('Invalid geometry contract')
             actual = state.get('elements', {}).get(requirement['element'], {}).get('rect')
             valid = isinstance(actual, list) and len(actual) == 4 and all(type(v) in (int, float) and math.isfinite(v) for v in actual)
+            if 'relative_to_state' in requirement:
+                origin_state = observed.get('states', {}).get(requirement['relative_to_state'])
+                if origin_state is None:
+                    row.update(status='not_run', reason='Driver has not visited the relative geometry origin state')
+                    rows.append(row)
+                    continue
+                origin = origin_state.get('elements', {}).get(requirement['element'], {}).get('rect')
+                origin_valid = isinstance(origin, list) and len(origin) == 4 and all(type(v) in (int, float) and math.isfinite(v) for v in origin)
+                valid = valid and origin_valid
+                actual = [a - b for a, b in zip(actual, origin)] if valid else None
+                row['relative_to_state'] = requirement['relative_to_state']
             delta = [abs(a - b) for a, b in zip(actual, expected)] if valid else None
             row.update(status='unavailable' if not valid else 'pass' if max(delta) <= tolerance else 'fail',
                        expected=expected, actual=actual, delta_points=delta,

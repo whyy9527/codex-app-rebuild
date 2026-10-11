@@ -144,3 +144,6 @@ projects/education-swift/.build/debug/LingoSeed --fixture projects/duolingo-web/
 
 
 发音卡片按实际原版修正为19px音标、15px单词和68点点击区域；共同v25直接读取PNG比较，8幅整图仍失败。正常口语评分/推进、音标增长和完整前端/声音继续，不能称1:1完成。[本批证据与可复跑图像验收](../duolingo-web/evidence/english-pronunciation-cards-v1/README.md)。
+
+
+当前发音卡片使用实测Latin字体轴400与0.8px字距，保留中文实际回退字重；按住下移2点并去掉2点阴影，释放恢复。共同v26独立比较真实状态位移，绝对几何及8图仍失败。[本批64状态验证与图片](../duolingo-web/evidence/english-pronunciation-typography-v1/README.md)。

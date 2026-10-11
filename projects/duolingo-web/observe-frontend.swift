@@ -163,6 +163,27 @@ if CommandLine.arguments.contains("--observe-pronunciation") {
     Thread.sleep(forTimeInterval: 0.5)
     states["en-zh-pronunciation"] = observe()
     try capture("pronunciation-window")
+    if CommandLine.arguments.contains("--exercise-pronunciation-card-press") {
+        guard movePointer(to: "pronunciation-sound-1"),
+              NSRunningApplication(processIdentifier: child.processIdentifier)?.isActive == true,
+              let center = pointerActions.last?["center"] as? [CGFloat] else {
+            throw ProbeError(message: "Cannot target owned pronunciation card")
+        }
+        let point = CGPoint(x: center[0], y: center[1])
+        guard let down = CGEvent(mouseEventSource: nil, mouseType: .leftMouseDown, mouseCursorPosition: point, mouseButton: .left),
+              let up = CGEvent(mouseEventSource: nil, mouseType: .leftMouseUp, mouseCursorPosition: point, mouseButton: .left) else {
+            throw ProbeError(message: "Cannot create owned card pointer events")
+        }
+        var held = false
+        defer { if held { up.post(tap: .cghidEventTap) } }
+        states["pronunciation-card-hover"] = observe(); try capture("pronunciation-card-hover")
+        down.post(tap: .cghidEventTap); held = true
+        Thread.sleep(forTimeInterval: 0.2)
+        states["pronunciation-card-pressed"] = observe(); try capture("pronunciation-card-pressed")
+        up.post(tap: .cghidEventTap); held = false
+        Thread.sleep(forTimeInterval: 0.2)
+        states["pronunciation-card-released"] = observe(); try capture("pronunciation-card-released")
+    }
     if let index = CommandLine.arguments.firstIndex(of: "--pronunciation-audio-recorder"), index + 1 < CommandLine.arguments.count {
         let actions = output.appendingPathComponent("audio-actions.json")
         try JSONSerialization.data(withJSONObject: ["pronunciation-sound-0"]).write(to: actions)

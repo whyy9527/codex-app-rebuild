@@ -198,3 +198,8 @@ Lesson将词库键盘、填空整句偏好分别保存；clearAnswer清答案缓
 ### 共同前端契约的实际图像要求
 
 `image_pixels`由`capabilities/rebuild/images.py`独立读取参考与候选PNG；原生观察器只绑定真实文件和实测窗口元数据。按ICC转sRGB、实测标题栏裁切及backing scale下采样，零像素差才pass，无掩码/平移搜索/容差。`capture_color.py`兼容导出同一provider，案例独立比较与共同契约不复制算法。Pillow仅图像要求需要，缺少时unavailable，其它能力仍可运行。归档只重定位capture.path到字节一致PNG，原始观察不覆盖。v25将一个旧pending实际执行并追加七幅源图，声音/动画时序与未访问状态仍单独验收。[当前失败与复跑](../projects/duolingo-web/evidence/english-pronunciation-cards-v1/README.md)。
+
+
+### 字体实际解析与相对几何
+
+发音页的CSS500不能直接映射variable font轴500：实际浏览器使用轴400，而同一页面中文回退为PingFang Medium。卡片局部显式400及源字距，未改变公共default或其它页面。ButtonStyle拥有源66点卡面/2点阴影与按住2点移动，驱动实际持有mouse-down期间采样，异常释放。共同element_geometry可选relative_to_state，比较器从两次真实矩形计算差值；缺原点not_run、坏矩形unavailable，无driver通过标记。绝对几何和图像仍单独验收，位移通过不替代它们。[来源、失败、实际构建](../projects/duolingo-web/evidence/english-pronunciation-typography-v1/README.md)。
