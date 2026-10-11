@@ -49,6 +49,8 @@ public struct Question: Codable, Equatable, Sendable, Identifiable {
     public let resultReview: ResultReviewPresentation?
     public let isolationPromptTokens: [IsolationPromptToken]?
     public let matchedAudioResources: [String]?
+    public let correctFeedbackAudioVolume: Double?
+    public let incorrectFeedbackAudioVolume: Double?
     public let correctFeedbackAudioResource: String?
     public let incorrectFeedbackAudioResource: String?
     public let practiceAudioResources: [String]?
@@ -89,6 +91,7 @@ public struct Question: Codable, Equatable, Sendable, Identifiable {
     enum CodingKeys: String, CodingKey {
         case resultReview, promptImageResource
         case isolationPromptTokens
+        case correctFeedbackAudioVolume, incorrectFeedbackAudioVolume
         case matchedAudioResources, correctFeedbackAudioResource, incorrectFeedbackAudioResource
         case practiceAudioResources, practiceAudioLabels, feedbackHint, reviewWordOrder, skipLabel, skipCorrectText
         case keyboardAnswer, keyboardPrompt, correctFeedback, indicator, example, exampleAudioResource, completionPrefix, completionSuffix, listeningDecline, feedbackReportReasons
@@ -100,6 +103,8 @@ public struct Question: Codable, Equatable, Sendable, Identifiable {
         resultReview = try c.decodeIfPresent(ResultReviewPresentation.self, forKey: .resultReview)
         isolationPromptTokens = try c.decodeIfPresent([IsolationPromptToken].self, forKey: .isolationPromptTokens)
         matchedAudioResources = try c.decodeIfPresent([String].self, forKey: .matchedAudioResources)
+        correctFeedbackAudioVolume = try c.decodeIfPresent(Double.self, forKey: .correctFeedbackAudioVolume)
+        incorrectFeedbackAudioVolume = try c.decodeIfPresent(Double.self, forKey: .incorrectFeedbackAudioVolume)
         correctFeedbackAudioResource = try c.decodeIfPresent(String.self, forKey: .correctFeedbackAudioResource)
         incorrectFeedbackAudioResource = try c.decodeIfPresent(String.self, forKey: .incorrectFeedbackAudioResource)
         practiceAudioResources = try c.decodeIfPresent([String].self, forKey: .practiceAudioResources)
@@ -173,6 +178,9 @@ public struct LessonEntry: Codable, Equatable, Sendable, Identifiable {
     public let declineLabel: String
 }
 public struct SettlementPage: Codable, Equatable, Sendable, Identifiable {
+    public var artResource: String? = nil
+    public var experienceIconResource: String? = nil
+    public var accuracyIconResource: String? = nil
     public var heartResources: [String]? = nil
     public var retryLabel: String? = nil
     public let id: String
@@ -220,6 +228,8 @@ public struct ObservedPlacementOutcome: Codable, Equatable, Sendable {
     public let observedMistakes: Int
 }
 public struct LessonDefinition: Codable, Equatable, Sendable, Identifiable {
+    public var completionAudioResource: String? = nil
+    public var completionAudioVolume: Double? = nil
     public var placementOutcome: ObservedPlacementOutcome? = nil
     public var observedHomeSnapshot: HomeProgressSnapshot? = nil
     public var listeningDeclineReplacements: [String: Question]? = nil

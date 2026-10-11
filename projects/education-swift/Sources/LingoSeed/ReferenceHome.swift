@@ -158,7 +158,7 @@ struct ReferenceHome: View {
                 }.buttonStyle(.plain).accessibilityIdentifier("open-guide")
             }.padding(16).frame(height: 90).foregroundStyle(.white).background(pathColor, in: RoundedRectangle(cornerRadius: 12))
             if model.placementOutcome?.activeStage == 2 {
-                ReferenceStageTwoPath(start:{stageTwoSelected=nil;model.beginStageTwoLesson()},activeUnit:model.placementOutcome?.activeUnit,jump:{stageTwoSelected=nil;model.prepareUnitPlacement(12)},firstLessonCompleted:model.progress.completedLessons["duolingo-en-zh-stage2-grocery-instance",default:[]].contains("stage2-grocery-1"),selected:$stageTwoSelected).padding(.top,model.placementOutcome?.activeUnit == 12 ? 24 : 0)
+                ReferenceStageTwoPath(start:{stageTwoSelected=nil;model.beginStageTwoLesson()},activeUnit:model.placementOutcome?.activeUnit,jump:{stageTwoSelected=nil;model.prepareUnitPlacement(12)},firstLessonCompleted:model.placementOutcome?.activeUnit == 12 ? model.progress.completedLessons["duolingo-en-zh-unit12-home-instance",default:[]].contains("unit12-home-1") : model.progress.completedLessons["duolingo-en-zh-stage2-grocery-instance",default:[]].contains("stage2-grocery-1"),selected:$stageTwoSelected).padding(.top,model.placementOutcome?.activeUnit == 12 ? 24 : 0)
             } else {
             GeometryReader { geometry in
                 let center = geometry.size.width / 2

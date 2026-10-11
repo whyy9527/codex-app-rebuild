@@ -1,0 +1,15 @@
+### Result
+{"path":"/guidebook/en/12","snapshot":"- link:\n  - /url: /learn\n  - img\n- link \"学习\":\n  - /url: /learn\n  - img\n  - text: 学习\n- link \"发音\":\n  - /url: /characters\n  - img\n  - text: 发音\n- link \"排行榜\":\n  - /url: /leaderboard\n  - img\n  - text: 排行榜\n- link \"特别任务\":\n  - /url: /quests\n  - img\n  - text: 特别任务\n- link \"宝石小店\":\n  - /url: /shop\n  - img\n  - text: 宝石小店\n- link \"个人档案\":\n  - /url: /learn?sign-up\n  - img\n  - text: 个人档案\n- button \"更多\":\n  - img\n  - text: 更多\n- img\n- button \"10\":\n  - img\n  - text: \"10\"\n- button \"1\":\n  - img\n  - text: \"1\"\n- button \"505\":\n  - img\n  - text: \"505\"\n- button \"4\":\n  - img\n  - text: \"4\"\n- heading \"青铜等级\" [level=2]\n- link \"查看排行榜\":\n  - /url: /leaderboard\n- img\n- text: 学个单元就能上本周排行榜，跟其他小伙伴一决高低！\n- heading \"每日特别任务\" [level=2]\n- link \"显示全部\":\n  - /url: /quests\n- img\n- text: 获取 10 经验\n- progressbar: 10 / 10 10 / 10\n- img\n- heading \"创建个人档案，保存学习进度！\" [level=2]\n- button \"创建档案\"\n- button \"登录\"\n- list:\n  - listitem:\n    - link \"关于我们\":\n      - /url: https://about.duolingo.com\n  - listitem:\n    - link \"宝石小店\":\n      - /url: https://store.duolingo.com/\n  - listitem:\n    - link \"有效性\":\n      - /url: /efficacy\n  - listitem:\n    - link \"招聘贤才\":\n      - /url: https://careers.duolingo.com\n  - listitem:\n    - link \"投资者\":\n      - /url: https://investors.duolingo.com\n  - listitem:\n    - link \"条款\":\n      - /url: /terms\n  - listitem:\n    - link \"隐私\":\n      - /url: /privacy\n- link \"返回\":\n  - /url: /learn\n- img\n- heading \"第 2 部分指南\" [level=2]\n- text: 来看看这一部分的语法点和重点语句吧！ 重点语句\n- button:\n  - img\n- text: 嗨，欢迎来到我的公寓！\n- button:\n  - img\n- text: 你的客厅真漂亮！\n- button:\n  - img\n- text: 洗手间在哪里？\n- button:\n  - img\n- text: 请坐。\n- button:\n  - img\n- text: 哦，你的三明治在沙发上！","token":{"tag":"DIV","role":null,"tabIndex":0,"ariaHidden":null,"html":"<div class=\"tFegI _2IGwo XxgPa _33wyM\" tabindex=\"0\" data-test=\"hint-token\" aria-label=\"apartment\" style=\"height: 24px; left: 132.391px; top: 0px; width: 75.5859px;\"></div>"}}
+### Ran Playwright code
+```js
+await (async page => {if(new URL(page.url()).pathname!=="/guidebook/en/12")throw Error("Wrong guide");const token=page.locator("[data-test=hint-token][aria-label=apartment]");await token.hover();return {path:new URL(page.url()).pathname,snapshot:await page.locator("body").ariaSnapshot(),token:await token.evaluate(n=>({tag:n.tagName,role:n.getAttribute("role"),tabIndex:n.tabIndex,ariaHidden:n.getAttribute("aria-hidden"),html:n.outerHTML}))}})(page);
+```
+### Open tabs
+- 0: [多邻国 - 学得轻松，学有所成的英语 课程！](https://www.duolingo.com/lesson)
+- 1: (current) [多邻国 - 学得轻松，学有所成的英语 课程！](https://www.duolingo.com/guidebook/en/12)
+### Page
+- Page URL: https://www.duolingo.com/guidebook/en/12
+- Page Title: 多邻国 - 学得轻松，学有所成的英语 课程！
+- Console: 24 errors, 0 warnings
+### Events
+- New console entries: .playwright-cli/console-2026-10-11T19-01-01-875Z.log#L100-L101

@@ -856,6 +856,38 @@ func actualUnitPlacement() throws {
     print("PASS actual unit-12 18 accepted, four encouragements, five independent hearts, 18 review cards and unpromoted score")
 }
 
+func actualUnit12HomeCourse() throws {
+    let course = try course(fixture:"fixture-reference-en-zh-unit12-content-v1.json")
+    var lesson=Lesson(course:course,hearts:4)
+    var graded=0, speech=0, interludes=0
+    for _ in 0..<32 {
+        if lesson.complete { break }
+        if lesson.interlude != nil { interludes += 1;lesson.advance();continue }
+        if let pending=lesson.deferredSpeech {
+            try check(pending.phrase == "Welcome, Lisa, how are you?", "Unit12 oral identity lost")
+            speech += 1;lesson.declineSpeech();lesson.advance();continue
+        }
+        switch lesson.question.kind {
+        case .choice: lesson.choose(lesson.question.answer)
+        case .wordTiles: for id in lesson.question.answerWords { lesson.addWord(id) }
+        case .textEntry: lesson.enterText(lesson.question.answer)
+        case .matching: throw CheckFailure.failed("Unexpected unit12 matching")
+        }
+        lesson.submit();try check(lesson.feedback == true,"Unit12 accepted source answer rejected")
+        graded += 1;lesson.advance()
+    }
+    try check(lesson.complete && graded == 17 && speech == 1 && interludes == 2,"Unit12 full observed trajectory differs")
+    try check(lesson.resultReviewEntries.count == 18,"Declined oral missing from unit12 result history")
+    try check(lesson.definition.settlement?.map(\.kind) == ["result","profile"],"Unit12 settlement sequence differs")
+    try check(lesson.definition.observedHomeSnapshot?.leagueTitle == "青铜等级" && lesson.definition.observedHomeSnapshot?.gems == 505,"Actual post-unit12 home state differs")
+    try check(lesson.hearts == 4,"Ordinary course must not use placement heart rewards")
+    try check(lesson.definition.completionAudioVolume == 0.5 && lesson.definition.completionAudioResource != nil,"Observed completion resource/gain missing")
+    try check(lesson.definition.questions.filter{$0.correctFeedbackAudioVolume != nil}.count == 6,"Preserve incomplete source feedback windows rather than invent every event")
+    let roundtrip=try JSONDecoder().decode(Course.self,from:JSONEncoder().encode(course))
+    try check(roundtrip.lessons[0].completionAudioVolume == 0.5,"Audio contract dropped during roundtrip")
+    print("PASS unit12 17 accepted, oral decline, two encouragements, 18 result cards and observed home outcome")
+}
+
 do {
     try mistakeReview()
     try persistence()
@@ -890,7 +922,8 @@ do {
     try observedPlacementPersistence()
     try actualStageTwoGrocery()
     try actualUnitPlacement()
-    print("33 business checks passed; core layer only")
+    try actualUnit12HomeCourse()
+    print("34 business checks passed; core layer only")
 } catch {
     FileHandle.standardError.write(Data(("FAIL " + String(describing: error) + "\n").utf8))
     exit(1)

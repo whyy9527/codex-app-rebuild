@@ -40,6 +40,22 @@ def compile_question(c, effect, raw, row, card, question_id):
         q['answer'] = next(o['id'] for o in q['options'] if o['text'] == raw['choices'][raw['correctIndex']])
         answer = raw['choices'][raw['correctIndex']]
         audio = []
+    elif raw['type'] == 'dialogue':
+        assert prompt.startswith('A：') and '\nB：___' in prompt
+        hint = prompt[2:].split('\nB：___')[0]
+        visible = row['identity']['actual']['text'].replace('\n', '')
+        assert hint.replace(' ', '') in visible.replace(' ', '')
+        choices = row['identity']['actual']['choices']
+        assert choices == raw['choices']
+        q.update(kind='choice', hint=hint, explanation=raw.get('solutionTranslation',''),
+                 options=[dict(id=str(j),text=text) for j,text in enumerate(choices)],
+                 answer=str(raw['correctIndex']),
+                 dialogueAvatars=[c.resource(v['src'],'avatar') for v in row['images']])
+        clips=list(dict.fromkeys(m['src'] for m in row.get('media_before',[]) if m.get('src','').startswith('https://d1vq87e9lcf771.cloudfront.net/')))
+        assert len(clips)<=1
+        if clips:q['audioResource']=c.resource(clips[0],'speech')
+        answer=raw['choices'][raw['correctIndex']]
+        audio=[]
     elif raw['type'] in ['translate', 'listenTap']:
         if raw['type'] == 'translate':
             q.update(hint=raw['prompt'], sourceLanguage=raw['sourceLanguage'])

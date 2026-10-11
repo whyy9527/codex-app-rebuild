@@ -7,7 +7,7 @@ import LearningCore
     let store: ProgressStore
     var progress: LearningProgress
     var lesson: Lesson?
-    enum SessionKind { case course, pronunciation, generalPractice, sectionPlacement, unitPlacement }
+    enum SessionKind { case course, pronunciation, generalPractice, sectionPlacement, unitPlacement, observedCourse }
     var sessionKind = SessionKind.course
     var isPronunciationPractice: Bool { sessionKind == .pronunciation }
     var sectionPlacementStage:Int?
@@ -17,7 +17,8 @@ import LearningCore
     var unitPlacementEntry=false
     var isUnitPlacement:Bool {sessionKind == .unitPlacement}
     var isPlacement:Bool {isSectionPlacement || isUnitPlacement}
-    var isReferenceSession:Bool {isGeneralPractice || isPlacement}
+    var isObservedCourse:Bool {sessionKind == .observedCourse}
+    var isReferenceSession:Bool {isGeneralPractice || isPlacement || isObservedCourse}
     var placementOutcome: ObservedPlacementOutcome? { progress.placementOutcomes[course.id] }
     var isGeneralPractice: Bool { sessionKind == .generalPractice }
     var pronunciationExitNeedsConfirmation: Bool {
@@ -102,7 +103,7 @@ import LearningCore
         } else {
             audio.play(previous == nil && lesson?.feedback == true ? .correct : (lesson?.matchingHint != nil || lesson?.incorrectMatch != nil) ? .incorrect : .tap)
         }
-        if sessionKind == .course, let hearts = lesson?.hearts, hearts != progress.hearts { progress.hearts = hearts; save() }
+        if (sessionKind == .course || isObservedCourse), let hearts = lesson?.hearts, hearts != progress.hearts { progress.hearts = hearts; save() }
     }
     func playQuestion(slow: Bool = false, practicePart: Int = 0) {
         if let speech = lesson?.deferredSpeech {
@@ -185,12 +186,12 @@ import LearningCore
         } catch {self.error="无法载入单元测试。"}
     }
     func beginStageTwoLesson() {
-        guard let url=Bundle.module.url(forResource:"stage2-grocery-1",withExtension:"json",subdirectory:"Reference") else {
+        guard let url=Bundle.module.url(forResource:placementOutcome?.activeUnit == 12 ? "unit12-home-1" : "stage2-grocery-1",withExtension:"json",subdirectory:"Reference") else {
             error="无法载入这个单元。";return
         }
         do {
             let observed=try Course.readFixture(url)
-            sessionKind = .generalPractice
+            sessionKind = .observedCourse
             lesson=Lesson(course:observed,hearts:progress.hearts)
             settlement=nil;entryPending=false;confirmingExit=false
             feedbackDifficulty=nil;closeQuestionReport();playAutomaticPrompt()
@@ -226,12 +227,12 @@ import LearningCore
         guard lesson?.canSubmit == true, lesson?.feedback == nil else { return }
         lesson?.submit()
         if let lesson, isReferenceSession || (lesson.feedback == true ? lesson.question.correctFeedbackAudioResource : lesson.question.incorrectFeedbackAudioResource) != nil {
-            audio.playReferenceEffect(lesson.feedback == true ? lesson.question.correctFeedbackAudioResource : lesson.question.incorrectFeedbackAudioResource)
+            audio.playReferenceEffect(lesson.feedback == true ? lesson.question.correctFeedbackAudioResource : lesson.question.incorrectFeedbackAudioResource,volume:lesson.feedback == true ? lesson.question.correctFeedbackAudioVolume : lesson.question.incorrectFeedbackAudioVolume)
             if isReferenceSession && lesson.question.sourceType == "assist", let correct = lesson.question.options.first(where: { $0.id == lesson.question.answer }), let resource = correct.audioResource {
                 audio.speak(correct.text, language: course.speechLanguage, resource: resource)
             }
         } else { audio.play(lesson?.feedback == true ? .correct : .incorrect) }
-        if sessionKind == .course, let hearts = lesson?.hearts, hearts != progress.hearts {
+        if (sessionKind == .course || isObservedCourse), let hearts = lesson?.hearts, hearts != progress.hearts {
             progress.hearts = hearts
             save()
         }
@@ -245,7 +246,9 @@ import LearningCore
         if lesson?.question.id != previousQuestion { feedbackDifficulty = nil; closeQuestionReport() }
         if let lesson, !lesson.complete, lesson.interlude == nil, (wasInterlude || wasDeferred || lesson.question.id != previousQuestion) { playAutomaticPrompt() }
         if let lesson, lesson.complete {
-            if !isReferenceSession { audio.play(.complete) }
+            if let resource=lesson.definition.completionAudioResource {
+                audio.playReferenceEffect(resource,volume:lesson.definition.completionAudioVolume)
+            } else if !isReferenceSession { audio.play(.complete) }
             if let pages = lesson.definition.settlement { settlement = SettlementFlow(pages: pages) }
             if sessionKind != .course {
                 // Track observed sessions separately; this finite evidence set is not the full pronunciation course.
@@ -283,5 +286,5 @@ import LearningCore
         do { try store.save(progress); error = nil }
         catch { self.error = "Progress could not be saved. Please try again." }
     }
-    func discardAttempt() { speechCapture.cancel(); if isSectionPlacement {destination="Sections"}; sectionPlacementEntry=false; unitPlacementEntry=false; if isUnitPlacement {destination="Learn"}; if isPronunciationPractice { destination = "Pronunciation" }; if isGeneralPractice { destination = "Learn" }; sessionKind = .course; lesson = nil; confirmingExit = false; entryPending = false; settlement = nil }
+    func discardAttempt() { speechCapture.cancel(); if isSectionPlacement {destination="Sections"}; sectionPlacementEntry=false; unitPlacementEntry=false; if isUnitPlacement {destination="Learn"}; if isPronunciationPractice { destination = "Pronunciation" }; if isGeneralPractice || isObservedCourse { destination = "Learn" }; sessionKind = .course; lesson = nil; confirmingExit = false; entryPending = false; settlement = nil }
 }

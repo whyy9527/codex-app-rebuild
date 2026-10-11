@@ -1,0 +1,9 @@
+{"observed":true,"path":"/characters","visible":105}
+Traceback (most recent call last):
+  File "/tmp/unit12-radio-recover.py", line 9, in <module>
+    run('''async page=>{await page.getByRole('link',{name:'学习',exact:true}).click({timeout:10000});await page.locator('[data-test="guidebook-button-12"]').waitFor();return {path:new URL(page.url()).pathname,snapshot:await page.locator('body').ariaSnapshot()}}''','unit12-coach-home-return.raw.txt');cap('unit12-coach-home-return')
+    ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/unit12-radio-recover.py", line 5, in run
+    p=o/name;assert not p.exists();x=subprocess.run([cli,'-s='+session,'run-code',code],cwd=o,capture_output=True,text=True,timeout=45);p.write_text(x.stdout+x.stderr);assert x.returncode==0 and '### Result\n' in x.stdout,name
+                                                                                                                                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unit12-coach-home-return.raw.txt

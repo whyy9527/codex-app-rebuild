@@ -25,20 +25,22 @@ private struct ShoppingGuideSource: Decodable {
     let backResource: String
     let phrases: [Phrase]
     let height: CGFloat
-    static let observed: Self? = {
-        guard let url=Bundle.module.url(forResource:"shopping-guide",withExtension:"json",subdirectory:"Reference"),let data=try? Data(contentsOf:url) else {return nil}
+    static let observed: Self? = read("shopping-guide")
+    static let unit12: Self? = read("unit12-guide")
+    private static func read(_ name:String)->Self? {
+        guard let url=Bundle.module.url(forResource:name,withExtension:"json",subdirectory:"Reference"),let data=try? Data(contentsOf:url) else {return nil}
         return try? JSONDecoder().decode(Self.self,from:data)
-    }()
+    }
 }
 
-/// Original en/11 guide. Source coordinates include real token underline bounds;
-/// token outcomes remain unknown after source hover/click/Enter produced no popup.
+/// Original en/11 and en/12 guides. Source coordinates include actual token bounds;
+/// Unit12 token hover produced no immediate popup; click/Enter outcomes remain unknown.
 struct ReferenceShoppingGuide: View {
     @Bindable var model: LearningModel
     @State private var speaking: String?
     @State private var playbackID=UUID()
     var body: some View {
-        if let source=ShoppingGuideSource.observed {
+        if let source=model.placementOutcome?.activeUnit == 12 ? ShoppingGuideSource.unit12 : ShoppingGuideSource.observed {
             LazyVStack(spacing:0,pinnedViews:[.sectionHeaders]) {
                 Section {
                     content(source)
@@ -46,7 +48,7 @@ struct ReferenceShoppingGuide: View {
                     back(source)
                 }
             }.frame(width:480)
-        } else { Text("原版购物指南未能载入。") }
+        } else { Text("原版指南未能载入。") }
     }
     private func back(_ source:ShoppingGuideSource)->some View {
         ZStack(alignment:.topLeading) {

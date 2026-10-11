@@ -1,0 +1,15 @@
+### Result
+[{"tag":"A","text":"开始 +10 经验","rect":[388.5,493.3515625,263,50],"background":"rgba(0, 0, 0, 0)","borderRadius":"16px","padding":"8px 16px"},{"tag":"DIV","text":"描述你的家居布局\n\n第 1/6 单元\n\n开始 +10 经验","rect":[388.5,424.1484375,263,119.203125],"background":"rgba(0, 0, 0, 0)","borderRadius":"0px","padding":"0px"},{"tag":"DIV","text":"描述你的家居布局\n\n第 1/6 单元\n\n开始 +10 经验","rect":[372.5,408.1484375,295,151.203125],"background":"rgb(204, 52, 141)","borderRadius":"15px","padding":"16px"},{"tag":"DIV","text":"描述你的家居布局\n\n第 1/6 单元\n\n开始 +10 经验","rect":[372.5,408.1484375,295,151.203125],"background":"rgba(0, 0, 0, 0)","borderRadius":"0px","padding":"0px"},{"tag":"DIV","text":"描述你的家居布局\n\n第 1/6 单元\n\n开始 +10 经验","rect":[520,396.1484375,0,0],"background":"rgba(0, 0, 0, 0)","borderRadius":"0px","padding":"0px"}]
+### Ran Playwright code
+```js
+await (async page=>{return await page.getByRole("link",{name:"开始 +10 经验",exact:true}).evaluate(n=>{const a=[];for(let i=0;n&&i<5;i++,n=n.parentElement){const r=n.getBoundingClientRect(),c=getComputedStyle(n);a.push({tag:n.tagName,text:n.innerText,rect:[r.x,r.y,r.width,r.height],background:c.backgroundColor,borderRadius:c.borderRadius,padding:c.padding})}return a})})(page);
+```
+### Open tabs
+- 0: [多邻国 - 学得轻松，学有所成的英语 课程！](https://www.duolingo.com/lesson)
+- 1: (current) [多邻国 - 学得轻松，学有所成的英语 课程！](https://www.duolingo.com/learn)
+### Page
+- Page URL: https://www.duolingo.com/learn
+- Page Title: 多邻国 - 学得轻松，学有所成的英语 课程！
+- Console: 27 errors, 0 warnings
+### Events
+- New console entries: .playwright-cli/console-2026-10-11T19-01-01-875Z.log#L104

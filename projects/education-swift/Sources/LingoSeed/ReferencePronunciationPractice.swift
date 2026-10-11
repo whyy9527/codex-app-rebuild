@@ -17,7 +17,9 @@ struct ReferencePronunciationPractice: View {
                     } label: { ReferenceStyle.image("practice-close-source").resizable().frame(width: 18, height: 18) }
                         .buttonStyle(.plain).accessibilityIdentifier("exit")
                     ProgressView(value: lesson.complete ? 1 : lesson.reviewing ? 0.9 : Double(lesson.position) / Double(lesson.definition.questions.count)).tint(ReferenceStyle.green).accessibilityIdentifier("lesson-progress")
-                    if model.isPlacement {
+                    if model.isObservedCourse {
+                        HStack(spacing:8) {ReferenceStyle.image("heart").resizable().frame(width:32,height:28);Text(String(lesson.hearts)).font(ReferenceStyle.font(17,bold:true)).foregroundStyle(Color(red:1,green:75/255,blue:75/255))}.accessibilityIdentifier("course-hearts").accessibilityValue(String(lesson.hearts))
+                    } else if model.isPlacement {
                         HStack(spacing: 5) {
                             ForEach(0..<(model.isUnitPlacement ? 5 : 3), id: \.self) { i in
                                 ReferenceStyle.image(i < lesson.hearts ? "en-placement-heart-filled" : "en-placement-heart").resizable().frame(width: 25, height: 22)

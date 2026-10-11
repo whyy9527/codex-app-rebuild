@@ -14,11 +14,12 @@ import AVFoundation
     var referencePlaybackTime: TimeInterval { referenceSpeech?.currentTime ?? 0 }
     var muted = false { didSet { if muted { player?.stop(); referenceSpeech?.stop(); referenceEffects.forEach { $0.stop() }; speech.stopSpeaking(at: .immediate) } } }
     var effectsEnabled = true { didSet { if !effectsEnabled { player?.stop(); referenceEffects.forEach { $0.stop() } } } }
-    @discardableResult func playReferenceEffect(_ resource: String?) -> Bool {
+    @discardableResult func playReferenceEffect(_ resource: String?, volume: Double? = nil) -> Bool {
         guard !muted, effectsEnabled, let resource, let url = resourceURL(resource) else { return false }
         do {
             referenceEffects.removeAll { !$0.isPlaying }
             let effect = try AVAudioPlayer(contentsOf: url)
+            if let volume,volume.isFinite,(0...1).contains(volume) {effect.volume=Float(volume)}
             effect.prepareToPlay(); referenceEffects.append(effect)
             return effect.play()
         } catch { NSLog("Reference effect playback failed: %@", error.localizedDescription); return false }

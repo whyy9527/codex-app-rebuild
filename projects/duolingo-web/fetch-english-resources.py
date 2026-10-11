@@ -40,7 +40,7 @@ images = [{'name': r['name'], 'svg': (out/r['source_file']).read_text(),
 code = '''async page => {
  const context=await page.context().browser().newContext({viewport:{width:180,height:180},deviceScaleFactor:3});
  try {const render=await context.newPage();
- for(const image of IMAGES){await render.setViewportSize({width:image.width,height:image.height}); const source='data:image/svg+xml;base64,'+Buffer.from(image.svg).toString('base64');
+ for(const image of IMAGES){await render.setViewportSize({width:Math.ceil(image.width),height:Math.ceil(image.height)}); const source='data:image/svg+xml;base64,'+Buffer.from(image.svg).toString('base64');
  if(image.inline_svg){await render.setContent('<html><body style="margin:0;background:transparent">'+image.svg+'</body></html>');await render.locator('svg').first().evaluate((n,size)=>{n.style.width=size.width+'px';n.style.height=size.height+'px'},image);}
  else if(image.background_position){await render.setContent('<html><body style="margin:0;background:transparent"><div style="width:'+image.width+'px;height:'+image.height+'px;background-image:url('+source+');background-position:'+image.background_position+'"></div></body></html>');await render.evaluate(async src=>{const i=new Image();i.src=src;await i.decode();},source);}
  else {await render.setContent('<html><body style="margin:0;background:transparent"><img style="width:'+image.width+'px;height:'+image.height+'px;object-fit:contain" src="'+source+'"></body></html>');await render.locator('img').evaluate(n=>n.decode());} await render.screenshot({path:image.target,omitBackground:true});}
@@ -48,6 +48,7 @@ code = '''async page => {
  }finally{await context.close()}
 }'''.replace('IMAGES', json.dumps(images))
 r = subprocess.run([a.cli,'-s='+a.session,'run-code',code],cwd='artifacts/output/playwright',text=True,capture_output=True,timeout=90)
+raw_receipt=Path(a.out).with_suffix('.raw.txt');raw_receipt.parent.mkdir(parents=True,exist_ok=True);raw_receipt.write_text(r.stdout+r.stderr)
 if r.returncode or '### Result\n' not in r.stdout: raise RuntimeError('Asset rendering failed; inspect browser before retry')
 for row in rows:
     if row['kind'] not in ('speech', 'feedback'):

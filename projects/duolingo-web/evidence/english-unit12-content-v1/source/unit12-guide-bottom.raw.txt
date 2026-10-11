@@ -1,0 +1,15 @@
+### Result
+{"path":"/guidebook/en/12","scrollY":297.5,"height":1029,"viewport":[1200,732]}
+### Ran Playwright code
+```js
+await (async page=>{await page.evaluate(()=>window.scrollTo(0,document.documentElement.scrollHeight));return await page.evaluate(()=>({path:location.pathname,scrollY,height:document.documentElement.scrollHeight,viewport:[innerWidth,innerHeight]}))})(page);
+```
+### Open tabs
+- 0: [多邻国 - 学得轻松，学有所成的英语 课程！](https://www.duolingo.com/lesson)
+- 1: (current) [多邻国 - 学得轻松，学有所成的英语 课程！](https://www.duolingo.com/guidebook/en/12)
+### Page
+- Page URL: https://www.duolingo.com/guidebook/en/12
+- Page Title: 多邻国 - 学得轻松，学有所成的英语 课程！
+- Console: 25 errors, 0 warnings
+### Events
+- New console entries: .playwright-cli/console-2026-10-11T19-01-01-875Z.log#L102

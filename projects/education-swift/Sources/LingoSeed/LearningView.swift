@@ -16,7 +16,9 @@ struct LearningView: View {
                     if model.isPronunciationPractice { ReferencePronunciationPractice(model: model, lesson: lesson) }
                     else if model.isReferenceSession {
                         if lesson.complete, let page = model.settlement?.current {
-                            if model.isUnitPlacement && page.kind != "profile" {
+                            if model.isObservedCourse && page.kind == "result", page.artResource != nil {
+                                ReferenceObservedCourseResult(page:page,mistakes:lesson.mistakesMade,advance:model.advanceSettlement,review:{showingResultReview=true})
+                            } else if model.isUnitPlacement && page.kind != "profile" {
                                 ReferenceUnitPlacementPage(page:page,advance:model.advanceSettlement,review:{showingResultReview=true})
                             } else {
                             ReferenceSettlement(page: page, mistakesMade: lesson.mistakesMade, advance: model.advanceSettlement, retry: model.beginGeneralPractice,

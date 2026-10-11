@@ -1,0 +1,111 @@
+{
+  "scope": "Actual UI-triggered owned Swift output vs original public resources; source invocation gain is not source acoustic output",
+  "recordings": [
+    {
+      "recording": "unit12-guide-welcome",
+      "resource": "en-speech-22d463da9074b995bfe1.mp3",
+      "resource_sha256": "b8cc09cba721fc87564d0feaa57a58aa1aa7bf16b62f08b585c7f3e3f7894da6",
+      "recording_sha256": "7808d845ffbec0f809433ead9edb6d9adb22f2cf234001510e9ddb871ebde540",
+      "source_invocation_gain": 1,
+      "metrics": {
+        "alignment_seconds": 0.22216666666666668,
+        "normalized_correlation": 0.9999857388516461,
+        "fitted_gain": 0.999956261728081,
+        "residual_rms": 0.0005192579551074185,
+        "reference_samples": 103680,
+        "recorded_samples": 250560
+      },
+      "owned_capture": {
+        "duration_seconds": 5,
+        "excludes_current_process_audio": true,
+        "filter": "Only explicitly selected owned application/window",
+        "filter_mode": "application",
+        "frames": 250560,
+        "kind": "owned_application_audio_loopback",
+        "microphone": false,
+        "owned_pid": 9721,
+        "peak": 0.5181214809417725,
+        "rms": 0.04422512768655474,
+        "samples": 501120,
+        "ui_actions": [
+          {
+            "elapsed_seconds": 0.13517093658447266,
+            "id": "guide-speech-0"
+          }
+        ]
+      }
+    },
+    {
+      "recording": "unit12-first-feedback",
+      "resource": "en-effect-086f72d3e2c92d602dfb.mp3",
+      "resource_sha256": "c509a5957af198939ae868c9cf17676d00927d400b7c721ea08d3f734c39301e",
+      "recording_sha256": "77153829a2c50e110b591a3d6a98ff988e143ce5895119113c2dd27fb8c7423c",
+      "source_invocation_gain": 0.35,
+      "metrics": {
+        "alignment_seconds": 0.1654375,
+        "normalized_correlation": 0.9999553264687665,
+        "fitted_gain": 0.3499838154293198,
+        "residual_rms": 0.0002908395370931892,
+        "reference_samples": 55977,
+        "recorded_samples": 255360
+      },
+      "owned_capture": {
+        "duration_seconds": 5,
+        "excludes_current_process_audio": true,
+        "filter": "Only explicitly selected owned application/window",
+        "filter_mode": "application",
+        "frames": 255360,
+        "kind": "owned_application_audio_loopback",
+        "microphone": false,
+        "owned_pid": 9721,
+        "peak": 0.2878096401691437,
+        "rms": 0.011324978841313883,
+        "samples": 510720,
+        "ui_actions": [
+          {
+            "elapsed_seconds": 0.05125296115875244,
+            "id": "check"
+          }
+        ]
+      }
+    },
+    {
+      "recording": "unit12-completion",
+      "resource": "en-effect-12a1e12d8f2f9bc85536.mp3",
+      "resource_sha256": "876e99f4e46e0068d777bb5e99f52422137f18305cc2871b4ea774a84e8a2d78",
+      "recording_sha256": "9d1dba4d9fa781e94332a5bf48a1d4ef76cba9dc7aa3d8927fff1c38ccf28833",
+      "source_invocation_gain": 0.5,
+      "metrics": {
+        "alignment_seconds": 0.17629166666666668,
+        "normalized_correlation": 0.9999101751783757,
+        "fitted_gain": 0.49995546643479344,
+        "residual_rms": 0.0008637074921019119,
+        "reference_samples": 114382,
+        "recorded_samples": 297600
+      },
+      "owned_capture": {
+        "duration_seconds": 6,
+        "excludes_current_process_audio": true,
+        "filter": "Only explicitly selected owned application/window",
+        "filter_mode": "application",
+        "frames": 297600,
+        "kind": "owned_application_audio_loopback",
+        "microphone": false,
+        "owned_pid": 9721,
+        "peak": 0.2882857620716095,
+        "rms": 0.03247714692582694,
+        "samples": 595200,
+        "ui_actions": [
+          {
+            "elapsed_seconds": 0.06997895240783691,
+            "id": "continue"
+          }
+        ]
+      }
+    }
+  ],
+  "limitations": [
+    "No acoustic equality claim: source mixer, latency, motion and other cues remain unverified",
+    "Only six source feedback windows contained the original effect; missed events remain unknown"
+  ]
+}

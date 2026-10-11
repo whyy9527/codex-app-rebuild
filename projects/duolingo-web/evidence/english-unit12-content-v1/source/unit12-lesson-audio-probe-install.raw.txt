@@ -1,0 +1,31 @@
+### Result
+{"installed":true,"path":"/learn","types":["HTMLMediaElement.play","AudioBufferSourceNode.start"],"limits":["Current-page call invocations and decoded UI buffers only","Not acoustic output, final mixer gain, microphone recording or sound equality","Only buffers up to15s retained; longer starts remain recorded without PCM"]}
+### Ran Playwright code
+```js
+await (async page=>await page.evaluate(()=>{
+ if(location.hostname!=='www.duolingo.com')throw Error('Expected owned reference page');
+ if(window.__referenceAudioProbe)return {installed:false,path:location.pathname,reason:'Existing current-page probe retained'};
+ const events=[];window.__referenceAudioProbe={events};
+ const play=HTMLMediaElement.prototype.play;
+ HTMLMediaElement.prototype.play=function(...args){const result=play.apply(this,args);events.push({kind:'html_media_play_invocation',src:this.currentSrc||this.src,at:performance.now(),muted:this.muted,volume:this.volume});return result};
+ const start=AudioBufferSourceNode.prototype.start;
+ AudioBufferSourceNode.prototype.start=function(...args){
+  const result=start.apply(this,args);const b=this.buffer;
+  const event={kind:'web_audio_buffer_start_invocation',at:performance.now(),contextTime:this.context.currentTime,scheduledArgs:args,sampleRate:b?.sampleRate,length:b?.length,channels:b?.numberOfChannels,loop:this.loop,playbackRate:this.playbackRate.value};
+  if(b){event.pcm=b.length<=b.sampleRate*15?Array.from({length:b.numberOfChannels},(_,i)=>{
+    const bytes=new Uint8Array(b.getChannelData(i).slice().buffer);let binary='';for(let n=0;n<bytes.length;n+=0x8000)binary+=String.fromCharCode(...bytes.subarray(n,n+0x8000));return btoa(binary);
+   }):null;event.limit=b.length>b.sampleRate*15?'Decoded buffer exceeds15s probe capture budget':null}
+  events.push(event);return result;
+ };
+ return {installed:true,path:location.pathname,types:['HTMLMediaElement.play','AudioBufferSourceNode.start'],limits:['Current-page call invocations and decoded UI buffers only','Not acoustic output, final mixer gain, microphone recording or sound equality','Only buffers up to15s retained; longer starts remain recorded without PCM']};
+}))(page);
+```
+### Open tabs
+- 0: [多邻国 - 学得轻松，学有所成的英语 课程！](https://www.duolingo.com/lesson)
+- 1: (current) [多邻国 - 学得轻松，学有所成的英语 课程！](https://www.duolingo.com/learn)
+### Page
+- Page URL: https://www.duolingo.com/learn
+- Page Title: 多邻国 - 学得轻松，学有所成的英语 课程！
+- Console: 26 errors, 0 warnings
+### Events
+- New console entries: .playwright-cli/console-2026-10-11T19-01-01-875Z.log#L103

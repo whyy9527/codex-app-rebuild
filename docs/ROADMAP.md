@@ -1,5 +1,7 @@
 # Roadmap
 
+最新进展（2026-10-12）：补原版单元12独立指南、17判分题／口语暂缓／18回顾卡、普通课程4生命与课后主页恢复；三次实际原生录音验证原资源及1／0.35／0.5增益。最终46状态旅程无执行失败；v70共15255项，258pass／178fail／547unavailable，45整图全fail。继续探索发现延迟发音遮罩、电台“公寓参观”锁定弹层、下一课图片选择，已纳入契约及frontier；逐题回放开始保留前端几何、CSS、命中与裁剪事实。完整Goal仍active，1:1及新RSI因果收益未完成。[证据、差异与复跑](../projects/duolingo-web/evidence/english-unit12-content-v1/README.md)。
+
 最新进展（2026-10-12）：由历史遗漏实际完成独立单元12的18题及解锁，Swift接5心独立会话、回顾和第2部分主页原动画；前端v68保留旧项并覆盖49个新增源状态。最终50状态无驱动失败，但205pass／93fail／6unavailable、49整图全fail。下一步优先原版新单元当前课／指南、通知、电台与声音，以及修就绪检测后注册真实模型03消融；既有02不可判定结果不改写。完整Goal active，不是1:1完成。[证据、失败、frontier与复跑](../projects/duolingo-web/evidence/english-unit-placement-v1/README.md)。
 
 本批从九分类库存推进到真实组合／滚动／保存／重载，修复外滚约束循环崩溃；最终15状态，17组恢复及27项检查通过。v60仍1222pass/267fail/5905not_run，15整图全fail；旧保存回归76pass。接续优先实际档案／主页头像消费、未访问交互及原版声音，完整Goal仍active。[源证据、失败和接续](../projects/duolingo-web/evidence/english-avatar-composition-v1/README.md)。

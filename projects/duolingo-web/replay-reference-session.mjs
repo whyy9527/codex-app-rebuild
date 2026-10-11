@@ -4,6 +4,7 @@ import {spawnSync} from 'node:child_process';
 import {writeFileSync,mkdirSync,existsSync,readdirSync} from 'node:fs';
 import {resolve,dirname,basename} from 'node:path';
 import {challengeIdentity,uncoveredReplayType} from './reference-challenge-identity.mjs';
+import {referenceFrontendSurface} from './reference-frontend-surface.mjs';
 import {publicChallenge} from './public-reference-challenge.mjs';
 import {renderedChallenge} from './rendered-reference-challenge.mjs';
 import {currentFlowDecision,keyboardTranslationValue} from './reference-current-step.mjs';
@@ -28,6 +29,7 @@ if(existsSync(dirname(absolutePrefix))&&readdirSync(dirname(absolutePrefix)).som
  throw Error('Replay screenshots already exist; choose a fresh prefix before any source action');
 const callback = async page => {
  const labels=UI_LABELS;
+ const frontendSurface=FRONTEND_SURFACE;
  const identity=CHALLENGE_IDENTITY;
  const uncovered=UNCOVERED_TYPE;
  const currentOnly=CURRENT_ONLY;
@@ -106,6 +108,7 @@ const callback = async page => {
    row.dom_type=await page.locator('[data-test~="challenge"]').getAttribute('data-test');
    row.images=await page.locator('[data-test~="challenge"] img').evaluateAll(ns=>ns.map(n=>({alt:n.alt,src:n.currentSrc||n.src})));
    row.media_before=currentOnly?await page.evaluate(start=>window.__referenceMedia.slice(start),currentMediaCursor):await page.evaluate(()=>window.__referenceMedia.slice());
+   row.frontend_before=await page.evaluate(frontendSurface);
    row.screenshot_before=SCREENSHOT_PREFIX+'-question-'+record.index+'-before.png';
    await page.screenshot({path:row.screenshot_before});
    row.canvases=[];
@@ -236,6 +239,7 @@ const callback = async page => {
    await page.getByRole('button',{name:labels.continue,exact:true}).waitFor();
    row.feedback=await page.locator('body').ariaSnapshot();
    row.media=await page.evaluate(start=>window.__referenceMedia.slice(start),mediaStart);
+   row.frontend_feedback=await page.evaluate(frontendSurface);
    row.screenshot_feedback=SCREENSHOT_PREFIX+'-question-'+record.index+'-feedback.png';
    await page.screenshot({path:row.screenshot_feedback});
    row.rejected=await page.locator('[data-test~="blame-incorrect"]').count()>0;
@@ -249,7 +253,7 @@ const callback = async page => {
   outcome:failure?'failed':stopped?.kind==='uncovered_state'?'uncovered_current_state':stopped?'stopped_at_requested_boundary':currentOnly?(interludes.length&&!observed.length?'current_interlude_replayed':CURRENT_STEPS===1?'current_challenge_replayed':'current_steps_replayed'):'replayed_captured_records',
   final:await page.locator('body').ariaSnapshot(),limitations:['Actual generated exercise observations; public solutions are not blind exploration evidence. Media invocations are not acoustic output evidence. Unknown result/profile pages are preserved without clicking Continue. Current-mode media_before contains only events since this invocation or the previous feedback; unrelated earlier history is not duplicated.']};
 };
-const code=callback.toString().replace('CURRENT_ONLY',JSON.stringify(currentOnly)).replaceAll('CURRENT_STEPS',String(currentSteps)).replace('FLOW_DECISION',currentFlowDecision.toString()).replace('KEYBOARD_VALUE',keyboardTranslationValue.toString()).replace('PUBLIC_CHALLENGE',publicChallenge.toString()).replace('READ_RENDERED',renderedChallenge.toString()).replace('CHALLENGE_IDENTITY',challengeIdentity.toString()).replace('UNCOVERED_TYPE',uncoveredReplayType.toString()).replace('UI_LABELS',JSON.stringify(labels)).replace('START_INDEX',String(start)).replace('STOP_BEFORE_TYPE',JSON.stringify(stopBeforeType)).replaceAll('SCREENSHOT_PREFIX',JSON.stringify(screenshotPrefix));
+const code=callback.toString().replace('FRONTEND_SURFACE',referenceFrontendSurface.toString()).replace('CURRENT_ONLY',JSON.stringify(currentOnly)).replaceAll('CURRENT_STEPS',String(currentSteps)).replace('FLOW_DECISION',currentFlowDecision.toString()).replace('KEYBOARD_VALUE',keyboardTranslationValue.toString()).replace('PUBLIC_CHALLENGE',publicChallenge.toString()).replace('READ_RENDERED',renderedChallenge.toString()).replace('CHALLENGE_IDENTITY',challengeIdentity.toString()).replace('UNCOVERED_TYPE',uncoveredReplayType.toString()).replace('UI_LABELS',JSON.stringify(labels)).replace('START_INDEX',String(start)).replace('STOP_BEFORE_TYPE',JSON.stringify(stopBeforeType)).replaceAll('SCREENSHOT_PREFIX',JSON.stringify(screenshotPrefix));
 const result=spawnSync(arg('--cli'),['-s='+arg('--session'),'run-code',code],{cwd:resolve('artifacts/output/playwright'),encoding:'utf8',timeout:300000,maxBuffer:16*1024*1024});
 const raw=(result.stdout||'')+(result.stderr||'');writeFileSync(output+'.raw.txt',raw,{flag:'wx'});
 if(result.status!==0||!raw.includes('### Result\n'))throw Error('Unavailable replay; raw output retained, inspect current tab before resuming');

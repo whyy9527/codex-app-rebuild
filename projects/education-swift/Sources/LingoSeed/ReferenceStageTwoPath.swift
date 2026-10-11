@@ -65,7 +65,7 @@ struct ReferenceStageTwoPath: View {
                         Ellipse().stroke(ReferenceStyle.border,lineWidth:8).frame(width:90,height:85)
                             .offset(x:node.rect[0]-10,y:node.rect[1]-10)
                     }
-                    ReferencePracticeControl(label:node.active && firstLessonCompleted ? "Lesson 2 of 5" : node.label,identifier:node.id,enabled:true,
+                    ReferencePracticeControl(label:node.active && firstLessonCompleted ? (activeUnit == 12 ? "Lesson 2 of 6" : "Lesson 2 of 5") : node.label,identifier:node.id,enabled:true,
                         action:{if node.id=="stage2-path-7" && node.role=="link" {jump()} else {selected=selected==node.id ? nil : node.id}},face:AnyView(
                             ZStack(alignment:.topLeading) {
                                 Ellipse().fill(node.active ? blue : ReferenceStyle.border).overlay(Ellipse().fill(.black.opacity(0.2)))
@@ -76,21 +76,21 @@ struct ReferenceStageTwoPath: View {
                         ),role:node.role=="link" ? .link : .button,fixedFaceSize:true)
                         .frame(width:node.rect[2],height:node.rect[3]).offset(x:node.rect[0],y:node.rect[1])
                 }
-                if selected != "stage2-path-0",let active=source.nodes.first(where:{$0.active}) {
+                if let active=source.nodes.first(where:{$0.active}),selected != active.id {
                     Text("开始").font(ReferenceStyle.font(17,bold:true)).tracking(0.51).foregroundStyle(blue)
                         .frame(width:78,height:42).background(.white,in:RoundedRectangle(cornerRadius:10))
                         .overlay(RoundedRectangle(cornerRadius:10).strokeBorder(ReferenceStyle.border,lineWidth:2))
                         .offset(x:201,y:activeUnit==12 ? active.rect[1]-46 : 31).accessibilityIdentifier("stage2-path-start-label")
                 }
-                if selected=="stage2-path-0" { lessonPopup.offset(x:92.5,y:170) }
+                if selected=="stage2-path-0" || selected=="unit12-path-0" { lessonPopup.offset(x:92.5,y:activeUnit == 12 ? 270.1484375 : 170) }
                 if selected=="stage2-path-1" { storyPopup.offset(x:92.5,y:248.8515625) }
             }.frame(width:480,height:source.height,alignment:.topLeading)
         } else { Text("原版阶段路径未能载入。") }
     }
     private var lessonPopup: some View {
         VStack(alignment:.leading,spacing:0) {
-            Text("购买食品杂货").font(ReferenceStyle.font(19,bold:true)).frame(height:26.6)
-            Text(firstLessonCompleted ? "第 2/5 单元" : "第 1/5 单元").font(ReferenceStyle.font(17)).frame(height:26.6)
+            Text(activeUnit == 12 ? "描述你的家居布局" : "购买食品杂货").font(ReferenceStyle.font(19,bold:true)).frame(height:26.6)
+            Text(activeUnit == 12 ? (firstLessonCompleted ? "第 2/6 单元" : "第 1/6 单元") : (firstLessonCompleted ? "第 2/5 单元" : "第 1/5 单元")).font(ReferenceStyle.font(17)).frame(height:26.6)
             ReferencePracticeControl(label:"开始 +10 经验",identifier:"stage2-lesson-confirm",enabled:true,action:start,face:AnyView(
                 Text("开始 +10 经验").font(ReferenceStyle.font(15,bold:true)).tracking(0.8).foregroundStyle(blue)
                     .frame(width:263,height:46).background(.white,in:RoundedRectangle(cornerRadius:16))

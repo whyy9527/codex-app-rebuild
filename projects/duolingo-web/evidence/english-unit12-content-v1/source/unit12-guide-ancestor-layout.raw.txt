@@ -1,0 +1,6 @@
+### Result
+{"path":"/guidebook/en/12","ancestors":[{"tag":"H2","rect":[418,164.71875,318,30],"padding":"0px","margin":"0px 0px 8px"},{"tag":"DIV","rect":[418,164.71875,318,91.203125],"padding":"0px","margin":"0px"},{"tag":"DIV","rect":[418,152,318,116.6484375],"padding":"0px","margin":"24px 24px 24px 8px"},{"tag":"DIV","rect":[280,128,480,164.6484375],"padding":"0px","margin":"24px 0px"},{"tag":"DIV","rect":[280,24,480,981.2890625],"padding":"0px 0px 48px","margin":"0px"},{"tag":"DIV","rect":[280,24,480,981.2890625],"padding":"0px","margin":"0px"},{"tag":"DIV","rect":[256,24,944,1005.2890625],"padding":"0px 24px 24px","margin":"0px"}],"scrollY":0,"document_height":1029}
+### Ran Playwright code
+```js
+await (async page=>{await page.evaluate(()=>window.scrollTo(0,0));return await page.evaluate(()=>{let n=document.querySelector('[data-test=guidebook-header]');const ancestors=[];for(let i=0;n&&i<7;i++,n=n.parentElement){const r=n.getBoundingClientRect(),c=getComputedStyle(n);ancestors.push({tag:n.tagName,rect:[r.x,r.y,r.width,r.height],padding:c.padding,margin:c.margin})}return {path:location.pathname,ancestors,scrollY,document_height:document.documentElement.scrollHeight}})})(page);
+```
