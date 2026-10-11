@@ -1,5 +1,7 @@
 # Codex App Rebuild
 
+实际补齐主页共享滚动与原版链接语义，探索发现电台未解锁弹层、独立单元跳级入口及任务卡／页脚布局阶段。v67保留旧项共13284；最新两状态153pass／17fail，整图仍未通过，完整Goal继续。[实际证据与复跑](projects/duolingo-web/evidence/english-home-scroll-v1/README.md)。
+
 原版购物指南与下一实例探索补出逐字英文、28词语焦点库存和多词空格驱动遗漏。Swift接五段原语音、原指南与播放动画；v66严格验收142pass／28fail，3整图仍失败，完整Goal继续。[最新证据及复跑](projects/duolingo-web/evidence/english-shopping-guide-v1/README.md)。
 
 下列为历史批次记录，不能作为当前完成率。

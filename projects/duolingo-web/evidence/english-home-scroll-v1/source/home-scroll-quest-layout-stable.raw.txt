@@ -1,0 +1,15 @@
+### Result
+[{"tag":"A","rect":[1092.796875,283,63.203125,18],"padding":"0px","gap":"normal","text":"显示全部"},{"tag":"DIV","rect":[828,278,328,28],"padding":"0px","gap":"normal","text":"每日特别任务\n显示全部"},{"tag":"DIV","rect":[808,258,368,175],"padding":"18px","gap":"0px","text":"每日特别任务\n显示全部\n获取 10 经验\n10 / 10\n10 / 10"},{"tag":"DIV","rect":[808,258,368,175],"padding":"0px","gap":"normal","text":"每日特别任务\n显示全部\n获取 10 经验\n10 / 10\n10 / 10"},{"tag":"DIV","rect":[808,24,368,727],"padding":"0px","gap":"16px","text":"10\n1\n505\n4\n青铜等级\n查看排行榜\n学个单元就能上本周排行榜，跟其他小伙伴一决高低！\n每日特别任务\n显示全部\n获取 10 经验\n10"}]
+### Ran Playwright code
+```js
+await (async page=>{await page.evaluate(()=>scrollTo(0,0));return await page.getByRole("link",{name:"显示全部",exact:true}).evaluate(n=>{const a=[];for(let v=n;v&&a.length<5;v=v.parentElement){const r=v.getBoundingClientRect();a.push({tag:v.tagName,rect:[r.x,r.y,r.width,r.height],padding:getComputedStyle(v).padding,gap:getComputedStyle(v).gap,text:v.innerText.slice(0,70)})}return a;});})(page);
+```
+### Open tabs
+- 0: [多邻国 - 学得轻松，学有所成的英语 课程！](https://www.duolingo.com/lesson)
+- 1: (current) [多邻国 - 学得轻松，学有所成的英语 课程！](https://www.duolingo.com/guidebook/en/11)
+### Page
+- Page URL: https://www.duolingo.com/guidebook/en/11
+- Page Title: 多邻国 - 学得轻松，学有所成的英语 课程！
+- Console: 19 errors, 0 warnings
+### Events
+- New console entries: .playwright-cli/console-2026-10-11T19-01-01-875Z.log#L16-L19

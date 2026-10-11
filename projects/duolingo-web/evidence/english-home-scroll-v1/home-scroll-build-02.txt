@@ -1,0 +1,26 @@
+Building for debugging...
+[0/6] Write sources
+[1/6] Write swift-version--1AB21518FC5DEDBE.txt
+[3/6] Emitting module LingoSeed
+[4/6] Compiling LingoSeed ReferenceHome.swift
+<workspace>/projects/education-swift/Sources/LingoSeed/ReferenceHome.swift:434:17: error: cannot access property 'observation' with a non-Sendable type '(any NSObjectProtocol)?' from nonisolated deinit
+432 |             changed?(target.bounds.minY)
+433 |         }
+434 |         deinit {if let observation {NotificationCenter.default.removeObserver(observation)}}
+    |                 `- error: cannot access property 'observation' with a non-Sendable type '(any NSObjectProtocol)?' from nonisolated deinit
+435 |     }
+436 |     func makeNSView(context:Context)->Observer { let view=Observer();view.changed=changed;return view }
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/objc/NSObject.h:15:11: note: protocol 'NSObjectProtocol' does not conform to the 'Sendable' protocol
+ 13 | @class NSString, NSMethodSignature, NSInvocation;
+ 14 |
+ 15 | @protocol NSObject
+    |           `- note: protocol 'NSObjectProtocol' does not conform to the 'Sendable' protocol
+ 16 |
+ 17 | - (BOOL)isEqual:(id)object;
+
+<workspace>/projects/education-swift/Sources/LingoSeed/ReferenceHome.swift:1:1: warning: add '@preconcurrency' to treat 'Sendable'-related errors from module 'ObjectiveC' as warnings
+  1 | import SwiftUI
+    | `- warning: add '@preconcurrency' to treat 'Sendable'-related errors from module 'ObjectiveC' as warnings
+  2 | import LearningCore
+  3 |

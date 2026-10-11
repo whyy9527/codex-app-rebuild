@@ -1,0 +1,15 @@
+### Result
+[{"expression":"document.querySelector(\"[data-test=home-nav]\").querySelector(\"span span\")","fonts":[{"familyName":"PingFang SC","postScriptName":"PingFangSC-Semibold","isCustomFont":false,"glyphCount":2}],"node":{"result":{"type":"object","value":{"text":"学习","rect":[84,105.5,31.6015625,25],"font":"700 15px / 25px duolingo-sans, sans-serif","tracking":"0.8px"}}}},{"expression":"document.querySelector(\"[data-test=leaderboards-open]\")","fonts":[{"familyName":"PingFang SC","postScriptName":"PingFangSC-Semibold","isCustomFont":false,"glyphCount":5}],"node":{"result":{"type":"object","value":{"text":"查看排行榜","rect":[1077,117,79,18],"font":"700 15px / 18px duolingo-sans, sans-serif","tracking":"0.8px"}}}},{"expression":"[...document.querySelectorAll(\"a\")].find(n=>n.innerText===\"显示全部\")","fonts":[{"familyName":"PingFang SC","postScriptName":"PingFangSC-Semibold","isCustomFont":false,"glyphCount":4}],"node":{"result":{"type":"object","value":{"text":"显示全部","rect":[1092.796875,283,63.203125,18],"font":"700 15px / 18px duolingo-sans, sans-serif","tracking":"0.8px"}}}}]
+### Ran Playwright code
+```js
+await (async page=>{await page.evaluate(()=>document.fonts.ready);await page.evaluate(()=>scrollTo(0,0));const cdp=await page.context().newCDPSession(page);try{await cdp.send("DOM.enable");await cdp.send("CSS.enable");await cdp.send("DOM.getDocument");const result=[];for(const expression of ["document.querySelector(\"[data-test=home-nav]\").querySelector(\"span span\")","document.querySelector(\"[data-test=leaderboards-open]\")","[...document.querySelectorAll(\"a\")].find(n=>n.innerText===\"显示全部\")"]){const r=await cdp.send("Runtime.evaluate",{expression});const n=await cdp.send("DOM.requestNode",{objectId:r.result.objectId});result.push({expression,...await cdp.send("CSS.getPlatformFontsForNode",{nodeId:n.nodeId}),node:await cdp.send("Runtime.callFunctionOn",{objectId:r.result.objectId,functionDeclaration:"function(){const r=this.getBoundingClientRect();return {text:this.innerText,rect:[r.x,r.y,r.width,r.height],font:getComputedStyle(this).font,tracking:getComputedStyle(this).letterSpacing}}",returnByValue:true})});}return result;}finally{await cdp.detach()}})(page);
+```
+### Open tabs
+- 0: [多邻国 - 学得轻松，学有所成的英语 课程！](https://www.duolingo.com/lesson)
+- 1: (current) [多邻国 - 学得轻松，学有所成的英语 课程！](https://www.duolingo.com/guidebook/en/11)
+### Page
+- Page URL: https://www.duolingo.com/guidebook/en/11
+- Page Title: 多邻国 - 学得轻松，学有所成的英语 课程！
+- Console: 4 errors, 0 warnings
+### Events
+- New console entries: .playwright-cli/console-2026-10-11T19-01-01-875Z.log#L4

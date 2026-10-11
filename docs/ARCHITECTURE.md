@@ -324,3 +324,6 @@ LessonDefinition的可选ObservedPlacementOutcome只保存已有全对实例的�
 
 
 购物指南观察器将ARIA语义、渲染整句和焦点候选分开：`capture-visible-state.mjs`记录逐字aria-hidden文本的真实父级整句及roleless tabindex，不推断释义成功。`compile-shopping-guide.py`从实际五次播放与布局生成Swift数据／资产清单；`freeze-shopping-guide.py`保留v65追加v66。`ReferenceShoppingGuide.swift`消费原素材／语音，`observe-frontend.swift`可在真实触发动作期间录制自有应用输出。`compile-shopping-guide-frontier.py`接历史和未解决分支，不把库存或无弹层当通过。购物多词填空独立识别句架／示例／空格数／词库，再选择实际空格并从限定词库填词；拒绝／未知反馈保留，不能用预读未来题代替探索。
+
+
+主页共享滚动由`ReferenceHome`单一ScrollView承载主内容和右栏；原生NSClipView通知给出实际位移，扣除contentInsets，右栏根据实测内容高度与视口吸底。原版嵌套sticky和页脚UL/LI盒模型均有实时DOM证据，不能把两个独立滚动区或两行Text当等价。早期／稳定布局捕获是不同源状态；`freeze-home-scroll.py`保留v66追加v67，`compile-home-scroll-frontier.py`接入实际电台→单元跳级边。单元测试与阶段测试是独立原版路由，未观察完整内容前不得互相替代。

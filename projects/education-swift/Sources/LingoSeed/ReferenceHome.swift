@@ -5,6 +5,8 @@ import LearningCore
 /// continue to come from the model; this view does not supply answer outcomes.
 struct ReferenceHome: View {
     @Bindable var model: LearningModel
+    @State private var mainScroll: CGFloat = 0
+    @State private var rightContentHeight: CGFloat = 0
     @State private var lessonPopoverNode: Int?
     @State private var stageTwoSelected: String?
     private var chinese: Bool { model.course.interfaceLanguage == "zh" }
@@ -48,6 +50,8 @@ struct ReferenceHome: View {
                 else if model.destination == "Forgot password" { ReferenceForgotPassword() }
                 else {
                 ScrollView {
+                    HStack(alignment:.top,spacing:0) {
+                    Group {
                     if model.destination == "Sections" { ReferenceSections(activeStage:model.placementOutcome?.activeStage ?? 1,completedStages:model.placementOutcome?.completedStages ?? [],leave:{model.destination="Learn"},jump:model.prepareSectionPlacement).padding(.horizontal,24) }
                     else if model.destination == "Pronunciation" { ReferencePronunciation(model: model).padding(.horizontal, 24).padding(.top, 43) }
                     else if model.destination == "Leaderboards" { ReferenceLeaderboard(selectedStatus:selectedLeaderboardStatus,practice:{ model.beginGeneralPractice() },profile:{ model.destination = "Guest profile"; if model.preferences.avatarSkin == nil && !guestIntroductionSeen { guestIntroduction = true; guestIntroductionSeen = true } }).padding(.horizontal,24).padding(.top,24) }
@@ -55,22 +59,29 @@ struct ReferenceHome: View {
                     else if model.destination == "Shop" { ReferenceShop(gems: homeGems, create: { authentication = "profile" }).padding(.top,40) }
                     else if model.destination == "Quests" { ReferenceQuests(snapshot: homeSnapshot).padding(.horizontal, 24).padding(.top, 24) }
                     else if model.destination == "Guidebook" {
-                        if chinese && model.placementOutcome?.activeStage == 2 { ReferenceShoppingGuide(model:model).padding(.horizontal,24).padding(.top,24).padding(.bottom,24) }
+                        if chinese && model.placementOutcome?.activeStage == 2 { ReferenceShoppingGuide(model:model).padding(.horizontal,24).padding(.top,24) }
                         else { ReferenceGuidebook(model: model).padding(.horizontal, 24).padding(.top, 48) }
                     }
                     else { path.padding(.horizontal, 24).padding(.top, 48) }
                 }
                     .frame(minWidth:model.destination == "Sections" ? 564 : nil,maxWidth:model.destination == "Sections" ? 564 : .infinity)
                 if geometry.size.width >= 1120 {
-                    ScrollView {
+                    VStack(spacing:0) {
                         if model.destination == "Leaderboards" {
                             VStack(spacing:24) { dashboardStats.frame(height:44); ReferenceLeaderboardStatus(selectedStatus:selectedLeaderboardStatus); questsFooter.padding(.top,10) }.padding(.top,24)
                         } else if model.destination == "Guest profile" {
                             VStack(spacing:24) { dashboardStats.frame(height:44); guestFriends; questsFooter.padding(.top,10) }.padding(.top,24)
-                        } else { dashboard.padding(.top,32) }
+                        } else { dashboard.padding(.top,32).background(GeometryReader { proxy in Color.clear.onAppear { rightContentHeight=proxy.size.height }.onChange(of:proxy.size.height) { _, height in rightContentHeight=height } }) }
                     }
+                        .fixedSize(horizontal:false,vertical:true)
                         .frame(width: 368).padding(.horizontal, 24)
+                        .offset(y:max(0,mainScroll-max(0,rightContentHeight+24-geometry.size.height)))
                 }
+                    }
+                    .background(ReferenceScrollOffset { offset in mainScroll=max(0,offset); if CommandLine.arguments.contains("--render-metadata") { FileHandle.standardError.write(Data("home-scroll offset=\(offset) rightHeight=\(rightContentHeight) viewport=\(geometry.size.height)\n".utf8)) } })
+                    .padding(.bottom,24)
+                }.coordinateSpace(name:"reference-home-scroll")
+
                 }
             }.frame(width:geometry.size.width,alignment:.leading)
             .overlay(alignment: .topLeading) {
@@ -90,24 +101,14 @@ struct ReferenceHome: View {
             ReferenceStyle.image("logo").resizable().scaledToFit().frame(width: 128, height: 30)
                 .padding(.leading, 16).padding(.top, 32).padding(.bottom, 22)
             ForEach(chinese ? ["Learn", "Pronunciation", "Leaderboards", "Quests", "Shop", "Profile", "More"] : ["Learn", "Leaderboards", "Quests", "Shop", "Profile", "More"], id: \.self) { item in
-                Button {
+                Group {
+                    if item == "More" { Button(action:{ moreOpen.toggle() }) { navigationFace(item) }.buttonStyle(.plain).accessibilityLabel(navigationLabel(item)).accessibilityIdentifier("nav-more") }
+                    else { ReferencePracticeControl(label:navigationLabel(item),identifier:"nav-"+item.lowercased(),enabled:true,action:{
                     if item == "More" { moreOpen.toggle() }
                     else if item == "Profile" { authentication = "profile"; moreOpen = false }
                     else { model.destination = item; moreOpen = false; if item == "Learn" || item == "Leaderboards" { lessonPopoverNode = nil; stageTwoSelected = nil } }
-                } label: {
-                    HStack(spacing: 20) {
-                        ReferenceStyle.image(item == "Pronunciation" ? (model.course.home?.pronunciationResource ?? "nav-test") : "nav-" + item.lowercased()).resizable().scaledToFit().frame(width: 32, height: 32)
-                        ViewThatFits(in: .horizontal) {
-                            Text(navigationLabel(item)).font(ReferenceStyle.font(15, bold: true)).tracking(0.7).fixedSize()
-                            Color.clear.frame(width: 0, height: 1)
-                        }
-                        Spacer(minLength: 0)
-                    }.padding(.horizontal, 16).frame(height: 52)
-                        .foregroundStyle((item == model.destination || item == "Learn" && ["Guidebook","Sections"].contains(model.destination)) ? blue : ReferenceStyle.secondaryInk)
-                        .background((item == model.destination || item == "Learn" && ["Guidebook","Sections"].contains(model.destination)) ? Color(red: 221/255, green: 244/255, blue: 1) : .clear, in: RoundedRectangle(cornerRadius: 12))
-                        .overlay(RoundedRectangle(cornerRadius: 12).strokeBorder((item == model.destination || item == "Learn" && ["Guidebook","Sections"].contains(model.destination)) ? Color(red: 132/255, green: 216/255, blue: 1) : .clear, lineWidth: 2))
-                        .contentShape(Rectangle())
-                }.buttonStyle(.plain).accessibilityLabel(chinese ? navigationLabel(item) : item).accessibilityIdentifier("nav-" + item.lowercased())
+                    },face:AnyView(navigationFace(item)),role:.link,fixedFaceSize:true).frame(height:52) }
+                }
                 .onHover { inside in
                     if item == "More" { moreHovered = inside; if inside { moreOpen = true } else { dismissMenuLater() } }
                 }
@@ -285,6 +286,30 @@ struct ReferenceHome: View {
                 .accessibilityIdentifier(index == 0 ? "start-lesson" : "start-lesson-\(index)")
         }.frame(width: 100, height: index == 0 ? 132 : 70)
     }
+    private func navigationFace(_ item:String)->some View {
+                    HStack(spacing: 20) {
+                        ReferenceStyle.image(item == "Pronunciation" ? (model.course.home?.pronunciationResource ?? "nav-test") : "nav-" + item.lowercased()).resizable().scaledToFit().frame(width: 32, height: 32)
+                        ViewThatFits(in: .horizontal) {
+                            Text(navigationLabel(item)).font(ReferenceStyle.font(15, bold: true)).tracking(0.7).fixedSize()
+                            Color.clear.frame(width: 0, height: 1)
+                        }
+                        Spacer(minLength: 0)
+                    }.padding(.horizontal, 16).frame(height: 52)
+                        .foregroundStyle((item == model.destination || item == "Learn" && ["Guidebook","Sections"].contains(model.destination)) ? blue : ReferenceStyle.secondaryInk)
+                        .background((item == model.destination || item == "Learn" && ["Guidebook","Sections"].contains(model.destination)) ? Color(red: 221/255, green: 244/255, blue: 1) : .clear, in: RoundedRectangle(cornerRadius: 12))
+                        .overlay(RoundedRectangle(cornerRadius: 12).strokeBorder((item == model.destination || item == "Learn" && ["Guidebook","Sections"].contains(model.destination)) ? Color(red: 132/255, green: 216/255, blue: 1) : .clear, lineWidth: 2))
+                        .contentShape(Rectangle())
+    }
+    private func dashboardLink(_ label:String,identifier:String,action:@escaping ()->Void)->some View {
+        ReferencePracticeControl(label:label,identifier:identifier,enabled:true,action:action,face:AnyView(
+            Text(label).font(ReferenceStyle.font(15,bold:true)).tracking(0.8).foregroundStyle(blue)
+                .frame(height:18).fixedSize(horizontal:true,vertical:false)
+        ),role:.link,fixedFaceSize:true).frame(width:dashboardLinkWidth(label),height:18).offset(y:2.5)
+    }
+    private func dashboardLinkWidth(_ label:String)->CGFloat {
+        let font=chinese ? (NSFont(name:"PingFangSC-Semibold",size:15) ?? ReferenceStyle.nativeFont(15,bold:true)) : ReferenceStyle.nativeFont(15,bold:true)
+        return (label as NSString).size(withAttributes:[.font:font,.kern:0.8]).width
+    }
     private var dashboardStats: some View {
             HStack {
                 stat(model.course.home?.flagResource ?? "flag-spanish", chinese ? String(model.placementOutcome?.englishScore ?? 5) : "1", color: ReferenceStyle.ink, width: 31)
@@ -302,7 +327,7 @@ struct ReferenceHome: View {
             card {
                 HStack {
                     Text(homeSnapshot?.leagueTitle ?? copy("Unlock Leaderboards!", "来解锁排行榜吧！")).font(ReferenceStyle.font(19, bold: true))
-                    if let link = homeSnapshot?.leagueLink { Spacer(); Button(link) { model.destination = "Leaderboards" }.buttonStyle(.plain).font(ReferenceStyle.font(15, bold: true)).foregroundStyle(blue).accessibilityIdentifier("view-leaderboards") }
+                    if let link = homeSnapshot?.leagueLink { Spacer(); dashboardLink(link,identifier:"view-leaderboards") { model.destination="Leaderboards" } }
                 }
                 HStack(spacing: homeSnapshot?.leagueCountdown == nil ? 20 : 12) {
                     ReferenceStyle.image(homeSnapshot?.leagueResource ?? "league-locked").resizable().scaledToFit().frame(width: 70, height: homeSnapshot?.leagueCountdown == nil ? 50 : 58)
@@ -319,7 +344,7 @@ struct ReferenceHome: View {
                 }.padding(.top, 12)
             }.frame(height: 150)
             card {
-                HStack { Text(copy("Daily Quests", "每日特别任务")).font(ReferenceStyle.font(19, bold: true)); Spacer(); Button(copy("VIEW ALL", "显示全部")) { model.destination = "Quests" }.buttonStyle(.plain).font(ReferenceStyle.font(15, bold: true)).foregroundStyle(blue).accessibilityIdentifier("view-quests") }
+                HStack { Text(copy("Daily Quests", "每日特别任务")).font(ReferenceStyle.font(19, bold: true)); Spacer(); dashboardLink(copy("VIEW ALL","显示全部"),identifier:"view-quests") { model.destination="Quests" } }
                 HStack(spacing: 20) {
                     ReferenceStyle.image("quest-xp").resizable().scaledToFit().frame(width: 60, height: 60)
                     VStack(alignment: .leading, spacing: 16) {
@@ -331,7 +356,7 @@ struct ReferenceHome: View {
                         }.overlay(alignment: .trailing) { ReferenceStyle.image("quest-chest").resizable().scaledToFit().frame(width: 33, height: 35).offset(x: 0) }
                     }
                 }.padding(.top, 10)
-            }.frame(height: 165)
+            }.frame(height: 175)
             card {
                 Text(copy("Create a profile to save your progress!", "创建个人档案，保存学习进度！")).font(ReferenceStyle.font(19, bold: true))
                 VStack(spacing: 14) {
@@ -340,7 +365,7 @@ struct ReferenceHome: View {
                 }.padding(.top, 12)
             }.frame(height: 201)
             }
-            if chinese || model.destination == "Quests" { questsFooter.padding(.top, 18) }
+            if chinese || model.destination == "Quests" { questsFooter.padding(.top,16).padding(.bottom,4) }
             else {
                 Text(copy("ABOUT    BLOG    STORE    EFFICACY    CAREERS\n\nINVESTORS    TERMS    PRIVACY", "关于我们    宝石小店    有效性    招聘贤才\n\n投资者    条款    隐私")).font(ReferenceStyle.font(12, bold: true)).foregroundStyle(Color(white: 175/255)).frame(maxWidth: .infinity).multilineTextAlignment(.center).padding(.top, 18)
             }
@@ -357,19 +382,19 @@ struct ReferenceHome: View {
         }.padding(20).frame(width:368,height:140,alignment:.topLeading).overlay(RoundedRectangle(cornerRadius:16).strokeBorder(ReferenceStyle.border,lineWidth:2))
     }
     private var questsFooter: some View {
-        VStack(spacing: 18) {
+        VStack(spacing: 12) {
             HStack(spacing: 20) {
                 Link("关于我们", destination: URL(string: "https://about.duolingo.com")!)
                 Link("宝石小店", destination: URL(string: "https://store.duolingo.com/")!)
                 Link("有效性", destination: URL(string: "https://www.duolingo.com/efficacy")!)
                 Link("招聘贤才", destination: URL(string: "https://careers.duolingo.com")!)
                 Link("投资者", destination: URL(string: "https://investors.duolingo.com")!)
-            }
+            }.frame(height:20)
             HStack(spacing: 20) {
                 Link("条款", destination: URL(string: "https://www.duolingo.com/terms")!)
                 Link("隐私", destination: URL(string: "https://www.duolingo.com/privacy")!)
-            }
-        }.buttonStyle(.plain).font(ReferenceStyle.font(13, bold: true)).foregroundStyle(ReferenceStyle.disclosureInk).frame(maxWidth: .infinity)
+            }.frame(height:20)
+        }.padding(.bottom,12).buttonStyle(.plain).font(ReferenceStyle.font(13, bold: true)).foregroundStyle(ReferenceStyle.disclosureInk).frame(maxWidth: .infinity)
     }
     private func stat(_ image: String, _ text: String, color: Color, width: CGFloat) -> some View {
         HStack(spacing: 12) { ReferenceStyle.image(image).resizable().scaledToFit().frame(width: width, height: 28); Text(text).font(ReferenceStyle.font(15, bold: true)).foregroundStyle(color) }
@@ -378,4 +403,29 @@ struct ReferenceHome: View {
         VStack(alignment: .leading, spacing: 16, content: content).padding(20).frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
             .overlay(RoundedRectangle(cornerRadius: 16).strokeBorder(ReferenceStyle.border, lineWidth: 2))
     }
+}
+
+private struct ReferenceScrollOffset: NSViewRepresentable {
+    let changed:(CGFloat)->Void
+    final class Observer:NSView {
+        var changed:((CGFloat)->Void)?
+        private weak var clip:NSClipView?
+        override func viewDidMoveToWindow() {
+            super.viewDidMoveToWindow()
+            DispatchQueue.main.async { [weak self] in self?.connect() }
+        }
+        func connect() {
+            guard let target=enclosingScrollView?.contentView,clip !== target else {return}
+            NotificationCenter.default.removeObserver(self)
+            clip=target;target.postsBoundsChangedNotifications=true
+            NotificationCenter.default.addObserver(self,selector:#selector(scrolled),name:NSView.boundsDidChangeNotification,object:target)
+            changed?(target.bounds.minY+(enclosingScrollView?.contentInsets.top ?? 0))
+        }
+        @objc private func scrolled(_ notification:Notification) {
+            if let clip {changed?(clip.bounds.minY+(enclosingScrollView?.contentInsets.top ?? 0))}
+        }
+        deinit {NotificationCenter.default.removeObserver(self)}
+    }
+    func makeNSView(context:Context)->Observer { let view=Observer();view.changed=changed;return view }
+    func updateNSView(_ view:Observer,context:Context) {view.changed=changed}
 }

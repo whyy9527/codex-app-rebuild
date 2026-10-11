@@ -1,0 +1,6 @@
+### Result
+[{"text":"10\n1\n505\n4\n青铜等级\n查看排行榜\n学个单元就能上本周排","rect":[808,24,368,717]},{"text":"10\n1\n505\n4\n青铜等级\n查看排行榜\n学个单元就能上本周排","rect":[808,24,368,717]},{"text":"返回","rect":[280,24,480,80]}]
+### Ran Playwright code
+```js
+await (async page=>{return await page.evaluate(()=>[...document.querySelectorAll("*")].filter(n=>getComputedStyle(n).position==="sticky").map(n=>{const r=n.getBoundingClientRect();return {text:n.innerText.slice(0,32),rect:[r.x,r.y,r.width,r.height]}}))})(page);
+```

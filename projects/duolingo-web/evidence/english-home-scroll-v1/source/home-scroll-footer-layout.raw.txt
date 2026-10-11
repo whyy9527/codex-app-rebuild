@@ -1,0 +1,15 @@
+### Result
+[{"tag":"A","rect":[1002,718.5,26,15.5],"padding":"0px","margin":"0px","gap":"normal","lineHeight":"16px","font":"700 13px / 16px duolingo-sans, sans-serif"},{"tag":"LI","rect":[1002,715,26,20],"padding":"0px","margin":"0px 10px 12px","gap":"normal","lineHeight":"20px","font":"500 17px / 20px duolingo-sans, sans-serif"},{"tag":"UL","rect":[818,683,348,64],"padding":"0px","margin":"16px 10px 4px","gap":"normal","lineHeight":"20px","font":"500 17px / 20px duolingo-sans, sans-serif"},{"tag":"DIV","rect":[808,24,368,727],"padding":"0px","margin":"0px","gap":"16px","lineHeight":"20px","font":"500 17px / 20px duolingo-sans, sans-serif"},{"tag":"DIV","rect":[808,24,368,727],"padding":"0px","margin":"0px","gap":"normal","lineHeight":"20px","font":"500 17px / 20px duolingo-sans, sans-serif"},{"tag":"DIV","rect":[256,24,944,1000.859375],"padding":"0px 24px 24px","margin":"0px","gap":"48px","lineHeight":"20px","font":"500 17px / 20px duolingo-sans, sans-serif"},{"tag":"DIV","rect":[256,0,944,1024.859375],"padding":"24px 0px 0px","margin":"0px","gap":"normal","lineHeight":"20px","font":"500 17px / 20px duolingo-sans, sans-serif"}]
+### Ran Playwright code
+```js
+await (async page=>{return await page.getByRole("link",{name:"隐私",exact:true}).evaluate(n=>{const a=[];for(let v=n;v&&a.length<7;v=v.parentElement){const r=v.getBoundingClientRect();const c=getComputedStyle(v);a.push({tag:v.tagName,rect:[r.x,r.y,r.width,r.height],padding:c.padding,margin:c.margin,gap:c.gap,lineHeight:c.lineHeight,font:c.font})}return a})})(page);
+```
+### Open tabs
+- 0: [多邻国 - 学得轻松，学有所成的英语 课程！](https://www.duolingo.com/lesson)
+- 1: (current) [多邻国 - 学得轻松，学有所成的英语 课程！](https://www.duolingo.com/guidebook/en/11)
+### Page
+- Page URL: https://www.duolingo.com/guidebook/en/11
+- Page Title: 多邻国 - 学得轻松，学有所成的英语 课程！
+- Console: 28 errors, 0 warnings
+### Events
+- New console entries: .playwright-cli/console-2026-10-11T19-01-01-875Z.log#L20-L28
