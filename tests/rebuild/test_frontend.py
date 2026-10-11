@@ -158,3 +158,17 @@ class FrontendRequirements(unittest.TestCase):
             self.assertEqual(compare(root, contract, observed)['rows'][0]['status'], 'unavailable')
             observed['states'].pop('idle')
             self.assertEqual(compare(root, contract, observed)['rows'][0]['status'], 'not_run')
+
+    def test_native_link_role_is_distinct_from_button(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / 'reference.txt').write_text('Actual Practice Start is a DOM link')
+            contract = {'requirements': [{'id': 'start-role', 'state': 'entry', 'kind': 'element_role',
+                'element': 'start', 'role': 'link', 'evidence': ['reference.txt']}]}
+            element = {'role': 'AXLink'}
+            observed = {'states': {'entry': {'elements': {'start': element}}}}
+            self.assertEqual(compare(root, contract, observed)['rows'][0]['status'], 'pass')
+            element['role'] = 'AXButton'
+            self.assertEqual(compare(root, contract, observed)['rows'][0]['status'], 'fail')
+            element.clear()
+            self.assertEqual(compare(root, contract, observed)['rows'][0]['status'], 'unavailable')

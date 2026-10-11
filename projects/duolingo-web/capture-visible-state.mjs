@@ -35,6 +35,12 @@ const callback=async page=>{
    rect:[r.x,r.y,r.width,r.height],objectFit:css.objectFit,
    intrinsic:n.tagName==='IMG'?[n.naturalWidth,n.naturalHeight]:n.tagName==='CANVAS'?[n.width,n.height]:null};
  }));
+ // CSS artwork (for example profile Duo) is not an img/svg/canvas node.
+ facts.background_media=await page.locator('body *').evaluateAll(ns=>ns.flatMap(n=>{
+  const r=n.getBoundingClientRect(),c=getComputedStyle(n),background=c.backgroundImage;
+  if(!n.checkVisibility()||background==='none'||r.width<=0||r.height<=0||r.bottom<=0||r.right<=0||r.top>=innerHeight||r.left>=innerWidth)return [];
+  return [{tag:n.tagName,test:n.getAttribute('data-test'),rect:[r.x,r.y,r.width,r.height],backgroundImage:background,backgroundSize:c.backgroundSize,backgroundPosition:c.backgroundPosition,backgroundRepeat:c.backgroundRepeat}];
+ }));
  facts.visible=await page.locator('[data-test],h1,h2,[role],button,input,label').evaluateAll(ns=>ns.filter(n=>n.checkVisibility()).map(n=>{
   const r=n.getBoundingClientRect(),css=getComputedStyle(n);
   return {test:n.getAttribute('data-test'),tag:n.tagName,role:n.getAttribute('role'),text:n.innerText,

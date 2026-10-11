@@ -14,6 +14,7 @@ struct ReferenceHome: View {
     @State private var moreOpen = false
     @State private var moreHovered = false
     @State private var menuHovered = false
+    @State private var showingPathProfile = false
     private var completed: Int { model.progress.completedCount(model.course) }
     private var homeSnapshot: HomeProgressSnapshot? { model.course.home?.progressSnapshots?.first { $0.completedLessons == completed } }
     private var firstNodeCompleted: Bool { chinese && completed >= (model.course.home?.firstNodeLessonCount ?? 4) }
@@ -43,6 +44,7 @@ struct ReferenceHome: View {
                 }
             }
             .overlay(alignment: .topLeading) {
+                if showingPathProfile { ReferencePathProfile(close: { showingPathProfile = false }).frame(width: geometry.size.width, height: geometry.size.height).zIndex(20) }
                 if moreOpen { moreMenu.offset(x: geometry.size.width >= 1180 ? 238 : 72, y: 314).zIndex(10) }
             }
         }
@@ -171,11 +173,20 @@ struct ReferenceHome: View {
                         Text("晋升传奇 +40 经验").font(ReferenceStyle.font(17, bold: true)).padding(.top, 14)
                     } else {
                         Text(index == 3 && chestOpened ? "第 1/2 单元" : "第 \(nodeDone + 1)/\(total) 单元").font(ReferenceStyle.font(17))
-                        Button(index == 3 && chestOpened ? "开始 +10 经验" : next.flatMap { model.course.lessons[$0].entry } != nil ? "开始 +20 经验" : "开始 +10 经验") { if let next { lessonPopoverNode = nil; model.begin(next) } }
-                            .buttonStyle(SeedButtonStyle(fill: .white, foreground: green)).frame(maxWidth: .infinity).padding(.top, 14)
-                            .disabled(next == nil).accessibilityIdentifier("start-lesson-confirm")
+                        if index == 3 && chestOpened {
+                            ReferencePracticeControl(label: "开始 +10 经验", identifier: "start-lesson-confirm", enabled: true,
+                                action: { showingPathProfile = true }, face: AnyView(
+                                    Text("开始 +10 经验").font(ReferenceStyle.font(15, bold: true)).foregroundStyle(green)
+                                        .frame(width: 263, height: 46).background(.white, in: RoundedRectangle(cornerRadius: 16))
+                                        .shadow(color: ReferenceStyle.border, radius: 0, y: 4).frame(height: 50, alignment: .top)), role: .link)
+                                .frame(width: 263, height: 50).padding(.top, 14)
+                        } else {
+                            Button(next.flatMap { model.course.lessons[$0].entry } != nil ? "开始 +20 经验" : "开始 +10 经验") { if let next { lessonPopoverNode = nil; model.begin(next) } }
+                                .buttonStyle(SeedButtonStyle(fill: .white, foreground: green)).frame(maxWidth: .infinity).padding(.top, 14)
+                                .disabled(next == nil).accessibilityIdentifier("start-lesson-confirm")
+                        }
                     }
-                }.foregroundStyle(.white).padding(16).frame(width: 294).background(green, in: RoundedRectangle(cornerRadius: 15)).offset(y: 134)
+                }.foregroundStyle(.white).padding(16).frame(width: 294).background(green, in: RoundedRectangle(cornerRadius: 15)).offset(x: index == 3 && chestOpened ? 45 : 0, y: 134)
             }
         }.frame(width: active ? 100 : 70, height: active ? 100 : 65).zIndex(lessonPopoverNode == index ? 2 : 0)
     }

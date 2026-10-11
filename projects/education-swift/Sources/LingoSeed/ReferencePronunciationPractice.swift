@@ -236,6 +236,7 @@ struct ReferencePracticeControl: NSViewRepresentable {
     let enabled: Bool
     let action: () -> Void
     let face: AnyView
+    var role: NSAccessibility.Role = .button
     final class Coordinator: NSObject {
         var action: () -> Void
         init(_ action: @escaping () -> Void) { self.action = action }
@@ -243,7 +244,8 @@ struct ReferencePracticeControl: NSViewRepresentable {
     }
     final class Button: NSButton {
         let face = ReferenceAudioRadio.PassiveHost(rootView: AnyView(EmptyView()))
-        override func accessibilityRole() -> NSAccessibility.Role? { .button }
+        var reportedRole: NSAccessibility.Role = .button
+        override func accessibilityRole() -> NSAccessibility.Role? { reportedRole }
         override var intrinsicContentSize: NSSize { NSSize(width: NSView.noIntrinsicMetric, height: NSView.noIntrinsicMetric) }
         override func draw(_ dirtyRect: NSRect) {}
         override func accessibilityFrame() -> NSRect {
@@ -264,6 +266,7 @@ struct ReferencePracticeControl: NSViewRepresentable {
             button.leadingAnchor.constraint(equalTo: container.leadingAnchor), button.trailingAnchor.constraint(equalTo: container.trailingAnchor),
             button.topAnchor.constraint(equalTo: container.topAnchor), button.bottomAnchor.constraint(equalTo: container.bottomAnchor)
         ])
+        button.reportedRole = role
         button.setAccessibilityElement(true)
         container.setAccessibilityElement(false)
         container.setAccessibilityChildren([button])

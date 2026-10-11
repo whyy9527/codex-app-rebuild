@@ -1,0 +1,28 @@
+{
+  "actions": [
+    {
+      "action": "Practice outer then Start",
+      "result": "Start detached while waiting for stability; terminal timeout; no successful click"
+    },
+    {
+      "action": "fresh snapshot and actual inner Practice",
+      "result": "Start link reopened"
+    },
+    {
+      "action": "Start",
+      "result": "profile DOM and CSS background observed"
+    },
+    {
+      "action": "getByTestId close-button",
+      "result": "terminal timeout; actual source uses data-test"
+    },
+    {
+      "action": "observed [data-test=close-button]",
+      "result": "normal click; prompt gone, underlying popover retained"
+    },
+    {
+      "action": "Start then [data-test=create-profile]",
+      "result": "empty age page, Next disabled; no fields filled"
+    }
+  ]
+}

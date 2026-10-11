@@ -199,6 +199,13 @@ if CommandLine.arguments.contains("--exercise-path-chest") {
         child.terminate(); child.waitUntilExit(); child = try launchChild(); app = AXUIElementCreateApplication(child.processIdentifier)
         try waitFor("course-entry"); configureWindow(); try saveChest("chest-reloaded")
         try press("start-lesson-3"); Thread.sleep(forTimeInterval: 0.4); try saveChest("chest-practice-entry"); Thread.sleep(forTimeInterval: 0.5); try saveChest("chest-practice-entry-settled")
+        if CommandLine.arguments.contains("--exercise-path-profile") {
+            try press("start-lesson-confirm"); try waitFor("path-profile-later"); try saveChest("chest-practice-start-profile")
+            try press("path-profile-later"); Thread.sleep(forTimeInterval: 0.4)
+            var returned = observe(); let elements = returned["elements"] as! [String: Any]
+            returned["interactions"] = ["profile_closed":elements["path-profile-later"] == nil]
+            states["chest-practice-profile-dismissed"] = returned; try capture("chest-practice-profile-dismissed")
+        }
     } catch { failure = String(describing: error); states["failure-boundary"] = observe(); try? capture("failure-boundary") }
     try bindCaptures(&states, names: ["home":"home-window"])
     let receipt: [String: Any] = ["kind":"owned_native_ax_observation", "states":states, "candidate_binary_sha256":candidateSHA, "fixture_sha256":fixtureSHA,

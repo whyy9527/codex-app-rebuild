@@ -1,5 +1,7 @@
 # Codex App Rebuild
 
+下一Practice已可打开原版素材建档提示并稍后返回；创建档案后实际年龄页已观察、尚未实施，候选创建按钮仍失败。最新v43共2382项，本轨迹43pass/21fail/2318not_run。[最新验证与复跑](projects/duolingo-web/evidence/english-path-profile-v1/README.md)。
+
 默认v13补实际开箱前后主页、原素材及持久化记录，原生真实开箱和重启已验证；前端v41共2373项，本轨迹34pass/17fail/2322not_run，下一Practice开始/建档及排行榜遮罩仍未实施。[最新失败、探索与复跑](projects/duolingo-web/evidence/english-chest-v1/README.md)。
 
 **当前状态：1:1 复刻未完成；当前目标按用户建议转为英语学习，默认中文母语 → 英语。** v3 的35项UI检查、12条共享业务场景和音频输出只证明各自检查的子集，没有验证原版前端需求；“产品修正已通过验收”撤回。当前差异包含课程、素材、字体、布局、菜单交互及音色，当前已加入基于实际 NSWindow 几何的采样归一化，尚未证明视觉一致。[历史回执](projects/duolingo-web/evidence/PRODUCT-V3-DELIVERY.md)保留为局部证据。

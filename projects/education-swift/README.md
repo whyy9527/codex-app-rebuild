@@ -1,5 +1,7 @@
 # LingoSeed · Swift 教育基座
 
+下一Practice已可打开原版素材建档提示并稍后返回；创建档案后实际年龄页已观察、尚未实施，候选创建按钮仍失败。最新v43共2382项，本轨迹43pass/21fail/2318not_run。[最新验证与复跑](../duolingo-web/evidence/english-path-profile-v1/README.md)。
+
 默认v13补实际开箱前后主页、原素材及持久化记录，原生真实开箱和重启已验证；前端v41共2373项，本轨迹34pass/17fail/2322not_run，下一Practice开始/建档及排行榜遮罩仍未实施。[最新失败、探索与复跑](../duolingo-web/evidence/english-chest-v1/README.md)。
 
 可运行的macOS SwiftUI客户端。当前默认 `fixture-reference-en-zh-v13.json` 为中文母语→英语八课115题；新增实际第八课、13卡历史回顾、结算及真实重启。前端仍133pass/17fail/2171not_run，结算图形/按钮与宝箱等未对齐，音频资源身份不等于实际输出验证。[当前验证及复跑](../duolingo-web/evidence/english-eighth-integration-v1/README.md)。

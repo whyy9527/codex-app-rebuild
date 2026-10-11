@@ -52,7 +52,7 @@ def compare(root, contract, observed):
         elif requirement['kind'] == 'element_role':
             actual = state.get('elements', {}).get(requirement['element'], {}).get('role')
             # Compare a common semantic role across DOM and macOS AX drivers.
-            actual = {'AXRadioButton': 'radio', 'AXButton': 'button', 'AXCheckBox': 'checkbox'}.get(actual, actual)
+            actual = {'AXRadioButton': 'radio', 'AXButton': 'button', 'AXCheckBox': 'checkbox', 'AXLink': 'link'}.get(actual, actual)
             row.update(status='unavailable' if actual is None else 'pass' if actual == requirement['role'] else 'fail',
                        expected=requirement['role'], actual=actual)
         elif requirement['kind'] == 'element_boolean':

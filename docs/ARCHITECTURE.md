@@ -258,3 +258,8 @@ LessonDefinition的可选listeningDeclineReplacements由实例提供已观察替
 ### 实际开箱与下一练习建档分支
 
 按未访宝箱选择探索，首次真实click被排行榜已解锁遮罩拦截，Escape无效、正常遮罩click才关闭。开箱510→525，禁用已打开图及真实reload保留；下一Practice第1/2单元的Start又弹建档，稍后返回。v13保持八课115题并加入course隔离的一次性开箱保存及原SVG；导入器补实际80×90渲染，第一次方形素材/80×80 AX失败保留。最终6原生状态真实click/重启走通，边界仍差0.2265625点、整图仍fail。v39/v40/v41保留旧要求，共2373；本轨迹34pass/17fail/2322not_run，建档12新项全not_run。相同最终二进制八课41状态回归133pass/17fail/2223not_run，29核心/56Python/14Node通过。下一Start当前不可用，遮罩/建档/后续题、原结算/音频继续；无新RSI收益、完整Goal active。[证据与frontier](../projects/duolingo-web/evidence/english-chest-v1/README.md)。
+
+
+### 下一Practice建档提示与CSS背景盲点
+
+接实际Start→提示→稍后返回，源CSS背景Duo未被旧img/svg/canvas采集覆盖；采集器补可见background媒体，原144×250 SVG按源尺寸导入。v42保留2373旧项增1，原生8状态/真重启/Start/Later走通，几何0.25点及整图仍fail；AXLink映射遗漏修正并新增button不得冒充link测试。继续点实际创建档案发现空年龄页而非账号表单，v43再增8，当前2382项。候选年龄页未实施、创建按钮仍不可用且失败；本轨迹43pass/21fail/2318not_run。同一最终二进制八课41状态133pass/17fail/2232not_run；29核心/57Python/14Node通过。下一批补实际年龄入口/输入/后续分支，保留排行榜遮罩、结算/音频差异；无RSI收益或完成结论，完整Goal active。[证据与frontier](../projects/duolingo-web/evidence/english-path-profile-v1/README.md)。
