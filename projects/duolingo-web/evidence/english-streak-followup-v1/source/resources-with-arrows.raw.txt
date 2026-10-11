@@ -1,0 +1,27 @@
+### Result
+{"rendered":2,"scale":3}
+### Ran Playwright code
+```js
+await (async page => {
+ const context=await page.context().browser().newContext({viewport:{width:180,height:180},deviceScaleFactor:3});
+ try {const render=await context.newPage();
+ for(const image of [{"name": "en-streak-prev", "svg": "<svg width=\"9\" height=\"14\" viewBox=\"0 0 9 14\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M6.94967 11.9497L1.99992 7L6.94967 2.05025\" stroke=\"#AFAFAF\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>", "inline_svg": false, "background_position": null, "width": 14, "height": 14, "target": "<repository>/projects/education-swift/Sources/LingoSeed/Resources/Reference/en-streak-prev.png"}, {"name": "en-streak-next", "svg": "<svg width=\"9\" height=\"14\" viewBox=\"0 0 9 14\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M1.94975 11.9497L6.89949 7L1.94975 2.05025\" stroke=\"#AFAFAF\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>", "inline_svg": false, "background_position": null, "width": 14, "height": 14, "target": "<repository>/projects/education-swift/Sources/LingoSeed/Resources/Reference/en-streak-next.png"}]){await render.setViewportSize({width:Math.ceil(image.width),height:Math.ceil(image.height)}); const source='data:image/svg+xml;base64,'+Buffer.from(image.svg).toString('base64');
+ if(image.inline_svg){await render.setContent('<html><body style="margin:0;background:transparent">'+image.svg+'</body></html>');await render.locator('svg').first().evaluate((n,size)=>{n.style.width=size.width+'px';n.style.height=size.height+'px'},image);}
+ else if(image.background_position){await render.setContent('<html><body style="margin:0;background:transparent"><div style="width:'+image.width+'px;height:'+image.height+'px;background-image:url('+source+');background-position:'+image.background_position+'"></div></body></html>');await render.evaluate(async src=>{const i=new Image();i.src=src;await i.decode();},source);}
+ else {await render.setContent('<html><body style="margin:0;background:transparent"><img style="width:'+image.width+'px;height:'+image.height+'px;object-fit:contain" src="'+source+'"></body></html>');await render.locator('img').evaluate(n=>n.decode());} await render.screenshot({path:image.target,omitBackground:true});}
+ return {rendered:[{"name": "en-streak-prev", "svg": "<svg width=\"9\" height=\"14\" viewBox=\"0 0 9 14\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M6.94967 11.9497L1.99992 7L6.94967 2.05025\" stroke=\"#AFAFAF\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>", "inline_svg": false, "background_position": null, "width": 14, "height": 14, "target": "<repository>/projects/education-swift/Sources/LingoSeed/Resources/Reference/en-streak-prev.png"}, {"name": "en-streak-next", "svg": "<svg width=\"9\" height=\"14\" viewBox=\"0 0 9 14\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M1.94975 11.9497L6.89949 7L1.94975 2.05025\" stroke=\"#AFAFAF\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>", "inline_svg": false, "background_position": null, "width": 14, "height": 14, "target": "<repository>/projects/education-swift/Sources/LingoSeed/Resources/Reference/en-streak-next.png"}].length,scale:3};
+ }finally{await context.close()}
+})(page);
+```
+### Open tabs
+- 0: [多邻国 - 学得轻松，学有所成的英语 课程！](https://www.duolingo.com/lesson)
+- 1: [多邻国 - 学得轻松，学有所成的英语 课程！](https://www.duolingo.com/lesson)
+- 2: [多邻国 - 学得轻松，学有所成的英语 课程！](https://www.duolingo.com/guidebook/en/12)
+- 3: [多邻国 - 学得轻松，学有所成的英语 课程！](https://www.duolingo.com/alphabets/en/pronunciation)
+- 4: (current) [多邻国 - 学得轻松，学有所成的英语 课程！](https://www.duolingo.com/learn)
+### Page
+- Page URL: https://www.duolingo.com/learn
+- Page Title: 多邻国 - 学得轻松，学有所成的英语 课程！
+- Console: 51 errors, 0 warnings
+### Events
+- New console entries: .playwright-cli/console-2026-10-11T22-08-09-496Z.log#L103

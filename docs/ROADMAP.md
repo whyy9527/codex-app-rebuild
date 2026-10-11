@@ -436,3 +436,8 @@ Swift接阶段列表、原素材、独立跳级实例及结算，最终同二进
 ### 主页实际下游与透明输入控件
 
 真实添加课程目录/母语选择、独立听音练习、补心及Super返回发现菜单角色和opacity0原生select漏采。修采集并回原版验证33选项、英语→中文；按选项及Enter/Space留前沿。补心4→5、505→155随刷新保存，满心禁用；Super建档关闭→登录→主页。Swift接红心弹层/实际交易保存/禁用/练习入口及返回链；同二进制10实际状态无驱动失败，67Python/21Node/36核心与构建通过。v76保留18935新增1192共20127，481pass/65fail/18954not_run/627unavailable，7整图全fail。165状态/87边/4699待探索；400ms瞬态未匹配保持pending，目录、新练习实例、连胜/日历、整体字体/动画/声音继续。反馈应进入下一次真实模型策略/产品消融，当前没有新增RSI因果收益声明；完整Goal active。[证据及复跑](../projects/duolingo-web/evidence/english-home-stat-branches-v1/README.md)。
+
+
+### 真实连胜反馈接续与前端消费者
+
+实际模型消费主页前端遗漏，选择下滚后获得滚动416、下层目标／俱乐部及固定标题；真实修订后Return进入11月。05根预检查失败保留，06新登记复用初始策略；两实际调用60642 reported tokens，无匹配对照或收益声明。Swift接原素材弹窗、滚动日历／三月裁剪／月份箭头／固定标题／关闭返回和下层卡片，八实际状态无驱动失败、11项旅程检查通过。v77保留20127旧项增776共20903，本批311pass／22fail／20132not_run／438unavailable、四整图全fail；169状态／90边／5062待探索不代表完成率。67Python／21Node／36核心及构建通过。声音新状态未测、动画只有原帧、字体／背景路径／几何仍有差异，Goal active。接下来继续未完课程、新听音配对／故事／电台／目录以及整图和声音消费者，不持续重开日历代替探索。[证据与复跑](../projects/duolingo-web/evidence/english-streak-followup-v1/README.md)、[模型实际接续及限制](../projects/exploration-ablation/REPORT05-06.md)。

@@ -2,7 +2,7 @@
 
 目标为中文母语→英语的 Duolingo 网页到 Swift 1:1 重建。当前仍有明确的前端、交互、声音和未知分支缺口，不能把已观察课程和局部测试当整站完成。
 
-阶段状态由 [Roadmap](../../docs/ROADMAP.md)拥有；当前契约为 [v76](frontend-english-v76.json)，最近的 [主页顶部交互与采样修复](evidence/english-home-stats-v1/README.md)保存实际探索、鼠标／键盘操作和失败。原版资源实际输出见 [发音证据](evidence/english-pronunciation-current-v1/README.md)，RSI 负结果见 [04报告](../exploration-ablation/REPORT04.md)。启动与进度隔离见 [Swift 基座](../education-swift/README.md)。
+阶段状态由 [Roadmap](../../docs/ROADMAP.md)拥有；当前契约为 [v77](frontend-english-v77.json)，最近的 [真实连胜反馈／Swift与严格对照](evidence/english-streak-followup-v1/README.md)连接真实模型修订和原生消费者；[主页顶部交互与采样修复](evidence/english-home-stats-v1/README.md)保存实际探索、鼠标／键盘操作和失败。原版资源实际输出见 [发音证据](evidence/english-pronunciation-current-v1/README.md)，RSI 负结果见 [04报告](../exploration-ablation/REPORT04.md)。启动与进度隔离见 [Swift 基座](../education-swift/README.md)。
 
 下面保留案例协议和历史实验入口；旧批次能力说明已存入 [历史检查点](../../docs/history/duolingo-README-checkpoints-2026-10-12.md)，不代表当前完成率。
 

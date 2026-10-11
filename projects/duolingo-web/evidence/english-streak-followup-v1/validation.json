@@ -1,0 +1,130 @@
+{
+  "checks": {
+    "eight_actual_states_no_driver_failure": true,
+    "current_binary_matches_receipt": true,
+    "current_calendar_october": true,
+    "keyboard_navigates_november": true,
+    "no_localized_year_separator": true,
+    "calendar_close_returns_home": true,
+    "actual_lower_content_present": true,
+    "actual_keyboard_return_registered": true,
+    "actual_scroll_416": true,
+    "original_requirements_unchanged": true,
+    "original_model_feedback_changes_next_action": true
+  },
+  "counts": {
+    "pass": 311,
+    "fail": 22,
+    "not_run": 20132,
+    "unavailable": 438
+  },
+  "whole_images": [
+    {
+      "id": "streak-hover-whole",
+      "state": "streak-hover",
+      "status": "fail",
+      "reference_sha256": "dc646c05c31e0b2f4b76069768266fd1e6f9539b79a31e7ff6105463dc14ecc8",
+      "capture_sha256": "910f1202f474b10f7e9351c02c6e85f4df390180c3cce7732a9e7570cb409843",
+      "mean_absolute_rgb_difference": [
+        7.966456056466303,
+        4.350967668488161,
+        9.08001024590164
+      ],
+      "profiles": {
+        "reference": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        },
+        "candidate": {
+          "input_profile": "Display",
+          "input_profile_sha256": "b6869613f44ea83b13cbd15652a1071c6bd85a37a5517bcbe7d1db1bcdc58e6f",
+          "comparison_space": "sRGB"
+        }
+      },
+      "normalization": "ICC to sRGB; measured content crop and backing-scale downsample on each declared capture; no masks, alignment search or tolerance",
+      "reason": "Actual same-state image pixels only; sound, animation timing and unvisited states remain separate"
+    },
+    {
+      "id": "streak-calendar-whole",
+      "state": "streak-calendar",
+      "status": "fail",
+      "reference_sha256": "d542ee391dd8549a212f48f2f08dac20af48bd20825672c93254af2f075670a2",
+      "capture_sha256": "3f0dba58d02ff617a21548fa0d507258c3f359ea1122a656bc79e12f84835420",
+      "mean_absolute_rgb_difference": [
+        6.1142486338797815,
+        4.429042577413479,
+        5.382869990892532
+      ],
+      "profiles": {
+        "reference": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        },
+        "candidate": {
+          "input_profile": "Display",
+          "input_profile_sha256": "b6869613f44ea83b13cbd15652a1071c6bd85a37a5517bcbe7d1db1bcdc58e6f",
+          "comparison_space": "sRGB"
+        }
+      },
+      "normalization": "ICC to sRGB; measured content crop and backing-scale downsample on each declared capture; no masks, alignment search or tolerance",
+      "reason": "Actual same-state image pixels only; sound, animation timing and unvisited states remain separate"
+    },
+    {
+      "id": "streak-bottom-whole",
+      "state": "streak-bottom",
+      "status": "fail",
+      "reference_sha256": "5a2381220b7e216e741069b3f824b576b6cbb966ab2ecb0308543012087ce728",
+      "capture_sha256": "a0f9a3de2a71dfc46923507fa683e26ad0f17935819036bd2b768560f61ab91c",
+      "mean_absolute_rgb_difference": [
+        6.46241689435337,
+        4.7394467213114755,
+        5.577937158469945
+      ],
+      "profiles": {
+        "reference": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        },
+        "candidate": {
+          "input_profile": "Display",
+          "input_profile_sha256": "b6869613f44ea83b13cbd15652a1071c6bd85a37a5517bcbe7d1db1bcdc58e6f",
+          "comparison_space": "sRGB"
+        }
+      },
+      "normalization": "ICC to sRGB; measured content crop and backing-scale downsample on each declared capture; no masks, alignment search or tolerance",
+      "reason": "Actual same-state image pixels only; sound, animation timing and unvisited states remain separate"
+    },
+    {
+      "id": "streak-next-whole",
+      "state": "streak-next",
+      "status": "fail",
+      "reference_sha256": "de9b2f678bbf62495225c5eaefb372637ceae1cb1993d0d66e88d06cabd622a0",
+      "capture_sha256": "c6b1572dc3fc4a00b9c70cd302f1f16903aec5ed310e1eda43af46e22435cace",
+      "mean_absolute_rgb_difference": [
+        6.1692770947176685,
+        4.407659380692167,
+        5.256845400728597
+      ],
+      "profiles": {
+        "reference": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        },
+        "candidate": {
+          "input_profile": "Display",
+          "input_profile_sha256": "b6869613f44ea83b13cbd15652a1071c6bd85a37a5517bcbe7d1db1bcdc58e6f",
+          "comparison_space": "sRGB"
+        }
+      },
+      "normalization": "ICC to sRGB; measured content crop and backing-scale downsample on each declared capture; no masks, alignment search or tolerance",
+      "reason": "Actual same-state image pixels only; sound, animation timing and unvisited states remain separate"
+    }
+  ],
+  "frontier_pending": 5062,
+  "candidate_binary_sha256": "33240ae94c43a0218d8c93c4b55b5f22aa5077c53fca6ac235027ec160ac613e",
+  "scope": "These actual flow checks do not certify frontend, sound, animation, unvisited branches or RSI gain"
+}

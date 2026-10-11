@@ -1,0 +1,18 @@
+### Result
+[{"html":"<button class=\"_1jCTJ _2p3z5 _1ZjP1\"></button>","css":""},{"html":"<button class=\"_3NcMX _2p3z5 _1ZjP1\"></button>","css":""}]
+### Ran Playwright code
+```js
+await (async page=>{const buttons=await page.getByRole('button',{name:'',exact:true}).all();const rows=[];for(const b of buttons)rows.push(await b.evaluate(n=>({html:n.outerHTML,css:getComputedStyle(n).cssText})));return rows;})(page);
+```
+### Open tabs
+- 0: [多邻国 - 学得轻松，学有所成的英语 课程！](https://www.duolingo.com/lesson)
+- 1: [多邻国 - 学得轻松，学有所成的英语 课程！](https://www.duolingo.com/lesson)
+- 2: [多邻国 - 学得轻松，学有所成的英语 课程！](https://www.duolingo.com/guidebook/en/12)
+- 3: [多邻国 - 学得轻松，学有所成的英语 课程！](https://www.duolingo.com/alphabets/en/pronunciation)
+- 4: (current) [多邻国 - 学得轻松，学有所成的英语 课程！](https://www.duolingo.com/learn)
+### Page
+- Page URL: https://www.duolingo.com/learn
+- Page Title: 多邻国 - 学得轻松，学有所成的英语 课程！
+- Console: 49 errors, 0 warnings
+### Events
+- New console entries: .playwright-cli/console-2026-10-11T22-08-09-496Z.log#L101

@@ -27,7 +27,7 @@ swift run --package-path projects/education-swift LearningCoreChecks
 
 使用尚不存在的 progress 路径建立独立初态。已探索的阶段／课程进度使用对应证据目录中的准备夹具；不能把新访客初态冒充课后状态。详细启动、进度隔离和复跑见 [Swift 基座](projects/education-swift/README.md)与 [Duolingo 案例](projects/duolingo-web/README.md)。
 
-当前共同前端规格为 [v76](projects/duolingo-web/frontend-english-v76.json)。[主页下游证据](projects/duolingo-web/evidence/english-home-stat-branches-v1/README.md)覆盖真实目录、透明输入控件、补心持久化及Super返回链；[主页顶部交互证据](projects/duolingo-web/evidence/english-home-stats-v1/README.md)连接原版发现、输入模式、Swift 鼠标／键盘操作及严格失败；[实际声音证据](projects/duolingo-web/evidence/english-pronunciation-current-v1/README.md)区分原资源输出与尚未证明的浏览器声学等价。
+当前共同前端规格为 [v77](projects/duolingo-web/frontend-english-v77.json)。[连胜反馈与严格对照](projects/duolingo-web/evidence/english-streak-followup-v1/README.md)覆盖实际模型选动作、真实反馈修订、Swift日历及保留的整图失败；[主页下游证据](projects/duolingo-web/evidence/english-home-stat-branches-v1/README.md)覆盖真实目录、透明输入控件、补心持久化及Super返回链；[主页顶部交互证据](projects/duolingo-web/evidence/english-home-stats-v1/README.md)连接原版发现、输入模式、Swift 鼠标／键盘操作及严格失败；[实际声音证据](projects/duolingo-web/evidence/english-pronunciation-current-v1/README.md)区分原资源输出与尚未证明的浏览器声学等价。
 
 ## 迭代工具与验证
 
@@ -45,5 +45,7 @@ python3 -m unittest discover -v
 保留 Dream-RSI 的探索策略／历史反馈研究，以及 Cordis 的组件职责／依赖／生命周期研究；原论文和已有机制对应关系见 [研究来源](docs/RESEARCH.md)。当前不是两篇论文的完整复现。
 
 [真实探索消融04](projects/exploration-ablation/REPORT04.md)执行了真实模型生成、回放反馈与在线部署，两组语义代理新增均0，未观察到收益；后续产品探针发现该指标漏掉焦点行为。旧不可判定及负面结果保留。机制检查、探索代理分数、实际业务通过和产品视觉／声音质量分别报告，不用其中一项代替另一项。
+
+[真实策略接续05／06](projects/exploration-ablation/REPORT05-06.md)将前端失败输入模型，实际下滚发现目标／俱乐部后修订并部署键盘下一月，再转共同模具和Swift消费者。两调用共60642 reported tokens，费用unknown；没有匹配对照，不宣称收益。
 
 历史复盘见 [交付审计](docs/DELIVERY-AUDIT.md)、[模型流程](projects/model-pipeline/README.md)、[业务四组消融](projects/business-ablation/REPORT.md)及 [旧 README 检查点](docs/history/README-checkpoints-2026-10-12.md)。本仓库保持私有，公开发布另行决定。

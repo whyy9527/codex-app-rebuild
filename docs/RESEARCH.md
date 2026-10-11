@@ -71,3 +71,8 @@ git show 2ad5175:projects/self-improvement/REPORT.md
 
 
 [后续实际下游](../projects/duolingo-web/evidence/english-home-stat-branches-v1/README.md)继续发现menuitem/透明select漏采、33母语选项、独立听音练习、补心持久化和Super返回链。已将失败转换为新观察维度并回原版验证；这仍是产品反馈闭环，不是新模型策略或匹配预算收益。165状态/87边/4699前沿不作为RSI分数。后续实验要检验模型是否利用这些遗漏发现新的前端需求及消费者，保留04的0/0负结果。
+
+
+### 真实前端反馈部署05／06
+
+[05／06实测](../projects/exploration-ablation/REPORT05-06.md)把原生前端缺失及采样反馈输入真实策略模型，固定首候选，先实际下滚发现连胜目标／俱乐部和固定标题，再用真实反馈修订并封存部署Return下一月。05整页起点检查失败保留；06另行登记局部探索身份，整页图像仍严格比较。两实际调用共60642 reported tokens，费用unknown；随后同源四状态进入v77与Swift消费者。它补上真实反馈→策略变化→在线执行→模具／产品消费的接续，不是匹配预算消融，不宣称发现效率、1:1质量或论文级RSI收益。旧04的0／0及原论文引用不变。

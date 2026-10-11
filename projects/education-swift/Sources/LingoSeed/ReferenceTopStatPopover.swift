@@ -1,6 +1,6 @@
 import SwiftUI
 
-/// Actual en/zh hover panels. Streak and enrollment remain incomplete.
+/// Actual en/zh hover panels. Enrollment remains incomplete.
 struct ReferenceTopStatPopover: View {
     let kind: String
     let gems: Int

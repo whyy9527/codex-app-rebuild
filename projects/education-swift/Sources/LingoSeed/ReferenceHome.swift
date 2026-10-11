@@ -17,6 +17,7 @@ struct ReferenceHome: View {
     @State private var statMenu: String?
     @State private var hoveredStat: String?
     @State private var statPanelHovered = false
+    @State private var showingStreakCalendar = false
     @State private var moreOpen = false
     @State private var moreHovered = false
     @State private var menuHovered = false
@@ -97,6 +98,12 @@ struct ReferenceHome: View {
                         .onHover { inside in statPanelHovered=inside;if !inside {dismissStatLater()} }.zIndex(15)
                 }
                 if showingLegendary { ReferenceLegendary(hearts:model.progress.hearts,start:{ showingLegendary = false; showingPathProfile = true },quit:{ showingLegendary = false }).zIndex(19) }
+                if statMenu == "streak" {
+                    ReferenceStreakPopover(streak:homeSnapshot?.streak ?? (completed > 0 ? 1 : 0),today:referenceClock ?? Date(),details:{statMenu=nil;showingStreakCalendar=true})
+                        .offset(x:geometry.size.width-387.1953125,y:76)
+                        .onHover {inside in statPanelHovered=inside;if !inside {dismissStatLater()} }.zIndex(15)
+                }
+                if showingStreakCalendar {ReferenceStreakCalendar(streak:homeSnapshot?.streak ?? (completed > 0 ? 1 : 0),today:referenceClock ?? Date(),close:{showingStreakCalendar=false}).zIndex(25)}
                 if showingPathProfile { ReferencePathProfile(close: { showingPathProfile = false }).frame(width: geometry.size.width, height: geometry.size.height).zIndex(20) }
                 if moreOpen { moreMenu.offset(x: geometry.size.width >= 1180 ? 238 : 72, y: 438).zIndex(10) }
                 if guestLanguages {ReferenceGuestLanguages(close:{guestLanguages=false},enroll:{guestLanguages=false;model.destination="Learn"}).frame(width:geometry.size.width,height:geometry.size.height).zIndex(28)}
@@ -426,7 +433,7 @@ struct ReferenceHome: View {
     }
 }
 
-private struct ReferenceScrollOffset: NSViewRepresentable {
+struct ReferenceScrollOffset: NSViewRepresentable {
     let changed:(CGFloat)->Void
     final class Observer:NSView {
         var changed:((CGFloat)->Void)?

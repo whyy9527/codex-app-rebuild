@@ -1,0 +1,18 @@
+### Result
+[{"backgroundImage":"url(\"https://d35aaqx5ub95lt.cloudfront.net/images/streakCalendar/06fbf3bb648f263fd5c18e0f618008e2.svg\")","borderTop":"0px none rgb(0, 0, 0)","borderRight":"0px none rgb(0, 0, 0)","borderBottom":"0px none rgb(0, 0, 0)","borderLeft":"0px none rgb(0, 0, 0)","transform":"none","borderRadius":"0px"},{"backgroundImage":"url(\"https://d35aaqx5ub95lt.cloudfront.net/images/streakCalendar/432bd97c3d59c4b51a9b78275dbe72c8.svg\")","borderTop":"0px none rgb(0, 0, 0)","borderRight":"0px none rgb(0, 0, 0)","borderBottom":"0px none rgb(0, 0, 0)","borderLeft":"0px none rgb(0, 0, 0)","transform":"none","borderRadius":"0px"}]
+### Ran Playwright code
+```js
+await (async page=>{return await page.getByRole('button',{name:'',exact:true}).evaluateAll(ns=>ns.map(n=>{const s=getComputedStyle(n);return Object.fromEntries(['backgroundImage','borderTop','borderRight','borderBottom','borderLeft','transform','borderRadius'].map(k=>[k,s[k]]))}));})(page);
+```
+### Open tabs
+- 0: [多邻国 - 学得轻松，学有所成的英语 课程！](https://www.duolingo.com/lesson)
+- 1: [多邻国 - 学得轻松，学有所成的英语 课程！](https://www.duolingo.com/lesson)
+- 2: [多邻国 - 学得轻松，学有所成的英语 课程！](https://www.duolingo.com/guidebook/en/12)
+- 3: [多邻国 - 学得轻松，学有所成的英语 课程！](https://www.duolingo.com/alphabets/en/pronunciation)
+- 4: (current) [多邻国 - 学得轻松，学有所成的英语 课程！](https://www.duolingo.com/learn)
+### Page
+- Page URL: https://www.duolingo.com/learn
+- Page Title: 多邻国 - 学得轻松，学有所成的英语 课程！
+- Console: 50 errors, 0 warnings
+### Events
+- New console entries: .playwright-cli/console-2026-10-11T22-08-09-496Z.log#L102
