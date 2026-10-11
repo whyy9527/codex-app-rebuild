@@ -784,6 +784,22 @@ func observedHomeClock() throws {
     print("PASS actual original countdown epochs and legacy fixture compatibility")
 }
 
+func observedPlacementPersistence() throws {
+    let test=try course(fixture:"fixture-reference-en-zh-section-placement-v2.json")
+    guard let outcome=test.lessons[0].placementOutcome else {throw CheckFailure.failed("Observed placement outcome missing")}
+    try check(outcome.activeStage==2 && outcome.completedStages==[1] && outcome.englishScore==10,"Actual stage unlock/score lost")
+    try check(outcome.homeSnapshot.gems==530 && outcome.homeSnapshot.questTarget==50,"Actual source result snapshot lost")
+    let old=Data("{\"completedCourses\":[],\"completedLessons\":{},\"hearts\":5}".utf8)
+    var progress=try JSONDecoder().decode(LearningProgress.self,from:old)
+    try check(progress.placementOutcomes.isEmpty,"Old progress invented a stage result")
+    progress.placementOutcomes["main-course"]=outcome
+    let restored=try JSONDecoder().decode(LearningProgress.self,from:JSONEncoder().encode(progress))
+    try check(restored==progress && restored.hearts==5,"Placement persistence changed global hearts or result")
+    let original=try course(fixture:"fixture-reference-en-zh-section-placement-v1.json")
+    try check(original.lessons[0].placementOutcome==nil,"Historical fixture changed")
+    print("PASS observed placement outcome persistence and legacy progress/fixture compatibility")
+}
+
 do {
     try mistakeReview()
     try persistence()
@@ -815,7 +831,8 @@ do {
     try actualEighthCourse()
     try observedPathChest()
     try observedHomeClock()
-    print("30 business checks passed; core layer only")
+    try observedPlacementPersistence()
+    print("31 business checks passed; core layer only")
 } catch {
     FileHandle.standardError.write(Data(("FAIL " + String(describing: error) + "\n").utf8))
     exit(1)

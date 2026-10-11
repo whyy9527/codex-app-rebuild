@@ -313,3 +313,8 @@ ReferenceHomeDuo读取实际页面加载的原JSON，由固定Lottie 4.6.1原生
 ### 完整控件库存、跨页状态和独立返回
 
 源采集器的control_inventory保留屏幕外规范控件；actions继续保留视口指针候选，库存不代表实际执行。原生AX库存另含无开发者ID控件，避免把采集遗漏误当产品不存在；映射失败仍unavailable。源历史编译器把真实动作及屏幕外库存接入既有frontier，保留重复／遮挡局限。个人页SMAvatar从同一17项保存状态渲染，但使用素材默认Zoom1，编辑器Zoom3；两个消费者单独回读。语言模态的实际存在性和404／主页路由进入共同契约，AX调用成功不能冒充遮罩关闭。404原字体按gzip解码为OTTO后注册，独立字体回读与原版平台字体探针对应；Swift6成功构建与二进制摘要先于候选验收。[证据与开放缺口](../projects/duolingo-web/evidence/english-profile-return-v1/README.md)。
+
+
+### 观察实例的阶段结果与原版重载状态
+
+LessonDefinition的可选ObservedPlacementOutcome只保存已有全对实例的源结果；LearningProgress以课程ID持久化，旧文件decodeIfPresent兼容。独立跳级红心不覆盖全局生命，既有完成数不冒充新阶段进度。主页／任务／商店消费同一快照，阶段列表读取独立原版解锁布局。客户端重载并不等于服务端重置，即时任务50/50与后续0/50保留为不同源状态。v64及compile-stage2-frontier接收真实新状态和点击结果，库存与执行分别保存。主页旧路径、指南旧内容、复习回调缺失及真实音频验证仍在验收中。[消费者与证据](../projects/duolingo-web/evidence/english-stage2-home-v1/README.md)。

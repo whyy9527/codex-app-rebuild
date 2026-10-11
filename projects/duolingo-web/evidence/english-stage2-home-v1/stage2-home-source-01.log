@@ -1,0 +1,18 @@
+file://<workspace>/projects/duolingo-web/observe-stage2-home.mjs:11
+function run(code){const r=spawnSync(cli,['-s='+session,'run-code',code],{cwd:resolve('artifacts/output/playwright'),encoding:'utf8',timeout:60000,maxBuffer:12*1024*1024});if(r.status!==0||!r.stdout.includes('### Result\n'))throw Error('Source did not return actual Result: '+(r.stderr||r.stdout).slice(0,500));return JSON.parse(r.stdout.split('### Result\n')[1].split('\n### Ran')[0]);}
+                                                                                                                                                                                                                                      ^
+
+Error: Source did not return actual Result: ### Error
+Error: locator.click: Error: strict mode violation: getByRole('button', { name: 'Lesson 1 of 5', exact: true }) resolved to 2 elements:
+    1) <div role="button" tabindex="-1" class="HPdUG fF_qH">…</div> aka getByRole('button', { name: 'Lesson 1 of' }).first()
+    2) <button aria-label="Lesson 1 of 5" class="_1gEmM _7jW2t _1333i _22TV_ _3Jm09" data-test="skill-path-level-0 skill-path-level-skill">…</button> aka locator('[data-test="skill-path-level-0 skill-path-level-skill"]')
+
+Call lo
+    at run (file://<workspace>/projects/duolingo-web/observe-stage2-home.mjs:11:231)
+    at action (file://<workspace>/projects/duolingo-web/observe-stage2-home.mjs:12:308)
+    at file://<workspace>/projects/duolingo-web/observe-stage2-home.mjs:18:1
+    at ModuleJob.run (node:internal/modules/esm/module_job:430:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:639:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+
+Node.js v25.8.0

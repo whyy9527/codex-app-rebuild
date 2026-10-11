@@ -1,0 +1,11 @@
+{
+  "maximum_actions": 12,
+  "attempts": [
+    {
+      "name": "first lesson entry",
+      "status": "failed",
+      "started_at": "2026-10-11T16:59:34.689Z",
+      "failure": "Error: Source did not return actual Result: ### Error\nError: locator.click: Error: strict mode violation: getByRole('button', { name: 'Lesson 1 of 5', exact: true }) resolved to 2 elements:\n    1) <div role=\"button\" tabindex=\"-1\" class=\"HPdUG fF_qH\">…</div> aka getByRole('button', { name: 'Lesson 1 of' }).first()\n    2) <button aria-label=\"Lesson 1 of 5\" class=\"_1gEmM _7jW2t _1333i _22TV_ _3Jm09\" data-test=\"skill-path-level-0 skill-path-level-skill\">…</button> aka locator('[data-test=\"skill-path-level-0 skill-path-level-skill\"]')\n\nCall lo"
+    }
+  ]
+}

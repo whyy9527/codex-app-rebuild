@@ -1,0 +1,21 @@
+{
+  "maximum_actions": 2,
+  "attempts": [
+    {
+      "name": "open-sections",
+      "status": "observed",
+      "result": {
+        "path": "/sections"
+      }
+    },
+    {
+      "name": "scroll-top",
+      "status": "observed",
+      "result": {
+        "path": "/sections",
+        "scrollY": 0
+      }
+    }
+  ],
+  "trigger": "Stage2 Learn retained50/50, later Sections showed0/50; distinguish real reload from optimistic route state"
+}

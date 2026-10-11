@@ -24,7 +24,8 @@ struct ReferenceHome: View {
         Binding(get:{ model.preferences.leaderboardStatus },set:{ model.preferences.leaderboardStatus = $0; model.savePreferences() })
     }
     private var completed: Int { model.progress.completedCount(model.course) }
-    private var homeSnapshot: HomeProgressSnapshot? { model.course.home?.progressSnapshots?.first { $0.completedLessons == completed } }
+    private var homeSnapshot: HomeProgressSnapshot? { model.placementOutcome?.homeSnapshot ?? model.course.home?.progressSnapshots?.first { $0.completedLessons == completed } }
+    private var homeGems: Int { model.placementOutcome?.homeSnapshot.gems ?? (chestOpened ? pathChest?.afterGems ?? 0 : homeSnapshot?.gems ?? (500 + completed * 5)) }
     private var referenceClock: Date? {
         guard let index = CommandLine.arguments.firstIndex(of: "--reference-clock-milliseconds"),
               index + 1 < CommandLine.arguments.count, let epoch = Double(CommandLine.arguments[index + 1]) else { return nil }
@@ -46,11 +47,11 @@ struct ReferenceHome: View {
                 else if model.destination == "Forgot password" { ReferenceForgotPassword() }
                 else {
                 ScrollView {
-                    if model.destination == "Sections" { ReferenceSections(leave:{model.destination="Learn"},jump:model.prepareSectionPlacement).padding(.horizontal,24) }
+                    if model.destination == "Sections" { ReferenceSections(activeStage:model.placementOutcome?.activeStage ?? 1,completedStages:model.placementOutcome?.completedStages ?? [],leave:{model.destination="Learn"},jump:model.prepareSectionPlacement).padding(.horizontal,24) }
                     else if model.destination == "Pronunciation" { ReferencePronunciation(model: model).padding(.horizontal, 24).padding(.top, 43) }
                     else if model.destination == "Leaderboards" { ReferenceLeaderboard(selectedStatus:selectedLeaderboardStatus,practice:{ model.beginGeneralPractice() },profile:{ model.destination = "Guest profile"; if model.preferences.avatarSkin == nil && !guestIntroductionSeen { guestIntroduction = true; guestIntroductionSeen = true } }).padding(.horizontal,24).padding(.top,24) }
                     else if model.destination == "Guest profile" { ReferenceGuestProfile(avatar:{model.destination="Guest avatar"},achievements:{model.destination = "Guest achievements error"},avatarState:model.preferences.avatarState,animations:model.preferences.animations,languages:{guestLanguages=true}).padding(.horizontal,24).padding(.top,24) }
-                    else if model.destination == "Shop" { ReferenceShop(gems: chestOpened ? (pathChest?.afterGems ?? homeSnapshot?.gems ?? 0) : (homeSnapshot?.gems ?? 0), create: { authentication = "profile" }).padding(.top,40) }
+                    else if model.destination == "Shop" { ReferenceShop(gems: homeGems, create: { authentication = "profile" }).padding(.top,40) }
                     else if model.destination == "Quests" { ReferenceQuests(snapshot: homeSnapshot).padding(.horizontal, 24).padding(.top, 24) }
                     else if model.destination == "Guidebook" { ReferenceGuidebook(model: model).padding(.horizontal, 24).padding(.top, 48) }
                     else { path.padding(.horizontal, 24).padding(.top, 48) }
@@ -139,8 +140,8 @@ struct ReferenceHome: View {
         VStack(spacing: 0) {
             HStack(spacing: 12) {
                 VStack(alignment: .leading, spacing: 8) {
-                    ReferencePracticeControl(label:model.course.home?.sectionTitle ?? "SECTION 1, UNIT 1",identifier:"open-sections",enabled:true,action:{model.destination="Sections"},face:AnyView(HStack(spacing:8) {ReferenceStyle.image("back").resizable().frame(width:16,height:16);Text(model.course.home?.sectionTitle ?? "SECTION 1, UNIT 1").font(ReferenceStyle.font(16,bold:true));Spacer(minLength:0)}.opacity(0.8)),role:.link,fixedFaceSize:true).frame(height:24)
-                    Text(model.course.title).font(ReferenceStyle.font(22, bold: true)).accessibilityIdentifier("course-entry")
+                    ReferencePracticeControl(label:model.placementOutcome?.sectionTitle ?? model.course.home?.sectionTitle ?? "SECTION 1, UNIT 1",identifier:"open-sections",enabled:true,action:{model.destination="Sections"},face:AnyView(HStack(spacing:8) {ReferenceStyle.image("back").resizable().frame(width:16,height:16);Text(model.placementOutcome?.sectionTitle ?? model.course.home?.sectionTitle ?? "SECTION 1, UNIT 1").font(ReferenceStyle.font(16,bold:true));Spacer(minLength:0)}.opacity(0.8)),role:.link,fixedFaceSize:true).frame(height:24)
+                    Text(model.placementOutcome?.courseTitle ?? model.course.title).font(ReferenceStyle.font(22, bold: true)).accessibilityIdentifier("course-entry")
                 }
                 Spacer(minLength: 0)
                 Button { model.destination = "Guidebook" } label: {
@@ -277,9 +278,9 @@ struct ReferenceHome: View {
     }
     private var dashboardStats: some View {
             HStack {
-                stat(model.course.home?.flagResource ?? "flag-spanish", chinese ? "5" : "1", color: ReferenceStyle.ink, width: 31)
+                stat(model.course.home?.flagResource ?? "flag-spanish", chinese ? String(model.placementOutcome?.englishScore ?? 5) : "1", color: ReferenceStyle.ink, width: 31)
                 Spacer(); stat("streak", "\(homeSnapshot?.streak ?? (completed > 0 ? 1 : 0))", color: .orange, width: 23)
-                Spacer(); stat("gems", "\(chestOpened ? pathChest?.afterGems ?? 0 : homeSnapshot?.gems ?? (500 + completed * 5))", color: blue, width: 22)
+                Spacer(); stat("gems", "\(homeGems)", color: blue, width: 22)
                 Spacer(); stat("hearts", "\(model.progress.hearts)", color: .red, width: 28)
             }.padding(.horizontal, 12)
     }

@@ -1,0 +1,46 @@
+{
+  "kind": "observed_exploration_feedback",
+  "prior_evidence": "projects/duolingo-web/evidence/english-sections-v1/exploration-feedback.json",
+  "discoveries": [
+    {
+      "source": "source/stage2-home-source-02-lesson-popover.json",
+      "finding": "Stage2 course is groceries, five units, +10XP entry; old stage1 lesson body cannot stand in for it",
+      "next": "Enter actual groceries lesson and capture question/audio/feedback instance"
+    },
+    {
+      "source": "source/stage2-home-source-02-story-entry.json",
+      "finding": "Locked story remains clickable and opens Basketball Player popup with disabled locked CTA",
+      "next": "Freeze and implement original popup; distinguish clickable entry from disabled inner action"
+    },
+    {
+      "source": "source/stage2-home-source-02-guide.json",
+      "finding": "Guide route en/11 contains shopping phrases; current native guide is old Spanish content",
+      "next": "Explore remaining scroll and each speech control, collect original output"
+    },
+    {
+      "source": "source/stage2-home-source-02-radio-entry.json",
+      "finding": "Radio click scrolls unit2; rendered inventory57 to75; no player established",
+      "next": "Follow newly revealed unit3 and scroll-return behavior, keep audio unknown"
+    },
+    {
+      "source": "source/stage2-source-reload-after-reload.json",
+      "finding": "Stage2, score10, gems530 persist; daily quest now0/50",
+      "next": "Investigate next real day lesson and reload; cross-midnight cause is only a hypothesis"
+    }
+  ],
+  "selection": {
+    "basis": "Actual new branches and stale native consumers take priority over repeated passing checks",
+    "next_actions": [
+      "Groceries lesson with aligned original/native audio",
+      "Stage2 full path and story popup",
+      "Shopping guide speech and lower content",
+      "Virtualized lower path and stage1 review"
+    ],
+    "evaluation": "Record executed edges, new frontend requirements, failed comparisons and costs; matched start/budget ablation still required"
+  },
+  "limits": [
+    "No RSI causal gain established",
+    "Observed inventory is not executed coverage",
+    "No server reset or general score formula established"
+  ]
+}

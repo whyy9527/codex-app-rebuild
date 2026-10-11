@@ -1,0 +1,6 @@
+### Result
+{"path":"/sections","scrollY":0}
+### Ran Playwright code
+```js
+await (async page=>{await page.evaluate(()=>window.scrollTo(0,0));return {path:new URL(page.url()).pathname,scrollY:await page.evaluate(()=>scrollY)};})(page);
+```

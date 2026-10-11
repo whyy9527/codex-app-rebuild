@@ -1,0 +1,37 @@
+{
+  "failures": [
+    {
+      "evidence": "stage2-home-source-01.log",
+      "finding": "role/name matched both outer DIV and inner BUTTON; strict selector failed before mutation",
+      "resolution": "Actual source data-test selector"
+    },
+    {
+      "evidence": "stage2-home-sections-repair.log",
+      "finding": "ASCII-space heading matching missed cards; next extraction swallowed regex escape and lost H1 text",
+      "resolution": "Read actual nine-card H1/BUTTON/P text, preserve failed extracts"
+    },
+    {
+      "evidence": "native-failed/observed.json",
+      "finding": "Wrong section presentation text caused missing native continue control after40states",
+      "resolution": "Corrected source card extraction then actual43state rerun"
+    },
+    {
+      "evidence": "native-placement/frontend-v64.json",
+      "finding": "78frontendfail;43wholeimagesfail,294unavailable",
+      "resolution": "Open; no assertion relaxation"
+    },
+    {
+      "evidence": "native-restored/frontend-v64.json",
+      "finding": "Latest3state build67fail;stage2oldpath/guide/stalequest and missing actions remain",
+      "resolution": "Open; continue business/frontend exploration"
+    },
+    {
+      "finding": "Later live read returned session not open after successful source sections-to-learn navigation; CLI list reported no browsers",
+      "resolution": "No new source geometry inferred; frozen evidence used for current batch. Separate owned blank asset browser opened; resume actual source with verified preparation."
+    }
+  ],
+  "limits": [
+    "Reference self-check1800pass means source13state contracts executable, not candidate fidelity;13audio requirements remain pending",
+    "No matched-budget RSI effect estimate"
+  ]
+}

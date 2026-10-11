@@ -208,7 +208,18 @@ public struct SettlementFlow: Equatable, Sendable {
     public init(pages: [SettlementPage]) { self.pages = pages }
     public mutating func advance() { if current != nil { position += 1 } }
 }
+public struct ObservedPlacementOutcome: Codable, Equatable, Sendable {
+    public let activeStage: Int
+    public let sectionTitle: String
+    public let courseTitle: String
+    public let completedStages: Set<Int>
+    public let englishScore: Int
+    public let homeSnapshot: HomeProgressSnapshot
+    public let sourceEvidence: String
+    public let observedMistakes: Int
+}
 public struct LessonDefinition: Codable, Equatable, Sendable, Identifiable {
+    public var placementOutcome: ObservedPlacementOutcome? = nil
     public var listeningDeclineReplacements: [String: Question]? = nil
     public var initialKeyboardForTiles: Bool? = nil
     public let id: String
@@ -538,9 +549,10 @@ public struct LearningProgress: Codable, Equatable, Sendable {
     public var completedCourses: Set<String> = []
     public var completedLessons: [String: Set<String>] = [:]
     public var hearts = 5
+    public var placementOutcomes: [String: ObservedPlacementOutcome] = [:]
     public var openedPathChests: [String: Set<String>] = [:]
     public init() {}
-    enum CodingKeys: String, CodingKey { case completedCourses, completedLessons, hearts, openedPathChests }
+    enum CodingKeys: String, CodingKey { case completedCourses, completedLessons, hearts, openedPathChests, placementOutcomes }
     public init(from decoder: Decoder) throws {
         let c = try decoder.container(keyedBy: CodingKeys.self)
         guard c.contains(.completedCourses) || c.contains(.completedLessons) else {
@@ -548,6 +560,7 @@ public struct LearningProgress: Codable, Equatable, Sendable {
         }
         completedCourses = c.contains(.completedCourses) ? try c.decode(Set<String>.self, forKey: .completedCourses) : []
         completedLessons = c.contains(.completedLessons) ? try c.decode([String: Set<String>].self, forKey: .completedLessons) : [:]
+        placementOutcomes = try c.decodeIfPresent([String: ObservedPlacementOutcome].self, forKey: .placementOutcomes) ?? [:]
         openedPathChests = try c.decodeIfPresent([String: Set<String>].self, forKey: .openedPathChests) ?? [:]
         hearts = c.contains(.hearts) ? try c.decode(Int.self, forKey: .hearts) : 5
         guard hearts >= 0 else { throw DecodingError.dataCorruptedError(forKey: .hearts, in: c, debugDescription: "Hearts cannot be negative") }

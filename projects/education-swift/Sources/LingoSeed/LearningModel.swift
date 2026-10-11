@@ -13,6 +13,7 @@ import LearningCore
     var sectionPlacementStage:Int?
     var sectionPlacementEntry=false
     var isSectionPlacement:Bool {sessionKind == .sectionPlacement}
+    var placementOutcome: ObservedPlacementOutcome? { progress.placementOutcomes[course.id] }
     var isGeneralPractice: Bool { sessionKind == .generalPractice }
     var pronunciationExitNeedsConfirmation: Bool {
         guard sessionKind != .course, let lesson else { return false }
@@ -227,7 +228,15 @@ import LearningCore
             progress.hearts += 1; save()
         }
         settlement?.advance()
-        if settlement?.current == nil { discardAttempt() }
+        if settlement?.current == nil {
+            if isSectionPlacement, let lesson, lesson.complete,
+               let outcome=lesson.definition.placementOutcome,
+               lesson.mistakesMade == outcome.observedMistakes {
+                progress.placementOutcomes[course.id]=outcome
+                save()
+            }
+            discardAttempt()
+        }
     }
     func openPathChest() {
         if progress.openPathChest(course) { save() }

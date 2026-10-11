@@ -4,11 +4,17 @@ The instance is evidence, not an adaptive selection model or a blind RSI score.
 Raw ungraded stops remain in the receipts; no future challenge list is read.
 """
 import hashlib
+import argparse
 import importlib.util
 import json
 from pathlib import Path
 import re
 
+parser=argparse.ArgumentParser(description=__doc__)
+parser.add_argument('--without-outcome',action='store_true',help='Reproduce the prior v1 fixture without post-placement outcome')
+parser.add_argument('--out-dir',help='Write compiler products into a fresh directory instead of the working bundle')
+args=parser.parse_args()
+version=1 if args.without_outcome else 2
 BASE = Path(__file__).resolve().parent
 EV = BASE / 'evidence/english-sections-v1'
 BUNDLE = BASE.parent / 'education-swift/Sources/LingoSeed/Resources/Reference'
@@ -111,6 +117,20 @@ lesson = dict(id='section-placement-2', title='第 2 阶段通关测试', questi
     dict(id='placement-profile', kind='profile', title='来创建你的个人档案吧！',
          body='创建档案就能保存学习进度，随时都可以继续免费学习后续内容。',
          continueLabel='稍后再说', secondaryLabel='创建档案')])
+if not args.without_outcome:
+    # This is the actually observed post-test state, not a reward/unlock formula.
+    post=json.loads((EV/'source/sections-stage2-home.json').read_text())
+    assert all(any(a.get('name')==t for a in post['actions']) for t in ['10','2','530','5'])
+    league=next(m for m in post['media'] if '/images/leagues/' in (m.get('src') or ''))
+    league_resource=c.resource(league['src'],'home')
+    c.resources[league_resource].update(render_width=70,render_height=50)
+    lesson['placementOutcome']=dict(activeStage=2,completedStages=[1],englishScore=10,
+        sectionTitle='第 2 阶段，第 1 部分',courseTitle='购买食品杂货',observedMistakes=0,
+        sourceEvidence='projects/duolingo-web/evidence/english-sections-v1/source/sections-stage2-home.json',
+        homeSnapshot=dict(completedLessons=8,gems=530,streak=2,leagueTitle='青铜等级',leagueLink='查看排行榜',
+          leagueMessage='学个单元就能上本周排行榜，跟其他小伙伴一决高低！',leagueResource=league_resource,
+          questTarget=50,questProgress=50))
+    assert all(t in [r['text'] for r in post['text_runs']] for t in [lesson['placementOutcome']['sectionTitle'],lesson['placementOutcome']['courseTitle'],lesson['placementOutcome']['homeSnapshot']['leagueMessage']])
 fixture = dict(data=dict(candidate_course=dict(id='duolingo-en-zh-section-placement-2',
     title=lesson['title'], speechLanguage='en', interfaceLanguage='zh', lessons=[lesson])),
     provenance=dict(source='15 actual current-renderer questions accepted in stage2 placement',
@@ -120,8 +140,10 @@ heart=next(m['src'] for m in heart_source['media'] if '/hearts/c5e896836d874aac0
 c.resources['en-placement-heart']=dict(name='en-placement-heart',url=heart,kind='image',source_file='en-placement-heart.svg',render_width=25,render_height=22)
 filled=next(m['src'] for m in heart_source['media'] if '/hearts/5622d0c47ee5b3c9f2bda53b1a18d59b.svg' in m.get('src',''))
 c.resources['en-placement-heart-filled']=dict(name='en-placement-heart-filled',url=filled,kind='image',source_file='en-placement-heart-filled.svg',render_width=25,render_height=22)
+if args.out_dir: Path(args.out_dir).mkdir(parents=True,exist_ok=False)
 for path, data in [(BUNDLE/'section-placement-2.json', fixture),
-                   (BASE/'fixture-reference-en-zh-section-placement-v1.json', fixture),
-                   (BASE/'reference-assets-en-zh-section-placement-v1.json', list(c.resources.values()))]:
+                   (BASE/f'fixture-reference-en-zh-section-placement-v{version}.json', fixture),
+                   (BASE/f'reference-assets-en-zh-section-placement-v{version}.json', list(c.resources.values()))]:
+    if args.out_dir: path=Path(args.out_dir)/path.name
     path.write_text(json.dumps(data, ensure_ascii=False, indent=2)+'\n')
 print(json.dumps(dict(accepted=len(questions), interludes=len(interludes), resources=len(c.resources))))
