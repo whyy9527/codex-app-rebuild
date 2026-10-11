@@ -1,0 +1,23 @@
+{
+  "policy": {
+    "id": "keyboard-then-click",
+    "rationale": "Prefer activation modes as a hypothesis for discovering semantic or enabled/checked changes: Enter to first, then click Hi. Operation prefixes transfer across guide words. Outcomes and novelty remain unknown; this does not establish product completeness.",
+    "rules": [
+      {
+        "term": "Enter ",
+        "weight": 10
+      },
+      {
+        "term": "click ",
+        "weight": 9
+      },
+      {
+        "term": "hover ",
+        "weight": 2
+      }
+    ],
+    "repeat_penalty": 12
+  },
+  "digest": "16cf7367cf1fcf87352bbd74bd7da375a4a4c90a366fc6e5ae3d740046ba16dd",
+  "reason": "Model preferred first candidate; no replay-feedback selection"
+}

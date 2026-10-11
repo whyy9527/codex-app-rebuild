@@ -1,0 +1,493 @@
+{
+  "baseline_commit": "5564ce1",
+  "registration_commit": "87f8c200cc76c0425bb7e40c9c4c21b52333adb1",
+  "world_digest": "19f94379b921c8222aebd8cb4b76d0d0f833d7350d0340434173e851cc114260",
+  "root_snapshot_sha256": "8d5089c60e3e7c33639808b1e75627f597de9afccef44e28e2bfafa71b5de920",
+  "selected": {
+    "replay_feedback": {
+      "id": "hover-then-keyboard",
+      "rationale": "Prioritize hover, then Enter, to sample two interaction modes for potentially novel semantic or enabled/checked facts. Uses operation prefixes that transfer across guide words; outcomes remain unknown.",
+      "rules": [
+        {
+          "term": "hover ",
+          "weight": 10
+        },
+        {
+          "term": "Enter ",
+          "weight": 9
+        },
+        {
+          "term": "click ",
+          "weight": 2
+        }
+      ],
+      "repeat_penalty": 12
+    },
+    "no_replay_feedback": {
+      "id": "keyboard-then-click",
+      "rationale": "Prefer activation modes as a hypothesis for discovering semantic or enabled/checked changes: Enter to first, then click Hi. Operation prefixes transfer across guide words. Outcomes and novelty remain unknown; this does not establish product completeness.",
+      "rules": [
+        {
+          "term": "Enter ",
+          "weight": 10
+        },
+        {
+          "term": "click ",
+          "weight": 9
+        },
+        {
+          "term": "hover ",
+          "weight": 2
+        }
+      ],
+      "repeat_penalty": 12
+    }
+  },
+  "selected_digests": {
+    "replay_feedback": "dfe1c6da00546e3e797622406cf9ce1a2b8bbc4d6b508ba0ec2c6609d02f3e75",
+    "no_replay_feedback": "16cf7367cf1fcf87352bbd74bd7da375a4a4c90a366fc6e5ae3d740046ba16dd"
+  },
+  "initial_candidates": [
+    {
+      "id": "hover-then-keyboard",
+      "rationale": "Prioritize hover, then Enter, to sample two interaction modes for potentially novel semantic or enabled/checked facts. Uses operation prefixes that transfer across guide words; outcomes remain unknown.",
+      "rules": [
+        {
+          "term": "hover ",
+          "weight": 10
+        },
+        {
+          "term": "Enter ",
+          "weight": 9
+        },
+        {
+          "term": "click ",
+          "weight": 2
+        }
+      ],
+      "repeat_penalty": 12
+    },
+    {
+      "id": "click-then-hover",
+      "rationale": "Sample direct activation first, then hover. Equal click scores select the first displayed click action; the repeat penalty favors a different action on the second visit. Novelty is unverified.",
+      "rules": [
+        {
+          "term": "click ",
+          "weight": 9
+        },
+        {
+          "term": "hover ",
+          "weight": 10
+        },
+        {
+          "term": "Enter ",
+          "weight": 1
+        },
+        {
+          "term": "click H",
+          "weight": 2
+        }
+      ],
+      "repeat_penalty": 12
+    },
+    {
+      "id": "keyboard-then-click",
+      "rationale": "Sample Enter first, then the first displayed click action to compare keyboard and pointer activation. These are allocation hypotheses for the limited semantic proxy, not evidence of frontend completeness.",
+      "rules": [
+        {
+          "term": "Enter ",
+          "weight": 10
+        },
+        {
+          "term": "click ",
+          "weight": 9
+        },
+        {
+          "term": "hover ",
+          "weight": 2
+        }
+      ],
+      "repeat_penalty": 12
+    }
+  ],
+  "control_candidates": [
+    {
+      "id": "keyboard-then-click",
+      "rationale": "Prefer activation modes as a hypothesis for discovering semantic or enabled/checked changes: Enter to first, then click Hi. Operation prefixes transfer across guide words. Outcomes and novelty remain unknown; this does not establish product completeness.",
+      "rules": [
+        {
+          "term": "Enter ",
+          "weight": 10
+        },
+        {
+          "term": "click ",
+          "weight": 9
+        },
+        {
+          "term": "hover ",
+          "weight": 2
+        }
+      ],
+      "repeat_penalty": 12
+    },
+    {
+      "id": "hover-then-keyboard",
+      "rationale": "Sample hover welcome, then Enter to, testing two interaction modes with transferable operation prefixes. Hover may reveal semantic facts, but no outcome evidence supports that expectation. Geometry/CSS receive no reward.",
+      "rules": [
+        {
+          "term": "hover ",
+          "weight": 10
+        },
+        {
+          "term": "Enter ",
+          "weight": 9
+        },
+        {
+          "term": "click ",
+          "weight": 2
+        }
+      ],
+      "repeat_penalty": 12
+    },
+    {
+      "id": "two-click-targets",
+      "rationale": "Sample click Hi, then click my: equal click scores follow displayed order, and the repeat penalty moves selection to the unvisited click target. This replaces the guide-word-specific bonus with transferable prefixes and tests target variation; semantic novelty remains unverified.",
+      "rules": [
+        {
+          "term": "click ",
+          "weight": 10
+        },
+        {
+          "term": "hover ",
+          "weight": 3
+        },
+        {
+          "term": "Enter ",
+          "weight": 2
+        }
+      ],
+      "repeat_penalty": 12
+    }
+  ],
+  "replay_candidates": [
+    {
+      "id": "unvisited-click-then-keyboard",
+      "rationale": "Recorded Hi, hover, and Enter observations yielded zero new proxy facts; my remains unobserved. Select my, then Enter. Operation preferences transfer; the Hi penalty is replay-specific. Unvisited and online outcomes remain unknown; completeness is not established.",
+      "rules": [
+        {
+          "term": "click ",
+          "weight": 10
+        },
+        {
+          "term": "click Hi",
+          "weight": -10
+        },
+        {
+          "term": "Enter ",
+          "weight": 8
+        },
+        {
+          "term": "hover ",
+          "weight": 7
+        }
+      ],
+      "repeat_penalty": 12
+    },
+    {
+      "id": "unvisited-click-then-hover",
+      "rationale": "Select unobserved my, then hover as a different second interaction mode. Both recorded hover and Enter yielded zero, so this ordering has no demonstrated advantage over keyboard second. The Hi penalty is replay-specific; online outcomes and completeness remain unknown.",
+      "rules": [
+        {
+          "term": "click ",
+          "weight": 10
+        },
+        {
+          "term": "click Hi",
+          "weight": -10
+        },
+        {
+          "term": "hover ",
+          "weight": 8
+        },
+        {
+          "term": "Enter ",
+          "weight": 7
+        }
+      ],
+      "repeat_penalty": 12
+    },
+    {
+      "id": "unvisited-click-then-other-click",
+      "rationale": "Select unobserved my, then Hi to allocate both visits to distinct click actions. Hi previously yielded zero, making this a lower-ranked activation hypothesis. The word-specific penalty only redirects the first local choice; it does not establish transfer benefit or completeness.",
+      "rules": [
+        {
+          "term": "click ",
+          "weight": 10
+        },
+        {
+          "term": "click Hi",
+          "weight": -1
+        },
+        {
+          "term": "Enter ",
+          "weight": 2
+        },
+        {
+          "term": "hover ",
+          "weight": 1
+        }
+      ],
+      "repeat_penalty": 12
+    }
+  ],
+  "replay_scores": [
+    {
+      "policy_digest": "dfe1c6da00546e3e797622406cf9ce1a2b8bbc4d6b508ba0ec2c6609d02f3e75",
+      "budget": 2,
+      "score": 0,
+      "trace": [
+        {
+          "step": 1,
+          "action": "hover-welcome",
+          "new_atoms": 0,
+          "outcome": {
+            "atoms": [],
+            "evidence": "hover-welcome-after.json",
+            "receipt_sha256": "e8a21140117ca263a300cbb925908e3aff81b5af26a42cf35791533ba7549fcc"
+          }
+        },
+        {
+          "step": 2,
+          "action": "enter-to",
+          "new_atoms": 0,
+          "outcome": {
+            "atoms": [],
+            "evidence": "enter-to-after.json",
+            "receipt_sha256": "fe7414538a93bc958c766fc7da4f37f73820c45e399413208dd746414513b033"
+          }
+        }
+      ],
+      "interpretation": "Semantic frontend fact proxy; not independent requirements or product quality"
+    },
+    {
+      "policy_digest": "4da02726c4b7b475316b1efc63707ca1850d58e440a91713332bec33a8adefc2",
+      "budget": 2,
+      "score": 0,
+      "trace": [
+        {
+          "step": 1,
+          "action": "click-hi",
+          "new_atoms": 0,
+          "outcome": {
+            "atoms": [],
+            "evidence": "click-hi-after.json",
+            "receipt_sha256": "501db8becf52a50360e349ac7960eb4b53bdd1db30200f95f838a678bed5bfcc"
+          }
+        },
+        {
+          "step": 2,
+          "action": "hover-welcome",
+          "new_atoms": 0,
+          "outcome": {
+            "atoms": [],
+            "evidence": "hover-welcome-after.json",
+            "receipt_sha256": "e8a21140117ca263a300cbb925908e3aff81b5af26a42cf35791533ba7549fcc"
+          }
+        }
+      ],
+      "interpretation": "Semantic frontend fact proxy; not independent requirements or product quality"
+    },
+    {
+      "policy_digest": "ab804c6b9d124d729f17a86e4f24f45608dad83b042f58cb97f992dadfa1b11d",
+      "budget": 2,
+      "score": 0,
+      "trace": [
+        {
+          "step": 1,
+          "action": "enter-to",
+          "new_atoms": 0,
+          "outcome": {
+            "atoms": [],
+            "evidence": "enter-to-after.json",
+            "receipt_sha256": "fe7414538a93bc958c766fc7da4f37f73820c45e399413208dd746414513b033"
+          }
+        },
+        {
+          "step": 2,
+          "action": "click-hi",
+          "new_atoms": 0,
+          "outcome": {
+            "atoms": [],
+            "evidence": "click-hi-after.json",
+            "receipt_sha256": "501db8becf52a50360e349ac7960eb4b53bdd1db30200f95f838a678bed5bfcc"
+          }
+        }
+      ],
+      "interpretation": "Semantic frontend fact proxy; not independent requirements or product quality"
+    },
+    {
+      "policy_digest": "16b85d1491d2a52dd53d1bf9478b4849c38927145f70330e90b2c03fe9f24124",
+      "budget": 2,
+      "score": 0,
+      "trace": [
+        {
+          "step": 1,
+          "action": "click-my",
+          "new_atoms": 0,
+          "outcome": {
+            "atoms": [],
+            "evidence": "click-my-after.json",
+            "receipt_sha256": "1de1d8359d0326b4e5902abb52c76a026f44b86d05d01a5b85ec9ced2e4912ab"
+          }
+        },
+        {
+          "step": 2,
+          "action": "enter-to",
+          "new_atoms": 0,
+          "outcome": {
+            "atoms": [],
+            "evidence": "enter-to-after.json",
+            "receipt_sha256": "fe7414538a93bc958c766fc7da4f37f73820c45e399413208dd746414513b033"
+          }
+        }
+      ],
+      "interpretation": "Semantic frontend fact proxy; not independent requirements or product quality"
+    },
+    {
+      "policy_digest": "c0f36b063cb45febc3a597534799881b08ccf862e95d489c95da313ec76b0bfc",
+      "budget": 2,
+      "score": 0,
+      "trace": [
+        {
+          "step": 1,
+          "action": "click-my",
+          "new_atoms": 0,
+          "outcome": {
+            "atoms": [],
+            "evidence": "click-my-after.json",
+            "receipt_sha256": "1de1d8359d0326b4e5902abb52c76a026f44b86d05d01a5b85ec9ced2e4912ab"
+          }
+        },
+        {
+          "step": 2,
+          "action": "hover-welcome",
+          "new_atoms": 0,
+          "outcome": {
+            "atoms": [],
+            "evidence": "hover-welcome-after.json",
+            "receipt_sha256": "e8a21140117ca263a300cbb925908e3aff81b5af26a42cf35791533ba7549fcc"
+          }
+        }
+      ],
+      "interpretation": "Semantic frontend fact proxy; not independent requirements or product quality"
+    },
+    {
+      "policy_digest": "dfee73c689d91507d63531e7fc5bfd3ad54b2ff1bba102abc85afbd7885cd91c",
+      "budget": 2,
+      "score": 0,
+      "trace": [
+        {
+          "step": 1,
+          "action": "click-my",
+          "new_atoms": 0,
+          "outcome": {
+            "atoms": [],
+            "evidence": "click-my-after.json",
+            "receipt_sha256": "1de1d8359d0326b4e5902abb52c76a026f44b86d05d01a5b85ec9ced2e4912ab"
+          }
+        },
+        {
+          "step": 2,
+          "action": "click-hi",
+          "new_atoms": 0,
+          "outcome": {
+            "atoms": [],
+            "evidence": "click-hi-after.json",
+            "receipt_sha256": "501db8becf52a50360e349ac7960eb4b53bdd1db30200f95f838a678bed5bfcc"
+          }
+        }
+      ],
+      "interpretation": "Semantic frontend fact proxy; not independent requirements or product quality"
+    }
+  ],
+  "control_post_seal_replay": {
+    "policy_digest": "16cf7367cf1fcf87352bbd74bd7da375a4a4c90a366fc6e5ae3d740046ba16dd",
+    "budget": 2,
+    "score": 0,
+    "trace": [
+      {
+        "step": 1,
+        "action": "enter-to",
+        "new_atoms": 0,
+        "outcome": {
+          "atoms": [],
+          "evidence": "enter-to-after.json",
+          "receipt_sha256": "fe7414538a93bc958c766fc7da4f37f73820c45e399413208dd746414513b033"
+        }
+      },
+      {
+        "step": 2,
+        "action": "click-hi",
+        "new_atoms": 0,
+        "outcome": {
+          "atoms": [],
+          "evidence": "click-hi-after.json",
+          "receipt_sha256": "501db8becf52a50360e349ac7960eb4b53bdd1db30200f95f838a678bed5bfcc"
+        }
+      }
+    ],
+    "interpretation": "Semantic frontend fact proxy; not independent requirements or product quality"
+  },
+  "runtime_receipts": [
+    {
+      "worker": "initial",
+      "cli_version": "codex-cli 0.162.0-alpha.17.2",
+      "cli_binary_sha256": "0d5ac7aae20c4eda6242428d5e218c55ba96d8763fda2a271088ff37104b9d28",
+      "exit_code": 0,
+      "timed_out": false,
+      "wall_seconds": 22.18512966693379,
+      "runtime_header": {
+        "model": "gpt-6.1-sol",
+        "reasoning effort": "medium",
+        "provider": "openai"
+      },
+      "reported_tokens_used": 24061,
+      "input_output_cache_breakdown": "unknown",
+      "fee": "unknown"
+    },
+    {
+      "worker": "no-replay-revision",
+      "cli_version": "codex-cli 0.162.0-alpha.17.2",
+      "cli_binary_sha256": "0d5ac7aae20c4eda6242428d5e218c55ba96d8763fda2a271088ff37104b9d28",
+      "exit_code": 0,
+      "timed_out": false,
+      "wall_seconds": 26.506147916894406,
+      "runtime_header": {
+        "model": "gpt-6.1-sol",
+        "reasoning effort": "medium",
+        "provider": "openai"
+      },
+      "reported_tokens_used": 24538,
+      "input_output_cache_breakdown": "unknown",
+      "fee": "unknown"
+    },
+    {
+      "worker": "replay-revision",
+      "cli_version": "codex-cli 0.162.0-alpha.17.2",
+      "cli_binary_sha256": "0d5ac7aae20c4eda6242428d5e218c55ba96d8763fda2a271088ff37104b9d28",
+      "exit_code": 0,
+      "timed_out": false,
+      "wall_seconds": 23.740663042059168,
+      "runtime_header": {
+        "model": "gpt-6.1-sol",
+        "reasoning effort": "medium",
+        "provider": "openai"
+      },
+      "reported_tokens_used": 25188,
+      "input_output_cache_breakdown": "unknown",
+      "fee": "unknown"
+    }
+  ],
+  "online_status": "not_run; policy sealed before any online heldout action",
+  "product_quality_status": "not_measured"
+}
