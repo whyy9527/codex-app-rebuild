@@ -14,15 +14,21 @@ struct LearningView: View {
             VStack(spacing: 0) {
                 if let lesson = model.lesson {
                     if model.isPronunciationPractice { ReferencePronunciationPractice(model: model, lesson: lesson) }
-                    else if (model.isGeneralPractice || model.isSectionPlacement) || model.isSectionPlacement {
+                    else if model.isReferenceSession {
                         if lesson.complete, let page = model.settlement?.current {
+                            if model.isUnitPlacement && page.kind != "profile" {
+                                ReferenceUnitPlacementPage(page:page,advance:model.advanceSettlement,review:{showingResultReview=true})
+                            } else {
                             ReferenceSettlement(page: page, mistakesMade: lesson.mistakesMade, advance: model.advanceSettlement, retry: model.beginGeneralPractice,
                                                 review: lesson.resultReviewEntries.isEmpty ? nil : { showingResultReview = true })
+                            }
                         } else {
                             ReferencePronunciationPractice(model: model, lesson: lesson, otherQuestion: AnyView(question(lesson)), otherFooter: AnyView(generalPracticeFooter(lesson)))
                         }
                     }
                     else { lessonPage(lesson) }
+                } else if model.unitPlacementEntry {
+                    ReferenceUnitPlacementIntro(later:{model.unitPlacementEntry=false},start:model.beginUnitPlacement)
                 } else if model.sectionPlacementEntry,let stage=model.sectionPlacementStage {
                     ReferenceSectionPlacementEntry(stage:stage,later:{model.sectionPlacementEntry=false;model.destination="Sections"},start:model.beginSectionPlacement)
                 } else if model.destination == "Guest achievements error" {
@@ -292,7 +298,7 @@ struct LearningView: View {
                     Button(label) { model.skip() }.buttonStyle(ReferenceSkipButton()).accessibilityIdentifier("skip").offset(y: 2)
                 }
                 if let decline = lesson.question.listeningDecline {
-                    if (model.isGeneralPractice || model.isSectionPlacement) {
+                    if model.isReferenceSession {
                         ReferencePracticeControl(label: decline.label, identifier: "listening-decline", enabled: true,
                             action: { model.declineListening() }, face: AnyView(Text(decline.label).font(ReferenceStyle.font(17, bold: true)).tracking(0.8)
                                 .foregroundStyle(ReferenceStyle.disclosureInk).frame(width: 160.6015625, height: 46)
@@ -352,7 +358,7 @@ struct LearningView: View {
         } else if lesson.question.newWord { Text(copy("NEW WORD", "新单词")).font(ReferenceStyle.font(14, bold: true)).foregroundStyle(.purple) }
         // Source challenge-header: 32px/40px. Translation's character row follows
         // the heading directly; the old shared 28-point gap displaced it.
-        VStack(alignment: .leading, spacing: (model.isSectionPlacement && lesson.question.sourceType == "assist") || ["translate", "completeReverseTranslation"].contains(lesson.question.sourceType ?? "") || ((model.isGeneralPractice || model.isSectionPlacement) && lesson.question.sourceType == "listen") ? 0 : (model.isGeneralPractice || model.isSectionPlacement) && lesson.question.sourceType == "listenTap" ? 23.5 : (model.isGeneralPractice || model.isSectionPlacement) && lesson.question.sourceType == "listenIsolation" && lesson.question.isolationPromptTokens != nil ? 32 : 28) {
+        VStack(alignment: .leading, spacing: (model.isPlacement && lesson.question.sourceType == "assist") || ["translate", "completeReverseTranslation"].contains(lesson.question.sourceType ?? "") || (model.isReferenceSession && lesson.question.sourceType == "listen") ? 0 : model.isReferenceSession && lesson.question.sourceType == "listenTap" ? 23.5 : model.isReferenceSession && lesson.question.sourceType == "listenIsolation" && lesson.question.isolationPromptTokens != nil ? 32 : 28) {
         Text(lesson.question.kind == .wordTiles && lesson.question.hint == nil && lesson.question.sourceType == nil ? "Build this phrase" : lesson.displayedPrompt).font(ReferenceStyle.font(32, bold: true))
             .frame(maxWidth: .infinity, minHeight: 40, maxHeight: 40, alignment: .leading)
             .accessibilityIdentifier("question-title").accessibilityValue(lesson.displayedPrompt)
@@ -363,7 +369,7 @@ struct LearningView: View {
         case .textEntry: textEntry(lesson)
         }
         }.padding(.top, 0.5)
-        if !(model.isGeneralPractice || model.isSectionPlacement) && lesson.question.kind == .choice && !["dialogue", "listenIsolation"].contains(lesson.question.sourceType ?? "") {
+        if !model.isReferenceSession && lesson.question.kind == .choice && !["dialogue", "listenIsolation"].contains(lesson.question.sourceType ?? "") {
             Button { model.pronounce() } label: { Label(lesson.selected == nil ? "Read the instruction" : "Listen again", systemImage: "speaker.wave.2.fill") }.buttonStyle(.plain).foregroundStyle(.cyan).accessibilityIdentifier("pronounce")
         }
     }
@@ -418,7 +424,7 @@ struct LearningView: View {
                 Text(hint).font(ReferenceStyle.font(20)).accessibilityIdentifier("question-hint")
             }
         }
-        if (model.isGeneralPractice || model.isSectionPlacement) && lesson.question.sourceType == "listen" {
+        if model.isReferenceSession && lesson.question.sourceType == "listen" {
             HStack(spacing: 0) {
                 if let character = lesson.question.characterResource {
                     ReferenceCharacter(resource: character, feedback: lesson.feedback).id(lesson.question.id)
@@ -439,7 +445,7 @@ struct LearningView: View {
                     }
                 Spacer(minLength: 0)
             }.frame(height: 175).padding(.leading, 10)
-        } else if (model.isGeneralPractice || model.isSectionPlacement) && lesson.question.sourceType == "listenTap" {
+        } else if model.isReferenceSession && lesson.question.sourceType == "listenTap" {
             generalListeningControls.padding(.bottom, 46.5)
         } else if lesson.question.sourceType == "listenComplete" {
             HStack(spacing: 28) {
@@ -449,10 +455,10 @@ struct LearningView: View {
                     .buttonStyle(SeedButtonStyle(fill: .cyan)).accessibilityIdentifier("pronounce-slow").accessibilityLabel("播放慢速")
             }
         }
-        if lesson.usingKeyboard || ((model.isGeneralPractice || model.isSectionPlacement) && ["listen", "translate"].contains(lesson.question.sourceType ?? "")) {
+        if lesson.usingKeyboard || (model.isReferenceSession && ["listen", "translate"].contains(lesson.question.sourceType ?? "")) {
             ReferenceAnswerEditor(text: Binding(get: { model.lesson?.displayedInput ?? "" }, set: { model.enterText($0) }), enabled: lesson.feedback == nil)
                 .overlay(alignment: .topLeading) {
-                    if (model.isGeneralPractice || model.isSectionPlacement) && lesson.displayedInput.isEmpty {
+                    if model.isReferenceSession && lesson.displayedInput.isEmpty {
                         Text("使用英语键入").font(ReferenceStyle.font(19, weight: 400)).foregroundStyle(ReferenceStyle.disclosureInk)
                             .padding(.horizontal, 14).padding(.vertical, 12).allowsHitTesting(false).accessibilityHidden(true)
                     }
@@ -474,7 +480,7 @@ struct LearningView: View {
     }
     }
     @ViewBuilder private func isolation(_ lesson: Lesson) -> some View {
-        if (model.isGeneralPractice || model.isSectionPlacement), let tokens = lesson.question.isolationPromptTokens {
+        if model.isReferenceSession, let tokens = lesson.question.isolationPromptTokens {
             VStack(spacing: 0) {
                 HStack(spacing: 0) {
                     if let character = lesson.question.characterResource {
@@ -529,7 +535,22 @@ struct LearningView: View {
             isolation(lesson)
         } else if lesson.question.sourceType == "dialogue" {
             dialogue(lesson)
-        } else if model.isSectionPlacement && lesson.question.sourceType == "assist" {
+        } else if model.isUnitPlacement && lesson.question.sourceType == "gapFill" {
+            VStack(alignment:.leading,spacing:0) {
+                HStack(spacing:0) {
+                    Text(lesson.question.completionPrefix ?? "")
+                    Text(lesson.selected.flatMap { id in lesson.question.options.first(where:{$0.id==id})?.text } ?? "")
+                        .frame(width:70,height:39).overlay(alignment:.bottom){Rectangle().fill(ReferenceStyle.border).frame(height:2)}
+                    Text(lesson.question.completionSuffix ?? "")
+                }.font(ReferenceStyle.font(19)).frame(height:39).padding(.top,3)
+                    .accessibilityIdentifier("gap-fill-context")
+                VStack(spacing:8) {
+                    ForEach(Array(lesson.question.options.enumerated()),id:\.element.id) { index,option in
+                        ReferenceAudioRadio(label:"\(index+1) \(option.text)",identifier:"option-"+option.id,waveform:nil,correct:lesson.feedback==true,selected:lesson.selected==option.id,enabled:lesson.feedback==nil,action:{model.choose(option.id)},textChoice:true).frame(width:600,height:60)
+                    }
+                }.padding(.top,80)
+            }
+        } else if model.isPlacement && lesson.question.sourceType == "assist" {
             HStack(spacing: 16) {
                 if let character = lesson.question.characterResource {
                     ReferenceCharacter(resource: character, feedback: lesson.feedback).id(lesson.question.id)
@@ -660,12 +681,12 @@ struct LearningView: View {
                     }
                 }
             }
-        } else if (model.isGeneralPractice || model.isSectionPlacement) && lesson.question.sourceType == "listenTap" {
+        } else if model.isReferenceSession && lesson.question.sourceType == "listenTap" {
             generalListeningWords(lesson)
         } else {
         VStack(alignment: .leading, spacing: 24) {
             if lesson.question.sourceType == "listenTap" {
-                if (model.isGeneralPractice || model.isSectionPlacement) { generalListeningControls }
+                if model.isReferenceSession { generalListeningControls }
                 else {
                 HStack(spacing: 28) {
                     Button { model.playQuestion() } label: { Image(systemName: "speaker.wave.2.fill").font(.system(size: 54)).frame(width: 110, height: 110) }

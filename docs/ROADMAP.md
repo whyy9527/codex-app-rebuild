@@ -1,5 +1,7 @@
 # Roadmap
 
+最新进展（2026-10-12）：由历史遗漏实际完成独立单元12的18题及解锁，Swift接5心独立会话、回顾和第2部分主页原动画；前端v68保留旧项并覆盖49个新增源状态。最终50状态无驱动失败，但205pass／93fail／6unavailable、49整图全fail。下一步优先原版新单元当前课／指南、通知、电台与声音，以及修就绪检测后注册真实模型03消融；既有02不可判定结果不改写。完整Goal active，不是1:1完成。[证据、失败、frontier与复跑](../projects/duolingo-web/evidence/english-unit-placement-v1/README.md)。
+
 本批从九分类库存推进到真实组合／滚动／保存／重载，修复外滚约束循环崩溃；最终15状态，17组恢复及27项检查通过。v60仍1222pass/267fail/5905not_run，15整图全fail；旧保存回归76pass。接续优先实际档案／主页头像消费、未访问交互及原版声音，完整Goal仍active。[源证据、失败和接续](../projects/duolingo-web/evidence/english-avatar-composition-v1/README.md)。
 
 继续按历史遗漏探索排行榜练习，实际完成16题＋1口语暂缓，编译完整显式实例并验证44个原生状态；截图又发现六道题漏掉听力暂缓按钮，已补回。v54共3084项，本轨迹177pass/39fail，整图全部仍失败；默认自适应选题尚未实现。[实际证据及复跑](../projects/duolingo-web/evidence/english-leaderboard-practice-instance-v1/README.md)。

@@ -1,0 +1,46 @@
+{
+  "session": {
+    "source": "Current rendered challenges; no initial-session or future-sequence read",
+    "challenges": []
+  },
+  "observed": [],
+  "interludes": [],
+  "failure": null,
+  "stopped": {
+    "kind": "uncovered_state",
+    "index": 0,
+    "facts": {
+      "progress_count": 1,
+      "quit_count": 1,
+      "duo_count": 0,
+      "encouragement_messages": [],
+      "review_entry_count": 0,
+      "review_entry_enabled": false,
+      "path": "/lesson/unit/12/test",
+      "challenge_count": 1,
+      "challenge_visible": true,
+      "heading_count": 1,
+      "dialog_count": 0,
+      "next_text": "检查",
+      "continue_count": 0,
+      "continue_enabled": false,
+      "body_text": "选择正确的答案\n新\n1\nnew\n2\nit's sunny\n3\ncloudy\n检查"
+    },
+    "decision": {
+      "kind": "uncovered_state",
+      "reason": "Outside observed exercise route"
+    },
+    "snapshot": "- button:\n  - img\n- progressbar:\n  - img\n- img\n- img\n- img\n- img\n- img\n- img\n- img\n- img\n- img\n- img\n- heading \"选择正确的答案\" [level=1]\n- text: 新\n- img\n- radiogroup \"choice\":\n  - radio \"1 new\":\n    - text: 1 new\n    - img\n    - img\n  - radio \"2 it's sunny\":\n    - text: 2 it's sunny\n    - img\n    - img\n  - radio \"3 cloudy\":\n    - text: 3 cloudy\n    - img\n    - img\n- button \"检查\" [disabled]",
+    "screenshot": "unit12-batch01-interlude-0.png"
+  },
+  "answered": 0,
+  "accepted": 0,
+  "step_budget": 6,
+  "steps_completed": 0,
+  "outcome": "uncovered_current_state",
+  "final": "- button:\n  - img\n- progressbar:\n  - img\n- img\n- img\n- img\n- img\n- img\n- img\n- img\n- img\n- img\n- img\n- heading \"选择正确的答案\" [level=1]\n- text: 新\n- img\n- radiogroup \"choice\":\n  - radio \"1 new\":\n    - text: 1 new\n    - img\n    - img\n  - radio \"2 it's sunny\":\n    - text: 2 it's sunny\n    - img\n    - img\n  - radio \"3 cloudy\":\n    - text: 3 cloudy\n    - img\n    - img\n- button \"检查\" [disabled]",
+  "limitations": [
+    "Actual generated exercise observations; public solutions are not blind exploration evidence. Media invocations are not acoustic output evidence. Unknown result/profile pages are preserved without clicking Continue. Current-mode media_before contains only events since this invocation or the previous feedback; unrelated earlier history is not duplicated."
+  ],
+  "observed_at": "2026-10-11T19:27:01.714Z"
+}

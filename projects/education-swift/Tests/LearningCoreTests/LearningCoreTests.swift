@@ -828,6 +828,34 @@ func actualStageTwoGrocery() throws {
     print("PASS grocery 10 accepted, oral decline, two encouragements, 11 result cards and observed home outcome")
 }
 
+func actualUnitPlacement() throws {
+    let c=try course(fixture:"fixture-reference-en-zh-unit-placement-v1.json")
+    var lesson=Lesson(course:c,hearts:5)
+    var answered=0,encouragements=0
+    while !lesson.complete && answered<30 {
+        if lesson.interlude != nil {encouragements += 1;lesson.advance();continue}
+        switch lesson.question.kind {
+        case .choice: lesson.choose(lesson.question.answer)
+        case .wordTiles: for id in lesson.question.answerWords {lesson.addWord(id)}
+        case .textEntry: lesson.enterText(lesson.question.answer)
+        case .matching: throw CheckFailure.failed("Unexpected unit test matching")
+        }
+        lesson.submit();try check(lesson.feedback==true,"Accepted unit test answer rejected")
+        answered += 1;lesson.advance()
+    }
+    try check(lesson.complete && answered==18 && encouragements==4 && lesson.hearts==5,"Unit-12 trajectory differs")
+    try check(lesson.resultReviewEntries.count==18,"Actual 18 review cards missing")
+    try check(lesson.definition.settlement?.map(\.kind)==["result","score_progress","unit_unlock","profile"],"Unit settlement confused with section settlement")
+    let outcome=lesson.definition.placementOutcome!
+    try check(outcome.activeUnit==12 && outcome.activeStage==2 && outcome.englishScore==10,"Unit jump must not promote English score")
+    var progress=LearningProgress();progress.hearts=4;progress.placementOutcomes["main"]=outcome
+    let decoded=try JSONDecoder().decode(LearningProgress.self,from:JSONEncoder().encode(progress))
+    try check(decoded.hearts==4 && decoded.placementOutcomes["main"]?.activeUnit==12,"Independent unit hearts or unit unlock not preserved")
+    let legacy=try course(fixture:"fixture-reference-en-zh-section-placement-v1.json")
+    try check(legacy.lessons[0].placementOutcome?.activeUnit==nil,"Legacy stage outcome must decode without invented unit")
+    print("PASS actual unit-12 18 accepted, four encouragements, five independent hearts, 18 review cards and unpromoted score")
+}
+
 do {
     try mistakeReview()
     try persistence()
@@ -861,7 +889,8 @@ do {
     try observedHomeClock()
     try observedPlacementPersistence()
     try actualStageTwoGrocery()
-    print("32 business checks passed; core layer only")
+    try actualUnitPlacement()
+    print("33 business checks passed; core layer only")
 } catch {
     FileHandle.standardError.write(Data(("FAIL " + String(describing: error) + "\n").utf8))
     exit(1)

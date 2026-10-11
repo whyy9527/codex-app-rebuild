@@ -1,0 +1,15 @@
+### Result
+{"text":"测试完成！\n总经验\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n超级棒\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n%\n回顾本单元\n继续","fields":[{"test":"session-complete-slide","text":"","html":"<div data-test=\"session-complete-slide\"><span class=\"u_TP- fs-exclude IAONV\"></span></div>"},{"test":"player-next","text":"继续","html":"<button class=\"_1rcV8 _1VYyp _1ursp _7jW2t _3DbUj _38g3s _2oGJR\" data-test=\"player-next\" aria-disabled=\"false\"><span class=\"_9lHjd\">继续</span></button>"},{"test":"drawer-backdrop","text":"","html":"<div class=\"_1ATOC _1Fnem\" data-test=\"drawer-backdrop\" style=\"pointer-events: none;\"></div>"}]}
+### Ran Playwright code
+```js
+await (async page=>{return await page.locator("body").evaluate(n=>{return {text:n.innerText,fields:[...n.querySelectorAll("[data-test]")].map(v=>({test:v.getAttribute("data-test"),text:v.innerText,html:v.outerHTML.replace(/<svg[\s\S]*?<\/svg>/g,"").slice(0,2500)}))}})})(page);
+```
+### Open tabs
+- 0: [多邻国 - 学得轻松，学有所成的英语 课程！](https://www.duolingo.com/lesson)
+- 1: (current) [多邻国 - 学得轻松，学有所成的英语 课程！](https://www.duolingo.com/lesson/unit/12/test)
+### Page
+- Page URL: https://www.duolingo.com/lesson/unit/12/test
+- Page Title: 多邻国 - 学得轻松，学有所成的英语 课程！
+- Console: 43 errors, 0 warnings
+### Events
+- New console entries: .playwright-cli/console-2026-10-11T19-01-01-875Z.log#L43

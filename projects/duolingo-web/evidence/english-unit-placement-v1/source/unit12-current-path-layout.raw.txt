@@ -1,0 +1,13 @@
+### Ran Playwright code
+```js
+await (async page => { console.log(JSON.stringify(await page.evaluate(() => ({path:location.pathname,viewport:[innerWidth,innerHeight],nodes:[...document.querySelectorAll("[data-test^=skill-path-level],h2")].map(n=>{const r=n.getBoundingClientRect();return {test:n.getAttribute("data-test"),tag:n.tagName,text:n.innerText,html:n.outerHTML,rect:[r.x,r.y,r.width,r.height]}}),header:document.querySelector("[data-test=unit-header]")?.outerHTML,scroll:[...document.querySelectorAll("*")].filter(n=>getComputedStyle(n).overflowY==="auto"&&n.scrollHeight>n.clientHeight).map(n=>({tag:n.tagName,class:n.className,top:n.scrollTop,height:n.scrollHeight}))})))) })(page);
+```
+### Open tabs
+- 0: [多邻国 - 学得轻松，学有所成的英语 课程！](https://www.duolingo.com/lesson)
+- 1: (current) [多邻国 - 学得轻松，学有所成的英语 课程！](https://www.duolingo.com/learn)
+### Page
+- Page URL: https://www.duolingo.com/learn
+- Page Title: 多邻国 - 学得轻松，学有所成的英语 课程！
+- Console: 64 errors, 0 warnings
+### Events
+- New console entries: .playwright-cli/console-2026-10-11T19-01-01-875Z.log#L51-L64

@@ -1,0 +1,42 @@
+{
+  "source": "english-home-scroll-v1/exploration-feedback.json",
+  "actual_discoveries": [
+    {
+      "id": "independent-unit-route",
+      "evidence": "projects/duolingo-web/evidence/english-unit-placement-v1/source/unit12-batch01.json"
+    },
+    {
+      "id": "gapFill",
+      "evidence": "projects/duolingo-web/evidence/english-unit-placement-v1/source/unit12-batch03.json"
+    },
+    {
+      "id": "roleless-quit",
+      "evidence": "projects/duolingo-web/evidence/english-unit-placement-v1/source/unit12-exit-confirm.json"
+    },
+    {
+      "id": "unpromoted-score",
+      "evidence": "projects/duolingo-web/evidence/english-unit-placement-v1/source/unit12-after-result.json"
+    },
+    {
+      "id": "unlocked-home",
+      "evidence": "projects/duolingo-web/evidence/english-unit-placement-v1/source/unit12-home-uncovered.json"
+    },
+    {
+      "id": "notification-after-unlock",
+      "evidence": "projects/duolingo-web/evidence/english-unit-placement-v1/source/unit12-home-after.json"
+    }
+  ],
+  "mechanism_changes": [
+    "Structural exercised route guard",
+    "Explicit quit-confirmation observation before answering",
+    "GapFill current-context and complete-choice identity checks",
+    "Full49-state frontend freeze instead of representative question"
+  ],
+  "next_exploration": [
+    "Unit12 active lesson and guidebook/en/12; do not reuse grocery lesson/guide",
+    "Unit13 jump, unit2 radio and lower-unit branch outcomes",
+    "Original score/interlude/Oscar animation resources and actual sound triggers",
+    "Roleless overlay/hidden animated text regression observations"
+  ],
+  "experiment": "Matched-budget real-model history replay and live held-out rollout remains unexecuted; no RSI gain claim"
+}

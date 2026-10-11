@@ -209,6 +209,7 @@ public struct SettlementFlow: Equatable, Sendable {
     public mutating func advance() { if current != nil { position += 1 } }
 }
 public struct ObservedPlacementOutcome: Codable, Equatable, Sendable {
+    public var activeUnit: Int? = nil
     public let activeStage: Int
     public let sectionTitle: String
     public let courseTitle: String

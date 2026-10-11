@@ -1,0 +1,15 @@
+### Result
+"- img\n- heading \"挑战通关测试，跳级到第 2 部分！\" [level=2]\n- button \"下次再说\"\n- button \"立即开始\""
+### Ran Playwright code
+```js
+await (async page=>{await page.getByRole("link",{name:"返回",exact:true}).click();await page.getByRole("link",{name:"跳到第 2 部分",exact:true}).click();await page.getByRole("button",{name:"立即开始",exact:true}).waitFor();return await page.locator("body").ariaSnapshot();})(page);
+```
+### Open tabs
+- 0: [多邻国 - 学得轻松，学有所成的英语 课程！](https://www.duolingo.com/lesson)
+- 1: (current) [多邻国 - 学得轻松，学有所成的英语 课程！](https://www.duolingo.com/lesson/unit/12/test)
+### Page
+- Page URL: https://www.duolingo.com/lesson/unit/12/test
+- Page Title: 多邻国 - 学得轻松，学有所成的英语 课程！
+- Console: 37 errors, 0 warnings
+### Events
+- New console entries: .playwright-cli/console-2026-10-11T19-01-01-875Z.log#L37

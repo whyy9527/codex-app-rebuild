@@ -21,11 +21,13 @@ private struct StageTwoPath: Decodable {
     let artwork: [Artwork]
     let headings: [Heading]
     let height: CGFloat
-    static let observed: Self? = {
-        guard let url=Bundle.module.url(forResource:"stage2-path-presentation",withExtension:"json",subdirectory:"Reference"),
+    static let observed: Self? = load("stage2-path-presentation")
+    static let unit12: Self? = load("unit12-path-presentation")
+    private static func load(_ name:String)->Self? {
+        guard let url=Bundle.module.url(forResource:name,withExtension:"json",subdirectory:"Reference"),
               let data=try? Data(contentsOf:url) else {return nil}
         return try? JSONDecoder().decode(Self.self,from:data)
-    }()
+    }
 }
 
 /// Coordinates and artwork from the actual rendered source path. Later virtualized
@@ -33,15 +35,17 @@ private struct StageTwoPath: Decodable {
 struct ReferenceStageTwoPath: View {
     static var backResource: String { StageTwoPath.observed?.headerBack ?? "back" }
     let start: () -> Void
+    var activeUnit:Int? = nil
+    let jump: () -> Void
     let firstLessonCompleted: Bool
     @Binding var selected: String?
-    private let blue=ReferenceStyle.blue
+    private var blue:Color {activeUnit==12 ? Color(red:204/255,green:52/255,blue:141/255) : ReferenceStyle.blue}
     var body: some View {
-        if let source=StageTwoPath.observed {
+        if let source=activeUnit==12 ? StageTwoPath.unit12 : StageTwoPath.observed {
             ZStack(alignment:.topLeading) {
                 ForEach(Array(source.artwork.enumerated()),id:\.offset) { _, art in
                     Group {
-                        if art.animationResource != nil { ReferenceStageBea() }
+                        if let resource=art.animationResource { ReferenceStageCharacter(resource:resource) }
                         else { ReferenceStyle.image(art.resource).resizable() }
                     }.frame(width:art.rect[2],height:art.rect[3])
                         .offset(x:art.rect[0],y:art.rect[1]).accessibilityIdentifier("stage2-character-animation")
@@ -62,7 +66,7 @@ struct ReferenceStageTwoPath: View {
                             .offset(x:node.rect[0]-10,y:node.rect[1]-10)
                     }
                     ReferencePracticeControl(label:node.active && firstLessonCompleted ? "Lesson 2 of 5" : node.label,identifier:node.id,enabled:true,
-                        action:{selected=selected==node.id ? nil : node.id},face:AnyView(
+                        action:{if node.id=="stage2-path-7" && node.role=="link" {jump()} else {selected=selected==node.id ? nil : node.id}},face:AnyView(
                             ZStack(alignment:.topLeading) {
                                 Ellipse().fill(node.active ? blue : ReferenceStyle.border).overlay(Ellipse().fill(.black.opacity(0.2)))
                                     .frame(width:70,height:57).offset(y:8)
@@ -72,11 +76,11 @@ struct ReferenceStageTwoPath: View {
                         ),role:node.role=="link" ? .link : .button,fixedFaceSize:true)
                         .frame(width:node.rect[2],height:node.rect[3]).offset(x:node.rect[0],y:node.rect[1])
                 }
-                if selected != "stage2-path-0" {
+                if selected != "stage2-path-0",let active=source.nodes.first(where:{$0.active}) {
                     Text("开始").font(ReferenceStyle.font(17,bold:true)).tracking(0.51).foregroundStyle(blue)
                         .frame(width:78,height:42).background(.white,in:RoundedRectangle(cornerRadius:10))
                         .overlay(RoundedRectangle(cornerRadius:10).strokeBorder(ReferenceStyle.border,lineWidth:2))
-                        .offset(x:201,y:31).accessibilityIdentifier("stage2-path-start-label")
+                        .offset(x:201,y:activeUnit==12 ? active.rect[1]-46 : 31).accessibilityIdentifier("stage2-path-start-label")
                 }
                 if selected=="stage2-path-0" { lessonPopup.offset(x:92.5,y:170) }
                 if selected=="stage2-path-1" { storyPopup.offset(x:92.5,y:248.8515625) }
@@ -117,5 +121,18 @@ private struct ReferenceStageBea: View {
     var body: some View {
         if let animation=Self.animation { LottieView(animation:animation).resizable().looping() }
         else { Text("原版角色动画未能载入。") }
+    }
+}
+
+private struct ReferenceStageCharacter: View {
+    private let animation:LottieAnimation?
+    init(resource:String) {
+        if let url=Bundle.module.url(forResource:resource,withExtension:"json",subdirectory:"Reference"),let data=try? Data(contentsOf:url) {
+            animation=try? LottieAnimation.from(data:data)
+        } else {animation=nil}
+    }
+    var body:some View {
+        if let animation {LottieView(animation:animation).resizable().looping()}
+        else {Text("原版角色动画未能载入。")}
     }
 }

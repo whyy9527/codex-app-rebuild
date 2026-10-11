@@ -1,6 +1,7 @@
 // Decisions from visible current-page facts, never the initial/future sequence.
 export function currentFlowDecision(facts, labels) {
-  if (!['/lesson','/practice','/lesson/section/2/test'].includes(facts.path)) return {kind:'uncovered_state',reason:'Outside observed exercise route'};
+  if (!['/lesson','/practice'].includes(facts.path) && !/^\/lesson\/(?:unit|section)\/[1-9]\d*\/test$/.test(facts.path)) return {kind:'uncovered_state',reason:'Outside observed exercise route'};
+  if (facts.quit_confirmation_count) return {kind:'uncovered_state',reason:'Visible quit confirmation requires an explicit choice'};
   if (facts.dialog_count) return {kind:'uncovered_state',reason:'Visible dialog requires observation'};
   if (facts.path==='/lesson' && facts.challenge_count===0 &&
       facts.body_text.includes('来复习一下这个等级，完成后有惊喜哦！') &&

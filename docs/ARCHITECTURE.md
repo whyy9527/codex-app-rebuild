@@ -1,5 +1,7 @@
 # 架构
 
+单元跳级与阶段跳级使用独立SessionKind和源夹具：单元12有5颗独立心、18题和score_progress→unit_unlock，阶段2仍为3颗心及另一结算流程。`activeUnit`可选字段兼容旧进度；成功后由原版outcome更新主页，公共心数不借用测试心数。当前题驱动增加角色缺失的退出遮罩识别和gapFill完整选项／上下文检查；共同前端模具验证每题前后截图、回顾和解锁主页，不能用一个代表题型代替所有状态。`compile-unit-placement.py`、`compile-unit-path.py`和`freeze-unit-placement.py`各自拥有题单、源路径和前端契约。[实际证据与尚缺行为](../projects/duolingo-web/evidence/english-unit-placement-v1/README.md)。
+
 阶段案例新增 `compile-sections-presentation.py` 从原版完整DOM几何生成九卡数据及资源manifest，`compile-section-placement.py` 仅编译实际已接受的当前题，保留批内索引到全局15题的来源关系；`promptImageResource` 与角色动画分开，避免文本快照漏掉独立图片。Swift独立placement会话使用3红心，不把主页5红心当测试规则。`freeze-sections.py` 追加共同前端契约，`compile-sections-frontier.py` 延续历史与真实结算边；源状态改变另存解锁后主页，禁止复用旧准备态冒充匹配。题目／流程验证与整图／声音／进度同步仍独立报告。[本批证据](../projects/duolingo-web/evidence/english-sections-v1/README.md)。
 
 头像由SourceAvatarCatalog消费原版分类／选项及测量布局，SMButtons负责特征缩略图，SMAvatar消费完整17字段草稿；LearningPreferences保存组合并兼容旧肤色。原生旅程的scroll操作使用实际AX区域定位、真实wheel及移动后回读，记录进程存活和失败；不将场景预期坐标写成观察。固定尺寸头像按钮显式关闭内部HostingView尺寸反馈。存储／运行时、AX库存与严格整图分别验收，[具体证据与未完成项](../projects/duolingo-web/evidence/english-avatar-composition-v1/README.md)。

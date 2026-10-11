@@ -67,7 +67,7 @@ const callback = async page => {
     await page.waitForFunction(labels=>{
      const nodes=[...document.querySelectorAll('[data-test~="challenge"]')].filter(n=>n.checkVisibility());
      const next=document.querySelector('[data-test="player-next"]');
-     return !['/practice','/lesson','/lesson/section/2/test'].includes(location.pathname)||(nodes.length===1&&next?.textContent.trim()===labels.check)||(nodes.length===0&&next?.textContent.trim()===labels.continue)||(nodes.length===0&&[...document.querySelectorAll('button')].some(b=>b.checkVisibility()&&b.innerText.trim()==='开始挑战 +20 经验'));
+     return (!['/practice','/lesson'].includes(location.pathname)&&!/^\/lesson\/(?:unit|section)\/[1-9]\d*\/test$/.test(location.pathname))||(nodes.length===1&&next?.textContent.trim()===labels.check)||(nodes.length===0&&next?.textContent.trim()===labels.continue)||(nodes.length===0&&[...document.querySelectorAll('button')].some(b=>b.checkVisibility()&&b.innerText.trim()==='开始挑战 +20 经验'));
     },labels,{timeout:15000});
     const facts=await page.evaluate(labels=>{
      const nodes=[...document.querySelectorAll('[data-test~="challenge"]')].filter(n=>n.checkVisibility());
@@ -77,6 +77,7 @@ const callback = async page => {
      return {progress_count:visible('[role=progressbar]').length,quit_count:visible('[data-test=quit-button]').length,duo_count:visible('[data-test=session-duo]').length,encouragement_messages:visible('._36bu_').map(n=>n.innerText.trim()).filter(Boolean),review_entry_count:entries.length,review_entry_enabled:entries.length===1&&!entries[0].disabled&&entries[0].getAttribute('aria-disabled')!=='true',path:location.pathname,challenge_count:nodes.length,challenge_visible:nodes.length===1,
       heading_count:[...document.querySelectorAll('h1')].filter(n=>n.checkVisibility()).length,
       dialog_count:[...document.querySelectorAll('[role="dialog"]')].filter(n=>n.checkVisibility()).length,
+      quit_confirmation_count:visible('button').filter(n=>n.innerText.trim()==='继续努力').length,
       next_text:document.querySelector('[data-test="player-next"]')?.textContent.trim(),
       continue_count:buttons.length,continue_enabled:buttons.length===1&&!buttons[0].disabled&&buttons[0].getAttribute('aria-disabled')!=='true',body_text:document.body.innerText};
     },labels);
@@ -180,7 +181,7 @@ const callback = async page => {
     const target=row.audio_options.filter(o=>o.text===c.options[c.correctIndex].text);if(target.length!==1)throw Error('Correct audio option not unique');
     await challenge.getByRole('radio').nth(target[0].index).click();row.actions.push({select_audio:target[0]});
     await page.getByRole('button',{name:labels.check,exact:true}).click();
-   }else if(['select','assist','dialogue'].includes(c.type)){
+   }else if(['select','assist','dialogue','gapFill'].includes(c.type)){
     const choice=c.choices[c.correctIndex],text=typeof choice==='string'?choice:choice.phrase;
     await exactVisible(page.getByRole('radio'),text);row.actions.push({select:text});
     await page.getByRole('button',{name:labels.check,exact:true}).click();

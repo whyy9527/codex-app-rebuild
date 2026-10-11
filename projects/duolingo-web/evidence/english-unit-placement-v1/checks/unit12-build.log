@@ -1,0 +1,55 @@
+[0/1] Planning build
+Building for debugging...
+[0/9] Write sources
+[2/9] Write swift-version--1AB21518FC5DEDBE.txt
+[3/11] Copying Reference
+[5/11] Compiling LearningCore LearningCore.swift
+[6/11] Emitting module LearningCore
+[7/21] Compiling LearningCoreChecks LearningCoreTests.swift
+[8/21] Emitting module LearningCoreChecks
+[8/21] Write Objects.LinkFileList
+[10/21] Emitting module LingoSeed
+[10/21] Linking LearningCoreChecks
+[11/21] Applying LearningCoreChecks
+[13/21] Compiling LingoSeed ReferenceHome.swift
+[14/21] Compiling LingoSeed ReferenceStageTwoPath.swift
+[15/21] Compiling LingoSeed LearningModel.swift
+[16/21] Compiling LingoSeed LearningView.swift
+[17/21] Compiling LingoSeed ReferencePronunciationPractice.swift
+[18/21] Compiling LingoSeed ReferenceUnitPlacementPage.swift
+<workspace>/projects/education-swift/Sources/LingoSeed/ReferenceUnitPlacementPage.swift:86:5: warning: call to main actor-isolated initializer 'init(label:identifier:enabled:action:face:role:fixedFaceSize:)' in a synchronous nonisolated context [#ActorIsolatedCall]
+83 | }
+84 |
+85 | private func unitControl(_ label:String,id:String,color:Color?,action:@escaping ()->Void)->some View {
+   |              `- note: add '@MainActor' to make global function 'unitControl(_:id:color:action:)' part of global actor 'MainActor'
+86 |     ReferencePracticeControl(label:label,identifier:id,enabled:true,action:action,face:AnyView(
+   |     `- warning: call to main actor-isolated initializer 'init(label:identifier:enabled:action:face:role:fixedFaceSize:)' in a synchronous nonisolated context [#ActorIsolatedCall]
+87 |         Text(label).font(ReferenceStyle.font(17,bold:true)).tracking(0.8).foregroundStyle(color == nil ? ReferenceStyle.blue : .white)
+88 |             .frame(maxWidth:.infinity).frame(height:color == nil ? 48 : 46)
+
+<workspace>/projects/education-swift/Sources/LingoSeed/ReferencePronunciationPractice.swift:241:8: note: calls to initializer 'init(label:identifier:enabled:action:face:role:fixedFaceSize:)' from outside of its actor context are implicitly asynchronous
+239 | }
+240 |
+241 | struct ReferencePracticeControl: NSViewRepresentable {
+    |        |- note: calls to initializer 'init(label:identifier:enabled:action:face:role:fixedFaceSize:)' from outside of its actor context are implicitly asynchronous
+    |        `- note: main actor isolation inferred from conformance to protocol 'NSViewRepresentable'
+242 |     let label: String
+243 |     let identifier: String
+
+<workspace>/projects/education-swift/Sources/LingoSeed/ReferenceUnitPlacementPage.swift:86:5: error: sending 'action' risks causing data races [#SendingRisksDataRace]
+84 |
+85 | private func unitControl(_ label:String,id:String,color:Color?,action:@escaping ()->Void)->some View {
+86 |     ReferencePracticeControl(label:label,identifier:id,enabled:true,action:action,face:AnyView(
+   |     |- error: sending 'action' risks causing data races [#SendingRisksDataRace]
+   |     `- note: sending task-isolated 'action' to main actor-isolated initializer 'init(label:identifier:enabled:action:face:role:fixedFaceSize:)' risks causing data races between main actor-isolated and task-isolated uses
+87 |         Text(label).font(ReferenceStyle.font(17,bold:true)).tracking(0.8).foregroundStyle(color == nil ? ReferenceStyle.blue : .white)
+88 |             .frame(maxWidth:.infinity).frame(height:color == nil ? 48 : 46)
+
+[#ActorIsolatedCall]: <https://docs.swift.org/compiler/documentation/diagnostics/actor-isolated-call>
+[#SendingRisksDataRace]: <https://docs.swift.org/compiler/documentation/diagnostics/sending-risks-data-race>
+[19/27] Compiling LingoSeed ReferencePronunciation.swift
+[20/27] Compiling LingoSeed ReferenceFeedbackActions.swift
+[21/27] Compiling LingoSeed ReferenceShoppingGuide.swift
+[22/27] Compiling LingoSeed ReferenceGuidebook.swift
+[23/27] Compiling LingoSeed LingoSeed.swift
+[24/27] Compiling LingoSeed ReferenceSettings.swift

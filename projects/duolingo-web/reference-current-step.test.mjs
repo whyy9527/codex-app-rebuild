@@ -81,3 +81,16 @@ test('structural placement encouragement accepts new messages but refuses settle
  const final=read('evidence/english-sections-v1/placement-batch08.json').stopped;
  assert.equal(currentFlowDecision(final.facts,labels).kind,'uncovered_state');
 });
+
+test('actual unit-12 route and roleless quit overlay cannot be confused with ready exercise',()=>{
+ const d=read('evidence/english-unit-placement-v1/source/unit12-batch02.json');
+ const f=d.interludes[0].facts;
+ assert.equal(f.path,'/lesson/unit/12/test');
+ assert.equal(currentFlowDecision(f,labels).kind,'interlude');
+ for(const path of ['/lesson/unit/0/test','/lesson/unit/12/other','/learn'])
+  assert.equal(currentFlowDecision({...f,path},labels).kind,'uncovered_state');
+ const ready={...f,challenge_count:1,challenge_visible:true,next_text:'检查',dialog_count:0};
+ assert.equal(currentFlowDecision(ready,labels).kind,'challenge');
+ assert.equal(currentFlowDecision({...ready,quit_confirmation_count:1},labels).kind,'uncovered_state');
+ assert.equal(currentFlowDecision(read('evidence/english-unit-placement-v1/source/unit12-batch05.json').stopped.facts,labels).kind,'uncovered_state');
+});

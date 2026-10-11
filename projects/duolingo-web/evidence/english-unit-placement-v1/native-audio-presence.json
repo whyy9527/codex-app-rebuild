@@ -1,0 +1,37 @@
+{
+  "scope": "Final binary owned unit12-q0 accepted answer pronunciation new; HTML media observed no feedback effect, which does not prove source silence",
+  "owned_recording": "projects/duolingo-web/evidence/english-unit-placement-v1/native-final/unit12-correct-and-new.wav",
+  "resource": "en-speech-7049769c7a5179c4f3f5.mp3",
+  "reference_sha256": "6b98c346ab470999a2bbf2581ec45d2a2247301624e3d7cf9bbd4b4e425a8390",
+  "receipt": {
+    "duration_seconds": 6,
+    "excludes_current_process_audio": true,
+    "filter": "Only explicitly selected owned application/window",
+    "filter_mode": "application",
+    "frames": 298560,
+    "kind": "owned_application_audio_loopback",
+    "microphone": false,
+    "owned_pid": 4239,
+    "peak": 0.35965409874916077,
+    "rms": 0.02644131633223302,
+    "samples": 597120,
+    "ui_actions": [
+      {
+        "elapsed_seconds": 0.12848007678985596,
+        "id": "check"
+      }
+    ]
+  },
+  "metrics": {
+    "alignment_seconds": 0.22272916666666667,
+    "normalized_correlation": 0.9999892016903522,
+    "fitted_gain": 0.9999518116014151,
+    "residual_rms": 0.0003996513710436429,
+    "reference_samples": 56448,
+    "recorded_samples": 298560
+  },
+  "limitations": [
+    "Speech presence only; original WebAudio effects and browser acoustic output unverified",
+    "No sound equality or RSI gain inferred"
+  ]
+}

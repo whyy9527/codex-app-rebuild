@@ -82,3 +82,21 @@ test('actual fragmented tap sentence keeps lexical and word-bank identity',()=>{
  assert.equal(challengeIdentity(c,{...a,text:a.text.replace('sale','rent')}).matches,false);
  assert.equal(challengeIdentity(c,{...a,choices:['scarf','brother','sugar','sugar']}).matches,false);
 });
+
+test('actual unit gapFill requires observed completion context and complete choices',()=>{
+ const d=JSON.parse(readFileSync(new URL('evidence/english-unit-placement-v1/source/unit12-batch04.json',import.meta.url)));
+ let count=0;
+ for(const row of d.observed){
+  const c=d.session.challenges.find(q=>q.index===row.index).content;
+  if(c.type!=='gapFill')continue;
+  const a=row.identity.actual;
+  assert.equal(challengeIdentity(c,a).matches,true);
+  assert.equal(uncoveredReplayType(c.type,a.type),false);
+  assert.equal(challengeIdentity(c,{...a,text:'Different sentence'}).matches,false);
+  assert.equal(challengeIdentity(c,{...a,choices:a.choices.slice(1)}).matches,false);
+  assert.equal(challengeIdentity(c,{...a,choices:a.choices.map(()=>a.choices[0])}).matches,false);
+  assert.equal(challengeIdentity(c,{...a,type:'challenge-assist'}).matches,false);
+  count++;
+ }
+ assert.equal(count,2);
+});

@@ -62,7 +62,7 @@ struct ReferenceHome: View {
                         if chinese && model.placementOutcome?.activeStage == 2 { ReferenceShoppingGuide(model:model).padding(.horizontal,24).padding(.top,24) }
                         else { ReferenceGuidebook(model: model).padding(.horizontal, 24).padding(.top, 48) }
                     }
-                    else { path.padding(.horizontal, 24).padding(.top, 48) }
+                    else { path.padding(.horizontal, 24).padding(.top, model.placementOutcome?.activeUnit == 12 ? 24 : 48) }
                 }
                     .frame(minWidth:model.destination == "Sections" ? 564 : nil,maxWidth:model.destination == "Sections" ? 564 : .infinity)
                 if geometry.size.width >= 1120 {
@@ -141,7 +141,7 @@ struct ReferenceHome: View {
             .overlay(RoundedRectangle(cornerRadius:16).strokeBorder(ReferenceStyle.border,lineWidth:2))
             .onHover { menuHovered = $0; if !$0 { dismissMenuLater() } }
     }
-    private var pathColor: Color { model.placementOutcome?.activeStage == 2 ? blue : green }
+    private var pathColor: Color { model.placementOutcome?.activeUnit == 12 ? Color(red:204/255,green:52/255,blue:141/255) : model.placementOutcome?.activeStage == 2 ? blue : green }
     private var path: some View {
         VStack(spacing: 0) {
             HStack(spacing: 12) {
@@ -158,7 +158,7 @@ struct ReferenceHome: View {
                 }.buttonStyle(.plain).accessibilityIdentifier("open-guide")
             }.padding(16).frame(height: 90).foregroundStyle(.white).background(pathColor, in: RoundedRectangle(cornerRadius: 12))
             if model.placementOutcome?.activeStage == 2 {
-                ReferenceStageTwoPath(start:{stageTwoSelected=nil;model.beginStageTwoLesson()},firstLessonCompleted:model.progress.completedLessons["duolingo-en-zh-stage2-grocery-instance",default:[]].contains("stage2-grocery-1"),selected:$stageTwoSelected)
+                ReferenceStageTwoPath(start:{stageTwoSelected=nil;model.beginStageTwoLesson()},activeUnit:model.placementOutcome?.activeUnit,jump:{stageTwoSelected=nil;model.prepareUnitPlacement(12)},firstLessonCompleted:model.progress.completedLessons["duolingo-en-zh-stage2-grocery-instance",default:[]].contains("stage2-grocery-1"),selected:$stageTwoSelected).padding(.top,model.placementOutcome?.activeUnit == 12 ? 24 : 0)
             } else {
             GeometryReader { geometry in
                 let center = geometry.size.width / 2

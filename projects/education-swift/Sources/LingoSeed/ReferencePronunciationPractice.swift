@@ -17,9 +17,9 @@ struct ReferencePronunciationPractice: View {
                     } label: { ReferenceStyle.image("practice-close-source").resizable().frame(width: 18, height: 18) }
                         .buttonStyle(.plain).accessibilityIdentifier("exit")
                     ProgressView(value: lesson.complete ? 1 : lesson.reviewing ? 0.9 : Double(lesson.position) / Double(lesson.definition.questions.count)).tint(ReferenceStyle.green).accessibilityIdentifier("lesson-progress")
-                    if model.isSectionPlacement {
+                    if model.isPlacement {
                         HStack(spacing: 5) {
-                            ForEach(0..<3, id: \.self) { i in
+                            ForEach(0..<(model.isUnitPlacement ? 5 : 3), id: \.self) { i in
                                 ReferenceStyle.image(i < lesson.hearts ? "en-placement-heart-filled" : "en-placement-heart").resizable().frame(width: 25, height: 22)
                                     .accessibilityIdentifier("placement-heart-\(i)")
                             }
@@ -39,7 +39,7 @@ struct ReferencePronunciationPractice: View {
                         if let body = model.settlement?.current?.body { Text(body).font(ReferenceStyle.font(19)) }
                     }.padding(.top, 80)
                 } else if let otherQuestion, question.kind != .matching {
-                    otherQuestion.frame(width: 600).padding(.top, model.isSectionPlacement ? 48.5 : 51)
+                    otherQuestion.frame(width: 600).padding(.top, model.isPlacement ? 48.5 : 51)
                 } else {
                     VStack(alignment: .leading, spacing: 0) {
                         Text(question.prompt).font(ReferenceStyle.font(32, bold: true)).frame(height: 40).accessibilityIdentifier("question-prompt").accessibilityValue(question.id)

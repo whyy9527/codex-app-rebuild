@@ -1,5 +1,7 @@
 # Duolingo 网页参考案例
 
+继续由原版实际探索扩充模具：单元跳级18题、填空、退出确认、50XP结算和第2部分主页已接Swift，前端v68覆盖49个新增源状态。整图、部分交互与声音仍未1:1；RSI真实探索效果仍须对照验证。[本批证据与复跑](evidence/english-unit-placement-v1/README.md)。
+
 实际补齐主页共享滚动与原版链接语义，探索发现电台未解锁弹层、独立单元跳级入口及任务卡／页脚布局阶段。v67保留旧项共13284；最新两状态153pass／17fail，整图仍未通过，完整Goal继续。[实际证据与复跑](evidence/english-home-scroll-v1/README.md)。
 
 原版购物指南与下一实例探索补出逐字英文、28词语焦点库存和多词空格驱动遗漏。Swift接五段原语音、原指南与播放动画；v66严格验收142pass／28fail，3整图仍失败，完整Goal继续。[最新证据及复跑](evidence/english-shopping-guide-v1/README.md)。

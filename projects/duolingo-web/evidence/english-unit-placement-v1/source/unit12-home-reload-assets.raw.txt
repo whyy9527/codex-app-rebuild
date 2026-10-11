@@ -1,0 +1,15 @@
+### Result
+{"path":"/learn","urls":["https://d35aaqx5ub95lt.cloudfront.net/lottie/pathCharacters/e2c0feab5bfdf0681026cf74a3e68780.json","https://d35aaqx5ub95lt.cloudfront.net/lottie/pathCharacters/1607e4d7d34a90b7801f1c47d6f9c6ea.json","https://d35aaqx5ub95lt.cloudfront.net/lottie/91027338f0ab4c31e5151d22cc58c5a1.json"],"wait":"idle"}
+### Ran Playwright code
+```js
+await (async page => { const urls=[];const collect=r=>{if(r.url().includes("/lottie/"))urls.push(r.url())};page.on("response",collect);let wait;try {await page.reload({waitUntil:"domcontentloaded"});await page.getByRole("link",{name:"学习",exact:true}).waitFor({state:"visible"});try{await page.waitForLoadState("networkidle",{timeout:15000});wait="idle"}catch{wait="network-idle-timeout"}return {path:new URL(page.url()).pathname,urls:[...new Set(urls)],wait}}finally{page.off("response",collect)}})(page);
+```
+### Open tabs
+- 0: [多邻国 - 学得轻松，学有所成的英语 课程！](https://www.duolingo.com/lesson)
+- 1: (current) [多邻国 - 学得轻松，学有所成的英语 课程！](https://www.duolingo.com/learn)
+### Page
+- Page URL: https://www.duolingo.com/learn
+- Page Title: 多邻国 - 学得轻松，学有所成的英语 课程！
+- Console: 1 errors, 0 warnings
+### Events
+- New console entries: .playwright-cli/console-2026-10-11T19-01-01-875Z.log#L66-L78

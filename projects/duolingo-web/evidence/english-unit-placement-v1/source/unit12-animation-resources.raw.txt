@@ -1,0 +1,15 @@
+### Result
+["https://d35aaqx5ub95lt.cloudfront.net/lottie/pathCharacters/1607e4d7d34a90b7801f1c47d6f9c6ea.json","https://d35aaqx5ub95lt.cloudfront.net/lottie/5f83bd30ac8a82f18a2514bcb8b2d750.json","https://d35aaqx5ub95lt.cloudfront.net/lottie/5f83bd30ac8a82f18a2514bcb8b2d750.json","https://d35aaqx5ub95lt.cloudfront.net/lottie/5f83bd30ac8a82f18a2514bcb8b2d750.json","https://d35aaqx5ub95lt.cloudfront.net/lottie/5f83bd30ac8a82f18a2514bcb8b2d750.json","https://d35aaqx5ub95lt.cloudfront.net/lottie/5f83bd30ac8a82f18a2514bcb8b2d750.json","https://d35aaqx5ub95lt.cloudfront.net/lottie/pathCharacters/1607e4d7d34a90b7801f1c47d6f9c6ea.json"]
+### Ran Playwright code
+```js
+await (async page=>{return await page.evaluate(()=>performance.getEntriesByType("resource").map(r=>r.name).filter(n=>n.includes("/lottie/")||n.endsWith(".riv")))})(page);
+```
+### Open tabs
+- 0: [多邻国 - 学得轻松，学有所成的英语 课程！](https://www.duolingo.com/lesson)
+- 1: (current) [多邻国 - 学得轻松，学有所成的英语 课程！](https://www.duolingo.com/learn)
+### Page
+- Page URL: https://www.duolingo.com/learn
+- Page Title: 多邻国 - 学得轻松，学有所成的英语 课程！
+- Console: 48 errors, 0 warnings
+### Events
+- New console entries: .playwright-cli/console-2026-10-11T19-01-01-875Z.log#L48
