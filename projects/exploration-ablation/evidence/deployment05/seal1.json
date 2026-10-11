@@ -1,0 +1,58 @@
+{
+  "step": 1,
+  "policy": {
+    "id": "missing-panel-first",
+    "rationale": "Prioritize the uncovered scrollable streak consumer, then keyboard paths implicated by past activation failures. Outcomes remain unknown until executed.",
+    "rules": [
+      {
+        "term": "wheel 连胜日历",
+        "weight": 10
+      },
+      {
+        "term": "focus Enter 连胜日历 下个月",
+        "weight": 8
+      },
+      {
+        "term": "focus Enter 连胜日历 上个月",
+        "weight": 7
+      },
+      {
+        "term": "click 连胜日历 上个月",
+        "weight": 6
+      }
+    ],
+    "repeat_penalty": 12
+  },
+  "policy_digest": "bac1ee060fc532deeae26d44328350ee09f5047630bde8e063d18e7865317f34",
+  "action": {
+    "id": "wheel-bottom",
+    "label": "wheel 连胜日历 636/1052 可滚动面板 下方目标和俱乐部 未覆盖前端 滚动后命中与裁剪",
+    "operation": "wheel",
+    "rect": [
+      360,
+      48,
+      480,
+      636
+    ]
+  },
+  "action_digest": "4a60ad4984ea7d876249400f6cb26b2019e686bc1338fbb8b35a6ecaf69ff1a7",
+  "registration_digest": "feb59d632bf56cb903ae1cb98d7a6164d6a5f4584f50bc23296cb2aa2e73be5a",
+  "worker_receipt": {
+    "worker": "initial05",
+    "cli_version": "codex-cli 0.162.1",
+    "cli_binary_sha256": "74c6a6d263f40d65f99c27a815275f5b4ed0bcc2baecc396b4cf3255498bdfc0",
+    "exit_code": 0,
+    "timed_out": false,
+    "wall_seconds": 23.55732962489128,
+    "runtime_header": {
+      "model": "gpt-6.1-sol",
+      "reasoning effort": "medium",
+      "provider": "openai"
+    },
+    "reported_tokens_used": 25960,
+    "input_output_cache_breakdown": "unknown",
+    "fee": "unknown"
+  },
+  "selection": "First returned policy; no unseen reward selection",
+  "visits": {}
+}

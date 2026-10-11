@@ -13,7 +13,7 @@ def write(p,d):
 r=read(P/'registration05.json');actions=read(P/'actions05.json');root=read(a.root)
 assert hashlib.sha256(root['snapshot'].encode()).hexdigest()==r['root_snapshot_sha256']
 if a.phase in ['initial','revise']:
- step=1 if a.phase=='initial' else 2;assert not (out/f'seal{step}.json').exists()
+ step=1 if a.phase=='initial' else 2;assert not (out/f'seal{step}.json').exists();assert not (out/f'worker{step}').exists(), 'One model attempt per phase; preserve any running/failed worker'
  prior=[read(n) for n in r['past_feedback']]
  context={'past_product_feedback':prior,'source_root':{'path':root['path'],'snapshot':root['snapshot'],'scroll_regions':root['scroll_regions'],'focus':root['focus']},'actions':actions,'past_native_result':{'revision':'v76','counts':{'pass':481,'fail':65,'not_run':18954,'unavailable':627},'whole_images':'7 fail; streak consumer missing'},'limitations':['Unexecuted results unknown','One group, not causal evaluation','Do not use files, web, tools or hidden application state']}
  visits={}
