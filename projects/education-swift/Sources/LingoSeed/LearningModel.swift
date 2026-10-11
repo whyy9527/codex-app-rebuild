@@ -287,6 +287,15 @@ import LearningCore
             discardAttempt()
         }
     }
+    var homeGems: Int {
+        let completed=progress.completedCount(course)
+        let snapshot=placementOutcome?.homeSnapshot ?? course.home?.progressSnapshots?.first {$0.completedLessons == completed}
+        let base=placementOutcome?.homeSnapshot.gems ?? (progress.isPathChestOpened(course) ? course.home?.pathChest?.afterGems ?? 0 : snapshot?.gems ?? (500+completed*5))
+        return base-progress.spentGems
+    }
+    func refillHearts() {
+        if progress.purchaseHeartRefill(availableGems:homeGems) {save()}
+    }
     func openPathChest() {
         if progress.openPathChest(course) { save() }
     }

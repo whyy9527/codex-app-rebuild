@@ -31,7 +31,7 @@ struct ReferenceHome: View {
     }
     private var completed: Int { model.progress.completedCount(model.course) }
     private var homeSnapshot: HomeProgressSnapshot? { model.placementOutcome?.homeSnapshot ?? model.course.home?.progressSnapshots?.first { $0.completedLessons == completed } }
-    private var homeGems: Int { model.placementOutcome?.homeSnapshot.gems ?? (chestOpened ? pathChest?.afterGems ?? 0 : homeSnapshot?.gems ?? (500 + completed * 5)) }
+    private var homeGems: Int { model.homeGems }
     private var referenceClock: Date? {
         guard let index = CommandLine.arguments.firstIndex(of: "--reference-clock-milliseconds"),
               index + 1 < CommandLine.arguments.count, let epoch = Double(CommandLine.arguments[index + 1]) else { return nil }
@@ -91,9 +91,9 @@ struct ReferenceHome: View {
                 if model.preferences.pronunciationCoach == "pending" {
                     ReferencePronunciationCoach(dismiss:model.dismissPronunciationCoach,navigate:{model.destination="Pronunciation"}).frame(width:geometry.size.width,height:geometry.size.height).zIndex(18)
                 }
-                if let menu=statMenu,menu == "course" || menu == "gems" {
-                    ReferenceTopStatPopover(kind:menu,gems:homeGems,flagResource:model.course.home?.flagResource ?? "flag-spanish",selectEnglish:{statMenu=nil},visitShop:{statMenu=nil;model.destination="Shop"})
-                        .offset(x:geometry.size.width-1200+(menu == "gems" ? 775.1171875 : 730.7265625),y:76)
+                if let menu=statMenu,menu == "course" || menu == "gems" || menu == "hearts" {
+                    ReferenceTopStatPopover(kind:menu,gems:homeGems,hearts:model.progress.hearts,refill:{statMenu=nil;model.refillHearts()},practice:{statMenu=nil;model.beginGeneralPractice()},superSignup:{statMenu=nil;authentication="super-profile"},flagResource:model.course.home?.flagResource ?? "flag-spanish",selectEnglish:{statMenu=nil},visitShop:{statMenu=nil;model.destination="Shop"})
+                        .offset(x:geometry.size.width-1200+(menu == "gems" ? 775.1171875 : menu == "hearts" ? 776 : 730.7265625),y:76)
                         .onHover { inside in statPanelHovered=inside;if !inside {dismissStatLater()} }.zIndex(15)
                 }
                 if showingLegendary { ReferenceLegendary(hearts:model.progress.hearts,start:{ showingLegendary = false; showingPathProfile = true },quit:{ showingLegendary = false }).zIndex(19) }
@@ -101,7 +101,7 @@ struct ReferenceHome: View {
                 if moreOpen { moreMenu.offset(x: geometry.size.width >= 1180 ? 238 : 72, y: 438).zIndex(10) }
                 if guestLanguages {ReferenceGuestLanguages(close:{guestLanguages=false},enroll:{guestLanguages=false;model.destination="Learn"}).frame(width:geometry.size.width,height:geometry.size.height).zIndex(28)}
                 if guestIntroduction { ReferenceGuestProfileIntroduction(start:{guestIntroduction=false;model.destination="Guest avatar"},later:{guestIntroduction = false}).frame(width:geometry.size.width,height:geometry.size.height).zIndex(29) }
-                if authentication == "profile" { ReferenceRegistration(close:{ authentication = nil },showLogin:{ authentication = "login" }).zIndex(30) }
+                if authentication == "profile" || authentication == "super-profile" { ReferenceRegistration(close:{ authentication = authentication == "super-profile" ? "login" : nil },showLogin:{ authentication = "login" }).zIndex(30) }
                 if authentication == "login" { ReferenceLogin(close:{ authentication = nil },signup:{ authentication = "profile" },forgot:{ authentication = nil; model.destination = "Forgot password" }).zIndex(30) }
             }
         }

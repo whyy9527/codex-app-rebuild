@@ -1,0 +1,60 @@
+{
+  "journeys": [
+    {
+      "id": "heart-refill-persistence",
+      "steps": [
+        {
+          "native_action": "course-entry",
+          "operation": "observe",
+          "state": "hearts-before"
+        },
+        {
+          "native_action": "stat-hearts",
+          "operation": "hover",
+          "state": "stats-hearts"
+        },
+        {
+          "native_action": "stat-hearts-refill",
+          "operation": "pointer_click",
+          "state": "hearts-refilled"
+        },
+        {
+          "native_action": "stat-hearts",
+          "operation": "restart",
+          "state": "hearts-restarted"
+        },
+        {
+          "native_action": "stat-hearts",
+          "operation": "hover",
+          "state": "hearts-full"
+        },
+        {
+          "native_action": "stat-hearts-super",
+          "operation": "pointer_click",
+          "state": "hearts-super-signup"
+        },
+        {
+          "native_action": "registration-back",
+          "operation": "pointer_click",
+          "state": "hearts-super-login"
+        },
+        {
+          "native_action": "login-close",
+          "operation": "pointer_click",
+          "state": "hearts-super-closed"
+        },
+        {
+          "native_action": "stat-course",
+          "operation": "focus_key",
+          "key_code": 36,
+          "state": "hearts-course-keyboard"
+        },
+        {
+          "native_action": "stat-course-english",
+          "operation": "pointer_click",
+          "state": "hearts-course-closed"
+        }
+      ]
+    }
+  ]
+}

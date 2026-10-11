@@ -1,0 +1,18 @@
+### Result
+[{"tag":"SELECT","role":null,"opacity":"0","visibility":"visible","display":"block","rect":[1008.59375,24,151.40625,40],"checkVisibility":false,"parent":"<div class=\"GBNVH _1dgwa\"><span class=\"_3xxe1\">我说中文（简体）</span><svg class=\"_3N2pE\" viewBox=\"0 0 15 9\"><path d=\"M0.43934 0.43934C1.02513 -0.146447 1.97487 -0.146447 2.56066 0.43934L7.5 5.37868L12.4393 0.43934C13.0251 -0.146447 13.9749 -0.146447 14.5607 0.43934C15.1464 1.02513 15.1464 1.97487 14.5607 2.56066L8.56066 8.56066C7.97487 9.14645 7.02513 9.14645 6.43934 8.56066L0.43934 2.56066C-0.146447 1.97487 -0.146447 1.02513 0.43934 0.43934Z\" fill=\"currentColor\"></path></svg><select class=\"_2bftX\"><option class=\"_1RSpa\" value=\"all\">所有语言</option><option class=\"_1RSpa\" value=\"id\">Bahasa Indonesia</option><option class=\"_1RSpa\" value=\"cs\">Čeština</option><option class=\"_1RSpa\" value=\"de\">Deutsch</option><option class=\"_1RSpa\" value=\"en\">English</option><option class=\"_1RSpa\" value=\"es\">Español</option><option class=\"_1RSpa\" value=\"fr\">Français</option><option class=\"_1RSpa\" value=\"it\">Italiano</option><option class=\"_1RSpa\" value=\"hu\">Magyar</option><option class=\"_1RSpa\" value=\"nl-NL\">Nederlands</option><option class=\"_1RSpa\" value=\"pl\">Polski</option><option class=\"_1RSpa\" value=\"pt\">Português</option><option class=\"_1RSpa\" value=\"ro\">Română</option><option class=\"_1RSpa\" value=\"sv\">svenska</option><option class=\"_1RSpa\" value=\"tl\">Tagalog</option><option class=\"_1RSpa\" value=\"vi\">Tiếng Việt</option><option class=\"_1RSpa\" value=\"tr\">Türkçe</option><option class=\"_1RSpa\" value=\"el\">Ελληνικά</option><option class=\"_1RSpa\" value=\"ru\">Русский</option><option class=\"_1RSpa\" value=\"uk\">Українською</option><option class=\"_1RSpa\" value=\"ur\">اُردُو</option><option class=\"_1RSpa\" value=\"ar\">العربية</option><option class=\"_1RSpa\" value=\"mr\">मराठी</option><option class=\"_1RSpa\" value=\"hi\">हिंदी</option><option class=\"_1RSpa\" value=\"bn\">বাংলা</option><option class=\"_1RSpa\" value=\"pa\">ਪੰਜਾਬੀ</option><option class=\"_1RSpa\" value=\"ta\">தமிழ்</option><option class=\"_1RSpa\" value=\"te\">తెలుగు</option><option class=\"_1RSpa\" value=\"kn\">ಕನ್ನಡ</option><option class=\"_1RSpa\" value=\"th\">ภาษาไทย</option><option class=\"_1RSpa\" value=\"ko\">한국어</option><option class=\"_1RSpa\" value=\"zh\">中文</option><option class=\"_1RSpa\" value=\"ja\">日本語</option></select></div>"}]
+### Ran Playwright code
+```js
+await (async page=>{return await page.getByRole('combobox').evaluateAll(ns=>ns.map(n=>{const r=n.getBoundingClientRect(),c=getComputedStyle(n);return {tag:n.tagName,role:n.getAttribute('role'),opacity:c.opacity,visibility:c.visibility,display:c.display,rect:[r.x,r.y,r.width,r.height],checkVisibility:n.checkVisibility({checkOpacity:true,checkVisibilityCSS:true}),parent:n.parentElement.outerHTML.slice(0,7000)};}));})(page);
+```
+### Open tabs
+- 0: [多邻国 - 学得轻松，学有所成的英语 课程！](https://www.duolingo.com/lesson)
+- 1: [多邻国 - 学得轻松，学有所成的英语 课程！](https://www.duolingo.com/lesson)
+- 2: [多邻国 - 学得轻松，学有所成的英语 课程！](https://www.duolingo.com/guidebook/en/12)
+- 3: [多邻国 - 学得轻松，学有所成的英语 课程！](https://www.duolingo.com/alphabets/en/pronunciation)
+- 4: (current) [面向中文（简体）使用者的免费外语课程 - 多邻国](https://www.duolingo.com/courses)
+### Page
+- Page URL: https://www.duolingo.com/courses
+- Page Title: 面向中文（简体）使用者的免费外语课程 - 多邻国
+- Console: 13 errors, 0 warnings
+### Events
+- New console entries: .playwright-cli/console-2026-10-11T22-08-09-496Z.log#L65

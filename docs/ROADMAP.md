@@ -431,3 +431,8 @@ Swift接阶段列表、原素材、独立跳级实例及结算，最终同二进
 ### 主页顶部输入方式与采集一致性
 
 四入口悬停、英语关闭、宝石小店、连胜日历及课程Enter发现静态入口/键盘/采集遗漏。普通截图改变悬停，CDP保留但独立几何测得scale2，错误参考保留诊断。新探索按state/action/operation追踪；156状态/80边/4310待探索。Swift接顶部按钮、课程/宝石弹层及Return，同二进制鼠标8+键盘2状态无驱动失败。v75共18935，本轮451pass/57fail/17863not_run/564unavailable，7整图全fail。67Python/21Node/35核心通过；旧冻结/状态/图像回归不变，新冻结逐字复现。继续连胜/红心/添加课程/日历下游、跨页面视觉及原声音，不将局部修复称RSI因果收益。完整Goal active。[证据](../projects/duolingo-web/evidence/english-home-stats-v1/README.md)。
+
+
+### 主页实际下游与透明输入控件
+
+真实添加课程目录/母语选择、独立听音练习、补心及Super返回发现菜单角色和opacity0原生select漏采。修采集并回原版验证33选项、英语→中文；按选项及Enter/Space留前沿。补心4→5、505→155随刷新保存，满心禁用；Super建档关闭→登录→主页。Swift接红心弹层/实际交易保存/禁用/练习入口及返回链；同二进制10实际状态无驱动失败，67Python/21Node/36核心与构建通过。v76保留18935新增1192共20127，481pass/65fail/18954not_run/627unavailable，7整图全fail。165状态/87边/4699待探索；400ms瞬态未匹配保持pending，目录、新练习实例、连胜/日历、整体字体/动画/声音继续。反馈应进入下一次真实模型策略/产品消融，当前没有新增RSI因果收益声明；完整Goal active。[证据及复跑](../projects/duolingo-web/evidence/english-home-stat-branches-v1/README.md)。

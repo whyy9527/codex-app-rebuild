@@ -68,3 +68,6 @@ git show 2ad5175:projects/self-improvement/REPORT.md
 ### 产品反馈：输入方式与采集遗漏
 
 [主页顶部探针](../projects/duolingo-web/evidence/english-home-stats-v1/README.md)以反馈扩展hover/click/Enter，发现Swift Return未展开及截图改变悬停。源/候选实际前后证据保留；不是匹配预算模型消融，04的0/0结论不变。后续策略实验须消费未覆盖方式、采集失败及实际前端消费者，另行事前注册，不能把人工引导发现算RSI提升。
+
+
+[后续实际下游](../projects/duolingo-web/evidence/english-home-stat-branches-v1/README.md)继续发现menuitem/透明select漏采、33母语选项、独立听音练习、补心持久化和Super返回链。已将失败转换为新观察维度并回原版验证；这仍是产品反馈闭环，不是新模型策略或匹配预算收益。165状态/87边/4699前沿不作为RSI分数。后续实验要检验模型是否利用这些遗漏发现新的前端需求及消费者，保留04的0/0负结果。

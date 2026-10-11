@@ -1,16 +1,21 @@
 import SwiftUI
 
-/// Actual en/zh hover panels. Remaining streak/hearts panels and course enrollment
-/// are source-observed requirements, not claimed complete by these two consumers.
+/// Actual en/zh hover panels. Streak and enrollment remain incomplete.
 struct ReferenceTopStatPopover: View {
     let kind: String
     let gems: Int
+    let hearts: Int
+    let refill: () -> Void
+    let practice: () -> Void
+    let superSignup: () -> Void
     let flagResource: String
     let selectEnglish: () -> Void
     let visitShop: () -> Void
     var body: some View {
         ZStack(alignment:.topLeading) {
-            if kind == "gems" {
+            if kind == "hearts" {
+                heartPanel
+            } else if kind == "gems" {
                 face(width:384,height:152)
                 ReferenceStyle.image("en-stats-0de4611fd4d7c682803e").resizable().frame(width:100,height:100).offset(x:14,y:21)
                 Text("宝石").font(ReferenceStyle.font(24,bold:true)).frame(width:118,height:28,alignment:.leading).offset(x:126,y:31.75)
@@ -34,7 +39,34 @@ struct ReferenceTopStatPopover: View {
                 arrow(x:114.9296875,y:-5.0703125)
             }
         }.foregroundStyle(ReferenceStyle.ink)
-        .frame(width:kind == "gems" ? 384 : 244,height:kind == "gems" ? 152 : 163.3515625,alignment:.topLeading)
+        .frame(width:kind == "gems" ? 384 : kind == "hearts" ? 404 : 244,height:kind == "gems" ? 152 : kind == "hearts" ? (hearts >= 5 ? 398.5 : 402.5) : 163.3515625,alignment:.topLeading)
+    }
+    private var heartPanel: some View {
+        let full=hearts >= 5
+        let shift:CGFloat=full ? -4 : 0
+        return ZStack(alignment:.topLeading) {
+            face(width:404,height:full ? 398.5 : 402.5)
+            Text("红心").font(ReferenceStyle.font(25,bold:true)).frame(width:50,height:29.5).offset(x:177,y:27)
+            ForEach(0..<5,id:\.self) { i in
+                ReferenceStyle.image(i < hearts ? "en-heartmenu-088202fb75fb12b0" : "en-heartmenu-empty").resizable().frame(width:i < hearts ? 32 : 36,height:i < hearts ? 32 : 36).offset(x:104+CGFloat(i)*40,y:i < hearts ? 74 : 72)
+            }
+            if full {
+                Text("红心满满").font(ReferenceStyle.font(19,bold:true)).frame(width:76,height:22.5).offset(x:164,y:119)
+            } else {
+                HStack(spacing:0) {Text("获取下一颗红心还要等");Text("2 小时").foregroundStyle(Color(red:1,green:75/255,blue:75/255))}.font(ReferenceStyle.font(19,bold:true)).fixedSize().offset(x:79.8359375,y:123)
+            }
+            Text(full ? "继续加油吧！" : "你还有红心呢！接着练吧！").font(ReferenceStyle.font(17)).foregroundStyle(ReferenceStyle.secondaryInk).fixedSize().offset(x:full ? 151 : 100,y:158.5+shift)
+            heartAction("无限红心 订购 Super",id:"stat-hearts-super",enabled:true,icon:"en-heartmenu-9e00c8c23d5e6c5b",title:"无限红心",suffix:AnyView(Text("订购 SUPER").foregroundStyle(Color(red:207/255,green:23/255,blue:200/255))),action:superSignup).offset(x:22,y:196.5+shift)
+            heartAction("补心 350",id:"stat-hearts-refill",enabled:!full && gems >= 350,icon:"en-heartmenu-e93dc7a895769639",title:"补心",suffix:AnyView(HStack(spacing:0) {ReferenceStyle.image("en-heartmenu-010dc0f82e89bc22").resizable().frame(width:24,height:24);Text("350").foregroundStyle(ReferenceStyle.blue)}),action:refill).offset(x:22,y:258.5+(full ? -2 : 0))
+            heartAction("做练习获取红心",id:"stat-hearts-practice",enabled:!full,icon:"en-heartmenu-088202fb75fb12b0",title:"做练习获取红心",suffix:AnyView(EmptyView()),action:practice).offset(x:22,y:320.5+(full ? -2 : 0))
+            arrow(x:352.9296875,y:-5.0703125)
+        }
+    }
+    private func heartAction(_ label:String,id:String,enabled:Bool,icon:String,title:String,suffix:AnyView,action:@escaping ()->Void)->some View {
+        ReferencePracticeControl(label:label,identifier:id,enabled:enabled,action:action,face:AnyView(
+            HStack(spacing:8) {ReferenceStyle.image(icon).resizable().frame(width:36,height:36);Text(title);Spacer(minLength:0);suffix}.font(ReferenceStyle.font(15,bold:true)).padding(.horizontal,18).frame(width:360,height:50)
+                .background(.white,in:RoundedRectangle(cornerRadius:16,style:.circular)).overlay(RoundedRectangle(cornerRadius:16,style:.circular).strokeBorder(ReferenceStyle.border,lineWidth:2)).shadow(color:ReferenceStyle.border,radius:0,y:4).frame(height:54,alignment:.top).opacity(enabled ? 1 : 0.5)
+        ),fixedFaceSize:true).frame(width:360,height:54)
     }
     private func face(width:CGFloat,height:CGFloat)->some View {
         RoundedRectangle(cornerRadius:15,style:.circular).fill(.white)

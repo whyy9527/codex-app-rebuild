@@ -562,10 +562,11 @@ public struct LearningProgress: Codable, Equatable, Sendable {
     public var completedCourses: Set<String> = []
     public var completedLessons: [String: Set<String>] = [:]
     public var hearts = 5
+    public var spentGems = 0
     public var placementOutcomes: [String: ObservedPlacementOutcome] = [:]
     public var openedPathChests: [String: Set<String>] = [:]
     public init() {}
-    enum CodingKeys: String, CodingKey { case completedCourses, completedLessons, hearts, openedPathChests, placementOutcomes }
+    enum CodingKeys: String, CodingKey { case completedCourses, completedLessons, hearts, openedPathChests, placementOutcomes, spentGems }
     public init(from decoder: Decoder) throws {
         let c = try decoder.container(keyedBy: CodingKeys.self)
         guard c.contains(.completedCourses) || c.contains(.completedLessons) else {
@@ -575,8 +576,18 @@ public struct LearningProgress: Codable, Equatable, Sendable {
         completedLessons = c.contains(.completedLessons) ? try c.decode([String: Set<String>].self, forKey: .completedLessons) : [:]
         placementOutcomes = try c.decodeIfPresent([String: ObservedPlacementOutcome].self, forKey: .placementOutcomes) ?? [:]
         openedPathChests = try c.decodeIfPresent([String: Set<String>].self, forKey: .openedPathChests) ?? [:]
+        spentGems = try c.decodeIfPresent(Int.self, forKey: .spentGems) ?? 0
+        guard spentGems >= 0 else { throw DecodingError.dataCorruptedError(forKey: .spentGems, in: c, debugDescription: "Gem spending cannot be negative") }
         hearts = c.contains(.hearts) ? try c.decode(Int.self, forKey: .hearts) : 5
         guard hearts >= 0 else { throw DecodingError.dataCorruptedError(forKey: .hearts, in: c, debugDescription: "Hearts cannot be negative") }
+    }
+    // Observed guest purchase: 4→5 hearts; 505→155 gems survives reload.
+    // Presentation may lag the purchase; this records the durable transaction.
+    @discardableResult public mutating func purchaseHeartRefill(availableGems: Int) -> Bool {
+        guard hearts < 5, availableGems >= 350 else { return false }
+        hearts = 5
+        spentGems += 350
+        return true
     }
     public func isPathChestReady(_ course: Course) -> Bool {
         guard let chest = course.home?.pathChest, !chest.afterLessonIDs.isEmpty else { return false }

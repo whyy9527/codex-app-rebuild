@@ -920,6 +920,19 @@ func actualUnit12SecondHomeCourse() throws {
     print("PASS unit12 second 12 accepted, oral decline, two encouragements, 13 result cards and observed home outcome")
 }
 
+func observedHeartRefill() throws {
+    var progress=LearningProgress();progress.hearts=4
+    try check(!progress.purchaseHeartRefill(availableGems:349),"Insufficient gems must not refill")
+    try check(progress.hearts == 4 && progress.spentGems == 0,"Rejected purchase changed progress")
+    try check(progress.purchaseHeartRefill(availableGems:505),"Observed 505 gem purchase rejected")
+    try check(progress.hearts == 5 && 505-progress.spentGems == 155,"Durable 350-gem refill differs from source reload")
+    try check(!progress.purchaseHeartRefill(availableGems:155),"Full-heart purchase should be disabled")
+    let restored=try JSONDecoder().decode(LearningProgress.self,from:JSONEncoder().encode(progress))
+    try check(restored == progress,"Reload lost heart refill transaction")
+    let old=try JSONDecoder().decode(LearningProgress.self,from:Data("{\"completedCourses\":[],\"hearts\":4}".utf8))
+    try check(old.spentGems == 0 && old.hearts == 4,"Legacy progress must not acquire a gem debit")
+}
+
 do {
     try mistakeReview()
     try persistence()
@@ -956,7 +969,8 @@ do {
     try actualUnitPlacement()
     try actualUnit12HomeCourse()
     try actualUnit12SecondHomeCourse()
-    print("35 business checks passed; core layer only")
+    try observedHeartRefill()
+    print("36 business checks passed; core layer only")
 } catch {
     FileHandle.standardError.write(Data(("FAIL " + String(describing: error) + "\n").utf8))
     exit(1)

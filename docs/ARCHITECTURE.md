@@ -339,3 +339,6 @@ LessonDefinition的可选ObservedPlacementOutcome只保存已有全对实例的�
 
 
 普通assist与placement共用有原版来源的radio布局，原课程的header生命资源及32×32尺寸由实际DOM确定。review_instance_compiler仅从实际frontend_before动作采skipLabel，不为所有题型添加。v72保留v71并加入刷新提醒及第三课空跳过，源发现由compile-unit12-repair-frontier.py延续；measure-lesson2-owned-audio.py分别测两个真实UI动作的原语音资源存在，不把资源相关性当作原版声学等价。
+
+
+原版原生select可以透明覆盖可见标签并实际接收输入。采集器保存paint_visible、命中、完整选项及实际操作结果，不能用绘制透明删掉操作库存。共同前沿以选项/输入方式区分，不把一次选择推广到整个选择器。LearningProgress保存补心交易spentGems，LearningModel计算现有业务余额并保存，视图驱动实际交易；平台观察器只采AX、指针、按键和画面，不写验收结果。

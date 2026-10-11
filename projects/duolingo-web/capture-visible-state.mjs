@@ -19,6 +19,8 @@ const callback=async page=>{
     center_hit:!!hit&&(hit===n||n.contains(hit))};
   })
  })));
+ // Native transparent selects can draw their label separately and still receive input.
+ facts.select_groups=await page.locator('select').evaluateAll(ns=>ns.filter(n=>n.checkVisibility({checkOpacity:false,checkVisibilityCSS:true})).map(n=>{const r=n.getBoundingClientRect();return {rect:[r.x,r.y,r.width,r.height],options:[...n.options].map(o=>({label:o.label,value:o.value,selected:o.selected,disabled:o.disabled})),source:'Rendered native UI options; selection outcomes not inferred'};}));
  facts.scroll_regions=await page.locator('body *').evaluateAll(ns=>ns.flatMap(n=>{
   const c=getComputedStyle(n),r=n.getBoundingClientRect();
   if(!n.checkVisibility({checkOpacity:true,checkVisibilityCSS:true})||!/(auto|scroll)/.test(c.overflowY)||n.scrollHeight<=n.clientHeight)return [];
@@ -28,13 +30,13 @@ const callback=async page=>{
  // State-scoped identities retain duplicate controls instead of collapsing names.
  // Full rendered canonical controls are a separate exploration inventory.
  // CSS visibility does not establish viewport reachability or execution.
- facts.control_inventory=await page.locator('a[href],button,input,[role="button"],[role="radio"],[role="link"],[tabindex]:not([tabindex="-1"])').evaluateAll(ns=>ns.filter(n=>n.checkVisibility({checkOpacity:true,checkVisibilityCSS:true})).map((n,index)=>{
+ facts.control_inventory=await page.locator('a[href],button,input,select,[role="menuitem"],[role="button"],[role="radio"],[role="link"],[tabindex]:not([tabindex="-1"])').evaluateAll(ns=>ns.filter(n=>n.checkVisibility({checkOpacity:false,checkVisibilityCSS:true})).map((n,index)=>{
   const r=n.getBoundingClientRect(),hit=document.elementFromPoint(r.x+r.width/2,r.y+r.height/2);
-  return {index,tag:n.tagName,test:n.getAttribute('data-test'),href:n.getAttribute('href'),explicit_role:n.getAttribute('role'),input_type:n.tagName==='INPUT'?n.type:null,name:n.getAttribute('aria-label')||n.innerText||n.getAttribute('placeholder')||'',enabled:!n.disabled&&n.getAttribute('aria-disabled')!=='true',rect:[r.x,r.y,r.width,r.height],intersects_viewport:r.width>0&&r.height>0&&r.bottom>0&&r.right>0&&r.top<innerHeight&&r.left<innerWidth,center_hit:!!hit&&(hit===n||n.contains(hit))};
+  return {index,paint_visible:n.checkVisibility({checkOpacity:true,checkVisibilityCSS:true}),tag:n.tagName,test:n.getAttribute('data-test'),href:n.getAttribute('href'),explicit_role:n.getAttribute('role'),input_type:n.tagName==='INPUT'?n.type:null,name:n.getAttribute('aria-label')||n.innerText||n.getAttribute('placeholder')||'',enabled:!n.disabled&&n.getAttribute('aria-disabled')!=='true',rect:[r.x,r.y,r.width,r.height],intersects_viewport:r.width>0&&r.height>0&&r.bottom>0&&r.right>0&&r.top<innerHeight&&r.left<innerWidth,center_hit:!!hit&&(hit===n||n.contains(hit))};
  }));
- facts.control_inventory_limitations=['Rendered DOM inventory only; offscreen or obscured controls are not executed coverage; Focus inventory and pointer-only candidates do not establish interaction semantics.'];
+ facts.control_inventory_limitations=['Transparent canonical inputs may remain actual hit targets; paint visibility recorded separately and is not executed coverage','Rendered DOM inventory only; offscreen or obscured controls are not executed coverage; Focus inventory and pointer-only candidates do not establish interaction semantics.'];
  facts.actions=await page.locator('body').evaluate(body=>{
-  const canonical='a[href],button,input,[role="button"],[role="checkbox"],[role="radio"]';
+  const canonical='a[href],button,input,select,[role="menuitem"],[role="button"],[role="checkbox"],[role="radio"]';
   const standard=[...body.querySelectorAll(canonical)];
   // Actual source "清除" is a roleless pointer span. Keep outer pointer candidates
   // as unclassified actions, without inventing button roles or click semantics.
@@ -42,14 +44,14 @@ const callback=async page=>{
   const focusable=[...body.querySelectorAll('[tabindex]:not([tabindex="-1"])')].filter(n=>!n.matches(canonical));
   const ns=[...new Set([...standard,...focusable,...pointers])];
   const counts=new Map();return ns.flatMap(n=>{
-   const r=n.getBoundingClientRect();if(!n.checkVisibility({checkOpacity:true,checkVisibilityCSS:true})||r.width<=0||r.height<=0||r.bottom<=0||r.right<=0||r.top>=innerHeight||r.left>=innerWidth)return [];
+   const r=n.getBoundingClientRect();if(!n.checkVisibility({checkOpacity:!n.matches(canonical),checkVisibilityCSS:true})||r.width<=0||r.height<=0||r.bottom<=0||r.right<=0||r.top>=innerHeight||r.left>=innerWidth)return [];
    const test=n.getAttribute('data-test'),href=n.getAttribute('href');
    const name=n.getAttribute('aria-label')||n.innerText||n.getAttribute('placeholder')||n.querySelector('img')?.alt||'';
    const pointer=!n.matches(canonical);
    const identity=test?'test:'+test:href?'href:'+href:(pointer?'pointer:':'')+n.tagName+':'+name;
    const ordinal=counts.get(identity)||0;counts.set(identity,ordinal+1);
    const hit=document.elementFromPoint(r.x+r.width/2,r.y+r.height/2);
-   return [{id:identity+'#'+ordinal,test,href,name,...(pointer?{kind:n.tabIndex>=0?'focus_candidate':'pointer_candidate',semantic_role:'unclassified',limitations:'Observed focus/cursor candidate; actual interaction outcome must be explored'}:{}),hit_test:!!hit&&(hit===n||n.contains(hit)),tag:n.tagName,role:n.getAttribute('role')||(n.tagName==='A'?'link':n.tagName==='INPUT'?'textbox':pointer?null:'button'),enabled:!n.disabled&&n.getAttribute('aria-disabled')!=='true',checked:typeof n.checked==='boolean'?n.checked:n.hasAttribute('aria-checked')?n.getAttribute('aria-checked')==='true':null,rect:[r.x,r.y,r.width,r.height]}];
+   return [{id:identity+'#'+ordinal,paint_visible:n.checkVisibility({checkOpacity:true,checkVisibilityCSS:true}),test,href,name,...(pointer?{kind:n.tabIndex>=0?'focus_candidate':'pointer_candidate',semantic_role:'unclassified',limitations:'Observed focus/cursor candidate; actual interaction outcome must be explored'}:{}),hit_test:!!hit&&(hit===n||n.contains(hit)),tag:n.tagName,role:n.getAttribute('role')||(n.tagName==='A'?'link':n.tagName==='SELECT'?'combobox':n.tagName==='INPUT'?'textbox':pointer?null:'button'),enabled:!n.disabled&&n.getAttribute('aria-disabled')!=='true',checked:typeof n.checked==='boolean'?n.checked:n.hasAttribute('aria-checked')?n.getAttribute('aria-checked')==='true':null,rect:[r.x,r.y,r.width,r.height]}];
   });
  });
  // Generic text blocks (reward titles, subtitles and hints) were missing
