@@ -331,3 +331,6 @@ LessonDefinition的可选ObservedPlacementOutcome只保存已有全对实例的�
 
 
 主页共享滚动由`ReferenceHome`单一ScrollView承载主内容和右栏；原生NSClipView通知给出实际位移，扣除contentInsets，右栏根据实测内容高度与视口吸底。原版嵌套sticky和页脚UL/LI盒模型均有实时DOM证据，不能把两个独立滚动区或两行Text当等价。早期／稳定布局捕获是不同源状态；`freeze-home-scroll.py`保留v66追加v67，`compile-home-scroll-frontier.py`接入实际电台→单元跳级边。单元测试与阶段测试是独立原版路由，未观察完整内容前不得互相替代。
+
+
+第二课源轨迹由compile-unit12-lesson2.py编译为独立实例；orderTapComplete保留预填前后缀，回顾拼回完整句。前端v71追加逐题答前／反馈事实，compile-unit12-lesson2-frontier.py承接旧历史和真实遮挡失败。原生遮罩由可访问NSView接真实鼠标事件，使用实际高亮路径判断导航／外部关闭；pending准备不等于已复现原版延迟和滚动。

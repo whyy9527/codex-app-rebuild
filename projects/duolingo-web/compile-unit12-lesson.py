@@ -57,6 +57,7 @@ league=next(m for m in after['media'] if '/images/leagues/' in (m.get('src') or 
 resource=c.resource(league['src'],'home');c.resources[resource].update(render_width=70,render_height=50)
 lesson['completionAudioResource']=effect_resource(c,'https://d35aaqx5ub95lt.cloudfront.net/sounds/2aae0ea735c8e9ed884107d6f0a09e35.mp3')
 lesson['completionAudioVolume']=0.5
+lesson['postHomeCoach']='pronunciation'
 lesson['observedHomeSnapshot']=dict(completedLessons=3,gems=505,streak=1,leagueTitle='青铜等级',leagueLink='查看排行榜',leagueMessage='学个单元就能上本周排行榜，跟其他小伙伴一决高低！',leagueResource=resource,questTarget=10,questProgress=10)
 result=read('unit12-lesson-result-stable.json')
 art=next(m for m in result['media'] if m['tag'].lower()=='svg' and m.get('svg'))

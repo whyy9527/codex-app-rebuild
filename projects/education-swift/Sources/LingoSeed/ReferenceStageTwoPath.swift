@@ -36,6 +36,7 @@ struct ReferenceStageTwoPath: View {
     static var backResource: String { StageTwoPath.observed?.headerBack ?? "back" }
     let start: () -> Void
     var activeUnit:Int? = nil
+    var unitLessonNumber:Int = 1
     let jump: () -> Void
     let firstLessonCompleted: Bool
     @Binding var selected: String?
@@ -65,7 +66,7 @@ struct ReferenceStageTwoPath: View {
                         Ellipse().stroke(ReferenceStyle.border,lineWidth:8).frame(width:90,height:85)
                             .offset(x:node.rect[0]-10,y:node.rect[1]-10)
                     }
-                    ReferencePracticeControl(label:node.active && firstLessonCompleted ? (activeUnit == 12 ? "Lesson 2 of 6" : "Lesson 2 of 5") : node.label,identifier:node.id,enabled:true,
+                    ReferencePracticeControl(label:node.active && activeUnit == 12 ? "Lesson \(unitLessonNumber) of 6" : node.active && firstLessonCompleted ? "Lesson 2 of 5" : node.label,identifier:node.id,enabled:true,
                         action:{if node.id=="stage2-path-7" && node.role=="link" {jump()} else {selected=selected==node.id ? nil : node.id}},face:AnyView(
                             ZStack(alignment:.topLeading) {
                                 Ellipse().fill(node.active ? blue : ReferenceStyle.border).overlay(Ellipse().fill(.black.opacity(0.2)))
@@ -83,14 +84,15 @@ struct ReferenceStageTwoPath: View {
                         .offset(x:201,y:activeUnit==12 ? active.rect[1]-46 : 31).accessibilityIdentifier("stage2-path-start-label")
                 }
                 if selected=="stage2-path-0" || selected=="unit12-path-0" { lessonPopup.offset(x:92.5,y:activeUnit == 12 ? 270.1484375 : 170) }
-                if selected=="stage2-path-1" { storyPopup.offset(x:92.5,y:248.8515625) }
+                if selected=="stage2-path-1" { lockedPopup("篮球运动员",id:"stage2-story-locked").offset(x:92.5,y:248.8515625) }
+                if selected=="unit12-path-2" {lockedPopup("公寓参观",id:"unit12-radio-locked").offset(x:92.5,y:434.375)}
             }.frame(width:480,height:source.height,alignment:.topLeading)
         } else { Text("原版阶段路径未能载入。") }
     }
     private var lessonPopup: some View {
         VStack(alignment:.leading,spacing:0) {
             Text(activeUnit == 12 ? "描述你的家居布局" : "购买食品杂货").font(ReferenceStyle.font(19,bold:true)).frame(height:26.6)
-            Text(activeUnit == 12 ? (firstLessonCompleted ? "第 2/6 单元" : "第 1/6 单元") : (firstLessonCompleted ? "第 2/5 单元" : "第 1/5 单元")).font(ReferenceStyle.font(17)).frame(height:26.6)
+            Text(activeUnit == 12 ? "第 \(unitLessonNumber)/6 单元" : (firstLessonCompleted ? "第 2/5 单元" : "第 1/5 单元")).font(ReferenceStyle.font(17)).frame(height:26.6)
             ReferencePracticeControl(label:"开始 +10 经验",identifier:"stage2-lesson-confirm",enabled:true,action:start,face:AnyView(
                 Text("开始 +10 经验").font(ReferenceStyle.font(15,bold:true)).tracking(0.8).foregroundStyle(blue)
                     .frame(width:263,height:46).background(.white,in:RoundedRectangle(cornerRadius:16))
@@ -98,11 +100,11 @@ struct ReferenceStageTwoPath: View {
             ),role:.link,fixedFaceSize:true).frame(width:263,height:50).padding(.top,16)
         }.foregroundStyle(.white).padding(16).frame(width:295).background(blue,in:RoundedRectangle(cornerRadius:15))
     }
-    private var storyPopup: some View {
+    private func lockedPopup(_ title:String,id:String)->some View {
         VStack(alignment:.leading,spacing:8) {
-            Text("篮球运动员").font(ReferenceStyle.font(19,bold:true))
+            Text(title).font(ReferenceStyle.font(19,bold:true))
             Text("完成以上全部等级才可以解锁哦！").font(ReferenceStyle.font(19)).lineSpacing(4).fixedSize(horizontal:false,vertical:true)
-            ReferencePracticeControl(label:"未解锁",identifier:"stage2-story-locked",enabled:false,action:{},face:AnyView(
+            ReferencePracticeControl(label:"未解锁",identifier:id,enabled:false,action:{},face:AnyView(
                 Text("未解锁").font(ReferenceStyle.font(15,bold:true)).tracking(0.8).frame(width:259,height:50)
                     .background(ReferenceStyle.border,in:RoundedRectangle(cornerRadius:16))
             ),fixedFaceSize:true).frame(width:259,height:50).padding(.top,4)

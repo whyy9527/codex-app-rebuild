@@ -888,6 +888,38 @@ func actualUnit12HomeCourse() throws {
     print("PASS unit12 17 accepted, oral decline, two encouragements, 18 result cards and observed home outcome")
 }
 
+func actualUnit12SecondHomeCourse() throws {
+    let course = try course(fixture:"fixture-reference-en-zh-unit12-lesson2-v1.json")
+    var lesson=Lesson(course:course,hearts:4)
+    var graded=0, speech=0, interludes=0
+    for _ in 0..<32 {
+        if lesson.complete { break }
+        if lesson.interlude != nil { interludes += 1;lesson.advance();continue }
+        if let pending=lesson.deferredSpeech {
+            try check(pending.phrase == "a beautiful house", "Unit12 oral identity lost")
+            speech += 1;lesson.declineSpeech();lesson.advance();continue
+        }
+        switch lesson.question.kind {
+        case .choice: lesson.choose(lesson.question.answer)
+        case .wordTiles: for id in lesson.question.answerWords { lesson.addWord(id) }
+        case .textEntry: lesson.enterText(lesson.question.answer)
+        case .matching: throw CheckFailure.failed("Unexpected unit12 matching")
+        }
+        lesson.submit();try check(lesson.feedback == true,"Unit12 accepted source answer rejected")
+        graded += 1;lesson.advance()
+    }
+    try check(lesson.complete && graded == 12 && speech == 1 && interludes == 2,"Unit12 full observed trajectory differs")
+    try check(lesson.resultReviewEntries.count == 13,"Declined oral missing from unit12 result history")
+    try check(lesson.definition.settlement?.map(\.kind) == ["result","profile"],"Unit12 settlement sequence differs")
+    try check(lesson.definition.observedHomeSnapshot?.leagueTitle == "青铜等级" && lesson.definition.observedHomeSnapshot?.gems == 505,"Actual post-unit12 home state differs")
+    try check(lesson.hearts == 4,"Ordinary course must not use placement heart rewards")
+    try check(lesson.definition.questions.filter{$0.sourceType == "orderTapComplete"}.count == 2,"Two observed pattern exercises missing")
+    let pattern=lesson.resultReviewEntries.first{$0.questionID=="unit12-q3"}
+    try check(pattern?.answer == "Oh, the house is small.","Pattern result history lost prefills or spacing")
+    try check(lesson.definition.completionAudioResource == nil,"Do not invent an unprobed second-course completion cue")
+    print("PASS unit12 second 12 accepted, oral decline, two encouragements, 13 result cards and observed home outcome")
+}
+
 do {
     try mistakeReview()
     try persistence()
@@ -923,7 +955,8 @@ do {
     try actualStageTwoGrocery()
     try actualUnitPlacement()
     try actualUnit12HomeCourse()
-    print("34 business checks passed; core layer only")
+    try actualUnit12SecondHomeCourse()
+    print("35 business checks passed; core layer only")
 } catch {
     FileHandle.standardError.write(Data(("FAIL " + String(describing: error) + "\n").utf8))
     exit(1)

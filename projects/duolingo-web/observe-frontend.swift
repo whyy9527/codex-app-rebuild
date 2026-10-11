@@ -306,6 +306,7 @@ if let index = CommandLine.arguments.firstIndex(of: "--exercise-home-journey"), 
                     guard recorder.terminationStatus==0 else {throw ProbeError(message:"Owned application recording failed; preserve actual log")}
                 }
                 else if step["operation"] as? String == "observe" { /* Capture the already reached state without another action. */ }
+                else if step["operation"] as? String == "pointer_click" {try clickOwnedControl(control,xFraction:step["x_fraction"] as? Double ?? 0.5)}
                 else if step["operation"] as? String == "hover" { guard movePointer(to:control) else { throw ProbeError(message:"Missing hover target") } }
                 else { try press(control) }
                 Thread.sleep(forTimeInterval:0.7)
@@ -1027,7 +1028,8 @@ func press(_ id: String) throws {
           AXUIElementPerformAction(node, kAXPressAction as CFString) == .success else { throw ProbeError(message: "Cannot press " + id) }
     Thread.sleep(forTimeInterval: 0.08)
 }
-func clickOwnedControl(_ id: String) throws {
+func clickOwnedControl(_ id: String,xFraction:Double=0.5) throws {
+    guard xFraction >= 0 && xFraction <= 1 else {throw ProbeError(message:"Invalid owned pointer fraction")}
     // Preserve failed AXPress attempts separately. Use one real screen click
     // for TextEditor transitions, and verify the resulting state without retry.
     try waitFor(id)
@@ -1036,7 +1038,7 @@ func clickOwnedControl(_ id: String) throws {
           let position = attr(node, kAXPositionAttribute), let size = attr(node, kAXSizeAttribute) else { throw ProbeError(message: "No enabled owned control: " + id) }
     var point = CGPoint.zero; var dimensions = CGSize.zero
     AXValueGetValue(position as! AXValue, .cgPoint, &point); AXValueGetValue(size as! AXValue, .cgSize, &dimensions)
-    let center = CGPoint(x: point.x + dimensions.width / 2, y: point.y + dimensions.height / 2)
+    let center = CGPoint(x: point.x + dimensions.width * xFraction, y: point.y + dimensions.height / 2)
     pointerActions.append(["control": id, "center": [center.x, center.y], "delivery": "single screen click in owned frontmost window"])
     for type in [CGEventType.leftMouseDown, .leftMouseUp] {
         CGEvent(mouseEventSource: nil, mouseType: type, mouseCursorPosition: center, mouseButton: .left)?.post(tap: .cghidEventTap)

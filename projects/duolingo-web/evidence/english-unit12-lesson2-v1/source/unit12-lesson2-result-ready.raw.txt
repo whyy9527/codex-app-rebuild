@@ -1,0 +1,15 @@
+### Result
+{"snapshot":"- img\n- text: 完美！ 你练习全对，无错完成本单元 总经验\n- img\n- text: 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 超级棒\n- img\n- text: 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 %\n- button \"回顾本单元\"\n- button \"继续\""}
+### Ran Playwright code
+```js
+await (async page=>{await page.getByRole('button',{name:'回顾本单元',exact:true}).waitFor();await page.waitForFunction(()=>[...document.querySelectorAll('button')].some(n=>n.innerText==='回顾本单元'&&!n.disabled));return {snapshot:await page.locator('body').ariaSnapshot()}})(page);
+```
+### Open tabs
+- 0: [多邻国 - 学得轻松，学有所成的英语 课程！](https://www.duolingo.com/lesson)
+- 1: (current) [多邻国 - 学得轻松，学有所成的英语 课程！](https://www.duolingo.com/lesson)
+### Page
+- Page URL: https://www.duolingo.com/lesson
+- Page Title: 多邻国 - 学得轻松，学有所成的英语 课程！
+- Console: 74 errors, 0 warnings
+### Events
+- New console entries: .playwright-cli/console-2026-10-11T19-01-01-875Z.log#L151

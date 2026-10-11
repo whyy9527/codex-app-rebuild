@@ -1,0 +1,75 @@
+[
+  {
+    "version": 1,
+    "observation_sha256": null,
+    "binary_sha256": null,
+    "attempts": null,
+    "log": "projects/duolingo-web/observe-frontend.swift:171:58: error: cannot find 'xFraction' in scope\n 169 |     var point = CGPoint.zero; var dimensions = CGSize.zero\n 170 |     AXValueGetValue(position as! AXValue, .cgPoint, &point); AXValueGetValue(size as! AXValue, .cgSize, &dimensions)\n 171 |     let center = CGPoint(x: point.x + dimensions.width * xFraction, y: point.y + dimensions.height / 2)\n     |                                                          `- error: cannot find 'xFraction' in scope\n 172 |     pointerActions.append([\"control\": id, \"position\": [point.x, point.y], \"size\": [dimensions.width, dimensions.height], \"center\": [center.x, center.y]])\n 173 |     CGEvent(mouseEventSource: nil, mouseType: .mouseMoved, mouseCursorPosition: center, mouseButton: .left)?.post(tap: .cghidEventTap)",
+    "limits": "v3-v5 reused initial build; v6 rebuilt NSView but enabled AX fact absent"
+  },
+  {
+    "version": 2,
+    "observation_sha256": "62f85a2eea591c18716c9124973a0ac738ebedf66288fe889ceef47ea7729a2d",
+    "binary_sha256": "a4ad09517f0c6a1333bdcb1653662beb5f8f3c262c570af6ad8df961f80f0caf",
+    "attempts": [
+      {
+        "failure": "ProbeError(message: \"No observed control: pronunciation-coach-dismiss\")",
+        "id": "actual-coach-radio-next-course"
+      }
+    ],
+    "log": "Native observation failed: ProbeError(message: \"Home journey execution failed; inspect observed.json attempts\")\nCollected 2 actual home journey states, 1 failed journeys",
+    "limits": "v3-v5 reused initial build; v6 rebuilt NSView but enabled AX fact absent"
+  },
+  {
+    "version": 3,
+    "observation_sha256": "b59b987e431f49288d1f6ba6cbc82efd8bd85a75a9e66297a1088ea1c7d5c93b",
+    "binary_sha256": "a4ad09517f0c6a1333bdcb1653662beb5f8f3c262c570af6ad8df961f80f0caf",
+    "attempts": [
+      {
+        "failure": "ProbeError(message: \"No observed control: pronunciation-coach-dismiss\")",
+        "id": "actual-coach-radio-next-course"
+      }
+    ],
+    "log": "Native observation failed: ProbeError(message: \"Home journey execution failed; inspect observed.json attempts\")\nCollected 2 actual home journey states, 1 failed journeys",
+    "limits": "v3-v5 reused initial build; v6 rebuilt NSView but enabled AX fact absent"
+  },
+  {
+    "version": 4,
+    "observation_sha256": "6b8bba01796908f906ec4071ab78603625c7e958d2ba7e37a8826acb5df5d96e",
+    "binary_sha256": "a4ad09517f0c6a1333bdcb1653662beb5f8f3c262c570af6ad8df961f80f0caf",
+    "attempts": [
+      {
+        "failure": "ProbeError(message: \"No observed control: pronunciation-coach-dismiss\")",
+        "id": "actual-coach-radio-next-course"
+      }
+    ],
+    "log": "Native observation failed: ProbeError(message: \"Home journey execution failed; inspect observed.json attempts\")\nCollected 2 actual home journey states, 1 failed journeys",
+    "limits": "v3-v5 reused initial build; v6 rebuilt NSView but enabled AX fact absent"
+  },
+  {
+    "version": 5,
+    "observation_sha256": "fcba47c535139aebda343bb419246bb21774ed7ed3a135c17d97636529595732",
+    "binary_sha256": "a4ad09517f0c6a1333bdcb1653662beb5f8f3c262c570af6ad8df961f80f0caf",
+    "attempts": [
+      {
+        "failure": "ProbeError(message: \"No observed control: pronunciation-coach-dismiss\")",
+        "id": "actual-coach-radio-next-course"
+      }
+    ],
+    "log": "Native observation failed: ProbeError(message: \"Home journey execution failed; inspect observed.json attempts\")\nCollected 2 actual home journey states, 1 failed journeys",
+    "limits": "v3-v5 reused initial build; v6 rebuilt NSView but enabled AX fact absent"
+  },
+  {
+    "version": 6,
+    "observation_sha256": "92ff848ce2376c6630389f56533854a62d42b7b286de128b27b33db445851829",
+    "binary_sha256": "d6186a3f57fc7f3c4756bed41a940728fd8dc9cc3c00d1916b2d3af909338848",
+    "attempts": [
+      {
+        "failure": "ProbeError(message: \"No enabled owned control: pronunciation-coach-dismiss\")",
+        "id": "actual-coach-radio-next-course"
+      }
+    ],
+    "log": "Native observation failed: ProbeError(message: \"Home journey execution failed; inspect observed.json attempts\")\nCollected 2 actual home journey states, 1 failed journeys",
+    "limits": "v3-v5 reused initial build; v6 rebuilt NSView but enabled AX fact absent"
+  }
+]

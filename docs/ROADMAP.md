@@ -1,5 +1,7 @@
 # Roadmap
 
+2026-10-12第二课补漏：12判分题／1口语暂缓／2鼓励／13回顾，主页3of6持久化；40原生状态0驱动失败，严格543pass／282fail／14752not_run／923unavailable。继续第三课、提醒遮挡契约、字体布局与声音，保持完整Goal active。 [证据与复跑](../projects/duolingo-web/evidence/english-unit12-lesson2-v1/README.md)。
+
 最新进展（2026-10-12）：补原版单元12独立指南、17判分题／口语暂缓／18回顾卡、普通课程4生命与课后主页恢复；三次实际原生录音验证原资源及1／0.35／0.5增益。最终46状态旅程无执行失败；v70共15255项，258pass／178fail／547unavailable，45整图全fail。继续探索发现延迟发音遮罩、电台“公寓参观”锁定弹层、下一课图片选择，已纳入契约及frontier；逐题回放开始保留前端几何、CSS、命中与裁剪事实。完整Goal仍active，1:1及新RSI因果收益未完成。[证据、差异与复跑](../projects/duolingo-web/evidence/english-unit12-content-v1/README.md)。
 
 最新进展（2026-10-12）：由历史遗漏实际完成独立单元12的18题及解锁，Swift接5心独立会话、回顾和第2部分主页原动画；前端v68保留旧项并覆盖49个新增源状态。最终50状态无驱动失败，但205pass／93fail／6unavailable、49整图全fail。下一步优先原版新单元当前课／指南、通知、电台与声音，以及修就绪检测后注册真实模型03消融；既有02不可判定结果不改写。完整Goal active，不是1:1完成。[证据、失败、frontier与复跑](../projects/duolingo-web/evidence/english-unit-placement-v1/README.md)。

@@ -85,6 +85,9 @@ struct ReferenceHome: View {
                 }
             }.frame(width:geometry.size.width,alignment:.leading)
             .overlay(alignment: .topLeading) {
+                if model.preferences.pronunciationCoach == "pending" {
+                    ReferencePronunciationCoach(dismiss:model.dismissPronunciationCoach,navigate:{model.destination="Pronunciation"}).frame(width:geometry.size.width,height:geometry.size.height).zIndex(18)
+                }
                 if showingLegendary { ReferenceLegendary(hearts:model.progress.hearts,start:{ showingLegendary = false; showingPathProfile = true },quit:{ showingLegendary = false }).zIndex(19) }
                 if showingPathProfile { ReferencePathProfile(close: { showingPathProfile = false }).frame(width: geometry.size.width, height: geometry.size.height).zIndex(20) }
                 if moreOpen { moreMenu.offset(x: geometry.size.width >= 1180 ? 238 : 72, y: 438).zIndex(10) }
@@ -158,7 +161,7 @@ struct ReferenceHome: View {
                 }.buttonStyle(.plain).accessibilityIdentifier("open-guide")
             }.padding(16).frame(height: 90).foregroundStyle(.white).background(pathColor, in: RoundedRectangle(cornerRadius: 12))
             if model.placementOutcome?.activeStage == 2 {
-                ReferenceStageTwoPath(start:{stageTwoSelected=nil;model.beginStageTwoLesson()},activeUnit:model.placementOutcome?.activeUnit,jump:{stageTwoSelected=nil;model.prepareUnitPlacement(12)},firstLessonCompleted:model.placementOutcome?.activeUnit == 12 ? model.progress.completedLessons["duolingo-en-zh-unit12-home-instance",default:[]].contains("unit12-home-1") : model.progress.completedLessons["duolingo-en-zh-stage2-grocery-instance",default:[]].contains("stage2-grocery-1"),selected:$stageTwoSelected).padding(.top,model.placementOutcome?.activeUnit == 12 ? 24 : 0)
+                ReferenceStageTwoPath(start:{stageTwoSelected=nil;model.beginStageTwoLesson()},activeUnit:model.placementOutcome?.activeUnit,unitLessonNumber:model.unitTwelveCompletedLessons+1,jump:{stageTwoSelected=nil;model.prepareUnitPlacement(12)},firstLessonCompleted:model.placementOutcome?.activeUnit == 12 ? model.progress.completedLessons["duolingo-en-zh-unit12-home-instance",default:[]].contains("unit12-home-1") : model.progress.completedLessons["duolingo-en-zh-stage2-grocery-instance",default:[]].contains("stage2-grocery-1"),selected:$stageTwoSelected).padding(.top,model.placementOutcome?.activeUnit == 12 ? 24 : 0)
             } else {
             GeometryReader { geometry in
                 let center = geometry.size.width / 2

@@ -40,6 +40,16 @@ def compile_question(c, effect, raw, row, card, question_id):
         q['answer'] = next(o['id'] for o in q['options'] if o['text'] == raw['choices'][raw['correctIndex']])
         answer = raw['choices'][raw['correctIndex']]
         audio = []
+    elif raw['type'] == 'select':
+        choices=raw['choices'];actual=row['identity']['actual']['choices']
+        assert set(actual)=={v['phrase'] for v in choices}
+        q.update(kind='choice',options=[])
+        for j,text in enumerate(actual):
+            v=next(v for v in choices if v['phrase']==text)
+            q['options'].append(dict(id=str(j),text=text,imageResource=c.resource(v['svg'],'image'),audioResource=c.resource(v['tts'],'speech')))
+        answer=choices[raw['correctIndex']]['phrase'];q['answer']=next(v['id'] for v in q['options'] if v['text']==answer)
+        assert row['actions']==[dict(select=answer)]
+        audio=[]
     elif raw['type'] == 'dialogue':
         assert prompt.startswith('A：') and '\nB：___' in prompt
         hint = prompt[2:].split('\nB：___')[0]
@@ -71,12 +81,13 @@ def compile_question(c, effect, raw, row, card, question_id):
             # Exact canonical answer, including punctuation, comes from current public data.
             answer = raw.get('correctSolutions', [raw['prompt']])[0]
         audio = [q['audioResource']] if raw['type'] == 'listenTap' else []
-    elif raw['type'] == 'tapComplete':
+    elif raw['type'] in ['tapComplete','orderTapComplete']:
         tokens = raw['displayTokens']
         blanks = [i for i, t in enumerate(tokens) if t['isBlank']]
         assert blanks
-        chosen = [a['word'] for a in row['actions']]
-        assert chosen == [raw['choices'][i]['text'] for i in raw['correctIndices']]
+        chosen = [a['word'] for a in row['actions'] if 'word' in a]
+        expected=[t['text'] for t in tokens if t['isBlank']] if raw['type']=='orderTapComplete' else [raw['choices'][i]['text'] for i in raw['correctIndices']]
+        assert chosen == expected
         words, ids = c.compile_word_bank(raw['choices'], [t.strip() for t in row['word_bank']], chosen)
         q.update(kind='word_tiles', words=words, answer_words=ids,
                  completionPrefix=''.join(t['text'] for t in tokens[:blanks[0]]),

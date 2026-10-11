@@ -3,6 +3,7 @@ import Foundation
 /// Observed account preferences. Lesson-generation effects remain separate
 /// requirements; storing a preference does not establish those effects.
 struct LearningPreferences: Codable {
+    var pronunciationCoach: String?
     var soundEffects = true
     var animations = true
     var motivationalMessages = true

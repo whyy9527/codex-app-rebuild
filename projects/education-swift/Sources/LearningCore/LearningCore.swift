@@ -228,6 +228,7 @@ public struct ObservedPlacementOutcome: Codable, Equatable, Sendable {
     public let observedMistakes: Int
 }
 public struct LessonDefinition: Codable, Equatable, Sendable, Identifiable {
+    public var postHomeCoach: String? = nil
     public var completionAudioResource: String? = nil
     public var completionAudioVolume: Double? = nil
     public var placementOutcome: ObservedPlacementOutcome? = nil
@@ -523,7 +524,7 @@ public struct Lesson: Equatable, Sendable {
             else {
                 switch question.kind {
                 case .choice: answer = question.options.first { $0.id == selected }?.text ?? ""
-                case .wordTiles: answer = selectedWords.compactMap { id in question.words.first { $0.id == id }?.text }.joined(separator: question.sourceLanguage == "en" ? "" : " ")
+                case .wordTiles: answer = (question.completionPrefix ?? "") + selectedWords.compactMap { id in question.words.first { $0.id == id }?.text }.joined(separator: question.sourceLanguage == "en" ? "" : " ") + (question.completionSuffix ?? "")
                 case .textEntry: answer = (question.completionPrefix ?? "") + enteredText + (question.completionSuffix ?? "")
                 case .matching: answer = ""
                 }

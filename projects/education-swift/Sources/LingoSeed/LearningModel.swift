@@ -185,8 +185,13 @@ import LearningCore
             feedbackDifficulty=nil;closeQuestionReport();playAutomaticPrompt()
         } catch {self.error="无法载入单元测试。"}
     }
+    var unitTwelveCompletedLessons:Int {
+        (progress.completedLessons["duolingo-en-zh-unit12-home-instance",default:[]].contains("unit12-home-1") ? 1 : 0) +
+        (progress.completedLessons["duolingo-en-zh-unit12-home2-instance",default:[]].contains("unit12-home-2") ? 1 : 0)
+    }
+    func dismissPronunciationCoach() { preferences.pronunciationCoach="dismissed";savePreferences() }
     func beginStageTwoLesson() {
-        guard let url=Bundle.module.url(forResource:placementOutcome?.activeUnit == 12 ? "unit12-home-1" : "stage2-grocery-1",withExtension:"json",subdirectory:"Reference") else {
+        guard let url=Bundle.module.url(forResource:placementOutcome?.activeUnit == 12 ? "unit12-home-\(unitTwelveCompletedLessons+1)" : "stage2-grocery-1",withExtension:"json",subdirectory:"Reference") else {
             error="无法载入这个单元。";return
         }
         do {
@@ -275,6 +280,9 @@ import LearningCore
                 outcome.homeSnapshot=snapshot
                 progress.placementOutcomes[course.id]=outcome
                 save()
+            }
+            if lesson?.definition.postHomeCoach == "pronunciation", preferences.pronunciationCoach != "dismissed" {
+                preferences.pronunciationCoach="pending";savePreferences()
             }
             discardAttempt()
         }
