@@ -1,0 +1,14 @@
+{
+  "at": "2026-10-11T00:26:25.393Z",
+  "submitted": 1,
+  "steps": [
+    {
+      "before": "- button:\n  - img\n- progressbar:\n  - img\n- heading \"你听到了什么？\" [level=1]\n- button:\n  - img\n- radiogroup \"choice\":\n  - radio \"1 deck\":\n    - text: 1 deck\n    - img\n    - img\n  - radio \"2 dock\":\n    - text: 2 dock\n    - img\n    - img\n- button \"跳过\"\n- button \"检查\" [disabled]",
+      "feedback": "- button:\n  - img\n- progressbar:\n  - img\n- heading \"你听到了什么？\" [level=1]\n- button:\n  - img\n- radiogroup \"choice\":\n  - radio \"1 deck\" [disabled]:\n    - text: 1 deck\n    - img\n    - img\n  - radio \"2 dock\" [checked] [disabled]:\n    - text: 2 dock\n    - img\n    - img\n- heading \"很好，你的努力没白费！\" [level=2]\n- button \"太简单\"\n- button \"太难\"\n- button \"报错\"\n- button \"继续\"",
+      "after": "- button:\n  - img\n- progressbar\n- heading \"你听到了什么？\" [level=1]\n- button:\n  - img\n- radiogroup \"choice\":\n  - radio \"1 pot\":\n    - text: 1 pot\n    - img\n    - img\n  - radio \"2 pet\":\n    - text: 2 pet\n    - img\n    - img\n- button \"跳过\"\n- button \"检查\" [disabled]"
+    }
+  ],
+  "after": "- button:\n  - img\n- progressbar\n- heading \"你听到了什么？\" [level=1]\n- button:\n  - img\n- radiogroup \"choice\":\n  - radio \"1 pot\":\n    - text: 1 pot\n    - img\n    - img\n  - radio \"2 pet\":\n    - text: 2 pet\n    - img\n    - img\n- button \"跳过\"\n- button \"检查\" [disabled]\n- img\n- text: 等等，先别走！现在离开的话，你的进度就没了！\n- button \"继续努力\"\n- button \"退出\"",
+  "confirmation": true,
+  "path": "/alphabets/en/pronunciation"
+}

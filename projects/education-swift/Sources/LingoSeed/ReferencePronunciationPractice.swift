@@ -9,7 +9,10 @@ struct ReferencePronunciationPractice: View {
         GeometryReader { geometry in
             VStack(spacing: 0) {
                 HStack(spacing: 24) {
-                    Button { model.discardAttempt() } label: { ReferenceStyle.image("practice-close-source").resizable().frame(width: 18, height: 18) }
+                    Button {
+                        if model.pronunciationExitNeedsConfirmation { model.confirmingExit = true }
+                        else { model.discardAttempt() }
+                    } label: { ReferenceStyle.image("practice-close-source").resizable().frame(width: 18, height: 18) }
                         .buttonStyle(.plain).accessibilityIdentifier("exit")
                     ProgressView(value: lesson.complete ? 1 : lesson.reviewing ? 0.9 : Double(lesson.position) / Double(lesson.definition.questions.count)).tint(ReferenceStyle.green).accessibilityIdentifier("lesson-progress")
                 }.frame(maxWidth: 1000).padding(.top, 50)
@@ -43,6 +46,31 @@ struct ReferencePronunciationPractice: View {
                 footer.frame(height: 140)
             }.frame(maxWidth: .infinity, maxHeight: .infinity)
                 .foregroundStyle(ReferenceStyle.ink).background(ReferenceStyle.background)
+                .overlay { if model.confirmingExit { exitConfirmation } }
+        }
+    }
+
+    private var exitConfirmation: some View {
+        ZStack {
+            Color.black.opacity(0.4)
+            ZStack(alignment: .topLeading) {
+                ReferenceStyle.image("practice-quit-duo-source").resizable().frame(width: 120, height: 120)
+                    .accessibilityLabel("Duo").accessibilityIdentifier("practice-quit-duo")
+                    .offset(x: 132, y: 32)
+                Text("等等，先别走！现在离开的话，你的进度就没了！")
+                    .font(ReferenceStyle.font(24, bold: true)).lineSpacing(4).multilineTextAlignment(.center)
+                    .frame(width: 336, height: 64).accessibilityIdentifier("practice-quit-title").offset(x: 24, y: 168.5)
+                ReferencePracticeControl(label: "继续努力", identifier: "practice-quit-cancel", enabled: true,
+                    action: { model.confirmingExit = false }, face: AnyView(Text("继续努力").font(ReferenceStyle.font(15, bold: true))
+                        .foregroundStyle(.white).frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .background(RoundedRectangle(cornerRadius: 16).fill(ReferenceStyle.blue)
+                            .shadow(color: Color(red: 24/255, green: 153/255, blue: 214/255), radius: 0, y: 4)).padding(.bottom, 4)))
+                    .frame(width: 336, height: 50).offset(x: 24, y: 264.5)
+                ReferencePracticeControl(label: "退出", identifier: "practice-quit-confirm", enabled: true,
+                    action: { model.discardAttempt() }, face: AnyView(Text("退出").font(ReferenceStyle.font(15, bold: true))
+                        .foregroundStyle(Color(red: 1, green: 75/255, blue: 75/255)).frame(maxWidth: .infinity, maxHeight: .infinity)))
+                    .frame(width: 336, height: 32).offset(x: 24, y: 330.5)
+            }.frame(width: 384, height: 386.5, alignment: .topLeading).background(.white, in: RoundedRectangle(cornerRadius: 16))
         }
     }
 

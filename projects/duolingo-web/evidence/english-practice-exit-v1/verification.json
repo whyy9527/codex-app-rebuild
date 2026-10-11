@@ -1,0 +1,64 @@
+{
+  "kind": "observed-pronunciation-exit-and-media-frontier",
+  "native_exit_code": 0,
+  "native_states": 61,
+  "frontend_counts": {
+    "not_run": 1499,
+    "pass": 192,
+    "fail": 27
+  },
+  "new_requirements": 13,
+  "new_counts": {
+    "pass": 10,
+    "fail": 3
+  },
+  "core_checks": 23,
+  "source_cancel": {
+    "aria_unchanged": true,
+    "visible_controls_unchanged": true
+  },
+  "native_cancel": "Actual full AX question/control dictionary equality checked; observer throws on change",
+  "saved_progress": "Wrong-only and correct-then-wrong abandonment both actual file equality checked; main six lessons/hearts3 retained",
+  "restart": {
+    "completed": [
+      "pronunciation-1"
+    ],
+    "next_lesson": "pronunciation-2",
+    "observed_text_count": 7
+  },
+  "images": {
+    "full_same_state_pairs": 7,
+    "different": 7,
+    "dialog_only": {
+      "kind": "original-dialog-region-diagnostic",
+      "region_css_integer_enclosure": [
+        408,
+        172,
+        792,
+        560
+      ],
+      "source_sha256": "4a82ded6774d2b04ef5a9285b30ac8992d98ba4b4955f2defb2a3a00bedf8327",
+      "native_sha256": "70ce6cfa4b0710c861ff3ca799f013410e147513c538389e0e53118b2b2e84ad",
+      "normalization": "ICC to sRGB, measured native titlebar crop, 2x downsample; integer enclosure of complete dialog; no mask or tolerance",
+      "mean_absolute_rgb_difference": [
+        2.6405713058419242,
+        2.347340796821306,
+        2.3163257087628866
+      ],
+      "status": "different",
+      "candidate_acceptance": "not_proven",
+      "limitations": [
+        "Both after correct then wrong; underlying questions and practice instance differ. This is a dialog-only comparison, not full-state equivalence.",
+        "Native/font rendering differences remain reported without tolerance."
+      ]
+    }
+  },
+  "candidate_binary_sha256": "b27cf4857911f6ff756564f94c319f226d4add9760f3eda9b6729cb968041c08",
+  "fixture_sha256": "bbbf085beb0af6e4e6e2e627e229ee8f274dee660a9e1fd4e316bb1ea326ffb3",
+  "scope_limits": [
+    "Normal speech remains unverified and unconnected to grading/advance; no environment recording.",
+    "Source correct-progress trigger supported by explicit wrong/mixed/correct probes, not all unvisited branches.",
+    "Dialog3 zero-tolerance geometries still fail by0.25pt; all image differences retained.",
+    "No RSI or autonomous exploration benefit inferred."
+  ]
+}

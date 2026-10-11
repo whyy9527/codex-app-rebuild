@@ -8,6 +8,13 @@ import LearningCore
     var progress: LearningProgress
     var lesson: Lesson?
     var isPronunciationPractice = false
+    var pronunciationExitNeedsConfirmation: Bool {
+        guard isPronunciationPractice, let lesson else { return false }
+        // Source probes: all-wrong exits directly; one correct then a wrong
+        // still confirms. Use earned answers, not attempts or current streak.
+        if lesson.reviewing || lesson.complete { return lesson.definition.questions.count > lesson.review.count }
+        return lesson.feedback == true || lesson.position > lesson.review.filter { $0 < lesson.position }.count
+    }
     var confirmingExit = false
     var feedbackDifficulty: String?
     var reportingQuestion = false

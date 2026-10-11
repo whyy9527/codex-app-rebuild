@@ -214,6 +214,15 @@ if CommandLine.arguments.contains("--observe-pronunciation") {
                 try press("practice-play-0"); try press("practice-play-1")
             }
             if question["kind"] as? String == "matching" {
+                if CommandLine.arguments.contains("--exercise-practice-quit"), repeatCount == 0 {
+                    let preserved = try JSONSerialization.data(withJSONObject: observe(), options: [.sortedKeys])
+                    try press("exit"); try waitFor("practice-quit-title")
+                    states["pronunciation-practice-exit-confirm"] = observe(); try capture("practice-quit-confirm")
+                    try press("practice-quit-cancel"); try waitFor("question-prompt", value: id)
+                    let resumed = observe()
+                    guard try JSONSerialization.data(withJSONObject: resumed, options: [.sortedKeys]) == preserved else { throw ProbeError(message: "Practice cancellation changed actual AX question/control state") }
+                    states["pronunciation-practice-exit-cancelled"] = resumed; try capture("practice-quit-cancelled")
+                }
                 for pair in question["pairs"] as! [[String: Any]] {
                     let pairID = pair["id"] as! String
                     try press("pair-left-" + pairID); try press("pair-right-" + pairID)
@@ -252,8 +261,40 @@ if CommandLine.arguments.contains("--observe-pronunciation") {
             states["pronunciation-restarted-next"] = nextState; try capture("practice-restarted-next")
             try JSONSerialization.data(withJSONObject: ["completed":completedAfter,"next_lesson":next["id"]!,"observed_text_count":strings.count], options: [.prettyPrinted,.sortedKeys]).write(to: output.appendingPathComponent("restart.json"), options:.withoutOverwriting)
         } else { try press("pronunciation-start"); try waitFor("question-prompt", value: "p0") }
-        try press("exit")
+        if CommandLine.arguments.contains("--exercise-practice-quit") {
+            // An option selected but not graded must still leave directly, as observed.
+            guard let option = current().first(where: { (attr($0, kAXIdentifierAttribute) as? String)?.hasPrefix("option-") == true }),
+                  let optionID = attr(option, kAXIdentifierAttribute) as? String else { throw ProbeError(message: "No actual fresh practice option") }
+            try press(optionID)
+        }
+        try press("exit"); try waitFor("pronunciation-start")
         states["pronunciation-exit-returned"] = observe(); try capture("practice-exit-returned")
+        if CommandLine.arguments.contains("--exercise-practice-quit") {
+            let savedBefore = try Data(contentsOf: progress)
+            let savedValue = try JSONSerialization.jsonObject(with: savedBefore) as! [String: Any]
+            let finished = ((savedValue["completedLessons"] as? [String: [String]])?[practice["id"] as! String]) ?? []
+            guard let remaining = definitions.first(where: { !finished.contains($0["id"] as! String) }),
+                  let pending = remaining["questions"] as? [[String: Any]], pending.count >= 3,
+                  let firstWrong = (pending[0]["options"] as? [[String: Any]])?.first(where: { $0["id"] as? String != pending[0]["answer"] as? String }),
+                  let secondWrong = (pending[1]["options"] as? [[String: Any]])?.first(where: { $0["id"] as? String != pending[1]["answer"] as? String }) else { throw ProbeError(message: "Observed next practice choices unavailable") }
+            try press("pronunciation-start"); try waitFor("question-prompt", value: "p0")
+            try press("option-" + (firstWrong["id"] as! String)); try press("check"); try waitFor("continue"); try press("continue")
+            try press("option-" + (secondWrong["id"] as! String)); try press("check"); try waitFor("continue"); try press("continue")
+            try press("exit"); try waitFor("pronunciation-start")
+            states["pronunciation-practice-wrong-exit-returned"] = observe(); try capture("practice-wrong-exit-returned")
+            guard try Data(contentsOf: progress) == savedBefore else { throw ProbeError(message: "Wrong-only abandoned practice changed saved progress") }
+            try press("pronunciation-start"); try waitFor("question-prompt", value: "p0")
+            try press("option-" + (pending[0]["answer"] as! String)); try press("check"); try waitFor("continue"); try press("continue")
+            try press("option-" + (secondWrong["id"] as! String)); try press("check"); try waitFor("continue"); try press("continue")
+            try press("exit"); try waitFor("practice-quit-title")
+            states["pronunciation-practice-abandon-confirm"] = observe(); try capture("practice-abandon-confirm")
+            try press("practice-quit-confirm"); try waitFor("pronunciation-start")
+            states["pronunciation-practice-abandoned"] = observe(); try capture("practice-abandoned")
+            guard try Data(contentsOf: progress) == savedBefore else { throw ProbeError(message: "Abandoned practice changed saved completion or main progress") }
+            try press("pronunciation-start"); try waitFor("question-prompt", value: "p0")
+            states["pronunciation-practice-abandoned-restarted"] = observe(); try capture("practice-abandoned-restarted")
+            try press("exit"); try waitFor("pronunciation-start")
+        }
     }
     let receipt: [String: Any] = ["kind": "owned_native_ax_observation", "states": states,
         "candidate_binary_sha256": candidateSHA, "fixture_sha256": fixtureSHA,

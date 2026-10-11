@@ -6,9 +6,9 @@
 
 当前默认夹具为 `fixture-reference-en-zh-v10.json`：七课102道评分题，保留实际口语暂缓、听力暂缓、插入/替换题、独立输入偏好、跳过重练及结算路径。第七课15题与三页结算已原生走通，后续课程继续探索；不会把学完已编译课程标成整课程完成。
 
-前端契约v22保留全部旧要求，共1702项。配对已修为原版255×58控件及指定右列顺序，新增40项全部通过；本次52状态按最新契约为171pass/24fail/1501not_run/6unavailable，六对整图仍不同。实际第二/第三次探索发现动态内容、口语权限错误、进度刷新恢复和成绩单；反馈记忆使第三次五道错题全部更正。正常录音/识别、后续原生内容/持久化和声音等价仍未完成。见[最新证据、缺口与复跑](projects/duolingo-web/evidence/english-pronunciation-matching-v1/README.md)。旧构建和旧契约保留，不移用其结果填当前未执行项。
+前端契约保留旧要求并持续追加源观察；最新口语权限及发音退出分支已接入实际原生验证。反例探测区分全错直接退出与已获得正确进度后的确认，取消保持题目状态。几何、整图和声音仍有失败/未覆盖，正常录音评分与推进未完成。[最新证据、探索反例与复跑](projects/duolingo-web/evidence/english-practice-exit-v1/README.md)，逐批结果由[Roadmap](docs/ROADMAP.md)维护；不累计旧构建回执填当前未执行项。
 
-Bea/Lucy、Falstaff和正确Lin的源Rive已绑定；更多角色、气泡、主页引导、radio1声音和生命刷新仍未对齐。不能用核心通过、控件几何通过或源语音文件已下载宣称1:1完成。原始RSI论文、机制实验及无收益结果见[研究来源](docs/RESEARCH.md)，新的真实探索策略消融仍待执行。
+Bea/Lucy、Falstaff和正确Lin的源Rive已绑定；更多角色、气泡、主页引导、radio1声音和生命刷新仍未对齐。不能用核心通过、控件几何通过或源语音文件已下载宣称1:1完成。原始RSI论文、机制实验及无收益结果见[研究来源](docs/RESEARCH.md)，已执行的[真实探索消融](projects/exploration-ablation/REPORT.md)和[前端质量消融](projects/frontend-quality-ablation/REPORT.md)保留不可归因和无额外收益结果，尚未证明RSI探索收益。
 
 历史探针和旧版本均保留：见[Roadmap](docs/ROADMAP.md)、[反馈分支](projects/duolingo-web/evidence/english-feedback-actions-v1/README.md)、[六课连续回放](projects/duolingo-web/evidence/english-sixth-native-v1/README.md)、[第七课源观察](projects/duolingo-web/evidence/english-seventh-v1/README.md)和[跳过探针](projects/duolingo-web/evidence/english-skip-native-v1/README.md)。组件结果不相加冒充整体验收。
 
@@ -18,7 +18,7 @@ Bea/Lucy、Falstaff和正确Lin的源Rive已绑定；更多角色、气泡、主
 
 测试重新计算完成状态，文档保存决策与未知。通过现有测试不代表产品完整；未探索、不可用、失败和通过必须分开。探索新增行为后建立下一批规格，不能在实现期间降低当前验收标准。
 
-Swift的22项核心检查覆盖实际课程轨迹、错误与暂缓、重练、输入偏好和进度。原生驱动另行操作窗口并保存控件、截图、失败及实际状态；它们不能互相替代。具体构建、启动和重置入口见[Swift基座](projects/education-swift/README.md)。
+Swift的23项核心检查覆盖实际课程轨迹、错误与暂缓、重练、输入偏好和进度。原生驱动另行操作窗口并保存控件、截图、失败及实际状态；它们不能互相替代。具体构建、启动和重置入口见[Swift基座](projects/education-swift/README.md)。
 
 ## 当前能力
 

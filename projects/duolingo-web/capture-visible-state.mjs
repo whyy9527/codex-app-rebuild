@@ -1,12 +1,24 @@
 // Read visible DOM/AX in the owned source page, without hidden session/React payloads.
 import {spawnSync} from 'node:child_process';
-import {writeFileSync,mkdirSync} from 'node:fs';
+import {writeFileSync,mkdirSync,existsSync} from 'node:fs';
 import {resolve,dirname,basename} from 'node:path';
 function arg(name){const i=process.argv.indexOf(name);if(i<0||!process.argv[i+1])throw Error('Required '+name);return process.argv[i+1];}
 const out=resolve(arg('--out'));mkdirSync(dirname(out),{recursive:true});
+for(const suffix of ['.raw.txt','.json','.png'])if(existsSync(out+suffix))throw Error('Observation output already exists: '+basename(out)+suffix+'; choose a fresh stem before any source action');
 const callback=async page=>{
  const facts={observed_at:new Date().toISOString(),path:new URL(page.url()).pathname,
   viewport:page.viewportSize(),snapshot:await page.locator('body').ariaSnapshot()};
+ // Artwork outside buttons was absent from the old mold. Keep visible media
+ // geometry and public resource identity without reading application state.
+ facts.media=await page.locator('img,svg,canvas').evaluateAll(ns=>ns.filter(n=>n.checkVisibility()).map(n=>{
+  const r=n.getBoundingClientRect(),css=getComputedStyle(n);
+  const src=n.tagName==='IMG'?(n.currentSrc||n.src):null;
+  return {tag:n.tagName,alt:n.getAttribute('alt'),test:n.getAttribute('data-test'),
+   src:src&&!src.startsWith('data:')&&!src.startsWith('blob:')?src:null,
+   source_kind:src?.startsWith('data:')?'inline':src?.startsWith('blob:')?'blob':src?'url':null,
+   rect:[r.x,r.y,r.width,r.height],objectFit:css.objectFit,
+   intrinsic:n.tagName==='IMG'?[n.naturalWidth,n.naturalHeight]:n.tagName==='CANVAS'?[n.width,n.height]:null};
+ }));
  facts.visible=await page.locator('[data-test],h1,h2,[role="dialog"],button,input,label').evaluateAll(ns=>ns.filter(n=>n.checkVisibility()).map(n=>{
   const r=n.getBoundingClientRect(),css=getComputedStyle(n);
   return {test:n.getAttribute('data-test'),tag:n.tagName,role:n.getAttribute('role'),text:n.innerText,

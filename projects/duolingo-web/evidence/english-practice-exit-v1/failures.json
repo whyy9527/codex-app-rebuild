@@ -1,0 +1,30 @@
+[
+  {
+    "stage": "initial-source-settings",
+    "failure": "Settings menu disappeared after pointer left; separate click timed out. Hover and click within same command reached real settings; no preference changed."
+  },
+  {
+    "stage": "cancel-capture",
+    "failure": "Action raw stem collided with capture raw (EEXIST) after screenshot. Original action preserved; recaptured same live state under quit-resumed. Added preflight for all three output files before browser call."
+  },
+  {
+    "stage": "graded-first-exit",
+    "failure": "Expected confirmation after one answer, but actual wrong answer then quit returned to characters; waitFor continue-learning timed out. Follow-up two-wrong, mixed, first-correct and correct-then-wrong probes distinguish earned progress from attempts."
+  },
+  {
+    "stage": "v24-initial-schema",
+    "failure": "KeyError role: two new element_role rows used expected field; corrected new-row schema only. Old1705 requirements unchanged."
+  },
+  {
+    "stage": "native01",
+    "failure": "60 states completed exit0, but dialog children x+24/y+133.25. ZStack natural content centered inside fixed frame; corrected frame alignment instead of negative offsets. Initial attempts-based confirmation rule also replaced after source counterexamples."
+  },
+  {
+    "stage": "native02",
+    "failure": "61 states completed exit0. Frame alignment removed large offset, but y+0.25 remains on image and two buttons. Consumer-only correction derives fractional centering from panel height, window geometry and display scale; no verifier tolerance changed."
+  },
+  {
+    "stage": "native03-rejected",
+    "failure": "61 states exit0; fractional centering compensation changed y+0.25 into y-0.25, still failed all3 zero-tolerance geometries. Dialog region RGB diff rose from [2.64057,2.34734,2.31633] to [4.61042,3.98385,3.90250]; rejected and reverted. No source equivalence claimed."
+  }
+]
