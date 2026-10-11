@@ -1,0 +1,34 @@
+{
+  "selection": {
+    "prior_failure": "v44 whole images and missing input controls/login",
+    "choice": "Inspect actual registration inputs and distinct login instead of repeating course playback",
+    "discovery": "Login includes Apple and forgot-password; clear empties age and disables Next; show/hide keeps synthetic abc"
+  },
+  "actions": [
+    {
+      "action": "Home Create → age Login",
+      "result": "distinct login page, captured source/login-empty; no login/OAuth submitted"
+    },
+    {
+      "action": "Registration → age28 → clear button",
+      "result": "empty and Next disabled",
+      "evidence": "interaction-probes.json"
+    },
+    {
+      "action": "age28 → Next → email → synthetic password abc → show → hide",
+      "result": "text abc then password abc",
+      "evidence": "interaction-probes.json"
+    }
+  ],
+  "negative": [
+    "First font probe used ambiguous h1 selector; strict mode failed; explicit last displayed overlay h1 measured successfully",
+    "CLI ref after capture was stale; action failed before click; fresh visible snapshot/semantic locator used"
+  ],
+  "not_proven": [
+    "exploration completeness",
+    "RSI gain",
+    "valid registration",
+    "login backend",
+    "sound equality"
+  ]
+}

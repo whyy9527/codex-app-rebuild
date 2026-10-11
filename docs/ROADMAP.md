@@ -328,3 +328,8 @@ v15保留1489项并增8项真实原版断言。独立原生radio2实际点击及
 ### 年龄输入、注册方式与邮箱错误态
 
 真实原版填28/清空/再填并Next，发现注册方式页；电子邮件入口空提交出现两条错误和上下布局位移，返回两次保留28再关闭。v44原样保留2382旧项新增51，共2433，先冻结再实现。原5个公开SVG按实际尺寸导入。Swift真实16状态完成开箱/重启/Start/年龄/邮箱错误/返回关闭；写死输入标识失败和编辑器竞争截断28为2的失败均保留，分别修根因。最终96pass/27fail/2310not_run，新增45pass6fail；全部新增控件几何与清空反馈通过，四整图/OAuth enabled失败。Google/Facebook禁用是实现缺口，不能升级为产品限制；登录/法律链接/清除/密码显示及非空注册继续。29核心/58Python/14Node通过，最终同二进制八课41状态回归133pass/17fail/2283not_run，驱动无失败。无新RSI消融或声学收益，完整Goal active。[源、失败、frontier和复跑](../projects/duolingo-web/evidence/english-registration-v1/README.md)。
+
+
+### 注册输入控件、独立登录发现与焦点反例
+
+由v44整图/缺失输入控件选择原版新探索：实际年龄清除禁Next，密码abc显示/隐藏保值，登录另含Apple/忘记密码，未提交帐号。v45保留2433旧项增43共2476，实施前冻结；3原inline SVG按原色/尺寸导入。候选清除/reveal与真实安全文本框已接，补源输入padding/字体及背景独立投影；自定义cell不可编辑、截图trap、两次年龄只到2和回顾失去活动目标等失败均保留。驱动输入/滚动激活并确认自有进程，最终同二进制两次20状态各116pass/31fail/2329not_run；新增20pass4整图fail19登录not_run。八课41状态回归无驱动失败，133pass/17fail/2326not_run。29核心/58Python/14Node/构建通过；邮箱整图差异下降，年龄图略增，负结果保留。不能宣称1:1或RSI收益，完整Goal active。[源、逐构建证据、frontier与复跑](../projects/duolingo-web/evidence/english-registration-controls-v1/README.md)。

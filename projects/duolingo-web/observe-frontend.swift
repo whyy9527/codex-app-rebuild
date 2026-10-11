@@ -91,7 +91,7 @@ func capture(_ name: String) throws {
     let process = Process(); process.executableURL = URL(fileURLWithPath: "/usr/sbin/screencapture")
     process.arguments = ["-x", "-o", "-l", String(number), output.appendingPathComponent(name + ".png").path]
     try process.run(); process.waitUntilExit()
-    precondition(process.terminationStatus == 0, "Owned window capture failed")
+    guard process.terminationStatus == 0 else { throw ProbeError(message: "Owned window capture failed, exit \(process.terminationStatus)") }
 }
 func observe() -> [String: Any] {
     let strings = Set(current().flatMap { node in
@@ -156,8 +156,18 @@ func movePointer(to id: String) -> Bool {
     try? JSONSerialization.data(withJSONObject: pointerActions, options: [.prettyPrinted]).write(to: output.appendingPathComponent("pointer.json"))
     return true
 }
-func fillInput(_ value: String, identifier: String = "answer-input") throws {
+func activateOwnedInputTarget() throws {
+    guard child.isRunning, let running = NSRunningApplication(processIdentifier: child.processIdentifier) else { throw ProbeError(message: "Owned input process missing") }
+    running.activate(options: [.activateAllWindows])
+    AXUIElementSetAttributeValue(app, kAXFrontmostAttribute as CFString, kCFBooleanTrue)
+    if let window = (attr(app, kAXWindowsAttribute) as? [AXUIElement])?.first { AXUIElementPerformAction(window, kAXRaiseAction as CFString) }
+    let deadline = Date().addingTimeInterval(3)
+    while !running.isActive && Date() < deadline { Thread.sleep(forTimeInterval: 0.05) }
+    guard running.isActive else { throw ProbeError(message: "Owned input process not active") }
+}
+func fillInput(_ value: String, identifier: String = "answer-input", verifyValue: Bool = true) throws {
     try waitFor(identifier)
+    try activateOwnedInputTarget()
     let input = current().first { (attr($0, kAXIdentifierAttribute) as? String) == identifier }!
     guard AXUIElementSetAttributeValue(input, kAXFocusedAttribute as CFString, kCFBooleanTrue) == .success else { throw ProbeError(message: "Cannot focus actual input") }
     // AX value assignment changes the field but can bypass SwiftUI's editing binding.
@@ -175,7 +185,7 @@ func fillInput(_ value: String, identifier: String = "answer-input") throws {
             event.postToPid(child.processIdentifier)
         }
     }
-    try waitFor(identifier, value: value)
+    if verifyValue { try waitFor(identifier, value: value) } else { try waitFor(identifier) }
     Thread.sleep(forTimeInterval: 0.15)
 }
 
@@ -215,8 +225,29 @@ if CommandLine.arguments.contains("--exercise-path-chest") {
                 var filled = observe(); let value = current().first { (attr($0,kAXIdentifierAttribute) as? String) == "path-age-input" }.flatMap { attr($0,kAXValueAttribute) as? String }
                 filled["interactions"] = ["cleared_disabled":disabled,"age_value_correct":value == "28"]
                 states["registration-filled"] = filled; try capture("registration-filled")
+                if CommandLine.arguments.contains("--exercise-registration-controls") {
+                    try saveChest("registration-clear-before"); try press("registration-age-clear")
+                    try waitFor("path-age-input", value: "")
+                    var cleared = observe(); let next = current().first { (attr($0,kAXIdentifierAttribute) as? String) == "path-age-next" }
+                    cleared["interactions"] = ["clear_button_empties_age":current().first { (attr($0,kAXIdentifierAttribute) as? String) == "path-age-input" }.flatMap { attr($0,kAXValueAttribute) as? String } == "", "clear_button_disables_next":next.flatMap { attr($0,kAXEnabledAttribute) as? Bool } == false]
+                    states["registration-cleared"] = cleared; try capture("registration-cleared")
+                    try fillInput("28", identifier: "path-age-input")
+                }
                 try press("path-age-next"); try waitFor("registration-email"); try saveChest("registration-methods")
                 try press("registration-email"); try waitFor("registration-address"); try saveChest("registration-email")
+                if CommandLine.arguments.contains("--exercise-registration-controls") {
+                    try fillInput("abc", identifier: "registration-password", verifyValue: false); Thread.sleep(forTimeInterval:0.3); try saveChest("registration-password-hidden")
+                    try press("registration-password-reveal"); try waitFor("registration-password", value: "abc")
+                    var visible = observe(); let shown = current().first { (attr($0,kAXIdentifierAttribute) as? String) == "registration-password" }
+                    let preserved = shown.flatMap { attr($0,kAXValueAttribute) as? String } == "abc"
+                    let plaintext = shown.flatMap { attr($0,kAXSubroleAttribute) as? String } != "AXSecureTextField"
+                    try capture("registration-password-visible")
+                    try press("registration-password-reveal"); Thread.sleep(forTimeInterval:0.3)
+                    let hidden = current().first { (attr($0,kAXIdentifierAttribute) as? String) == "registration-password" }.flatMap { attr($0,kAXSubroleAttribute) as? String } == "AXSecureTextField"
+                    visible["interactions"] = ["reveal_preserves_value":preserved,"reveal_shows_text":plaintext,"rehide_restores_secure":hidden]
+                    states["registration-password-visible"] = visible
+                    try fillInput("", identifier: "registration-password")
+                }
                 try press("registration-submit"); Thread.sleep(forTimeInterval:0.4); try saveChest("registration-email-invalid")
                 try press("registration-back"); try waitFor("registration-email"); try saveChest("registration-back-methods")
                 try press("registration-back"); try waitFor("path-age-input"); try saveChest("registration-back-age")
@@ -295,6 +326,7 @@ if CommandLine.arguments.contains("--observe-quests") {
             try saveReviewState(eighthReview ? "level-practice-review-long-expanded" : errorReview ? "error-practice-review-wrong-expanded" : "current-practice-review-speech-expanded")
             guard movePointer(to: "review-card-8") else { throw ProbeError(message: "Cannot target owned review scroll") }
             func scrollReview(_ amount: Int32, returned: Bool) throws {
+                try activateOwnedInputTarget()
                 guard let event = CGEvent(scrollWheelEvent2Source: nil, units: .pixel, wheelCount: 1, wheel1: amount, wheel2: 0, wheel3: 0),
                       let point = CGEvent(source: nil)?.location,
                       NSRunningApplication(processIdentifier: child.processIdentifier)?.isActive == true else {

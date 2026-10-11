@@ -268,3 +268,8 @@ LessonDefinition的可选listeningDeclineReplacements由实例提供已观察替
 ### 注册分支与输入编辑同步
 
 实际年龄→方式→邮箱→空提交错误被单独冻结为v44，保留全部历史要求；同一采集/比较器覆盖布局、角色、enabled和整图。原版年龄填值后输入框缩窄24点且Next上移4点，不能从空状态推导所有状态。ReferenceRegistration使用原SVG和真实NSTextField/NSSecureTextField，SwiftUI状态保存返回年龄；原生驱动通过真实键盘填写/清空，按传入输入标识等待。NSTextField编辑器拥有在途输入，SwiftUI更新不得回写旧绑定截断输入；原始失败与修复后回执保留。跨平台比较只把AXTextField映射textbox，静态文字反例仍失败，不放宽角色/几何。OAuth、账号服务与静态法律链接等是实现缺口，不能作为新验收规则。[本批可执行证据](../projects/duolingo-web/evidence/english-registration-v1/README.md)。
+
+
+### 清除与安全文本输入的共同契约
+
+v45由实际清除/显示隐藏动作结果及登录页面生成，冻结脚本断言原版probe而非从文案推测规则。NSSecureTextField只在实际reveal后核对abc，重新隐藏以真实AXSecureTextField证明；不为获取值改安全角色。输入view由真实编辑发布、初始化/显式clear/reveal身份重建，避免状态回放干扰在途输入。驱动输入和回顾滚轮先激活确认自有进程，不能把不活动窗口上的发送当执行成功；窗口截图失败抛错误而非trap。新增19登录要求保持未执行，原始失败/图像变差仍独立存档，不追加产品限制。[实测及反例](../projects/duolingo-web/evidence/english-registration-controls-v1/README.md)。

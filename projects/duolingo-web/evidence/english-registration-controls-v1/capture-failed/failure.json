@@ -1,0 +1,10 @@
+{
+  "attempt": "registration-controls-native-02",
+  "exit_code": 133,
+  "phase": "initial home capture, before registration actions",
+  "failure": "could not create image from window; precondition Owned window capture failed",
+  "states": "unavailable: no observed.json produced",
+  "cleanup": "Confirmed owned LingoSeed process still running after interpreter trap; sent SIGTERM before next attempt",
+  "candidate_binary_sha256": "unknown",
+  "fix": "Capture failure now throws ProbeError instead of precondition trap; no capture success fabricated"
+}

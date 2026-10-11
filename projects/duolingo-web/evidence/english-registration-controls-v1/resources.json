@@ -1,0 +1,41 @@
+{
+  "resources": [
+    {
+      "name": "en-registration-clear",
+      "kind": "image",
+      "source_file": "en-registration-clear.svg",
+      "source_evidence": "projects/duolingo-web/evidence/english-registration-controls-v1/source/clear-before.json",
+      "resolved_color": "rgb(175, 175, 175)",
+      "render_width": 24,
+      "render_height": 24,
+      "sha256": "b2a974f851b7a8a985b7cd313d571370ad58b91603b1e62f216416899430703c",
+      "rendered_file": "en-registration-clear.png",
+      "rendered_sha256": "9ac948a92e884500bd2ce7967c55dbb0630dd8e80d9dbabe421131a8cd7a51bf"
+    },
+    {
+      "name": "en-registration-show-password",
+      "kind": "image",
+      "source_file": "en-registration-show-password.svg",
+      "source_evidence": "projects/duolingo-web/evidence/english-registration-controls-v1/source/password-hidden.json",
+      "resolved_color": "rgb(28, 176, 246)",
+      "render_width": 24,
+      "render_height": 24,
+      "sha256": "790b72398a2892a81e23e922c41a96500354466f2cfb118669ec5d06ccddbfc0",
+      "rendered_file": "en-registration-show-password.png",
+      "rendered_sha256": "7be1b9bbcd4c2522bcbc2d29c4485b404caedb22dc648e358e0865e88df278ff"
+    },
+    {
+      "name": "en-registration-hide-password",
+      "kind": "image",
+      "source_file": "en-registration-hide-password.svg",
+      "source_evidence": "projects/duolingo-web/evidence/english-registration-controls-v1/source/password-visible.json",
+      "resolved_color": "rgb(28, 176, 246)",
+      "render_width": 24,
+      "render_height": 24,
+      "sha256": "8fce68fdc39e2fa6640998267d130b985f63268721c4b3897decb0145313e91a",
+      "rendered_file": "en-registration-hide-password.png",
+      "rendered_sha256": "66ef89fd18d300f4188c322c7815f335f2f87279545896c5a091fea633643122"
+    }
+  ],
+  "render": "Original SVG, transparent at 3x; dimensions from optional render_width/render_height, otherwise legacy 180x180; isolated context; native geometry still to verify"
+}
