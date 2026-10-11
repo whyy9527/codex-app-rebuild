@@ -1,0 +1,48 @@
+{
+  "journeys": [
+    {
+      "id": "home-stat-menus",
+      "steps": [
+        {
+          "native_action": "course-entry",
+          "operation": "observe",
+          "state": "stats-home-root"
+        },
+        {
+          "native_action": "stat-gems",
+          "operation": "hover",
+          "state": "stats-gems"
+        },
+        {
+          "native_action": "stat-gems-shop",
+          "operation": "pointer_click",
+          "state": "stats-gems-shop"
+        },
+        {
+          "native_action": "nav-learn",
+          "state": "stats-home-return"
+        },
+        {
+          "native_action": "stat-course",
+          "operation": "hover",
+          "state": "stats-course"
+        },
+        {
+          "native_action": "stat-course-english",
+          "operation": "pointer_click",
+          "state": "stats-course-return"
+        },
+        {
+          "native_action": "stat-streak",
+          "operation": "hover",
+          "state": "stats-streak"
+        },
+        {
+          "native_action": "stat-hearts",
+          "operation": "hover",
+          "state": "stats-hearts"
+        }
+      ]
+    }
+  ]
+}

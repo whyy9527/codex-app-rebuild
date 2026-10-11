@@ -21,3 +21,11 @@ class SourceCaptureScale(unittest.TestCase):
    with self.assertRaises(ValueError):compare_capture(root,req,dict(capture=candidate))
    req['reference_capture']['content_rect_points']=[0,1,4,4]
    with self.assertRaises(ValueError):compare_capture(root,req,dict(capture=candidate))
+
+ def test_matching_pixels_do_not_excuse_a_known_state_transition(self):
+  with tempfile.TemporaryDirectory() as tmp:
+   root=Path(tmp);Image.new('RGB',(4,4),'white').save(root/'frame.png');geometry=dict(content_rect_points=[0,0,4,4],window_points=[4,4],backing_scale=1)
+   req=dict(reference_image='frame.png',pixels=[4,4],reference_capture=dict(geometry,state_consistent=False));state=dict(capture=dict(geometry,path='frame.png'))
+   with self.assertRaises(ValueError):compare_capture(root,req,state)
+   req['reference_capture']['state_consistent']=True;state['capture']['state_consistent']=False
+   self.assertEqual(compare_capture(root,req,state)['status'],'unavailable')

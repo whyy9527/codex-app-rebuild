@@ -14,6 +14,11 @@ from capabilities.rebuild.contracts import local_file
 def frontier(root, history):
     root = Path(root).resolve()
     states = {state['id']: state for state in history['states']}
+    def operations(action):
+        values = action.get('operations', ['activate'])
+        if not isinstance(values, list) or not values or any(not isinstance(v, str) or not v for v in values) or len(set(values)) != len(values):
+            raise ValueError('Nonempty unique probe operations required')
+        return values
     resolved = set()
     attempts = {}
     for transition in history['transitions']:
@@ -22,7 +27,12 @@ def frontier(root, history):
         if action not in {item['id'] for item in state['actions']}:
             raise ValueError('Transition action was not observed in its source state')
         local_file(root, transition['evidence'])
-        key = (state['id'], action)
+        observed_action = next(item for item in state['actions'] if item['id'] == action)
+        modes = operations(observed_action)
+        operation = transition.get('operation', 'activate') if 'operations' in observed_action else 'activate'
+        if operation not in modes:
+            raise ValueError('Transition operation was not declared for its source action')
+        key = (state['id'], action, operation)
         attempts[key] = attempts.get(key, 0) + 1
         if transition['outcome'] == 'observed':
             if transition['to'] not in states:
@@ -34,10 +44,14 @@ def frontier(root, history):
     for state in history['states']:
         local_file(root, state['evidence'])
         for action in state['actions']:
-            key = (state['id'], action['id'])
-            if key not in resolved:
-                pending.append({'state': state['id'], 'action': action,
-                                'attempts': attempts.get(key, 0), 'evidence': state['evidence']})
+            for operation in operations(action):
+                key = (state['id'], action['id'], operation)
+                if key not in resolved:
+                    row = {'state': state['id'], 'action': action,
+                           'attempts': attempts.get(key, 0), 'evidence': state['evidence']}
+                    if 'operations' in action:
+                        row['operation'] = operation
+                    pending.append(row)
     # Fewer attempts first; preserve observed order rather than inventing gains.
     pending.sort(key=lambda row: row['attempts'])
     return {'kind': 'observed_exploration_frontier', 'pending': pending,

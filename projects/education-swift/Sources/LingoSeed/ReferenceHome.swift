@@ -14,6 +14,9 @@ struct ReferenceHome: View {
     private func navigationLabel(_ item: String) -> String {
         chinese ? ["Learn":"学习", "Pronunciation":"发音", "Leaderboards":"排行榜", "Quests":"特别任务", "Shop":"宝石小店", "Profile":"个人档案", "More":"更多"][item, default:item] : item.uppercased()
     }
+    @State private var statMenu: String?
+    @State private var hoveredStat: String?
+    @State private var statPanelHovered = false
     @State private var moreOpen = false
     @State private var moreHovered = false
     @State private var menuHovered = false
@@ -71,7 +74,7 @@ struct ReferenceHome: View {
                             VStack(spacing:24) { dashboardStats.frame(height:44); ReferenceLeaderboardStatus(selectedStatus:selectedLeaderboardStatus); questsFooter.padding(.top,10) }.padding(.top,24)
                         } else if model.destination == "Guest profile" {
                             VStack(spacing:24) { dashboardStats.frame(height:44); guestFriends; questsFooter.padding(.top,10) }.padding(.top,24)
-                        } else { dashboard.padding(.top,32).background(GeometryReader { proxy in Color.clear.onAppear { rightContentHeight=proxy.size.height }.onChange(of:proxy.size.height) { _, height in rightContentHeight=height } }) }
+                        } else { dashboard.padding(.top,24).background(GeometryReader { proxy in Color.clear.onAppear { rightContentHeight=proxy.size.height }.onChange(of:proxy.size.height) { _, height in rightContentHeight=height } }) }
                     }
                         .fixedSize(horizontal:false,vertical:true)
                         .frame(width: 368).padding(.horizontal, 24)
@@ -87,6 +90,11 @@ struct ReferenceHome: View {
             .overlay(alignment: .topLeading) {
                 if model.preferences.pronunciationCoach == "pending" {
                     ReferencePronunciationCoach(dismiss:model.dismissPronunciationCoach,navigate:{model.destination="Pronunciation"}).frame(width:geometry.size.width,height:geometry.size.height).zIndex(18)
+                }
+                if let menu=statMenu,menu == "course" || menu == "gems" {
+                    ReferenceTopStatPopover(kind:menu,gems:homeGems,flagResource:model.course.home?.flagResource ?? "flag-spanish",selectEnglish:{statMenu=nil},visitShop:{statMenu=nil;model.destination="Shop"})
+                        .offset(x:geometry.size.width-1200+(menu == "gems" ? 775.1171875 : 730.7265625),y:76)
+                        .onHover { inside in statPanelHovered=inside;if !inside {dismissStatLater()} }.zIndex(15)
                 }
                 if showingLegendary { ReferenceLegendary(hearts:model.progress.hearts,start:{ showingLegendary = false; showingPathProfile = true },quit:{ showingLegendary = false }).zIndex(19) }
                 if showingPathProfile { ReferencePathProfile(close: { showingPathProfile = false }).frame(width: geometry.size.width, height: geometry.size.height).zIndex(20) }
@@ -313,17 +321,27 @@ struct ReferenceHome: View {
         let font=chinese ? (NSFont(name:"PingFangSC-Semibold",size:15) ?? ReferenceStyle.nativeFont(15,bold:true)) : ReferenceStyle.nativeFont(15,bold:true)
         return (label as NSString).size(withAttributes:[.font:font,.kern:0.8]).width
     }
+    private func dismissStatLater() {
+        DispatchQueue.main.asyncAfter(deadline:.now()+0.15) {if hoveredStat == nil && !statPanelHovered {statMenu=nil}}
+    }
+    private func statControl(_ key:String,_ image:String,_ text:String,_ color:Color,_ imageWidth:CGFloat,_ hitWidth:CGFloat)->some View {
+        ReferencePracticeControl(label:text,identifier:"stat-"+key,enabled:true,action:{statMenu=statMenu == key ? nil : key},face:AnyView(
+            stat(image,text,color:color,width:imageWidth).frame(width:hitWidth,height:44)
+                .background(statMenu == key ? Color(white:247/255) : .clear,in:RoundedRectangle(cornerRadius:16,style:.circular))
+        ),fixedFaceSize:true).frame(width:hitWidth,height:44)
+            .onHover {inside in if inside {hoveredStat=key;statMenu=key} else {hoveredStat=nil;dismissStatLater()}}
+    }
     private var dashboardStats: some View {
-            HStack {
-                stat(model.course.home?.flagResource ?? "flag-spanish", chinese ? String(model.placementOutcome?.englishScore ?? 5) : "1", color: ReferenceStyle.ink, width: 31)
-                Spacer(); stat("streak", "\(homeSnapshot?.streak ?? (completed > 0 ? 1 : 0))", color: .orange, width: 23)
-                Spacer(); stat("gems", "\(homeGems)", color: blue, width: 22)
-                Spacer(); stat("hearts", "\(model.progress.hearts)", color: .red, width: 28)
-            }.padding(.horizontal, 12)
+        HStack(spacing:0) {
+            statControl("course",model.course.home?.flagResource ?? "flag-spanish",chinese ? String(model.placementOutcome?.englishScore ?? 5) : "1",ReferenceStyle.ink,31,89.4609375)
+            Spacer(minLength:0);statControl("streak","streak","\(homeSnapshot?.streak ?? (completed > 0 ? 1 : 0))",.orange,23.328125,67.3359375)
+            Spacer(minLength:0);statControl("gems","gems","\(homeGems)",blue,22.3984375,80.875)
+            Spacer(minLength:0);statControl("hearts","hearts","\(model.progress.hearts)",.red,28,72)
+        }.frame(height:44)
     }
     private var dashboard: some View {
         VStack(alignment: .leading, spacing: 16) {
-            dashboardStats.padding(.bottom,16)
+            dashboardStats.padding(.bottom,8)
             if model.destination == "Quests" {
                 ReferenceQuestMonthly { model.beginGeneralPractice() }
             } else {

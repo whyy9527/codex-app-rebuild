@@ -305,6 +305,19 @@ if let index = CommandLine.arguments.firstIndex(of: "--exercise-home-journey"), 
                     try recorder.run();recorder.waitUntilExit()
                     guard recorder.terminationStatus==0 else {throw ProbeError(message:"Owned application recording failed; preserve actual log")}
                 }
+                else if step["operation"] as? String == "focus_key" {
+                    try waitFor(control);try activateOwnedInputTarget()
+                    let target=current().first { (attr($0,kAXIdentifierAttribute) as? String)==control }!
+                    let focused=AXUIElementSetAttributeValue(target,kAXFocusedAttribute as CFString,kCFBooleanTrue)
+                    guard focused == .success else {throw ProbeError(message:"Actual AX keyboard focus failed: \(focused.rawValue)")}
+                    guard let key=step["key_code"] as? Int,[36,49,76].contains(key) else {throw ProbeError(message:"Registered Return/Space key required")}
+                    CGEvent(keyboardEventSource:nil,virtualKey:CGKeyCode(key),keyDown:true)?.post(tap:.cghidEventTap)
+                    CGEvent(keyboardEventSource:nil,virtualKey:CGKeyCode(key),keyDown:false)?.post(tap:.cghidEventTap)
+                    let file=output.appendingPathComponent("focus-key.json")
+                    var rows=(try? Data(contentsOf:file)).flatMap {try? JSONSerialization.jsonObject(with:$0) as? [[String:Any]]} ?? []
+                    rows.append(["control":control,"key_code":key,"ax_focus_status":focused.rawValue,"source":"Actual focused owned AX control and hardware key event"])
+                    try JSONSerialization.data(withJSONObject:rows,options:[.prettyPrinted,.sortedKeys]).write(to:file)
+                }
                 else if step["operation"] as? String == "observe" { /* Capture the already reached state without another action. */ }
                 else if step["operation"] as? String == "pointer_click" {try clickOwnedControl(control,xFraction:step["x_fraction"] as? Double ?? 0.5)}
                 else if step["operation"] as? String == "hover" { guard movePointer(to:control) else { throw ProbeError(message:"Missing hover target") } }

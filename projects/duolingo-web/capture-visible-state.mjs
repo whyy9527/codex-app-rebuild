@@ -110,16 +110,36 @@ const callback=async page=>{
  }));
  // viewportSize() is null for an actual browser window. Measure CSS content
  // and DPR at capture time rather than infer them from PNG dimensions later.
+ facts.painted_boxes=await page.locator('body *').evaluateAll(ns=>ns.flatMap(n=>{const r=n.getBoundingClientRect(),c=getComputedStyle(n);if(!n.checkVisibility({checkOpacity:true,checkVisibilityCSS:true})||r.width<=0||r.height<=0||r.bottom<=0||r.right<=0||r.top>=innerHeight||r.left>=innerWidth)return [];if(c.backgroundColor==='rgba(0, 0, 0, 0)'&&parseFloat(c.borderWidth)===0&&c.boxShadow==='none')return [];return [{tag:n.tagName,test:n.getAttribute('data-test'),rect:[r.x,r.y,r.width,r.height],css:{backgroundColor:c.backgroundColor,borderColor:c.borderColor,borderWidth:c.borderWidth,borderRadius:c.borderRadius,boxShadow:c.boxShadow}}];}));
  facts.focus=await page.evaluate(()=>{const n=document.activeElement,r=n?.getBoundingClientRect(),c=n?getComputedStyle(n):null;return {tag:n?.tagName,test:n?.getAttribute('data-test'),name:n?.getAttribute('aria-label')||'',tab_index:n?.tabIndex,focus_visible:n?.matches(':focus-visible'),rect:r?[r.x,r.y,r.width,r.height]:null,css:c?{outline:c.outline,boxShadow:c.boxShadow}:null};});
  facts.capture_geometry=await page.evaluate(()=>({content_rect_points:[0,0,innerWidth,innerHeight],window_points:[innerWidth,innerHeight],backing_scale:devicePixelRatio}));
- await page.screenshot({path:SCREENSHOT});
+ if(PRESERVE_HOVER){
+  const cdp=await page.context().newCDPSession(page);
+  try {
+   const metrics=await cdp.send('Page.getLayoutMetrics');
+   const css=metrics.cssVisualViewport,physical=metrics.visualViewport;
+   const sx=physical.clientWidth/css.clientWidth,sy=physical.clientHeight/css.clientHeight;
+   if(!Number.isFinite(sx)||sx<=0||Math.abs(sx-sy)>1e-8||css.clientWidth!==facts.capture_geometry.window_points[0]||css.clientHeight!==facts.capture_geometry.window_points[1])throw Error('CDP visible capture geometry not comparable');
+   facts.capture_geometry.reported_dom_dpr=facts.capture_geometry.backing_scale;
+   facts.capture_geometry.backing_scale=sx;
+   facts.capture_geometry.measurement='CDP physical/css visual viewport ratio, not inferred from PNG';
+   facts.capture_layout_metrics=metrics;
+   facts.capture_png_base64=(await cdp.send('Page.captureScreenshot',{format:'png'})).data;
+  }
+  finally {await cdp.detach();}
+ } else {await page.screenshot({path:SCREENSHOT});}
+ facts.snapshot_after_capture=await page.locator('body').ariaSnapshot();
+ facts.capture_state_consistent=facts.snapshot===facts.snapshot_after_capture;
+ facts.capture_geometry.state_consistent=facts.capture_state_consistent;
+ facts.capture_method=PRESERVE_HOVER?'visible-page-cdp':'page-screenshot';
  return facts;
 };
-const r=spawnSync(arg('--cli'),['-s='+arg('--session'),'run-code',callback.toString().replace('SCREENSHOT',JSON.stringify(out+'.png'))],
+const r=spawnSync(arg('--cli'),['-s='+arg('--session'),'run-code',callback.toString().replace('SCREENSHOT',JSON.stringify(out+'.png')).replaceAll('PRESERVE_HOVER',String(process.argv.includes('--preserve-hover')))],
  {cwd:resolve('artifacts/output/playwright'),encoding:'utf8',timeout:60000,maxBuffer:8*1024*1024});
 writeFileSync(out+'.raw.txt',(r.stdout||'')+(r.stderr||''),{flag:'wx'});
-if(r.status!==0||!r.stdout.includes('### Result\n'))throw Error('Observation unavailable; inspect current tab before retry');
+if(r.status!==0||r.stdout.includes('### Error')||!r.stdout.includes('### Result\n'))throw Error('Observation unavailable; inspect current tab before retry');
 const facts=JSON.parse(r.stdout.split('### Result\n')[1].split('\n### Ran')[0]);
+if(facts.capture_png_base64){writeFileSync(out+'.png',Buffer.from(facts.capture_png_base64,'base64'),{flag:'wx'});delete facts.capture_png_base64;}
 facts.screenshot=basename(out)+'.png';
 writeFileSync(out+'.json',JSON.stringify(facts,null,2)+'\n',{flag:'wx'});
 console.log(JSON.stringify({observed:true,path:facts.path,visible: facts.visible.length}));

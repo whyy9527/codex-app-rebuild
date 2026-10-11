@@ -1,5 +1,7 @@
 # 架构
 
+源采集器支持普通页面截图与保留悬停的可见页面 CDP 截图；记录截图前后语义、CSS窗口和独立物理／CSS视口比。`images.py`拥有实测裁剪、缩放和已知状态变化拒绝，不由业务案例猜PNG缩放。`discovery.py`支持显式 `(state, action, operation)` 前沿，旧未声明模式的记录保持原样；悬停不清除点击／Enter待探索项。`freeze-home-stats.py`及`bind-home-stats.py`将这些事实接入同一前端契约，Swift与网页分别实际执行；键盘驱动发送真实焦点和硬件按键，不直接改业务状态。[输入模式及采样证据](../projects/duolingo-web/evidence/english-home-stats-v1/README.md)。
+
 单元12内容迭代将原版探索、独立实例编译、前端冻结、原生操作与声音测量串联。普通 observedCourse 使用实际全局生命和独立课程进度；指南按 activeUnit 选择；声音契约保存原资源与实际观察的播放增益。回放逐题保留控件／文字的几何、CSS、命中与裁剪，显式平台别名只绑定已测事实；图像、声学及未访问分支保持独立结果。原始RSI研究及旧消融记录不改写，新发现继续进入frontier与下一版契约。[本批来源及限制](../projects/duolingo-web/evidence/english-unit12-content-v1/README.md)。
 
 单元跳级与阶段跳级使用独立SessionKind和源夹具：单元12有5颗独立心、18题和score_progress→unit_unlock，阶段2仍为3颗心及另一结算流程。`activeUnit`可选字段兼容旧进度；成功后由原版outcome更新主页，公共心数不借用测试心数。当前题驱动增加角色缺失的退出遮罩识别和gapFill完整选项／上下文检查；共同前端模具验证每题前后截图、回顾和解锁主页，不能用一个代表题型代替所有状态。`compile-unit-placement.py`、`compile-unit-path.py`和`freeze-unit-placement.py`各自拥有题单、源路径和前端契约。[实际证据与尚缺行为](../projects/duolingo-web/evidence/english-unit-placement-v1/README.md)。

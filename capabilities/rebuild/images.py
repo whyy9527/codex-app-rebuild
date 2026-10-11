@@ -46,6 +46,8 @@ def compare_capture(root, requirement, state):
     capture = state.get('capture')
     if not isinstance(capture, dict) or not isinstance(capture.get('path'), str):
         return {'status': 'unavailable', 'reason': 'Driver did not collect a capture file'}
+    if capture.get('state_consistent') is False:
+        return {'status': 'unavailable', 'reason': 'Candidate semantic state changed around capture'}
     candidate_path = local_file(root, capture['path'], must_exist=False)
     rect, scale, window = (capture.get(k) for k in ('content_rect_points', 'backing_scale', 'window_points'))
     if not compatible_geometry(capture, pixels):
@@ -53,6 +55,8 @@ def compare_capture(root, requirement, state):
     source_capture = requirement.get('reference_capture')
     if source_capture is not None and (not isinstance(source_capture, dict) or not compatible_geometry(source_capture, pixels)):
         raise ValueError('Invalid measured reference capture geometry')
+    if isinstance(source_capture, dict) and source_capture.get('state_consistent') is False:
+        raise ValueError('Reference semantic state changed around capture')
     try:
         with Image.open(reference_path) as im:
             if source_capture is None and im.size != tuple(pixels):

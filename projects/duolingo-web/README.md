@@ -1,33 +1,10 @@
 # Duolingo 网页参考案例
 
-继续由原版实际探索扩充模具：单元跳级18题、填空、退出确认、50XP结算和第2部分主页已接Swift，前端v68覆盖49个新增源状态。整图、部分交互与声音仍未1:1；RSI真实探索效果仍须对照验证。[本批证据与复跑](evidence/english-unit-placement-v1/README.md)。
+目标为中文母语→英语的 Duolingo 网页到 Swift 1:1 重建。当前仍有明确的前端、交互、声音和未知分支缺口，不能把已观察课程和局部测试当整站完成。
 
-实际补齐主页共享滚动与原版链接语义，探索发现电台未解锁弹层、独立单元跳级入口及任务卡／页脚布局阶段。v67保留旧项共13284；最新两状态153pass／17fail，整图仍未通过，完整Goal继续。[实际证据与复跑](evidence/english-home-scroll-v1/README.md)。
+阶段状态由 [Roadmap](../../docs/ROADMAP.md)拥有；当前契约为 [v75](frontend-english-v75.json)，最近的 [主页顶部交互与采样修复](evidence/english-home-stats-v1/README.md)保存实际探索、鼠标／键盘操作和失败。原版资源实际输出见 [发音证据](evidence/english-pronunciation-current-v1/README.md)，RSI 负结果见 [04报告](../exploration-ablation/REPORT04.md)。启动与进度隔离见 [Swift 基座](../education-swift/README.md)。
 
-原版购物指南与下一实例探索补出逐字英文、28词语焦点库存和多词空格驱动遗漏。Swift接五段原语音、原指南与播放动画；v66严格验收142pass／28fail，3整图仍失败，完整Goal继续。[最新证据及复跑](evidence/english-shopping-guide-v1/README.md)。
-
-下列为历史批次记录，不能作为当前完成率。
-
-最新购物与主页探索：原版延迟指南遮罩暴露旧ready条件遗漏；Swift第二阶段路径接原动画，购物32状态实际跑通，严格前端仍189pass／165fail，29整图均失败，完整Goal继续。[证据与复跑](evidence/english-stage2-path-v1/README.md)。
-
-本批从原版阶段2主页继续探索，发现锁定故事弹层、购物指南、电台引发的滚动与虚拟化库存，以及任务重载差异。Swift已补阶段解锁、10分／530宝石和重启恢复；主页路径、指南及实际音效仍有缺口。v64保留全部旧断言，完整Goal继续。[最新证据、失败与复跑](evidence/english-stage2-home-v1/README.md)。
-
-继续由历史遗漏扩展原版探索：实际发现主页八阶段／每日巩固与独立第2阶段跳级测试，补保存头像的个人页消费、语言弹窗／课程返回及独立404。Escape关闭推断被原版复查否定，失败记录保留。v62保留旧要求共8440项，最终9状态356pass/61fail/7631not_run/392unavailable，主页阶段入口仍明确缺失，九整图全fail；同二进制头像回归27项／17组通过，不能代替主页与声音。下一批优先阶段导航、下层单元、独立测试和实际声音，完整Goal active，尚无1:1或RSI因果收益。[本批证据](evidence/english-profile-return-v1/README.md)。
-
-最新补齐原版九类头像组合、双层滚动、保存／重载。15状态旅程打通，17组恢复通过；v60的267前端差异和所有15整图仍失败。旧批次不代表当前构建，继续主页、跨页消费、未访问交互和实际声音。[证据与复跑](evidence/english-avatar-composition-v1/README.md)。
-
-注册年龄清除与密码显示/隐藏已按原版实际交互接入；另发现独立登录页含Apple与忘记密码，尚未实现。前端v45共2476项，最终两次20状态各116pass/31fail/2329not_run；整图仍失败，年龄图差异略增，不能称1:1。[最新证据与复跑](evidence/english-registration-controls-v1/README.md)。
-
-默认v13补实际开箱前后主页、原素材及持久化记录，原生真实开箱和重启已验证；前端v41共2373项，本轨迹34pass/17fail/2322not_run，下一Practice开始/建档及排行榜遮罩仍未实施。[最新失败、探索与复跑](evidence/english-chest-v1/README.md)。
-
-当前默认中文母语→英语v13八课115题，共同前端v38有2321项；第八课轨迹133pass/17fail/2171not_run，仍未1:1。[最新实际证据与复跑](evidence/english-eighth-integration-v1/README.md)，完整进展见[Roadmap](../../docs/ROADMAP.md)。历史批次不代表当前构建。
-
-> 2026-10-10 更正：下文是历史局部验收记录，不能证明 1:1 复刻完成。用户指出探索不足、前端需求未进入 E2E、自行增加替代内容限制。现已撤回产品完成结论；当前原生 Goal 要求修正探索与模具。原始测试与失败证据保留。
-
-
-这是私有 Codex App Rebuild 的第一个真实业务案例。当前目标是网页到 Swift 的 1:1 复刻；此前原创课程与素材只是历史实现，不能作为复刻标准。已交付12条跨端冻结验收与可运行 SwiftUI 两课时教育基座；真实多阶段模型续跑已有[一次完整可行性证据](../model-pipeline/README.md)；[四组业务消融](../business-ablation/REPORT.md)已完成，均公开12/12与留出2/2、另1未知；N=1未观察到通过率收益。
-
-早期跨端协议的复现入口是文末冻结 v2 命令；当前英语产品使用上面的新证据入口。以下草案和首批运行记录保留探索历史；它们的范围与限制不代表当前 v2 尚未实现这些功能。回执证明记录时的源码与输入，后续代码变化需要重新验收。
+下面保留案例协议和历史实验入口；旧批次能力说明已存入 [历史检查点](../../docs/history/duolingo-README-checkpoints-2026-10-12.md)，不代表当前完成率。
 
 ## 早期探索产物
 

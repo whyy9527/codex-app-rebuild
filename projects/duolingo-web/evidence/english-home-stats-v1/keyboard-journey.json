@@ -1,0 +1,20 @@
+{
+  "journeys": [
+    {
+      "id": "course-keyboard",
+      "steps": [
+        {
+          "native_action": "course-entry",
+          "operation": "observe",
+          "state": "stats-keyboard-root"
+        },
+        {
+          "native_action": "stat-course",
+          "operation": "focus_key",
+          "key_code": 36,
+          "state": "stats-course-keyboard"
+        }
+      ]
+    }
+  ]
+}

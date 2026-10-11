@@ -21,3 +21,14 @@ class DiscoveryFrontier(unittest.TestCase):
             history['transitions'][0]['action'] = 'invented-action'
             with self.assertRaises(ValueError):
                 frontier(root, history)
+
+    def test_hover_does_not_complete_click_or_keyboard_exploration(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory);(root / 'observed.txt').write_text('Mechanism counterexample, not source product evidence')
+            history = {'states': [{'id':'home','evidence':'observed.txt','actions':[{'id':'hearts','operations':['hover','click','Enter']}]}, {'id':'panel','evidence':'observed.txt','actions':[]}],
+                'transitions':[{'from':'home','to':'panel','action':'hearts','operation':'hover','outcome':'observed','evidence':'observed.txt'}, {'from':'home','action':'hearts','operation':'Enter','outcome':'unavailable','evidence':'observed.txt'}]}
+            result = frontier(root, history)
+            self.assertEqual([(r['operation'],r['attempts']) for r in result['pending']], [('click',0),('Enter',1)])
+            self.assertEqual(result['resolved_actions'],1)
+            history['transitions'][0]['operation']='drag'
+            with self.assertRaises(ValueError):frontier(root,history)

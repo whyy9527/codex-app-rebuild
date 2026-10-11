@@ -1,0 +1,18 @@
+### Result
+{"metrics":{"layoutViewport":{"pageX":0,"pageY":1359,"clientWidth":2400,"clientHeight":1464},"visualViewport":{"offsetX":0,"offsetY":0,"pageX":0,"pageY":679.5,"clientWidth":2400,"clientHeight":1464,"scale":1,"zoom":1},"contentSize":{"x":0,"y":0,"width":2400,"height":63772},"cssLayoutViewport":{"pageX":0,"pageY":680,"clientWidth":1200,"clientHeight":731},"cssVisualViewport":{"offsetX":0,"offsetY":0,"pageX":0,"pageY":679.5,"clientWidth":1200,"clientHeight":732,"scale":1,"zoom":1},"cssContentSize":{"x":0,"y":0,"width":1200,"height":31886}},"dom":{"width":1200,"height":732,"dpr":1,"screen":[1200,732],"resolution":[true,false]}}
+### Ran Playwright code
+```js
+await (async page=>{const c=await page.context().newCDPSession(page);const m=await c.send("Page.getLayoutMetrics");await c.detach();return {metrics:m,dom:await page.evaluate(()=>({width:innerWidth,height:innerHeight,dpr:devicePixelRatio,screen:[screen.width,screen.height],resolution:[matchMedia("(resolution:1dppx)").matches,matchMedia("(resolution:2dppx)").matches]}))};})(page);
+```
+### Open tabs
+- 0: [多邻国 - 学得轻松，学有所成的英语 课程！](https://www.duolingo.com/lesson)
+- 1: [多邻国 - 学得轻松，学有所成的英语 课程！](https://www.duolingo.com/lesson)
+- 2: [多邻国 - 学得轻松，学有所成的英语 课程！](https://www.duolingo.com/guidebook/en/12)
+- 3: [多邻国 - 学得轻松，学有所成的英语 课程！](https://www.duolingo.com/alphabets/en/pronunciation)
+- 4: (current) [多邻国 - 学得轻松，学有所成的英语 课程！](https://www.duolingo.com/learn)
+### Page
+- Page URL: https://www.duolingo.com/learn
+- Page Title: 多邻国 - 学得轻松，学有所成的英语 课程！
+- Console: 10 errors, 0 warnings
+### Events
+- New console entries: .playwright-cli/console-2026-10-11T22-08-09-496Z.log#L10

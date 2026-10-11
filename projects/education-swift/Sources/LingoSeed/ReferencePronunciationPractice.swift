@@ -260,6 +260,11 @@ struct ReferencePracticeControl: NSViewRepresentable {
         override func accessibilityRole() -> NSAccessibility.Role? { reportedRole }
         override var intrinsicContentSize: NSSize { NSSize(width: NSView.noIntrinsicMetric, height: NSView.noIntrinsicMetric) }
         override func draw(_ dirtyRect: NSRect) {}
+        override func keyDown(with event: NSEvent) {
+            // Source HTML controls activate on Return; NSButton defaults to Space.
+            if isEnabled && [36,76].contains(Int(event.keyCode)) {performClick(nil)}
+            else {super.keyDown(with:event)}
+        }
         override func accessibilityFrame() -> NSRect {
             guard let window else { return super.accessibilityFrame() }
             return window.convertToScreen(convert(bounds, to: nil))

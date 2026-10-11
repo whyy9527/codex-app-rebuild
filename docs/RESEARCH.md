@@ -63,3 +63,8 @@ git show 2ad5175:projects/self-improvement/REPORT.md
 头像分类批次用真实Radio库存不一致反例修订探索策略，事前记录后部署七个被遮挡分组，实际发现原版配置/Rive与未实施分类消费者。它补上一次反馈→改变探针→发现遗漏→冻结候选失败的产品闭环；不是新增独立worker或匹配预算RSI收益。282选项不能当282独立业务发现，原始论文和旧负结果不变。[证据](../projects/duolingo-web/evidence/english-avatar-categories-v1/README.md)。
 
 真实反馈消融04已执行3次实际模型调用、4次在线源动作，两个预算相同的策略动作不同但语义代理新增0／0。没有策略收益或产品质量收益结论；后续实际Tab探针确认代理指标遗漏焦点，Swift词语仍缺对应控件。反馈应改变观察维度，而非只重跑零分动作。原论文／02／03结论保留，见[04实测](../projects/exploration-ablation/REPORT04.md)。
+
+
+### 产品反馈：输入方式与采集遗漏
+
+[主页顶部探针](../projects/duolingo-web/evidence/english-home-stats-v1/README.md)以反馈扩展hover/click/Enter，发现Swift Return未展开及截图改变悬停。源/候选实际前后证据保留；不是匹配预算模型消融，04的0/0结论不变。后续策略实验须消费未覆盖方式、采集失败及实际前端消费者，另行事前注册，不能把人工引导发现算RSI提升。

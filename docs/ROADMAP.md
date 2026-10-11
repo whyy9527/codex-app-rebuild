@@ -426,3 +426,8 @@ Swift接阶段列表、原素材、独立跳级实例及结算，最终同二进
 ### 当前发音入口及真实语音复查
 
 核对当前代码纠正“缺发音专用页”的过时判断：已存在页面和三套观察顺序，未知是自适应／后续加载／正常口语及进度和1:1。当前源零音标进度实际dock/deck，不能称第四顺序实例。按源将开始按钮改为264×48链接，真实3状态0驱动失败并进入首题；完整y差0.2109375点保持fail。v74保留17435新增217，共17652；69pass／41fail／17437not_run／105unavailable、两整图fail。实际自有应用入口录音与源media.play对应原资源相关0.99997426，不推断源声学等价或全音效。35核心及构建通过，完整Goal active，继续跨页面前端／声音／遗漏探索。[证据及复跑](../projects/duolingo-web/evidence/english-pronunciation-current-v1/README.md)。
+
+
+### 主页顶部输入方式与采集一致性
+
+四入口悬停、英语关闭、宝石小店、连胜日历及课程Enter发现静态入口/键盘/采集遗漏。普通截图改变悬停，CDP保留但独立几何测得scale2，错误参考保留诊断。新探索按state/action/operation追踪；156状态/80边/4310待探索。Swift接顶部按钮、课程/宝石弹层及Return，同二进制鼠标8+键盘2状态无驱动失败。v75共18935，本轮451pass/57fail/17863not_run/564unavailable，7整图全fail。67Python/21Node/35核心通过；旧冻结/状态/图像回归不变，新冻结逐字复现。继续连胜/红心/添加课程/日历下游、跨页面视觉及原声音，不将局部修复称RSI因果收益。完整Goal active。[证据](../projects/duolingo-web/evidence/english-home-stats-v1/README.md)。
