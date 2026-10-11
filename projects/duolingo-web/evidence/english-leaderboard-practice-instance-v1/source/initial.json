@@ -1,0 +1,50 @@
+{
+  "observed_at": "2026-10-11T11:24:30.280Z",
+  "path": "/practice",
+  "viewport": {
+    "width": 1200,
+    "height": 732
+  },
+  "snapshot": "- button:\n  - img\n- progressbar:\n  - img\n- heading \"选择配对\" [level=1]\n- button \"1\":\n  - text: \"1\"\n  - img\n  - img\n  - img\n  - img\n- button \"2\":\n  - text: \"2\"\n  - img\n  - img\n  - img\n  - img\n- button \"3\":\n  - text: \"3\"\n  - img\n  - img\n  - img\n  - img\n- button \"4\":\n  - text: \"4\"\n  - img\n  - img\n  - img\n  - img\n- button \"5 热\":\n  - text: 5 热\n  - img\n  - img\n- button \"6 茶\":\n  - text: 6 茶\n  - img\n  - img\n- button \"7 欢迎\":\n  - text: 7 欢迎\n  - img\n  - img\n- button \"8 你好\":\n  - text: 8 你好\n  - img\n  - img\n- button \"现在不做听力题\"\n- button \"检查\" [disabled]",
+  "dom_type": "challenge challenge-listenMatch",
+  "visible_text": "选择配对\n1\n2\n3\n4\n5\n热\n6\n茶\n7\n欢迎\n8\n你好",
+  "content": {
+    "pairs": [
+      {
+        "tts": "https://d1vq87e9lcf771.cloudfront.net/harrison/fd03b8555cf102bc752a090bf64a6f81",
+        "translation": "热"
+      },
+      {
+        "tts": "https://d1vq87e9lcf771.cloudfront.net/miranda/5a642b17f3d75eebbfcdb07b26327b6c",
+        "translation": "茶"
+      },
+      {
+        "tts": "https://d1vq87e9lcf771.cloudfront.net/miranda/68544a04ae4502ac014342338234ebd4",
+        "translation": "你好"
+      },
+      {
+        "tts": "https://d1vq87e9lcf771.cloudfront.net/harrison/f4417543a069a2ed4e8b391a68e83357",
+        "translation": "欢迎"
+      }
+    ],
+    "type": "listenMatch"
+  },
+  "omitted_keys": [
+    "challenge.0.id",
+    "challenge.0.challengeResponseTrackingProperties",
+    "challenge.0.metadata",
+    "challenge.0.progressUpdates",
+    "challenge.0.challengeGeneratorIdentifier",
+    "challenge.0.startTime",
+    "challenge.0.pairs.0.learningWord",
+    "challenge.0.pairs.1.learningWord",
+    "challenge.0.pairs.2.learningWord",
+    "challenge.0.pairs.3.learningWord"
+  ],
+  "source": "Current rendered challenge public fields; initial session/future sequence and challengeState not read",
+  "limitations": [
+    "Public content may include grading solutions, not an independent blind exploration score.",
+    "DOM linkage proves current type/content association, not pixels, actual audio output or an adaptive algorithm."
+  ],
+  "screenshot": "initial.png"
+}

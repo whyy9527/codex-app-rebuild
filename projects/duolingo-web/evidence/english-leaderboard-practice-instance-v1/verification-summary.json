@@ -1,0 +1,60 @@
+{
+  "baseline": "7ba96cf",
+  "source": {
+    "accepted": 16,
+    "speech_declined_manually": 1,
+    "review_cards": 17,
+    "automation_complete": false
+  },
+  "contract": {
+    "v52_parent_unchanged": 2848,
+    "v53_added": 230,
+    "v54_added_visible_controls": 6,
+    "total": 3084
+  },
+  "native": {
+    "states": 44,
+    "failure": null,
+    "initial_wrong_alias_assessment": {
+      "not_run": 2868,
+      "pass": 166,
+      "fail": 44
+    },
+    "correct_alias_v53": {
+      "not_run": 2868,
+      "pass": 171,
+      "fail": 39
+    },
+    "v54_before_missing_controls": {
+      "not_run": 2868,
+      "pass": 171,
+      "fail": 45
+    },
+    "v54_final": {
+      "not_run": 2868,
+      "pass": 177,
+      "fail": 39
+    },
+    "png_dimensions_checked": [
+      2400,
+      1528
+    ]
+  },
+  "source_consistency_only": {
+    "not_run": 1863,
+    "pass": 1204,
+    "unavailable": 17
+  },
+  "build": "success",
+  "core_business_checks": 30,
+  "limits": [
+    "All36new whole-images fail",
+    "One retained strict geometry comparison uses source bounds collected during matching animation, phase not aligned",
+    "Two older quests failures remain; no whole-app completion",
+    "36new pending actual-audio requirements not_run",
+    "Explicit fixture, not default adaptive selection implementation",
+    "Listening decline controls reused prior observed shared presentation; current replacement branch unexecuted",
+    "Mold identity correction is not product or RSI gain",
+    "Retry reuses explicit instance; source adaptive retry unproven"
+  ]
+}

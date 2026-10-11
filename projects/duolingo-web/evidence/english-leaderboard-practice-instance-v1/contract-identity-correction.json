@@ -1,0 +1,505 @@
+{
+  "initial_contract_sha256": "a98e25b840b4018c48c334e04d84fa2739cddad3b7920465ad9009943218ec48",
+  "corrected_contract_sha256": "cc9bcbfdfebd9ff8e12e58379fa309ad9a325f8fda5bfd6601251d8e58788671",
+  "reason": "Initial draft mapped visual right-column row to native stable pair id. Actual pair_audio_order translation maps to left_index, so shuffled right order must resolve semantic pair identity before assigning source geometry. Same candidate, no product edit or tolerance change. Retain initial assessment; do not count correction as product/RSI gain.",
+  "changes": [
+    {
+      "index": 2857,
+      "before": {
+        "id": "leaderboard-review-q0-pair-right-0-geometry",
+        "state": "leaderboard-review-q0",
+        "kind": "element_geometry",
+        "evidence": [
+          "projects/duolingo-web/evidence/english-leaderboard-practice-instance-v1/source/walk.json"
+        ],
+        "element": "pair-right-0",
+        "rect": [
+          615,
+          247,
+          255,
+          58
+        ],
+        "tolerance_points": 0
+      },
+      "after": {
+        "id": "leaderboard-review-q0-pair-right-2-geometry",
+        "state": "leaderboard-review-q0",
+        "kind": "element_geometry",
+        "evidence": [
+          "projects/duolingo-web/evidence/english-leaderboard-practice-instance-v1/source/walk.json"
+        ],
+        "element": "pair-right-2",
+        "rect": [
+          615,
+          247,
+          255,
+          58
+        ],
+        "tolerance_points": 0
+      }
+    },
+    {
+      "index": 2858,
+      "before": {
+        "id": "leaderboard-review-q0-pair-right-0-role",
+        "state": "leaderboard-review-q0",
+        "kind": "element_role",
+        "evidence": [
+          "projects/duolingo-web/evidence/english-leaderboard-practice-instance-v1/source/walk.json"
+        ],
+        "element": "pair-right-0",
+        "role": "button"
+      },
+      "after": {
+        "id": "leaderboard-review-q0-pair-right-2-role",
+        "state": "leaderboard-review-q0",
+        "kind": "element_role",
+        "evidence": [
+          "projects/duolingo-web/evidence/english-leaderboard-practice-instance-v1/source/walk.json"
+        ],
+        "element": "pair-right-2",
+        "role": "button"
+      }
+    },
+    {
+      "index": 2859,
+      "before": {
+        "id": "leaderboard-review-q0-pair-right-0-enabled",
+        "state": "leaderboard-review-q0",
+        "kind": "element_boolean",
+        "evidence": [
+          "projects/duolingo-web/evidence/english-leaderboard-practice-instance-v1/source/walk.json"
+        ],
+        "element": "pair-right-0",
+        "field": "enabled",
+        "expected": true
+      },
+      "after": {
+        "id": "leaderboard-review-q0-pair-right-2-enabled",
+        "state": "leaderboard-review-q0",
+        "kind": "element_boolean",
+        "evidence": [
+          "projects/duolingo-web/evidence/english-leaderboard-practice-instance-v1/source/walk.json"
+        ],
+        "element": "pair-right-2",
+        "field": "enabled",
+        "expected": true
+      }
+    },
+    {
+      "index": 2869,
+      "before": {
+        "id": "leaderboard-review-q0-pair-right-2-geometry",
+        "state": "leaderboard-review-q0",
+        "kind": "element_geometry",
+        "evidence": [
+          "projects/duolingo-web/evidence/english-leaderboard-practice-instance-v1/source/walk.json"
+        ],
+        "element": "pair-right-2",
+        "rect": [
+          610.5045166015625,
+          381.9775085449219,
+          263.990966796875,
+          60.04498291015625
+        ],
+        "tolerance_points": 0
+      },
+      "after": {
+        "id": "leaderboard-review-q0-pair-right-0-geometry",
+        "state": "leaderboard-review-q0",
+        "kind": "element_geometry",
+        "evidence": [
+          "projects/duolingo-web/evidence/english-leaderboard-practice-instance-v1/source/walk.json"
+        ],
+        "element": "pair-right-0",
+        "rect": [
+          610.5045166015625,
+          381.9775085449219,
+          263.990966796875,
+          60.04498291015625
+        ],
+        "tolerance_points": 0
+      }
+    },
+    {
+      "index": 2870,
+      "before": {
+        "id": "leaderboard-review-q0-pair-right-2-role",
+        "state": "leaderboard-review-q0",
+        "kind": "element_role",
+        "evidence": [
+          "projects/duolingo-web/evidence/english-leaderboard-practice-instance-v1/source/walk.json"
+        ],
+        "element": "pair-right-2",
+        "role": "button"
+      },
+      "after": {
+        "id": "leaderboard-review-q0-pair-right-0-role",
+        "state": "leaderboard-review-q0",
+        "kind": "element_role",
+        "evidence": [
+          "projects/duolingo-web/evidence/english-leaderboard-practice-instance-v1/source/walk.json"
+        ],
+        "element": "pair-right-0",
+        "role": "button"
+      }
+    },
+    {
+      "index": 2871,
+      "before": {
+        "id": "leaderboard-review-q0-pair-right-2-enabled",
+        "state": "leaderboard-review-q0",
+        "kind": "element_boolean",
+        "evidence": [
+          "projects/duolingo-web/evidence/english-leaderboard-practice-instance-v1/source/walk.json"
+        ],
+        "element": "pair-right-2",
+        "field": "enabled",
+        "expected": true
+      },
+      "after": {
+        "id": "leaderboard-review-q0-pair-right-0-enabled",
+        "state": "leaderboard-review-q0",
+        "kind": "element_boolean",
+        "evidence": [
+          "projects/duolingo-web/evidence/english-leaderboard-practice-instance-v1/source/walk.json"
+        ],
+        "element": "pair-right-0",
+        "field": "enabled",
+        "expected": true
+      }
+    },
+    {
+      "index": 2898,
+      "before": {
+        "id": "leaderboard-review-q2-pair-right-0-geometry",
+        "state": "leaderboard-review-q2",
+        "kind": "element_geometry",
+        "evidence": [
+          "projects/duolingo-web/evidence/english-leaderboard-practice-instance-v1/source/walk.json"
+        ],
+        "element": "pair-right-0",
+        "rect": [
+          615,
+          247,
+          255,
+          58
+        ],
+        "tolerance_points": 0
+      },
+      "after": {
+        "id": "leaderboard-review-q2-pair-right-1-geometry",
+        "state": "leaderboard-review-q2",
+        "kind": "element_geometry",
+        "evidence": [
+          "projects/duolingo-web/evidence/english-leaderboard-practice-instance-v1/source/walk.json"
+        ],
+        "element": "pair-right-1",
+        "rect": [
+          615,
+          247,
+          255,
+          58
+        ],
+        "tolerance_points": 0
+      }
+    },
+    {
+      "index": 2899,
+      "before": {
+        "id": "leaderboard-review-q2-pair-right-0-role",
+        "state": "leaderboard-review-q2",
+        "kind": "element_role",
+        "evidence": [
+          "projects/duolingo-web/evidence/english-leaderboard-practice-instance-v1/source/walk.json"
+        ],
+        "element": "pair-right-0",
+        "role": "button"
+      },
+      "after": {
+        "id": "leaderboard-review-q2-pair-right-1-role",
+        "state": "leaderboard-review-q2",
+        "kind": "element_role",
+        "evidence": [
+          "projects/duolingo-web/evidence/english-leaderboard-practice-instance-v1/source/walk.json"
+        ],
+        "element": "pair-right-1",
+        "role": "button"
+      }
+    },
+    {
+      "index": 2900,
+      "before": {
+        "id": "leaderboard-review-q2-pair-right-0-enabled",
+        "state": "leaderboard-review-q2",
+        "kind": "element_boolean",
+        "evidence": [
+          "projects/duolingo-web/evidence/english-leaderboard-practice-instance-v1/source/walk.json"
+        ],
+        "element": "pair-right-0",
+        "field": "enabled",
+        "expected": true
+      },
+      "after": {
+        "id": "leaderboard-review-q2-pair-right-1-enabled",
+        "state": "leaderboard-review-q2",
+        "kind": "element_boolean",
+        "evidence": [
+          "projects/duolingo-web/evidence/english-leaderboard-practice-instance-v1/source/walk.json"
+        ],
+        "element": "pair-right-1",
+        "field": "enabled",
+        "expected": true
+      }
+    },
+    {
+      "index": 2904,
+      "before": {
+        "id": "leaderboard-review-q2-pair-right-1-geometry",
+        "state": "leaderboard-review-q2",
+        "kind": "element_geometry",
+        "evidence": [
+          "projects/duolingo-web/evidence/english-leaderboard-practice-instance-v1/source/walk.json"
+        ],
+        "element": "pair-right-1",
+        "rect": [
+          615,
+          315,
+          255,
+          58
+        ],
+        "tolerance_points": 0
+      },
+      "after": {
+        "id": "leaderboard-review-q2-pair-right-2-geometry",
+        "state": "leaderboard-review-q2",
+        "kind": "element_geometry",
+        "evidence": [
+          "projects/duolingo-web/evidence/english-leaderboard-practice-instance-v1/source/walk.json"
+        ],
+        "element": "pair-right-2",
+        "rect": [
+          615,
+          315,
+          255,
+          58
+        ],
+        "tolerance_points": 0
+      }
+    },
+    {
+      "index": 2905,
+      "before": {
+        "id": "leaderboard-review-q2-pair-right-1-role",
+        "state": "leaderboard-review-q2",
+        "kind": "element_role",
+        "evidence": [
+          "projects/duolingo-web/evidence/english-leaderboard-practice-instance-v1/source/walk.json"
+        ],
+        "element": "pair-right-1",
+        "role": "button"
+      },
+      "after": {
+        "id": "leaderboard-review-q2-pair-right-2-role",
+        "state": "leaderboard-review-q2",
+        "kind": "element_role",
+        "evidence": [
+          "projects/duolingo-web/evidence/english-leaderboard-practice-instance-v1/source/walk.json"
+        ],
+        "element": "pair-right-2",
+        "role": "button"
+      }
+    },
+    {
+      "index": 2906,
+      "before": {
+        "id": "leaderboard-review-q2-pair-right-1-enabled",
+        "state": "leaderboard-review-q2",
+        "kind": "element_boolean",
+        "evidence": [
+          "projects/duolingo-web/evidence/english-leaderboard-practice-instance-v1/source/walk.json"
+        ],
+        "element": "pair-right-1",
+        "field": "enabled",
+        "expected": true
+      },
+      "after": {
+        "id": "leaderboard-review-q2-pair-right-2-enabled",
+        "state": "leaderboard-review-q2",
+        "kind": "element_boolean",
+        "evidence": [
+          "projects/duolingo-web/evidence/english-leaderboard-practice-instance-v1/source/walk.json"
+        ],
+        "element": "pair-right-2",
+        "field": "enabled",
+        "expected": true
+      }
+    },
+    {
+      "index": 2910,
+      "before": {
+        "id": "leaderboard-review-q2-pair-right-2-geometry",
+        "state": "leaderboard-review-q2",
+        "kind": "element_geometry",
+        "evidence": [
+          "projects/duolingo-web/evidence/english-leaderboard-practice-instance-v1/source/walk.json"
+        ],
+        "element": "pair-right-2",
+        "rect": [
+          615,
+          383,
+          255,
+          58
+        ],
+        "tolerance_points": 0
+      },
+      "after": {
+        "id": "leaderboard-review-q2-pair-right-3-geometry",
+        "state": "leaderboard-review-q2",
+        "kind": "element_geometry",
+        "evidence": [
+          "projects/duolingo-web/evidence/english-leaderboard-practice-instance-v1/source/walk.json"
+        ],
+        "element": "pair-right-3",
+        "rect": [
+          615,
+          383,
+          255,
+          58
+        ],
+        "tolerance_points": 0
+      }
+    },
+    {
+      "index": 2911,
+      "before": {
+        "id": "leaderboard-review-q2-pair-right-2-role",
+        "state": "leaderboard-review-q2",
+        "kind": "element_role",
+        "evidence": [
+          "projects/duolingo-web/evidence/english-leaderboard-practice-instance-v1/source/walk.json"
+        ],
+        "element": "pair-right-2",
+        "role": "button"
+      },
+      "after": {
+        "id": "leaderboard-review-q2-pair-right-3-role",
+        "state": "leaderboard-review-q2",
+        "kind": "element_role",
+        "evidence": [
+          "projects/duolingo-web/evidence/english-leaderboard-practice-instance-v1/source/walk.json"
+        ],
+        "element": "pair-right-3",
+        "role": "button"
+      }
+    },
+    {
+      "index": 2912,
+      "before": {
+        "id": "leaderboard-review-q2-pair-right-2-enabled",
+        "state": "leaderboard-review-q2",
+        "kind": "element_boolean",
+        "evidence": [
+          "projects/duolingo-web/evidence/english-leaderboard-practice-instance-v1/source/walk.json"
+        ],
+        "element": "pair-right-2",
+        "field": "enabled",
+        "expected": true
+      },
+      "after": {
+        "id": "leaderboard-review-q2-pair-right-3-enabled",
+        "state": "leaderboard-review-q2",
+        "kind": "element_boolean",
+        "evidence": [
+          "projects/duolingo-web/evidence/english-leaderboard-practice-instance-v1/source/walk.json"
+        ],
+        "element": "pair-right-3",
+        "field": "enabled",
+        "expected": true
+      }
+    },
+    {
+      "index": 2916,
+      "before": {
+        "id": "leaderboard-review-q2-pair-right-3-geometry",
+        "state": "leaderboard-review-q2",
+        "kind": "element_geometry",
+        "evidence": [
+          "projects/duolingo-web/evidence/english-leaderboard-practice-instance-v1/source/walk.json"
+        ],
+        "element": "pair-right-3",
+        "rect": [
+          615,
+          451,
+          255,
+          58
+        ],
+        "tolerance_points": 0
+      },
+      "after": {
+        "id": "leaderboard-review-q2-pair-right-0-geometry",
+        "state": "leaderboard-review-q2",
+        "kind": "element_geometry",
+        "evidence": [
+          "projects/duolingo-web/evidence/english-leaderboard-practice-instance-v1/source/walk.json"
+        ],
+        "element": "pair-right-0",
+        "rect": [
+          615,
+          451,
+          255,
+          58
+        ],
+        "tolerance_points": 0
+      }
+    },
+    {
+      "index": 2917,
+      "before": {
+        "id": "leaderboard-review-q2-pair-right-3-role",
+        "state": "leaderboard-review-q2",
+        "kind": "element_role",
+        "evidence": [
+          "projects/duolingo-web/evidence/english-leaderboard-practice-instance-v1/source/walk.json"
+        ],
+        "element": "pair-right-3",
+        "role": "button"
+      },
+      "after": {
+        "id": "leaderboard-review-q2-pair-right-0-role",
+        "state": "leaderboard-review-q2",
+        "kind": "element_role",
+        "evidence": [
+          "projects/duolingo-web/evidence/english-leaderboard-practice-instance-v1/source/walk.json"
+        ],
+        "element": "pair-right-0",
+        "role": "button"
+      }
+    },
+    {
+      "index": 2918,
+      "before": {
+        "id": "leaderboard-review-q2-pair-right-3-enabled",
+        "state": "leaderboard-review-q2",
+        "kind": "element_boolean",
+        "evidence": [
+          "projects/duolingo-web/evidence/english-leaderboard-practice-instance-v1/source/walk.json"
+        ],
+        "element": "pair-right-3",
+        "field": "enabled",
+        "expected": true
+      },
+      "after": {
+        "id": "leaderboard-review-q2-pair-right-0-enabled",
+        "state": "leaderboard-review-q2",
+        "kind": "element_boolean",
+        "evidence": [
+          "projects/duolingo-web/evidence/english-leaderboard-practice-instance-v1/source/walk.json"
+        ],
+        "element": "pair-right-0",
+        "field": "enabled",
+        "expected": true
+      }
+    }
+  ]
+}

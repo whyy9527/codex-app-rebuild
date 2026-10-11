@@ -18,7 +18,9 @@ if let seedIndex = CommandLine.arguments.firstIndex(of: "--seed-progress"), seed
 }
 let eighthReview = CommandLine.arguments.contains("--exercise-eighth-review")
 let errorReview = CommandLine.arguments.contains("--exercise-error-review")
-let reviewInstance = eighthReview ? "level-review" : errorReview ? "error-review" : "current-review"
+let explicitReview = CommandLine.arguments.firstIndex(of: "--review-instance").map { CommandLine.arguments[$0 + 1] }
+let reviewInstance = explicitReview ?? (eighthReview ? "level-review" : errorReview ? "error-review" : "current-review")
+if explicitReview != nil && !CommandLine.arguments.contains("--exercise-current-review") { throw NSError(domain:"Explicit review requires exercise-current-review",code:1) }
 let childLog = output.appendingPathComponent("child.log")
 FileManager.default.createFile(atPath: childLog.path, contents: nil)
 let fixture = CommandLine.arguments.count > 2 ? CommandLine.arguments[2] : "projects/duolingo-web/fixture-reference-en-zh-v14.json"
@@ -91,6 +93,7 @@ Thread.sleep(forTimeInterval: 0.2)
 }
 configureWindow()
 func capture(_ name: String) throws {
+    try activateOwnedInputTarget()
     var number: Int?
     let deadline = Date().addingTimeInterval(10)
     repeat {
@@ -410,7 +413,7 @@ if CommandLine.arguments.contains("--exercise-path-chest") {
     if let failure { throw ProbeError(message:failure) }
     return
 }
-if CommandLine.arguments.contains("--observe-quests") {
+if CommandLine.arguments.contains("--observe-quests") || CommandLine.arguments.contains("--exercise-current-review") || errorReview || eighthReview {
     try press("nav-quests"); Thread.sleep(forTimeInterval: 0.5)
     states["quests"] = observe(); try capture("quests")
     if CommandLine.arguments.contains("--exercise-current-review") || errorReview || eighthReview {
@@ -428,6 +431,8 @@ if CommandLine.arguments.contains("--observe-quests") {
                 try press("nav-learn"); try waitFor("start-lesson-1")
                 try press("start-lesson-1"); try waitFor("start-lesson-confirm"); try press("start-lesson-confirm")
                 try waitFor("lesson-entry"); try saveReviewState("eighth-entry"); try press("lesson-entry-start")
+            } else if explicitReview != nil {
+                try press("nav-leaderboards"); try waitFor("leaderboard-practice"); try press("leaderboard-practice")
             } else { try press("quests-practice") }
             for q in questions {
                 let key = q["id"] as! String
@@ -476,9 +481,10 @@ if CommandLine.arguments.contains("--observe-quests") {
             }
             try waitFor("lesson-complete", value: errorReview ? "你莫不是特工？" : "完美！"); try saveReviewState(reviewInstance+"-result")
             try press("settlement-secondary"); try waitFor("result-review-title")
-            try saveReviewState((eighthReview ? "level" : errorReview ? "error" : "current")+"-practice-review-open")
-            try press(eighthReview ? "review-card-7" : errorReview ? "review-card-1" : "review-card-8"); try waitFor("result-review-answer")
-            try saveReviewState(eighthReview ? "level-practice-review-long-expanded" : errorReview ? "error-practice-review-wrong-expanded" : "current-practice-review-speech-expanded")
+            try saveReviewState((explicitReview ?? (eighthReview ? "level" : errorReview ? "error" : "current"))+"-practice-review-open")
+            let expandedCard = explicitReview != nil ? (definition["reviewSpeechCard"] as! Int) : eighthReview ? 7 : errorReview ? 1 : 8
+            try press("review-card-"+String(expandedCard)); try waitFor("result-review-answer")
+            try saveReviewState(explicitReview.map { $0+"-practice-review-speech-expanded" } ?? (eighthReview ? "level-practice-review-long-expanded" : errorReview ? "error-practice-review-wrong-expanded" : "current-practice-review-speech-expanded"))
             func scrollReview(_ amount: Int32, returned: Bool) throws {
                 try activateOwnedInputTarget()
                 guard movePointer(to: "review-card-8") else { throw ProbeError(message: "Cannot target active owned review scroll") }

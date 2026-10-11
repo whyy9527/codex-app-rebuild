@@ -1,5 +1,7 @@
 # 架构
 
+完整当前实例由逐题公共内容和实际接受反馈编译，原版与原生共用显式题单；驱动支持review-instance及排行榜入口。右列控件须按实际配对身份映射，不能把视觉行号当稳定ID。显式实例、默认自适应选题与真实声学验证分开，不能互相替代。[证据](../projects/duolingo-web/evidence/english-leaderboard-practice-instance-v1/README.md)。
+
 采集器增加无角色 pointer 候选与命中证据，供探索决策，不自动赋予按钮语义。v51 状态清除／持久化与 v52 当前练习入口契约逐版保留旧要求；原生旅程支持同偏好重启。当前练习新题不从旧完整实例拼接，两个隔离会话的同二进制观测合并显式保留来源，不冒充连续旅程。[本批证据](../projects/duolingo-web/evidence/english-leaderboard-state-v1/README.md)。
 
 v50的`home-branches-scenarios-v1.json`由原版逐步观察冻结，原生多步驱动保存中间状态、模态可操作层、每次截图尺寸和失败，再分别运行前端比较与动作覆盖。失败旅程非零退出；AX能调用超出内容区的控件，因此动作成功须与几何和整图分开。Swift的完成节点／Legendary／Leaderboard由ReferenceHome实际消费，服务端状态和未探索动作仍由frontier记录。[实现与证据](../projects/duolingo-web/evidence/english-home-branches-v1/README.md)。

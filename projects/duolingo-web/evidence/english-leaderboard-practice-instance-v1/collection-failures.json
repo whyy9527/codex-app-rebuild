@@ -1,0 +1,34 @@
+{
+  "failures": [
+    {
+      "kind": "stale-CLI-ref",
+      "result": "first speech decline did not execute; fresh snapshot then actual click succeeded"
+    },
+    {
+      "kind": "speech-autonomy-gap",
+      "result": "current walker accepted7 then stops unsupported speak; manual actual decline and continue, second walk accepted9"
+    },
+    {
+      "kind": "screenshot-timeout",
+      "files": [
+        "source/speech-expanded.raw.txt",
+        "source/speech-expanded-retry.raw.txt"
+      ],
+      "result": "Playwright screenshot timed out after fonts loaded; expanded screenshot not accepted; original raw kept locally outside committed evidence"
+    },
+    {
+      "kind": "native-incomplete-01",
+      "states": 2,
+      "result": "missing observe-quests flag silently skipped requested exercise; route now triggered by exercise-current-review itself"
+    },
+    {
+      "kind": "native-failed-02",
+      "states": 10,
+      "result": "No owned visible window at q3; capture now activates and raises task-owned child before reading onscreen list; no cause claim"
+    },
+    {
+      "kind": "compiler-historical-assumption",
+      "result": "historical helper assumed4 distinct match cues; actual receipt has3. Compile content separately, retain observed3 and fourth pending; no source receipt altered"
+    }
+  ]
+}
