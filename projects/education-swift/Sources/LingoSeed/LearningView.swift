@@ -14,7 +14,7 @@ struct LearningView: View {
             VStack(spacing: 0) {
                 if let lesson = model.lesson {
                     if model.isPronunciationPractice { ReferencePronunciationPractice(model: model, lesson: lesson) }
-                    else if model.isGeneralPractice {
+                    else if (model.isGeneralPractice || model.isSectionPlacement) || model.isSectionPlacement {
                         if lesson.complete, let page = model.settlement?.current {
                             ReferenceSettlement(page: page, mistakesMade: lesson.mistakesMade, advance: model.advanceSettlement, retry: model.beginGeneralPractice,
                                                 review: lesson.resultReviewEntries.isEmpty ? nil : { showingResultReview = true })
@@ -23,9 +23,11 @@ struct LearningView: View {
                         }
                     }
                     else { lessonPage(lesson) }
+                } else if model.sectionPlacementEntry,let stage=model.sectionPlacementStage {
+                    ReferenceSectionPlacementEntry(stage:stage,later:{model.sectionPlacementEntry=false;model.destination="Sections"},start:model.beginSectionPlacement)
                 } else if model.destination == "Guest achievements error" {
                     ReferenceGuestAchievementsError(home:{model.destination="Learn"})
-                } else if ["Learn", "Settings", "Guidebook", "Pronunciation", "Shop", "Forgot password", "Leaderboards", "Guest profile", "Guest avatar"].contains(model.destination)
+                } else if ["Learn", "Sections", "Settings", "Guidebook", "Pronunciation", "Shop", "Forgot password", "Leaderboards", "Guest profile", "Guest avatar"].contains(model.destination)
                     || (model.destination == "Quests" && model.course.interfaceLanguage == "zh") {
                     ReferenceHome(model: model)
                 } else {
@@ -290,7 +292,7 @@ struct LearningView: View {
                     Button(label) { model.skip() }.buttonStyle(ReferenceSkipButton()).accessibilityIdentifier("skip").offset(y: 2)
                 }
                 if let decline = lesson.question.listeningDecline {
-                    if model.isGeneralPractice {
+                    if (model.isGeneralPractice || model.isSectionPlacement) {
                         ReferencePracticeControl(label: decline.label, identifier: "listening-decline", enabled: true,
                             action: { model.declineListening() }, face: AnyView(Text(decline.label).font(ReferenceStyle.font(17, bold: true)).tracking(0.8)
                                 .foregroundStyle(ReferenceStyle.disclosureInk).frame(width: 160.6015625, height: 46)
@@ -350,7 +352,7 @@ struct LearningView: View {
         } else if lesson.question.newWord { Text(copy("NEW WORD", "新单词")).font(ReferenceStyle.font(14, bold: true)).foregroundStyle(.purple) }
         // Source challenge-header: 32px/40px. Translation's character row follows
         // the heading directly; the old shared 28-point gap displaced it.
-        VStack(alignment: .leading, spacing: ["translate", "completeReverseTranslation"].contains(lesson.question.sourceType ?? "") || (model.isGeneralPractice && lesson.question.sourceType == "listen") ? 0 : model.isGeneralPractice && lesson.question.sourceType == "listenTap" ? 23.5 : model.isGeneralPractice && lesson.question.sourceType == "listenIsolation" && lesson.question.isolationPromptTokens != nil ? 32 : 28) {
+        VStack(alignment: .leading, spacing: (model.isSectionPlacement && lesson.question.sourceType == "assist") || ["translate", "completeReverseTranslation"].contains(lesson.question.sourceType ?? "") || ((model.isGeneralPractice || model.isSectionPlacement) && lesson.question.sourceType == "listen") ? 0 : (model.isGeneralPractice || model.isSectionPlacement) && lesson.question.sourceType == "listenTap" ? 23.5 : (model.isGeneralPractice || model.isSectionPlacement) && lesson.question.sourceType == "listenIsolation" && lesson.question.isolationPromptTokens != nil ? 32 : 28) {
         Text(lesson.question.kind == .wordTiles && lesson.question.hint == nil && lesson.question.sourceType == nil ? "Build this phrase" : lesson.displayedPrompt).font(ReferenceStyle.font(32, bold: true))
             .frame(maxWidth: .infinity, minHeight: 40, maxHeight: 40, alignment: .leading)
             .accessibilityIdentifier("question-title").accessibilityValue(lesson.displayedPrompt)
@@ -361,7 +363,7 @@ struct LearningView: View {
         case .textEntry: textEntry(lesson)
         }
         }.padding(.top, 0.5)
-        if !model.isGeneralPractice && lesson.question.kind == .choice && !["dialogue", "listenIsolation"].contains(lesson.question.sourceType ?? "") {
+        if !(model.isGeneralPractice || model.isSectionPlacement) && lesson.question.kind == .choice && !["dialogue", "listenIsolation"].contains(lesson.question.sourceType ?? "") {
             Button { model.pronounce() } label: { Label(lesson.selected == nil ? "Read the instruction" : "Listen again", systemImage: "speaker.wave.2.fill") }.buttonStyle(.plain).foregroundStyle(.cyan).accessibilityIdentifier("pronounce")
         }
     }
@@ -391,6 +393,19 @@ struct LearningView: View {
             .frame(width: width, height: 66)
     }
     @ViewBuilder private func textEntry(_ lesson: Lesson) -> some View {
+        if lesson.question.sourceType == "name", let image = lesson.question.promptImageResource {
+            HStack(spacing: 24) {
+                ReferenceStyle.image(image).resizable().scaledToFit().frame(width: 180, height: 180)
+                    .accessibilityIdentifier("question-image")
+                TextField("使用英语键入", text: Binding(get: { model.lesson?.displayedInput ?? "" }, set: { model.enterText($0) }))
+                    .font(ReferenceStyle.font(19)).textFieldStyle(.plain).padding(.horizontal, 14)
+                    .frame(width: 394, height: 46)
+                    .background(Color(white: 247/255), in: RoundedRectangle(cornerRadius: 10))
+                    .overlay(RoundedRectangle(cornerRadius: 10).stroke(ReferenceStyle.border, lineWidth: 2))
+                    .disabled(lesson.feedback != nil).accessibilityIdentifier("answer-input")
+                    .accessibilityLabel("使用英语键入").padding(.leading, 1)
+            }.frame(height: 350).offset(y: 14)
+        } else {
         if let hint = lesson.question.hint {
             if chinese, let character = lesson.question.characterResource {
                 HStack(spacing: 0) {
@@ -403,7 +418,7 @@ struct LearningView: View {
                 Text(hint).font(ReferenceStyle.font(20)).accessibilityIdentifier("question-hint")
             }
         }
-        if model.isGeneralPractice && lesson.question.sourceType == "listen" {
+        if (model.isGeneralPractice || model.isSectionPlacement) && lesson.question.sourceType == "listen" {
             HStack(spacing: 0) {
                 if let character = lesson.question.characterResource {
                     ReferenceCharacter(resource: character, feedback: lesson.feedback).id(lesson.question.id)
@@ -424,7 +439,7 @@ struct LearningView: View {
                     }
                 Spacer(minLength: 0)
             }.frame(height: 175).padding(.leading, 10)
-        } else if model.isGeneralPractice && lesson.question.sourceType == "listenTap" {
+        } else if (model.isGeneralPractice || model.isSectionPlacement) && lesson.question.sourceType == "listenTap" {
             generalListeningControls.padding(.bottom, 46.5)
         } else if lesson.question.sourceType == "listenComplete" {
             HStack(spacing: 28) {
@@ -434,10 +449,10 @@ struct LearningView: View {
                     .buttonStyle(SeedButtonStyle(fill: .cyan)).accessibilityIdentifier("pronounce-slow").accessibilityLabel("播放慢速")
             }
         }
-        if lesson.usingKeyboard || (model.isGeneralPractice && lesson.question.sourceType == "listen") {
+        if lesson.usingKeyboard || ((model.isGeneralPractice || model.isSectionPlacement) && ["listen", "translate"].contains(lesson.question.sourceType ?? "")) {
             ReferenceAnswerEditor(text: Binding(get: { model.lesson?.displayedInput ?? "" }, set: { model.enterText($0) }), enabled: lesson.feedback == nil)
                 .overlay(alignment: .topLeading) {
-                    if model.isGeneralPractice && lesson.displayedInput.isEmpty {
+                    if (model.isGeneralPractice || model.isSectionPlacement) && lesson.displayedInput.isEmpty {
                         Text("使用英语键入").font(ReferenceStyle.font(19, weight: 400)).foregroundStyle(ReferenceStyle.disclosureInk)
                             .padding(.horizontal, 14).padding(.vertical, 12).allowsHitTesting(false).accessibilityHidden(true)
                     }
@@ -457,8 +472,9 @@ struct LearningView: View {
             .overlay(RoundedRectangle(cornerRadius: chinese ? 8 : 12).stroke(Color.gray.opacity(0.25), lineWidth: 2))
         }
     }
+    }
     @ViewBuilder private func isolation(_ lesson: Lesson) -> some View {
-        if model.isGeneralPractice, let tokens = lesson.question.isolationPromptTokens {
+        if (model.isGeneralPractice || model.isSectionPlacement), let tokens = lesson.question.isolationPromptTokens {
             VStack(spacing: 0) {
                 HStack(spacing: 0) {
                     if let character = lesson.question.characterResource {
@@ -513,6 +529,30 @@ struct LearningView: View {
             isolation(lesson)
         } else if lesson.question.sourceType == "dialogue" {
             dialogue(lesson)
+        } else if model.isSectionPlacement && lesson.question.sourceType == "assist" {
+            HStack(spacing: 16) {
+                if let character = lesson.question.characterResource {
+                    ReferenceCharacter(resource: character, feedback: lesson.feedback).id(lesson.question.id)
+                        .frame(width: 118, height: 175)
+                }
+                Text(lesson.question.hint ?? "").font(ReferenceStyle.font(20)).padding(16)
+                    .overlay(RoundedRectangle(cornerRadius: 14).strokeBorder(ReferenceStyle.border, lineWidth: 2))
+                    .overlay(alignment: .leading) {
+                        ZStack {
+                            Path { p in p.move(to: CGPoint(x: 14, y: 0)); p.addLine(to: CGPoint(x: 0, y: 15)); p.addLine(to: CGPoint(x: 14, y: 15)); p.closeSubpath() }.fill(.white)
+                            Path { p in p.move(to: CGPoint(x: 14, y: 0)); p.addLine(to: CGPoint(x: 0, y: 15)); p.addLine(to: CGPoint(x: 14, y: 15)) }.stroke(ReferenceStyle.border, lineWidth: 2)
+                        }.frame(width: 15, height: 16).offset(x: -13).accessibilityHidden(true)
+                    }.accessibilityIdentifier("question-hint")
+                Spacer(minLength: 0)
+            }.frame(height: 175)
+            VStack(spacing: 8) {
+                ForEach(Array(lesson.question.options.enumerated()), id: \.element.id) { index, option in
+                    ReferenceAudioRadio(label: "\(index + 1) \(option.text)", identifier: "option-" + option.id,
+                        waveform: nil, correct: lesson.feedback == true, selected: lesson.selected == option.id,
+                        enabled: lesson.feedback == nil, action: { model.choose(option.id) }, textChoice: true)
+                        .frame(width: 600, height: 60)
+                }
+            }
         } else if let hint = lesson.question.hint {
             HStack(spacing: 16) {
                 if let character = lesson.question.characterResource { ReferenceCharacter(resource: character, feedback: lesson.feedback).id(lesson.question.id).frame(width: ReferenceCharacter.size(for: character).width, height: ReferenceCharacter.size(for: character).height) }
@@ -593,12 +633,39 @@ struct LearningView: View {
             }
     }
     @ViewBuilder private func words(_ lesson: Lesson) -> some View {
-        if model.isGeneralPractice && lesson.question.sourceType == "listenTap" {
+        if lesson.question.sourceType == "tapComplete", let image = lesson.question.promptImageResource {
+            VStack(spacing: 90) {
+                HStack(spacing: 24) {
+                    ReferenceStyle.image(image).resizable().scaledToFit().frame(width: 180, height: 180)
+                        .accessibilityIdentifier("question-image")
+                    HStack(spacing: 4) {
+                        Text(lesson.question.completionPrefix ?? "").accessibilityIdentifier("completion-prefix")
+                        HStack(spacing: 4) {
+                            ForEach(lesson.selectedWords, id: \.self) { id in
+                                Button(lesson.question.words.first { $0.id == id }!.text) { model.removeWord(id) }
+                                    .buttonStyle(SeedTileStyle(selected: true)).disabled(lesson.feedback != nil)
+                                    .accessibilityIdentifier("selected-word-" + id)
+                            }
+                        }.frame(minWidth: 80, minHeight: 48)
+                            .overlay(alignment: .bottom) { Rectangle().fill(ReferenceStyle.border).frame(height: 2) }
+                        Text(lesson.question.completionSuffix ?? "").accessibilityIdentifier("completion-suffix")
+                    }.font(ReferenceStyle.font(20))
+                    Spacer(minLength: 0)
+                }.padding(.top, 20)
+                WordFlowLayout(centered: true) {
+                    ForEach(lesson.visibleWords) { word in
+                        Button(word.text) { model.addWord(word.id) }.buttonStyle(SeedTileStyle()).fixedSize()
+                            .disabled(lesson.feedback != nil || lesson.selectedWords.contains(word.id))
+                            .accessibilityIdentifier("word-bank-" + word.id)
+                    }
+                }
+            }
+        } else if (model.isGeneralPractice || model.isSectionPlacement) && lesson.question.sourceType == "listenTap" {
             generalListeningWords(lesson)
         } else {
         VStack(alignment: .leading, spacing: 24) {
             if lesson.question.sourceType == "listenTap" {
-                if model.isGeneralPractice { generalListeningControls }
+                if (model.isGeneralPractice || model.isSectionPlacement) { generalListeningControls }
                 else {
                 HStack(spacing: 28) {
                     Button { model.playQuestion() } label: { Image(systemName: "speaker.wave.2.fill").font(.system(size: 54)).frame(width: 110, height: 110) }

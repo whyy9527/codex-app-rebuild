@@ -1,0 +1,2211 @@
+{
+  "attempts" : [
+    {
+      "failure" : null,
+      "id" : "home-section-return"
+    },
+    {
+      "failure" : "Error Domain=NSCocoaErrorDomain Code=516 \"“profile-return-home-capture-1” couldn’t be copied to “sections-native-01” because an item with the same name already exists.\" UserInfo={NSSourceFilePathErrorKey=\/Users\/haoyangwu\/Desktop\/codex-exploration-lab\/artifacts\/sections-native-01\/profile-return-home-capture-1.png, NSUserStringVariant=(\n    Copy\n), NSDestinationFilePath=\/Users\/haoyangwu\/Desktop\/codex-exploration-lab\/artifacts\/sections-native-01\/profile-return-home.png, NSFilePath=\/Users\/haoyangwu\/Desktop\/codex-exploration-lab\/artifacts\/sections-native-01\/profile-return-home-capture-1.png, NSURL=file:\/\/\/Users\/haoyangwu\/Desktop\/codex-exploration-lab\/artifacts\/sections-native-01\/profile-return-home-capture-1.png, NSUnderlyingError=0xaba354570 {Error Domain=NSPOSIXErrorDomain Code=17 \"File exists\"}}",
+      "id" : "home-section-back"
+    }
+  ],
+  "candidate_binary_sha256" : "b354da03497f80e94289b7224b752d270e4529471671e526915222a25f93785e",
+  "failure" : "[[\"failure\": \"Error Domain=NSCocoaErrorDomain Code=516 \\\"“profile-return-home-capture-1” couldn’t be copied to “sections-native-01” because an item with the same name already exists.\\\" UserInfo={NSSourceFilePathErrorKey=\/Users\/haoyangwu\/Desktop\/codex-exploration-lab\/artifacts\/sections-native-01\/profile-return-home-capture-1.png, NSUserStringVariant=(\\n    Copy\\n), NSDestinationFilePath=\/Users\/haoyangwu\/Desktop\/codex-exploration-lab\/artifacts\/sections-native-01\/profile-return-home.png, NSFilePath=\/Users\/haoyangwu\/Desktop\/codex-exploration-lab\/artifacts\/sections-native-01\/profile-return-home-capture-1.png, NSURL=file:\/\/\/Users\/haoyangwu\/Desktop\/codex-exploration-lab\/artifacts\/sections-native-01\/profile-return-home-capture-1.png, NSUnderlyingError=0xaba354570 {Error Domain=NSPOSIXErrorDomain Code=17 \\\"File exists\\\"}}\", \"id\": \"home-section-back\"]]",
+  "fixture_sha256" : "b7242d0e130112d54b1e17714bf21c35045e58f8874948917b0b09f971282bda",
+  "kind" : "owned_native_ax_observation",
+  "limitations" : [
+    "No acoustic equality claim; actual images retain clock and animation phase differences"
+  ],
+  "scenario_sha256" : "e06aed5116ae6914fbeffbf26fef58b8fca37e2b1ccffd61538df9a92fbac0f7",
+  "seed_preferences_sha256" : null,
+  "states" : {
+    "profile-return-home" : {
+      "accessible_text" : [
+        "0 秒",
+        "2",
+        "30 \/ 30",
+        "5",
+        "525",
+        "8",
+        "8 of 8 lessons complete",
+        "Duo",
+        "Lesson",
+        "LingoSeed",
+        "Practice",
+        "个人档案",
+        "关于我们    宝石小店    有效性    招聘贤才\n\n投资者    条款    隐私",
+        "创建个人档案，保存学习进度！",
+        "创建档案",
+        "发音",
+        "复习该部分",
+        "学习",
+        "宝石小店",
+        "宝箱",
+        "开始",
+        "指南",
+        "排行榜",
+        "提供或接受饮料",
+        "显示全部",
+        "更多",
+        "查看排行榜",
+        "每日特别任务",
+        "特别任务",
+        "登录",
+        "第 1 阶段，第 1 部分",
+        "获取 30 经验",
+        "谈论祖籍国家",
+        "这周的排行榜挑战赛即将开始！",
+        "青铜等级"
+      ],
+      "capture" : {
+        "backing_scale" : 2,
+        "content_rect_points" : [
+          0,
+          32,
+          1200,
+          732
+        ],
+        "path" : "artifacts\/sections-native-01\/profile-return-home.png",
+        "window_points" : [
+          1200,
+          764
+        ]
+      },
+      "capture_attempts" : [
+        {
+          "attempt" : 1,
+          "expected" : [
+            2400,
+            1528
+          ],
+          "path" : "profile-return-home-capture-1.png",
+          "pixels" : [
+            2400,
+            1528
+          ]
+        }
+      ],
+      "control_inventory" : [
+        {
+          "enabled" : true,
+          "identifier" : "nav-learn",
+          "name" : "学习",
+          "rect" : [
+            16,
+            92,
+            222,
+            52
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : "nav-pronunciation",
+          "name" : "发音",
+          "rect" : [
+            16,
+            152,
+            222,
+            52
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : "nav-leaderboards",
+          "name" : "排行榜",
+          "rect" : [
+            16,
+            212,
+            222,
+            52
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : "nav-quests",
+          "name" : "特别任务",
+          "rect" : [
+            16,
+            272,
+            222,
+            52
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : "nav-shop",
+          "name" : "宝石小店",
+          "rect" : [
+            16,
+            332,
+            222,
+            52
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : "nav-profile",
+          "name" : "个人档案",
+          "rect" : [
+            16,
+            392,
+            222,
+            52
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : "nav-more",
+          "name" : "更多",
+          "rect" : [
+            16,
+            452,
+            222,
+            52
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : "open-sections",
+          "name" : "第 1 阶段，第 1 部分",
+          "rect" : [
+            296,
+            64,
+            330,
+            24
+          ],
+          "role" : "AXLink",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : "open-guide",
+          "name" : "指南",
+          "rect" : [
+            649,
+            68,
+            96,
+            50
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : "start-lesson",
+          "name" : "Lesson",
+          "rect" : [
+            485,
+            162,
+            70,
+            65
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : "start-lesson-1",
+          "name" : "Lesson",
+          "rect" : [
+            440,
+            239,
+            70,
+            65
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : false,
+          "identifier" : "path-chest",
+          "name" : "宝箱",
+          "rect" : [
+            410,
+            324,
+            80,
+            90
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : "start-lesson-3",
+          "name" : "Practice",
+          "rect" : [
+            440,
+            448.5,
+            70,
+            65
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : "start-lesson-4",
+          "name" : "复习该部分",
+          "rect" : [
+            485,
+            539.5,
+            70,
+            65
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : false,
+          "identifier" : null,
+          "name" : "",
+          "rect" : [
+            767,
+            0,
+            0,
+            0
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : false,
+          "identifier" : null,
+          "name" : "",
+          "rect" : [
+            767,
+            0,
+            0,
+            0
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : false,
+          "identifier" : null,
+          "name" : "",
+          "rect" : [
+            775,
+            720,
+            6,
+            9
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : false,
+          "identifier" : null,
+          "name" : "",
+          "rect" : [
+            775,
+            3,
+            6,
+            0
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : "view-leaderboards",
+          "name" : "查看排行榜",
+          "rect" : [
+            1081,
+            114.5,
+            75,
+            18
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : "view-quests",
+          "name" : "显示全部",
+          "rect" : [
+            1096,
+            280.5,
+            60,
+            18
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : "view-profile",
+          "name" : "创建档案",
+          "rect" : [
+            828,
+            510,
+            328,
+            46
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : "sign-in",
+          "name" : "登录",
+          "rect" : [
+            828,
+            570,
+            328,
+            46
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : null,
+          "name" : "",
+          "rect" : [
+            8,
+            -24,
+            16,
+            16
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : null,
+          "name" : "",
+          "rect" : [
+            54,
+            -24,
+            16,
+            16
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : null,
+          "name" : "",
+          "rect" : [
+            31,
+            -24,
+            16,
+            16
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        }
+      ],
+      "control_inventory_limitations" : [
+        "Actual AX controls include nodes without developer identifiers; no invocation or hit-test coverage inferred"
+      ],
+      "elements" : {
+        "completed-count" : {
+          "enabled" : true,
+          "rect" : [
+            455.5,
+            687.1484375,
+            129,
+            15
+          ],
+          "role" : "AXStaticText",
+          "value" : "8"
+        },
+        "course-entry" : {
+          "enabled" : true,
+          "rect" : [
+            296,
+            96,
+            154,
+            26
+          ],
+          "role" : "AXStaticText",
+          "value" : "提供或接受饮料"
+        },
+        "home-duo-animation" : {
+          "enabled" : true,
+          "rect" : [
+            506,
+            225,
+            238,
+            288.5
+          ],
+          "role" : "AXUnknown",
+          "value" : ""
+        },
+        "home-league-countdown" : {
+          "enabled" : true,
+          "rect" : [
+            910,
+            197,
+            29,
+            20
+          ],
+          "role" : "AXStaticText",
+          "value" : "0 秒"
+        },
+        "nav-leaderboards" : {
+          "enabled" : true,
+          "rect" : [
+            16,
+            212,
+            222,
+            52
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "nav-learn" : {
+          "enabled" : true,
+          "rect" : [
+            16,
+            92,
+            222,
+            52
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "nav-more" : {
+          "enabled" : true,
+          "rect" : [
+            16,
+            452,
+            222,
+            52
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "nav-profile" : {
+          "enabled" : true,
+          "rect" : [
+            16,
+            392,
+            222,
+            52
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "nav-pronunciation" : {
+          "enabled" : true,
+          "rect" : [
+            16,
+            152,
+            222,
+            52
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "nav-quests" : {
+          "enabled" : true,
+          "rect" : [
+            16,
+            272,
+            222,
+            52
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "nav-shop" : {
+          "enabled" : true,
+          "rect" : [
+            16,
+            332,
+            222,
+            52
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "open-guide" : {
+          "enabled" : true,
+          "rect" : [
+            649,
+            68,
+            96,
+            50
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "open-sections" : {
+          "enabled" : true,
+          "rect" : [
+            296,
+            64,
+            330,
+            24
+          ],
+          "role" : "AXLink",
+          "value" : ""
+        },
+        "path-chest" : {
+          "enabled" : false,
+          "rect" : [
+            410,
+            324,
+            80,
+            90
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "return-action-23" : {
+          "enabled" : true,
+          "native_identifier" : "open-sections",
+          "rect" : [
+            296,
+            64,
+            330,
+            24
+          ],
+          "role" : "AXLink",
+          "value" : ""
+        },
+        "sign-in" : {
+          "enabled" : true,
+          "rect" : [
+            828,
+            570,
+            328,
+            46
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "start-lesson" : {
+          "enabled" : true,
+          "rect" : [
+            485,
+            162,
+            70,
+            65
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "start-lesson-1" : {
+          "enabled" : true,
+          "rect" : [
+            440,
+            239,
+            70,
+            65
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "start-lesson-3" : {
+          "enabled" : true,
+          "rect" : [
+            440,
+            448.5,
+            70,
+            65
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "start-lesson-4" : {
+          "enabled" : true,
+          "rect" : [
+            485,
+            539.5,
+            70,
+            65
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "SwiftUI._ConditionalContent<SwiftUI.SubscriptionView<(extension in Foundation):__C.NSNotificationCenter.Publisher, SwiftUI.ModifiedContent<LingoSeed.LearningView, SwiftUI._AppearanceActionModifier>>, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1" : {
+          "enabled" : false,
+          "rect" : [
+            0,
+            -32,
+            1200,
+            764
+          ],
+          "role" : "AXWindow",
+          "value" : ""
+        },
+        "view-leaderboards" : {
+          "enabled" : true,
+          "rect" : [
+            1081,
+            114.5,
+            75,
+            18
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "view-profile" : {
+          "enabled" : true,
+          "rect" : [
+            828,
+            510,
+            328,
+            46
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "view-quests" : {
+          "enabled" : true,
+          "rect" : [
+            1096,
+            280.5,
+            60,
+            18
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        }
+      },
+      "interactions" : {
+        "completed_popover_present" : false,
+        "exit_confirmation_present" : false,
+        "footer_status_visible" : false,
+        "guest_error_present" : false,
+        "guest_introduction_present" : false,
+        "guest_languages_present" : false,
+        "guest_profile_present" : false,
+        "home_course_present" : true,
+        "learn_present" : true,
+        "legendary_present" : false,
+        "practice_present" : false,
+        "profile_present" : false,
+        "status_clear_visible" : false,
+        "status_selected" : false
+      }
+    },
+    "profile-return-home-return" : {
+      "accessible_text" : [
+        "0 秒",
+        "2",
+        "30 \/ 30",
+        "5",
+        "525",
+        "8",
+        "8 of 8 lessons complete",
+        "Duo",
+        "Lesson",
+        "LingoSeed",
+        "Practice",
+        "个人档案",
+        "关于我们    宝石小店    有效性    招聘贤才\n\n投资者    条款    隐私",
+        "创建个人档案，保存学习进度！",
+        "创建档案",
+        "发音",
+        "复习该部分",
+        "学习",
+        "宝石小店",
+        "宝箱",
+        "开始",
+        "指南",
+        "排行榜",
+        "提供或接受饮料",
+        "显示全部",
+        "更多",
+        "查看排行榜",
+        "每日特别任务",
+        "特别任务",
+        "登录",
+        "第 1 阶段，第 1 部分",
+        "获取 30 经验",
+        "谈论祖籍国家",
+        "这周的排行榜挑战赛即将开始！",
+        "青铜等级"
+      ],
+      "capture" : {
+        "backing_scale" : 2,
+        "content_rect_points" : [
+          0,
+          32,
+          1200,
+          732
+        ],
+        "path" : "artifacts\/sections-native-01\/profile-return-home-return.png",
+        "window_points" : [
+          1200,
+          764
+        ]
+      },
+      "capture_attempts" : [
+        {
+          "attempt" : 1,
+          "expected" : [
+            2400,
+            1528
+          ],
+          "path" : "profile-return-home-return-capture-1.png",
+          "pixels" : [
+            2400,
+            1528
+          ]
+        }
+      ],
+      "control_inventory" : [
+        {
+          "enabled" : true,
+          "identifier" : "nav-learn",
+          "name" : "学习",
+          "rect" : [
+            16,
+            92,
+            222,
+            52
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : "nav-pronunciation",
+          "name" : "发音",
+          "rect" : [
+            16,
+            152,
+            222,
+            52
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : "nav-leaderboards",
+          "name" : "排行榜",
+          "rect" : [
+            16,
+            212,
+            222,
+            52
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : "nav-quests",
+          "name" : "特别任务",
+          "rect" : [
+            16,
+            272,
+            222,
+            52
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : "nav-shop",
+          "name" : "宝石小店",
+          "rect" : [
+            16,
+            332,
+            222,
+            52
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : "nav-profile",
+          "name" : "个人档案",
+          "rect" : [
+            16,
+            392,
+            222,
+            52
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : "nav-more",
+          "name" : "更多",
+          "rect" : [
+            16,
+            452,
+            222,
+            52
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : "open-sections",
+          "name" : "第 1 阶段，第 1 部分",
+          "rect" : [
+            296,
+            64,
+            330,
+            24
+          ],
+          "role" : "AXLink",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : "open-guide",
+          "name" : "指南",
+          "rect" : [
+            649,
+            68,
+            96,
+            50
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : "start-lesson",
+          "name" : "Lesson",
+          "rect" : [
+            485,
+            162,
+            70,
+            65
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : "start-lesson-1",
+          "name" : "Lesson",
+          "rect" : [
+            440,
+            239,
+            70,
+            65
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : false,
+          "identifier" : "path-chest",
+          "name" : "宝箱",
+          "rect" : [
+            410,
+            324,
+            80,
+            90
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : "start-lesson-3",
+          "name" : "Practice",
+          "rect" : [
+            440,
+            448.5,
+            70,
+            65
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : "start-lesson-4",
+          "name" : "复习该部分",
+          "rect" : [
+            485,
+            539.5,
+            70,
+            65
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : false,
+          "identifier" : null,
+          "name" : "",
+          "rect" : [
+            767,
+            0,
+            0,
+            0
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : false,
+          "identifier" : null,
+          "name" : "",
+          "rect" : [
+            767,
+            0,
+            0,
+            0
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : false,
+          "identifier" : null,
+          "name" : "",
+          "rect" : [
+            775,
+            720,
+            6,
+            9
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : false,
+          "identifier" : null,
+          "name" : "",
+          "rect" : [
+            775,
+            3,
+            6,
+            0
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : "view-leaderboards",
+          "name" : "查看排行榜",
+          "rect" : [
+            1081,
+            114.5,
+            75,
+            18
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : "view-quests",
+          "name" : "显示全部",
+          "rect" : [
+            1096,
+            280.5,
+            60,
+            18
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : "view-profile",
+          "name" : "创建档案",
+          "rect" : [
+            828,
+            510,
+            328,
+            46
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : "sign-in",
+          "name" : "登录",
+          "rect" : [
+            828,
+            570,
+            328,
+            46
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : null,
+          "name" : "",
+          "rect" : [
+            8,
+            -24,
+            16,
+            16
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : null,
+          "name" : "",
+          "rect" : [
+            54,
+            -24,
+            16,
+            16
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : null,
+          "name" : "",
+          "rect" : [
+            31,
+            -24,
+            16,
+            16
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        }
+      ],
+      "control_inventory_limitations" : [
+        "Actual AX controls include nodes without developer identifiers; no invocation or hit-test coverage inferred"
+      ],
+      "elements" : {
+        "completed-count" : {
+          "enabled" : true,
+          "rect" : [
+            455.5,
+            687.1484375,
+            129,
+            15
+          ],
+          "role" : "AXStaticText",
+          "value" : "8"
+        },
+        "course-entry" : {
+          "enabled" : true,
+          "rect" : [
+            296,
+            96,
+            154,
+            26
+          ],
+          "role" : "AXStaticText",
+          "value" : "提供或接受饮料"
+        },
+        "home-duo-animation" : {
+          "enabled" : true,
+          "rect" : [
+            506,
+            225,
+            238,
+            288.5
+          ],
+          "role" : "AXUnknown",
+          "value" : ""
+        },
+        "home-league-countdown" : {
+          "enabled" : true,
+          "rect" : [
+            910,
+            197,
+            29,
+            20
+          ],
+          "role" : "AXStaticText",
+          "value" : "0 秒"
+        },
+        "nav-leaderboards" : {
+          "enabled" : true,
+          "rect" : [
+            16,
+            212,
+            222,
+            52
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "nav-learn" : {
+          "enabled" : true,
+          "rect" : [
+            16,
+            92,
+            222,
+            52
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "nav-more" : {
+          "enabled" : true,
+          "rect" : [
+            16,
+            452,
+            222,
+            52
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "nav-profile" : {
+          "enabled" : true,
+          "rect" : [
+            16,
+            392,
+            222,
+            52
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "nav-pronunciation" : {
+          "enabled" : true,
+          "rect" : [
+            16,
+            152,
+            222,
+            52
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "nav-quests" : {
+          "enabled" : true,
+          "rect" : [
+            16,
+            272,
+            222,
+            52
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "nav-shop" : {
+          "enabled" : true,
+          "rect" : [
+            16,
+            332,
+            222,
+            52
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "open-guide" : {
+          "enabled" : true,
+          "rect" : [
+            649,
+            68,
+            96,
+            50
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "open-sections" : {
+          "enabled" : true,
+          "rect" : [
+            296,
+            64,
+            330,
+            24
+          ],
+          "role" : "AXLink",
+          "value" : ""
+        },
+        "path-chest" : {
+          "enabled" : false,
+          "rect" : [
+            410,
+            324,
+            80,
+            90
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "return-action-23" : {
+          "enabled" : true,
+          "native_identifier" : "open-sections",
+          "rect" : [
+            296,
+            64,
+            330,
+            24
+          ],
+          "role" : "AXLink",
+          "value" : ""
+        },
+        "sign-in" : {
+          "enabled" : true,
+          "rect" : [
+            828,
+            570,
+            328,
+            46
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "start-lesson" : {
+          "enabled" : true,
+          "rect" : [
+            485,
+            162,
+            70,
+            65
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "start-lesson-1" : {
+          "enabled" : true,
+          "rect" : [
+            440,
+            239,
+            70,
+            65
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "start-lesson-3" : {
+          "enabled" : true,
+          "rect" : [
+            440,
+            448.5,
+            70,
+            65
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "start-lesson-4" : {
+          "enabled" : true,
+          "rect" : [
+            485,
+            539.5,
+            70,
+            65
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "SwiftUI._ConditionalContent<SwiftUI.SubscriptionView<(extension in Foundation):__C.NSNotificationCenter.Publisher, SwiftUI.ModifiedContent<LingoSeed.LearningView, SwiftUI._AppearanceActionModifier>>, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1" : {
+          "enabled" : false,
+          "rect" : [
+            0,
+            -32,
+            1200,
+            764
+          ],
+          "role" : "AXWindow",
+          "value" : ""
+        },
+        "view-leaderboards" : {
+          "enabled" : true,
+          "rect" : [
+            1081,
+            114.5,
+            75,
+            18
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "view-profile" : {
+          "enabled" : true,
+          "rect" : [
+            828,
+            510,
+            328,
+            46
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "view-quests" : {
+          "enabled" : true,
+          "rect" : [
+            1096,
+            280.5,
+            60,
+            18
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        }
+      },
+      "interactions" : {
+        "completed_popover_present" : false,
+        "exit_confirmation_present" : false,
+        "footer_status_visible" : false,
+        "guest_error_present" : false,
+        "guest_introduction_present" : false,
+        "guest_languages_present" : false,
+        "guest_profile_present" : false,
+        "home_course_present" : true,
+        "learn_present" : true,
+        "legendary_present" : false,
+        "practice_present" : false,
+        "profile_present" : false,
+        "status_clear_visible" : false,
+        "status_selected" : false
+      }
+    },
+    "profile-return-sections" : {
+      "accessible_text" : [
+        "0 秒",
+        "0%",
+        "180 个部分",
+        "2",
+        "255 个部分",
+        "260 个部分",
+        "30 \/ 30",
+        "30 个部分",
+        "5",
+        "525",
+        "6 个等级",
+        "60 个部分",
+        "Hello!",
+        "I am able to discuss abstract topics, such as hopes, goals, and projects.",
+        "I can express myself appropriately depending on the context.",
+        "I can participate in daily life in English.",
+        "I can speak with people a little.",
+        "I feel comfortable in English, and I can express myself spontaneously on a variety of topics.",
+        "I know some words in English.",
+        "I'm starting to learn English.",
+        "LingoSeed",
+        "个人档案",
+        "关于我们    宝石小店    有效性    招聘贤才\n\n投资者    条款    隐私",
+        "创建个人档案，保存学习进度！",
+        "创建档案",
+        "发音",
+        "学习",
+        "完成整个课程才能解锁这部分内容哦！",
+        "宝石小店",
+        "排行榜",
+        "显示全部",
+        "更多",
+        "查看排行榜",
+        "每日巩固练习",
+        "每日特别任务",
+        "特别任务",
+        "登录",
+        "第  1  阶段",
+        "第  2  阶段",
+        "第  3  阶段",
+        "第  4  阶段",
+        "第  5  阶段",
+        "第  6  阶段",
+        "第  7  阶段",
+        "第  8  阶段",
+        "继续",
+        "获取 30 经验",
+        "跳至第 2 阶段",
+        "跳至第 3 阶段",
+        "跳至第 4 阶段",
+        "跳至第 5 阶段",
+        "跳至第 6 阶段",
+        "跳至第 7 阶段",
+        "跳至第 8 阶段",
+        "返回",
+        "这周的排行榜挑战赛即将开始！",
+        "青铜等级"
+      ],
+      "capture" : {
+        "backing_scale" : 2,
+        "content_rect_points" : [
+          0,
+          32,
+          1200,
+          732
+        ],
+        "path" : "artifacts\/sections-native-01\/profile-return-sections.png",
+        "window_points" : [
+          1200,
+          764
+        ]
+      },
+      "capture_attempts" : [
+        {
+          "attempt" : 1,
+          "expected" : [
+            2400,
+            1528
+          ],
+          "path" : "profile-return-sections-capture-1.png",
+          "pixels" : [
+            2400,
+            1528
+          ]
+        }
+      ],
+      "control_inventory" : [
+        {
+          "enabled" : true,
+          "identifier" : "nav-learn",
+          "name" : "学习",
+          "rect" : [
+            16,
+            92,
+            222,
+            52
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : "nav-pronunciation",
+          "name" : "发音",
+          "rect" : [
+            16,
+            152,
+            222,
+            52
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : "nav-leaderboards",
+          "name" : "排行榜",
+          "rect" : [
+            16,
+            212,
+            222,
+            52
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : "nav-quests",
+          "name" : "特别任务",
+          "rect" : [
+            16,
+            272,
+            222,
+            52
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : "nav-shop",
+          "name" : "宝石小店",
+          "rect" : [
+            16,
+            332,
+            222,
+            52
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : "nav-profile",
+          "name" : "个人档案",
+          "rect" : [
+            16,
+            392,
+            222,
+            52
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : "nav-more",
+          "name" : "更多",
+          "rect" : [
+            16,
+            452,
+            222,
+            52
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : "sections-return",
+          "name" : "返回",
+          "rect" : [
+            280,
+            59,
+            76,
+            27
+          ],
+          "role" : "AXLink",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : "sections-continue",
+          "name" : "继续",
+          "rect" : [
+            304,
+            310,
+            178,
+            50
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : "sections-jump-2",
+          "name" : "跳至第 2 阶段",
+          "rect" : [
+            304,
+            598.5,
+            178,
+            50
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : "sections-jump-3",
+          "name" : "跳至第 3 阶段",
+          "rect" : [
+            304,
+            926,
+            178,
+            50
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : "sections-jump-4",
+          "name" : "跳至第 4 阶段",
+          "rect" : [
+            304,
+            1255.5,
+            178,
+            50
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : "sections-jump-5",
+          "name" : "跳至第 5 阶段",
+          "rect" : [
+            304,
+            1560,
+            178,
+            50
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : "sections-jump-6",
+          "name" : "跳至第 6 阶段",
+          "rect" : [
+            304,
+            1872.5,
+            178,
+            50
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : "sections-jump-7",
+          "name" : "跳至第 7 阶段",
+          "rect" : [
+            304,
+            2201,
+            178,
+            50
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : "sections-jump-8",
+          "name" : "跳至第 8 阶段",
+          "rect" : [
+            304,
+            2474.5,
+            178,
+            50
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : false,
+          "identifier" : null,
+          "name" : "",
+          "rect" : [
+            803,
+            0,
+            0,
+            0
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : false,
+          "identifier" : null,
+          "name" : "",
+          "rect" : [
+            803,
+            0,
+            0,
+            0
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : false,
+          "identifier" : null,
+          "name" : "",
+          "rect" : [
+            811,
+            192.5,
+            6,
+            536.5
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : false,
+          "identifier" : null,
+          "name" : "",
+          "rect" : [
+            811,
+            3,
+            6,
+            0
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : "view-leaderboards",
+          "name" : "查看排行榜",
+          "rect" : [
+            1117,
+            114.5,
+            75,
+            18
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : "view-quests",
+          "name" : "显示全部",
+          "rect" : [
+            1132,
+            280.5,
+            60,
+            18
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : "view-profile",
+          "name" : "创建档案",
+          "rect" : [
+            864,
+            510,
+            328,
+            46
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : "sign-in",
+          "name" : "登录",
+          "rect" : [
+            864,
+            570,
+            328,
+            46
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : null,
+          "name" : "",
+          "rect" : [
+            8,
+            -24,
+            16,
+            16
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : null,
+          "name" : "",
+          "rect" : [
+            54,
+            -24,
+            16,
+            16
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : null,
+          "name" : "",
+          "rect" : [
+            31,
+            -24,
+            16,
+            16
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        }
+      ],
+      "control_inventory_limitations" : [
+        "Actual AX controls include nodes without developer identifiers; no invocation or hit-test coverage inferred"
+      ],
+      "elements" : {
+        "home-league-countdown" : {
+          "enabled" : true,
+          "rect" : [
+            946,
+            197,
+            29,
+            20
+          ],
+          "role" : "AXStaticText",
+          "value" : "0 秒"
+        },
+        "nav-leaderboards" : {
+          "enabled" : true,
+          "rect" : [
+            16,
+            212,
+            222,
+            52
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "nav-learn" : {
+          "enabled" : true,
+          "rect" : [
+            16,
+            92,
+            222,
+            52
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "nav-more" : {
+          "enabled" : true,
+          "rect" : [
+            16,
+            452,
+            222,
+            52
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "nav-profile" : {
+          "enabled" : true,
+          "rect" : [
+            16,
+            392,
+            222,
+            52
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "nav-pronunciation" : {
+          "enabled" : true,
+          "rect" : [
+            16,
+            152,
+            222,
+            52
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "nav-quests" : {
+          "enabled" : true,
+          "rect" : [
+            16,
+            272,
+            222,
+            52
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "nav-shop" : {
+          "enabled" : true,
+          "rect" : [
+            16,
+            332,
+            222,
+            52
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "return-action-23" : {
+          "enabled" : true,
+          "native_identifier" : "sections-return",
+          "rect" : [
+            280,
+            59,
+            76,
+            27
+          ],
+          "role" : "AXLink",
+          "value" : ""
+        },
+        "return-action-24" : {
+          "enabled" : true,
+          "native_identifier" : "sections-continue",
+          "rect" : [
+            304,
+            310,
+            178,
+            50
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "sections-card-1" : {
+          "enabled" : true,
+          "rect" : [
+            569.5,
+            228.5,
+            141,
+            134
+          ],
+          "role" : "AXImage",
+          "value" : ""
+        },
+        "sections-card-2" : {
+          "enabled" : true,
+          "rect" : [
+            584.5,
+            561,
+            111,
+            129
+          ],
+          "role" : "AXImage",
+          "value" : ""
+        },
+        "sections-card-3" : {
+          "enabled" : true,
+          "rect" : [
+            565,
+            888.5,
+            150,
+            171
+          ],
+          "role" : "AXImage",
+          "value" : ""
+        },
+        "sections-card-4" : {
+          "enabled" : true,
+          "rect" : [
+            576,
+            1218,
+            128,
+            136
+          ],
+          "role" : "AXImage",
+          "value" : ""
+        },
+        "sections-card-5" : {
+          "enabled" : true,
+          "rect" : [
+            570.5,
+            1522.5,
+            139,
+            146
+          ],
+          "role" : "AXImage",
+          "value" : ""
+        },
+        "sections-card-6" : {
+          "enabled" : true,
+          "rect" : [
+            577,
+            1863,
+            126,
+            126
+          ],
+          "role" : "AXImage",
+          "value" : ""
+        },
+        "sections-card-7" : {
+          "enabled" : true,
+          "rect" : [
+            580.5,
+            2191.5,
+            119,
+            95
+          ],
+          "role" : "AXImage",
+          "value" : ""
+        },
+        "sections-card-8" : {
+          "enabled" : true,
+          "rect" : [
+            577.5,
+            2493,
+            125,
+            98
+          ],
+          "role" : "AXImage",
+          "value" : ""
+        },
+        "sections-card-9" : {
+          "enabled" : true,
+          "rect" : [
+            576.5,
+            2672,
+            170,
+            200
+          ],
+          "role" : "AXImage",
+          "value" : ""
+        },
+        "sections-continue" : {
+          "enabled" : true,
+          "rect" : [
+            304,
+            310,
+            178,
+            50
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "sections-jump-2" : {
+          "enabled" : true,
+          "rect" : [
+            304,
+            598.5,
+            178,
+            50
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "sections-jump-3" : {
+          "enabled" : true,
+          "rect" : [
+            304,
+            926,
+            178,
+            50
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "sections-jump-4" : {
+          "enabled" : true,
+          "rect" : [
+            304,
+            1255.5,
+            178,
+            50
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "sections-jump-5" : {
+          "enabled" : true,
+          "rect" : [
+            304,
+            1560,
+            178,
+            50
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "sections-jump-6" : {
+          "enabled" : true,
+          "rect" : [
+            304,
+            1872.5,
+            178,
+            50
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "sections-jump-7" : {
+          "enabled" : true,
+          "rect" : [
+            304,
+            2201,
+            178,
+            50
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "sections-jump-8" : {
+          "enabled" : true,
+          "rect" : [
+            304,
+            2474.5,
+            178,
+            50
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "sections-return" : {
+          "enabled" : true,
+          "rect" : [
+            280,
+            59,
+            76,
+            27
+          ],
+          "role" : "AXLink",
+          "value" : ""
+        },
+        "sign-in" : {
+          "enabled" : true,
+          "rect" : [
+            864,
+            570,
+            328,
+            46
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "SwiftUI._ConditionalContent<SwiftUI.SubscriptionView<(extension in Foundation):__C.NSNotificationCenter.Publisher, SwiftUI.ModifiedContent<LingoSeed.LearningView, SwiftUI._AppearanceActionModifier>>, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1" : {
+          "enabled" : false,
+          "rect" : [
+            0,
+            -32,
+            1200,
+            764
+          ],
+          "role" : "AXWindow",
+          "value" : ""
+        },
+        "view-leaderboards" : {
+          "enabled" : true,
+          "rect" : [
+            1117,
+            114.5,
+            75,
+            18
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "view-profile" : {
+          "enabled" : true,
+          "rect" : [
+            864,
+            510,
+            328,
+            46
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "view-quests" : {
+          "enabled" : true,
+          "rect" : [
+            1132,
+            280.5,
+            60,
+            18
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        }
+      },
+      "interactions" : {
+        "completed_popover_present" : false,
+        "exit_confirmation_present" : false,
+        "footer_status_visible" : false,
+        "guest_error_present" : false,
+        "guest_introduction_present" : false,
+        "guest_languages_present" : false,
+        "guest_profile_present" : false,
+        "home_course_present" : false,
+        "learn_present" : false,
+        "legendary_present" : false,
+        "practice_present" : false,
+        "profile_present" : false,
+        "status_clear_visible" : false,
+        "status_selected" : false
+      }
+    }
+  }
+}

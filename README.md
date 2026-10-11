@@ -1,5 +1,7 @@
 # Codex App Rebuild
 
+主页阶段入口已接入Swift，并从原版跳级测试补出图片题、独立红心和结算后阶段2状态。15题的40状态回放走通，整图和解锁后的状态同步仍失败；前端模具完整保留旧断言并覆盖新增遗漏，完整Goal继续。[最新证据与复跑](projects/duolingo-web/evidence/english-sections-v1/README.md)。
+
 继续由历史遗漏扩展原版探索：实际发现主页八阶段／每日巩固与独立第2阶段跳级测试，补保存头像的个人页消费、语言弹窗／课程返回及独立404。Escape关闭推断被原版复查否定，失败记录保留。v62保留旧要求共8440项，最终9状态356pass/61fail/7631not_run/392unavailable，主页阶段入口仍明确缺失，九整图全fail；同二进制头像回归27项／17组通过，不能代替主页与声音。下一批优先阶段导航、下层单元、独立测试和实际声音，完整Goal active，尚无1:1或RSI因果收益。[原始证据、失败、frontier和复跑](projects/duolingo-web/evidence/english-profile-return-v1/README.md)。
 
 实际补齐九类头像及组合保存／重载，前端模具v60保留7394项。最终15状态旅程、17组恢复及27项存储／运行时检查通过；267前端差异仍失败，全部15整图未通过，不能称1:1完成。继续主页、跨页交互与真实声音补漏。[证据、失败与复跑](projects/duolingo-web/evidence/english-avatar-composition-v1/README.md)。

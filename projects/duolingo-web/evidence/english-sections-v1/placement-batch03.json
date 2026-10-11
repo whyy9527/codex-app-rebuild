@@ -1,0 +1,42 @@
+{
+  "session": {
+    "source": "Current rendered challenges; no initial-session or future-sequence read",
+    "challenges": []
+  },
+  "observed": [],
+  "interludes": [],
+  "failure": null,
+  "stopped": {
+    "kind": "uncovered_state",
+    "index": 0,
+    "facts": {
+      "review_entry_count": 0,
+      "review_entry_enabled": false,
+      "path": "/lesson/section/2/test",
+      "challenge_count": 0,
+      "challenge_visible": false,
+      "heading_count": 0,
+      "dialog_count": 0,
+      "next_text": "继续",
+      "continue_count": 1,
+      "continue_enabled": true,
+      "body_text": "很不错哦！\n继续"
+    },
+    "decision": {
+      "kind": "uncovered_state",
+      "reason": "Current page is neither a ready challenge nor an observed exercise introduction"
+    },
+    "snapshot": "- button:\n  - img\n- progressbar:\n  - img\n- img\n- img\n- img\n- img\n- img\n- img\n- img\n- text: 很不错哦！\n- button \"继续\"",
+    "screenshot": "projects/duolingo-web/evidence/english-sections-v1/source/sections-placement-batch03-interlude-0.png"
+  },
+  "answered": 0,
+  "accepted": 0,
+  "step_budget": 4,
+  "steps_completed": 0,
+  "outcome": "uncovered_current_state",
+  "final": "- button:\n  - img\n- progressbar:\n  - img\n- img\n- img\n- img\n- img\n- img\n- img\n- img\n- text: 很不错哦！\n- button \"继续\"",
+  "limitations": [
+    "Actual generated exercise observations; public solutions are not blind exploration evidence. Media invocations are not acoustic output evidence. Unknown result/profile pages are preserved without clicking Continue. Current-mode media_before contains only events since this invocation or the previous feedback; unrelated earlier history is not duplicated."
+  ],
+  "observed_at": "2026-10-11T16:09:50.945Z"
+}

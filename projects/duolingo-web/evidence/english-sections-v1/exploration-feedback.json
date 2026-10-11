@@ -1,0 +1,44 @@
+{
+  "kind": "actual exploration reflection and native failure feedback",
+  "selected_from": "english-profile-return-v1 frontier and missing native open-sections",
+  "actual_discoveries": [
+    "nine section cards including locked daily review",
+    "independent three-heart placement",
+    "dynamic first prompts",
+    "three encouraging interludes",
+    "tapComplete picture fill",
+    "name picture text field",
+    "50 XP, score10, daily target50, gems5, profile prompt, unlocked stage2",
+    "stage2 home contains story/radio and different lesson/path inventory"
+  ],
+  "policy_revision": {
+    "before": "literal encouragement messages and unsupported tapComplete/name",
+    "failure_evidence": [
+      "placement-batch01.json",
+      "placement-batch03.json",
+      "placement-batch04.json",
+      "placement-batch07.json"
+    ],
+    "after": "structural current encouragement plus actual current-context completion/name input",
+    "later_actual_retest": [
+      "placement-batch05.json: new 佩服！ accepted without adding that literal",
+      "placement-batch08.json: name and two translations accepted"
+    ],
+    "classification": "verified mechanism correction with actual later discovery; not causal RSI yield or matched-budget ablation"
+  },
+  "native_failure_to_next_exploration": [
+    "post-placement stage-unlock persistence and stage2 home/path",
+    "main home below-fold and its actual interactions",
+    "source/native aligned actual audio output",
+    "all exact whole-image failures; no green-by-omission"
+  ],
+  "budget": {
+    "predeclared_graded_max": 30,
+    "actual_graded": 15,
+    "predeclared_navigation_max": 24,
+    "actual_aggregate_navigation": "unknown; per-batch step limits existed but combined clicks/continues/scrolls were not centrally metered",
+    "limitation": "Do not claim aggregate budget compliance or use this batch as a preregistered resource-matched RSI experiment"
+  },
+  "source_state": "Actual /sections→stage2 test→unlocked sections→stage2 /learn; no server reset claimed",
+  "intervention": "Human-directed agent exploration and mechanism code edits; token/cost attribution unavailable"
+}

@@ -33,7 +33,7 @@ test('actual listening playback and completion context both identify the questio
  // accepted empty word bank. The caller observes/toggles modes separately.
  const keyboard=row('replay-from-5.json',6).identity.actual;
  assert.equal(challengeIdentity(source[6].content,keyboard).matches,false);
- assert.equal(uncoveredReplayType('name','challenge challenge-name'),true);
+ assert.equal(uncoveredReplayType('unobservedType','challenge challenge-unobservedType'),true);
 });
 test('a pre-existing screenshot stops both answer tools before invoking a browser',()=>{
  const dir=mkdtempSync(join(tmpdir(),'practice-collision-'));
@@ -47,4 +47,15 @@ test('a pre-existing screenshot stops both answer tools before invoking a browse
    assert.equal(existsSync(out+'.intent.json'),false);assert.equal(existsSync(out+'.raw.txt'),false);
   }
  }finally{rmSync(dir,{recursive:true,force:true});}
+});
+
+test('actual placement name and picture completion are supported only with current identity',()=>{
+ const readPlacement=name=>JSON.parse(readFileSync(new URL('evidence/english-sections-v1/'+name,import.meta.url)));
+ for(const [file,index] of [['placement-batch05.json',0],['placement-batch08.json',0]]){
+  const d=readPlacement(file),c=d.session.challenges.find(q=>q.index===index).content;
+  const r=d.observed.find(q=>q.index===index);assert.equal(r.rejected,false);
+  assert.equal(uncoveredReplayType(c.type,r.dom_type),false);
+  assert.equal(challengeIdentity(c,r.identity.actual).matches,true);
+  assert.equal(challengeIdentity(c,{...r.identity.actual,text:'different prompt',prompts:[]}).matches,false);
+ }
 });

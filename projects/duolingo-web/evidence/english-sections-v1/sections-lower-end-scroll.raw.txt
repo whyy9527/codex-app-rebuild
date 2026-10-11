@@ -1,0 +1,12 @@
+### Result
+{"path":"/sections","scrollY":1988.5}
+### Ran Playwright code
+```js
+await (async page=>{await page.getByRole("heading",{name:"每日巩固练习",exact:true}).scrollIntoViewIfNeeded();return {path:new URL(page.url()).pathname,scrollY:await page.evaluate(()=>scrollY)};})(page);
+```
+### Page
+- Page URL: https://www.duolingo.com/sections
+- Page Title: 多邻国 - 学得轻松，学有所成的英语 课程！
+- Console: 143 errors, 0 warnings
+### Events
+- New console entries: artifacts/output/playwright/.playwright-cli/console-2026-10-11T13-00-34-180Z.log#L247

@@ -110,16 +110,16 @@ struct ReferenceSettlement: View {
                 Text(page.title).font(ReferenceStyle.font(28, bold: true)).accessibilityIdentifier("settlement-title").accessibilityValue(page.title)
                 Text(page.body ?? "").font(ReferenceStyle.font(20))
                 ProgressView(value: 1).tint(yellow).frame(width: 360)
-                Text("30 / 30").font(ReferenceStyle.font(20, bold: true))
+                Text("\(page.questTarget ?? 30) / \(page.questTarget ?? 30)").font(ReferenceStyle.font(20, bold: true))
             }
         case "score":
             VStack(spacing: 28) {
-                Text("5").font(ReferenceStyle.font(72, bold: true)).foregroundStyle(ReferenceStyle.green)
+                Text(String(page.scoreValue ?? 5)).font(ReferenceStyle.font(72, bold: true)).foregroundStyle(ReferenceStyle.green)
                 Text(page.title).font(ReferenceStyle.font(26, bold: true)).multilineTextAlignment(.center).accessibilityIdentifier("settlement-title").accessibilityValue(page.title)
                 HStack(spacing: 16) {
-                    Text("5").font(ReferenceStyle.font(20, bold: true))
+                    Text(String(page.scoreValue ?? 5)).font(ReferenceStyle.font(20, bold: true))
                     ProgressView(value: 0.25).tint(ReferenceStyle.green).frame(width: 300)
-                    Text("6").font(ReferenceStyle.font(20, bold: true))
+                    Text(String((page.scoreValue ?? 5) + 1)).font(ReferenceStyle.font(20, bold: true))
                 }
             }
         case "streak":

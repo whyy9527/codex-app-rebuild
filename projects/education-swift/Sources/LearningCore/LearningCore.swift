@@ -68,6 +68,7 @@ public struct Question: Codable, Equatable, Sendable, Identifiable {
     public let rightOrder: [String]?
     public let audioResource: String?
     public let sourceLanguage: String?
+    public let promptImageResource: String?
     public let characterResource: String?
     public let sourceType: String?
     public let slowAudioResource: String?
@@ -86,7 +87,7 @@ public struct Question: Codable, Equatable, Sendable, Identifiable {
     public let skipCorrectText: String?
     public let feedbackReportReasons: [String]?
     enum CodingKeys: String, CodingKey {
-        case resultReview
+        case resultReview, promptImageResource
         case isolationPromptTokens
         case matchedAudioResources, correctFeedbackAudioResource, incorrectFeedbackAudioResource
         case practiceAudioResources, practiceAudioLabels, feedbackHint, reviewWordOrder, skipLabel, skipCorrectText
@@ -121,6 +122,7 @@ public struct Question: Codable, Equatable, Sendable, Identifiable {
         sourceType = try c.decodeIfPresent(String.self, forKey: .sourceType)
         slowAudioResource = try c.decodeIfPresent(String.self, forKey: .slowAudioResource)
         dialogueAvatars = try c.decodeIfPresent([String].self, forKey: .dialogueAvatars)
+        promptImageResource = try c.decodeIfPresent(String.self, forKey: .promptImageResource)
         characterResource = try c.decodeIfPresent(String.self, forKey: .characterResource)
         correctFeedback = try c.decodeIfPresent(String.self, forKey: .correctFeedback)
         indicator = try c.decodeIfPresent(String.self, forKey: .indicator)
@@ -185,6 +187,8 @@ public struct SettlementPage: Codable, Equatable, Sendable, Identifiable {
     public let observedMistakes: Int?
     public let accuracyLabel: String?
     public var levelLabel: String? = nil
+    public var scoreValue: Int? = nil
+    public var questTarget: Int? = nil
 }
 public struct DeferredSpeech: Codable, Equatable, Sendable, Identifiable {
     public let resultReview: ResultReviewPresentation?

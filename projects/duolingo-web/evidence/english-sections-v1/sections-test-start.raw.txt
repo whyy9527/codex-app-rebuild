@@ -1,0 +1,12 @@
+### Result
+{"path":"/lesson/section/2/test","snapshot":"- button:\n  - img\n- progressbar:\n  - img\n- img\n- img\n- img\n- img\n- img\n- img\n- heading \"选择正确的答案\" [level=1]\n- text: 小\n- img\n- radiogroup \"choice\":\n  - radio \"1 cute\":\n    - text: 1 cute\n    - img\n    - img\n  - radio \"2 bird\":\n    - text: 2 bird\n    - img\n    - img\n  - radio \"3 little\":\n    - text: 3 little\n    - img\n    - img\n- button \"检查\" [disabled]"}
+### Ran Playwright code
+```js
+await (async page=>{await page.getByRole("button",{name:"跳至第 2 阶段",exact:true}).click();await page.getByText("挑战通关测试，跳级到第 2 阶段！",{exact:true}).waitFor({state:"visible"});await page.getByRole("button",{name:"继续",exact:true}).click();await page.locator("[data-test~=challenge]").waitFor({state:"visible"});return {path:new URL(page.url()).pathname,snapshot:await page.locator("body").ariaSnapshot()};})(page);
+```
+### Page
+- Page URL: https://www.duolingo.com/lesson/section/2/test
+- Page Title: 多邻国 - 学得轻松，学有所成的英语 课程！
+- Console: 102 errors, 0 warnings
+### Events
+- New console entries: artifacts/output/playwright/.playwright-cli/console-2026-10-11T13-00-34-180Z.log#L206

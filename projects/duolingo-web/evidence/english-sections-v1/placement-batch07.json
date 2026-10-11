@@ -1,0 +1,81 @@
+{
+  "session": {
+    "source": "Current rendered challenges; no initial-session or future-sequence read",
+    "challenges": [
+      {
+        "index": 0,
+        "content": {
+          "prompt": "四",
+          "correctSolutions": [
+            "four"
+          ],
+          "type": "name",
+          "newWords": []
+        },
+        "current_observation": {
+          "dom_type": "challenge challenge-name",
+          "visible_text": "用英语写“四”",
+          "content": {
+            "prompt": "四",
+            "correctSolutions": [
+              "four"
+            ],
+            "type": "name",
+            "newWords": []
+          },
+          "omitted_keys": [
+            "challenge.0.images",
+            "challenge.0.solutionTts",
+            "challenge.0.grader",
+            "challenge.0.svgs",
+            "challenge.0.pngUrl",
+            "challenge.0.id",
+            "challenge.0.challengeResponseTrackingProperties",
+            "challenge.0.metadata",
+            "challenge.0.progressUpdates",
+            "challenge.0.challengeGeneratorIdentifier",
+            "challenge.0.startTime"
+          ]
+        }
+      }
+    ]
+  },
+  "observed": [
+    {
+      "index": 0,
+      "actions": [],
+      "type": "name",
+      "before": "- button:\n  - img\n- progressbar\n- img\n- img\n- img\n- img\n- img\n- img\n- heading \"用英语写“四”\" [level=1]\n- img\n- textbox \"使用英语键入\"\n- button \"检查\" [disabled]",
+      "heading": "用英语写“四”",
+      "dom_type": "challenge challenge-name",
+      "images": [
+        {
+          "alt": "",
+          "src": "https://d2pur3iezf4d1j.cloudfront.net/images/9271d80dc3a5caf462a542a4a53a7a30"
+        }
+      ],
+      "media_before": [],
+      "screenshot_before": "projects/duolingo-web/evidence/english-sections-v1/source/sections-placement-batch07-question-0-before.png",
+      "canvases": [],
+      "coverage": {
+        "kind": "uncovered_type",
+        "expected_type": "name",
+        "actual_type": "challenge challenge-name",
+        "next_action": "Observe and implement this type; do not classify an unsupported choice schema as source content drift."
+      }
+    }
+  ],
+  "interludes": [],
+  "failure": "Error: Uncovered type: name",
+  "stopped": null,
+  "answered": 0,
+  "accepted": 0,
+  "step_budget": 4,
+  "steps_completed": 0,
+  "outcome": "failed",
+  "final": "- button:\n  - img\n- progressbar\n- img\n- img\n- img\n- img\n- img\n- img\n- heading \"用英语写“四”\" [level=1]\n- img\n- textbox \"使用英语键入\"\n- button \"检查\" [disabled]",
+  "limitations": [
+    "Actual generated exercise observations; public solutions are not blind exploration evidence. Media invocations are not acoustic output evidence. Unknown result/profile pages are preserved without clicking Continue. Current-mode media_before contains only events since this invocation or the previous feedback; unrelated earlier history is not duplicated."
+  ],
+  "observed_at": "2026-10-11T16:15:37.672Z"
+}

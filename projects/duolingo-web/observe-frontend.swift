@@ -262,6 +262,10 @@ if let index = CommandLine.arguments.firstIndex(of: "--exercise-home-journey"), 
                 if step["operation"] as? String == "escape" {
                     for down in [true,false] {CGEvent(keyboardEventSource:nil,virtualKey:53,keyDown:down)?.postToPid(child.processIdentifier)}
                 }
+                else if step["operation"] as? String == "fill" {
+                    guard let text=step["text"] as? String else {throw ProbeError(message:"Owned input text required")}
+                    try fillInput(text, identifier:control)
+                }
                 else if step["operation"] as? String == "scroll" {
                     let anchor = step["scroll_anchor"] as! String
                     let amount = (step["scroll_pixels"] as! NSNumber).int32Value

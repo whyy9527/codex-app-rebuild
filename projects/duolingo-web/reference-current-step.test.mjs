@@ -57,3 +57,27 @@ test('actual reverse translation uses the entire accepted sentence, not only bla
  }
  assert.equal(cases,4);
 });
+
+// Stage2 actual current-mode replay stopped at this previously unknown message.
+test('actual placement encouragement is an interlude only on the observed exercise route',()=>{
+ const run=read('evidence/english-sections-v1/placement-batch01.json');
+ const facts=run.stopped.facts;
+ assert.equal(run.answered,1);assert.equal(run.accepted,1);
+ assert.deepEqual(currentFlowDecision(facts,labels),{kind:'interlude',text:'万事开头难？可你的表现很不错哦！'});
+ assert.equal(currentFlowDecision({...facts,path:'/learn'},labels).kind,'uncovered_state');
+ assert.equal(currentFlowDecision({...facts,dialog_count:1},labels).kind,'uncovered_state');
+});
+
+test('structural placement encouragement accepts new messages but refuses settlement continue',()=>{
+ for(const file of ['placement-batch04.json','placement-batch05.json']) {
+  const d=read('evidence/english-sections-v1/'+file);
+  const f=d.interludes[0].facts;
+  assert.deepEqual(currentFlowDecision(f,labels),{kind:'interlude',text:f.encouragement_messages[0]});
+  for(const override of [{duo_count:0},{progress_count:0},{quit_count:0},{continue_count:2}])
+   assert.equal(currentFlowDecision({...f,...override},labels).kind,'uncovered_state');
+ }
+ const name=read('evidence/english-sections-v1/placement-batch08.json').session.challenges[0].content;
+ assert.equal(keyboardTranslationValue(name,{textbox_count:1,textbox_enabled:true,bank_count:0}),'four');
+ const final=read('evidence/english-sections-v1/placement-batch08.json').stopped;
+ assert.equal(currentFlowDecision(final.facts,labels).kind,'uncovered_state');
+});

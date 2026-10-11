@@ -25,12 +25,16 @@ export function challengeIdentity(expected, actual) {
     }
   } else if (prompt && exactPrompts.length && !exactPrompts.some(p => normalize(p) === normalize(prompt))) reasons.push('prompt_changed');
   else if (prompt && !exactPrompts.length && !normalize(actual.text).includes(normalize(prompt))) reasons.push('prompt_not_visible');
+  if (expected.type==='tapComplete') {
+    const context=(expected.displayTokens??[]).filter(t=>!t.isBlank).map(t=>t.text).join('');
+    if (!context.trim() || !normalize(actual.text).includes(normalize(context))) reasons.push('completion_context_changed');
+  }
   return {matches: reasons.length === 0, reasons, expected: {type: expected.type, prompt, choices},
     actual, prompt_check: audioPrompt ? 'exact source URL from current-question explicit playback; acoustic output not verified' : exactPrompts.length ? 'normalized equality with independently read visible hint container' : 'normalized presence in current challenge text; exact prompt identity not yet proven'};
 }
 
 // Unsupported same-type UI is a coverage gap, not evidence of content drift.
 export function uncoveredReplayType(expectedType, actualType) {
-  const supported = ['select','assist','dialogue','translate','listenTap','orderTapComplete','match','listenMatch','listenIsolation','listenComplete','listen','completeReverseTranslation'];
+  const supported = ['select','assist','dialogue','translate','listenTap','orderTapComplete','match','listenMatch','listenIsolation','listenComplete','listen','completeReverseTranslation','tapComplete','name'];
   return !supported.includes(expectedType) && actualType.split(/\s+/).includes('challenge-' + expectedType);
 }

@@ -46,7 +46,8 @@ struct ReferenceHome: View {
                 else if model.destination == "Forgot password" { ReferenceForgotPassword() }
                 else {
                 ScrollView {
-                    if model.destination == "Pronunciation" { ReferencePronunciation(model: model).padding(.horizontal, 24).padding(.top, 43) }
+                    if model.destination == "Sections" { ReferenceSections(leave:{model.destination="Learn"},jump:model.prepareSectionPlacement).padding(.horizontal,24) }
+                    else if model.destination == "Pronunciation" { ReferencePronunciation(model: model).padding(.horizontal, 24).padding(.top, 43) }
                     else if model.destination == "Leaderboards" { ReferenceLeaderboard(selectedStatus:selectedLeaderboardStatus,practice:{ model.beginGeneralPractice() },profile:{ model.destination = "Guest profile"; if model.preferences.avatarSkin == nil && !guestIntroductionSeen { guestIntroduction = true; guestIntroductionSeen = true } }).padding(.horizontal,24).padding(.top,24) }
                     else if model.destination == "Guest profile" { ReferenceGuestProfile(avatar:{model.destination="Guest avatar"},achievements:{model.destination = "Guest achievements error"},avatarState:model.preferences.avatarState,animations:model.preferences.animations,languages:{guestLanguages=true}).padding(.horizontal,24).padding(.top,24) }
                     else if model.destination == "Shop" { ReferenceShop(gems: chestOpened ? (pathChest?.afterGems ?? homeSnapshot?.gems ?? 0) : (homeSnapshot?.gems ?? 0), create: { authentication = "profile" }).padding(.top,40) }
@@ -54,7 +55,7 @@ struct ReferenceHome: View {
                     else if model.destination == "Guidebook" { ReferenceGuidebook(model: model).padding(.horizontal, 24).padding(.top, 48) }
                     else { path.padding(.horizontal, 24).padding(.top, 48) }
                 }
-                    .frame(maxWidth: .infinity)
+                    .frame(minWidth:model.destination == "Sections" ? 564 : nil,maxWidth:model.destination == "Sections" ? 564 : .infinity)
                 if geometry.size.width >= 1120 {
                     ScrollView {
                         if model.destination == "Leaderboards" {
@@ -66,7 +67,7 @@ struct ReferenceHome: View {
                         .frame(width: 368).padding(.horizontal, 24)
                 }
                 }
-            }
+            }.frame(width:geometry.size.width,alignment:.leading)
             .overlay(alignment: .topLeading) {
                 if showingLegendary { ReferenceLegendary(hearts:model.progress.hearts,start:{ showingLegendary = false; showingPathProfile = true },quit:{ showingLegendary = false }).zIndex(19) }
                 if showingPathProfile { ReferencePathProfile(close: { showingPathProfile = false }).frame(width: geometry.size.width, height: geometry.size.height).zIndex(20) }
@@ -97,9 +98,9 @@ struct ReferenceHome: View {
                         }
                         Spacer(minLength: 0)
                     }.padding(.horizontal, 16).frame(height: 52)
-                        .foregroundStyle((item == model.destination || item == "Learn" && model.destination == "Guidebook") ? blue : ReferenceStyle.secondaryInk)
-                        .background((item == model.destination || item == "Learn" && model.destination == "Guidebook") ? Color(red: 221/255, green: 244/255, blue: 1) : .clear, in: RoundedRectangle(cornerRadius: 12))
-                        .overlay(RoundedRectangle(cornerRadius: 12).strokeBorder((item == model.destination || item == "Learn" && model.destination == "Guidebook") ? Color(red: 132/255, green: 216/255, blue: 1) : .clear, lineWidth: 2))
+                        .foregroundStyle((item == model.destination || item == "Learn" && ["Guidebook","Sections"].contains(model.destination)) ? blue : ReferenceStyle.secondaryInk)
+                        .background((item == model.destination || item == "Learn" && ["Guidebook","Sections"].contains(model.destination)) ? Color(red: 221/255, green: 244/255, blue: 1) : .clear, in: RoundedRectangle(cornerRadius: 12))
+                        .overlay(RoundedRectangle(cornerRadius: 12).strokeBorder((item == model.destination || item == "Learn" && ["Guidebook","Sections"].contains(model.destination)) ? Color(red: 132/255, green: 216/255, blue: 1) : .clear, lineWidth: 2))
                         .contentShape(Rectangle())
                 }.buttonStyle(.plain).accessibilityLabel(chinese ? navigationLabel(item) : item).accessibilityIdentifier("nav-" + item.lowercased())
                 .onHover { inside in
@@ -138,7 +139,7 @@ struct ReferenceHome: View {
         VStack(spacing: 0) {
             HStack(spacing: 12) {
                 VStack(alignment: .leading, spacing: 8) {
-                    HStack(spacing: 8) { ReferenceStyle.image("back").resizable().frame(width: 16, height: 16); Text(model.course.home?.sectionTitle ?? "SECTION 1, UNIT 1").font(ReferenceStyle.font(16, bold: true)) }.opacity(0.8)
+                    ReferencePracticeControl(label:model.course.home?.sectionTitle ?? "SECTION 1, UNIT 1",identifier:"open-sections",enabled:true,action:{model.destination="Sections"},face:AnyView(HStack(spacing:8) {ReferenceStyle.image("back").resizable().frame(width:16,height:16);Text(model.course.home?.sectionTitle ?? "SECTION 1, UNIT 1").font(ReferenceStyle.font(16,bold:true));Spacer(minLength:0)}.opacity(0.8)),role:.link,fixedFaceSize:true).frame(height:24)
                     Text(model.course.title).font(ReferenceStyle.font(22, bold: true)).accessibilityIdentifier("course-entry")
                 }
                 Spacer(minLength: 0)

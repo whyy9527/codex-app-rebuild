@@ -1,0 +1,1126 @@
+{
+  "attempts" : [
+    {
+      "failure" : "ProbeError(message: \"No observed control: continue\")",
+      "id" : "observed-stage2-accepted-instance"
+    }
+  ],
+  "candidate_binary_sha256" : "ba3d5bc4bcbd6018d41538d807d6fa8fde3141f010fffb54379ef5e2dad5bdfb",
+  "failure" : "[[\"failure\": \"ProbeError(message: \\\"No observed control: continue\\\")\", \"id\": \"observed-stage2-accepted-instance\"]]",
+  "fixture_sha256" : "b7242d0e130112d54b1e17714bf21c35045e58f8874948917b0b09f971282bda",
+  "kind" : "owned_native_ax_observation",
+  "limitations" : [
+    "No acoustic equality claim; actual images retain clock and animation phase differences"
+  ],
+  "scenario_sha256" : "869530ec171556b330bd81ddcc3c633efd8f467c05134b5d0272a8b7cb43a7a3",
+  "seed_preferences_sha256" : null,
+  "states" : {
+    "placement-2-q0-before" : {
+      "accessible_text" : [
+        "3",
+        "EDDY",
+        "LingoSeed",
+        "bird",
+        "cute",
+        "little",
+        "not selected",
+        "小",
+        "检查",
+        "选择正确的答案"
+      ],
+      "capture" : {
+        "backing_scale" : 2,
+        "content_rect_points" : [
+          0,
+          32,
+          1200,
+          732
+        ],
+        "path" : "artifacts\/placement-native-01\/placement-2-q0-before.png",
+        "window_points" : [
+          1200,
+          764
+        ]
+      },
+      "capture_attempts" : [
+        {
+          "attempt" : 1,
+          "expected" : [
+            2400,
+            1528
+          ],
+          "path" : "placement-2-q0-before-capture-1.png",
+          "pixels" : [
+            2400,
+            1528
+          ]
+        }
+      ],
+      "control_inventory" : [
+        {
+          "enabled" : true,
+          "identifier" : "exit",
+          "name" : "",
+          "rect" : [
+            100,
+            52,
+            18,
+            18
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : "option-option-0",
+          "name" : "cute",
+          "rect" : [
+            299,
+            393.5,
+            602,
+            56
+          ],
+          "role" : "AXButton",
+          "value" : "not selected"
+        },
+        {
+          "enabled" : true,
+          "identifier" : "option-option-1",
+          "name" : "bird",
+          "rect" : [
+            299,
+            459.5,
+            602,
+            56
+          ],
+          "role" : "AXButton",
+          "value" : "not selected"
+        },
+        {
+          "enabled" : true,
+          "identifier" : "option-option-2",
+          "name" : "little",
+          "rect" : [
+            299,
+            525.5,
+            602,
+            56
+          ],
+          "role" : "AXButton",
+          "value" : "not selected"
+        },
+        {
+          "enabled" : false,
+          "identifier" : "check",
+          "name" : "检查",
+          "rect" : [
+            910,
+            643,
+            150,
+            46
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : null,
+          "name" : "",
+          "rect" : [
+            8,
+            -24,
+            16,
+            16
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : null,
+          "name" : "",
+          "rect" : [
+            54,
+            -24,
+            16,
+            16
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : null,
+          "name" : "",
+          "rect" : [
+            31,
+            -24,
+            16,
+            16
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        }
+      ],
+      "control_inventory_limitations" : [
+        "Actual AX controls include nodes without developer identifiers; no invocation or hit-test coverage inferred"
+      ],
+      "elements" : {
+        "check" : {
+          "enabled" : false,
+          "rect" : [
+            910,
+            643,
+            150,
+            46
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "exit" : {
+          "enabled" : true,
+          "rect" : [
+            100,
+            52,
+            18,
+            18
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "lesson-progress" : {
+          "enabled" : true,
+          "rect" : [
+            142,
+            51,
+            849,
+            20
+          ],
+          "role" : "AXProgressIndicator",
+          "value" : ""
+        },
+        "option-option-0" : {
+          "enabled" : true,
+          "rect" : [
+            299,
+            393.5,
+            602,
+            56
+          ],
+          "role" : "AXButton",
+          "value" : "not selected"
+        },
+        "option-option-1" : {
+          "enabled" : true,
+          "rect" : [
+            299,
+            459.5,
+            602,
+            56
+          ],
+          "role" : "AXButton",
+          "value" : "not selected"
+        },
+        "option-option-2" : {
+          "enabled" : true,
+          "rect" : [
+            299,
+            525.5,
+            602,
+            56
+          ],
+          "role" : "AXButton",
+          "value" : "not selected"
+        },
+        "placement-heart-0" : {
+          "enabled" : true,
+          "rect" : [
+            1015,
+            50,
+            25,
+            22
+          ],
+          "role" : "AXImage",
+          "value" : "3"
+        },
+        "placement-heart-1" : {
+          "enabled" : true,
+          "rect" : [
+            1045,
+            50,
+            25,
+            22
+          ],
+          "role" : "AXImage",
+          "value" : "3"
+        },
+        "placement-heart-2" : {
+          "enabled" : true,
+          "rect" : [
+            1075,
+            50,
+            25,
+            22
+          ],
+          "role" : "AXImage",
+          "value" : "3"
+        },
+        "question-character" : {
+          "enabled" : true,
+          "rect" : [
+            285.10000000000002,
+            182.75,
+            129.79999999999995,
+            192.5
+          ],
+          "role" : "AXUnknown",
+          "value" : ""
+        },
+        "question-hint" : {
+          "enabled" : true,
+          "rect" : [
+            450,
+            267,
+            20,
+            24
+          ],
+          "role" : "AXStaticText",
+          "value" : "小"
+        },
+        "question-title" : {
+          "enabled" : true,
+          "rect" : [
+            300,
+            124.5,
+            224,
+            38
+          ],
+          "role" : "AXStaticText",
+          "value" : "选择正确的答案"
+        },
+        "SwiftUI._ConditionalContent<SwiftUI.SubscriptionView<(extension in Foundation):__C.NSNotificationCenter.Publisher, SwiftUI.ModifiedContent<LingoSeed.LearningView, SwiftUI._AppearanceActionModifier>>, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1" : {
+          "enabled" : false,
+          "rect" : [
+            0,
+            -32,
+            1200,
+            764
+          ],
+          "role" : "AXWindow",
+          "value" : ""
+        }
+      },
+      "interactions" : {
+        "completed_popover_present" : false,
+        "exit_confirmation_present" : false,
+        "footer_status_visible" : false,
+        "guest_error_present" : false,
+        "guest_introduction_present" : false,
+        "guest_languages_present" : false,
+        "guest_profile_present" : false,
+        "home_course_present" : false,
+        "learn_present" : false,
+        "legendary_present" : false,
+        "practice_present" : false,
+        "profile_present" : false,
+        "status_clear_visible" : false,
+        "status_selected" : false
+      }
+    },
+    "placement-2-q0-feedback" : {
+      "accessible_text" : [
+        "3",
+        "EDDY",
+        "LingoSeed",
+        "Selected",
+        "bird",
+        "correct",
+        "cute",
+        "little",
+        "not selected",
+        "selected",
+        "unselected",
+        "太简单",
+        "太难",
+        "小",
+        "报错",
+        "继续",
+        "选择正确的答案",
+        "非常好！"
+      ],
+      "capture" : {
+        "backing_scale" : 2,
+        "content_rect_points" : [
+          0,
+          32,
+          1200,
+          732
+        ],
+        "path" : "artifacts\/placement-native-01\/placement-2-q0-feedback.png",
+        "window_points" : [
+          1200,
+          764
+        ]
+      },
+      "capture_attempts" : [
+        {
+          "attempt" : 1,
+          "expected" : [
+            2400,
+            1528
+          ],
+          "path" : "placement-2-q0-feedback-capture-1.png",
+          "pixels" : [
+            2400,
+            1528
+          ]
+        }
+      ],
+      "control_inventory" : [
+        {
+          "enabled" : true,
+          "identifier" : "exit",
+          "name" : "",
+          "rect" : [
+            100,
+            52,
+            18,
+            18
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : false,
+          "identifier" : "option-option-0",
+          "name" : "cute",
+          "rect" : [
+            299,
+            393.5,
+            602,
+            56
+          ],
+          "role" : "AXButton",
+          "value" : "not selected"
+        },
+        {
+          "enabled" : false,
+          "identifier" : "option-option-1",
+          "name" : "bird",
+          "rect" : [
+            299,
+            459.5,
+            602,
+            56
+          ],
+          "role" : "AXButton",
+          "value" : "not selected"
+        },
+        {
+          "enabled" : false,
+          "identifier" : "option-option-2",
+          "name" : "little",
+          "rect" : [
+            299,
+            525.5,
+            602,
+            56
+          ],
+          "role" : "AXButton",
+          "value" : "selected"
+        },
+        {
+          "enabled" : true,
+          "identifier" : "feedback-easy",
+          "name" : "太简单",
+          "rect" : [
+            229.33183288574219,
+            677.25,
+            72.668167114257812,
+            20
+          ],
+          "role" : "AXButton",
+          "value" : "unselected"
+        },
+        {
+          "enabled" : true,
+          "identifier" : "feedback-hard",
+          "name" : "太难",
+          "rect" : [
+            326.83169555664062,
+            677.25,
+            58.168304443359375,
+            20
+          ],
+          "role" : "AXButton",
+          "value" : "unselected"
+        },
+        {
+          "enabled" : true,
+          "identifier" : "feedback-report",
+          "name" : "报错",
+          "rect" : [
+            409,
+            677.25,
+            59,
+            20.25
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : "continue",
+          "name" : "继续",
+          "rect" : [
+            949,
+            635.5,
+            112,
+            53
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : null,
+          "name" : "",
+          "rect" : [
+            8,
+            -24,
+            16,
+            16
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : null,
+          "name" : "",
+          "rect" : [
+            54,
+            -24,
+            16,
+            16
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : null,
+          "name" : "",
+          "rect" : [
+            31,
+            -24,
+            16,
+            16
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        }
+      ],
+      "control_inventory_limitations" : [
+        "Actual AX controls include nodes without developer identifiers; no invocation or hit-test coverage inferred"
+      ],
+      "elements" : {
+        "checkmark.circle.fill" : {
+          "enabled" : true,
+          "rect" : [
+            144,
+            638,
+            48,
+            48
+          ],
+          "role" : "AXImage",
+          "value" : ""
+        },
+        "continue" : {
+          "enabled" : true,
+          "rect" : [
+            949,
+            635.5,
+            112,
+            53
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "exit" : {
+          "enabled" : true,
+          "rect" : [
+            100,
+            52,
+            18,
+            18
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "feedback" : {
+          "enabled" : true,
+          "rect" : [
+            226,
+            626.75,
+            59.5,
+            20.5
+          ],
+          "role" : "AXStaticText",
+          "value" : "correct"
+        },
+        "feedback-easy" : {
+          "enabled" : true,
+          "rect" : [
+            229.33183288574219,
+            677.25,
+            72.668167114257812,
+            20
+          ],
+          "role" : "AXButton",
+          "value" : "unselected"
+        },
+        "feedback-hard" : {
+          "enabled" : true,
+          "rect" : [
+            326.83169555664062,
+            677.25,
+            58.168304443359375,
+            20
+          ],
+          "role" : "AXButton",
+          "value" : "unselected"
+        },
+        "feedback-report" : {
+          "enabled" : true,
+          "rect" : [
+            409,
+            677.25,
+            59,
+            20.25
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "lesson-progress" : {
+          "enabled" : true,
+          "rect" : [
+            142,
+            51,
+            849,
+            20
+          ],
+          "role" : "AXProgressIndicator",
+          "value" : ""
+        },
+        "option-option-0" : {
+          "enabled" : false,
+          "rect" : [
+            299,
+            393.5,
+            602,
+            56
+          ],
+          "role" : "AXButton",
+          "value" : "not selected"
+        },
+        "option-option-1" : {
+          "enabled" : false,
+          "rect" : [
+            299,
+            459.5,
+            602,
+            56
+          ],
+          "role" : "AXButton",
+          "value" : "not selected"
+        },
+        "option-option-2" : {
+          "enabled" : false,
+          "rect" : [
+            299,
+            525.5,
+            602,
+            56
+          ],
+          "role" : "AXButton",
+          "value" : "selected"
+        },
+        "placement-heart-0" : {
+          "enabled" : true,
+          "rect" : [
+            1015,
+            50,
+            25,
+            22
+          ],
+          "role" : "AXImage",
+          "value" : "3"
+        },
+        "placement-heart-1" : {
+          "enabled" : true,
+          "rect" : [
+            1045,
+            50,
+            25,
+            22
+          ],
+          "role" : "AXImage",
+          "value" : "3"
+        },
+        "placement-heart-2" : {
+          "enabled" : true,
+          "rect" : [
+            1075,
+            50,
+            25,
+            22
+          ],
+          "role" : "AXImage",
+          "value" : "3"
+        },
+        "question-character" : {
+          "enabled" : true,
+          "rect" : [
+            285.10000000000002,
+            182.75,
+            129.79999999999995,
+            192.5
+          ],
+          "role" : "AXUnknown",
+          "value" : ""
+        },
+        "question-hint" : {
+          "enabled" : true,
+          "rect" : [
+            450,
+            267,
+            20,
+            24
+          ],
+          "role" : "AXStaticText",
+          "value" : "小"
+        },
+        "question-title" : {
+          "enabled" : true,
+          "rect" : [
+            300,
+            124.5,
+            224,
+            38
+          ],
+          "role" : "AXStaticText",
+          "value" : "选择正确的答案"
+        },
+        "SwiftUI._ConditionalContent<SwiftUI.SubscriptionView<(extension in Foundation):__C.NSNotificationCenter.Publisher, SwiftUI.ModifiedContent<LingoSeed.LearningView, SwiftUI._AppearanceActionModifier>>, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1" : {
+          "enabled" : false,
+          "rect" : [
+            0,
+            -32,
+            1200,
+            764
+          ],
+          "role" : "AXWindow",
+          "value" : ""
+        }
+      },
+      "interactions" : {
+        "completed_popover_present" : false,
+        "exit_confirmation_present" : false,
+        "footer_status_visible" : false,
+        "guest_error_present" : false,
+        "guest_introduction_present" : false,
+        "guest_languages_present" : false,
+        "guest_profile_present" : false,
+        "home_course_present" : false,
+        "learn_present" : false,
+        "legendary_present" : false,
+        "practice_present" : false,
+        "profile_present" : false,
+        "status_clear_visible" : false,
+        "status_selected" : false
+      }
+    },
+    "placement-encouragement-0" : {
+      "accessible_text" : [
+        "3",
+        "LingoSeed",
+        "placement-encouragement-0",
+        "万事开头难？可你的表现很不错哦！",
+        "继续"
+      ],
+      "capture" : {
+        "backing_scale" : 2,
+        "content_rect_points" : [
+          0,
+          32,
+          1200,
+          732
+        ],
+        "path" : "artifacts\/placement-native-01\/placement-encouragement-0.png",
+        "window_points" : [
+          1200,
+          764
+        ]
+      },
+      "capture_attempts" : [
+        {
+          "attempt" : 1,
+          "expected" : [
+            2400,
+            1528
+          ],
+          "path" : "placement-encouragement-0-capture-1.png",
+          "pixels" : [
+            2400,
+            1528
+          ]
+        }
+      ],
+      "control_inventory" : [
+        {
+          "enabled" : true,
+          "identifier" : "exit",
+          "name" : "",
+          "rect" : [
+            100,
+            52,
+            18,
+            18
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : "interlude-continue",
+          "name" : "继续",
+          "rect" : [
+            910,
+            637,
+            150,
+            46
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : null,
+          "name" : "",
+          "rect" : [
+            8,
+            -24,
+            16,
+            16
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : null,
+          "name" : "",
+          "rect" : [
+            54,
+            -24,
+            16,
+            16
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : null,
+          "name" : "",
+          "rect" : [
+            31,
+            -24,
+            16,
+            16
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        }
+      ],
+      "control_inventory_limitations" : [
+        "Actual AX controls include nodes without developer identifiers; no invocation or hit-test coverage inferred"
+      ],
+      "elements" : {
+        "exit" : {
+          "enabled" : true,
+          "rect" : [
+            100,
+            52,
+            18,
+            18
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "interlude-continue" : {
+          "enabled" : true,
+          "rect" : [
+            910,
+            637,
+            150,
+            46
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "lesson-interlude" : {
+          "enabled" : true,
+          "rect" : [
+            376,
+            370,
+            448,
+            33
+          ],
+          "role" : "AXStaticText",
+          "value" : "placement-encouragement-0"
+        },
+        "lesson-progress" : {
+          "enabled" : true,
+          "rect" : [
+            142,
+            51,
+            849,
+            20
+          ],
+          "role" : "AXProgressIndicator",
+          "value" : ""
+        },
+        "placement-heart-0" : {
+          "enabled" : true,
+          "rect" : [
+            1015,
+            50,
+            25,
+            22
+          ],
+          "role" : "AXImage",
+          "value" : "3"
+        },
+        "placement-heart-1" : {
+          "enabled" : true,
+          "rect" : [
+            1045,
+            50,
+            25,
+            22
+          ],
+          "role" : "AXImage",
+          "value" : "3"
+        },
+        "placement-heart-2" : {
+          "enabled" : true,
+          "rect" : [
+            1075,
+            50,
+            25,
+            22
+          ],
+          "role" : "AXImage",
+          "value" : "3"
+        },
+        "SwiftUI._ConditionalContent<SwiftUI.SubscriptionView<(extension in Foundation):__C.NSNotificationCenter.Publisher, SwiftUI.ModifiedContent<LingoSeed.LearningView, SwiftUI._AppearanceActionModifier>>, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1" : {
+          "enabled" : false,
+          "rect" : [
+            0,
+            -32,
+            1200,
+            764
+          ],
+          "role" : "AXWindow",
+          "value" : ""
+        }
+      },
+      "interactions" : {
+        "completed_popover_present" : false,
+        "exit_confirmation_present" : false,
+        "footer_status_visible" : false,
+        "guest_error_present" : false,
+        "guest_introduction_present" : false,
+        "guest_languages_present" : false,
+        "guest_profile_present" : false,
+        "home_course_present" : false,
+        "learn_present" : false,
+        "legendary_present" : false,
+        "practice_present" : false,
+        "profile_present" : false,
+        "status_clear_visible" : false,
+        "status_selected" : false
+      }
+    },
+    "placement-intro" : {
+      "accessible_text" : [
+        "LingoSeed",
+        "下次再说",
+        "挑战通关测试，跳级到第  2  阶段！",
+        "继续"
+      ],
+      "capture" : {
+        "backing_scale" : 2,
+        "content_rect_points" : [
+          0,
+          32,
+          1200,
+          732
+        ],
+        "path" : "artifacts\/placement-native-01\/placement-intro.png",
+        "window_points" : [
+          1200,
+          764
+        ]
+      },
+      "capture_attempts" : [
+        {
+          "attempt" : 1,
+          "expected" : [
+            2400,
+            1528
+          ],
+          "path" : "placement-intro-capture-1.png",
+          "pixels" : [
+            2400,
+            1528
+          ]
+        }
+      ],
+      "control_inventory" : [
+        {
+          "enabled" : true,
+          "identifier" : "section-placement-later",
+          "name" : "下次再说",
+          "rect" : [
+            440,
+            871,
+            103,
+            48
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : "section-placement-start",
+          "name" : "继续",
+          "rect" : [
+            1210,
+            870,
+            150,
+            50
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : null,
+          "name" : "",
+          "rect" : [
+            8,
+            -24,
+            16,
+            16
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : null,
+          "name" : "",
+          "rect" : [
+            54,
+            -24,
+            16,
+            16
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        {
+          "enabled" : true,
+          "identifier" : null,
+          "name" : "",
+          "rect" : [
+            31,
+            -24,
+            16,
+            16
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        }
+      ],
+      "control_inventory_limitations" : [
+        "Actual AX controls include nodes without developer identifiers; no invocation or hit-test coverage inferred"
+      ],
+      "elements" : {
+        "section-placement-intro" : {
+          "enabled" : true,
+          "rect" : [
+            717,
+            654.25,
+            366,
+            28
+          ],
+          "role" : "AXStaticText",
+          "value" : "挑战通关测试，跳级到第  2  阶段！"
+        },
+        "section-placement-later" : {
+          "enabled" : true,
+          "rect" : [
+            440,
+            871,
+            103,
+            48
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "section-placement-start" : {
+          "enabled" : true,
+          "rect" : [
+            1210,
+            870,
+            150,
+            50
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "SwiftUI._ConditionalContent<SwiftUI.SubscriptionView<(extension in Foundation):__C.NSNotificationCenter.Publisher, SwiftUI.ModifiedContent<LingoSeed.LearningView, SwiftUI._AppearanceActionModifier>>, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1" : {
+          "enabled" : false,
+          "rect" : [
+            0,
+            -32,
+            1200,
+            764
+          ],
+          "role" : "AXWindow",
+          "value" : ""
+        }
+      },
+      "interactions" : {
+        "completed_popover_present" : false,
+        "exit_confirmation_present" : false,
+        "footer_status_visible" : false,
+        "guest_error_present" : false,
+        "guest_introduction_present" : false,
+        "guest_languages_present" : false,
+        "guest_profile_present" : false,
+        "home_course_present" : false,
+        "learn_present" : false,
+        "legendary_present" : false,
+        "practice_present" : false,
+        "profile_present" : false,
+        "status_clear_visible" : false,
+        "status_selected" : false
+      }
+    }
+  }
+}
