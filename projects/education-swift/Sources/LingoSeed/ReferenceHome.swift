@@ -111,8 +111,10 @@ struct ReferenceHome: View {
             }.padding(16).frame(height: 90).foregroundStyle(.white).background(green, in: RoundedRectangle(cornerRadius: 12))
             GeometryReader { geometry in
                 let center = geometry.size.width / 2
-                ReferenceStyle.image("duo-observed-frame").resizable().scaledToFit()
-                    .frame(width: 243, height: 261).position(x: center + 103, y: firstNodeCompleted ? 249 : 292)
+                ReferenceHomeDuo()
+                    .frame(width: chestOpened ? 238 : 243, height: chestOpened ? 288.7578125 : 261)
+                    .accessibilityElement(children: .ignore).accessibilityLabel("Duo").accessibilityIdentifier("home-duo-animation")
+                    .position(x: center + (chestOpened ? 105 : 103), y: chestOpened ? 231.234375 : firstNodeCompleted ? 249 : 292)
                 ForEach(0..<(chinese ? 5 : 6), id: \.self) { index in
                     let xs: [CGFloat] = [0, -45, -70, -45, 0, 0]
                     let normalY: [CGFloat] = chinese ? [113.5, 204.3515625, 307.2265625, 400.1015625, 476.953125] : [94, 203, 288, 392, 476, 566]

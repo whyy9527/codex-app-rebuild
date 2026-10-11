@@ -213,8 +213,27 @@ func captureGeneralCharacterFrames(_ key: String, _ stage: String, _ question: [
     for frame in 0..<12 { try capture(key + "-character-" + stage + "-\(frame)"); Thread.sleep(forTimeInterval: 0.15) }
 }
 
-var states = ["home": observe()]
+if CommandLine.arguments.contains("--exercise-home-motion") || CommandLine.arguments.contains("--exercise-path-chest") { try waitFor("path-chest") }
+let initialHomeState = CommandLine.arguments.contains("--seed-progress") ? "seeded-home" : "home"
+var states = [initialHomeState: observe()]
 try capture("home-window")
+if CommandLine.arguments.contains("--exercise-home-motion") {
+    // A seeded eight-lesson home is not the historical first-lesson home reference.
+    states["home-motion-initial"] = states.removeValue(forKey:initialHomeState)
+    var frames: [[String:Any]] = []; var failure: String?
+    do {
+        for index in 0..<6 {
+            let key = "home-motion-frame-\(index)"; let at = Date().timeIntervalSince1970
+            states[key] = observe(); try capture(key)
+            frames.append(["state":key,"at":at]); Thread.sleep(forTimeInterval:0.3)
+        }
+    } catch { failure = String(describing:error) }
+    try bindCaptures(&states, names:["home-motion-initial":"home-window"])
+    let receipt: [String:Any] = ["kind":"owned_native_ax_observation","states":states,"frames":frames,"failure":failure as Any? ?? NSNull(),"candidate_binary_sha256":candidateSHA,"fixture_sha256":fixtureSHA,"limitations":["Unaligned live animation captures do not prove phase/timing equality"]]
+    try JSONSerialization.data(withJSONObject:receipt,options:[.prettyPrinted,.sortedKeys]).write(to:output.appendingPathComponent("observed.json"),options:.withoutOverwriting)
+    print("Collected \(frames.count) actual home motion frames")
+    if failure != nil { throw ProbeError(message:failure!) }; return
+}
 if CommandLine.arguments.contains("--exercise-path-chest") {
     var failure: String?
     func saveChest(_ key: String) throws { states[key] = observe(); try capture(key) }
@@ -223,7 +242,7 @@ if CommandLine.arguments.contains("--exercise-path-chest") {
         try press("path-chest"); Thread.sleep(forTimeInterval: 0.5); try saveChest("chest-after-click")
         try Data(contentsOf: progress).write(to: output.appendingPathComponent("progress-after.json"))
         child.terminate(); child.waitUntilExit(); child = try launchChild(); app = AXUIElementCreateApplication(child.processIdentifier)
-        try waitFor("course-entry"); configureWindow(); try saveChest("chest-reloaded")
+        try waitFor("path-chest"); configureWindow(); try saveChest("chest-reloaded")
         try press("start-lesson-3"); Thread.sleep(forTimeInterval: 0.4); try saveChest("chest-practice-entry"); Thread.sleep(forTimeInterval: 0.5); try saveChest("chest-practice-entry-settled")
         if CommandLine.arguments.contains("--exercise-path-profile") {
             try press("start-lesson-confirm"); try waitFor("path-profile-later"); try saveChest("chest-practice-start-profile")
@@ -271,7 +290,7 @@ if CommandLine.arguments.contains("--exercise-path-chest") {
             }
         }
     } catch { failure = String(describing: error); states["failure-boundary"] = observe(); try? capture("failure-boundary") }
-    try bindCaptures(&states, names: ["home":"home-window"])
+    try bindCaptures(&states, names: ["home":"home-window", "seeded-home":"home-window"])
     let receipt: [String: Any] = ["kind":"owned_native_ax_observation", "states":states, "candidate_binary_sha256":candidateSHA, "fixture_sha256":fixtureSHA,
         "observed_at":ISO8601DateFormatter().string(from:Date()), "failure":failure as Any,
         "action":"Actual path chest click, persisted ledger, real process restart, next Practice popover",
@@ -407,7 +426,7 @@ if CommandLine.arguments.contains("--observe-quests") {
         } catch {
             failure = String(describing: error); states["failure-boundary"] = observe(); try? capture("failure-boundary")
         }
-        try bindCaptures(&states, names: ["home":"home-window"])
+        try bindCaptures(&states, names: ["home":"home-window", "seeded-home":"home-window"])
         let receipt: [String: Any] = ["kind":"owned_native_ax_observation", "states":states,
             "candidate_binary_sha256":candidateSHA, "fixture_sha256":fixtureSHA,
             "general_fixture_sha256":SHA256.hash(data:try Data(contentsOf:practiceURL)).map{String(format:"%02x",$0)}.joined(),
@@ -484,7 +503,7 @@ if CommandLine.arguments.contains("--observe-quests") {
         } catch {
             failure = String(describing: error); states["failure-boundary"] = observe(); try? capture("failure-boundary")
         }
-        try bindCaptures(&states, names: ["home":"home-window"])
+        try bindCaptures(&states, names: ["home":"home-window", "seeded-home":"home-window"])
         let receipt: [String: Any] = ["kind":"owned_native_ax_observation", "states":states,
             "candidate_binary_sha256":candidateSHA, "fixture_sha256":fixtureSHA,
             "general_fixture_sha256":SHA256.hash(data:try Data(contentsOf:practiceURL)).map{String(format:"%02x",$0)}.joined(),
@@ -588,7 +607,7 @@ if CommandLine.arguments.contains("--observe-quests") {
             failure = String(describing: error)
             states["failure-boundary"] = observe(); try? capture("failure-boundary")
         }
-        try bindCaptures(&states, names: ["home":"home-window"])
+        try bindCaptures(&states, names: ["home":"home-window", "seeded-home":"home-window"])
         let receipt: [String: Any] = ["kind":"owned_native_ax_observation", "states":states,
             "candidate_binary_sha256":candidateSHA, "fixture_sha256":fixtureSHA,
             "general_fixture_sha256":SHA256.hash(data:try Data(contentsOf:practiceURL)).map{String(format:"%02x",$0)}.joined(),
@@ -605,7 +624,7 @@ if CommandLine.arguments.contains("--observe-quests") {
         try press("exit"); try waitFor("course-entry")
         states["quests-practice-exited"] = observe(); try capture("quests-practice-exited")
     }
-    try bindCaptures(&states, names: ["home":"home-window"])
+    try bindCaptures(&states, names: ["home":"home-window", "seeded-home":"home-window"])
     let receipt: [String: Any] = ["kind":"owned_native_ax_observation", "states":states,
         "candidate_binary_sha256":candidateSHA, "fixture_sha256":fixtureSHA,
         "observed_at":ISO8601DateFormatter().string(from:Date()),
@@ -773,7 +792,7 @@ if CommandLine.arguments.contains("--observe-pronunciation") {
             try press("exit"); try waitFor("pronunciation-start")
         }
     }
-    try bindCaptures(&states, names: ["home":"home-window", "en-zh-pronunciation":"pronunciation-window",
+    try bindCaptures(&states, names: ["home":"home-window", "seeded-home":"home-window", "en-zh-pronunciation":"pronunciation-window",
         "pronunciation-speech-before":"practice-speech-before", "pronunciation-speech-denied":"practice-speech-denied",
         "pronunciation-speech-denied-closed":"practice-speech-denied-closed"])
     let receipt: [String: Any] = ["kind": "owned_native_ax_observation", "states": states,

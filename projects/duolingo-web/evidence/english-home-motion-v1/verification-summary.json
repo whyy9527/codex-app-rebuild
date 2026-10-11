@@ -1,0 +1,141 @@
+{
+  "native": {
+    "native-before": {
+      "states": 7,
+      "failure": null,
+      "binary_sha256": "7a17a2c9846298bf481793c5658b739ea42f70bf389046d229571d2e2c8b4698",
+      "counts": {
+        "not_run": 2479,
+        "fail": 7
+      },
+      "motion_geometry": [
+        {
+          "id": "home-motion-geometry",
+          "state": "home-motion-frame-0",
+          "status": "fail",
+          "expected": [
+            506,
+            224.85546875,
+            238,
+            288.7578125
+          ],
+          "actual": [
+            501.5,
+            265.5,
+            243,
+            243
+          ],
+          "delta_points": [
+            4.5,
+            40.64453125,
+            5,
+            45.7578125
+          ],
+          "reason": "Control geometry in content points only; other visual properties remain separate"
+        }
+      ]
+    },
+    "native-after": {
+      "states": 7,
+      "failure": null,
+      "binary_sha256": "0f666b3c6bbeb31415f691a57851784d08550d5c3ac476b4078dad1de0cc369e",
+      "counts": {
+        "not_run": 2479,
+        "fail": 7
+      },
+      "motion_geometry": [
+        {
+          "id": "home-motion-geometry",
+          "state": "home-motion-frame-0",
+          "status": "fail",
+          "expected": [
+            506,
+            224.85546875,
+            238,
+            288.7578125
+          ],
+          "actual": [
+            506,
+            225,
+            238,
+            288.5
+          ],
+          "delta_points": [
+            0,
+            0.14453125,
+            0,
+            0.2578125
+          ],
+          "reason": "Control geometry in content points only; other visual properties remain separate"
+        }
+      ]
+    },
+    "chest-regression": {
+      "states": 6,
+      "failure": null,
+      "binary_sha256": "0f666b3c6bbeb31415f691a57851784d08550d5c3ac476b4078dad1de0cc369e",
+      "counts": {
+        "not_run": 2455,
+        "fail": 12,
+        "pass": 19
+      },
+      "motion_geometry": [
+        {
+          "id": "home-motion-geometry",
+          "state": "home-motion-frame-0",
+          "status": "not_run",
+          "reason": "Driver has not visited this reference state"
+        }
+      ],
+      "counts_before_state_binding": {
+        "not_run": 2432,
+        "pass": 37,
+        "fail": 17
+      },
+      "state_binding_corrected": true
+    },
+    "eighth-regression": {
+      "states": 41,
+      "failure": null,
+      "binary_sha256": "0f666b3c6bbeb31415f691a57851784d08550d5c3ac476b4078dad1de0cc369e",
+      "counts": {
+        "not_run": 2359,
+        "pass": 114,
+        "fail": 13
+      },
+      "counts_before_state_binding": {
+        "not_run": 2336,
+        "pass": 133,
+        "fail": 17
+      },
+      "state_binding_corrected": true
+    },
+    "chest-state-failed": {
+      "states": 5,
+      "failure": "ProbeError(message: \"No observed control: start-lesson-3\")",
+      "binary_sha256": "0f666b3c6bbeb31415f691a57851784d08550d5c3ac476b4078dad1de0cc369e",
+      "counts": {
+        "not_run": 2468,
+        "fail": 9,
+        "pass": 6,
+        "unavailable": 3
+      }
+    },
+    "chest-state-final": {
+      "states": 6,
+      "failure": null,
+      "binary_sha256": "0f666b3c6bbeb31415f691a57851784d08550d5c3ac476b4078dad1de0cc369e",
+      "counts": {
+        "not_run": 2455,
+        "fail": 12,
+        "pass": 19
+      }
+    }
+  },
+  "core_checks": 29,
+  "limitations": [
+    "Six motion captures are not phase-aligned",
+    "Current source clock 2h differs from current frozen 4h fixture; common time fixture unresolved",
+    "Observed motion is not equality or RSI effect"
+  ]
+}
