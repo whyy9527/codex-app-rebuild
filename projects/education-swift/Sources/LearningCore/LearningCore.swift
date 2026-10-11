@@ -235,6 +235,20 @@ public struct HomeProgressSnapshot: Codable, Equatable, Sendable {
     public let questProgress: Int?
     public let questCountdown: String?
 }
+public struct PathChestPresentation: Codable, Equatable, Sendable {
+    public let id: String
+    public let afterLessonIDs: [String]
+    public let beforeGems: Int
+    public let afterGems: Int
+    public let readyResource: String
+    public let openedResource: String
+    public let readyCenters: [Double]
+    public let openedCenters: [Double]
+    public let readyHeight: Double
+    public let openedHeight: Double
+    public let readyImageOffset: Double
+    public let openedImageOffset: Double
+}
 public struct HomePresentation: Codable, Equatable, Sendable {
     public let sectionTitle: String
     public let firstNodeLessonCount: Int
@@ -246,6 +260,7 @@ public struct HomePresentation: Codable, Equatable, Sendable {
     public let completedNodeCenters: [Double]?
     public let completedPathHeight: Double?
     public let progressSnapshots: [HomeProgressSnapshot]?
+    public let pathChest: PathChestPresentation?
 }
 public struct Course: Codable, Equatable, Sendable, Identifiable {
     public let mistakeHeartCost: Int
@@ -511,8 +526,9 @@ public struct LearningProgress: Codable, Equatable, Sendable {
     public var completedCourses: Set<String> = []
     public var completedLessons: [String: Set<String>] = [:]
     public var hearts = 5
+    public var openedPathChests: [String: Set<String>] = [:]
     public init() {}
-    enum CodingKeys: String, CodingKey { case completedCourses, completedLessons, hearts }
+    enum CodingKeys: String, CodingKey { case completedCourses, completedLessons, hearts, openedPathChests }
     public init(from decoder: Decoder) throws {
         let c = try decoder.container(keyedBy: CodingKeys.self)
         guard c.contains(.completedCourses) || c.contains(.completedLessons) else {
@@ -520,8 +536,22 @@ public struct LearningProgress: Codable, Equatable, Sendable {
         }
         completedCourses = c.contains(.completedCourses) ? try c.decode(Set<String>.self, forKey: .completedCourses) : []
         completedLessons = c.contains(.completedLessons) ? try c.decode([String: Set<String>].self, forKey: .completedLessons) : [:]
+        openedPathChests = try c.decodeIfPresent([String: Set<String>].self, forKey: .openedPathChests) ?? [:]
         hearts = c.contains(.hearts) ? try c.decode(Int.self, forKey: .hearts) : 5
         guard hearts >= 0 else { throw DecodingError.dataCorruptedError(forKey: .hearts, in: c, debugDescription: "Hearts cannot be negative") }
+    }
+    public func isPathChestReady(_ course: Course) -> Bool {
+        guard let chest = course.home?.pathChest, !chest.afterLessonIDs.isEmpty else { return false }
+        return chest.afterLessonIDs.allSatisfy { completedLessons[course.id, default: []].contains($0) }
+    }
+    public func isPathChestOpened(_ course: Course) -> Bool {
+        guard let chest = course.home?.pathChest else { return false }
+        return openedPathChests[course.id, default: []].contains(chest.id)
+    }
+    @discardableResult public mutating func openPathChest(_ course: Course) -> Bool {
+        guard isPathChestReady(course), !isPathChestOpened(course), let chest = course.home?.pathChest else { return false }
+        openedPathChests[course.id, default: []].insert(chest.id)
+        return true
     }
     public func isCompleted(_ course: Course, index: Int) -> Bool {
         guard course.lessons.indices.contains(index) else { return false }

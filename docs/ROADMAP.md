@@ -313,3 +313,8 @@ v15保留1489项并增8项真实原版断言。独立原生radio2实际点击及
 ### 默认第八单元和未完成的前端
 
 原版13卡后实际走分数进度→经验宝→传奇邀请→建档→主页，两个Lesson完成且宝箱可打开，证明应接默认第八课，不能再作为独立演示。v12保留前七课，实际共115评分题（纠正旧102计数）；主课回顾接真实历史，8/8重启仍不标整课程完成。v38保留2298旧项追加23，共2321；41状态修改前/后均133pass/17fail/2171not_run，长浮层整图差异下降但仍失败，箭头AX边界、结算图形/按钮及解锁宝箱未齐。同一二进制17/18卡44/49状态回归，28核心/56Python/14Node及26原资源SHA通过。逐题前端、正常口语、自适应、声音与未访分支继续；不算RSI收益或完成，完整Goal active。[证据与frontier](../projects/duolingo-web/evidence/english-eighth-integration-v1/README.md)。
+
+
+### 实际开箱与下一练习建档分支
+
+按未访宝箱选择探索，首次真实click被排行榜已解锁遮罩拦截，Escape无效、正常遮罩click才关闭。开箱510→525，禁用已打开图及真实reload保留；下一Practice第1/2单元的Start又弹建档，稍后返回。v13保持八课115题并加入course隔离的一次性开箱保存及原SVG；导入器补实际80×90渲染，第一次方形素材/80×80 AX失败保留。最终6原生状态真实click/重启走通，边界仍差0.2265625点、整图仍fail。v39/v40/v41保留旧要求，共2373；本轨迹34pass/17fail/2322not_run，建档12新项全not_run。相同最终二进制八课41状态回归133pass/17fail/2223not_run，29核心/56Python/14Node通过。下一Start当前不可用，遮罩/建档/后续题、原结算/音频继续；无新RSI收益、完整Goal active。[证据与frontier](../projects/duolingo-web/evidence/english-chest-v1/README.md)。

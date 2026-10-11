@@ -189,6 +189,26 @@ func captureGeneralCharacterFrames(_ key: String, _ stage: String, _ question: [
 
 var states = ["home": observe()]
 try capture("home-window")
+if CommandLine.arguments.contains("--exercise-path-chest") {
+    var failure: String?
+    func saveChest(_ key: String) throws { states[key] = observe(); try capture(key) }
+    do {
+        try waitFor("path-chest"); try saveChest("chest-dismissed")
+        try press("path-chest"); Thread.sleep(forTimeInterval: 0.5); try saveChest("chest-after-click")
+        try Data(contentsOf: progress).write(to: output.appendingPathComponent("progress-after.json"))
+        child.terminate(); child.waitUntilExit(); child = try launchChild(); app = AXUIElementCreateApplication(child.processIdentifier)
+        try waitFor("course-entry"); configureWindow(); try saveChest("chest-reloaded")
+        try press("start-lesson-3"); Thread.sleep(forTimeInterval: 0.4); try saveChest("chest-practice-entry"); Thread.sleep(forTimeInterval: 0.5); try saveChest("chest-practice-entry-settled")
+    } catch { failure = String(describing: error); states["failure-boundary"] = observe(); try? capture("failure-boundary") }
+    try bindCaptures(&states, names: ["home":"home-window"])
+    let receipt: [String: Any] = ["kind":"owned_native_ax_observation", "states":states, "candidate_binary_sha256":candidateSHA, "fixture_sha256":fixtureSHA,
+        "observed_at":ISO8601DateFormatter().string(from:Date()), "failure":failure as Any,
+        "action":"Actual path chest click, persisted ledger, real process restart, next Practice popover",
+        "limitations":["Leaderboard interruption not implemented; Practice start/challenges not yet compiled; no acoustic or animation equivalence claim"]]
+    try JSONSerialization.data(withJSONObject:receipt, options:[.prettyPrinted,.sortedKeys]).write(to:output.appendingPathComponent("observed.json"))
+    if let failure { throw ProbeError(message:failure) }
+    return
+}
 if CommandLine.arguments.contains("--observe-quests") {
     try press("nav-quests"); Thread.sleep(forTimeInterval: 0.5)
     states["quests"] = observe(); try capture("quests")

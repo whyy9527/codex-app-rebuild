@@ -1,6 +1,8 @@
 # Duolingo 网页参考案例
 
-当前默认中文母语→英语v12八课115题，共同前端v38有2321项；第八课轨迹133pass/17fail/2171not_run，仍未1:1。[最新实际证据与复跑](evidence/english-eighth-integration-v1/README.md)，完整进展见[Roadmap](../../docs/ROADMAP.md)。历史批次不代表当前构建。
+默认v13补实际开箱前后主页、原素材及持久化记录，原生真实开箱和重启已验证；前端v41共2373项，本轨迹34pass/17fail/2322not_run，下一Practice开始/建档及排行榜遮罩仍未实施。[最新失败、探索与复跑](evidence/english-chest-v1/README.md)。
+
+当前默认中文母语→英语v13八课115题，共同前端v38有2321项；第八课轨迹133pass/17fail/2171not_run，仍未1:1。[最新实际证据与复跑](evidence/english-eighth-integration-v1/README.md)，完整进展见[Roadmap](../../docs/ROADMAP.md)。历史批次不代表当前构建。
 
 > 2026-10-10 更正：下文是历史局部验收记录，不能证明 1:1 复刻完成。用户指出探索不足、前端需求未进入 E2E、自行增加替代内容限制。现已撤回产品完成结论；当前原生 Goal 要求修正探索与模具。原始测试与失败证据保留。
 

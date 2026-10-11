@@ -212,6 +212,9 @@ import LearningCore
         settlement?.advance()
         if settlement?.current == nil { discardAttempt() }
     }
+    func openPathChest() {
+        if progress.openPathChest(course) { save() }
+    }
     func save() {
         do { try store.save(progress); error = nil }
         catch { self.error = "Progress could not be saved. Please try again." }

@@ -33,13 +33,13 @@ def fetch(row):
 with concurrent.futures.ThreadPoolExecutor(max_workers=6) as pool:
     rows = list(pool.map(fetch, rows))
 images = [{'name': r['name'], 'svg': (out/r['source_file']).read_text(),
-           'target': str((out/(r['name']+'.png')).resolve())} for r in rows if r['kind'] not in ('speech', 'feedback') and not (out/(r['name']+'.png')).exists()]
+           'width': r.get('render_width',180), 'height': r.get('render_height',180), 'target': str((out/(r['name']+'.png')).resolve())} for r in rows if r['kind'] not in ('speech', 'feedback') and not (out/(r['name']+'.png')).exists()]
 # Own tab is used only to reach its browser; asset rendering does not share
 # reference cookies, navigation or state.
 code = '''async page => {
  const context=await page.context().browser().newContext({viewport:{width:180,height:180},deviceScaleFactor:3});
  try {const render=await context.newPage();
- for(const image of IMAGES){await render.setContent('<html><body style="margin:0;background:transparent"><img style="width:180px;height:180px;object-fit:contain" src="data:image/svg+xml;base64,'+Buffer.from(image.svg).toString('base64')+'"></body></html>');
+ for(const image of IMAGES){await render.setViewportSize({width:image.width,height:image.height}); await render.setContent('<html><body style="margin:0;background:transparent"><img style="width:'+image.width+'px;height:'+image.height+'px;object-fit:contain" src="data:image/svg+xml;base64,'+Buffer.from(image.svg).toString('base64')+'"></body></html>');
  await render.locator('img').evaluate(n=>n.decode()); await render.screenshot({path:image.target,omitBackground:true});}
  return {rendered:IMAGES.length,scale:3};
  }finally{await context.close()}
@@ -52,5 +52,5 @@ for row in rows:
         row['rendered_sha256'] = hashlib.sha256((out/row['rendered_file']).read_bytes()).hexdigest()
 receipt = Path(a.out)
 receipt.parent.mkdir(parents=True, exist_ok=True)
-receipt.write_text(json.dumps({'resources':rows,'render':'Original SVG, transparent180x180at3x in isolated context; native geometry still to verify'},indent=2)+'\n')
+receipt.write_text(json.dumps({'resources':rows,'render':'Original SVG, transparent at 3x; dimensions from optional render_width/render_height, otherwise legacy 180x180; isolated context; native geometry still to verify'},indent=2)+'\n')
 print(json.dumps({'downloaded':len(rows),'rendered':len(images),'hashes_recorded':True}))

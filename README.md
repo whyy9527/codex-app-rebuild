@@ -1,10 +1,12 @@
 # Codex App Rebuild
 
+默认v13补实际开箱前后主页、原素材及持久化记录，原生真实开箱和重启已验证；前端v41共2373项，本轨迹34pass/17fail/2322not_run，下一Practice开始/建档及排行榜遮罩仍未实施。[最新失败、探索与复跑](projects/duolingo-web/evidence/english-chest-v1/README.md)。
+
 **当前状态：1:1 复刻未完成；当前目标按用户建议转为英语学习，默认中文母语 → 英语。** v3 的35项UI检查、12条共享业务场景和音频输出只证明各自检查的子集，没有验证原版前端需求；“产品修正已通过验收”撤回。当前差异包含课程、素材、字体、布局、菜单交互及音色，当前已加入基于实际 NSWindow 几何的采样归一化，尚未证明视觉一致。[历史回执](projects/duolingo-web/evidence/PRODUCT-V3-DELIVERY.md)保留为局部证据。
 
 探索原产品，把用户可观察的业务与前端需求变成可独立运行的代码化模具，用历史反馈改进探索，再让 Codex 重建 App。仓库保持私有；改名不代表开源或发布。
 
-当前默认夹具为 `fixture-reference-en-zh-v12.json`：八课115道评分题，保留前七课，补实际第八单元12题、口语暂缓、13卡回顾及后续结算和真实重启。仍未达到1:1：本轨迹前端133pass/17fail/2171not_run，结算图形、按钮及解锁宝箱等继续修复；不能把学完已编译课程标成整课程完成。[当前证据与复跑](projects/duolingo-web/evidence/english-eighth-integration-v1/README.md)。
+当前默认夹具为 `fixture-reference-en-zh-v13.json`：八课115道评分题，保留前七课，补实际第八单元12题、口语暂缓、13卡回顾及后续结算和真实重启。仍未达到1:1：本轨迹前端133pass/17fail/2171not_run，结算图形、按钮及解锁宝箱等继续修复；不能把学完已编译课程标成整课程完成。[当前证据与复跑](projects/duolingo-web/evidence/english-eighth-integration-v1/README.md)。
 
 特别任务页已从原版探索并替换英文占位内容，10文案/5几何通过；整图仍失败；独立练习入口随后接入，见下方新原生回执。[任务页、新发现与复跑](projects/duolingo-web/evidence/english-quests-v1/README.md)。
 

@@ -1,0 +1,37 @@
+{
+  "source_actions": [
+    {
+      "action": "click 打开宝箱",
+      "result": "locator.click Timeout30000ms, visible enabled stable but _1ATOC overlay intercepts; no successful dispatch recorded"
+    },
+    {
+      "action": "Escape",
+      "result": "leaderboards-popover retained; source after-escape captures auto-scrolled path"
+    },
+    {
+      "action": "click observed backdrop at600,600",
+      "result": "leaderboard popover dismissed"
+    },
+    {
+      "action": "click 打开宝箱",
+      "result": "success, disabled chest, gems510→525"
+    },
+    {
+      "action": "reload",
+      "result": "open chest and525 retained"
+    },
+    {
+      "action": "click first Practice outer button",
+      "result": "第1/2单元, Start+10 link"
+    },
+    {
+      "action": "click actual Start link",
+      "result": "profile prompt"
+    },
+    {
+      "action": "click 稍后创建帐户",
+      "result": "prompt dismissed; /learn retains525"
+    }
+  ],
+  "negative": "Exploration click was initially blocked; timeout did not justify replay until handle terminal and overlay inspected"
+}

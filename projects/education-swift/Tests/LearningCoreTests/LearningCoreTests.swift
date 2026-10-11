@@ -755,6 +755,21 @@ func actualEighthCourse() throws {
     print("PASS default eighth course retains seven lessons, twelve accepted, deferred speech and thirteen-card history")
 }
 
+func observedPathChest() throws {
+    let source = try course(fixture: "fixture-reference-en-zh-v13.json")
+    var progress = LearningProgress()
+    try check(!progress.openPathChest(source), "Locked chest granted a reward")
+    for i in source.lessons.indices { progress.markCompleted(source, index: i) }
+    try check(progress.isPathChestReady(source) && !progress.isPathChestOpened(source), "Completed two levels failed to unlock chest")
+    try check(progress.openPathChest(source) && !progress.openPathChest(source), "Chest opening must be idempotent")
+    let restored = try JSONDecoder().decode(LearningProgress.self, from: JSONEncoder().encode(progress))
+    try check(restored.isPathChestOpened(source) && restored.completedCourses.isEmpty, "Chest persistence or incomplete path semantics lost")
+    let old = try JSONDecoder().decode(LearningProgress.self, from: Data("{\"completedLessons\":{},\"hearts\":5}".utf8))
+    try check(old.openedPathChests.isEmpty, "Old saved progress must remain readable")
+    try check(source.home?.pathChest?.beforeGems == 510 && source.home?.pathChest?.afterGems == 525, "Observed gem endpoints changed")
+    print("PASS actual path chest prerequisites, one-time opening, persisted state and old progress compatibility")
+}
+
 do {
     try mistakeReview()
     try persistence()
@@ -784,7 +799,8 @@ do {
     try actualCurrentResultHistory()
     try actualErrorResultHistory()
     try actualEighthCourse()
-    print("28 business checks passed; core layer only")
+    try observedPathChest()
+    print("29 business checks passed; core layer only")
 } catch {
     FileHandle.standardError.write(Data(("FAIL " + String(describing: error) + "\n").utf8))
     exit(1)

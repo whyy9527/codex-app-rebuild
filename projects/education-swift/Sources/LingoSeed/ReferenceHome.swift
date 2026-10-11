@@ -17,6 +17,9 @@ struct ReferenceHome: View {
     private var completed: Int { model.progress.completedCount(model.course) }
     private var homeSnapshot: HomeProgressSnapshot? { model.course.home?.progressSnapshots?.first { $0.completedLessons == completed } }
     private var firstNodeCompleted: Bool { chinese && completed >= (model.course.home?.firstNodeLessonCount ?? 4) }
+    private var chestReady: Bool { model.progress.isPathChestReady(model.course) }
+    private var chestOpened: Bool { model.progress.isPathChestOpened(model.course) }
+    private var pathChest: PathChestPresentation? { model.course.home?.pathChest }
     private let green = ReferenceStyle.green
     private let blue = ReferenceStyle.blue
     var body: some View {
@@ -111,15 +114,21 @@ struct ReferenceHome: View {
                 ForEach(0..<(chinese ? 5 : 6), id: \.self) { index in
                     let xs: [CGFloat] = [0, -45, -70, -45, 0, 0]
                     let normalY: [CGFloat] = chinese ? [113.5, 204.3515625, 307.2265625, 400.1015625, 476.953125] : [94, 203, 288, 392, 476, 566]
-                    let ys = firstNodeCompleted ? (model.course.home?.completedNodeCenters?.map { CGFloat($0) } ?? normalY) : normalY
+                    let chestCenters = chestReady ? (chestOpened ? pathChest?.openedCenters : pathChest?.readyCenters) : nil
+                    let ys = chestCenters?.map { CGFloat($0) } ?? (firstNodeCompleted ? (model.course.home?.completedNodeCenters?.map { CGFloat($0) } ?? normalY) : normalY)
                     if index == (chinese ? 2 : 3) {
-                        ReferenceStyle.image("chest-locked").resizable().scaledToFit().frame(width: 80, height: 90).position(x: center + xs[index], y: ys[index])
+                        ReferencePracticeControl(label: chestReady && !chestOpened ? "打开宝箱" : "宝箱", identifier: "path-chest", enabled: chestReady && !chestOpened,
+                            action: { model.openPathChest() }, face: AnyView(
+                                ReferenceStyle.image(chestReady ? (chestOpened ? pathChest?.openedResource ?? "chest-locked" : pathChest?.readyResource ?? "chest-locked") : "chest-locked")
+                                    .resizable().scaledToFit().frame(width: 80, height: 90)
+                                    .offset(y: chestReady ? CGFloat(chestOpened ? pathChest?.openedImageOffset ?? 0 : pathChest?.readyImageOffset ?? 0) : 0)))
+                            .frame(width: 80, height: 90).position(x: center + xs[index], y: ys[index])
                     } else {
                         if chinese { englishPathNode(index).position(x: center + xs[index], y: ys[index]) }
                         else { pathNode(index).position(x: center + xs[index], y: ys[index]) }
                     }
                 }
-            }.frame(height: firstNodeCompleted ? CGFloat(model.course.home?.completedPathHeight ?? 570) : chinese ? 570 : 640)
+            }.frame(height: chestReady ? CGFloat(chestOpened ? pathChest?.openedHeight ?? 570 : pathChest?.readyHeight ?? 570) : firstNodeCompleted ? CGFloat(model.course.home?.completedPathHeight ?? 570) : chinese ? 570 : 640)
             if let home = model.course.home {
                 HStack(spacing: 16) { Rectangle().fill(ReferenceStyle.border).frame(height: 2); Text(home.nextSectionTitle).font(ReferenceStyle.font(chinese ? 19 : 20, bold: true)).fixedSize(); Rectangle().fill(ReferenceStyle.border).frame(height: 2) }.foregroundStyle(ReferenceStyle.disclosureInk)
             }
@@ -133,7 +142,7 @@ struct ReferenceHome: View {
         let nodeDone = node?.lessonIDs.filter { model.progress.completedLessons[model.course.id, default: []].contains($0) }.count ?? completed
         let next = model.course.lessons.indices.first { !model.progress.isCompleted(model.course, index: $0) }
         let secondComplete = model.course.pathNodes?.dropFirst().first.map { $0.lessonIDs.count == $0.lessonCount && $0.lessonIDs.allSatisfy { model.progress.completedLessons[model.course.id, default: []].contains($0) } } ?? false
-        let activeIndex = firstNodeCompleted ? (secondComplete ? 2 : 1) : 0
+        let activeIndex = firstNodeCompleted ? (secondComplete ? (chestOpened ? 3 : 2) : 1) : 0
         let active = index == activeIndex
         let finished = node?.kind == "lesson" && nodeDone >= total
         return ZStack {
@@ -146,7 +155,7 @@ struct ReferenceHome: View {
                     .frame(width: 70, height: 56).background(active || finished ? green : ReferenceStyle.border, in: Ellipse())
                     .compositingGroup().shadow(color: active || finished ? Color(red: 70/255, green: 163/255, blue: 2/255) : Color(white: 183/255), radius: 0, y: 8)
                     .frame(height: 65, alignment: .top).contentShape(Rectangle())
-            }.buttonStyle(.plain).accessibilityLabel(active ? "Lesson \(nodeDone + 1) of \(total)" : index == 4 ? "复习该部分" : index == 3 ? "Practice" : "Lesson")
+            }.buttonStyle(.plain).accessibilityLabel(index == 3 ? "Practice" : active ? "Lesson \(nodeDone + 1) of \(total)" : index == 4 ? "复习该部分" : "Lesson")
                 .accessibilityIdentifier(index == 0 ? "start-lesson" : "start-lesson-\(index)")
             if active && lessonPopoverNode != index {
                 Text("开始").font(ReferenceStyle.font(17, bold: true)).foregroundStyle(green).frame(width: 78, height: 42)
@@ -161,8 +170,8 @@ struct ReferenceHome: View {
                         Text("练习 +5 经验").font(ReferenceStyle.font(17, bold: true)).padding(.top, 14)
                         Text("晋升传奇 +40 经验").font(ReferenceStyle.font(17, bold: true)).padding(.top, 14)
                     } else {
-                        Text("第 \(nodeDone + 1)/\(total) 单元").font(ReferenceStyle.font(17))
-                        Button(next.flatMap { model.course.lessons[$0].entry } != nil ? "开始 +20 经验" : "开始 +10 经验") { if let next { lessonPopoverNode = nil; model.begin(next) } }
+                        Text(index == 3 && chestOpened ? "第 1/2 单元" : "第 \(nodeDone + 1)/\(total) 单元").font(ReferenceStyle.font(17))
+                        Button(index == 3 && chestOpened ? "开始 +10 经验" : next.flatMap { model.course.lessons[$0].entry } != nil ? "开始 +20 经验" : "开始 +10 经验") { if let next { lessonPopoverNode = nil; model.begin(next) } }
                             .buttonStyle(SeedButtonStyle(fill: .white, foreground: green)).frame(maxWidth: .infinity).padding(.top, 14)
                             .disabled(next == nil).accessibilityIdentifier("start-lesson-confirm")
                     }
@@ -206,7 +215,7 @@ struct ReferenceHome: View {
             HStack {
                 stat(model.course.home?.flagResource ?? "flag-spanish", chinese ? "5" : "1", color: ReferenceStyle.ink, width: 31)
                 Spacer(); stat("streak", "\(homeSnapshot?.streak ?? (completed > 0 ? 1 : 0))", color: .orange, width: 23)
-                Spacer(); stat("gems", "\(homeSnapshot?.gems ?? (500 + completed * 5))", color: blue, width: 22)
+                Spacer(); stat("gems", "\(chestOpened ? pathChest?.afterGems ?? 0 : homeSnapshot?.gems ?? (500 + completed * 5))", color: blue, width: 22)
                 Spacer(); stat("hearts", "\(model.progress.hearts)", color: .red, width: 28)
             }.padding(.horizontal, 12).padding(.bottom, 16)
             if model.destination == "Quests" {

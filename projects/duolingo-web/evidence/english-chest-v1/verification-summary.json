@@ -1,0 +1,122 @@
+{
+  "native": {
+    "native-baseline": {
+      "states": 5,
+      "failure": null,
+      "binary_sha256": "6f3ccf6a5c57fa3f8ae171614f6a5b202c6074b199aa26103186ddacaee5ab6b",
+      "counts": {
+        "not_run": 2316,
+        "pass": 32,
+        "fail": 13
+      },
+      "failures": [
+        "home-v2-copy-10",
+        "home-v2-copy-11",
+        "home-v2-copy-12",
+        "home-v2-copy-15",
+        "home-v2-copy-16",
+        "chest-dismissed-control-element_geometry",
+        "chest-dismissed-whole-image_pixels",
+        "chest-after-click-control-element_geometry",
+        "chest-after-click-whole-image_pixels",
+        "chest-reloaded-control-element_geometry",
+        "chest-reloaded-whole-image_pixels",
+        "chest-practice-entry-control-element_geometry",
+        "chest-practice-entry-whole-image_pixels"
+      ],
+      "latest_counts_v41": {
+        "not_run": 2328,
+        "pass": 32,
+        "fail": 13
+      }
+    },
+    "native-final": {
+      "states": 6,
+      "failure": null,
+      "binary_sha256": "e19e46baf687c240dc6f14abdd0da30f9c594f79c79600d8b2df20d866e13cd6",
+      "counts": {
+        "not_run": 2310,
+        "pass": 34,
+        "fail": 17
+      },
+      "failures": [
+        "home-v2-copy-10",
+        "home-v2-copy-11",
+        "home-v2-copy-12",
+        "home-v2-copy-15",
+        "home-v2-copy-16",
+        "chest-dismissed-control-element_geometry",
+        "chest-dismissed-whole-image_pixels",
+        "chest-after-click-control-element_geometry",
+        "chest-after-click-whole-image_pixels",
+        "chest-reloaded-control-element_geometry",
+        "chest-reloaded-whole-image_pixels",
+        "chest-practice-entry-control-element_geometry",
+        "chest-practice-entry-whole-image_pixels",
+        "chest-practice-entry-settled-start-element_geometry",
+        "chest-practice-entry-settled-start-element_role",
+        "chest-practice-entry-settled-start-element_boolean",
+        "chest-practice-entry-settled-whole-image_pixels"
+      ],
+      "latest_counts_v41": {
+        "not_run": 2322,
+        "pass": 34,
+        "fail": 17
+      }
+    },
+    "eighth-regression": {
+      "states": 41,
+      "failure": null,
+      "binary_sha256": "e19e46baf687c240dc6f14abdd0da30f9c594f79c79600d8b2df20d866e13cd6",
+      "counts": {
+        "not_run": 2211,
+        "pass": 133,
+        "fail": 17
+      },
+      "failures": [
+        "home-v2-copy-11",
+        "home-v2-copy-12",
+        "home-v2-copy-15",
+        "home-v2-copy-16",
+        "quests-text-3",
+        "quests-whole-image",
+        "level-practice-review-open-whole-image-image_pixels",
+        "level-practice-review-long-expanded-answer-element_geometry",
+        "level-practice-review-long-expanded-whole-image-image_pixels",
+        "eighth-score-progress-element_geometry",
+        "eighth-score-progress-image_pixels",
+        "eighth-boost-reward-element_geometry",
+        "eighth-boost-reward-image_pixels",
+        "eighth-legendary-offer-element_geometry",
+        "eighth-legendary-offer-image_pixels",
+        "eighth-profile-element_geometry",
+        "eighth-profile-image_pixels"
+      ],
+      "latest_counts_v41": {
+        "not_run": 2223,
+        "pass": 133,
+        "fail": 17
+      }
+    }
+  },
+  "checks": {
+    "core": 29,
+    "python": 56,
+    "node": 14,
+    "freeze_byte_reproduced": 6,
+    "original_svg_and_render_sha": 2
+  },
+  "limits": [
+    "No RSI ablation or benefit claim",
+    "No acoustic verification",
+    "Leaderboard interruption and Practice-start profile not yet implemented",
+    "Whole images remain failing",
+    "Fractional geometry remains exact failure"
+  ],
+  "source_v41": {
+    "pass_count": 560,
+    "fail": 0,
+    "not_run": 1799,
+    "unavailable": 14
+  }
+}
