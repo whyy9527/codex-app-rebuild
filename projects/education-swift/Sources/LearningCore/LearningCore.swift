@@ -193,6 +193,7 @@ public struct HomeProgressSnapshot: Codable, Equatable, Sendable {
     public let leagueResource: String?
     public let questTarget: Int?
     public let questProgress: Int?
+    public let questCountdown: String?
 }
 public struct HomePresentation: Codable, Equatable, Sendable {
     public let sectionTitle: String

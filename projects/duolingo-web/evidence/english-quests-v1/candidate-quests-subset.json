@@ -1,0 +1,226 @@
+{
+  "kind": "frontend_requirements",
+  "contract_digest": "f3103910780687f5fa7a2954d4b10d0c25546ed948cb9e1ffeee0f11c34e8a5f",
+  "observation_digest": "68059c55e3e998742fd1c51bca9ca5aed42d592840e674f96e7f9ac75dbe74e4",
+  "rows": [
+    {
+      "id": "quests-text-0",
+      "state": "quests",
+      "status": "pass",
+      "expected": "就是你了！"
+    },
+    {
+      "id": "quests-text-1",
+      "state": "quests",
+      "status": "pass",
+      "expected": "完成特别任务，获取奖励！特别任务每天都会更新哦！"
+    },
+    {
+      "id": "quests-text-2",
+      "state": "quests",
+      "status": "pass",
+      "expected": "每日特别任务"
+    },
+    {
+      "id": "quests-text-3",
+      "state": "quests",
+      "status": "pass",
+      "expected": "14 小时"
+    },
+    {
+      "id": "quests-text-4",
+      "state": "quests",
+      "status": "pass",
+      "expected": "获取 30 经验"
+    },
+    {
+      "id": "quests-text-5",
+      "state": "quests",
+      "status": "pass",
+      "expected": "30 / 30"
+    },
+    {
+      "id": "quests-text-6",
+      "state": "quests",
+      "status": "pass",
+      "expected": "更多特别任务即将解锁"
+    },
+    {
+      "id": "quests-text-7",
+      "state": "quests",
+      "status": "pass",
+      "expected": "每月挑战稍后揭秘！"
+    },
+    {
+      "id": "quests-text-8",
+      "state": "quests",
+      "status": "pass",
+      "expected": "快开始你的每月挑战，独家徽章尽入囊中！"
+    },
+    {
+      "id": "quests-text-9",
+      "state": "quests",
+      "status": "pass",
+      "expected": "去学个单元"
+    },
+    {
+      "id": "quests-banner-geometry",
+      "state": "quests",
+      "status": "pass",
+      "expected": [
+        280,
+        24,
+        480,
+        232
+      ],
+      "actual": [
+        280,
+        24,
+        480,
+        232
+      ],
+      "delta_points": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "reason": "Control geometry in content points only; other visual properties remain separate"
+    },
+    {
+      "id": "quests-daily-geometry",
+      "state": "quests",
+      "status": "pass",
+      "expected": [
+        280,
+        326,
+        480,
+        113
+      ],
+      "actual": [
+        280,
+        326,
+        480,
+        113
+      ],
+      "delta_points": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "reason": "Control geometry in content points only; other visual properties remain separate"
+    },
+    {
+      "id": "quests-locked-geometry",
+      "state": "quests",
+      "status": "pass",
+      "expected": [
+        280,
+        455,
+        480,
+        100
+      ],
+      "actual": [
+        280,
+        455,
+        480,
+        100
+      ],
+      "delta_points": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "reason": "Control geometry in content points only; other visual properties remain separate"
+    },
+    {
+      "id": "quests-monthly-geometry",
+      "state": "quests",
+      "status": "pass",
+      "expected": [
+        808,
+        92,
+        368,
+        248
+      ],
+      "actual": [
+        808,
+        92,
+        368,
+        248
+      ],
+      "delta_points": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "reason": "Control geometry in content points only; other visual properties remain separate"
+    },
+    {
+      "id": "quests-practice-geometry",
+      "state": "quests",
+      "status": "pass",
+      "expected": [
+        830,
+        280,
+        324,
+        50
+      ],
+      "actual": [
+        830,
+        280,
+        324,
+        50
+      ],
+      "delta_points": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "reason": "Control geometry in content points only; other visual properties remain separate"
+    },
+    {
+      "id": "quests-whole-image",
+      "state": "quests",
+      "status": "fail",
+      "reference_sha256": "1a92efbc8be18b2cd8a005a5dfe5ff0d7089fb2a1dd6fda0048d115d85a422e3",
+      "capture_sha256": "6f50db2091ce2892a3ac0a3788bda56a10a651fb766003aec517c20d386b3e1d",
+      "mean_absolute_rgb_difference": [
+        1.3671288706739526,
+        1.5424612932604735,
+        1.354148451730419
+      ],
+      "profiles": {
+        "reference": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        },
+        "candidate": {
+          "input_profile": "Display",
+          "input_profile_sha256": "b6869613f44ea83b13cbd15652a1071c6bd85a37a5517bcbe7d1db1bcdc58e6f",
+          "comparison_space": "sRGB"
+        }
+      },
+      "normalization": "ICC to sRGB; measured titlebar crop and backing-scale downsample; no masks, alignment search or tolerance",
+      "reason": "Actual same-state image pixels only; sound, animation timing and unvisited states remain separate"
+    },
+    {
+      "id": "quests-practice-entry-heading",
+      "state": "quests-practice-entry",
+      "status": "fail",
+      "expected": "选择配对"
+    },
+    {
+      "id": "quests-practice-audio-pairs",
+      "state": "quests-practice-entry",
+      "status": "not_run",
+      "reason": "Actual /practice has four audio/text pairs; full route, grading, exit and settlement not yet compiled"
+    }
+  ],
+  "status": "fail"
+}

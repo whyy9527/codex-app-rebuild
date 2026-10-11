@@ -1,6 +1,6 @@
 # LingoSeed · Swift 教育基座
 
-可运行的 macOS SwiftUI 客户端。当前默认 `fixture-reference-en-zh-v10.json` 包含原版中文母语→英语七课102道评分题，另有未评分的听力/口语暂缓状态。第七课接入正常听音配对、音频单选、跨题输入偏好、非惩罚跳过、原题重练、成就/建档结算；radio1声音、更多暂缓/录音分支、生命刷新和完整图形/实际声音仍未对齐。[当前实测和复跑](../duolingo-web/evidence/english-seventh-native-v1/README.md)保留原始失败；核心通过不代表1:1完成。
+可运行的 macOS SwiftUI 客户端。当前默认 `fixture-reference-en-zh-v11.json` 包含原版中文母语→英语七课102道评分题，另有未评分的听力/口语暂缓状态。第七课接入正常听音配对、音频单选、跨题输入偏好、非惩罚跳过、原题重练、成就/建档结算；radio1声音、更多暂缓/录音分支、生命刷新和完整图形/实际声音仍未对齐。[当前实测和复跑](../duolingo-web/evidence/english-seventh-native-v1/README.md)保留原始失败；核心通过不代表1:1完成。
 
 当前发音练习按三次原版轨迹编译、独立保存，完成首套后重启实际进入sip/zip。口语拒绝/关闭/暂缓及发音练习退出已接入原生验证；全错直接退出，已获得正确进度时确认，取消保留题目状态；正常录音识别只有基础接线，尚未接评分和推进，不能称正常口语完成。前端、角色及实际声音仍有差异，见[最新证据与复跑](../duolingo-web/evidence/english-practice-exit-v1/README.md)。第四/第五套及原版自适应规则继续探索；旧第七课全程结果不移用到当前构建。
 
@@ -14,7 +14,7 @@
 
 ```sh
 swift build --package-path projects/education-swift --product LingoSeed
-projects/education-swift/.build/debug/LingoSeed --fixture projects/duolingo-web/fixture-reference-en-zh-v10.json --progress artifacts/lingoseed-english-demo/progress.json
+projects/education-swift/.build/debug/LingoSeed --fixture projects/duolingo-web/fixture-reference-en-zh-v11.json --progress artifacts/lingoseed-english-demo/progress.json
 swift run --package-path projects/education-swift LearningCoreChecks
 ```
 
@@ -147,3 +147,6 @@ projects/education-swift/.build/debug/LingoSeed --fixture projects/duolingo-web/
 
 
 当前发音卡片使用实测Latin字体轴400与0.8px字距，保留中文实际回退字重；按住下移2点并去掉2点阴影，释放恢复。共同v26独立比较真实状态位移，绝对几何及8图仍失败。[本批64状态验证与图片](../duolingo-web/evidence/english-pronunciation-typography-v1/README.md)。
+
+
+中文特别任务页已替换英文占位页，保留原版Duo/徽章/锁/时钟素材及六课14小时快照。10文案/5几何通过，整图与独立Practice题目仍失败；v11仅扩展快照，不变更七课内容。[真实导航及复跑](../duolingo-web/evidence/english-quests-v1/README.md)。

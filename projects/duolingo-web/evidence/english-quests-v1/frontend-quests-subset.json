@@ -1,0 +1,212 @@
+{
+  "revision": "english-v27-quests-subset",
+  "requirements": [
+    {
+      "id": "quests-text-0",
+      "state": "quests",
+      "kind": "accessible_text",
+      "text": "就是你了！",
+      "evidence": [
+        "projects/duolingo-web/evidence/english-quests-v1/source/ready.json"
+      ]
+    },
+    {
+      "id": "quests-text-1",
+      "state": "quests",
+      "kind": "accessible_text",
+      "text": "完成特别任务，获取奖励！特别任务每天都会更新哦！",
+      "evidence": [
+        "projects/duolingo-web/evidence/english-quests-v1/source/ready.json"
+      ]
+    },
+    {
+      "id": "quests-text-2",
+      "state": "quests",
+      "kind": "accessible_text",
+      "text": "每日特别任务",
+      "evidence": [
+        "projects/duolingo-web/evidence/english-quests-v1/source/ready.json"
+      ]
+    },
+    {
+      "id": "quests-text-3",
+      "state": "quests",
+      "kind": "accessible_text",
+      "text": "14 小时",
+      "evidence": [
+        "projects/duolingo-web/evidence/english-quests-v1/source/ready.json"
+      ]
+    },
+    {
+      "id": "quests-text-4",
+      "state": "quests",
+      "kind": "accessible_text",
+      "text": "获取 30 经验",
+      "evidence": [
+        "projects/duolingo-web/evidence/english-quests-v1/source/ready.json"
+      ]
+    },
+    {
+      "id": "quests-text-5",
+      "state": "quests",
+      "kind": "accessible_text",
+      "text": "30 / 30",
+      "evidence": [
+        "projects/duolingo-web/evidence/english-quests-v1/source/ready.json"
+      ]
+    },
+    {
+      "id": "quests-text-6",
+      "state": "quests",
+      "kind": "accessible_text",
+      "text": "更多特别任务即将解锁",
+      "evidence": [
+        "projects/duolingo-web/evidence/english-quests-v1/source/ready.json"
+      ]
+    },
+    {
+      "id": "quests-text-7",
+      "state": "quests",
+      "kind": "accessible_text",
+      "text": "每月挑战稍后揭秘！",
+      "evidence": [
+        "projects/duolingo-web/evidence/english-quests-v1/source/ready.json"
+      ]
+    },
+    {
+      "id": "quests-text-8",
+      "state": "quests",
+      "kind": "accessible_text",
+      "text": "快开始你的每月挑战，独家徽章尽入囊中！",
+      "evidence": [
+        "projects/duolingo-web/evidence/english-quests-v1/source/ready.json"
+      ]
+    },
+    {
+      "id": "quests-text-9",
+      "state": "quests",
+      "kind": "accessible_text",
+      "text": "去学个单元",
+      "evidence": [
+        "projects/duolingo-web/evidence/english-quests-v1/source/ready.json"
+      ]
+    },
+    {
+      "id": "quests-banner-geometry",
+      "state": "quests",
+      "kind": "element_geometry",
+      "element": "quests-banner",
+      "rect": [
+        280,
+        24,
+        480,
+        232
+      ],
+      "tolerance_points": 0,
+      "evidence": [
+        "projects/duolingo-web/evidence/english-quests-v1/source/layout.raw.json",
+        "projects/duolingo-web/evidence/english-quests-v1/source/practice-entry.json"
+      ]
+    },
+    {
+      "id": "quests-daily-geometry",
+      "state": "quests",
+      "kind": "element_geometry",
+      "element": "quests-daily",
+      "rect": [
+        280,
+        326,
+        480,
+        113
+      ],
+      "tolerance_points": 0,
+      "evidence": [
+        "projects/duolingo-web/evidence/english-quests-v1/source/layout.raw.json",
+        "projects/duolingo-web/evidence/english-quests-v1/source/practice-entry.json"
+      ]
+    },
+    {
+      "id": "quests-locked-geometry",
+      "state": "quests",
+      "kind": "element_geometry",
+      "element": "quests-locked",
+      "rect": [
+        280,
+        455,
+        480,
+        100
+      ],
+      "tolerance_points": 0,
+      "evidence": [
+        "projects/duolingo-web/evidence/english-quests-v1/source/layout.raw.json",
+        "projects/duolingo-web/evidence/english-quests-v1/source/practice-entry.json"
+      ]
+    },
+    {
+      "id": "quests-monthly-geometry",
+      "state": "quests",
+      "kind": "element_geometry",
+      "element": "quests-monthly",
+      "rect": [
+        808,
+        92,
+        368,
+        248
+      ],
+      "tolerance_points": 0,
+      "evidence": [
+        "projects/duolingo-web/evidence/english-quests-v1/source/layout.raw.json",
+        "projects/duolingo-web/evidence/english-quests-v1/source/practice-entry.json"
+      ]
+    },
+    {
+      "id": "quests-practice-geometry",
+      "state": "quests",
+      "kind": "element_geometry",
+      "element": "quests-practice",
+      "rect": [
+        830,
+        280,
+        324,
+        50
+      ],
+      "tolerance_points": 0,
+      "evidence": [
+        "projects/duolingo-web/evidence/english-quests-v1/source/layout.raw.json",
+        "projects/duolingo-web/evidence/english-quests-v1/source/practice-entry.json"
+      ]
+    },
+    {
+      "id": "quests-whole-image",
+      "state": "quests",
+      "kind": "image_pixels",
+      "reference_image": "projects/duolingo-web/evidence/english-quests-v1/source/ready.png",
+      "pixels": [
+        1200,
+        732
+      ],
+      "evidence": [
+        "projects/duolingo-web/evidence/english-quests-v1/source/ready.json",
+        "projects/duolingo-web/evidence/english-quests-v1/source/ready.png"
+      ]
+    },
+    {
+      "id": "quests-practice-entry-heading",
+      "state": "quests-practice-entry",
+      "kind": "accessible_text",
+      "text": "选择配对",
+      "evidence": [
+        "projects/duolingo-web/evidence/english-quests-v1/source/practice-ready.json"
+      ]
+    },
+    {
+      "id": "quests-practice-audio-pairs",
+      "state": "quests-practice-entry",
+      "kind": "pending",
+      "description": "Actual /practice has four audio/text pairs; full route, grading, exit and settlement not yet compiled",
+      "evidence": [
+        "projects/duolingo-web/evidence/english-quests-v1/source/practice-ready.json"
+      ]
+    }
+  ]
+}

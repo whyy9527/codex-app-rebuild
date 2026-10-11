@@ -1,0 +1,183 @@
+{
+  "runs": {
+    "native-before": {
+      "states": 2,
+      "full_counts": {
+        "not_run": 1708,
+        "pass": 19,
+        "fail": 15,
+        "unavailable": 5
+      },
+      "new_quests_counts": {
+        "fail": 11,
+        "unavailable": 5,
+        "not_run": 2
+      },
+      "candidate_binary_sha256": "382eaf14b50e18d8eb88d27900e458fc6dc463aa0b8d57802bdc3bc7da74992d",
+      "fixture_sha256": "bbbf085beb0af6e4e6e2e627e229ee8f274dee660a9e1fd4e316bb1ea326ffb3",
+      "capture_rebindings": [
+        {
+          "state": "home",
+          "original": "artifacts/output/playwright/quests-native-before/home-window.png",
+          "archived": "projects/duolingo-web/evidence/english-quests-v1/native-before/home-window.png",
+          "sha256": "7047ff6db1f46b5a0e0df0747a16d53b0e951ca2e09903a24269195e19320dbc"
+        },
+        {
+          "state": "quests",
+          "original": "artifacts/output/playwright/quests-native-before/quests.png",
+          "archived": "projects/duolingo-web/evidence/english-quests-v1/native-before/quests.png",
+          "sha256": "2d368d3b9b7a24d90d3dc5104e5d0dffa74004f096b9c3e6ba2ee6b274e4ea48"
+        }
+      ],
+      "original_observation_sha256": "81705e4df4c511b7746d44e297d39c7d379d9799f0b03498abb1a840d231f92a"
+    },
+    "native-first": {
+      "states": 4,
+      "full_counts": {
+        "not_run": 1707,
+        "pass": 33,
+        "fail": 7
+      },
+      "new_quests_counts": {
+        "pass": 14,
+        "fail": 3,
+        "not_run": 1
+      },
+      "candidate_binary_sha256": "8b9654eedb349bf65cc56cdb6675d955eca303c0a047f03fe29fa0ac58d97957",
+      "fixture_sha256": "950f0e0ea349fb9e937decc173673bb6eab9e9ed5bdd907060316cd1bad29f60",
+      "capture_rebindings": [
+        {
+          "state": "home",
+          "original": "artifacts/output/playwright/quests-native-01/home-window.png",
+          "archived": "projects/duolingo-web/evidence/english-quests-v1/native-first/home-window.png",
+          "sha256": "7047ff6db1f46b5a0e0df0747a16d53b0e951ca2e09903a24269195e19320dbc"
+        },
+        {
+          "state": "quests",
+          "original": "artifacts/output/playwright/quests-native-01/quests.png",
+          "archived": "projects/duolingo-web/evidence/english-quests-v1/native-first/quests.png",
+          "sha256": "9cdbeab80dfac985338304ee22e18f9b63b2516a90da82fe5f733b132d55659d"
+        },
+        {
+          "state": "quests-practice-entry",
+          "original": "artifacts/output/playwright/quests-native-01/quests-practice-entry.png",
+          "archived": "projects/duolingo-web/evidence/english-quests-v1/native-first/quests-practice-entry.png",
+          "sha256": "8ed27006f70a3aac7c2c22ba791a47b4ff98ecfdc8eb691c4446fa2677f89b58"
+        },
+        {
+          "state": "quests-practice-exited",
+          "original": "artifacts/output/playwright/quests-native-01/quests-practice-exited.png",
+          "archived": "projects/duolingo-web/evidence/english-quests-v1/native-first/quests-practice-exited.png",
+          "sha256": "7047ff6db1f46b5a0e0df0747a16d53b0e951ca2e09903a24269195e19320dbc"
+        }
+      ],
+      "original_observation_sha256": "dada61d32b51805b3ac17fc4b3596db9297544022d684c2fa83b4cd6afccd89f"
+    },
+    "native-final": {
+      "states": 4,
+      "full_counts": {
+        "not_run": 1707,
+        "pass": 34,
+        "fail": 6
+      },
+      "new_quests_counts": {
+        "pass": 15,
+        "fail": 2,
+        "not_run": 1
+      },
+      "candidate_binary_sha256": "510bf79e4cdfdf0f0499d358acf133e978b8788714490e5cfe307d2af9a86c7f",
+      "fixture_sha256": "950f0e0ea349fb9e937decc173673bb6eab9e9ed5bdd907060316cd1bad29f60",
+      "capture_rebindings": [
+        {
+          "state": "home",
+          "original": "artifacts/output/playwright/quests-native-final/home-window.png",
+          "archived": "projects/duolingo-web/evidence/english-quests-v1/native-final/home-window.png",
+          "sha256": "7047ff6db1f46b5a0e0df0747a16d53b0e951ca2e09903a24269195e19320dbc"
+        },
+        {
+          "state": "quests",
+          "original": "artifacts/output/playwright/quests-native-final/quests.png",
+          "archived": "projects/duolingo-web/evidence/english-quests-v1/native-final/quests.png",
+          "sha256": "6f50db2091ce2892a3ac0a3788bda56a10a651fb766003aec517c20d386b3e1d"
+        },
+        {
+          "state": "quests-practice-entry",
+          "original": "artifacts/output/playwright/quests-native-final/quests-practice-entry.png",
+          "archived": "projects/duolingo-web/evidence/english-quests-v1/native-final/quests-practice-entry.png",
+          "sha256": "8ed27006f70a3aac7c2c22ba791a47b4ff98ecfdc8eb691c4446fa2677f89b58"
+        },
+        {
+          "state": "quests-practice-exited",
+          "original": "artifacts/output/playwright/quests-native-final/quests-practice-exited.png",
+          "archived": "projects/duolingo-web/evidence/english-quests-v1/native-final/quests-practice-exited.png",
+          "sha256": "7047ff6db1f46b5a0e0df0747a16d53b0e951ca2e09903a24269195e19320dbc"
+        }
+      ],
+      "original_observation_sha256": "92ae2cd9ace835b89be30e33bb6ea4c6c2a4363ffb7a4ceb0ea248fc72da8cd2"
+    },
+    "pronunciation-regression": {
+      "states": 5,
+      "full_counts": {
+        "not_run": 1645,
+        "pass": 80,
+        "fail": 22
+      },
+      "new_quests_counts": {
+        "not_run": 18
+      },
+      "candidate_binary_sha256": "510bf79e4cdfdf0f0499d358acf133e978b8788714490e5cfe307d2af9a86c7f",
+      "fixture_sha256": "950f0e0ea349fb9e937decc173673bb6eab9e9ed5bdd907060316cd1bad29f60",
+      "capture_rebindings": [
+        {
+          "state": "en-zh-pronunciation",
+          "original": "artifacts/output/playwright/quests-pronunciation-regression/pronunciation-window.png",
+          "archived": "projects/duolingo-web/evidence/english-quests-v1/pronunciation-regression/pronunciation-window.png",
+          "sha256": "50f98650f8cc7523074efd69025658f037a52f7905bd288c4eb2e35969b48827"
+        },
+        {
+          "state": "home",
+          "original": "artifacts/output/playwright/quests-pronunciation-regression/home-window.png",
+          "archived": "projects/duolingo-web/evidence/english-quests-v1/pronunciation-regression/home-window.png",
+          "sha256": "7047ff6db1f46b5a0e0df0747a16d53b0e951ca2e09903a24269195e19320dbc"
+        },
+        {
+          "state": "pronunciation-card-hover",
+          "original": "artifacts/output/playwright/quests-pronunciation-regression/pronunciation-card-hover.png",
+          "archived": "projects/duolingo-web/evidence/english-quests-v1/pronunciation-regression/pronunciation-card-hover.png",
+          "sha256": "50f98650f8cc7523074efd69025658f037a52f7905bd288c4eb2e35969b48827"
+        },
+        {
+          "state": "pronunciation-card-pressed",
+          "original": "artifacts/output/playwright/quests-pronunciation-regression/pronunciation-card-pressed.png",
+          "archived": "projects/duolingo-web/evidence/english-quests-v1/pronunciation-regression/pronunciation-card-pressed.png",
+          "sha256": "2ad6f561af084539f8e1e1c1b0fd8d09f9fb3c092d08c72898fdf9cc7baa37df"
+        },
+        {
+          "state": "pronunciation-card-released",
+          "original": "artifacts/output/playwright/quests-pronunciation-regression/pronunciation-card-released.png",
+          "archived": "projects/duolingo-web/evidence/english-quests-v1/pronunciation-regression/pronunciation-card-released.png",
+          "sha256": "50f98650f8cc7523074efd69025658f037a52f7905bd288c4eb2e35969b48827"
+        }
+      ],
+      "original_observation_sha256": "a58e0e28fe52f1c58dede9a24be4b322c570fb48fbb4ac93cda3e537c02668c6"
+    }
+  },
+  "fixture_recompiled_identical": true,
+  "fixture_sha256": "950f0e0ea349fb9e937decc173673bb6eab9e9ed5bdd907060316cd1bad29f60",
+  "failures": [
+    "First capture stem collided with the saved navigation action; preflight preserved files and no browser capture ran",
+    "Initial compiler expected unwrapped course; KeyError before output, fixed to data.candidate_course",
+    "First native monthly button was x+10 and hit-height48; source contract unchanged, container proposal and contentShape fixed"
+  ],
+  "limitations": [
+    "General /practice still unimplemented; actual source first listening-match state recorded, candidate heading fails",
+    "Whole page pixels still differ",
+    "Countdown is an observed snapshot, reset/growth algorithms unknown",
+    "No acoustic equivalence or RSI benefit claim"
+  ],
+  "fixture_evolution": "Only six-lesson snapshot questCountdown added; all v10 data unchanged",
+  "contract_evolution": {
+    "old_unchanged": 1729,
+    "appended": 18
+  }
+}

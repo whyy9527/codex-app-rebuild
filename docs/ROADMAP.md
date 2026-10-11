@@ -256,3 +256,8 @@ v15保留1489项并增8项真实原版断言。独立原生radio2实际点击及
 ### 实际字体解析及按住卡片补漏
 
 前批残留字形偏粗促使改用实际platform font/CoreText探针：CSS500实际Latin轴400，但中文副标题实际Medium，故只修卡片音标/英文为400与0.8px字距，保留中文。源按住移动2px且2px阴影消失，候选修66点卡面/2点阴影并加实际按下反馈；源CSS圆角与SDK默认continuous不同，本页显式circular。v26保留全部1725旧项增4，源几何4/4，56框架/构建/23核心通过，最终64原生状态194pass/37fail/1498not_run/0unavailable；新增位移两项pass、绝对几何两项fail，8图仍fail。卡片区域差异约1.846→0.734、整页下降，不能代替1:1。首轮CGFloat类型错误及中间构建完整保留，原论文/负面消融不变。下一步继续未访问导航/主课、音标增长及前端/音频缺口；Goal active。[源发现与复跑](../projects/duolingo-web/evidence/english-pronunciation-typography-v1/README.md)。
+
+
+### 特别任务导航页与独立练习新分支
+
+从实际源/quests采集横幅/每日30经验/锁定/月挑战/媒体/几何，替换候选英文通用页。实际“去学个单元”去/practice四组听音配对，未答退出回/learn；不能用主课程代替，候选仍未实现入口。v11由源DOM编译，仅增加六课14小时快照，重编译字节一致；不是重置规则。v27保留1729旧项增18，源可执行17通过/1pending；候选新15pass/2fail/1not_run，整图和练习标题fail。首轮月挑战按钮偏10点、高48，经布局提议/contentShape修复后5几何全pass。完整34pass/6fail/1707not_run，不能与发音五状态回归80/22/1645累计；56框架/构建/23核心通过。整图均值23–26降到1.35–1.54仍不同，源素材及原始失败入库。默认v11，真实/practice完整轨迹及日界线/月挑战/其它导航继续，完整Goal active。[对照、frontier与复跑](../projects/duolingo-web/evidence/english-quests-v1/README.md)。

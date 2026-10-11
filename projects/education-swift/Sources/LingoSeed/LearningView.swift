@@ -14,7 +14,8 @@ struct LearningView: View {
                 if let lesson = model.lesson {
                     if model.isPronunciationPractice { ReferencePronunciationPractice(model: model, lesson: lesson) }
                     else { lessonPage(lesson) }
-                } else if ["Learn", "Settings", "Guidebook", "Pronunciation"].contains(model.destination) {
+                } else if ["Learn", "Settings", "Guidebook", "Pronunciation"].contains(model.destination)
+                    || (model.destination == "Quests" && model.course.interfaceLanguage == "zh") {
                     ReferenceHome(model: model)
                 } else {
                     HStack(spacing: 0) {

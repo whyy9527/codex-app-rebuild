@@ -112,6 +112,20 @@ func observe() -> [String: Any] {
     }
     return ["accessible_text": strings.sorted(), "elements": elements]
 }
+func bindCaptures(_ states: inout [String: [String: Any]], names: [String: String] = [:]) throws {
+    if output.path.hasPrefix(root.path + "/"),
+       let metadata = try JSONSerialization.jsonObject(with: Data(contentsOf: output.appendingPathComponent("window.json"))) as? [String: Any] {
+        for stateName in Array(states.keys) {
+            let filename = (names[stateName] ?? stateName) + ".png"
+            let file = output.appendingPathComponent(filename)
+            if FileManager.default.fileExists(atPath: file.path) {
+                states[stateName]?["capture"] = ["path": String(file.path.dropFirst(root.path.count + 1)),
+                    "content_rect_points": metadata["content_rect_points"]!, "backing_scale": metadata["backing_scale"]!,
+                    "window_points": metadata["window_points"]!]
+            }
+        }
+    }
+}
 var pointerActions: [[String: Any]] = []
 func movePointer(to id: String) -> Bool {
     guard let node = current().first(where: { (attr($0, kAXIdentifierAttribute) as? String) == id }),
@@ -158,6 +172,24 @@ func fillInput(_ value: String) throws {
 
 var states = ["home": observe()]
 try capture("home-window")
+if CommandLine.arguments.contains("--observe-quests") {
+    try press("nav-quests"); Thread.sleep(forTimeInterval: 0.5)
+    states["quests"] = observe(); try capture("quests")
+    if CommandLine.arguments.contains("--exercise-quests-practice") {
+        try press("quests-practice"); try waitFor("destination-title", value: "Practice")
+        states["quests-practice-entry"] = observe(); try capture("quests-practice-entry")
+        try press("return-learn"); try waitFor("course-entry")
+        states["quests-practice-exited"] = observe(); try capture("quests-practice-exited")
+    }
+    try bindCaptures(&states, names: ["home":"home-window"])
+    let receipt: [String: Any] = ["kind":"owned_native_ax_observation", "states":states,
+        "candidate_binary_sha256":candidateSHA, "fixture_sha256":fixtureSHA,
+        "observed_at":ISO8601DateFormatter().string(from:Date()),
+        "action":"Actual quests navigation and optional practice entry; no driver pass flags",
+        "limitations":["Actual AX and owned captures; general-practice route remains unimplemented"]]
+    try JSONSerialization.data(withJSONObject:receipt, options:[.prettyPrinted,.sortedKeys]).write(to:output.appendingPathComponent("observed.json"))
+    return
+}
 if CommandLine.arguments.contains("--observe-pronunciation") {
     try press("nav-pronunciation")
     Thread.sleep(forTimeInterval: 0.5)
@@ -317,22 +349,9 @@ if CommandLine.arguments.contains("--observe-pronunciation") {
             try press("exit"); try waitFor("pronunciation-start")
         }
     }
-    // Bind actual files and measured window geometry, never a driver pass flag.
-    let captureNames = ["home":"home-window", "en-zh-pronunciation":"pronunciation-window",
+    try bindCaptures(&states, names: ["home":"home-window", "en-zh-pronunciation":"pronunciation-window",
         "pronunciation-speech-before":"practice-speech-before", "pronunciation-speech-denied":"practice-speech-denied",
-        "pronunciation-speech-denied-closed":"practice-speech-denied-closed"]
-    if output.path.hasPrefix(root.path + "/"),
-       let metadata = try JSONSerialization.jsonObject(with: Data(contentsOf: output.appendingPathComponent("window.json"))) as? [String: Any] {
-        for stateName in Array(states.keys) {
-            let filename = (captureNames[stateName] ?? stateName) + ".png"
-            let file = output.appendingPathComponent(filename)
-            if FileManager.default.fileExists(atPath: file.path) {
-                states[stateName]?["capture"] = ["path": String(file.path.dropFirst(root.path.count + 1)),
-                    "content_rect_points": metadata["content_rect_points"]!, "backing_scale": metadata["backing_scale"]!,
-                    "window_points": metadata["window_points"]!]
-            }
-        }
-    }
+        "pronunciation-speech-denied-closed":"practice-speech-denied-closed"])
     let receipt: [String: Any] = ["kind": "owned_native_ax_observation", "states": states,
         "candidate_binary_sha256": candidateSHA, "fixture_sha256": fixtureSHA,
         "observed_at": ISO8601DateFormatter().string(from: Date()),

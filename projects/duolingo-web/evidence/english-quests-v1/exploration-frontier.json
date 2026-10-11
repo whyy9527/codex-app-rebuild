@@ -1,0 +1,39 @@
+{
+  "kind": "actual_quests_discovery_frontier",
+  "evidence": [
+    "source/ready.json",
+    "source/practice-ready.json",
+    "source/practice-exited.json"
+  ],
+  "next": [
+    {
+      "branch": "general practice from quests",
+      "status": "first state observed, implementation missing",
+      "path": "/practice",
+      "observed": "Four listening/text pairs; unanswered exit returns /learn",
+      "unknown": [
+        "full question sequence",
+        "original audio mapping",
+        "grading/review/settlement",
+        "progress effects"
+      ],
+      "next_action": "Capture fresh actual /practice session with sanitized public fields, then execute visible trajectory before compiling; do not reuse a main lesson"
+    },
+    {
+      "branch": "daily deadline and reset",
+      "status": "unknown",
+      "observed": "14 hours, goal30, progress30 at six completed main lessons",
+      "next_action": "Observe an actual reset/state boundary; snapshot is not a clock algorithm"
+    },
+    {
+      "branch": "locked quests/monthly challenge unlock",
+      "status": "unknown",
+      "next_action": "Continue actual source progress and compare before/after, not hardcode a guessed lesson threshold"
+    },
+    {
+      "branch": "other navigation",
+      "status": "unvisited in this batch",
+      "next_action": "Shop/leaderboard and guest account routes remain in overall scope"
+    }
+  ]
+}

@@ -133,3 +133,6 @@ node projects/duolingo-web/explore-curriculum.mjs artifacts/reference-new.json -
 
 
 当前发音卡片使用实测Latin字体轴400与0.8px字距，保留中文实际回退字重；按住下移2点并去掉2点阴影，释放恢复。共同v26独立比较真实状态位移，绝对几何及8图仍失败。[本批64状态验证与图片](evidence/english-pronunciation-typography-v1/README.md)。
+
+
+特别任务实际探索发现独立/practice四组听音配对，未与主课程混用。Swift任务页15项通过，整图/练习入口继续失败；v27保留全部旧要求新增18，当前默认v11仅增加六课倒计时快照。[源证据、失败与复跑](evidence/english-quests-v1/README.md)。

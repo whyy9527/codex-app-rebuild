@@ -203,3 +203,8 @@ Lesson将词库键盘、填空整句偏好分别保存；clearAnswer清答案缓
 ### 字体实际解析与相对几何
 
 发音页的CSS500不能直接映射variable font轴500：实际浏览器使用轴400，而同一页面中文回退为PingFang Medium。卡片局部显式400及源字距，未改变公共default或其它页面。ButtonStyle拥有源66点卡面/2点阴影与按住2点移动，驱动实际持有mouse-down期间采样，异常释放。共同element_geometry可选relative_to_state，比较器从两次真实矩形计算差值；缺原点not_run、坏矩形unavailable，无driver通过标记。绝对几何和图像仍单独验收，位移通过不替代它们。[来源、失败、实际构建](../projects/duolingo-web/evidence/english-pronunciation-typography-v1/README.md)。
+
+
+### 特别任务页与快照边界
+
+中文Quests路由进入ReferenceHome，ReferenceQuests为中栏、ReferenceQuestMonthly为右栏；状态栏复用，footer使用源链接。HomeProgressSnapshot新增可选questCountdown，compile-quests-page从源DOM及原六课seed生成v11，旧v10不改、课程不改。导航观察与发音共用bindCaptures绑定真实PNG/元数据，不供pass。源/practice独立于主课/发音，现仅观察首题及退出，候选标题失败，未接完整练习；下一批需真实采样再编译。源码/实际原生/全规格与子集结果各自保存，不累计不同轨迹覆盖。[本批真实失败](../projects/duolingo-web/evidence/english-quests-v1/README.md)。

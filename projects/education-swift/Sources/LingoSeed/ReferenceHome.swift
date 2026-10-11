@@ -28,6 +28,7 @@ struct ReferenceHome: View {
                 else {
                 ScrollView {
                     if model.destination == "Pronunciation" { ReferencePronunciation(model: model).padding(.horizontal, 24).padding(.top, 43) }
+                    else if model.destination == "Quests" { ReferenceQuests(snapshot: homeSnapshot).padding(.horizontal, 24).padding(.top, 24) }
                     else if model.destination == "Guidebook" { ReferenceGuidebook(model: model).padding(.horizontal, 24).padding(.top, 48) }
                     else { path.padding(.horizontal, 24).padding(.top, 48) }
                 }
@@ -207,6 +208,9 @@ struct ReferenceHome: View {
                 Spacer(); stat("gems", "\(homeSnapshot?.gems ?? (500 + completed * 5))", color: blue, width: 22)
                 Spacer(); stat("hearts", "\(model.progress.hearts)", color: .red, width: 28)
             }.padding(.horizontal, 12).padding(.bottom, 16)
+            if model.destination == "Quests" {
+                ReferenceQuestMonthly { model.destination = "Practice" }
+            } else {
             card {
                 HStack {
                     Text(homeSnapshot?.leagueTitle ?? copy("Unlock Leaderboards!", "来解锁排行榜吧！")).font(ReferenceStyle.font(19, bold: true))
@@ -241,8 +245,27 @@ struct ReferenceHome: View {
                     Button(copy("SIGN IN", "登录")) { model.destination = "Sign in" }.buttonStyle(ReferenceButton(color: blue)).accessibilityIdentifier("sign-in")
                 }.padding(.top, 12)
             }.frame(height: 201)
-            Text(copy("ABOUT    BLOG    STORE    EFFICACY    CAREERS\n\nINVESTORS    TERMS    PRIVACY", "关于我们    宝石小店    有效性    招聘贤才\n\n投资者    条款    隐私")).font(ReferenceStyle.font(12, bold: true)).foregroundStyle(Color(white: 175/255)).frame(maxWidth: .infinity).multilineTextAlignment(.center).padding(.top, 18)
+            }
+            if model.destination == "Quests" { questsFooter.padding(.top, 18) }
+            else {
+                Text(copy("ABOUT    BLOG    STORE    EFFICACY    CAREERS\n\nINVESTORS    TERMS    PRIVACY", "关于我们    宝石小店    有效性    招聘贤才\n\n投资者    条款    隐私")).font(ReferenceStyle.font(12, bold: true)).foregroundStyle(Color(white: 175/255)).frame(maxWidth: .infinity).multilineTextAlignment(.center).padding(.top, 18)
+            }
         }
+    }
+    private var questsFooter: some View {
+        VStack(spacing: 18) {
+            HStack(spacing: 20) {
+                Link("关于我们", destination: URL(string: "https://about.duolingo.com")!)
+                Link("宝石小店", destination: URL(string: "https://store.duolingo.com/")!)
+                Link("有效性", destination: URL(string: "https://www.duolingo.com/efficacy")!)
+                Link("招聘贤才", destination: URL(string: "https://careers.duolingo.com")!)
+                Link("投资者", destination: URL(string: "https://investors.duolingo.com")!)
+            }
+            HStack(spacing: 20) {
+                Link("条款", destination: URL(string: "https://www.duolingo.com/terms")!)
+                Link("隐私", destination: URL(string: "https://www.duolingo.com/privacy")!)
+            }
+        }.buttonStyle(.plain).font(ReferenceStyle.font(13, bold: true)).foregroundStyle(ReferenceStyle.disclosureInk).frame(maxWidth: .infinity)
     }
     private func stat(_ image: String, _ text: String, color: Color, width: CGFloat) -> some View {
         HStack(spacing: 12) { ReferenceStyle.image(image).resizable().scaledToFit().frame(width: width, height: 28); Text(text).font(ReferenceStyle.font(15, bold: true)).foregroundStyle(color) }
