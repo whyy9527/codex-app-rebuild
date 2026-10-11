@@ -85,3 +85,58 @@ class FrontendRequirements(unittest.TestCase):
 
             observed['states']['feedback'] = {'pixel_samples': {'850,500': [215, 255, 184]}}
             self.assertEqual(compare(root, contract, observed)['rows'][0]['status'], 'unavailable')
+
+    def test_image_requirement_reads_pixels_instead_of_driver_pass_flags(self):
+        from capabilities.rebuild.images import compare_capture
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            try:
+                from PIL import Image
+            except ImportError:
+                self.assertEqual(compare_capture(root, {}, {})['status'], 'unavailable')
+                return
+            Image.new('RGB', (4, 4), 'white').save(root / 'source.png')
+            # A measured two-pixel titlebar must be cropped, not compared.
+            candidate = Image.new('RGB', (4, 6), 'black')
+            candidate.paste((255, 255, 255), (0, 2, 4, 6))
+            candidate.save(root / 'candidate.png')
+            contract = {'requirements': [{'id': 'pixels', 'state': 'page', 'kind': 'image_pixels',
+                'reference_image': 'source.png', 'pixels': [4, 4], 'evidence': ['source.png']}]}
+            state = {'status': 'pass', 'capture': {'path': 'candidate.png', 'content_rect_points': [0, 2, 4, 4],
+                     'backing_scale': 1, 'window_points': [4, 6]}}
+            observed = {'states': {'page': state}}
+            self.assertEqual(compare(root, contract, observed)['status'], 'pass')
+            candidate.putpixel((2, 3), (254, 255, 255)); candidate.save(root / 'candidate.png')
+            result = compare(root, contract, observed)
+            self.assertEqual(result['status'], 'fail')
+            self.assertGreater(result['rows'][0]['mean_absolute_rgb_difference'][0], 0)
+            state['capture']['path'] = 'missing.png'
+            self.assertEqual(compare(root, contract, observed)['rows'][0]['status'], 'unavailable')
+            state.pop('capture')
+            self.assertEqual(compare(root, contract, observed)['rows'][0]['status'], 'unavailable')
+
+    def test_image_geometry_and_workspace_boundary_cannot_be_bypassed(self):
+        from capabilities.rebuild.images import compare_capture
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            try:
+                from PIL import Image
+            except ImportError:
+                self.assertEqual(compare_capture(root, {}, {})['status'], 'unavailable')
+                return
+            Image.new('RGB', (4, 4), 'white').save(root / 'source.png')
+            requirement = {'reference_image': 'source.png', 'pixels': [4, 4]}
+            capture = {'path': 'source.png', 'content_rect_points': [0, 1, 4, 4], 'backing_scale': 1, 'window_points': [4, 4]}
+            self.assertEqual(compare_capture(root, requirement, {'capture': capture})['status'], 'unavailable')
+            capture['content_rect_points'] = [0, 0, 4, 4]
+            capture['backing_scale'] = 2
+            self.assertEqual(compare_capture(root, requirement, {'capture': capture})['status'], 'unavailable')
+            capture['backing_scale'] = 1; capture['path'] = '../outside.png'
+            with self.assertRaises(ValueError):
+                compare_capture(root, requirement, {'capture': capture})
+
+    def test_missing_image_dependency_is_unavailable_not_success(self):
+        from unittest.mock import patch
+        from capabilities.rebuild.images import compare_capture
+        with patch.dict('sys.modules', {'PIL': None}):
+            self.assertEqual(compare_capture(Path('.'), {}, {})['status'], 'unavailable')

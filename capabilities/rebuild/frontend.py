@@ -1,8 +1,8 @@
 """Compare observed frontend requirements, independently of semantic E2E.
 
-Drivers collect facts; they do not supply pass flags. This initial comparator
-checks accessible copy and capture compatibility. It does not certify visual or
-audio equivalence from text checks.
+Drivers collect facts; they do not supply pass flags. Image requirements read
+actual captures and compare normalized pixels independently of text checks.
+Neither text nor image checks certify audio or unvisited states.
 """
 import argparse
 import json
@@ -28,6 +28,9 @@ def compare(root, contract, observed):
             row.update(status='not_run', reason=requirement['description'])
         elif state is None:
             row.update(status='not_run', reason='Driver has not visited this reference state')
+        elif requirement['kind'] == 'image_pixels':
+            from .images import compare_capture
+            row.update(compare_capture(root, requirement, state))
         elif requirement['kind'] == 'accessible_text':
             expected = requirement['text']
             actual = state.get('accessible_text')

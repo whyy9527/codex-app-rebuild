@@ -18,12 +18,12 @@ LAYERS = {'browser_ui', 'native_ui', 'core', 'test_double'}
 KINDS = {'original_online', 'local_reference', 'candidate'}
 
 
-def local_file(root, name):
+def local_file(root, name, *, must_exist=True):
     require_text(name, 'contract path')
     path = Path(name)
     if path.is_absolute() or '..' in path.parts or not (root / path).resolve().is_relative_to(root):
         raise ValueError('contract files must be inside the explicit workspace')
-    if not (root / path).is_file():
+    if must_exist and not (root / path).is_file():
         raise ValueError('missing contract input: ' + name)
     return root / path
 

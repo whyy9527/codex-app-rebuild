@@ -141,3 +141,6 @@ projects/education-swift/.build/debug/LingoSeed --fixture projects/duolingo-web/
 反馈动作新增互斥可取消评价、多选报错及关闭重置；当前源证据只冻结糖题，其他题型选项和提交服务未完成。31项两端25通过/6未验证，像素仍不同。完整失败与复跑见[反馈动作批次](../duolingo-web/evidence/english-feedback-actions-v1/README.md)。
 
 第六课已编入显式`fixture-reference-en-zh-v7.json`并在原生走完已观察双暂缓路径，默认仍v6，正常分支未采齐。新增连对计数、输入区域/标签、口语暂缓动作、第二节点进度和实际30经验任务。17项核心通过；309项独立第六课228通过/31失败/50未验证，25对像素仍不同。[证据及复跑](../duolingo-web/evidence/english-sixth-native-v1/README.md)。
+
+
+发音卡片按实际原版修正为19px音标、15px单词和68点点击区域；共同v25直接读取PNG比较，8幅整图仍失败。正常口语评分/推进、音标增长和完整前端/声音继续，不能称1:1完成。[本批证据与可复跑图像验收](../duolingo-web/evidence/english-pronunciation-cards-v1/README.md)。

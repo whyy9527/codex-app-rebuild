@@ -50,15 +50,16 @@ struct ReferencePronunciation: View {
                         if let resource = phoneme.audio { model.audio.speak(phoneme.symbol, resource: resource) }
                     } label: {
                         VStack(spacing: 0) {
-                            Text(phoneme.symbol).font(ReferenceStyle.font(17)).foregroundStyle(ReferenceStyle.ink)
-                            Text(phoneme.word).font(ReferenceStyle.font(15)).foregroundStyle(ReferenceStyle.disclosureInk)
-                            Capsule().fill(ReferenceStyle.border).frame(width: 40, height: 8).padding(.top, 4)
-                        }.frame(maxWidth: .infinity).frame(height: 68)
+                            Text(phoneme.symbol).font(ReferenceStyle.font(19)).foregroundStyle(ReferenceStyle.ink).frame(height: 19)
+                            Text(phoneme.word).font(ReferenceStyle.font(15)).foregroundStyle(ReferenceStyle.disclosureInk).frame(height: 15)
+                            Capsule().fill(ReferenceStyle.border).frame(width: 40, height: 8).padding(.top, 5)
+                        }.padding(.top, 12).frame(maxWidth: .infinity).frame(height: 68, alignment: .top)
                             .background(alignment: .top) {
                                 RoundedRectangle(cornerRadius: 16).fill(ReferenceStyle.background).frame(height: 64)
                                     .shadow(color: ReferenceStyle.border, radius: 0, y: 4)
                             }
                             .overlay(alignment: .top) { RoundedRectangle(cornerRadius: 16).strokeBorder(ReferenceStyle.border, lineWidth: 2).frame(height: 64) }
+                            .contentShape(Rectangle())
                     }.buttonStyle(.plain).accessibilityLabel(phoneme.source_label).accessibilityIdentifier(phoneme.element)
                     }}
                 }

@@ -296,6 +296,22 @@ if CommandLine.arguments.contains("--observe-pronunciation") {
             try press("exit"); try waitFor("pronunciation-start")
         }
     }
+    // Bind actual files and measured window geometry, never a driver pass flag.
+    let captureNames = ["home":"home-window", "en-zh-pronunciation":"pronunciation-window",
+        "pronunciation-speech-before":"practice-speech-before", "pronunciation-speech-denied":"practice-speech-denied",
+        "pronunciation-speech-denied-closed":"practice-speech-denied-closed"]
+    if output.path.hasPrefix(root.path + "/"),
+       let metadata = try JSONSerialization.jsonObject(with: Data(contentsOf: output.appendingPathComponent("window.json"))) as? [String: Any] {
+        for stateName in Array(states.keys) {
+            let filename = (captureNames[stateName] ?? stateName) + ".png"
+            let file = output.appendingPathComponent(filename)
+            if FileManager.default.fileExists(atPath: file.path) {
+                states[stateName]?["capture"] = ["path": String(file.path.dropFirst(root.path.count + 1)),
+                    "content_rect_points": metadata["content_rect_points"]!, "backing_scale": metadata["backing_scale"]!,
+                    "window_points": metadata["window_points"]!]
+            }
+        }
+    }
     let receipt: [String: Any] = ["kind": "owned_native_ax_observation", "states": states,
         "candidate_binary_sha256": candidateSHA, "fixture_sha256": fixtureSHA,
         "observed_at": ISO8601DateFormatter().string(from: Date()),

@@ -75,3 +75,8 @@ python3 -m workflows.rebuild.cli coverage --workspace <项目> --spec spec.json 
 报告分离 discovery 和执行 status：unknown、observed、decision 表示知识来源；not_run、pass、fail、invalid、unavailable、timeout 表示执行状态。保存规格/配置/输入/源码摘要、动作观察、差异、生命周期、命令输出和耗时。源码或规格变化后，旧回执仍是历史证据，但不能作为当前通过状态。
 
 本通用层不提供自动业务发现；案例层已有浏览器与原生 UI 驱动，范围见 `projects/duolingo-web/README.md`。阶段控制与显式任务接续已接入，原生单任务模型 Stop 续跑已验证；一次完整多阶段真实宿主模型重建已通过，含显式跨会话接续及扩展原版/原生12/12，见 `projects/model-pipeline`。已知模板可见，四组真实业务消融已完成，公开12/12与留出2/2均相同、另1未知；见 projects/business-ablation/REPORT.md，不宣称收益。当前测试在临时目录运行真实子进程和明确的状态机替身，证明协议与断言机制，不证明 Duolingo 覆盖或模型收益。
+
+
+## 前端图像事实
+
+共同前端契约支持`kind: image_pixels`，要求`reference_image`（仓库内冻结PNG）、`pixels: [宽, 高]`及原版`evidence`。对应观测状态的`capture`包含`path`、`content_rect_points: [x,y,w,h]`、`backing_scale`和`window_points: [w,h]`，来自真实采样。比较器自行读图和核验实际大小，驱动的pass标记无效；缺采样/依赖不可用，不改为文本通过。未访问状态为not_run。需要Pillow执行图像检查；有ICC的输入转sRGB后按实测区域和缩放比较，不搜索偏移或增加容差。既有pending具体化时保留父版本与演进审计。[v25实际复跑](../projects/duolingo-web/evidence/english-pronunciation-cards-v1/README.md)。

@@ -1,0 +1,45 @@
+{
+  "kind": "same-viewport-pixel-diagnostic",
+  "native_trajectory": "Actual pronunciation navigation, same archived six-lesson source home state; no practice answers",
+  "viewport": [
+    1200,
+    732
+  ],
+  "normalization": "ICC to common sRGB; crop native titlebar using measured content rect, downsample2x with Lanczos; reference pixels unchanged",
+  "rows": [
+    {
+      "question": null,
+      "stage": "pronunciation",
+      "source": "projects/duolingo-web/evidence/english-pronunciation-v1/pronunciation-after.png",
+      "native": "pronunciation-window.png",
+      "source_sha256": "e5594a67d04aec3336c421114d0024349121a6b71cec8a184e224038cec6a78c",
+      "native_sha256": "46b0bcc889512257c1ffad8ef3723eef24aefb03e408d3f7e65e31a6f6a14794",
+      "color_management": {
+        "source": {
+          "input_profile": "untagged browser CSS capture; assumed sRGB",
+          "input_profile_sha256": null,
+          "comparison_space": "sRGB"
+        },
+        "native": {
+          "input_profile": "Display",
+          "input_profile_sha256": "b6869613f44ea83b13cbd15652a1071c6bd85a37a5517bcbe7d1db1bcdc58e6f",
+          "comparison_space": "sRGB"
+        }
+      },
+      "mean_absolute_rgb_difference": [
+        3.4803062386156647,
+        3.0851969489981785,
+        3.6419068761384334
+      ],
+      "status": "different"
+    }
+  ],
+  "candidate_acceptance": "not_proven",
+  "limitations": [
+    "This is an actual pixel diagnostic, not a substitute for frontend acceptance",
+    "Animation frames and temporal sound not aligned",
+    "Font antialiasing differs across renderers; reported without tolerance or masking",
+    "Hearts tutorial, source interlude visuals and full completion chain remain incomplete",
+    "Same source six-lesson snapshot, hearts3, streak2, gems510, countdown12h, 1200x732. ICC conversion and crop only; no masks or tolerances. Source practice and audio-output equality remain separately unverified."
+  ]
+}

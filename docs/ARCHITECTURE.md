@@ -193,3 +193,8 @@ Lesson将词库键盘、填空整句偏好分别保存；clearAnswer清答案缓
 
 
 源练习驱动现在默认建立answer_memory：键包含真实题型、选项标签和原音频身份，结果只从实际反馈更新，续跑显式传入并记录first_probe/prior_feedback；第三次五道重练均实际接受。就绪等待防止disabled旧radio被再次操作；既有slide和已观察成绩单入口共同识别终态，未知题型仍保存现场。源口语/权限及成绩单需求进入v22下一批，原生尚缺对应实现；权限denied探针只改变当前来源并恢复原prompt，不采集环境麦克风。
+
+
+### 共同前端契约的实际图像要求
+
+`image_pixels`由`capabilities/rebuild/images.py`独立读取参考与候选PNG；原生观察器只绑定真实文件和实测窗口元数据。按ICC转sRGB、实测标题栏裁切及backing scale下采样，零像素差才pass，无掩码/平移搜索/容差。`capture_color.py`兼容导出同一provider，案例独立比较与共同契约不复制算法。Pillow仅图像要求需要，缺少时unavailable，其它能力仍可运行。归档只重定位capture.path到字节一致PNG，原始观察不覆盖。v25将一个旧pending实际执行并追加七幅源图，声音/动画时序与未访问状态仍单独验收。[当前失败与复跑](../projects/duolingo-web/evidence/english-pronunciation-cards-v1/README.md)。

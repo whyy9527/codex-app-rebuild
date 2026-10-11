@@ -127,3 +127,6 @@ node projects/duolingo-web/explore-curriculum.mjs artifacts/reference-new.json -
 
 
 第七课原版完整轨迹已回主页，确认跨题独立偏好、跳过重练且100%结算、口语替换和额外成就；正确Lin Rive已绑定。四题偏好原生28状态/19项核心通过，58项仍45pass/9fail/4not_run。v13保留旧要求并增加419项第七课源需求，整课Swift接入仍待完成，不累计组件结果。[源轨迹、失败与复跑](evidence/english-seventh-v1/README.md)。
+
+
+发音卡片按实际原版修正为19px音标、15px单词和68点点击区域；共同v25直接读取PNG比较，8幅整图仍失败。正常口语评分/推进、音标增长和完整前端/声音继续，不能称1:1完成。[本批证据与可复跑图像验收](evidence/english-pronunciation-cards-v1/README.md)。
