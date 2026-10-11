@@ -1,0 +1,7 @@
+{
+  "observed_at": "2026-10-11T04:38:15.336Z",
+  "before": "- button:\n  - img\n- progressbar\n- heading \"选择正确的答案\" [level=1]\n- text: 热\n- img\n- radiogroup \"choice\":\n  - radio \"1 hot\":\n    - text: 1 hot\n    - img\n    - img\n  - radio \"2 coffee\":\n    - text: 2 coffee\n    - img\n    - img\n  - radio \"3 welcome\":\n    - text: 3 welcome\n    - img\n    - img\n- button \"跳过\"\n- button \"检查\" [disabled]",
+  "selected": "coffee",
+  "feedback": "- button:\n  - img\n- progressbar\n- heading \"选择正确的答案\" [level=1]\n- text: 热\n- img\n- radiogroup \"choice\":\n  - radio \"1 hot\" [disabled]:\n    - text: 1 hot\n    - img\n    - img\n  - radio \"2 coffee\" [checked] [disabled]:\n    - text: 2 coffee\n    - img\n    - img\n  - radio \"3 welcome\" [disabled]:\n    - text: 3 welcome\n    - img\n    - img\n- heading \"正确答案：\" [level=2]\n- text: hot\n- button \"太简单\"\n- button \"太难\"\n- button \"报错\"\n- button \"继续\"",
+  "rejected": true
+}

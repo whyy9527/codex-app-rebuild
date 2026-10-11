@@ -702,6 +702,34 @@ func actualCurrentResultHistory() throws {
     print("PASS actual 17-card history; declined display is not a correct grade; keyboard answer and retry isolation")
 }
 
+func actualErrorResultHistory() throws {
+    let source = try course(fixture: "fixture-reference-en-zh-error-review-v1.json")
+    var lesson = Lesson(course: source)
+    var steps = 0
+    while !lesson.complete && steps < 48 {
+        steps += 1
+        if lesson.interlude != nil { lesson.advance(); continue }
+        if lesson.deferredSpeech != nil { lesson.declineSpeech(); lesson.advance(); continue }
+        let q = lesson.question
+        let wrong = q.id == "error-review-q1" && !lesson.reviewing
+        switch q.kind {
+        case .choice: lesson.choose(wrong ? "1" : q.answer); lesson.submit()
+        case .wordTiles: for id in q.answerWords { lesson.addWord(id) }; lesson.submit()
+        case .textEntry: lesson.enterText(q.answer); lesson.submit()
+        case .matching: for p in q.pairs { lesson.matchLeft(p.id); lesson.matchRight(p.id) }
+        }
+        try check(lesson.feedback == !wrong, "Observed first error or correction was misgraded")
+        lesson.advance()
+    }
+    let entries = lesson.resultReviewEntries
+    try check(lesson.complete && entries.count == 18, "Error instance lost an attempt")
+    try check(entries[1].answer == "coffee" && entries[1].accepted == false, "First wrong answer overwritten")
+    try check(entries[17].answer == "hot" && entries[17].accepted == true && entries[1].questionID == entries[17].questionID && entries[1].id != entries[17].id, "Corrected attempt was deduplicated")
+    try check(entries[6].declined && entries[6].accepted == nil, "Deferred speech became graded")
+    try check(Lesson(course: source).resultReviewEntries.isEmpty, "Retry retained error history")
+    print("PASS actual 18-card history preserves wrong coffee and corrected hot separately")
+}
+
 do {
     try mistakeReview()
     try persistence()
@@ -729,7 +757,8 @@ do {
     try actualGeneralPractice()
     try actualListeningDeclineReplacement()
     try actualCurrentResultHistory()
-    print("26 business checks passed; core layer only")
+    try actualErrorResultHistory()
+    print("27 business checks passed; core layer only")
 } catch {
     FileHandle.standardError.write(Data(("FAIL " + String(describing: error) + "\n").utf8))
     exit(1)

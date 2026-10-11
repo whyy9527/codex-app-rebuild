@@ -1,0 +1,19 @@
+{
+  "observed": "Original error instance, 18 result cards, first coffee rejected and later hot accepted; separate identity-preserving attempt history. Wrong card currently expanded at top.",
+  "novel_findings": [
+    "No deduplication of corrected attempt",
+    "Red incorrect card versus green corrected card",
+    "Short answer tooltip dimensions, actual below/above positions"
+  ],
+  "negative_findings": [
+    "Another real practice instance lacked listenIsolation; repeated restarts have not discovered its review card",
+    "Declined speech is displayed, normal speech scoring remains unknown"
+  ],
+  "next": [
+    "Explore a different source entry or retained listening-enabled state for listenIsolation review; do not repeat practice solely because earlier restarts missed it",
+    "Verify source short-tooltip placement at boundary before generalizing to long/multiline answers",
+    "Add verified review metadata to default lessons after missing card types are actually observed",
+    "Continue known whole-image/audio differences and other unvisited navigation branches"
+  ],
+  "claim": "Source exploration evidence, not RSI benefit or complete autonomous exploration"
+}

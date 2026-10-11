@@ -242,3 +242,6 @@ LessonDefinition的可选listeningDeclineReplacements由实例提供已观察替
 `import-current-character.py`连接当前公共角色与实际renderer绑定：下载公开Rive并核对实测缓冲SHA后才进入Swift资源映射。资源身份、原生可见运动、同状态几何、像素和时序分别验证，不能互相代替。原生可选按指定resource采样实际自有窗口，q5动作期12帧，不注入Lesson状态。当前Eddy绑定已生效但全图差异没有改善。[实际源、新驱动与负结果](../projects/duolingo-web/evidence/english-current-challenge-v1/README.md)。
 
 `Question.isolationPromptTokens`为可选显示数据，从源token和blankRange编译，保留空格/标点/缺词/可提示词身份，不改变答案或评分。通用夹具v3带该数据；`ReferenceIsolationPhrase`按真实词宽留白，正确反馈显示绿色原词，播放控件仅覆盖原版29×22区域。只有带数据的通用题使用新行/气泡/分隔线布局，旧夹具保持旧路径。v32追加9条源几何和语义，整图与暂缓缺失继续明确失败/不可验证；当前题模式在无challenge引导页仍不能自动续接。[验证与局限](../projects/duolingo-web/evidence/english-isolation-presentation-v1/README.md)。
+
+
+错误实例与旧实例共用`review_instance_compiler.py`编译真实题目/媒体；`compile-error-review.py`另核验拒绝回执和课末更正身份，保留两次尝试而非覆盖题目记录。v35追加三种18卡状态，截图颜色采样与整图比较分别验证，采样器只从实际ICC归一化截图提取事实。Swift消费`accepted == false`显示原红叉及红卡；浮层方向使用当前滚动几何。源短答案样本不证明长答案规则，颜色1级差及整图失败继续保留。[实际验证](../projects/duolingo-web/evidence/english-error-review-v1/README.md)。

@@ -300,3 +300,7 @@ v15保留1489项并增8项真实原版断言。独立原生radio2实际点击及
 ### 真实成绩历史与原生滚动验证
 
 原版证明hover不展开、点击移走保留、二次点击收起，稳定滚动387点。实际17卡轨迹编译显式夹具及45原资源，核心保存答案和nil评分的暂缓展示；Swift回顾接真实卡片/播放/展开/关闭/滚动。初轮驱动ID失败、裸勾/关闭差异及postToPid滚轮无移动的假成功保留。最终44原生状态无驱动失败并测到387点往返；v34保留2023旧项追加4，共147pass7fail1873not_run，新115为113pass2整图fail。两图修正后误差下降仍不1:1。同一二进制默认47状态/真正重启94pass56fail1874not_run3unavailable，不累计。26核心/56Python/12Node通过，编译/冻结字节复现及45资源哈希验证。默认回顾仍无元数据，错误卡/去重、听音填空及自适应重练规则优先探索，继续整图/声音与其它未访分支；完整Goal active，原论文/负消融保留。[证据与复跑](../projects/duolingo-web/evidence/english-result-review-native-v1/README.md)。
+
+### 首错与课末改答的18卡探索
+
+原版实际热→coffee错误后课末hot更正，18卡分别保留红错/绿对且不去重，短浮层99×136与上下位置采到；本实例仍无listenIsolation，frontier改换入口而非把重复重练当探索充分。共用编译器旧输出字节不变，49原资源哈希验证，v35保留2027旧项追加181，共2208。Swift修红卡/原叉及短浮层；基线与最终各48真实状态完成，三整图差异下降仍fail，红底ICC转换差1级仍fail；新增176pass5fail，全210pass10fail1988not_run。旧17卡同二进制44状态回归147pass7fail2054not_run。构建/27核心/56Python/12Node通过；默认真正重启结果见证据。原版解析cwd、冻结text-run和首驱动ID失败保留，未扩大产品限制或增加审批。默认回顾/听音填空、正常口语、声学/整图及其它未访分支继续，完整Goal active，原论文/负消融保留。[证据、frontier及复跑](../projects/duolingo-web/evidence/english-error-review-v1/README.md)。

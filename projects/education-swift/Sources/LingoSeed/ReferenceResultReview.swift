@@ -29,7 +29,7 @@ struct ReferenceResultReview: View {
                         Text("点击下面的小方块来浏览答案吧！").font(ReferenceStyle.font(25)).foregroundStyle(Color(white: 153/255))
                             .frame(width: 800, height: 30).offset(x: 30, y: 102)
                         ForEach(Array(entries.enumerated()), id: \.element.id) { index, entry in
-                            card(entry, index: index).frame(width: 165, height: rowHeights[index / 4])
+                            card(entry, index: index, viewportHeight: geometry.size.height).frame(width: 165, height: rowHeights[index / 4])
                                 .offset(x: 40 + CGFloat(index % 4) * 185, y: 170 + top(index))
                                 .zIndex(expanded == entry.id ? 1 : 0)
                         }
@@ -42,17 +42,20 @@ struct ReferenceResultReview: View {
                     }.frame(width: 860, height: 170 + contentHeight + 50)
                         .padding(.top, 24).padding(.bottom, 24)
                         .frame(width: geometry.size.width)
-                }.scrollIndicators(.hidden)
+                }.scrollIndicators(.hidden).coordinateSpace(name: "review-viewport")
             }
         }
     }
-    private func card(_ entry: ResultReviewEntry, index: Int) -> some View {
-        ZStack(alignment: .topLeading) {
+    private func card(_ entry: ResultReviewEntry, index: Int, viewportHeight: CGFloat) -> some View {
+        let wrong = entry.accepted == false
+        let cardFill = wrong ? Color(red: 1, green: 223/255, blue: 224/255) : fill
+        let cardInk = wrong ? Color(red: 234/255, green: 43/255, blue: 43/255) : ink
+        return ZStack(alignment: .topLeading) {
             ReferencePracticeControl(label: entry.presentation.title + (entry.presentation.prompt.isEmpty ? "" : " " + entry.presentation.prompt),
                 identifier: "review-card-\(index)", enabled: true,
                 action: { expanded = expanded == entry.id ? nil : entry.id }, face: AnyView(
                     ZStack(alignment: .topLeading) {
-                        RoundedRectangle(cornerRadius: 10, style: .circular).fill(fill)
+                        RoundedRectangle(cornerRadius: 10, style: .circular).fill(cardFill)
                         VStack(alignment: .leading, spacing: 15) {
                             Text(entry.presentation.title).font(ReferenceStyle.font(17)).frame(width: 100, alignment: .leading)
                                 .fixedSize(horizontal: false, vertical: true)
@@ -60,8 +63,8 @@ struct ReferenceResultReview: View {
                                 Text(entry.presentation.prompt).font(ReferenceStyle.font(17, weight: 400))
                                     .frame(width: 135, alignment: .leading).fixedSize(horizontal: false, vertical: true)
                             }
-                        }.foregroundStyle(ink).padding(15)
-                        ReferenceStyle.image("en-result-review-check").resizable().frame(width: 12, height: 12)
+                        }.foregroundStyle(cardInk).padding(15)
+                        ReferenceStyle.image(wrong ? "en-result-review-wrong" : "en-result-review-check").resizable().frame(width: wrong ? 10 : 12, height: wrong ? 10 : 12)
                             .frame(width: 25, height: 25).background(.white, in: Circle())
                             .offset(x: 125, y: 15)
                     }))
@@ -79,20 +82,42 @@ struct ReferenceResultReview: View {
                         .offset(x: clips.count == 1 ? 62.5 : 17 + CGFloat(j % 3) * 43, y: 72 + CGFloat(j / 3) * 43)
                 }
             }
+        }.overlay(alignment: .topLeading) {
             if expanded == entry.id {
-                VStack(alignment: .leading, spacing: 4) {
-                    Text("你的答案：").foregroundStyle(Color(white: 153/255)).font(ReferenceStyle.font(14))
-                    Text(entry.answer).font(ReferenceStyle.font(17, weight: 400))
-                    Text("正确答案：").foregroundStyle(Color(white: 153/255)).font(ReferenceStyle.font(14)).padding(.top, 16)
-                    Text(entry.presentation.correctAnswer).font(ReferenceStyle.font(17, weight: 400))
-                }.foregroundStyle(Color(white: 60/255)).padding(15).frame(width: 115, alignment: .leading)
-                    .background(RoundedRectangle(cornerRadius: 16).fill(.white))
-                    .overlay(RoundedRectangle(cornerRadius: 16).stroke(ReferenceStyle.border, lineWidth: 2))
-                    .overlay(alignment: .bottom) {
-                        Path { p in p.move(to: CGPoint(x: 0, y: 0)); p.addLine(to: CGPoint(x: 7, y: 7)); p.addLine(to: CGPoint(x: 14, y: 0)) }
-                            .fill(.white).frame(width: 14, height: 7).offset(y: 6)
-                    }.offset(x: 25, y: -73).accessibilityIdentifier("result-review-answer")
+                GeometryReader { position in
+                    let below = position.frame(in: .named("review-viewport")).minY + 78 + 136 <= viewportHeight
+                    answerTooltip(entry, below: below)
+                        .offset(x: (165 - tooltipWidth(entry)) / 2, y: below ? 78 : -74)
+                }
             }
+        }
+    }
+    private func tooltipWidth(_ entry: ResultReviewEntry) -> CGFloat {
+        let font = ReferenceStyle.nativeFont(17, weight: 400)
+        let widths = [entry.answer, entry.presentation.correctAnswer].map { ($0 as NSString).size(withAttributes: [.font: font]).width }
+        return max(65, widths.max() ?? 0) + 34
+    }
+    private func answerTooltip(_ entry: ResultReviewEntry, below: Bool) -> some View {
+        VStack(alignment: .leading, spacing: 20) {
+            answerGroup("你的答案：", value: entry.answer)
+            answerGroup("正确答案：", value: entry.presentation.correctAnswer)
+        }.foregroundStyle(Color(white: 60/255)).padding(17)
+            .frame(width: tooltipWidth(entry), height: 136, alignment: .topLeading)
+            .background(RoundedRectangle(cornerRadius: 15).fill(.white))
+            .overlay(RoundedRectangle(cornerRadius: 15).strokeBorder(ReferenceStyle.border, lineWidth: 2))
+            .overlay(alignment: below ? .top : .bottom) {
+                Path { p in
+                    p.move(to: CGPoint(x: 0, y: below ? 7 : 0))
+                    p.addLine(to: CGPoint(x: 7, y: below ? 0 : 7))
+                    p.addLine(to: CGPoint(x: 14, y: below ? 7 : 0))
+                }.fill(.white).frame(width: 14, height: 7).offset(y: below ? -6 : 6)
+            }.accessibilityIdentifier("result-review-answer")
+    }
+    private func answerGroup(_ label: String, value: String) -> some View {
+        VStack(alignment: .leading, spacing: 0) {
+            Text(label).foregroundStyle(Color(white: 153/255)).font(ReferenceStyle.font(13, bold: true))
+                .frame(height: 20, alignment: .leading)
+            Text(value).font(ReferenceStyle.font(17, weight: 400)).frame(height: 21, alignment: .leading)
         }
     }
 }

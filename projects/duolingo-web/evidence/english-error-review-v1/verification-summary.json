@@ -1,0 +1,122 @@
+{
+  "goal": "active; full 1:1 scope unchanged",
+  "new_contract_requirements": 181,
+  "contract_total": 2208,
+  "source_counts": {
+    "pass": 395,
+    "fail": 0,
+    "not_run": 1799,
+    "unavailable": 14
+  },
+  "checks": {
+    "core": 27,
+    "python": 56,
+    "node": 12,
+    "build": "passed",
+    "old_compiler_outputs": "byte-identical",
+    "resource_receipts_verified": 49,
+    "freeze": "byte-reproduced",
+    "archive_revalidation": "210pass/10fail/1988not_run unchanged"
+  },
+  "native": {
+    "baseline": {
+      "states": 48,
+      "failure": null,
+      "binary_sha256": "35b5b851f43670053230d1ab31fb0addb2edca694d6ec8225c1e62774aa62cce",
+      "counts": {
+        "not_run": 1988,
+        "pass": 210,
+        "fail": 10
+      },
+      "new_states": {
+        "pass": 176,
+        "fail": 5
+      },
+      "image_differences": {
+        "error-practice-review-open": [
+          3.3904064207650273,
+          2.6933526867030966,
+          3.4144706284153004
+        ],
+        "error-practice-review-wrong-expanded": [
+          3.3000774134790527,
+          2.640495218579235,
+          3.955842440801457
+        ],
+        "error-practice-review-correction-expanded": [
+          2.4769341985428053,
+          1.2332297358834243,
+          3.0899567395264116
+        ]
+      }
+    },
+    "final": {
+      "states": 48,
+      "failure": null,
+      "binary_sha256": "6aa02bad0deddf4fbec7e67e5b182e58a422b4f2151412e2851211b307c27269",
+      "counts": {
+        "not_run": 1988,
+        "pass": 210,
+        "fail": 10
+      },
+      "new_states": {
+        "pass": 176,
+        "fail": 5
+      },
+      "image_differences": {
+        "error-practice-review-open": [
+          2.055089936247723,
+          1.719332877959927,
+          2.2256796448087433
+        ],
+        "error-practice-review-wrong-expanded": [
+          2.1188000910746814,
+          1.7837955373406194,
+          2.27721766848816
+        ],
+        "error-practice-review-correction-expanded": [
+          1.3621880692167578,
+          0.8292634335154827,
+          1.457231329690346
+        ]
+      }
+    },
+    "current_regression": {
+      "states": 44,
+      "failure": null,
+      "binary_sha256": "6aa02bad0deddf4fbec7e67e5b182e58a422b4f2151412e2851211b307c27269",
+      "counts": {
+        "not_run": 2054,
+        "pass": 147,
+        "fail": 7
+      },
+      "new_states": {
+        "not_run": 181
+      },
+      "image_differences": {
+        "current-practice-review-open": [
+          2.0742270036429873,
+          1.614778005464481,
+          2.0819444444444444
+        ],
+        "current-practice-review-speech-expanded": [
+          2.1254189435336976,
+          1.6899373861566485,
+          2.1134915755919854
+        ]
+      }
+    },
+    "default_regression": {
+      "states": 47,
+      "failure": null,
+      "binary_sha256": "6aa02bad0deddf4fbec7e67e5b182e58a422b4f2151412e2851211b307c27269",
+      "counts": {
+        "not_run": 2055,
+        "pass": 94,
+        "fail": 56,
+        "unavailable": 3
+      },
+      "action": "Actual Quests entry, independent practice, one wrong, correction, result/reward/profile and real child restart"
+    }
+  }
+}
