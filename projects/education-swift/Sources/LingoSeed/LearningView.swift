@@ -2,6 +2,7 @@ import SwiftUI
 import LearningCore
 
 struct LearningView: View {
+    @State private var showingResultReview = false
     @Bindable var model: LearningModel
     private var chinese: Bool { model.course.interfaceLanguage == "zh" }
     private func copy(_ english: String, _ zh: String) -> String { chinese ? zh : english }
@@ -15,7 +16,8 @@ struct LearningView: View {
                     if model.isPronunciationPractice { ReferencePronunciationPractice(model: model, lesson: lesson) }
                     else if model.isGeneralPractice {
                         if lesson.complete, let page = model.settlement?.current {
-                            ReferenceSettlement(page: page, mistakesMade: lesson.mistakesMade, advance: model.advanceSettlement, retry: model.beginGeneralPractice)
+                            ReferenceSettlement(page: page, mistakesMade: lesson.mistakesMade, advance: model.advanceSettlement, retry: model.beginGeneralPractice,
+                                                review: lesson.resultReviewEntries.isEmpty ? nil : { showingResultReview = true })
                         } else {
                             ReferencePronunciationPractice(model: model, lesson: lesson, otherQuestion: AnyView(question(lesson)), otherFooter: AnyView(generalPracticeFooter(lesson)))
                         }
@@ -44,6 +46,12 @@ struct LearningView: View {
         .frame(minWidth: 780, minHeight: 660)
         .foregroundStyle(ink).background(ReferenceStyle.background)
         .overlay { if model.reportingQuestion { ReferenceQuestionReport(model: model) } }
+        .overlay {
+            if showingResultReview, let lesson = model.lesson {
+                ReferenceResultReview(entries: lesson.resultReviewEntries,
+                    play: { model.audio.speak("", language: "en", resource: $0) }, close: { showingResultReview = false })
+            }
+        }
         .overlay { if model.speechCapture.state == .denied { ReferenceSpeechPermissionOverlay(speech: model.speechCapture) } }
         .preferredColorScheme(model.preferences.darkMode == "On" ? .dark : model.preferences.darkMode == "Off" ? .light : nil)
 

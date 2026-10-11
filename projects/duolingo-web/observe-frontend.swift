@@ -30,6 +30,9 @@ func launchChild() throws -> Process {
     if CommandLine.arguments.contains("--exercise-general-listening-decline") {
         process.arguments! += ["--general-practice-fixture", root.appendingPathComponent("projects/duolingo-web/fixture-reference-en-zh-general-listening-decline-v1.json").path]
     }
+    if CommandLine.arguments.contains("--exercise-current-review") {
+        process.arguments! += ["--general-practice-fixture", root.appendingPathComponent("projects/duolingo-web/fixture-reference-en-zh-current-review-v1.json").path]
+    }
     if CommandLine.arguments.contains("--exercise-speech-denied") { process.arguments! += ["--verify-speech-denied"] }
     process.standardOutput = FileHandle.nullDevice
     let log = try FileHandle(forWritingTo: childLog); try log.seekToEnd()
@@ -186,6 +189,86 @@ try capture("home-window")
 if CommandLine.arguments.contains("--observe-quests") {
     try press("nav-quests"); Thread.sleep(forTimeInterval: 0.5)
     states["quests"] = observe(); try capture("quests")
+    if CommandLine.arguments.contains("--exercise-current-review") {
+        let practiceURL = root.appendingPathComponent("projects/duolingo-web/fixture-reference-en-zh-current-review-v1.json")
+        let data = try JSONSerialization.jsonObject(with: Data(contentsOf: practiceURL)) as! [String: Any]
+        let course = (data["data"] as! [String: Any])["candidate_course"] as! [String: Any]
+        let definition = (course["lessons"] as! [[String: Any]])[0]
+        let questions = definition["questions"] as! [[String: Any]]
+        let speech = (definition["deferredSpeech"] as! [[String: Any]])[0]
+        var failure: String?
+        func saveReviewState(_ key: String) throws { states[key] = observe(); try capture(key) }
+        do {
+            try press("quests-practice")
+            for q in questions {
+                let key = q["id"] as! String
+                if key == speech["beforeQuestionID"] as? String {
+                    try waitFor("speech-title", value: speech["id"] as? String)
+                    try saveReviewState("current-review-speech")
+                    try press("speech-decline"); try waitFor("speech-closed"); try saveReviewState("current-review-speech-declined")
+                    try press("speech-continue")
+                }
+                try waitFor(q["kind"] as? String == "matching" ? "question-prompt" : "question-title",
+                            value: q["kind"] as? String == "matching" ? key : q["prompt"] as? String)
+                try saveReviewState(key)
+                switch q["kind"] as? String {
+                case "matching":
+                    for p in q["pairs"] as! [[String: Any]] { try press("pair-left-" + (p["id"] as! String)); try press("pair-right-" + (p["id"] as! String)) }
+                case "word_tiles":
+                    for id in q["answer_words"] as! [String] { try press("word-bank-"+id) }
+                    try press("check")
+                case "text_entry": try fillInput(q["answer"] as! String); try press("check")
+                default: try press("option-"+(q["answer"] as! String)); try press("check")
+                }
+                try waitFor("continue"); try saveReviewState(key+"-feedback"); try press("continue")
+                if key == "current-review-q13" { try waitFor("lesson-interlude", value: "current-review-intro"); try saveReviewState("current-review-intro"); try press("interlude-continue") }
+            }
+            try waitFor("lesson-complete", value: "完美！"); try saveReviewState("current-review-result")
+            try press("settlement-secondary"); try waitFor("result-review-title")
+            try saveReviewState("current-practice-review-open")
+            try press("review-card-8"); try waitFor("result-review-answer")
+            try saveReviewState("current-practice-review-speech-expanded")
+            guard movePointer(to: "review-card-8") else { throw ProbeError(message: "Cannot target owned review scroll") }
+            func scrollReview(_ amount: Int32, returned: Bool) throws {
+                guard let event = CGEvent(scrollWheelEvent2Source: nil, units: .pixel, wheelCount: 1, wheel1: amount, wheel2: 0, wheel3: 0),
+                      let point = CGEvent(source: nil)?.location,
+                      NSRunningApplication(processIdentifier: child.processIdentifier)?.isActive == true else {
+                    throw ProbeError(message: "No active owned review scroll target")
+                }
+                event.location = point; event.post(tap: .cghidEventTap)
+                let deadline = Date().addingTimeInterval(8)
+                while Date() < deadline {
+                    let elements = observe()["elements"] as! [String: Any]
+                    let rect = (elements["review-card-0"] as? [String: Any])?["rect"] as? [Double]
+                    if let y = rect?[1], returned ? abs(y - 194) < 0.01 : y < 94 {
+                        Thread.sleep(forTimeInterval: 0.5); return
+                    }
+                    Thread.sleep(forTimeInterval: 0.1)
+                }
+                throw ProbeError(message: "Actual review geometry did not change after scroll")
+            }
+            try scrollReview(-600, returned: false)
+            try saveReviewState("current-review-scrolled")
+            try scrollReview(600, returned: true)
+            try saveReviewState("current-review-scroll-returned")
+            try press("result-review-close"); try waitFor("lesson-complete")
+            try saveReviewState("current-review-closed")
+            try press("settlement-retry"); try waitFor("question-prompt", value: "current-review-q0")
+            try saveReviewState("current-review-retried")
+        } catch {
+            failure = String(describing: error); states["failure-boundary"] = observe(); try? capture("failure-boundary")
+        }
+        try bindCaptures(&states, names: ["home":"home-window"])
+        let receipt: [String: Any] = ["kind":"owned_native_ax_observation", "states":states,
+            "candidate_binary_sha256":candidateSHA, "fixture_sha256":fixtureSHA,
+            "general_fixture_sha256":SHA256.hash(data:try Data(contentsOf:practiceURL)).map{String(format:"%02x",$0)}.joined(),
+            "observed_at":ISO8601DateFormatter().string(from:Date()), "failure":failure as Any,
+            "action":"Actual 16-question instance, speech decline, 17-card review, expanded speech, close and retry",
+            "limitations":["Explicit observed instance; retry uses that instance, not verified adaptive selection; no acoustic equality proof"]]
+        try JSONSerialization.data(withJSONObject:receipt, options:[.prettyPrinted,.sortedKeys]).write(to:output.appendingPathComponent("observed.json"))
+        if let failure { throw ProbeError(message: failure) }
+        return
+    }
     if CommandLine.arguments.contains("--exercise-general-listening-decline") {
         let practiceURL = root.appendingPathComponent("projects/duolingo-web/fixture-reference-en-zh-general-listening-decline-v1.json")
         let fixtureData = try JSONSerialization.jsonObject(with: Data(contentsOf: practiceURL)) as! [String: Any]

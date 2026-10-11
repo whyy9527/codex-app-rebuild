@@ -20,6 +20,8 @@
 
 当前题驱动新增显式多步预算，真实重练实例接受16题，并自动接续一次已观察引导页；口语仍需人工交接，未证明完整无监督或探索充分。实际成绩单发现17张卡（含暂缓口语），采集器补DIV角色；v33保留1912旧项新增111，候选新增全未运行。[续跑、成绩单漏采与下一实施批次](projects/duolingo-web/evidence/english-current-walk-v1/README.md)。
 
+该17卡实例已编译共同夹具并接入Swift真实成绩历史、回顾展开/关闭/滚动，实际44状态完成；v34本批115项113pass/2整图fail。原生滚轮曾未移动仍退出0，现按实际几何验证387点位移；负结果保留。默认练习47状态及真正重启回归无驱动失败，但默认回顾仍待源规则与元数据，不能把显式实例当全产品完成。[实际原生回执、差异与复跑](projects/duolingo-web/evidence/english-result-review-native-v1/README.md)。
+
 共同前端契约已接入真实PNG比较，缺图不可计为通过；发音卡片进一步按浏览器实际字体、字距、卡面和按下反馈修正，整图仍失败。[当前证据与复跑](projects/duolingo-web/evidence/english-pronunciation-typography-v1/README.md)。
 
 前端契约保留旧要求并持续追加源观察；最新口语权限及发音退出分支已接入实际原生验证。反例探测区分全错直接退出与已获得正确进度后的确认，取消保持题目状态。几何、整图和声音仍有失败/未覆盖，正常录音评分与推进未完成。[最新证据、探索反例与复跑](projects/duolingo-web/evidence/english-practice-exit-v1/README.md)，逐批结果由[Roadmap](docs/ROADMAP.md)维护；不累计旧构建回执填当前未执行项。

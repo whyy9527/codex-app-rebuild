@@ -668,6 +668,40 @@ func actualListeningDeclineReplacement() throws {
     print("PASS actual listening replacement trajectory and separate wrong-review state invariant")
 }
 
+func actualCurrentResultHistory() throws {
+    let source = try course(fixture: "fixture-reference-en-zh-current-review-v1.json")
+    var lesson = Lesson(course: source)
+    while !lesson.complete {
+        if lesson.interlude != nil { lesson.advance(); continue }
+        if let speech = lesson.deferredSpeech {
+            let count = lesson.resultReviewEntries.count
+            lesson.advance()
+            try check(lesson.resultReviewEntries.count == count, "Unanswered speech entered result history")
+            lesson.declineSpeech(); lesson.advance()
+            let entry = lesson.resultReviewEntries.last!
+            try check(entry.questionID == speech.id && entry.accepted == nil && entry.declined, "Decline falsely recorded as graded correct")
+            try check(entry.answer == "Hot, please.", "Observed declined-speech display lost")
+            continue
+        }
+        let q = lesson.question
+        switch q.kind {
+        case .choice: lesson.choose(q.answer); lesson.submit()
+        case .wordTiles: for id in q.answerWords { lesson.addWord(id) }; lesson.submit()
+        case .textEntry: lesson.enterText(q.answer); lesson.submit()
+        case .matching: for p in q.pairs { lesson.matchLeft(p.id); lesson.matchRight(p.id) }
+        }
+        try check(lesson.feedback == true, "Actual current question not accepted")
+        lesson.advance()
+    }
+    let entries = lesson.resultReviewEntries
+    try check(entries.count == 17 && entries.filter { $0.accepted == true }.count == 16, "Actual review lost graded or deferred card")
+    try check(entries[8].declined && entries[9].presentation.prompt == "tea with sugar", "Inserted translation reordered before speech")
+    try check(entries[14].answer == "tea with sugar", "Keyboard answer not retained after clearing input")
+    let fresh = Lesson(course: source)
+    try check(fresh.resultReviewEntries.isEmpty, "Retry inherited prior result history")
+    print("PASS actual 17-card history; declined display is not a correct grade; keyboard answer and retry isolation")
+}
+
 do {
     try mistakeReview()
     try persistence()
@@ -694,7 +728,8 @@ do {
     try laterPronunciationPractices()
     try actualGeneralPractice()
     try actualListeningDeclineReplacement()
-    print("25 business checks passed; core layer only")
+    try actualCurrentResultHistory()
+    print("26 business checks passed; core layer only")
 } catch {
     FileHandle.standardError.write(Data(("FAIL " + String(describing: error) + "\n").utf8))
     exit(1)

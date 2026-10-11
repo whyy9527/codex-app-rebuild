@@ -29,7 +29,24 @@ public struct IsolationPromptToken: Codable, Equatable, Sendable {
     public let isBlank: Bool
     public let underlined: Bool
 }
+/// Presentation compiled from an actual source result card, independently of grading.
+public struct ResultReviewPresentation: Codable, Equatable, Sendable {
+    public let title: String
+    public let prompt: String
+    public let correctAnswer: String
+    public let declinedAnswer: String?
+    public let audioResources: [String]
+}
+public struct ResultReviewEntry: Equatable, Sendable, Identifiable {
+    public let id: String
+    public let questionID: String
+    public let presentation: ResultReviewPresentation
+    public let answer: String
+    public let accepted: Bool?
+    public let declined: Bool
+}
 public struct Question: Codable, Equatable, Sendable, Identifiable {
+    public let resultReview: ResultReviewPresentation?
     public let isolationPromptTokens: [IsolationPromptToken]?
     public let matchedAudioResources: [String]?
     public let correctFeedbackAudioResource: String?
@@ -69,6 +86,7 @@ public struct Question: Codable, Equatable, Sendable, Identifiable {
     public let skipCorrectText: String?
     public let feedbackReportReasons: [String]?
     enum CodingKeys: String, CodingKey {
+        case resultReview
         case isolationPromptTokens
         case matchedAudioResources, correctFeedbackAudioResource, incorrectFeedbackAudioResource
         case practiceAudioResources, practiceAudioLabels, feedbackHint, reviewWordOrder, skipLabel, skipCorrectText
@@ -78,6 +96,7 @@ public struct Question: Codable, Equatable, Sendable, Identifiable {
     }
     public init(from decoder: Decoder) throws {
         let c = try decoder.container(keyedBy: CodingKeys.self)
+        resultReview = try c.decodeIfPresent(ResultReviewPresentation.self, forKey: .resultReview)
         isolationPromptTokens = try c.decodeIfPresent([IsolationPromptToken].self, forKey: .isolationPromptTokens)
         matchedAudioResources = try c.decodeIfPresent([String].self, forKey: .matchedAudioResources)
         correctFeedbackAudioResource = try c.decodeIfPresent(String.self, forKey: .correctFeedbackAudioResource)
@@ -168,6 +187,7 @@ public struct SettlementPage: Codable, Equatable, Sendable, Identifiable {
     public var levelLabel: String? = nil
 }
 public struct DeferredSpeech: Codable, Equatable, Sendable, Identifiable {
+    public let resultReview: ResultReviewPresentation?
     public let id: String
     public let beforeQuestionID: String
     public let title: String
@@ -326,6 +346,7 @@ public struct Lesson: Equatable, Sendable {
     private var handledSpeech = Set<String>()
     public private(set) var speechDeclined = false
     public private(set) var listeningDeclined = false
+    public private(set) var resultReviewEntries = [ResultReviewEntry]()
     private var replacedQuestions = [Int: Question]()
     public mutating func declineListening() {
         guard question.listeningDecline != nil,
@@ -438,10 +459,28 @@ public struct Lesson: Equatable, Sendable {
         if interlude != nil { interlude = nil; return }
         if let speech = deferredSpeech {
             guard speechDeclined else { return }
+            if let presentation = speech.resultReview, let answer = presentation.declinedAnswer {
+                resultReviewEntries.append(ResultReviewEntry(id: "review-\(resultReviewEntries.count)", questionID: speech.id,
+                    presentation: presentation, answer: answer, accepted: nil, declined: true))
+            }
             handledSpeech.insert(speech.id); speechDeclined = false
             return
         }
         guard feedback != nil || listeningDeclined, !complete else { return }
+        if let accepted = feedback, let presentation = question.resultReview {
+            let answer: String
+            if usingKeyboard { answer = keyboardText }
+            else {
+                switch question.kind {
+                case .choice: answer = question.options.first { $0.id == selected }?.text ?? ""
+                case .wordTiles: answer = selectedWords.compactMap { id in question.words.first { $0.id == id }?.text }.joined(separator: question.sourceLanguage == "en" ? "" : " ")
+                case .textEntry: answer = (question.completionPrefix ?? "") + enteredText + (question.completionSuffix ?? "")
+                case .matching: answer = ""
+                }
+            }
+            resultReviewEntries.append(ResultReviewEntry(id: "review-\(resultReviewEntries.count)", questionID: question.id,
+                presentation: presentation, answer: answer, accepted: accepted, declined: false))
+        }
         if listeningDeclined, let replacement = definition.listeningDeclineReplacements?[question.id] {
             // The skipped listening question is not graded. Its observed
             // translation occupies the same position and remains available

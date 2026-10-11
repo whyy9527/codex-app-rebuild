@@ -8,6 +8,7 @@ struct ReferenceSettlement: View {
     let mistakesMade: Int
     let advance: () -> Void
     var retry: (() -> Void)? = nil
+    var review: (() -> Void)? = nil
     private let yellow = Color(red: 1, green: 0.78, blue: 0)
     private let orange = Color(red: 1, green: 0.58, blue: 0)
     var body: some View {
@@ -61,12 +62,18 @@ struct ReferenceSettlement: View {
     }
     @ViewBuilder private var secondary: some View {
         if let label = page.secondaryLabel {
-            // Visible source affordance only; the branch is not implemented or
-            // reported as an exercised button until its source behavior is known.
+            if label == "回顾本单元", let review {
+                Button(label, action: review).buttonStyle(.plain)
+                    .font(ReferenceStyle.font(16, bold: true)).foregroundStyle(ReferenceStyle.disclosureInk)
+                    .frame(minWidth: 150, minHeight: 48)
+                    .overlay(RoundedRectangle(cornerRadius: 15).stroke(ReferenceStyle.border, lineWidth: 2))
+                    .accessibilityIdentifier("settlement-secondary")
+            } else {
             Text(label).font(ReferenceStyle.font(16, bold: true)).foregroundStyle(ReferenceStyle.disclosureInk)
                 .frame(minWidth: 150, minHeight: 48)
                 .overlay(RoundedRectangle(cornerRadius: 15).stroke(ReferenceStyle.border, lineWidth: 2))
                 .accessibilityIdentifier("settlement-secondary")
+            }
         }
     }
     @ViewBuilder private var content: some View {

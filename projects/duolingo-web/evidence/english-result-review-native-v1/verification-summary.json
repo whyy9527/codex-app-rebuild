@@ -1,0 +1,178 @@
+{
+  "native-02": {
+    "states": 42,
+    "failure": null,
+    "counts": {
+      "not_run": 1873,
+      "pass": 147,
+      "fail": 7
+    },
+    "new_review_requirements": {
+      "pass": 113,
+      "fail": 2
+    },
+    "binary": "d64929ef6d9186326859ec376a78fc8db74413ac26440ea98a39b2045432495b",
+    "images": [
+      {
+        "state": "current-practice-review-open",
+        "difference": [
+          2.9615198087431693,
+          2.026542577413479,
+          3.0558025956284154
+        ]
+      },
+      {
+        "state": "current-practice-review-speech-expanded",
+        "difference": [
+          3.1126286429872496,
+          2.2200113843351548,
+          3.181857923497268
+        ]
+      }
+    ]
+  },
+  "native-03": {
+    "states": 42,
+    "failure": null,
+    "counts": {
+      "not_run": 1873,
+      "pass": 147,
+      "fail": 7
+    },
+    "new_review_requirements": {
+      "pass": 113,
+      "fail": 2
+    },
+    "binary": "272bf489810c6eedb1396bb434d5f91b9d1008a986a1aefd87ba16a6d54458c5",
+    "images": [
+      {
+        "state": "current-practice-review-open",
+        "difference": [
+          2.0742270036429873,
+          1.614778005464481,
+          2.0819444444444444
+        ]
+      },
+      {
+        "state": "current-practice-review-speech-expanded",
+        "difference": [
+          2.252810792349727,
+          1.818127276867031,
+          2.251538023679417
+        ]
+      }
+    ]
+  },
+  "native-04": {
+    "states": 44,
+    "failure": null,
+    "counts": {
+      "not_run": 1873,
+      "pass": 147,
+      "fail": 7
+    },
+    "new_review_requirements": {
+      "pass": 113,
+      "fail": 2
+    },
+    "binary": "35b5b851f43670053230d1ab31fb0addb2edca694d6ec8225c1e62774aa62cce",
+    "images": [
+      {
+        "state": "current-practice-review-open",
+        "difference": [
+          2.0742270036429873,
+          1.614778005464481,
+          2.0819444444444444
+        ]
+      },
+      {
+        "state": "current-practice-review-speech-expanded",
+        "difference": [
+          2.252810792349727,
+          1.818127276867031,
+          2.251538023679417
+        ]
+      }
+    ],
+    "scroll_negative": "No movement after postToPid despite driver exit0; not accepted as scroll verification"
+  },
+  "native-05": {
+    "states": 44,
+    "failure": null,
+    "counts": {
+      "not_run": 1873,
+      "pass": 147,
+      "fail": 7
+    },
+    "new_review_requirements": {
+      "pass": 113,
+      "fail": 2
+    },
+    "binary": "35b5b851f43670053230d1ab31fb0addb2edca694d6ec8225c1e62774aa62cce",
+    "images": [
+      {
+        "state": "current-practice-review-open",
+        "difference": [
+          2.0742270036429873,
+          1.614778005464481,
+          2.0819444444444444
+        ]
+      },
+      {
+        "state": "current-practice-review-speech-expanded",
+        "difference": [
+          2.252810792349727,
+          1.818127276867031,
+          2.251538023679417
+        ]
+      }
+    ],
+    "scroll_points": 387
+  },
+  "default-regression": {
+    "states": 47,
+    "failure": null,
+    "counts": {
+      "not_run": 1874,
+      "pass": 94,
+      "fail": 56,
+      "unavailable": 3
+    },
+    "new_review_requirements": {
+      "not_run": 115
+    },
+    "binary": "35b5b851f43670053230d1ab31fb0addb2edca694d6ec8225c1e62774aa62cce",
+    "images": [
+      {
+        "state": "current-practice-review-open",
+        "difference": null
+      },
+      {
+        "state": "current-practice-review-speech-expanded",
+        "difference": null
+      }
+    ]
+  },
+  "native-01": {
+    "failure": "Driver used matching-only question-prompt for ordinary question; no review visited; fixed from actual failure"
+  },
+  "source_trigger": {
+    "hover": "no expansion",
+    "click_and_pointer_away": "expansion retained",
+    "second_click": "collapsed",
+    "speech_display": "actual phrase in both answers; no correct grade inferred"
+  },
+  "source_scroll": {
+    "points": 387,
+    "last_card_y": 508,
+    "close_y": -380.5,
+    "limitation": "Different retry content; only scroll mechanism compared, not whole-image parity"
+  },
+  "remaining": [
+    "Two result-review whole images still fail; fonts, speaker raster and tooltip geometry differ",
+    "Wrong-answer review identity, card color and deduplication need actual source observation; current green presentation verified only for all-correct/declined source instance",
+    "Default general practice has no resultReview metadata and still exposes static review text; this explicit observed fixture does not replace the product or solve adaptive selection",
+    "Retry restarts explicit fixture; original retry generated another instance; adaptive selection remains incomplete",
+    "Normal speech, listenIsolation decline/wave, audio output equivalence and other unvisited app branches remain incomplete"
+  ]
+}

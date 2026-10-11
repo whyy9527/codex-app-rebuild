@@ -296,3 +296,7 @@ v15保留1489项并增8项真实原版断言。独立原生radio2实际点击及
 ### 当前题连续驱动与成绩单前端盲区
 
 前批余下3题实际接受并到结算；回顾发现17卡含暂缓口语，展开仍显示原句为双方答案，仅为展示证据。采集器补实际DIV角色，v33原样保留1912旧项追加111，总2023，源新增全pass、旧候选新增全not_run。真实重练新实例先接受6题，口语未覆盖后人工暂缓，再接受10题并自动接一次挑战引导页，结算保存未覆盖不自动继续。两实例仍没找到listenIsolation，波形/该题暂缓规则未采到。12Node/56Python通过，冻结字节复现；无Swift修改或新原生运行，旧native-final重评94pass56fail1870not_run3unavailable。下一批实现实际历史/回顾、触发和滚动、重练及继续其它未访分支，不把此批当完整无监督或RSI收益。完整Goal active，原论文/负消融保留。[真实动作、模具、frontier与复跑](../projects/duolingo-web/evidence/english-current-walk-v1/README.md)。
+
+### 真实成绩历史与原生滚动验证
+
+原版证明hover不展开、点击移走保留、二次点击收起，稳定滚动387点。实际17卡轨迹编译显式夹具及45原资源，核心保存答案和nil评分的暂缓展示；Swift回顾接真实卡片/播放/展开/关闭/滚动。初轮驱动ID失败、裸勾/关闭差异及postToPid滚轮无移动的假成功保留。最终44原生状态无驱动失败并测到387点往返；v34保留2023旧项追加4，共147pass7fail1873not_run，新115为113pass2整图fail。两图修正后误差下降仍不1:1。同一二进制默认47状态/真正重启94pass56fail1874not_run3unavailable，不累计。26核心/56Python/12Node通过，编译/冻结字节复现及45资源哈希验证。默认回顾仍无元数据，错误卡/去重、听音填空及自适应重练规则优先探索，继续整图/声音与其它未访分支；完整Goal active，原论文/负消融保留。[证据与复跑](../projects/duolingo-web/evidence/english-result-review-native-v1/README.md)。
