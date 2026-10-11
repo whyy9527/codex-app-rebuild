@@ -17,7 +17,9 @@ struct ReferenceHome: View {
     @State private var showingPathProfile = false
     @State private var authentication: String?
     @State private var showingLegendary = false
-    @State private var selectedLeaderboardStatus: Int?
+    private var selectedLeaderboardStatus: Binding<Int?> {
+        Binding(get:{ model.preferences.leaderboardStatus },set:{ model.preferences.leaderboardStatus = $0; model.savePreferences() })
+    }
     private var completed: Int { model.progress.completedCount(model.course) }
     private var homeSnapshot: HomeProgressSnapshot? { model.course.home?.progressSnapshots?.first { $0.completedLessons == completed } }
     private var referenceClock: Date? {
@@ -41,7 +43,7 @@ struct ReferenceHome: View {
                 else {
                 ScrollView {
                     if model.destination == "Pronunciation" { ReferencePronunciation(model: model).padding(.horizontal, 24).padding(.top, 43) }
-                    else if model.destination == "Leaderboards" { ReferenceLeaderboard(selectedStatus:$selectedLeaderboardStatus,practice:{ model.beginGeneralPractice() }).padding(.horizontal,24).padding(.top,24) }
+                    else if model.destination == "Leaderboards" { ReferenceLeaderboard(selectedStatus:selectedLeaderboardStatus,practice:{ model.beginGeneralPractice() }).padding(.horizontal,24).padding(.top,24) }
                     else if model.destination == "Shop" { ReferenceShop(gems: chestOpened ? (pathChest?.afterGems ?? homeSnapshot?.gems ?? 0) : (homeSnapshot?.gems ?? 0), create: { authentication = "profile" }).padding(.top,40) }
                     else if model.destination == "Quests" { ReferenceQuests(snapshot: homeSnapshot).padding(.horizontal, 24).padding(.top, 24) }
                     else if model.destination == "Guidebook" { ReferenceGuidebook(model: model).padding(.horizontal, 24).padding(.top, 48) }
@@ -51,7 +53,7 @@ struct ReferenceHome: View {
                 if geometry.size.width >= 1120 {
                     ScrollView {
                         if model.destination == "Leaderboards" {
-                            VStack(spacing:24) { dashboardStats.frame(height:44); ReferenceLeaderboardStatus(selectedStatus:$selectedLeaderboardStatus); questsFooter.padding(.top,10) }.padding(.top,24)
+                            VStack(spacing:24) { dashboardStats.frame(height:44); ReferenceLeaderboardStatus(selectedStatus:selectedLeaderboardStatus); questsFooter.padding(.top,10) }.padding(.top,24)
                         } else { dashboard.padding(.top,32) }
                     }
                         .frame(width: 368).padding(.horizontal, 24)

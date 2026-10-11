@@ -1,0 +1,47 @@
+{
+  "basis": [
+    "exploration-feedback.json",
+    "native-final/validation.json",
+    "action-inventory.json"
+  ],
+  "next": [
+    {
+      "id": "leaderboard-practice-current-instance",
+      "status": "observed and executable fail",
+      "evidence": [
+        "source/practice-entry.json",
+        "source/practice-return.json",
+        "practice-native/validation.json"
+      ],
+      "next": "Freeze full actual current session and voice/data; current initial question mismatch is now executable, initial exit to Learn is validated semantically"
+    },
+    {
+      "id": "remaining-status-icons",
+      "status": "unmodeled",
+      "next": "Explore remaining11 outcomes and navigation/reload semantics; only first icon accepted in this batch"
+    },
+    {
+      "id": "frontend-whole-pages",
+      "status": "fail",
+      "evidence": "native-final/validation.json",
+      "next": "Repair retained whole-image/font/geometry differences across home and practice, not just text checks"
+    },
+    {
+      "id": "source-audio-routing",
+      "status": "unavailable",
+      "evidence": "projects/duolingo-web/evidence/english-source-audio-filter-v1/verification-summary.json",
+      "next": "Inspect owned browser media output/device path; tested filter variants do not explain zero waveforms"
+    },
+    {
+      "id": "nested-auth-legendary",
+      "status": "partly observed",
+      "next": "Continue real create/close/register/forgot transitions from guest contexts"
+    },
+    {
+      "id": "controlled-RSI-ablation",
+      "status": "not_run",
+      "next": "Preseal task starting state, budgets and metrics for actual mechanism removal; current UI before/after is not RSI ablation"
+    }
+  ],
+  "completion": "Goal active; no full-app completeness claim"
+}

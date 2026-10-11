@@ -1,0 +1,32 @@
+{
+  "baseline": "ee68707",
+  "failure": "Media play promises resolved; owned main-process application loopback zero",
+  "verified_processes": {
+    "browser": 46022,
+    "audio_service_child": 46120,
+    "shareable_owned_applications": [
+      46022
+    ]
+  },
+  "hypotheses": [
+    "Application filter misses Chromium audio despite owned main app listed",
+    "Owned independent-window filter has different audio association",
+    "excludesCurrentProcessAudio may affect child app attribution"
+  ],
+  "planned_configs": [
+    {
+      "filter": "application",
+      "exclude_self": true
+    },
+    {
+      "filter": "window",
+      "exclude_self": true
+    },
+    {
+      "filter": "application",
+      "exclude_self": false
+    }
+  ],
+  "control": "Same still-visible original wrong-pair action and original Match_Incorrect resource; READY-synchronized capture only of owned browser",
+  "limits": "No system-wide capture or microphone; zero is unavailable until output routing established; hypotheses unproven"
+}

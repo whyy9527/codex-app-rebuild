@@ -1,0 +1,20 @@
+{
+  "failures": [
+    {
+      "phase": "practice entry immediate read",
+      "observed": "Click changed path to /practice but initial immediate AX snapshot empty",
+      "resolution": "Later snapshot/capture recorded loaded actual question; empty snapshot was not treated as complete"
+    },
+    {
+      "phase": "practice platform adapter freeze",
+      "observed": "Initial source-to-native mapping guessed skip-listening; actual native control ID is listening-decline",
+      "resolution": "Preserved initial freeze in artifacts; corrected alias from actual native observation before comparison/product changes; no assertion relaxed"
+    },
+    {
+      "phase": "browser window audio filter",
+      "evidence": "projects/duolingo-web/evidence/english-source-audio-filter-v1/window-01",
+      "observed": "CGS_REQUIRE_INIT assertion before READY",
+      "resolution": "Initialize NSApplication.shared on MainActor; subsequent owned-window recording ran, stillzero; root cause of browser audio remains unknown"
+    }
+  ]
+}

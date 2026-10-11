@@ -29,10 +29,15 @@ struct ReferenceLeaderboard: View {
 }
 struct ReferenceLeaderboardStatus: View {
     @Binding var selectedStatus: Int?
+    @State private var hovered = false
     var body: some View {
         ZStack(alignment:.topLeading) {
             RoundedRectangle(cornerRadius:16).strokeBorder(ReferenceStyle.border,lineWidth:2)
             Text("设置状态").font(ReferenceStyle.font(19,bold:true)).offset(x:22,y:24.5)
+            if hovered {
+                ReferencePracticeControl(label:"清除",identifier:"leaderboard-clear",enabled:true,action:{ selectedStatus = nil },face:AnyView(Text("清除").font(ReferenceStyle.font(15,bold:true)).tracking(0.8).foregroundStyle(ReferenceStyle.blue).frame(width:31.6015625,height:18)))
+                    .frame(width:31.6015625,height:18).offset(x:318.3984375,y:27)
+            }
             ReferenceLeaderboardAvatar(selectedStatus:$selectedStatus,size:80).offset(x:146,y:75)
             ReferenceStyle.image("en-leaderboard-smile").resizable().frame(width:36,height:36).padding(4).background(.white,in:Circle()).overlay(Circle().strokeBorder(ReferenceStyle.border,lineWidth:2)).offset(x:212,y:63)
             if let selectedStatus { ReferenceStyle.image("en-leaderboard-status-\(selectedStatus)").resizable().frame(width:40,height:40).offset(x:214,y:67).accessibilityIdentifier("leaderboard-selected-status") }
@@ -41,7 +46,7 @@ struct ReferenceLeaderboardStatus: View {
                     ReferenceStyle.image("en-leaderboard-status-\(index)").resizable().scaledToFit().frame(width:index==5 ? 32 : 44,height:index==5 ? 25 : 42).frame(width:48,height:44).background(.white,in:RoundedRectangle(cornerRadius:16)).overlay(RoundedRectangle(cornerRadius:16).strokeBorder(ReferenceStyle.border,lineWidth:2)).shadow(color:ReferenceStyle.border,radius:0,y:2).frame(width:48,height:48,alignment:.top)))
                     .frame(width:48,height:48).offset(x:22+CGFloat(index%6)*56,y:187+CGFloat(index/6)*58)
             }
-        }.frame(width:368,height:315)
+        }.frame(width:368,height:315).onHover { hovered = $0 }
     }
 }
 struct ReferenceLeaderboardAvatar: View {

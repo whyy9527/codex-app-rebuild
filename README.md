@@ -1,5 +1,7 @@
 # Codex App Rebuild
 
+排行榜继续实际补漏：发现无角色悬停清除、选择／清除跨刷新保存，以及练习入口当前题目与历史默认实例不同。Swift 状态持久化已实测；v52 共2848项，当前同一二进制两次会话7状态73pass/22fail，整图和当前题目仍失败，1:1未完成。[证据、失败与复跑](projects/duolingo-web/evidence/english-leaderboard-state-v1/README.md)。
+
 完成节点“练习／传奇”和排行榜已从原版实际探索接入：v50新增152项前端断言，新10状态119pass/23fail，仍未1:1。AX成功但控件超出内容区、PNG尺寸与元数据不符等失败保留，探索继续由未建模分支推动。[本批证据及对照](projects/duolingo-web/evidence/english-home-branches-v1/README.md)。
 
 本轮转向主页动作与前端模具：接入个人档案/登录/宝石小店/中文更多菜单，实际8个往返状态完成；v49保留旧要求，新增92项，65pass/23fail，整图继续失败。补动作覆盖报告，未建模控件不因现有测试通过而消失；历史反馈实际引导探索发现已完成节点的传奇/练习弹层和缺失错误配对原音。默认独立练习已播放原版Match_Incorrect，但源浏览器声学比较仍不可用，RSI因果收益未证明。[证据、失败及复跑](projects/duolingo-web/evidence/english-home-journey-v1/README.md)。

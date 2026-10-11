@@ -8,4 +8,5 @@ struct LearningPreferences: Codable {
     var motivationalMessages = true
     var listeningExercises = true
     var darkMode = "System Default"
+    var leaderboardStatus: Int?
 }

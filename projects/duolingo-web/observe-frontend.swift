@@ -237,6 +237,10 @@ if let index = CommandLine.arguments.firstIndex(of: "--exercise-home-journey"), 
                 ["native_action":journey["native_action"]!, "operation":journey["operation"] ?? "click", "state":"journey-" + id],
                 ["native_action":journey["native_return"]!, "state":"journey-" + id + "-return"]]
             for step in steps {
+                if step["operation"] as? String == "restart" {
+                    child.terminate(); child.waitUntilExit(); child = try launchChild(); app = AXUIElementCreateApplication(child.processIdentifier)
+                    try waitFor("path-chest"); configureWindow()
+                }
                 try activateOwnedInputTarget()
                 let control = step["native_action"] as! String
                 if step["operation"] as? String == "hover" { guard movePointer(to:control) else { throw ProbeError(message:"Missing hover target") } }
@@ -249,7 +253,8 @@ if let index = CommandLine.arguments.firstIndex(of: "--exercise-home-journey"), 
                     let legendary = !profile && elements["legendary-quit"] != nil
                     facts["interactions"] = ["profile_present":profile, "legendary_present":legendary,
                         "completed_popover_present": !profile && !legendary && elements["completed-practice"] != nil,
-                        "status_selected":elements["leaderboard-selected-status"] != nil]
+                        "status_selected":elements["leaderboard-selected-status"] != nil, "status_clear_visible":elements["leaderboard-clear"] != nil,
+                        "practice_present":elements["pair-left-0"] != nil, "learn_present":elements["start-lesson"] != nil, "exit_confirmation_present":elements["practice-quit-confirm"] != nil]
                     var captureAttempts: [[String: Any]] = []
                     var validCapture = false
                     let metadata = try JSONSerialization.jsonObject(with:Data(contentsOf:output.appendingPathComponent("window.json"))) as! [String: Any]

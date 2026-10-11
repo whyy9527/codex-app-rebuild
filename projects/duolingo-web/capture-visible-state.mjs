@@ -10,15 +10,22 @@ const callback=async page=>{
   viewport:page.viewportSize(),snapshot:await page.locator('body').ariaSnapshot()};
  // Inventory every currently visible interactive entry, including plain links.
  // State-scoped identities retain duplicate controls instead of collapsing names.
- facts.actions=await page.locator('a[href],button,input,[role="button"],[role="checkbox"],[role="radio"]').evaluateAll(ns=>{
+ facts.actions=await page.locator('body').evaluate(body=>{
+  const canonical='a[href],button,input,[role="button"],[role="checkbox"],[role="radio"]';
+  const standard=[...body.querySelectorAll(canonical)];
+  // Actual source "清除" is a roleless pointer span. Keep outer pointer candidates
+  // as unclassified actions, without inventing button roles or click semantics.
+  const pointers=[...body.querySelectorAll('*')].filter(n=>!n.closest(canonical)&&getComputedStyle(n).cursor==='pointer'&&(!n.parentElement||getComputedStyle(n.parentElement).cursor!=='pointer'));
+  const ns=[...standard,...pointers];
   const counts=new Map();return ns.flatMap(n=>{
    const r=n.getBoundingClientRect();if(!n.checkVisibility({checkOpacity:true,checkVisibilityCSS:true})||r.width<=0||r.height<=0||r.bottom<=0||r.right<=0||r.top>=innerHeight||r.left>=innerWidth)return [];
    const test=n.getAttribute('data-test'),href=n.getAttribute('href');
    const name=n.getAttribute('aria-label')||n.innerText||n.getAttribute('placeholder')||n.querySelector('img')?.alt||'';
-   const identity=test?'test:'+test:href?'href:'+href:n.tagName+':'+name;
+   const pointer=!n.matches(canonical);
+   const identity=test?'test:'+test:href?'href:'+href:(pointer?'pointer:':'')+n.tagName+':'+name;
    const ordinal=counts.get(identity)||0;counts.set(identity,ordinal+1);
    const hit=document.elementFromPoint(r.x+r.width/2,r.y+r.height/2);
-   return [{id:identity+'#'+ordinal,test,href,name,hit_test:!!hit&&(hit===n||n.contains(hit)),tag:n.tagName,role:n.getAttribute('role')||(n.tagName==='A'?'link':n.tagName==='INPUT'?'textbox':'button'),enabled:!n.disabled&&n.getAttribute('aria-disabled')!=='true',rect:[r.x,r.y,r.width,r.height]}];
+   return [{id:identity+'#'+ordinal,test,href,name,...(pointer?{kind:'pointer_candidate',semantic_role:'unclassified',limitations:'CSS cursor candidate; actual click outcome must be explored'}:{}),hit_test:!!hit&&(hit===n||n.contains(hit)),tag:n.tagName,role:n.getAttribute('role')||(n.tagName==='A'?'link':n.tagName==='INPUT'?'textbox':pointer?null:'button'),enabled:!n.disabled&&n.getAttribute('aria-disabled')!=='true',rect:[r.x,r.y,r.width,r.height]}];
   });
  });
  // Generic text blocks (reward titles, subtitles and hints) were missing

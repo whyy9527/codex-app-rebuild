@@ -1,0 +1,155 @@
+{
+  "scope": "Actual first status selection/clear and source reload vs native restart; no whole-app or remote backend equivalence claim",
+  "runs": {
+    "native-before": {
+      "states": 3,
+      "driver_failure": "[[\"failure\": \"ProbeError(message: \\\"No observed control: leaderboard-clear\\\")\", \"id\": \"clear-and-reload\"]]",
+      "attempts": [
+        {
+          "failure": "ProbeError(message: \"No observed control: leaderboard-clear\")",
+          "id": "clear-and-reload"
+        },
+        {
+          "failure": null,
+          "id": "selection-and-reload"
+        }
+      ],
+      "candidate_binary_sha256": "b3f2a5b8fddb5690fc023439dcf67f7f0316808385783ee3bade572fb6d97050",
+      "fixture_sha256": "b7242d0e130112d54b1e17714bf21c35045e58f8874948917b0b09f971282bda",
+      "frontend_counts": {
+        "not_run": 2767,
+        "fail": 10,
+        "pass": 11,
+        "unavailable": 6
+      },
+      "coverage_counts": {
+        "pass": 0,
+        "fail": 0,
+        "not_run": 1,
+        "unavailable": 0,
+        "unmodeled": 169
+      },
+      "observation": "projects/duolingo-web/evidence/english-leaderboard-state-v1/native-before/observed-colors.json"
+    },
+    "native-final": {
+      "states": 5,
+      "driver_failure": null,
+      "attempts": [
+        {
+          "failure": null,
+          "id": "clear-and-reload"
+        },
+        {
+          "failure": null,
+          "id": "selection-and-reload"
+        }
+      ],
+      "candidate_binary_sha256": "abf24eac83c7ec9bbe2e72516a7f996a7f5fea924002637d676bbe691dde7bcc",
+      "fixture_sha256": "b7242d0e130112d54b1e17714bf21c35045e58f8874948917b0b09f971282bda",
+      "frontend_counts": {
+        "not_run": 2749,
+        "fail": 10,
+        "pass": 35
+      },
+      "coverage_counts": {
+        "pass": 0,
+        "fail": 1,
+        "not_run": 0,
+        "unavailable": 0,
+        "unmodeled": 169
+      },
+      "observation": "projects/duolingo-web/evidence/english-leaderboard-state-v1/native-final/observed-colors.json"
+    },
+    "branches-regression": {
+      "states": 10,
+      "driver_failure": null,
+      "attempts": [
+        {
+          "failure": null,
+          "id": "completed-branches"
+        },
+        {
+          "failure": null,
+          "id": "leaderboard"
+        }
+      ],
+      "candidate_binary_sha256": "abf24eac83c7ec9bbe2e72516a7f996a7f5fea924002637d676bbe691dde7bcc",
+      "fixture_sha256": "b7242d0e130112d54b1e17714bf21c35045e58f8874948917b0b09f971282bda",
+      "frontend_counts": {
+        "not_run": 2652,
+        "fail": 23,
+        "pass": 119
+      },
+      "coverage_counts": {
+        "pass": 0,
+        "fail": 0,
+        "not_run": 1,
+        "unavailable": 0,
+        "unmodeled": 169
+      },
+      "observation": "projects/duolingo-web/evidence/english-leaderboard-state-v1/branches-regression/observed-colors.json"
+    },
+    "native-audio-control": {
+      "states": 1,
+      "driver_failure": null,
+      "attempts": null,
+      "candidate_binary_sha256": "abf24eac83c7ec9bbe2e72516a7f996a7f5fea924002637d676bbe691dde7bcc",
+      "fixture_sha256": "b7242d0e130112d54b1e17714bf21c35045e58f8874948917b0b09f971282bda",
+      "frontend_counts": {
+        "not_run": 2794
+      },
+      "coverage_counts": {
+        "pass": 0,
+        "fail": 0,
+        "not_run": 1,
+        "unavailable": 0,
+        "unmodeled": 169
+      },
+      "observation": "projects/duolingo-web/evidence/english-source-audio-filter-v1/native-control/observed-colors.json"
+    }
+  },
+  "requirements": 2794,
+  "parent_requirements_unchanged": 2739,
+  "added_requirements": 55,
+  "core_checks": 30,
+  "build": "success",
+  "source_consistency_only": {
+    "not_run": 1823,
+    "pass": 954,
+    "unavailable": 17
+  },
+  "limits": [
+    "All five new whole-image requirements fail",
+    "Original roleless clear semantic role is unclassified; not invented as button",
+    "Original/native transition acoustic output comparison pending",
+    "Only first status icon tested; remaining11 outcomes unmodeled",
+    "Practice entry actual new variant and exit observed; common current question/content not yet implemented/accepted",
+    "No causal RSI gain or controlled ablation"
+  ],
+  "practice_frontend_contract": "projects/duolingo-web/frontend-english-v52.json",
+  "practice_run": {
+    "states": 2,
+    "driver_failure": null,
+    "candidate_binary_sha256": "abf24eac83c7ec9bbe2e72516a7f996a7f5fea924002637d676bbe691dde7bcc",
+    "frontend_counts": {
+      "not_run": 2798,
+      "fail": 12,
+      "pass": 38
+    },
+    "scope": "Actual new entry and initial unanswered exit; retained historical default content mismatch, no practice UI/content change this batch"
+  },
+  "latest_requirements": 2848,
+  "practice_added_requirements": 54,
+  "composed_same_binary": {
+    "states": 7,
+    "counts": {
+      "not_run": 2753,
+      "fail": 22,
+      "pass": 73
+    },
+    "limits": [
+      "Two actual isolated native sessions with identical binary; not one continuous7-state journey",
+      "Full source account/backend state not cloned; observed eight-completed progress and visible status/current-question contracts only"
+    ]
+  }
+}

@@ -1,0 +1,932 @@
+{
+  "attempts": [
+    {
+      "failure": "ProbeError(message: \"No observed control: leaderboard-clear\")",
+      "id": "clear-and-reload"
+    },
+    {
+      "failure": null,
+      "id": "selection-and-reload"
+    }
+  ],
+  "candidate_binary_sha256": "b3f2a5b8fddb5690fc023439dcf67f7f0316808385783ee3bade572fb6d97050",
+  "failure": "[[\"failure\": \"ProbeError(message: \\\"No observed control: leaderboard-clear\\\")\", \"id\": \"clear-and-reload\"]]",
+  "fixture_sha256": "b7242d0e130112d54b1e17714bf21c35045e58f8874948917b0b09f971282bda",
+  "kind": "owned_native_ax_observation",
+  "limitations": [
+    "No acoustic equality claim; actual images retain clock and animation phase differences"
+  ],
+  "scenario_sha256": "28215716020cdaa84a9b0a696a51499f60f9b0845d27442fa27407a36b05d8f6",
+  "states": {
+    "status-selected-again": {
+      "accessible_text": [
+        "-",
+        "0 经验",
+        "2",
+        "5",
+        "525",
+        "LingoSeed",
+        "U",
+        "个人档案",
+        "关于我们",
+        "去学个单元",
+        "发音",
+        "只要一息尚存，就要坚持到底。来学个单元，挑战本周排行榜！",
+        "学习",
+        "宝石小店",
+        "投资者",
+        "招聘贤才",
+        "排行榜",
+        "更多",
+        "有效性",
+        "条款",
+        "特别任务",
+        "设置状态",
+        "隐私",
+        "青铜等级"
+      ],
+      "capture": {
+        "backing_scale": 2,
+        "content_rect_points": [
+          0,
+          32,
+          1200,
+          732
+        ],
+        "path": "projects/duolingo-web/evidence/english-leaderboard-state-v1/native-before/status-selected-again.png",
+        "window_points": [
+          1200,
+          764
+        ]
+      },
+      "capture_attempts": [
+        {
+          "attempt": 1,
+          "expected": [
+            2400,
+            1528
+          ],
+          "path": "status-selected-again-capture-1.png",
+          "pixels": [
+            2400,
+            1528
+          ]
+        }
+      ],
+      "elements": {
+        "leaderboard-practice": {
+          "enabled": true,
+          "rect": [
+            392,
+            239,
+            256,
+            48
+          ],
+          "role": "AXLink",
+          "value": ""
+        },
+        "leaderboard-selected-status": {
+          "enabled": true,
+          "rect": [
+            1022,
+            159,
+            40,
+            40
+          ],
+          "role": "AXImage",
+          "value": ""
+        },
+        "leaderboard-status-0": {
+          "enabled": true,
+          "rect": [
+            830,
+            279,
+            48,
+            48
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "leaderboard-status-1": {
+          "enabled": true,
+          "rect": [
+            886,
+            279,
+            48,
+            48
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "leaderboard-status-2": {
+          "enabled": true,
+          "rect": [
+            942,
+            279,
+            48,
+            48
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "leaderboard-status-3": {
+          "enabled": true,
+          "rect": [
+            998,
+            279,
+            48,
+            48
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "leaderboard-status-4": {
+          "enabled": true,
+          "rect": [
+            1054,
+            279,
+            48,
+            48
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "leaderboard-status-5": {
+          "enabled": true,
+          "rect": [
+            1110,
+            279,
+            48,
+            48
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "leaderboard-status-6": {
+          "enabled": true,
+          "rect": [
+            830,
+            337,
+            48,
+            48
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "leaderboard-status-7": {
+          "enabled": true,
+          "rect": [
+            886,
+            337,
+            48,
+            48
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "leaderboard-status-8": {
+          "enabled": true,
+          "rect": [
+            942,
+            337,
+            48,
+            48
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "leaderboard-status-9": {
+          "enabled": true,
+          "rect": [
+            998,
+            337,
+            48,
+            48
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "leaderboard-status-10": {
+          "enabled": true,
+          "rect": [
+            1054,
+            337,
+            48,
+            48
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "leaderboard-status-11": {
+          "enabled": true,
+          "rect": [
+            1110,
+            337,
+            48,
+            48
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-leaderboards": {
+          "enabled": true,
+          "rect": [
+            16,
+            212,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-learn": {
+          "enabled": true,
+          "rect": [
+            16,
+            92,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-more": {
+          "enabled": true,
+          "rect": [
+            16,
+            452,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-profile": {
+          "enabled": true,
+          "rect": [
+            16,
+            392,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-pronunciation": {
+          "enabled": true,
+          "rect": [
+            16,
+            152,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-quests": {
+          "enabled": true,
+          "rect": [
+            16,
+            272,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-shop": {
+          "enabled": true,
+          "rect": [
+            16,
+            332,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "SwiftUI._ConditionalContent<SwiftUI.SubscriptionView<(extension in Foundation):__C.NSNotificationCenter.Publisher, SwiftUI.ModifiedContent<LingoSeed.LearningView, SwiftUI._AppearanceActionModifier>>, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1": {
+          "enabled": false,
+          "rect": [
+            0,
+            -32,
+            1200,
+            764
+          ],
+          "role": "AXWindow",
+          "value": ""
+        }
+      },
+      "interactions": {
+        "completed_popover_present": false,
+        "legendary_present": false,
+        "profile_present": false,
+        "status_clear_visible": false,
+        "status_selected": true
+      }
+    },
+    "status-selected-hover": {
+      "accessible_text": [
+        "-",
+        "0 经验",
+        "2",
+        "5",
+        "525",
+        "LingoSeed",
+        "U",
+        "个人档案",
+        "关于我们",
+        "去学个单元",
+        "发音",
+        "只要一息尚存，就要坚持到底。来学个单元，挑战本周排行榜！",
+        "学习",
+        "宝石小店",
+        "投资者",
+        "招聘贤才",
+        "排行榜",
+        "更多",
+        "有效性",
+        "条款",
+        "特别任务",
+        "设置状态",
+        "隐私",
+        "青铜等级"
+      ],
+      "capture": {
+        "backing_scale": 2,
+        "content_rect_points": [
+          0,
+          32,
+          1200,
+          732
+        ],
+        "path": "projects/duolingo-web/evidence/english-leaderboard-state-v1/native-before/status-selected-hover.png",
+        "window_points": [
+          1200,
+          764
+        ]
+      },
+      "capture_attempts": [
+        {
+          "attempt": 1,
+          "expected": [
+            2400,
+            1528
+          ],
+          "path": "status-selected-hover-capture-1.png",
+          "pixels": [
+            2400,
+            1528
+          ]
+        }
+      ],
+      "elements": {
+        "leaderboard-practice": {
+          "enabled": true,
+          "rect": [
+            392,
+            239,
+            256,
+            48
+          ],
+          "role": "AXLink",
+          "value": ""
+        },
+        "leaderboard-selected-status": {
+          "enabled": true,
+          "rect": [
+            1022,
+            159,
+            40,
+            40
+          ],
+          "role": "AXImage",
+          "value": ""
+        },
+        "leaderboard-status-0": {
+          "enabled": true,
+          "rect": [
+            830,
+            279,
+            48,
+            48
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "leaderboard-status-1": {
+          "enabled": true,
+          "rect": [
+            886,
+            279,
+            48,
+            48
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "leaderboard-status-2": {
+          "enabled": true,
+          "rect": [
+            942,
+            279,
+            48,
+            48
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "leaderboard-status-3": {
+          "enabled": true,
+          "rect": [
+            998,
+            279,
+            48,
+            48
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "leaderboard-status-4": {
+          "enabled": true,
+          "rect": [
+            1054,
+            279,
+            48,
+            48
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "leaderboard-status-5": {
+          "enabled": true,
+          "rect": [
+            1110,
+            279,
+            48,
+            48
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "leaderboard-status-6": {
+          "enabled": true,
+          "rect": [
+            830,
+            337,
+            48,
+            48
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "leaderboard-status-7": {
+          "enabled": true,
+          "rect": [
+            886,
+            337,
+            48,
+            48
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "leaderboard-status-8": {
+          "enabled": true,
+          "rect": [
+            942,
+            337,
+            48,
+            48
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "leaderboard-status-9": {
+          "enabled": true,
+          "rect": [
+            998,
+            337,
+            48,
+            48
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "leaderboard-status-10": {
+          "enabled": true,
+          "rect": [
+            1054,
+            337,
+            48,
+            48
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "leaderboard-status-11": {
+          "enabled": true,
+          "rect": [
+            1110,
+            337,
+            48,
+            48
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-leaderboards": {
+          "enabled": true,
+          "rect": [
+            16,
+            212,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-learn": {
+          "enabled": true,
+          "rect": [
+            16,
+            92,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-more": {
+          "enabled": true,
+          "rect": [
+            16,
+            452,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-profile": {
+          "enabled": true,
+          "rect": [
+            16,
+            392,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-pronunciation": {
+          "enabled": true,
+          "rect": [
+            16,
+            152,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-quests": {
+          "enabled": true,
+          "rect": [
+            16,
+            272,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-shop": {
+          "enabled": true,
+          "rect": [
+            16,
+            332,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "SwiftUI._ConditionalContent<SwiftUI.SubscriptionView<(extension in Foundation):__C.NSNotificationCenter.Publisher, SwiftUI.ModifiedContent<LingoSeed.LearningView, SwiftUI._AppearanceActionModifier>>, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1": {
+          "enabled": false,
+          "rect": [
+            0,
+            -32,
+            1200,
+            764
+          ],
+          "role": "AXWindow",
+          "value": ""
+        }
+      },
+      "interactions": {
+        "completed_popover_present": false,
+        "legendary_present": false,
+        "profile_present": false,
+        "status_clear_visible": false,
+        "status_selected": true
+      }
+    },
+    "status-selected-reload": {
+      "accessible_text": [
+        "-",
+        "0 经验",
+        "2",
+        "5",
+        "525",
+        "LingoSeed",
+        "U",
+        "个人档案",
+        "关于我们",
+        "去学个单元",
+        "发音",
+        "只要一息尚存，就要坚持到底。来学个单元，挑战本周排行榜！",
+        "学习",
+        "宝石小店",
+        "投资者",
+        "招聘贤才",
+        "排行榜",
+        "更多",
+        "有效性",
+        "条款",
+        "特别任务",
+        "设置状态",
+        "隐私",
+        "青铜等级"
+      ],
+      "capture": {
+        "backing_scale": 2,
+        "content_rect_points": [
+          0,
+          32,
+          1200,
+          732
+        ],
+        "path": "projects/duolingo-web/evidence/english-leaderboard-state-v1/native-before/status-selected-reload.png",
+        "window_points": [
+          1200,
+          764
+        ]
+      },
+      "capture_attempts": [
+        {
+          "attempt": 1,
+          "expected": [
+            2400,
+            1528
+          ],
+          "path": "status-selected-reload-capture-1.png",
+          "pixels": [
+            2400,
+            1528
+          ]
+        }
+      ],
+      "elements": {
+        "leaderboard-practice": {
+          "enabled": true,
+          "rect": [
+            392,
+            239,
+            256,
+            48
+          ],
+          "role": "AXLink",
+          "value": ""
+        },
+        "leaderboard-status-0": {
+          "enabled": true,
+          "rect": [
+            830,
+            279,
+            48,
+            48
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "leaderboard-status-1": {
+          "enabled": true,
+          "rect": [
+            886,
+            279,
+            48,
+            48
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "leaderboard-status-2": {
+          "enabled": true,
+          "rect": [
+            942,
+            279,
+            48,
+            48
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "leaderboard-status-3": {
+          "enabled": true,
+          "rect": [
+            998,
+            279,
+            48,
+            48
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "leaderboard-status-4": {
+          "enabled": true,
+          "rect": [
+            1054,
+            279,
+            48,
+            48
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "leaderboard-status-5": {
+          "enabled": true,
+          "rect": [
+            1110,
+            279,
+            48,
+            48
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "leaderboard-status-6": {
+          "enabled": true,
+          "rect": [
+            830,
+            337,
+            48,
+            48
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "leaderboard-status-7": {
+          "enabled": true,
+          "rect": [
+            886,
+            337,
+            48,
+            48
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "leaderboard-status-8": {
+          "enabled": true,
+          "rect": [
+            942,
+            337,
+            48,
+            48
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "leaderboard-status-9": {
+          "enabled": true,
+          "rect": [
+            998,
+            337,
+            48,
+            48
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "leaderboard-status-10": {
+          "enabled": true,
+          "rect": [
+            1054,
+            337,
+            48,
+            48
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "leaderboard-status-11": {
+          "enabled": true,
+          "rect": [
+            1110,
+            337,
+            48,
+            48
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-leaderboards": {
+          "enabled": true,
+          "rect": [
+            16,
+            212,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-learn": {
+          "enabled": true,
+          "rect": [
+            16,
+            92,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-more": {
+          "enabled": true,
+          "rect": [
+            16,
+            452,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-profile": {
+          "enabled": true,
+          "rect": [
+            16,
+            392,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-pronunciation": {
+          "enabled": true,
+          "rect": [
+            16,
+            152,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-quests": {
+          "enabled": true,
+          "rect": [
+            16,
+            272,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-shop": {
+          "enabled": true,
+          "rect": [
+            16,
+            332,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "SwiftUI._ConditionalContent<SwiftUI.SubscriptionView<(extension in Foundation):__C.NSNotificationCenter.Publisher, SwiftUI.ModifiedContent<LingoSeed.LearningView, SwiftUI._AppearanceActionModifier>>, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1": {
+          "enabled": false,
+          "rect": [
+            0,
+            -32,
+            1200,
+            764
+          ],
+          "role": "AXWindow",
+          "value": ""
+        }
+      },
+      "interactions": {
+        "completed_popover_present": false,
+        "legendary_present": false,
+        "profile_present": false,
+        "status_clear_visible": false,
+        "status_selected": false
+      }
+    }
+  }
+}

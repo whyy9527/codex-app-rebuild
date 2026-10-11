@@ -1,5 +1,7 @@
 # LingoSeed · Swift 教育基座
 
+排行榜继续实际补漏：发现无角色悬停清除、选择／清除跨刷新保存，以及练习入口当前题目与历史默认实例不同。Swift 状态持久化已实测；v52 共2848项，当前同一二进制两次会话7状态73pass/22fail，整图和当前题目仍失败，1:1未完成。[证据、失败与复跑](../duolingo-web/evidence/english-leaderboard-state-v1/README.md)。
+
 现已接通原版完成节点的练习建档提示、Legendary独立入口和返回，以及实际青铜排行榜和首个状态选择。10状态实际回归无驱动失败，前端119pass/23fail；声音、完整排行榜服务及其它未探索分支尚未达成1:1。[对照与复跑](../duolingo-web/evidence/english-home-branches-v1/README.md)。
 
 主页根入口已接年龄页、独立登录、客态宝石小店和中文更多菜单，8个实际往返状态完成，v49仍有23项失败。默认独立练习bundle为v4，保留原v3题目并绑定原版听音配对错误音；已采到实际错误动作输出，未证明完整源声学一致性。登录服务/OAuth、排行榜/传奇等仍未完成。[本批验证](../duolingo-web/evidence/english-home-journey-v1/README.md)。

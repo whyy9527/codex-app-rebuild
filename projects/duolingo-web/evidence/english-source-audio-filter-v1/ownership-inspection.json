@@ -1,0 +1,18 @@
+{
+  "scope": "Only task-owned Edge process46022 and its descendants inspected",
+  "browser_pid": 46022,
+  "audio_service": {
+    "pid": 46120,
+    "ppid": 46022,
+    "utility_sub_type": "audio.mojom.AudioService"
+  },
+  "shareable_owned_applications": [
+    {
+      "pid": 46022,
+      "name": "Microsoft Edge",
+      "bundle": "com.microsoft.edgemac"
+    }
+  ],
+  "audio_helper_shareable": false,
+  "limits": "SCShareableContent did not expose the audio helper as an independently selectable app; this is not proof of zero-waveform root cause"
+}

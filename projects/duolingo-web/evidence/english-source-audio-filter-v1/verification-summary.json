@@ -1,0 +1,107 @@
+{
+  "scope": "Only explicitly verified task-owned browser/window; no microphone or system-wide recording",
+  "runs": {
+    "application-01": {
+      "capture": {
+        "duration_seconds": 10,
+        "excludes_current_process_audio": true,
+        "filter": "Only explicitly selected owned application/window",
+        "filter_mode": "application",
+        "frames": 502080,
+        "kind": "owned_application_audio_loopback",
+        "microphone": false,
+        "owned_pid": 46022,
+        "peak": 0,
+        "rms": 0,
+        "samples": 1004160,
+        "ui_actions": []
+      },
+      "actual_actions_after_ready_seconds": [
+        1.261,
+        2.493
+      ],
+      "resources": [
+        "https://d1vq87e9lcf771.cloudfront.net/harrison/d30195a6cb7563707431c7870d15710b",
+        "https://simg-ssl.duolingo.com/videos/sound/Match_Incorrect.mp3"
+      ],
+      "all_play_promises_resolved": true
+    },
+    "include-self-01": {
+      "capture": {
+        "duration_seconds": 10,
+        "excludes_current_process_audio": false,
+        "filter": "Only explicitly selected owned application/window",
+        "filter_mode": "application",
+        "frames": 510720,
+        "kind": "owned_application_audio_loopback",
+        "microphone": false,
+        "owned_pid": 46022,
+        "peak": 0,
+        "rms": 0,
+        "samples": 1021440,
+        "ui_actions": []
+      },
+      "actual_actions_after_ready_seconds": [
+        1.417,
+        2.646
+      ],
+      "resources": [
+        "https://d1vq87e9lcf771.cloudfront.net/harrison/d30195a6cb7563707431c7870d15710b",
+        "https://simg-ssl.duolingo.com/videos/sound/Match_Incorrect.mp3"
+      ],
+      "all_play_promises_resolved": true
+    },
+    "window-02": {
+      "capture": {
+        "duration_seconds": 10,
+        "excludes_current_process_audio": true,
+        "filter": "Only explicitly selected owned application/window",
+        "filter_mode": "window",
+        "frames": 493440,
+        "kind": "owned_application_audio_loopback",
+        "microphone": false,
+        "owned_pid": 46022,
+        "owned_window_id": 105332,
+        "peak": 0,
+        "rms": 0,
+        "samples": 986880,
+        "ui_actions": []
+      },
+      "actual_actions_after_ready_seconds": [
+        1.386,
+        2.609
+      ],
+      "resources": [
+        "https://d1vq87e9lcf771.cloudfront.net/harrison/d30195a6cb7563707431c7870d15710b",
+        "https://simg-ssl.duolingo.com/videos/sound/Match_Incorrect.mp3"
+      ],
+      "all_play_promises_resolved": true
+    }
+  },
+  "native_positive_control": {
+    "duration_seconds": 5,
+    "excludes_current_process_audio": true,
+    "filter": "Only explicitly selected owned application/window",
+    "filter_mode": "application",
+    "frames": 241920,
+    "kind": "owned_application_audio_loopback",
+    "microphone": false,
+    "owned_pid": 39241,
+    "peak": 0.47551584243774414,
+    "rms": 0.006877440908823622,
+    "samples": 483840,
+    "ui_actions": [
+      {
+        "elapsed_seconds": 0.05689704418182373,
+        "id": "pair-right-1"
+      }
+    ]
+  },
+  "status": "Original browser acoustic output unavailable; not silent and not1:1sound pass",
+  "limits": [
+    "Owned audio helper not shareable separately; root cause not established",
+    "Window filter initial assertion before READY, then successful initialization but zero output",
+    "Different same-widget native question; positive recorder control, not source/native waveform comparison",
+    "Three source actions occur within actual10sec recording windows; media play resolves/unmuted but is not acoustic proof"
+  ]
+}

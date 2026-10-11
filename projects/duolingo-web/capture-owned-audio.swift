@@ -1,4 +1,5 @@
 import Foundation
+import AppKit
 import ScreenCaptureKit
 import AVFoundation
 import CoreMedia
@@ -42,17 +43,29 @@ final class AudioSink: NSObject, SCStreamOutput, @unchecked Sendable {
     }
 }
 @main struct CaptureOwnedAudio {
-    static func main() async throws {
-        let pid = pid_t(CommandLine.arguments[1])!
-        let destination = URL(fileURLWithPath: CommandLine.arguments[2])
-        let duration = Double(CommandLine.arguments[3])!
+    @MainActor static func main() async throws {
+        let filterMode = CommandLine.arguments.contains("--filter=window") ? "window" : "application"
+        let excludeSelf = !CommandLine.arguments.contains("--include-self-audio")
+        let args = CommandLine.arguments.filter { $0 != "--filter=window" && $0 != "--include-self-audio" }
+        let pid = pid_t(args[1])!
+        let destination = URL(fileURLWithPath: args[2])
+        let duration = Double(args[3])!
         let content = try await SCShareableContent.excludingDesktopWindows(true, onScreenWindowsOnly: true)
         guard let app = content.applications.first(where: { $0.processID == pid }), let display = content.displays.first else { throw NSError(domain: "OwnedAudio", code: 1, userInfo: [NSLocalizedDescriptionKey: "The supplied child application is not shareable"]) }
-        let filter = SCContentFilter(display: display, including: [app], exceptingWindows: [])
+        let filter: SCContentFilter
+        var ownedWindow: UInt32?
+        if filterMode == "window" {
+            _ = NSApplication.shared
+            guard let window = content.windows.first(where:{ $0.owningApplication?.processID == pid && $0.frame.width > 100 && $0.frame.height > 100 }) else {
+                throw NSError(domain:"OwnedAudio",code:3,userInfo:[NSLocalizedDescriptionKey:"No supplied owned application window"])
+            }
+            ownedWindow = window.windowID
+            filter = SCContentFilter(desktopIndependentWindow:window)
+        } else { filter = SCContentFilter(display: display, including: [app], exceptingWindows: []) }
         let config = SCStreamConfiguration()
         config.width = 2; config.height = 2; config.capturesAudio = true
         config.sampleRate = 48000; config.channelCount = 2
-        config.excludesCurrentProcessAudio = true
+        config.excludesCurrentProcessAudio = excludeSelf
         config.captureMicrophone = false
         let sink = AudioSink(destination)
         let queue = DispatchQueue(label: "owned-audio")
@@ -62,8 +75,8 @@ final class AudioSink: NSObject, SCStreamOutput, @unchecked Sendable {
         print("READY owned application audio capture"); fflush(stdout)
         let started = Date()
         var actions: [[String: Any]] = []
-        if CommandLine.arguments.count > 4 {
-            let ids = try JSONDecoder().decode([String].self, from: Data(contentsOf: URL(fileURLWithPath: CommandLine.arguments[4])))
+        if args.count > 4 {
+            let ids = try JSONDecoder().decode([String].self, from: Data(contentsOf: URL(fileURLWithPath: args[4])))
             let axApp = AXUIElementCreateApplication(pid)
             func attribute(_ element: AXUIElement, _ name: String) -> AnyObject? {
                 var value: CFTypeRef?
@@ -87,7 +100,7 @@ final class AudioSink: NSObject, SCStreamOutput, @unchecked Sendable {
                     throw NSError(domain: "OwnedAudio", code: 2, userInfo: [NSLocalizedDescriptionKey: "Cannot press owned audio scenario control: " + id])
                 }
                 actions.append(["id": id, "elapsed_seconds": Date().timeIntervalSince(started)])
-                let gap = CommandLine.arguments.count > 5 ? Double(CommandLine.arguments[5])! : 0.16
+                let gap = args.count > 5 ? Double(args[5])! : 0.16
                 try await Task.sleep(for: .seconds(gap))
             }
         }
@@ -95,7 +108,8 @@ final class AudioSink: NSObject, SCStreamOutput, @unchecked Sendable {
         if remaining > 0 { try await Task.sleep(for: .seconds(remaining)) }
         try await stream.stopCapture()
         queue.sync {}
-        var result: [String: Any] = ["kind": "owned_application_audio_loopback", "frames": sink.frames, "peak": sink.peak, "rms": sink.samples > 0 ? sqrt(sink.energy / Double(sink.samples)) : 0, "samples": sink.samples, "microphone": false, "filter": "Only explicitly selected child application", "duration_seconds": duration, "ui_actions": actions]
+        var result: [String: Any] = ["kind": "owned_application_audio_loopback", "frames": sink.frames, "peak": sink.peak, "rms": sink.samples > 0 ? sqrt(sink.energy / Double(sink.samples)) : 0, "samples": sink.samples, "microphone": false, "filter": "Only explicitly selected owned application/window", "filter_mode":filterMode, "excludes_current_process_audio":excludeSelf, "owned_pid":pid, "duration_seconds": duration, "ui_actions": actions]
+        if let ownedWindow { result["owned_window_id"] = ownedWindow }
         if let failure = sink.failure { result["failure"] = failure }
         sink.file = nil
         try JSONSerialization.data(withJSONObject: result, options: [.prettyPrinted, .sortedKeys]).write(to: destination.appendingPathExtension("json"))

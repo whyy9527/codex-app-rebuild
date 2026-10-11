@@ -1,0 +1,4868 @@
+{
+  "states": {
+    "general-practice-q0": {
+      "accessible_text": [
+        "选择配对",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5 热",
+        "6 茶",
+        "7 欢迎",
+        "8 你好",
+        "现在不做听力题",
+        "检查",
+        "\"1\"",
+        "\"2\"",
+        "\"3\"",
+        "\"4\"",
+        "5 热",
+        "6 茶",
+        "7 欢迎",
+        "8 你好"
+      ],
+      "snapshot": "- button:\n  - img\n- progressbar:\n  - img\n- heading \"选择配对\" [level=1]\n- button \"1\":\n  - text: \"1\"\n  - img\n  - img\n  - img\n  - img\n- button \"2\":\n  - text: \"2\"\n  - img\n  - img\n  - img\n  - img\n- button \"3\":\n  - text: \"3\"\n  - img\n  - img\n  - img\n  - img\n- button \"4\":\n  - text: \"4\"\n  - img\n  - img\n  - img\n  - img\n- button \"5 热\":\n  - text: 5 热\n  - img\n  - img\n- button \"6 茶\":\n  - text: 6 茶\n  - img\n  - img\n- button \"7 欢迎\":\n  - text: 7 欢迎\n  - img\n  - img\n- button \"8 你好\":\n  - text: 8 你好\n  - img\n  - img\n- button \"现在不做听力题\"\n- button \"检查\" [disabled]",
+      "elements": {
+        "pair-left-0": {
+          "rect": [
+            330,
+            247,
+            255,
+            58
+          ]
+        },
+        "pair-left-1": {
+          "rect": [
+            330,
+            315,
+            255,
+            58
+          ]
+        },
+        "pair-left-2": {
+          "rect": [
+            330,
+            383,
+            255,
+            58
+          ]
+        },
+        "pair-left-3": {
+          "rect": [
+            330,
+            451,
+            255,
+            58
+          ]
+        },
+        "pair-right-2": {
+          "rect": [
+            615,
+            247,
+            255,
+            58
+          ]
+        },
+        "pair-right-1": {
+          "rect": [
+            615,
+            315,
+            255,
+            58
+          ]
+        },
+        "pair-right-3": {
+          "rect": [
+            615,
+            383,
+            255,
+            58
+          ]
+        },
+        "pair-right-0": {
+          "rect": [
+            606.4508056640625,
+            449.05548095703125,
+            272.098388671875,
+            61.8890380859375
+          ]
+        }
+      },
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-general-practice-v1/source-question-0-before.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "general-practice-q0-feedback": {
+      "accessible_text": [
+        "选择配对",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5 热",
+        "6 茶",
+        "7 欢迎",
+        "8 你好",
+        "太棒了！",
+        "太简单",
+        "太难",
+        "报错",
+        "继续",
+        "\"1\"",
+        "\"2\"",
+        "\"3\"",
+        "\"4\"",
+        "5 热",
+        "6 茶",
+        "7 欢迎",
+        "8 你好"
+      ],
+      "snapshot": "- button:\n  - img\n- progressbar:\n  - img\n- heading \"选择配对\" [level=1]\n- button \"1\" [disabled]:\n  - text: \"1\"\n  - img\n  - img\n  - img\n  - img\n- button \"2\" [disabled]:\n  - text: \"2\"\n  - img\n  - img\n  - img\n  - img\n- button \"3\" [disabled]:\n  - text: \"3\"\n  - img\n  - img\n  - img\n  - img\n- button \"4\" [disabled]:\n  - text: \"4\"\n  - img\n  - img\n  - img\n  - img\n- button \"5 热\" [disabled]:\n  - text: 5 热\n  - img\n  - img\n- button \"6 茶\" [disabled]:\n  - text: 6 茶\n  - img\n  - img\n- button \"7 欢迎\" [disabled]:\n  - text: 7 欢迎\n  - img\n  - img\n- button \"8 你好\" [disabled]:\n  - text: 8 你好\n  - img\n  - img\n- heading \"太棒了！\" [level=2]\n- button \"太简单\"\n- button \"太难\"\n- button \"报错\"\n- button \"继续\"",
+      "elements": {},
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-general-practice-v1/source-question-0-feedback.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "general-practice-q1": {
+      "accessible_text": [
+        "选择正确的答案",
+        "跳过",
+        "检查",
+        "热",
+        "1 welcome",
+        "2 hot",
+        "3 coffee"
+      ],
+      "snapshot": "- button:\n  - img\n- progressbar\n- heading \"选择正确的答案\" [level=1]\n- text: 热\n- img\n- radiogroup \"choice\":\n  - radio \"1 welcome\":\n    - text: 1 welcome\n    - img\n    - img\n  - radio \"2 hot\":\n    - text: 2 hot\n    - img\n    - img\n  - radio \"3 coffee\":\n    - text: 3 coffee\n    - img\n    - img\n- button \"跳过\"\n- button \"检查\" [disabled]",
+      "elements": {},
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-general-practice-v1/source-question-1-before.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "general-practice-q1-feedback": {
+      "accessible_text": [
+        "选择正确的答案",
+        "棒棒哒！",
+        "太简单",
+        "太难",
+        "报错",
+        "继续",
+        "热",
+        "1 welcome",
+        "2 hot",
+        "3 coffee"
+      ],
+      "snapshot": "- button:\n  - img\n- progressbar: 连对 2 题\n- heading \"选择正确的答案\" [level=1]\n- text: 热\n- img\n- radiogroup \"choice\":\n  - radio \"1 welcome\" [disabled]:\n    - text: 1 welcome\n    - img\n    - img\n  - radio \"2 hot\" [checked] [disabled]:\n    - text: 2 hot\n    - img\n    - img\n  - radio \"3 coffee\" [disabled]:\n    - text: 3 coffee\n    - img\n    - img\n- heading \"棒棒哒！\" [level=2]\n- button \"太简单\"\n- button \"太难\"\n- button \"报错\"\n- button \"继续\"",
+      "elements": {},
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-general-practice-v1/source-question-1-feedback.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "general-practice-q2": {
+      "accessible_text": [
+        "选择配对",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5 热",
+        "6 咖啡",
+        "7 茶",
+        "8 欢迎",
+        "现在不做听力题",
+        "检查",
+        "\"1\"",
+        "\"2\"",
+        "\"3\"",
+        "\"4\"",
+        "5 热",
+        "6 咖啡",
+        "7 茶",
+        "8 欢迎"
+      ],
+      "snapshot": "- button:\n  - img\n- progressbar\n- heading \"选择配对\" [level=1]\n- button \"1\":\n  - text: \"1\"\n  - img\n  - img\n  - img\n  - img\n- button \"2\":\n  - text: \"2\"\n  - img\n  - img\n  - img\n  - img\n- button \"3\":\n  - text: \"3\"\n  - img\n  - img\n  - img\n  - img\n- button \"4\":\n  - text: \"4\"\n  - img\n  - img\n  - img\n  - img\n- button \"5 热\":\n  - text: 5 热\n  - img\n  - img\n- button \"6 咖啡\":\n  - text: 6 咖啡\n  - img\n  - img\n- button \"7 茶\":\n  - text: 7 茶\n  - img\n  - img\n- button \"8 欢迎\":\n  - text: 8 欢迎\n  - img\n  - img\n- button \"现在不做听力题\"\n- button \"检查\" [disabled]",
+      "elements": {},
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-general-practice-v1/source-question-2-before.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "general-practice-q2-feedback": {
+      "accessible_text": [
+        "选择配对",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5 热",
+        "6 咖啡",
+        "7 茶",
+        "8 欢迎",
+        "棒棒哒！",
+        "太简单",
+        "太难",
+        "报错",
+        "继续",
+        "连对 3 题",
+        "\"1\"",
+        "\"2\"",
+        "\"3\"",
+        "\"4\"",
+        "5 热",
+        "6 咖啡",
+        "7 茶",
+        "8 欢迎"
+      ],
+      "snapshot": "- button:\n  - img\n- progressbar:\n  - text: 连对 3 题\n  - img\n- heading \"选择配对\" [level=1]\n- button \"1\" [disabled]:\n  - text: \"1\"\n  - img\n  - img\n  - img\n  - img\n- button \"2\" [disabled]:\n  - text: \"2\"\n  - img\n  - img\n  - img\n  - img\n- button \"3\" [disabled]:\n  - text: \"3\"\n  - img\n  - img\n  - img\n  - img\n- button \"4\" [disabled]:\n  - text: \"4\"\n  - img\n  - img\n  - img\n  - img\n- button \"5 热\" [disabled]:\n  - text: 5 热\n  - img\n  - img\n- button \"6 咖啡\" [disabled]:\n  - text: 6 咖啡\n  - img\n  - img\n- button \"7 茶\" [disabled]:\n  - text: 7 茶\n  - img\n  - img\n- button \"8 欢迎\" [disabled]:\n  - text: 8 欢迎\n  - img\n  - img\n- heading \"棒棒哒！\" [level=2]\n- button \"太简单\"\n- button \"太难\"\n- button \"报错\"\n- button \"继续\"",
+      "elements": {},
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-general-practice-v1/source-question-2-feedback.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "general-practice-q3": {
+      "accessible_text": [
+        "选择正确的答案",
+        "跳过",
+        "检查",
+        "你好",
+        "1 good morning",
+        "2 hot",
+        "3 hello"
+      ],
+      "snapshot": "- button:\n  - img\n- progressbar\n- heading \"选择正确的答案\" [level=1]\n- text: 你好\n- img\n- radiogroup \"choice\":\n  - radio \"1 good morning\":\n    - text: 1 good morning\n    - img\n    - img\n  - radio \"2 hot\":\n    - text: 2 hot\n    - img\n    - img\n  - radio \"3 hello\":\n    - text: 3 hello\n    - img\n    - img\n- button \"跳过\"\n- button \"检查\" [disabled]",
+      "elements": {},
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-general-practice-v1/source-question-3-before.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "general-practice-q3-feedback": {
+      "accessible_text": [
+        "选择正确的答案",
+        "真棒！",
+        "太简单",
+        "太难",
+        "报错",
+        "继续",
+        "你好",
+        "1 good morning",
+        "2 hot",
+        "3 hello"
+      ],
+      "snapshot": "- button:\n  - img\n- progressbar: 连对 4 题\n- heading \"选择正确的答案\" [level=1]\n- text: 你好\n- img\n- radiogroup \"choice\":\n  - radio \"1 good morning\" [disabled]:\n    - text: 1 good morning\n    - img\n    - img\n  - radio \"2 hot\" [disabled]:\n    - text: 2 hot\n    - img\n    - img\n  - radio \"3 hello\" [checked] [disabled]:\n    - text: 3 hello\n    - img\n    - img\n- heading \"真棒！\" [level=2]\n- button \"太简单\"\n- button \"太难\"\n- button \"报错\"\n- button \"继续\"",
+      "elements": {},
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-general-practice-v1/source-question-3-feedback.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "general-practice-q4": {
+      "accessible_text": [
+        "用中文（简体）写出这句话",
+        "谢谢",
+        "糖",
+        "跳过",
+        "检查"
+      ],
+      "snapshot": "- button:\n  - img\n- progressbar\n- heading \"用中文（简体）写出这句话\" [level=1]\n- button:\n  - img\n- img\n- button \"谢谢\"\n- button \"糖\"\n- button \"跳过\"\n- button \"检查\" [disabled]",
+      "elements": {},
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-general-practice-v1/source-question-4-before.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "general-practice-q4-feedback": {
+      "accessible_text": [
+        "用中文（简体）写出这句话",
+        "谢谢",
+        "糖",
+        "非常好！",
+        "太简单",
+        "太难",
+        "报错",
+        "继续",
+        "谢谢"
+      ],
+      "snapshot": "- button:\n  - img\n- progressbar: 连对 5 题\n- heading \"用中文（简体）写出这句话\" [level=1]\n- button:\n  - img\n- img\n- button \"谢谢\" [disabled]\n- button \"糖\" [disabled]\n- heading \"非常好！\" [level=2]\n- button \"太简单\"\n- button \"太难\"\n- button \"报错\"\n- button \"继续\"\n- button \"谢谢\" [disabled]",
+      "elements": {},
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-general-practice-v1/source-question-4-feedback.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "general-practice-q5": {
+      "accessible_text": [
+        "选择音频填空",
+        "现在不做听力题",
+        "检查",
+        "\"1\"",
+        "\"2\""
+      ],
+      "snapshot": "- button:\n  - img\n- progressbar\n- heading \"选择音频填空\" [level=1]\n- button:\n  - img\n- img\n- radiogroup \"choice\":\n  - radio \"1\":\n    - text: \"1\"\n    - img\n    - img\n    - img\n    - img\n  - radio \"2\":\n    - text: \"2\"\n    - img\n    - img\n    - img\n    - img\n- button \"现在不做听力题\"\n- button \"检查\" [disabled]",
+      "elements": {
+        "question-character": {
+          "rect": [
+            301.08612060546875,
+            184.75,
+            129.79998779296875,
+            192.5
+          ]
+        },
+        "isolation-prompt": {
+          "rect": [
+            450,
+            270,
+            29,
+            22
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "option-0": {
+          "rect": [
+            300,
+            406.5,
+            600,
+            62
+          ],
+          "role": "radio",
+          "enabled": true
+        },
+        "option-1": {
+          "rect": [
+            300,
+            476.5,
+            600,
+            62
+          ],
+          "role": "radio",
+          "enabled": true
+        },
+        "listening-decline": {
+          "rect": [
+            140,
+            639,
+            160.6015625,
+            50
+          ],
+          "role": "button",
+          "enabled": true
+        }
+      },
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-general-practice-v1/resume5-question-5-before.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "general-practice-q5-feedback": {
+      "accessible_text": [
+        "选择音频填空",
+        "正确！",
+        "太简单",
+        "太难",
+        "报错",
+        "继续",
+        "连对 6 题",
+        "\"1\"",
+        "\"2\"",
+        "意思是： 不要冰，谢谢。"
+      ],
+      "snapshot": "- button:\n  - img\n- progressbar:\n  - text: 连对 6 题\n  - img\n- heading \"选择音频填空\" [level=1]\n- button:\n  - img\n- img\n- radiogroup \"choice\":\n  - radio \"1\" [disabled]:\n    - text: \"1\"\n    - img\n    - img\n    - img\n    - img\n  - radio \"2\" [checked] [disabled]:\n    - text: \"2\"\n    - img\n    - img\n    - img\n    - img\n- heading \"正确！\" [level=2]\n- text: 意思是： 不要冰，谢谢。\n- button \"太简单\"\n- button \"太难\"\n- button \"报错\"\n- button \"继续\"",
+      "elements": {},
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-general-practice-v1/resume5-question-5-feedback.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "general-practice-q6": {
+      "accessible_text": [
+        "选择听到的内容",
+        "Hello",
+        "good",
+        "ice",
+        "morning",
+        "现在不做听力题",
+        "使用键盘",
+        "检查"
+      ],
+      "snapshot": "- button:\n  - img\n- progressbar\n- heading \"选择听到的内容\" [level=1]\n- button:\n  - img\n- button:\n  - img\n- button \"Hello\"\n- button \"good\"\n- button \"ice\"\n- button \"morning\"\n- button \"现在不做听力题\"\n- button \"使用键盘\"\n- button \"检查\" [disabled]",
+      "elements": {},
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-general-practice-v1/resume6-question-6-before.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "general-practice-q6-feedback": {
+      "accessible_text": [
+        "选择听到的内容",
+        "Hello",
+        "good",
+        "ice",
+        "morning",
+        "棒棒哒！",
+        "太简单",
+        "太难",
+        "报错",
+        "继续",
+        "Hello",
+        "good",
+        "morning",
+        "意思是： 你好， 早上好！"
+      ],
+      "snapshot": "- button:\n  - img\n- progressbar: 连对 7 题\n- heading \"选择听到的内容\" [level=1]\n- button:\n  - img\n- button:\n  - img\n- button \"Hello\" [disabled]\n- button \"good\" [disabled]\n- button \"ice\" [disabled]\n- button \"morning\" [disabled]\n- heading \"棒棒哒！\" [level=2]\n- text: 意思是： 你好， 早上好！\n- button \"太简单\"\n- button \"太难\"\n- button \"报错\"\n- button \"继续\"\n- button \"Hello\" [disabled]\n- button \"good\" [disabled]\n- button \"morning\" [disabled]",
+      "elements": {},
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-general-practice-v1/resume6-question-6-feedback.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "general-practice-q8": {
+      "accessible_text": [
+        "选择听到的内容",
+        "or",
+        "Hot",
+        "tea",
+        "i'd like",
+        "coffee",
+        "现在不做听力题",
+        "使用键盘",
+        "检查"
+      ],
+      "snapshot": "- button:\n  - img\n- progressbar\n- heading \"选择听到的内容\" [level=1]\n- button:\n  - img\n- button:\n  - img\n- button \"or\"\n- button \"Hot\"\n- button \"tea\"\n- button \"i'd like\"\n- button \"coffee\"\n- button \"现在不做听力题\"\n- button \"使用键盘\"\n- button \"检查\" [disabled]",
+      "elements": {},
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-general-practice-v1/after-inserted-question-8-before.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "general-practice-q8-feedback": {
+      "accessible_text": [
+        "选择听到的内容",
+        "or",
+        "Hot",
+        "tea",
+        "i'd like",
+        "coffee",
+        "太棒了！",
+        "太简单",
+        "太难",
+        "报错",
+        "继续",
+        "Hot",
+        "tea",
+        "or",
+        "coffee",
+        "连对 9 题",
+        "意思是： 热茶还是咖啡？"
+      ],
+      "snapshot": "- button:\n  - img\n- progressbar:\n  - text: 连对 9 题\n  - img\n- heading \"选择听到的内容\" [level=1]\n- button:\n  - img\n- button:\n  - img\n- button \"or\" [disabled]\n- button \"Hot\" [disabled]\n- button \"tea\" [disabled]\n- button \"i'd like\" [disabled]\n- button \"coffee\" [disabled]\n- heading \"太棒了！\" [level=2]\n- text: 意思是： 热茶还是咖啡？\n- button \"太简单\"\n- button \"太难\"\n- button \"报错\"\n- button \"继续\"\n- button \"Hot\" [disabled]\n- button \"tea\" [disabled]\n- button \"or\" [disabled]\n- button \"coffee\" [disabled]",
+      "elements": {},
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-general-practice-v1/after-inserted-question-8-feedback.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "general-practice-q9": {
+      "accessible_text": [
+        "用英语写出这句话",
+        "I'd",
+        "like",
+        "coffee",
+        "and",
+        "water",
+        "thank you",
+        "please",
+        "跳过",
+        "使用键盘",
+        "检查"
+      ],
+      "snapshot": "- button:\n  - img\n- progressbar\n- heading \"用英语写出这句话\" [level=1]\n- img\n- button \"I'd\"\n- button \"like\"\n- button \"coffee\"\n- button \"and\"\n- button \"water\"\n- button \"thank you\"\n- button \"please\"\n- button \"跳过\"\n- button \"使用键盘\"\n- button \"检查\" [disabled]",
+      "elements": {},
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-general-practice-v1/after-inserted-question-9-before.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "general-practice-q9-feedback": {
+      "accessible_text": [
+        "用英语写出这句话",
+        "I'd",
+        "like",
+        "coffee",
+        "and",
+        "water",
+        "thank you",
+        "please",
+        "泰裤辣！",
+        "太简单",
+        "太难",
+        "报错",
+        "继续",
+        "I'd",
+        "like",
+        "water",
+        "and",
+        "coffee",
+        "please"
+      ],
+      "snapshot": "- button:\n  - img\n- progressbar: 连对 10 题\n- heading \"用英语写出这句话\" [level=1]\n- img\n- button \"I'd\" [disabled]\n- button \"like\" [disabled]\n- button \"coffee\" [disabled]\n- button \"and\" [disabled]\n- button \"water\" [disabled]\n- button \"thank you\" [disabled]\n- button \"please\" [disabled]\n- heading \"泰裤辣！\" [level=2]\n- button \"太简单\"\n- button \"太难\"\n- button \"报错\"\n- button \"继续\"\n- button \"I'd\" [disabled]\n- button \"like\" [disabled]\n- button \"water\" [disabled]\n- button \"and\" [disabled]\n- button \"coffee\" [disabled]\n- button \"please\" [disabled]",
+      "elements": {},
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-general-practice-v1/after-inserted-question-9-feedback.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "general-practice-q11": {
+      "accessible_text": [
+        "键入你听到的内容",
+        "使用英语键入",
+        "现在不做听力题",
+        "检查"
+      ],
+      "snapshot": "- button:\n  - img\n- progressbar\n- heading \"键入你听到的内容\" [level=1]\n- button:\n  - img\n- button:\n  - img\n- textbox \"使用英语键入\"\n- button \"现在不做听力题\"\n- button \"检查\" [disabled]",
+      "elements": {},
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-general-practice-v1/resume11-question-11-before.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "general-practice-q11-feedback": {
+      "accessible_text": [
+        "键入你听到的内容",
+        "使用英语键入",
+        "真厉害！",
+        "太简单",
+        "太难",
+        "报错",
+        "继续",
+        "意思是： 咖啡还是茶？"
+      ],
+      "snapshot": "- button:\n  - img\n- progressbar: 连对 12 题\n- heading \"键入你听到的内容\" [level=1]\n- button:\n  - img\n- button:\n  - img\n- textbox \"使用英语键入\" [disabled]: Coffee or tea?\n- heading \"真厉害！\" [level=2]\n- text: 意思是： 咖啡还是茶？\n- button \"太简单\"\n- button \"太难\"\n- button \"报错\"\n- button \"继续\"",
+      "elements": {},
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-general-practice-v1/resume11-question-11-feedback.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "general-practice-q12": {
+      "accessible_text": [
+        "输入所缺单词",
+        "tea coffee",
+        "现在不做听力题",
+        "检查",
+        "tea",
+        "coffee"
+      ],
+      "snapshot": "- button:\n  - img\n- progressbar\n- heading \"输入所缺单词\" [level=1]\n- button:\n  - img\n- button:\n  - img\n- text: tea\n- textbox \"tea coffee\"\n- text: coffee\n- button \"现在不做听力题\"\n- button \"检查\" [disabled]",
+      "elements": {},
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-general-practice-v1/resume11-question-12-before.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "general-practice-q12-feedback": {
+      "accessible_text": [
+        "输入所缺单词",
+        "tea coffee",
+        "不错哦！",
+        "太简单",
+        "太难",
+        "报错",
+        "继续",
+        "tea",
+        "coffee",
+        "意思是： 茶和咖啡"
+      ],
+      "snapshot": "- button:\n  - img\n- progressbar: 连对 13 题\n- heading \"输入所缺单词\" [level=1]\n- button:\n  - img\n- button:\n  - img\n- text: tea\n- textbox \"tea coffee\" [disabled]: and\n- text: coffee\n- heading \"不错哦！\" [level=2]\n- text: 意思是： 茶和咖啡\n- button \"太简单\"\n- button \"太难\"\n- button \"报错\"\n- button \"继续\"",
+      "elements": {},
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-general-practice-v1/resume11-question-12-feedback.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "general-practice-inserted": {
+      "accessible_text": [
+        "用中文（简体）写出这句话",
+        "谢谢你",
+        "谢谢",
+        "茶",
+        "跳过",
+        "检查"
+      ],
+      "snapshot": "- button:\n  - img\n- progressbar\n- heading \"用中文（简体）写出这句话\" [level=1]\n- button:\n  - img\n- img\n- button \"谢谢你\"\n- button \"谢谢\"\n- button \"茶\"\n- button \"跳过\"\n- button \"检查\" [disabled]",
+      "elements": {},
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-general-practice-v1/inserted-before.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "general-practice-inserted-feedback": {
+      "accessible_text": [
+        "用中文（简体）写出这句话",
+        "谢谢你",
+        "谢谢",
+        "茶",
+        "你太棒了！",
+        "太简单",
+        "太难",
+        "报错",
+        "继续",
+        "茶",
+        "谢谢",
+        "连对 8 题"
+      ],
+      "snapshot": "- button:\n  - img\n- progressbar:\n  - text: 连对 8 题\n  - img\n- heading \"用中文（简体）写出这句话\" [level=1]\n- button:\n  - img\n- img\n- button \"谢谢你\" [disabled]\n- button \"谢谢\" [disabled]\n- button \"茶\" [disabled]\n- heading \"你太棒了！\" [level=2]\n- button \"太简单\"\n- button \"太难\"\n- button \"报错\"\n- button \"继续\"\n- button \"茶\" [disabled]\n- button \"谢谢\" [disabled]",
+      "elements": {},
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-general-practice-v1/inserted-feedback.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "general-practice-q10": {
+      "accessible_text": [
+        "输入所缺单词",
+        "or coffee?",
+        "现在不做听力题",
+        "检查",
+        "or coffee?"
+      ],
+      "snapshot": "- button:\n  - img\n- progressbar\n- heading \"输入所缺单词\" [level=1]\n- button:\n  - img\n- button:\n  - img\n- textbox \"or coffee?\"\n- text: or coffee?\n- button \"现在不做听力题\"\n- button \"检查\" [disabled]",
+      "elements": {},
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-general-practice-v1/complete-before.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "general-practice-q10-feedback": {
+      "accessible_text": [
+        "输入所缺单词",
+        "or coffee?",
+        "泰裤辣！",
+        "太简单",
+        "太难",
+        "报错",
+        "继续",
+        "or coffee?",
+        "意思是： 茶还是咖啡？"
+      ],
+      "snapshot": "- button:\n  - img\n- progressbar: 连对 11 题\n- heading \"输入所缺单词\" [level=1]\n- button:\n  - img\n- button:\n  - img\n- textbox \"or coffee?\" [disabled]: Tea\n- text: or coffee?\n- heading \"泰裤辣！\" [level=2]\n- text: 意思是： 茶还是咖啡？\n- button \"太简单\"\n- button \"太难\"\n- button \"报错\"\n- button \"继续\"",
+      "elements": {},
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-general-practice-v1/complete-feedback.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "general-practice-replacement13": {
+      "accessible_text": [
+        "用英语写出这句话",
+        "使用英语键入",
+        "跳过",
+        "检查",
+        "挑战题"
+      ],
+      "snapshot": "- button:\n  - img\n- progressbar\n- img\n- text: 挑战题\n- heading \"用英语写出这句话\" [level=1]\n- img\n- textbox \"使用英语键入\"\n- button \"跳过\"\n- button \"检查\" [disabled]",
+      "elements": {},
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-general-practice-v1/replacement-before.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "general-practice-replacement13-feedback": {
+      "accessible_text": [
+        "用英语写出这句话",
+        "使用英语键入",
+        "正确！",
+        "太简单",
+        "太难",
+        "报错",
+        "继续",
+        "连对 14 题",
+        "挑战题"
+      ],
+      "snapshot": "- button:\n  - img\n- progressbar:\n  - text: 连对 14 题\n  - img\n- img\n- text: 挑战题\n- heading \"用英语写出这句话\" [level=1]\n- img\n- textbox \"使用英语键入\" [disabled]: I'd like coffee with ice, please.\n- heading \"正确！\" [level=2]\n- button \"太简单\"\n- button \"太难\"\n- button \"报错\"\n- button \"继续\"",
+      "elements": {},
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-general-practice-v1/replacement-feedback.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "general-practice-replacement14": {
+      "accessible_text": [
+        "用英语写出这句话",
+        "使用英语键入",
+        "跳过",
+        "检查",
+        "挑战题"
+      ],
+      "snapshot": "- button:\n  - img\n- progressbar\n- img\n- text: 挑战题\n- heading \"用英语写出这句话\" [level=1]\n- img\n- textbox \"使用英语键入\"\n- button \"跳过\"\n- button \"检查\" [disabled]",
+      "elements": {},
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-general-practice-v1/replacement14-before.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "general-practice-replacement14-feedback": {
+      "accessible_text": [
+        "用英语写出这句话",
+        "使用英语键入",
+        "其他正确答案：",
+        "太简单",
+        "太难",
+        "报错",
+        "继续",
+        "挑战题",
+        "No ice and no water, please."
+      ],
+      "snapshot": "- button:\n  - img\n- progressbar: 连对 15 题\n- img\n- text: 挑战题\n- heading \"用英语写出这句话\" [level=1]\n- img\n- textbox \"使用英语键入\" [disabled]: No ice, no water, please.\n- heading \"其他正确答案：\" [level=2]\n- text: No ice and no water, please.\n- button \"太简单\"\n- button \"太难\"\n- button \"报错\"\n- button \"继续\"",
+      "elements": {},
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-general-practice-v1/replacement14-feedback.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "general-practice-replacement15": {
+      "accessible_text": [
+        "用英语写出这句话",
+        "使用英语键入",
+        "跳过",
+        "检查",
+        "挑战题"
+      ],
+      "snapshot": "- button:\n  - img\n- progressbar\n- img\n- text: 挑战题\n- heading \"用英语写出这句话\" [level=1]\n- img\n- textbox \"使用英语键入\"\n- button \"跳过\"\n- button \"检查\" [disabled]",
+      "elements": {},
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-general-practice-v1/replacement15-wrong-before.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "general-practice-replacement15-feedback": {
+      "accessible_text": [
+        "用英语写出这句话",
+        "使用英语键入",
+        "正确答案：",
+        "太简单",
+        "太难",
+        "报错",
+        "继续",
+        "挑战题",
+        "Good morning, I'd like coffee with milk."
+      ],
+      "snapshot": "- button:\n  - img\n- progressbar\n- img\n- text: 挑战题\n- heading \"用英语写出这句话\" [level=1]\n- img\n- textbox \"使用英语键入\" [disabled]: water\n- heading \"正确答案：\" [level=2]\n- text: Good morning, I'd like coffee with milk.\n- button \"太简单\"\n- button \"太难\"\n- button \"报错\"\n- button \"继续\"",
+      "elements": {},
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-general-practice-v1/replacement15-wrong-feedback.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "general-practice-review": {
+      "accessible_text": [
+        "用英语写出这句话",
+        "使用英语键入",
+        "跳过",
+        "检查",
+        "错题重练"
+      ],
+      "snapshot": "- button:\n  - img\n- progressbar\n- img\n- text: 错题重练\n- heading \"用英语写出这句话\" [level=1]\n- img\n- textbox \"使用英语键入\"\n- button \"跳过\"\n- button \"检查\" [disabled]",
+      "elements": {},
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-general-practice-v1/review-before.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "general-practice-review-feedback": {
+      "accessible_text": [
+        "用英语写出这句话",
+        "使用英语键入",
+        "真棒！",
+        "太简单",
+        "太难",
+        "报错",
+        "继续",
+        "错题重练"
+      ],
+      "snapshot": "- button:\n  - img\n- progressbar:\n  - img\n- img\n- text: 错题重练\n- heading \"用英语写出这句话\" [level=1]\n- img\n- textbox \"使用英语键入\" [disabled]: Good morning, I'd like coffee with milk.\n- heading \"真棒！\" [level=2]\n- button \"太简单\"\n- button \"太难\"\n- button \"报错\"\n- button \"继续\"",
+      "elements": {},
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-general-practice-v1/review-feedback.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "general-practice-keyboard": {
+      "accessible_text": [
+        "键入你听到的内容",
+        "使用英语键入",
+        "现在不做听力题",
+        "使用词库",
+        "检查"
+      ],
+      "snapshot": "- button:\n  - img\n- progressbar\n- heading \"键入你听到的内容\" [level=1]\n- button:\n  - img\n- button:\n  - img\n- textbox \"使用英语键入\"\n- button \"现在不做听力题\"\n- button \"使用词库\"\n- button \"检查\" [disabled]",
+      "elements": {
+        "answer-input": {
+          "rect": [
+            300,
+            355,
+            600,
+            170
+          ],
+          "enabled": true
+        }
+      },
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-general-practice-v1/listentap-keyboard-before.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "general-practice-speech": {
+      "accessible_text": [
+        "朗读下面的句子",
+        "点击并开始录音",
+        "现在不做口语题",
+        "检查",
+        "点击并开始录音"
+      ],
+      "snapshot": "- button:\n  - img\n- progressbar\n- heading \"朗读下面的句子\" [level=1]\n- button:\n  - img\n- img\n- button \"点击并开始录音\":\n  - img\n  - text: 点击并开始录音\n  - img\n  - img\n- button \"现在不做口语题\"\n- button \"检查\" [disabled]",
+      "elements": {},
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-general-practice-v1/speech-before.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "general-practice-review-intro": {
+      "accessible_text": [
+        "继续",
+        "一起来复习一下之前你不太熟练的部分吧！"
+      ],
+      "snapshot": "- button:\n  - img\n- progressbar\n- img\n- text: 一起来复习一下之前你不太熟练的部分吧！\n- button \"继续\"",
+      "elements": {},
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-general-practice-v1/review-intro.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "general-practice-result": {
+      "accessible_text": [
+        "回顾本单元",
+        "重新练习",
+        "继续",
+        "你莫不是特工？ 本单元中，你完成了 8 项听力挑战 总经验",
+        "0 1 2 3 4 5 6 7 8 9 棒棒哒！",
+        "0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 %"
+      ],
+      "snapshot": "- img\n- text: 你莫不是特工？ 本单元中，你完成了 8 项听力挑战 总经验\n- img\n- text: 0 1 2 3 4 5 6 7 8 9 棒棒哒！\n- img\n- text: 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 %\n- button \"回顾本单元\"\n- button \"重新练习\"\n- button \"继续\"",
+      "elements": {},
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-general-practice-v1/settlement-ready.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "general-practice-heart-reward": {
+      "accessible_text": [
+        "回顾本单元",
+        "重新练习",
+        "继续",
+        "你又获取了一颗红心！ 学习新单元需要红心！"
+      ],
+      "snapshot": "- img\n- img\n- img\n- img\n- img\n- text: 你又获取了一颗红心！ 学习新单元需要红心！\n- button \"回顾本单元\"\n- button \"重新练习\"\n- button \"继续\"",
+      "elements": {},
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-general-practice-v1/after-settlement.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "general-practice-profile": {
+      "accessible_text": [
+        "来创建你的个人档案吧！",
+        "创建档案",
+        "稍后再说",
+        "创建档案就能保存学习进度，随时都可以继续免费学习后续内容。"
+      ],
+      "snapshot": "- heading \"来创建你的个人档案吧！\" [level=1]\n- paragraph: 创建档案就能保存学习进度，随时都可以继续免费学习后续内容。\n- button \"创建档案\"\n- button \"稍后再说\"",
+      "elements": {},
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-general-practice-v1/profile-before.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "current-practice-review-open": {
+      "snapshot": "- img\n- text: 完美！ 你练习全对，无错完成本单元 总经验\n- img\n- text: 0 1 2 3 4 5 6 7 8 9 超级棒\n- img\n- text: 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 %\n- button \"回顾本单元\"\n- button \"重新练习\"\n- button \"继续\"\n- img\n- text: 查看你的成绩单！ 点击下面的小方块来浏览答案吧！\n- button \"选择你听到的内容：\":\n  - text: 选择你听到的内容：\n  - img\n  - button:\n    - img\n  - button:\n    - img\n  - button:\n    - img\n  - button:\n    - img\n- button \"\\\"你好\\\" 该怎么说？\":\n  - text: \"\\\"你好\\\" 该怎么说？\"\n  - img\n- button \"选择你听到的内容：\":\n  - text: 选择你听到的内容：\n  - img\n  - button:\n    - img\n  - button:\n    - img\n  - button:\n    - img\n  - button:\n    - img\n- button \"\\\"不客气\\\" 该怎么说？\":\n  - text: \"\\\"不客气\\\" 该怎么说？\"\n  - img\n- button \"翻译成中文（简体）： coffee with milk\":\n  - text: 翻译成中文（简体）：\n  - img\n  - text: coffee with milk\n- button \"选择你听到的内容：\":\n  - text: 选择你听到的内容：\n  - img\n  - button:\n    - img\n- button \"翻译成中文（简体）： You're welcome, goodbye!\":\n  - text: 翻译成中文（简体）：\n  - img\n  - text: You're welcome, goodbye!\n- button \"选择你听到的内容：\":\n  - text: 选择你听到的内容：\n  - img\n  - button:\n    - img\n- button \"朗读下面的句子 Hot, please.\":\n  - text: 朗读下面的句子\n  - img\n  - text: Hot, please.\n- button \"翻译成中文（简体）： tea with sugar\":\n  - text: 翻译成中文（简体）：\n  - img\n  - text: tea with sugar\n- button \"翻译成英语： 热茶\":\n  - text: 翻译成英语：\n  - img\n  - text: 热茶\n- button \"翻译成中文（简体）： Coffee, please.\":\n  - text: 翻译成中文（简体）：\n  - img\n  - text: Coffee, please.\n- button \"翻译成英语： 咖啡加牛奶\":\n  - text: 翻译成英语：\n  - img\n  - text: 咖啡加牛奶\n- button \"输入所缺单词\":\n  - text: 输入所缺单词\n  - img\n  - button:\n    - img\n- button \"翻译成英语： 茶加糖\":\n  - text: 翻译成英语：\n  - img\n  - text: 茶加糖\n- button \"翻译成英语： 咖啡加糖\":\n  - text: 翻译成英语：\n  - img\n  - text: 咖啡加糖\n- button \"翻译成英语： 你好，早上好，咖啡加糖，谢谢。\":\n  - text: 翻译成英语：\n  - img\n  - text: 你好，早上好，咖啡加糖，谢谢。",
+      "accessible_text": [
+        "查看你的成绩单！",
+        "点击下面的小方块来浏览答案吧！"
+      ],
+      "elements": {
+        "review-card-0": {
+          "rect": [
+            210,
+            194,
+            165,
+            171
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-1": {
+          "rect": [
+            395,
+            194,
+            165,
+            171
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-2": {
+          "rect": [
+            580,
+            194,
+            165,
+            171
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-3": {
+          "rect": [
+            765,
+            194,
+            165,
+            171
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-4": {
+          "rect": [
+            210,
+            385,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-5": {
+          "rect": [
+            395,
+            385,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-6": {
+          "rect": [
+            580,
+            385,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-7": {
+          "rect": [
+            765,
+            385,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-8": {
+          "rect": [
+            210,
+            555,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-9": {
+          "rect": [
+            395,
+            555,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-10": {
+          "rect": [
+            580,
+            555,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-11": {
+          "rect": [
+            765,
+            555,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-12": {
+          "rect": [
+            210,
+            725,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-13": {
+          "rect": [
+            395,
+            725,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-14": {
+          "rect": [
+            580,
+            725,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-15": {
+          "rect": [
+            765,
+            725,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-16": {
+          "rect": [
+            210,
+            895,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "result-review-close": {
+          "rect": [
+            1012.5,
+            6.5,
+            35,
+            35
+          ],
+          "enabled": true
+        }
+      },
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-current-walk-v1/source/review-open-roles.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "current-practice-review-speech-expanded": {
+      "snapshot": "- img\n- text: 完美！ 你练习全对，无错完成本单元 总经验\n- img\n- text: 0 1 2 3 4 5 6 7 8 9 超级棒\n- img\n- text: 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 %\n- button \"回顾本单元\"\n- button \"重新练习\"\n- button \"继续\"\n- img\n- text: 查看你的成绩单！ 点击下面的小方块来浏览答案吧！\n- button \"选择你听到的内容：\":\n  - text: 选择你听到的内容：\n  - img\n  - button:\n    - img\n  - button:\n    - img\n  - button:\n    - img\n  - button:\n    - img\n- button \"\\\"你好\\\" 该怎么说？\":\n  - text: \"\\\"你好\\\" 该怎么说？\"\n  - img\n- button \"选择你听到的内容：\":\n  - text: 选择你听到的内容：\n  - img\n  - button:\n    - img\n  - button:\n    - img\n  - button:\n    - img\n  - button:\n    - img\n- button \"\\\"不客气\\\" 该怎么说？\":\n  - text: \"\\\"不客气\\\" 该怎么说？\"\n  - img\n- button \"翻译成中文（简体）： coffee with milk\":\n  - text: 翻译成中文（简体）：\n  - img\n  - text: coffee with milk\n- button \"选择你听到的内容：\":\n  - text: 选择你听到的内容：\n  - img\n  - button:\n    - img\n- button \"翻译成中文（简体）： You're welcome, goodbye!\":\n  - text: 翻译成中文（简体）：\n  - img\n  - text: You're welcome, goodbye!\n- button \"选择你听到的内容：\":\n  - text: 选择你听到的内容：\n  - img\n  - button:\n    - img\n- button \"朗读下面的句子 Hot, please.\":\n  - text: 朗读下面的句子\n  - img\n  - text: Hot, please.\n- text: 你的答案： Hot, please. 正确答案： Hot, please.\n- button \"翻译成中文（简体）： tea with sugar\":\n  - text: 翻译成中文（简体）：\n  - img\n  - text: tea with sugar\n- button \"翻译成英语： 热茶\":\n  - text: 翻译成英语：\n  - img\n  - text: 热茶\n- button \"翻译成中文（简体）： Coffee, please.\":\n  - text: 翻译成中文（简体）：\n  - img\n  - text: Coffee, please.\n- button \"翻译成英语： 咖啡加牛奶\":\n  - text: 翻译成英语：\n  - img\n  - text: 咖啡加牛奶\n- button \"输入所缺单词\":\n  - text: 输入所缺单词\n  - img\n  - button:\n    - img\n- button \"翻译成英语： 茶加糖\":\n  - text: 翻译成英语：\n  - img\n  - text: 茶加糖\n- button \"翻译成英语： 咖啡加糖\":\n  - text: 翻译成英语：\n  - img\n  - text: 咖啡加糖\n- button \"翻译成英语： 你好，早上好，咖啡加糖，谢谢。\":\n  - text: 翻译成英语：\n  - img\n  - text: 你好，早上好，咖啡加糖，谢谢。",
+      "accessible_text": [
+        "查看你的成绩单！",
+        "点击下面的小方块来浏览答案吧！",
+        "你的答案：",
+        "正确答案：",
+        "Hot, please."
+      ],
+      "elements": {
+        "review-card-0": {
+          "rect": [
+            210,
+            194,
+            165,
+            171
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-1": {
+          "rect": [
+            395,
+            194,
+            165,
+            171
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-2": {
+          "rect": [
+            580,
+            194,
+            165,
+            171
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-3": {
+          "rect": [
+            765,
+            194,
+            165,
+            171
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-4": {
+          "rect": [
+            210,
+            385,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-5": {
+          "rect": [
+            395,
+            385,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-6": {
+          "rect": [
+            580,
+            385,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-7": {
+          "rect": [
+            765,
+            385,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-8": {
+          "rect": [
+            210,
+            555,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-9": {
+          "rect": [
+            395,
+            555,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-10": {
+          "rect": [
+            580,
+            555,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-11": {
+          "rect": [
+            765,
+            555,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-12": {
+          "rect": [
+            210,
+            725,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-13": {
+          "rect": [
+            395,
+            725,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-14": {
+          "rect": [
+            580,
+            725,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-15": {
+          "rect": [
+            765,
+            725,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-16": {
+          "rect": [
+            210,
+            895,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "result-review-close": {
+          "rect": [
+            1012.5,
+            6.5,
+            35,
+            35
+          ],
+          "enabled": true
+        }
+      },
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-current-walk-v1/source/review-speech-expanded-roles.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "error-practice-review-open": {
+      "snapshot": "- img\n- text: 你莫不是特工？ 本单元中，你完成了 6 项听力挑战 总经验\n- img\n- text: 0 1 2 3 4 5 6 7 8 9 棒棒哒！\n- img\n- text: 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 %\n- button \"回顾本单元\"\n- button \"重新练习\"\n- button \"继续\"\n- img\n- text: 查看你的成绩单！ 点击下面的小方块来浏览答案吧！\n- button \"选择你听到的内容：\":\n  - text: 选择你听到的内容：\n  - img\n  - button:\n    - img\n  - button:\n    - img\n  - button:\n    - img\n  - button:\n    - img\n- button \"\\\"热\\\" 该怎么说？\":\n  - text: \"\\\"热\\\" 该怎么说？\"\n  - img\n- button \"翻译成中文（简体）： coffee with sugar\":\n  - text: 翻译成中文（简体）：\n  - img\n  - text: coffee with sugar\n- button \"\\\"早上好\\\" 该怎么说？\":\n  - text: \"\\\"早上好\\\" 该怎么说？\"\n  - img\n- button \"翻译成中文（简体）： water and coffee\":\n  - text: 翻译成中文（简体）：\n  - img\n  - text: water and coffee\n- button \"选择你听到的内容：\":\n  - text: 选择你听到的内容：\n  - img\n  - button:\n    - img\n- button \"朗读下面的句子 More milk?\":\n  - text: 朗读下面的句子\n  - img\n  - text: More milk?\n- button \"翻译成中文（简体）： water and tea\":\n  - text: 翻译成中文（简体）：\n  - img\n  - text: water and tea\n- button \"选择你听到的内容：\":\n  - text: 选择你听到的内容：\n  - img\n  - button:\n    - img\n- button \"翻译成中文（简体）： tea and coffee\":\n  - text: 翻译成中文（简体）：\n  - img\n  - text: tea and coffee\n- button \"翻译成英语： 牛奶和糖\":\n  - text: 翻译成英语：\n  - img\n  - text: 牛奶和糖\n- button \"输入所缺单词\":\n  - text: 输入所缺单词\n  - img\n  - button:\n    - img\n- button \"翻译成英语： 早上好，我想再来一些咖啡，谢谢。\":\n  - text: 翻译成英语：\n  - img\n  - text: 早上好，我想再来一些咖啡，谢谢。\n- button \"键入你听到的内容：\":\n  - text: 键入你听到的内容：\n  - img\n  - button:\n    - img\n- button \"翻译成英语： 早上好，咖啡加牛奶，谢谢。\":\n  - text: 翻译成英语：\n  - img\n  - text: 早上好，咖啡加牛奶，谢谢。\n- button \"键入你听到的内容：\":\n  - text: 键入你听到的内容：\n  - img\n  - button:\n    - img\n- button \"翻译成英语： 茶加糖\":\n  - text: 翻译成英语：\n  - img\n  - text: 茶加糖\n- button \"\\\"热\\\" 该怎么说？\":\n  - text: \"\\\"热\\\" 该怎么说？\"\n  - img",
+      "accessible_text": [
+        "查看你的成绩单！",
+        "点击下面的小方块来浏览答案吧！"
+      ],
+      "elements": {
+        "review-card-0": {
+          "rect": [
+            210,
+            194,
+            165,
+            171
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-1": {
+          "rect": [
+            395,
+            194,
+            165,
+            171
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-2": {
+          "rect": [
+            580,
+            194,
+            165,
+            171
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-3": {
+          "rect": [
+            765,
+            194,
+            165,
+            171
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-4": {
+          "rect": [
+            210,
+            385,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-5": {
+          "rect": [
+            395,
+            385,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-6": {
+          "rect": [
+            580,
+            385,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-7": {
+          "rect": [
+            765,
+            385,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-8": {
+          "rect": [
+            210,
+            555,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-9": {
+          "rect": [
+            395,
+            555,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-10": {
+          "rect": [
+            580,
+            555,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-11": {
+          "rect": [
+            765,
+            555,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-12": {
+          "rect": [
+            210,
+            725,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-13": {
+          "rect": [
+            395,
+            725,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-14": {
+          "rect": [
+            580,
+            725,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-15": {
+          "rect": [
+            765,
+            725,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-16": {
+          "rect": [
+            210,
+            895,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-17": {
+          "rect": [
+            395,
+            895,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        }
+      },
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-error-review-v1/source/review-cards.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      },
+      "pixel_color_space": "sRGB",
+      "pixel_samples": {
+        "540,345": [
+          255,
+          223,
+          224
+        ]
+      }
+    },
+    "error-practice-review-wrong-expanded": {
+      "snapshot": "- img\n- text: 你莫不是特工？ 本单元中，你完成了 6 项听力挑战 总经验\n- img\n- text: 0 1 2 3 4 5 6 7 8 9 棒棒哒！\n- img\n- text: 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 %\n- button \"回顾本单元\"\n- button \"重新练习\"\n- button \"继续\"\n- img\n- text: 查看你的成绩单！ 点击下面的小方块来浏览答案吧！\n- button \"选择你听到的内容：\":\n  - text: 选择你听到的内容：\n  - img\n  - button:\n    - img\n  - button:\n    - img\n  - button:\n    - img\n  - button:\n    - img\n- button \"\\\"热\\\" 该怎么说？\":\n  - text: \"\\\"热\\\" 该怎么说？\"\n  - img\n- text: 你的答案： coffee 正确答案： hot\n- button \"翻译成中文（简体）： coffee with sugar\":\n  - text: 翻译成中文（简体）：\n  - img\n  - text: coffee with sugar\n- button \"\\\"早上好\\\" 该怎么说？\":\n  - text: \"\\\"早上好\\\" 该怎么说？\"\n  - img\n- button \"翻译成中文（简体）： water and coffee\":\n  - text: 翻译成中文（简体）：\n  - img\n  - text: water and coffee\n- button \"选择你听到的内容：\":\n  - text: 选择你听到的内容：\n  - img\n  - button:\n    - img\n- button \"朗读下面的句子 More milk?\":\n  - text: 朗读下面的句子\n  - img\n  - text: More milk?\n- button \"翻译成中文（简体）： water and tea\":\n  - text: 翻译成中文（简体）：\n  - img\n  - text: water and tea\n- button \"选择你听到的内容：\":\n  - text: 选择你听到的内容：\n  - img\n  - button:\n    - img\n- button \"翻译成中文（简体）： tea and coffee\":\n  - text: 翻译成中文（简体）：\n  - img\n  - text: tea and coffee\n- button \"翻译成英语： 牛奶和糖\":\n  - text: 翻译成英语：\n  - img\n  - text: 牛奶和糖\n- button \"输入所缺单词\":\n  - text: 输入所缺单词\n  - img\n  - button:\n    - img\n- button \"翻译成英语： 早上好，我想再来一些咖啡，谢谢。\":\n  - text: 翻译成英语：\n  - img\n  - text: 早上好，我想再来一些咖啡，谢谢。\n- button \"键入你听到的内容：\":\n  - text: 键入你听到的内容：\n  - img\n  - button:\n    - img\n- button \"翻译成英语： 早上好，咖啡加牛奶，谢谢。\":\n  - text: 翻译成英语：\n  - img\n  - text: 早上好，咖啡加牛奶，谢谢。\n- button \"键入你听到的内容：\":\n  - text: 键入你听到的内容：\n  - img\n  - button:\n    - img\n- button \"翻译成英语： 茶加糖\":\n  - text: 翻译成英语：\n  - img\n  - text: 茶加糖\n- button \"\\\"热\\\" 该怎么说？\":\n  - text: \"\\\"热\\\" 该怎么说？\"\n  - img",
+      "accessible_text": [
+        "查看你的成绩单！",
+        "点击下面的小方块来浏览答案吧！",
+        "你的答案：",
+        "正确答案：",
+        "hot",
+        "coffee"
+      ],
+      "elements": {
+        "review-card-0": {
+          "rect": [
+            210,
+            194,
+            165,
+            171
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-1": {
+          "rect": [
+            395,
+            194,
+            165,
+            171
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-2": {
+          "rect": [
+            580,
+            194,
+            165,
+            171
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-3": {
+          "rect": [
+            765,
+            194,
+            165,
+            171
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-4": {
+          "rect": [
+            210,
+            385,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-5": {
+          "rect": [
+            395,
+            385,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-6": {
+          "rect": [
+            580,
+            385,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-7": {
+          "rect": [
+            765,
+            385,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-8": {
+          "rect": [
+            210,
+            555,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-9": {
+          "rect": [
+            395,
+            555,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-10": {
+          "rect": [
+            580,
+            555,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-11": {
+          "rect": [
+            765,
+            555,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-12": {
+          "rect": [
+            210,
+            725,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-13": {
+          "rect": [
+            395,
+            725,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-14": {
+          "rect": [
+            580,
+            725,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-15": {
+          "rect": [
+            765,
+            725,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-16": {
+          "rect": [
+            210,
+            895,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-17": {
+          "rect": [
+            395,
+            895,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        }
+      },
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-error-review-v1/source/review-wrong-expanded.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      },
+      "pixel_color_space": "sRGB",
+      "pixel_samples": {
+        "540,345": [
+          255,
+          223,
+          224
+        ]
+      }
+    },
+    "error-practice-review-correction-expanded": {
+      "snapshot": "- img\n- text: 你莫不是特工？ 本单元中，你完成了 6 项听力挑战 总经验\n- img\n- text: 0 1 2 3 4 5 6 7 8 9 棒棒哒！\n- img\n- text: 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 %\n- button \"回顾本单元\"\n- button \"重新练习\"\n- button \"继续\"\n- img\n- text: 查看你的成绩单！ 点击下面的小方块来浏览答案吧！\n- button \"选择你听到的内容：\":\n  - text: 选择你听到的内容：\n  - img\n  - button:\n    - img\n  - button:\n    - img\n  - button:\n    - img\n  - button:\n    - img\n- button \"\\\"热\\\" 该怎么说？\":\n  - text: \"\\\"热\\\" 该怎么说？\"\n  - img\n- button \"翻译成中文（简体）： coffee with sugar\":\n  - text: 翻译成中文（简体）：\n  - img\n  - text: coffee with sugar\n- button \"\\\"早上好\\\" 该怎么说？\":\n  - text: \"\\\"早上好\\\" 该怎么说？\"\n  - img\n- button \"翻译成中文（简体）： water and coffee\":\n  - text: 翻译成中文（简体）：\n  - img\n  - text: water and coffee\n- button \"选择你听到的内容：\":\n  - text: 选择你听到的内容：\n  - img\n  - button:\n    - img\n- button \"朗读下面的句子 More milk?\":\n  - text: 朗读下面的句子\n  - img\n  - text: More milk?\n- button \"翻译成中文（简体）： water and tea\":\n  - text: 翻译成中文（简体）：\n  - img\n  - text: water and tea\n- button \"选择你听到的内容：\":\n  - text: 选择你听到的内容：\n  - img\n  - button:\n    - img\n- button \"翻译成中文（简体）： tea and coffee\":\n  - text: 翻译成中文（简体）：\n  - img\n  - text: tea and coffee\n- button \"翻译成英语： 牛奶和糖\":\n  - text: 翻译成英语：\n  - img\n  - text: 牛奶和糖\n- button \"输入所缺单词\":\n  - text: 输入所缺单词\n  - img\n  - button:\n    - img\n- button \"翻译成英语： 早上好，我想再来一些咖啡，谢谢。\":\n  - text: 翻译成英语：\n  - img\n  - text: 早上好，我想再来一些咖啡，谢谢。\n- button \"键入你听到的内容：\":\n  - text: 键入你听到的内容：\n  - img\n  - button:\n    - img\n- button \"翻译成英语： 早上好，咖啡加牛奶，谢谢。\":\n  - text: 翻译成英语：\n  - img\n  - text: 早上好，咖啡加牛奶，谢谢。\n- button \"键入你听到的内容：\":\n  - text: 键入你听到的内容：\n  - img\n  - button:\n    - img\n- button \"翻译成英语： 茶加糖\":\n  - text: 翻译成英语：\n  - img\n  - text: 茶加糖\n- button \"\\\"热\\\" 该怎么说？\":\n  - text: \"\\\"热\\\" 该怎么说？\"\n  - img\n- text: 你的答案： hot 正确答案： hot",
+      "accessible_text": [
+        "查看你的成绩单！",
+        "点击下面的小方块来浏览答案吧！",
+        "你的答案：",
+        "正确答案：",
+        "hot"
+      ],
+      "elements": {
+        "review-card-0": {
+          "rect": [
+            210,
+            -193,
+            165,
+            171
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-1": {
+          "rect": [
+            395,
+            -193,
+            165,
+            171
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-2": {
+          "rect": [
+            580,
+            -193,
+            165,
+            171
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-3": {
+          "rect": [
+            765,
+            -193,
+            165,
+            171
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-4": {
+          "rect": [
+            210,
+            -2,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-5": {
+          "rect": [
+            395,
+            -2,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-6": {
+          "rect": [
+            580,
+            -2,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-7": {
+          "rect": [
+            765,
+            -2,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-8": {
+          "rect": [
+            210,
+            168,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-9": {
+          "rect": [
+            395,
+            168,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-10": {
+          "rect": [
+            580,
+            168,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-11": {
+          "rect": [
+            765,
+            168,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-12": {
+          "rect": [
+            210,
+            338,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-13": {
+          "rect": [
+            395,
+            338,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-14": {
+          "rect": [
+            580,
+            338,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-15": {
+          "rect": [
+            765,
+            338,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-16": {
+          "rect": [
+            210,
+            508,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-17": {
+          "rect": [
+            395,
+            508,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        }
+      },
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-error-review-v1/source/review-correction-expanded.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      },
+      "pixel_color_space": "sRGB",
+      "pixel_samples": {
+        "540,640": [
+          215,
+          255,
+          184
+        ]
+      }
+    },
+    "error-practice-review-escape": {
+      "snapshot": "- img\n- text: 你莫不是特工？ 本单元中，你完成了 6 项听力挑战 总经验\n- img\n- text: 0 1 2 3 4 5 6 7 8 9 棒棒哒！\n- img\n- text: 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 %\n- button \"回顾本单元\"\n- button \"重新练习\"\n- button \"继续\"",
+      "accessible_text": [
+        "你莫不是特工？"
+      ],
+      "interactions": {
+        "review_closed": true
+      }
+    },
+    "level-practice-review-open": {
+      "snapshot": "- img\n- text: 完美！ 你练习全对，无错完成本单元 总经验\n- img\n- text: 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 超级棒\n- img\n- text: 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 %\n- button \"回顾本单元\"\n- button \"继续\"\n- img\n- text: 查看你的成绩单！ 点击下面的小方块来浏览答案吧！\n- button \"翻译成英语： 谢谢， 再见！\":\n  - text: 翻译成英语：\n  - img\n  - text: 谢谢， 再见！\n- button \"朗读下面的句子 Thank you.\":\n  - text: 朗读下面的句子\n  - img\n  - text: Thank you.\n- button \"翻译成中文（简体）： Thank you.\":\n  - text: 翻译成中文（简体）：\n  - img\n  - text: Thank you.\n- button \"翻译成英语： 早上好，咖啡加牛奶，谢谢。\":\n  - text: 翻译成英语：\n  - img\n  - text: 早上好，咖啡加牛奶，谢谢。\n- button \"翻译成中文（简体）： hello\":\n  - text: 翻译成中文（简体）：\n  - img\n  - text: hello\n- button \"完成翻译 茶加糖\":\n  - text: 完成翻译\n  - img\n  - text: 茶加糖\n- button \"翻译成中文（简体）： tea and coffee\":\n  - text: 翻译成中文（简体）：\n  - img\n  - text: tea and coffee\n- button \"完成翻译 我想要加牛奶和糖的咖啡。\":\n  - text: 完成翻译\n  - img\n  - text: 我想要加牛奶和糖的咖啡。\n- button \"翻译成中文（简体）： Good morning!\":\n  - text: 翻译成中文（简体）：\n  - img\n  - text: Good morning!\n- button \"完成翻译 我想要糖和牛奶，谢谢。\":\n  - text: 完成翻译\n  - img\n  - text: 我想要糖和牛奶，谢谢。\n- button \"输入所缺单词\":\n  - text: 输入所缺单词\n  - img\n  - button:\n    - img\n- button \"完成翻译 早上好，我想要水和茶。\":\n  - text: 完成翻译\n  - img\n  - text: 早上好，我想要水和茶。\n- button \"输入所缺单词\":\n  - text: 输入所缺单词\n  - img\n  - button:\n    - img",
+      "accessible_text": [
+        "查看你的成绩单！",
+        "点击下面的小方块来浏览答案吧！"
+      ],
+      "elements": {
+        "review-card-0": {
+          "rect": [
+            210,
+            194,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-1": {
+          "rect": [
+            395,
+            194,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-2": {
+          "rect": [
+            580,
+            194,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-3": {
+          "rect": [
+            765,
+            194,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-4": {
+          "rect": [
+            210,
+            364,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-5": {
+          "rect": [
+            395,
+            364,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-6": {
+          "rect": [
+            580,
+            364,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-7": {
+          "rect": [
+            765,
+            364,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-8": {
+          "rect": [
+            210,
+            534,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-9": {
+          "rect": [
+            395,
+            534,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-10": {
+          "rect": [
+            580,
+            534,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-11": {
+          "rect": [
+            765,
+            534,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-12": {
+          "rect": [
+            210,
+            704,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        }
+      },
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-home-frontier-v1/source/lesson-review-open.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "level-practice-review-long-expanded": {
+      "snapshot": "- img\n- text: 完美！ 你练习全对，无错完成本单元 总经验\n- img\n- text: 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 超级棒\n- img\n- text: 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 %\n- button \"回顾本单元\"\n- button \"继续\"\n- img\n- text: 查看你的成绩单！ 点击下面的小方块来浏览答案吧！\n- button \"翻译成英语： 谢谢， 再见！\":\n  - text: 翻译成英语：\n  - img\n  - text: 谢谢， 再见！\n- button \"朗读下面的句子 Thank you.\":\n  - text: 朗读下面的句子\n  - img\n  - text: Thank you.\n- button \"翻译成中文（简体）： Thank you.\":\n  - text: 翻译成中文（简体）：\n  - img\n  - text: Thank you.\n- button \"翻译成英语： 早上好，咖啡加牛奶，谢谢。\":\n  - text: 翻译成英语：\n  - img\n  - text: 早上好，咖啡加牛奶，谢谢。\n- button \"翻译成中文（简体）： hello\":\n  - text: 翻译成中文（简体）：\n  - img\n  - text: hello\n- button \"完成翻译 茶加糖\":\n  - text: 完成翻译\n  - img\n  - text: 茶加糖\n- button \"翻译成中文（简体）： tea and coffee\":\n  - text: 翻译成中文（简体）：\n  - img\n  - text: tea and coffee\n- button \"完成翻译 我想要加牛奶和糖的咖啡。\":\n  - text: 完成翻译\n  - img\n  - text: 我想要加牛奶和糖的咖啡。\n- text: 你的答案： I'd like coffee with milk and sugar. 正确答案： I'd like coffee with milk and sugar.\n- button \"翻译成中文（简体）： Good morning!\":\n  - text: 翻译成中文（简体）：\n  - img\n  - text: Good morning!\n- button \"完成翻译 我想要糖和牛奶，谢谢。\":\n  - text: 完成翻译\n  - img\n  - text: 我想要糖和牛奶，谢谢。\n- button \"输入所缺单词\":\n  - text: 输入所缺单词\n  - img\n  - button:\n    - img\n- button \"完成翻译 早上好，我想要水和茶。\":\n  - text: 完成翻译\n  - img\n  - text: 早上好，我想要水和茶。\n- button \"输入所缺单词\":\n  - text: 输入所缺单词\n  - img\n  - button:\n    - img",
+      "accessible_text": [
+        "查看你的成绩单！",
+        "点击下面的小方块来浏览答案吧！",
+        "你的答案：",
+        "正确答案：",
+        "I'd like coffee with milk and sugar."
+      ],
+      "elements": {
+        "review-card-0": {
+          "rect": [
+            210,
+            194,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-1": {
+          "rect": [
+            395,
+            194,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-2": {
+          "rect": [
+            580,
+            194,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-3": {
+          "rect": [
+            765,
+            194,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-4": {
+          "rect": [
+            210,
+            364,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-5": {
+          "rect": [
+            395,
+            364,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-6": {
+          "rect": [
+            580,
+            364,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-7": {
+          "rect": [
+            765,
+            364,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-8": {
+          "rect": [
+            210,
+            534,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-9": {
+          "rect": [
+            395,
+            534,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-10": {
+          "rect": [
+            580,
+            534,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-11": {
+          "rect": [
+            765,
+            534,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "review-card-12": {
+          "rect": [
+            210,
+            704,
+            165,
+            150
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "result-review-answer": {
+          "rect": [
+            710,
+            467,
+            274.0703125,
+            136
+          ]
+        }
+      },
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-home-frontier-v1/source/lesson-review-long-expanded.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "eighth-score-progress": {
+      "snapshot": "- img\n- text: 5 离提升你的英语分数又近了一步！ 5\n- progressbar\n- text: \"6\"\n- button \"继续\"",
+      "accessible_text": [
+        "离提升你的英语分数又近了一步！"
+      ],
+      "elements": {
+        "settlement-continue": {
+          "rect": [
+            910,
+            638,
+            150,
+            50
+          ],
+          "role": "button",
+          "enabled": true
+        }
+      },
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-eighth-integration-v1/source/score-progress.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "eighth-boost-reward": {
+      "snapshot": "- img\n- img\n- heading \"到手一个经验宝！\" [level=2]\n- text: 恭喜你完成了这个等级！接下来 15 分钟里，做单元练习可得双倍经验！\n- button \"回顾本单元\"\n- button \"继续\"",
+      "accessible_text": [
+        "到手一个经验宝！",
+        "恭喜你完成了这个等级！接下来 15 分钟里，做单元练习可得双倍经验！"
+      ],
+      "elements": {
+        "settlement-continue": {
+          "rect": [
+            909.9921875,
+            639,
+            150,
+            50
+          ],
+          "role": "button",
+          "enabled": true
+        }
+      },
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-eighth-integration-v1/source/boost-reward.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "eighth-legendary-offer": {
+      "snapshot": "- img\n- heading \"来向我们展示你的传奇实力吧\" [level=2]\n- text: 完成这个超硬核挑战，晋升到传奇等级！\n- link \"开始 +80 经验\":\n  - /url: /lesson/unit/1/legendary/2\n- button \"不，谢谢\"\n- button \"继续\"",
+      "accessible_text": [
+        "来向我们展示你的传奇实力吧",
+        "完成这个超硬核挑战，晋升到传奇等级！"
+      ],
+      "elements": {
+        "settlement-continue": {
+          "rect": [
+            140,
+            638,
+            250,
+            50
+          ],
+          "role": "button",
+          "enabled": true
+        }
+      },
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-eighth-integration-v1/source/legendary-offer.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "eighth-profile": {
+      "snapshot": "- heading \"来创建你的个人档案吧！\" [level=1]\n- paragraph: 创建档案就能保存学习进度，随时都可以继续免费学习后续内容。\n- button \"创建档案\"\n- button \"稍后再说\"",
+      "accessible_text": [
+        "来创建你的个人档案吧！",
+        "创建档案就能保存学习进度，随时都可以继续免费学习后续内容。"
+      ],
+      "elements": {
+        "settlement-continue": {
+          "rect": [
+            450,
+            573.5,
+            300,
+            50
+          ],
+          "role": "button",
+          "enabled": true
+        }
+      },
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-eighth-integration-v1/source/profile.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "chest-before": {
+      "snapshot": "- link:\n  - /url: /learn\n  - img\n- link \"学习\":\n  - /url: /learn\n  - img\n  - text: 学习\n- link \"发音\":\n  - /url: /characters\n  - img\n  - text: 发音\n- link \"排行榜\":\n  - /url: /leaderboard\n  - img\n  - text: 排行榜\n- link \"特别任务\":\n  - /url: /quests\n  - img\n  - text: 特别任务\n- link \"宝石小店\":\n  - /url: /shop\n  - img\n  - text: 宝石小店\n- link \"个人档案\":\n  - /url: /learn?sign-up\n  - img\n  - text: 个人档案\n- button \"更多\":\n  - img\n  - text: 更多\n- img\n- button \"5\":\n  - img\n  - text: \"5\"\n- button \"2\":\n  - img\n  - text: \"2\"\n- button \"510\":\n  - img\n  - text: \"510\"\n- button \"5\":\n  - img\n  - text: \"5\"\n- heading \"排行榜已解锁！\" [level=3]\n- text: 来看看本周的大比拼\n- heading \"青铜等级\" [level=2]\n- link \"查看排行榜\":\n  - /url: /leaderboard\n- img\n- paragraph: 这周的排行榜挑战赛即将开始！\n- text: 4 小时\n- heading \"每日特别任务\" [level=2]\n- link \"显示全部\":\n  - /url: /quests\n- img\n- text: 获取 30 经验\n- progressbar: 30 / 30 30 / 30\n- img\n- heading \"创建个人档案，保存学习进度！\" [level=2]\n- button \"创建档案\"\n- button \"登录\"\n- list:\n  - listitem:\n    - link \"关于我们\":\n      - /url: https://about.duolingo.com\n  - listitem:\n    - link \"宝石小店\":\n      - /url: https://store.duolingo.com/\n  - listitem:\n    - link \"有效性\":\n      - /url: /efficacy\n  - listitem:\n    - link \"招聘贤才\":\n      - /url: https://careers.duolingo.com\n  - listitem:\n    - link \"投资者\":\n      - /url: https://investors.duolingo.com\n  - listitem:\n    - link \"条款\":\n      - /url: /terms\n  - listitem:\n    - link \"隐私\":\n      - /url: /privacy\n- link \"第 1 阶段，第 1 部分\":\n  - /url: /sections\n  - img\n  - heading \"第 1 阶段，第 1 部分\" [level=1]\n- text: 提供或接受饮料\n- link \"打开这个部分的指南\":\n  - /url: /guidebook/en/1\n  - img \"指南\"\n  - text: 指南\n- img\n- button \"Lesson\":\n  - button \"Lesson\":\n    - img\n- button \"Lesson\":\n  - button \"Lesson\":\n    - img\n- button \"打开宝箱\":\n  - img\n- button \"Practice\":\n  - button \"Practice\"\n- button \"复习该部分\":\n  - button \"复习该部分\"\n- separator\n- heading \"谈论祖籍国家\" [level=2]\n- separator\n- link \"跳到第 2 部分\":\n  - /url: /lesson/unit/2/test\n- button \"Lesson\":\n  - button \"Lesson\"\n- button \"宝箱\" [disabled]:\n  - img\n- button \"Practice\":\n  - button \"Practice\"\n- button \"复习该部分\":\n  - button \"复习该部分\"\n- separator\n- heading \"介绍家庭成员\" [level=2]\n- separator\n- link \"跳到第 3 部分\":\n  - /url: /lesson/unit/3/test\n- button \"Lesson\":\n  - button \"Lesson\"\n- button \"宝箱\" [disabled]:\n  - img\n- button \"Practice\":\n  - button \"Practice\"\n- button \"复习该部分\":\n  - button \"复习该部分\"\n- paragraph: 下一级\n- heading \"第 2 阶段\" [level=2]\n- paragraph: 学会日常交流中基础的单词、短语和语法概念\n- button \"跳级到这儿？\"",
+      "accessible_text": [
+        "排行榜已解锁！",
+        "510"
+      ],
+      "elements": {
+        "path-chest": {
+          "rect": [
+            410,
+            324.2265625,
+            80,
+            90
+          ],
+          "role": "button",
+          "enabled": true
+        }
+      },
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-chest-v1/source/before.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "chest-after-escape": {
+      "snapshot": "- link:\n  - /url: /learn\n  - img\n- link \"学习\":\n  - /url: /learn\n  - img\n  - text: 学习\n- link \"发音\":\n  - /url: /characters\n  - img\n  - text: 发音\n- link \"排行榜\":\n  - /url: /leaderboard\n  - img\n  - text: 排行榜\n- link \"特别任务\":\n  - /url: /quests\n  - img\n  - text: 特别任务\n- link \"宝石小店\":\n  - /url: /shop\n  - img\n  - text: 宝石小店\n- link \"个人档案\":\n  - /url: /learn?sign-up\n  - img\n  - text: 个人档案\n- button \"更多\":\n  - img\n  - text: 更多\n- img\n- button \"5\":\n  - img\n  - text: \"5\"\n- button \"2\":\n  - img\n  - text: \"2\"\n- button \"510\":\n  - img\n  - text: \"510\"\n- button \"5\":\n  - img\n  - text: \"5\"\n- heading \"排行榜已解锁！\" [level=3]\n- text: 来看看本周的大比拼\n- heading \"青铜等级\" [level=2]\n- link \"查看排行榜\":\n  - /url: /leaderboard\n- img\n- paragraph: 这周的排行榜挑战赛即将开始！\n- text: 4 小时\n- heading \"每日特别任务\" [level=2]\n- link \"显示全部\":\n  - /url: /quests\n- img\n- text: 获取 30 经验\n- progressbar: 30 / 30 30 / 30\n- img\n- heading \"创建个人档案，保存学习进度！\" [level=2]\n- button \"创建档案\"\n- button \"登录\"\n- list:\n  - listitem:\n    - link \"关于我们\":\n      - /url: https://about.duolingo.com\n  - listitem:\n    - link \"宝石小店\":\n      - /url: https://store.duolingo.com/\n  - listitem:\n    - link \"有效性\":\n      - /url: /efficacy\n  - listitem:\n    - link \"招聘贤才\":\n      - /url: https://careers.duolingo.com\n  - listitem:\n    - link \"投资者\":\n      - /url: https://investors.duolingo.com\n  - listitem:\n    - link \"条款\":\n      - /url: /terms\n  - listitem:\n    - link \"隐私\":\n      - /url: /privacy\n- link \"第 1 阶段，第 1 部分\":\n  - /url: /sections\n  - img\n  - heading \"第 1 阶段，第 1 部分\" [level=1]\n- text: 提供或接受饮料\n- link \"打开这个部分的指南\":\n  - /url: /guidebook/en/1\n  - img \"指南\"\n  - text: 指南\n- img\n- button \"Lesson\":\n  - button \"Lesson\":\n    - img\n- button \"Lesson\":\n  - button \"Lesson\":\n    - img\n- button \"打开宝箱\":\n  - img\n- button \"Practice\":\n  - button \"Practice\"\n- button \"复习该部分\":\n  - button \"复习该部分\"\n- separator\n- heading \"谈论祖籍国家\" [level=2]\n- separator\n- link \"跳到第 2 部分\":\n  - /url: /lesson/unit/2/test\n- button \"Lesson\":\n  - button \"Lesson\"\n- button \"宝箱\" [disabled]:\n  - img\n- button \"Practice\":\n  - button \"Practice\"\n- button \"复习该部分\":\n  - button \"复习该部分\"\n- separator\n- heading \"介绍家庭成员\" [level=2]\n- separator\n- link \"跳到第 3 部分\":\n  - /url: /lesson/unit/3/test\n- button \"Lesson\":\n  - button \"Lesson\"\n- button \"宝箱\" [disabled]:\n  - img\n- button \"Practice\":\n  - button \"Practice\"\n- button \"复习该部分\":\n  - button \"复习该部分\"\n- paragraph: 下一级\n- heading \"第 2 阶段\" [level=2]\n- paragraph: 学会日常交流中基础的单词、短语和语法概念\n- button \"跳级到这儿？\"",
+      "accessible_text": [
+        "排行榜已解锁！",
+        "510"
+      ],
+      "elements": {
+        "path-chest": {
+          "rect": [
+            410,
+            0.2265625,
+            80,
+            90
+          ],
+          "role": "button",
+          "enabled": true
+        }
+      },
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-chest-v1/source/after-escape.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "chest-dismissed": {
+      "snapshot": "- link:\n  - /url: /learn\n  - img\n- link \"学习\":\n  - /url: /learn\n  - img\n  - text: 学习\n- link \"发音\":\n  - /url: /characters\n  - img\n  - text: 发音\n- link \"排行榜\":\n  - /url: /leaderboard\n  - img\n  - text: 排行榜\n- link \"特别任务\":\n  - /url: /quests\n  - img\n  - text: 特别任务\n- link \"宝石小店\":\n  - /url: /shop\n  - img\n  - text: 宝石小店\n- link \"个人档案\":\n  - /url: /learn?sign-up\n  - img\n  - text: 个人档案\n- button \"更多\":\n  - img\n  - text: 更多\n- img\n- button \"5\":\n  - img\n  - text: \"5\"\n- button \"2\":\n  - img\n  - text: \"2\"\n- button \"510\":\n  - img\n  - text: \"510\"\n- button \"5\":\n  - img\n  - text: \"5\"\n- heading \"青铜等级\" [level=2]\n- link \"查看排行榜\":\n  - /url: /leaderboard\n- img\n- paragraph: 这周的排行榜挑战赛即将开始！\n- text: 4 小时\n- heading \"每日特别任务\" [level=2]\n- link \"显示全部\":\n  - /url: /quests\n- img\n- text: 获取 30 经验\n- progressbar: 30 / 30 30 / 30\n- img\n- heading \"创建个人档案，保存学习进度！\" [level=2]\n- button \"创建档案\"\n- button \"登录\"\n- list:\n  - listitem:\n    - link \"关于我们\":\n      - /url: https://about.duolingo.com\n  - listitem:\n    - link \"宝石小店\":\n      - /url: https://store.duolingo.com/\n  - listitem:\n    - link \"有效性\":\n      - /url: /efficacy\n  - listitem:\n    - link \"招聘贤才\":\n      - /url: https://careers.duolingo.com\n  - listitem:\n    - link \"投资者\":\n      - /url: https://investors.duolingo.com\n  - listitem:\n    - link \"条款\":\n      - /url: /terms\n  - listitem:\n    - link \"隐私\":\n      - /url: /privacy\n- link \"第 1 阶段，第 1 部分\":\n  - /url: /sections\n  - img\n  - heading \"第 1 阶段，第 1 部分\" [level=1]\n- text: 提供或接受饮料\n- link \"打开这个部分的指南\":\n  - /url: /guidebook/en/1\n  - img \"指南\"\n  - text: 指南\n- img\n- button \"Lesson\":\n  - button \"Lesson\":\n    - img\n- button \"Lesson\":\n  - button \"Lesson\":\n    - img\n- button \"打开宝箱\":\n  - img\n- button \"Practice\":\n  - button \"Practice\"\n- button \"复习该部分\":\n  - button \"复习该部分\"\n- separator\n- heading \"谈论祖籍国家\" [level=2]\n- separator\n- link \"跳到第 2 部分\":\n  - /url: /lesson/unit/2/test\n- button \"Lesson\":\n  - button \"Lesson\"\n- button \"宝箱\" [disabled]:\n  - img\n- button \"Practice\":\n  - button \"Practice\"\n- button \"复习该部分\":\n  - button \"复习该部分\"\n- separator\n- heading \"介绍家庭成员\" [level=2]\n- separator\n- link \"跳到第 3 部分\":\n  - /url: /lesson/unit/3/test\n- button \"Lesson\":\n  - button \"Lesson\"\n- button \"宝箱\" [disabled]:\n  - img\n- button \"Practice\":\n  - button \"Practice\"\n- button \"复习该部分\":\n  - button \"复习该部分\"\n- paragraph: 下一级\n- heading \"第 2 阶段\" [level=2]\n- paragraph: 学会日常交流中基础的单词、短语和语法概念\n- button \"跳级到这儿？\"",
+      "accessible_text": [
+        "510"
+      ],
+      "elements": {
+        "path-chest": {
+          "rect": [
+            410,
+            324.2265625,
+            80,
+            90
+          ],
+          "role": "button",
+          "enabled": true
+        }
+      },
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-chest-v1/source/dismissed.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "chest-after-click": {
+      "snapshot": "- link:\n  - /url: /learn\n  - img\n- link \"学习\":\n  - /url: /learn\n  - img\n  - text: 学习\n- link \"发音\":\n  - /url: /characters\n  - img\n  - text: 发音\n- link \"排行榜\":\n  - /url: /leaderboard\n  - img\n  - text: 排行榜\n- link \"特别任务\":\n  - /url: /quests\n  - img\n  - text: 特别任务\n- link \"宝石小店\":\n  - /url: /shop\n  - img\n  - text: 宝石小店\n- link \"个人档案\":\n  - /url: /learn?sign-up\n  - img\n  - text: 个人档案\n- button \"更多\":\n  - img\n  - text: 更多\n- img\n- button \"5\":\n  - img\n  - text: \"5\"\n- button \"2\":\n  - img\n  - text: \"2\"\n- button \"525\":\n  - img\n  - text: \"525\"\n- button \"5\":\n  - img\n  - text: \"5\"\n- heading \"青铜等级\" [level=2]\n- link \"查看排行榜\":\n  - /url: /leaderboard\n- img\n- paragraph: 这周的排行榜挑战赛即将开始！\n- text: 4 小时\n- heading \"每日特别任务\" [level=2]\n- link \"显示全部\":\n  - /url: /quests\n- img\n- text: 获取 30 经验\n- progressbar: 30 / 30 30 / 30\n- img\n- heading \"创建个人档案，保存学习进度！\" [level=2]\n- button \"创建档案\"\n- button \"登录\"\n- list:\n  - listitem:\n    - link \"关于我们\":\n      - /url: https://about.duolingo.com\n  - listitem:\n    - link \"宝石小店\":\n      - /url: https://store.duolingo.com/\n  - listitem:\n    - link \"有效性\":\n      - /url: /efficacy\n  - listitem:\n    - link \"招聘贤才\":\n      - /url: https://careers.duolingo.com\n  - listitem:\n    - link \"投资者\":\n      - /url: https://investors.duolingo.com\n  - listitem:\n    - link \"条款\":\n      - /url: /terms\n  - listitem:\n    - link \"隐私\":\n      - /url: /privacy\n- link \"第 1 阶段，第 1 部分\":\n  - /url: /sections\n  - img\n  - heading \"第 1 阶段，第 1 部分\" [level=1]\n- text: 提供或接受饮料\n- link \"打开这个部分的指南\":\n  - /url: /guidebook/en/1\n  - img \"指南\"\n  - text: 指南\n- img\n- button \"Lesson\":\n  - button \"Lesson\":\n    - img\n- button \"Lesson\":\n  - button \"Lesson\":\n    - img\n- button \"宝箱\" [disabled]:\n  - img\n- button \"Practice\":\n  - img\n  - button \"Practice\"\n- button \"复习该部分\":\n  - button \"复习该部分\"\n- separator\n- heading \"谈论祖籍国家\" [level=2]\n- separator\n- link \"跳到第 2 部分\":\n  - /url: /lesson/unit/2/test\n- button \"Lesson\":\n  - button \"Lesson\"\n- button \"宝箱\" [disabled]:\n  - img\n- button \"Practice\":\n  - button \"Practice\"\n- button \"复习该部分\":\n  - button \"复习该部分\"\n- separator\n- heading \"介绍家庭成员\" [level=2]\n- separator\n- link \"跳到第 3 部分\":\n  - /url: /lesson/unit/3/test\n- button \"Lesson\":\n  - button \"Lesson\"\n- button \"宝箱\" [disabled]:\n  - img\n- button \"Practice\":\n  - button \"Practice\"\n- button \"复习该部分\":\n  - button \"复习该部分\"\n- paragraph: 下一级\n- heading \"第 2 阶段\" [level=2]\n- paragraph: 学会日常交流中基础的单词、短语和语法概念\n- button \"跳级到这儿？\"",
+      "accessible_text": [
+        "525"
+      ],
+      "elements": {
+        "path-chest": {
+          "rect": [
+            410,
+            324.2265625,
+            80,
+            90
+          ],
+          "role": "button",
+          "enabled": false
+        }
+      },
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-chest-v1/source/after-click.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "chest-reloaded": {
+      "snapshot": "- link:\n  - /url: /learn\n  - img\n- link \"学习\":\n  - /url: /learn\n  - img\n  - text: 学习\n- link \"发音\":\n  - /url: /characters\n  - img\n  - text: 发音\n- link \"排行榜\":\n  - /url: /leaderboard\n  - img\n  - text: 排行榜\n- link \"特别任务\":\n  - /url: /quests\n  - img\n  - text: 特别任务\n- link \"宝石小店\":\n  - /url: /shop\n  - img\n  - text: 宝石小店\n- link \"个人档案\":\n  - /url: /learn?sign-up\n  - img\n  - text: 个人档案\n- button \"更多\":\n  - img\n  - text: 更多\n- img\n- button \"5\":\n  - img\n  - text: \"5\"\n- button \"2\":\n  - img\n  - text: \"2\"\n- button \"525\":\n  - img\n  - text: \"525\"\n- button \"5\":\n  - img\n  - text: \"5\"\n- heading \"青铜等级\" [level=2]\n- link \"查看排行榜\":\n  - /url: /leaderboard\n- img\n- paragraph: 这周的排行榜挑战赛即将开始！\n- text: 4 小时\n- heading \"每日特别任务\" [level=2]\n- link \"显示全部\":\n  - /url: /quests\n- img\n- text: 获取 30 经验\n- progressbar: 30 / 30 30 / 30\n- img\n- heading \"创建个人档案，保存学习进度！\" [level=2]\n- button \"创建档案\"\n- button \"登录\"\n- list:\n  - listitem:\n    - link \"关于我们\":\n      - /url: https://about.duolingo.com\n  - listitem:\n    - link \"宝石小店\":\n      - /url: https://store.duolingo.com/\n  - listitem:\n    - link \"有效性\":\n      - /url: /efficacy\n  - listitem:\n    - link \"招聘贤才\":\n      - /url: https://careers.duolingo.com\n  - listitem:\n    - link \"投资者\":\n      - /url: https://investors.duolingo.com\n  - listitem:\n    - link \"条款\":\n      - /url: /terms\n  - listitem:\n    - link \"隐私\":\n      - /url: /privacy\n- link \"第 1 阶段，第 1 部分\":\n  - /url: /sections\n  - img\n  - heading \"第 1 阶段，第 1 部分\" [level=1]\n- text: 提供或接受饮料\n- link \"打开这个部分的指南\":\n  - /url: /guidebook/en/1\n  - img \"指南\"\n  - text: 指南\n- img\n- button \"Lesson\":\n  - button \"Lesson\":\n    - img\n- button \"Lesson\":\n  - button \"Lesson\":\n    - img\n- button \"宝箱\" [disabled]:\n  - img\n- button \"Practice\":\n  - img\n  - button \"Practice\"\n- button \"复习该部分\":\n  - button \"复习该部分\"\n- separator\n- heading \"谈论祖籍国家\" [level=2]\n- separator\n- link \"跳到第 2 部分\":\n  - /url: /lesson/unit/2/test\n- button \"Lesson\":\n  - button \"Lesson\"\n- button \"宝箱\" [disabled]:\n  - img\n- button \"Practice\":\n  - button \"Practice\"\n- button \"复习该部分\":\n  - button \"复习该部分\"\n- separator\n- heading \"介绍家庭成员\" [level=2]\n- separator\n- link \"跳到第 3 部分\":\n  - /url: /lesson/unit/3/test\n- button \"Lesson\":\n  - button \"Lesson\"\n- button \"宝箱\" [disabled]:\n  - img\n- button \"Practice\":\n  - button \"Practice\"\n- button \"复习该部分\":\n  - button \"复习该部分\"\n- paragraph: 下一级\n- heading \"第 2 阶段\" [level=2]\n- paragraph: 学会日常交流中基础的单词、短语和语法概念\n- button \"跳级到这儿？\"",
+      "accessible_text": [
+        "525"
+      ],
+      "elements": {
+        "path-chest": {
+          "rect": [
+            410,
+            324.2265625,
+            80,
+            90
+          ],
+          "role": "button",
+          "enabled": false
+        }
+      },
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-chest-v1/source/reloaded.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      },
+      "pixel_samples": {
+        "520,165": [
+          88,
+          204,
+          2
+        ],
+        "520,170": [
+          114,
+          214,
+          39
+        ],
+        "931,200": [
+          255,
+          200,
+          0
+        ]
+      },
+      "pixel_color_space": "sRGB"
+    },
+    "chest-practice-entry": {
+      "snapshot": "- link:\n  - /url: /learn\n  - img\n- link \"学习\":\n  - /url: /learn\n  - img\n  - text: 学习\n- link \"发音\":\n  - /url: /characters\n  - img\n  - text: 发音\n- link \"排行榜\":\n  - /url: /leaderboard\n  - img\n  - text: 排行榜\n- link \"特别任务\":\n  - /url: /quests\n  - img\n  - text: 特别任务\n- link \"宝石小店\":\n  - /url: /shop\n  - img\n  - text: 宝石小店\n- link \"个人档案\":\n  - /url: /learn?sign-up\n  - img\n  - text: 个人档案\n- button \"更多\":\n  - img\n  - text: 更多\n- img\n- button \"5\":\n  - img\n  - text: \"5\"\n- button \"2\":\n  - img\n  - text: \"2\"\n- button \"525\":\n  - img\n  - text: \"525\"\n- button \"5\":\n  - img\n  - text: \"5\"\n- heading \"青铜等级\" [level=2]\n- link \"查看排行榜\":\n  - /url: /leaderboard\n- img\n- paragraph: 这周的排行榜挑战赛即将开始！\n- text: 4 小时\n- heading \"每日特别任务\" [level=2]\n- link \"显示全部\":\n  - /url: /quests\n- img\n- text: 获取 30 经验\n- progressbar: 30 / 30 30 / 30\n- img\n- heading \"创建个人档案，保存学习进度！\" [level=2]\n- button \"创建档案\"\n- button \"登录\"\n- list:\n  - listitem:\n    - link \"关于我们\":\n      - /url: https://about.duolingo.com\n  - listitem:\n    - link \"宝石小店\":\n      - /url: https://store.duolingo.com/\n  - listitem:\n    - link \"有效性\":\n      - /url: /efficacy\n  - listitem:\n    - link \"招聘贤才\":\n      - /url: https://careers.duolingo.com\n  - listitem:\n    - link \"投资者\":\n      - /url: https://investors.duolingo.com\n  - listitem:\n    - link \"条款\":\n      - /url: /terms\n  - listitem:\n    - link \"隐私\":\n      - /url: /privacy\n- link \"第 1 阶段，第 1 部分\":\n  - /url: /sections\n  - img\n  - heading \"第 1 阶段，第 1 部分\" [level=1]\n- text: 提供或接受饮料\n- link \"打开这个部分的指南\":\n  - /url: /guidebook/en/1\n  - img \"指南\"\n  - text: 指南\n- img\n- button \"Lesson\":\n  - button \"Lesson\":\n    - img\n- button \"Lesson\":\n  - button \"Lesson\":\n    - img\n- button \"宝箱\" [disabled]:\n  - img\n- button \"Practice\":\n  - img\n  - button \"Practice\"\n- heading \"提供或接受饮料\" [level=1]\n- paragraph: 第 1/2 单元\n- link \"开始 +10 经验\":\n  - /url: /lesson\n- button \"复习该部分\":\n  - button \"复习该部分\"\n- separator\n- heading \"谈论祖籍国家\" [level=2]\n- separator\n- link \"跳到第 2 部分\":\n  - /url: /lesson/unit/2/test\n- button \"Lesson\":\n  - button \"Lesson\"\n- button \"宝箱\" [disabled]:\n  - img\n- button \"Practice\":\n  - button \"Practice\"\n- button \"复习该部分\":\n  - button \"复习该部分\"\n- separator\n- heading \"介绍家庭成员\" [level=2]\n- separator\n- link \"跳到第 3 部分\":\n  - /url: /lesson/unit/3/test\n- button \"Lesson\":\n  - button \"Lesson\"\n- button \"宝箱\" [disabled]:\n  - img\n- button \"Practice\":\n  - button \"Practice\"\n- button \"复习该部分\":\n  - button \"复习该部分\"\n- paragraph: 下一级\n- heading \"第 2 阶段\" [level=2]\n- paragraph: 学会日常交流中基础的单词、短语和语法概念\n- button \"跳级到这儿？\"",
+      "accessible_text": [
+        "525",
+        "第 1/2 单元",
+        "开始 +10 经验"
+      ],
+      "elements": {
+        "path-chest": {
+          "rect": [
+            410,
+            324.2265625,
+            80,
+            90
+          ],
+          "role": "button",
+          "enabled": false
+        }
+      },
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-chest-v1/source/practice-entry.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "chest-practice-entry-settled": {
+      "snapshot": "- link:\n  - /url: /learn\n  - img\n- link \"学习\":\n  - /url: /learn\n  - img\n  - text: 学习\n- link \"发音\":\n  - /url: /characters\n  - img\n  - text: 发音\n- link \"排行榜\":\n  - /url: /leaderboard\n  - img\n  - text: 排行榜\n- link \"特别任务\":\n  - /url: /quests\n  - img\n  - text: 特别任务\n- link \"宝石小店\":\n  - /url: /shop\n  - img\n  - text: 宝石小店\n- link \"个人档案\":\n  - /url: /learn?sign-up\n  - img\n  - text: 个人档案\n- button \"更多\":\n  - img\n  - text: 更多\n- img\n- button \"5\":\n  - img\n  - text: \"5\"\n- button \"2\":\n  - img\n  - text: \"2\"\n- button \"525\":\n  - img\n  - text: \"525\"\n- button \"5\":\n  - img\n  - text: \"5\"\n- heading \"青铜等级\" [level=2]\n- link \"查看排行榜\":\n  - /url: /leaderboard\n- img\n- paragraph: 这周的排行榜挑战赛即将开始！\n- text: 4 小时\n- heading \"每日特别任务\" [level=2]\n- link \"显示全部\":\n  - /url: /quests\n- img\n- text: 获取 30 经验\n- progressbar: 30 / 30 30 / 30\n- img\n- heading \"创建个人档案，保存学习进度！\" [level=2]\n- button \"创建档案\"\n- button \"登录\"\n- list:\n  - listitem:\n    - link \"关于我们\":\n      - /url: https://about.duolingo.com\n  - listitem:\n    - link \"宝石小店\":\n      - /url: https://store.duolingo.com/\n  - listitem:\n    - link \"有效性\":\n      - /url: /efficacy\n  - listitem:\n    - link \"招聘贤才\":\n      - /url: https://careers.duolingo.com\n  - listitem:\n    - link \"投资者\":\n      - /url: https://investors.duolingo.com\n  - listitem:\n    - link \"条款\":\n      - /url: /terms\n  - listitem:\n    - link \"隐私\":\n      - /url: /privacy\n- link \"第 1 阶段，第 1 部分\":\n  - /url: /sections\n  - img\n  - heading \"第 1 阶段，第 1 部分\" [level=1]\n- text: 提供或接受饮料\n- link \"打开这个部分的指南\":\n  - /url: /guidebook/en/1\n  - img \"指南\"\n  - text: 指南\n- img\n- button \"Lesson\":\n  - button \"Lesson\":\n    - img\n- button \"Lesson\":\n  - button \"Lesson\":\n    - img\n- button \"宝箱\" [disabled]:\n  - img\n- button \"Practice\":\n  - img\n  - button \"Practice\"\n- heading \"提供或接受饮料\" [level=1]\n- paragraph: 第 1/2 单元\n- link \"开始 +10 经验\":\n  - /url: /lesson\n- button \"复习该部分\":\n  - button \"复习该部分\"\n- separator\n- heading \"谈论祖籍国家\" [level=2]\n- separator\n- link \"跳到第 2 部分\":\n  - /url: /lesson/unit/2/test\n- button \"Lesson\":\n  - button \"Lesson\"\n- button \"宝箱\" [disabled]:\n  - img\n- button \"Practice\":\n  - button \"Practice\"\n- button \"复习该部分\":\n  - button \"复习该部分\"\n- separator\n- heading \"介绍家庭成员\" [level=2]\n- separator\n- link \"跳到第 3 部分\":\n  - /url: /lesson/unit/3/test\n- button \"Lesson\":\n  - button \"Lesson\"\n- button \"宝箱\" [disabled]:\n  - img\n- button \"Practice\":\n  - button \"Practice\"\n- button \"复习该部分\":\n  - button \"复习该部分\"\n- paragraph: 下一级\n- heading \"第 2 阶段\" [level=2]\n- paragraph: 学会日常交流中基础的单词、短语和语法概念\n- button \"跳级到这儿？\"",
+      "accessible_text": [
+        "第 1/2 单元",
+        "开始 +10 经验"
+      ],
+      "elements": {
+        "start-lesson-confirm": {
+          "rect": [
+            388.5011901855469,
+            624.8046875,
+            263.0000305175781,
+            50
+          ],
+          "role": "link",
+          "enabled": true
+        }
+      },
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-chest-v1/source/practice-entry-settled.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "chest-practice-start-profile": {
+      "snapshot": "- link:\n  - /url: /learn\n  - img\n- link \"学习\":\n  - /url: /learn\n  - img\n  - text: 学习\n- link \"发音\":\n  - /url: /characters\n  - img\n  - text: 发音\n- link \"排行榜\":\n  - /url: /leaderboard\n  - img\n  - text: 排行榜\n- link \"特别任务\":\n  - /url: /quests\n  - img\n  - text: 特别任务\n- link \"宝石小店\":\n  - /url: /shop\n  - img\n  - text: 宝石小店\n- link \"个人档案\":\n  - /url: /learn?sign-up\n  - img\n  - text: 个人档案\n- button \"更多\":\n  - img\n  - text: 更多\n- img\n- button \"5\":\n  - img\n  - text: \"5\"\n- button \"2\":\n  - img\n  - text: \"2\"\n- button \"525\":\n  - img\n  - text: \"525\"\n- button \"5\":\n  - img\n  - text: \"5\"\n- heading \"青铜等级\" [level=2]\n- link \"查看排行榜\":\n  - /url: /leaderboard\n- img\n- paragraph: 这周的排行榜挑战赛即将开始！\n- text: 4 小时\n- heading \"每日特别任务\" [level=2]\n- link \"显示全部\":\n  - /url: /quests\n- img\n- text: 获取 30 经验\n- progressbar: 30 / 30 30 / 30\n- img\n- heading \"创建个人档案，保存学习进度！\" [level=2]\n- button \"创建档案\"\n- button \"登录\"\n- list:\n  - listitem:\n    - link \"关于我们\":\n      - /url: https://about.duolingo.com\n  - listitem:\n    - link \"宝石小店\":\n      - /url: https://store.duolingo.com/\n  - listitem:\n    - link \"有效性\":\n      - /url: /efficacy\n  - listitem:\n    - link \"招聘贤才\":\n      - /url: https://careers.duolingo.com\n  - listitem:\n    - link \"投资者\":\n      - /url: https://investors.duolingo.com\n  - listitem:\n    - link \"条款\":\n      - /url: /terms\n  - listitem:\n    - link \"隐私\":\n      - /url: /privacy\n- link \"第 1 阶段，第 1 部分\":\n  - /url: /sections\n  - img\n  - heading \"第 1 阶段，第 1 部分\" [level=1]\n- text: 提供或接受饮料\n- link \"打开这个部分的指南\":\n  - /url: /guidebook/en/1\n  - img \"指南\"\n  - text: 指南\n- img\n- button \"Lesson\":\n  - button \"Lesson\":\n    - img\n- button \"Lesson\":\n  - button \"Lesson\":\n    - img\n- button \"宝箱\" [disabled]:\n  - img\n- button \"Practice\":\n  - img\n  - button \"Practice\"\n- heading \"提供或接受饮料\" [level=1]\n- paragraph: 第 1/2 单元\n- link \"开始 +10 经验\":\n  - /url: /lesson\n- button \"复习该部分\":\n  - button \"复习该部分\"\n- separator\n- heading \"谈论祖籍国家\" [level=2]\n- separator\n- link \"跳到第 2 部分\":\n  - /url: /lesson/unit/2/test\n- button \"Lesson\":\n  - button \"Lesson\"\n- button \"宝箱\" [disabled]:\n  - img\n- button \"Practice\":\n  - button \"Practice\"\n- button \"复习该部分\":\n  - button \"复习该部分\"\n- separator\n- heading \"介绍家庭成员\" [level=2]\n- separator\n- link \"跳到第 3 部分\":\n  - /url: /lesson/unit/3/test\n- button \"Lesson\":\n  - button \"Lesson\"\n- button \"宝箱\" [disabled]:\n  - img\n- button \"Practice\":\n  - button \"Practice\"\n- button \"复习该部分\":\n  - button \"复习该部分\"\n- paragraph: 下一级\n- heading \"第 2 阶段\" [level=2]\n- paragraph: 学会日常交流中基础的单词、短语和语法概念\n- button \"跳级到这儿？\"\n- img\n- heading \"来创建你的个人档案吧！\" [level=1]\n- paragraph: 创建档案就能保存学习进度，随时都可以继续免费学习后续内容。\n- button \"创建档案\"\n- button \"稍后创建帐户\"",
+      "accessible_text": [
+        "来创建你的个人档案吧！",
+        "创建档案就能保存学习进度，随时都可以继续免费学习后续内容。"
+      ],
+      "elements": {
+        "path-profile-create": {
+          "rect": [
+            450,
+            535.75,
+            300,
+            50
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "path-profile-later": {
+          "rect": [
+            552.59375,
+            602.25,
+            94.8046875,
+            18
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "path-profile-art": {
+          "rect": [
+            528,
+            111.25,
+            144,
+            250
+          ]
+        }
+      },
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-chest-v1/source/practice-start-profile.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "chest-practice-profile-dismissed": {
+      "snapshot": "- link:\n  - /url: /learn\n  - img\n- link \"学习\":\n  - /url: /learn\n  - img\n  - text: 学习\n- link \"发音\":\n  - /url: /characters\n  - img\n  - text: 发音\n- link \"排行榜\":\n  - /url: /leaderboard\n  - img\n  - text: 排行榜\n- link \"特别任务\":\n  - /url: /quests\n  - img\n  - text: 特别任务\n- link \"宝石小店\":\n  - /url: /shop\n  - img\n  - text: 宝石小店\n- link \"个人档案\":\n  - /url: /learn?sign-up\n  - img\n  - text: 个人档案\n- button \"更多\":\n  - img\n  - text: 更多\n- img\n- button \"5\":\n  - img\n  - text: \"5\"\n- button \"2\":\n  - img\n  - text: \"2\"\n- button \"525\":\n  - img\n  - text: \"525\"\n- button \"5\":\n  - img\n  - text: \"5\"\n- heading \"青铜等级\" [level=2]\n- link \"查看排行榜\":\n  - /url: /leaderboard\n- img\n- paragraph: 这周的排行榜挑战赛即将开始！\n- text: 4 小时\n- heading \"每日特别任务\" [level=2]\n- link \"显示全部\":\n  - /url: /quests\n- img\n- text: 获取 30 经验\n- progressbar: 30 / 30 30 / 30\n- img\n- heading \"创建个人档案，保存学习进度！\" [level=2]\n- button \"创建档案\"\n- button \"登录\"\n- list:\n  - listitem:\n    - link \"关于我们\":\n      - /url: https://about.duolingo.com\n  - listitem:\n    - link \"宝石小店\":\n      - /url: https://store.duolingo.com/\n  - listitem:\n    - link \"有效性\":\n      - /url: /efficacy\n  - listitem:\n    - link \"招聘贤才\":\n      - /url: https://careers.duolingo.com\n  - listitem:\n    - link \"投资者\":\n      - /url: https://investors.duolingo.com\n  - listitem:\n    - link \"条款\":\n      - /url: /terms\n  - listitem:\n    - link \"隐私\":\n      - /url: /privacy\n- link \"第 1 阶段，第 1 部分\":\n  - /url: /sections\n  - img\n  - heading \"第 1 阶段，第 1 部分\" [level=1]\n- text: 提供或接受饮料\n- link \"打开这个部分的指南\":\n  - /url: /guidebook/en/1\n  - img \"指南\"\n  - text: 指南\n- img\n- button \"Lesson\":\n  - button \"Lesson\":\n    - img\n- button \"Lesson\":\n  - button \"Lesson\":\n    - img\n- button \"宝箱\" [disabled]:\n  - img\n- button \"Practice\":\n  - img\n  - button \"Practice\"\n- heading \"提供或接受饮料\" [level=1]\n- paragraph: 第 1/2 单元\n- link \"开始 +10 经验\":\n  - /url: /lesson\n- button \"复习该部分\":\n  - button \"复习该部分\"\n- separator\n- heading \"谈论祖籍国家\" [level=2]\n- separator\n- link \"跳到第 2 部分\":\n  - /url: /lesson/unit/2/test\n- button \"Lesson\":\n  - button \"Lesson\"\n- button \"宝箱\" [disabled]:\n  - img\n- button \"Practice\":\n  - button \"Practice\"\n- button \"复习该部分\":\n  - button \"复习该部分\"\n- separator\n- heading \"介绍家庭成员\" [level=2]\n- separator\n- link \"跳到第 3 部分\":\n  - /url: /lesson/unit/3/test\n- button \"Lesson\":\n  - button \"Lesson\"\n- button \"宝箱\" [disabled]:\n  - img\n- button \"Practice\":\n  - button \"Practice\"\n- button \"复习该部分\":\n  - button \"复习该部分\"\n- paragraph: 下一级\n- heading \"第 2 阶段\" [level=2]\n- paragraph: 学会日常交流中基础的单词、短语和语法概念\n- button \"跳级到这儿？\"",
+      "accessible_text": [
+        "525"
+      ],
+      "elements": {},
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-chest-v1/source/practice-profile-dismissed.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      },
+      "interactions": {
+        "profile_closed": true
+      }
+    },
+    "path-age-form": {
+      "snapshot": "- link:\n  - /url: /learn\n  - img\n- link \"学习\":\n  - /url: /learn\n  - img\n  - text: 学习\n- link \"发音\":\n  - /url: /characters\n  - img\n  - text: 发音\n- link \"排行榜\":\n  - /url: /leaderboard\n  - img\n  - text: 排行榜\n- link \"特别任务\":\n  - /url: /quests\n  - img\n  - text: 特别任务\n- link \"宝石小店\":\n  - /url: /shop\n  - img\n  - text: 宝石小店\n- link \"个人档案\":\n  - /url: /learn?sign-up\n  - img\n  - text: 个人档案\n- button \"更多\":\n  - img\n  - text: 更多\n- img\n- button \"5\":\n  - img\n  - text: \"5\"\n- button \"2\":\n  - img\n  - text: \"2\"\n- button \"525\":\n  - img\n  - text: \"525\"\n- button \"5\":\n  - img\n  - text: \"5\"\n- heading \"青铜等级\" [level=2]\n- link \"查看排行榜\":\n  - /url: /leaderboard\n- img\n- paragraph: 这周的排行榜挑战赛即将开始！\n- text: 4 小时\n- heading \"每日特别任务\" [level=2]\n- link \"显示全部\":\n  - /url: /quests\n- img\n- text: 获取 30 经验\n- progressbar: 30 / 30 30 / 30\n- img\n- heading \"创建个人档案，保存学习进度！\" [level=2]\n- button \"创建档案\"\n- button \"登录\"\n- list:\n  - listitem:\n    - link \"关于我们\":\n      - /url: https://about.duolingo.com\n  - listitem:\n    - link \"宝石小店\":\n      - /url: https://store.duolingo.com/\n  - listitem:\n    - link \"有效性\":\n      - /url: /efficacy\n  - listitem:\n    - link \"招聘贤才\":\n      - /url: https://careers.duolingo.com\n  - listitem:\n    - link \"投资者\":\n      - /url: https://investors.duolingo.com\n  - listitem:\n    - link \"条款\":\n      - /url: /terms\n  - listitem:\n    - link \"隐私\":\n      - /url: /privacy\n- link \"第 1 阶段，第 1 部分\":\n  - /url: /sections\n  - img\n  - heading \"第 1 阶段，第 1 部分\" [level=1]\n- text: 提供或接受饮料\n- link \"打开这个部分的指南\":\n  - /url: /guidebook/en/1\n  - img \"指南\"\n  - text: 指南\n- img\n- button \"Lesson\":\n  - button \"Lesson\":\n    - img\n- button \"Lesson\":\n  - button \"Lesson\":\n    - img\n- button \"宝箱\" [disabled]:\n  - img\n- button \"Practice\":\n  - img\n  - button \"Practice\"\n- heading \"提供或接受饮料\" [level=1]\n- paragraph: 第 1/2 单元\n- link \"开始 +10 经验\":\n  - /url: /lesson\n- button \"复习该部分\":\n  - button \"复习该部分\"\n- separator\n- heading \"谈论祖籍国家\" [level=2]\n- separator\n- link \"跳到第 2 部分\":\n  - /url: /lesson/unit/2/test\n- button \"Lesson\":\n  - button \"Lesson\"\n- button \"宝箱\" [disabled]:\n  - img\n- button \"Practice\":\n  - button \"Practice\"\n- button \"复习该部分\":\n  - button \"复习该部分\"\n- separator\n- heading \"介绍家庭成员\" [level=2]\n- separator\n- link \"跳到第 3 部分\":\n  - /url: /lesson/unit/3/test\n- button \"Lesson\":\n  - button \"Lesson\"\n- button \"宝箱\" [disabled]:\n  - img\n- button \"Practice\":\n  - button \"Practice\"\n- button \"复习该部分\":\n  - button \"复习该部分\"\n- paragraph: 下一级\n- heading \"第 2 阶段\" [level=2]\n- paragraph: 学会日常交流中基础的单词、短语和语法概念\n- button \"跳级到这儿？\"\n- img\n- button \"登录\"\n- heading \"你的年龄是……\" [level=1]\n- textbox \"年龄\"\n- text: 告诉我们你的真实年龄，让我们为你打造一个更合适的多邻国学习体验。更多详情，请访问\n- link \"隐私政策\":\n  - /url: /privacy\n- text: 。\n- button \"下一步\" [disabled]\n- text: 登录即视为你已接受我们的\n- link \"服务条款\":\n  - /url: https://www.duolingo.com/terms?wantsPlainInfo=1\n- text: 与\n- link \"隐私政策\":\n  - /url: https://www.duolingo.com/privacy?wantsPlainInfo=1\n- text: 。 该网站受 reCAPTCHA Enterprise 保护。Google\n- link \"隐私政策\":\n  - /url: https://policies.google.com/privacy\n- text: 及\n- link \"服务条款\":\n  - /url: https://policies.google.com/terms\n- text: 也同时适用。",
+      "accessible_text": [
+        "你的年龄是……"
+      ],
+      "elements": {
+        "path-age-input": {
+          "rect": [
+            414.5,
+            254.5,
+            371,
+            44
+          ],
+          "role": "textbox",
+          "enabled": true
+        },
+        "path-age-next": {
+          "rect": [
+            412.5,
+            376.5,
+            375,
+            50
+          ],
+          "role": "button",
+          "enabled": false
+        }
+      },
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-path-profile-v1/source/age-form.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "registration-filled": {
+      "snapshot": "- link:\n  - /url: /learn\n  - img\n- link \"学习\":\n  - /url: /learn\n  - img\n  - text: 学习\n- link \"发音\":\n  - /url: /characters\n  - img\n  - text: 发音\n- link \"排行榜\":\n  - /url: /leaderboard\n  - img\n  - text: 排行榜\n- link \"特别任务\":\n  - /url: /quests\n  - img\n  - text: 特别任务\n- link \"宝石小店\":\n  - /url: /shop\n  - img\n  - text: 宝石小店\n- link \"个人档案\":\n  - /url: /learn?sign-up\n  - img\n  - text: 个人档案\n- button \"更多\":\n  - img\n  - text: 更多\n- img\n- button \"5\":\n  - img\n  - text: \"5\"\n- button \"2\":\n  - img\n  - text: \"2\"\n- button \"525\":\n  - img\n  - text: \"525\"\n- button \"5\":\n  - img\n  - text: \"5\"\n- heading \"青铜等级\" [level=2]\n- link \"查看排行榜\":\n  - /url: /leaderboard\n- img\n- paragraph: 这周的排行榜挑战赛即将开始！\n- text: 3 小时\n- heading \"每日特别任务\" [level=2]\n- link \"显示全部\":\n  - /url: /quests\n- img\n- text: 获取 30 经验\n- progressbar: 30 / 30 30 / 30\n- img\n- heading \"创建个人档案，保存学习进度！\" [level=2]\n- button \"创建档案\"\n- button \"登录\"\n- list:\n  - listitem:\n    - link \"关于我们\":\n      - /url: https://about.duolingo.com\n  - listitem:\n    - link \"宝石小店\":\n      - /url: https://store.duolingo.com/\n  - listitem:\n    - link \"有效性\":\n      - /url: /efficacy\n  - listitem:\n    - link \"招聘贤才\":\n      - /url: https://careers.duolingo.com\n  - listitem:\n    - link \"投资者\":\n      - /url: https://investors.duolingo.com\n  - listitem:\n    - link \"条款\":\n      - /url: /terms\n  - listitem:\n    - link \"隐私\":\n      - /url: /privacy\n- link \"第 1 阶段，第 1 部分\":\n  - /url: /sections\n  - img\n  - heading \"第 1 阶段，第 1 部分\" [level=1]\n- text: 提供或接受饮料\n- link \"打开这个部分的指南\":\n  - /url: /guidebook/en/1\n  - img \"指南\"\n  - text: 指南\n- img\n- button \"Lesson\":\n  - button \"Lesson\":\n    - img\n- button \"Lesson\":\n  - button \"Lesson\":\n    - img\n- button \"宝箱\" [disabled]:\n  - img\n- button \"Practice\":\n  - img\n  - button \"Practice\"\n- heading \"提供或接受饮料\" [level=1]\n- paragraph: 第 1/2 单元\n- link \"开始 +10 经验\":\n  - /url: /lesson\n- button \"复习该部分\":\n  - button \"复习该部分\"\n- separator\n- heading \"谈论祖籍国家\" [level=2]\n- separator\n- link \"跳到第 2 部分\":\n  - /url: /lesson/unit/2/test\n- button \"Lesson\":\n  - button \"Lesson\"\n- button \"宝箱\" [disabled]:\n  - img\n- button \"Practice\":\n  - button \"Practice\"\n- button \"复习该部分\":\n  - button \"复习该部分\"\n- separator\n- heading \"介绍家庭成员\" [level=2]\n- separator\n- link \"跳到第 3 部分\":\n  - /url: /lesson/unit/3/test\n- button \"Lesson\":\n  - button \"Lesson\"\n- button \"宝箱\" [disabled]:\n  - img\n- button \"Practice\":\n  - button \"Practice\"\n- button \"复习该部分\":\n  - button \"复习该部分\"\n- paragraph: 下一级\n- heading \"第 2 阶段\" [level=2]\n- paragraph: 学会日常交流中基础的单词、短语和语法概念\n- button \"跳级到这儿？\"\n- img\n- button \"登录\"\n- heading \"你的年龄是……\" [level=1]\n- textbox \"年龄\": \"28\"\n- button:\n  - img\n- text: 告诉我们你的真实年龄，让我们为你打造一个更合适的多邻国学习体验。更多详情，请访问\n- link \"隐私政策\":\n  - /url: /privacy\n- text: 。\n- button \"下一步\"\n- text: 登录即视为你已接受我们的\n- link \"服务条款\":\n  - /url: https://www.duolingo.com/terms?wantsPlainInfo=1\n- text: 与\n- link \"隐私政策\":\n  - /url: https://www.duolingo.com/privacy?wantsPlainInfo=1\n- text: 。 该网站受 reCAPTCHA Enterprise 保护。Google\n- link \"隐私政策\":\n  - /url: https://policies.google.com/privacy\n- text: 及\n- link \"服务条款\":\n  - /url: https://policies.google.com/terms\n- text: 也同时适用。",
+      "accessible_text": [
+        "你的年龄是……"
+      ],
+      "elements": {
+        "path-age-input": {
+          "rect": [
+            414.5,
+            254.5,
+            347,
+            44
+          ],
+          "role": "textbox",
+          "enabled": true
+        },
+        "path-age-next": {
+          "rect": [
+            412.5,
+            372.5,
+            375,
+            50
+          ],
+          "role": "button",
+          "enabled": true
+        }
+      },
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-registration-v1/source/filled.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      },
+      "interactions": {
+        "age_value_correct": true,
+        "cleared_disabled": true
+      }
+    },
+    "registration-methods": {
+      "snapshot": "- link:\n  - /url: /learn\n  - img\n- link \"学习\":\n  - /url: /learn\n  - img\n  - text: 学习\n- link \"发音\":\n  - /url: /characters\n  - img\n  - text: 发音\n- link \"排行榜\":\n  - /url: /leaderboard\n  - img\n  - text: 排行榜\n- link \"特别任务\":\n  - /url: /quests\n  - img\n  - text: 特别任务\n- link \"宝石小店\":\n  - /url: /shop\n  - img\n  - text: 宝石小店\n- link \"个人档案\":\n  - /url: /learn?sign-up\n  - img\n  - text: 个人档案\n- button \"更多\":\n  - img\n  - text: 更多\n- img\n- button \"5\":\n  - img\n  - text: \"5\"\n- button \"2\":\n  - img\n  - text: \"2\"\n- button \"525\":\n  - img\n  - text: \"525\"\n- button \"5\":\n  - img\n  - text: \"5\"\n- heading \"青铜等级\" [level=2]\n- link \"查看排行榜\":\n  - /url: /leaderboard\n- img\n- paragraph: 这周的排行榜挑战赛即将开始！\n- text: 3 小时\n- heading \"每日特别任务\" [level=2]\n- link \"显示全部\":\n  - /url: /quests\n- img\n- text: 获取 30 经验\n- progressbar: 30 / 30 30 / 30\n- img\n- heading \"创建个人档案，保存学习进度！\" [level=2]\n- button \"创建档案\"\n- button \"登录\"\n- list:\n  - listitem:\n    - link \"关于我们\":\n      - /url: https://about.duolingo.com\n  - listitem:\n    - link \"宝石小店\":\n      - /url: https://store.duolingo.com/\n  - listitem:\n    - link \"有效性\":\n      - /url: /efficacy\n  - listitem:\n    - link \"招聘贤才\":\n      - /url: https://careers.duolingo.com\n  - listitem:\n    - link \"投资者\":\n      - /url: https://investors.duolingo.com\n  - listitem:\n    - link \"条款\":\n      - /url: /terms\n  - listitem:\n    - link \"隐私\":\n      - /url: /privacy\n- link \"第 1 阶段，第 1 部分\":\n  - /url: /sections\n  - img\n  - heading \"第 1 阶段，第 1 部分\" [level=1]\n- text: 提供或接受饮料\n- link \"打开这个部分的指南\":\n  - /url: /guidebook/en/1\n  - img \"指南\"\n  - text: 指南\n- img\n- button \"Lesson\":\n  - button \"Lesson\":\n    - img\n- button \"Lesson\":\n  - button \"Lesson\":\n    - img\n- button \"宝箱\" [disabled]:\n  - img\n- button \"Practice\":\n  - img\n  - button \"Practice\"\n- heading \"提供或接受饮料\" [level=1]\n- paragraph: 第 1/2 单元\n- link \"开始 +10 经验\":\n  - /url: /lesson\n- button \"复习该部分\":\n  - button \"复习该部分\"\n- separator\n- heading \"谈论祖籍国家\" [level=2]\n- separator\n- link \"跳到第 2 部分\":\n  - /url: /lesson/unit/2/test\n- button \"Lesson\":\n  - button \"Lesson\"\n- button \"宝箱\" [disabled]:\n  - img\n- button \"Practice\":\n  - button \"Practice\"\n- button \"复习该部分\":\n  - button \"复习该部分\"\n- separator\n- heading \"介绍家庭成员\" [level=2]\n- separator\n- link \"跳到第 3 部分\":\n  - /url: /lesson/unit/3/test\n- button \"Lesson\":\n  - button \"Lesson\"\n- button \"宝箱\" [disabled]:\n  - img\n- button \"Practice\":\n  - button \"Practice\"\n- button \"复习该部分\":\n  - button \"复习该部分\"\n- paragraph: 下一级\n- heading \"第 2 阶段\" [level=2]\n- paragraph: 学会日常交流中基础的单词、短语和语法概念\n- button \"跳级到这儿？\"\n- img\n- heading \"选个注册方式才能继续哦！\" [level=1]\n- button \"使用 GOOGLE 继续 Sign in with Google Button\":\n  - img\n  - text: 使用 GOOGLE 继续\n  - iframe\n- button \"使用 Facebook 继续\":\n  - img\n  - text: 使用 Facebook 继续\n- button \"使用电子邮件继续\":\n  - img\n  - text: 使用电子邮件继续",
+      "accessible_text": [
+        "选个注册方式才能继续哦！"
+      ],
+      "elements": {
+        "registration-google": {
+          "rect": [
+            412.5,
+            504,
+            375,
+            48
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "registration-facebook": {
+          "rect": [
+            412.5,
+            564,
+            375,
+            48
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "registration-email": {
+          "rect": [
+            412.5,
+            624,
+            375,
+            48
+          ],
+          "role": "button",
+          "enabled": true
+        }
+      },
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-registration-v1/source/methods.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "registration-email": {
+      "snapshot": "- link:\n  - /url: /learn\n  - img\n- link \"学习\":\n  - /url: /learn\n  - img\n  - text: 学习\n- link \"发音\":\n  - /url: /characters\n  - img\n  - text: 发音\n- link \"排行榜\":\n  - /url: /leaderboard\n  - img\n  - text: 排行榜\n- link \"特别任务\":\n  - /url: /quests\n  - img\n  - text: 特别任务\n- link \"宝石小店\":\n  - /url: /shop\n  - img\n  - text: 宝石小店\n- link \"个人档案\":\n  - /url: /learn?sign-up\n  - img\n  - text: 个人档案\n- button \"更多\":\n  - img\n  - text: 更多\n- img\n- button \"5\":\n  - img\n  - text: \"5\"\n- button \"2\":\n  - img\n  - text: \"2\"\n- button \"525\":\n  - img\n  - text: \"525\"\n- button \"5\":\n  - img\n  - text: \"5\"\n- heading \"青铜等级\" [level=2]\n- link \"查看排行榜\":\n  - /url: /leaderboard\n- img\n- paragraph: 这周的排行榜挑战赛即将开始！\n- text: 3 小时\n- heading \"每日特别任务\" [level=2]\n- link \"显示全部\":\n  - /url: /quests\n- img\n- text: 获取 30 经验\n- progressbar: 30 / 30 30 / 30\n- img\n- heading \"创建个人档案，保存学习进度！\" [level=2]\n- button \"创建档案\"\n- button \"登录\"\n- list:\n  - listitem:\n    - link \"关于我们\":\n      - /url: https://about.duolingo.com\n  - listitem:\n    - link \"宝石小店\":\n      - /url: https://store.duolingo.com/\n  - listitem:\n    - link \"有效性\":\n      - /url: /efficacy\n  - listitem:\n    - link \"招聘贤才\":\n      - /url: https://careers.duolingo.com\n  - listitem:\n    - link \"投资者\":\n      - /url: https://investors.duolingo.com\n  - listitem:\n    - link \"条款\":\n      - /url: /terms\n  - listitem:\n    - link \"隐私\":\n      - /url: /privacy\n- link \"第 1 阶段，第 1 部分\":\n  - /url: /sections\n  - img\n  - heading \"第 1 阶段，第 1 部分\" [level=1]\n- text: 提供或接受饮料\n- link \"打开这个部分的指南\":\n  - /url: /guidebook/en/1\n  - img \"指南\"\n  - text: 指南\n- img\n- button \"Lesson\":\n  - button \"Lesson\":\n    - img\n- button \"Lesson\":\n  - button \"Lesson\":\n    - img\n- button \"宝箱\" [disabled]:\n  - img\n- button \"Practice\":\n  - img\n  - button \"Practice\"\n- heading \"提供或接受饮料\" [level=1]\n- paragraph: 第 1/2 单元\n- link \"开始 +10 经验\":\n  - /url: /lesson\n- button \"复习该部分\":\n  - button \"复习该部分\"\n- separator\n- heading \"谈论祖籍国家\" [level=2]\n- separator\n- link \"跳到第 2 部分\":\n  - /url: /lesson/unit/2/test\n- button \"Lesson\":\n  - button \"Lesson\"\n- button \"宝箱\" [disabled]:\n  - img\n- button \"Practice\":\n  - button \"Practice\"\n- button \"复习该部分\":\n  - button \"复习该部分\"\n- separator\n- heading \"介绍家庭成员\" [level=2]\n- separator\n- link \"跳到第 3 部分\":\n  - /url: /lesson/unit/3/test\n- button \"Lesson\":\n  - button \"Lesson\"\n- button \"宝箱\" [disabled]:\n  - img\n- button \"Practice\":\n  - button \"Practice\"\n- button \"复习该部分\":\n  - button \"复习该部分\"\n- paragraph: 下一级\n- heading \"第 2 阶段\" [level=2]\n- paragraph: 学会日常交流中基础的单词、短语和语法概念\n- button \"跳级到这儿？\"\n- img\n- button \"登录\"\n- heading \"创建档案\" [level=1]\n- textbox \"姓名（选填）\"\n- textbox \"邮箱\"\n- textbox \"密码\"\n- button:\n  - img\n- button \"创建帐户\"\n- text: 登录即视为你已接受我们的\n- link \"服务条款\":\n  - /url: https://www.duolingo.com/terms?wantsPlainInfo=1\n- text: 与\n- link \"隐私政策\":\n  - /url: https://www.duolingo.com/privacy?wantsPlainInfo=1\n- text: 。 该网站受 reCAPTCHA Enterprise 保护。Google\n- link \"隐私政策\":\n  - /url: https://policies.google.com/privacy\n- text: 及\n- link \"服务条款\":\n  - /url: https://policies.google.com/terms\n- text: 也同时适用。",
+      "accessible_text": [
+        "创建档案"
+      ],
+      "elements": {
+        "registration-name": {
+          "rect": [
+            414.5,
+            218.5,
+            371,
+            44
+          ],
+          "role": "textbox",
+          "enabled": true
+        },
+        "registration-address": {
+          "rect": [
+            414.5,
+            278.5,
+            371,
+            44
+          ],
+          "role": "textbox",
+          "enabled": true
+        },
+        "registration-password": {
+          "rect": [
+            414.5,
+            338.5,
+            347,
+            44
+          ],
+          "role": "textbox",
+          "enabled": true
+        },
+        "registration-submit": {
+          "rect": [
+            412.5,
+            408.5,
+            375,
+            50
+          ],
+          "role": "button",
+          "enabled": true
+        }
+      },
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-registration-v1/source/email.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "registration-email-invalid": {
+      "snapshot": "- link:\n  - /url: /learn\n  - img\n- link \"学习\":\n  - /url: /learn\n  - img\n  - text: 学习\n- link \"发音\":\n  - /url: /characters\n  - img\n  - text: 发音\n- link \"排行榜\":\n  - /url: /leaderboard\n  - img\n  - text: 排行榜\n- link \"特别任务\":\n  - /url: /quests\n  - img\n  - text: 特别任务\n- link \"宝石小店\":\n  - /url: /shop\n  - img\n  - text: 宝石小店\n- link \"个人档案\":\n  - /url: /learn?sign-up\n  - img\n  - text: 个人档案\n- button \"更多\":\n  - img\n  - text: 更多\n- img\n- button \"5\":\n  - img\n  - text: \"5\"\n- button \"2\":\n  - img\n  - text: \"2\"\n- button \"525\":\n  - img\n  - text: \"525\"\n- button \"5\":\n  - img\n  - text: \"5\"\n- heading \"青铜等级\" [level=2]\n- link \"查看排行榜\":\n  - /url: /leaderboard\n- img\n- paragraph: 这周的排行榜挑战赛即将开始！\n- text: 3 小时\n- heading \"每日特别任务\" [level=2]\n- link \"显示全部\":\n  - /url: /quests\n- img\n- text: 获取 30 经验\n- progressbar: 30 / 30 30 / 30\n- img\n- heading \"创建个人档案，保存学习进度！\" [level=2]\n- button \"创建档案\"\n- button \"登录\"\n- list:\n  - listitem:\n    - link \"关于我们\":\n      - /url: https://about.duolingo.com\n  - listitem:\n    - link \"宝石小店\":\n      - /url: https://store.duolingo.com/\n  - listitem:\n    - link \"有效性\":\n      - /url: /efficacy\n  - listitem:\n    - link \"招聘贤才\":\n      - /url: https://careers.duolingo.com\n  - listitem:\n    - link \"投资者\":\n      - /url: https://investors.duolingo.com\n  - listitem:\n    - link \"条款\":\n      - /url: /terms\n  - listitem:\n    - link \"隐私\":\n      - /url: /privacy\n- link \"第 1 阶段，第 1 部分\":\n  - /url: /sections\n  - img\n  - heading \"第 1 阶段，第 1 部分\" [level=1]\n- text: 提供或接受饮料\n- link \"打开这个部分的指南\":\n  - /url: /guidebook/en/1\n  - img \"指南\"\n  - text: 指南\n- img\n- button \"Lesson\":\n  - button \"Lesson\":\n    - img\n- button \"Lesson\":\n  - button \"Lesson\":\n    - img\n- button \"宝箱\" [disabled]:\n  - img\n- button \"Practice\":\n  - img\n  - button \"Practice\"\n- heading \"提供或接受饮料\" [level=1]\n- paragraph: 第 1/2 单元\n- link \"开始 +10 经验\":\n  - /url: /lesson\n- button \"复习该部分\":\n  - button \"复习该部分\"\n- separator\n- heading \"谈论祖籍国家\" [level=2]\n- separator\n- link \"跳到第 2 部分\":\n  - /url: /lesson/unit/2/test\n- button \"Lesson\":\n  - button \"Lesson\"\n- button \"宝箱\" [disabled]:\n  - img\n- button \"Practice\":\n  - button \"Practice\"\n- button \"复习该部分\":\n  - button \"复习该部分\"\n- separator\n- heading \"介绍家庭成员\" [level=2]\n- separator\n- link \"跳到第 3 部分\":\n  - /url: /lesson/unit/3/test\n- button \"Lesson\":\n  - button \"Lesson\"\n- button \"宝箱\" [disabled]:\n  - img\n- button \"Practice\":\n  - button \"Practice\"\n- button \"复习该部分\":\n  - button \"复习该部分\"\n- paragraph: 下一级\n- heading \"第 2 阶段\" [level=2]\n- paragraph: 学会日常交流中基础的单词、短语和语法概念\n- button \"跳级到这儿？\"\n- img\n- button \"登录\"\n- heading \"创建档案\" [level=1]\n- textbox \"姓名（选填）\"\n- textbox \"邮箱\"\n- img\n- text: 邮箱地址无效\n- textbox \"密码\"\n- button:\n  - img\n- img\n- text: 密码太短了\n- button \"创建帐户\"\n- text: 登录即视为你已接受我们的\n- link \"服务条款\":\n  - /url: https://www.duolingo.com/terms?wantsPlainInfo=1\n- text: 与\n- link \"隐私政策\":\n  - /url: https://www.duolingo.com/privacy?wantsPlainInfo=1\n- text: 。 该网站受 reCAPTCHA Enterprise 保护。Google\n- link \"隐私政策\":\n  - /url: https://policies.google.com/privacy\n- text: 及\n- link \"服务条款\":\n  - /url: https://policies.google.com/terms\n- text: 也同时适用。",
+      "accessible_text": [
+        "创建档案",
+        "邮箱地址无效",
+        "密码太短了"
+      ],
+      "elements": {
+        "registration-name": {
+          "rect": [
+            414.5,
+            194.5,
+            371,
+            44
+          ],
+          "role": "textbox",
+          "enabled": true
+        },
+        "registration-address": {
+          "rect": [
+            414.5,
+            254.5,
+            371,
+            44
+          ],
+          "role": "textbox",
+          "enabled": true
+        },
+        "registration-password": {
+          "rect": [
+            414.5,
+            338.5,
+            347,
+            44
+          ],
+          "role": "textbox",
+          "enabled": true
+        },
+        "registration-submit": {
+          "rect": [
+            412.5,
+            432.5,
+            375,
+            50
+          ],
+          "role": "button",
+          "enabled": true
+        }
+      },
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-registration-v1/source/email-invalid.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "registration-clear-before": {
+      "snapshot": "- link:\n  - /url: /learn\n  - img\n- link \"学习\":\n  - /url: /learn\n  - img\n  - text: 学习\n- link \"发音\":\n  - /url: /characters\n  - img\n  - text: 发音\n- link \"排行榜\":\n  - /url: /leaderboard\n  - img\n  - text: 排行榜\n- link \"特别任务\":\n  - /url: /quests\n  - img\n  - text: 特别任务\n- link \"宝石小店\":\n  - /url: /shop\n  - img\n  - text: 宝石小店\n- link \"个人档案\":\n  - /url: /learn?sign-up\n  - img\n  - text: 个人档案\n- button \"更多\":\n  - img\n  - text: 更多\n- img\n- button \"5\":\n  - img\n  - text: \"5\"\n- button \"2\":\n  - img\n  - text: \"2\"\n- button \"525\":\n  - img\n  - text: \"525\"\n- button \"5\":\n  - img\n  - text: \"5\"\n- heading \"青铜等级\" [level=2]\n- link \"查看排行榜\":\n  - /url: /leaderboard\n- img\n- paragraph: 这周的排行榜挑战赛即将开始！\n- text: 3 小时\n- heading \"每日特别任务\" [level=2]\n- link \"显示全部\":\n  - /url: /quests\n- img\n- text: 获取 30 经验\n- progressbar: 30 / 30 30 / 30\n- img\n- heading \"创建个人档案，保存学习进度！\" [level=2]\n- button \"创建档案\"\n- button \"登录\"\n- list:\n  - listitem:\n    - link \"关于我们\":\n      - /url: https://about.duolingo.com\n  - listitem:\n    - link \"宝石小店\":\n      - /url: https://store.duolingo.com/\n  - listitem:\n    - link \"有效性\":\n      - /url: /efficacy\n  - listitem:\n    - link \"招聘贤才\":\n      - /url: https://careers.duolingo.com\n  - listitem:\n    - link \"投资者\":\n      - /url: https://investors.duolingo.com\n  - listitem:\n    - link \"条款\":\n      - /url: /terms\n  - listitem:\n    - link \"隐私\":\n      - /url: /privacy\n- link \"第 1 阶段，第 1 部分\":\n  - /url: /sections\n  - img\n  - heading \"第 1 阶段，第 1 部分\" [level=1]\n- text: 提供或接受饮料\n- link \"打开这个部分的指南\":\n  - /url: /guidebook/en/1\n  - img \"指南\"\n  - text: 指南\n- img\n- button \"Lesson\":\n  - button \"Lesson\":\n    - img\n- button \"Lesson\":\n  - button \"Lesson\":\n    - img\n- button \"宝箱\" [disabled]:\n  - img\n- button \"Practice\":\n  - img\n  - button \"Practice\"\n- button \"复习该部分\":\n  - button \"复习该部分\"\n- separator\n- heading \"谈论祖籍国家\" [level=2]\n- separator\n- link \"跳到第 2 部分\":\n  - /url: /lesson/unit/2/test\n- button \"Lesson\":\n  - button \"Lesson\"\n- button \"宝箱\" [disabled]:\n  - img\n- button \"Practice\":\n  - button \"Practice\"\n- button \"复习该部分\":\n  - button \"复习该部分\"\n- separator\n- heading \"介绍家庭成员\" [level=2]\n- separator\n- link \"跳到第 3 部分\":\n  - /url: /lesson/unit/3/test\n- button \"Lesson\":\n  - button \"Lesson\"\n- button \"宝箱\" [disabled]:\n  - img\n- button \"Practice\":\n  - button \"Practice\"\n- button \"复习该部分\":\n  - button \"复习该部分\"\n- paragraph: 下一级\n- heading \"第 2 阶段\" [level=2]\n- paragraph: 学会日常交流中基础的单词、短语和语法概念\n- button \"跳级到这儿？\"\n- img\n- button \"登录\"\n- heading \"你的年龄是……\" [level=1]\n- textbox \"年龄\": \"28\"\n- button:\n  - img\n- text: 告诉我们你的真实年龄，让我们为你打造一个更合适的多邻国学习体验。更多详情，请访问\n- link \"隐私政策\":\n  - /url: /privacy\n- text: 。\n- button \"下一步\"\n- text: 登录即视为你已接受我们的\n- link \"服务条款\":\n  - /url: https://www.duolingo.com/terms?wantsPlainInfo=1\n- text: 与\n- link \"隐私政策\":\n  - /url: https://www.duolingo.com/privacy?wantsPlainInfo=1\n- text: 。 该网站受 reCAPTCHA Enterprise 保护。Google\n- link \"隐私政策\":\n  - /url: https://policies.google.com/privacy\n- text: 及\n- link \"服务条款\":\n  - /url: https://policies.google.com/terms\n- text: 也同时适用。",
+      "elements": {
+        "registration-age-clear": {
+          "rect": [
+            755.5,
+            264.5,
+            24,
+            24
+          ],
+          "role": "button",
+          "enabled": true
+        }
+      },
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-registration-controls-v1/source/clear-before.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "registration-cleared": {
+      "snapshot": "- link:\n  - /url: /learn\n  - img\n- link \"学习\":\n  - /url: /learn\n  - img\n  - text: 学习\n- link \"发音\":\n  - /url: /characters\n  - img\n  - text: 发音\n- link \"排行榜\":\n  - /url: /leaderboard\n  - img\n  - text: 排行榜\n- link \"特别任务\":\n  - /url: /quests\n  - img\n  - text: 特别任务\n- link \"宝石小店\":\n  - /url: /shop\n  - img\n  - text: 宝石小店\n- link \"个人档案\":\n  - /url: /learn?sign-up\n  - img\n  - text: 个人档案\n- button \"更多\":\n  - img\n  - text: 更多\n- img\n- button \"5\":\n  - img\n  - text: \"5\"\n- button \"2\":\n  - img\n  - text: \"2\"\n- button \"525\":\n  - img\n  - text: \"525\"\n- button \"5\":\n  - img\n  - text: \"5\"\n- heading \"青铜等级\" [level=2]\n- link \"查看排行榜\":\n  - /url: /leaderboard\n- img\n- paragraph: 这周的排行榜挑战赛即将开始！\n- text: 3 小时\n- heading \"每日特别任务\" [level=2]\n- link \"显示全部\":\n  - /url: /quests\n- img\n- text: 获取 30 经验\n- progressbar: 30 / 30 30 / 30\n- img\n- heading \"创建个人档案，保存学习进度！\" [level=2]\n- button \"创建档案\"\n- button \"登录\"\n- list:\n  - listitem:\n    - link \"关于我们\":\n      - /url: https://about.duolingo.com\n  - listitem:\n    - link \"宝石小店\":\n      - /url: https://store.duolingo.com/\n  - listitem:\n    - link \"有效性\":\n      - /url: /efficacy\n  - listitem:\n    - link \"招聘贤才\":\n      - /url: https://careers.duolingo.com\n  - listitem:\n    - link \"投资者\":\n      - /url: https://investors.duolingo.com\n  - listitem:\n    - link \"条款\":\n      - /url: /terms\n  - listitem:\n    - link \"隐私\":\n      - /url: /privacy\n- link \"第 1 阶段，第 1 部分\":\n  - /url: /sections\n  - img\n  - heading \"第 1 阶段，第 1 部分\" [level=1]\n- text: 提供或接受饮料\n- link \"打开这个部分的指南\":\n  - /url: /guidebook/en/1\n  - img \"指南\"\n  - text: 指南\n- img\n- button \"Lesson\":\n  - button \"Lesson\":\n    - img\n- button \"Lesson\":\n  - button \"Lesson\":\n    - img\n- button \"宝箱\" [disabled]:\n  - img\n- button \"Practice\":\n  - img\n  - button \"Practice\"\n- button \"复习该部分\":\n  - button \"复习该部分\"\n- separator\n- heading \"谈论祖籍国家\" [level=2]\n- separator\n- link \"跳到第 2 部分\":\n  - /url: /lesson/unit/2/test\n- button \"Lesson\":\n  - button \"Lesson\"\n- button \"宝箱\" [disabled]:\n  - img\n- button \"Practice\":\n  - button \"Practice\"\n- button \"复习该部分\":\n  - button \"复习该部分\"\n- separator\n- heading \"介绍家庭成员\" [level=2]\n- separator\n- link \"跳到第 3 部分\":\n  - /url: /lesson/unit/3/test\n- button \"Lesson\":\n  - button \"Lesson\"\n- button \"宝箱\" [disabled]:\n  - img\n- button \"Practice\":\n  - button \"Practice\"\n- button \"复习该部分\":\n  - button \"复习该部分\"\n- paragraph: 下一级\n- heading \"第 2 阶段\" [level=2]\n- paragraph: 学会日常交流中基础的单词、短语和语法概念\n- button \"跳级到这儿？\"\n- img\n- button \"登录\"\n- heading \"你的年龄是……\" [level=1]\n- textbox \"年龄\"\n- button:\n  - img\n- text: 告诉我们你的真实年龄，让我们为你打造一个更合适的多邻国学习体验。更多详情，请访问\n- link \"隐私政策\":\n  - /url: /privacy\n- text: 。\n- button \"下一步\" [disabled]\n- text: 登录即视为你已接受我们的\n- link \"服务条款\":\n  - /url: https://www.duolingo.com/terms?wantsPlainInfo=1\n- text: 与\n- link \"隐私政策\":\n  - /url: https://www.duolingo.com/privacy?wantsPlainInfo=1\n- text: 。 该网站受 reCAPTCHA Enterprise 保护。Google\n- link \"隐私政策\":\n  - /url: https://policies.google.com/privacy\n- text: 及\n- link \"服务条款\":\n  - /url: https://policies.google.com/terms\n- text: 也同时适用。",
+      "elements": {},
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-registration-controls-v1/source/cleared.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      },
+      "interactions": {
+        "clear_button_empties_age": true,
+        "clear_button_disables_next": true
+      }
+    },
+    "registration-password-hidden": {
+      "snapshot": "- link:\n  - /url: /learn\n  - img\n- link \"学习\":\n  - /url: /learn\n  - img\n  - text: 学习\n- link \"发音\":\n  - /url: /characters\n  - img\n  - text: 发音\n- link \"排行榜\":\n  - /url: /leaderboard\n  - img\n  - text: 排行榜\n- link \"特别任务\":\n  - /url: /quests\n  - img\n  - text: 特别任务\n- link \"宝石小店\":\n  - /url: /shop\n  - img\n  - text: 宝石小店\n- link \"个人档案\":\n  - /url: /learn?sign-up\n  - img\n  - text: 个人档案\n- button \"更多\":\n  - img\n  - text: 更多\n- img\n- button \"5\":\n  - img\n  - text: \"5\"\n- button \"2\":\n  - img\n  - text: \"2\"\n- button \"525\":\n  - img\n  - text: \"525\"\n- button \"5\":\n  - img\n  - text: \"5\"\n- heading \"青铜等级\" [level=2]\n- link \"查看排行榜\":\n  - /url: /leaderboard\n- img\n- paragraph: 这周的排行榜挑战赛即将开始！\n- text: 3 小时\n- heading \"每日特别任务\" [level=2]\n- link \"显示全部\":\n  - /url: /quests\n- img\n- text: 获取 30 经验\n- progressbar: 30 / 30 30 / 30\n- img\n- heading \"创建个人档案，保存学习进度！\" [level=2]\n- button \"创建档案\"\n- button \"登录\"\n- list:\n  - listitem:\n    - link \"关于我们\":\n      - /url: https://about.duolingo.com\n  - listitem:\n    - link \"宝石小店\":\n      - /url: https://store.duolingo.com/\n  - listitem:\n    - link \"有效性\":\n      - /url: /efficacy\n  - listitem:\n    - link \"招聘贤才\":\n      - /url: https://careers.duolingo.com\n  - listitem:\n    - link \"投资者\":\n      - /url: https://investors.duolingo.com\n  - listitem:\n    - link \"条款\":\n      - /url: /terms\n  - listitem:\n    - link \"隐私\":\n      - /url: /privacy\n- link \"第 1 阶段，第 1 部分\":\n  - /url: /sections\n  - img\n  - heading \"第 1 阶段，第 1 部分\" [level=1]\n- text: 提供或接受饮料\n- link \"打开这个部分的指南\":\n  - /url: /guidebook/en/1\n  - img \"指南\"\n  - text: 指南\n- img\n- button \"Lesson\":\n  - button \"Lesson\":\n    - img\n- button \"Lesson\":\n  - button \"Lesson\":\n    - img\n- button \"宝箱\" [disabled]:\n  - img\n- button \"Practice\":\n  - img\n  - button \"Practice\"\n- button \"复习该部分\":\n  - button \"复习该部分\"\n- separator\n- heading \"谈论祖籍国家\" [level=2]\n- separator\n- link \"跳到第 2 部分\":\n  - /url: /lesson/unit/2/test\n- button \"Lesson\":\n  - button \"Lesson\"\n- button \"宝箱\" [disabled]:\n  - img\n- button \"Practice\":\n  - button \"Practice\"\n- button \"复习该部分\":\n  - button \"复习该部分\"\n- separator\n- heading \"介绍家庭成员\" [level=2]\n- separator\n- link \"跳到第 3 部分\":\n  - /url: /lesson/unit/3/test\n- button \"Lesson\":\n  - button \"Lesson\"\n- button \"宝箱\" [disabled]:\n  - img\n- button \"Practice\":\n  - button \"Practice\"\n- button \"复习该部分\":\n  - button \"复习该部分\"\n- paragraph: 下一级\n- heading \"第 2 阶段\" [level=2]\n- paragraph: 学会日常交流中基础的单词、短语和语法概念\n- button \"跳级到这儿？\"\n- img\n- button \"登录\"\n- heading \"创建档案\" [level=1]\n- textbox \"姓名（选填）\"\n- textbox \"邮箱\"\n- textbox \"密码\": abc\n- button:\n  - img\n- button \"创建帐户\"\n- text: 登录即视为你已接受我们的\n- link \"服务条款\":\n  - /url: https://www.duolingo.com/terms?wantsPlainInfo=1\n- text: 与\n- link \"隐私政策\":\n  - /url: https://www.duolingo.com/privacy?wantsPlainInfo=1\n- text: 。 该网站受 reCAPTCHA Enterprise 保护。Google\n- link \"隐私政策\":\n  - /url: https://policies.google.com/privacy\n- text: 及\n- link \"服务条款\":\n  - /url: https://policies.google.com/terms\n- text: 也同时适用。",
+      "elements": {
+        "registration-password": {
+          "rect": [
+            414.5,
+            338.5,
+            347,
+            44
+          ],
+          "role": "textbox",
+          "enabled": true
+        },
+        "registration-password-reveal": {
+          "rect": [
+            755.5,
+            348.5,
+            24,
+            24
+          ],
+          "role": "button",
+          "enabled": true
+        }
+      },
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-registration-controls-v1/source/password-hidden.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "registration-password-visible": {
+      "snapshot": "- link:\n  - /url: /learn\n  - img\n- link \"学习\":\n  - /url: /learn\n  - img\n  - text: 学习\n- link \"发音\":\n  - /url: /characters\n  - img\n  - text: 发音\n- link \"排行榜\":\n  - /url: /leaderboard\n  - img\n  - text: 排行榜\n- link \"特别任务\":\n  - /url: /quests\n  - img\n  - text: 特别任务\n- link \"宝石小店\":\n  - /url: /shop\n  - img\n  - text: 宝石小店\n- link \"个人档案\":\n  - /url: /learn?sign-up\n  - img\n  - text: 个人档案\n- button \"更多\":\n  - img\n  - text: 更多\n- img\n- button \"5\":\n  - img\n  - text: \"5\"\n- button \"2\":\n  - img\n  - text: \"2\"\n- button \"525\":\n  - img\n  - text: \"525\"\n- button \"5\":\n  - img\n  - text: \"5\"\n- heading \"青铜等级\" [level=2]\n- link \"查看排行榜\":\n  - /url: /leaderboard\n- img\n- paragraph: 这周的排行榜挑战赛即将开始！\n- text: 3 小时\n- heading \"每日特别任务\" [level=2]\n- link \"显示全部\":\n  - /url: /quests\n- img\n- text: 获取 30 经验\n- progressbar: 30 / 30 30 / 30\n- img\n- heading \"创建个人档案，保存学习进度！\" [level=2]\n- button \"创建档案\"\n- button \"登录\"\n- list:\n  - listitem:\n    - link \"关于我们\":\n      - /url: https://about.duolingo.com\n  - listitem:\n    - link \"宝石小店\":\n      - /url: https://store.duolingo.com/\n  - listitem:\n    - link \"有效性\":\n      - /url: /efficacy\n  - listitem:\n    - link \"招聘贤才\":\n      - /url: https://careers.duolingo.com\n  - listitem:\n    - link \"投资者\":\n      - /url: https://investors.duolingo.com\n  - listitem:\n    - link \"条款\":\n      - /url: /terms\n  - listitem:\n    - link \"隐私\":\n      - /url: /privacy\n- link \"第 1 阶段，第 1 部分\":\n  - /url: /sections\n  - img\n  - heading \"第 1 阶段，第 1 部分\" [level=1]\n- text: 提供或接受饮料\n- link \"打开这个部分的指南\":\n  - /url: /guidebook/en/1\n  - img \"指南\"\n  - text: 指南\n- img\n- button \"Lesson\":\n  - button \"Lesson\":\n    - img\n- button \"Lesson\":\n  - button \"Lesson\":\n    - img\n- button \"宝箱\" [disabled]:\n  - img\n- button \"Practice\":\n  - img\n  - button \"Practice\"\n- button \"复习该部分\":\n  - button \"复习该部分\"\n- separator\n- heading \"谈论祖籍国家\" [level=2]\n- separator\n- link \"跳到第 2 部分\":\n  - /url: /lesson/unit/2/test\n- button \"Lesson\":\n  - button \"Lesson\"\n- button \"宝箱\" [disabled]:\n  - img\n- button \"Practice\":\n  - button \"Practice\"\n- button \"复习该部分\":\n  - button \"复习该部分\"\n- separator\n- heading \"介绍家庭成员\" [level=2]\n- separator\n- link \"跳到第 3 部分\":\n  - /url: /lesson/unit/3/test\n- button \"Lesson\":\n  - button \"Lesson\"\n- button \"宝箱\" [disabled]:\n  - img\n- button \"Practice\":\n  - button \"Practice\"\n- button \"复习该部分\":\n  - button \"复习该部分\"\n- paragraph: 下一级\n- heading \"第 2 阶段\" [level=2]\n- paragraph: 学会日常交流中基础的单词、短语和语法概念\n- button \"跳级到这儿？\"\n- img\n- button \"登录\"\n- heading \"创建档案\" [level=1]\n- textbox \"姓名（选填）\"\n- textbox \"邮箱\"\n- textbox \"密码\": abc\n- button:\n  - img\n- button \"创建帐户\"\n- text: 登录即视为你已接受我们的\n- link \"服务条款\":\n  - /url: https://www.duolingo.com/terms?wantsPlainInfo=1\n- text: 与\n- link \"隐私政策\":\n  - /url: https://www.duolingo.com/privacy?wantsPlainInfo=1\n- text: 。 该网站受 reCAPTCHA Enterprise 保护。Google\n- link \"隐私政策\":\n  - /url: https://policies.google.com/privacy\n- text: 及\n- link \"服务条款\":\n  - /url: https://policies.google.com/terms\n- text: 也同时适用。",
+      "elements": {
+        "registration-password": {
+          "rect": [
+            414.5,
+            338.5,
+            347,
+            44
+          ],
+          "role": "textbox",
+          "enabled": true
+        },
+        "registration-password-reveal": {
+          "rect": [
+            755.5,
+            348.5,
+            24,
+            24
+          ],
+          "role": "button",
+          "enabled": true
+        }
+      },
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-registration-controls-v1/source/password-visible.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      },
+      "interactions": {
+        "reveal_preserves_value": true,
+        "reveal_shows_text": true,
+        "rehide_restores_secure": true
+      }
+    },
+    "registration-login-empty": {
+      "snapshot": "- link:\n  - /url: /learn\n  - img\n- link \"学习\":\n  - /url: /learn\n  - img\n  - text: 学习\n- link \"发音\":\n  - /url: /characters\n  - img\n  - text: 发音\n- link \"排行榜\":\n  - /url: /leaderboard\n  - img\n  - text: 排行榜\n- link \"特别任务\":\n  - /url: /quests\n  - img\n  - text: 特别任务\n- link \"宝石小店\":\n  - /url: /shop\n  - img\n  - text: 宝石小店\n- link \"个人档案\":\n  - /url: /learn?sign-up\n  - img\n  - text: 个人档案\n- button \"更多\":\n  - img\n  - text: 更多\n- img\n- button \"5\":\n  - img\n  - text: \"5\"\n- button \"2\":\n  - img\n  - text: \"2\"\n- button \"525\":\n  - img\n  - text: \"525\"\n- button \"5\":\n  - img\n  - text: \"5\"\n- heading \"青铜等级\" [level=2]\n- link \"查看排行榜\":\n  - /url: /leaderboard\n- img\n- paragraph: 这周的排行榜挑战赛即将开始！\n- text: 3 小时\n- heading \"每日特别任务\" [level=2]\n- link \"显示全部\":\n  - /url: /quests\n- img\n- text: 获取 30 经验\n- progressbar: 30 / 30 30 / 30\n- img\n- heading \"创建个人档案，保存学习进度！\" [level=2]\n- button \"创建档案\"\n- button \"登录\"\n- list:\n  - listitem:\n    - link \"关于我们\":\n      - /url: https://about.duolingo.com\n  - listitem:\n    - link \"宝石小店\":\n      - /url: https://store.duolingo.com/\n  - listitem:\n    - link \"有效性\":\n      - /url: /efficacy\n  - listitem:\n    - link \"招聘贤才\":\n      - /url: https://careers.duolingo.com\n  - listitem:\n    - link \"投资者\":\n      - /url: https://investors.duolingo.com\n  - listitem:\n    - link \"条款\":\n      - /url: /terms\n  - listitem:\n    - link \"隐私\":\n      - /url: /privacy\n- link \"第 1 阶段，第 1 部分\":\n  - /url: /sections\n  - img\n  - heading \"第 1 阶段，第 1 部分\" [level=1]\n- text: 提供或接受饮料\n- link \"打开这个部分的指南\":\n  - /url: /guidebook/en/1\n  - img \"指南\"\n  - text: 指南\n- img\n- button \"Lesson\":\n  - button \"Lesson\":\n    - img\n- button \"Lesson\":\n  - button \"Lesson\":\n    - img\n- button \"宝箱\" [disabled]:\n  - img\n- button \"Practice\":\n  - img\n  - button \"Practice\"\n- button \"复习该部分\":\n  - button \"复习该部分\"\n- separator\n- heading \"谈论祖籍国家\" [level=2]\n- separator\n- link \"跳到第 2 部分\":\n  - /url: /lesson/unit/2/test\n- button \"Lesson\":\n  - button \"Lesson\"\n- button \"宝箱\" [disabled]:\n  - img\n- button \"Practice\":\n  - button \"Practice\"\n- button \"复习该部分\":\n  - button \"复习该部分\"\n- separator\n- heading \"介绍家庭成员\" [level=2]\n- separator\n- link \"跳到第 3 部分\":\n  - /url: /lesson/unit/3/test\n- button \"Lesson\":\n  - button \"Lesson\"\n- button \"宝箱\" [disabled]:\n  - img\n- button \"Practice\":\n  - button \"Practice\"\n- button \"复习该部分\":\n  - button \"复习该部分\"\n- paragraph: 下一级\n- heading \"第 2 阶段\" [level=2]\n- paragraph: 学会日常交流中基础的单词、短语和语法概念\n- button \"跳级到这儿？\"\n- img\n- button \"注册\"\n- heading \"登录\" [level=1]\n- textbox \"邮箱或用户名\"\n- textbox \"密码\"\n- link \"忘记密码？\":\n  - /url: /forgot_password\n- button \"登录\"\n- text: 或者\n- paragraph:\n  - button \"通过谷歌登录 Sign in with Google Button\":\n    - img\n    - text: 通过谷歌登录\n    - iframe\n  - button \"通过 Facebook 登录\":\n    - img\n    - text: 通过 Facebook 登录\n  - button \"使用 Apple 登录\":\n    - img\n    - text: 使用 Apple 登录\n- text: 登录即视为你已接受我们的\n- link \"服务条款\":\n  - /url: https://www.duolingo.com/terms?wantsPlainInfo=1\n- text: 与\n- link \"隐私政策\":\n  - /url: https://www.duolingo.com/privacy?wantsPlainInfo=1\n- text: 。 该网站受 reCAPTCHA Enterprise 保护。Google\n- link \"隐私政策\":\n  - /url: https://policies.google.com/privacy\n- text: 及\n- link \"服务条款\":\n  - /url: https://policies.google.com/terms\n- text: 也同时适用。",
+      "elements": {
+        "registration-login-email-input": {
+          "rect": [
+            414.5,
+            122.5,
+            371,
+            44
+          ],
+          "role": "textbox",
+          "enabled": true
+        },
+        "registration-login-password-input": {
+          "rect": [
+            414.5,
+            182.5,
+            297.0390625,
+            56
+          ],
+          "role": "textbox",
+          "enabled": true
+        },
+        "registration-login-login-with-google": {
+          "rect": [
+            412.5,
+            374.5,
+            375,
+            50
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "registration-login-login-with-facebook": {
+          "rect": [
+            412.5,
+            439.5,
+            375,
+            50
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "registration-login-login-with-apple": {
+          "rect": [
+            412.5,
+            504.5,
+            375,
+            50
+          ],
+          "role": "button",
+          "enabled": true
+        }
+      },
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-registration-controls-v1/source/login-empty.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1200,
+          732
+        ]
+      }
+    },
+    "home-motion-frame-0": {
+      "elements": {
+        "home-duo-animation": {
+          "tag": "svg",
+          "rect": [
+            506,
+            224.85546875,
+            238,
+            288.7578125
+          ]
+        }
+      },
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-home-motion-v1/home-motion-frame-0.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "window_points": [
+          1200,
+          732
+        ],
+        "backing_scale": 1
+      }
+    },
+    "home-motion-frame-1": {
+      "elements": {
+        "home-duo-animation": {
+          "tag": "svg",
+          "rect": [
+            506,
+            224.85546875,
+            238,
+            288.7578125
+          ]
+        }
+      },
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-home-motion-v1/home-motion-frame-1.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "window_points": [
+          1200,
+          732
+        ],
+        "backing_scale": 1
+      }
+    },
+    "home-motion-frame-2": {
+      "elements": {
+        "home-duo-animation": {
+          "tag": "svg",
+          "rect": [
+            506,
+            224.85546875,
+            238,
+            288.7578125
+          ]
+        }
+      },
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-home-motion-v1/home-motion-frame-2.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "window_points": [
+          1200,
+          732
+        ],
+        "backing_scale": 1
+      }
+    },
+    "home-motion-frame-3": {
+      "elements": {
+        "home-duo-animation": {
+          "tag": "svg",
+          "rect": [
+            506,
+            224.85546875,
+            238,
+            288.7578125
+          ]
+        }
+      },
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-home-motion-v1/home-motion-frame-3.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "window_points": [
+          1200,
+          732
+        ],
+        "backing_scale": 1
+      }
+    },
+    "home-motion-frame-4": {
+      "elements": {
+        "home-duo-animation": {
+          "tag": "svg",
+          "rect": [
+            506,
+            224.85546875,
+            238,
+            288.7578125
+          ]
+        }
+      },
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-home-motion-v1/home-motion-frame-4.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "window_points": [
+          1200,
+          732
+        ],
+        "backing_scale": 1
+      }
+    },
+    "home-motion-frame-5": {
+      "elements": {
+        "home-duo-animation": {
+          "tag": "svg",
+          "rect": [
+            506,
+            224.85546875,
+            238,
+            288.7578125
+          ]
+        }
+      },
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-home-motion-v1/home-motion-frame-5.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "window_points": [
+          1200,
+          732
+        ],
+        "backing_scale": 1
+      }
+    },
+    "home-clock-hours": {
+      "accessible_text": [
+        "1 小时"
+      ],
+      "elements": {
+        "home-league-countdown": {
+          "rect": [
+            910,
+            197,
+            45.15625,
+            20
+          ]
+        }
+      },
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-home-clock-v1/home-clock-hours.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "window_points": [
+          1200,
+          732
+        ],
+        "backing_scale": 1
+      }
+    },
+    "home-clock-minutes": {
+      "accessible_text": [
+        "29 分钟"
+      ],
+      "elements": {
+        "home-league-countdown": {
+          "rect": [
+            910,
+            197,
+            53.9765625,
+            20
+          ]
+        }
+      },
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-home-clock-v1/home-clock-minutes.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "window_points": [
+          1200,
+          732
+        ],
+        "backing_scale": 1
+      }
+    },
+    "home-clock-seconds": {
+      "accessible_text": [
+        "27 秒"
+      ],
+      "elements": {
+        "home-league-countdown": {
+          "rect": [
+            910,
+            197,
+            36.3359375,
+            20
+          ]
+        }
+      },
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-home-clock-v1/home-clock-seconds.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "window_points": [
+          1200,
+          732
+        ],
+        "backing_scale": 1
+      }
+    },
+    "journey-profile": {
+      "accessible_text": [
+        "你的年龄是……"
+      ],
+      "elements": {
+        "registration-back": {
+          "rect": [
+            30,
+            30,
+            16,
+            20.5
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "path-age-input": {
+          "rect": [
+            414.5,
+            254.5,
+            371,
+            44
+          ],
+          "role": "textbox",
+          "enabled": true
+        },
+        "path-age-next": {
+          "rect": [
+            412.5,
+            376.5,
+            375,
+            50
+          ],
+          "role": "button",
+          "enabled": false
+        },
+        "registration-switch-login": {
+          "rect": [
+            1102.3984375,
+            30,
+            67.6015625,
+            50
+          ],
+          "role": "button",
+          "enabled": true
+        }
+      },
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-home-journey-v1/source/profile-after.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "window_points": [
+          1200,
+          732
+        ],
+        "backing_scale": 1
+      }
+    },
+    "journey-profile-return": {
+      "accessible_text": [
+        "提供或接受饮料",
+        "第 1 阶段，第 1 部分"
+      ],
+      "elements": {},
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-home-journey-v1/source/profile-return.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "window_points": [
+          1200,
+          732
+        ],
+        "backing_scale": 1
+      }
+    },
+    "journey-login": {
+      "accessible_text": [
+        "邮箱或用户名",
+        "密码",
+        "忘记密码？",
+        "或者",
+        "使用 Apple 登录"
+      ],
+      "elements": {
+        "login-close": {
+          "rect": [
+            30,
+            30,
+            16,
+            20.5
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "login-signup": {
+          "rect": [
+            1102.3984375,
+            30,
+            67.6015625,
+            50
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "login-address": {
+          "rect": [
+            414.5,
+            122.5,
+            371,
+            44
+          ],
+          "role": "textbox",
+          "enabled": true
+        },
+        "login-password": {
+          "rect": [
+            414.5,
+            182.5,
+            297.0390625,
+            56
+          ],
+          "role": "textbox",
+          "enabled": true
+        },
+        "login-forgot": {
+          "rect": [
+            709.5390625,
+            182.5,
+            61.9609375,
+            56
+          ],
+          "role": "link",
+          "enabled": true
+        },
+        "login-submit": {
+          "rect": [
+            412.5,
+            264.5,
+            375,
+            50
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "login-google": {
+          "rect": [
+            412.5,
+            374.5,
+            375,
+            50
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "login-facebook": {
+          "rect": [
+            412.5,
+            439.5,
+            375,
+            50
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "login-apple": {
+          "rect": [
+            412.5,
+            504.5,
+            375,
+            50
+          ],
+          "role": "button",
+          "enabled": true
+        }
+      },
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-home-journey-v1/source/login-after.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "window_points": [
+          1200,
+          732
+        ],
+        "backing_scale": 1
+      }
+    },
+    "journey-login-return": {
+      "accessible_text": [
+        "提供或接受饮料",
+        "第 1 阶段，第 1 部分"
+      ],
+      "elements": {},
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-home-journey-v1/source/login-return.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "window_points": [
+          1200,
+          732
+        ],
+        "backing_scale": 1
+      }
+    },
+    "journey-shop": {
+      "accessible_text": [
+        "你赚取了 525 颗宝石！ 创建个人档案，在小店中就能使用邻角啦！",
+        "红心",
+        "道具",
+        "连胜激冻"
+      ],
+      "elements": {
+        "shop-create-profile": {
+          "rect": [
+            387,
+            220,
+            266,
+            50
+          ],
+          "role": "button",
+          "enabled": true
+        }
+      },
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-home-journey-v1/source/shop-after.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "window_points": [
+          1200,
+          732
+        ],
+        "backing_scale": 1
+      }
+    },
+    "journey-shop-return": {
+      "accessible_text": [
+        "提供或接受饮料",
+        "第 1 阶段，第 1 部分"
+      ],
+      "elements": {},
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-home-journey-v1/source/shop-return.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "window_points": [
+          1200,
+          732
+        ],
+        "backing_scale": 1
+      }
+    },
+    "journey-more": {
+      "accessible_text": [
+        "多邻国英语测试",
+        "创建档案",
+        "设置",
+        "帮助",
+        "登录"
+      ],
+      "elements": {
+        "more-duolingo-english-test": {
+          "rect": [
+            248,
+            452,
+            222.6015625,
+            52
+          ],
+          "role": "link",
+          "enabled": true
+        },
+        "more-create-a-profile": {
+          "rect": [
+            248,
+            522,
+            222.6015625,
+            40
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "more-settings": {
+          "rect": [
+            248,
+            562,
+            222.6015625,
+            40
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "more-help": {
+          "rect": [
+            248,
+            602,
+            222.6015625,
+            40
+          ],
+          "role": "button",
+          "enabled": true
+        },
+        "more-sign-in": {
+          "rect": [
+            248,
+            642,
+            222.6015625,
+            40
+          ],
+          "role": "button",
+          "enabled": true
+        }
+      },
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-home-journey-v1/source/more-after.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "window_points": [
+          1200,
+          732
+        ],
+        "backing_scale": 1
+      }
+    },
+    "journey-more-return": {
+      "accessible_text": [
+        "提供或接受饮料",
+        "第 1 阶段，第 1 部分"
+      ],
+      "elements": {},
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-home-journey-v1/source/more-return.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "window_points": [
+          1200,
+          732
+        ],
+        "backing_scale": 1
+      }
+    },
+    "branch-completed": {
+      "accessible_text": [
+        "提供或接受饮料",
+        "完成传奇挑战，展示你的传奇实力",
+        "练习 +5 经验",
+        "晋升传奇 +40 经验"
+      ],
+      "elements": {
+        "completed-practice": {
+          "role": "link",
+          "rect": [
+            388.5,
+            324.203125,
+            263,
+            50
+          ],
+          "enabled": true
+        },
+        "completed-legendary": {
+          "role": "button",
+          "rect": [
+            388.5,
+            390.203125,
+            263,
+            50
+          ],
+          "enabled": true
+        }
+      },
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-home-branches-v1/source/completed.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "window_points": [
+          1200,
+          732
+        ],
+        "backing_scale": 1
+      },
+      "interactions": {
+        "profile_present": false,
+        "legendary_present": false,
+        "completed_popover_present": true,
+        "status_selected": false
+      }
+    },
+    "branch-completed-practice": {
+      "accessible_text": [
+        "来创建你的个人档案吧！",
+        "创建档案就能保存学习进度，随时都可以继续免费学习后续内容。",
+        "稍后创建帐户"
+      ],
+      "elements": {
+        "path-profile-create": {
+          "role": "button",
+          "rect": [
+            450,
+            535.75,
+            300,
+            50
+          ],
+          "enabled": true
+        },
+        "path-profile-later": {
+          "role": "button",
+          "rect": [
+            552.59375,
+            602.25,
+            94.8046875,
+            18
+          ],
+          "enabled": true
+        }
+      },
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-home-branches-v1/source/completed-practice.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "window_points": [
+          1200,
+          732
+        ],
+        "backing_scale": 1
+      },
+      "interactions": {
+        "profile_present": true,
+        "legendary_present": false,
+        "completed_popover_present": false,
+        "status_selected": false
+      }
+    },
+    "branch-practice-later": {
+      "accessible_text": [
+        "提供或接受饮料",
+        "完成传奇挑战，展示你的传奇实力",
+        "练习 +5 经验",
+        "晋升传奇 +40 经验"
+      ],
+      "elements": {
+        "completed-practice": {
+          "role": "link",
+          "rect": [
+            388.5,
+            324.203125,
+            263,
+            50
+          ],
+          "enabled": true
+        },
+        "completed-legendary": {
+          "role": "button",
+          "rect": [
+            388.5,
+            390.203125,
+            263,
+            50
+          ],
+          "enabled": true
+        }
+      },
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-home-branches-v1/source/practice-later.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "window_points": [
+          1200,
+          732
+        ],
+        "backing_scale": 1
+      },
+      "interactions": {
+        "profile_present": false,
+        "legendary_present": false,
+        "completed_popover_present": true,
+        "status_selected": false
+      }
+    },
+    "branch-legendary": {
+      "accessible_text": [
+        "来向我们展示你的传奇实力吧",
+        "完成这个超硬核挑战，晋升到传奇等级！",
+        "开始 +40 经验",
+        "下次再说"
+      ],
+      "elements": {
+        "legendary-start": {
+          "role": "link",
+          "rect": [
+            406,
+            577,
+            388,
+            50
+          ],
+          "enabled": true
+        },
+        "legendary-quit": {
+          "role": "button",
+          "rect": [
+            552.3984375,
+            635,
+            95.203125,
+            48
+          ],
+          "enabled": true
+        }
+      },
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-home-branches-v1/source/legendary.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "window_points": [
+          1200,
+          732
+        ],
+        "backing_scale": 1
+      },
+      "interactions": {
+        "profile_present": false,
+        "legendary_present": true,
+        "completed_popover_present": false,
+        "status_selected": false
+      }
+    },
+    "branch-legendary-profile": {
+      "accessible_text": [
+        "来创建你的个人档案吧！",
+        "创建档案就能保存学习进度，随时都可以继续免费学习后续内容。",
+        "稍后创建帐户"
+      ],
+      "elements": {
+        "path-profile-create": {
+          "role": "button",
+          "rect": [
+            450,
+            535.75,
+            300,
+            50
+          ],
+          "enabled": true
+        },
+        "path-profile-later": {
+          "role": "button",
+          "rect": [
+            552.59375,
+            602.25,
+            94.8046875,
+            18
+          ],
+          "enabled": true
+        }
+      },
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-home-branches-v1/source/legendary-profile.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "window_points": [
+          1200,
+          732
+        ],
+        "backing_scale": 1
+      },
+      "interactions": {
+        "profile_present": true,
+        "legendary_present": false,
+        "completed_popover_present": false,
+        "status_selected": false
+      }
+    },
+    "branch-legendary-later": {
+      "accessible_text": [
+        "提供或接受饮料",
+        "完成传奇挑战，展示你的传奇实力",
+        "练习 +5 经验",
+        "晋升传奇 +40 经验"
+      ],
+      "elements": {
+        "completed-practice": {
+          "role": "link",
+          "rect": [
+            388.5,
+            324.203125,
+            263,
+            50
+          ],
+          "enabled": true
+        },
+        "completed-legendary": {
+          "role": "button",
+          "rect": [
+            388.5,
+            390.203125,
+            263,
+            50
+          ],
+          "enabled": true
+        }
+      },
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-home-branches-v1/source/legendary-later.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "window_points": [
+          1200,
+          732
+        ],
+        "backing_scale": 1
+      },
+      "interactions": {
+        "profile_present": false,
+        "legendary_present": false,
+        "completed_popover_present": true,
+        "status_selected": false
+      }
+    },
+    "branch-legendary-quit": {
+      "accessible_text": [
+        "提供或接受饮料",
+        "完成传奇挑战，展示你的传奇实力",
+        "练习 +5 经验",
+        "晋升传奇 +40 经验"
+      ],
+      "elements": {
+        "completed-practice": {
+          "role": "link",
+          "rect": [
+            388.5,
+            324.203125,
+            263,
+            50
+          ],
+          "enabled": true
+        },
+        "completed-legendary": {
+          "role": "button",
+          "rect": [
+            388.5,
+            390.203125,
+            263,
+            50
+          ],
+          "enabled": true
+        }
+      },
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-home-branches-v1/source/legendary-quit.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "window_points": [
+          1200,
+          732
+        ],
+        "backing_scale": 1
+      },
+      "interactions": {
+        "profile_present": false,
+        "legendary_present": false,
+        "completed_popover_present": true,
+        "status_selected": false
+      }
+    },
+    "branch-leaderboard": {
+      "accessible_text": [
+        "青铜等级",
+        "只要一息尚存，就要坚持到底。来学个单元，挑战本周排行榜！",
+        "设置状态",
+        "去学个单元",
+        "0 经验"
+      ],
+      "elements": {
+        "leaderboard-practice": {
+          "role": "link",
+          "rect": [
+            392,
+            239,
+            256,
+            48
+          ],
+          "enabled": true
+        },
+        "leaderboard-status-0": {
+          "role": "button",
+          "rect": [
+            830,
+            279,
+            48,
+            48
+          ],
+          "enabled": true
+        }
+      },
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-home-branches-v1/source/leaderboard.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "window_points": [
+          1200,
+          732
+        ],
+        "backing_scale": 1
+      },
+      "interactions": {
+        "profile_present": false,
+        "legendary_present": false,
+        "completed_popover_present": false,
+        "status_selected": false
+      }
+    },
+    "branch-leaderboard-status": {
+      "accessible_text": [
+        "青铜等级",
+        "只要一息尚存，就要坚持到底。来学个单元，挑战本周排行榜！",
+        "设置状态",
+        "去学个单元",
+        "0 经验"
+      ],
+      "elements": {
+        "leaderboard-practice": {
+          "role": "link",
+          "rect": [
+            392,
+            239,
+            256,
+            48
+          ],
+          "enabled": true
+        },
+        "leaderboard-status-0": {
+          "role": "button",
+          "rect": [
+            830,
+            279,
+            48,
+            48
+          ],
+          "enabled": true
+        }
+      },
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-home-branches-v1/source/leaderboard-status.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "window_points": [
+          1200,
+          732
+        ],
+        "backing_scale": 1
+      },
+      "interactions": {
+        "profile_present": false,
+        "legendary_present": false,
+        "completed_popover_present": false,
+        "status_selected": true
+      }
+    },
+    "branch-leaderboard-return": {
+      "accessible_text": [
+        "提供或接受饮料",
+        "第 1 阶段，第 1 部分"
+      ],
+      "elements": {},
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-home-branches-v1/source/leaderboard-return.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "window_points": [
+          1200,
+          732
+        ],
+        "backing_scale": 1
+      },
+      "interactions": {
+        "profile_present": false,
+        "legendary_present": false,
+        "completed_popover_present": false,
+        "status_selected": false
+      }
+    },
+    "status-selected-hover": {
+      "accessible_text": [
+        "青铜等级",
+        "设置状态",
+        "清除",
+        "去学个单元"
+      ],
+      "elements": {
+        "leaderboard-clear": {
+          "rect": [
+            1126.3984375,
+            119,
+            31.6015625,
+            18
+          ],
+          "enabled": true
+        }
+      },
+      "interactions": {
+        "status_selected": true,
+        "status_clear_visible": true
+      },
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-leaderboard-state-v1/source/selected-hover.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "window_points": [
+          1200,
+          732
+        ],
+        "backing_scale": 1
+      }
+    },
+    "status-cleared": {
+      "accessible_text": [
+        "青铜等级",
+        "设置状态",
+        "清除",
+        "去学个单元"
+      ],
+      "elements": {
+        "leaderboard-clear": {
+          "rect": [
+            1126.3984375,
+            119,
+            31.6015625,
+            18
+          ],
+          "enabled": true
+        }
+      },
+      "interactions": {
+        "status_selected": false,
+        "status_clear_visible": true
+      },
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-leaderboard-state-v1/source/cleared.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "window_points": [
+          1200,
+          732
+        ],
+        "backing_scale": 1
+      }
+    },
+    "status-cleared-reload": {
+      "accessible_text": [
+        "青铜等级",
+        "设置状态",
+        "清除",
+        "去学个单元"
+      ],
+      "elements": {
+        "leaderboard-clear": {
+          "rect": [
+            1126.3984375,
+            119,
+            31.6015625,
+            18
+          ],
+          "enabled": true
+        }
+      },
+      "interactions": {
+        "status_selected": false,
+        "status_clear_visible": true
+      },
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-leaderboard-state-v1/source/cleared-reload.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "window_points": [
+          1200,
+          732
+        ],
+        "backing_scale": 1
+      }
+    },
+    "status-selected-again": {
+      "accessible_text": [
+        "青铜等级",
+        "设置状态",
+        "清除",
+        "去学个单元"
+      ],
+      "elements": {
+        "leaderboard-clear": {
+          "rect": [
+            1126.3984375,
+            119,
+            31.6015625,
+            18
+          ],
+          "enabled": true
+        }
+      },
+      "interactions": {
+        "status_selected": true,
+        "status_clear_visible": true
+      },
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-leaderboard-state-v1/source/selected-again.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "window_points": [
+          1200,
+          732
+        ],
+        "backing_scale": 1
+      }
+    },
+    "status-selected-reload": {
+      "accessible_text": [
+        "青铜等级",
+        "设置状态",
+        "清除",
+        "去学个单元"
+      ],
+      "elements": {
+        "leaderboard-clear": {
+          "rect": [
+            1126.3984375,
+            119,
+            31.6015625,
+            18
+          ],
+          "enabled": true
+        }
+      },
+      "interactions": {
+        "status_selected": true,
+        "status_clear_visible": true
+      },
+      "capture": {
+        "path": "projects/duolingo-web/evidence/english-leaderboard-state-v1/source/selected-reload.png",
+        "content_rect_points": [
+          0,
+          0,
+          1200,
+          732
+        ],
+        "window_points": [
+          1200,
+          732
+        ],
+        "backing_scale": 1
+      }
+    }
+  }
+}

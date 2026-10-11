@@ -1,5 +1,7 @@
 # Roadmap
 
+排行榜继续实际补漏：发现无角色悬停清除、选择／清除跨刷新保存，以及练习入口当前题目与历史默认实例不同。Swift 状态持久化已实测；v52 共2848项，当前同一二进制两次会话7状态73pass/22fail，整图和当前题目仍失败，1:1未完成。[证据、失败与复跑](../projects/duolingo-web/evidence/english-leaderboard-state-v1/README.md)。
+
 已推进完成节点、传奇挑战页及排行榜：原版真实分支→v50共享10状态→Swift实际路由／动作；119pass/23fail，整图仍失败。下一轮探索排行榜练习、状态清除与保存、建档嵌套和原版声学输出，继续处理主页及练习整页差异。[证据与队列](../projects/duolingo-web/evidence/english-home-branches-v1/README.md)。
 
 当前优先主页入口→目标前端→真实返回和声音，避免继续只修倒计时。v49四旅程8状态65pass/23fail/2499not_run，动作库存保留未建模；独立练习错误配对原音已真实输出，源浏览器loopback仍不可用。已完成节点/传奇、排行榜、登录嵌套动作、声学链路和严格整图继续进入探索闭环；不是1:1完成或RSI收益。[本批证据与下一选择](../projects/duolingo-web/evidence/english-home-journey-v1/README.md)。
