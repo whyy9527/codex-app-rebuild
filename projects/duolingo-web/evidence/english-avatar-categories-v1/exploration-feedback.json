@@ -1,0 +1,317 @@
+{
+  "kind": "actual exploration feedback deployment",
+  "date": "2026-10-11",
+  "prior_frontier": "../english-avatar-save-v1/exploration-feedback.json",
+  "policy_before_lower_group_actions": "lower-groups/policy-before-deployment.json",
+  "policy_changes": [
+    "Repeated skin/save checks -> traverse all nine observed categories",
+    "Actual source Radio inventory changed failure -> distinguish viewport actions from full grouped options",
+    "Entire lower groups clipped -> scroll to actual option, choose, leave category and revisit"
+  ],
+  "categories": [
+    {
+      "category": 0,
+      "groups": [
+        {
+          "label": "肤色",
+          "total_options": 15,
+          "center_hittable_options": 15,
+          "checked_indices": [
+            1
+          ]
+        }
+      ],
+      "source": "source/category-0.json",
+      "selected_groups_retained_on_revisit": true
+    },
+    {
+      "category": 1,
+      "groups": [
+        {
+          "label": "身体",
+          "total_options": 6,
+          "center_hittable_options": 6,
+          "checked_indices": [
+            2
+          ]
+        }
+      ],
+      "source": "source/category-1.json",
+      "selected_groups_retained_on_revisit": true
+    },
+    {
+      "category": 2,
+      "groups": [
+        {
+          "label": "眼睛颜色",
+          "total_options": 13,
+          "center_hittable_options": 13,
+          "checked_indices": [
+            0
+          ]
+        },
+        {
+          "label": "表情",
+          "total_options": 57,
+          "center_hittable_options": 6,
+          "checked_indices": [
+            6
+          ]
+        }
+      ],
+      "source": "source/category-2.json",
+      "selected_groups_retained_on_revisit": true
+    },
+    {
+      "category": 3,
+      "groups": [
+        {
+          "label": "发色",
+          "total_options": 16,
+          "center_hittable_options": 16,
+          "checked_indices": [
+            0
+          ]
+        },
+        {
+          "label": "发型",
+          "total_options": 72,
+          "center_hittable_options": 6,
+          "checked_indices": [
+            0
+          ]
+        }
+      ],
+      "source": "source/category-3.json",
+      "selected_groups_retained_on_revisit": true
+    },
+    {
+      "category": 4,
+      "groups": [
+        {
+          "label": "眼镜颜色",
+          "total_options": 8,
+          "center_hittable_options": 8,
+          "checked_indices": [
+            1
+          ]
+        },
+        {
+          "label": "眼镜",
+          "total_options": 7,
+          "center_hittable_options": 6,
+          "checked_indices": [
+            0
+          ]
+        },
+        {
+          "label": "面部细节",
+          "total_options": 3,
+          "center_hittable_options": 0,
+          "checked_indices": [
+            0
+          ]
+        },
+        {
+          "label": "耳环",
+          "total_options": 7,
+          "center_hittable_options": 0,
+          "checked_indices": [
+            0
+          ]
+        },
+        {
+          "label": "鼻环",
+          "total_options": 4,
+          "center_hittable_options": 0,
+          "checked_indices": [
+            0
+          ]
+        }
+      ],
+      "source": "source/category-4.json",
+      "selected_groups_retained_on_revisit": true
+    },
+    {
+      "category": 5,
+      "groups": [
+        {
+          "label": "胡须颜色",
+          "total_options": 13,
+          "center_hittable_options": 13,
+          "checked_indices": [
+            0
+          ]
+        },
+        {
+          "label": "胡须",
+          "total_options": 7,
+          "center_hittable_options": 6,
+          "checked_indices": [
+            0
+          ]
+        }
+      ],
+      "source": "source/category-5.json",
+      "selected_groups_retained_on_revisit": true
+    },
+    {
+      "category": 6,
+      "groups": [
+        {
+          "label": "头饰颜色",
+          "total_options": 9,
+          "center_hittable_options": 9,
+          "checked_indices": [
+            0
+          ]
+        },
+        {
+          "label": "头饰",
+          "total_options": 12,
+          "center_hittable_options": 6,
+          "checked_indices": [
+            0
+          ]
+        }
+      ],
+      "source": "source/category-6.json",
+      "selected_groups_retained_on_revisit": true
+    },
+    {
+      "category": 7,
+      "groups": [
+        {
+          "label": "衣服颜色",
+          "total_options": 9,
+          "center_hittable_options": 9,
+          "checked_indices": [
+            0
+          ]
+        }
+      ],
+      "source": "source/category-7.json",
+      "selected_groups_retained_on_revisit": true
+    },
+    {
+      "category": 8,
+      "groups": [
+        {
+          "label": "背景颜色",
+          "total_options": 24,
+          "center_hittable_options": 24,
+          "checked_indices": [
+            0
+          ]
+        }
+      ],
+      "source": "source/category-8.json",
+      "selected_groups_retained_on_revisit": true
+    }
+  ],
+  "inventory": {
+    "categories": 9,
+    "groups": 17,
+    "options": 282
+  },
+  "lower_groups": [
+    {
+      "entry": {
+        "category": 2,
+        "group": "表情"
+      },
+      "target": 0,
+      "actual_center_hit": true,
+      "selected_after_click": true,
+      "retained_on_revisit": true
+    },
+    {
+      "entry": {
+        "category": 3,
+        "group": "发型"
+      },
+      "target": 1,
+      "actual_center_hit": true,
+      "selected_after_click": true,
+      "retained_on_revisit": true
+    },
+    {
+      "entry": {
+        "category": 4,
+        "group": "面部细节"
+      },
+      "target": 1,
+      "actual_center_hit": true,
+      "selected_after_click": true,
+      "retained_on_revisit": true
+    },
+    {
+      "entry": {
+        "category": 4,
+        "group": "耳环"
+      },
+      "target": 1,
+      "actual_center_hit": true,
+      "selected_after_click": true,
+      "retained_on_revisit": true
+    },
+    {
+      "entry": {
+        "category": 4,
+        "group": "鼻环"
+      },
+      "target": 1,
+      "actual_center_hit": true,
+      "selected_after_click": true,
+      "retained_on_revisit": true
+    },
+    {
+      "entry": {
+        "category": 5,
+        "group": "胡须"
+      },
+      "target": 1,
+      "actual_center_hit": true,
+      "selected_after_click": true,
+      "retained_on_revisit": true
+    },
+    {
+      "entry": {
+        "category": 6,
+        "group": "头饰"
+      },
+      "target": 1,
+      "actual_center_hit": true,
+      "selected_after_click": true,
+      "retained_on_revisit": true
+    }
+  ],
+  "not_proved": [
+    "282 interactions executed",
+    "Cross-category full compositional rendering",
+    "Saved recovery of all inputs",
+    "Original/native audio or animation equality",
+    "Matched-budget causal RSI gain"
+  ],
+  "next": [
+    "Implement all nine actual category consumers using original SMAvatar/SMButtons and source option values",
+    "Freeze and execute lower-group scrolling, selection, composition, Done/save/restart and discard against same shared contract",
+    "Render the same saved state on actual profile and leaderboard",
+    "Continue main homepage/navigation/lesson/audio failures; no clock-only repair loop",
+    "Pre-register new real matched-budget exploration ablation after sampler repair; preserve previous unavailable/negative results"
+  ],
+  "additional_frontier": [
+    {
+      "behavior": "Editor height persists after visiting tall categories then returning to skin",
+      "evidence": "extra/return-skin.json",
+      "observed_canvas_rect": [
+        282,
+        82,
+        372,
+        684
+      ],
+      "status": "observed, not frozen or implemented",
+      "next": "Distinguish visit-order height, page scrolling and Done reachability"
+    }
+  ]
+}

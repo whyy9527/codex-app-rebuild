@@ -1,5 +1,7 @@
 # Codex App Rebuild
 
+本轮横向探索九个头像分类，发现17组282选项及视口采集盲点，七个下层分组实际选择/再访；补前端模具并接原版Rive预览。其它分类交互、整图和声音仍未完成，Goal继续。详见[实际探索、候选失败和复跑](projects/duolingo-web/evidence/english-avatar-categories-v1/README.md)。
+
 实际探索发现头像完成后退出确认、重载保存肤色及/profile/undefined→404返回；15肤色均采到动态Canvas帧。Swift接开始/头像入口、15单选和保存/确认/重启/放弃，最终21状态无驱动失败，76项源流程检查通过。v58保留3855旧项增448，前端331pass/92fail/93unavailable，6图全fail；预览暂为原版绘制帧，完整动画/其它分类/保存头像展示仍缺，下一批优先原版分类及渲染来源。无1:1或RSI收益宣称。[证据与复跑](projects/duolingo-web/evidence/english-avatar-save-v1/README.md)。
 
 独立访客档案已接Swift页脚导航、原版素材、引导关闭和成就404；首轮顶层路由落错旧renderer的失败已保留并修复。v57保留3846旧项增9，最终4状态93pass/10fail/94unavailable，3整图仍fail；同二进制排行榜回归87pass/15fail。头像/邀请交互与动态经验累计仍缺，下一批先补这些入口；不宣称1:1或RSI收益。[证据及复跑](projects/duolingo-web/evidence/english-profile-native-v1/README.md)。

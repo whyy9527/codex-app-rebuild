@@ -367,3 +367,8 @@ v15保留1489项并增8项真实原版断言。独立原生radio2实际点击及
 ### 头像实际保存/返回与动态渲染缺口
 
 实际探索发现头像完成后退出确认、重载保存肤色及/profile/undefined→404返回；15肤色均采到动态Canvas帧。Swift接开始/头像入口、15单选和保存/确认/重启/放弃，最终21状态无驱动失败，76项源流程检查通过。v58保留3855旧项增448，前端331pass/92fail/93unavailable，6图全fail；预览暂为原版绘制帧，完整动画/其它分类/保存头像展示仍缺，下一批优先原版分类及渲染来源。无1:1或RSI收益宣称。[证据与frontier](../projects/duolingo-web/evidence/english-avatar-save-v1/README.md)。
+
+
+### 九分类横向探索与原版头像渲染
+
+真实九分类17组282选项，库存/视口不一致暴露采集盲点，策略转向七个下层组实际滚动选择/再访，均保留草稿。v59保留4303项增1587，共5890。源公开配置/Rive及17真实初始输入取得，Swift预览换SMAvatar；21状态76流程、16运行输入/资产检查通过，前端331pass/92fail/93unavailable、六图仍fail。真实分类入口仍缺身体控件，最终仅1状态61pass/16fail/18unavailable；别名修正不是产品增益。构建/30核心/61Python/14Node及冻结复现通过。下一步接九分类/缩略图/组合保存和头像展示，并继续主页导航、课程整图/音频及真实预算消融；完整Goal active。[证据与复跑](../projects/duolingo-web/evidence/english-avatar-categories-v1/README.md)。

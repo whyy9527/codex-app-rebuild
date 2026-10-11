@@ -58,3 +58,6 @@ git show 2ad5175:projects/self-improvement/REPORT.md
 主页旅程批次将旧内容事实计数偏好和实际未接入前端的失败反馈用于当前Codex策略选择，事前保存候选后部署四条源入口，再用候选失败修外层路由，并继续发现已完成节点的传奇/练习和错误配对原音。动作→旅程→前端结果已有实际消费者；这是当前主会话的反馈引导探索，不是独立worker、盲留出或完整论文复现。新增控件状态数不是独立功能数，暂无因果RSI收益。[策略、在线事实与限制](../projects/duolingo-web/evidence/english-home-journey-v1/exploration-feedback.json)。
 
 完成节点／传奇／排行榜这批由上一轮缺失消费者和未建模动作反馈选择，实际新发现含独立传奇页、建档后返回差异与排行榜状态选择。冻结模具后原生负基线失败，再实施并真实验证；这是探索对实现的反馈证据，不是RSI机制消融或因果收益。152项断言不等于152项业务发现，成本token／费用未知。[原始证据](../projects/duolingo-web/evidence/english-home-branches-v1/README.md)。
+
+
+头像分类批次用真实Radio库存不一致反例修订探索策略，事前记录后部署七个被遮挡分组，实际发现原版配置/Rive与未实施分类消费者。它补上一次反馈→改变探针→发现遗漏→冻结候选失败的产品闭环；不是新增独立worker或匹配预算RSI收益。282选项不能当282独立业务发现，原始论文和旧负结果不变。[证据](../projects/duolingo-web/evidence/english-avatar-categories-v1/README.md)。

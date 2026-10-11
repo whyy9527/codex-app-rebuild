@@ -40,7 +40,7 @@ struct ReferenceHome: View {
             HStack(spacing: 0) {
                 sidebar.frame(width: geometry.size.width >= 1180 ? 254 : 88)
                 Rectangle().fill(ReferenceStyle.border).frame(width: 2)
-                if model.destination == "Guest avatar" { ReferenceGuestAvatar(savedSkin:Binding(get:{model.preferences.avatarSkin},set:{model.preferences.avatarSkin=$0;model.savePreferences()}),sidebarWidth:geometry.size.width >= 1180 ? 256 : 90,leave:{model.destination="Guest achievements error"}) }
+                if model.destination == "Guest avatar" { ReferenceGuestAvatar(savedSkin:Binding(get:{model.preferences.avatarSkin},set:{model.preferences.avatarSkin=$0;model.savePreferences()}),sidebarWidth:geometry.size.width >= 1180 ? 256 : 90,animations:model.preferences.animations,leave:{model.destination="Guest achievements error"}) }
                 else if model.destination == "Settings" { ReferenceSettings(model: model) }
                 else if model.destination == "Guest achievements error" { ReferenceGuestAchievementsError() }
                 else if model.destination == "Forgot password" { ReferenceForgotPassword() }

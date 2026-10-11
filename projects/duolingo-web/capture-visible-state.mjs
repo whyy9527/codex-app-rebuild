@@ -8,6 +8,22 @@ for(const suffix of ['.raw.txt','.json','.png'])if(existsSync(out+suffix))throw 
 const callback=async page=>{
  const facts={observed_at:new Date().toISOString(),path:new URL(page.url()).pathname,
   viewport:page.viewportSize(),snapshot:await page.locator('body').ariaSnapshot()};
+ // A viewport action list cannot establish the full option inventory. Keep DOM
+ // groups and clipping facts separately; offscreen options are not explored.
+ facts.radio_groups=await page.getByRole('radiogroup').evaluateAll(groups=>groups.map((g,index)=>({
+  index,label:g.getAttribute('aria-label')||g.previousElementSibling?.textContent?.trim()||null,
+  options:[...g.querySelectorAll('[role="radio"],input[type="radio"]')].map((n,i)=>{
+   const r=n.getBoundingClientRect(),hit=document.elementFromPoint(r.x+r.width/2,r.y+r.height/2);
+   return {index:i,checked:typeof n.checked==='boolean'?n.checked:n.getAttribute('aria-checked')==='true',
+    rect:[r.x,r.y,r.width,r.height],intersects_viewport:r.bottom>0&&r.right>0&&r.top<innerHeight&&r.left<innerWidth,
+    center_hit:!!hit&&(hit===n||n.contains(hit))};
+  })
+ })));
+ facts.scroll_regions=await page.locator('body *').evaluateAll(ns=>ns.flatMap(n=>{
+  const c=getComputedStyle(n),r=n.getBoundingClientRect();
+  if(!n.checkVisibility({checkOpacity:true,checkVisibilityCSS:true})||!/(auto|scroll)/.test(c.overflowY)||n.scrollHeight<=n.clientHeight)return [];
+  return [{tag:n.tagName,role:n.getAttribute('role'),rect:[r.x,r.y,r.width,r.height],scrollTop:n.scrollTop,clientHeight:n.clientHeight,scrollHeight:n.scrollHeight}];
+ }));
  // Inventory every currently visible interactive entry, including plain links.
  // State-scoped identities retain duplicate controls instead of collapsing names.
  facts.actions=await page.locator('body').evaluate(body=>{

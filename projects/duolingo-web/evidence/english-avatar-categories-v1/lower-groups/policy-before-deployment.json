@@ -1,0 +1,64 @@
+{
+  "kind": "feedback-guided exploration policy revision",
+  "prior_evidence": [
+    "projects/duolingo-web/evidence/english-avatar-save-v1/exploration-feedback.json",
+    "artifacts/avatar-categories-source-02/action-05.raw.txt",
+    "artifacts/avatar-categories-source-03/category-4.json"
+  ],
+  "feedback": [
+    "Viewport action inventory disagrees with full radio inventory",
+    "Face-details contains three entire offscreen groups",
+    "Native has no category consumers"
+  ],
+  "candidates": [
+    {
+      "policy": "repeat skin/save",
+      "rejection": "Already covered; does not inspect missing groups"
+    },
+    {
+      "policy": "top option of every category",
+      "rejection": "Current traversal finds category names but misses clipped childgroups"
+    },
+    {
+      "policy": "scroll to actual unhit childgroup options, choose, revisit",
+      "selected": true
+    }
+  ],
+  "deployment": [
+    {
+      "category": 2,
+      "group": "表情"
+    },
+    {
+      "category": 3,
+      "group": "发型"
+    },
+    {
+      "category": 4,
+      "group": "面部细节"
+    },
+    {
+      "category": 4,
+      "group": "耳环"
+    },
+    {
+      "category": 4,
+      "group": "鼻环"
+    },
+    {
+      "category": 5,
+      "group": "胡须"
+    },
+    {
+      "category": 6,
+      "group": "头饰"
+    }
+  ],
+  "limits": [
+    "Current main-session policy revision; no independent policy worker",
+    "Not causal RSI gain or matched-budget ablation",
+    "DOM inventories are not executed coverage",
+    "Group presence and actual result must be checked during deployment"
+  ],
+  "correction_before_deployment": "Category7 actual inventory has only 衣服颜色; remove unobserved 服装 hypothesis before any deployment"
+}

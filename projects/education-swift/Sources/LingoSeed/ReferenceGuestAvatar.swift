@@ -1,16 +1,17 @@
 import AppKit
 import SwiftUI
 
-/// Observed skin editor. Preview buffers are source-state images, not the full original renderer.
+/// Observed skin/save editor. Other category interactions remain explicit gaps.
 struct ReferenceGuestAvatar: View {
     @Binding var savedSkin: Int?
     let leave: () -> Void
     let sidebarWidth: CGFloat
+    let animations: Bool
     @State private var draft: Int
     @State private var touched = false
     @State private var confirming = false
-    init(savedSkin: Binding<Int?>, sidebarWidth:CGFloat, leave: @escaping () -> Void) {
-        _savedSkin = savedSkin; self.sidebarWidth=sidebarWidth; self.leave = leave
+    init(savedSkin: Binding<Int?>, sidebarWidth:CGFloat, animations:Bool, leave: @escaping () -> Void) {
+        _savedSkin = savedSkin; self.sidebarWidth=sidebarWidth; self.animations=animations; self.leave = leave
         _draft = State(initialValue:savedSkin.wrappedValue ?? 0)
     }
     private static let palette: [[Double]] = Bundle.module.url(forResource:"avatar-palette",withExtension:"json",subdirectory:"Reference").flatMap { try? Data(contentsOf:$0) }.flatMap { try? JSONDecoder().decode([[Double]].self,from:$0) } ?? []
@@ -21,7 +22,7 @@ struct ReferenceGuestAvatar: View {
                 Text(savedSkin == nil ? "创建虚拟头像" : "修改虚拟头像").font(ReferenceStyle.font(24,bold:true)).foregroundStyle(ReferenceStyle.disclosureInk).frame(height:32).offset(x:64,y:24)
                 ZStack(alignment:.topLeading) {
                     RoundedRectangle(cornerRadius:16).fill(.white).overlay(RoundedRectangle(cornerRadius:16).strokeBorder(ReferenceStyle.border,lineWidth:2))
-                    ReferenceStyle.image("en-avatar-skin-\(draft)").resizable().frame(width:372,height:352).offset(x:2,y:2).accessibilityIdentifier("avatar-preview")
+                    ReferenceAvatarRenderer(skin:draft,animations:animations).frame(width:372,height:352).offset(x:2,y:2)
                     Rectangle().fill(ReferenceStyle.border).frame(width:2,height:354).offset(x:374)
                     ForEach(0..<9) { i in
                         ReferenceStyle.image("en-avatar-icon-\(i+1)").resizable().scaledToFit().frame(width:42,height:32).frame(width:58,height:64).offset(x:392+CGFloat(i)*58,y:2)

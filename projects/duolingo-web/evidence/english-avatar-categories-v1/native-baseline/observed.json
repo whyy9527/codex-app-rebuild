@@ -1,0 +1,418 @@
+{
+  "attempts": [
+    {
+      "failure": "ProbeError(message: \"No observed control: avatar-category-1\")",
+      "id": "avatar-categories"
+    }
+  ],
+  "candidate_binary_sha256": "c0c1a581d5f37a68c07a2ec03ab70ca050e14655794e83a1d1b482380753c57c",
+  "failure": "[[\"id\": \"avatar-categories\", \"failure\": \"ProbeError(message: \\\"No observed control: avatar-category-1\\\")\"]]",
+  "fixture_sha256": "b7242d0e130112d54b1e17714bf21c35045e58f8874948917b0b09f971282bda",
+  "kind": "owned_native_ax_observation",
+  "limitations": [
+    "No acoustic equality claim; actual images retain clock and animation phase differences"
+  ],
+  "scenario_sha256": "b5ae4563649e8eec68e3891641b998bb331e54130be5a50ac44697ce2bc0cea6",
+  "states": {
+    "avatar-category-0": {
+      "accessible_text": [
+        "Button",
+        "LingoSeed",
+        "个人档案",
+        "修改虚拟头像",
+        "发音",
+        "学习",
+        "完成",
+        "宝石小店",
+        "排行榜",
+        "更多",
+        "特别任务",
+        "肤色"
+      ],
+      "capture": {
+        "backing_scale": 2,
+        "content_rect_points": [
+          0,
+          32,
+          1200,
+          732
+        ],
+        "path": "projects/duolingo-web/evidence/english-avatar-categories-v1/native-baseline/avatar-category-0.png",
+        "window_points": [
+          1200,
+          764
+        ]
+      },
+      "capture_attempts": [
+        {
+          "attempt": 1,
+          "expected": [
+            2400,
+            1528
+          ],
+          "path": "avatar-category-0-capture-1.png",
+          "pixels": [
+            2400,
+            1528
+          ]
+        }
+      ],
+      "elements": {
+        "avatar-back": {
+          "enabled": true,
+          "rect": [
+            280,
+            24,
+            24,
+            32
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "avatar-done": {
+          "enabled": false,
+          "rect": [
+            1040,
+            472,
+            136,
+            48
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "avatar-preview": {
+          "enabled": true,
+          "rect": [
+            282,
+            82,
+            372,
+            352
+          ],
+          "role": "AXImage",
+          "value": ""
+        },
+        "avatar-skin-0": {
+          "checked": false,
+          "enabled": true,
+          "numeric_value": 0,
+          "rect": [
+            691,
+            212,
+            56,
+            54
+          ],
+          "role": "AXRadioButton",
+          "value": ""
+        },
+        "avatar-skin-1": {
+          "checked": true,
+          "enabled": true,
+          "numeric_value": 1,
+          "rect": [
+            769.5,
+            212,
+            56,
+            54
+          ],
+          "role": "AXRadioButton",
+          "value": ""
+        },
+        "avatar-skin-2": {
+          "checked": false,
+          "enabled": true,
+          "numeric_value": 0,
+          "rect": [
+            848,
+            212,
+            56,
+            54
+          ],
+          "role": "AXRadioButton",
+          "value": ""
+        },
+        "avatar-skin-3": {
+          "checked": false,
+          "enabled": true,
+          "numeric_value": 0,
+          "rect": [
+            926,
+            212,
+            56,
+            54
+          ],
+          "role": "AXRadioButton",
+          "value": ""
+        },
+        "avatar-skin-4": {
+          "checked": false,
+          "enabled": true,
+          "numeric_value": 0,
+          "rect": [
+            1004.5,
+            212,
+            56,
+            54
+          ],
+          "role": "AXRadioButton",
+          "value": ""
+        },
+        "avatar-skin-5": {
+          "checked": false,
+          "enabled": true,
+          "numeric_value": 0,
+          "rect": [
+            1083,
+            212,
+            56,
+            54
+          ],
+          "role": "AXRadioButton",
+          "value": ""
+        },
+        "avatar-skin-6": {
+          "checked": false,
+          "enabled": true,
+          "numeric_value": 0,
+          "rect": [
+            691,
+            284,
+            56,
+            54
+          ],
+          "role": "AXRadioButton",
+          "value": ""
+        },
+        "avatar-skin-7": {
+          "checked": false,
+          "enabled": true,
+          "numeric_value": 0,
+          "rect": [
+            769.5,
+            284,
+            56,
+            54
+          ],
+          "role": "AXRadioButton",
+          "value": ""
+        },
+        "avatar-skin-8": {
+          "checked": false,
+          "enabled": true,
+          "numeric_value": 0,
+          "rect": [
+            848,
+            284,
+            56,
+            54
+          ],
+          "role": "AXRadioButton",
+          "value": ""
+        },
+        "avatar-skin-9": {
+          "checked": false,
+          "enabled": true,
+          "numeric_value": 0,
+          "rect": [
+            926,
+            284,
+            56,
+            54
+          ],
+          "role": "AXRadioButton",
+          "value": ""
+        },
+        "avatar-skin-10": {
+          "checked": false,
+          "enabled": true,
+          "numeric_value": 0,
+          "rect": [
+            1004.5,
+            284,
+            56,
+            54
+          ],
+          "role": "AXRadioButton",
+          "value": ""
+        },
+        "avatar-skin-11": {
+          "checked": false,
+          "enabled": true,
+          "numeric_value": 0,
+          "rect": [
+            1083,
+            284,
+            56,
+            54
+          ],
+          "role": "AXRadioButton",
+          "value": ""
+        },
+        "avatar-skin-12": {
+          "checked": false,
+          "enabled": true,
+          "numeric_value": 0,
+          "rect": [
+            691,
+            356,
+            56,
+            54
+          ],
+          "role": "AXRadioButton",
+          "value": ""
+        },
+        "avatar-skin-13": {
+          "checked": false,
+          "enabled": true,
+          "numeric_value": 0,
+          "rect": [
+            769.5,
+            356,
+            56,
+            54
+          ],
+          "role": "AXRadioButton",
+          "value": ""
+        },
+        "avatar-skin-14": {
+          "checked": false,
+          "enabled": true,
+          "numeric_value": 0,
+          "rect": [
+            848,
+            356,
+            56,
+            54
+          ],
+          "role": "AXRadioButton",
+          "value": ""
+        },
+        "category-action-8": {
+          "enabled": true,
+          "native_identifier": "avatar-back",
+          "rect": [
+            280,
+            24,
+            24,
+            32
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "category-action-24": {
+          "enabled": false,
+          "native_identifier": "avatar-done",
+          "rect": [
+            1040,
+            472,
+            136,
+            48
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-leaderboards": {
+          "enabled": true,
+          "rect": [
+            16,
+            212,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-learn": {
+          "enabled": true,
+          "rect": [
+            16,
+            92,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-more": {
+          "enabled": true,
+          "rect": [
+            16,
+            452,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-profile": {
+          "enabled": true,
+          "rect": [
+            16,
+            392,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-pronunciation": {
+          "enabled": true,
+          "rect": [
+            16,
+            152,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-quests": {
+          "enabled": true,
+          "rect": [
+            16,
+            272,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-shop": {
+          "enabled": true,
+          "rect": [
+            16,
+            332,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "SwiftUI._ConditionalContent<SwiftUI.SubscriptionView<(extension in Foundation):__C.NSNotificationCenter.Publisher, SwiftUI.ModifiedContent<LingoSeed.LearningView, SwiftUI._AppearanceActionModifier>>, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1": {
+          "enabled": false,
+          "rect": [
+            0,
+            -32,
+            1200,
+            764
+          ],
+          "role": "AXWindow",
+          "value": ""
+        }
+      },
+      "interactions": {
+        "completed_popover_present": false,
+        "exit_confirmation_present": false,
+        "footer_status_visible": false,
+        "guest_error_present": false,
+        "guest_introduction_present": false,
+        "guest_profile_present": false,
+        "learn_present": false,
+        "legendary_present": false,
+        "practice_present": false,
+        "profile_present": false,
+        "status_clear_visible": false,
+        "status_selected": false
+      }
+    }
+  }
+}

@@ -301,3 +301,6 @@ v45由实际清除/显示隐藏动作结果及登录页面生成，冻结脚本�
 ### 主页原生Lottie与状态身份
 
 ReferenceHomeDuo读取实际页面加载的原JSON，由固定Lottie 4.6.1原生渲染；公开资源摘要、包版本及实际输出分别验证，不用资源存在或播放标志证明像素一致。动效驱动采6帧自有窗口，独立分析器从归一化PNG比较源Duo矩形变化；共同前端仍执行完整整图及几何断言。已开箱状态按源容器调整，SwiftUI几何仍有小数差。初始八课主页单独标home-motion-initial，不能冒充历史首课home。源倒计时2h与旧夹具4h、未控制共同动画相位暴露新的模具缺口；不靠排除动态区域宣称完成。[证据与下一步](../projects/duolingo-web/evidence/english-home-motion-v1/README.md)。
+
+
+头像探索采集器现在同时保存viewport actions、完整radio_groups和scroll_regions；前端冻结不把库存算作交互覆盖。原版renderer配置和公开Rive提供输入映射，Swift的SourceAvatarPlayer直接驱动SMAvatar，运行日志读取真实数字输入供独立检查。其它分类/SMButtons消费者仍缺，负原生入口回执保留；详见[本批架构消费者与边界](../projects/duolingo-web/evidence/english-avatar-categories-v1/README.md)。
