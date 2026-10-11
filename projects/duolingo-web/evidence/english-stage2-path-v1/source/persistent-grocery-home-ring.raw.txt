@@ -1,0 +1,12 @@
+### Result
+{"html":"<div class=\"_1xsb4 _2t1Sd Fw74a\"><button class=\"_1gEmM _7jW2t _1333i _22TV_ _3Jm09\" data-test=\"skill-path-level-0 skill-path-level-skill\" aria-label=\"Lesson 2 of 5\"><img alt=\"\" class=\"_1B6UH\" draggable=\"false\" src=\"https://d35aaqx5ub95lt.cloudfront.net/images/path/icons/ef9c771afdb674f0ff82fae25c6a7b0a.svg\"></button><div aria-hidden=\"true\" class=\"_2nwbo\"><div style=\"\"><div><div class=\"_3zpnU _37pE2 _1o3g5 _kJVz\" style=\"z-index: 1;\"><div class=\"_36bu_ _27IMa\">开始</div><div class=\"_3T97b\"><div class=\"_1TMn5 YxHCU\"></div></div></div></div></div></div></div>"}
+### Ran Playwright code
+```js
+await (async page=>{const n=page.locator("[data-test~=skill-path-level-0]").first();return await n.evaluate(n=>({html:n.parentElement.outerHTML.slice(0,9000)}))})(page);
+```
+### Page
+- Page URL: https://www.duolingo.com/learn
+- Page Title: 多邻国 - 学得轻松，学有所成的英语 课程！
+- Console: 23 errors, 0 warnings
+### Events
+- New console entries: .playwright-cli/console-2026-10-11T17-34-43-881Z.log#L54-L56

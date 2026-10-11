@@ -292,6 +292,7 @@ if let index = CommandLine.arguments.firstIndex(of: "--exercise-home-journey"), 
                     guard let before,let after else {throw ProbeError(message:"Owned scroll anchor unavailable after bounded live re-observation")}
                     guard before != after else {throw ProbeError(message:"Owned scroll did not move measured anchor")}
                 }
+                else if step["operation"] as? String == "observe" { /* Capture the already reached state without another action. */ }
                 else if step["operation"] as? String == "hover" { guard movePointer(to:control) else { throw ProbeError(message:"Missing hover target") } }
                 else { try press(control) }
                 Thread.sleep(forTimeInterval:0.7)

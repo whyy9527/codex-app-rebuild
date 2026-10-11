@@ -1,0 +1,40 @@
+{
+  "kind": "observed_exploration_feedback",
+  "prior_evidence": "projects/duolingo-web/evidence/english-stage2-home-v1/exploration-feedback.json",
+  "discoveries": [
+    {
+      "evidence": "source/persistent-grocery-home-popup-after.raw.txt",
+      "finding": "Actual path click timed out because delayed guide coach obscured it; home-ready did not mean settled UI",
+      "next": "Observe stable post-settlement timeline and actual guide coach dismissal/return before coding it"
+    },
+    {
+      "evidence": "source/persistent-grocery-guide-speech-0.raw.txt",
+      "finding": "Actual English shopping guide button triggered original speech resource; native still consumes Spanish guide",
+      "next": "Capture five actual guide rows, audio and layout; replace stale native guide consumer"
+    },
+    {
+      "evidence": "source/persistent-grocery-review-fill.json",
+      "finding": "Tap-completion and declined speech are among eleven actual review cards",
+      "next": "Execute remaining card expansions and new grocery instance; do not infer selection from the fixed instance"
+    },
+    {
+      "evidence": "native-final/frontend-v65.json",
+      "finding": "165 failed comparisons and385 unavailable survive full32state journey",
+      "next": "Use failing state requirements to choose implementation; preserve unknown source branches"
+    }
+  ],
+  "selection": {
+    "next_actions": [
+      "Guide coach timeline and return",
+      "English shopping guide consumer/audio",
+      "Next grocery instance and normal speech branch",
+      "Lower virtualized homepage and unimplemented path actions"
+    ],
+    "basis": "Actual unseen states and failed source actions before repeated passing traces"
+  },
+  "limits": [
+    "No matched-budget RSI causal gain",
+    "An empty recorded frontier cannot prove complete app exploration",
+    "Source audio zero is unavailable, not silence"
+  ]
+}

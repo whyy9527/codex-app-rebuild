@@ -800,6 +800,34 @@ func observedPlacementPersistence() throws {
     print("PASS observed placement outcome persistence and legacy progress/fixture compatibility")
 }
 
+
+func actualStageTwoGrocery() throws {
+    let course = try course(fixture:"fixture-reference-en-zh-stage2-grocery-v1.json")
+    var lesson=Lesson(course:course)
+    var graded=0, speech=0, interludes=0
+    for _ in 0..<32 {
+        if lesson.complete { break }
+        if lesson.interlude != nil { interludes += 1;lesson.advance();continue }
+        if let pending=lesson.deferredSpeech {
+            try check(pending.phrase == "Is this store expensive?", "Grocery oral identity lost")
+            speech += 1;lesson.declineSpeech();lesson.advance();continue
+        }
+        switch lesson.question.kind {
+        case .choice: lesson.choose(lesson.question.answer)
+        case .wordTiles: for id in lesson.question.answerWords { lesson.addWord(id) }
+        case .textEntry: lesson.enterText(lesson.question.answer)
+        case .matching: throw CheckFailure.failed("Unexpected grocery matching")
+        }
+        lesson.submit();try check(lesson.feedback == true,"Grocery accepted source answer rejected")
+        graded += 1;lesson.advance()
+    }
+    try check(lesson.complete && graded == 10 && speech == 1 && interludes == 2,"Grocery full observed trajectory differs")
+    try check(lesson.resultReviewEntries.count == 11,"Declined oral missing from grocery result history")
+    try check(lesson.definition.settlement?.map(\.kind) == ["result","profile"],"Grocery settlement sequence differs")
+    try check(lesson.definition.observedHomeSnapshot?.leagueTitle == "青铜等级" && lesson.definition.observedHomeSnapshot?.gems == 505,"Actual post-grocery home state differs")
+    print("PASS grocery 10 accepted, oral decline, two encouragements, 11 result cards and observed home outcome")
+}
+
 do {
     try mistakeReview()
     try persistence()
@@ -832,7 +860,8 @@ do {
     try observedPathChest()
     try observedHomeClock()
     try observedPlacementPersistence()
-    print("31 business checks passed; core layer only")
+    try actualStageTwoGrocery()
+    print("32 business checks passed; core layer only")
 } catch {
     FileHandle.standardError.write(Data(("FAIL " + String(describing: error) + "\n").utf8))
     exit(1)

@@ -55,6 +55,21 @@ def compile_question(c, effect, raw, row, card, question_id):
             # Exact canonical answer, including punctuation, comes from current public data.
             answer = raw.get('correctSolutions', [raw['prompt']])[0]
         audio = [q['audioResource']] if raw['type'] == 'listenTap' else []
+    elif raw['type'] == 'tapComplete':
+        tokens = raw['displayTokens']
+        blanks = [i for i, t in enumerate(tokens) if t['isBlank']]
+        assert blanks
+        chosen = [a['word'] for a in row['actions']]
+        assert chosen == [raw['choices'][i]['text'] for i in raw['correctIndices']]
+        words, ids = c.compile_word_bank(raw['choices'], [t.strip() for t in row['word_bank']], chosen)
+        q.update(kind='word_tiles', words=words, answer_words=ids,
+                 completionPrefix=''.join(t['text'] for t in tokens[:blanks[0]]),
+                 completionSuffix=''.join(t['text'] for t in tokens[blanks[-1]+1:]))
+        if raw.get('image'):
+            assert raw['image']['svg'] in [v['src'] for v in row['images']]
+            q['promptImageResource'] = c.resource(raw['image']['svg'], 'image')
+        answer = ''.join(t['text'] for t in tokens)
+        audio = []
     elif raw['type'] == 'completeReverseTranslation':
         answer = ''.join(t['text'] for t in raw['displayTokens'])
         assert row['text_input']['value'] == answer and title == '完成翻译' and prompt == raw['prompt']

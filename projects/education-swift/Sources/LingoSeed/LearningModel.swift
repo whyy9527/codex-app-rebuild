@@ -165,6 +165,18 @@ import LearningCore
             feedbackDifficulty=nil;closeQuestionReport();playAutomaticPrompt()
         } catch {self.error="无法载入阶段测试。"}
     }
+    func beginStageTwoLesson() {
+        guard let url=Bundle.module.url(forResource:"stage2-grocery-1",withExtension:"json",subdirectory:"Reference") else {
+            error="无法载入这个单元。";return
+        }
+        do {
+            let observed=try Course.readFixture(url)
+            sessionKind = .generalPractice
+            lesson=Lesson(course:observed,hearts:progress.hearts)
+            settlement=nil;entryPending=false;confirmingExit=false
+            feedbackDifficulty=nil;closeQuestionReport();playAutomaticPrompt()
+        } catch {self.error="无法载入这个单元。"}
+    }
     func beginGeneralPractice() {
         let explicit = CommandLine.arguments.firstIndex(of: "--general-practice-fixture").flatMap { index in
             index + 1 < CommandLine.arguments.count ? URL(fileURLWithPath: CommandLine.arguments[index + 1]) : nil
@@ -232,6 +244,13 @@ import LearningCore
             if isSectionPlacement, let lesson, lesson.complete,
                let outcome=lesson.definition.placementOutcome,
                lesson.mistakesMade == outcome.observedMistakes {
+                progress.placementOutcomes[course.id]=outcome
+                save()
+            }
+            if let lesson, lesson.complete, lesson.mistakesMade == 0,
+               let snapshot=lesson.definition.observedHomeSnapshot,
+               var outcome=progress.placementOutcomes[course.id] {
+                outcome.homeSnapshot=snapshot
                 progress.placementOutcomes[course.id]=outcome
                 save()
             }

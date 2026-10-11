@@ -1,0 +1,13 @@
+[0/1] Planning build
+Building for debugging...
+[0/3] Write swift-version--1AB21518FC5DEDBE.txt
+[1/4] Write sources
+[3/6] Emitting module LearningCoreChecks
+[4/6] Compiling LearningCoreChecks LearningCoreTests.swift
+<workspace>/projects/education-swift/Tests/LearningCoreTests/LearningCoreTests.swift:825:22: error: value of type 'Lesson' has no member 'resultHistory'
+823 |     }
+824 |     try check(lesson.complete && graded == 10 && speech == 1 && interludes == 2,"Grocery full observed trajectory differs")
+825 |     try check(lesson.resultHistory.count == 11,"Declined oral missing from grocery result history")
+    |                      `- error: value of type 'Lesson' has no member 'resultHistory'
+826 |     try check(lesson.definition.settlement?.map(\.kind) == ["result","profile"],"Grocery settlement sequence differs")
+827 |     try check(lesson.definition.observedHomeSnapshot?.leagueTitle == "青铜等级" && lesson.definition.observedHomeSnapshot?.gems == 505,"Actual post-grocery home state differs")

@@ -214,12 +214,13 @@ public struct ObservedPlacementOutcome: Codable, Equatable, Sendable {
     public let courseTitle: String
     public let completedStages: Set<Int>
     public let englishScore: Int
-    public let homeSnapshot: HomeProgressSnapshot
+    public var homeSnapshot: HomeProgressSnapshot
     public let sourceEvidence: String
     public let observedMistakes: Int
 }
 public struct LessonDefinition: Codable, Equatable, Sendable, Identifiable {
     public var placementOutcome: ObservedPlacementOutcome? = nil
+    public var observedHomeSnapshot: HomeProgressSnapshot? = nil
     public var listeningDeclineReplacements: [String: Question]? = nil
     public var initialKeyboardForTiles: Bool? = nil
     public let id: String

@@ -1,5 +1,7 @@
 # Codex App Rebuild
 
+最新购物与主页探索：原版延迟指南遮罩暴露旧ready条件遗漏；Swift第二阶段路径接原动画，购物32状态实际跑通，严格前端仍189pass／165fail，29整图均失败，完整Goal继续。[证据与复跑](projects/duolingo-web/evidence/english-stage2-path-v1/README.md)。
+
 本批从原版阶段2主页继续探索，发现锁定故事弹层、购物指南、电台引发的滚动与虚拟化库存，以及任务重载差异。Swift已补阶段解锁、10分／530宝石和重启恢复；主页路径、指南及实际音效仍有缺口。v64保留全部旧断言，完整Goal继续。[最新证据、失败与复跑](projects/duolingo-web/evidence/english-stage2-home-v1/README.md)。
 
 继续由历史遗漏扩展原版探索：实际发现主页八阶段／每日巩固与独立第2阶段跳级测试，补保存头像的个人页消费、语言弹窗／课程返回及独立404。Escape关闭推断被原版复查否定，失败记录保留。v62保留旧要求共8440项，最终9状态356pass/61fail/7631not_run/392unavailable，主页阶段入口仍明确缺失，九整图全fail；同二进制头像回归27项／17组通过，不能代替主页与声音。下一批优先阶段导航、下层单元、独立测试和实际声音，完整Goal active，尚无1:1或RSI因果收益。[原始证据、失败、frontier和复跑](projects/duolingo-web/evidence/english-profile-return-v1/README.md)。

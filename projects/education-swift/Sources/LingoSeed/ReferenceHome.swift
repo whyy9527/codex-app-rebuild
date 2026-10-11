@@ -6,6 +6,7 @@ import LearningCore
 struct ReferenceHome: View {
     @Bindable var model: LearningModel
     @State private var lessonPopoverNode: Int?
+    @State private var stageTwoSelected: String?
     private var chinese: Bool { model.course.interfaceLanguage == "zh" }
     private func copy(_ en: String, _ zh: String) -> String { chinese ? zh : en }
     private func navigationLabel(_ item: String) -> String {
@@ -89,7 +90,7 @@ struct ReferenceHome: View {
                 Button {
                     if item == "More" { moreOpen.toggle() }
                     else if item == "Profile" { authentication = "profile"; moreOpen = false }
-                    else { model.destination = item; moreOpen = false; if item == "Learn" || item == "Leaderboards" { lessonPopoverNode = nil } }
+                    else { model.destination = item; moreOpen = false; if item == "Learn" || item == "Leaderboards" { lessonPopoverNode = nil; stageTwoSelected = nil } }
                 } label: {
                     HStack(spacing: 20) {
                         ReferenceStyle.image(item == "Pronunciation" ? (model.course.home?.pronunciationResource ?? "nav-test") : "nav-" + item.lowercased()).resizable().scaledToFit().frame(width: 32, height: 32)
@@ -136,21 +137,25 @@ struct ReferenceHome: View {
             .overlay(RoundedRectangle(cornerRadius:16).strokeBorder(ReferenceStyle.border,lineWidth:2))
             .onHover { menuHovered = $0; if !$0 { dismissMenuLater() } }
     }
+    private var pathColor: Color { model.placementOutcome?.activeStage == 2 ? blue : green }
     private var path: some View {
         VStack(spacing: 0) {
             HStack(spacing: 12) {
                 VStack(alignment: .leading, spacing: 8) {
-                    ReferencePracticeControl(label:model.placementOutcome?.sectionTitle ?? model.course.home?.sectionTitle ?? "SECTION 1, UNIT 1",identifier:"open-sections",enabled:true,action:{model.destination="Sections"},face:AnyView(HStack(spacing:8) {ReferenceStyle.image("back").resizable().frame(width:16,height:16);Text(model.placementOutcome?.sectionTitle ?? model.course.home?.sectionTitle ?? "SECTION 1, UNIT 1").font(ReferenceStyle.font(16,bold:true));Spacer(minLength:0)}.opacity(0.8)),role:.link,fixedFaceSize:true).frame(height:24)
+                    ReferencePracticeControl(label:model.placementOutcome?.sectionTitle ?? model.course.home?.sectionTitle ?? "SECTION 1, UNIT 1",identifier:"open-sections",enabled:true,action:{model.destination="Sections"},face:AnyView(HStack(spacing:8) {ReferenceStyle.image(model.placementOutcome?.activeStage == 2 ? ReferenceStageTwoPath.backResource : "back").resizable().frame(width:16,height:16);Text(model.placementOutcome?.sectionTitle ?? model.course.home?.sectionTitle ?? "SECTION 1, UNIT 1").font(ReferenceStyle.font(16,bold:true));Spacer(minLength:0)}.opacity(0.8)),role:.link,fixedFaceSize:true).frame(height:24)
                     Text(model.placementOutcome?.courseTitle ?? model.course.title).font(ReferenceStyle.font(22, bold: true)).accessibilityIdentifier("course-entry")
                 }
                 Spacer(minLength: 0)
                 Button { model.destination = "Guidebook" } label: {
                     HStack(spacing: 10) { ReferenceStyle.image("guidebook").resizable().frame(width: 24, height: 24); Text(copy("GUIDEBOOK", "指南")).font(ReferenceStyle.font(15, bold: true)).tracking(1) }
                         .padding(.horizontal, 14).frame(height: 48)
-                        .overlay(RoundedRectangle(cornerRadius: 15).stroke(Color(red: 70/255, green: 163/255, blue: 2/255), lineWidth: 2))
-                        .shadow(color: Color(red: 70/255, green: 163/255, blue: 2/255), radius: 0, y: 2)
+                        .overlay(RoundedRectangle(cornerRadius: 15).stroke(model.placementOutcome?.activeStage == 2 ? .black.opacity(0.2) : Color(red: 70/255, green: 163/255, blue: 2/255), lineWidth: 2))
+                        .shadow(color: model.placementOutcome?.activeStage == 2 ? .black.opacity(0.2) : Color(red: 70/255, green: 163/255, blue: 2/255), radius: 0, y: 2)
                 }.buttonStyle(.plain).accessibilityIdentifier("open-guide")
-            }.padding(16).frame(height: 90).foregroundStyle(.white).background(green, in: RoundedRectangle(cornerRadius: 12))
+            }.padding(16).frame(height: 90).foregroundStyle(.white).background(pathColor, in: RoundedRectangle(cornerRadius: 12))
+            if model.placementOutcome?.activeStage == 2 {
+                ReferenceStageTwoPath(start:{stageTwoSelected=nil;model.beginStageTwoLesson()},firstLessonCompleted:model.progress.completedLessons["duolingo-en-zh-stage2-grocery-instance",default:[]].contains("stage2-grocery-1"),selected:$stageTwoSelected)
+            } else {
             GeometryReader { geometry in
                 let center = geometry.size.width / 2
                 ReferenceHomeDuo()
@@ -180,6 +185,7 @@ struct ReferenceHome: View {
             }
             Text("\(completed) of \(model.course.lessons.count) lessons complete")
                 .font(ReferenceStyle.font(13)).foregroundStyle(.secondary).accessibilityIdentifier("completed-count").accessibilityValue(String(completed))
+            }
         }.frame(maxWidth: 528).padding(.bottom, 40)
     }
     private func englishPathNode(_ index: Int) -> some View {

@@ -318,3 +318,6 @@ ReferenceHomeDuo读取实际页面加载的原JSON，由固定Lottie 4.6.1原生
 ### 观察实例的阶段结果与原版重载状态
 
 LessonDefinition的可选ObservedPlacementOutcome只保存已有全对实例的源结果；LearningProgress以课程ID持久化，旧文件decodeIfPresent兼容。独立跳级红心不覆盖全局生命，既有完成数不冒充新阶段进度。主页／任务／商店消费同一快照，阶段列表读取独立原版解锁布局。客户端重载并不等于服务端重置，即时任务50/50与后续0/50保留为不同源状态。v64及compile-stage2-frontier接收真实新状态和点击结果，库存与执行分别保存。主页旧路径、指南旧内容、复习回调缺失及真实音频验证仍在验收中。[消费者与证据](../projects/duolingo-web/evidence/english-stage2-home-v1/README.md)。
+
+
+第二阶段购物闭环由`compile-stage2-grocery.py`把实际当前题观察和回顾卡编为共同实例，`freeze-stage2-grocery.py`将真实页面与题目前后图追加至v65。`ReferenceStageTwoPath`消费源节点坐标及原Lottie，`observedHomeSnapshot`在实际完成、零错误、走完结算后持久化购物后主页，旧夹具兼容。此字段是已观察实例结果，不是奖励公式。原版延迟指南coach说明route／heading ready不足；当前购物驱动仍未覆盖该遮罩，后续采集要保留稳定时间线与遮挡状态。完整证据入口见该案例README。
