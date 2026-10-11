@@ -27,6 +27,7 @@ func launchChild() throws -> Process {
     if let index = CommandLine.arguments.firstIndex(of: "--reference-color-scheme"), index + 1 < CommandLine.arguments.count {
         process.arguments! += ["--reference-color-scheme", CommandLine.arguments[index + 1]]
     }
+    if CommandLine.arguments.contains("--exercise-speech-denied") { process.arguments! += ["--verify-speech-denied"] }
     process.standardOutput = FileHandle.nullDevice
     let log = try FileHandle(forWritingTo: childLog); try log.seekToEnd()
     process.standardError = log
@@ -52,7 +53,7 @@ let deadline = Date().addingTimeInterval(12)
 while Date() < deadline && !current().contains(where: { (attr($0, kAXIdentifierAttribute) as? String) == "course-entry" }) {
     Thread.sleep(forTimeInterval: 0.1)
 }
-precondition(current().contains(where: { (attr($0, kAXIdentifierAttribute) as? String) == "course-entry" }), "No child home observed")
+guard current().contains(where: { (attr($0, kAXIdentifierAttribute) as? String) == "course-entry" }) else { throw ProbeError(message: "No child home observed") }
 func configureWindow() {
 if let window = (attr(app, kAXWindowsAttribute) as? [AXUIElement])?.first {
     let metadata = try? Data(contentsOf: output.appendingPathComponent("window.json"))
@@ -189,6 +190,14 @@ if CommandLine.arguments.contains("--observe-pronunciation") {
             if current().contains(where: { (attr($0, kAXIdentifierAttribute) as? String) == "practice-settlement-title" }) { break }
             if current().contains(where: { (attr($0, kAXIdentifierAttribute) as? String) == "speech-decline" }) {
                 states["pronunciation-speech-before"] = observe(); try capture("practice-speech-before")
+                if CommandLine.arguments.contains("--exercise-speech-denied") {
+                    try press("speech-record"); Thread.sleep(forTimeInterval: 0.3)
+                    try JSONSerialization.data(withJSONObject: observe(), options: [.prettyPrinted, .sortedKeys]).write(to: output.appendingPathComponent("speech-denial-probe.json"))
+                    try capture("speech-denial-probe"); try waitFor("speech-denied-title")
+                    states["pronunciation-speech-denied"] = observe(); try capture("practice-speech-denied")
+                    try press("speech-denied-close"); try waitFor("speech-record")
+                    states["pronunciation-speech-denied-closed"] = observe(); try capture("practice-speech-denied-closed")
+                }
                 try press("speech-decline"); states["pronunciation-speech-declined"] = observe()
                 try press("speech-continue"); continue
             }

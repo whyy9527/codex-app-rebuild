@@ -14,11 +14,7 @@ struct ReferencePronunciationPractice: View {
                     ProgressView(value: lesson.complete ? 1 : lesson.reviewing ? 0.9 : Double(lesson.position) / Double(lesson.definition.questions.count)).tint(ReferenceStyle.green).accessibilityIdentifier("lesson-progress")
                 }.frame(maxWidth: 1000).padding(.top, 50)
                 if let speech = lesson.deferredSpeech {
-                    VStack(alignment: .leading, spacing: 40) {
-                        Text(speech.title).font(ReferenceStyle.font(32, bold: true))
-                        Text(speech.phrase).font(ReferenceStyle.font(22))
-                        Button("点击并开始录音") {}.buttonStyle(ReferenceButton(color: ReferenceStyle.blue)).disabled(true)
-                    }.frame(width: 600).padding(.top, 50)
+                    speechPanel(speech).padding(.top, 51)
                 } else if lesson.complete {
                     VStack(spacing: 24) {
                         Text(model.settlement?.current?.title ?? "").font(ReferenceStyle.font(32, bold: true)).accessibilityIdentifier("practice-settlement-title")
@@ -48,6 +44,29 @@ struct ReferencePronunciationPractice: View {
             }.frame(maxWidth: .infinity, maxHeight: .infinity)
                 .foregroundStyle(ReferenceStyle.ink).background(ReferenceStyle.background)
         }
+    }
+
+    private func speechPanel(_ speech: DeferredSpeech) -> some View {
+        ZStack(alignment: .topLeading) {
+            Text(speech.title).font(ReferenceStyle.font(32, bold: true)).frame(width: 600, height: 40, alignment: .leading)
+                .accessibilityIdentifier("speech-title").accessibilityValue(speech.id)
+            HStack(spacing: 8) {
+                ReferencePracticeControl(label: "", identifier: "speech-play", enabled: true,
+                    action: { model.playQuestion() }, face: AnyView(ReferenceStyle.image("practice-speaker-source").resizable().frame(width: 29, height: 22)))
+                    .frame(width: 29, height: 22)
+                Text(speech.phrase).font(ReferenceStyle.font(20))
+            }.padding(.horizontal, 15).frame(height: 54)
+                .background(RoundedRectangle(cornerRadius: 12).fill(ReferenceStyle.background).overlay(RoundedRectangle(cornerRadius: 12).strokeBorder(ReferenceStyle.border, lineWidth: 2)))
+                .offset(x: 135, y: 185)
+            ReferencePracticeControl(label: "点击并开始录音", identifier: "speech-record", enabled: !lesson.speechDeclined && model.speechCapture.state != .recognizing,
+                action: { model.startSpeech() }, face: AnyView(HStack(spacing: 12) {
+                    ReferenceStyle.image("practice-microphone-source").resizable().frame(width: 18.75, height: 25)
+                    Text("点击并开始录音").font(ReferenceStyle.font(15, bold: true))
+                }.foregroundStyle(ReferenceStyle.blue).frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .background(RoundedRectangle(cornerRadius: 16).fill(ReferenceStyle.background).shadow(color: ReferenceStyle.border, radius: 0, y: 2)
+                        .overlay(RoundedRectangle(cornerRadius: 16).strokeBorder(ReferenceStyle.border, lineWidth: 2)))))
+                .frame(width: 600, height: 70).offset(y: 295.5)
+        }.frame(width: 600, height: 365.5, alignment: .topLeading)
     }
 
     private var matching: some View {
@@ -127,7 +146,12 @@ struct ReferencePronunciationPractice: View {
                     Text(speech.closedTitle).font(ReferenceStyle.font(22, bold: true)); Spacer()
                     Button("继续") { model.advance() }.buttonStyle(ReferenceCheckButton()).accessibilityIdentifier("speech-continue")
                 } else {
-                    Button("现在不做口语题") { model.declineSpeech() }.buttonStyle(ReferenceSkipButton()).accessibilityIdentifier("speech-decline")
+                    ReferencePracticeControl(label: "现在不做口语题", identifier: "speech-decline", enabled: true, action: { model.declineSpeech() },
+                        face: AnyView(Text("现在不做口语题").font(ReferenceStyle.font(17, bold: true)).foregroundStyle(Color(red: 175/255, green: 175/255, blue: 175/255))
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                            .background(RoundedRectangle(cornerRadius: 16).fill(ReferenceStyle.background).shadow(color: ReferenceStyle.border, radius: 0, y: 2)
+                                .overlay(RoundedRectangle(cornerRadius: 16).strokeBorder(ReferenceStyle.border, lineWidth: 2)))))
+                        .frame(width: 160.6015625, height: 50).offset(y: 2)
                     Spacer(); Button("检查") {}.buttonStyle(ReferenceCheckButton()).disabled(true)
                 }
             } else if lesson.complete {

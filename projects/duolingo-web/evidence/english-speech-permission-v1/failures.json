@@ -1,0 +1,22 @@
+[
+  {
+    "run": "v1",
+    "result": "Missing speech-denied-title; no postclick probe, so no conclusion on modal visibility."
+  },
+  {
+    "run": "v1-02",
+    "result": "No child home; precondition trap left owned child. Inspected no windows, then terminated own PID. Diagnostic reported both usage descriptions present; diagnostic later removed."
+  },
+  {
+    "run": "v1-03",
+    "result": "No child home with optional diagnostic parameter. Replaced trap with throw so defer cleanup executes. Exact no-window cause unknown; ordinary home probes succeeded twice."
+  },
+  {
+    "run": "v1-04",
+    "result": "Refusal injected before capture; actual modal text visible, but outer SwiftUI identifier covered title/close identifiers. Removed outer identifier, kept assertions."
+  },
+  {
+    "run": "v1-05",
+    "result": "55 states and restart evidence produced; 182pass/24fail/1499not_run/0unavailable. Decline width160.5 vs160.6015625 remains zero-tolerance failure."
+  }
+]

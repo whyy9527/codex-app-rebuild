@@ -1,0 +1,37 @@
+{
+  "kind": "speech-permission-native-and-source-frontier",
+  "states": 55,
+  "core_checks": 23,
+  "frontend_counts": {
+    "not_run": 1499,
+    "pass": 182,
+    "fail": 24
+  },
+  "images": {
+    "pairs": 7,
+    "different": 7,
+    "acceptance": "not_proven"
+  },
+  "microphone_verification": "Injected denial before permissions and capture; no environmental audio recorded. Actual macOS TCC denial and recognition unverified.",
+  "normal_speech": "Capture/transcription plumbing compiles; onFinal not wired to grading/advance, recording UI and success/failure feedback incomplete.",
+  "source_hypotheses": [
+    {
+      "hypothesis": "Vowel pronunciation practice always includes oral question",
+      "status": "rejected",
+      "evidence": "source-fifth/walk01/walk.json: ten choices then matching, no oral"
+    },
+    {
+      "hypothesis": "Speech eligibility/cooldown explains absence",
+      "status": "unknown",
+      "evidence": "No observed source rule; no product restriction implemented."
+    }
+  ],
+  "restart": {
+    "completed": [
+      "pronunciation-1"
+    ],
+    "next_lesson": "pronunciation-2",
+    "observed_text_count": 7
+  },
+  "candidate_binary_sha256": "a26cb1454710971a08dc4d0e23fbfae0d2ede64b6cd78ee14ea90e834ea790bb"
+}

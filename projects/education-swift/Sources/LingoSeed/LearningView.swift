@@ -36,6 +36,7 @@ struct LearningView: View {
         .frame(minWidth: 780, minHeight: 660)
         .foregroundStyle(ink).background(ReferenceStyle.background)
         .overlay { if model.reportingQuestion { ReferenceQuestionReport(model: model) } }
+        .overlay { if model.speechCapture.state == .denied { ReferenceSpeechPermissionOverlay(speech: model.speechCapture) } }
         .preferredColorScheme(model.preferences.darkMode == "On" ? .dark : model.preferences.darkMode == "Off" ? .light : nil)
 
     }
@@ -176,7 +177,7 @@ struct LearningView: View {
                         VStack(alignment: .leading, spacing: 32) {
                             Text(speech.title).font(ReferenceStyle.font(32, bold: true)).frame(height: 40).accessibilityIdentifier("speech-title").accessibilityValue(speech.id)
                             Button { model.playQuestion() } label: { Label(speech.phrase, systemImage: "speaker.wave.2.fill") }.font(ReferenceStyle.font(22)).accessibilityIdentifier("speech-play")
-                            Button("点击并开始录音") { model.error = "录音与识别尚未接入。" }
+                            Button("点击并开始录音") { model.startSpeech() }
                                 .buttonStyle(ReferenceButton(color: ReferenceStyle.blue)).disabled(lesson.speechDeclined).accessibilityIdentifier("speech-record")
                         }
                     }

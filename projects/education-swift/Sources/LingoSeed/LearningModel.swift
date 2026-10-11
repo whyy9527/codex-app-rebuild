@@ -32,6 +32,8 @@ import LearningCore
         } catch { self.error = "Preferences could not be saved." }
     }
     let audio = LearningAudio(resourceURL: { Bundle.module.url(forResource: $0, withExtension: nil, subdirectory: "Reference") })
+    let speechCapture = LearningSpeech()
+    func startSpeech() { guard lesson?.deferredSpeech != nil, lesson?.speechDeclined == false else { return }; Task { await speechCapture.start() } }
     var muted = false
     private var audioPreferencesURL: URL { store.url.appendingPathExtension("audio.json") }
     func toggleMute() {
@@ -125,7 +127,7 @@ import LearningCore
         playAutomaticPrompt()
     }
     func acceptEntry() { entryPending = false; playAutomaticPrompt() }
-    func declineSpeech() { lesson?.declineSpeech() }
+    func declineSpeech() { speechCapture.cancel(); lesson?.declineSpeech() }
     func declineListening() { lesson?.declineListening() }
     private func playAutomaticPrompt() {
         guard !entryPending, lesson?.interlude == nil, lesson?.deferredSpeech == nil, let question = lesson?.question, ["translate", "listenTap", "dialogue", "orderTapComplete", "selectPronunciation", "sameDifferent"].contains(question.sourceType ?? ""),
@@ -171,5 +173,5 @@ import LearningCore
         do { try store.save(progress); error = nil }
         catch { self.error = "Progress could not be saved. Please try again." }
     }
-    func discardAttempt() { if isPronunciationPractice { destination = "Pronunciation" }; isPronunciationPractice = false; lesson = nil; confirmingExit = false; entryPending = false; settlement = nil }
+    func discardAttempt() { speechCapture.cancel(); if isPronunciationPractice { destination = "Pronunciation" }; isPronunciationPractice = false; lesson = nil; confirmingExit = false; entryPending = false; settlement = nil }
 }
