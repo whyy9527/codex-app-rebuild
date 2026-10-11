@@ -31,6 +31,6 @@ export function challengeIdentity(expected, actual) {
 
 // Unsupported same-type UI is a coverage gap, not evidence of content drift.
 export function uncoveredReplayType(expectedType, actualType) {
-  const supported = ['select','assist','dialogue','translate','listenTap','orderTapComplete','match','listenMatch','listenIsolation','listenComplete','listen'];
+  const supported = ['select','assist','dialogue','translate','listenTap','orderTapComplete','match','listenMatch','listenIsolation','listenComplete','listen','completeReverseTranslation'];
   return !supported.includes(expectedType) && actualType.split(/\s+/).includes('challenge-' + expectedType);
 }

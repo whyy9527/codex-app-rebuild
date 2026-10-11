@@ -37,7 +37,7 @@ struct ReferenceResultReview: View {
                             ReferenceStyle.image("en-result-review-close").resizable().frame(width: 16, height: 16)
                                 .frame(width: 35, height: 35).background(.white, in: Circle())
                                 .overlay(Circle().strokeBorder(ReferenceStyle.border, lineWidth: 2))
-                        }.buttonStyle(.plain).frame(width: 35, height: 35)
+                        }.buttonStyle(.plain).keyboardShortcut(.cancelAction).frame(width: 35, height: 35)
                             .offset(x: 842.5, y: -17.5).accessibilityLabel("关闭成绩单").accessibilityIdentifier("result-review-close")
                     }.frame(width: 860, height: 170 + contentHeight + 50)
                         .padding(.top, 24).padding(.bottom, 24)

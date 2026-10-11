@@ -270,7 +270,20 @@ if CommandLine.arguments.contains("--observe-quests") {
             }
             try scrollReview(600, returned: true)
             try saveReviewState(reviewInstance+"-scroll-returned")
-            try press("result-review-close"); try waitFor("lesson-complete")
+            if errorReview {
+                for down in [true, false] {
+                    CGEvent(keyboardEventSource: nil, virtualKey: 53, keyDown: down)?.postToPid(child.processIdentifier)
+                }
+                Thread.sleep(forTimeInterval: 0.5)
+                var escaped = observe()
+                let elements = escaped["elements"] as! [String: Any]
+                let closed = elements["result-review-title"] == nil
+                escaped["interactions"] = ["review_closed":closed]
+                states["error-practice-review-escape"] = escaped
+                try capture("error-practice-review-escape")
+                if !closed { try press("result-review-close") }
+            } else { try press("result-review-close") }
+            try waitFor("lesson-complete")
             try saveReviewState(reviewInstance+"-closed")
             try press("settlement-retry"); try waitFor("question-prompt", value: reviewInstance+"-q0")
             try saveReviewState(reviewInstance+"-retried")

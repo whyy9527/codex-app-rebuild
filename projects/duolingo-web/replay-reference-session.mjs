@@ -67,12 +67,13 @@ const callback = async page => {
     await page.waitForFunction(labels=>{
      const nodes=[...document.querySelectorAll('[data-test~="challenge"]')].filter(n=>n.checkVisibility());
      const next=document.querySelector('[data-test="player-next"]');
-     return !['/practice','/lesson'].includes(location.pathname)||(nodes.length===1&&next?.textContent.trim()===labels.check)||(nodes.length===0&&next?.textContent.trim()===labels.continue);
+     return !['/practice','/lesson'].includes(location.pathname)||(nodes.length===1&&next?.textContent.trim()===labels.check)||(nodes.length===0&&next?.textContent.trim()===labels.continue)||(nodes.length===0&&[...document.querySelectorAll('button')].some(b=>b.checkVisibility()&&b.innerText.trim()==='开始挑战 +20 经验'));
     },labels,{timeout:15000});
     const facts=await page.evaluate(labels=>{
      const nodes=[...document.querySelectorAll('[data-test~="challenge"]')].filter(n=>n.checkVisibility());
      const buttons=[...document.querySelectorAll('button')].filter(n=>n.checkVisibility()&&n.innerText.trim()===labels.continue);
-     return {path:location.pathname,challenge_count:nodes.length,challenge_visible:nodes.length===1,
+     const entries=[...document.querySelectorAll('button')].filter(n=>n.checkVisibility()&&n.innerText.trim()==='开始挑战 +20 经验');
+     return {review_entry_count:entries.length,review_entry_enabled:entries.length===1&&!entries[0].disabled&&entries[0].getAttribute('aria-disabled')!=='true',path:location.pathname,challenge_count:nodes.length,challenge_visible:nodes.length===1,
       heading_count:[...document.querySelectorAll('h1')].filter(n=>n.checkVisibility()).length,
       dialog_count:[...document.querySelectorAll('[role="dialog"]')].filter(n=>n.checkVisibility()).length,
       next_text:document.querySelector('[data-test="player-next"]')?.textContent.trim(),
@@ -82,9 +83,9 @@ const callback = async page => {
     if(decision.kind!=='challenge'){
      const receipt={index:record.index,facts,decision,snapshot:await page.locator('body').ariaSnapshot(),screenshot:SCREENSHOT_PREFIX+'-interlude-'+record.index+'.png'};
      await page.screenshot({path:receipt.screenshot});
-     if(decision.kind!=='interlude'){stopped={kind:'uncovered_state',...receipt};break;}
-     await page.getByRole('button',{name:labels.continue,exact:true}).click();
-     receipt.action='Actual observed introduction Continue';interludes.push(receipt);continue;
+     if(!['interlude','review_entry'].includes(decision.kind)){stopped={kind:'uncovered_state',...receipt};break;}
+     await page.getByRole('button',{name:decision.kind==='review_entry'?decision.text:labels.continue,exact:true}).click();
+     receipt.action=decision.kind==='review_entry'?'Actual observed level-review Start challenge':'Actual observed introduction Continue';interludes.push(receipt);continue;
     }
     const live=await currentNode.evaluate(readRendered,publicOnly.toString());
     c=live.content;record.content=c;session.challenges.push({...record,current_observation:live});
@@ -173,9 +174,9 @@ const callback = async page => {
     const choice=c.choices[c.correctIndex],text=typeof choice==='string'?choice:choice.phrase;
     await exactVisible(page.getByRole('radio'),text);row.actions.push({select:text});
     await page.getByRole('button',{name:labels.check,exact:true}).click();
-   }else if(['translate','listenTap'].includes(c.type)){
+   }else if(['translate','listenTap','completeReverseTranslation'].includes(c.type)){
     const input=challenge.getByRole('textbox');
-    const value=keyboardValue(c,{textbox_count:await input.count(),textbox_enabled:await input.count()===1&&await input.isEnabled(),bank_count:bankTexts.length});
+    const value=keyboardValue(c,{textbox_count:await input.count(),textbox_enabled:await input.count()===1&&await input.isEnabled(),textbox_value:await input.count()===1?await input.inputValue():null,bank_count:bankTexts.length});
     if(value!==null){
      row.text_input={value,label:await input.getAttribute('placeholder'),rect:await input.boundingBox()};
      await input.fill(value);row.actions.push({input:value});

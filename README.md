@@ -24,6 +24,8 @@
 
 实际错误探索又确认成绩单保留首答coffee与改答hot两张卡；v35追加181项前端契约，Swift修红卡及浮层，48原生状态完成。新增176pass/5fail，三整图差异下降但仍fail，两红底采样经色彩转换仍差1级。旧17卡44状态回归完成，默认回顾及其它未知仍未补齐；完整Goal active。[原版证据、负结果与复跑](projects/duolingo-web/evidence/english-error-review-v1/README.md)。
 
+按历史换入口后，等级复习实际发现完整句翻译新类型，驱动修正后12题接受并采到13卡及长浮层；仍没找到听音填空。Swift已实测修复Escape关闭，第一次无效方案保留。v37追加的13卡/长浮层88项尚未实现，不能用旧实例替代默认产品。[新路线、失败与下一步](projects/duolingo-web/evidence/english-home-frontier-v1/README.md)。
+
 共同前端契约已接入真实PNG比较，缺图不可计为通过；发音卡片进一步按浏览器实际字体、字距、卡面和按下反馈修正，整图仍失败。[当前证据与复跑](projects/duolingo-web/evidence/english-pronunciation-typography-v1/README.md)。
 
 前端契约保留旧要求并持续追加源观察；最新口语权限及发音退出分支已接入实际原生验证。反例探测区分全错直接退出与已获得正确进度后的确认，取消保持题目状态。几何、整图和声音仍有失败/未覆盖，正常录音评分与推进未完成。[最新证据、探索反例与复跑](projects/duolingo-web/evidence/english-practice-exit-v1/README.md)，逐批结果由[Roadmap](docs/ROADMAP.md)维护；不累计旧构建回执填当前未执行项。
@@ -38,7 +40,7 @@ Bea/Lucy、Falstaff和正确Lin的源Rive已绑定；更多角色、气泡、主
 
 测试重新计算完成状态，文档保存决策与未知。通过现有测试不代表产品完整；未探索、不可用、失败和通过必须分开。探索新增行为后建立下一批规格，不能在实现期间降低当前验收标准。
 
-Swift的23项核心检查覆盖实际课程轨迹、错误与暂缓、重练、输入偏好和进度。原生驱动另行操作窗口并保存控件、截图、失败及实际状态；它们不能互相替代。具体构建、启动和重置入口见[Swift基座](projects/education-swift/README.md)。
+Swift的27项核心检查覆盖实际课程轨迹、错误与暂缓、重练、输入偏好和进度。原生驱动另行操作窗口并保存控件、截图、失败及实际状态；它们不能互相替代。具体构建、启动和重置入口见[Swift基座](projects/education-swift/README.md)。
 
 ## 当前能力
 

@@ -304,3 +304,7 @@ v15保留1489项并增8项真实原版断言。独立原生radio2实际点击及
 ### 首错与课末改答的18卡探索
 
 原版实际热→coffee错误后课末hot更正，18卡分别保留红错/绿对且不去重，短浮层99×136与上下位置采到；本实例仍无listenIsolation，frontier改换入口而非把重复重练当探索充分。共用编译器旧输出字节不变，49原资源哈希验证，v35保留2027旧项追加181，共2208。Swift修红卡/原叉及短浮层；基线与最终各48真实状态完成，三整图差异下降仍fail，红底ICC转换差1级仍fail；新增176pass5fail，全210pass10fail1988not_run。旧17卡同二进制44状态回归147pass7fail2054not_run。构建/27核心/56Python/12Node通过；默认真正重启结果见证据。原版解析cwd、冻结text-run和首驱动ID失败保留，未扩大产品限制或增加审批。默认回顾/听音填空、正常口语、声学/整图及其它未访分支继续，完整Goal active，原论文/负消融保留。[证据、frontier及复跑](../projects/duolingo-web/evidence/english-error-review-v1/README.md)。
+
+### 改换等级复习入口与Escape取消
+
+上一轮为实际进展。本轮按多次通用练习缺listenIsolation的历史改换路径：Practice锁定，4/4开始重复建档提示，直接读取实际提供的/lesson显示等级复习入口。当前题驱动接入口，先speak未覆盖、实际暂缓，再遇completeReverseTranslation停下；按真实空文本框和截图修完整句模式，4该类型真实接受，共12接受1暂缓13卡，仍无目标题。采到长浮层274.07×136且距卡顶103点，短样本78点规则不通用。v36新增Escape2项，基线及onExitCommand各49状态false，按钮系统取消快捷键最终49状态true；v36全212pass10fail1988not_run，旧17卡同二进制44状态147pass7fail2056not_run。v37继续冻结13卡/长浮层88项共2298，候选88全not_run；源485pass0fail1799not_run14unavailable。构建/27核心/56Python/14Node及双冻结复现完成，无新消融/RSI收益或声学结论。下一批优先接新等级复习与默认成绩元数据，修长锚点，再继续其它入口/未知题型、正常口语和整图声音；完整Goal active。[证据、frontier及复跑](../projects/duolingo-web/evidence/english-home-frontier-v1/README.md)。

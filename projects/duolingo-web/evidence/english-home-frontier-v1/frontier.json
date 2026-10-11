@@ -1,0 +1,29 @@
+{
+  "current_source": "/lesson, actual 13-card level-review modal; card7 long answer expanded.",
+  "history_used": "Prior repeated GLOBAL_PRACTICE instances lacked listenIsolation, so changed entry to learning-path Practice and then source-advertised /lesson route.",
+  "observed": [
+    "Practice node is locked at current guest progress",
+    "Active 4/4 Start opens profile prompt; Later returns to path and another Start repeats prompt",
+    "Source-advertised /lesson shows level-review offer; automatic entry and current-type replay executed",
+    "12 accepted questions, one declined speech, four full-sentence reverse translations, 13 review cards",
+    "Long tooltip [710,467,274.0703125,136], card7 [765,364,165,150]; fixed78 below offset is insufficient",
+    "Escape closes original modal and preserves settlement; standard native cancel shortcut verified"
+  ],
+  "negative": [
+    "No listenIsolation on this different route either",
+    "onExitCommand on the unfocused overlay did not dismiss native modal",
+    "New 13-card source states are frozen v37 but not visited by candidate; 88 not_run, not pass"
+  ],
+  "next": [
+    "Compile this observed level-review trajectory and frontend states into candidate; distinguish level review from main progression",
+    "Trace actual source tooltip anchor/line-box geometry before replacing short-only placement rule; implement and verify long state",
+    "Promote verified per-type review metadata into default product flows; complete missing source card types rather than maintaining demo-only buttons",
+    "Explore other actual listening-enabled entries for listenIsolation and its review, plus normal oral, audio/pixel differences and unvisited navigation"
+  ],
+  "unknown": [
+    "Why profile prompt repeats and whether another progress/account state changes it",
+    "ListenIsolation selection and exact review presentation",
+    "Normal speech scoring, adaptive selection and stable reward formulas",
+    "RSI exploration gain and actual acoustic equality"
+  ]
+}

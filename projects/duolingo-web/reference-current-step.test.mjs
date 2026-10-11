@@ -29,3 +29,31 @@ test('actual keyboard challenge has a solution without fabricating a word bank',
  assert.throws(()=>keyboardTranslationValue(c,{textbox_count:1,textbox_enabled:true,bank_count:1}),/no word bank/);
  assert.equal(keyboardTranslationValue({...c,choices:['茶']},{textbox_count:1,textbox_enabled:true,bank_count:0}),null);
 });
+test('actual level-review entry starts only its observed exercise route',()=>{
+ const capture=read('evidence/english-home-frontier-v1/source/lesson-challenge-entry.json');
+ const buttons=capture.visible.filter(row=>row.tag==='BUTTON'&&row.text==='开始挑战 +20 经验');
+ assert.equal(buttons.length,1);
+ const facts={path:capture.path,dialog_count:0,challenge_count:0,heading_count:0,body_text:capture.snapshot,
+  review_entry_count:buttons.length,review_entry_enabled:buttons[0].enabled};
+ assert.deepEqual(currentFlowDecision(facts,labels),{kind:'review_entry',text:'开始挑战 +20 经验'});
+ for(const override of [{path:'/learn'},{review_entry_count:2},{review_entry_enabled:false},
+  {body_text:'来创建你的个人档案吧！'},{dialog_count:1}])
+  assert.equal(currentFlowDecision({...facts,...override},labels).kind,'uncovered_state');
+});
+
+test('actual reverse translation uses the entire accepted sentence, not only blank tokens',()=>{
+ const run=read('evidence/english-home-frontier-v1/source/lesson-after-reverse.json');
+ let cases=0;
+ for(let i=0;i<run.session.challenges.length;i++) {
+  const c=run.session.challenges[i].content,row=run.observed[i];
+  if(c.type!=='completeReverseTranslation')continue;
+  assert.equal(row.rejected,false);assert.equal(row.identity.matches,true);
+  const facts={textbox_count:1,textbox_enabled:true,textbox_value:'',bank_count:0};
+  assert.equal(keyboardTranslationValue(c,facts),row.text_input.value);
+  assert.notEqual(keyboardTranslationValue(c,facts),c.displayTokens.filter(t=>t.isBlank).map(t=>t.text).join(''));
+  assert.throws(()=>keyboardTranslationValue(c,{...facts,textbox_value:'unfinished'}),/empty enabled/);
+  assert.throws(()=>keyboardTranslationValue(c,{...facts,bank_count:1}),/no word bank/);
+  cases++;
+ }
+ assert.equal(cases,4);
+});

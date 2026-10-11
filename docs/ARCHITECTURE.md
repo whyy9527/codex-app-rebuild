@@ -245,3 +245,6 @@ LessonDefinition的可选listeningDeclineReplacements由实例提供已观察替
 
 
 错误实例与旧实例共用`review_instance_compiler.py`编译真实题目/媒体；`compile-error-review.py`另核验拒绝回执和课末更正身份，保留两次尝试而非覆盖题目记录。v35追加三种18卡状态，截图颜色采样与整图比较分别验证，采样器只从实际ICC归一化截图提取事实。Swift消费`accepted == false`显示原红叉及红卡；浮层方向使用当前滚动几何。源短答案样本不证明长答案规则，颜色1级差及整图失败继续保留。[实际验证](../projects/duolingo-web/evidence/english-error-review-v1/README.md)。
+
+
+当前题驱动从真实可见facts识别已观察的等级复习入口，入口动作计入显式步预算并保存独立回执。`completeReverseTranslation`已观察的全句文本框模式使用全部公开displayTokens，而不是照listenComplete仅填isBlank；类型与当前提示独立核验，之后实际接受反馈才记覆盖。原版新13卡/长浮层冻结v37供下一批候选接入，未访问仍not_run。成绩回顾Escape通过实际关闭按钮的系统取消快捷键处理；仅挂未获响应的覆盖视图事件曾实测失败。[源与原生证据](../projects/duolingo-web/evidence/english-home-frontier-v1/README.md)。

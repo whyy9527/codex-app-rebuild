@@ -1,0 +1,101 @@
+{
+  "goal": "active; full 1:1 scope unchanged",
+  "source": {
+    "accepted": 12,
+    "deferred_speech": 1,
+    "review_cards": 13,
+    "new_type": "completeReverseTranslation",
+    "new_type_accepted": 4,
+    "listening_isolation_found": false,
+    "normal_oral_grading": "unknown",
+    "adaptive_selection": "unknown",
+    "reward_numbers": "animation digits not accepted as stable facts"
+  },
+  "checks": {
+    "python": 56,
+    "node": 14,
+    "core": 27,
+    "build": "passed",
+    "v36_freeze": "byte-reproduced",
+    "v37_freeze": "byte-reproduced"
+  },
+  "native": {
+    "native-baseline-01": {
+      "states": 49,
+      "failure": null,
+      "binary_sha256": "6aa02bad0deddf4fbec7e67e5b182e58a422b4f2151412e2851211b307c27269",
+      "counts_v36": {
+        "not_run": 1988,
+        "pass": 211,
+        "fail": 11
+      },
+      "escape": {
+        "review_closed": false
+      },
+      "validation": "validation-colors.json"
+    },
+    "native-exit-command-01": {
+      "states": 49,
+      "failure": null,
+      "binary_sha256": "c06e24380931910fbf1906e22963d66d2ce837fe89f882227f55c87001931fed",
+      "counts_v36": {
+        "not_run": 1988,
+        "pass": 211,
+        "fail": 11
+      },
+      "escape": {
+        "review_closed": false
+      },
+      "validation": "validation.json"
+    },
+    "native-final-02": {
+      "states": 49,
+      "failure": null,
+      "binary_sha256": "73ffc843d92b94d23de9dc666a11a547fed156a6f0bd535bbdd992075494c7eb",
+      "counts_v36": {
+        "not_run": 1988,
+        "pass": 212,
+        "fail": 10
+      },
+      "escape": {
+        "review_closed": true
+      },
+      "validation": "validation.json",
+      "counts_v37": {
+        "pass": 212,
+        "fail": 10,
+        "not_run": 2076,
+        "unavailable": 0
+      }
+    },
+    "current-regression-01": {
+      "states": 44,
+      "failure": null,
+      "binary_sha256": "73ffc843d92b94d23de9dc666a11a547fed156a6f0bd535bbdd992075494c7eb",
+      "counts_v36": {
+        "not_run": 2056,
+        "pass": 147,
+        "fail": 7
+      },
+      "escape": null,
+      "validation": "validation.json"
+    }
+  },
+  "contracts": {
+    "v36": {
+      "total": 2210,
+      "new": 2
+    },
+    "v37": {
+      "total": 2298,
+      "new": 88,
+      "source_counts": {
+        "pass": 485,
+        "fail": 0,
+        "not_run": 1799,
+        "unavailable": 14
+      }
+    }
+  },
+  "experiment": "No new model ablation or RSI benefit claim; reported source runs use public solutions, not blind policy evaluation."
+}
