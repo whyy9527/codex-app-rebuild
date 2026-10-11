@@ -263,3 +263,8 @@ LessonDefinition的可选listeningDeclineReplacements由实例提供已观察替
 ### 下一Practice建档提示与CSS背景盲点
 
 接实际Start→提示→稍后返回，源CSS背景Duo未被旧img/svg/canvas采集覆盖；采集器补可见background媒体，原144×250 SVG按源尺寸导入。v42保留2373旧项增1，原生8状态/真重启/Start/Later走通，几何0.25点及整图仍fail；AXLink映射遗漏修正并新增button不得冒充link测试。继续点实际创建档案发现空年龄页而非账号表单，v43再增8，当前2382项。候选年龄页未实施、创建按钮仍不可用且失败；本轨迹43pass/21fail/2318not_run。同一最终二进制八课41状态133pass/17fail/2232not_run；29核心/57Python/14Node通过。下一批补实际年龄入口/输入/后续分支，保留排行榜遮罩、结算/音频差异；无RSI收益或完成结论，完整Goal active。[证据与frontier](../projects/duolingo-web/evidence/english-path-profile-v1/README.md)。
+
+
+### 注册分支与输入编辑同步
+
+实际年龄→方式→邮箱→空提交错误被单独冻结为v44，保留全部历史要求；同一采集/比较器覆盖布局、角色、enabled和整图。原版年龄填值后输入框缩窄24点且Next上移4点，不能从空状态推导所有状态。ReferenceRegistration使用原SVG和真实NSTextField/NSSecureTextField，SwiftUI状态保存返回年龄；原生驱动通过真实键盘填写/清空，按传入输入标识等待。NSTextField编辑器拥有在途输入，SwiftUI更新不得回写旧绑定截断输入；原始失败与修复后回执保留。跨平台比较只把AXTextField映射textbox，静态文字反例仍失败，不放宽角色/几何。OAuth、账号服务与静态法律链接等是实现缺口，不能作为新验收规则。[本批可执行证据](../projects/duolingo-web/evidence/english-registration-v1/README.md)。

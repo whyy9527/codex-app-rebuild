@@ -156,9 +156,9 @@ func movePointer(to id: String) -> Bool {
     try? JSONSerialization.data(withJSONObject: pointerActions, options: [.prettyPrinted]).write(to: output.appendingPathComponent("pointer.json"))
     return true
 }
-func fillInput(_ value: String) throws {
-    try waitFor("answer-input")
-    let input = current().first { (attr($0, kAXIdentifierAttribute) as? String) == "answer-input" }!
+func fillInput(_ value: String, identifier: String = "answer-input") throws {
+    try waitFor(identifier)
+    let input = current().first { (attr($0, kAXIdentifierAttribute) as? String) == identifier }!
     guard AXUIElementSetAttributeValue(input, kAXFocusedAttribute as CFString, kCFBooleanTrue) == .success else { throw ProbeError(message: "Cannot focus actual input") }
     // AX value assignment changes the field but can bypass SwiftUI's editing binding.
     // Send actual keyboard events to our isolated child instead.
@@ -175,7 +175,7 @@ func fillInput(_ value: String) throws {
             event.postToPid(child.processIdentifier)
         }
     }
-    try waitFor("answer-input", value: value)
+    try waitFor(identifier, value: value)
     Thread.sleep(forTimeInterval: 0.15)
 }
 
@@ -205,13 +205,30 @@ if CommandLine.arguments.contains("--exercise-path-chest") {
             var returned = observe(); let elements = returned["elements"] as! [String: Any]
             returned["interactions"] = ["profile_closed":elements["path-profile-later"] == nil]
             states["chest-practice-profile-dismissed"] = returned; try capture("chest-practice-profile-dismissed")
+            if CommandLine.arguments.contains("--exercise-registration") {
+                try press("start-lesson-confirm"); try waitFor("path-profile-create"); try press("path-profile-create")
+                try waitFor("path-age-input"); try saveChest("path-age-form")
+                try fillInput("28", identifier: "path-age-input")
+                try fillInput("", identifier: "path-age-input")
+                let disabled = current().first { (attr($0, kAXIdentifierAttribute) as? String) == "path-age-next" }.flatMap { attr($0,kAXEnabledAttribute) as? Bool } == false
+                try fillInput("28", identifier: "path-age-input")
+                var filled = observe(); let value = current().first { (attr($0,kAXIdentifierAttribute) as? String) == "path-age-input" }.flatMap { attr($0,kAXValueAttribute) as? String }
+                filled["interactions"] = ["cleared_disabled":disabled,"age_value_correct":value == "28"]
+                states["registration-filled"] = filled; try capture("registration-filled")
+                try press("path-age-next"); try waitFor("registration-email"); try saveChest("registration-methods")
+                try press("registration-email"); try waitFor("registration-address"); try saveChest("registration-email")
+                try press("registration-submit"); Thread.sleep(forTimeInterval:0.4); try saveChest("registration-email-invalid")
+                try press("registration-back"); try waitFor("registration-email"); try saveChest("registration-back-methods")
+                try press("registration-back"); try waitFor("path-age-input"); try saveChest("registration-back-age")
+                try press("registration-back"); Thread.sleep(forTimeInterval:0.4); try saveChest("registration-closed")
+            }
         }
     } catch { failure = String(describing: error); states["failure-boundary"] = observe(); try? capture("failure-boundary") }
     try bindCaptures(&states, names: ["home":"home-window"])
     let receipt: [String: Any] = ["kind":"owned_native_ax_observation", "states":states, "candidate_binary_sha256":candidateSHA, "fixture_sha256":fixtureSHA,
         "observed_at":ISO8601DateFormatter().string(from:Date()), "failure":failure as Any,
         "action":"Actual path chest click, persisted ledger, real process restart, next Practice popover",
-        "limitations":["Leaderboard interruption not implemented; Practice start/challenges not yet compiled; no acoustic or animation equivalence claim"]]
+        "limitations":["Leaderboard interruption not implemented; next Practice Start opens observed profile prompt; OAuth, successful registration and subsequent practice challenges unimplemented; no acoustic or animation equivalence claim"]]
     try JSONSerialization.data(withJSONObject:receipt, options:[.prettyPrinted,.sortedKeys]).write(to:output.appendingPathComponent("observed.json"))
     if let failure { throw ProbeError(message:failure) }
     return

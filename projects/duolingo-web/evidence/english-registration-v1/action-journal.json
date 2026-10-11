@@ -1,0 +1,30 @@
+[
+  {
+    "action": "Fill age 28",
+    "result": "Next enabled",
+    "evidence": "source/filled.json"
+  },
+  {
+    "action": "Clear age, refill 28, actual Next",
+    "result": "Clear disabled Next; refilled Next opens registration methods",
+    "evidence": [
+      "input-probe.json",
+      "source/methods.json"
+    ]
+  },
+  {
+    "action": "Continue with email",
+    "result": "Optional name, email, password; register initially enabled",
+    "evidence": "source/email.json"
+  },
+  {
+    "action": "Submit empty form",
+    "result": "邮箱地址无效; 密码太短了; layout shifted",
+    "evidence": "source/email-invalid.json"
+  },
+  {
+    "action": "Back to methods, back to age, close",
+    "result": "Age retained 28 before close; returned /learn, no account created",
+    "evidence": "source/closed.json"
+  }
+]

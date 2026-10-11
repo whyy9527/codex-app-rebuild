@@ -172,3 +172,14 @@ class FrontendRequirements(unittest.TestCase):
             self.assertEqual(compare(root, contract, observed)['rows'][0]['status'], 'fail')
             element.clear()
             self.assertEqual(compare(root, contract, observed)['rows'][0]['status'], 'unavailable')
+
+    def test_native_textbox_role_does_not_accept_static_text(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / 'reference.txt').write_text('Observed editable age input')
+            contract = {'requirements': [{'id': 'age', 'state': 'form', 'kind': 'element_role', 'element': 'age', 'role': 'textbox', 'evidence': ['reference.txt']}]}
+            element = {'role': 'AXTextField'}
+            observed = {'states': {'form': {'elements': {'age': element}}}}
+            self.assertEqual(compare(root, contract, observed)['rows'][0]['status'], 'pass')
+            element['role'] = 'AXStaticText'
+            self.assertEqual(compare(root, contract, observed)['rows'][0]['status'], 'fail')
