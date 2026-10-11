@@ -1,0 +1,35 @@
+{
+  "kind": "Actual source placement first-question counterexamples, no answers submitted",
+  "same_route": [
+    "/lesson/section/2/test",
+    "/lesson/section/2/test",
+    "/lesson/section/2/test"
+  ],
+  "observed_question_snapshots": [
+    {
+      "evidence": "source/section-test-first.json",
+      "snapshot": "- button:\n  - img\n- progressbar:\n  - img\n- img\n- img\n- img\n- img\n- img\n- img\n- heading \"选择正确的答案\" [level=1]\n- text: 我爱\n- img\n- radiogroup \"choice\":\n  - radio \"1 i love\":\n    - text: 1 i love\n    - img\n    - img\n  - radio \"2 scarf\":\n    - text: 2 scarf\n    - img\n    - img\n  - radio \"3 it's rainy\":\n    - text: 3 it's rainy\n    - img\n    - img\n- button \"检查\" [disabled]"
+    },
+    {
+      "evidence": "source-replay-first-failure/actual-first.json",
+      "snapshot": "- button:\n  - img\n- progressbar:\n  - img\n- img\n- img\n- img\n- img\n- img\n- img\n- heading \"选择正确的答案\" [level=1]\n- text: 鸟\n- img\n- radiogroup \"choice\":\n  - radio \"1 need\":\n    - text: 1 need\n    - img\n    - img\n  - radio \"2 it's cold\":\n    - text: 2 it's cold\n    - img\n    - img\n  - radio \"3 bird\":\n    - text: 3 bird\n    - img\n    - img\n- button \"检查\" [disabled]"
+    },
+    {
+      "evidence": "source-replay/section-test-first.json",
+      "snapshot": "- button:\n  - img\n- progressbar:\n  - img\n- img\n- img\n- img\n- img\n- img\n- img\n- heading \"选择正确的答案\" [level=1]\n- text: 可爱\n- img\n- radiogroup \"choice\":\n  - radio \"1 study\":\n    - text: 1 study\n    - img\n    - img\n  - radio \"2 hard\":\n    - text: 2 hard\n    - img\n    - img\n  - radio \"3 cute\":\n    - text: 3 cute\n    - img\n    - img\n- button \"检查\" [disabled]"
+    }
+  ],
+  "first_failed_readiness": "getByText('我爱', {exact:true}).waitFor({state:'visible'})",
+  "corrected_readiness": "Actual observed choice radiogroup, then capture current actual prompt/options; no prior-answer forcing",
+  "source_driver_sha256": "6a3e48923a5db343d1aa12872c8d83f7fb564b385036b81dbf431354e96644a4",
+  "actual_replay": {
+    "states": 6,
+    "navigation_actions": 5,
+    "final_path": "/learn"
+  },
+  "limits": [
+    "This establishes dynamic first-question content, not adaptive selection algorithm",
+    "v62 first-question state is the original I-love instance; bird/cute are new source evidence not candidate frontend passes",
+    "Full placement and other question types remain unexplored; no autonomous RSI benefit claim"
+  ]
+}

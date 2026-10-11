@@ -1,0 +1,17 @@
+{
+  "trigger": "Actual source /sections and native missing open-sections; establish independently replayable source navigation before implementing stages",
+  "maximum_navigation_actions": 5,
+  "expected": [
+    "home",
+    "sections",
+    "section-test-intro",
+    "section-test-first",
+    "sections-return",
+    "home-return"
+  ],
+  "limits": [
+    "Only previously observed routes; not RSI discovery yield",
+    "No answer submitted; no stage unlocked",
+    "Other stages and placement continuation remain pending"
+  ]
+}

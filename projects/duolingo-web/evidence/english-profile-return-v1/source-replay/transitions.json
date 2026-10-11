@@ -1,0 +1,27 @@
+[
+  {
+    "operation": "ready",
+    "path": "/learn"
+  },
+  {
+    "operation": "home section header",
+    "path": "/sections"
+  },
+  {
+    "operation": "jump stage2",
+    "path": "/lesson/section/2/test"
+  },
+  {
+    "operation": "continue placement intro",
+    "path": "/lesson/section/2/test",
+    "actual_question_snapshot": "- button:\n  - img\n- progressbar:\n  - img\n- img\n- img\n- img\n- img\n- img\n- img\n- heading \"选择正确的答案\" [level=1]\n- text: 可爱\n- img\n- radiogroup \"choice\":\n  - radio \"1 study\":\n    - text: 1 study\n    - img\n    - img\n  - radio \"2 hard\"\n  - radio \"3 cute\"\n- button \"检查\" [disabled]"
+  },
+  {
+    "operation": "quit first placement question without answer",
+    "path": "/sections"
+  },
+  {
+    "operation": "stage1 continue",
+    "path": "/learn"
+  }
+]

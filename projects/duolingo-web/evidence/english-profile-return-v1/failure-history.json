@@ -1,0 +1,85 @@
+[
+  {
+    "run": "02",
+    "terminal": [
+      "Swift/Dictionary.swift:840: Fatal error: Dictionary literal contains duplicate keys",
+      "Stack dump:",
+      "0.\tProgram arguments: /Library/Developer/CommandLineTools/usr/bin/swift-frontend -frontend -interpret projects/duolingo-web/observe-frontend.swift -Xllvm -aarch64-use-tbi -enable-objc-interop -stack-check -sdk /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -no-color-diagnostics -Xcc -fno-color-diagnostics -new-driver-path /Library/Developer/CommandLineTools/usr/bin/swift-driver -empty-abi-descriptor -no-auto-bridging-header-chaining -module-name main -disable-clang-spi -target-sdk-version 26.5 -target-sdk-name macosx26.5 -external-plugin-path /Library/Developer/Developer/usr/lib/swift/host/plugins#/Library/Developer/Developer/usr/bin/swift-plugin-server -external-plugin-path /Library/Developer/Developer/usr/local/lib/swift/host/plugins#/Library/Developer/Developer/usr/bin/swift-plugin-server -in-process-plugin-server-path /Library/Developer/CommandLineTools/usr/lib/swift/host/libSwiftInProcPluginServer.dylib -plugin-path /Library/Developer/CommandLineTools/usr/lib/swift/host/plugins -plugin-path /Library/Developer/CommandLineTools/usr/local/lib/swift/host/plugins -- artifacts/profile-return-native-02 projects/duolingo-web/fixture-reference-en-zh-v14.json --seed-progress projects/duolingo-web/evidence/english-home-presentation-v1/native-final/progress-after.json --seed-preferences projects/duolingo-web/evidence/english-avatar-composition-v1/native-final/progress.json.preferences.json --reference-color-scheme light --exercise-home-journey projects/duolingo-web/profile-return-closure-scenarios-v1.json"
+    ],
+    "actual_error_font_log_present": false,
+    "observation_present": false,
+    "diagnosis": "Driver duplicate dictionary key guest_error_present; fixed, owned orphan PID verified by exact arguments and terminated. No product or source result."
+  },
+  {
+    "run": "03",
+    "terminal": [
+      "Native observation failed: ProbeError(message: \"Home journey execution failed; inspect observed.json attempts\")",
+      "Collected 9 actual home journey states, 1 failed journeys"
+    ],
+    "actual_error_font_log_present": false,
+    "observation_present": true,
+    "attempts": [
+      {
+        "failure": null,
+        "id": "saved-profile-return"
+      },
+      {
+        "failure": "ProbeError(message: \"No observed control: open-sections\")",
+        "id": "home-section-entry"
+      }
+    ],
+    "states": 9,
+    "diagnosis": "Compressed OTF initially misloaded; registration-only edit did not fix it. Build06 failed Swift6 concurrency check, so native05 still used previous binary. Fixed @MainActor and successful build07 precede native06."
+  },
+  {
+    "run": "04",
+    "terminal": [
+      "Native observation failed: ProbeError(message: \"Home journey execution failed; inspect observed.json attempts\")",
+      "Collected 9 actual home journey states, 1 failed journeys"
+    ],
+    "actual_error_font_log_present": false,
+    "observation_present": true,
+    "attempts": [
+      {
+        "failure": null,
+        "id": "saved-profile-return"
+      },
+      {
+        "failure": "ProbeError(message: \"No observed control: open-sections\")",
+        "id": "home-section-entry"
+      }
+    ],
+    "states": 9,
+    "diagnosis": "Compressed OTF initially misloaded; registration-only edit did not fix it. Build06 failed Swift6 concurrency check, so native05 still used previous binary. Fixed @MainActor and successful build07 precede native06."
+  },
+  {
+    "run": "05",
+    "terminal": [
+      "Native observation failed: ProbeError(message: \"Home journey execution failed; inspect observed.json attempts\")",
+      "Collected 9 actual home journey states, 1 failed journeys"
+    ],
+    "actual_error_font_log_present": false,
+    "observation_present": true,
+    "attempts": [
+      {
+        "failure": null,
+        "id": "saved-profile-return"
+      },
+      {
+        "failure": "ProbeError(message: \"No observed control: open-sections\")",
+        "id": "home-section-entry"
+      }
+    ],
+    "states": 9,
+    "diagnosis": "Compressed OTF initially misloaded; registration-only edit did not fix it. Build06 failed Swift6 concurrency check, so native05 still used previous binary. Fixed @MainActor and successful build07 precede native06."
+  },
+  {
+    "run": "avatar-regression-01",
+    "result": "No child home observed; no observed.json, no product results",
+    "retry": "Same binary and fixture, fresh output regression02 completed15states"
+  },
+  {
+    "run": "avatar-regression inventory first invocation",
+    "result": "Wrong caller state prefix composition-restored- yielded17missing groups; preserved, actual observed names avatar-composition-restored-, corrected invocation17pass"
+  }
+]

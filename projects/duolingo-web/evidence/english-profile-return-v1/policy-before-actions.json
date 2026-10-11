@@ -1,0 +1,19 @@
+{
+  "prior": "../english-avatar-composition-v1/exploration-feedback.json",
+  "known_gap": "Saved full avatar not consumed by native profile renderer; original independent profile currently captured only before avatar saving. Invitation frontend interaction remains omitted.",
+  "plan": [
+    "Read actual source home after saved avatar",
+    "Follow observed Leaderboards independent profile entry, compare displayed avatar to saved original",
+    "Inspect and execute invitation open/close and actual nested navigation without sending invitations",
+    "Return to home and preserve newly observed frontend states"
+  ],
+  "budget": {
+    "maximum_new_navigation_actions": 16,
+    "maximum_source_minutes": 12
+  },
+  "limits": [
+    "Not a preregistered RSI ablation",
+    "Do not count DOM options as executed actions",
+    "No sending invitations or registering accounts is needed to observe these UI states"
+  ]
+}

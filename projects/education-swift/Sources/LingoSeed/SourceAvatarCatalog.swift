@@ -11,6 +11,8 @@ struct SourceAvatarCatalog: Decodable {
         var options: [Option] { buttonType == "IMAGE" ? imageButtons : featureButtons }
     }
     struct Tab: Decodable { let tabName: String; let sections: [Section] }
+    struct ProfileDisplay: Decodable {let backgroundColor: String}
+    let avatarOnProfileDisplayOptions: [String:ProfileDisplay]
     let stateChooserTabs: [Tab]
     static let source: SourceAvatarCatalog = load("avatar-builder")
     static let layouts: [SourceAvatarLayout] = load("avatar-layouts")

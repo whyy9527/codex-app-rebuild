@@ -1,0 +1,13 @@
+{
+  "trigger": "Native01 Escape left modal visible; AX still executed background pencil. Need explicit actual source closed-state evidence, not infer from successful driver exit.",
+  "maximum_navigation_actions": 8,
+  "plan": [
+    "Actual home -> leaderboard -> independent saved profile -> country modal -> Escape",
+    "Capture modal-free profile",
+    "Reopen country list and follow actual enrollment link, capture real destination if within budget"
+  ],
+  "limits": [
+    "This is a new bounded exploration iteration, not expansion of the initial16-action iteration",
+    "No signup, invitation sending or placement answer required"
+  ]
+}

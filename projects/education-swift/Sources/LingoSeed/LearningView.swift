@@ -23,7 +23,9 @@ struct LearningView: View {
                         }
                     }
                     else { lessonPage(lesson) }
-                } else if ["Learn", "Settings", "Guidebook", "Pronunciation", "Shop", "Forgot password", "Leaderboards", "Guest profile", "Guest achievements error", "Guest avatar"].contains(model.destination)
+                } else if model.destination == "Guest achievements error" {
+                    ReferenceGuestAchievementsError(home:{model.destination="Learn"})
+                } else if ["Learn", "Settings", "Guidebook", "Pronunciation", "Shop", "Forgot password", "Leaderboards", "Guest profile", "Guest avatar"].contains(model.destination)
                     || (model.destination == "Quests" && model.course.interfaceLanguage == "zh") {
                     ReferenceHome(model: model)
                 } else {

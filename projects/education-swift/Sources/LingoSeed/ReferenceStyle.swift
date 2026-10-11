@@ -31,6 +31,24 @@ enum ReferenceStyle {
     static func font(_ size: CGFloat, bold: Bool = false, weight: Double? = nil) -> Font {
         Font(nativeFont(size, bold: bold, weight: weight))
     }
+    @MainActor private static let errorDescriptors: [Bool:CTFontDescriptor] = {
+        var result: [Bool:CTFontDescriptor] = [:]
+        for bold in [false,true] {
+            let name=bold ? "en-error-bold" : "en-error-regular"
+            guard let url=Bundle.module.url(forResource:name,withExtension:"otf",subdirectory:"Reference") else {continue}
+            CTFontManagerRegisterFontsForURL(url as CFURL,.process,nil)
+            if let descriptors=CTFontManagerCreateFontDescriptorsFromURL(url as CFURL) as? [CTFontDescriptor],let descriptor=descriptors.first {result[bold]=descriptor}
+        }
+        return result
+    }()
+    @MainActor static func errorFont(_ size:CGFloat,bold:Bool=false) -> Font {
+        guard let descriptor=errorDescriptors[bold] else {return .system(size:size)}
+        let font=CTFontCreateWithFontDescriptor(descriptor,size,nil)
+        if CommandLine.arguments.contains("--render-metadata") {
+            FileHandle.standardError.write(Data(("error-runtime-font "+(CTFontCopyPostScriptName(font) as String)+"\n").utf8))
+        }
+        return Font(font as NSFont)
+    }
     static func nativeFont(_ size: CGFloat, bold: Bool = false, weight: Double? = nil) -> NSFont {
         let descriptor = CTFontDescriptorCreateWithAttributes([
             kCTFontNameAttribute: "DuolingoSans-Thin",

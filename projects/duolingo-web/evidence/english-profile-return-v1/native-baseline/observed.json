@@ -1,0 +1,578 @@
+{
+  "attempts": [
+    {
+      "failure": "ProbeError(message: \"No observed control: guest-profile-languages\")",
+      "id": "saved-profile-return"
+    },
+    {
+      "failure": "ProbeError(message: \"No observed control: open-sections\")",
+      "id": "home-section-entry"
+    }
+  ],
+  "candidate_binary_sha256": "8196221dc4ab9ae1449cbb27912b4bc04f195956f941716f7d6e5b698e2fe1d3",
+  "failure": "[[\"id\": \"saved-profile-return\", \"failure\": \"ProbeError(message: \\\"No observed control: guest-profile-languages\\\")\"], [\"id\": \"home-section-entry\", \"failure\": \"ProbeError(message: \\\"No observed control: open-sections\\\")\"]]",
+  "fixture_sha256": "b7242d0e130112d54b1e17714bf21c35045e58f8874948917b0b09f971282bda",
+  "kind": "owned_native_ax_observation",
+  "limitations": [
+    "No acoustic equality claim; actual images retain clock and animation phase differences"
+  ],
+  "scenario_sha256": "4e167d6ad7b6681957a1cf044bd8c4763dcda01e54902c423e8ceb0f613170b6",
+  "seed_preferences_sha256": "ba41710c8c6fe40067f34175557f4bfd2caf2b263d881570ff95fdd8c1560e33",
+  "states": {
+    "profile-return-home": {
+      "accessible_text": [
+        "0 秒",
+        "2",
+        "30 / 30",
+        "5",
+        "525",
+        "8",
+        "8 of 8 lessons complete",
+        "Duo",
+        "Lesson",
+        "LingoSeed",
+        "Practice",
+        "个人档案",
+        "关于我们    宝石小店    有效性    招聘贤才\n\n投资者    条款    隐私",
+        "创建个人档案，保存学习进度！",
+        "创建档案",
+        "发音",
+        "复习该部分",
+        "学习",
+        "宝石小店",
+        "宝箱",
+        "开始",
+        "指南",
+        "排行榜",
+        "提供或接受饮料",
+        "显示全部",
+        "更多",
+        "查看排行榜",
+        "每日特别任务",
+        "特别任务",
+        "登录",
+        "第 1 阶段，第 1 部分",
+        "获取 30 经验",
+        "谈论祖籍国家",
+        "这周的排行榜挑战赛即将开始！",
+        "青铜等级"
+      ],
+      "capture": {
+        "backing_scale": 2,
+        "content_rect_points": [
+          0,
+          32,
+          1200,
+          732
+        ],
+        "path": "projects/duolingo-web/evidence/english-profile-return-v1/native-baseline/profile-return-home.png",
+        "window_points": [
+          1200,
+          764
+        ]
+      },
+      "capture_attempts": [
+        {
+          "attempt": 1,
+          "expected": [
+            2400,
+            1528
+          ],
+          "path": "profile-return-home-capture-1.png",
+          "pixels": [
+            2400,
+            1528
+          ]
+        }
+      ],
+      "elements": {
+        "completed-count": {
+          "enabled": true,
+          "rect": [
+            455.5,
+            687.1484375,
+            129,
+            15
+          ],
+          "role": "AXStaticText",
+          "value": "8"
+        },
+        "course-entry": {
+          "enabled": true,
+          "rect": [
+            296,
+            93.5,
+            154,
+            26
+          ],
+          "role": "AXStaticText",
+          "value": "提供或接受饮料"
+        },
+        "home-duo-animation": {
+          "enabled": true,
+          "rect": [
+            506,
+            225,
+            238,
+            288.5
+          ],
+          "role": "AXUnknown",
+          "value": ""
+        },
+        "home-league-countdown": {
+          "enabled": true,
+          "rect": [
+            910,
+            197,
+            29,
+            20
+          ],
+          "role": "AXStaticText",
+          "value": "0 秒"
+        },
+        "nav-leaderboards": {
+          "enabled": true,
+          "rect": [
+            16,
+            212,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-learn": {
+          "enabled": true,
+          "rect": [
+            16,
+            92,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-more": {
+          "enabled": true,
+          "rect": [
+            16,
+            452,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-profile": {
+          "enabled": true,
+          "rect": [
+            16,
+            392,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-pronunciation": {
+          "enabled": true,
+          "rect": [
+            16,
+            152,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-quests": {
+          "enabled": true,
+          "rect": [
+            16,
+            272,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-shop": {
+          "enabled": true,
+          "rect": [
+            16,
+            332,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "open-guide": {
+          "enabled": true,
+          "rect": [
+            649,
+            68,
+            96,
+            50
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "path-chest": {
+          "enabled": false,
+          "rect": [
+            410,
+            324,
+            80,
+            90
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "sign-in": {
+          "enabled": true,
+          "rect": [
+            828,
+            570,
+            328,
+            46
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "start-lesson": {
+          "enabled": true,
+          "rect": [
+            485,
+            162,
+            70,
+            65
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "start-lesson-1": {
+          "enabled": true,
+          "rect": [
+            440,
+            239,
+            70,
+            65
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "start-lesson-3": {
+          "enabled": true,
+          "rect": [
+            440,
+            448.5,
+            70,
+            65
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "start-lesson-4": {
+          "enabled": true,
+          "rect": [
+            485,
+            539.5,
+            70,
+            65
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "SwiftUI._ConditionalContent<SwiftUI.SubscriptionView<(extension in Foundation):__C.NSNotificationCenter.Publisher, SwiftUI.ModifiedContent<LingoSeed.LearningView, SwiftUI._AppearanceActionModifier>>, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1": {
+          "enabled": false,
+          "rect": [
+            0,
+            -32,
+            1200,
+            764
+          ],
+          "role": "AXWindow",
+          "value": ""
+        },
+        "view-leaderboards": {
+          "enabled": true,
+          "rect": [
+            1081,
+            114.5,
+            75,
+            18
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "view-profile": {
+          "enabled": true,
+          "rect": [
+            828,
+            510,
+            328,
+            46
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "view-quests": {
+          "enabled": true,
+          "rect": [
+            1096,
+            280.5,
+            60,
+            18
+          ],
+          "role": "AXButton",
+          "value": ""
+        }
+      },
+      "interactions": {
+        "completed_popover_present": false,
+        "exit_confirmation_present": false,
+        "footer_status_visible": false,
+        "guest_error_present": false,
+        "guest_introduction_present": false,
+        "guest_profile_present": false,
+        "learn_present": true,
+        "legendary_present": false,
+        "practice_present": false,
+        "profile_present": false,
+        "status_clear_visible": false,
+        "status_selected": false
+      }
+    },
+    "profile-return-profile": {
+      "accessible_text": [
+        "1/2",
+        "2",
+        "2/3",
+        "2026 年 10 月加入",
+        "204",
+        "204/250",
+        "5",
+        "525",
+        "LingoSeed",
+        "个人档案",
+        "保持 3 天连胜的战绩",
+        "先贤",
+        "关于我们",
+        "冠军",
+        "发音",
+        "学习",
+        "宝石小店",
+        "总经验",
+        "成就",
+        "投资者",
+        "招聘贤才",
+        "排行榜",
+        "数据统计",
+        "显示全部",
+        "更多",
+        "有效性",
+        "条款",
+        "添加好友",
+        "烈焰英雄",
+        "特别任务",
+        "第 1 级",
+        "第 2 级",
+        "赚取 250 经验",
+        "跃升到白银等级",
+        "连胜天数",
+        "邀请好友",
+        "隐私"
+      ],
+      "capture": {
+        "backing_scale": 2,
+        "content_rect_points": [
+          0,
+          32,
+          1200,
+          732
+        ],
+        "path": "projects/duolingo-web/evidence/english-profile-return-v1/native-baseline/profile-return-profile.png",
+        "window_points": [
+          1200,
+          764
+        ]
+      },
+      "capture_attempts": [
+        {
+          "attempt": 1,
+          "expected": [
+            2400,
+            1528
+          ],
+          "path": "profile-return-profile-capture-1.png",
+          "pixels": [
+            2400,
+            1528
+          ]
+        }
+      ],
+      "elements": {
+        "guest-profile-achievements": {
+          "enabled": true,
+          "rect": [
+            697,
+            527,
+            63,
+            18
+          ],
+          "role": "AXLink",
+          "value": ""
+        },
+        "guest-profile-avatar": {
+          "enabled": true,
+          "rect": [
+            410,
+            24,
+            220,
+            224
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "guest-profile-joined": {
+          "enabled": true,
+          "rect": [
+            280,
+            287.95703125,
+            128.5,
+            20
+          ],
+          "role": "AXStaticText",
+          "value": "2026 年 10 月加入"
+        },
+        "nav-leaderboards": {
+          "enabled": true,
+          "rect": [
+            16,
+            212,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-learn": {
+          "enabled": true,
+          "rect": [
+            16,
+            92,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-more": {
+          "enabled": true,
+          "rect": [
+            16,
+            452,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-profile": {
+          "enabled": true,
+          "rect": [
+            16,
+            392,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-pronunciation": {
+          "enabled": true,
+          "rect": [
+            16,
+            152,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-quests": {
+          "enabled": true,
+          "rect": [
+            16,
+            272,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "nav-shop": {
+          "enabled": true,
+          "rect": [
+            16,
+            332,
+            222,
+            52
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "return-action-20": {
+          "enabled": true,
+          "native_identifier": "guest-profile-avatar",
+          "rect": [
+            410,
+            24,
+            220,
+            224
+          ],
+          "role": "AXButton",
+          "value": ""
+        },
+        "return-action-22": {
+          "enabled": true,
+          "native_identifier": "guest-profile-achievements",
+          "rect": [
+            697,
+            527,
+            63,
+            18
+          ],
+          "role": "AXLink",
+          "value": ""
+        },
+        "SwiftUI._ConditionalContent<SwiftUI.SubscriptionView<(extension in Foundation):__C.NSNotificationCenter.Publisher, SwiftUI.ModifiedContent<LingoSeed.LearningView, SwiftUI._AppearanceActionModifier>>, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1": {
+          "enabled": false,
+          "rect": [
+            0,
+            -32,
+            1200,
+            764
+          ],
+          "role": "AXWindow",
+          "value": ""
+        }
+      },
+      "interactions": {
+        "completed_popover_present": false,
+        "exit_confirmation_present": false,
+        "footer_status_visible": false,
+        "guest_error_present": false,
+        "guest_introduction_present": false,
+        "guest_profile_present": true,
+        "learn_present": false,
+        "legendary_present": false,
+        "practice_present": false,
+        "profile_present": false,
+        "status_clear_visible": false,
+        "status_selected": false
+      }
+    }
+  }
+}

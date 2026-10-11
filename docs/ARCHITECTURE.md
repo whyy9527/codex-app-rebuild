@@ -306,3 +306,8 @@ ReferenceHomeDuo读取实际页面加载的原JSON，由固定Lottie 4.6.1原生
 
 
 头像探索采集器现在同时保存viewport actions、完整radio_groups和scroll_regions；前端冻结不把库存算作交互覆盖。原版renderer配置和公开Rive提供输入映射，Swift的SourceAvatarPlayer直接驱动SMAvatar，运行日志读取真实数字输入供独立检查。其它分类/SMButtons消费者仍缺，负原生入口回执保留；详见[本批架构消费者与边界](../projects/duolingo-web/evidence/english-avatar-categories-v1/README.md)。
+
+
+### 完整控件库存、跨页状态和独立返回
+
+源采集器的control_inventory保留屏幕外规范控件；actions继续保留视口指针候选，库存不代表实际执行。原生AX库存另含无开发者ID控件，避免把采集遗漏误当产品不存在；映射失败仍unavailable。源历史编译器把真实动作及屏幕外库存接入既有frontier，保留重复／遮挡局限。个人页SMAvatar从同一17项保存状态渲染，但使用素材默认Zoom1，编辑器Zoom3；两个消费者单独回读。语言模态的实际存在性和404／主页路由进入共同契约，AX调用成功不能冒充遮罩关闭。404原字体按gzip解码为OTTO后注册，独立字体回读与原版平台字体探针对应；Swift6成功构建与二进制摘要先于候选验收。[证据与开放缺口](../projects/duolingo-web/evidence/english-profile-return-v1/README.md)。

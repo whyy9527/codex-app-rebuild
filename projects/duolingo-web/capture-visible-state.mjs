@@ -26,6 +26,13 @@ const callback=async page=>{
  }));
  // Inventory every currently visible interactive entry, including plain links.
  // State-scoped identities retain duplicate controls instead of collapsing names.
+ // Full rendered canonical controls are a separate exploration inventory.
+ // CSS visibility does not establish viewport reachability or execution.
+ facts.control_inventory=await page.locator('a[href],button,input,[role="button"],[role="radio"],[role="link"]').evaluateAll(ns=>ns.filter(n=>n.checkVisibility({checkOpacity:true,checkVisibilityCSS:true})).map((n,index)=>{
+  const r=n.getBoundingClientRect(),hit=document.elementFromPoint(r.x+r.width/2,r.y+r.height/2);
+  return {index,tag:n.tagName,test:n.getAttribute('data-test'),href:n.getAttribute('href'),explicit_role:n.getAttribute('role'),input_type:n.tagName==='INPUT'?n.type:null,name:n.getAttribute('aria-label')||n.innerText||n.getAttribute('placeholder')||'',enabled:!n.disabled&&n.getAttribute('aria-disabled')!=='true',rect:[r.x,r.y,r.width,r.height],intersects_viewport:r.width>0&&r.height>0&&r.bottom>0&&r.right>0&&r.top<innerHeight&&r.left<innerWidth,center_hit:!!hit&&(hit===n||n.contains(hit))};
+ }));
+ facts.control_inventory_limitations=['Rendered DOM inventory only; offscreen or obscured controls are not executed coverage; pointer-only candidates remain in actions.'];
  facts.actions=await page.locator('body').evaluate(body=>{
   const canonical='a[href],button,input,[role="button"],[role="checkbox"],[role="radio"]';
   const standard=[...body.querySelectorAll(canonical)];

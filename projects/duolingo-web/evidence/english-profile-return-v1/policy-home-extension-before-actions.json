@@ -1,0 +1,13 @@
+{
+  "trigger": "source/home.json actual AX lists /sections and below-fold units; native first-screen implementation is insufficient evidence",
+  "plan": [
+    "Follow observed /sections link from home header",
+    "Inspect actual section entries and return action",
+    "Capture visible source requirements, queue below-fold units separately"
+  ],
+  "remaining_navigation_budget": 7,
+  "limits": [
+    "No course switch or placement test inferred from labels",
+    "Do not assume section cards are all clickable"
+  ]
+}

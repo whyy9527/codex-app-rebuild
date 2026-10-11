@@ -7,6 +7,7 @@ import RiveRuntime
     let model: RiveViewModel?
     let error: String?
     private let defaultAnimation: Double
+    private let defaultZoom: Double
     @Published private(set) var inputSnapshot = "unavailable"
     static let initial: [String:Int] = {
         guard let url = Bundle.module.url(forResource:"avatar-initial-state",withExtension:"json",subdirectory:"Reference"),
@@ -24,17 +25,19 @@ import RiveRuntime
         do {
             let file = try Self.file.get()
             model = RiveViewModel(RiveModel(riveFile:file),stateMachineName:machine,fit:.cover,alignment:.center,autoPlay:true)
+            defaultZoom = Double(model?.numberInput(named:"ENG_ONLY_Zoom")?.value() ?? 0)
             defaultAnimation = Double(model?.numberInput(named:"ENG_ONLY_Animation")?.value() ?? 0)
             error = nil
         } catch {
             model = nil
+            defaultZoom = 0
             defaultAnimation = 0
             self.error = "原版头像动画载入失败"
         }
     }
-    func update(states: [String:Int], animations: Bool) {
+    func update(states: [String:Int], animations: Bool, zoom: Double? = 3) {
         var values = Self.initial.merging(states,uniquingKeysWith: {_,new in new})
-        values["ENG_ONLY_Zoom"] = states["ENG_ONLY_Zoom"] ?? (machine == "SMAvatar" ? 3 : 1)
+        values["ENG_ONLY_Zoom"] = states["ENG_ONLY_Zoom"] ?? Int(machine == "SMAvatar" ? (zoom ?? defaultZoom) : 1)
         for (name,value) in values { model?.setInput(name,value:Double(value)) }
         model?.setInput("ENG_ONLY_Animation",value:animations ? defaultAnimation : 0)
         inputSnapshot = measuredInputs
@@ -58,19 +61,21 @@ import RiveRuntime
 struct ReferenceAvatarRenderer: View {
     let states: [String:Int]
     let animations: Bool
+    var zoom: Double? = 3
+    var identifier = "avatar-preview"
     @StateObject private var player = SourceAvatarPlayer()
     var body: some View {
         Group {
             if let model = player.model { RiveViewRepresentable(viewModel:model) }
             else { Text(player.error ?? "原版头像动画不可用") }
         }
-        .onAppear { player.update(states:states,animations:animations) }
-        .onChange(of:states) { _,_ in player.update(states:states,animations:animations) }
-        .onChange(of:animations) { _,_ in player.update(states:states,animations:animations) }
+        .onAppear { player.update(states:states,animations:animations,zoom:zoom) }
+        .onChange(of:states) { _,_ in player.update(states:states,animations:animations,zoom:zoom) }
+        .onChange(of:animations) { _,_ in player.update(states:states,animations:animations,zoom:zoom) }
         .accessibilityElement(children:.ignore)
         .accessibilityLabel(player.model == nil ? "unavailable" : "SMAvatar")
         .accessibilityValue(player.inputSnapshot)
-        .accessibilityIdentifier("avatar-preview")
+        .accessibilityIdentifier(identifier)
     }
 }
 

@@ -16,6 +16,12 @@ precondition(!FileManager.default.fileExists(atPath: progress.path), "Use a fres
 if let seedIndex = CommandLine.arguments.firstIndex(of: "--seed-progress"), seedIndex + 1 < CommandLine.arguments.count {
     try Data(contentsOf: root.appendingPathComponent(CommandLine.arguments[seedIndex + 1])).write(to: progress, options: .withoutOverwriting)
 }
+var seedPreferencesSHA: String?
+if let index = CommandLine.arguments.firstIndex(of:"--seed-preferences"), index+1 < CommandLine.arguments.count {
+    let data = try Data(contentsOf:root.appendingPathComponent(CommandLine.arguments[index+1]))
+    try data.write(to:URL(fileURLWithPath:progress.path+".preferences.json"),options:.withoutOverwriting)
+    seedPreferencesSHA=SHA256.hash(data:data).map{String(format:"%02x",$0)}.joined()
+}
 let eighthReview = CommandLine.arguments.contains("--exercise-eighth-review")
 let errorReview = CommandLine.arguments.contains("--exercise-error-review")
 let explicitReview = CommandLine.arguments.firstIndex(of: "--review-instance").map { CommandLine.arguments[$0 + 1] }
@@ -112,12 +118,13 @@ func observe() -> [String: Any] {
         [kAXValueAttribute, kAXTitleAttribute, kAXDescriptionAttribute].compactMap { attr(node, $0) as? String }.filter { !$0.isEmpty }
     })
     var elements: [String: Any] = [:]
+    var controls: [[String:Any]] = []
     let metadata = (try? Data(contentsOf: output.appendingPathComponent("window.json"))).flatMap { try? JSONSerialization.jsonObject(with: $0) as? [String: Any] }
     let content = metadata?["content_rect_points"] as? [Double]
     var origin = CGPoint.zero
     if let window = (attr(app, kAXWindowsAttribute) as? [AXUIElement])?.first, let position = attr(window, kAXPositionAttribute) { AXValueGetValue(position as! AXValue, .cgPoint, &origin) }
     for node in current() {
-        guard let id = attr(node, kAXIdentifierAttribute) as? String else { continue }
+        let identifier=attr(node,kAXIdentifierAttribute) as? String
         var element: [String: Any] = ["enabled": attr(node, kAXEnabledAttribute) as? Bool ?? false, "role": attr(node, kAXRoleAttribute) as? String ?? "", "value": attr(node, kAXValueAttribute) as? String ?? ""]
         // NSButton radios expose NSNumber, not text. Keep unknown values absent.
         if element["role"] as? String == "AXRadioButton",
@@ -131,9 +138,15 @@ func observe() -> [String: Any] {
             AXValueGetValue(position as! AXValue, .cgPoint, &point); AXValueGetValue(size as! AXValue, .cgSize, &dimensions)
             element["rect"] = [point.x - origin.x - content[0], point.y - origin.y - content[1], dimensions.width, dimensions.height]
         }
-        elements[id] = element
+        if let id=identifier {elements[id]=element}
+        if ["AXButton","AXLink","AXRadioButton","AXTextField","AXCheckBox","AXPopUpButton"].contains(element["role"] as? String ?? "") {
+            var row=element
+            row["identifier"]=identifier as Any
+            row["name"]=[kAXTitleAttribute,kAXDescriptionAttribute,kAXValueAttribute].compactMap{attr(node,$0) as? String}.first(where:{!$0.isEmpty}) ?? ""
+            controls.append(row)
+        }
     }
-    return ["accessible_text": strings.sorted(), "elements": elements]
+    return ["accessible_text": strings.sorted(), "elements": elements,"control_inventory":controls,"control_inventory_limitations":["Actual AX controls include nodes without developer identifiers; no invocation or hit-test coverage inferred"]]
 }
 func bindCaptures(_ states: inout [String: [String: Any]], names: [String: String] = [:]) throws {
     if output.path.hasPrefix(root.path + "/"),
@@ -246,7 +259,10 @@ if let index = CommandLine.arguments.firstIndex(of: "--exercise-home-journey"), 
                 }
                 try activateOwnedInputTarget()
                 let control = step["native_action"] as! String
-                if step["operation"] as? String == "scroll" {
+                if step["operation"] as? String == "escape" {
+                    for down in [true,false] {CGEvent(keyboardEventSource:nil,virtualKey:53,keyDown:down)?.postToPid(child.processIdentifier)}
+                }
+                else if step["operation"] as? String == "scroll" {
                     let anchor = step["scroll_anchor"] as! String
                     let amount = (step["scroll_pixels"] as! NSNumber).int32Value
                     let before = ((observe()["elements"] as? [String:Any])?[anchor] as? [String:Any])?["rect"] as? [Double]
@@ -294,7 +310,7 @@ if let index = CommandLine.arguments.firstIndex(of: "--exercise-home-journey"), 
                         "completed_popover_present": !profile && !legendary && elements["completed-practice"] != nil,
                         "guest_profile_present":elements["guest-profile-joined"] != nil, "guest_introduction_present":elements["guest-profile-later"] != nil, "guest_error_present":elements["guest-profile-error"] != nil,
                         "status_selected":elements["leaderboard-selected-status"] != nil, "footer_status_visible":elements["leaderboard-footer-status"] != nil, "status_clear_visible":elements["leaderboard-clear"] != nil,
-                        "practice_present":elements["pair-left-0"] != nil, "learn_present":elements["start-lesson"] != nil, "exit_confirmation_present":elements["practice-quit-confirm"] != nil]
+                        "guest_languages_present":elements["guest-profile-languages-close"] != nil,"home_course_present":elements["course-entry"] != nil,"practice_present":elements["pair-left-0"] != nil, "learn_present":elements["start-lesson"] != nil, "exit_confirmation_present":elements["practice-quit-confirm"] != nil]
                     var captureAttempts: [[String: Any]] = []
                     var validCapture = false
                     let metadata = try JSONSerialization.jsonObject(with:Data(contentsOf:output.appendingPathComponent("window.json"))) as! [String: Any]
@@ -321,7 +337,7 @@ if let index = CommandLine.arguments.firstIndex(of: "--exercise-home-journey"), 
     try bindCaptures(&states)
     let failures = attempts.filter { !($0["failure"] is NSNull) }
     let receipt: [String: Any] = ["kind":"owned_native_ax_observation", "states":states,"attempts":attempts,
-        "candidate_binary_sha256":candidateSHA,"fixture_sha256":fixtureSHA,"scenario_sha256":SHA256.hash(data:try Data(contentsOf:scenarioURL)).map{String(format:"%02x",$0)}.joined(),
+        "seed_preferences_sha256":seedPreferencesSHA as Any,"candidate_binary_sha256":candidateSHA,"fixture_sha256":fixtureSHA,"scenario_sha256":SHA256.hash(data:try Data(contentsOf:scenarioURL)).map{String(format:"%02x",$0)}.joined(),
         "failure":failures.isEmpty ? NSNull() : String(describing:failures),"limitations":["No acoustic equality claim; actual images retain clock and animation phase differences"]]
     try JSONSerialization.data(withJSONObject:receipt,options:[.prettyPrinted,.sortedKeys]).write(to:output.appendingPathComponent("observed.json"),options:.withoutOverwriting)
     print("Collected \(states.count) actual home journey states, \(failures.count) failed journeys")
