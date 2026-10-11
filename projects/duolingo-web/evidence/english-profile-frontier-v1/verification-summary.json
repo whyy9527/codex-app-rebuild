@@ -1,0 +1,25 @@
+{
+  "parent": "english-v55",
+  "revision": "english-v56",
+  "prior_requirements": 3188,
+  "new_requirements": 658,
+  "total": 3846,
+  "source_projection": {
+    "pass": 649,
+    "fail": 0,
+    "new_pending": 9
+  },
+  "candidate_prior_binary": {
+    "pass": 87,
+    "fail": 15,
+    "not_run": 3744
+  },
+  "new_candidate_states": "all not_run; no new Swift implementation/run in this batch",
+  "verification": [
+    "14 Node checks",
+    "freeze repeat byte identity",
+    "all 15 ARIA checked states checked against actual selected/restored/reloaded observations",
+    "evidence paths and token/profile route redaction"
+  ],
+  "rsi": "Executed history-driven frontier exploration; no controlled causal benefit or new ablation claim"
+}

@@ -25,7 +25,7 @@ const callback=async page=>{
    const identity=test?'test:'+test:href?'href:'+href:(pointer?'pointer:':'')+n.tagName+':'+name;
    const ordinal=counts.get(identity)||0;counts.set(identity,ordinal+1);
    const hit=document.elementFromPoint(r.x+r.width/2,r.y+r.height/2);
-   return [{id:identity+'#'+ordinal,test,href,name,...(pointer?{kind:'pointer_candidate',semantic_role:'unclassified',limitations:'CSS cursor candidate; actual click outcome must be explored'}:{}),hit_test:!!hit&&(hit===n||n.contains(hit)),tag:n.tagName,role:n.getAttribute('role')||(n.tagName==='A'?'link':n.tagName==='INPUT'?'textbox':pointer?null:'button'),enabled:!n.disabled&&n.getAttribute('aria-disabled')!=='true',rect:[r.x,r.y,r.width,r.height]}];
+   return [{id:identity+'#'+ordinal,test,href,name,...(pointer?{kind:'pointer_candidate',semantic_role:'unclassified',limitations:'CSS cursor candidate; actual click outcome must be explored'}:{}),hit_test:!!hit&&(hit===n||n.contains(hit)),tag:n.tagName,role:n.getAttribute('role')||(n.tagName==='A'?'link':n.tagName==='INPUT'?'textbox':pointer?null:'button'),enabled:!n.disabled&&n.getAttribute('aria-disabled')!=='true',checked:typeof n.checked==='boolean'?n.checked:n.hasAttribute('aria-checked')?n.getAttribute('aria-checked')==='true':null,rect:[r.x,r.y,r.width,r.height]}];
   });
  });
  // Generic text blocks (reward titles, subtitles and hints) were missing
@@ -74,7 +74,7 @@ const callback=async page=>{
  facts.visible=await page.locator('[data-test],h1,h2,[role],button,input,label').evaluateAll(ns=>ns.filter(n=>n.checkVisibility({checkOpacity:true,checkVisibilityCSS:true})).map(n=>{
   const r=n.getBoundingClientRect(),css=getComputedStyle(n);
   return {test:n.getAttribute('data-test'),tag:n.tagName,role:n.getAttribute('role'),text:n.innerText,
-   enabled:!n.disabled&&n.getAttribute('aria-disabled')!=='true',pressed:n.getAttribute('aria-pressed'),checked:n.checked??null,
+   enabled:!n.disabled&&n.getAttribute('aria-disabled')!=='true',pressed:n.getAttribute('aria-pressed'),checked:typeof n.checked==='boolean'?n.checked:n.hasAttribute('aria-checked')?n.getAttribute('aria-checked')==='true':null,
    rect:[r.x,r.y,r.width,r.height],css:{fontFamily:css.fontFamily,fontSize:css.fontSize,fontWeight:css.fontWeight,lineHeight:css.lineHeight,color:css.color,backgroundColor:css.backgroundColor,borderRadius:css.borderRadius,borderWidth:css.borderWidth,borderColor:css.borderColor},
    icons:n.tagName==='BUTTON'?[...n.querySelectorAll('svg')].map(svg=>svg.outerHTML):[],
    images:n.tagName==='BUTTON'?[...n.querySelectorAll('img')].map(img=>({src:img.currentSrc||img.src,rect:img.getBoundingClientRect().toJSON()})):[],

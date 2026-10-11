@@ -1,5 +1,7 @@
 # 架构
 
+按历史frontier实际进入排行榜访客档案，发现独立档案、头像引导、成就404、邀请浮层及15肤色radio编辑器；修复采集器漏读aria-checked。v56保留3188旧项追加658，源649pass/9pending；候选新增全not_run，本批未实现Swift新页。下一批先接档案布局/导航与已观察交互，继续头像保存/返回和声音；无新RSI收益宣称。[证据及复跑](../projects/duolingo-web/evidence/english-profile-frontier-v1/README.md)。
+
 原版探索确认状态底色、悬停、双徽章和段落内边距遗漏，v55保留3084旧项追加104。最终两状态87pass/15fail，整图仍失败；同一二进制5个重启状态及10个主页分支完成。保留字体猜测被否定、图片溢出和内边距差异略增的负结果；下一步优先未访问个人档案/主页分支及声音，未宣称1:1或RSI因果收益。[证据与复跑](../projects/duolingo-web/evidence/english-leaderboard-visual-v1/README.md)。
 
 完整当前实例由逐题公共内容和实际接受反馈编译，原版与原生共用显式题单；驱动支持review-instance及排行榜入口。右列控件须按实际配对身份映射，不能把视觉行号当稳定ID。显式实例、默认自适应选题与真实声学验证分开，不能互相替代。[证据](../projects/duolingo-web/evidence/english-leaderboard-practice-instance-v1/README.md)。

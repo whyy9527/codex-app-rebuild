@@ -1,0 +1,46 @@
+[
+  {
+    "action": "Actual leaderboard footer - U 0 经验 link",
+    "result": "/u/REDACTED_GUEST?via=leagues",
+    "observation": "profile",
+    "facts": [
+      "Source guest525 gems/streak2/hearts5, consistent with preceding progress",
+      "Distinct profile page and avatar introduction"
+    ]
+  },
+  {
+    "action": "下次再说",
+    "result": "Introduction removed after settling",
+    "observation": "dismissed"
+  },
+  {
+    "action": "显示全部 actual /profile//achievements",
+    "result": "Redirect /errors/404.html",
+    "observation": "achievements"
+  },
+  {
+    "action": "Browser back, then social-panel-invite-friends",
+    "result": "Invite modal opens; no sending/copying action performed",
+    "observation": "invite"
+  },
+  {
+    "action": "Actual close-button, then avatar role=button DIV",
+    "result": "/settings/avatar, 15 radios and disabled 完成",
+    "observation": "avatar"
+  },
+  {
+    "action": "Second radio actual click",
+    "result": "radio1 checked, 完成 enabled",
+    "observation": "avatar-selected-checked"
+  },
+  {
+    "action": "First radio actual click",
+    "result": "radio0 checked, 完成 stays enabled",
+    "observation": "avatar-restored-checked"
+  },
+  {
+    "action": "Actual reload without saving",
+    "result": "radio0 checked, 完成 disabled",
+    "observation": "avatar-reloaded-checked"
+  }
+]
