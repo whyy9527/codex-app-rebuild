@@ -1,10 +1,10 @@
 """Real frontend-feedback policy generation, sealing and bounded UI deployment."""
-import argparse,hashlib,json,re,subprocess,sys
+import argparse,hashlib,json,re,subprocess,sys,importlib.util
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parent))
-from model_worker import call_worker
 from replay import choose,digest
 P=Path('projects/exploration-ablation')
+spec=importlib.util.spec_from_file_location('model_worker',P/'model-worker.py');worker=importlib.util.module_from_spec(spec);spec.loader.exec_module(worker);call_worker=worker.call_worker
 p=argparse.ArgumentParser();p.add_argument('--phase',choices=['initial','revise','deploy'],required=True);p.add_argument('--step',type=int,choices=[1,2]);p.add_argument('--out',required=True);p.add_argument('--root',required=True);p.add_argument('--codex-binary');p.add_argument('--cli');p.add_argument('--session');a=p.parse_args()
 out=Path(a.out);out.mkdir(parents=True,exist_ok=True)
 def read(p):return json.loads(Path(p).read_text())
