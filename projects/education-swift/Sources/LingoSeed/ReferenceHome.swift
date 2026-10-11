@@ -17,6 +17,8 @@ struct ReferenceHome: View {
     @State private var showingPathProfile = false
     @State private var authentication: String?
     @State private var showingLegendary = false
+    @State private var guestIntroduction = false
+    @State private var guestIntroductionSeen = false
     private var selectedLeaderboardStatus: Binding<Int?> {
         Binding(get:{ model.preferences.leaderboardStatus },set:{ model.preferences.leaderboardStatus = $0; model.savePreferences() })
     }
@@ -39,11 +41,13 @@ struct ReferenceHome: View {
                 sidebar.frame(width: geometry.size.width >= 1180 ? 254 : 88)
                 Rectangle().fill(ReferenceStyle.border).frame(width: 2)
                 if model.destination == "Settings" { ReferenceSettings(model: model) }
+                else if model.destination == "Guest achievements error" { ReferenceGuestAchievementsError() }
                 else if model.destination == "Forgot password" { ReferenceForgotPassword() }
                 else {
                 ScrollView {
                     if model.destination == "Pronunciation" { ReferencePronunciation(model: model).padding(.horizontal, 24).padding(.top, 43) }
-                    else if model.destination == "Leaderboards" { ReferenceLeaderboard(selectedStatus:selectedLeaderboardStatus,practice:{ model.beginGeneralPractice() }).padding(.horizontal,24).padding(.top,24) }
+                    else if model.destination == "Leaderboards" { ReferenceLeaderboard(selectedStatus:selectedLeaderboardStatus,practice:{ model.beginGeneralPractice() },profile:{ model.destination = "Guest profile"; if !guestIntroductionSeen { guestIntroduction = true; guestIntroductionSeen = true } }).padding(.horizontal,24).padding(.top,24) }
+                    else if model.destination == "Guest profile" { ReferenceGuestProfile(achievements:{model.destination = "Guest achievements error"}).padding(.horizontal,24).padding(.top,24) }
                     else if model.destination == "Shop" { ReferenceShop(gems: chestOpened ? (pathChest?.afterGems ?? homeSnapshot?.gems ?? 0) : (homeSnapshot?.gems ?? 0), create: { authentication = "profile" }).padding(.top,40) }
                     else if model.destination == "Quests" { ReferenceQuests(snapshot: homeSnapshot).padding(.horizontal, 24).padding(.top, 24) }
                     else if model.destination == "Guidebook" { ReferenceGuidebook(model: model).padding(.horizontal, 24).padding(.top, 48) }
@@ -54,6 +58,8 @@ struct ReferenceHome: View {
                     ScrollView {
                         if model.destination == "Leaderboards" {
                             VStack(spacing:24) { dashboardStats.frame(height:44); ReferenceLeaderboardStatus(selectedStatus:selectedLeaderboardStatus); questsFooter.padding(.top,10) }.padding(.top,24)
+                        } else if model.destination == "Guest profile" {
+                            VStack(spacing:24) { dashboardStats.frame(height:44); guestFriends; questsFooter.padding(.top,10) }.padding(.top,24)
                         } else { dashboard.padding(.top,32) }
                     }
                         .frame(width: 368).padding(.horizontal, 24)
@@ -64,6 +70,7 @@ struct ReferenceHome: View {
                 if showingLegendary { ReferenceLegendary(hearts:model.progress.hearts,start:{ showingLegendary = false; showingPathProfile = true },quit:{ showingLegendary = false }).zIndex(19) }
                 if showingPathProfile { ReferencePathProfile(close: { showingPathProfile = false }).frame(width: geometry.size.width, height: geometry.size.height).zIndex(20) }
                 if moreOpen { moreMenu.offset(x: geometry.size.width >= 1180 ? 238 : 72, y: 438).zIndex(10) }
+                if guestIntroduction { ReferenceGuestProfileIntroduction(later:{guestIntroduction = false}).frame(width:geometry.size.width,height:geometry.size.height).zIndex(29) }
                 if authentication == "profile" { ReferenceRegistration(close:{ authentication = nil },showLogin:{ authentication = "login" }).zIndex(30) }
                 if authentication == "login" { ReferenceLogin(close:{ authentication = nil },signup:{ authentication = "profile" },forgot:{ authentication = nil; model.destination = "Forgot password" }).zIndex(30) }
             }
@@ -325,6 +332,16 @@ struct ReferenceHome: View {
                 Text(copy("ABOUT    BLOG    STORE    EFFICACY    CAREERS\n\nINVESTORS    TERMS    PRIVACY", "关于我们    宝石小店    有效性    招聘贤才\n\n投资者    条款    隐私")).font(ReferenceStyle.font(12, bold: true)).foregroundStyle(Color(white: 175/255)).frame(maxWidth: .infinity).multilineTextAlignment(.center).padding(.top, 18)
             }
         }
+    }
+    private var guestFriends: some View {
+        VStack(alignment:.leading,spacing:24) {
+            Text("添加好友").font(ReferenceStyle.font(20,bold:true))
+            HStack(spacing:18) {
+                ReferenceStyle.image("en-guest-invite").resizable().frame(width:52,height:52)
+                Text("邀请好友").font(ReferenceStyle.font(17,bold:true))
+                Spacer()
+            }
+        }.padding(20).frame(width:368,height:140,alignment:.topLeading).overlay(RoundedRectangle(cornerRadius:16).strokeBorder(ReferenceStyle.border,lineWidth:2))
     }
     private var questsFooter: some View {
         VStack(spacing: 18) {

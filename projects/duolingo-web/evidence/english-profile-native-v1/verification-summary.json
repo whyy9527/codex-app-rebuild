@@ -1,0 +1,61 @@
+{
+  "revision": "english-v57",
+  "requirements": 3855,
+  "v56_preserved": 3846,
+  "new_navigation_requirements": 9,
+  "runs": {
+    "native-final": {
+      "not_run": 3658,
+      "fail": 10,
+      "pass": 93,
+      "unavailable": 94
+    },
+    "leaderboard-final": {
+      "not_run": 3753,
+      "fail": 15,
+      "pass": 87
+    }
+  },
+  "checks": [
+    "Swift final build-07 success",
+    "30 core business checks, unchanged core after UI refinements",
+    "Freeze byte repeat",
+    "8 original SVG/PNG resources SHA256 verified",
+    "Final profile and leaderboard runs same binary"
+  ],
+  "limits": [
+    "Snapshot204 XP is not a cumulative progress implementation",
+    "3 profile screenshots fail; no1:1 or acoustic equality claim",
+    "Avatar editing/invite native branches remain missing",
+    "No new causal RSI ablation"
+  ],
+  "profile_images": [
+    {
+      "state": "profile-frontier-achievements",
+      "mae_rgb": [
+        6.644533242258652,
+        4.732818761384335,
+        10.93810223132969
+      ],
+      "status": "fail"
+    },
+    {
+      "state": "profile-frontier-dismissed",
+      "mae_rgb": [
+        3.13300660291439,
+        2.665026183970856,
+        2.6225170765027324
+      ],
+      "status": "fail"
+    },
+    {
+      "state": "profile-frontier-profile",
+      "mae_rgb": [
+        2.460909608378871,
+        1.9299112021857923,
+        1.8660860655737705
+      ],
+      "status": "fail"
+    }
+  ]
+}

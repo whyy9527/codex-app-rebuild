@@ -1,0 +1,245 @@
+{
+  "attempts" : [
+    {
+      "failure" : "ProbeError(message: \"No observed control: guest-profile-later\")",
+      "id" : "guest-profile"
+    }
+  ],
+  "candidate_binary_sha256" : "ac7435d06a7eb80feb58e5a8680af2712a09c13c19610aca8ad898f7f61e097a",
+  "failure" : "[[\"id\": \"guest-profile\", \"failure\": \"ProbeError(message: \\\"No observed control: guest-profile-later\\\")\"]]",
+  "fixture_sha256" : "b7242d0e130112d54b1e17714bf21c35045e58f8874948917b0b09f971282bda",
+  "kind" : "owned_native_ax_observation",
+  "limitations" : [
+    "No acoustic equality claim; actual images retain clock and animation phase differences"
+  ],
+  "scenario_sha256" : "7775922cd97e7c93231d4b765d8925cae4cebd239202ca468ed3bdc3fa0b1621",
+  "states" : {
+    "profile-frontier-profile" : {
+      "accessible_text" : [
+        "5",
+        "8 lessons complete",
+        "80",
+        "Back to learning",
+        "Complete a lesson",
+        "Course goal",
+        "EN",
+        "Guest profile",
+        "Hear words and feedback as you learn. Your preference is saved on this device.",
+        "Leaderboards",
+        "Learn",
+        "Learn at your own pace. Every completed lesson is saved on this device.",
+        "Learning sounds",
+        "LingoSeed",
+        "LingoSeed · original lessons and sounds, inspired by the reference learning flow.",
+        "More",
+        "Profile",
+        "Quests",
+        "Shop",
+        "Sound on",
+        "Turn sound off",
+        "VIEW PROFILE",
+        "VIEW QUESTS",
+        "Your learning milestones",
+        "Your local profile works offline. Online accounts and competitive rankings are not connected.",
+        "Your progress stays with you",
+        "lingoseed",
+        "on"
+      ],
+      "capture" : {
+        "backing_scale" : 2,
+        "content_rect_points" : [
+          0,
+          32,
+          1200,
+          732
+        ],
+        "path" : "artifacts\/guest-profile-native-01\/profile-frontier-profile.png",
+        "window_points" : [
+          1200,
+          764
+        ]
+      },
+      "capture_attempts" : [
+        {
+          "attempt" : 1,
+          "expected" : [
+            2400,
+            1528
+          ],
+          "path" : "profile-frontier-profile-capture-1.png",
+          "pixels" : [
+            2400,
+            1528
+          ]
+        }
+      ],
+      "elements" : {
+        "destination-title" : {
+          "enabled" : true,
+          "rect" : [
+            342.5,
+            36.25,
+            156.5,
+            31
+          ],
+          "role" : "AXStaticText",
+          "value" : "Guest profile"
+        },
+        "ellipsis.circle.fill" : {
+          "enabled" : true,
+          "rect" : [
+            286,
+            33,
+            37.5,
+            37.5
+          ],
+          "role" : "AXImage",
+          "value" : ""
+        },
+        "nav-leaderboards" : {
+          "enabled" : true,
+          "rect" : [
+            45.5,
+            197,
+            149.5,
+            25
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "nav-learn" : {
+          "enabled" : true,
+          "rect" : [
+            40.5,
+            121,
+            89.5,
+            27
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "nav-more" : {
+          "enabled" : true,
+          "rect" : [
+            43,
+            499.5,
+            82,
+            26
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "nav-profile" : {
+          "enabled" : true,
+          "rect" : [
+            43,
+            424.5,
+            99,
+            26
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "nav-quests" : {
+          "enabled" : true,
+          "rect" : [
+            43.5,
+            271,
+            97,
+            27
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "nav-shop" : {
+          "enabled" : true,
+          "rect" : [
+            41.5,
+            347,
+            82,
+            28.5
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "return-learn" : {
+          "enabled" : true,
+          "rect" : [
+            282,
+            404,
+            173,
+            53
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "settings-sound" : {
+          "enabled" : true,
+          "rect" : [
+            305,
+            262,
+            161,
+            53
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "sound-toggle" : {
+          "enabled" : true,
+          "rect" : [
+            41,
+            677,
+            82,
+            16
+          ],
+          "role" : "AXButton",
+          "value" : "on"
+        },
+        "SwiftUI._ConditionalContent<SwiftUI.SubscriptionView<(extension in Foundation):__C.NSNotificationCenter.Publisher, SwiftUI.ModifiedContent<LingoSeed.LearningView, SwiftUI._AppearanceActionModifier>>, SwiftUI.ContentUnavailableView<SwiftUI.Label<SwiftUI.Text, SwiftUI.Image>, Swift.Optional<SwiftUI.Text>, SwiftUI.EmptyView>>-1-AppWindow-1" : {
+          "enabled" : false,
+          "rect" : [
+            0,
+            -32,
+            1200,
+            764
+          ],
+          "role" : "AXWindow",
+          "value" : ""
+        },
+        "view-profile" : {
+          "enabled" : true,
+          "rect" : [
+            848,
+            613,
+            161,
+            53
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        },
+        "view-quests" : {
+          "enabled" : true,
+          "rect" : [
+            849,
+            433,
+            88,
+            16
+          ],
+          "role" : "AXButton",
+          "value" : ""
+        }
+      },
+      "interactions" : {
+        "completed_popover_present" : false,
+        "exit_confirmation_present" : false,
+        "footer_status_visible" : false,
+        "learn_present" : false,
+        "legendary_present" : false,
+        "practice_present" : false,
+        "profile_present" : false,
+        "status_clear_visible" : false,
+        "status_selected" : false
+      }
+    }
+  }
+}

@@ -5,6 +5,7 @@ import SwiftUI
 struct ReferenceLeaderboard: View {
     @Binding var selectedStatus: Int?
     let practice: () -> Void
+    let profile: () -> Void
     var body: some View {
         ZStack(alignment:.topLeading) {
             HStack(alignment:.center,spacing:28) {
@@ -24,7 +25,7 @@ struct ReferenceLeaderboard: View {
                 Text("-").frame(width:24)
                 ReferenceLeaderboardAvatar(selectedStatus:$selectedStatus,size:48)
                 Spacer();Text("0 经验").font(ReferenceStyle.font(17)).padding(.trailing,34)
-            }.font(ReferenceStyle.font(17,bold:true)).foregroundStyle(ReferenceStyle.disclosureInk).padding(.leading,38).frame(width:480,height:72).background(Color(white:247/255),in:RoundedRectangle(cornerRadius:16)).offset(y:612)
+            }.font(ReferenceStyle.font(17,bold:true)).foregroundStyle(ReferenceStyle.disclosureInk).padding(.leading,38).frame(width:480,height:72).background(Color(white:247/255),in:RoundedRectangle(cornerRadius:16)).overlay { ReferencePracticeControl(label:"- U 0 经验",identifier:"leaderboard-guest-profile",enabled:true,action:profile,face:AnyView(Color.clear),role:.link).frame(width:480,height:72) }.offset(y:612)
         }.frame(width:480,height:684,alignment:.topLeading).clipped()
     }
 }

@@ -251,11 +251,22 @@ if let index = CommandLine.arguments.firstIndex(of: "--exercise-home-journey"), 
                 Thread.sleep(forTimeInterval:0.7)
                 if let state = step["state"] as? String {
                     var facts = observe()
+                    if let aliases = step["element_aliases"] as? [String:String] {
+                        var measured = facts["elements"] as? [String:Any] ?? [:]
+                        for (sourceID,nativeID) in aliases {
+                            if var value = measured[nativeID] as? [String:Any] {
+                                value["native_identifier"] = nativeID
+                                measured[sourceID] = value
+                            }
+                        }
+                        facts["elements"] = measured
+                    }
                     let elements = facts["elements"] as? [String: Any] ?? [:]
                     let profile = elements["path-profile-later"] != nil
                     let legendary = !profile && elements["legendary-quit"] != nil
                     facts["interactions"] = ["profile_present":profile, "legendary_present":legendary,
                         "completed_popover_present": !profile && !legendary && elements["completed-practice"] != nil,
+                        "guest_profile_present":elements["guest-profile-joined"] != nil, "guest_introduction_present":elements["guest-profile-later"] != nil, "guest_error_present":elements["guest-profile-error"] != nil,
                         "status_selected":elements["leaderboard-selected-status"] != nil, "footer_status_visible":elements["leaderboard-footer-status"] != nil, "status_clear_visible":elements["leaderboard-clear"] != nil,
                         "practice_present":elements["pair-left-0"] != nil, "learn_present":elements["start-lesson"] != nil, "exit_confirmation_present":elements["practice-quit-confirm"] != nil]
                     var captureAttempts: [[String: Any]] = []

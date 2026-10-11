@@ -1,5 +1,7 @@
 # LingoSeed · Swift 教育基座
 
+独立访客档案已接Swift页脚导航、原版素材、引导关闭和成就404；首轮顶层路由落错旧renderer的失败已保留并修复。v57保留3846旧项增9，最终4状态93pass/10fail/94unavailable，3整图仍fail；同二进制排行榜回归87pass/15fail。头像/邀请交互与动态经验累计仍缺，下一批先补这些入口；不宣称1:1或RSI收益。[证据及复跑](../duolingo-web/evidence/english-profile-native-v1/README.md)。
+
 按历史frontier实际进入排行榜访客档案，发现独立档案、头像引导、成就404、邀请浮层及15肤色radio编辑器；修复采集器漏读aria-checked。v56保留3188旧项追加658，源649pass/9pending；候选新增全not_run，本批未实现Swift新页。下一批先接档案布局/导航与已观察交互，继续头像保存/返回和声音；无新RSI收益宣称。[证据及复跑](../duolingo-web/evidence/english-profile-frontier-v1/README.md)。
 
 原版探索确认状态底色、悬停、双徽章和段落内边距遗漏，v55保留3084旧项追加104。最终两状态87pass/15fail，整图仍失败；同一二进制5个重启状态及10个主页分支完成。保留字体猜测被否定、图片溢出和内边距差异略增的负结果；下一步优先未访问个人档案/主页分支及声音，未宣称1:1或RSI因果收益。[证据与复跑](../duolingo-web/evidence/english-leaderboard-visual-v1/README.md)。
