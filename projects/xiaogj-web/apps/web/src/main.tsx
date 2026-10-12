@@ -540,7 +540,7 @@ function Home() {
     (id) => !["todo", "quick", "overview", "recent", "guide"].includes(id),
   );
   return (
-    <main className={`home-page theme-${background}`}>
+    <main className={`home-page theme-${background}${state.draft ? " home-editing" : ""}`}>
       <header className="hero">
         <div>
           <b>{data.profile.greeting}</b>
@@ -586,10 +586,10 @@ function Home() {
               </div>
             )}
           </div>
-          <button className="standard-button" onClick={state.begin}>
+          {!state.draft && <button className="standard-button" onClick={state.begin}>
             <Icon name="a-Setting-oneshezhi" />
             自定义首页
-          </button>
+          </button>}
         </div>
       </header>
       <div className="home-layout">
@@ -603,10 +603,10 @@ function Home() {
             <Plus size={16} />
             添加卡片
           </button>
+          <div className="spacer" />
           <button className="standard-button" onClick={state.reset}>
             恢复默认
           </button>
-          <div className="spacer" />
           <button className="standard-button" onClick={state.cancel}>
             取消
           </button>
