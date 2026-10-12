@@ -344,3 +344,42 @@
   padding: 12px;
   font-size: 12px;
 }
+
+/* Observed source layout below 1400px; larger viewport keeps its own mold. */
+@media (max-width: 1399px) {
+  .student-business { font-family: "Microsoft YaHei", serif; font-size: 12px; min-height: calc(100vh - 64px); }
+  .student-business > aside { width: 155px; height: calc(100vh - 64px); }
+  .student-business > aside > a { height: 40px; padding: 0 8px 0 26px; white-space: nowrap; }
+  .student-business > aside > a:nth-of-type(3),
+  .student-business > aside > a:nth-of-type(6),
+  .student-business > aside > a:nth-of-type(8) { border-top-width: 16px; height: 56px; }
+  .student-rail-footer { width: 155px; }
+  .students-page { color: #333; }
+  .students-breadcrumb { padding: 0 16px; }
+  .students-tabs { height: 41px; padding-left: 12px; }
+  .students-tabs button { padding: 0 8px; font-weight: 400; }
+  .students-query > input, .students-query label { font-size: 12px; }
+  .students-query { align-items: flex-start; }
+  .students-query :is(button, a) { border-radius: 3px; font-size: 14px; }
+  .students-query label { height: 32px; }
+  .students-query-help { width: 12px; margin-right: 8px; align-self: center; }
+  .students-query .students-query-submit { width: 81px; }
+  .students-query .students-reset { width: 60px; margin-left: 7px; margin-right: 7px; }
+  .students-query input[type=checkbox] { width: 14px; height: 14px; }
+  .students-actions { height: 66px; }
+  .students-actions button { height: 26px; font-size: 12px; }
+  .students-table { min-width: 1170px; font-size: 12px; }
+  .students-table col:nth-last-child(-n+2) { width: 80px; }
+  .students-table th { font-family: header-icons, "Microsoft YaHei", serif; height: 39px; font-weight: 400; }
+  .students-table td { height: 35px; color: #333; }
+  .students-table td button { font-size: 12px; }
+  .student-gender { font-family: Arial, sans-serif; font-size: 14px; margin-right: 6px; }
+  .student-gender.male { color: #2878e8; }
+  .students-table td .student-call { background: #2878e8; color: white; width: 16px; height: 16px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-left: 3px; }
+  .student-call svg { width: 10px; height: 10px; }
+  .students-table :is(th, td):last-child { position: sticky; right: 0; background: white; box-shadow: -4px 0 8px #00000008; }
+  .students-table th:last-child { background: #f0f1f5; }
+  .students-pagination { height: 43px; border: 1px solid #e3e6eb; padding-right: 8px; }
+  .students-page .students-help { top: 64px; }
+  body:has(.students-page) .site-header { font-family: "Microsoft YaHei", serif; }
+}

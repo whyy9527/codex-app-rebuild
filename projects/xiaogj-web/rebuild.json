@@ -48,7 +48,9 @@
     "query_fragments_scenarios": "projects/xiaogj-web/query-fragments-scenarios.json",
     "query_fragments_book": "projects/xiaogj-web/private/query-fragments-e2e-book.json",
     "query_fragments_evidence": "projects/xiaogj-web/evidence/2026-10-12-safari-query-rsi.md",
-    "query_initials_implementation": "projects/xiaogj-web/evidence/2026-10-12-student-name-initials.md"
+    "query_initials_implementation": "projects/xiaogj-web/evidence/2026-10-12-student-name-initials.md",
+    "students_safari_frontend_contract": "projects/xiaogj-web/students-safari-frontend-contract-v2.json",
+    "students_safari_frontend_evidence": "projects/xiaogj-web/evidence/2026-10-12-student-small-viewport.md"
   },
   "commands": {
     "build": [
@@ -569,6 +571,28 @@
       "compare",
       "--book",
       "projects/xiaogj-web/private/query-fragments-e2e-book.json",
+      "--observed",
+      "{observed}",
+      "--out",
+      "{out}"
+    ],
+    "observe_students_safari": [
+      "python3",
+      "-m",
+      "projects.xiaogj-web.tools.student_safari_frontend",
+      "--capture",
+      "{observed}",
+      "--out",
+      "{out}"
+    ],
+    "compare_students_safari": [
+      "python3",
+      "-m",
+      "capabilities.rebuild.frontend",
+      "--workspace",
+      ".",
+      "--contract",
+      "projects/xiaogj-web/students-safari-frontend-contract-v2.json",
       "--observed",
       "{observed}",
       "--out",

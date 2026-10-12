@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "scope": "相同Safari窗口的学员基线；旧Edge契约保留；不替代其他状态验收",
+  "requirements": [
+    {
+      "id": "safari-baseline.dimensions",
+      "state": "student-safari-baseline",
+      "kind": "capture_dimensions",
+      "pixels": [
+        2648,
+        1666
+      ],
+      "evidence": [
+        "projects/xiaogj-web/private/students-safari-pair-20261012/reference-baseline.png"
+      ]
+    },
+    {
+      "id": "safari-baseline.pixels",
+      "state": "student-safari-baseline",
+      "kind": "image_pixels",
+      "evidence": [
+        "projects/xiaogj-web/private/students-safari-pair-20261012/reference-baseline.png"
+      ],
+      "reference_image": "projects/xiaogj-web/private/students-safari-pair-20261012/reference-baseline.png",
+      "pixels": [
+        1324,
+        743
+      ],
+      "reference_capture": {
+        "content_rect_points": [
+          0,
+          90,
+          1324,
+          743
+        ],
+        "backing_scale": 2,
+        "window_points": [
+          1324,
+          833
+        ]
+      }
+    },
+    {
+      "id": "safari-baseline.text.查询",
+      "state": "student-safari-baseline",
+      "kind": "accessible_text",
+      "text": "查询",
+      "evidence": [
+        "projects/xiaogj-web/private/students-safari-pair-20261012/reference-baseline.ax.txt"
+      ]
+    },
+    {
+      "id": "safari-baseline.text.重置",
+      "state": "student-safari-baseline",
+      "kind": "accessible_text",
+      "text": "重置",
+      "evidence": [
+        "projects/xiaogj-web/private/students-safari-pair-20261012/reference-baseline.ax.txt"
+      ]
+    }
+  ]
+}
