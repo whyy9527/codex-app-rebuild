@@ -435,6 +435,28 @@
       "{observed}",
       "--out",
       "{out}"
+    ],
+    "compare_home_configuration": [
+      "python3",
+      "-m",
+      "capabilities.rebuild.frontend",
+      "--workspace",
+      ".",
+      "--contract",
+      "projects/xiaogj-web/home-configuration-contract.json",
+      "--observed",
+      "{observed}",
+      "--out",
+      "{out}"
+    ],
+    "prepare_home_symbols": [
+      "python3",
+      "-m",
+      "projects.xiaogj-web.tools.prepare_home_symbols",
+      "--source",
+      "projects/xiaogj-web/private/assets/home-symbols.svg",
+      "--out",
+      "projects/xiaogj-web/private/assets/home-symbols.normalized.svg"
     ]
   }
 }

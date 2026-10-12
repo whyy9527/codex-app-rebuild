@@ -1,0 +1,362 @@
+{
+  "schema_version": 1,
+  "requirements": [
+    {
+      "id": "quick-config.title",
+      "state": "quick-config",
+      "kind": "accessible_text",
+      "evidence": [
+        "projects/xiaogj-web/private/reference/2026-10-12-home/quick-config.ax.txt"
+      ],
+      "text": "配置快捷操作"
+    },
+    {
+      "id": "quick-search.title",
+      "state": "quick-search",
+      "kind": "accessible_text",
+      "evidence": [
+        "projects/xiaogj-web/private/reference/2026-10-12-home/quick-search-pasted-full.ax.txt"
+      ],
+      "text": "配置快捷操作"
+    },
+    {
+      "id": "overview-config.title",
+      "state": "overview-config",
+      "kind": "accessible_text",
+      "evidence": [
+        "projects/xiaogj-web/private/reference/2026-10-12-home/overview-config.ax.txt"
+      ],
+      "text": "配置数据概览"
+    },
+    {
+      "id": "add-card.title",
+      "state": "add-card",
+      "kind": "accessible_text",
+      "evidence": [
+        "projects/xiaogj-web/private/reference/2026-10-12-home/add-card.ax.txt"
+      ],
+      "text": "添加首页卡片"
+    },
+    {
+      "id": "quick-config.selection",
+      "state": "quick-config",
+      "kind": "element_value",
+      "evidence": [
+        "projects/xiaogj-web/private/reference/2026-10-12-home/quick-config.ax.txt"
+      ],
+      "element": "selected-shortcuts",
+      "value": "[\"意向学员管理\", \"学员信息管理\", \"新学员报名\", \"收费\", \"班级管理\", \"排课管理\", \"收费报表\"]"
+    },
+    {
+      "id": "quick-config.search-role",
+      "state": "quick-config",
+      "kind": "element_role",
+      "evidence": [
+        "projects/xiaogj-web/private/reference/2026-10-12-home/quick-config.ax.txt"
+      ],
+      "element": "shortcut-search",
+      "role": "textbox"
+    },
+    {
+      "id": "quick-config.search-value",
+      "state": "quick-config",
+      "kind": "element_value",
+      "evidence": [
+        "projects/xiaogj-web/private/reference/2026-10-12-home/quick-config.ax.txt"
+      ],
+      "element": "shortcut-search",
+      "value": ""
+    },
+    {
+      "id": "quick-search.selection",
+      "state": "quick-search",
+      "kind": "element_value",
+      "evidence": [
+        "projects/xiaogj-web/private/reference/2026-10-12-home/quick-search-pasted-full.ax.txt"
+      ],
+      "element": "selected-shortcuts",
+      "value": "[\"意向学员管理\", \"学员信息管理\", \"新学员报名\", \"收费\", \"班级管理\", \"排课管理\", \"收费报表\"]"
+    },
+    {
+      "id": "quick-search.search-role",
+      "state": "quick-search",
+      "kind": "element_role",
+      "evidence": [
+        "projects/xiaogj-web/private/reference/2026-10-12-home/quick-search-pasted-full.ax.txt"
+      ],
+      "element": "shortcut-search",
+      "role": "textbox"
+    },
+    {
+      "id": "quick-search.search-value",
+      "state": "quick-search",
+      "kind": "element_value",
+      "evidence": [
+        "projects/xiaogj-web/private/reference/2026-10-12-home/quick-search-pasted-full.ax.txt"
+      ],
+      "element": "shortcut-search",
+      "value": "邀约"
+    },
+    {
+      "id": "quick-search.results",
+      "state": "quick-search",
+      "kind": "element_value",
+      "evidence": [
+        "projects/xiaogj-web/private/reference/2026-10-12-home/quick-search-pasted-full.ax.txt"
+      ],
+      "element": "shortcut-catalog",
+      "value": "[\"邀约查询\"]"
+    },
+    {
+      "id": "overview-config.实收金额.role",
+      "state": "overview-config",
+      "kind": "element_role",
+      "evidence": [
+        "projects/xiaogj-web/private/reference/2026-10-12-home/overview-config.ax.txt"
+      ],
+      "element": "checkbox:实收金额",
+      "role": "checkbox"
+    },
+    {
+      "id": "overview-config.实收金额.checked",
+      "state": "overview-config",
+      "kind": "element_boolean",
+      "evidence": [
+        "projects/xiaogj-web/private/reference/2026-10-12-home/overview-config.ax.txt"
+      ],
+      "element": "checkbox:实收金额",
+      "field": "checked",
+      "expected": true
+    },
+    {
+      "id": "overview-config.实收金额.enabled",
+      "state": "overview-config",
+      "kind": "element_boolean",
+      "evidence": [
+        "projects/xiaogj-web/private/reference/2026-10-12-home/overview-config.ax.txt"
+      ],
+      "element": "checkbox:实收金额",
+      "field": "enabled",
+      "expected": true
+    },
+    {
+      "id": "overview-config.退费金额.role",
+      "state": "overview-config",
+      "kind": "element_role",
+      "evidence": [
+        "projects/xiaogj-web/private/reference/2026-10-12-home/overview-config.ax.txt"
+      ],
+      "element": "checkbox:退费金额",
+      "role": "checkbox"
+    },
+    {
+      "id": "overview-config.退费金额.checked",
+      "state": "overview-config",
+      "kind": "element_boolean",
+      "evidence": [
+        "projects/xiaogj-web/private/reference/2026-10-12-home/overview-config.ax.txt"
+      ],
+      "element": "checkbox:退费金额",
+      "field": "checked",
+      "expected": true
+    },
+    {
+      "id": "overview-config.退费金额.enabled",
+      "state": "overview-config",
+      "kind": "element_boolean",
+      "evidence": [
+        "projects/xiaogj-web/private/reference/2026-10-12-home/overview-config.ax.txt"
+      ],
+      "element": "checkbox:退费金额",
+      "field": "enabled",
+      "expected": true
+    },
+    {
+      "id": "overview-config.课消金额.role",
+      "state": "overview-config",
+      "kind": "element_role",
+      "evidence": [
+        "projects/xiaogj-web/private/reference/2026-10-12-home/overview-config.ax.txt"
+      ],
+      "element": "checkbox:课消金额",
+      "role": "checkbox"
+    },
+    {
+      "id": "overview-config.课消金额.checked",
+      "state": "overview-config",
+      "kind": "element_boolean",
+      "evidence": [
+        "projects/xiaogj-web/private/reference/2026-10-12-home/overview-config.ax.txt"
+      ],
+      "element": "checkbox:课消金额",
+      "field": "checked",
+      "expected": true
+    },
+    {
+      "id": "overview-config.课消金额.enabled",
+      "state": "overview-config",
+      "kind": "element_boolean",
+      "evidence": [
+        "projects/xiaogj-web/private/reference/2026-10-12-home/overview-config.ax.txt"
+      ],
+      "element": "checkbox:课消金额",
+      "field": "enabled",
+      "expected": true
+    },
+    {
+      "id": "overview-config.当前剩余学费.role",
+      "state": "overview-config",
+      "kind": "element_role",
+      "evidence": [
+        "projects/xiaogj-web/private/reference/2026-10-12-home/overview-config.ax.txt"
+      ],
+      "element": "checkbox:当前剩余学费",
+      "role": "checkbox"
+    },
+    {
+      "id": "overview-config.当前剩余学费.checked",
+      "state": "overview-config",
+      "kind": "element_boolean",
+      "evidence": [
+        "projects/xiaogj-web/private/reference/2026-10-12-home/overview-config.ax.txt"
+      ],
+      "element": "checkbox:当前剩余学费",
+      "field": "checked",
+      "expected": true
+    },
+    {
+      "id": "overview-config.当前剩余学费.enabled",
+      "state": "overview-config",
+      "kind": "element_boolean",
+      "evidence": [
+        "projects/xiaogj-web/private/reference/2026-10-12-home/overview-config.ax.txt"
+      ],
+      "element": "checkbox:当前剩余学费",
+      "field": "enabled",
+      "expected": true
+    },
+    {
+      "id": "overview-config.count",
+      "state": "overview-config",
+      "kind": "accessible_text",
+      "evidence": [
+        "projects/xiaogj-web/private/reference/2026-10-12-home/overview-config.ax.txt"
+      ],
+      "text": "已选择 4 项"
+    },
+    {
+      "id": "quick-config.dimensions",
+      "state": "quick-config",
+      "kind": "capture_dimensions",
+      "evidence": [
+        "projects/xiaogj-web/private/reference/2026-10-12-home/quick-config.ax.txt"
+      ],
+      "pixels": [
+        2940,
+        1666
+      ]
+    },
+    {
+      "id": "quick-config.pixels",
+      "state": "quick-config",
+      "kind": "image_pixels",
+      "evidence": [
+        "projects/xiaogj-web/private/reference/2026-10-12-home/quick-config.ax.txt"
+      ],
+      "reference_image": "projects/xiaogj-web/private/reference/2026-10-12-home/quick-config.png",
+      "pixels": [
+        1462,
+        749
+      ],
+      "reference_capture": {
+        "content_rect_points": [
+          4,
+          80,
+          1462,
+          749
+        ],
+        "backing_scale": 2,
+        "window_points": [
+          1470,
+          833
+        ],
+        "state_consistent": true
+      }
+    },
+    {
+      "id": "overview-config.dimensions",
+      "state": "overview-config",
+      "kind": "capture_dimensions",
+      "evidence": [
+        "projects/xiaogj-web/private/reference/2026-10-12-home/overview-config.ax.txt"
+      ],
+      "pixels": [
+        2940,
+        1666
+      ]
+    },
+    {
+      "id": "overview-config.pixels",
+      "state": "overview-config",
+      "kind": "image_pixels",
+      "evidence": [
+        "projects/xiaogj-web/private/reference/2026-10-12-home/overview-config.ax.txt"
+      ],
+      "reference_image": "projects/xiaogj-web/private/reference/2026-10-12-home/overview-config.png",
+      "pixels": [
+        1462,
+        749
+      ],
+      "reference_capture": {
+        "content_rect_points": [
+          4,
+          80,
+          1462,
+          749
+        ],
+        "backing_scale": 2,
+        "window_points": [
+          1470,
+          833
+        ],
+        "state_consistent": true
+      }
+    },
+    {
+      "id": "quick-config.pending-catalog",
+      "state": "quick-config",
+      "kind": "pending",
+      "evidence": [
+        "projects/xiaogj-web/private/reference/2026-10-12-home/quick-config.ax.txt"
+      ],
+      "description": "初始全部功能记录存在容器截取；滚动及权限全目录尚未完整采集。"
+    },
+    {
+      "id": "overview-config.pending-other-inputs",
+      "state": "overview-config",
+      "kind": "pending",
+      "evidence": [
+        "projects/xiaogj-web/private/reference/2026-10-12-home/overview-config.ax.txt"
+      ],
+      "description": "指标取消、拖动、边界、确定及跨会话持久化尚未原版验证。"
+    },
+    {
+      "id": "add-card.pending-media-and-actions",
+      "state": "add-card",
+      "kind": "pending",
+      "evidence": [
+        "projects/xiaogj-web/private/reference/2026-10-12-home/add-card.ax.txt"
+      ],
+      "description": "添加弹窗仅有 AX 差分，缺少配对截图；添加、隐藏、保存和持久化仍待共同验证。"
+    },
+    {
+      "id": "quick-search.pending-other-inputs",
+      "state": "quick-search",
+      "kind": "pending",
+      "evidence": [
+        "projects/xiaogj-web/private/reference/2026-10-12-home/quick-search-pasted-full.ax.txt"
+      ],
+      "description": "其他搜索词、输入方式、移除、选择与保存分支尚未共同验证。"
+    }
+  ]
+}

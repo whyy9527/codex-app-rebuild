@@ -1174,10 +1174,16 @@ i {
 .modal h2 {
   margin: 0;
   font-family: inherit;
-  font-size: 18px;
-  line-height: 26px;
+  font-size: 14px;
+  line-height: 20px;
   font-weight: 500;
 }
+.modal > header { padding: 10px 20px; }
+.modal-overview { width: 700px; }
+.modal-overview .modal-body { height: 430px; background: #f5f6fa; padding: 24px; }
+.modal-overview .todo-options { gap: 12px; }
+.modal-overview .todo-options label { height: 64px; padding: 16px; border-radius: 8px; background: white; font-size: 16px; }
+.modal-overview > footer { background: #f5f6fa; padding: 10px 24px; color: #909399; font-size: 12px; }
 .header-tools {
   right: 4px;
 }

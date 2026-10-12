@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "scope": "首页已观察的配置弹窗与名称搜索，不代表首页或业务需求全集。",
+  "driver": "CUA 原生 Edge；按当前 AX 定位控件，操作后重新读取，不复用数字索引。",
+  "preparation": [
+    "确认当前标准窗口 URL 属于目标端；首页顶部、默认七项快捷操作与四项指标。原版状态不满足时记录原因，不用文件伪造恢复。",
+    "实际窗口1470×833点、2×采样；只保存已确认端的捕获。原版浏览器受其他任务切换影响时按工作流停止，不能反复重启争抢窗口。"
+  ],
+  "steps": [
+    { "action": "点击自定义首页，再点击快捷操作卡片的配置", "capture": "quick-config.ax.txt", "image": "quick-config.png" },
+    { "action": "点击搜索功能名称输入框并粘贴邀约", "capture": "quick-search-pasted-full.ax.txt" },
+    { "action": "取消快捷操作配置，再点击数据概览卡片的配置", "capture": "overview-config.ax.txt", "image": "overview-config.png" },
+    { "action": "取消数据概览配置，再点击添加卡片", "capture": "add-card.ax.txt" },
+    { "action": "关闭添加卡片，再取消首页编辑，不保存偏好", "capture": "returned-home.ax.txt" }
+  ],
+  "limitations": [
+    "当前原版契约来自历史实际捕获；这些状态并不证明上述完整连续旅程已经在原版重跑。",
+    "原版添加卡片只有 AX 差分，未补造完整 AX 或截图。",
+    "捕获后实际查看截图和配对 AX，写入对应文件哈希的 .review.json；该复核只确定比较前置状态，不自报视觉通过。",
+    "保存、权限、跨会话持久化、其他搜索与拖动输入分支继续未知。"
+  ]
+}

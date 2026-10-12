@@ -15,6 +15,10 @@ STATES = {
     'todo-config': 'todo-config-full',
     'todo-draft': 'todo-draft-full',
     'cancelled': 'cancelled-full',
+    'quick-config': 'quick-config',
+    'quick-search': 'quick-search-pasted-full',
+    'overview-config': 'overview-config',
+    'add-card': 'add-card',
 }
 LINE = re.compile(r'^\s*\d+ (text|button|checkbox|link|heading)(?: \(([^)]*)\))? (.*)$')
 
@@ -26,7 +30,10 @@ def observe(directory):
         if not path.exists():
             continue
         text, elements = [], {}
-        for line in path.read_text().splitlines():
+        # A recorded AX diff can establish added dialog nodes, while omitted
+        # surrounding state remains unknown; do not synthesize the old tree.
+        captured_lines = [re.sub(r'^[+~](?=\s)', '', line) for line in path.read_text().splitlines()]
+        for line in captured_lines:
             match = LINE.match(line)
             if not match:
                 continue
@@ -43,7 +50,37 @@ def observe(directory):
                 for prefix, key in [('待我审批 ', 'todo-approval'), ('近30天待补课 ', 'todo-makeup'), ('近7天生日学员 ', 'todo-birthday')]:
                     if name.startswith(prefix):
                         elements[key] = element
+        if state.startswith('quick-'):
+            lines = captured_lines
+            start = next((i for i, line in enumerate(lines) if re.search(r'\d+ heading 已选功能', line)), None)
+            end = next((i for i, line in enumerate(lines) if re.search(r'\d+ heading 全部功能', line)), None)
+            if start is not None and end is not None:
+                selected, previous_text = [], None
+                for line in lines[start:end]:
+                    leaf = re.match(r'^\s*\d+ text (.*)$', line)
+                    if leaf:
+                        previous_text = leaf[1].strip()
+                    if re.match(r'^\s*\d+ button 移除', line) and previous_text is not None:
+                        selected.append(previous_text)
+                elements['selected-shortcuts'] = {'value': json.dumps(selected, ensure_ascii=False)}
+            if end is not None:
+                footer = next((i for i in range(end, len(lines)) if re.search(r'\d+ text 菜单范围', lines[i])), len(lines))
+                fields = [line for line in lines[end:footer] if re.search(r'\d+ text field', line)]
+                if fields:
+                    value = re.search(r'Value: ([^,\n]+)', fields[0])
+                    elements['shortcut-search'] = {'role': 'textbox', 'value': value[1] if value else ''}
+                catalog = [re.sub(r'^\s*\d+ button (?:\(disabled\) )?', '', line).split(', Value:')[0].strip() for line in lines[end:footer] if re.match(r'^\s*\d+ button ', line)]
+                elements['shortcut-catalog'] = {'value': json.dumps(catalog, ensure_ascii=False)}
         result['states'][state] = {'accessible_text': text, 'elements': elements, 'evidence': str(path)}
+        modal_capture = directory / (filename + '.png')
+        if state in ('quick-config', 'overview-config') and modal_capture.exists():
+            import hashlib
+            review_path = directory / (filename + '.review.json')
+            review = json.loads(review_path.read_text()) if review_path.exists() else {}
+            reviewed = review.get('sha256') == hashlib.sha256(modal_capture.read_bytes()).hexdigest() and review.get('same_state') is True and review.get('unobscured') is True
+            with Image.open(modal_capture) as image:
+                result['states'][state]['capture_pixels'] = list(image.size)
+            result['states'][state]['capture'] = {'path': str(modal_capture), 'content_rect_points': [4, 80, 1462, 749], 'backing_scale': 2, 'window_points': [1470, 833], 'state_consistent': reviewed}
     capture = directory / 'baseline-final.png'
     if capture.exists() and 'home' in result['states']:
         with Image.open(capture) as image:

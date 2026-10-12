@@ -45,7 +45,7 @@ function useHome() {
 function Icon({ name, className = "" }: { name: string; className?: string }) {
   return (
     <svg className={`icon ${className}`} aria-hidden="true">
-      <use href={`/home-symbols.svg#w2-${name}`} />
+      <use href={`/home-symbols.normalized.svg#w2-${name}`} />
     </svg>
   );
 }
@@ -200,8 +200,10 @@ function Modal({
   footer,
   onClose,
   wide = false,
+  className = "",
 }: {
   wide?: boolean;
+  className?: string;
   title: string;
   children: React.ReactNode;
   footer?: React.ReactNode;
@@ -215,7 +217,7 @@ function Modal({
     <dialog
       aria-label={title}
       ref={ref}
-      className={`modal ${wide ? "modal-wide" : ""}`}
+      className={`modal ${wide ? "modal-wide" : ""} ${className}`}
       onCancel={(e) => {
         e.preventDefault();
         onClose();
@@ -598,11 +600,12 @@ function Home() {
       )}
       {(modal === "todo" || modal === "overview") && (
         <Modal
+          className={modal === "overview" ? "modal-overview" : ""}
           title={modal === "todo" ? "配置今日待办" : "配置数据概览"}
           onClose={() => setModal(null)}
           footer={
             <>
-              <span>已选择 {todoDraft.length} 项</span>
+              <span>{`已选择 ${todoDraft.length} 项`}</span>
               <div className="spacer" />
               <button
                 className="standard-button"
@@ -686,7 +689,7 @@ function Home() {
       )}
       {modal === "add" && (
         <Modal
-          title="添加卡片"
+          title="添加首页卡片"
           onClose={() => setModal(null)}
           footer={
             <>
