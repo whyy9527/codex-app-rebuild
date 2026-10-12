@@ -18,3 +18,5 @@
 项目锁文件拥有本案例实际安装版本。依赖分层接入，不将安装包视为业务已完成。当前开发入口只验证 React → 共享 ts-rest 契约 → NestJS 健康检查；数据库、认证、权限及业务页面尚待实现。原版是功能与视觉的验收来源，参考仓库不是本案例业务规格。
 
 项目 `.nvmrc` 指定 Node 24.18.0；首轮本机当前 Node 为 24.13.1；随后通过 npx 提供的 Node 24.18.0 完成无缓存构建及类型检查，未修改全局运行时。开发服务绑定本机 127.0.0.1；不部署或连接参考仓库的 AWS、数据库等基础设施。
+
+学员列表已实际接入 Prisma 7.9.1／MySQL 8.4.11，迁移与重启读取验证见 [学员页证据](evidence/2026-10-12-students.md)。驱动适配器和 Prisma 7 配置依据 [官方 MySQL quickstart](https://www.prisma.io/docs/v7/prisma-orm/quickstart/mysql)；使用固定 7.9.1 CLI 的 `prisma.config.ts`，未跟随文档较新版本改动生成器配置文件名。

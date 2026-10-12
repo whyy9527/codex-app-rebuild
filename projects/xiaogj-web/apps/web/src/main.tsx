@@ -28,6 +28,7 @@ import {
 import { navigation } from "./navigation";
 import { useHomeState, defaultCards } from "./home-state";
 import "./style.css";
+import { StudentsPage, StudentRailFooter } from "./students";
 const client = initClient(api, { baseUrl: "" });
 function useHome() {
   return useQuery({
@@ -1049,12 +1050,15 @@ function Donut({
   );
 }
 function BusinessPage() {
+  const [collapsed, setCollapsed] = useState(false);
   const { page } = businessRoute.useParams();
   const section = navigation.find((n) => n.items.includes(page));
   return (
-    <main className="business-shell">
+    <main
+      className={`business-shell ${page === "学员信息管理" ? "student-business" : ""} ${collapsed ? "rail-collapsed" : ""}`}
+    >
       <aside>
-        <b>{section?.title}</b>
+        {page !== "学员信息管理" && <b>{section?.title}</b>}
         {section?.items.map((n) => (
           <BusinessLink
             label={n}
@@ -1062,13 +1066,22 @@ function BusinessPage() {
             className={n === page ? "active" : ""}
           />
         ))}
+        {page === "学员信息管理" && (
+          <StudentRailFooter onCollapse={() => setCollapsed((c) => !c)} />
+        )}
       </aside>
       <section>
-        <p>
-          当前位置：{section?.title} &gt; {page}
-        </p>
-        <h1>{page}</h1>
-        <p role="status">此业务页面尚未完成复刻。</p>
+        {page === "学员信息管理" ? (
+          <StudentsPage />
+        ) : (
+          <>
+            <p>
+              当前位置：{section?.title} &gt; {page}
+            </p>
+            <h1>{page}</h1>
+            <p role="status">此业务页面尚未完成复刻。</p>
+          </>
+        )}
       </section>
     </main>
   );

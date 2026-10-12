@@ -4,6 +4,7 @@ import { NestFactory } from "@nestjs/core";
 import { TsRestHandler, tsRestHandler } from "@ts-rest/nest";
 import { api } from "@xiaogj/contracts";
 import { HomeModule } from "./home/home.module.js";
+import { StudentsModule } from "./students/students.module.js";
 @Controller()
 class HealthController {
   @TsRestHandler(api.health)
@@ -14,7 +15,8 @@ class HealthController {
     }));
   }
 }
-@Module({ imports: [HomeModule], controllers: [HealthController] })
+@Module({ imports: [HomeModule, StudentsModule], controllers: [HealthController] })
 class AppModule {}
 const app = await NestFactory.create(AppModule);
+app.enableShutdownHooks();
 await app.listen(Number(process.env.PORT ?? 3101), "127.0.0.1");

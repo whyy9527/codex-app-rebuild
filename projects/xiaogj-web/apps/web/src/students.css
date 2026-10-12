@@ -1,0 +1,314 @@
+.student-business {
+  background: #edf0f5;
+  font-family: "Microsoft YaHei", sans-serif;
+  font-size: 14px;
+}
+.student-business > aside {
+  position: relative;
+  padding: 0 0 40px;
+  height: calc(100vh - 80px);
+  overflow: auto;
+}
+.student-business > aside > a {
+  height: 50px;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: #555;
+}
+.student-business > aside > a:nth-of-type(3),
+.student-business > aside > a:nth-of-type(6),
+.student-business > aside > a:nth-of-type(8) {
+  border-top: 10px solid #edf0f5;
+  height: 60px;
+}
+.student-business > aside > a.active {
+  color: white;
+  background: #3297fb;
+}
+.student-business > section {
+  min-width: 0;
+  padding: 0;
+}
+.student-rail-footer {
+  position: fixed;
+  bottom: 0;
+  width: 180px;
+  height: 40px;
+  display: flex;
+  gap: 48px;
+  align-items: center;
+  background: #fff;
+  border: 0;
+  border-top: 1px solid #eee;
+  padding: 0 20px;
+  color: #666;
+}
+.student-business.rail-collapsed > aside {
+  width: 50px;
+}
+.student-business.rail-collapsed > aside > a {
+  overflow: hidden;
+  white-space: nowrap;
+  padding-left: 15px;
+  font-size: 0;
+}
+.student-business.rail-collapsed .student-rail-footer {
+  width: 50px;
+  padding: 0 15px;
+  font-size: 0;
+}
+.students-page {
+  position: relative;
+  min-width: 1120px;
+  color: #555;
+}
+.students-page button {
+  cursor: pointer;
+  font: inherit;
+}
+.students-breadcrumb {
+  height: 30px;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  font-size: 12px;
+  color: #888;
+}
+.students-tabs {
+  height: 46px;
+  background: white;
+  display: flex;
+  padding-left: 20px;
+  gap: 30px;
+}
+.students-tabs button {
+  padding: 0 4px;
+  background: none;
+  border: 0;
+  color: #3297fb;
+}
+.students-tabs .selected {
+  border-bottom: 2px solid #3297fb;
+}
+.students-content {
+  margin: 20px;
+  padding: 0 0 20px;
+  background: #fff;
+}
+.students-query {
+  height: 68px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  background: #f7f8fa;
+  white-space: nowrap;
+}
+.students-query > input {
+  width: 236px;
+  height: 36px;
+  border: 1px solid #ddd;
+  border-radius: 2px;
+  background: white;
+  padding: 0 10px;
+  font: inherit;
+  font-size: 12px;
+  outline-color: #3297fb;
+}
+.students-query button {
+  height: 36px;
+  padding: 0 15px;
+  background: #fff;
+  border: 1px solid #ddd;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: #555;
+}
+.students-query .students-query-submit {
+  background: #3297fb;
+  color: white;
+  border-color: #3297fb;
+  margin-left: -1px;
+}
+.students-query .students-reset {
+  background: transparent;
+  border: 0;
+  margin-right: 16px;
+}
+.students-query label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: 18px;
+  font-size: 12px;
+}
+.students-page input[type="checkbox"] {
+  accent-color: #3297fb;
+  width: 15px;
+  height: 15px;
+  margin: 0;
+  vertical-align: middle;
+}
+.students-query label svg {
+  color: #b8bdc5;
+}
+.students-query .students-bookmark {
+  margin-left: auto;
+  padding: 0 0 0 12px;
+  background: none;
+  border: 0;
+  color: #b8bdc5;
+}
+.students-actions {
+  height: 70px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.students-actions button {
+  height: 30px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+  border: 1px solid #d8dce2;
+  border-radius: 2px;
+  color: #666;
+  background: white;
+  font-size: 12px;
+}
+.students-actions .primary {
+  color: white;
+  background: #3297fb;
+  border-color: #3297fb;
+}
+.students-actions .students-fields {
+  margin-left: auto;
+  color: #3297fb;
+  border: 0;
+  padding-right: 0;
+}
+.students-table-scroll {
+  overflow-x: auto;
+}
+.students-table {
+  border-collapse: collapse;
+  table-layout: fixed;
+  width: 100%;
+  font-size: 12px;
+}
+.students-table th {
+  height: 50px;
+  text-align: left;
+  background: #f3f5f8;
+  font-weight: normal;
+  color: #555;
+}
+.students-table th,
+.students-table td {
+  padding: 0 10px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  border-bottom: 1px solid #e8ebef;
+}
+.students-table td {
+  height: 40px;
+  color: #555;
+}
+.students-table th:first-child,
+.students-table td:first-child {
+  text-align: center;
+}
+.students-table th button {
+  border: 0;
+  padding: 0;
+  margin-left: 4px;
+  background: none;
+  color: #a9b0bc;
+  vertical-align: middle;
+}
+.students-table td button {
+  border: 0;
+  background: none;
+  padding: 0;
+  color: #3297fb;
+  font-size: 12px;
+}
+.student-gender {
+  margin-left: 6px;
+  font-size: 14px;
+}
+.student-gender.male {
+  color: #43b3ed;
+}
+.student-gender.female {
+  color: #fa72aa;
+}
+.student-phone {
+  display: inline-block;
+  max-width: calc(100% - 20px);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: middle;
+}
+.students-table td .student-call {
+  margin-left: 7px;
+  vertical-align: middle;
+  color: #3d97f7;
+}
+.student-operation svg {
+  vertical-align: middle;
+  margin-left: 5px;
+}
+.students-pagination {
+  height: 50px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 18px;
+  font-size: 12px;
+  color: #888;
+}
+.students-pagination button {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #e3e6eb;
+  background: #fff;
+  color: #3297fb;
+  display: grid;
+  place-items: center;
+}
+.students-pagination button:disabled {
+  color: #ccc;
+  cursor: default;
+}
+.students-pagination input {
+  width: 60px;
+  height: 30px;
+  text-align: center;
+  border: 1px solid #ddd;
+  font: inherit;
+  margin: 0 -12px;
+}
+.students-help {
+  position: fixed;
+  right: 0;
+  top: 50%;
+  width: 24px;
+  background: #fff;
+  border: 1px solid #e3e6eb;
+  color: #3297fb;
+  padding: 6px 4px;
+  font-size: 12px !important;
+  line-height: 19px;
+}
+.students-message {
+  background: #fff8e7;
+  padding: 12px;
+  font-size: 12px;
+}

@@ -64,7 +64,41 @@ export const homeSnapshot = z.object({
   ),
 });
 export type HomeSnapshot = z.infer<typeof homeSnapshot>;
+export const studentsSnapshot = z.object({
+  rows: z.array(
+    z.object({
+      id: z.string(),
+      name: z.string(),
+      account: z.string(),
+      number: z.string(),
+      identity: z.string(),
+      phone: z.string(),
+      englishName: z.string(),
+      card: z.string(),
+      school: z.string(),
+      status: z.string(),
+      gender: z.enum(["male", "female"]),
+    }),
+  ),
+  total: z.number().int().nonnegative(),
+  page: z.number().int().positive(),
+  pageSize: z.number().int().positive(),
+  pages: z.number().int().positive(),
+});
+export type StudentsSnapshot = z.infer<typeof studentsSnapshot>;
 export const api = c.router({
+  students: {
+    method: "GET",
+    path: "/api/students",
+    query: z.object({
+      page: z.coerce.number().int().positive().default(1),
+      search: z.string().default(""),
+    }),
+    responses: {
+      200: studentsSnapshot,
+      503: z.object({ message: z.string() }),
+    },
+  },
   health: {
     method: "GET",
     path: "/api/health",

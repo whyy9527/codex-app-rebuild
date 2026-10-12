@@ -19,6 +19,35 @@
       "dependsOn": [
         "^build"
       ]
+    },
+    "@xiaogj/api#generate": {
+      "cache": false,
+      "outputs": [
+        "src/generated/**"
+      ]
+    },
+    "@xiaogj/api#build": {
+      "dependsOn": [
+        "^build",
+        "@xiaogj/api#generate"
+      ],
+      "outputs": [
+        "dist/**"
+      ]
+    },
+    "@xiaogj/api#typecheck": {
+      "dependsOn": [
+        "^build",
+        "@xiaogj/api#generate"
+      ]
+    },
+    "@xiaogj/api#dev": {
+      "dependsOn": [
+        "^build",
+        "@xiaogj/api#generate"
+      ],
+      "cache": false,
+      "persistent": true
     }
   }
 }

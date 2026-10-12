@@ -7,21 +7,28 @@
     "build": "tsc -p tsconfig.json",
     "typecheck": "tsc --noEmit",
     "dev": "tsx watch src/main.ts",
-    "start": "node dist/main.js"
+    "start": "node dist/main.js",
+    "generate": "prisma generate",
+    "db:migrate": "prisma migrate deploy",
+    "db:import-students": "tsx src/import-students.ts"
   },
   "dependencies": {
-    "@xiaogj/contracts": "workspace:*",
     "@nestjs/common": "^11.1.18",
     "@nestjs/core": "^11.1.18",
     "@nestjs/platform-express": "^11.1.18",
+    "@prisma/adapter-mariadb": "7.9.1",
+    "@prisma/client": "7.9.1",
     "@ts-rest/nest": "^3.52.1",
+    "@xiaogj/contracts": "workspace:*",
+    "dotenv": "^17.4.2",
     "express": "^5.2.1",
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.2",
     "zod": "3.25.76"
   },
   "devDependencies": {
-    "tsx": "^4.22.4",
-    "@types/node": "^24.10.0"
+    "@types/node": "^24.10.0",
+    "prisma": "7.9.1",
+    "tsx": "^4.22.4"
   }
 }

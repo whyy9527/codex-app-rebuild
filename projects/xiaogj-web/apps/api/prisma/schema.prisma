@@ -1,0 +1,37 @@
+generator client {
+  provider = "prisma-client"
+  output = "../src/generated/prisma"
+  moduleFormat = "esm"
+  importFileExtension = "js"
+}
+
+datasource db {
+  provider = "mysql"
+}
+
+model StudentCapture {
+  id       String @id @db.VarChar(80)
+  total    Int
+  page     Int
+  pageSize Int
+  pages    Int
+  students Student[]
+}
+
+model Student {
+  id          String @id @db.VarChar(80)
+  name        String @db.VarChar(200)
+  account     String @db.VarChar(200)
+  number      String @db.VarChar(80)
+  identity    String @db.VarChar(80)
+  phone       String @db.VarChar(80)
+  englishName String @db.VarChar(200)
+  card        String @db.VarChar(80)
+  school      String @db.VarChar(200)
+  status      String @db.VarChar(80)
+  gender      String @db.VarChar(20)
+  position    Int
+  captureId   String @db.VarChar(80)
+  capture     StudentCapture @relation(fields: [captureId], references: [id], onDelete: Cascade)
+  @@index([captureId, position])
+}
