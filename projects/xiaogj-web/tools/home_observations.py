@@ -21,6 +21,8 @@ STATES = {
     'add-card': 'add-card',
     'recent-added': 'recent-card',
     'recent-add-options': 'recent-card-draft',
+    'chart-schedule': 'chart-schedule',
+    'chart-attendance': 'chart-attendance',
 }
 LINE = re.compile(r'^\s*\d+ (text|button|checkbox|link|heading)(?: \(([^)]*)\))? (.*)$')
 
@@ -82,6 +84,16 @@ def observe(directory):
                 if re.match(r'^\s*\d+ button 添加$', line):
                     available.append(previous_text[-2:])
             elements['add-card-options'] = {'value': json.dumps(available, ensure_ascii=False)}
+        if state.startswith('chart-'):
+            caption = next((re.sub(r'^\s*\d+ link ', '', line).split(', Value:')[0].strip() for line in captured_lines if re.match(r'^\s*\d+ link \d+ / \d+ 近7日', line)), None)
+            if caption is None:
+                start = next((i for i, line in enumerate(captured_lines) if re.search(r'\d+ text 近7日数据$', line)), len(captured_lines))
+                end = next((i for i in range(start + 1, len(captured_lines)) if re.search(r'\d+ image .*近7日趋势$', captured_lines[i])), len(captured_lines))
+                leaves = [re.sub(r'^\s*\d+ text ', '', line).strip() for line in captured_lines[start + 1:end] if re.match(r'^\s*\d+ text ', line)]
+                if leaves:
+                    caption = ' '.join(leaves)
+            if caption is not None:
+                elements['chart-summary'] = {'value': re.sub(r'\s+', ' ', caption).strip()}
         result['states'][state] = {'accessible_text': text, 'elements': elements, 'evidence': str(path)}
         modal_capture = directory / (filename + '.png')
         if state in ('quick-config', 'overview-config') and modal_capture.exists():

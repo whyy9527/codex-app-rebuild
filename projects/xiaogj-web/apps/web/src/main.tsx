@@ -870,7 +870,7 @@ function TrendChart({
   const values = [data.income, data.schedule, data.attendance][mode]!;
   const dates = data.dates;
   return (
-    <section className="chart-panel">
+    <section className={`chart-panel chart-mode-${mode}`}>
       <div className="chart-heading">
         <div>
           <b>
@@ -899,7 +899,7 @@ function TrendChart({
             <g key={i}>
               <text
                 x="36"
-                y={17 + i * (mode === 1 ? 52.5 : 42)}
+                y={17 + i * (mode === 1 ? 56 : 44.8)}
                 textAnchor="end"
               >
                 {mode === 2
@@ -911,8 +911,8 @@ function TrendChart({
               <line
                 x1="48"
                 x2="838"
-                y1={12 + i * (mode === 1 ? 52.5 : 42)}
-                y2={12 + i * (mode === 1 ? 52.5 : 42)}
+                y1={12 + i * (mode === 1 ? 56 : 44.8)}
+                y2={12 + i * (mode === 1 ? 56 : 44.8)}
               />
             </g>
           ))}
@@ -932,9 +932,9 @@ function TrendChart({
                 <rect
                   key={`${i}-${n}`}
                   x={48 + ((n + 0.5) * 790) / 7 - 20 + i * 22}
-                  y={222 - value * 105}
+                  y={236 - value * 112}
                   width="18"
-                  height={value * 105}
+                  height={value * 112}
                   className={`series-${i}`}
                 />
               )),
@@ -947,23 +947,23 @@ function TrendChart({
                     className={`chart-area series-${i}`}
                     d={
                       mode === 0
-                        ? "M48 222H838V222Z"
-                        : "M48 222H706.3C772 222 772 12 838 12V222Z"
+                        ? "M48 236H838V236Z"
+                        : "M48 236H706.3C770.5 236 816.05 113 838 12V236Z"
                     }
                   />
                   <path
                     className={`chart-line series-${i}`}
                     d={
                       mode === 0
-                        ? "M48 222H838"
-                        : "M48 222H706.3C772 222 772 12 838 12"
+                        ? "M48 236H838"
+                        : "M48 236H706.3C770.5 236 816.05 113 838 12"
                     }
                   />
                   {dates.map((_, n) => (
                     <circle
                       key={n}
                       cx={48 + (n * 790) / 6}
-                      cy={mode === 2 && n === 6 ? 12 : 222}
+                      cy={mode === 2 && n === 6 ? 12 : 236}
                       r="3"
                       className={`chart-point series-${i}`}
                     />

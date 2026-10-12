@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "requirements": [
+    {
+      "id": "chart-schedule.summary",
+      "state": "chart-schedule",
+      "kind": "element_value",
+      "element": "chart-summary",
+      "value": "4 / 1 近7日排课/点名 应点名排课 已点名排课",
+      "evidence": [
+        "projects/xiaogj-web/private/reference/2026-10-12-home/chart-schedule.ax.txt",
+        "projects/xiaogj-web/private/reference/2026-10-12-home/chart-schedule-full.png"
+      ]
+    },
+    {
+      "id": "chart-schedule.image-pending",
+      "state": "chart-schedule",
+      "kind": "pending",
+      "description": "现有两端截图滚动与整体布局尚未对齐；完整视觉、曲线与填色严格图像比较待同状态复验。",
+      "evidence": [
+        "projects/xiaogj-web/private/reference/2026-10-12-home/chart-schedule.ax.txt",
+        "projects/xiaogj-web/private/reference/2026-10-12-home/chart-schedule-full.png"
+      ]
+    },
+    {
+      "id": "chart-attendance.summary",
+      "state": "chart-attendance",
+      "kind": "element_value",
+      "element": "chart-summary",
+      "value": "2 / 2 近7日应出勤/实际出勤 应出勤学员 实际出勤学员",
+      "evidence": [
+        "projects/xiaogj-web/private/reference/2026-10-12-home/chart-attendance.ax.txt",
+        "projects/xiaogj-web/private/reference/2026-10-12-home/chart-attendance.png"
+      ]
+    },
+    {
+      "id": "chart-attendance.image-pending",
+      "state": "chart-attendance",
+      "kind": "pending",
+      "description": "现有两端截图滚动与整体布局尚未对齐；完整视觉、曲线与填色严格图像比较待同状态复验。",
+      "evidence": [
+        "projects/xiaogj-web/private/reference/2026-10-12-home/chart-attendance.ax.txt",
+        "projects/xiaogj-web/private/reference/2026-10-12-home/chart-attendance.png"
+      ]
+    }
+  ]
+}
