@@ -116,6 +116,12 @@ export const enrollmentSnapshot = z.object({
   attributionDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
   observedAt: z.string().datetime(),
 });
+export const enrollmentChoiceSnapshot = z.object({
+  title: z.string(), headers: z.array(z.string()).min(1), rows: z.array(z.array(z.string())),
+  total: z.number().int().nonnegative(), page: z.number().int().positive(),
+  totalPages: z.number().int().positive(), pageSize: z.number().int().positive(),
+  observedAt: z.string().datetime({ offset: true }), provenance: z.string(),
+}).refine(data => data.rows.every(row => row.length === data.headers.length), "Catalog row shape differs");
 export const recentClassesSnapshot = z.object({
   summary: z.string(),
   headers: z.array(z.string()).length(4),
@@ -140,6 +146,11 @@ export const api = c.router({
     method: "GET",
     path: "/api/enrollment/defaults",
     responses: { 401: unauthorized, 200: enrollmentSnapshot, 503: z.object({ message: z.string() }) },
+  },
+  enrollmentChoices: {
+    method: "GET", path: "/api/enrollment/choices/:kind",
+    pathParams: z.object({ kind: z.enum(["courses", "items"]) }),
+    responses: { 401: unauthorized, 200: enrollmentChoiceSnapshot, 503: z.object({ message: z.string() }) },
   },
   studentDetail: {
     method: "GET",

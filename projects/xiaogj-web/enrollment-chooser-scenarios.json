@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "scope": "Default chooser opening and dismissal only; private source catalog retained locally",
+  "knowledge": "observed",
+  "book": "projects/xiaogj-web/private/enrollment-chooser-e2e-book.json",
+  "source_evidence": "projects/xiaogj-web/private/enrollment-chooser-reference-e2e-20261012",
+  "cases": [
+    {
+      "id": "courses",
+      "precondition": "Authorized source or independent local session; blank enrollment form, left edge, Safari window 1324x833",
+      "actions": [
+        "Click 选课",
+        "Capture opened state",
+        "Escape; capture dismissed state"
+      ],
+      "assertions": [
+        "nonempty observed chooser",
+        "unchanged baseline",
+        "exact frozen source caption delta",
+        "dismiss restores baseline",
+        "final restoration"
+      ]
+    },
+    {
+      "id": "items",
+      "precondition": "Authorized source or independent local session; blank enrollment form, left edge, Safari window 1324x833",
+      "actions": [
+        "Click 选物品",
+        "Capture opened state",
+        "Escape; capture dismissed state"
+      ],
+      "assertions": [
+        "nonempty observed chooser",
+        "unchanged baseline",
+        "exact frozen source caption delta",
+        "dismiss restores baseline",
+        "final restoration"
+      ]
+    }
+  ],
+  "unknown": [
+    "search",
+    "sort",
+    "pagination",
+    "selection",
+    "confirmation",
+    "hover",
+    "keyboard navigation",
+    "persistence",
+    "permissions"
+  ]
+}

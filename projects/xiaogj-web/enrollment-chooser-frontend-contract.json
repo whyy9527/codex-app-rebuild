@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "scope": "Actual default course and item chooser overlays; strict paired Safari content comparison",
+  "requirements": [
+    {
+      "id": "enrollment-chooser.courses.pixels",
+      "state": "enrollment-chooser-courses",
+      "kind": "image_pixels",
+      "reference_image": "projects/xiaogj-web/private/enrollment-chooser-reference-e2e-20261012/courses/courses-opened.png",
+      "evidence": [
+        "projects/xiaogj-web/private/enrollment-chooser-reference-e2e-20261012/courses/courses-opened.png",
+        "projects/xiaogj-web/private/enrollment-chooser-reference-e2e-20261012/courses/courses-opened.ax.txt"
+      ],
+      "pixels": [
+        1324,
+        743
+      ],
+      "reference_capture": {
+        "content_rect_points": [
+          0,
+          90,
+          1324,
+          743
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1324,
+          833
+        ]
+      }
+    },
+    {
+      "id": "enrollment-chooser.items.pixels",
+      "state": "enrollment-chooser-items",
+      "kind": "image_pixels",
+      "reference_image": "projects/xiaogj-web/private/enrollment-chooser-reference-e2e-20261012/items/items-opened.png",
+      "evidence": [
+        "projects/xiaogj-web/private/enrollment-chooser-reference-e2e-20261012/items/items-opened.png",
+        "projects/xiaogj-web/private/enrollment-chooser-reference-e2e-20261012/items/items-opened.ax.txt"
+      ],
+      "pixels": [
+        1324,
+        743
+      ],
+      "reference_capture": {
+        "content_rect_points": [
+          0,
+          90,
+          1324,
+          743
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          1324,
+          833
+        ]
+      }
+    },
+    {
+      "id": "enrollment-chooser.remaining",
+      "state": "enrollment-chooser-courses",
+      "kind": "pending",
+      "description": "Selection, filters, pagination, focus, hover, confirmation and persistence remain unknown or unimplemented.",
+      "evidence": [
+        "projects/xiaogj-web/private/enrollment-chooser-reference-e2e-20261012/courses/courses-opened.ax.txt"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "seed": "projects/xiaogj-web/private/rsi-enrollment-chooser-seed",
+  "root_observation": {
+    "state": "Safari authenticated blank enrollment preparation",
+    "remote_reset": "Open and close selection layer; no selections, confirmation, save, payment or enrollment",
+    "preparation": "Known sidebar New Enrollment navigation; current source session required"
+  },
+  "score_semantics": "Fraction of two chooser probes with nonempty actual added AX captions, independently repeated captions and restored closed state. This measures repeatability, not UI completeness or product acceptance.",
+  "initial_policy": "projects/xiaogj-web/tools/rsi_policy_v0.py",
+  "fixed_inputs": [
+    "projects/xiaogj-web/tools/enrollment_chooser.py",
+    "projects/xiaogj-web/tools/enrollment_chooser_native.js",
+    "projects/xiaogj-web/private/rsi-enrollment-chooser-seed/cases.json"
+  ],
+  "agent": [
+    "python3",
+    "projects/xiaogj-web/tools/enrollment_chooser.py",
+    "agent"
+  ],
+  "evaluator": [
+    "python3",
+    "projects/xiaogj-web/tools/enrollment_chooser.py",
+    "evaluator"
+  ],
+  "timeout_seconds": 300,
+  "workers": 1,
+  "online_rounds": 4,
+  "replay_rounds": 4,
+  "versions": 2,
+  "parallelism_penalty": 0.05
+}

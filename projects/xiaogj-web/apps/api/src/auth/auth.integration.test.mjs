@@ -10,7 +10,7 @@ const post = (path, body, cookie, requestOrigin = origin) => fetch(base + path, 
 });
 
 test("business APIs reject anonymous users; health stays available", async () => {
-  for (const path of ["/api/auth/session", "/api/home", "/api/home/recent-classes", "/api/students", "/api/students/example/detail", "/api/enrollment/defaults"]) {
+  for (const path of ["/api/auth/session", "/api/home", "/api/home/recent-classes", "/api/students", "/api/students/example/detail", "/api/enrollment/defaults", "/api/enrollment/choices/courses", "/api/enrollment/choices/items"]) {
     assert.equal((await fetch(base + path)).status, 401, path);
   }
   assert.equal((await fetch(base + "/api/health")).status, 200);
@@ -31,6 +31,12 @@ test("cookie authenticates persisted session and logout revokes a copied token",
   try {
     assert.equal((await fetch(base + "/api/auth/session", { headers: { cookie } })).status, 200);
     assert.equal((await fetch(base + "/api/students", { headers: { cookie } })).status, 200);
+    const catalogs = JSON.parse(await readFile(new URL("../../../../private/reference/enrollment-choices.json", import.meta.url), "utf8"));
+    for (const kind of ["courses", "items"]) {
+      const response = await fetch(base + "/api/enrollment/choices/" + kind, { headers: { cookie } });
+      assert.equal(response.status, 200);
+      assert.deepEqual(await response.json(), catalogs[kind]);
+    }
     assert.equal((await post("/api/auth/logout", {}, cookie, "https://foreign.invalid")).status, 403);
     assert.equal((await fetch(base + "/api/auth/session", { headers: { cookie } })).status, 200);
   } finally { assert.equal((await post("/api/auth/logout", {}, cookie)).status, 200); }
