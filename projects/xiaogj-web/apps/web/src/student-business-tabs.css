@@ -33,3 +33,13 @@
 .student-tab-size { display: inline-flex; align-items: center; justify-content: center; cursor: pointer; }
 .student-tab-point-actions { border-top: 1px solid #ddd; padding: 20px 0; display: flex; gap: 10px; }
 .student-tab-point-actions a { padding: 5px 15px; border: 1px solid #ddd; border-radius: 3px; cursor: pointer; }
+
+.student-tab-table-scroll.consumption th { height: 25px; }
+.consumption-content .student-tab-query input:not([type=checkbox]) { width: 160px; }
+.consumption-content .student-tab-query select:nth-of-type(2) { width: 160px; }
+.student-tab-rule { width: 244px; flex: none; word-spacing: 10px; line-height: 30px; position: relative; }
+.student-tab-rule::after { content: ""; position: absolute; left: 64px; top: 0; width: 190px; height: 30px; border: 1px solid #ddd; border-radius: 3px; pointer-events: none; }
+.points-content .student-tab-query > a:first-of-type { width: 50px; justify-content: center; padding: 0; margin-right: 20px; }
+.points-content .student-tab-query select { width: 80px; }
+.student-tab-date { display: inline-flex; width: 110px; flex: none; position: relative; }
+.student-tab-date > span { pointer-events: none; position: absolute; left: 10px; top: 5px; color: #ccc; }
