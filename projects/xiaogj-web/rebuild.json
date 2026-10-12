@@ -58,7 +58,9 @@
     "enrollment_grade_rsi_pool": "projects/xiaogj-web/private/rsi-enrollment-grade-redeploy-20261012/iteration-1/collected-pool.json",
     "enrollment_grade_rsi_evaluation": "projects/xiaogj-web/private/rsi-enrollment-grade-revision-20261012/evaluation.json",
     "enrollment_grade_scenarios": "projects/xiaogj-web/enrollment-grade-scenarios.json",
-    "enrollment_grade_evidence": "projects/xiaogj-web/evidence/2026-10-12-enrollment-grade-rsi.md"
+    "enrollment_grade_evidence": "projects/xiaogj-web/evidence/2026-10-12-enrollment-grade-rsi.md",
+    "enrollment_safari_frontend_contract": "projects/xiaogj-web/enrollment-safari-frontend-contract.json",
+    "enrollment_safari_layout_evidence": "projects/xiaogj-web/evidence/2026-10-12-enrollment-small-viewport.md"
   },
   "commands": {
     "build": [
@@ -687,6 +689,28 @@
       "{observed}",
       "--candidate",
       "projects/xiaogj-web/tools/rsi_enrollment_grade_policy_v1.py",
+      "--out",
+      "{out}"
+    ],
+    "observe_enrollment_safari": [
+      "python3",
+      "-m",
+      "projects.xiaogj-web.tools.enrollment_safari_frontend",
+      "--capture",
+      "{observed}",
+      "--out",
+      "{out}"
+    ],
+    "compare_enrollment_safari": [
+      "python3",
+      "-m",
+      "capabilities.rebuild.frontend",
+      "--workspace",
+      ".",
+      "--contract",
+      "projects/xiaogj-web/enrollment-safari-frontend-contract.json",
+      "--observed",
+      "{observed}",
       "--out",
       "{out}"
     ]

@@ -46,3 +46,19 @@
 .enrollment-submit button { border: 0; border-radius: 3px; color: white; background: #287ae8; width: 100px; height: 34px; font: inherit; cursor: pointer; }
 .enrollment-notice { position: fixed; left: 50%; top: 100px; transform: translateX(-50%); padding: 12px 20px; background: #fff6dd; border: 1px solid #f4d380; box-shadow: 0 2px 6px #0002; }
 .enrollment-notice button { border: 0; background: none; margin-left: 16px; cursor: pointer; }
+
+/* Observed 1324px Safari layout; the existing larger layout has its own reference. */
+@media (max-width: 1399px) {
+  .enrollment-page { min-height: calc(100vh - 64px); font-family: "Microsoft YaHei", serif; font-size: 12px; }
+  .enrollment-location { padding-left: 16px; }
+  .enrollment-field-row { height: 38px; }
+  .enrollment-field { flex-basis: 272px; }
+  .enrollment-field > span { width: 104px; }
+  .enrollment-field-row:nth-child(3) { padding-left: 544px; }
+  .enrollment-gender input { width: 14px; height: 14px; border-width: 1px; }
+  .enrollment-select { min-width: 72px; font-size: 14px; }
+  .enrollment-table th input { width: 14px; height: 14px; }
+  .enrollment-table th { height: 39px; font-weight: 400; }
+  .enrollment-table td { height: 120px; }
+  body:has(.enrollment-page) .site-header { font-family: "Microsoft YaHei", serif; }
+}
