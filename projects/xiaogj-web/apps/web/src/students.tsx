@@ -68,6 +68,7 @@ export function StudentsPage() {
             e.preventDefault();
             setPage(1);
             setSearch(input);
+            setSelected([]);
           }}
         >
           <input
@@ -84,8 +85,6 @@ export function StudentsPage() {
             className="students-reset"
             onClick={() => {
               setInput("");
-              setSearch("");
-              setPage(1);
               setMessage("");
             }}
           >
@@ -209,12 +208,12 @@ export function StudentsPage() {
                           <button className="student-name" onClick={pending}>
                             {row.name}
                           </button>
-                          <span
+                          {row.gender !== "unknown" && <span
                             className={`student-gender ${row.gender}`}
                             aria-label={row.gender === "male" ? "男" : "女"}
                           >
                             {row.gender === "male" ? "♂" : "♀"}
-                          </span>
+                          </span>}
                         </td>
                         <td title={row.account}>{row.account}</td>
                         <td>{row.number}</td>
@@ -248,8 +247,9 @@ export function StudentsPage() {
                     ))}
                   </tbody>
                 </table>
+                {data.rows.length === 0 && <div className="students-empty">暂时还没有相关数据，试试别的查询条件吧。</div>}
               </div>
-              <div className="students-pagination">
+              {data.rows.length > 0 && <div className="students-pagination">
                 <span>共 {data.total} 条</span>
                 <span>每页 {data.pageSize} 条</span>
                 <span>
@@ -284,7 +284,7 @@ export function StudentsPage() {
                 >
                   <ChevronRight size={15} />
                 </button>
-              </div>
+              </div>}
             </>
           )
         )}

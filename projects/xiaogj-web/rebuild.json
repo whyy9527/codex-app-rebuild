@@ -17,7 +17,12 @@
     "frontend_scenarios": "projects/xiaogj-web/home-scenarios.json",
     "exploration_history": "projects/xiaogj-web/exploration-history.json",
     "historical_frontend_result": "projects/xiaogj-web/private/candidate/2026-10-12-home/frontend-v1.json",
-    "student_scenarios": "projects/xiaogj-web/students-scenarios.json"
+    "student_scenarios": "projects/xiaogj-web/students-scenarios.json",
+    "rsi_config": "projects/xiaogj-web/rsi.json",
+    "rsi_pool": "projects/xiaogj-web/private/rsi-visible-redeploy-v2-20261012/iteration-1/collected-pool.json",
+    "rsi_evaluation": "projects/xiaogj-web/private/rsi-visible-revision-20261012/evaluation.json",
+    "student_query_scenarios": "projects/xiaogj-web/student-query-scenarios.json",
+    "students_frontend_contract": "projects/xiaogj-web/students-frontend-contract.json"
   },
   "commands": {
     "build": [
@@ -72,6 +77,79 @@
       ".",
       "--history",
       "projects/xiaogj-web/exploration-history.json",
+      "--out",
+      "{out}"
+    ],
+    "rsi_collect": [
+      "python3",
+      "-m",
+      "workflows.rebuild.dream",
+      "collect",
+      "--workspace",
+      ".",
+      "--config",
+      "projects/xiaogj-web/rsi.json",
+      "--pool",
+      "projects/xiaogj-web/private/rsi-visible-redeploy-v2-20261012/iteration-1/collected-pool.json",
+      "--out",
+      "{out}"
+    ],
+    "rsi_replay": [
+      "python3",
+      "-m",
+      "workflows.rebuild.dream",
+      "replay",
+      "--workspace",
+      ".",
+      "--config",
+      "projects/xiaogj-web/rsi.json",
+      "--pool",
+      "{observed}",
+      "--candidate",
+      "projects/xiaogj-web/tools/rsi_policy_v1.py",
+      "--out",
+      "{out}"
+    ],
+    "replay": [
+      "python3",
+      "-m",
+      "projects.xiaogj-web.tools.student_query_e2e",
+      "replay",
+      "--side",
+      "candidate",
+      "--out",
+      "{out}"
+    ],
+    "replay_reference_queries": [
+      "python3",
+      "-m",
+      "projects.xiaogj-web.tools.student_query_e2e",
+      "replay",
+      "--side",
+      "reference",
+      "--out",
+      "{out}"
+    ],
+    "compare_queries": [
+      "python3",
+      "-m",
+      "projects.xiaogj-web.tools.student_query_e2e",
+      "compare",
+      "--observed",
+      "{observed}",
+      "--out",
+      "{out}"
+    ],
+    "compare_students_frontend": [
+      "python3",
+      "-m",
+      "capabilities.rebuild.frontend",
+      "--workspace",
+      ".",
+      "--contract",
+      "projects/xiaogj-web/students-frontend-contract.json",
+      "--observed",
+      "{observed}",
       "--out",
       "{out}"
     ]

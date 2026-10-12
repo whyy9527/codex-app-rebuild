@@ -9,11 +9,11 @@ npx --yes pnpm@11.15.1 install --frozen-lockfile
 npx --yes pnpm@11.15.1 dev
 ```
 
-本地入口 http://127.0.0.1:5183 ，API http://127.0.0.1:3101 。当前已实现首页首版、顶部菜单、待办展开与配置、数据周期和图表、自定义草稿、快捷操作选择和搜索。学员信息管理已实现初始列表，并通过 Prisma 读取独立的 MySQL 8 数据库；其余业务页仍是导航壳。登录、权限、完整查询、业务写入和首页偏好持久化尚未完成。
+本地入口 http://127.0.0.1:5183 ，API http://127.0.0.1:3101 。当前已实现首页首版、顶部菜单、待办展开与配置、数据周期和图表、自定义草稿、快捷操作选择和搜索。学员信息管理已实现列表、查询、重置和分页，并通过 Prisma 读取独立的 MySQL 8 数据库；其余业务页仍是导航壳。登录、权限、完整查询、业务写入和首页偏好持久化尚未完成。
 
 首页读取 `private/reference/home-data.json`，按共享的 `homeSnapshot` Zod 契约校验；数据缺失或不合法返回 503，不生成替代业务数据。私有观察与媒体不进入 Git。Vite 从 `private/assets/` 读取原版已观察的 logo、头像、企业标记、背景、图标字体和 SVG 图标，构建产物也不提交。新的检出环境需要先从授权会话准备这些本地输入。
 
-学员页需要先准备 MySQL 8，并在忽略的 `private/database.env` 设置 `DATABASE_URL`。连接仅供本地候选使用，与原版账号无关。执行 `pnpm --filter @xiaogj/api db:migrate`，再执行 `pnpm --filter @xiaogj/api db:import-students`，将授权观察产生的 `private/reference/students-data.json` 原子导入本地数据库。构建自动生成 Prisma Client。当前只持有默认首屏数据，其他页或非空搜索返回 503，不以首屏子集冒充完整查询。共同验收入口见 [students-scenarios.json](students-scenarios.json)。
+学员页需要先准备 MySQL 8，并在忽略的 `private/database.env` 设置 `DATABASE_URL`。连接仅供本地候选使用，与原版账号无关。执行 `pnpm --filter @xiaogj/api db:migrate`，再执行 `pnpm --filter @xiaogj/api db:import-students`，将授权观察产生的 `private/reference/students-data.json` 原子导入本地数据库。构建自动生成 Prisma Client。当前已导入默认筛选条件下实际采集的 222 条记录，提供按原始顺序分页及查询；其他筛选、姓名首字母和模糊匹配语义仍待观察。共同验收入口见 [students-scenarios.json](students-scenarios.json) 与 [查询场景](student-query-scenarios.json)。
 
 本机已初始化的独立数据库可从项目目录重启：
 
@@ -30,6 +30,7 @@ MYSQL84_BIN="$(brew --prefix mysql@8.4)/bin"
 python3 -m workflows.rebuild.project run --workspace . --project projects/xiaogj-web/rebuild.json --command build
 python3 -m workflows.rebuild.project run --workspace . --project projects/xiaogj-web/rebuild.json --command typecheck
 python3 -m workflows.rebuild.project run --workspace . --project projects/xiaogj-web/rebuild.json --command test
+python3 -m workflows.rebuild.project preflight --workspace . --project projects/xiaogj-web/rebuild.json
 python3 -m workflows.rebuild.project status --workspace . --project projects/xiaogj-web/rebuild.json
 ```
 
@@ -42,3 +43,11 @@ python3 -m workflows.rebuild.project run --workspace . --project projects/xiaogj
 ```
 
 [技术约束](TECHNOLOGY.md) · [原版观察](reference-contract.json) · [前端模具](frontend-contract.json) · [实际探索历史](exploration-history.json) · [首页证据与局限](evidence/2026-10-12-home.md) · [学员页与数据库验证](evidence/2026-10-12-students.md)
+
+
+查询 RSI 通过项目命令 `rsi_collect` 接续选中池，`rsi_replay --observed <池文件>` 在完整冻结池比较策略。采集命令的私有桥接请求必须由当前 Codex 在 CUA 中装载 `tools/rsi_native_v4.js`，以原生 Edge App、`node:fs/promises` 和工作区内 `private/rsi-bridge` 调用 `installStudentRsiDriver` 并逐条服务。关闭原版密码提示、确认无遮挡后执行；不得改密码，也不得用文件回放代替真实 UI。
+
+共同查询 E2E 的项目命令为 `replay_reference_queries`、`replay` 和 `compare_queries`，均使用新的 `--out`。前两者等待当前 Codex 在 CUA 中装载 `tools/student_query_native_v2.js`，以同样的 App、fs 与 `private/e2e-bridge` 调用 `installStudentQueryE2E`；选择请求对应的原版或候选学员页，再逐条服务。驱动执行相同动作并保存 AX、截图和事实，不接收期待值或自报通过。`compare_queries --observed <observed.json>` 才按共同夹具判定；查询行为通过不能代替完整前端或全站验收。实际结果和失败见 [查询与 RSI 证据](evidence/2026-10-12-rsi-queries.md)。
+
+
+学员页前端事实由 `python3 -m projects.xiaogj-web.tools.student_frontend_observations --captures <共同查询捕获目录> --out <新事实文件>` 读取；再用项目命令 `compare_students_frontend --observed <事实文件> --out <新结果文件>` 按 [学员前端契约](students-frontend-contract.json) 验收。当前严格比较失败，见查询与 RSI 证据。

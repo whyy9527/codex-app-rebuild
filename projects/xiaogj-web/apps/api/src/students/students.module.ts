@@ -12,22 +12,30 @@ class StudentsController implements OnModuleDestroy {
   @TsRestHandler(api.students)
   students() {
     return tsRestHandler(api.students, async ({ query }) => {
-      if (query.page !== 1 || query.search !== "") {
-        return {
-          status: 503 as const,
-          body: { message: "该查询的学员数据尚未准备好" },
-        };
-      }
       try {
         this.db ??= createDatabase();
         const capture = await this.db.studentCapture.findUnique({
           where: { id: "observed-students-baseline" },
-          include: { students: { orderBy: { position: "asc" } } },
         });
         if (!capture) throw new Error("missing capture");
+        const imported = await this.db.student.count({ where: { captureId: capture.id } });
+        if (imported !== capture.total) throw new Error("incomplete capture");
+        const where = {
+          captureId: capture.id,
+          ...(query.search ? { OR: [
+            { number: { contains: query.search } },
+            { phone: { contains: query.search } },
+            { name: { contains: query.search } },
+          ] } : {}),
+        };
+        const [total, rows] = await this.db.$transaction([
+          this.db.student.count({ where }),
+          this.db.student.findMany({ where, orderBy: { position: "asc" },
+            skip: (query.page - 1) * capture.pageSize, take: capture.pageSize }),
+        ]);
         const body = studentsSnapshot.parse({
-          ...capture,
-          rows: capture.students,
+          total, page: query.page, pageSize: capture.pageSize,
+          pages: Math.max(1, Math.ceil(total / capture.pageSize)), rows,
         });
         return { status: 200 as const, body };
       } catch {

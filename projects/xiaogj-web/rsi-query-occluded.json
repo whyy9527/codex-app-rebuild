@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "seed": "projects/xiaogj-web/private/rsi-seed",
+  "root_observation": {
+    "state": "source-students-default",
+    "remote_reset": "Native reset clears filters, followed by empty query submission; readonly queries only; source business database is not reset"
+  },
+  "score_semantics": "Fraction of three fixed query requirements independently re-executed in live source UI: exact reset baseline, result IDs and visible pagination or observed empty message with absent pagination; not aesthetic quality or product completion",
+  "initial_policy": "projects/xiaogj-web/tools/rsi_policy_v0.py",
+  "fixed_inputs": [
+    "projects/xiaogj-web/tools/rsi_worker.py",
+    "projects/xiaogj-web/tools/rsi_native_v3.js",
+    "projects/xiaogj-web/private/rsi-seed/cases.json"
+  ],
+  "agent": [
+    "python3",
+    "projects/xiaogj-web/tools/rsi_worker.py",
+    "agent"
+  ],
+  "evaluator": [
+    "python3",
+    "projects/xiaogj-web/tools/rsi_worker.py",
+    "evaluator"
+  ],
+  "timeout_seconds": 300,
+  "workers": 1,
+  "online_rounds": 4,
+  "replay_rounds": 4,
+  "versions": 2,
+  "parallelism_penalty": 0.05
+}

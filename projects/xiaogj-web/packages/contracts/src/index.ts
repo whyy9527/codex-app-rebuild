@@ -77,7 +77,7 @@ export const studentsSnapshot = z.object({
       card: z.string(),
       school: z.string(),
       status: z.string(),
-      gender: z.enum(["male", "female"]),
+      gender: z.enum(["male", "female", "unknown"]),
     }),
   ),
   total: z.number().int().nonnegative(),
