@@ -334,6 +334,12 @@ i {
 .panel-body {
   padding: 20px;
 }
+.recent-classes > p { color: #909399; font-size: 12px; margin: 0 0 12px; }
+.recent-classes table { width: 100%; border-collapse: collapse; font-size: 14px; text-align: left; }
+.recent-classes th { background: #f5f7fa; color: #606266; font-weight: 500; }
+.recent-classes :is(th, td) { height: 42px; padding: 8px 12px; border-bottom: 1px solid #ebeef5; }
+.recent-class-notice { position: fixed; top: 100px; left: 50%; transform: translateX(-50%); padding: 12px 20px; background: #fff6dd; border: 1px solid #f4d380; z-index: 60; }
+.recent-class-notice button { margin-left: 16px; }
 .panel-todo .panel-body {
   padding: 12px 20px;
 }

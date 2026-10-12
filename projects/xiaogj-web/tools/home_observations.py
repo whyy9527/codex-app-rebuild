@@ -19,6 +19,8 @@ STATES = {
     'quick-search': 'quick-search-pasted-full',
     'overview-config': 'overview-config',
     'add-card': 'add-card',
+    'recent-added': 'recent-card',
+    'recent-add-options': 'recent-card-draft',
 }
 LINE = re.compile(r'^\s*\d+ (text|button|checkbox|link|heading)(?: \(([^)]*)\))? (.*)$')
 
@@ -71,6 +73,15 @@ def observe(directory):
                     elements['shortcut-search'] = {'role': 'textbox', 'value': value[1] if value else ''}
                 catalog = [re.sub(r'^\s*\d+ button (?:\(disabled\) )?', '', line).split(', Value:')[0].strip() for line in lines[end:footer] if re.match(r'^\s*\d+ button ', line)]
                 elements['shortcut-catalog'] = {'value': json.dumps(catalog, ensure_ascii=False)}
+        if state == 'recent-add-options':
+            available, previous_text = [], []
+            for line in captured_lines:
+                leaf = re.match(r'^\s*\d+ text (.*)$', line)
+                if leaf:
+                    previous_text.append(leaf[1].strip())
+                if re.match(r'^\s*\d+ button 添加$', line):
+                    available.append(previous_text[-2:])
+            elements['add-card-options'] = {'value': json.dumps(available, ensure_ascii=False)}
         result['states'][state] = {'accessible_text': text, 'elements': elements, 'evidence': str(path)}
         modal_capture = directory / (filename + '.png')
         if state in ('quick-config', 'overview-config') and modal_capture.exists():

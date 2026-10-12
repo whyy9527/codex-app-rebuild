@@ -49,6 +49,19 @@ function Icon({ name, className = "" }: { name: string; className?: string }) {
     </svg>
   );
 }
+function RecentClasses() {
+  const { data, error } = useQuery({
+    queryKey: ["recent-classes"],
+    queryFn: async () => {
+      const r = await client.recentClasses();
+      if (r.status !== 200) throw new Error(r.status === 503 ? r.body.message : "近期开班数据读取失败");
+      return r.body;
+    },
+  });
+  if (error) return <p role="alert">{error.message}</p>;
+  if (!data) return <p role="status">加载中…</p>;
+  return <div className="recent-classes"><p>{data.summary}</p><table><thead><tr>{data.headers.map((h) => <th key={h}>{h}</th>)}</tr></thead><tbody>{data.rows.map((row, i) => <tr key={i}>{row.map((cell, j) => <td key={j}>{cell}</td>)}</tr>)}</tbody></table></div>;
+}
 function BusinessLink({
   label,
   children,
@@ -245,6 +258,7 @@ function Home() {
   const [background, setBackground] = useState("lotus");
   const [backgroundMenu, setBackgroundMenu] = useState(false);
   const [modal, setModal] = useState<string | null>(null);
+  const [recentNotice, setRecentNotice] = useState(false);
   const [todoDraft, setTodoDraft] = useState<number[]>([]);
   const [todoOrder, setTodoOrder] = useState<number[]>([]);
   const dragging = useRef<string | null>(null);
@@ -296,6 +310,8 @@ function Home() {
           查看全部
           <ChevronRight size={16} />
         </BusinessLink>
+      ) : id === "recent" ? (
+        <button className="text-link" onClick={() => setRecentNotice(true)}>查看全部班级</button>
       ) : id === "classes" ? (
         <BusinessLink label="班级报表" className="text-link">
           查看报表
@@ -509,7 +525,8 @@ function Home() {
               ))}
             </ul>
           )}
-          {["recent", "guide"].includes(id) && (
+          {id === "recent" && <RecentClasses />}
+          {id === "guide" && (
             <p>尚待完成此卡片的内容与交互复刻。</p>
           )}
         </div>
@@ -598,6 +615,7 @@ function Home() {
           </button>
         </div>
       )}
+      {recentNotice && <div className="recent-class-notice" role="status">此操作尚未完成复刻<button aria-label="关闭提示" onClick={() => setRecentNotice(false)}>×</button></div>}
       {(modal === "todo" || modal === "overview") && (
         <Modal
           className={modal === "overview" ? "modal-overview" : ""}

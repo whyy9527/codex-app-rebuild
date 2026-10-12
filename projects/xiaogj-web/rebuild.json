@@ -457,6 +457,31 @@
       "projects/xiaogj-web/private/assets/home-symbols.svg",
       "--out",
       "projects/xiaogj-web/private/assets/home-symbols.normalized.svg"
+    ],
+    "compare_recent_classes": [
+      "python3",
+      "-m",
+      "projects.xiaogj-web.tools.home_recent",
+      "compare",
+      "--reference",
+      "projects/xiaogj-web/private/reference/2026-10-12-home/recent-card.ax.txt",
+      "--observed",
+      "{observed}",
+      "--out",
+      "{out}"
+    ],
+    "compare_recent_frontend": [
+      "python3",
+      "-m",
+      "capabilities.rebuild.frontend",
+      "--workspace",
+      ".",
+      "--contract",
+      "projects/xiaogj-web/home-recent-frontend-contract.json",
+      "--observed",
+      "{observed}",
+      "--out",
+      "{out}"
     ]
   }
 }

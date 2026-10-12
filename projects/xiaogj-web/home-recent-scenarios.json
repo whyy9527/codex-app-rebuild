@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "scope": "已观察的近期开班卡片内容与添加草稿；不代表完整首页或班级业务。",
+  "preparation": ["确认目标端 URL；默认首页未添加近期开班卡片。原版仅操作草稿，不保存业务或偏好。"],
+  "steps": [
+    {"action": "自定义首页，打开添加首页卡片，点击最近30天开班对应添加按钮", "capture": "recent-card-draft.ax.txt"},
+    {"action": "关闭添加弹窗，等待实际卡片内容稳定", "capture": "recent-card.ax.txt"},
+    {"action": "滚动至近期开班卡片，记录实际可见截图及 AX；不得用当前裁切推断全部需求", "capture": "recent-scrolled.ax.txt", "image": "recent-scrolled.png"},
+    {"action": "取消首页编辑，记录自定义入口及卡片是否仍在", "capture": "cancelled-verified.ax.txt"}
+  ],
+  "limitations": [
+    "原版历史记录包含添加后的弹窗差分及实际卡片内容；缺少对应卡片截图和该连续旅程的当前原版重跑。",
+    "查看全部班级、隐藏、保存、持久化、权限和跨日期刷新仍待原版探索。",
+    "当前卡片视觉为待验证实现，不以业务内容比较通过代替前端一致。"
+  ]
+}

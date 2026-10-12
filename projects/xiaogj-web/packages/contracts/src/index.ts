@@ -115,7 +115,18 @@ export const enrollmentSnapshot = z.object({
   attributionDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
   observedAt: z.string().datetime(),
 });
+export const recentClassesSnapshot = z.object({
+  summary: z.string(),
+  headers: z.array(z.string()).length(4),
+  rows: z.array(z.array(z.string()).length(4)).max(6),
+  observedAt: z.string().datetime(),
+});
 export const api = c.router({
+  recentClasses: {
+    method: "GET",
+    path: "/api/home/recent-classes",
+    responses: { 200: recentClassesSnapshot, 503: z.object({ message: z.string() }) },
+  },
   enrollment: {
     method: "GET",
     path: "/api/enrollment/defaults",
