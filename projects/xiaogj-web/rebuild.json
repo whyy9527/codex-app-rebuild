@@ -22,7 +22,11 @@
     "rsi_pool": "projects/xiaogj-web/private/rsi-visible-redeploy-v2-20261012/iteration-1/collected-pool.json",
     "rsi_evaluation": "projects/xiaogj-web/private/rsi-visible-revision-20261012/evaluation.json",
     "student_query_scenarios": "projects/xiaogj-web/student-query-scenarios.json",
-    "students_frontend_contract": "projects/xiaogj-web/students-frontend-contract.json"
+    "students_frontend_contract": "projects/xiaogj-web/students-frontend-contract.json",
+    "pagination_scenarios": "projects/xiaogj-web/student-pagination-scenarios.json",
+    "pagination_rsi_config": "projects/xiaogj-web/rsi-pagination.json",
+    "pagination_rsi_collected_pool": "projects/xiaogj-web/private/rsi-pagination-collect-v2-20261012/iteration-1/collected-pool.json",
+    "pagination_rsi_evaluation": "projects/xiaogj-web/private/rsi-pagination-revision-20261012/evaluation.json"
   },
   "commands": {
     "build": [
@@ -150,6 +154,66 @@
       "projects/xiaogj-web/students-frontend-contract.json",
       "--observed",
       "{observed}",
+      "--out",
+      "{out}"
+    ],
+    "replay_reference_pagination": [
+      "python3",
+      "-m",
+      "projects.xiaogj-web.tools.student_pagination",
+      "replay",
+      "--side",
+      "reference",
+      "--out",
+      "{out}"
+    ],
+    "replay_pagination": [
+      "python3",
+      "-m",
+      "projects.xiaogj-web.tools.student_pagination",
+      "replay",
+      "--side",
+      "candidate",
+      "--out",
+      "{out}"
+    ],
+    "compare_pagination": [
+      "python3",
+      "-m",
+      "projects.xiaogj-web.tools.student_pagination",
+      "compare",
+      "--observed",
+      "{observed}",
+      "--out",
+      "{out}"
+    ],
+    "rsi_pagination_collect": [
+      "python3",
+      "-m",
+      "workflows.rebuild.dream",
+      "collect",
+      "--workspace",
+      ".",
+      "--config",
+      "projects/xiaogj-web/rsi-pagination.json",
+      "--pool",
+      "{observed}",
+      "--out",
+      "{out}"
+    ],
+    "rsi_pagination_replay": [
+      "python3",
+      "-m",
+      "workflows.rebuild.dream",
+      "replay",
+      "--workspace",
+      ".",
+      "--config",
+      "projects/xiaogj-web/rsi-pagination.json",
+      "--pool",
+      "{observed}",
+      "--candidate",
+      "projects/xiaogj-web/tools/rsi_pagination_policy_v1.py",
       "--out",
       "{out}"
     ]

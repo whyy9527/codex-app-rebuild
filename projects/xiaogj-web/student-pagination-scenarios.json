@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "knowledge": "decision: readonly pagination hypotheses; promote individual outcomes to observed only after native source receipts",
+  "preparation": "Dismiss the observed password notice with Cancel, clear query, submit empty query, jump to page 1. Source business data cannot be reset.",
+  "cases": [
+    {"id": "next-previous", "actions": [{"type": "next"}, {"type": "previous"}]},
+    {"id": "last-first", "actions": [{"type": "jump", "value": "23"}, {"type": "jump", "value": "1"}]},
+    {"id": "zero", "actions": [{"type": "jump", "value": "0"}]}
+  ],
+  "expectations": "Private captured row order; page outcomes are evaluated independently of the native driver. UI input value and screenshots remain actual evidence.",
+  "unknown": ["Page size changes", "Oversized and nonnumeric page input", "Query and pagination combined", "Keyboard versus pointer arrows", "Input feedback and focus equivalence"]
+}

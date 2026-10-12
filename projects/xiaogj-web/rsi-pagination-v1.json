@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "seed": "projects/xiaogj-web/private/rsi-pagination-seed",
+  "root_observation": {
+    "state": "students-pagination-default",
+    "remote_reset": "Readonly empty query and jump to page 1; source business DB is not reset"
+  },
+  "score_semantics": "Fraction of three pagination hypotheses independently reexecuted in original native UI with captured row order and restored baseline; not full product or visual acceptance",
+  "initial_policy": "projects/xiaogj-web/tools/rsi_policy_v0.py",
+  "fixed_inputs": [
+    "projects/xiaogj-web/tools/student_pagination.py",
+    "projects/xiaogj-web/tools/student_pagination_native_v1.js",
+    "projects/xiaogj-web/private/rsi-pagination-seed/cases.json",
+    "projects/xiaogj-web/student-pagination-scenarios.json"
+  ],
+  "agent": [
+    "python3",
+    "projects/xiaogj-web/tools/student_pagination.py",
+    "agent"
+  ],
+  "evaluator": [
+    "python3",
+    "projects/xiaogj-web/tools/student_pagination.py",
+    "evaluator"
+  ],
+  "timeout_seconds": 300,
+  "workers": 1,
+  "online_rounds": 4,
+  "replay_rounds": 4,
+  "versions": 2,
+  "parallelism_penalty": 0.05
+}
