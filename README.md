@@ -41,4 +41,8 @@ python3 -m workflows.rebuild.project run --workspace . --project projects/duolin
 python3 -m unittest discover -v
 ```
 
-原生 Goal 是默认持续执行入口；旧 Stop Hook/Harness 作为显式选择的兼容适配保留，同一任务使用一种续跑机制。消融用于完成复刻后的优化，顺序见工作流。原论文和已有负面结果保留，项目能力以实际产物为准。本仓库保持私有，公开发布另行决定。
+原生 Goal 是默认持续执行入口；旧 Stop Hook/Harness 作为显式选择的兼容适配保留，同一任务使用一种续跑机制。消融用于完成复刻后的优化，顺序见工作流。原论文和已有负面结果保留，项目能力以实际产物为准。
+
+## 版本与许可
+
+版本下载见 [GitHub Releases](https://github.com/whyy9527/codex-app-rebuild/releases)，版本变化见 [CHANGELOG](CHANGELOG.md)。原创代码与文档采用 [MIT](LICENSE)；Duolingo 素材、采集内容和依赖的授权边界见 [第三方说明](THIRD_PARTY_NOTICES.md)。本仓库是独立的复刻方法实践，与 Duolingo 或 OpenAI 没有隶属或背书关系。

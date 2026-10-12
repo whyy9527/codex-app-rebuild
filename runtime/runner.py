@@ -12,7 +12,7 @@ from capabilities.exploration.storage import digest
 
 IGNORED = {'.git', '.codex', '.build', '.venv', 'venv', 'node_modules', '__pycache__',
            'artifacts', 'test-results', 'playwright-report', 'dist', 'build', '.pytest_cache', '.mypy_cache', '.ruff_cache'}
-SOURCE_SUFFIXES = {'.py', '.swift', '.ts', '.tsx', '.js', '.mjs', '.toml', '.html', '.css'}
+SOURCE_SUFFIXES = {'.py', '.swift', '.ts', '.tsx', '.js', '.mjs', '.cjs', '.toml', '.html', '.css'}
 
 
 def input_manifest(root, paths):

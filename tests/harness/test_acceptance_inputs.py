@@ -3,10 +3,24 @@ import sys
 import tempfile
 import unittest
 from capabilities.exploration.harness import Harness
-from runtime.runner import input_manifest
+from runtime.runner import evaluate, input_manifest, manifest
 
 
 class AcceptanceInputs(unittest.TestCase):
+    def test_commonjs_source_changes_in_evaluator_invalidate_success(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root=Path(folder)
+            (root/'app.cjs').write_text('module.exports = 1;')
+            before=manifest(root)
+            self.assertIn('app.cjs',before)
+            result=evaluate(root,[sys.executable,'-c',
+                "from pathlib import Path; Path('app.cjs').write_text('module.exports = 2;')"])
+            self.assertEqual(result['exit_code'],0)
+            self.assertEqual(result['status'],'invalid')
+            self.assertEqual(result['integrity'],'source_changed')
+            self.assertEqual(result['source_files'],before)
+            self.assertNotEqual(before,manifest(root))
+
     def test_ts_swift_and_fixture_changes_block_success(self):
         for name in ['e2e/course.spec.ts','Tests/LessonTests.swift','fixtures/lesson.json','playwright.config.ts']:
             with self.subTest(name=name), tempfile.TemporaryDirectory() as folder:
