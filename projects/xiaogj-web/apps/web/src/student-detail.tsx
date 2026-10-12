@@ -7,6 +7,14 @@ import { ChevronDown, ChevronLeft, ChevronUp, Phone, Settings } from "lucide-rea
 import "./student-detail.css";
 
 const client = initClient(api, { baseUrl: "" });
+// Positions observed in the expanded source card; omitted cells stay empty.
+const basicFieldPositions: Record<string, [number, number]> = {
+  "身份证号：": [1, 1], "出生日期：": [1, 2], "公立学校：": [1, 3], "年级：": [1, 4],
+  "就读班级：": [2, 1], "卡号：": [2, 2], "邮箱：": [2, 3], "报名日期：": [2, 4],
+  "QQ号：": [3, 1], "身份证名字：": [3, 2], "棋力水平：": [3, 3], "名族：": [3, 4],
+  "入学时的学情：": [4, 1], "现阶段的学情：": [4, 2], "机构的规划师：": [4, 3], "邮箱1：": [4, 4],
+  "班级名称：": [5, 1], "备注：": [6, 1], "病史情况：": [7, 1],
+};
 const useDetailState = create<{
   expanded: Record<string, boolean>;
   setExpanded: (id: string, value: boolean) => void;
@@ -42,7 +50,7 @@ export function StudentDetailPage({ id, onReturn }: { id: string; onReturn: () =
             <a role="link" tabIndex={0} className="student-detail-expand" onKeyDown={(e) => { if (e.key === "Enter") setExpanded(id, !expanded); }} onClick={() => setExpanded(id, !expanded)}>{expanded ? "收起" : "展开"}{expanded ? <ChevronUp size={14} /> : <ChevronDown size={14} />}</a>
           </div>
           <div className="student-detail-grid student-detail-summary">{data.summary.map((field) => <div key={field.label}><span>{field.label}</span><b className={field.emphasis ? "emphasis" : ""}>{field.value}</b>{field.label === "手机号码：" && <button aria-label="拨打电话" onClick={unavailable}><Phone size={14} /></button>}</div>)}</div>
-          {expanded && <div className="student-detail-sections">{data.sections.map((section) => <section key={section.title}><h2>{section.title}</h2><div className="student-detail-grid">{section.fields.map((field) => <div key={field.label}><span>{field.label}</span><b>{field.value}</b></div>)}</div></section>)}</div>}
+          {expanded && <div className="student-detail-sections">{data.sections.map((section) => <section key={section.title}><h2>{section.title}</h2><div className="student-detail-grid">{section.fields.map((field) => <div key={field.label} style={section.title === "基本信息" && basicFieldPositions[field.label] ? { gridRow: basicFieldPositions[field.label][0], gridColumn: basicFieldPositions[field.label][1] } : undefined}><span>{field.label}</span><b>{field.value}</b></div>)}</div></section>)}</div>}
         </div>
       </div>
       <div className="student-detail-business">

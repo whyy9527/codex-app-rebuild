@@ -32,11 +32,12 @@
     "query_rsi_evaluation": "projects/xiaogj-web/private/rsi-visible-revision-20261012/evaluation.json",
     "pagination_frontend_contract": "projects/xiaogj-web/pagination-frontend-contract.json",
     "detail_scenarios": "projects/xiaogj-web/student-detail-scenarios-v3.json",
-    "detail_frontend_contract": "projects/xiaogj-web/detail-frontend-contract.json",
+    "detail_frontend_contract": "projects/xiaogj-web/detail-frontend-contract-v2.json",
     "detail_rsi_config": "projects/xiaogj-web/rsi-detail.json",
     "detail_rsi_collected_pool": "projects/xiaogj-web/private/rsi-detail-redeploy-v2-20261012/iteration-1/collected-pool.json",
     "detail_rsi_evaluation": "projects/xiaogj-web/private/rsi-detail-revision-20261012/evaluation.json",
-    "detail_rsi_selected_pool": "projects/xiaogj-web/private/rsi-detail-revision-20261012/pool.json"
+    "detail_rsi_selected_pool": "projects/xiaogj-web/private/rsi-detail-revision-20261012/pool.json",
+    "historical_detail_frontend_contract": "projects/xiaogj-web/detail-frontend-contract.json"
   },
   "commands": {
     "build": [
@@ -307,7 +308,7 @@
       "--workspace",
       ".",
       "--contract",
-      "projects/xiaogj-web/detail-frontend-contract.json",
+      "projects/xiaogj-web/detail-frontend-contract-v2.json",
       "--observed",
       "{observed}",
       "--out",

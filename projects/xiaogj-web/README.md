@@ -56,6 +56,8 @@ python3 -m workflows.rebuild.project run --workspace . --project projects/xiaogj
 
 分页前端事实用 `python3 -m projects.xiaogj-web.tools.pagination_frontend_observations --captures <原生捕获目录> --out <新事实文件>` 提取，项目命令 `compare_pagination_frontend` 比较输入值、角色、截图尺寸及严格整图。缺少输入框事实记 unavailable，空字符串与缺失值分别处理；原版和候选使用同一契约。
 
-详情协议见 `rsi-detail.json` 和 `student-detail-scenarios-v3.json`，原生桥接为 `tools/student_detail_native_v4.js` 的 `installStudentDetail`，目录 `private/detail-bridge`。`rsi_detail_collect` 接续选中池，`rsi_detail_replay --observed <完整池>` 回放；共同业务命令为 `replay_reference_detail`、`replay_detail`、`compare_detail`。前端用 `tools.detail_frontend_observations --captures <捕获目录> --out <新事实文件>` 提取，再执行 `compare_detail_frontend`。入口、准备限制、失败与来源见 [详情证据](evidence/2026-10-12-student-detail-rsi.md)；当前主 RSI 协议是已完整再部署的详情协议。
+详情协议见 `rsi-detail.json` 和 `student-detail-scenarios-v3.json`，原生桥接为 `tools/student_detail_native_v4.js` 的 `installStudentDetail`，目录 `private/detail-bridge`。`rsi_detail_collect` 接续选中池，`rsi_detail_replay --observed <完整池>` 回放；共同业务命令为 `replay_reference_detail`、`replay_detail`、`compare_detail`。前端用 `python3 -m projects.xiaogj-web.tools.detail_frontend_observations_v2 --captures <捕获目录> --review <实际截图复核.json> --out <新事实文件>` 提取，再执行 `compare_detail_frontend`。入口、准备限制、失败与来源见 [详情证据](evidence/2026-10-12-student-detail-rsi.md)；当前主 RSI 协议是已完整再部署的详情协议。
 
-详情持久化准备：在已导入学员列表后，以授权观察准备忽略的 `private/reference/student-detail.json`（data、observedAt、provenance），执行 `pnpm --filter @xiaogj/api db:import-student-detail`。仅导入有来源的详情，未采集学员返回 503；照片、其余页签与写入仍未完成。
+详情持久化准备：在已导入学员列表后，以授权观察准备忽略的 `private/reference/student-detail.json`（data、observedAt、provenance），执行 `pnpm --filter @xiaogj/api db:import-student-detail`。仅导入有来源的详情，未采集学员返回 503；照片按实际观察来源准备在私有资源目录；其余页签与写入仍未完成。
+
+详情前端契约见 `detail-frontend-contract-v2.json`，旧契约与带加载遮罩的参考捕获保留。复核文件的 states 按详情状态提供实际截图 sha256、unobscured 与 same_state；当前 Codex 必须查看对应截图及 AX 后记录，不能用测试成功自动填入。缺少或过期复核使图像结果 unavailable，加载过程另列未完成要求。
