@@ -30,6 +30,8 @@
 | `fixture` | 实现／回放使用的共同数据 |
 | `frontend_contract` | 当前共同前端要求 |
 | `exploration_history` | 既有状态、动作和转移记录，供 frontier 读取 |
+| `rsi_config` | Dream-RSI 的固定发现／评价协议、初始快照与策略 |
+| `rsi_pool` | 可选当前选用的历史池，status 校验世界、快照和策略的哈希；不是 Goal 状态 |
 | `historical_frontend_result` | 可选已保存结果，永远按历史显示 |
 | `case_status` | 案例范围、已验证能力与未完成项 |
 
@@ -53,6 +55,8 @@ python3 -m workflows.rebuild.project run --workspace . --project projects/duolin
 {
   "commands": {
     "build": ["your-build-tool", "build"],
+    "rsi_collect": ["python3", "-m", "workflows.rebuild.dream", "collect", "--workspace", ".", "--config", "case/rsi.json", "--out", "{out}"],
+    "rsi_replay": ["python3", "-m", "workflows.rebuild.dream", "replay", "--workspace", ".", "--config", "case/rsi.json", "--pool", "{observed}", "--out", "{out}"],
     "replay": ["your-ui-driver", "--out", "{out}"],
     "compare": ["your-comparator", "--observed", "{observed}", "--out", "{out}"]
   }
@@ -67,3 +71,5 @@ python3 -m workflows.rebuild.project run --workspace . --project projects/duolin
 ```
 
 `--dry-run` 只显示 argv，不执行。清单是可信本地命令配置；用户当前授权决定是否启动实际观察或修改，配置存在本身不授权恢复已结束的试验。
+
+RSI 的候选源码、继续使用的池及反馈由 [RSI 接口](RSI.md)定义。上例 `rsi_replay --observed` 指向真实 pool；修订时按该接口传入 `--candidate`，或把本次候选 argv 写入同一项目命令。接续 collect 时同样显式传入选中池。不要始终从 initial_policy 重开而丢掉已选策略。

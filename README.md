@@ -2,7 +2,7 @@
 
 运行在 Codex 中的 App 复刻工作流：**用 RSI 探索原版，用 E2E 构建复刻模具，用原生 Goal 推动 Codex 持续执行。**
 
-在本工作流中，RSI 探索由 Codex 依据真实历史、失败和未知调整方法，并回到原版执行新探针；E2E 保存业务与前端要求，验证另一种语言的实现；Goal 保存目标和完成条件。Codex 负责选择行动、操作原版、写代码和读取反馈。
+RSI 将实际探索保存成历史树，在回放中比较并修订可执行策略，再部署胜出策略回到原版探索；E2E 保存业务与前端要求，验证另一种语言的实现；Goal 保存目标和完成条件。Codex 负责选择行动、操作原版、写代码和读取反馈。
 
 ## 开始使用
 
@@ -33,6 +33,7 @@ python3 -m workflows.rebuild.project run --workspace . --project projects/duolin
 ## 文档与验证
 
 - [Workflow](workflows/rebuild/WORKFLOW.md)：Codex 的执行方法与 Goal 调用。
+- [RSI 接口](workflows/rebuild/RSI.md)：历史树、离策略回放、策略修订及实际部署；[可跑检查](projects/dream-rsi-check/README.md)。
 - [哲学](docs/PHILOSOPHY.md)、[架构](docs/ARCHITECTURE.md)、[业务／前端协议](docs/BEHAVIOR-CONTRACT.md)：原则、职责和可执行模具。
 - [Roadmap](docs/ROADMAP.md)：仓库下一步成果；[方法来源](docs/RESEARCH.md)：Dream-RSI 的探索思路与 Cordis 的组合设计。
 - [历史索引](docs/history/README.md)：批次记录、原始证据和旧文档。README 不记录逐轮进展。

@@ -2,22 +2,24 @@
 
 本页记录原论文、借鉴的方法与实际实现的对应关系。日常复刻按 [Workflow](../workflows/rebuild/WORKFLOW.md)执行；历史研究记录保留在文末。
 
-本仓库的 RSI 探索闭环由 Codex 执行：读取历史与差异，修订探索方法，实际执行探针，将发现接入 E2E，再根据结果选择下一步。论文复现范围与工作流的运行能力分别说明。
+本仓库的 RSI 由 Codex 消费实际探索树的回放反馈，修订可执行策略，再将胜出策略部署到后续探针；发现进入 E2E。算法协议、复刻体验与研究基准分别验证。
 
 ## Dream-RSI
 
 [Dream-RSI: Recursive Self-Improvement through Evolving Worlds](https://arxiv.org/abs/2609.14858v2)，Tong Zheng 等，2026。[官方仓库](https://github.com/zhengkid/Dream-RSI)。
 
-原研究将历史发现树构造成回放模拟器，利用已记录结果评价和改进探索策略，再部署策略收集更多历史。本项目借鉴让探索方法本身成为改进对象的思路，具体用于发现模具遗漏和改变观察方法。
+原研究将历史发现树构造成回放模拟器，利用已记录结果评价和改进探索策略，再部署策略收集更多历史。本仓库现按论文第 3 节独立实现这一主循环，具体接口见 [RSI](../workflows/rebuild/RSI.md)。
 
 | 已有实现 | 实际职责 |
 | --- | --- |
-| [Workflow](../workflows/rebuild/WORKFLOW.md) | Codex 根据历史、反例和候选差异修订探针，执行后消费反馈 |
+| [树与回放算法](../capabilities/exploration/dream.py) | 多层父子树、前缀揭露、同一决策接口、rho 扫描、质量／成本／并行评分、全历史池比较与原策略保留 |
+| [运行适配](../runtime/dream.py) | 父快照恢复、固定 agent／独立 evaluator、策略修订反馈、胜出源码及下一轮部署 |
+| [Workflow](../workflows/rebuild/WORKFLOW.md)及[命令](../workflows/rebuild/dream.py) | 当前 Codex 直接读取反馈并写策略，或显式配置 developer 命令，连接 collect/replay/cycle |
 | [探索前沿](../capabilities/rebuild/discovery.py) | 从真实记录列出尚未完成的状态／动作／输入方式；不自行优化策略 |
-| [历史回放](../projects/exploration-ablation/replay.py) | 在已采集的单层分支上评价候选策略 |
+| [历史回放](../projects/exploration-ablation/replay.py) | 保留的早期单层实验，不是新引擎 |
 | [策略部署](../projects/exploration-ablation/REPORT05-06.md) | 模型利用真实反馈修订策略，再实际操作原版，将发现交给模具与 Swift |
 
-论文复现状态：多层历史树模拟器、可复用模拟器池及论文级离策略优化闭环尚未完整实现。当前默认流程由 Codex 决策并执行探索，没有自动调用历史实验脚本。
+主循环的实现检查见 [验证记录](../projects/dream-rsi-check/VERIFICATION.md)及[测试](../tests/rebuild/test_dream.py)。此前实现缺少上述核心机制，这次补的是运行算法，不只是改称呼。官方仓库核对时只有论文及说明、尚未发布实现源码，因此这是依据论文的独立实现；没有声称复现附录全部工程设置或九项科研基准。回放分数也不保证新任务收益或原版需求已完整发现。
 
 ## Cordis
 

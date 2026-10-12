@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+- 实现 Dream-RSI 第 3 节的多层历史树、可见前缀回放、rho 扫描评分、全历史池策略改进与实际再次部署。
+- 在 rebuild workflow 接入 collect/replay/cycle；当前 Codex 可直接消费反馈并修订可执行策略，原生 Goal 仍拥有持续运行。
+- 保存可复跑协议夹具及当前会话真实修订记录，保留失败策略；更新方法、职责与研究实现对应。
+
 ## 0.1.0 — 2026-10-12
 
 首次公开的源码版本，将 Duolingo 网页到 Swift 实践形成的方法整理为可在 Codex 中使用的 rebuild 工作流。

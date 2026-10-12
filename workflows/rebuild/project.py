@@ -15,6 +15,7 @@ import sys
 from capabilities.exploration.storage import digest
 from capabilities.rebuild.contracts import local_file, require_text
 from capabilities.rebuild.discovery import frontier
+from runtime.dream import load_pool
 
 
 def load_project(workspace, name):
@@ -78,6 +79,11 @@ def project_status(root, project):
                                  'transitions': len(history['transitions']),
                                  'pending_probes': len(pending['pending']),
                                  'completion': pending['completion']}
+    if 'rsi_pool' in inputs:
+        pool, worlds, _ = load_pool(root, inputs['rsi_pool'])
+        result['rsi'] = {'worlds': len(worlds), 'nodes': [len(w['nodes']) for w in worlds],
+                         'policy': pool['policy'], 'protocol': pool['protocol'],
+                         'completion': 'not evaluated; replay score is not product acceptance'}
     if 'historical_frontend_result' in inputs:
         receipt = read('historical_frontend_result')
         result['historical_frontend'] = {
