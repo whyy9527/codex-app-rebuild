@@ -519,6 +519,19 @@
       "{observed}",
       "--out",
       "{out}"
+    ],
+    "compare_home_shortcut_added": [
+      "python3",
+      "-m",
+      "capabilities.rebuild.frontend",
+      "--workspace",
+      ".",
+      "--contract",
+      "projects/xiaogj-web/home-shortcut-added-contract.json",
+      "--observed",
+      "{observed}",
+      "--out",
+      "{out}"
     ]
   }
 }

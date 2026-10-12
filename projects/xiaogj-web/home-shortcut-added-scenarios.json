@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "scope": "原版已观察八项快捷操作草稿；不覆盖保存、取消、移除或持久化的原版行为。",
+  "preparation": [
+    "首页顶部、七项默认快捷功能，进入自定义首页并打开快捷配置；搜索为空。",
+    "确认目标 URL 和实际原生窗口；原版无可恢复准备时保留 unavailable，不用文件伪造业务状态。"
+  ],
+  "steps": [
+    { "action": "保存初始七项事实", "capture": "quick-config.ax.txt" },
+    { "action": "点击目录中的邀约查询", "capture": "quick-added-full.ax.txt", "image": "quick-added-full.png" },
+    { "action": "候选取消快捷配置，再重新打开；该项只有候选实测，不视为原版共同通过", "capture": "quick-reopened.ax.txt" },
+    { "action": "取消快捷配置并取消首页编辑，不保存偏好", "capture": "returned-home.ax.txt" }
+  ],
+  "limitations": [
+    "原版八项草稿记录为历史完整 AX，缺配对图片和完整动作回执；同状态比较不能证明本轮原版重跑了这些步骤。",
+    "空搜索前置避免推断先搜索后添加是否自动清空；后者仍未知。",
+    "只有候选有取消后七项恢复的实际回执，不能把候选行为升级为原版契约。"
+  ]
+}

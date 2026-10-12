@@ -17,6 +17,7 @@ STATES = {
     'cancelled': 'cancelled-full',
     'quick-config': 'quick-config',
     'quick-search': 'quick-search-pasted-full',
+    'quick-added': 'quick-added-full',
     'overview-config': 'overview-config',
     'add-card': 'add-card',
     'recent-added': 'recent-card',
@@ -76,6 +77,11 @@ def observe(directory):
                     elements['shortcut-search'] = {'role': 'textbox', 'value': value[1] if value else ''}
                 catalog = [re.sub(r'^\s*\d+ button (?:\(disabled\) )?', '', line).split(', Value:')[0].strip() for line in lines[end:footer] if re.match(r'^\s*\d+ button ', line)]
                 elements['shortcut-catalog'] = {'value': json.dumps(catalog, ensure_ascii=False)}
+                for line in lines[end:footer]:
+                    option = re.match(r'^\s*\d+ button (?:\(([^)]*)\) )?(.*)$', line)
+                    if option:
+                        name = option[2].split(', Value:')[0].strip()
+                        elements['shortcut-option:' + name] = {'role': 'button', 'enabled': 'disabled' not in (option[1] or '')}
         if state == 'recent-add-options':
             available, previous_text = [], []
             for line in captured_lines:

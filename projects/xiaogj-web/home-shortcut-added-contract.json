@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "requirements": [
+    {
+      "id": "quick-added.title",
+      "state": "quick-added",
+      "kind": "accessible_text",
+      "text": "配置快捷操作",
+      "evidence": [
+        "projects/xiaogj-web/private/reference/2026-10-12-home/quick-added-full.ax.txt"
+      ]
+    },
+    {
+      "id": "quick-added.selection",
+      "state": "quick-added",
+      "kind": "element_value",
+      "element": "selected-shortcuts",
+      "value": "[\"意向学员管理\", \"学员信息管理\", \"新学员报名\", \"收费\", \"班级管理\", \"排课管理\", \"收费报表\", \"邀约查询\"]",
+      "evidence": [
+        "projects/xiaogj-web/private/reference/2026-10-12-home/quick-added-full.ax.txt"
+      ]
+    },
+    {
+      "id": "quick-added.search-empty",
+      "state": "quick-added",
+      "kind": "element_value",
+      "element": "shortcut-search",
+      "value": "",
+      "evidence": [
+        "projects/xiaogj-web/private/reference/2026-10-12-home/quick-added-full.ax.txt"
+      ]
+    },
+    {
+      "id": "quick-added.option-role",
+      "state": "quick-added",
+      "kind": "element_role",
+      "element": "shortcut-option:邀约查询",
+      "role": "button",
+      "evidence": [
+        "projects/xiaogj-web/private/reference/2026-10-12-home/quick-added-full.ax.txt"
+      ]
+    },
+    {
+      "id": "quick-added.option-disabled",
+      "state": "quick-added",
+      "kind": "element_boolean",
+      "element": "shortcut-option:邀约查询",
+      "field": "enabled",
+      "expected": false,
+      "evidence": [
+        "projects/xiaogj-web/private/reference/2026-10-12-home/quick-added-full.ax.txt"
+      ]
+    },
+    {
+      "id": "quick-added.pending-visual",
+      "state": "quick-added",
+      "kind": "pending",
+      "description": "原版新增第八项后的配对截图尚缺；新增后的换行和整个弹窗视觉继续待同状态验收。",
+      "evidence": [
+        "projects/xiaogj-web/private/reference/2026-10-12-home/quick-added-full.ax.txt"
+      ]
+    },
+    {
+      "id": "quick-added.pending-other-actions",
+      "state": "quick-added",
+      "kind": "pending",
+      "description": "原版来源仅证明八项草稿快照，不推断搜索添加后是否自动清空、取消恢复、移除、确定、保存或持久化。",
+      "evidence": [
+        "projects/xiaogj-web/private/reference/2026-10-12-home/quick-added-full.ax.txt"
+      ]
+    }
+  ]
+}
