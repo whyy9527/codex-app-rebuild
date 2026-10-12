@@ -160,7 +160,7 @@ export function StudentsPage() {
               <div className="students-table-scroll">
                 <table className="students-table">
                   <colgroup>
-                    {[30, 105, 105, 90, 170, 120, 120, 120, 150, 100, 80].map(
+                    {[30, 105, 105, 90, 170, 120, 120, 120, 150, undefined, undefined].map(
                       (width, i) => (
                         <col key={i} style={{ width }} />
                       ),
@@ -289,8 +289,8 @@ export function StudentsPage() {
         )}
       </div>
       <button className="students-help" onClick={pending}>
-        «<br />
-        帮助中心
+        帮助中心<br />
+        «
       </button>
     </div>
   );

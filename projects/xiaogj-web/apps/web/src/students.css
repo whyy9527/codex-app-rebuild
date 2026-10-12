@@ -21,8 +21,8 @@
 .student-business > aside > a:nth-of-type(3),
 .student-business > aside > a:nth-of-type(6),
 .student-business > aside > a:nth-of-type(8) {
-  border-top: 10px solid #edf0f5;
-  height: 60px;
+  border-top: 20px solid #edf0f5;
+  height: 70px;
 }
 .student-business > aside > a.active {
   color: #2878e8;
@@ -42,11 +42,11 @@
   width: 180px;
   height: 40px;
   display: flex;
-  gap: 48px;
+  gap: 8px;
   align-items: center;
-  background: #fff;
+  background: #eceef3;
   border: 0;
-  border-top: 1px solid #eee;
+  border-top: 1px solid #ddd;
   padding: 0 20px;
   color: #666;
 }
@@ -117,7 +117,7 @@
 }
 .students-query > input {
   width: 236px;
-  height: 36px;
+  height: 32px;
   border: 1px solid #ddd;
   border-radius: 2px;
   background: white;
@@ -127,7 +127,7 @@
   outline-color: #2878e8;
 }
 .students-query :is(button, a) {
-  height: 36px;
+  height: 32px;
   padding: 0 14px;
   background: #fff;
   border: 1px solid #ddd;
@@ -221,10 +221,12 @@
   border-collapse: collapse;
   table-layout: fixed;
   width: 100%;
-  font-size: 12px;
+  font-size: 14px;
+  line-height: 20.5714px;
 }
 .students-table th {
   font-family: header-icons, "Microsoft YaHei", sans-serif;
+  font-size: 12px;
   height: 50px;
   text-align: left;
   background: #f0f1f5;
@@ -267,7 +269,7 @@
   background: none;
   padding: 0;
   color: #2878e8;
-  font-size: 12px;
+  font-size: 14px;
 }
 .student-gender {
   margin-right: 6px;
@@ -280,10 +282,6 @@
   color: #fa72aa;
 }
 .student-phone {
-  display: inline-block;
-  max-width: calc(100% - 20px);
-  overflow: hidden;
-  text-overflow: ellipsis;
   vertical-align: middle;
 }
 .students-table td .student-call {
@@ -329,17 +327,17 @@
   font: inherit;
   margin: 0 -12px;
 }
-.students-help {
+.students-page .students-help {
   position: fixed;
   right: 0;
   top: 80px;
-  width: 24px;
+  width: 34px;
   background: #fff;
   border: 1px solid #e3e6eb;
-  color: #2878e8;
-  padding: 6px 4px;
-  font-size: 12px !important;
-  line-height: 19px;
+  color: #333;
+  padding: 10px 9px;
+  font-size: 14px !important;
+  line-height: 16px;
 }
 .students-message {
   background: #fff8e7;
