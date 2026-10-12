@@ -53,7 +53,12 @@
     "students_safari_frontend_evidence": "projects/xiaogj-web/evidence/2026-10-12-student-small-viewport.md",
     "auth_scenarios": "projects/xiaogj-web/auth-scenarios.json",
     "auth_implementation_evidence": "projects/xiaogj-web/evidence/2026-10-12-local-auth.md",
-    "header_session_evidence": "projects/xiaogj-web/evidence/2026-10-12-header-and-session.md"
+    "header_session_evidence": "projects/xiaogj-web/evidence/2026-10-12-header-and-session.md",
+    "enrollment_grade_rsi_config": "projects/xiaogj-web/rsi-enrollment-grade-v2.json",
+    "enrollment_grade_rsi_pool": "projects/xiaogj-web/private/rsi-enrollment-grade-redeploy-20261012/iteration-1/collected-pool.json",
+    "enrollment_grade_rsi_evaluation": "projects/xiaogj-web/private/rsi-enrollment-grade-revision-20261012/evaluation.json",
+    "enrollment_grade_scenarios": "projects/xiaogj-web/enrollment-grade-scenarios.json",
+    "enrollment_grade_evidence": "projects/xiaogj-web/evidence/2026-10-12-enrollment-grade-rsi.md"
   },
   "commands": {
     "build": [
@@ -618,6 +623,72 @@
       "node",
       "--test",
       "projects/xiaogj-web/apps/api/src/auth/auth.integration.test.mjs"
+    ],
+    "replay_reference_enrollment_grade": [
+      "python3",
+      "-m",
+      "projects.xiaogj-web.tools.enrollment_grade_v2",
+      "replay",
+      "--book",
+      "projects/xiaogj-web/enrollment-grade-scenarios.json",
+      "--side",
+      "reference",
+      "--out",
+      "{out}"
+    ],
+    "replay_candidate_enrollment_grade": [
+      "python3",
+      "-m",
+      "projects.xiaogj-web.tools.enrollment_grade_v2",
+      "replay",
+      "--book",
+      "projects/xiaogj-web/enrollment-grade-scenarios.json",
+      "--side",
+      "candidate",
+      "--out",
+      "{out}"
+    ],
+    "compare_enrollment_grade": [
+      "python3",
+      "-m",
+      "projects.xiaogj-web.tools.enrollment_grade_v2",
+      "compare",
+      "--book",
+      "projects/xiaogj-web/enrollment-grade-scenarios.json",
+      "--observed",
+      "{observed}",
+      "--out",
+      "{out}"
+    ],
+    "rsi_enrollment_grade_collect": [
+      "python3",
+      "-m",
+      "workflows.rebuild.dream",
+      "collect",
+      "--workspace",
+      ".",
+      "--config",
+      "projects/xiaogj-web/rsi-enrollment-grade-v2.json",
+      "--pool",
+      "projects/xiaogj-web/private/rsi-enrollment-grade-redeploy-20261012/iteration-1/collected-pool.json",
+      "--out",
+      "{out}"
+    ],
+    "rsi_enrollment_grade_replay": [
+      "python3",
+      "-m",
+      "workflows.rebuild.dream",
+      "replay",
+      "--workspace",
+      ".",
+      "--config",
+      "projects/xiaogj-web/rsi-enrollment-grade-v2.json",
+      "--pool",
+      "{observed}",
+      "--candidate",
+      "projects/xiaogj-web/tools/rsi_enrollment_grade_policy_v1.py",
+      "--out",
+      "{out}"
     ]
   }
 }

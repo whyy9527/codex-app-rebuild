@@ -110,6 +110,7 @@ export const studentDetailSnapshot = z.object({
 export type StudentDetailSnapshot = z.infer<typeof studentDetailSnapshot>;
 // Blank enrollment defaults from an actual observation, not a synthetic tenant.
 export const enrollmentSnapshot = z.object({
+  gradeOptions: z.array(z.string()).min(1),
   accountSuffix: z.string().min(1),
   paymentDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
   attributionDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),

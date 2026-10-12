@@ -39,7 +39,7 @@ export function EnrollmentPage() {
             <Field label="招生人员"><button className="enrollment-text-link" onClick={unavailable}>选择</button></Field>
             <Field label="招生来源"><input aria-label="招生来源" readOnly onClick={unavailable} /></Field>
             <Field label="介绍人"><input aria-label="介绍人" readOnly onClick={unavailable} /></Field>
-            <Field label="年级"><select aria-label="年级" value="" onClick={unavailable} onChange={unavailable}><option value="" /></select></Field>
+            <Field label="年级"><select aria-label="年级" defaultValue="">{data.gradeOptions.map((grade, index) => <option key={index} value={grade}>{grade}</option>)}</select></Field>
           </div>
           <div className="enrollment-field-row">
             <Field label="学员标签"><input aria-label="学员标签" placeholder="请选择" readOnly onClick={unavailable} /></Field>

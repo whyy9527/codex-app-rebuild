@@ -1,0 +1,67 @@
+{
+  "baseline": {
+    "options": []
+  },
+  "cases": [
+    {
+      "id": "grade-click",
+      "method": "click",
+      "hypothesis": "Opening grade control exposes options without selecting or saving a student",
+      "expectedResult": {
+        "options": [
+          "",
+          "小班",
+          "中班",
+          "大班",
+          "一年级",
+          "二年级",
+          "三年级",
+          "四年级",
+          "五年级",
+          "六年级",
+          "七年级",
+          "初二",
+          "初三",
+          "高一",
+          "高二",
+          "高三",
+          "高中毕业",
+          "大学",
+          "成人",
+          "其他",
+          "初一"
+        ]
+      }
+    },
+    {
+      "id": "grade-keyboard",
+      "method": "keyboard",
+      "hypothesis": "Keyboard opening exposes the same grade options independently",
+      "expectedResult": {
+        "options": [
+          "",
+          "小班",
+          "中班",
+          "大班",
+          "一年级",
+          "二年级",
+          "三年级",
+          "四年级",
+          "五年级",
+          "六年级",
+          "七年级",
+          "初二",
+          "初三",
+          "高一",
+          "高二",
+          "高三",
+          "高中毕业",
+          "大学",
+          "成人",
+          "其他",
+          "初一"
+        ]
+      }
+    }
+  ]
+}
