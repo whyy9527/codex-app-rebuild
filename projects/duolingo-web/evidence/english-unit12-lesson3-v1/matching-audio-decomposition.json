@@ -1,0 +1,83 @@
+{
+  "scope": "One actual right-click with overlapping original speech and match effect; speech subtraction is diagnostic, not source/native acoustic equality",
+  "method": "Mono48k FFT alignment fit to original speech, then subtract fitted speech and measure original effect in residual. No masking or pass threshold.",
+  "references": {
+    "speech": {
+      "path": "projects/education-swift/Sources/LingoSeed/Resources/Reference/en-speech-14025ebe26d3a75ffd86.mp3",
+      "sha256": "cd28a9760cd1e1f3a8019655f50a8a7d9e553149fe07aca14c967cd59d21c988"
+    },
+    "effect": {
+      "path": "projects/education-swift/Sources/LingoSeed/Resources/Reference/en-effect-e58462905b34f2734748.mp3",
+      "sha256": "0eeac6cac41acfd051090c80d680565f10eb6183e0cc49dd3ee113f0207dd5b1"
+    }
+  },
+  "limitations": [
+    "Unconstrained fitted delay/gain; not calibrated loudness or timing equality",
+    "Source play/playing receipt is not a browser acoustic capture",
+    "Not an RSI mechanism or product ablation"
+  ],
+  "native-before": {
+    "original_speech_fit": {
+      "alignment_seconds": 0.15772916666666667,
+      "normalized_correlation": 0.9999972655100726,
+      "fitted_gain": 0.9999834434213668,
+      "residual_rms": 0.00027821788769535026,
+      "reference_samples": 41472,
+      "recorded_samples": 255360
+    },
+    "original_effect_in_residual": {
+      "alignment_seconds": 0.9866666666666667,
+      "normalized_correlation": 0.10768372257057561,
+      "fitted_gain": 1.3617874230756043e-06,
+      "residual_rms": 7.43524759829214e-07,
+      "reference_samples": 18432,
+      "recorded_samples": 255360
+    },
+    "left_click_output_rms": 0.004968439810285312,
+    "left_click_output_peak": 0.11167104542255402,
+    "left_ui_action": [
+      {
+        "elapsed_seconds": 0.12805604934692383,
+        "id": "pair-left-0"
+      }
+    ],
+    "right_ui_action": [
+      {
+        "elapsed_seconds": 0.12891995906829834,
+        "id": "pair-right-0"
+      }
+    ]
+  },
+  "native-final": {
+    "original_speech_fit": {
+      "alignment_seconds": 0.15908333333333333,
+      "normalized_correlation": 0.9489876423390475,
+      "fitted_gain": 0.9973708867206684,
+      "residual_rms": 0.03942544171415687,
+      "reference_samples": 41472,
+      "recorded_samples": 251520
+    },
+    "original_effect_in_residual": {
+      "alignment_seconds": 0.191125,
+      "normalized_correlation": 0.9999546369628135,
+      "fitted_gain": 0.9999415845795665,
+      "residual_rms": 0.0005632800216504084,
+      "reference_samples": 18432,
+      "recorded_samples": 251520
+    },
+    "left_click_output_rms": 0,
+    "left_click_output_peak": 0,
+    "left_ui_action": [
+      {
+        "elapsed_seconds": 0.04608607292175293,
+        "id": "pair-left-0"
+      }
+    ],
+    "right_ui_action": [
+      {
+        "elapsed_seconds": 0.12811696529388428,
+        "id": "pair-right-0"
+      }
+    ]
+  }
+}

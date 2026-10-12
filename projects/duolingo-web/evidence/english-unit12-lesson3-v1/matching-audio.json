@@ -1,0 +1,85 @@
+{
+  "scope": "Third unit12 course text-match pair0: actual right-word UI action, original match effect presence. No source acoustic equality or RSI ablation claim.",
+  "sample_rate": 48000,
+  "reference_self_check": {
+    "alignment_seconds": 0.0,
+    "normalized_correlation": 0.9999999999999989,
+    "fitted_gain": 1.0,
+    "residual_rms": 0.0,
+    "reference_samples": 18432,
+    "recorded_samples": 18432
+  },
+  "files": {
+    "reference": {
+      "path": "projects/education-swift/Sources/LingoSeed/Resources/Reference/en-effect-e58462905b34f2734748.mp3",
+      "sha256": "0eeac6cac41acfd051090c80d680565f10eb6183e0cc49dd3ee113f0207dd5b1"
+    },
+    "before": {
+      "path": "projects/duolingo-web/evidence/english-unit12-lesson3-v1/native-before/matching-right0.wav",
+      "sha256": "1f5e6245df7d0b6f383b9058007aec461f3a19a80c54db1dc1a7893de09da914"
+    },
+    "after": {
+      "path": "projects/duolingo-web/evidence/english-unit12-lesson3-v1/native-final/matching-right0.wav",
+      "sha256": "6474e1cf85b37550c5604fd1b6d52e437d96b28e0460693991939d3d45a745f0"
+    }
+  },
+  "before": {
+    "alignment_seconds": 0.5625416666666667,
+    "normalized_correlation": 0.23732390181278964,
+    "fitted_gain": 0.3446988430631492,
+    "residual_rms": 0.08344090337725876,
+    "reference_samples": 18432,
+    "recorded_samples": 255360,
+    "owned_capture_receipt": {
+      "duration_seconds": 5,
+      "excludes_current_process_audio": true,
+      "filter": "Only explicitly selected owned application/window",
+      "filter_mode": "application",
+      "frames": 255360,
+      "kind": "owned_application_audio_loopback",
+      "microphone": false,
+      "owned_pid": 41280,
+      "peak": 0.5408992171287537,
+      "rms": 0.03390144883824049,
+      "samples": 510720,
+      "ui_actions": [
+        {
+          "elapsed_seconds": 0.12891995906829834,
+          "id": "pair-right-0"
+        }
+      ]
+    }
+  },
+  "after": {
+    "alignment_seconds": 0.19114583333333332,
+    "normalized_correlation": 0.3378676067712088,
+    "fitted_gain": 0.9770728745083194,
+    "residual_rms": 0.16096381996665418,
+    "reference_samples": 18432,
+    "recorded_samples": 251520,
+    "owned_capture_receipt": {
+      "duration_seconds": 5,
+      "excludes_current_process_audio": true,
+      "filter": "Only explicitly selected owned application/window",
+      "filter_mode": "application",
+      "frames": 251520,
+      "kind": "owned_application_audio_loopback",
+      "microphone": false,
+      "owned_pid": 43370,
+      "peak": 0.5408992171287537,
+      "rms": 0.035901332201974466,
+      "samples": 503040,
+      "ui_actions": [
+        {
+          "elapsed_seconds": 0.12811696529388428,
+          "id": "pair-right-0"
+        }
+      ]
+    }
+  },
+  "limitations": [
+    "Mono 48kHz ffmpeg decode; fitted timing/gain are reported, not treated as exact match",
+    "Mix/order/latency/volume and other cues remain unverified",
+    "Not an RSI mechanism ablation"
+  ]
+}

@@ -27,7 +27,7 @@ swift run --package-path projects/education-swift LearningCoreChecks
 
 使用尚不存在的 progress 路径建立独立初态。已探索的阶段／课程进度使用对应证据目录中的准备夹具；不能把新访客初态冒充课后状态。详细启动、进度隔离和复跑见 [Swift 基座](projects/education-swift/README.md)与 [Duolingo 案例](projects/duolingo-web/README.md)。
 
-当前共同前端规格为 [v77](projects/duolingo-web/frontend-english-v77.json)。[连胜反馈与严格对照](projects/duolingo-web/evidence/english-streak-followup-v1/README.md)覆盖实际模型选动作、真实反馈修订、Swift日历及保留的整图失败；[主页下游证据](projects/duolingo-web/evidence/english-home-stat-branches-v1/README.md)覆盖真实目录、透明输入控件、补心持久化及Super返回链；[主页顶部交互证据](projects/duolingo-web/evidence/english-home-stats-v1/README.md)连接原版发现、输入模式、Swift 鼠标／键盘操作及严格失败；[实际声音证据](projects/duolingo-web/evidence/english-pronunciation-current-v1/README.md)区分原资源输出与尚未证明的浏览器声学等价。
+当前共同前端规格为 [v78](projects/duolingo-web/frontend-english-v78.json)。[第3课探索与声音修复](projects/duolingo-web/evidence/english-unit12-lesson3-v1/README.md)新增表格题、文字配对、重练及补心流程；41实际状态跑通，原版裁剪截图被门禁拒绝，1:1仍未完成。[连胜反馈与严格对照](projects/duolingo-web/evidence/english-streak-followup-v1/README.md)覆盖实际模型选动作、真实反馈修订、Swift日历及保留的整图失败；[主页下游证据](projects/duolingo-web/evidence/english-home-stat-branches-v1/README.md)覆盖真实目录、透明输入控件、补心持久化及Super返回链；[主页顶部交互证据](projects/duolingo-web/evidence/english-home-stats-v1/README.md)连接原版发现、输入模式、Swift 鼠标／键盘操作及严格失败；[实际声音证据](projects/duolingo-web/evidence/english-pronunciation-current-v1/README.md)区分原资源输出与尚未证明的浏览器声学等价。
 
 ## 迭代工具与验证
 

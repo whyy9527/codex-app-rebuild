@@ -93,6 +93,20 @@ import LearningCore
             }
             if previous == nil && lesson.feedback == true { audio.playReferenceEffect(lesson.question.correctFeedbackAudioResource) }
             if lesson.mistakesMade > mistakesBefore { audio.playReferenceEffect(lesson.question.incorrectFeedbackAudioResource) }
+        } else if isReferenceSession, let lesson {
+            let playSpeech = lesson.question.sourceType == "listenMatch" ? left : !left
+            if playSpeech, let pair = lesson.question.pairs.first(where: { $0.id == id }), let resource = pair.audioResource {
+                audio.speak(pair.right, language: course.speechLanguage, resource: resource)
+            }
+            if lesson.matchedPairs.count > matchedBefore, let resources = lesson.question.matchedAudioResources, resources.indices.contains(matchedBefore) {
+                audio.playReferenceEffect(resources[matchedBefore])
+            }
+            if previous == nil && lesson.feedback == true {
+                audio.playReferenceEffect(lesson.question.correctFeedbackAudioResource, volume: lesson.question.correctFeedbackAudioVolume ?? 1)
+            }
+            if lesson.mistakesMade > mistakesBefore {
+                audio.playReferenceEffect(lesson.question.incorrectFeedbackAudioResource, volume: lesson.question.incorrectFeedbackAudioVolume ?? 1)
+            }
         } else if isPronunciationPractice {
             if left, let pair = lesson?.question.pairs.first(where: { $0.id == id }), let resource = pair.audioResource {
                 audio.speak(pair.right, language: course.speechLanguage, resource: resource)
@@ -187,7 +201,8 @@ import LearningCore
     }
     var unitTwelveCompletedLessons:Int {
         (progress.completedLessons["duolingo-en-zh-unit12-home-instance",default:[]].contains("unit12-home-1") ? 1 : 0) +
-        (progress.completedLessons["duolingo-en-zh-unit12-home2-instance",default:[]].contains("unit12-home-2") ? 1 : 0)
+        (progress.completedLessons["duolingo-en-zh-unit12-home2-instance",default:[]].contains("unit12-home-2") ? 1 : 0) +
+        (progress.completedLessons["duolingo-en-zh-unit12-home3-instance",default:[]].contains("unit12-home-3") ? 1 : 0)
     }
     func dismissPronunciationCoach() { preferences.pronunciationCoach="dismissed";savePreferences() }
     func beginStageTwoLesson() {
@@ -263,7 +278,7 @@ import LearningCore
         }
     }
     func advanceSettlement() {
-        if isGeneralPractice, settlement?.current?.kind == "practice_heart" {
+        if isReferenceSession, settlement?.current?.kind == "practice_heart" {
             progress.hearts += 1; save()
         }
         settlement?.advance()

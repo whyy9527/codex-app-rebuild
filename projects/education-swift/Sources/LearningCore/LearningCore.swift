@@ -77,6 +77,8 @@ public struct Question: Codable, Equatable, Sendable, Identifiable {
     public let dialogueAvatars: [String]?
     public let correctFeedback: String?
     public let indicator: String?
+    public let contextExamples: [String]?
+    public let contextHighlights: [String]?
     public let example: String?
     public let exampleAudioResource: String?
     public let completionPrefix: String?
@@ -94,7 +96,7 @@ public struct Question: Codable, Equatable, Sendable, Identifiable {
         case correctFeedbackAudioVolume, incorrectFeedbackAudioVolume
         case matchedAudioResources, correctFeedbackAudioResource, incorrectFeedbackAudioResource
         case practiceAudioResources, practiceAudioLabels, feedbackHint, reviewWordOrder, skipLabel, skipCorrectText
-        case keyboardAnswer, keyboardPrompt, correctFeedback, indicator, example, exampleAudioResource, completionPrefix, completionSuffix, listeningDecline, feedbackReportReasons
+        case keyboardAnswer, keyboardPrompt, correctFeedback, indicator, contextExamples, contextHighlights, example, exampleAudioResource, completionPrefix, completionSuffix, listeningDecline, feedbackReportReasons
         case id, kind, prompt, options, answer, words, pairs, explanation, hint, newWord, rightOrder, audioResource, sourceLanguage, characterResource, sourceType, slowAudioResource, dialogueAvatars
         case answerWords = "answer_words"
     }
@@ -131,6 +133,8 @@ public struct Question: Codable, Equatable, Sendable, Identifiable {
         characterResource = try c.decodeIfPresent(String.self, forKey: .characterResource)
         correctFeedback = try c.decodeIfPresent(String.self, forKey: .correctFeedback)
         indicator = try c.decodeIfPresent(String.self, forKey: .indicator)
+        contextHighlights = try c.decodeIfPresent([String].self, forKey: .contextHighlights)
+        contextExamples = try c.decodeIfPresent([String].self, forKey: .contextExamples)
         example = try c.decodeIfPresent(String.self, forKey: .example)
         exampleAudioResource = try c.decodeIfPresent(String.self, forKey: .exampleAudioResource)
         completionPrefix = try c.decodeIfPresent(String.self, forKey: .completionPrefix)

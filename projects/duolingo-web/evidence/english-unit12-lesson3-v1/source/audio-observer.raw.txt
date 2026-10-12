@@ -1,0 +1,18 @@
+### Result
+{"installed":true,"path":"/lesson"}
+### Ran Playwright code
+```js
+await (async page=>{return await page.evaluate(()=>{if(window.__rebuildPlayed)throw Error("Observer already installed");window.__rebuildPlayed=[];window.__rebuildOriginalPlay=HTMLMediaElement.prototype.play;HTMLMediaElement.prototype.play=function(...args){window.__rebuildPlayed.push({at:Date.now(),src:this.currentSrc||this.src,volume:this.volume,muted:this.muted});return window.__rebuildOriginalPlay.apply(this,args)};return {installed:true,path:location.pathname}})})(page);
+```
+### Open tabs
+- 0: [多邻国 - 学得轻松，学有所成的英语 课程！](https://www.duolingo.com/lesson)
+- 1: (current) [多邻国 - 学得轻松，学有所成的英语 课程！](https://www.duolingo.com/lesson)
+- 2: [多邻国 - 学得轻松，学有所成的英语 课程！](https://www.duolingo.com/guidebook/en/12)
+- 3: [多邻国 - 学得轻松，学有所成的英语 课程！](https://www.duolingo.com/alphabets/en/pronunciation)
+- 4: [多邻国 - 学得轻松，学有所成的英语 课程！](https://www.duolingo.com/learn)
+### Page
+- Page URL: https://www.duolingo.com/lesson
+- Page Title: 多邻国 - 学得轻松，学有所成的英语 课程！
+- Console: 181 errors, 0 warnings
+### Events
+- New console entries: ../../../.playwright-cli/console-2026-10-11T19-01-01-875Z.log#L381-L382

@@ -353,6 +353,19 @@ struct LearningView: View {
         }.padding(.vertical, 32)
     }
     @ViewBuilder private func question(_ lesson: Lesson) -> some View {
+        if lesson.question.contextExamples != nil {
+            VStack(alignment: .leading, spacing: 0) {
+                HStack(spacing: 4) {
+                    ReferenceStyle.image("en-pattern-context-indicator").resizable().frame(width: 32, height: 32)
+                    Text(lesson.question.indicator ?? "").font(ReferenceStyle.font(17, bold: true))
+                        .foregroundStyle(Color(red: 206/255, green: 130/255, blue: 1))
+                }.frame(height: 32).padding(.bottom, 8)
+                Text(lesson.displayedPrompt).font(ReferenceStyle.font(32, bold: true))
+                    .frame(maxWidth: .infinity, minHeight: 40, maxHeight: 40, alignment: .leading)
+                    .accessibilityIdentifier("question-title").accessibilityValue(lesson.displayedPrompt)
+                words(lesson).padding(.top, 24)
+            }.offset(y: -8)
+        } else {
         if lesson.reviewing {
             Text(copy("ONE MORE LOOK", "错题重练")).font(.caption.bold()).foregroundStyle(accent).accessibilityIdentifier("review-label")
         } else if let indicator = lesson.question.indicator {
@@ -373,6 +386,7 @@ struct LearningView: View {
         }.padding(.top, 0.5)
         if !model.isReferenceSession && lesson.question.kind == .choice && !["dialogue", "listenIsolation"].contains(lesson.question.sourceType ?? "") {
             Button { model.pronounce() } label: { Label(lesson.selected == nil ? "Read the instruction" : "Listen again", systemImage: "speaker.wave.2.fill") }.buttonStyle(.plain).foregroundStyle(.cyan).accessibilityIdentifier("pronounce")
+        }
         }
     }
     private var generalListeningControls: some View {
@@ -655,8 +669,49 @@ struct LearningView: View {
                 }.padding(.top, 68)
             }
     }
+    private func contextualExample(_ example: String, highlight: String) -> some View {
+        let parts = highlight.isEmpty ? [example] : example.components(separatedBy: highlight)
+        return (Text(parts[0]) + Text(highlight).foregroundColor(Color(red: 206/255, green: 130/255, blue: 1)).bold() + Text(parts.count > 1 ? parts[1] : ""))
+            .font(ReferenceStyle.font(19))
+            .overlay(alignment: .bottom) { GeometryReader { proxy in
+                Path { path in path.move(to: CGPoint(x: 0, y: proxy.size.height + 4));path.addLine(to: CGPoint(x: proxy.size.width - 4, y: proxy.size.height + 4)) }
+                    .stroke(Color(white: 0.69), style: StrokeStyle(lineWidth: 2, dash: [2, 2]))
+            } }
+    }
     @ViewBuilder private func words(_ lesson: Lesson) -> some View {
-        if lesson.question.sourceType == "tapComplete", let image = lesson.question.promptImageResource {
+        if let examples = lesson.question.contextExamples {
+            VStack(spacing: 36) {
+                VStack(alignment: .leading, spacing: 0) {
+                    ForEach(Array(examples.enumerated()), id: \.offset) { index, example in
+                        contextualExample(example, highlight: lesson.question.contextHighlights?.indices.contains(index) == true ? lesson.question.contextHighlights![index] : "")
+                            .frame(maxWidth: .infinity, minHeight: 80, alignment: .leading)
+                            .padding(.horizontal, 16).accessibilityIdentifier("context-example-\(index)")
+                            .overlay(alignment: .bottom) { Rectangle().fill(ReferenceStyle.border).frame(height: 2) }
+                    }
+                    HStack(spacing: 4) {
+                        Text(lesson.question.completionPrefix ?? "").accessibilityIdentifier("completion-prefix")
+                        HStack(spacing: 4) {
+                            ForEach(lesson.selectedWords, id: \.self) { id in
+                                Button(lesson.question.words.first { $0.id == id }!.text) { model.removeWord(id) }
+                                    .buttonStyle(SeedTileStyle(selected: true)).disabled(lesson.feedback != nil)
+                                    .accessibilityIdentifier("selected-word-" + id)
+                            }
+                        }.frame(minWidth: 82, minHeight: 48)
+                            .overlay(alignment: .bottom) { Rectangle().fill(ReferenceStyle.border).frame(height: 2) }
+                        Text(lesson.question.completionSuffix ?? "").accessibilityIdentifier("completion-suffix")
+                    }.font(ReferenceStyle.font(19)).padding(.horizontal, 16)
+                        .frame(maxWidth: .infinity, minHeight: 87.84375, alignment: .leading)
+                }.overlay(RoundedRectangle(cornerRadius: 16).stroke(ReferenceStyle.border, lineWidth: 2))
+                    .accessibilityIdentifier("context-table")
+                WordFlowLayout(centered: true) {
+                    ForEach(lesson.visibleWords) { word in
+                        Button(word.text) { model.addWord(word.id) }.buttonStyle(SeedTileStyle()).fixedSize()
+                            .disabled(lesson.feedback != nil || lesson.selectedWords.contains(word.id))
+                            .accessibilityIdentifier("word-bank-" + word.id)
+                    }
+                }
+            }
+        } else if lesson.question.sourceType == "tapComplete", let image = lesson.question.promptImageResource {
             VStack(spacing: 90) {
                 HStack(spacing: 24) {
                     ReferenceStyle.image(image).resizable().scaledToFit().frame(width: 180, height: 180)
@@ -761,7 +816,8 @@ struct LearningView: View {
     @ViewBuilder private func matching(_ lesson: Lesson) -> some View {
         if lesson.question.sourceType == "listenMatch" { audioMatching(lesson) } else {
         VStack(alignment: .leading, spacing: 14) {
-            Text(lesson.matchingHint ?? "Choose an expression, then its meaning.").foregroundStyle(.secondary)
+            if let hint = lesson.matchingHint { Text(hint).foregroundStyle(.secondary) }
+            else if !model.isReferenceSession { Text("Choose an expression, then its meaning.").foregroundStyle(.secondary) }
             HStack(alignment: .top, spacing: 20) {
                 VStack(spacing: 12) {
                     ForEach(lesson.question.pairs) { pair in

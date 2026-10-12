@@ -17,12 +17,12 @@ def measure(reference,output):
  lag=int(np.argmax(corr));segment=output[lag:lag+len(reference)];gain=float(segment@reference/ref_energy)
  return dict(alignment_seconds=lag/RATE,normalized_correlation=float(corr[lag]),fitted_gain=gain,residual_rms=float(np.sqrt(np.mean((segment-gain*reference)**2))),reference_samples=len(reference),recorded_samples=len(output))
 def main():
- p=argparse.ArgumentParser(description=__doc__);p.add_argument('--reference',required=True);p.add_argument('--before',required=True);p.add_argument('--after',required=True);p.add_argument('--out',required=True);a=p.parse_args()
+ p=argparse.ArgumentParser(description=__doc__);p.add_argument('--reference',required=True);p.add_argument('--before',required=True);p.add_argument('--after',required=True);p.add_argument('--out',required=True);p.add_argument('--scope',default='One actually triggered eighth-course q3 correct feedback; alignment search measures effect presence, not full acoustic equality');a=p.parse_args()
  paths={k:Path(getattr(a,k)) for k in ['reference','before','after']}
  with tempfile.TemporaryDirectory() as folder:
   signals={k:decode(v,Path(folder)) for k,v in paths.items()}
   self_check=measure(signals['reference'],signals['reference']);assert abs(self_check['normalized_correlation']-1)<1e-8 and self_check['alignment_seconds']==0
-  result={'scope':'One actually triggered eighth-course q3 correct feedback; alignment search measures effect presence, not full acoustic equality','sample_rate':RATE,'reference_self_check':self_check,'files':{k:{'path':str(v),'sha256':hashlib.sha256(v.read_bytes()).hexdigest()} for k,v in paths.items()},'before':measure(signals['reference'],signals['before']),'after':measure(signals['reference'],signals['after']),'limitations':['Mono 48kHz ffmpeg decode; fitted timing/gain are reported, not treated as exact match','Mix/order/latency/volume and other cues remain unverified','Not an RSI mechanism ablation']}
+  result={'scope':a.scope,'sample_rate':RATE,'reference_self_check':self_check,'files':{k:{'path':str(v),'sha256':hashlib.sha256(v.read_bytes()).hexdigest()} for k,v in paths.items()},'before':measure(signals['reference'],signals['before']),'after':measure(signals['reference'],signals['after']),'limitations':['Mono 48kHz ffmpeg decode; fitted timing/gain are reported, not treated as exact match','Mix/order/latency/volume and other cues remain unverified','Not an RSI mechanism ablation']}
   for key in ['before','after']:
    receipt=json.loads(paths[key].with_suffix('.wav.json').read_text());assert not receipt.get('failure') and receipt['microphone'] is False and len(receipt['ui_actions'])==1 and receipt['samples']>0
    result[key]['owned_capture_receipt']=receipt

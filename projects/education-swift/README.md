@@ -1,5 +1,7 @@
 # LingoSeed · Swift 教育基座
 
+已接实际第3课、表格填空、文字配对、原配对音效和结算补心；主页入口至返回共41真实状态跑通。前端与源声学仍未等价，源裁剪截图的整图验收待重采。[当前证据与复跑](../duolingo-web/evidence/english-unit12-lesson3-v1/README.md)。
+
 头像预览现由原版Rive/SMAvatar运行，15肤色保存轨迹21状态通过；其它八分类尚无交互，完整图像、动画时序与声音未等价。[当前探索模具和实测](../duolingo-web/evidence/english-avatar-categories-v1/README.md)。
 
 实际探索发现头像完成后退出确认、重载保存肤色及/profile/undefined→404返回；15肤色均采到动态Canvas帧。Swift接开始/头像入口、15单选和保存/确认/重启/放弃，最终21状态无驱动失败，76项源流程检查通过。v58保留3855旧项增448，前端331pass/92fail/93unavailable，6图全fail；预览暂为原版绘制帧，完整动画/其它分类/保存头像展示仍缺，下一批优先原版分类及渲染来源。无1:1或RSI收益宣称。[证据与复跑](../duolingo-web/evidence/english-avatar-save-v1/README.md)。

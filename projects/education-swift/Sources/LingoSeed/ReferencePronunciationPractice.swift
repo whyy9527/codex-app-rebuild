@@ -47,7 +47,7 @@ struct ReferencePronunciationPractice: View {
                     VStack(alignment: .leading, spacing: 0) {
                         Text(question.prompt).font(ReferenceStyle.font(32, bold: true)).frame(height: 40).accessibilityIdentifier("question-prompt").accessibilityValue(question.id)
                         if question.kind == .matching {
-                            matching.padding(.top, 86)
+                            matching.padding(.top, question.sourceType == "match" ? 67.390625 : 86)
                         } else if question.sourceType == "sameDifferent" {
                             VStack(alignment: .leading, spacing: 0) {
                                 splitSpeaker.frame(maxWidth: .infinity)
@@ -60,7 +60,7 @@ struct ReferencePronunciationPractice: View {
                                 HStack(spacing: 8) { ForEach(Array(question.options.enumerated()), id: \.element.id) { index, option in radio(option, index: index) } }
                             }.padding(.top, 105)
                         }
-                    }.frame(width: 600).padding(.top, 51)
+                    }.frame(width: 600).padding(.top, question.sourceType == "match" ? 39 : 51)
                 }
                 Spacer(minLength: 0)
                 if let otherFooter, lesson.deferredSpeech == nil { otherFooter.frame(height: 140) }
@@ -128,7 +128,7 @@ struct ReferencePronunciationPractice: View {
             }
             VStack(spacing: 10) {
                 ForEach(Array(right.enumerated()), id: \.element.id) { index, pair in
-                    pairButton(pair, number: index + 5, left: false)
+                    pairButton(pair, number: question.sourceType == "match" ? (index + 6) % 10 : index + 5, left: false)
                 }
             }
         }.frame(maxWidth: .infinity)
@@ -141,19 +141,21 @@ struct ReferencePronunciationPractice: View {
         let face = HStack(spacing: left ? 14 : 0) {
             Text(String(number)).font(ReferenceStyle.font(14, bold: true)).foregroundStyle(matched ? ReferenceStyle.border : selected ? ReferenceStyle.blue : ReferenceStyle.disclosureInk)
                 .frame(width: 28, height: 28).overlay(RoundedRectangle(cornerRadius: 6).strokeBorder(edge, lineWidth: 2))
-            if left {
+            if left && question.sourceType == "match" {
+                Text(pair.left).font(ReferenceStyle.font(19)).foregroundStyle(ink).frame(maxWidth: .infinity)
+            } else if left {
                 ReferenceStyle.image("en-match-speaker-source-frame").renderingMode(.template).resizable().frame(width: 24, height: 19).foregroundStyle(matched ? ReferenceStyle.border : ReferenceStyle.blue)
                 ReferenceStyle.image("en-match-waveform-source-frame").renderingMode(.template).resizable().frame(width: 81, height: 24).foregroundStyle(matched ? ReferenceStyle.border : ReferenceStyle.blue)
                 Spacer(minLength: 0)
             } else {
                 Text(pair.right).font(ReferenceStyle.font(19)).foregroundStyle(ink).frame(maxWidth: .infinity)
             }
-        }.padding(.horizontal, 18).frame(width: 255, height: 56)
+        }.padding(.horizontal, 18).frame(width: 255, height: question.sourceType == "match" ? 49.84375 : 56)
             .background(RoundedRectangle(cornerRadius: 12).fill(selected ? Color(red: 221/255, green: 244/255, blue: 1) : .white).shadow(color: edge, radius: 0, y: 2))
-            .overlay(RoundedRectangle(cornerRadius: 12).strokeBorder(edge, lineWidth: 2)).frame(height: 58, alignment: .top)
-        return ReferencePracticeControl(label: left ? String(number) : "\(number) \(pair.right)", identifier: (left ? "pair-left-" : "pair-right-") + pair.id,
+            .overlay(RoundedRectangle(cornerRadius: 12).strokeBorder(edge, lineWidth: 2)).frame(height: question.sourceType == "match" ? 51.84375 : 58, alignment: .top)
+        return ReferencePracticeControl(label: left ? (question.sourceType == "match" ? "\(number) \(pair.left)" : String(number)) : "\(number) \(pair.right)", identifier: (left ? "pair-left-" : "pair-right-") + pair.id,
             enabled: lesson.feedback == nil && !matched, action: { model.match(pair.id, left: left) }, face: AnyView(face))
-            .frame(width: 255, height: 58)
+            .frame(width: 255, height: question.sourceType == "match" ? 51.84375 : 58)
     }
 
     private var splitSpeaker: some View {

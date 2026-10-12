@@ -1,0 +1,16 @@
+### Result
+{"snapshot":"- button:\n  - img\n- progressbar\n- img\n- text: \"4\"\n- img\n- text: 新单词\n- heading \"用中文（简体）写出这句话\" [level=1]\n- button:\n  - img\n- img\n- button \"干净\" [disabled]\n- button \"食物\" [disabled]\n- button \"厨房\" [disabled]\n- button \"吗\" [disabled]\n- heading \"正确答案：\" [level=2]\n- text: 厨房干净吗？\n- button \"太简单\"\n- button \"太难\"\n- button \"报错\"\n- button \"继续\"","played":[{"at":1791761953591,"src":"https://d1vq87e9lcf771.cloudfront.net/vikramen/9a25122e375e9f8849afb1348b0e176a","volume":1,"muted":false}]}
+### Ran Playwright code
+```js
+await (async page=>{return {snapshot:await page.locator("body").ariaSnapshot(),played:await page.evaluate(()=>window.__rebuildPlayed)}})(page);
+```
+### Open tabs
+- 0: [多邻国 - 学得轻松，学有所成的英语 课程！](https://www.duolingo.com/lesson)
+- 1: (current) [多邻国 - 学得轻松，学有所成的英语 课程！](https://www.duolingo.com/lesson)
+- 2: [多邻国 - 学得轻松，学有所成的英语 课程！](https://www.duolingo.com/guidebook/en/12)
+- 3: [多邻国 - 学得轻松，学有所成的英语 课程！](https://www.duolingo.com/alphabets/en/pronunciation)
+- 4: [多邻国 - 学得轻松，学有所成的英语 课程！](https://www.duolingo.com/learn)
+### Page
+- Page URL: https://www.duolingo.com/lesson
+- Page Title: 多邻国 - 学得轻松，学有所成的英语 课程！
+- Console: 181 errors, 0 warnings

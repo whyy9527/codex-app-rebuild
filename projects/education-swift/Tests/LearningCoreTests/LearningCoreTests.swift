@@ -920,6 +920,38 @@ func actualUnit12SecondHomeCourse() throws {
     print("PASS unit12 second 12 accepted, oral decline, two encouragements, 13 result cards and observed home outcome")
 }
 
+func actualUnit12ThirdHomeCourse() throws {
+    let course = try course(fixture:"fixture-reference-en-zh-unit12-lesson3-v1.json")
+    var lesson=Lesson(course:course,hearts:4)
+    lesson.skip();try check(lesson.hearts == 4 && lesson.skipped,"Observed skip spent a heart")
+    lesson.advance()
+    var graded=0, speech=0, interludes=0
+    for _ in 0..<32 {
+        if lesson.complete { break }
+        if lesson.interlude != nil { interludes += 1;lesson.advance();continue }
+        if let pending=lesson.deferredSpeech {
+            try check(pending.phrase == "Oh, the kitchen is clean!", "Third oral identity lost")
+            speech += 1;lesson.declineSpeech();lesson.advance();continue
+        }
+        switch lesson.question.kind {
+        case .choice: lesson.choose(lesson.question.answer)
+        case .wordTiles: for id in lesson.question.answerWords { lesson.addWord(id) }
+        case .textEntry: lesson.enterText(lesson.question.answer)
+        case .matching: for pair in lesson.question.pairs { lesson.matchLeft(pair.id);lesson.matchRight(pair.id) }
+        }
+        lesson.submit();try check(lesson.feedback == true,"Third accepted answer rejected")
+        graded += 1;lesson.advance()
+    }
+    try check(lesson.complete && graded == 15 && speech == 1 && interludes == 1,"Third skip/review trajectory differs")
+    try check(lesson.resultReviewEntries.count == 17,"Skipped and reattempted cards must both remain")
+    let tables=lesson.definition.questions.filter{$0.contextExamples != nil}
+    try check(tables.count == 2 && tables[0].contextExamples == ["I am from France.","My jacket is on the table."] && tables[1].contextExamples == ["I am from Tokyo.","Your bag is on the couch."],"Table context omitted")
+    try check(lesson.definition.questions.filter{$0.kind == .matching}.allSatisfy{$0.matchedAudioResources?.count == 5},"Five real match cues per instance missing")
+    try check(lesson.definition.settlement?.map(\.kind) == ["result","practice_heart","profile"],"Actual heart reward page missing")
+    try check(lesson.hearts == 4 && lesson.definition.observedHomeSnapshot?.completedLessons == 5,"Course core must leave actual reward to settlement")
+    print("PASS third course: two context tables, two match instances, skip/review, oral and heart reward sequence")
+}
+
 func observedHeartRefill() throws {
     var progress=LearningProgress();progress.hearts=4
     try check(!progress.purchaseHeartRefill(availableGems:349),"Insufficient gems must not refill")
@@ -969,8 +1001,9 @@ do {
     try actualUnitPlacement()
     try actualUnit12HomeCourse()
     try actualUnit12SecondHomeCourse()
+    try actualUnit12ThirdHomeCourse()
     try observedHeartRefill()
-    print("36 business checks passed; core layer only")
+    print("37 business checks passed; core layer only")
 } catch {
     FileHandle.standardError.write(Data(("FAIL " + String(describing: error) + "\n").utf8))
     exit(1)

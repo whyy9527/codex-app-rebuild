@@ -345,3 +345,6 @@ LessonDefinition的可选ObservedPlacementOutcome只保存已有全对实例的�
 
 
 前端反馈的实际消费者见[策略部署05／06](../projects/exploration-ablation/REPORT05-06.md)：`deploy05.py`把已揭示状态／失败交给既有结构化worker，封存首候选后执行真实UI动作，再将真实后继交回修订。`freeze-streak-followup.py`把所获状态和输入方式写入共同契约／历史，Swift `ReferenceStreak`消费这些原版事实，平台观察器测量实际UI，公共frontend比较器独立比较原图。策略接续成功不供应验收pass，也不代替完整自动模型流水线和产品质量消融。
+
+
+第三课UI证据编译器连接真实渲染、实际选择、play/playing事件和Swift共同夹具；`contextExamples/contextHighlights`承载三行表格，匹配题区分文字与音频左列并使用显式原匹配音效。观察器保存PNG对独立CSS/物理几何一致性，不能用截图尺寸反推比例。v78保留失败图像断言并记录待重采，严格图像比较器未放宽。[实例与未覆盖](../projects/duolingo-web/evidence/english-unit12-lesson3-v1/README.md)。

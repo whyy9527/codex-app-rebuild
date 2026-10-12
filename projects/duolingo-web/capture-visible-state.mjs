@@ -1,6 +1,7 @@
 // Read visible DOM/AX in the owned source page, without hidden session/React payloads.
 import {spawnSync} from 'node:child_process';
-import {writeFileSync,mkdirSync,existsSync} from 'node:fs';
+import {captureImageGeometry} from './capture-image-geometry.mjs';
+import {readFileSync,writeFileSync,mkdirSync,existsSync} from 'node:fs';
 import {resolve,dirname,basename} from 'node:path';
 function arg(name){const i=process.argv.indexOf(name);if(i<0||!process.argv[i+1])throw Error('Required '+name);return process.argv[i+1];}
 const out=resolve(arg('--out'));mkdirSync(dirname(out),{recursive:true});
@@ -129,7 +130,7 @@ const callback=async page=>{
    facts.capture_geometry.backing_scale=sx;
    facts.capture_geometry.measurement='CDP physical/css visual viewport ratio, not inferred from PNG';
    facts.capture_layout_metrics=metrics;
-   facts.capture_png_base64=(await cdp.send('Page.captureScreenshot',{format:'png'})).data;
+   facts.capture_png_base64=(await cdp.send('Page.captureScreenshot',{format:'png',fromSurface:true,captureBeyondViewport:true,clip:{x:0,y:0,width:css.clientWidth,height:css.clientHeight,scale:1}})).data;
   }
   finally {await cdp.detach();}
  } else {await page.screenshot({path:SCREENSHOT});}
@@ -145,6 +146,10 @@ writeFileSync(out+'.raw.txt',(r.stdout||'')+(r.stderr||''),{flag:'wx'});
 if(r.status!==0||r.stdout.includes('### Error')||!r.stdout.includes('### Result\n'))throw Error('Observation unavailable; inspect current tab before retry');
 const facts=JSON.parse(r.stdout.split('### Result\n')[1].split('\n### Ran')[0]);
 if(facts.capture_png_base64){writeFileSync(out+'.png',Buffer.from(facts.capture_png_base64,'base64'),{flag:'wx'});delete facts.capture_png_base64;}
+// PNG dimensions are a consistency check, never a substitute for independently
+// measured CSS/physical geometry. Preserve failed captures for diagnosis.
+Object.assign(facts,captureImageGeometry(readFileSync(out+'.png'),facts.capture_geometry));
+if(!facts.capture_geometry_consistent)facts.capture_geometry_failure='Actual PNG does not match independently measured window and scale; image reference unavailable';
 facts.screenshot=basename(out)+'.png';
 writeFileSync(out+'.json',JSON.stringify(facts,null,2)+'\n',{flag:'wx'});
 console.log(JSON.stringify({observed:true,path:facts.path,visible: facts.visible.length}));
