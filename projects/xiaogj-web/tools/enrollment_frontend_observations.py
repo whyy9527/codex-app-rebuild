@@ -34,6 +34,11 @@ def main():
         match = re.match(r'^\s*\d+ text (?!field)(.*)$', line)
         if match:
             texts.append(normalize_text(match[1]))
+        # Native AX exposes some visible captions only on their control node.
+        # Read those facts too, instead of requiring an extra text child.
+        caption = re.match(r'^\s*\d+ (?:button|link) (.*?)(?:, Value: .*)?$', line)
+        if caption:
+            texts.append(normalize_text(caption[1]))
         match = re.search(r'\d+ (radio button|checkbox) (.*), Value: ([01])$', line)
         if match:
             elements[match[2]] = {'role': 'radio' if match[1] == 'radio button' else 'checkbox', 'value': match[3]}
