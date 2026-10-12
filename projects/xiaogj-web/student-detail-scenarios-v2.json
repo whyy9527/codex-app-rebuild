@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "preparation": "Authorized source student list, dismissed password notice, empty query, page 1. Only open the observed first student; no source writes or remote database reset. Detail expanded state survives Return and reentry: explicitly collapse before the overview and before Return. Source AX collapse container is offscreen; use verified screenshot pixel position (2790,662) only at 2940x1666, then verify Expand link.",
+  "source": "private/reference/2026-10-12-student-detail-preparation",
+  "cases": [
+    {
+      "id": "overview",
+      "actions": [],
+      "requirement": "Exact observed student identity, account balances, points, campus and detail tabs"
+    },
+    {
+      "id": "expanded",
+      "actions": [
+        {
+          "type": "expand"
+        }
+      ],
+      "requirement": "Observed basic/contact fields and dates after expand, then return"
+    },
+    {
+      "id": "return-list",
+      "actions": [],
+      "requirement": "Entering the same student then Return restores exact default list"
+    }
+  ],
+  "unknown": [
+    "All other detail tabs",
+    "Other students",
+    "Scroll and media assets",
+    "Loading timing",
+    "Writes, permissions and persistence",
+    "Keyboard and hover",
+    "Collapse keyboard and semantic activation"
+  ]
+}

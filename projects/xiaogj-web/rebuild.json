@@ -30,7 +30,13 @@
     "query_rsi_config": "projects/xiaogj-web/rsi.json",
     "query_rsi_pool": "projects/xiaogj-web/private/rsi-visible-redeploy-v2-20261012/iteration-1/collected-pool.json",
     "query_rsi_evaluation": "projects/xiaogj-web/private/rsi-visible-revision-20261012/evaluation.json",
-    "pagination_frontend_contract": "projects/xiaogj-web/pagination-frontend-contract.json"
+    "pagination_frontend_contract": "projects/xiaogj-web/pagination-frontend-contract.json",
+    "detail_scenarios": "projects/xiaogj-web/student-detail-scenarios-v3.json",
+    "detail_frontend_contract": "projects/xiaogj-web/detail-frontend-contract.json",
+    "detail_rsi_config": "projects/xiaogj-web/rsi-detail.json",
+    "detail_rsi_collected_pool": "projects/xiaogj-web/private/rsi-detail-collect-v5-20261012/iteration-1/collected-pool.json",
+    "detail_rsi_evaluation": "projects/xiaogj-web/private/rsi-detail-revision-20261012/evaluation.json",
+    "detail_rsi_selected_pool": "projects/xiaogj-web/private/rsi-detail-revision-20261012/pool.json"
   },
   "commands": {
     "build": [
@@ -261,6 +267,79 @@
       "projects/xiaogj-web/pagination-frontend-contract.json",
       "--observed",
       "{observed}",
+      "--out",
+      "{out}"
+    ],
+    "replay_reference_detail": [
+      "python3",
+      "-m",
+      "projects.xiaogj-web.tools.student_detail_v3",
+      "replay",
+      "--side",
+      "reference",
+      "--out",
+      "{out}"
+    ],
+    "replay_detail": [
+      "python3",
+      "-m",
+      "projects.xiaogj-web.tools.student_detail_v3",
+      "replay",
+      "--side",
+      "candidate",
+      "--out",
+      "{out}"
+    ],
+    "compare_detail": [
+      "python3",
+      "-m",
+      "projects.xiaogj-web.tools.student_detail_v3",
+      "compare",
+      "--observed",
+      "{observed}",
+      "--out",
+      "{out}"
+    ],
+    "compare_detail_frontend": [
+      "python3",
+      "-m",
+      "capabilities.rebuild.frontend",
+      "--workspace",
+      ".",
+      "--contract",
+      "projects/xiaogj-web/detail-frontend-contract.json",
+      "--observed",
+      "{observed}",
+      "--out",
+      "{out}"
+    ],
+    "rsi_detail_collect": [
+      "python3",
+      "-m",
+      "workflows.rebuild.dream",
+      "collect",
+      "--workspace",
+      ".",
+      "--config",
+      "projects/xiaogj-web/rsi-detail.json",
+      "--pool",
+      "projects/xiaogj-web/private/rsi-detail-revision-20261012/pool.json",
+      "--out",
+      "{out}"
+    ],
+    "rsi_detail_replay": [
+      "python3",
+      "-m",
+      "workflows.rebuild.dream",
+      "replay",
+      "--workspace",
+      ".",
+      "--config",
+      "projects/xiaogj-web/rsi-detail.json",
+      "--pool",
+      "{observed}",
+      "--candidate",
+      "projects/xiaogj-web/tools/rsi_policy_v1.py",
       "--out",
       "{out}"
     ]

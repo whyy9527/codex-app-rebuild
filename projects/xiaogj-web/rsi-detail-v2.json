@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "seed": "projects/xiaogj-web/private/rsi-detail-seed",
+  "root_observation": {
+    "state": "source-students-default",
+    "remote_reset": "Readonly empty query and default list; Return exits detail; source DB is not reset",
+    "preparation": "Observed detail persists expansion: collapse in native screenshot pixels at verified dimensions and require Expand link before overview; collapse again before Return"
+  },
+  "score_semantics": "Fraction of three observed detail content and return requirements independently reexecuted in source native UI; not visual equivalence or full product acceptance",
+  "initial_policy": "projects/xiaogj-web/tools/rsi_policy_v0.py",
+  "fixed_inputs": [
+    "projects/xiaogj-web/tools/student_detail_v2.py",
+    "projects/xiaogj-web/tools/student_detail_native_v2.js",
+    "projects/xiaogj-web/private/rsi-detail-seed/cases.json",
+    "projects/xiaogj-web/student-detail-scenarios-v2.json"
+  ],
+  "agent": [
+    "python3",
+    "projects/xiaogj-web/tools/student_detail_v2.py",
+    "agent"
+  ],
+  "evaluator": [
+    "python3",
+    "projects/xiaogj-web/tools/student_detail_v2.py",
+    "evaluator"
+  ],
+  "timeout_seconds": 300,
+  "workers": 1,
+  "online_rounds": 4,
+  "replay_rounds": 4,
+  "versions": 2,
+  "parallelism_penalty": 0.05
+}
