@@ -41,4 +41,4 @@ python3 -m workflows.rebuild.project run --workspace . --project projects/duolin
 python3 -m unittest discover -v
 ```
 
-原生 Goal 是默认持续执行入口；旧 Stop Hook/Harness 作为显式选择的兼容适配保留，同一任务使用一种续跑机制。使用 RSI 无需先完成新的消融实验。原论文和已有负面结果保留，项目能力以实际产物为准。本仓库保持私有，公开发布另行决定。
+原生 Goal 是默认持续执行入口；旧 Stop Hook/Harness 作为显式选择的兼容适配保留，同一任务使用一种续跑机制。消融用于完成复刻后的优化，顺序见工作流。原论文和已有负面结果保留，项目能力以实际产物为准。本仓库保持私有，公开发布另行决定。
