@@ -952,6 +952,45 @@ func actualUnit12ThirdHomeCourse() throws {
     print("PASS third course: two context tables, two match instances, skip/review, oral and heart reward sequence")
 }
 
+func actualUnit12FourthHomeCourse() throws {
+    let course=try course(fixture:"fixture-reference-en-zh-unit12-lesson4-v1.json")
+    var lesson=Lesson(course:course,hearts:5)
+    var graded=0,oral=0,intros=0
+    for _ in 0..<32 {
+        if lesson.complete {break}
+        if lesson.interlude != nil {intros += 1;lesson.advance();continue}
+        if let pending=lesson.deferredSpeech {
+            try check(pending.phrase == "Have a seat here." && pending.characterResource != nil,"Observed oral actor missing")
+            oral += 1;lesson.declineSpeech();lesson.advance();continue
+        }
+        if lesson.question.id == "unit12-q14" {
+            try check(!lesson.usingKeyboard && !lesson.canSubmit,"Listening initial state differs")
+            lesson.toggleInputMode()
+            try check(lesson.usingKeyboard && lesson.displayedPrompt == "键入你听到的内容" && !lesson.canSubmit,"Empty keyboard transition differs")
+            lesson.enterText("two bathrooms")
+            try check(lesson.canSubmit,"Typed answer did not enable check")
+        } else {
+            if lesson.question.id == "unit12-q15" {
+                try check(lesson.usingKeyboard,"Observed keyboard preference lost between questions")
+                lesson.toggleInputMode()
+            }
+            switch lesson.question.kind {
+            case .choice:lesson.choose(lesson.question.answer)
+            case .wordTiles:for id in lesson.question.answerWords {lesson.addWord(id)}
+            case .textEntry:lesson.enterText(lesson.question.answer)
+            case .matching:throw CheckFailure.failed("Unobserved fourth matching")
+            }
+        }
+        lesson.submit();try check(lesson.feedback == true,"Executed fourth answer rejected")
+        graded += 1;lesson.advance()
+    }
+    try check(lesson.complete && graded == 17 && oral == 1 && intros == 1,"Fourth trajectory differs")
+    try check(lesson.hearts == 5 && lesson.resultReviewEntries.count == 18,"Fourth hearts/review history differs")
+    try check(lesson.definition.settlement?.map(\.kind) == ["result","achievement","profile"],"Actual achievement page omitted")
+    try check(lesson.definition.observedHomeSnapshot?.gems == 155,"Fourth source cohort mixed with old 505 gems")
+    print("PASS fourth:17 accepted, oral, keyboard preference, challenge intro, achievement and155gem home")
+}
+
 func observedHeartRefill() throws {
     var progress=LearningProgress();progress.hearts=4
     try check(!progress.purchaseHeartRefill(availableGems:349),"Insufficient gems must not refill")
@@ -1002,8 +1041,9 @@ do {
     try actualUnit12HomeCourse()
     try actualUnit12SecondHomeCourse()
     try actualUnit12ThirdHomeCourse()
+    try actualUnit12FourthHomeCourse()
     try observedHeartRefill()
-    print("37 business checks passed; core layer only")
+    print("38 business checks passed; core layer only")
 } catch {
     FileHandle.standardError.write(Data(("FAIL " + String(describing: error) + "\n").utf8))
     exit(1)

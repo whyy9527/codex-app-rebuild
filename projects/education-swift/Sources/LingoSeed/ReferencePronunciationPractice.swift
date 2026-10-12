@@ -97,6 +97,9 @@ struct ReferencePronunciationPractice: View {
 
     private func speechPanel(_ speech: DeferredSpeech) -> some View {
         ZStack(alignment: .topLeading) {
+            if let resource=speech.characterResource {
+                ReferenceCharacter(resource:resource,feedback:nil).frame(width:118,height:175).offset(x:0,y:105)
+            }
             Text(speech.title).font(ReferenceStyle.font(32, bold: true)).frame(width: 600, height: 40, alignment: .leading)
                 .accessibilityIdentifier("speech-title").accessibilityValue(speech.id)
             HStack(spacing: 8) {

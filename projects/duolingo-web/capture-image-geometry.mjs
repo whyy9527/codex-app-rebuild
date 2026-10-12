@@ -6,3 +6,15 @@ export function captureImageGeometry(png, geometry) {
  const expected=geometry.window_points.map(v=>Math.round(v*geometry.backing_scale));
  return {capture_pixels:pixels,capture_geometry_consistent:JSON.stringify(expected)===JSON.stringify(pixels)};
 }
+
+// Identical ARIA text does not establish an identical frontend viewport.
+export function captureViewportIdentity(before, after) {
+ const valid=v=>v && Number.isFinite(v.width) && v.width>0 && Number.isFinite(v.height) && v.height>0;
+ return !!(valid(before) && valid(after) && before.width===after.width && before.height===after.height);
+}
+
+export function visibleCaptureClip(metrics) {
+ const css=metrics?.cssVisualViewport;
+ if(!css || !['pageX','pageY','clientWidth','clientHeight'].every(k=>Number.isFinite(css[k])) || css.clientWidth<=0 || css.clientHeight<=0)throw Error('Independent visible viewport coordinates required');
+ return {x:css.pageX,y:css.pageY,width:css.clientWidth,height:css.clientHeight,scale:1};
+}

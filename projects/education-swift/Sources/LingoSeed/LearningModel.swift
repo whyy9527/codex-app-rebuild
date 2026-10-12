@@ -202,7 +202,8 @@ import LearningCore
     var unitTwelveCompletedLessons:Int {
         (progress.completedLessons["duolingo-en-zh-unit12-home-instance",default:[]].contains("unit12-home-1") ? 1 : 0) +
         (progress.completedLessons["duolingo-en-zh-unit12-home2-instance",default:[]].contains("unit12-home-2") ? 1 : 0) +
-        (progress.completedLessons["duolingo-en-zh-unit12-home3-instance",default:[]].contains("unit12-home-3") ? 1 : 0)
+        (progress.completedLessons["duolingo-en-zh-unit12-home3-instance",default:[]].contains("unit12-home-3") ? 1 : 0) +
+        (progress.completedLessons["duolingo-en-zh-unit12-home4-instance",default:[]].contains("unit12-home-4") ? 1 : 0)
     }
     func dismissPronunciationCoach() { preferences.pronunciationCoach="dismissed";savePreferences() }
     func beginStageTwoLesson() {

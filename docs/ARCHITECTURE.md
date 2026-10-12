@@ -348,3 +348,6 @@ LessonDefinition的可选ObservedPlacementOutcome只保存已有全对实例的�
 
 
 第三课UI证据编译器连接真实渲染、实际选择、play/playing事件和Swift共同夹具；`contextExamples/contextHighlights`承载三行表格，匹配题区分文字与音频左列并使用显式原匹配音效。观察器保存PNG对独立CSS/物理几何一致性，不能用截图尺寸反推比例。v78保留失败图像断言并记录待重采，严格图像比较器未放宽。[实例与未覆盖](../projects/duolingo-web/evidence/english-unit12-lesson3-v1/README.md)。
+
+
+第四课原版证据暴露两处模具遗漏：截图尺寸匹配不能证明滚动后的裁剪原点正确；ARIA相同也不能证明视口未被另一种截图操作改变。采集器分别保留配置视口、实际DOM视口、CDP CSS/物理坐标与PNG尺寸，以实测pageX/pageY裁剪，旧错误参考保留为不可比较。TEXTAREA加入规范控件和value库存；旧采集的可见textarea几何仍单独验证，不回填新库存。详见[第四课证据](../projects/duolingo-web/evidence/english-unit12-lesson4-v1/README.md)。

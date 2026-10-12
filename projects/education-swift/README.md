@@ -176,3 +176,5 @@ projects/education-swift/.build/debug/LingoSeed --fixture projects/duolingo-web/
 
 
 中文特别任务页已替换英文占位页，保留原版Duo/徽章/锁/时钟素材及六课14小时快照。10文案/5几何通过，整图与独立Practice题目仍失败；v11仅扩展快照，不变更七课内容。[真实导航及复跑](../duolingo-web/evidence/english-quests-v1/README.md)。
+
+Unit12第四课从主页接续：原版17计分题、口语暂缓、键盘/词库跨题偏好、挑战说明、成就升级和返回Lesson5of6。新增实际OSCAR/VIKRAM Rive与原成就/进度环资源；当前155宝石夹具独立保存。48状态实际完整执行、38核心检查通过，严格前端仍失败，声音仅证明实际原资源输出，未证明全程等价。[共同契约、实际原图及复跑命令](../duolingo-web/evidence/english-unit12-lesson4-v1/README.md)。

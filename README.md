@@ -49,3 +49,6 @@ python3 -m unittest discover -v
 [真实策略接续05／06](projects/exploration-ablation/REPORT05-06.md)将前端失败输入模型，实际下滚发现目标／俱乐部后修订并部署键盘下一月，再转共同模具和Swift消费者。两调用共60642 reported tokens，费用unknown；没有匹配对照，不宣称收益。
 
 历史复盘见 [交付审计](docs/DELIVERY-AUDIT.md)、[模型流程](projects/model-pipeline/README.md)、[业务四组消融](projects/business-ablation/REPORT.md)及 [旧 README 检查点](docs/history/README-checkpoints-2026-10-12.md)。本仓库保持私有，公开发布另行决定。
+
+
+继续探索 Unit12 第四课发现键盘偏好跨题延续、成就升级中间页、主页进度环及滚动截图裁剪错误。原版17计分题+1口语轨迹已进入共同模具与Swift，严格前端仍失败；不能据核心/E2E通过宣称1:1。[原始观察、实际失败与复跑](projects/duolingo-web/evidence/english-unit12-lesson4-v1/README.md)。原始RSI论文与历史模型实验继续见[研究说明](docs/RESEARCH.md)；真实产品质量消融尚未完成。

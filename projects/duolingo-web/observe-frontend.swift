@@ -89,7 +89,12 @@ if let window = (attr(app, kAXWindowsAttribute) as? [AXUIElement])?.first {
     let frame = value?["window_points"] as? [Double]
     let rect = value?["content_rect_points"] as? [Double]
     let decoration = (frame?.last ?? 0) - (rect?.last ?? 0)
-    var size = CGSize(width: 1200, height: 732 + decoration)
+    let requested = CommandLine.arguments.firstIndex(of: "--source-viewport").map { index -> [Double] in
+        guard index + 2 < CommandLine.arguments.count,
+              let width=Double(CommandLine.arguments[index+1]),let height=Double(CommandLine.arguments[index+2]),width>0,height>0 else { preconditionFailure("Explicit measured source viewport required") }
+        return [width,height]
+    } ?? [1200,732]
+    var size = CGSize(width: requested[0], height: requested[1] + decoration)
     AXUIElementSetAttributeValue(window, kAXSizeAttribute as CFString, AXValueCreate(.cgSize, &size)!)
 }
 Thread.sleep(forTimeInterval: 0.6)

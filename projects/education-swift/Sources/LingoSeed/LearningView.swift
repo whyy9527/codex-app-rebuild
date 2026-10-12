@@ -18,6 +18,8 @@ struct LearningView: View {
                         if lesson.complete, let page = model.settlement?.current {
                             if model.isObservedCourse && page.kind == "result", page.artResource != nil {
                                 ReferenceObservedCourseResult(page:page,mistakes:lesson.mistakesMade,advance:model.advanceSettlement,review:{showingResultReview=true})
+                            } else if model.isObservedCourse && page.kind == "achievement", page.artResource != nil {
+                                ReferenceObservedAchievement(page:page,advance:model.advanceSettlement,review:{showingResultReview=true})
                             } else if model.isUnitPlacement && page.kind != "profile" {
                                 ReferenceUnitPlacementPage(page:page,advance:model.advanceSettlement,review:{showingResultReview=true})
                             } else {

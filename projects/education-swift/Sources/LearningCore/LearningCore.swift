@@ -203,6 +203,7 @@ public struct SettlementPage: Codable, Equatable, Sendable, Identifiable {
     public var questTarget: Int? = nil
 }
 public struct DeferredSpeech: Codable, Equatable, Sendable, Identifiable {
+    public var characterResource: String? = nil
     public let resultReview: ResultReviewPresentation?
     public let id: String
     public let beforeQuestionID: String

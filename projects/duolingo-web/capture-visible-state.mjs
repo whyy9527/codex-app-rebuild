@@ -1,6 +1,6 @@
 // Read visible DOM/AX in the owned source page, without hidden session/React payloads.
 import {spawnSync} from 'node:child_process';
-import {captureImageGeometry} from './capture-image-geometry.mjs';
+import {captureImageGeometry,captureViewportIdentity,visibleCaptureClip} from './capture-image-geometry.mjs';
 import {readFileSync,writeFileSync,mkdirSync,existsSync} from 'node:fs';
 import {resolve,dirname,basename} from 'node:path';
 function arg(name){const i=process.argv.indexOf(name);if(i<0||!process.argv[i+1])throw Error('Required '+name);return process.argv[i+1];}
@@ -8,7 +8,7 @@ const out=resolve(arg('--out'));mkdirSync(dirname(out),{recursive:true});
 for(const suffix of ['.raw.txt','.json','.png'])if(existsSync(out+suffix))throw Error('Observation output already exists: '+basename(out)+suffix+'; choose a fresh stem before any source action');
 const callback=async page=>{
  const facts={observed_at:new Date().toISOString(),path:new URL(page.url()).pathname,
-  viewport:page.viewportSize(),snapshot:await page.locator('body').ariaSnapshot()};
+  configured_viewport:page.viewportSize(),viewport:await page.evaluate(()=>({width:innerWidth,height:innerHeight})),snapshot:await page.locator('body').ariaSnapshot()};
  // A viewport action list cannot establish the full option inventory. Keep DOM
  // groups and clipping facts separately; offscreen options are not explored.
  facts.radio_groups=await page.getByRole('radiogroup').evaluateAll(groups=>groups.map((g,index)=>({
@@ -34,13 +34,13 @@ const callback=async page=>{
  // State-scoped identities retain duplicate controls instead of collapsing names.
  // Full rendered canonical controls are a separate exploration inventory.
  // CSS visibility does not establish viewport reachability or execution.
- facts.control_inventory=await page.locator('a[href],button,input,select,[role="menuitem"],[role="button"],[role="radio"],[role="link"],[tabindex]:not([tabindex="-1"])').evaluateAll(ns=>ns.filter(n=>n.checkVisibility({checkOpacity:false,checkVisibilityCSS:true})).map((n,index)=>{
+ facts.control_inventory=await page.locator('a[href],button,input,textarea,select,[role="menuitem"],[role="button"],[role="radio"],[role="link"],[tabindex]:not([tabindex="-1"])').evaluateAll(ns=>ns.filter(n=>n.checkVisibility({checkOpacity:false,checkVisibilityCSS:true})).map((n,index)=>{
   const r=n.getBoundingClientRect(),hit=document.elementFromPoint(r.x+r.width/2,r.y+r.height/2);
-  return {index,paint_visible:n.checkVisibility({checkOpacity:true,checkVisibilityCSS:true}),tag:n.tagName,test:n.getAttribute('data-test'),href:n.getAttribute('href'),explicit_role:n.getAttribute('role'),input_type:n.tagName==='INPUT'?n.type:null,name:n.getAttribute('aria-label')||n.innerText||n.getAttribute('placeholder')||'',enabled:!n.disabled&&n.getAttribute('aria-disabled')!=='true',rect:[r.x,r.y,r.width,r.height],intersects_viewport:r.width>0&&r.height>0&&r.bottom>0&&r.right>0&&r.top<innerHeight&&r.left<innerWidth,center_hit:!!hit&&(hit===n||n.contains(hit))};
+  return {index,paint_visible:n.checkVisibility({checkOpacity:true,checkVisibilityCSS:true}),tag:n.tagName,test:n.getAttribute('data-test'),href:n.getAttribute('href'),explicit_role:n.getAttribute('role'),input_type:n.tagName==='INPUT'?n.type:null,value:['INPUT','TEXTAREA','SELECT'].includes(n.tagName)?n.value:null,name:n.getAttribute('aria-label')||n.innerText||n.getAttribute('placeholder')||'',enabled:!n.disabled&&n.getAttribute('aria-disabled')!=='true',rect:[r.x,r.y,r.width,r.height],intersects_viewport:r.width>0&&r.height>0&&r.bottom>0&&r.right>0&&r.top<innerHeight&&r.left<innerWidth,center_hit:!!hit&&(hit===n||n.contains(hit))};
  }));
  facts.control_inventory_limitations=['Transparent canonical inputs may remain actual hit targets; paint visibility recorded separately and is not executed coverage','Rendered DOM inventory only; offscreen or obscured controls are not executed coverage; Focus inventory and pointer-only candidates do not establish interaction semantics.'];
  facts.actions=await page.locator('body').evaluate(body=>{
-  const canonical='a[href],button,input,select,[role="menuitem"],[role="button"],[role="checkbox"],[role="radio"]';
+  const canonical='a[href],button,input,textarea,select,[role="menuitem"],[role="button"],[role="checkbox"],[role="radio"]';
   const standard=[...body.querySelectorAll(canonical)];
   // Actual source "清除" is a roleless pointer span. Keep outer pointer candidates
   // as unclassified actions, without inventing button roles or click semantics.
@@ -55,7 +55,7 @@ const callback=async page=>{
    const identity=test?'test:'+test:href?'href:'+href:(pointer?'pointer:':'')+n.tagName+':'+name;
    const ordinal=counts.get(identity)||0;counts.set(identity,ordinal+1);
    const hit=document.elementFromPoint(r.x+r.width/2,r.y+r.height/2);
-   return [{id:identity+'#'+ordinal,paint_visible:n.checkVisibility({checkOpacity:true,checkVisibilityCSS:true}),test,href,name,...(pointer?{kind:n.tabIndex>=0?'focus_candidate':'pointer_candidate',semantic_role:'unclassified',limitations:'Observed focus/cursor candidate; actual interaction outcome must be explored'}:{}),hit_test:!!hit&&(hit===n||n.contains(hit)),tag:n.tagName,role:n.getAttribute('role')||(n.tagName==='A'?'link':n.tagName==='SELECT'?'combobox':n.tagName==='INPUT'?'textbox':pointer?null:'button'),enabled:!n.disabled&&n.getAttribute('aria-disabled')!=='true',checked:typeof n.checked==='boolean'?n.checked:n.hasAttribute('aria-checked')?n.getAttribute('aria-checked')==='true':null,rect:[r.x,r.y,r.width,r.height]}];
+   return [{id:identity+'#'+ordinal,paint_visible:n.checkVisibility({checkOpacity:true,checkVisibilityCSS:true}),test,href,name,value:['INPUT','TEXTAREA','SELECT'].includes(n.tagName)?n.value:null,...(pointer?{kind:n.tabIndex>=0?'focus_candidate':'pointer_candidate',semantic_role:'unclassified',limitations:'Observed focus/cursor candidate; actual interaction outcome must be explored'}:{}),hit_test:!!hit&&(hit===n||n.contains(hit)),tag:n.tagName,role:n.getAttribute('role')||(n.tagName==='A'?'link':n.tagName==='SELECT'?'combobox':['INPUT','TEXTAREA'].includes(n.tagName)?'textbox':pointer?null:'button'),enabled:!n.disabled&&n.getAttribute('aria-disabled')!=='true',checked:typeof n.checked==='boolean'?n.checked:n.hasAttribute('aria-checked')?n.getAttribute('aria-checked')==='true':null,rect:[r.x,r.y,r.width,r.height]}];
   });
  });
  // Generic text blocks (reward titles, subtitles and hints) were missing
@@ -130,17 +130,20 @@ const callback=async page=>{
    facts.capture_geometry.backing_scale=sx;
    facts.capture_geometry.measurement='CDP physical/css visual viewport ratio, not inferred from PNG';
    facts.capture_layout_metrics=metrics;
-   facts.capture_png_base64=(await cdp.send('Page.captureScreenshot',{format:'png',fromSurface:true,captureBeyondViewport:true,clip:{x:0,y:0,width:css.clientWidth,height:css.clientHeight,scale:1}})).data;
+   facts.capture_clip=(VISIBLE_CLIP)(metrics);
+   facts.capture_png_base64=(await cdp.send('Page.captureScreenshot',{format:'png',fromSurface:true,captureBeyondViewport:true,clip:facts.capture_clip})).data;
   }
   finally {await cdp.detach();}
  } else {await page.screenshot({path:SCREENSHOT});}
  facts.snapshot_after_capture=await page.locator('body').ariaSnapshot();
- facts.capture_state_consistent=facts.snapshot===facts.snapshot_after_capture;
+ facts.viewport_after_capture=await page.evaluate(()=>({width:innerWidth,height:innerHeight}));
+ facts.capture_viewport_consistent=(VIEWPORT_IDENTITY)(facts.viewport,facts.viewport_after_capture);
+ facts.capture_state_consistent=facts.snapshot===facts.snapshot_after_capture&&facts.capture_viewport_consistent;
  facts.capture_geometry.state_consistent=facts.capture_state_consistent;
  facts.capture_method=PRESERVE_HOVER?'visible-page-cdp':'page-screenshot';
  return facts;
 };
-const r=spawnSync(arg('--cli'),['-s='+arg('--session'),'run-code',callback.toString().replace('SCREENSHOT',JSON.stringify(out+'.png')).replaceAll('PRESERVE_HOVER',String(process.argv.includes('--preserve-hover')))],
+const r=spawnSync(arg('--cli'),['-s='+arg('--session'),'run-code',callback.toString().replace('VISIBLE_CLIP',visibleCaptureClip.toString()).replace('VIEWPORT_IDENTITY',captureViewportIdentity.toString()).replace('SCREENSHOT',JSON.stringify(out+'.png')).replaceAll('PRESERVE_HOVER',String(process.argv.includes('--preserve-hover')))],
  {cwd:resolve('artifacts/output/playwright'),encoding:'utf8',timeout:60000,maxBuffer:8*1024*1024});
 writeFileSync(out+'.raw.txt',(r.stdout||'')+(r.stderr||''),{flag:'wx'});
 if(r.status!==0||r.stdout.includes('### Error')||!r.stdout.includes('### Result\n'))throw Error('Observation unavailable; inspect current tab before retry');

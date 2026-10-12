@@ -63,8 +63,13 @@ struct ReferenceStageTwoPath: View {
                 }
                 ForEach(source.nodes) { node in
                     if node.active {
-                        Ellipse().stroke(ReferenceStyle.border,lineWidth:8).frame(width:90,height:85)
-                            .offset(x:node.rect[0]-10,y:node.rect[1]-10)
+                        if activeUnit == 12 && unitLessonNumber == 5 {
+                            ReferenceStyle.image("en-unit12-ring-5").resizable().frame(width:98,height:92.7080078125)
+                                .offset(x:node.rect[0]-14,y:node.rect[1]-13.85400390625)
+                        } else {
+                            Ellipse().stroke(ReferenceStyle.border,lineWidth:8).frame(width:90,height:85)
+                                .offset(x:node.rect[0]-10,y:node.rect[1]-10)
+                        }
                     }
                     ReferencePracticeControl(label:node.active && activeUnit == 12 ? "Lesson \(unitLessonNumber) of 6" : node.active && firstLessonCompleted ? "Lesson 2 of 5" : node.label,identifier:node.id,enabled:true,
                         action:{if node.id=="stage2-path-7" && node.role=="link" {jump()} else {selected=selected==node.id ? nil : node.id}},face:AnyView(
