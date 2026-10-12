@@ -267,13 +267,11 @@ export function StudentsPage() {
                   value={jump}
                   onChange={(e) => setJump(e.target.value)}
                   onKeyDown={(e) => {
-                    if (
-                      e.key === "Enter" &&
-                      /^\d+$/.test(jump) &&
-                      Number(jump) > 0 &&
-                      Number(jump) <= data.pages
-                    )
-                      setPage(Number(jump));
+                    if (e.key === "Enter" && /^\d+$/.test(jump)) {
+                      if (Number(jump) > 0 && Number(jump) <= data.pages)
+                        setPage(Number(jump));
+                      setJump("");
+                    }
                   }}
                 />
                 <button

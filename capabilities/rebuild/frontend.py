@@ -55,6 +55,13 @@ def compare(root, contract, observed):
             actual = {'AXRadioButton': 'radio', 'AXButton': 'button', 'AXCheckBox': 'checkbox', 'AXLink': 'link', 'AXMenuItem': 'menuitem', 'AXTextField': 'textbox'}.get(actual, actual)
             row.update(status='unavailable' if actual is None else 'pass' if actual == requirement['role'] else 'fail',
                        expected=requirement['role'], actual=actual)
+        elif requirement['kind'] == 'element_value':
+            expected = requirement['value']
+            if not isinstance(expected, str):
+                raise ValueError('Element value contract must be a string')
+            actual = state.get('elements', {}).get(requirement['element'], {}).get('value')
+            row.update(status='unavailable' if not isinstance(actual, str) else 'pass' if actual == expected else 'fail',
+                       expected=expected, actual=actual)
         elif requirement['kind'] == 'element_boolean':
             field = requirement['field']
             if field not in ('enabled', 'checked') or type(requirement['expected']) is not bool:

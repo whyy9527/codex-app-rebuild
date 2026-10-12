@@ -45,11 +45,13 @@ python3 -m workflows.rebuild.project run --workspace . --project projects/xiaogj
 [技术约束](TECHNOLOGY.md) · [原版观察](reference-contract.json) · [前端模具](frontend-contract.json) · [实际探索历史](exploration-history.json) · [首页证据与局限](evidence/2026-10-12-home.md) · [学员页与数据库验证](evidence/2026-10-12-students.md)
 
 
-查询 RSI 通过项目命令 `rsi_collect` 接续选中池，`rsi_replay --observed <池文件>` 在完整冻结池比较策略。采集命令的私有桥接请求必须由当前 Codex 在 CUA 中装载 `tools/rsi_native_v4.js`，以原生 Edge App、`node:fs/promises` 和工作区内 `private/rsi-bridge` 调用 `installStudentRsiDriver` 并逐条服务。关闭原版密码提示、确认无遮挡后执行；不得改密码，也不得用文件回放代替真实 UI。
+查询 RSI 通过项目命令 `rsi_queries_collect` 接续选中池，`rsi_queries_replay --observed <池文件>` 在完整冻结池比较策略。采集命令的私有桥接请求必须由当前 Codex 在 CUA 中装载 `tools/rsi_native_v4.js`，以原生 Edge App、`node:fs/promises` 和工作区内 `private/rsi-bridge` 调用 `installStudentRsiDriver` 并逐条服务。关闭原版密码提示、确认无遮挡后执行；不得改密码，也不得用文件回放代替真实 UI。
 
 共同查询 E2E 的项目命令为 `replay_reference_queries`、`replay` 和 `compare_queries`，均使用新的 `--out`。前两者等待当前 Codex 在 CUA 中装载 `tools/student_query_native_v3.js`，以同样的 App、fs 与 `private/e2e-bridge` 调用 `installStudentQueryE2E`；选择请求对应的原版或候选学员页，再逐条服务。驱动执行相同动作并保存 AX、截图和事实，不接收期待值或自报通过。`compare_queries --observed <observed.json>` 才按共同夹具判定；查询行为通过不能代替完整前端或全站验收。实际结果和失败见 [查询与 RSI 证据](evidence/2026-10-12-rsi-queries.md)。
 
 
 学员页前端事实由 `python3 -m projects.xiaogj-web.tools.student_frontend_observations --captures <共同查询捕获目录> --out <新事实文件>` 读取；再用项目命令 `compare_students_frontend --observed <事实文件> --out <新结果文件>` 按 [学员前端契约](students-frontend-contract.json) 验收。当前严格比较失败，见查询与 RSI 证据。
 
-分页共同场景由 `replay_reference_pagination`、`replay_pagination`、`compare_pagination` 调用。原生桥接入口为 `tools/student_pagination_native_v2.js` 的 `installStudentPagination`，桥接目录 `private/pagination-bridge`，同一驱动服务 RSI 与两端 E2E。独立固定协议见 `rsi-pagination.json`，`rsi_pagination_collect/rsi_pagination_replay --observed <池文件>` 接续完整池；不得与查询协议混池。协议身份、源数据顺序差异及未完成再部署见 [分页证据](evidence/2026-10-12-pagination-rsi.md)。
+当前 `rsi_collect/rsi_replay` 入口接续分页协议的完整池；旧查询协议保留独立入口，不混池。分页共同场景由 `replay_reference_pagination`、`replay_pagination`、`compare_pagination` 调用。原生桥接入口为 `tools/student_pagination_native_v2.js` 的 `installStudentPagination`，桥接目录 `private/pagination-bridge`，同一驱动服务 RSI 与两端 E2E。独立固定协议见 `rsi-pagination.json`，`rsi_pagination_collect/rsi_pagination_replay --observed <池文件>` 接续完整池；不得与查询协议混池。协议身份、源数据顺序差异及未完成再部署见 [分页证据](evidence/2026-10-12-pagination-rsi.md)。
+
+分页前端事实用 `python3 -m projects.xiaogj-web.tools.pagination_frontend_observations --captures <原生捕获目录> --out <新事实文件>` 提取，项目命令 `compare_pagination_frontend` 比较输入值、角色、截图尺寸及严格整图。缺少输入框事实记 unavailable，空字符串与缺失值分别处理；原版和候选使用同一契约。

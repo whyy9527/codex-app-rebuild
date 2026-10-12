@@ -6,6 +6,20 @@ from capabilities.rebuild.frontend import compare
 
 
 class FrontendRequirements(unittest.TestCase):
+    def test_empty_input_requires_measured_string_and_detects_retained_value(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / 'reference.txt').write_text('Source page input clears after Enter')
+            requirement = {'id': 'page-value', 'state': 'submitted', 'kind': 'element_value',
+                           'element': 'page-input', 'value': '', 'evidence': ['reference.txt']}
+            for value, expected in [('', 'pass'), ('0', 'fail'), (0, 'unavailable'), (None, 'unavailable')]:
+                observed = {'states': {'submitted': {'elements': {'page-input': {'value': value}}}}}
+                self.assertEqual(compare(root, {'requirements': [requirement]}, observed)['rows'][0]['status'], expected)
+            missing = {'states': {'submitted': {'elements': {}}}}
+            self.assertEqual(compare(root, {'requirements': [requirement]}, missing)['rows'][0]['status'], 'unavailable')
+            with self.assertRaises(ValueError):
+                compare(root, {'requirements': [{**requirement, 'value': None}]}, missing)
+
     def test_semantic_success_does_not_hide_frontend_mismatch_or_unvisited_state(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
