@@ -1,6 +1,7 @@
 import { readFile } from "node:fs/promises";
 import { studentsSnapshot } from "@xiaogj/contracts";
 import { createDatabase } from "./database.js";
+import { studentNameInitials } from "./students/name-initials.js";
 
 const snapshot = studentsSnapshot.parse(
   JSON.parse(
@@ -22,7 +23,7 @@ try {
     });
     await tx.student.deleteMany({ where: { captureId: id } });
     await tx.student.createMany({
-      data: rows.map((row, position) => ({ ...row, position, captureId: id })),
+      data: rows.map((row, position) => ({ ...row, nameInitials: studentNameInitials(row.name), position, captureId: id })),
     });
   });
   console.log(

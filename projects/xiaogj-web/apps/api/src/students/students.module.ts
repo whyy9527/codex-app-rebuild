@@ -41,6 +41,7 @@ class StudentsController implements OnModuleDestroy {
             { number: { contains: query.search } },
             { phone: { contains: query.search } },
             { name: { contains: query.search } },
+            { nameInitials: { contains: query.search } },
           ] } : {}),
         };
         const [total, rows] = await this.db.$transaction([

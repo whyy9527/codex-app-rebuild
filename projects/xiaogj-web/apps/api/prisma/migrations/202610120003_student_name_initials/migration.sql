@@ -1,0 +1,1 @@
+ALTER TABLE `Student` ADD COLUMN `nameInitials` VARCHAR(200) NOT NULL DEFAULT '';

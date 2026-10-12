@@ -13,7 +13,7 @@ npx --yes pnpm@11.15.1 dev
 
 首页读取 `private/reference/home-data.json`，按共享的 `homeSnapshot` Zod 契约校验；数据缺失或不合法返回 503，不生成替代业务数据。私有观察与媒体不进入 Git。Vite 从 `private/assets/` 读取原版已观察的 logo、头像、企业标记、背景、图标字体和 SVG 图标，构建产物也不提交。新的检出环境需要先从授权会话准备这些本地输入。
 
-学员页需要先准备 MySQL 8，并在忽略的 `private/database.env` 设置 `DATABASE_URL`。连接仅供本地候选使用，与原版账号无关。执行 `pnpm --filter @xiaogj/api db:migrate`，再执行 `pnpm --filter @xiaogj/api db:import-students`，将授权观察产生的 `private/reference/students-data.json` 原子导入本地数据库。构建自动生成 Prisma Client。当前已导入默认筛选条件下实际采集的 222 条记录，提供按原始顺序分页及查询；其他筛选、姓名首字母和模糊匹配语义仍待观察。共同验收入口见 [students-scenarios.json](students-scenarios.json) 与 [查询场景](student-query-scenarios.json)。
+学员页需要先准备 MySQL 8，并在忽略的 `private/database.env` 设置 `DATABASE_URL`。连接仅供本地候选使用，与原版账号无关。执行 `pnpm --filter @xiaogj/api db:migrate`，再执行 `pnpm --filter @xiaogj/api db:import-students`，将授权观察产生的 `private/reference/students-data.json` 原子导入本地数据库。构建自动生成 Prisma Client。当前已导入默认筛选条件下实际采集的 222 条记录，提供按原始顺序分页及查询；新导入会生成姓名首字母搜索字段；已有数据库在迁移后执行 `pnpm --filter @xiaogj/api db:backfill-name-initials` 回填，保留已导入详情。已观察查询及剩余未知见 [新增查询场景](query-fragments-scenarios.json)。共同验收入口见 [students-scenarios.json](students-scenarios.json) 与 [查询场景](student-query-scenarios.json)。
 
 本机已初始化的独立数据库可从项目目录重启：
 
@@ -52,11 +52,11 @@ python3 -m workflows.rebuild.project run --workspace . --project projects/xiaogj
 
 学员页前端事实由 `python3 -m projects.xiaogj-web.tools.student_frontend_observations --captures <共同查询捕获目录> --out <新事实文件>` 读取；再用项目命令 `compare_students_frontend --observed <事实文件> --out <新结果文件>` 按 [学员前端契约](students-frontend-contract.json) 验收。当前严格比较失败，见查询与 RSI 证据。
 
-当前 `rsi_collect/rsi_replay` 入口接续详情协议的完整池；旧查询协议保留独立入口，不混池。分页共同场景由 `replay_reference_pagination`、`replay_pagination`、`compare_pagination` 调用。原生桥接入口为 `tools/student_pagination_native_v2.js` 的 `installStudentPagination`，桥接目录 `private/pagination-bridge`，同一驱动服务 RSI 与两端 E2E。独立固定协议见 `rsi-pagination.json`，`rsi_pagination_collect/rsi_pagination_replay --observed <池文件>` 接续完整池；不得与查询协议混池。协议身份、源数据顺序差异及再部署结果见 [分页证据](evidence/2026-10-12-pagination-rsi.md)。
+当前 `rsi_collect/rsi_replay` 入口及完整池由 [rebuild.json](rebuild.json) 管理；各历史协议保留独立入口，不混池。分页共同场景由 `replay_reference_pagination`、`replay_pagination`、`compare_pagination` 调用。原生桥接入口为 `tools/student_pagination_native_v2.js` 的 `installStudentPagination`，桥接目录 `private/pagination-bridge`，同一驱动服务 RSI 与两端 E2E。独立固定协议见 `rsi-pagination.json`，`rsi_pagination_collect/rsi_pagination_replay --observed <池文件>` 接续完整池；不得与查询协议混池。协议身份、源数据顺序差异及再部署结果见 [分页证据](evidence/2026-10-12-pagination-rsi.md)。
 
 分页前端事实用 `python3 -m projects.xiaogj-web.tools.pagination_frontend_observations --captures <原生捕获目录> --out <新事实文件>` 提取，项目命令 `compare_pagination_frontend` 比较输入值、角色、截图尺寸及严格整图。缺少输入框事实记 unavailable，空字符串与缺失值分别处理；原版和候选使用同一契约。
 
-详情协议见 `rsi-detail.json` 和 `student-detail-scenarios-v3.json`，原生桥接为 `tools/student_detail_native_v4.js` 的 `installStudentDetail`，目录 `private/detail-bridge`。`rsi_detail_collect` 接续选中池，`rsi_detail_replay --observed <完整池>` 回放；共同业务命令为 `replay_reference_detail`、`replay_detail`、`compare_detail`。前端用 `python3 -m projects.xiaogj-web.tools.detail_frontend_observations_v2 --captures <捕获目录> --review <实际截图复核.json> --out <新事实文件>` 提取，再执行 `compare_detail_frontend`。入口、准备限制、失败与来源见 [详情证据](evidence/2026-10-12-student-detail-rsi.md)；当前主 RSI 协议是已完整再部署的详情协议。
+详情协议见 `rsi-detail.json` 和 `student-detail-scenarios-v3.json`，原生桥接为 `tools/student_detail_native_v4.js` 的 `installStudentDetail`，目录 `private/detail-bridge`。`rsi_detail_collect` 接续选中池，`rsi_detail_replay --observed <完整池>` 回放；共同业务命令为 `replay_reference_detail`、`replay_detail`、`compare_detail`。前端用 `python3 -m projects.xiaogj-web.tools.detail_frontend_observations_v2 --captures <捕获目录> --review <实际截图复核.json> --out <新事实文件>` 提取，再执行 `compare_detail_frontend`。入口、准备限制、失败与来源见 [详情证据](evidence/2026-10-12-student-detail-rsi.md)；当前主 RSI 入口见 rebuild.json。
 
 详情持久化准备：在已导入学员列表后，以授权观察准备忽略的 `private/reference/student-detail.json`（data、observedAt、provenance），执行 `pnpm --filter @xiaogj/api db:import-student-detail`。仅导入有来源的详情，未采集学员返回 503；照片按实际观察来源准备在私有资源目录；学费、课消明细和积分已实现实际观察的默认表格；其他筛选、页签和写入仍未完成。
 

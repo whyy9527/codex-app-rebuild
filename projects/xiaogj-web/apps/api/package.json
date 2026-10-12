@@ -11,7 +11,8 @@
     "generate": "prisma generate",
     "db:migrate": "prisma migrate deploy",
     "db:import-students": "tsx src/import-students.ts",
-    "db:import-student-detail": "tsx src/import-student-detail.ts"
+    "db:import-student-detail": "tsx src/import-student-detail.ts",
+    "db:backfill-name-initials": "tsx src/backfill-name-initials.ts"
   },
   "dependencies": {
     "@nestjs/common": "^11.1.18",
@@ -23,6 +24,7 @@
     "@xiaogj/contracts": "workspace:*",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
+    "pinyin-pro": "^3.29.5",
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.2",
     "zod": "3.25.76"

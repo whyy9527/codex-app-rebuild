@@ -21,6 +21,7 @@ model StudentCapture {
 model Student {
   id          String @id @db.VarChar(80)
   name        String @db.VarChar(200)
+  nameInitials String @default("") @db.VarChar(200)
   account     String @db.VarChar(200)
   number      String @db.VarChar(80)
   identity    String @db.VarChar(80)
