@@ -1,6 +1,6 @@
 import { Controller, Module, type OnModuleDestroy } from "@nestjs/common";
 import { TsRestHandler, tsRestHandler } from "@ts-rest/nest";
-import { api, studentsSnapshot } from "@xiaogj/contracts";
+import { api, studentsSnapshot, studentDetailSnapshot } from "@xiaogj/contracts";
 import { createDatabase } from "../database.js";
 
 @Controller()
@@ -8,6 +8,21 @@ class StudentsController implements OnModuleDestroy {
   private db?: ReturnType<typeof createDatabase>;
   async onModuleDestroy() {
     await this.db?.$disconnect();
+  }
+  @TsRestHandler(api.studentDetail)
+  studentDetail() {
+    return tsRestHandler(api.studentDetail, async ({ params }) => {
+      try {
+        this.db ??= createDatabase();
+        const record = await this.db.studentDetail.findUnique({ where: { studentId: params.id } });
+        if (!record) throw new Error("missing detail capture");
+        const body = studentDetailSnapshot.parse(record.data);
+        if (body.id !== params.id) throw new Error("detail identity mismatch");
+        return { status: 200 as const, body };
+      } catch {
+        return { status: 503 as const, body: { message: "学员详情暂时无法读取" } };
+      }
+    });
   }
   @TsRestHandler(api.students)
   students() {

@@ -10,7 +10,8 @@
     "start": "node dist/main.js",
     "generate": "prisma generate",
     "db:migrate": "prisma migrate deploy",
-    "db:import-students": "tsx src/import-students.ts"
+    "db:import-students": "tsx src/import-students.ts",
+    "db:import-student-detail": "tsx src/import-student-detail.ts"
   },
   "dependencies": {
     "@nestjs/common": "^11.1.18",

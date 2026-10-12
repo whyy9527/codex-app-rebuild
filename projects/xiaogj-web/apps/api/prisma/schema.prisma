@@ -33,5 +33,14 @@ model Student {
   position    Int
   captureId   String @db.VarChar(80)
   capture     StudentCapture @relation(fields: [captureId], references: [id], onDelete: Cascade)
+  detail      StudentDetail?
   @@index([captureId, position])
+}
+
+model StudentDetail {
+  studentId String @id @db.VarChar(80)
+  data Json
+  observedAt DateTime
+  provenance String @db.VarChar(500)
+  student Student @relation(fields: [studentId], references: [id], onDelete: Cascade)
 }

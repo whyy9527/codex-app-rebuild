@@ -1,0 +1,44 @@
+.student-detail-page { background: #f1f2f6; }
+.student-detail-back { height: 40px; background: #fff; display: flex; align-items: center; padding: 0 20px; }
+.student-detail-back a { display: inline-flex; align-items: center; color: #2878e8; font-size: 16px; }
+.student-detail-card { margin: 20px; padding: 20px; background: #fff; display: flex; gap: 20px; }
+.student-detail-photo { width: 95px; flex: none; }
+.student-detail-photo img { width: 95px; height: 134px; object-fit: cover; }
+.student-detail-information { flex: 1; min-width: 0; }
+.student-detail-heading { display: flex; align-items: center; gap: 10px; height: 34px; }
+.student-detail-heading h1 { margin: 0; font-size: 20px; font-weight: 700; color: #333; }
+.student-detail-heading > span { padding: 0 8px; border-radius: 12px; background: #edf4ff; color: #2878e8; font-size: 12px; line-height: 20px; }
+.student-detail-actions { margin-left: auto; display: flex; gap: 15px; }
+.student-detail-actions button { width: 76px; height: 30px; display: inline-flex; align-items: center; justify-content: center; gap: 4px; border: 1px solid #ddd; border-radius: 3px; }
+.student-detail-actions .primary { color: #fff; background: #2878e8; border-color: #2878e8; }
+.student-detail-tags { display: flex; align-items: center; gap: 10px; height: 54px; }
+.student-detail-tags > span { color: #999; }
+.student-detail-tags > button { border: 1px solid #ddd; height: 22px; padding: 0 8px; font-size: 12px; }
+.student-detail-tags a { color: #2878e8; }
+.student-detail-expand { margin-left: auto; display: inline-flex; align-items: center; gap: 5px; }
+.student-detail-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px 15px; font-size: 14px; line-height: 23px; }
+.student-detail-grid > div { white-space: nowrap; }
+.student-detail-grid span { color: #999; margin-right: 4px; }
+.student-detail-grid b { color: #333; font-weight: 400; }
+.student-detail-grid .emphasis { color: #2878e8; }
+.student-detail-grid button { display: inline-flex; vertical-align: middle; margin-left: 5px; color: #2878e8; }
+.student-detail-sections { padding-top: 20px; }
+.student-detail-sections section { padding-top: 10px; }
+.student-detail-sections h2 { font-size: 16px; color: #333; font-weight: 400; line-height: 24px; margin: 0 0 8px; border-left: 4px solid #2878e8; padding-left: 7px; }
+.student-detail-business { margin: 20px; background: #fff; }
+.student-detail-tabs { display: flex; align-items: stretch; gap: 24px; height: 46px; padding: 0 20px; border-bottom: 1px solid #ddd; white-space: nowrap; }
+.student-detail-tabs ul { display: flex; gap: 24px; align-items: stretch; }
+.student-detail-tabs li { cursor: pointer; display: flex; align-items: center; font-size: 14px; font-weight: 700; }
+.student-detail-tabs button { font-size: 14px; font-weight: 700; padding: 0; }
+.student-detail-tabs li.active { border-bottom: 2px solid #2878e8; color: #2878e8; }
+.student-detail-tabs .student-detail-settings { margin-left: auto; flex: none; width: 30px; height: 30px; align-self: center; display: grid; place-items: center; border: 1px solid #ddd; border-radius: 4px; }
+.student-detail-classes { padding: 20px 30px 30px; }
+.student-detail-class-filters { display: flex; gap: 10px; align-items: center; margin: 10px 0 30px; }
+.student-detail-class-filters > div { display: inline-flex; align-items: center; gap: 7px; }
+.student-detail-class-filters input { accent-color: #2878e8; width: 20px; height: 20px; }
+.student-detail-table-scroll { overflow: auto; }
+.student-detail-classes table { width: 100%; min-width: 1300px; border-collapse: collapse; font-size: 14px; }
+.student-detail-classes th { height: 50px; text-align: left; background: #f1f2f6; padding: 0 8px; font-family: header-icons, "Microsoft YaHei", sans-serif; font-weight: 500; border: 1px solid #e5e7eb; }
+.student-detail-classes td { padding: 0 8px; border: 1px solid #e5e7eb; height: 40px; }
+.student-detail-classes .student-detail-empty { text-align: center; }
+.student-detail-loading, .student-detail-error { margin: 20px; padding: 20px; background: #fff; }

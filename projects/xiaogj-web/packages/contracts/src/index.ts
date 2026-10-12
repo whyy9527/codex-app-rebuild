@@ -86,7 +86,24 @@ export const studentsSnapshot = z.object({
   pages: z.number().int().positive(),
 });
 export type StudentsSnapshot = z.infer<typeof studentsSnapshot>;
+const detailField = z.object({ label: z.string(), value: z.string(), emphasis: z.boolean().optional() });
+export const studentDetailSnapshot = z.object({
+  id: z.string(), name: z.string(), status: z.string(),
+  gender: z.enum(["male", "female", "unknown"]), tag: z.string(),
+  photoSrc: z.string().nullable(),
+  summary: z.array(detailField),
+  sections: z.array(z.object({ title: z.string(), fields: z.array(detailField) })),
+  tabs: z.array(z.string()),
+  classes: z.object({ headers: z.array(z.string()), rows: z.array(z.array(z.string())) }),
+});
+export type StudentDetailSnapshot = z.infer<typeof studentDetailSnapshot>;
 export const api = c.router({
+  studentDetail: {
+    method: "GET",
+    path: "/api/students/:id/detail",
+    pathParams: z.object({ id: z.string().min(1) }),
+    responses: { 200: studentDetailSnapshot, 503: z.object({ message: z.string() }) },
+  },
   students: {
     method: "GET",
     path: "/api/students",

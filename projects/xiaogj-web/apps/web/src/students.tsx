@@ -12,6 +12,7 @@ import {
   Menu,
 } from "lucide-react";
 import "./students.css";
+import { StudentDetailPage } from "./student-detail";
 
 const client = initClient(api, { baseUrl: "" });
 const columns = [
@@ -34,6 +35,7 @@ export function StudentsPage() {
   const [jump, setJump] = useState("");
   const [selected, setSelected] = useState<string[]>([]);
   const [message, setMessage] = useState("");
+  const [detailId, setDetailId] = useState<string | null>(null);
   const { data, error, isPending } = useQuery({
     queryKey: ["students", page, search],
     retry: false,
@@ -56,6 +58,7 @@ export function StudentsPage() {
     setSelected((s) =>
       s.includes(id) ? s.filter((n) => n !== id) : [...s, id],
     );
+  if (detailId) return <StudentDetailPage id={detailId} onReturn={() => setDetailId(null)} />;
   return (
     <div className="students-page">
       <div className="students-breadcrumb">
@@ -210,7 +213,7 @@ export function StudentsPage() {
                           >
                             {row.gender === "male" ? "♂" : "♀"}
                           </span>}
-                          <button className="student-name" onClick={pending}>
+                          <button className="student-name" onClick={() => setDetailId(row.id)}>
                             {row.name}
                           </button>
                         </td>
@@ -296,7 +299,7 @@ export function StudentsPage() {
 
 export function StudentRailFooter({ onCollapse }: { onCollapse: () => void }) {
   return (
-    <button className="student-rail-footer" onClick={onCollapse}>
+    <button className="student-rail-footer" aria-label="收起侧边栏" onClick={onCollapse}>
       <Menu size={16} />
       收起
     </button>
