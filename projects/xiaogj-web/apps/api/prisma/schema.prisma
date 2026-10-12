@@ -9,6 +9,23 @@ datasource db {
   provider = "mysql"
 }
 
+model AuthUser {
+  id String @id @db.VarChar(80)
+  username String @unique @db.VarChar(200)
+  displayName String @db.VarChar(200)
+  passwordHash String @db.VarChar(100)
+  active Boolean @default(true)
+  sessions AuthSession[]
+}
+
+model AuthSession {
+  id String @id @db.VarChar(80)
+  userId String @db.VarChar(80)
+  expiresAt DateTime
+  user AuthUser @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@index([userId])
+}
+
 model StudentCapture {
   id       String @id @db.VarChar(80)
   total    Int

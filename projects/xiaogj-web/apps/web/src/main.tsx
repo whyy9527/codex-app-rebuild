@@ -27,6 +27,7 @@ import {
 import { navigation } from "./navigation";
 import { useHomeState, defaultCards } from "./home-state";
 import "./style.css";
+import { AuthenticationGate } from "./login";
 import { StudentsPage, StudentRailFooter } from "./students";
 import { EnrollmentPage } from "./enrollment";
 const client = initClient(api, { baseUrl: "" });
@@ -90,7 +91,8 @@ function BusinessLink({
     </Link>
   );
 }
-function AppShell() {
+function AppShell() { return <AuthenticationGate><AuthenticatedShell /></AuthenticationGate>; }
+function AuthenticatedShell() {
   const { data } = useHome();
   const [menu, setMenu] = useState<number | null>(null);
   const header = useRef<HTMLElement>(null);
@@ -1122,7 +1124,7 @@ const businessRoute = createRoute({
   component: BusinessPage,
 });
 const router = createRouter({
-  routeTree: rootRoute.addChildren([indexRoute, businessRoute]),
+  routeTree: rootRoute.addChildren([indexRoute, businessRoute, createRoute({ getParentRoute: () => rootRoute, path: "/login.aspx", component: () => null })]),
 });
 declare module "@tanstack/react-router" {
   interface Register {

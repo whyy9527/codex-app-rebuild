@@ -121,22 +121,30 @@ export const recentClassesSnapshot = z.object({
   rows: z.array(z.array(z.string()).length(4)).max(6),
   observedAt: z.string().datetime(),
 });
+const authUser = z.object({ id: z.string(), username: z.string(), displayName: z.string() });
+const unauthorized = z.object({ message: z.string() }).passthrough();
 export const api = c.router({
+  login: { method: "POST", path: "/api/auth/login", body: z.object({
+    username: z.string().min(1).max(200),
+    password: z.string().min(1).max(50).refine(value => new TextEncoder().encode(value).length <= 72),
+  }), responses: { 200: authUser, 401: unauthorized } },
+  session: { method: "GET", path: "/api/auth/session", responses: { 200: authUser, 401: unauthorized } },
+  logout: { method: "POST", path: "/api/auth/logout", body: z.object({}), responses: { 200: z.object({ status: z.literal("ok") }), 401: unauthorized } },
   recentClasses: {
     method: "GET",
     path: "/api/home/recent-classes",
-    responses: { 200: recentClassesSnapshot, 503: z.object({ message: z.string() }) },
+    responses: { 401: unauthorized, 200: recentClassesSnapshot, 503: z.object({ message: z.string() }) },
   },
   enrollment: {
     method: "GET",
     path: "/api/enrollment/defaults",
-    responses: { 200: enrollmentSnapshot, 503: z.object({ message: z.string() }) },
+    responses: { 401: unauthorized, 200: enrollmentSnapshot, 503: z.object({ message: z.string() }) },
   },
   studentDetail: {
     method: "GET",
     path: "/api/students/:id/detail",
     pathParams: z.object({ id: z.string().min(1) }),
-    responses: { 200: studentDetailSnapshot, 503: z.object({ message: z.string() }) },
+    responses: { 401: unauthorized, 200: studentDetailSnapshot, 503: z.object({ message: z.string() }) },
   },
   students: {
     method: "GET",
@@ -146,6 +154,7 @@ export const api = c.router({
       search: z.string().default(""),
     }),
     responses: {
+      401: unauthorized,
       200: studentsSnapshot,
       503: z.object({ message: z.string() }),
     },
@@ -158,6 +167,6 @@ export const api = c.router({
   home: {
     method: "GET",
     path: "/api/home",
-    responses: { 200: homeSnapshot, 503: z.object({ message: z.string() }) },
+    responses: { 401: unauthorized, 200: homeSnapshot, 503: z.object({ message: z.string() }) },
   },
 });

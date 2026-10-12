@@ -6,10 +6,14 @@
 cd projects/xiaogj-web
 nvm use
 npx --yes pnpm@11.15.1 install --frozen-lockfile
+npx --yes pnpm@11.15.1 --filter @xiaogj/api db:migrate
+npx --yes pnpm@11.15.1 --filter @xiaogj/api db:seed-local-auth
 npx --yes pnpm@11.15.1 dev
 ```
 
-本地入口 http://127.0.0.1:5183 ，API http://127.0.0.1:3101 。当前已实现首页首版、顶部菜单、待办展开与配置、数据周期和图表、自定义草稿、快捷操作选择和搜索。学员信息管理已实现列表、查询、重置、分页和已观察学员的详情展开／返回，并通过 Prisma 读取独立的 MySQL 8 数据库；其余业务页仍是导航壳。登录、权限、完整查询、业务写入和首页偏好持久化尚未完成。
+本地入口 http://127.0.0.1:5183 ，API http://127.0.0.1:3101 。当前已实现首页首版、顶部菜单、待办展开与配置、数据周期和图表、自定义草稿、快捷操作选择和搜索。学员信息管理已实现列表、查询、重置、分页和已观察学员的详情展开／返回，并通过 Prisma 读取独立的 MySQL 8 数据库；其余业务页仍是导航壳。登录已接入本地 JWT、HttpOnly Cookie 和数据库会话；权限、完整查询、业务写入和首页偏好持久化尚未完成。
+
+首次启动前准备下述数据库和私有输入。认证初始化生成独立候选账号 `private/local-auth.json` 及 `private/auth.env`，均留在忽略目录；原版凭证只用于原版。浏览器登录后可刷新保留会话，退出 API 会撤销数据库会话。当前不是完整认证交付，原版弱密码提醒、宣传层旅程、恢复密码、Cognito 和 CASL 仍待实现／验收；登录页面严格视觉比较未完成。共同场景见 [auth-scenarios.json](auth-scenarios.json)，实际结果见 [认证证据](evidence/2026-10-12-local-auth.md)。
 
 首页读取 `private/reference/home-data.json`，按共享的 `homeSnapshot` Zod 契约校验；数据缺失或不合法返回 503，不生成替代业务数据。私有观察与媒体不进入 Git。Vite 从 `private/assets/` 读取原版已观察的 logo、头像、企业标记、背景、图标字体和 SVG 图标，构建产物也不提交。新的检出环境需要先从授权会话准备这些本地输入。
 

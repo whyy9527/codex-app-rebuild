@@ -12,16 +12,20 @@
     "db:migrate": "prisma migrate deploy",
     "db:import-students": "tsx src/import-students.ts",
     "db:import-student-detail": "tsx src/import-student-detail.ts",
-    "db:backfill-name-initials": "tsx src/backfill-name-initials.ts"
+    "db:backfill-name-initials": "tsx src/backfill-name-initials.ts",
+    "db:seed-local-auth": "tsx src/seed-local-auth.ts"
   },
   "dependencies": {
     "@nestjs/common": "^11.1.18",
     "@nestjs/core": "^11.1.18",
+    "@nestjs/jwt": "^12.0.2",
     "@nestjs/platform-express": "^11.1.18",
     "@prisma/adapter-mariadb": "7.9.1",
     "@prisma/client": "7.9.1",
     "@ts-rest/nest": "^3.52.1",
     "@xiaogj/contracts": "workspace:*",
+    "bcryptjs": "^3.0.3",
+    "cookie-parser": "^1.4.7",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
     "pinyin-pro": "^3.29.5",
@@ -30,6 +34,8 @@
     "zod": "3.25.76"
   },
   "devDependencies": {
+    "@types/cookie-parser": "^1.4.10",
+    "@types/express": "^5.0.6",
     "@types/node": "^24.10.0",
     "prisma": "7.9.1",
     "tsx": "^4.22.4"

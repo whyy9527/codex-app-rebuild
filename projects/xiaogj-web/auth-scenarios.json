@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "scope": "已观察登录表单、登录后密码提醒及取消提醒和宣传层后的首页；不是完整认证或权限验收",
+  "reference": [
+    {
+      "path": "projects/xiaogj-web/private/reference/2026-10-12-safari-preparation/login-empty.ax.txt",
+      "sha256": "045b76ec882987d04910631e06d383ad77d76821f234e81b73a771d73c9e2343"
+    },
+    {
+      "path": "projects/xiaogj-web/private/reference/2026-10-12-safari-preparation/password-reminder.ax.txt",
+      "sha256": "5b62fd7493b06dc9003adf0839530c049ee74520b388b5be88d0d917e743f2dc"
+    },
+    {
+      "path": "projects/xiaogj-web/private/reference/2026-10-12-safari-preparation/home-ready.ax.txt",
+      "sha256": "3055bd8dc8f75339397360bb2e593c5e6b52f68c07526fb15ff1f023a36cc316"
+    }
+  ],
+  "actions": [
+    "原版使用仅限原版的授权凭证；候选使用单独准备的本地测试凭证",
+    "保存空表单，填写凭证并提交；不保存填写后的表单或凭证",
+    "保存登录后的实际状态；原版取消密码提醒并关闭宣传层后保存首页",
+    "候选实际刷新并保存首页及会话状态"
+  ],
+  "remaining_unknown": [
+    "原版错误凭证和恢复密码流程",
+    "登录背景照片随机状态、动画时序和严格像素",
+    "Cognito配置、权限与数据范围"
+  ]
+}
