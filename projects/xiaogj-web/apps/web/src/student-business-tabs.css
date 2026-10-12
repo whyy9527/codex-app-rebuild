@@ -1,0 +1,35 @@
+.student-tab-content { padding: 20px; color: #333; }
+.student-tab-query { display: flex; align-items: center; gap: 10px; margin: 0 0 20px; height: 30px; white-space: nowrap; font-size: 14px; }
+.student-tab-query input:not([type=checkbox]), .student-tab-query select { border: 1px solid #ddd; border-radius: 3px; height: 30px; background: #fff; padding: 0 10px; width: 110px; }
+.student-tab-query select { width: 100px; }
+.student-tab-query a { display: inline-flex; align-items: center; height: 30px; border: 1px solid #ddd; padding: 0 15px; background: #f6f7fa; border-radius: 3px; cursor: pointer; }
+.student-tab-query a:last-of-type { background: #2878e8; color: white; border-color: #2878e8; }
+.student-tab-check { display: inline-flex; align-items: center; gap: 5px; }
+.student-tab-check input { width: 18px; height: 18px; accent-color: #2878e8; }
+.student-tab-switch { width: 30px; height: 17px; border-radius: 10px; background: #ccd0d0; position: relative; }
+.student-tab-switch::before { content: ""; width: 15px; height: 15px; border-radius: 50%; background: white; position: absolute; left: 1px; top: 1px; }
+.student-tab-table-scroll { overflow: auto; }
+.student-tab-table-scroll table { width: 100%; border-collapse: collapse; table-layout: fixed; font-size: 14px; }
+.student-tab-table-scroll th { background: #f0f1f6; height: 50px; padding: 0 8px; text-align: left; font-weight: 600; }
+.student-tab-table-scroll th svg { display: inline; margin-left: 3px; vertical-align: middle; }
+.student-tab-table-scroll td { height: 40px; padding: 0 8px; border-bottom: 1px solid #e5e7eb; }
+.student-tab-table-scroll .student-tab-empty { text-align: center; }
+.student-tab-table-scroll a, .quantity-value { color: #2878e8; cursor: pointer; }
+.student-tab-table-scroll .points-value { color: #f1767d; text-align: right; }
+.student-tab-table-scroll.tuition th:nth-child(1), .student-tab-table-scroll.tuition th:nth-child(2) { width: 17%; }
+.student-tab-table-scroll.tuition th:nth-child(3) { width: 11%; }
+.student-tab-table-scroll.tuition th:nth-child(4), .student-tab-table-scroll.tuition td:nth-child(4), .student-tab-table-scroll.tuition th:nth-child(6), .student-tab-table-scroll.tuition td:nth-child(6) { text-align: right; }
+.student-tab-table-scroll.points th:nth-child(1) { width: 7%; text-align: right; }
+.student-tab-table-scroll.points th:nth-child(2) { width: 21%; }
+.student-tab-table-scroll.points th:nth-child(3) { width: 14%; }
+.student-tab-table-scroll.points th:nth-child(4) { width: 34%; }
+.student-tab-table-scroll.points td { height: 48px; }
+.student-tab-table-scroll.consumption table { min-width: 1900px; }
+.student-tab-table-scroll.consumption th { border: 1px solid #d9e2e9; }
+.student-tab-pager { display: flex; justify-content: flex-end; align-items: center; gap: 5px; height: 50px; border: 1px solid #e5e7eb; font-size: 14px; padding-right: 10px; }
+.student-tab-pager button, .student-tab-pager input, .student-tab-size { height: 30px; border: 1px solid #ddd; border-radius: 3px; width: 50px; text-align: center; }
+.student-tab-pager button { display: grid; place-items: center; width: 36px; color: #999; }
+.student-tab-pager input { font-size: 12px; }
+.student-tab-size { display: inline-flex; align-items: center; justify-content: center; cursor: pointer; }
+.student-tab-point-actions { border-top: 1px solid #ddd; padding: 20px 0; display: flex; gap: 10px; }
+.student-tab-point-actions a { padding: 5px 15px; border: 1px solid #ddd; border-radius: 3px; cursor: pointer; }

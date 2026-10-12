@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "seed": "projects/xiaogj-web/private/rsi-tabs-seed",
+  "root_observation": {
+    "state": "source-students-default",
+    "remote_reset": "Readonly empty query; select observed student, collapse, explicitly select current classes; source DB unchanged",
+    "preparation": "Return before each case; explicit current-classes tab prevents persisted selected-tab state from becoming default"
+  },
+  "score_semantics": "Fraction of three independently reexecuted readonly detail-tab branches with exact observed content and input values plus exact default list restoration; not visual equivalence or full product acceptance",
+  "initial_policy": "projects/xiaogj-web/tools/rsi_policy_v0.py",
+  "fixed_inputs": [
+    "projects/xiaogj-web/tools/student_tabs.py",
+    "projects/xiaogj-web/tools/student_tabs_native_v1.js",
+    "projects/xiaogj-web/private/rsi-tabs-seed/cases.json",
+    "projects/xiaogj-web/student-tabs-scenarios.json"
+  ],
+  "agent": [
+    "python3",
+    "projects/xiaogj-web/tools/student_tabs.py",
+    "agent"
+  ],
+  "evaluator": [
+    "python3",
+    "projects/xiaogj-web/tools/student_tabs.py",
+    "evaluator"
+  ],
+  "timeout_seconds": 300,
+  "workers": 1,
+  "online_rounds": 4,
+  "replay_rounds": 4,
+  "versions": 2,
+  "parallelism_penalty": 0.05
+}

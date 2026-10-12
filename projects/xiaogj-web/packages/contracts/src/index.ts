@@ -87,10 +87,21 @@ export const studentsSnapshot = z.object({
 });
 export type StudentsSnapshot = z.infer<typeof studentsSnapshot>;
 const detailField = z.object({ label: z.string(), value: z.string(), emphasis: z.boolean().optional() });
+const detailTabTable = z.object({
+  headers: z.array(z.array(z.string())), rows: z.array(z.array(z.string())),
+  emptyText: z.string().optional(),
+  pagination: z.object({ total: z.number().int(), page: z.number().int(), pages: z.number().int(), pageSize: z.number().int() }).optional(),
+});
+const studentBusinessTabs = z.object({
+  tuition: z.object({ table: detailTabTable, showDetails: z.boolean(), includeZero: z.boolean() }),
+  consumption: z.object({ table: detailTabTable, preset: z.string(), startDate: z.string(), endDate: z.string(), type: z.string(), course: z.string() }),
+  points: z.object({ table: detailTabTable, rule: z.string(), timePreset: z.string(), startDate: z.string(), endDate: z.string(), add: z.boolean(), subtract: z.boolean(), cleared: z.boolean() }),
+});
 export const studentDetailSnapshot = z.object({
   id: z.string(), name: z.string(), status: z.string(),
   gender: z.enum(["male", "female", "unknown"]), tag: z.string(),
   photoSrc: z.string().nullable(),
+  businessTabs: studentBusinessTabs.optional(),
   summary: z.array(detailField),
   sections: z.array(z.object({ title: z.string(), fields: z.array(detailField) })),
   tabs: z.array(z.string()),

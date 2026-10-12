@@ -37,7 +37,13 @@
     "detail_rsi_collected_pool": "projects/xiaogj-web/private/rsi-detail-redeploy-v2-20261012/iteration-1/collected-pool.json",
     "detail_rsi_evaluation": "projects/xiaogj-web/private/rsi-detail-revision-20261012/evaluation.json",
     "detail_rsi_selected_pool": "projects/xiaogj-web/private/rsi-detail-revision-20261012/pool.json",
-    "historical_detail_frontend_contract": "projects/xiaogj-web/detail-frontend-contract.json"
+    "historical_detail_frontend_contract": "projects/xiaogj-web/detail-frontend-contract.json",
+    "tabs_scenarios": "projects/xiaogj-web/student-tabs-scenarios.json",
+    "tabs_frontend_contract": "projects/xiaogj-web/tabs-frontend-contract.json",
+    "tabs_rsi_config": "projects/xiaogj-web/rsi-tabs.json",
+    "tabs_rsi_collected_pool": "projects/xiaogj-web/private/rsi-tabs-collect-20261012/iteration-1/collected-pool.json",
+    "tabs_rsi_evaluation": "projects/xiaogj-web/private/rsi-tabs-revision-20261012/evaluation.json",
+    "tabs_rsi_selected_pool": "projects/xiaogj-web/private/rsi-tabs-revision-20261012/pool.json"
   },
   "commands": {
     "build": [
@@ -341,6 +347,79 @@
       "{observed}",
       "--candidate",
       "projects/xiaogj-web/tools/rsi_policy_v1.py",
+      "--out",
+      "{out}"
+    ],
+    "replay_reference_tabs": [
+      "python3",
+      "-m",
+      "projects.xiaogj-web.tools.student_tabs",
+      "replay",
+      "--side",
+      "reference",
+      "--out",
+      "{out}"
+    ],
+    "replay_tabs": [
+      "python3",
+      "-m",
+      "projects.xiaogj-web.tools.student_tabs",
+      "replay",
+      "--side",
+      "candidate",
+      "--out",
+      "{out}"
+    ],
+    "compare_tabs": [
+      "python3",
+      "-m",
+      "projects.xiaogj-web.tools.student_tabs",
+      "compare",
+      "--observed",
+      "{observed}",
+      "--out",
+      "{out}"
+    ],
+    "rsi_tabs_collect": [
+      "python3",
+      "-m",
+      "workflows.rebuild.dream",
+      "collect",
+      "--workspace",
+      ".",
+      "--config",
+      "projects/xiaogj-web/rsi-tabs.json",
+      "--pool",
+      "projects/xiaogj-web/private/rsi-tabs-revision-20261012/pool.json",
+      "--out",
+      "{out}"
+    ],
+    "rsi_tabs_replay": [
+      "python3",
+      "-m",
+      "workflows.rebuild.dream",
+      "replay",
+      "--workspace",
+      ".",
+      "--config",
+      "projects/xiaogj-web/rsi-tabs.json",
+      "--pool",
+      "{observed}",
+      "--candidate",
+      "projects/xiaogj-web/tools/rsi_policy_v1.py",
+      "--out",
+      "{out}"
+    ],
+    "compare_tabs_frontend": [
+      "python3",
+      "-m",
+      "capabilities.rebuild.frontend",
+      "--workspace",
+      ".",
+      "--contract",
+      "projects/xiaogj-web/tabs-frontend-contract.json",
+      "--observed",
+      "{observed}",
       "--out",
       "{out}"
     ]

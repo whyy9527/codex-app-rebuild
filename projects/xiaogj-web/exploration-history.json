@@ -1826,6 +1826,150 @@
           ]
         }
       ]
+    },
+    {
+      "id": "student-detail-tuition",
+      "source": "observed",
+      "evidence": "projects/xiaogj-web/private/rsi-tabs-collect-20261012/iteration-1/online/attempt-3/workspace/native-5a133752d8e34d43b4498bd5e4f12a1a/tuition-tab.ax.txt",
+      "actions": [
+        {
+          "id": "tuition-0",
+          "label": "显示明细",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "tuition-1",
+          "label": "显示剩余数量为0的课程",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "student-detail-consumption",
+      "source": "observed",
+      "evidence": "projects/xiaogj-web/private/rsi-tabs-collect-20261012/iteration-1/online/attempt-3/workspace/native-5a133752d8e34d43b4498bd5e4f12a1a/consumption-tab.ax.txt",
+      "actions": [
+        {
+          "id": "consumption-0",
+          "label": "上课时间",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "consumption-1",
+          "label": "课消类型",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "consumption-2",
+          "label": "选择课程",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "consumption-3",
+          "label": "查询",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "student-detail-points",
+      "source": "observed",
+      "evidence": "projects/xiaogj-web/private/rsi-tabs-collect-20261012/iteration-1/online/attempt-3/workspace/native-5a133752d8e34d43b4498bd5e4f12a1a/points-tab.ax.txt",
+      "actions": [
+        {
+          "id": "points-0",
+          "label": "积分规则",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "points-1",
+          "label": "时间",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "points-2",
+          "label": "查询",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "points-3",
+          "label": "加分",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ],
+          "control_role": "checkbox"
+        },
+        {
+          "id": "points-4",
+          "label": "减分",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ],
+          "control_role": "checkbox"
+        },
+        {
+          "id": "points-5",
+          "label": "积分手动清零",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ],
+          "control_role": "checkbox"
+        }
+      ]
     }
   ],
   "transitions": [
@@ -2150,6 +2294,33 @@
       "outcome": "observed",
       "evidence": "projects/xiaogj-web/private/detail-frontend-stable-reference-20261012/expanded-restored.ax.txt",
       "observation": "Collapse preparation precedes Return; direct expanded Return remains unverified."
+    },
+    {
+      "from": "student-detail-overview",
+      "action": "tab-2",
+      "operation": "click",
+      "to": "student-detail-tuition",
+      "outcome": "observed",
+      "evidence": "projects/xiaogj-web/private/rsi-tabs-collect-20261012/iteration-1/online/attempt-3/workspace/native-5a133752d8e34d43b4498bd5e4f12a1a/tuition-tab.ax.txt",
+      "observation": "Independent source evaluation explicitly prepares current-classes tab before opening this default branch; other input methods and filter changes remain unknown."
+    },
+    {
+      "from": "student-detail-overview",
+      "action": "tab-3",
+      "operation": "click",
+      "to": "student-detail-consumption",
+      "outcome": "observed",
+      "evidence": "projects/xiaogj-web/private/rsi-tabs-collect-20261012/iteration-1/online/attempt-3/workspace/native-5a133752d8e34d43b4498bd5e4f12a1a/consumption-tab.ax.txt",
+      "observation": "Independent source evaluation explicitly prepares current-classes tab before opening this default branch; other input methods and filter changes remain unknown."
+    },
+    {
+      "from": "student-detail-overview",
+      "action": "tab-4",
+      "operation": "click",
+      "to": "student-detail-points",
+      "outcome": "observed",
+      "evidence": "projects/xiaogj-web/private/rsi-tabs-collect-20261012/iteration-1/online/attempt-3/workspace/native-5a133752d8e34d43b4498bd5e4f12a1a/points-tab.ax.txt",
+      "observation": "Independent source evaluation explicitly prepares current-classes tab before opening this default branch; other input methods and filter changes remain unknown."
     }
   ],
   "limitations": [
@@ -2157,6 +2328,7 @@
     "浏览器连接在快捷搜索添加动作前不可用，可能仍停留在快捷配置搜索界面；没有保存原版偏好。",
     "存在历史快照为 AX 差分；共同场景已另采完整 AX。",
     "最初零散历史尚未接入 Dream-RSI；后续查询、分页与详情已分别实际 collect／完整池 replay／再部署，当前身份与池由 rebuild.json 指向。其他状态仍未知，不能外推这些固定协议的分数。",
-    "详情曾出现 AX 已稳定但截图仍带加载遮罩，且截图页签与 AX 不同；原始结果保留。v2 稳定前端参考重新采集并复核，加载过程仍未验收。"
+    "详情曾出现 AX 已稳定但截图仍带加载遮罩，且截图页签与 AX 不同；原始结果保留。v2 稳定前端参考重新采集并复核，加载过程仍未验收。",
+    "详情学费／课消／积分新协议首轮完整树及同池回放完成，选中策略的实际再部署因窗口来源守卫拒绝而退出 2；尚未完成该协议的新世界。候选默认内容已验证，筛选／写入与严格整图仍不满足完整复刻。"
   ]
 }

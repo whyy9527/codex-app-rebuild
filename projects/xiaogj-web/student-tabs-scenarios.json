@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "preparation": "Authorized first observed student; empty query and page 1; collapse detail and explicitly choose current classes before each tab. Readonly tab entry and Return only; no source writes or remote DB reset. Recent-30-day dates frozen from the actual observation day and may fail after day changes.",
+  "source": "projects/xiaogj-web/private/reference/2026-10-12-student-tabs-preparation",
+  "cases": [
+    {
+      "id": "tuition",
+      "actions": [
+        {
+          "type": "tab",
+          "label": "学费"
+        }
+      ],
+      "requirement": "Observed default 学费 content, exact ordered text and actual input values, followed by exact list restoration"
+    },
+    {
+      "id": "consumption",
+      "actions": [
+        {
+          "type": "tab",
+          "label": "课消明细"
+        }
+      ],
+      "requirement": "Observed default 课消明细 content, exact ordered text and actual input values, followed by exact list restoration"
+    },
+    {
+      "id": "points",
+      "actions": [
+        {
+          "type": "tab",
+          "label": "积分"
+        }
+      ],
+      "requirement": "Observed default 积分 content, exact ordered text and actual input values, followed by exact list restoration"
+    }
+  ],
+  "unknown": [
+    "Other detail tabs",
+    "Tab filter and pagination branches",
+    "Tuition detail switch, zero balance courses and course operations",
+    "Points writes and rule filters",
+    "Scroll, keyboard, hover, loading timing and persistence"
+  ]
+}

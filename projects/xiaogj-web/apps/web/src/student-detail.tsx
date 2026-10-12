@@ -5,6 +5,7 @@ import { api } from "@xiaogj/contracts";
 import { create } from "zustand";
 import { ChevronDown, ChevronLeft, ChevronUp, Phone, Settings } from "lucide-react";
 import "./student-detail.css";
+import { StudentBusinessTab } from "./student-business-tabs";
 
 const client = initClient(api, { baseUrl: "" });
 // Positions observed in the expanded source card; omitted cells stay empty.
@@ -58,7 +59,7 @@ export function StudentDetailPage({ id, onReturn }: { id: string; onReturn: () =
         {tab === 0 ? <div className="student-detail-classes">
           <div className="student-detail-class-filters">{["只显示当前就读班级", "显示所有班级", "排队班级"].map((name, i) => <div key={name}><input type="radio" aria-label={name} name="student-detail-class-filter" checked={classFilter === i} onChange={() => setClassFilter(i)} /><span onClick={() => setClassFilter(i)}>{name}</span></div>)}</div>
           {classFilter === 0 ? <div className="student-detail-table-scroll"><table><thead><tr>{data.classes.headers.map((name) => <th key={name}>{name}{["进/出班日期", "开班日期"].includes(name) && " \ue60a"}</th>)}</tr></thead><tbody>{data.classes.rows.length ? data.classes.rows.map((row, i) => <tr key={i}>{row.map((value, j) => <td key={j}>{value}</td>)}</tr>) : <tr><td colSpan={data.classes.headers.length} className="student-detail-empty">暂时还没有相关数据，试试别的查询条件吧。</td></tr>}</tbody></table></div> : <div className="student-detail-error" role="status">该信息暂时无法读取</div>}
-        </div> : <div className="student-detail-error" role="status">该信息暂时无法读取</div>}
+        </div> : data.businessTabs && ["学费", "课消明细", "积分"].includes(data.tabs[tab] ?? "") ? <StudentBusinessTab tab={data.tabs[tab]!} data={data.businessTabs} unavailable={unavailable} /> : <div className="student-detail-error" role="status">该信息暂时无法读取</div>}
       </div>
     </>}
     {message && <div className="students-message" role="status">{message}</div>}
