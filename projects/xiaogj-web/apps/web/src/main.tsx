@@ -13,6 +13,7 @@ import {
   Outlet,
   RouterProvider,
   useNavigate,
+  useRouterState,
 } from "@tanstack/react-router";
 import { initClient } from "@ts-rest/core";
 import { api, type HomeSnapshot } from "@xiaogj/contracts";
@@ -93,6 +94,9 @@ function BusinessLink({
 }
 function AppShell() { return <AuthenticationGate><AuthenticatedShell /></AuthenticationGate>; }
 function AuthenticatedShell() {
+  const pathname = useRouterState({ select: state => state.location.pathname });
+  const page = decodeURIComponent(pathname).split("/")[2];
+  const activeNavigation = navigation.findIndex(group => group.items.includes(page ?? ""));
   const { data } = useHome();
   const [menu, setMenu] = useState<number | null>(null);
   const header = useRef<HTMLElement>(null);
@@ -121,7 +125,8 @@ function AuthenticatedShell() {
             {navigation.map((n, i) => (
               <li key={n.title}>
                 <button
-                  className={`nav-button ${menu === i ? "selected" : ""}`}
+                  className={`nav-button ${menu === i ? "selected" : ""} ${activeNavigation === i ? "current" : ""}`}
+                  aria-current={activeNavigation === i ? "page" : undefined}
                   aria-expanded={menu === i}
                   onClick={() => setMenu(menu === i ? null : i)}
                 >
