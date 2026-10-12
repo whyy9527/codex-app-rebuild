@@ -1,5 +1,7 @@
 # 架构
 
+共享前端布局为题面和底栏分配实测内容空间，避免SwiftUI intrinsic高度改变验收视口。标题字形、变换后的Canvas与CSS背景图同样进入命名几何诊断；整图继续独立严格比较，几何不能代替像素结果。`compare-frontend-repair.py`只给实际观察加状态前缀及显式别名，调用共同前端比较器，不制造测量。原Rive业务配置与最终CSS变换分开核对，例如正yOffsetPercentage在原版渲染器对应负translate，不能直接把原数据符号抄到Swift。[来源及实测](../projects/duolingo-web/evidence/english-frontend-repair-v80/README.md)。
+
 源采集器支持普通页面截图与保留悬停的可见页面 CDP 截图；记录截图前后语义、CSS窗口和独立物理／CSS视口比。`images.py`拥有实测裁剪、缩放和已知状态变化拒绝，不由业务案例猜PNG缩放。`discovery.py`支持显式 `(state, action, operation)` 前沿，旧未声明模式的记录保持原样；悬停不清除点击／Enter待探索项。`freeze-home-stats.py`及`bind-home-stats.py`将这些事实接入同一前端契约，Swift与网页分别实际执行；键盘驱动发送真实焦点和硬件按键，不直接改业务状态。[输入模式及采样证据](../projects/duolingo-web/evidence/english-home-stats-v1/README.md)。
 
 单元12内容迭代将原版探索、独立实例编译、前端冻结、原生操作与声音测量串联。普通 observedCourse 使用实际全局生命和独立课程进度；指南按 activeUnit 选择；声音契约保存原资源与实际观察的播放增益。回放逐题保留控件／文字的几何、CSS、命中与裁剪，显式平台别名只绑定已测事实；图像、声学及未访问分支保持独立结果。原始RSI研究及旧消融记录不改写，新发现继续进入frontier与下一版契约。[本批来源及限制](../projects/duolingo-web/evidence/english-unit12-content-v1/README.md)。

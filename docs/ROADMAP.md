@@ -1,5 +1,7 @@
 # Roadmap
 
+2026-10-12共享前端模具修复：优先解决题面撑开导致底栏越界、翻译词块／角色CSS偏移、原版正确反馈与档案图／按钮；48状态完整轨迹无驱动失败。v80保留全部旧要求并暴露非交互标题／Canvas／CSS背景几何，整图仍失败。实际探前部分故事未进入，继续unknown；下一步补真实跳过／提示词交互、主页与声音，并消费反馈做RSI产品质量对照，不以新增题数推进。[本批证据与复跑](../projects/duolingo-web/evidence/english-frontend-repair-v80/README.md)。
+
 2026-10-12前端修复：40状态0驱动失败，30项radio／跳过验证通过；同v71失败282→236，仍35整图fail。v72补五个探索状态至17092项；第三课首题空跳过保持4心，后续未探索，提醒未实现；真实模型04仍待执行。 [证据与复跑](../projects/duolingo-web/evidence/english-unit12-frontend-repair-v1/README.md)。
 
 2026-10-12第二课补漏：12判分题／1口语暂缓／2鼓励／13回顾，主页3of6持久化；40原生状态0驱动失败，严格543pass／282fail／14752not_run／923unavailable。继续第三课、提醒遮挡契约、字体布局与声音，保持完整Goal active。 [证据与复跑](../projects/duolingo-web/evidence/english-unit12-lesson2-v1/README.md)。

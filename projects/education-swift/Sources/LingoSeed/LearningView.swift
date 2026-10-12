@@ -20,6 +20,8 @@ struct LearningView: View {
                                 ReferenceObservedCourseResult(page:page,mistakes:lesson.mistakesMade,advance:model.advanceSettlement,review:{showingResultReview=true})
                             } else if model.isObservedCourse && page.kind == "achievement", page.artResource != nil {
                                 ReferenceObservedAchievement(page:page,advance:model.advanceSettlement,review:{showingResultReview=true})
+                            } else if model.isObservedCourse && page.kind == "profile" {
+                                ReferenceObservedProfile(page: page, advance: model.advanceSettlement)
                             } else if model.isUnitPlacement && page.kind != "profile" {
                                 ReferenceUnitPlacementPage(page:page,advance:model.advanceSettlement,review:{showingResultReview=true})
                             } else {
@@ -101,6 +103,8 @@ struct LearningView: View {
                         .frame(width: 150, height: 50).offset(x: geometry.size.width - left - 150, y: 45)
                 }
             }
+        } else if model.isObservedCourse && lesson.feedback == true {
+            ReferenceObservedCorrectFooter(model: model, lesson: lesson)
         } else { answerBar(lesson) }
     }
     private func sidebar(compact: Bool) -> some View {
@@ -368,11 +372,18 @@ struct LearningView: View {
                 words(lesson).padding(.top, 24)
             }.offset(y: -8)
         } else {
+        VStack(alignment: .leading, spacing: 8) {
         if lesson.reviewing {
             Text(copy("ONE MORE LOOK", "错题重练")).font(.caption.bold()).foregroundStyle(accent).accessibilityIdentifier("review-label")
         } else if let indicator = lesson.question.indicator {
             Text(indicator).font(ReferenceStyle.font(14, bold: true)).foregroundStyle(indicator == "挑战题" ? .red : .purple).accessibilityIdentifier("question-indicator")
-        } else if lesson.question.newWord { Text(copy("NEW WORD", "新单词")).font(ReferenceStyle.font(14, bold: true)).foregroundStyle(.purple) }
+        } else if lesson.question.newWord {
+            HStack(spacing: 4) {
+                ReferenceStyle.image("en-newword-source").resizable().frame(width: 32, height: 32)
+                Text(copy("NEW WORD", "新单词")).font(ReferenceStyle.font(16, bold: true)).tracking(0.64)
+                    .foregroundStyle(Color(red: 206/255, green: 130/255, blue: 1))
+            }.frame(height: 32).accessibilityIdentifier("question-indicator")
+        }
         // Source challenge-header: 32px/40px. Translation's character row follows
         // the heading directly; the old shared 28-point gap displaced it.
         VStack(alignment: .leading, spacing: (model.isReferenceSession && lesson.question.sourceType == "assist") || ["translate", "completeReverseTranslation"].contains(lesson.question.sourceType ?? "") || (model.isReferenceSession && lesson.question.sourceType == "listen") ? 0 : model.isReferenceSession && lesson.question.sourceType == "listenTap" ? 23.5 : model.isReferenceSession && lesson.question.sourceType == "listenIsolation" && lesson.question.isolationPromptTokens != nil ? 32 : 28) {
@@ -388,6 +399,7 @@ struct LearningView: View {
         }.padding(.top, 0.5)
         if !model.isReferenceSession && lesson.question.kind == .choice && !["dialogue", "listenIsolation"].contains(lesson.question.sourceType ?? "") {
             Button { model.pronounce() } label: { Label(lesson.selected == nil ? "Read the instruction" : "Listen again", systemImage: "speaker.wave.2.fill") }.buttonStyle(.plain).foregroundStyle(.cyan).accessibilityIdentifier("pronounce")
+        }
         }
         }
     }
@@ -742,6 +754,8 @@ struct LearningView: View {
             }
         } else if model.isReferenceSession && lesson.question.sourceType == "listenTap" {
             generalListeningWords(lesson)
+        } else if model.isObservedCourse && lesson.question.sourceType == "translate" {
+            observedTranslationWords(lesson)
         } else {
         VStack(alignment: .leading, spacing: 24) {
             if lesson.question.sourceType == "listenTap" {
@@ -807,6 +821,45 @@ struct LearningView: View {
             Text(chinese ? "" : "Tap a word in your phrase to put it back.").font(.callout).foregroundStyle(.secondary)
         }
         }
+    }
+    private func observedTranslationWords(_ lesson: Lesson) -> some View {
+        VStack(alignment: .leading, spacing: 0) {
+            HStack(spacing: 0) {
+                Group {
+                    if let resource = lesson.question.characterResource { ReferenceCharacter(resource: resource, feedback: lesson.feedback).id(lesson.question.id) }
+                    else { Color.clear }
+                }.frame(width: 118, height: 175)
+                Button { model.pronounce() } label: {
+                    phraseBubble(lesson.question.hint ?? "", speaker: lesson.question.audioResource != nil)
+                }.buttonStyle(.plain).accessibilityIdentifier("pronounce")
+                Spacer(minLength: 0)
+            }.padding(.leading, 10).frame(height: 175)
+            WordFlowLayout(centered: false) {
+                ForEach(lesson.selectedWords, id: \.self) { id in
+                    if let word = lesson.question.words.first(where: { $0.id == id }) {
+                        observedTranslationTile(word.text, id: "selected-word-" + id, enabled: lesson.feedback == nil, action: { model.removeWord(id) })
+                    }
+                }
+            }.padding(.horizontal, 4).padding(.top, 6.078125)
+                .frame(width: 600, height: 60, alignment: .topLeading)
+                .overlay(alignment: .top) { Rectangle().fill(ReferenceStyle.border).frame(height: 2) }
+                .overlay(alignment: .bottom) { Rectangle().fill(ReferenceStyle.border).frame(height: 2) }
+            WordFlowLayout(centered: true) {
+                ForEach(lesson.visibleWords) { word in
+                    observedTranslationTile(word.text, id: "word-bank-" + word.id,
+                        enabled: lesson.feedback == nil && !lesson.selectedWords.contains(word.id), action: { model.addWord(word.id) })
+                }
+            }.padding(.top, lesson.question.sourceLanguage == "en" ? 38.078125 : 18)
+        }
+    }
+    private func observedTranslationTile(_ text: String, id: String, enabled: Bool, action: @escaping () -> Void) -> some View {
+        let width = (text as NSString).size(withAttributes: [.font: ReferenceStyle.nativeFont(19)]).width + 36
+        return ReferencePracticeControl(label: text, identifier: id, enabled: enabled, action: action, face: AnyView(
+            Text(text).font(ReferenceStyle.font(19)).foregroundStyle(ReferenceStyle.ink)
+                .frame(width: width, height: 47.84375).background(.white, in: RoundedRectangle(cornerRadius: 12))
+                .overlay(RoundedRectangle(cornerRadius: 12).strokeBorder(ReferenceStyle.border, lineWidth: 2))
+                .shadow(color: ReferenceStyle.border, radius: 0, y: 4).frame(height: 51.84375, alignment: .top)))
+            .frame(width: width, height: 51.84375)
     }
     private func phraseBubble(_ text: String, speaker: Bool) -> some View {
         HStack(spacing: 12) {

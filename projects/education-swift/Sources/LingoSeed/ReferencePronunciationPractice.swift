@@ -42,7 +42,11 @@ struct ReferencePronunciationPractice: View {
                     }.padding(.top, 80)
                 } else if let otherQuestion, question.kind != .matching {
                     // Ordinary assist source: heading block117 +40 +175 character row => first radio332.
-                    otherQuestion.frame(width: 600).padding(.top, model.isObservedCourse ? (question.sourceType == "assist" ? 34.5 : 47) : model.isPlacement ? 48.5 : 51)
+                    otherQuestion
+                        .padding(.top, model.isObservedCourse ? (question.sourceType == "assist" ? 34.5 : question.sourceType == "translate" ? 25.5 : 47) : model.isPlacement ? 48.5 : 51)
+                        // Source viewport reserves header82 and footer140. Intrinsic
+                        // question height must not push the actual controls below it.
+                        .frame(width: 600, height: max(0, geometry.size.height - 222), alignment: .top)
                 } else {
                     VStack(alignment: .leading, spacing: 0) {
                         Text(question.prompt).font(ReferenceStyle.font(32, bold: true)).frame(height: 40).accessibilityIdentifier("question-prompt").accessibilityValue(question.id)

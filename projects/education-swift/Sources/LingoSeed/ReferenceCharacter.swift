@@ -98,7 +98,7 @@ private struct AnimatedSourceCharacter: View {
         .onChange(of: colorScheme) { _, value in appearance(value) }
         .scaleEffect(configuration.scale)
         .offset(x: 118 * configuration.xOffsetPercentage * configuration.scale / 100,
-                y: 175 * configuration.yOffsetPercentage * configuration.scale / 100)
+                y: -175 * configuration.yOffsetPercentage * configuration.scale / 100)
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(configuration.name)
         .accessibilityIdentifier("question-character")
