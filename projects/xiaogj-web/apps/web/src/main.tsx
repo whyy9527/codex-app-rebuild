@@ -22,7 +22,6 @@ import {
   GripVertical,
   X,
   Plus,
-  Check,
   ArrowDown,
 } from "lucide-react";
 import { navigation } from "./navigation";
@@ -558,8 +557,7 @@ function Home() {
             </button>
             {backgroundMenu && (
               <div className="background-menu">
-                <b>更换首页背景</b>
-                <small>点击后立即生效</small>
+                <div className="background-menu-heading"><b>更换首页背景</b><small>点击后立即生效</small></div>
                 <div>
                   {[
                     ["classic", "经典浅灰", "简洁耐看"],
@@ -571,15 +569,16 @@ function Home() {
                   ].map(([id, title, subtitle]) => (
                     <button
                       key={id}
-                      className={`background-option theme-${id}`}
+                      className="background-option"
+                      aria-pressed={background === id}
                       onClick={() => {
                         setBackground(id!);
                         setBackgroundMenu(false);
                       }}
                     >
+                      <span className={`background-preview theme-${id}`} aria-hidden="true" />
                       <b>{title}</b>
                       <small>{subtitle}</small>
-                      {background === id && <Check size={16} />}
                     </button>
                   ))}
                 </div>

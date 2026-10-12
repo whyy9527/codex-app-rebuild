@@ -23,8 +23,9 @@ STATES = {
     'recent-add-options': 'recent-card-draft',
     'chart-schedule': 'chart-schedule',
     'chart-attendance': 'chart-attendance',
+    'background-options': 'background-options',
 }
-LINE = re.compile(r'^\s*\d+ (text|button|checkbox|link|heading)(?: \(([^)]*)\))? (.*)$')
+LINE = re.compile(r'^\s*\d+ (text|button|toggle button|checkbox|link|heading)(?: \(([^)]*)\))? (.*)$')
 
 
 def observe(directory):
@@ -96,7 +97,7 @@ def observe(directory):
                 elements['chart-summary'] = {'value': re.sub(r'\s+', ' ', caption).strip()}
         result['states'][state] = {'accessible_text': text, 'elements': elements, 'evidence': str(path)}
         modal_capture = directory / (filename + '.png')
-        if state in ('quick-config', 'overview-config') and modal_capture.exists():
+        if state in ('quick-config', 'overview-config', 'background-options') and modal_capture.exists():
             import hashlib
             review_path = directory / (filename + '.review.json')
             review = json.loads(review_path.read_text()) if review_path.exists() else {}

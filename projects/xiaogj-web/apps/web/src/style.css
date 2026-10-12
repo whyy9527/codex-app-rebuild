@@ -249,6 +249,7 @@ i {
   color: #909399;
 }
 .hero-actions {
+  position: relative;
   display: flex;
   gap: 8px;
 }
@@ -807,49 +808,46 @@ i {
   color: #909399;
 }
 .background-control {
-  position: relative;
+  position: static;
 }
 .background-menu {
   position: absolute;
   right: 0;
-  top: 40px;
-  width: 340px;
-  padding: 20px;
+  top: 44px;
+  width: 470px;
+  padding: 16px;
   background: white;
   border-radius: 8px;
   box-shadow: 0 4px 20px #0003;
   z-index: 10;
 }
-.background-menu > b {
-  display: block;
-  font-size: 16px;
-}
-.background-menu > small {
-  margin: 4px 0 16px;
-}
-.background-menu > div {
+.background-menu-heading { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+.background-menu-heading b { font-size: 16px; line-height: 24px; }
+.background-menu-heading small { color: #909399; }
+.background-menu > div:last-child {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   gap: 12px;
 }
 .background-option {
   position: relative;
   text-align: left;
-  padding: 12px;
-  border-radius: 6px;
-  border: 1px solid #e4e7ed;
-  background-size: cover;
-  min-height: 66px;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  min-width: 0;
 }
+.background-option[aria-pressed="true"] { border-color: #2878e8; background: #ecf5ff; }
+.background-preview { display: block; width: 120px; height: 60px; margin-bottom: 8px; border-radius: 4px; background-position: center; background-size: cover; }
+.background-preview.theme-classic { background: #e8eaec; }
+.background-preview.theme-sky { background: linear-gradient(135deg, #b8d8f5, #d5eaf3, #b6dbe9); }
+.background-preview.theme-apricot { background: #f6e1c3; }
+.background-preview.theme-forest { background: linear-gradient(135deg, #9bcebb, #cce5d8, #94c7b8); }
 .background-option b {
   display: block;
+  line-height: 20px;
 }
-.background-option svg {
-  position: absolute;
-  right: 8px;
-  top: 8px;
-  color: #2878e8;
-}
+.background-option small { display: block; color: #909399; }
 .card-editor {
   display: flex;
   justify-content: space-between;
