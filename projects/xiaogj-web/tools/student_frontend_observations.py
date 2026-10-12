@@ -26,6 +26,7 @@ def main():
             match = re.match(r'^\s*\d+ (text|button|link)(?: \([^)]*\))? (.*)$', line)
             if match:
                 role, name = match.groups()
+                name = re.split(r", (?:Value|Help): ", name)[0]
                 texts.append(name)
                 if role in ('button', 'link') and name in ('查询', '重置'):
                     elements[name] = {'role': role}

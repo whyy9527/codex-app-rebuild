@@ -8,6 +8,7 @@
   padding: 0 0 40px;
   height: calc(100vh - 80px);
   overflow: auto;
+  background: #eceef3;
 }
 .student-business > aside > a {
   height: 50px;
@@ -24,8 +25,12 @@
   height: 60px;
 }
 .student-business > aside > a.active {
-  color: white;
-  background: #3297fb;
+  color: #2878e8;
+  background: white;
+}
+.student-business > aside > a::before {
+  content: "•";
+  margin-right: 16px;
 }
 .student-business > section {
   min-width: 0;
@@ -62,6 +67,7 @@
 .students-page {
   position: relative;
   min-width: 1120px;
+  background: white;
   color: #555;
 }
 .students-page button {
@@ -70,6 +76,7 @@
 }
 .students-breadcrumb {
   height: 30px;
+  background: #f5f6fa;
   display: flex;
   align-items: center;
   padding: 0 20px;
@@ -87,10 +94,12 @@
   padding: 0 4px;
   background: none;
   border: 0;
-  color: #3297fb;
+  color: #333;
+  font-weight: 700;
 }
 .students-tabs .selected {
-  border-bottom: 2px solid #3297fb;
+  color: #2878e8;
+  border-bottom: 2px solid #2878e8;
 }
 .students-content {
   margin: 20px;
@@ -114,44 +123,51 @@
   background: white;
   padding: 0 10px;
   font: inherit;
-  font-size: 12px;
-  outline-color: #3297fb;
+  font-size: 14px;
+  outline-color: #2878e8;
 }
-.students-query button {
+.students-query :is(button, a) {
   height: 36px;
-  padding: 0 15px;
+  padding: 0 14px;
   background: #fff;
   border: 1px solid #ddd;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 4px;
   color: #555;
 }
+.students-query-help {
+  flex: none;
+  margin: 0 6px 0 4px;
+}
 .students-query .students-query-submit {
-  background: #3297fb;
+  background: #2878e8;
   color: white;
-  border-color: #3297fb;
-  margin-left: -1px;
+  border-color: #2878e8;
+  gap: 8px;
 }
 .students-query .students-reset {
-  background: transparent;
-  border: 0;
-  margin-right: 16px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 .students-query label {
   display: flex;
   align-items: center;
   gap: 6px;
-  margin-left: 18px;
-  font-size: 12px;
+  margin-left: 10px;
+  font-size: 14px;
 }
 .students-page input[type="checkbox"] {
-  accent-color: #3297fb;
-  width: 15px;
-  height: 15px;
+  accent-color: #2878e8;
+  width: 12px;
+  height: 12px;
   margin: 0;
   vertical-align: middle;
+}
+.students-query input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
 }
 .students-query label svg {
   color: #b8bdc5;
@@ -167,30 +183,28 @@
   height: 70px;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 5px;
 }
 .students-actions button {
   height: 30px;
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 0 12px;
-  border: 1px solid #d8dce2;
+  padding: 0 14px;
+  border: 1px solid #ddd;
   border-radius: 2px;
   color: #666;
   background: white;
-  font-size: 12px;
+  font-size: 14px;
 }
 .students-actions .primary {
   color: white;
-  background: #3297fb;
-  border-color: #3297fb;
+  background: #2878e8;
+  border-color: #2878e8;
 }
 .students-actions .students-fields {
   margin-left: auto;
-  color: #3297fb;
-  border: 0;
-  padding-right: 0;
+  color: #555;
 }
 .students-table-scroll {
   overflow-x: auto;
@@ -210,10 +224,11 @@
   font-size: 12px;
 }
 .students-table th {
+  font-family: header-icons, "Microsoft YaHei", sans-serif;
   height: 50px;
   text-align: left;
-  background: #f3f5f8;
-  font-weight: normal;
+  background: #f0f1f5;
+  font-weight: 500;
   color: #555;
 }
 .students-table th,
@@ -231,6 +246,13 @@
 .students-table th:first-child,
 .students-table td:first-child {
   text-align: center;
+  padding: 0;
+  text-overflow: clip;
+}
+.student-sort {
+  font-family: header-icons;
+  color: #c8cbd1;
+  cursor: pointer;
 }
 .students-table th button {
   border: 0;
@@ -244,11 +266,11 @@
   border: 0;
   background: none;
   padding: 0;
-  color: #3297fb;
+  color: #2878e8;
   font-size: 12px;
 }
 .student-gender {
-  margin-left: 6px;
+  margin-right: 6px;
   font-size: 14px;
 }
 .student-gender.male {
@@ -269,6 +291,10 @@
   vertical-align: middle;
   color: #3d97f7;
 }
+.student-operation {
+  display: inline-flex;
+  align-items: center;
+}
 .student-operation svg {
   vertical-align: middle;
   margin-left: 5px;
@@ -287,7 +313,7 @@
   height: 30px;
   border: 1px solid #e3e6eb;
   background: #fff;
-  color: #3297fb;
+  color: #2878e8;
   display: grid;
   place-items: center;
 }
@@ -306,11 +332,11 @@
 .students-help {
   position: fixed;
   right: 0;
-  top: 50%;
+  top: 80px;
   width: 24px;
   background: #fff;
   border: 1px solid #e3e6eb;
-  color: #3297fb;
+  color: #2878e8;
   padding: 6px 4px;
   font-size: 12px !important;
   line-height: 19px;

@@ -6,7 +6,6 @@ import {
   ChevronDown,
   ChevronLeft,
   ChevronRight,
-  ChevronsUpDown,
   Phone,
   HelpCircle,
   Bookmark,
@@ -48,6 +47,11 @@ export function StudentsPage() {
     },
   });
   const pending = () => setMessage("此操作尚未完成复刻。");
+  const submitQuery = () => {
+    setPage(1);
+    setSearch(input);
+    setSelected([]);
+  };
   const toggle = (id: string) =>
     setSelected((s) =>
       s.includes(id) ? s.filter((n) => n !== id) : [...s, id],
@@ -66,9 +70,7 @@ export function StudentsPage() {
           className="students-query"
           onSubmit={(e) => {
             e.preventDefault();
-            setPage(1);
-            setSearch(input);
-            setSelected([]);
+            submitQuery();
           }}
         >
           <input
@@ -77,19 +79,24 @@ export function StudentsPage() {
             value={input}
             onChange={(e) => setInput(e.target.value)}
           />
-          <button type="submit" className="students-query-submit">
+          <HelpCircle className="students-query-help" size={16} aria-hidden />
+          <a href="#student-query" className="students-query-submit" onClick={(e) => {
+            e.preventDefault();
+            submitQuery();
+          }}>
             查询 <ChevronDown size={12} />
-          </button>
-          <button
-            type="button"
+          </a>
+          <a
+            href="#student-reset"
             className="students-reset"
-            onClick={() => {
+            onClick={(e) => {
+              e.preventDefault();
               setInput("");
               setMessage("");
             }}
           >
             重置
-          </button>
+          </a>
           <button type="button" onClick={pending}>
             导出 <HelpCircle size={14} />
           </button>
@@ -153,7 +160,7 @@ export function StudentsPage() {
               <div className="students-table-scroll">
                 <table className="students-table">
                   <colgroup>
-                    {[44, 136, 136, 112, 136, 144, 104, 96, 112, 110, 96].map(
+                    {[30, 105, 105, 90, 170, 120, 120, 120, 150, 100, 80].map(
                       (width, i) => (
                         <col key={i} style={{ width }} />
                       ),
@@ -180,15 +187,7 @@ export function StudentsPage() {
                       </th>
                       {columns.map((label, i) => (
                         <th key={label}>
-                          {label}
-                          {i < 9 && (
-                            <button
-                              aria-label={`${label}排序`}
-                              onClick={pending}
-                            >
-                              <ChevronsUpDown size={12} />
-                            </button>
-                          )}
+                          {i < 9 ? `${label} \ue60a` : label}
                         </th>
                       ))}
                     </tr>
@@ -205,15 +204,15 @@ export function StudentsPage() {
                           />
                         </td>
                         <td>
-                          <button className="student-name" onClick={pending}>
-                            {row.name}
-                          </button>
                           {row.gender !== "unknown" && <span
                             className={`student-gender ${row.gender}`}
                             aria-label={row.gender === "male" ? "男" : "女"}
                           >
                             {row.gender === "male" ? "♂" : "♀"}
                           </span>}
+                          <button className="student-name" onClick={pending}>
+                            {row.name}
+                          </button>
                         </td>
                         <td title={row.account}>{row.account}</td>
                         <td>{row.number}</td>

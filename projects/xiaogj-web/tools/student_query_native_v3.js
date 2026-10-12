@@ -46,7 +46,7 @@ export function installStudentQueryE2E(app, fs, bridgeDirectory) {
       }
       async function click(name) {
         const ax = await fresh();
-        await app.click(index(ax, new RegExp('\\d+ (?:link|button) '+name+'$')));
+        await app.click(index(ax, new RegExp('\\d+ (?:link|button) '+name+'(?:, Value:.*)?$')));
         return fresh();
       }
       async function save(state, label) {
