@@ -121,7 +121,9 @@ export const enrollmentChoiceSnapshot = z.object({
   total: z.number().int().nonnegative(), page: z.number().int().positive(),
   totalPages: z.number().int().positive(), pageSize: z.number().int().positive(),
   observedAt: z.string().datetime({ offset: true }), provenance: z.string(),
-}).refine(data => data.rows.every(row => row.length === data.headers.length), "Catalog row shape differs");
+  presentation: z.object({ nameBadges: z.array(z.string().nullable()), evidence: z.string() }).optional(),
+}).refine(data => data.rows.every(row => row.length === data.headers.length)
+  && (!data.presentation || data.presentation.nameBadges.length === data.rows.length), "Catalog row shape differs");
 export const recentClassesSnapshot = z.object({
   summary: z.string(),
   headers: z.array(z.string()).length(4),

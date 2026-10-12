@@ -67,7 +67,9 @@
     "enrollment_chooser_book": "projects/xiaogj-web/private/enrollment-chooser-e2e-book.json",
     "enrollment_chooser_scenarios": "projects/xiaogj-web/enrollment-chooser-scenarios.json",
     "enrollment_chooser_evidence": "projects/xiaogj-web/evidence/2026-10-12-enrollment-chooser-rsi.md",
-    "enrollment_chooser_frontend_contract": "projects/xiaogj-web/enrollment-chooser-frontend-contract.json"
+    "enrollment_chooser_frontend_contract": "projects/xiaogj-web/enrollment-chooser-frontend-contract.json",
+    "enrollment_chooser_layout_evidence": "projects/xiaogj-web/evidence/2026-10-12-enrollment-chooser-layout.md",
+    "enrollment_chooser_presentation": "projects/xiaogj-web/private/enrollment-chooser-presentation.json"
   },
   "commands": {
     "build": [
@@ -806,6 +808,19 @@
       "projects/xiaogj-web/enrollment-chooser-frontend-contract.json",
       "--observed",
       "{observed}",
+      "--out",
+      "{out}"
+    ],
+    "prepare_enrollment_chooser_catalog": [
+      "python3",
+      "-m",
+      "projects.xiaogj-web.tools.prepare_enrollment_choices",
+      "--courses",
+      "projects/xiaogj-web/private/rsi-enrollment-chooser-collect-v2-20261012/iteration-1/online/attempt-1/workspace/native-e81c0a2f8fed42b18336e2c129b0c3cc/courses-opened.ax.txt",
+      "--items",
+      "projects/xiaogj-web/private/rsi-enrollment-chooser-collect-v2-20261012/iteration-1/online/attempt-2/workspace/native-bf8661fc79a947548ad13f031b0cf424/items-opened.ax.txt",
+      "--presentation",
+      "projects/xiaogj-web/private/enrollment-chooser-presentation.json",
       "--out",
       "{out}"
     ]

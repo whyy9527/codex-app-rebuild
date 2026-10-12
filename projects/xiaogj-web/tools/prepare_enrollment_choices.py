@@ -52,11 +52,21 @@ def main():
     parser.add_argument('--courses', required=True)
     parser.add_argument('--items', required=True)
     parser.add_argument('--out', required=True)
+    parser.add_argument('--presentation', help='Reviewed screenshot annotations, keyed by catalog kind')
     args = parser.parse_args()
     root = Path.cwd().resolve()
     result = {kind: extract(local_file(root, getattr(args, kind))) for kind in ('courses', 'items')}
     for row in result.values():
         row['provenance'] = Path(row['provenance']).relative_to(root).as_posix()
+    if args.presentation:
+        annotations = json.loads(local_file(root, args.presentation).read_text())
+        for kind, annotation in annotations.items():
+            if kind not in result or len(annotation['nameBadges']) != len(result[kind]['rows']):
+                raise ValueError('Presentation annotation differs from observed rows')
+            if not all(value is None or isinstance(value, str) for value in annotation['nameBadges']):
+                raise ValueError('Invalid observed name badge')
+            local_file(root, annotation['evidence'])
+            result[kind]['presentation'] = annotation
     with local_file(root, args.out, must_exist=False).open('x') as stream:
         json.dump(result, stream, ensure_ascii=False, indent=2)
         stream.write('\n')
