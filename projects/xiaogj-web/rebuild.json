@@ -482,6 +482,17 @@
       "{observed}",
       "--out",
       "{out}"
+    ],
+    "compare_home_periods": [
+      "python3",
+      "-m",
+      "projects.xiaogj-web.tools.home_periods",
+      "--reference",
+      "projects/xiaogj-web/private/reference/2026-10-12-home",
+      "--receipt",
+      "{observed}",
+      "--out",
+      "{out}"
     ]
   }
 }

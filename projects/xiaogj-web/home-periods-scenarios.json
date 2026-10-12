@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "scope": "首页已观察周期内容；截图、其他输入、实时刷新、导航及持久化待验。",
+  "preparation": "目标端已登录首页顶部；原版不能从捕获文件重置。两端共享动作，新的原版运行仍待可用浏览器。",
+  "cases": [
+    {
+      "id": "metrics-day",
+      "reference": "baseline-final.ax.txt",
+      "reference_sha256": "e5451f748240f997546f7b92395f7d18031bb271b219c4c2d31574567dd55888",
+      "kind": "metrics",
+      "section": "数据概览",
+      "label": "今日",
+      "end": "近7日数据"
+    },
+    {
+      "id": "metrics-week",
+      "reference": "week.ax.txt",
+      "reference_sha256": "efcf2d8105a2aaa32afe731b3d84e1cdb4a3487a3618fea2ee4b1e07cd59a163",
+      "kind": "metrics",
+      "section": "数据概览",
+      "label": "本周",
+      "end": "近7日数据"
+    },
+    {
+      "id": "metrics-month",
+      "reference": "month.ax.txt",
+      "reference_sha256": "43c680c64ff01ddaad560180ff309a6e8168f9b5d36aafb171e60dd6380dd4e2",
+      "kind": "metrics",
+      "section": "数据概览",
+      "label": "本月",
+      "end": "近7日数据"
+    },
+    {
+      "id": "students-week",
+      "reference": "student-week.ax.txt",
+      "reference_sha256": "7f6fa83104d96b03a60508adf2ab3334827944dac8c99f6c7052a633c990ae5f",
+      "kind": "students",
+      "section": "学员动态",
+      "label": "本周",
+      "end": "人数概况"
+    },
+    {
+      "id": "students-month",
+      "reference": "student-month.ax.txt",
+      "reference_sha256": "d327d9bcc787f99177f1e870c3fa1ac3c034a8169cefabf51b6dfa12fd0130f3",
+      "kind": "students",
+      "section": "学员动态",
+      "label": "本月",
+      "end": "人数概况"
+    }
+  ]
+}
