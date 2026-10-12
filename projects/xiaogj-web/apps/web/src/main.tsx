@@ -29,6 +29,7 @@ import { navigation } from "./navigation";
 import { useHomeState, defaultCards } from "./home-state";
 import "./style.css";
 import { StudentsPage, StudentRailFooter } from "./students";
+import { EnrollmentPage } from "./enrollment";
 const client = initClient(api, { baseUrl: "" });
 function useHome() {
   return useQuery({
@@ -1053,12 +1054,13 @@ function BusinessPage() {
   const [collapsed, setCollapsed] = useState(false);
   const { page } = businessRoute.useParams();
   const section = navigation.find((n) => n.items.includes(page));
+  const frontDeskPage = page === "学员信息管理" || page === "新学员报名";
   return (
     <main
-      className={`business-shell ${page === "学员信息管理" ? "student-business" : ""} ${collapsed ? "rail-collapsed" : ""}`}
+      className={`business-shell ${frontDeskPage ? "student-business" : ""} ${collapsed ? "rail-collapsed" : ""}`}
     >
       <aside>
-        {page !== "学员信息管理" && <b>{section?.title}</b>}
+        {!frontDeskPage && <b>{section?.title}</b>}
         {section?.items.map((n) => (
           <BusinessLink
             label={n}
@@ -1066,13 +1068,15 @@ function BusinessPage() {
             className={n === page ? "active" : ""}
           />
         ))}
-        {page === "学员信息管理" && (
+        {frontDeskPage && (
           <StudentRailFooter onCollapse={() => setCollapsed((c) => !c)} />
         )}
       </aside>
       <section>
         {page === "学员信息管理" ? (
           <StudentsPage />
+        ) : page === "新学员报名" ? (
+          <EnrollmentPage />
         ) : (
           <>
             <p>

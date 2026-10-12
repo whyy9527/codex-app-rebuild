@@ -1,0 +1,44 @@
+.enrollment-page { background: white; min-height: calc(100vh - 80px); color: #333; font-size: 14px; }
+.enrollment-location { height: 30px; background: #f6f7fa; color: #888; padding: 6px 20px; font-size: 12px; }
+.enrollment-scroll { overflow-x: auto; }
+.enrollment-content { min-width: 1690px; padding: 0 20px; }
+.enrollment-fields { padding: 25px 0 30px; border-bottom: 1px solid #ddd; }
+.enrollment-field-row { display: flex; height: 45px; align-items: flex-start; }
+.enrollment-field { display: flex; align-items: center; flex: 0 0 274px; height: 30px; }
+.enrollment-field > span { width: 106px; padding-right: 10px; text-align: right; flex-shrink: 0; }
+.enrollment-field em { color: #f58375; font-style: normal; }
+.enrollment-page input:not([type="radio"]):not([type="checkbox"]), .enrollment-page select { height: 30px; width: 160px; border: 1px solid #ddd; background: white; padding: 4px 6px; color: #333; border-radius: 0; font: inherit; }
+.enrollment-page input::placeholder { color: #c7c7c7; }
+.enrollment-page input[type="radio"], .enrollment-page input[type="checkbox"] { accent-color: #287ae8; }
+.enrollment-name { display: flex; width: 160px; }
+.enrollment-name input { min-width: 0; }
+.enrollment-name button { width: 30px; flex-shrink: 0; border: 1px solid #ddd; border-left: 0; background: #f7f7f9; color: #555; display: grid; place-items: center; }
+.enrollment-gender { display: flex; gap: 5px; }
+.enrollment-gender label { display: flex; align-items: center; gap: 4px; }
+.enrollment-gender input { margin: 0; width: 18px; height: 18px; }
+.enrollment-account { position: relative; width: 197px; }
+.enrollment-page .enrollment-account input { width: 100%; padding-right: 44px; }
+.enrollment-account span { position: absolute; right: 3px; top: 5px; }
+.enrollment-text-link { border: 0; padding: 0; background: none; color: #287ae8; cursor: pointer; font: inherit; }
+.enrollment-toolbar { height: 66px; display: flex; align-items: center; gap: 10px; white-space: nowrap; }
+.enrollment-toolbar label { display: flex; align-items: center; gap: 4px; }
+.enrollment-toolbar label:nth-child(1) { margin-right: 20px; }
+.enrollment-toolbar label:nth-child(2) { margin-right: 20px; }
+.enrollment-toolbar label:nth-child(-n+2) input { width: 120px; }
+.enrollment-toolbar label:nth-child(3) input { width: 200px; }
+.enrollment-select { height: 30px; padding: 0 14px; border: 1px solid #ddd; background: white; border-radius: 2px; font: inherit; cursor: pointer; }
+.enrollment-select.selection-0 { background: #287ae8; border-color: #287ae8; color: white; }
+.enrollment-select.selection-1 { background: #ff9418; border-color: #ff9418; color: white; }
+.enrollment-select.selection-2 { background: #65bc3a; border-color: #65bc3a; color: white; }
+.enrollment-table { width: 1600px; table-layout: fixed; border: 1px solid #e3e3e3; border-collapse: collapse; }
+.enrollment-table th { height: 48px; font-weight: 600; background: #eff1f7; text-align: center; white-space: nowrap; }
+.enrollment-table th:first-child { text-align: left; padding-left: 8px; }
+.enrollment-table th svg { display: inline-block; vertical-align: middle; margin-left: 3px; }
+.enrollment-table th button { padding: 4px 8px; border: 1px solid #ddd; background: white; font: inherit; }
+.enrollment-table th label { display: flex; align-items: center; justify-content: center; gap: 5px; }
+.enrollment-table th input { margin: 0; width: 17px; height: 17px; }
+.enrollment-table td { height: 124px; color: #999; text-align: center; border-top: 1px solid #e3e3e3; }
+.enrollment-submit { width: 1600px; text-align: center; padding-top: 10px; }
+.enrollment-submit button { border: 0; border-radius: 3px; color: white; background: #287ae8; width: 100px; height: 34px; font: inherit; cursor: pointer; }
+.enrollment-notice { position: fixed; left: 50%; top: 100px; transform: translateX(-50%); padding: 12px 20px; background: #fff6dd; border: 1px solid #f4d380; box-shadow: 0 2px 6px #0002; }
+.enrollment-notice button { border: 0; background: none; margin-left: 16px; cursor: pointer; }

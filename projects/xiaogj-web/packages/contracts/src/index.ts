@@ -108,7 +108,19 @@ export const studentDetailSnapshot = z.object({
   classes: z.object({ headers: z.array(z.string()), rows: z.array(z.array(z.string())) }),
 });
 export type StudentDetailSnapshot = z.infer<typeof studentDetailSnapshot>;
+// Blank enrollment defaults from an actual observation, not a synthetic tenant.
+export const enrollmentSnapshot = z.object({
+  accountSuffix: z.string().min(1),
+  paymentDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+  attributionDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+  observedAt: z.string().datetime(),
+});
 export const api = c.router({
+  enrollment: {
+    method: "GET",
+    path: "/api/enrollment/defaults",
+    responses: { 200: enrollmentSnapshot, 503: z.object({ message: z.string() }) },
+  },
   studentDetail: {
     method: "GET",
     path: "/api/students/:id/detail",
