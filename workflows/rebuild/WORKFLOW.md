@@ -9,6 +9,8 @@
 3. 用户明确要求创建 Goal 时运行 `project goal`，把输出 JSON 交给原生 `create_goal`。已有同目标 Goal 时读取并接续；目标改变先按宿主能力处理，不另写当前 GOAL 文件或重复启动任务。
 4. 用户没有要求创建 Goal 时仍可按本流程完成已授权工作。原生 Goal 模式不安装 Harness、不启 `exploration_start` 或第二套 Stop 续跑。
 
+“开始／继续复刻”默认包含真实 RSI 链路，不等用户另行要求接入。第一条业务探索探针前先确定它使用的固定协议与 collect 入口；若正在修登录、状态恢复或观察器，明确记录为准备，准备可用后立即从真实 collect 开始。不能先持续手动探索，再将已有结果补写成 RSI 历史；后续策略比较与实际再部署按下文接续。
+
 ```sh
 python3 -m workflows.rebuild.project preflight --workspace <工作区> --project <rebuild.json>
 python3 -m workflows.rebuild.project status --workspace <工作区> --project <rebuild.json>
