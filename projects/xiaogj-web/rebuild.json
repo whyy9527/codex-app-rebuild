@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "name": "校管家 TMS Web 1:1 复刻",
+  "source": "https://tms03.xiaogj.com；使用用户授权账号登录观察，凭证仅用于会话，不写入文件或 Git。原版业务数据不假定可重置。",
+  "target": "Web；采用 firstedu-engineering/realus-ops 的技术栈，以用户提供的技术列表为约束，并核对参考仓库依赖。",
+  "objective": "1:1 复刻 tms03.xiaogj.com 在授权账号可访问范围内的页面、内容结构、视觉、交互与业务行为，交付可运行的前后端与持久化实现。",
+  "completion": [
+    "原版已观察需求形成有来源的共同业务与前端模具，继续探索未知页面、控件、输入方式与状态分支；不能用当前视口或菜单代替需求全集。",
+    "按相同状态、内容、视口和滚动复验原版与候选，覆盖登录、主页、导航及所有已发现业务旅程、视觉、反馈、动效、持久化与实际存在的声音。",
+    "使用指定技术栈交付可启动、可构建、可复跑的实现；保留失败及未验证结果，不以测试全通过替代 1:1 验收。",
+    "凭证、会话、私有业务数据和原版媒体只保存在忽略的本地私有路径；提交仅包含任务授权的原创代码及可公开的契约。"
+  ],
+  "inputs": {
+    "technical_reference": "projects/xiaogj-web/TECHNOLOGY.md",
+    "reference_observations": "projects/xiaogj-web/reference-contract.json"
+  },
+  "commands": {
+    "build": [
+      "npx",
+      "--yes",
+      "pnpm@11.15.1",
+      "--dir",
+      "projects/xiaogj-web",
+      "build"
+    ],
+    "typecheck": [
+      "npx",
+      "--yes",
+      "pnpm@11.15.1",
+      "--dir",
+      "projects/xiaogj-web",
+      "typecheck"
+    ]
+  }
+}

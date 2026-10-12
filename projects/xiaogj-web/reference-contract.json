@@ -1,0 +1,144 @@
+{
+  "schema_version": 1,
+  "source_url": "https://tms03.xiaogj.com",
+  "observed_on": "2026-10-12",
+  "requirements": [
+    {
+      "id": "login.credentials",
+      "source": "observed",
+      "precondition": "原版登录页",
+      "action": "填写授权账号和已有密码，点击登录",
+      "expected": "进入已认证主界面；该次登录出现可取消的弱密码修改提醒",
+      "evidence": "private/reference/home.ax.txt",
+      "candidate_result": "not_run"
+    },
+    {
+      "id": "home.navigation",
+      "source": "observed",
+      "precondition": "完成登录，取消密码提醒，关闭功能宣传弹窗",
+      "action": "查看首页顶部导航",
+      "expected": [
+        "招生营销",
+        "前台业务",
+        "教务管理",
+        "人事管理",
+        "进销存管理",
+        "财务管理",
+        "家校服务",
+        "报表中心"
+      ],
+      "evidence": "private/reference/home.png",
+      "candidate_result": "not_run"
+    },
+    {
+      "id": "home.structure",
+      "source": "observed",
+      "precondition": "原版首页",
+      "action": "查看首页并读取无障碍树",
+      "expected": [
+        "今日待办",
+        "快捷操作",
+        "数据概览",
+        "公告",
+        "学员动态",
+        "人数概况",
+        "满班率",
+        "升级足迹"
+      ],
+      "evidence": "private/reference/home.ax.txt",
+      "candidate_result": "not_run"
+    },
+    {
+      "id": "home.promotion-observer",
+      "source": "observed",
+      "precondition": "取消密码提醒后",
+      "action": "截图观察新功能宣传弹窗，再按 Escape，再点击右上关闭图标",
+      "expected": "取消密码提醒后出现评测管理宣传弹窗，其内容在无障碍树未列出；Escape 后 AX 不变。点击截图中的右上关闭图标后，后续首页截图确认宣传层消失。Escape 对视觉弹窗的作用未单独截图确认。",
+      "evidence": "当前会话的原版截图与点击后 AX 观察；宣传弹窗截图尚未落盘，应在可恢复会话中重新采集。",
+      "candidate_result": "not_run"
+    },
+    {
+      "id": "students.entry",
+      "source": "observed",
+      "precondition": "首页",
+      "action": "点击前台业务，再点击学员信息管理",
+      "expected": "显示前台业务左侧导航、当前位置、学员信息管理与学员沟通管理页签",
+      "evidence": "private/reference/students.ax.txt",
+      "candidate_result": "not_run"
+    },
+    {
+      "id": "students.search-structure",
+      "source": "observed",
+      "precondition": "学员信息管理",
+      "action": "读取筛选及表头",
+      "expected": {
+        "search": "学员姓名及首字母/学号/电话",
+        "controls": [
+          "查询",
+          "重置",
+          "导出",
+          "正式学员",
+          "非正式学员",
+          "包含跨校区学员",
+          "自定义显示字段"
+        ],
+        "columns": [
+          "姓名",
+          "师生信账号",
+          "学号",
+          "身份证号",
+          "手机号码",
+          "英文名",
+          "卡号",
+          "公立学校",
+          "学员状态",
+          "操作"
+        ]
+      },
+      "evidence": "private/reference/students.ax.txt",
+      "candidate_result": "not_run"
+    },
+    {
+      "id": "enrollment.required-fields",
+      "source": "observed",
+      "precondition": "前台业务导航",
+      "action": "点击新学员报名，读取空表单，不提交",
+      "expected": {
+        "required": [
+          "姓名",
+          "手机号",
+          "师生信账号"
+        ],
+        "fields": [
+          "性别",
+          "身份证号",
+          "招生人员",
+          "招生来源",
+          "介绍人",
+          "年级",
+          "学员标签",
+          "学管师",
+          "交费日期",
+          "业绩归属日"
+        ],
+        "selection": [
+          "选课",
+          "选班",
+          "选物品",
+          "选模板",
+          "选套餐"
+        ],
+        "empty": "请选择要收费的课程或物品"
+      },
+      "evidence": "private/reference/enrollment.ax.txt",
+      "candidate_result": "not_run"
+    }
+  ],
+  "limitations": [
+    "仅观察当前授权账号；不同校区及角色行为尚未探索。",
+    "服务端业务状态没有可恢复快照；刷新不等于重置。",
+    "尚未执行报名提交、支付、退费、删除、批量操作或真实业务写入。",
+    "首页证据第一次保存较早，部分数据仍可能处于异步加载状态；需要重采稳定状态。",
+    "尚无原版与候选共同场景回放、视觉差异报告及 RSI 历史池。"
+  ]
+}

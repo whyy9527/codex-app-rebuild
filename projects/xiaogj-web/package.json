@@ -1,0 +1,14 @@
+{
+  "name": "xiaogj-rebuild",
+  "private": true,
+  "packageManager": "pnpm@11.15.1",
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "typecheck": "turbo run typecheck"
+  },
+  "devDependencies": {
+    "turbo": "^2.10.1",
+    "typescript": "^6.0.3"
+  }
+}
