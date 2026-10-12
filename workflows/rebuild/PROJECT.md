@@ -32,6 +32,7 @@
 | `exploration_history` | 既有状态、动作和转移记录，供 frontier 读取 |
 | `rsi_config` | Dream-RSI 的固定发现／评价协议、初始快照与策略 |
 | `rsi_pool` | 可选当前选用的历史池，status 校验世界、快照和策略的哈希；不是 Goal 状态 |
+| `rsi_evaluation` | 同一完整冻结池比较原策略和修订策略的实际 evaluation.json；选中池再部署后仍保留此回执 |
 | `historical_frontend_result` | 可选已保存结果，永远按历史显示 |
 | `case_status` | 案例范围、已验证能力与未完成项 |
 
@@ -40,12 +41,17 @@
 ## 调用方式
 
 ```sh
+python3 -m workflows.rebuild.project preflight --workspace . --project projects/duolingo-web/rebuild.json
 python3 -m workflows.rebuild.project goal --workspace . --project projects/duolingo-web/rebuild.json
 python3 -m workflows.rebuild.project status --workspace . --project projects/duolingo-web/rebuild.json
 python3 -m workflows.rebuild.project run --workspace . --project projects/duolingo-web/rebuild.json --command build
 ```
 
 `goal` 只输出 `{"objective": "..."}`，可作为原生工具参数；不输出默认 token_budget、不写 Goal 文件、不创建任务或安装 Hook。已有 Goal 时由当前 Codex 按宿主能力读取和接续。`status` 返回已记录的模具规模、前沿与历史结果，不是验收命令，零退出码仅说明索引读取成功。
+
+`preflight` 只读检查方法：RSI 固定协议、实际池及策略哈希、同一冻结池上至少两个不同可执行策略的有效回放、胜出策略实际 collect 产生的新世界，以及共同 E2E 场景、前端契约、驱动和比较命令的接线。回放世界必须对应当前池完整历史前缀，后续世界保留实际再部署证据。缺口退出 1，输入损坏退出 2，连接齐全退出 0；任何退出码都不判定产品完成，也不证明已覆盖全部需求。历史通过不能抵消方法缺口，检查不会调用配置中的命令。
+
+`status` 包含同一方法报告；`goal` 把创建时的缺口带入原生目标，并要求每轮重新检查。首次准备仍允许最小配置和显式构建／修驱动，不能以尚无驱动为由长期改用人工探针与局部测试。已结束案例只读检查，不能由报告自动恢复探索。
 
 ## 连接现有命令
 

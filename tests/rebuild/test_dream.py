@@ -11,7 +11,7 @@ import unittest
 from capabilities.exploration import dream
 from capabilities.exploration.storage import digest
 from runtime.dream import Commands, cycle, load_pool, read, replay_candidates, sha
-from workflows.rebuild.project import project_status
+from workflows.rebuild.project import method_report, project_status
 
 
 REPO = Path(__file__).resolve().parents[2]
@@ -236,13 +236,38 @@ class DreamRuntimeTests(unittest.TestCase):
         baseline = replay_candidates(self.root, self.config, collected['pool'], [], 'runs/baseline')
         feedback = read(self.root / 'runs/baseline/evaluation.json')
         self.assertEqual(len(feedback['feedback'][0]['worlds']), 1)
+        # Read-only project entry must distinguish collection, comparison and deployment.
+        config_path = self.root / 'method-config.json'
+        config_path.write_text(json.dumps(self.config))
+        project = {'inputs': {'rsi_config': 'method-config.json', 'rsi_pool': baseline['pool'],
+                             'rsi_evaluation': 'runs/baseline/evaluation.json',
+                             'fixture': 'method-config.json', 'frontend_contract': 'method-config.json'},
+                   'commands': {key: ['unused'] for key in
+                                ('rsi_collect', 'rsi_replay', 'replay', 'compare')}}
+        self.assertEqual([row['code'] for row in method_report(self.root, project)['gaps']],
+                         ['rsi.comparison'])
         # A developer supplies a revision after reading the real baseline receipt.
         (self.root / 'revision.py').write_text('def select(view,rho):\n    return []\n')
         scored = replay_candidates(self.root, self.config, collected['pool'], ['revision.py'], 'runs/revision')
         self.assertEqual(len(read(self.root / 'runs/revision/evaluation.json')['feedback']), 2)
+        project['inputs'].update(rsi_pool=scored['pool'], rsi_evaluation='runs/revision/evaluation.json')
+        self.assertEqual([row['code'] for row in method_report(self.root, project)['gaps']],
+                         ['rsi.deployment'])
         deployed = cycle(self.root, self.config, 'runs/deploy', iterations=1, pool=scored['pool'], collect_only=True)
         _, worlds, _ = load_pool(self.root, deployed['pool'])
         self.assertEqual(worlds[-1]['policy_sha256'], sha(self.root / 'runs/revision/selected.py'))
+        project['inputs']['rsi_pool'] = deployed['pool']
+        self.assertEqual(method_report(self.root, project)['status'], 'connected')
+        self.assertIn('not evaluated', method_report(self.root, project)['completion'])
+        receipt_path = self.root / 'runs/revision/evaluation.json'
+        receipt = read(receipt_path)
+        receipt['feedback'][1]['worlds'] = []
+        receipt_path.write_text(json.dumps(receipt))
+        self.assertNotEqual(method_report(self.root, project)['status'], 'connected')
+        receipt['selected_version'] = 999
+        receipt_path.write_text(json.dumps(receipt))
+        with self.assertRaisesRegex(ValueError, 'selected_version'):
+            method_report(self.root, project)
 
     def test_zero_score_preserves_collected_pool_without_claiming_success(self):
         (self.root / 'zero.py').write_text('import json\nprint(json.dumps({"score":0,"observation":{}}))\n')

@@ -41,9 +41,25 @@ class NativeGoalProject(unittest.TestCase):
         self.assertIn('workflows/rebuild/WORKFLOW.md', payload['objective'])
         self.assertIn(str(self.root / 'project.json'), payload['objective'])
         self.assertIn('使用 RSI 改进探索', payload['objective'])
+        self.assertIn('rsi.config', payload['objective'])
+        self.assertIn('project preflight', payload['objective'])
         self.assertNotIn('消融', payload['objective'])
         self.assertEqual(set(self.root.iterdir()), before)
         self.assertFalse((self.root / '.codex').exists())
+
+    def test_preflight_reports_missing_method_without_blocking_bootstrap_commands(self):
+        before = {path: path.read_bytes() for path in self.root.iterdir()}
+        result = self.cli('preflight')
+        self.assertEqual(result.returncode, 1, result.stderr)
+        report = json.loads(result.stdout)
+        self.assertEqual(report['status'], 'gaps')
+        codes = {row['code'] for row in report['gaps']}
+        self.assertTrue({'rsi.config', 'rsi.pool', 'rsi.replay', 'e2e.driver'} <= codes)
+        self.assertIn('not evaluated', report['completion'])
+        self.assertEqual({path: path.read_bytes() for path in self.root.iterdir()}, before)
+        self.project['commands']['build'] = [sys.executable, '-c', 'pass']
+        self.write()
+        self.assertEqual(self.cli('run', '--command', 'build').returncode, 0)
 
     def test_missing_input_and_workspace_escape_are_reported_before_execution(self):
         for path in ('missing.json', '../outside.json'):
@@ -113,6 +129,8 @@ class NativeGoalProject(unittest.TestCase):
         self.assertIn('historical only', status['historical_frontend']['freshness'])
         self.assertIn('not evaluated', status['completion'])
         self.assertIn('does not prove', status['exploration']['completion'])
+        self.assertEqual(status['method']['status'], 'gaps')
+        self.assertIn('rsi.pool', {row['code'] for row in status['method']['gaps']})
         self.assertEqual({path: path.read_bytes() for path in self.root.iterdir()}, before)
 
 

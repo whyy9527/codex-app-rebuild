@@ -5,11 +5,12 @@
 ## 连接项目与 Goal
 
 1. 从用户要求确认原版入口、目标平台和一致性要求。已有项目读取 `rebuild.json`；新项目按 [项目入口](PROJECT.md) 建立一份配置，尚未探索的输入可以暂不填写。
-2. 用 `project status` 读取模具、历史与入口；检查结果所对应的源码／二进制。历史结果仅用于选择下一步，不等于当前通过。
+2. 用 `project preflight` 检查 RSI 与共同 E2E 的方法接线，再用 `project status` 读取模具、历史与入口；检查结果所对应的源码／二进制。缺口先进入本轮行动，历史结果仅用于选择下一步，不等于当前通过。
 3. 用户明确要求创建 Goal 时运行 `project goal`，把输出 JSON 交给原生 `create_goal`。已有同目标 Goal 时读取并接续；目标改变先按宿主能力处理，不另写当前 GOAL 文件或重复启动任务。
 4. 用户没有要求创建 Goal 时仍可按本流程完成已授权工作。原生 Goal 模式不安装 Harness、不启 `exploration_start` 或第二套 Stop 续跑。
 
 ```sh
+python3 -m workflows.rebuild.project preflight --workspace <工作区> --project <rebuild.json>
 python3 -m workflows.rebuild.project status --workspace <工作区> --project <rebuild.json>
 python3 -m workflows.rebuild.project goal --workspace <工作区> --project <rebuild.json>
 ```
@@ -18,7 +19,7 @@ Goal 模板在 [GOAL.template.md](GOAL.template.md)，只提供目标、完成�
 
 ## 每轮选择：探索还是实现
 
-先读取目标、当前用户旅程、已发现需求、实际差异和仍未知的分支。选择能让目标体验收敛的下一步：
+先读取目标、当前用户旅程、已发现需求、实际差异和仍未知的分支，并重新运行 `project preflight`。RSI 配置、真实池、完整池策略比较或再部署缺失时，先补可恢复状态及驱动，再实际 collect／replay／collect --pool，把发现接入共同 E2E。首次准备可以探查入口、修采集器，不能长期以准备为由绕过方法。检查只读、不启动探索，也不阻止修复所需的构建命令；接线齐全不证明目标完成。选择能让目标体验收敛的下一步：
 
 | 现场反馈 | 下一步 |
 | --- | --- |

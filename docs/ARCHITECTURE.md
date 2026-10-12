@@ -9,7 +9,7 @@
 | 原生 Goal | 用户目标、完成条件、停止／恢复 | 持续执行及最终完成判定 |
 | `workflows/rebuild/WORKFLOW.md` | 选择探索或修复、消费反馈、验收与交付的方法 | 当前 Codex 的行动流程 |
 | 案例 `rebuild.json` | 案例目标、原版／平台、现有输入路径和命令 argv | 项目入口；不记录运行生命周期 |
-| `workflows/rebuild/project.py` | 读取显式项目，使用 `GOAL.template.md` | `create_goal` 参数、证据索引、现有命令调用；不安装 Hook 或启动模型 |
+| `workflows/rebuild/project.py` | 读取显式项目，使用 `GOAL.template.md` | `create_goal` 参数、只读方法检查、证据索引、现有命令调用；不安装 Hook 或启动模型 |
 | `capabilities/rebuild/discovery.py` | 实际状态／动作／输入方式／结果历史 | 已记录的待探索动作；策略选择仍由 Codex 完成 |
 | `capabilities/exploration/dream.py` | 多层历史树、可见前缀、可执行策略 | 同一在线／离线决策接口、论文式 (1) 评分、全池策略选择 |
 | `runtime/dream.py` | 独立父节点快照、固定命令和协议输入 | 实际发现与评价、不可覆写的树／池、策略进程与胜出文件部署 |
@@ -20,6 +20,8 @@
 | `runtime/runner.py` | 显式命令与输入 | 命令输出、超时与进程组清理 |
 
 项目清单是新增的连接点，引用已有能力而不复制断言。主文档不维护案例当前版本；由清单指向契约、夹具、历史与命令。运行结果继续落各次独立 artifacts／证据路径，`status` 只读汇总，历史结果明确标为历史，不据此完成 Goal。
+
+`project preflight` 从现有配置与不可变 RSI 产物检查 collect、完整池策略比较、选中策略再部署和共同 E2E 接线；缺失时报告行动，Goal 模板包含创建时的缺口并要求每轮重查。它不运行探针、不保存任务阶段，不根据方法连接齐全判断产品完成；实际执行仍由当前 Codex 按 workflow 消费反馈。
 
 ## 原生 Goal 路径
 
