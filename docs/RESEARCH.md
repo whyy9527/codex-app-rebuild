@@ -1,22 +1,31 @@
-# 研究来源与实践用途
+# 方法来源与实现对应
 
-RSI 是本仓库的探索工具：让 Codex 利用真实历史、失败与未知调整探索策略，把发现交给 E2E 模具，再据实际差异继续探索或实现。Duolingo 已提供这套流程的使用经验；不要求先开展新的消融或证明额外收益才改进仓库。
+本页记录原论文、借鉴的方法与实际实现的对应关系。日常复刻按 [Workflow](../workflows/rebuild/WORKFLOW.md)执行；历史研究记录保留在文末。
 
-原论文、实践用途和历史实验各自保留。这里记录来源和边界，不追加课程批次。以下原引文沿用仓库此前核对记录，本次整理没有重新联网核查论文或上游发布状态。
+本仓库的 RSI 探索闭环由 Codex 执行：读取历史与差异，修订探索方法，实际执行探针，将发现接入 E2E，再根据结果选择下一步。论文复现范围与工作流的运行能力分别说明。
 
 ## Dream-RSI
 
 [Dream-RSI: Recursive Self-Improvement through Evolving Worlds](https://arxiv.org/abs/2609.14858v2)，Tong Zheng 等，2026。[官方仓库](https://github.com/zhengkid/Dream-RSI)。
 
-原研究通过历史发现树构造回放环境，评价和改进探索策略，再部署策略收集更多历史。本项目借鉴“历史反馈→策略修订→实际探索→新历史”的关系，具体用于发现模具遗漏和改变观察方法。
+原研究将历史发现树构造成回放模拟器，利用已记录结果评价和改进探索策略，再部署策略收集更多历史。本项目借鉴让探索方法本身成为改进对象的思路，具体用于发现模具遗漏和改变观察方法。
 
-当前 Codex 的反馈决策、frontier 工具与已有模型策略部署都是实际消费者；本仓库没有完整复现论文的历史树模拟器和算法。这个区别不妨碍把 RSI 用在复刻中，也不要求每次产品发现都做研究实验。
+| 已有实现 | 实际职责 |
+| --- | --- |
+| [Workflow](../workflows/rebuild/WORKFLOW.md) | Codex 根据历史、反例和候选差异修订探针，执行后消费反馈 |
+| [探索前沿](../capabilities/rebuild/discovery.py) | 从真实记录列出尚未完成的状态／动作／输入方式；不自行优化策略 |
+| [历史回放](../projects/exploration-ablation/replay.py) | 在已采集的单层分支上评价候选策略 |
+| [策略部署](../projects/exploration-ablation/REPORT05-06.md) | 模型利用真实反馈修订策略，再实际操作原版，将发现交给模具与 Swift |
+
+论文复现状态：多层历史树模拟器、可复用模拟器池及论文级离策略优化闭环尚未完整实现。当前默认流程由 Codex 决策并执行探索，没有自动调用历史实验脚本。
 
 ## Cordis
 
 [A Programming Paradigm for Spatiotemporal Composability](https://arxiv.org/abs/2608.25512v1)，Yifan Shi、Wei Zhang、Tianyi Cui，2026。[实现](https://github.com/cordiverse/cordis)。
 
-原研究讨论动态组件的空间／时间组合、依赖及生命周期。它启发本仓库区分能力、运行时与工作流职责，以及可管理资源的清理边界。它不是第二篇 RSI 算法论文，当前运行链也没有导入 Cordis。
+原研究以可撤销副作用和响应式依赖管理实现动态组件的空间／时间组合。它为本仓库的职责分离与资源生命周期提供设计参考：能力、宿主运行时和工作流各有所有者；[命令运行器](../runtime/runner.py)负责自己启动的进程组清理，具体职责见 [架构](ARCHITECTURE.md)。
+
+当前借鉴停留在设计层。运行链没有导入 Cordis，也没有实现其 context、可撤销副作用或响应式依赖机制；普通模块分层和进程清理不能称为 Cordis 核心机制的复现。
 
 ## 实践与历史实验
 
