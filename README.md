@@ -1,56 +1,44 @@
 # Codex App Rebuild
 
-用 AI 重建复杂 App 的实践仓库。核心是持续探索原版，把发现转成能独立运行的模具，再用相同业务和前端要求验证另一种语言的实现。测试负责重建已覆盖行为的状态；探索负责寻找测试还不知道的需求。
+运行在 Codex 中的 App 复刻工作流：**用 RSI 探索原版，用 E2E 构建复刻模具，用原生 Goal 推动 Codex 持续执行。**
 
-当前案例为 Duolingo 网页版 → Swift，中文母语学习英语，随后沉淀教育软件基座。**当前尚未达到 1:1**；页面、交互、字体、动画、声音和进度恢复都属于目标，不能用核心测试通过替代。阶段进展及未完成项统一见 [Roadmap](docs/ROADMAP.md)。
+RSI 根据真实历史、失败和未知调整探索方法；E2E 保存业务与前端要求，验证另一种语言的实现；Goal 保存目标和完成条件。Codex 负责选择行动、操作原版、写代码和读取反馈。
 
-本轮优先修共享前端模具与实际视觉差异，并继续原版故事入口探索；保留整图失败和未知。[修复、反例与可复跑对照](projects/duolingo-web/evidence/english-frontend-repair-v80/README.md)。
+## 开始使用
 
-## 工作方式
-
-原版探索 → 保存状态、动作和证据 → 冻结共同业务／前端契约 → Swift 实现 → 实际 UI、像素与音频验证 → 用失败和未知调整下一轮探索。
-
-- 模具包含原版启动／数据准备／重置边界、共同状态夹具、平台驱动、业务断言及前端要求。
-- 每条要求区分 pass、fail、not_run 和 unavailable；未观察结果继续保持 unknown，不能算通过。
-- 同一按钮的悬停、点击和键盘操作分别探索。已知截图前后状态变化的证据不能作为同状态图像验收；截图缩放使用独立实测数据。
-- 原版内容和原素材是需求来源。未接入页面或声音是待完成工作，不自行换成原创内容或永久缩小范围。
-
-[项目哲学](docs/PHILOSOPHY.md)解释这些选择；[架构](docs/ARCHITECTURE.md)说明所有者和数据流；[AGENTS](AGENTS.md)指导后续代理接续。用户对话及原生 Goal 管理任务，不另建 Goal 文件。
-
-## 运行 Swift 案例
-
-需要 macOS 与 Swift 工具链。从仓库根运行：
+让 Codex 读取 [重建工作流](workflows/rebuild/WORKFLOW.md)，提供原版入口、目标平台和完成要求。已有项目使用一份 `rebuild.json` 连接目标、模具与命令。Python 3.11+ 从本仓库根运行：
 
 ```sh
-swift build --package-path projects/education-swift --product LingoSeed
-projects/education-swift/.build/debug/LingoSeed --fixture projects/duolingo-web/fixture-reference-en-zh-v14.json --progress artifacts/lingoseed-english-demo/progress.json
-swift run --package-path projects/education-swift LearningCoreChecks
+python3 -m workflows.rebuild.project goal --workspace . --project projects/duolingo-web/rebuild.json
+python3 -m workflows.rebuild.project status --workspace . --project projects/duolingo-web/rebuild.json
 ```
 
-使用尚不存在的 progress 路径建立独立初态。已探索的阶段／课程进度使用对应证据目录中的准备夹具；不能把新访客初态冒充课后状态。详细启动、进度隔离和复跑见 [Swift 基座](projects/education-swift/README.md)与 [Duolingo 案例](projects/duolingo-web/README.md)。
+`goal` 输出可直接传给原生 `create_goal` 的 JSON；由当前 Codex 在用户要求启动时调用工具。命令本身只准备参数，不创建任务、不写 GOAL 文件、不安装 Hook。`status` 展示模具和已保存证据，不把历史通过算成当前产品完成。新项目配置格式与运行方式见 [项目入口](workflows/rebuild/PROJECT.md)。
 
-当前共同前端规格为 [v78](projects/duolingo-web/frontend-english-v78.json)。[第3课探索与声音修复](projects/duolingo-web/evidence/english-unit12-lesson3-v1/README.md)新增表格题、文字配对、重练及补心流程；41实际状态跑通，原版裁剪截图被门禁拒绝，1:1仍未完成。[连胜反馈与严格对照](projects/duolingo-web/evidence/english-streak-followup-v1/README.md)覆盖实际模型选动作、真实反馈修订、Swift日历及保留的整图失败；[主页下游证据](projects/duolingo-web/evidence/english-home-stat-branches-v1/README.md)覆盖真实目录、透明输入控件、补心持久化及Super返回链；[主页顶部交互证据](projects/duolingo-web/evidence/english-home-stats-v1/README.md)连接原版发现、输入模式、Swift 鼠标／键盘操作及严格失败；[实际声音证据](projects/duolingo-web/evidence/english-pronunciation-current-v1/README.md)区分原资源输出与尚未证明的浏览器声学等价。
+每轮由目标缺口决定先探索还是先实现：原版观察 → 共同业务／前端模具 → 跨语言实现 → 实际比较 → 根据遗漏与差异改变下一步。主页、内容、布局、字体、图形、交互、动效、声音与持久化从第一轮共同验收；重复跑已有测试无法发现全部遗漏。
 
-## 迭代工具与验证
+## Duolingo 实践
 
-循环核心使用 Python 3.11+、POSIX 与 Codex CLI；图像比较等案例能力另有按需依赖。安装器只写显式目标项目，不修改全局配置：
+[Duolingo 网页 → Swift](projects/duolingo-web/README.md)是形成这套方法的实际案例，中文母语学习英语。试验已结束，尚未达到 1:1；已验证能力与缺口见 [案例状态](projects/duolingo-web/STATUS.md)，经验见 [实践复盘](docs/DUOLINGO-LESSONS.md)。查看案例不会自动恢复复刻任务。
+
+Swift 案例需要 macOS、Swift 工具链及原生 UI 驱动所需权限；浏览器观察需要网络和 Playwright，图像比较按需使用 Pillow。案例命令通过同一项目入口调用：
 
 ```sh
-python3 -m workflows.harness.install --repo . --workspace <目标项目目录>
+python3 -m workflows.rebuild.project run --workspace . --project projects/duolingo-web/rebuild.json --command build
+python3 -m workflows.rebuild.project run --workspace . --project projects/duolingo-web/rebuild.json --command launch --out artifacts/review-new
+```
+
+`--out` 使用尚不存在的路径。原版与候选分别准备状态，线上刷新不等于服务端重置。
+
+## 文档与验证
+
+- [Workflow](workflows/rebuild/WORKFLOW.md)：Codex 的执行方法与 Goal 调用。
+- [哲学](docs/PHILOSOPHY.md)、[架构](docs/ARCHITECTURE.md)、[业务／前端协议](docs/BEHAVIOR-CONTRACT.md)：原则、职责和可执行模具。
+- [Roadmap](docs/ROADMAP.md)：仓库下一步成果；[研究来源](docs/RESEARCH.md)：Dream-RSI、Cordis 与历史实验。
+- [历史索引](docs/history/README.md)：批次记录、原始证据和旧文档。README 不记录逐轮进展。
+
+```sh
 python3 -m unittest discover -v
 ```
 
-七个 MCP 操作、短生命周期 Hook、持久任务／阶段、真实命令验收及预算控制为代理提供执行反馈。Codex 负责判断和编辑，Hook 不启动长验收或模型。协议见 [迭代工作流](workflows/harness/WORKFLOW.md)；重建流程见 [工作流](workflows/rebuild/WORKFLOW.md)和 [业务契约](docs/BEHAVIOR-CONTRACT.md)。机制可运行不代表复刻或探索收益已经成立。
-
-## RSI 与实验
-
-保留 Dream-RSI 的探索策略／历史反馈研究，以及 Cordis 的组件职责／依赖／生命周期研究；原论文和已有机制对应关系见 [研究来源](docs/RESEARCH.md)。当前不是两篇论文的完整复现。
-
-[真实探索消融04](projects/exploration-ablation/REPORT04.md)执行了真实模型生成、回放反馈与在线部署，两组语义代理新增均0，未观察到收益；后续产品探针发现该指标漏掉焦点行为。旧不可判定及负面结果保留。机制检查、探索代理分数、实际业务通过和产品视觉／声音质量分别报告，不用其中一项代替另一项。
-
-[真实策略接续05／06](projects/exploration-ablation/REPORT05-06.md)将前端失败输入模型，实际下滚发现目标／俱乐部后修订并部署键盘下一月，再转共同模具和Swift消费者。两调用共60642 reported tokens，费用unknown；没有匹配对照，不宣称收益。
-
-历史复盘见 [交付审计](docs/DELIVERY-AUDIT.md)、[模型流程](projects/model-pipeline/README.md)、[业务四组消融](projects/business-ablation/REPORT.md)及 [旧 README 检查点](docs/history/README-checkpoints-2026-10-12.md)。本仓库保持私有，公开发布另行决定。
-
-
-继续探索 Unit12 第四课发现键盘偏好跨题延续、成就升级中间页、主页进度环及滚动截图裁剪错误。原版17计分题+1口语轨迹已进入共同模具与Swift，严格前端仍失败；不能据核心/E2E通过宣称1:1。[原始观察、实际失败与复跑](projects/duolingo-web/evidence/english-unit12-lesson4-v1/README.md)。原始RSI论文与历史模型实验继续见[研究说明](docs/RESEARCH.md)；真实产品质量消融尚未完成。
+原生 Goal 是默认持续执行入口；旧 Stop Hook/Harness 作为显式选择的兼容适配保留，同一任务使用一种续跑机制。使用 RSI 无需先完成新的消融实验。原论文和已有负面结果保留，项目能力以实际产物为准。本仓库保持私有，公开发布另行决定。

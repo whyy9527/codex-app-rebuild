@@ -1,6 +1,6 @@
 # 共享业务规格与适配协议
 
-`capabilities/rebuild/contracts.py` 拥有场景断言；平台适配器只执行动作并返回观察。浏览器与原生客户端使用同一份场景、前置状态及断言，分别驱动界面。协议机制与产品证据分开；Duolingo 案例已用真实浏览器和 macOS 辅助功能驱动实际 SwiftUI 客户端，已有共享场景通过，当前范围与回执见案例记录。
+这是 E2E 模具的业务层协议；`capabilities/rebuild/contracts.py` 拥有场景断言，平台适配器只执行动作并返回观察。两端使用同一份场景、前置状态及断言，分别驱动界面。前端由 `frontend.py` / `images.py` 同时比较，不能等业务通过才建立；完整方法见 [Workflow](../workflows/rebuild/WORKFLOW.md)。项目当前输入与命令由 `rebuild.json` 连接。
 
 ## 输入
 
@@ -74,7 +74,7 @@ python3 -m workflows.rebuild.cli coverage --workspace <项目> --spec spec.json 
 
 报告分离 discovery 和执行 status：unknown、observed、decision 表示知识来源；not_run、pass、fail、invalid、unavailable、timeout 表示执行状态。保存规格/配置/输入/源码摘要、动作观察、差异、生命周期、命令输出和耗时。源码或规格变化后，旧回执仍是历史证据，但不能作为当前通过状态。
 
-本通用层不提供自动业务发现；案例层已有浏览器与原生 UI 驱动，范围见 `projects/duolingo-web/README.md`。阶段控制与显式任务接续已接入，原生单任务模型 Stop 续跑已验证；一次完整多阶段真实宿主模型重建已通过，含显式跨会话接续及扩展原版/原生12/12，见 `projects/model-pipeline`。已知模板可见，四组真实业务消融已完成，公开12/12与留出2/2均相同、另1未知；见 projects/business-ablation/REPORT.md，不宣称收益。当前测试在临时目录运行真实子进程和明确的状态机替身，证明协议与断言机制，不证明 Duolingo 覆盖或模型收益。
+本通用层不自行发现需求；当前 Codex 使用 RSI 消费历史与差异，实际探索后扩充模具。协议检查在临时目录运行真实子进程和明确状态机替身，验证机制；案例 UI、声音与图像另有实际证据。原生 Goal 管理默认续跑，旧批次 Pipeline 的 complete 不能作为完整产品完成判定。历史接续和实验见 [研究来源](RESEARCH.md)，不把新消融作为复刻前提。
 
 
 ## 前端图像事实

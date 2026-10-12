@@ -1,47 +1,65 @@
-# App 重建工作流
+# Codex App 重建工作流
 
-当前可执行范围包括共享业务规格、参考确认、冻结、candidate 验收及持久阶段推进。当前 Codex 负责观察和编辑，阶段控制器提供 next_action 并检验阶段证据；原生单任务模型 Stop 续跑已验证；Duolingo 案例首批浏览器／原生 UI 共享验收已通过，更多业务与完整多阶段模型重建仍待验证。不要把手工依次执行本清单算作完整自动循环。
+在当前 Codex 中执行：**RSI 探索，E2E 复刻，原生 Goal 持续推进。** 用户目标决定完成条件；本工作流决定如何利用真实反馈行动。Duolingo 已结束的实践经验见 [复盘](../../docs/DUOLINGO-LESSONS.md)，新的消融实验不是工作前提。
 
-1. 显式选择 workspace、原版范围及平台。记录原版日期/版本、可访问状态和重置限制。
-2. 探索正常、错误、边界、退出和恢复路径。保存实际证据，填写逐行为清单；未知不得写为通过，自定规则标 decision。
-3. 编写共同数据夹具、单一场景与统一断言；为 reference/candidate 配置独立动作适配器。协议由 [业务规格文档](../../docs/BEHAVIOR-CONTRACT.md)维护。
-4. `check` 校验输入；`verify --target reference` 实际确认已知行为；只有通过且输入未变才能 `freeze`。
-5. 用冻结 batch 驱动 candidate 验收。把规格、配置、夹具、证据及适配器加入 Harness.acceptance_paths；声明实际命令、verify_seconds 和总预算。每次根据实测失败提出假设、修改产品实现、重新验收，保留所有失败。
-6. `coverage` 重建当前行为状态，检查是否使用当前规格及源码的回执。未执行、未知与不可用分开。
-7. 独立补充探索初始清单以外的路径。新发现建立下一版、确认 reference、引用冻结父批次；保持旧已知场景，candidate 再跑完整增量规格。
-8. 业务通过后分别进行实际原生界面、视觉及模型效果评估。实验需要事前固定协议，不能用机制测试替代。
+## 连接项目与 Goal
 
-用户要求先完善工具并进行机制消融，再开始 Duolingo 观察。线上原版与固定本地参考必须明确区分；测试替身只用于机制验收。
+1. 从用户要求确认原版入口、目标平台和一致性要求。已有项目读取 `rebuild.json`；新项目按 [项目入口](PROJECT.md) 建立一份配置，尚未探索的输入可以暂不填写。
+2. 用 `project status` 读取模具、历史与入口；检查结果所对应的源码／二进制。历史结果仅用于选择下一步，不等于当前通过。
+3. 用户明确要求创建 Goal 时运行 `project goal`，把输出 JSON 交给原生 `create_goal`。已有同目标 Goal 时读取并接续；目标改变先按宿主能力处理，不另写当前 GOAL 文件或重复启动任务。
+4. 用户没有要求创建 Goal 时仍可按本流程完成已授权工作。原生 Goal 模式不安装 Harness、不启 `exploration_start` 或第二套 Stop 续跑。
 
-## 持久阶段入口
-
-从工具仓库根运行：
-
-```bash
-python3 -m workflows.rebuild.pipeline start --workspace <项目> --spec spec.json --targets targets.json --max-steps 50 --max-seconds 3600
-python3 -m workflows.rebuild.pipeline status --workspace <项目> --run <运行ID>
-python3 -m workflows.rebuild.pipeline step --workspace <项目> --run <运行ID>
+```sh
+python3 -m workflows.rebuild.project status --workspace <工作区> --project <rebuild.json>
+python3 -m workflows.rebuild.project goal --workspace <工作区> --project <rebuild.json>
 ```
 
-start 可在规格文件创建前运行；explore 退出要求规格中有 observed 行为及真实证据路径，specify 校验共享输入。reference、freeze、implement 各阶段由 step 实际执行或校验，不接收手填通过标志。失败留在原阶段，回执写入 artifacts/rebuild，状态写入忽略的 .codex/rebuild。已启动服务仍由适配器 stop 管理。
+Goal 模板在 [GOAL.template.md](GOAL.template.md)，只提供目标、完成条件和方法连接。项目配置提供案例值；原生 Goal 工具管理生命周期。CLI 不调用模型，也不自行创建 Goal 或设置预算。
 
-初版实现通过后必须进入 discover。补充探索检查 normal、error、boundary、exit、recovery、state_link，审查文件格式为：
+## 每轮选择：探索还是实现
 
-```json
-{
-  "parent_batch_digest": "<当前冻结批次的规范化JSON摘要>",
-  "checks": {
-    "normal": "evidence/normal.md", "error": "evidence/error.md",
-    "boundary": "evidence/boundary.md", "exit": "evidence/exit.md",
-    "recovery": "evidence/recovery.md", "state_link": "evidence/state-link.md"
-  }
-}
+先读取目标、当前用户旅程、已发现需求、实际差异和仍未知的分支。选择能让目标体验收敛的下一步：
+
+| 现场反馈 | 下一步 |
+| --- | --- |
+| 主页、导航、声音或主要旅程缺失 | 优先补完整体验及其模具，避免继续扩题数或修无关小问题 |
+| 候选明显不同，模具却通过 | 回到原版检查漏验维度，先补能检测差异的要求 |
+| 原版证据明确，候选不符合 | 保持要求，修实现后实际复验 |
+| 观察器漏控件、截图矛盾、题目身份变动 | 修观察方法并回原版验证，保留原失败 |
+| 现有场景通过但仍有未知或未访问入口 | 选择能揭示遗漏的探针，不能据局部通过完成 Goal |
+
+一次选择可以是补观察、修采集器、扩模具或修产品，不要求每轮先走完整固定阶段。批次安排不缩小用户目标；没有页面层数公式、六类检查填表或必须新增一条行为的探索配额。
+
+## 用 RSI 改进探索
+
+读取实际历史和候选差异，提出能区分解释的探针。优先关注主旅程缺口、无法被现有模具解释的差异以及观察器盲区。策略需要变化时记录它依据的反馈、下一步假设和实际执行结果；复用案例已有历史／反馈文件，无需新管理系统。
+
+探索包括控件内外的内容：悬停／点击／焦点／键盘、滚动与遮挡、退出恢复、跨页状态、Canvas／CSS背景、媒体播放及题间状态。当前视口、ARIA角色或接口题单都可能不完整。输入方式分别记录；没有记录的方式保持未知，不回填成通过。
+
+执行探针后保存原版状态、动作、结果及证据，检验假设。发现影响实现的需求时进入模具；没有新发现时保留结果，按反馈改变方法或转向更重要缺口，不为计数制造新行为。frontier 只列出已观察动作，Codex 还要主动寻找它尚未识别的入口。
+
+## 用 E2E 建立并消费模具
+
+每条用户需求连接共同前置状态、动作、期望和证据。两端分别适配 UI，驱动返回事实，由共同断言判定。从第一批完整旅程起，同时覆盖业务、内容、主页、布局、字体、素材、交互、动效、声音和持久化。
+
+- 保存原版版本／日期、准备路径及重置边界；线上刷新不是远程状态重置。内容、视口、滚动、采样和动态状态不一致时先定位原因。
+- 在实际原版或明确固定参考确认要求后冻结实现批次。新发现进入下一修订；产品原规则确需修正时保留反例及旧版本，不偷偷放宽标准。
+- 先构建候选再驱动实际 UI；记录实际二进制与动作。API 或资源文件存在不证明界面和声音已被消费。
+- 分开报告知识来源和 pass/fail/not_run/unavailable。核心、几何、整图与音频各自是测量，按用户需求组织结果，不能相互替代。
+
+既有业务协议及参考确认／冻结命令见 [BEHAVIOR-CONTRACT](../../docs/BEHAVIOR-CONTRACT.md)；前端比较由 `capabilities.rebuild.frontend` 执行。案例命令从同一项目入口调用，失败退出码保留：
+
+```sh
+python3 -m workflows.rebuild.project run --workspace <工作区> --project <rebuild.json> --command replay --out artifacts/replay-new
+python3 -m workflows.rebuild.project run --workspace <工作区> --project <rebuild.json> --command compare --observed artifacts/replay-new/observed.json --out artifacts/compare-new
 ```
 
-这份审查是证据索引，不是自动质量判定。需要实际交互证据来支撑内容；测试替身不能证明原产品探索。规格必须有至少一个此前未覆盖的新 observed 行为及真实父批次引用，再执行 `step --audit artifacts/discovery.json`。新版本重新确认参考端并冻结，旧断言不得改弱；新版通过后 review 要求有界清单无 unknown、每项通过，且规格、源码及审查证据仍一致。
+## 接续与完成
 
-Pipeline 的 complete 仅指这份有界业务清单已走完流程；独立原生UI、视觉和模型效果仍按运行 Goal 验收，不能据此完成整个 Goal。
+每轮结束把实际观察、契约修订与验证结果存到其拥有的案例路径；下一轮重新读取目标和证据，再选择行动。不要在 README、哲学或架构追加本轮进展，也不要复制原生 Goal 的当前状态。
 
-若由 Harness 驱动整个阶段过程，可将 `pipeline status --require-complete` 作为冻结 verifier。Codex 读取 next_action，调用 step 实测，再修复失败。该模式不要在探索前冻结可变的规格文件；每个实现批次由自己的 frozen_batch 保护。保护稳定的工作流入口和已有验收依赖，并保留工具仓库版本。模型是否实际依据 Stop 继续，必须另有宿主日志证明。
+按用户目标检查主要旅程、体验差异和未知，交付可运行实现、复跑入口及需求级结果。已有测试全通过、记录队列为空或旧 Pipeline complete 都不能单独完成复刻 Goal。新研究消融不是交付门槛；用户另行要求时再建立研究任务。
 
-跨会话时先明确暂停 Harness 任务，用户选择该任务后调用 exploration_adopt 到新会话，再显式恢复。运行ID和 verifier 保持不变，阶段、历史、预算不重置；不得自动认领其他会话任务。
+用户明确停止后结束相应工作。真正需要外部输入时遵循宿主交接／blocked／恢复规则，不靠自动续跑猜测授权。已结束案例只用于提炼经验，除非用户明确要求重新开始。
+
+旧 Harness 与固定批次 Pipeline 保留为可选兼容工具，使用边界见 [兼容说明](../harness/WORKFLOW.md)。不把旧阶段配额或第二套续跑引入默认原生 Goal 路径。

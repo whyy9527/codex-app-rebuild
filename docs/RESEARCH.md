@@ -1,78 +1,43 @@
-# 研究来源与实现边界
+# 研究来源与实践用途
 
-实际探索发现头像完成后退出确认、重载保存肤色及/profile/undefined→404返回；15肤色均采到动态Canvas帧。Swift接开始/头像入口、15单选和保存/确认/重启/放弃，最终21状态无驱动失败，76项源流程检查通过。v58保留3855旧项增448，前端331pass/92fail/93unavailable，6图全fail；预览暂为原版绘制帧，完整动画/其它分类/保存头像展示仍缺，下一批优先原版分类及渲染来源。无1:1或RSI收益宣称。[证据与复跑](../projects/duolingo-web/evidence/english-avatar-save-v1/README.md)。
+RSI 是本仓库的探索工具：让 Codex 利用真实历史、失败与未知调整探索策略，把发现交给 E2E 模具，再据实际差异继续探索或实现。Duolingo 已提供这套流程的使用经验；不要求先开展新的消融或证明额外收益才改进仓库。
 
-独立访客档案已接Swift页脚导航、原版素材、引导关闭和成就404；首轮顶层路由落错旧renderer的失败已保留并修复。v57保留3846旧项增9，最终4状态93pass/10fail/94unavailable，3整图仍fail；同二进制排行榜回归87pass/15fail。头像/邀请交互与动态经验累计仍缺，下一批先补这些入口；不宣称1:1或RSI收益。[证据及复跑](../projects/duolingo-web/evidence/english-profile-native-v1/README.md)。
-
-按历史frontier实际进入排行榜访客档案，发现独立档案、头像引导、成就404、邀请浮层及15肤色radio编辑器；修复采集器漏读aria-checked。v56保留3188旧项追加658，源649pass/9pending；候选新增全not_run，本批未实现Swift新页。下一批先接档案布局/导航与已观察交互，继续头像保存/返回和声音；无新RSI收益宣称。[证据及复跑](../projects/duolingo-web/evidence/english-profile-frontier-v1/README.md)。
-
-原版探索确认状态底色、悬停、双徽章和段落内边距遗漏，v55保留3084旧项追加104。最终两状态87pass/15fail，整图仍失败；同一二进制5个重启状态及10个主页分支完成。保留字体猜测被否定、图片溢出和内边距差异略增的负结果；下一步优先未访问个人档案/主页分支及声音，未宣称1:1或RSI因果收益。[证据与复跑](../projects/duolingo-web/evidence/english-leaderboard-visual-v1/README.md)。
-
-历史题目差异引导本批重访排行榜练习，真实取得16评分题、暂缓口语及17卡回顾；截图反馈再发现六个漏编译的暂缓入口。初始右列别名错误纠正产生的分数变化不计作产品改善或RSI收益。实际模型匹配预算消融未执行，原论文及负结果继续保留。[证据](../projects/duolingo-web/evidence/english-leaderboard-practice-instance-v1/README.md)。
-
-本批由历史反馈选择排行榜状态与练习入口，实际发现角色清单漏掉的清除控件和当前选题差异，已转成可失败契约。它是探索闭环的一次实际产出，不是 RSI 因果收益；独立模型与匹配预算对照未执行。三个源音频配置零输出与原生阳性对照保留负结果，根因未知。[本批证据](../projects/duolingo-web/evidence/english-leaderboard-state-v1/README.md)。
-
-核对日期：2026-10-10。两篇原始研究均来自仓库历史提交 `2ad5175` 的引用；本次重新检查论文页与官方仓库。
+原论文、实践用途和历史实验各自保留。这里记录来源和边界，不追加课程批次。以下原引文沿用仓库此前核对记录，本次整理没有重新联网核查论文或上游发布状态。
 
 ## Dream-RSI
 
-[Dream-RSI: Recursive Self-Improvement through Evolving Worlds](https://arxiv.org/abs/2609.14858v2)，Tong Zheng 等，2026，v2 为 2026-10-06。[官方仓库](https://github.com/zhengkid/Dream-RSI)。
+[Dream-RSI: Recursive Self-Improvement through Evolving Worlds](https://arxiv.org/abs/2609.14858v2)，Tong Zheng 等，2026。[官方仓库](https://github.com/zhengkid/Dream-RSI)。
 
-论文用历史发现树构造回放环境，在不重复昂贵在线发现的情况下评价和改进探索策略，再部署策略收集更多历史。它启发本项目保存真实反馈并显式区分探索策略和产品实现。
+原研究通过历史发现树构造回放环境，评价和改进探索策略，再部署策略收集更多历史。本项目借鉴“历史反馈→策略修订→实际探索→新历史”的关系，具体用于发现模具遗漏和改变观察方法。
 
-重建初期只保留有界任务循环；后续有限历史回放与真实模型策略实验见下文，仍无完整历史树模拟器与论文级策略自改进，不能称为完整 Dream-RSI 实现。App 重建中的行为证据可为未来探索策略研究提供输入，下一步需用真实探索历史验证策略调整能否改善需求发现，而不是把探索研究排除出产品工作。官方仓库核对时仍说明完整代码与复现脚本准备发布；论文已公开，发布计划表的 arXiv 条目存在滞后，不据此断言论文未发布。
+当前 Codex 的反馈决策、frontier 工具与已有模型策略部署都是实际消费者；本仓库没有完整复现论文的历史树模拟器和算法。这个区别不妨碍把 RSI 用在复刻中，也不要求每次产品发现都做研究实验。
 
 ## Cordis
 
 [A Programming Paradigm for Spatiotemporal Composability](https://arxiv.org/abs/2608.25512v1)，Yifan Shi、Wei Zhang、Tianyi Cui，2026。[实现](https://github.com/cordiverse/cordis)。
 
-论文关注动态组件的时间组合性和空间组合性，通过可逆效果与响应式依赖管理支撑组件生命周期。它是组合与生命周期研究，不应笼统叫第二篇 RSI 算法论文。对本项目的启发是职责、依赖与可管理资源的边界。
+原研究讨论动态组件的空间／时间组合、依赖及生命周期。它启发本仓库区分能力、运行时与工作流职责，以及可管理资源的清理边界。它不是第二篇 RSI 算法论文，当前运行链也没有导入 Cordis。
 
-当前没有导入 Cordis，也没有保留历史小型组件库；不承诺论文的形式化保证，不能把进程清理等同于全部副作用可逆。
+## 实践与历史实验
 
-## 历史研究产物
+| 记录 | 保留的事实与用途 |
+| --- | --- |
+| [Duolingo 经验](DUOLINGO-LESSONS.md) | 真实遗漏、策略／观察方法调整，以及模具和实现如何消费发现；直接用于改进 repo |
+| [真实策略部署05／06](../projects/exploration-ablation/REPORT05-06.md) | 真实模型利用反馈改变探索动作，实际发现页面内容并进入共同契约和 Swift |
+| [探索04](../projects/exploration-ablation/REPORT04.md) | 两组语义代理新增0／0；后续焦点探针揭示该指标漏掉前端要求 |
+| [探索02／03](../projects/exploration-ablation/REPORT.md) | 实际策略与部署记录；起点／采样问题使比较不可判定 |
+| [前端反馈质量消融](../projects/frontend-quality-ablation/REPORT.md) | 两组40／40，图像仍不同，有反馈组没有额外改善；揭示控件指标饱和和样本拟合问题 |
+| [业务四组消融](../projects/business-ablation/REPORT.md) | 已有共享业务场景结果无通过率差异；保留成本、失败和限制 |
+| [模型多阶段接续](../projects/model-pipeline/README.md) | 旧 Hook/Pipeline 的实际宿主执行与恢复证据，供兼容模式参考 |
 
-历史源码和原始报告可从提交 `2ad5175` 查看：
+这些结果不改写为正收益，也不再作为工程工作的待补前置条件。用户以后要求新的研究实验时再单独确定问题与协议；默认复刻 Goal 依据用户体验与模具验收完成。
 
-```bash
-git show 2ad5175:docs/ARCHITECTURE.md
+更早的源码与原始研究报告保存在提交 `2ad5175`：
+
+```sh
 git show 2ad5175:projects/paper-v2/REPORT.md
 git show 2ad5175:projects/paper-v3/REPORT.md
 git show 2ad5175:projects/self-improvement/REPORT.md
 ```
 
-旧研究验证过候选记录、回放和池重选等机制。第三阶段报告在 24 个验证实例上没有观察到算法收益，独立模型预检失败；这些限制随研究来源保留，不因项目改名而省略。需要复用时先在隔离目录从旧提交恢复并核验，不将旧实验命令写成当前可运行接口。
-
-现有 `projects/ablation/REPORT.md` 是固定机制检查的消融；新的真实业务对照已单独保存[预注册及四组报告](../projects/business-ablation/REPORT.md)，N=1未观察到通过率收益，费用仍未知。论文结果、历史机制结果与新的 App 重建结果分别报告。
-
-本轮再次核对官方仓库，仍列 full codebase / reproduction scripts 为准备发布；不等待其开源才继续探索。[本轮探索历史](../projects/duolingo-web/evidence/exploration-v4/history.json)与待探索分支已成为实际消费者，但目前只支持未访问优先，尚无策略生成、历史树回放或在线收益证据。保持这个区别，避免把账本命名为 RSI。
-
-
-第三课出现真实同类型换题和重复词块遗漏，已把失败、调整与续跑写入[实际探索历史](../projects/duolingo-web/evidence/english-third-v1/README.md)，供后续策略实验消费。当前调整由Codex依据现场选择，尚未实现Dream-RSI的历史树策略生成/离策略评估；身份回归和现场续跑不构成算法收益或真实探索消融结论。
-
-
-新增[真实源App分支实验](../projects/exploration-ablation/PROTOCOL.md)：先实际采集四个具有相同根快照的英语主页分支，再用真实模型生成受限分支分配策略、历史反馈改进及封存后在线部署。现有旧账本多为单路径并有状态/动作歧义，不直接当无偏模拟器。模型运行和收益必须以正式回执为准；准备采集与机制测试不能称为RSI收益。
-
-真实分支消融02已产出模型策略、历史回放反馈和在线部署证据，补上“尚无策略生成/历史回放执行”的阶段缺口，但不是完整论文复现。一次修订后实验组仍选初始策略，离线两组同分；在线同动作却采到不同加载阶段，比较不可判定，不能证明探索或复刻质量收益。见[实测报告](../projects/exploration-ablation/REPORT.md)。下一批修采样、重新注册，产品质量对照仍待执行；不将原始前端事实数当独立需求数量。
-
-主页旅程批次将旧内容事实计数偏好和实际未接入前端的失败反馈用于当前Codex策略选择，事前保存候选后部署四条源入口，再用候选失败修外层路由，并继续发现已完成节点的传奇/练习和错误配对原音。动作→旅程→前端结果已有实际消费者；这是当前主会话的反馈引导探索，不是独立worker、盲留出或完整论文复现。新增控件状态数不是独立功能数，暂无因果RSI收益。[策略、在线事实与限制](../projects/duolingo-web/evidence/english-home-journey-v1/exploration-feedback.json)。
-
-完成节点／传奇／排行榜这批由上一轮缺失消费者和未建模动作反馈选择，实际新发现含独立传奇页、建档后返回差异与排行榜状态选择。冻结模具后原生负基线失败，再实施并真实验证；这是探索对实现的反馈证据，不是RSI机制消融或因果收益。152项断言不等于152项业务发现，成本token／费用未知。[原始证据](../projects/duolingo-web/evidence/english-home-branches-v1/README.md)。
-
-
-头像分类批次用真实Radio库存不一致反例修订探索策略，事前记录后部署七个被遮挡分组，实际发现原版配置/Rive与未实施分类消费者。它补上一次反馈→改变探针→发现遗漏→冻结候选失败的产品闭环；不是新增独立worker或匹配预算RSI收益。282选项不能当282独立业务发现，原始论文和旧负结果不变。[证据](../projects/duolingo-web/evidence/english-avatar-categories-v1/README.md)。
-
-真实反馈消融04已执行3次实际模型调用、4次在线源动作，两个预算相同的策略动作不同但语义代理新增0／0。没有策略收益或产品质量收益结论；后续实际Tab探针确认代理指标遗漏焦点，Swift词语仍缺对应控件。反馈应改变观察维度，而非只重跑零分动作。原论文／02／03结论保留，见[04实测](../projects/exploration-ablation/REPORT04.md)。
-
-
-### 产品反馈：输入方式与采集遗漏
-
-[主页顶部探针](../projects/duolingo-web/evidence/english-home-stats-v1/README.md)以反馈扩展hover/click/Enter，发现Swift Return未展开及截图改变悬停。源/候选实际前后证据保留；不是匹配预算模型消融，04的0/0结论不变。后续策略实验须消费未覆盖方式、采集失败及实际前端消费者，另行事前注册，不能把人工引导发现算RSI提升。
-
-
-[后续实际下游](../projects/duolingo-web/evidence/english-home-stat-branches-v1/README.md)继续发现menuitem/透明select漏采、33母语选项、独立听音练习、补心持久化和Super返回链。已将失败转换为新观察维度并回原版验证；这仍是产品反馈闭环，不是新模型策略或匹配预算收益。165状态/87边/4699前沿不作为RSI分数。后续实验要检验模型是否利用这些遗漏发现新的前端需求及消费者，保留04的0/0负结果。
-
-
-### 真实前端反馈部署05／06
-
-[05／06实测](../projects/exploration-ablation/REPORT05-06.md)把原生前端缺失及采样反馈输入真实策略模型，固定首候选，先实际下滚发现连胜目标／俱乐部和固定标题，再用真实反馈修订并封存部署Return下一月。05整页起点检查失败保留；06另行登记局部探索身份，整页图像仍严格比较。两实际调用共60642 reported tokens，费用unknown；随后同源四状态进入v77与Swift消费者。它补上真实反馈→策略变化→在线执行→模具／产品消费的接续，不是匹配预算消融，不宣称发现效率、1:1质量或论文级RSI收益。旧04的0／0及原论文引用不变。
+旧报告中的24实例无算法收益与模型预检失败继续保留。整理前的详细研究记录及批次说明可从 [历史索引](history/README.md)查找，不把旧命令冒充当前运行接口。

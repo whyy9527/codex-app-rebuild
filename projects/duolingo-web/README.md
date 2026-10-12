@@ -1,157 +1,45 @@
-# Duolingo 网页参考案例
+# Duolingo 网页到 Swift 案例
 
-目标为中文母语→英语的 Duolingo 网页到 Swift 1:1 重建。当前仍有明确的前端、交互、声音和未知分支缺口，不能把已观察课程和局部测试当整站完成。
+本案例形成了 rebuild 的实际探索和模具经验：中文母语学习英语、网页原版到 macOS SwiftUI。试验已结束，1:1 未完成；已验证结果与缺口见 [STATUS](STATUS.md)，经验见 [复盘](../../docs/DUOLINGO-LESSONS.md)。
 
-阶段状态由 [Roadmap](../../docs/ROADMAP.md)拥有；当前契约为 [v77](frontend-english-v77.json)，最近的 [真实连胜反馈／Swift与严格对照](evidence/english-streak-followup-v1/README.md)连接真实模型修订和原生消费者；[主页顶部交互与采样修复](evidence/english-home-stats-v1/README.md)保存实际探索、鼠标／键盘操作和失败。原版资源实际输出见 [发音证据](evidence/english-pronunciation-current-v1/README.md)，RSI 负结果见 [04报告](../exploration-ablation/REPORT04.md)。启动与进度隔离见 [Swift 基座](../education-swift/README.md)。
+当前输入和命令统一由 [rebuild.json](rebuild.json)连接。主 README 不再追逐契约版本或追加课程批次，历史与旧入口见 [历史索引](../../docs/history/README.md)。
 
-下面保留案例协议和历史实验入口；旧批次能力说明已存入 [历史检查点](../../docs/history/duolingo-README-checkpoints-2026-10-12.md)，不代表当前完成率。
+## 读取目标与证据
 
-最新下游探索和补心/返回链见 [证据与复跑](evidence/english-home-stat-branches-v1/README.md)，仍有整图失败和未实现消费者。
-
-## 早期探索产物
-
-- [实际观察与范围](evidence/2026-10-10-observations.md)：正常答题、错误反馈、配对、错题重练、退出与刷新。
-- [观察计划](OBSERVATION-PLAN.md)：首批探索计划与当时未知的拼句/边界；当前确认范围见文末 v2。
-- `spec.draft.json`：单一业务动作与预期草案；未冻结，不能视为已确认参考验收。
-- `fixture.json`：公共初始状态与动作语义；不能注入 Duolingo 后端。
-- `original-adapter.mjs`：真实 Playwright UI 驱动，stdin 接收操作/动作，stdout 输出 `APP_REBUILD_RESULT`。不接收预期值，不自报通过。
-- `probe-reference.py`：执行草案的单场景原版可行性检查，复用共享断言函数，保存启动、重置、场景、再次重置和停止的记录。输出种类为 `reference_feasibility`，不是主验收引擎接受的冻结回执。
-- [四条原版可行性结果](evidence/REFERENCE-PREFLIGHT.md)：均通过，未作为冻结回执。
-- [本机 Swift 环境](ENVIRONMENT.md)：编译能力与原生 UI 验收限制。
-
-## 安装与重放早期探索
-
-需要 Python 3.11+、Node.js 20+、可访问 Duolingo 的网络。以下命令从仓库根执行：
+从仓库根执行，需要 Python 3.11+：
 
 ```sh
-npm ci --prefix projects/duolingo-web
-cd projects/duolingo-web
-npx playwright install chromium
-cd ../..
-python3 projects/duolingo-web/probe-reference.py --scenario choice-wrong --out projects/duolingo-web/evidence/local-choice-wrong-01.json
+python3 -m workflows.rebuild.project status --workspace . --project projects/duolingo-web/rebuild.json
+python3 -m workflows.rebuild.project goal --workspace . --project projects/duolingo-web/rebuild.json
 ```
 
-`--scenario` 可选 `choice-empty`、`choice-correct`、`choice-wrong`、`exit-cancel`。输出路径必须是仓库内新文件，不覆盖旧失败。单次适配命令上限 180 秒，最多五个生命周期/场景命令；引导最多 20 步，每步等待可操作状态最多 30 秒。需要观察窗口时设置 `REBUILD_HEADED=1`。
+两条命令只读项目，第二条输出原生 `create_goal` 参数，不创建或恢复任务。只有用户要求重新开始案例时，当前 Codex 才按 [工作流](../../workflows/rebuild/WORKFLOW.md)使用它。
 
-每条命令拥有并关闭自己的临时浏览器。`start/reset` 实际导航到课程入口；`scenario` 从新的访客上下文经公共引导建立题目初态。它不会恢复既有账号，不保存 cookies/storageState，不重置远程服务，也不保证服务端随机选项顺序。这个重置策略只适合首批独立场景；课中刷新、连续课程和完成后持久化的场景需要同一命令内维护上下文并另行验证。
+## 构建和查看 Swift
 
-适配器依据当前可操作选项所属题目容器定位，不读取全页最后一个标题。继续后等待旧引导组选项消失，避免动画残留。未知题型或词义映射停止并保存当前 AX 证据，不猜答案。首次缺少 Playwright 浏览器的失败保留在 `reference-probe-01.jsonl`；恢复安装后的初态探针在 `reference-probe-02.jsonl`。
-
-## 早期推进门槛与范围
-
-先完成原版可重复执行验证与原生动作适配设计，建立完整 reference/candidate 配置，使用主验收入口重新运行并冻结。可行性记录不能直接交给冻结步骤。已观察但尚未转为场景的行为仍属待验收；拼句保持 unknown。后续独立遗漏发现必须寻找初始观察以外的缺口，不能把本轮已看到的错题重练事后当作补充探索收益。
-
-首批四个场景只覆盖选择、反馈和退出取消。当时后续要求的退出确认、进度丢弃、配对、错题重练、结算、恢复和拼句，现已进入文末 v2 的跨端验收。真实业务消融与[整体审计](../../docs/DELIVERY-AUDIT.md)已完成；首批通过仅是历史阶段证据。
-
-## 正式首批跨端验收
-
-`spec-v1.1.json`、`fixture-v1.json` 与 `targets-v1.1.json` 是这一批的输入。原版使用线上西班牙语入门词汇，候选使用原创英语问候课；选择 correct/wrong 对应各自题面的明确映射，共享同一套场景和业务预期。历史测试允许题面、选项顺序和课程内容不同，因此不能声称比较了相同题库；这不授权当前 1:1 交付保留这些差异。
-
-先从仓库根构建当前产品，再运行实际原生验收：
+需要 macOS、Swift 工具链。使用新进度路径隔离查看状态：
 
 ```sh
-swift build --package-path projects/education-swift --product LingoSeed
-python3 -m workflows.rebuild.cli verify --workspace . --spec projects/duolingo-web/spec-v1.1.json --targets projects/duolingo-web/targets-v1.1.json --target candidate --frozen projects/duolingo-web/evidence/batch-v1.1.json --timeout 60 --max-seconds 600 --out artifacts/duolingo/candidate-new-01.json
+python3 -m workflows.rebuild.project run --workspace . --project projects/duolingo-web/rebuild.json --command build
+python3 -m workflows.rebuild.project run --workspace . --project projects/duolingo-web/rebuild.json --command launch --out artifacts/duolingo-review-new
+python3 -m workflows.rebuild.project run --workspace . --project projects/duolingo-web/rebuild.json --command core
 ```
 
-v1.1 原生驱动只启动已构建的二进制，调用者必须先构建当前源码；该阶段未纳入构建的限制，已由 v2 构建包装器补齐。驱动通过自己启动的子进程 PID 查找 AXWindows，点击实际控件并返回可见属性，不访问其他应用。需要当前进程拥有辅助功能权限。
+核心检查不替代实际 UI、画面或声音验收。Swift 模块与构建边界见 [客户端](../education-swift/README.md)。
 
-正式记录见 [原生迭代](evidence/NATIVE-V1-ITERATION.md)：v1 原生因快照超限而整体失败，v1.1 保留四项断言、重新确认原版与父批次后，两端均 4/4 通过；word-tiles 在这两批仍为 unknown。完整协议、冻结及参考/候选回执均在 evidence 中，覆盖报告为 `coverage-v1.1.json`。Swift 构建和启动见 [客户端说明](../education-swift/README.md)。
+## 复跑封存课程及严格比较
 
-## 补充探索增量 v1.2
-
-首批通过后，实际探索发现初始场景未覆盖“提交前从错误选项改选正确选项”。真实证据、原版和原生 UI 的五项通过回执、父批次关系及覆盖报告见 [增量准备记录](evidence/V2-PREPARATION.md)。`spec-v1.2.json` / `targets-v1.2.json` / `evidence/batch-v1.2.json` 是该阶段的冻结批次；word-tiles 在该批仍为 unknown。客户端已有改选能力，这次没有产品代码修改，不能声称修复收益。
-
-## 完整学习批次 v2
-
-最新冻结输入为 `spec-v2.json`、`fixture-v2.json`、`targets-v2.json` 和 `evidence/batch-v2.json`，父批次为 v1.2。参考端 `reference-v2-02.json` 与原生端 `candidate-v2-01.json` 均12/12通过，完整性检查通过；覆盖报告为 `coverage-v2-01.json`。历史草案与失败没有覆盖。
-
-12条包括空答案、正确/错误选择、退出取消、改选、配对完成、正确/错误拼句、拼句撤回、错题重练、完成返回及刷新、第二课退出丢弃并重开。候选题库为原创两课时。线上原版不能注入该题库，比较的是共享动作语义与业务断言，不是相同内容或后端状态。
+实际原生回放需要辅助功能／截图权限，驱动只操作自己启动的应用。`replay` 先构建，再按封存准备夹具执行第四课完整旅程；并非整站或最新线上原版验收。以下输出目录必须尚不存在：
 
 ```sh
-python3 -m workflows.rebuild.cli verify --workspace . --spec projects/duolingo-web/spec-v2.json --targets projects/duolingo-web/targets-v2.json --target candidate --frozen projects/duolingo-web/evidence/batch-v2.json --timeout 360 --max-seconds 1800 --out artifacts/duolingo/candidate-v2-new-01.json
+python3 -m workflows.rebuild.project run --workspace . --project projects/duolingo-web/rebuild.json --command replay --out artifacts/duolingo-replay-new
+python3 -m workflows.rebuild.project run --workspace . --project projects/duolingo-web/rebuild.json --command compare --observed artifacts/duolingo-replay-new/observed.json --out artifacts/duolingo-compare-new
 ```
 
-参考确认可使用相同 spec / targets、`--target reference`，输出新文件。原版运行需要网络和 Playwright Chromium。v2 参考场景在同一临时浏览器上下文内完成连续学习/刷新；命令间仍是新访客，不恢复账号或重置服务器。未知词义/题型停止并保留证据。
+当前严格比较预期返回1并保存 fail 回执；不能吞掉退出码或把旧通过当当前完成。只查看命令可加 `--dry-run`。最新已提交 [修复证据](evidence/english-frontend-repair-v80/README.md)保留源码／二进制摘要、实际图像、声音和失败；查看该记录不会自动重启试验。
 
-v2 的 candidate 命令 `build-native.py` 先构建当前源码并记录源码/二进制摘要，再由 v3 Swift AX 驱动操作自有子进程窗口。与早期直接运行二进制的 v1.1 命令不同，它包含构建，不会把旧二进制算作当前源码通过。须有辅助功能权限。参考与候选适配器只接收动作、不接收预期，统一引擎应用断言。
+## 原版与协议
 
-[学习批次记录](evidence/V2-PREPARATION.md)保留驱动失败、冻结和实现顺序。旧候选不能读取新题库，baseline 12项 unavailable；首次 Swift 构建缺少 import，随后构建通过。两者都不是产品业务 fail→pass。新实现首次完整原生12项通过，不能据此声称反馈循环或模型的收益。
+浏览器观察需要 Node.js、Playwright 和原版网络；依赖在本目录 `package.json` 中，首次使用安装相应浏览器。已有 `original-adapter.mjs` 与早期 `spec-v2.json`／`targets-v2.json` 供历史共享业务场景复跑，它们允许语义对应而非相同题库，不能作为当前 1:1 完成标准。
 
-六个实际界面及方法见 [界面检查](evidence/V2-DELIVERY.md)。检查涉及课程路径、选择、配对、解锁、拼句及反馈；截图不证明学习效果或模型能力。候选端 `{}` / null 进度误接受已单独复现并修复，冻结的五项存储启动检查通过；共享 v2 12项与 v1.2 5项回归通过（candidate-v2-02.json / candidate-v1.2-02.json）。见 [存储修复](evidence/PROGRESS-REPAIR.md)，未修改共享 Duolingo 断言。
-
-本轮最终复验：主产品原生12/12、核心5项及Python43项通过，当前回执和全部八项边界见[交付审计](../../docs/DELIVERY-AUDIT.md)。
-
-## 当前统一产品验收
-
-```sh
-python3 projects/duolingo-web/verify-product.py --out artifacts/product-new
-python3 -m capabilities.rebuild.discovery --history projects/duolingo-web/evidence/exploration-v4/history.json --out artifacts/frontier-new.json
-```
-
-产品入口执行冻结业务 E2E，隔离 Swift 子进程实际悬停/移出More、操作Preferences并重启、完成24题。当前业务12/12、课程文案144/144通过；主页/菜单/设置文案19项通过、视觉/原版音频2项未验证；偏好控件几何与恢复9项通过、课程效果1项未验证。同一偏好契约在原版最新记录为7通过、2失败、1未验证，原版反例也纳入统一结果，整体失败。源码、资源与明确列出的参考输入都记录期间完整性。
-
-原版偏好采集使用独立Playwright CLI会话，从仓库根运行（CLI路径由实际安装提供）：
-
-```sh
-node projects/duolingo-web/observe-reference-preferences.mjs --cli <playwright-cli-or-wrapper> --session <owned-session> --out artifacts/reference-preferences-new.json
-python3 projects/duolingo-web/compile-reference-knowledge.py
-node projects/duolingo-web/explore-curriculum.mjs artifacts/reference-new.json --lessons 3
-```
-
-偏好采集会修改并恢复自有匿名访客的开关；保存请求200与最终刷新状态可能不一致，保留失败而非算通过。跨课探索读取原版正向反馈产生的词汇，已经实际完成前两课并在第三课发现green和未知blue；未知现场及当时知识均保存。默认Swift仍使用已完整采齐的前两课24题，继续补第三课，不能把现有数据量当成目标上限。RSI策略自改进与收益消融尚未完成。
-
-[探索与差异记录](evidence/exploration-v4/README.md)保存真实来源、待探索分支和本轮失败。
-
-
-当前默认课程与验收扩展到v5，新增实际第三课13题和按上下文关联的31个原版语音资源。新发现的题间、结算和完成路径状态同样进入前端需求，尚未实现时继续阻止产品通过。见[实际会话与遗漏状态](evidence/exploration-v5/README.md)；v4与此前局部通过记录均为历史证据。
-
-
-当前英语默认夹具为`fixture-reference-en-zh-v2.json`，前两课各15道实际UI题目，第二课按现场挑战尾部而非初始API末尾编译。填空/挑战及开始弹层已接入，8项核心通过。前端v3在匹配状态128通过、105未覆盖；30对第二课截图均不同，未完成1:1。复跑、源证据及复盘见[第二课原生记录](evidence/english-second-native-v1/README.md)。
-
-
-当前默认已升级`fixture-reference-en-zh-v3.json`，前三课各15道实际UI题目。重复词块支持、9项核心及原生三课回放完成；前端v4当前221通过、151未覆盖，第三课30对截图均不同，整体仍fail。[第三课原生证据与接续](evidence/english-third-native-v1/README.md)。
-
-
-### 英语第四课：探索模具修复与新结算链
-
-实际完成原版第四课12题，并发现挑战入口、复习说明、难题说明、英语分数、双倍经验奖励及传奇邀请。听力转录不可见造成的身份误判已用当前显式播放回执修正，文字题核对未放宽。保留失败、原版截图和角色idle/correct/incorrect动画来源。v5共519项：当前三课候选221pass、4fail、294not_run，整体fail；4个明确失败是三课后主页青铜/宝石差异。Swift第四课、视觉/声学等价和RSI探索机制消融尚待完成。见[第四课证据](evidence/english-fourth-v1/README.md)。Goal保持active。
-
-第二节点增量见[输入组件验证](evidence/english-input-native-v1/README.md)：实际源观察→text_entry→真实键盘原生验证，12pass/6not_run。产品v7共578项，完整第二节点、口语识别、视觉声学一致及真实RSI探索机制消融仍未完成。
-
-原版第二节点首课现已完整走通并回主页，15评分题+口语暂缓阶段及typed review均有证据。已修正候选听音配对扣心/左侧原音、完整输入纠错和HOT接受；14项核心通过，产品v9共606项。默认整课接入及RSI策略消融尚待完成。[最新轨迹与组件结果](evidence/english-pairing-native-v1/README.md)。
-
-
-第七课次要动作增量已记录跳过不扣心、独立键盘/词库及难度缓冲、正常配对和listenIsolation缺口。两题原生探针18项核心通过；共享48项仍30pass/14fail/4not_run。默认课程未集成，完整第七课与RSI消融继续。[本批实际证据与复跑](evidence/english-secondary-actions-v1/README.md)。
-
-
-第七课原版完整轨迹已回主页，确认跨题独立偏好、跳过重练且100%结算、口语替换和额外成就；正确Lin Rive已绑定。四题偏好原生28状态/19项核心通过，58项仍45pass/9fail/4not_run。v13保留旧要求并增加419项第七课源需求，整课Swift接入仍待完成，不累计组件结果。[源轨迹、失败与复跑](evidence/english-seventh-v1/README.md)。
-
-
-发音卡片按实际原版修正为19px音标、15px单词和68点点击区域；共同v25直接读取PNG比较，8幅整图仍失败。正常口语评分/推进、音标增长和完整前端/声音继续，不能称1:1完成。[本批证据与可复跑图像验收](evidence/english-pronunciation-cards-v1/README.md)。
-
-
-当前发音卡片使用实测Latin字体轴400与0.8px字距，保留中文实际回退字重；按住下移2点并去掉2点阴影，释放恢复。共同v26独立比较真实状态位移，绝对几何及8图仍失败。[本批64状态验证与图片](evidence/english-pronunciation-typography-v1/README.md)。
-
-
-特别任务实际探索发现独立/practice四组听音配对，未与主课程混用。Swift任务页15项通过，整图/练习入口继续失败；v27保留全部旧要求新增18，当前默认v11仅增加六课倒计时快照。[源证据、失败与复跑](evidence/english-quests-v1/README.md)。
-
-真实GLOBAL_PRACTICE已走完整轨迹：16道评分题、口语暂缓、一次错误后的复习更正、5XP/94%截图结算、红心奖励和返回。初始API列表实际被插入/替换，图片命名未出现；键盘/词库也需分状态观察。v28保留1747旧项并追加88，候选新增状态全未访问；本批不改Swift，不把源88通过当产品通过。[轨迹、边界、工具修正及复跑](evidence/english-general-practice-v1/README.md)。
-
-
-## 独立练习的原生实现批次
-
-实际16道评分题现由`compile-general-practice.py`编译为独立夹具，任务页入口真实加载；本轮原生走通暂缓插题、挑战替换、错误复习、结算、红心和重启，主课六课不变。原版MP3与实际SVG帧绑定到相应控件，输出传输有自有子进程采集，麦克风关闭。所有前端要求仍由v28共同验证，整图未一致；不能把入口与流程通过当1:1。后续实际源探针发现新实例、听力暂缓标题以及答对后退出确认，保留失败与待实现分支。[证据、复盘和命令](evidence/english-general-practice-native-v1/README.md)。
-
-
-## 通用练习展示与v29
-
-后续固定源参考检查补出奖励页五颗心和保留的三个底栏控件，v29增16并保留全部1835旧项。夹具v2增原版心形资源，旧v1不覆盖，主v11不变。普通听写现按原版Bea/白色分段播放/多行文本框展示，错误合并布局的负结果保留。完整47状态回放、24核心和56 Python通过，前端89/55/1707仍fail，40整图全部不同；听力暂缓入口和回顾动作等继续补齐。[验证和命令](evidence/english-general-practice-presentation-v1/README.md)。
-
-
-## 听力暂缓与v30
-
-从实际listenTap边界停止，探索暂缓→插入翻译→口语暂缓→变题→全对结算→建档提示→返回。v30增28状态/34要求，旧1851完整保留。源34自检通过不能当候选通过；旧native重评89pass/55fail/1741not_run，新34全未运行。下一步实现冻结的状态转移及原生驱动，不只补按钮；实例选择、计时恢复与奖励条件继续探索。[实际证据与复跑](evidence/english-general-listening-decline-v1/README.md)。
-
-
-听力替换状态机已实现：暂缓未评分，继续转实际翻译，复习保留替换题。显式观察实例45原生状态/真实重启，默认47状态回归；v31新增18控件断言，整图仍失败。实例选择/未暂缓未来仍未知，未替换默认实例假装自适应算法完成。[验证、剩余差异和命令](evidence/english-general-listening-decline-native-v1/README.md)。
+线上访客、服务端进度、自适应题目、跨日状态不能靠刷新完全重置。使用证据中的明确准备路径和实例，保留限制；不要混用新访客与课后状态。具体平台协议见 [BEHAVIOR-CONTRACT](../../docs/BEHAVIOR-CONTRACT.md)，项目入口格式见 [PROJECT](../../workflows/rebuild/PROJECT.md)。

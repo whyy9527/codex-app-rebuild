@@ -1,4 +1,6 @@
-# 当前项目的无监督迭代
+# 可选兼容 Harness
+
+默认使用 [重建工作流](../rebuild/WORKFLOW.md)与 Codex 原生 Goal。下面保留旧宿主的有界 Stop 续跑适配，只有明确选择这一模式时才安装和启动；同一任务不同时由原生 Goal 与本 Harness 续跑。它的 complete 只针对选定 verifier，不代表完整复刻完成。
 
 从工具仓库根运行 `python3 -m workflows.harness.install --repo . --workspace <目标项目>`。目标项目的 `.codex/config.toml` 注册 MCP，`.codex/hooks.json` 注册三个 Hook，`.codex/exploration-lab/` 保存本机启动器和状态；不修改用户全局配置。信任项目并通过原生 `/hooks` 审查本工具后，在该项目重新打开会话。
 

@@ -1,8 +1,10 @@
-"""Evidence-gated stage progress. Harness remains the attempt/budget owner.
+"""Compatibility batch controller; native Goal workflow is the default path.
 
 A pipeline owns only batch/phase progression. It does not generate observations
 or edits: the current Codex follows next_action, then executes step to check the
-stage. Real model continuation requires separate host evidence.
+stage. Harness owns attempts/budgets only in that explicitly selected legacy
+mode. Batch completion is never full-product Goal completion. Real model
+continuation requires separate host evidence.
 """
 import json
 from pathlib import Path
