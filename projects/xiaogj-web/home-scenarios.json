@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "scope": "首页第一组共同场景，不代表需求全集。",
+  "driver": "CUA native Edge；两端均由相同操作采集完整 AX，使用 home_observations.py 转换实际事实。此文件不冒充自动 UI 驱动。",
+  "preparation": [
+    "原版已登录并关闭提醒；候选私有观察数据已导入；均在首页顶部、今日数据、实收趋势、折叠待办。",
+    "原生窗口1470×833点、2×采样；内容区1462×749点，原生截图左4点、上80点。不同视口须另建同状态捕获。",
+    "点击当前页签把指针移出内容；字体和业务数据稳定后采集 baseline-final。"
+  ],
+  "steps": [
+    {
+      "action": "点击展开更多待办",
+      "capture": "todos-expanded-full.ax.txt"
+    },
+    {
+      "action": "点击收起待办，再点击自定义首页，再点击今日待办配置",
+      "capture": "todo-config-full.ax.txt"
+    },
+    {
+      "action": "取消勾选待我审批",
+      "capture": "todo-draft-full.ax.txt"
+    },
+    {
+      "action": "取消对话框，再取消首页编辑；不保存原版偏好",
+      "capture": "cancelled-full.ax.txt"
+    }
+  ],
+  "limitations": [
+    "原版服务端业务不能从文件快照任意恢复。",
+    "捕获周围状态由 CUA 观察确认；转换器只读取已保存事实，不自报 pass。",
+    "截图保留实际动态、字体加载和光标差异，不使用蒙版或移动对齐。"
+  ]
+}

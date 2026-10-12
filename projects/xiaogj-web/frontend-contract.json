@@ -1,0 +1,387 @@
+{
+  "schema_version": 1,
+  "requirements": [
+    {
+      "id": "home.text.招生营销",
+      "state": "home",
+      "kind": "accessible_text",
+      "evidence": [
+        "projects/xiaogj-web/private/reference/2026-10-12-home/baseline-final.ax.txt"
+      ],
+      "text": "招生营销"
+    },
+    {
+      "id": "home.text.前台业务",
+      "state": "home",
+      "kind": "accessible_text",
+      "evidence": [
+        "projects/xiaogj-web/private/reference/2026-10-12-home/baseline-final.ax.txt"
+      ],
+      "text": "前台业务"
+    },
+    {
+      "id": "home.text.教务管理",
+      "state": "home",
+      "kind": "accessible_text",
+      "evidence": [
+        "projects/xiaogj-web/private/reference/2026-10-12-home/baseline-final.ax.txt"
+      ],
+      "text": "教务管理"
+    },
+    {
+      "id": "home.text.人事管理",
+      "state": "home",
+      "kind": "accessible_text",
+      "evidence": [
+        "projects/xiaogj-web/private/reference/2026-10-12-home/baseline-final.ax.txt"
+      ],
+      "text": "人事管理"
+    },
+    {
+      "id": "home.text.进销存管理",
+      "state": "home",
+      "kind": "accessible_text",
+      "evidence": [
+        "projects/xiaogj-web/private/reference/2026-10-12-home/baseline-final.ax.txt"
+      ],
+      "text": "进销存管理"
+    },
+    {
+      "id": "home.text.财务管理",
+      "state": "home",
+      "kind": "accessible_text",
+      "evidence": [
+        "projects/xiaogj-web/private/reference/2026-10-12-home/baseline-final.ax.txt"
+      ],
+      "text": "财务管理"
+    },
+    {
+      "id": "home.text.家校服务",
+      "state": "home",
+      "kind": "accessible_text",
+      "evidence": [
+        "projects/xiaogj-web/private/reference/2026-10-12-home/baseline-final.ax.txt"
+      ],
+      "text": "家校服务"
+    },
+    {
+      "id": "home.text.报表中心",
+      "state": "home",
+      "kind": "accessible_text",
+      "evidence": [
+        "projects/xiaogj-web/private/reference/2026-10-12-home/baseline-final.ax.txt"
+      ],
+      "text": "报表中心"
+    },
+    {
+      "id": "home.text.数据概览",
+      "state": "home",
+      "kind": "accessible_text",
+      "evidence": [
+        "projects/xiaogj-web/private/reference/2026-10-12-home/baseline-final.ax.txt"
+      ],
+      "text": "数据概览"
+    },
+    {
+      "id": "home.text.升级足迹",
+      "state": "home",
+      "kind": "accessible_text",
+      "evidence": [
+        "projects/xiaogj-web/private/reference/2026-10-12-home/baseline-final.ax.txt"
+      ],
+      "text": "升级足迹"
+    },
+    {
+      "id": "home.text.自定义首页",
+      "state": "home",
+      "kind": "accessible_text",
+      "evidence": [
+        "projects/xiaogj-web/private/reference/2026-10-12-home/baseline-final.ax.txt"
+      ],
+      "text": "自定义首页"
+    },
+    {
+      "id": "home.text.展开更多待办",
+      "state": "home",
+      "kind": "accessible_text",
+      "evidence": [
+        "projects/xiaogj-web/private/reference/2026-10-12-home/baseline-final.ax.txt"
+      ],
+      "text": "展开更多待办"
+    },
+    {
+      "id": "home.todo.role",
+      "state": "home",
+      "kind": "element_role",
+      "evidence": [
+        "projects/xiaogj-web/private/reference/2026-10-12-home/baseline-final.ax.txt"
+      ],
+      "element": "todo-approval",
+      "role": "button"
+    },
+    {
+      "id": "todos.expanded.collapse",
+      "state": "todos-expanded",
+      "kind": "accessible_text",
+      "evidence": [
+        "projects/xiaogj-web/private/reference/2026-10-12-home/todos-expanded-full.ax.txt"
+      ],
+      "text": "收起待办"
+    },
+    {
+      "id": "todos.expanded.todo-makeup",
+      "state": "todos-expanded",
+      "kind": "element_role",
+      "evidence": [
+        "projects/xiaogj-web/private/reference/2026-10-12-home/todos-expanded-full.ax.txt"
+      ],
+      "element": "todo-makeup",
+      "role": "button"
+    },
+    {
+      "id": "todos.expanded.todo-birthday",
+      "state": "todos-expanded",
+      "kind": "element_role",
+      "evidence": [
+        "projects/xiaogj-web/private/reference/2026-10-12-home/todos-expanded-full.ax.txt"
+      ],
+      "element": "todo-birthday",
+      "role": "button"
+    },
+    {
+      "id": "todo.config.待我审批",
+      "state": "todo-config",
+      "kind": "element_boolean",
+      "evidence": [
+        "projects/xiaogj-web/private/reference/2026-10-12-home/todo-config-full.ax.txt"
+      ],
+      "element": "checkbox:待我审批",
+      "field": "checked",
+      "expected": true
+    },
+    {
+      "id": "todo.config.今日排课",
+      "state": "todo-config",
+      "kind": "element_boolean",
+      "evidence": [
+        "projects/xiaogj-web/private/reference/2026-10-12-home/todo-config-full.ax.txt"
+      ],
+      "element": "checkbox:今日排课",
+      "field": "checked",
+      "expected": true
+    },
+    {
+      "id": "todo.config.待分班学员（人次）",
+      "state": "todo-config",
+      "kind": "element_boolean",
+      "evidence": [
+        "projects/xiaogj-web/private/reference/2026-10-12-home/todo-config-full.ax.txt"
+      ],
+      "element": "checkbox:待分班学员（人次）",
+      "field": "checked",
+      "expected": true
+    },
+    {
+      "id": "todo.config.近30天待补课",
+      "state": "todo-config",
+      "kind": "element_boolean",
+      "evidence": [
+        "projects/xiaogj-web/private/reference/2026-10-12-home/todo-config-full.ax.txt"
+      ],
+      "element": "checkbox:近30天待补课",
+      "field": "checked",
+      "expected": true
+    },
+    {
+      "id": "todo.config.欠费学员（人次）",
+      "state": "todo-config",
+      "kind": "element_boolean",
+      "evidence": [
+        "projects/xiaogj-web/private/reference/2026-10-12-home/todo-config-full.ax.txt"
+      ],
+      "element": "checkbox:欠费学员（人次）",
+      "field": "checked",
+      "expected": true
+    },
+    {
+      "id": "todo.config.近7天复课学员（人次）",
+      "state": "todo-config",
+      "kind": "element_boolean",
+      "evidence": [
+        "projects/xiaogj-web/private/reference/2026-10-12-home/todo-config-full.ax.txt"
+      ],
+      "element": "checkbox:近7天复课学员（人次）",
+      "field": "checked",
+      "expected": true
+    },
+    {
+      "id": "todo.config.近7天生日学员",
+      "state": "todo-config",
+      "kind": "element_boolean",
+      "evidence": [
+        "projects/xiaogj-web/private/reference/2026-10-12-home/todo-config-full.ax.txt"
+      ],
+      "element": "checkbox:近7天生日学员",
+      "field": "checked",
+      "expected": true
+    },
+    {
+      "id": "todo.draft.unchecked",
+      "state": "todo-draft",
+      "kind": "element_boolean",
+      "evidence": [
+        "projects/xiaogj-web/private/reference/2026-10-12-home/todo-draft-full.ax.txt"
+      ],
+      "element": "checkbox:待我审批",
+      "field": "checked",
+      "expected": false
+    },
+    {
+      "id": "todo.cancel.restored",
+      "state": "cancelled",
+      "kind": "element_role",
+      "evidence": [
+        "projects/xiaogj-web/private/reference/2026-10-12-home/cancelled-full.ax.txt"
+      ],
+      "element": "todo-approval",
+      "role": "button"
+    },
+    {
+      "id": "home.capture.size",
+      "state": "home",
+      "kind": "capture_dimensions",
+      "evidence": [
+        "projects/xiaogj-web/private/reference/2026-10-12-home/baseline-final.png"
+      ],
+      "pixels": [
+        2940,
+        1666
+      ]
+    },
+    {
+      "id": "home.capture.pixels",
+      "state": "home",
+      "kind": "image_pixels",
+      "evidence": [
+        "projects/xiaogj-web/private/reference/2026-10-12-home/baseline-final.png"
+      ],
+      "reference_image": "projects/xiaogj-web/private/reference/2026-10-12-home/baseline-final.png",
+      "pixels": [
+        1462,
+        749
+      ],
+      "reference_capture": {
+        "content_rect_points": [
+          4,
+          80,
+          1462,
+          749
+        ],
+        "backing_scale": 2,
+        "window_points": [
+          1470,
+          833
+        ]
+      }
+    },
+    {
+      "id": "pending.login",
+      "state": "unvisited.login",
+      "kind": "pending",
+      "evidence": [
+        "projects/xiaogj-web/private/reference/2026-10-12-home/baseline-final.ax.txt"
+      ],
+      "description": "登录及会话认证尚未复刻。"
+    },
+    {
+      "id": "pending.business",
+      "state": "unvisited.business",
+      "kind": "pending",
+      "evidence": [
+        "projects/xiaogj-web/private/reference/2026-10-12-home/baseline-final.ax.txt"
+      ],
+      "description": "各业务页面与写入流程尚未复刻，当前仅有导航壳。"
+    },
+    {
+      "id": "pending.preferences",
+      "state": "unvisited.preferences",
+      "kind": "pending",
+      "evidence": [
+        "projects/xiaogj-web/private/reference/2026-10-12-home/baseline-final.ax.txt"
+      ],
+      "description": "原版保存、刷新恢复和跨会话持久化未验收；候选仅有内存草稿。"
+    },
+    {
+      "id": "pending.quick-config",
+      "state": "unvisited.quick-config",
+      "kind": "pending",
+      "evidence": [
+        "projects/xiaogj-web/private/reference/2026-10-12-home/baseline-final.ax.txt"
+      ],
+      "description": "快捷操作新增/移除、搜索及其全部图标尚需共同验收。"
+    },
+    {
+      "id": "pending.overview-config",
+      "state": "unvisited.overview-config",
+      "kind": "pending",
+      "evidence": [
+        "projects/xiaogj-web/private/reference/2026-10-12-home/baseline-final.ax.txt"
+      ],
+      "description": "指标选择、排序、最少一项限制尚需共同验收。"
+    },
+    {
+      "id": "pending.drag",
+      "state": "unvisited.drag",
+      "kind": "pending",
+      "evidence": [
+        "projects/xiaogj-web/private/reference/2026-10-12-home/baseline-final.ax.txt"
+      ],
+      "description": "卡片及配置项拖动排序尚未共同验收。"
+    },
+    {
+      "id": "pending.charts",
+      "state": "unvisited.charts",
+      "kind": "pending",
+      "evidence": [
+        "projects/xiaogj-web/private/reference/2026-10-12-home/baseline-final.ax.txt"
+      ],
+      "description": "图表逐点提示、动画及点击后的业务行为尚未共同验收。"
+    },
+    {
+      "id": "pending.background",
+      "state": "unvisited.background",
+      "kind": "pending",
+      "evidence": [
+        "projects/xiaogj-web/private/reference/2026-10-12-home/baseline-final.ax.txt"
+      ],
+      "description": "背景选项已观察，原版切换和持久化尚未验收。"
+    },
+    {
+      "id": "pending.campus",
+      "state": "unvisited.campus",
+      "kind": "pending",
+      "evidence": [
+        "projects/xiaogj-web/private/reference/2026-10-12-home/baseline-final.ax.txt"
+      ],
+      "description": "校区及账号菜单、权限与数据范围尚未复刻。"
+    },
+    {
+      "id": "pending.cards",
+      "state": "unvisited.cards",
+      "kind": "pending",
+      "evidence": [
+        "projects/xiaogj-web/private/reference/2026-10-12-home/baseline-final.ax.txt"
+      ],
+      "description": "最近30天开班与新手指南的内容和行为尚未完成。"
+    },
+    {
+      "id": "pending.rsi",
+      "state": "unvisited.rsi",
+      "kind": "pending",
+      "evidence": [
+        "projects/xiaogj-web/private/reference/2026-10-12-home/baseline-final.ax.txt"
+      ],
+      "description": "尚无真实发现命令与可恢复状态组成的完整 RSI 历史池。"
+    }
+  ]
+}

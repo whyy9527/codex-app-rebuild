@@ -12,13 +12,20 @@
   ],
   "inputs": {
     "technical_reference": "projects/xiaogj-web/TECHNOLOGY.md",
-    "reference_observations": "projects/xiaogj-web/reference-contract.json"
+    "reference_observations": "projects/xiaogj-web/reference-contract.json",
+    "frontend_contract": "projects/xiaogj-web/frontend-contract.json",
+    "frontend_scenarios": "projects/xiaogj-web/home-scenarios.json",
+    "exploration_history": "projects/xiaogj-web/exploration-history.json",
+    "historical_frontend_result": "projects/xiaogj-web/private/candidate/2026-10-12-home/frontend-v1.json"
   },
   "commands": {
     "build": [
       "npx",
       "--yes",
-      "pnpm@11.15.1",
+      "--package=node@24.18.0",
+      "--package=pnpm@11.15.1",
+      "--",
+      "pnpm",
       "--dir",
       "projects/xiaogj-web",
       "build"
@@ -26,10 +33,46 @@
     "typecheck": [
       "npx",
       "--yes",
-      "pnpm@11.15.1",
+      "--package=node@24.18.0",
+      "--package=pnpm@11.15.1",
+      "--",
+      "pnpm",
       "--dir",
       "projects/xiaogj-web",
       "typecheck"
+    ],
+    "test": [
+      "npx",
+      "--yes",
+      "--package=node@24.18.0",
+      "--",
+      "node",
+      "--test",
+      "projects/xiaogj-web/apps/web/src/home-state.test.mjs"
+    ],
+    "compare_frontend": [
+      "python3",
+      "-m",
+      "capabilities.rebuild.frontend",
+      "--workspace",
+      ".",
+      "--contract",
+      "projects/xiaogj-web/frontend-contract.json",
+      "--observed",
+      "{observed}",
+      "--out",
+      "{out}"
+    ],
+    "frontier": [
+      "python3",
+      "-m",
+      "capabilities.rebuild.discovery",
+      "--workspace",
+      ".",
+      "--history",
+      "projects/xiaogj-web/exploration-history.json",
+      "--out",
+      "{out}"
     ]
   }
 }

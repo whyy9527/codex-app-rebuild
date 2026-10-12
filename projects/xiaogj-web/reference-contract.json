@@ -132,13 +132,42 @@
       },
       "evidence": "private/reference/enrollment.ax.txt",
       "candidate_result": "not_run"
+    },
+    {
+      "id": "home.todos.configuration",
+      "source": "observed",
+      "precondition": "自定义首页编辑模式",
+      "action": "配置今日待办，取消勾选首项，再取消配置和首页编辑",
+      "expected": "七个选项初始勾选；取消勾选不会移动该行；取消草稿恢复首页原内容。至少选择一项的限制已在提示中观察，原版边界仍待实测。",
+      "evidence": "private/reference/2026-10-12-home/todo-config-full.ax.txt；todo-draft-full.ax.txt；cancelled-full.ax.txt",
+      "candidate_result": "pass",
+      "scope": "对应本轮历史捕获；后续代码修正尚未浏览器复验。"
+    },
+    {
+      "id": "home.customization.options",
+      "source": "observed",
+      "precondition": "原版首页编辑模式",
+      "action": "打开快捷操作、数据概览配置和添加卡片，不保存偏好",
+      "expected": "快捷操作提供已选功能、按选择顺序展示、全部功能和名称搜索；数据概览提供四个指标的选择与排序；另有最近30天开班和新手指南两个卡片可添加。",
+      "evidence": "private/reference/2026-10-12-home/quick-config.ax.txt；overview-config.ax.txt；add-card.ax.txt",
+      "candidate_result": "not_run"
+    },
+    {
+      "id": "observer.native-search",
+      "source": "observed",
+      "precondition": "快捷操作配置",
+      "action": "先尝试原生键入搜索，再使用粘贴搜索",
+      "expected": "本次键入未出现在输入值，不能算搜索执行成功；粘贴后实际输入值出现且功能过滤生效。",
+      "evidence": "private/reference/2026-10-12-home/quick-search-full.ax.txt；quick-search-pasted-full.ax.txt",
+      "candidate_result": "not_run"
     }
   ],
   "limitations": [
     "仅观察当前授权账号；不同校区及角色行为尚未探索。",
     "服务端业务状态没有可恢复快照；刷新不等于重置。",
     "尚未执行报名提交、支付、退费、删除、批量操作或真实业务写入。",
-    "首页证据第一次保存较早，部分数据仍可能处于异步加载状态；需要重采稳定状态。",
-    "尚无原版与候选共同场景回放、视觉差异报告及 RSI 历史池。"
+    "首页已采稳定状态和第一组共同场景；严格像素比较仍失败，不能说明 1:1 已完成。",
+    "真实 RSI 发现命令、独立恢复和完整历史池尚未接通；exploration-history 仅记录实际观察和待探针。",
+    "原生浏览器连接随后不可用，最新首页修正和快捷配置尚未 UI 复验；原版可能仍在快捷搜索草稿中，没有保存原版偏好。"
   ]
 }

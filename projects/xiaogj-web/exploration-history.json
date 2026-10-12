@@ -1,0 +1,1922 @@
+{
+  "schema_version": 1,
+  "scope": "当前授权会话的实际观察；不是需求全集、Goal 状态或 RSI 池。",
+  "states": [
+    {
+      "id": "home",
+      "source": "observed",
+      "evidence": "projects/xiaogj-web/private/reference/2026-10-12-home/baseline-final.ax.txt",
+      "actions": [
+        {
+          "id": "menu-0",
+          "label": "招生营销",
+          "source": "observed",
+          "operations": [
+            "semantic-click",
+            "coordinate-click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "menu-1",
+          "label": "前台业务",
+          "source": "observed",
+          "operations": [
+            "semantic-click",
+            "coordinate-click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "menu-2",
+          "label": "教务管理",
+          "source": "observed",
+          "operations": [
+            "semantic-click",
+            "coordinate-click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "menu-3",
+          "label": "人事管理",
+          "source": "observed",
+          "operations": [
+            "semantic-click",
+            "coordinate-click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "menu-4",
+          "label": "进销存管理",
+          "source": "observed",
+          "operations": [
+            "semantic-click",
+            "coordinate-click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "menu-5",
+          "label": "财务管理",
+          "source": "observed",
+          "operations": [
+            "semantic-click",
+            "coordinate-click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "menu-6",
+          "label": "家校服务",
+          "source": "observed",
+          "operations": [
+            "semantic-click",
+            "coordinate-click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "menu-7",
+          "label": "报表中心",
+          "source": "observed",
+          "operations": [
+            "semantic-click",
+            "coordinate-click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "expand",
+          "label": "展开更多待办",
+          "source": "observed",
+          "operations": [
+            "click"
+          ]
+        },
+        {
+          "id": "background",
+          "label": "换背景",
+          "source": "observed",
+          "operations": [
+            "click"
+          ]
+        },
+        {
+          "id": "customize",
+          "label": "自定义首页",
+          "source": "observed",
+          "operations": [
+            "click"
+          ]
+        },
+        {
+          "id": "week",
+          "label": "数据概览本周",
+          "source": "observed",
+          "operations": [
+            "click"
+          ]
+        },
+        {
+          "id": "month",
+          "label": "数据概览本月",
+          "source": "observed",
+          "operations": [
+            "click"
+          ]
+        },
+        {
+          "id": "student-week",
+          "label": "学员动态本周",
+          "source": "observed",
+          "operations": [
+            "click"
+          ]
+        },
+        {
+          "id": "student-month",
+          "label": "学员动态本月",
+          "source": "observed",
+          "operations": [
+            "click"
+          ]
+        },
+        {
+          "id": "schedule",
+          "label": "排课点名",
+          "source": "observed",
+          "operations": [
+            "click"
+          ]
+        },
+        {
+          "id": "attendance",
+          "label": "出勤率",
+          "source": "observed",
+          "operations": [
+            "click"
+          ]
+        },
+        {
+          "id": "campus",
+          "label": "校区选择",
+          "source": "observed",
+          "operations": [
+            "click"
+          ]
+        },
+        {
+          "id": "account",
+          "label": "个人账户",
+          "source": "observed",
+          "operations": [
+            "click"
+          ]
+        },
+        {
+          "id": "support",
+          "label": "客服",
+          "source": "observed",
+          "operations": [
+            "click"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "menu-0",
+      "source": "observed",
+      "evidence": "projects/xiaogj-web/private/reference/2026-10-12-home/menu-招生营销-coordinate.ax.txt",
+      "actions": [
+        {
+          "id": "entry-0",
+          "label": "意向学员管理",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "entry-1",
+          "label": "邀约查询",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "entry-2",
+          "label": "客户跟进统计",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "entry-3",
+          "label": "呼叫中心报表",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "entry-4",
+          "label": "意向客户重复表",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "entry-5",
+          "label": "意向客户导入",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "entry-6",
+          "label": "招生代理管理",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "entry-7",
+          "label": "优惠券管理",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "entry-8",
+          "label": "优惠方案管理",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "entry-9",
+          "label": "电子推荐卡管理",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "menu-1",
+      "source": "observed",
+      "evidence": "projects/xiaogj-web/private/reference/2026-10-12-home/menu-前台业务-coordinate.ax.txt",
+      "actions": [
+        {
+          "id": "entry-0",
+          "label": "新学员报名",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "entry-1",
+          "label": "学员信息管理",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "entry-2",
+          "label": "收费",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "entry-3",
+          "label": "结转",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "entry-4",
+          "label": "退费",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "entry-5",
+          "label": "交班",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "entry-6",
+          "label": "缴款",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "entry-7",
+          "label": "订单管理",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "entry-8",
+          "label": "先学后付签约",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "entry-9",
+          "label": "积分管理",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "entry-10",
+          "label": "试听管理",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "entry-11",
+          "label": "转校管理",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "entry-12",
+          "label": "套餐设置",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "entry-13",
+          "label": "公告与通知",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "entry-14",
+          "label": "折扣审批",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "entry-15",
+          "label": "学员信息导入",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "menu-2",
+      "source": "observed",
+      "evidence": "projects/xiaogj-web/private/reference/2026-10-12-home/menu-教务管理-coordinate.ax.txt",
+      "actions": [
+        {
+          "id": "entry-0",
+          "label": "课程管理",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "entry-1",
+          "label": "班级管理",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "entry-2",
+          "label": "排课管理",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "entry-3",
+          "label": "约课管理",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "entry-4",
+          "label": "课表和点名",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "entry-5",
+          "label": "补课管理",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "entry-6",
+          "label": "测评管理",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "entry-7",
+          "label": "考试管理",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "entry-8",
+          "label": "开班申请",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "entry-9",
+          "label": "学管师带生管理",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "entry-10",
+          "label": "证书管理",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "entry-11",
+          "label": "校管家云课",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "entry-12",
+          "label": "升班关系设置",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "entry-13",
+          "label": "在线课堂",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "menu-3",
+      "source": "observed",
+      "evidence": "projects/xiaogj-web/private/reference/2026-10-12-home/menu-人事管理-coordinate.ax.txt",
+      "actions": [
+        {
+          "id": "entry-0",
+          "label": "目标值管理",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "entry-1",
+          "label": "指标管理",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "entry-2",
+          "label": "审批中心",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "entry-3",
+          "label": "工资管理",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "entry-4",
+          "label": "自定义报表",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "menu-4",
+      "source": "observed",
+      "evidence": "projects/xiaogj-web/private/reference/2026-10-12-home/menu-进销存管理-coordinate.ax.txt",
+      "actions": [
+        {
+          "id": "entry-0",
+          "label": "仓库管理",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "entry-1",
+          "label": "物品设置",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "entry-2",
+          "label": "库存查询",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "entry-3",
+          "label": "进出库管理",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "entry-4",
+          "label": "进出库查询",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "entry-5",
+          "label": "预出库管理",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "entry-6",
+          "label": "库存变动表",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "entry-7",
+          "label": "物资调拨",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "entry-8",
+          "label": "加盟商业务",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "menu-5",
+      "source": "observed",
+      "evidence": "projects/xiaogj-web/private/reference/2026-10-12-home/menu-财务管理-coordinate.ax.txt",
+      "actions": [
+        {
+          "id": "entry-0",
+          "label": "经贝管家",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "entry-1",
+          "label": "收支流水",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "entry-2",
+          "label": "在线支付对账",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "entry-3",
+          "label": "收费管家",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "entry-4",
+          "label": "转费审批",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "entry-5",
+          "label": "退费处理",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "entry-6",
+          "label": "缴款确认",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "entry-7",
+          "label": "数据维护",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "entry-8",
+          "label": "统计报表",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "entry-9",
+          "label": "发票管理",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "entry-10",
+          "label": "呆滞费用清理",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "entry-11",
+          "label": "财务安全管理",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "menu-6",
+      "source": "observed",
+      "evidence": "projects/xiaogj-web/private/reference/2026-10-12-home/menu-家校服务.ax.txt",
+      "actions": [
+        {
+          "id": "entry-0",
+          "label": "AI家校圈",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "entry-1",
+          "label": "网上商城",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "entry-2",
+          "label": "课后点评",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "entry-3",
+          "label": "学员作品集",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "entry-4",
+          "label": "电子相册",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "entry-5",
+          "label": "问卷收集",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "entry-6",
+          "label": "通知",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "entry-7",
+          "label": "打卡",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "entry-8",
+          "label": "作业",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "entry-9",
+          "label": "群消息",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "entry-10",
+          "label": "个人消息",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "entry-11",
+          "label": "老师评价学生",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "entry-12",
+          "label": "家长评价老师",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "entry-13",
+          "label": "意见与建议",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "entry-14",
+          "label": "学员端管理",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "menu-7",
+      "source": "observed",
+      "evidence": "projects/xiaogj-web/private/reference/2026-10-12-home/menu-报表中心.ax.txt",
+      "actions": [
+        {
+          "id": "entry-0",
+          "label": "招生分析报表",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "entry-1",
+          "label": "学员分析报表",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "entry-2",
+          "label": "电子推荐卡报表",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "entry-3",
+          "label": "收费报表",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "entry-4",
+          "label": "课消报表",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "entry-5",
+          "label": "业绩报表",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "entry-6",
+          "label": "班级报表",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "entry-7",
+          "label": "定制报表",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "entry-8",
+          "label": "自定义报表",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        },
+        {
+          "id": "entry-9",
+          "label": "运营数据大屏",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard",
+            "hover"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "todos-expanded",
+      "source": "observed",
+      "evidence": "projects/xiaogj-web/private/reference/2026-10-12-home/todos-expanded-full.ax.txt",
+      "actions": [
+        {
+          "id": "collapse",
+          "label": "收起待办",
+          "source": "observed",
+          "operations": [
+            "click"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "background",
+      "source": "observed",
+      "evidence": "projects/xiaogj-web/private/reference/2026-10-12-home/background-options.png",
+      "actions": [
+        {
+          "id": "theme-classic",
+          "label": "经典浅灰",
+          "source": "observed",
+          "operations": [
+            "click"
+          ]
+        },
+        {
+          "id": "theme-sky",
+          "label": "晴空蓝",
+          "source": "observed",
+          "operations": [
+            "click"
+          ]
+        },
+        {
+          "id": "theme-apricot",
+          "label": "暖杏橙",
+          "source": "observed",
+          "operations": [
+            "click"
+          ]
+        },
+        {
+          "id": "theme-forest",
+          "label": "森氧绿",
+          "source": "observed",
+          "operations": [
+            "click"
+          ]
+        },
+        {
+          "id": "theme-lotus",
+          "label": "荷塘清韵",
+          "source": "observed",
+          "operations": [
+            "click"
+          ]
+        },
+        {
+          "id": "theme-mountain",
+          "label": "远山晨雾",
+          "source": "observed",
+          "operations": [
+            "click"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "week",
+      "source": "observed",
+      "evidence": "projects/xiaogj-web/private/reference/2026-10-12-home/week.ax.txt",
+      "actions": []
+    },
+    {
+      "id": "month",
+      "source": "observed",
+      "evidence": "projects/xiaogj-web/private/reference/2026-10-12-home/month.ax.txt",
+      "actions": []
+    },
+    {
+      "id": "student-week",
+      "source": "observed",
+      "evidence": "projects/xiaogj-web/private/reference/2026-10-12-home/student-week.ax.txt",
+      "actions": []
+    },
+    {
+      "id": "student-month",
+      "source": "observed",
+      "evidence": "projects/xiaogj-web/private/reference/2026-10-12-home/student-month.ax.txt",
+      "actions": []
+    },
+    {
+      "id": "schedule",
+      "source": "observed",
+      "evidence": "projects/xiaogj-web/private/reference/2026-10-12-home/chart-schedule-full.png",
+      "actions": []
+    },
+    {
+      "id": "attendance",
+      "source": "observed",
+      "evidence": "projects/xiaogj-web/private/reference/2026-10-12-home/chart-attendance.png",
+      "actions": []
+    },
+    {
+      "id": "editing",
+      "source": "observed",
+      "evidence": "projects/xiaogj-web/private/reference/2026-10-12-home/customize.ax.txt",
+      "actions": [
+        {
+          "id": "todo-config",
+          "label": "配置今日待办",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard"
+          ]
+        },
+        {
+          "id": "quick-config",
+          "label": "配置快捷操作",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard"
+          ]
+        },
+        {
+          "id": "overview-config",
+          "label": "配置数据概览",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard"
+          ]
+        },
+        {
+          "id": "add-card",
+          "label": "添加卡片",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard"
+          ]
+        },
+        {
+          "id": "reset",
+          "label": "恢复默认",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard"
+          ]
+        },
+        {
+          "id": "cancel",
+          "label": "取消",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard"
+          ]
+        },
+        {
+          "id": "save",
+          "label": "保存",
+          "source": "observed",
+          "operations": [
+            "click",
+            "keyboard"
+          ]
+        },
+        {
+          "id": "drag-card",
+          "label": "拖动排序",
+          "source": "observed",
+          "operations": [
+            "drag"
+          ]
+        },
+        {
+          "id": "hide-0",
+          "label": "隐藏今日待办",
+          "source": "observed",
+          "operations": [
+            "click"
+          ]
+        },
+        {
+          "id": "hide-1",
+          "label": "隐藏快捷操作",
+          "source": "observed",
+          "operations": [
+            "click"
+          ]
+        },
+        {
+          "id": "hide-2",
+          "label": "隐藏数据概览",
+          "source": "observed",
+          "operations": [
+            "click"
+          ]
+        },
+        {
+          "id": "hide-3",
+          "label": "隐藏升级足迹",
+          "source": "observed",
+          "operations": [
+            "click"
+          ]
+        },
+        {
+          "id": "hide-4",
+          "label": "隐藏学员动态",
+          "source": "observed",
+          "operations": [
+            "click"
+          ]
+        },
+        {
+          "id": "hide-5",
+          "label": "隐藏人数概况",
+          "source": "observed",
+          "operations": [
+            "click"
+          ]
+        },
+        {
+          "id": "hide-6",
+          "label": "隐藏满班率",
+          "source": "observed",
+          "operations": [
+            "click"
+          ]
+        },
+        {
+          "id": "hide-7",
+          "label": "隐藏公告",
+          "source": "observed",
+          "operations": [
+            "click"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "todo-config",
+      "source": "observed",
+      "evidence": "projects/xiaogj-web/private/reference/2026-10-12-home/todo-config-full.ax.txt",
+      "actions": [
+        {
+          "id": "cancel",
+          "label": "取消",
+          "source": "observed",
+          "operations": [
+            "click"
+          ]
+        },
+        {
+          "id": "confirm",
+          "label": "确定",
+          "source": "observed",
+          "operations": [
+            "click"
+          ]
+        },
+        {
+          "id": "uncheck-approval",
+          "label": "取消勾选待我审批",
+          "source": "observed",
+          "operations": [
+            "click"
+          ]
+        },
+        {
+          "id": "drag-item",
+          "label": "拖动排序",
+          "source": "observed",
+          "operations": [
+            "drag"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "quick-config",
+      "source": "observed",
+      "evidence": "projects/xiaogj-web/private/reference/2026-10-12-home/quick-config.ax.txt",
+      "actions": [
+        {
+          "id": "cancel",
+          "label": "取消",
+          "source": "observed",
+          "operations": [
+            "click"
+          ]
+        },
+        {
+          "id": "confirm",
+          "label": "确定",
+          "source": "observed",
+          "operations": [
+            "click"
+          ]
+        },
+        {
+          "id": "search",
+          "label": "搜索功能名称",
+          "source": "observed",
+          "operations": [
+            "type",
+            "paste"
+          ]
+        },
+        {
+          "id": "add-invitation",
+          "label": "添加邀约查询",
+          "source": "observed",
+          "operations": [
+            "click"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "overview-config",
+      "source": "observed",
+      "evidence": "projects/xiaogj-web/private/reference/2026-10-12-home/overview-config.ax.txt",
+      "actions": [
+        {
+          "id": "cancel",
+          "label": "取消",
+          "source": "observed",
+          "operations": [
+            "click"
+          ]
+        },
+        {
+          "id": "confirm",
+          "label": "确定",
+          "source": "observed",
+          "operations": [
+            "click"
+          ]
+        },
+        {
+          "id": "toggle-metric",
+          "label": "选择指标",
+          "source": "observed",
+          "operations": [
+            "click"
+          ]
+        },
+        {
+          "id": "drag-item",
+          "label": "拖动排序",
+          "source": "observed",
+          "operations": [
+            "drag"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "add-card",
+      "source": "observed",
+      "evidence": "projects/xiaogj-web/private/reference/2026-10-12-home/add-card.ax.txt",
+      "actions": [
+        {
+          "id": "cancel",
+          "label": "取消",
+          "source": "observed",
+          "operations": [
+            "click"
+          ]
+        },
+        {
+          "id": "confirm",
+          "label": "确定",
+          "source": "observed",
+          "operations": [
+            "click"
+          ]
+        },
+        {
+          "id": "recent",
+          "label": "最近30天开班",
+          "source": "observed",
+          "operations": [
+            "click"
+          ]
+        },
+        {
+          "id": "guide",
+          "label": "新手指南",
+          "source": "observed",
+          "operations": [
+            "click"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "todo-draft",
+      "source": "observed",
+      "evidence": "projects/xiaogj-web/private/reference/2026-10-12-home/todo-draft-full.ax.txt",
+      "actions": [
+        {
+          "id": "cancel",
+          "label": "取消配置对话框，再取消首页编辑",
+          "source": "observed",
+          "operations": [
+            "click"
+          ]
+        },
+        {
+          "id": "confirm",
+          "label": "确定",
+          "source": "observed",
+          "operations": [
+            "click"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "quick-search",
+      "source": "observed",
+      "evidence": "projects/xiaogj-web/private/reference/2026-10-12-home/quick-search-pasted-full.ax.txt",
+      "actions": [
+        {
+          "id": "add-invitation",
+          "label": "添加邀约查询",
+          "source": "observed",
+          "operations": [
+            "click"
+          ]
+        },
+        {
+          "id": "cancel",
+          "label": "取消",
+          "source": "observed",
+          "operations": [
+            "click"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "enrollment",
+      "source": "observed",
+      "evidence": "projects/xiaogj-web/private/reference/enrollment.ax.txt",
+      "actions": []
+    },
+    {
+      "id": "students",
+      "source": "observed",
+      "evidence": "projects/xiaogj-web/private/reference/students.ax.txt",
+      "actions": []
+    }
+  ],
+  "transitions": [
+    {
+      "from": "home",
+      "action": "menu-0",
+      "operation": "semantic-click",
+      "to": "home",
+      "outcome": "unavailable",
+      "evidence": "projects/xiaogj-web/private/reference/2026-10-12-home/menu-招生营销.ax.txt",
+      "observation": "原生 AX 激活没有打开可见菜单；保留失败，坐标激活随后成功。"
+    },
+    {
+      "from": "home",
+      "action": "menu-0",
+      "operation": "coordinate-click",
+      "to": "menu-0",
+      "outcome": "observed",
+      "evidence": "projects/xiaogj-web/private/reference/2026-10-12-home/menu-招生营销-coordinate.ax.txt"
+    },
+    {
+      "from": "home",
+      "action": "menu-1",
+      "operation": "semantic-click",
+      "to": "home",
+      "outcome": "unavailable",
+      "evidence": "projects/xiaogj-web/private/reference/2026-10-12-home/menu-前台业务.ax.txt",
+      "observation": "原生 AX 激活没有打开可见菜单；保留失败，坐标激活随后成功。"
+    },
+    {
+      "from": "home",
+      "action": "menu-1",
+      "operation": "coordinate-click",
+      "to": "menu-1",
+      "outcome": "observed",
+      "evidence": "projects/xiaogj-web/private/reference/2026-10-12-home/menu-前台业务-coordinate.ax.txt"
+    },
+    {
+      "from": "home",
+      "action": "menu-2",
+      "operation": "semantic-click",
+      "to": "home",
+      "outcome": "unavailable",
+      "evidence": "projects/xiaogj-web/private/reference/2026-10-12-home/menu-教务管理.ax.txt",
+      "observation": "原生 AX 激活没有打开可见菜单；保留失败，坐标激活随后成功。"
+    },
+    {
+      "from": "home",
+      "action": "menu-2",
+      "operation": "coordinate-click",
+      "to": "menu-2",
+      "outcome": "observed",
+      "evidence": "projects/xiaogj-web/private/reference/2026-10-12-home/menu-教务管理-coordinate.ax.txt"
+    },
+    {
+      "from": "home",
+      "action": "menu-3",
+      "operation": "semantic-click",
+      "to": "home",
+      "outcome": "unavailable",
+      "evidence": "projects/xiaogj-web/private/reference/2026-10-12-home/menu-人事管理.ax.txt",
+      "observation": "原生 AX 激活没有打开可见菜单；保留失败，坐标激活随后成功。"
+    },
+    {
+      "from": "home",
+      "action": "menu-3",
+      "operation": "coordinate-click",
+      "to": "menu-3",
+      "outcome": "observed",
+      "evidence": "projects/xiaogj-web/private/reference/2026-10-12-home/menu-人事管理-coordinate.ax.txt"
+    },
+    {
+      "from": "home",
+      "action": "menu-4",
+      "operation": "semantic-click",
+      "to": "home",
+      "outcome": "unavailable",
+      "evidence": "projects/xiaogj-web/private/reference/2026-10-12-home/menu-进销存管理.ax.txt",
+      "observation": "原生 AX 激活没有打开可见菜单；保留失败，坐标激活随后成功。"
+    },
+    {
+      "from": "home",
+      "action": "menu-4",
+      "operation": "coordinate-click",
+      "to": "menu-4",
+      "outcome": "observed",
+      "evidence": "projects/xiaogj-web/private/reference/2026-10-12-home/menu-进销存管理-coordinate.ax.txt"
+    },
+    {
+      "from": "home",
+      "action": "menu-5",
+      "operation": "semantic-click",
+      "to": "home",
+      "outcome": "unavailable",
+      "evidence": "projects/xiaogj-web/private/reference/2026-10-12-home/menu-财务管理.ax.txt",
+      "observation": "原生 AX 激活没有打开可见菜单；保留失败，坐标激活随后成功。"
+    },
+    {
+      "from": "home",
+      "action": "menu-5",
+      "operation": "coordinate-click",
+      "to": "menu-5",
+      "outcome": "observed",
+      "evidence": "projects/xiaogj-web/private/reference/2026-10-12-home/menu-财务管理-coordinate.ax.txt"
+    },
+    {
+      "from": "home",
+      "action": "menu-6",
+      "operation": "semantic-click",
+      "to": "menu-6",
+      "outcome": "observed",
+      "evidence": "projects/xiaogj-web/private/reference/2026-10-12-home/menu-家校服务.ax.txt"
+    },
+    {
+      "from": "home",
+      "action": "menu-7",
+      "operation": "semantic-click",
+      "to": "menu-7",
+      "outcome": "observed",
+      "evidence": "projects/xiaogj-web/private/reference/2026-10-12-home/menu-报表中心.ax.txt"
+    },
+    {
+      "from": "home",
+      "action": "expand",
+      "operation": "click",
+      "to": "todos-expanded",
+      "outcome": "observed",
+      "evidence": "projects/xiaogj-web/private/reference/2026-10-12-home/todos-expanded-full.ax.txt"
+    },
+    {
+      "from": "home",
+      "action": "background",
+      "operation": "click",
+      "to": "background",
+      "outcome": "observed",
+      "evidence": "projects/xiaogj-web/private/reference/2026-10-12-home/background-options.png"
+    },
+    {
+      "from": "home",
+      "action": "week",
+      "operation": "click",
+      "to": "week",
+      "outcome": "observed",
+      "evidence": "projects/xiaogj-web/private/reference/2026-10-12-home/week.ax.txt"
+    },
+    {
+      "from": "home",
+      "action": "month",
+      "operation": "click",
+      "to": "month",
+      "outcome": "observed",
+      "evidence": "projects/xiaogj-web/private/reference/2026-10-12-home/month.ax.txt"
+    },
+    {
+      "from": "home",
+      "action": "student-week",
+      "operation": "click",
+      "to": "student-week",
+      "outcome": "observed",
+      "evidence": "projects/xiaogj-web/private/reference/2026-10-12-home/student-week.ax.txt"
+    },
+    {
+      "from": "home",
+      "action": "student-month",
+      "operation": "click",
+      "to": "student-month",
+      "outcome": "observed",
+      "evidence": "projects/xiaogj-web/private/reference/2026-10-12-home/student-month.ax.txt"
+    },
+    {
+      "from": "home",
+      "action": "schedule",
+      "operation": "click",
+      "to": "schedule",
+      "outcome": "observed",
+      "evidence": "projects/xiaogj-web/private/reference/2026-10-12-home/chart-schedule-full.png"
+    },
+    {
+      "from": "home",
+      "action": "attendance",
+      "operation": "click",
+      "to": "attendance",
+      "outcome": "observed",
+      "evidence": "projects/xiaogj-web/private/reference/2026-10-12-home/chart-attendance.png"
+    },
+    {
+      "from": "home",
+      "action": "customize",
+      "operation": "click",
+      "to": "editing",
+      "outcome": "observed",
+      "evidence": "projects/xiaogj-web/private/reference/2026-10-12-home/customize.ax.txt"
+    },
+    {
+      "from": "editing",
+      "action": "todo-config",
+      "operation": "click",
+      "to": "todo-config",
+      "outcome": "observed",
+      "evidence": "projects/xiaogj-web/private/reference/2026-10-12-home/todo-config-full.ax.txt"
+    },
+    {
+      "from": "editing",
+      "action": "quick-config",
+      "operation": "click",
+      "to": "quick-config",
+      "outcome": "observed",
+      "evidence": "projects/xiaogj-web/private/reference/2026-10-12-home/quick-config.ax.txt"
+    },
+    {
+      "from": "editing",
+      "action": "overview-config",
+      "operation": "click",
+      "to": "overview-config",
+      "outcome": "observed",
+      "evidence": "projects/xiaogj-web/private/reference/2026-10-12-home/overview-config.ax.txt"
+    },
+    {
+      "from": "editing",
+      "action": "add-card",
+      "operation": "click",
+      "to": "add-card",
+      "outcome": "observed",
+      "evidence": "projects/xiaogj-web/private/reference/2026-10-12-home/add-card.ax.txt"
+    },
+    {
+      "from": "todo-config",
+      "action": "uncheck-approval",
+      "operation": "click",
+      "to": "todo-draft",
+      "outcome": "observed",
+      "evidence": "projects/xiaogj-web/private/reference/2026-10-12-home/todo-draft-full.ax.txt"
+    },
+    {
+      "from": "todo-draft",
+      "action": "cancel",
+      "operation": "click",
+      "to": "home",
+      "outcome": "observed",
+      "evidence": "projects/xiaogj-web/private/reference/2026-10-12-home/cancelled-full.ax.txt"
+    },
+    {
+      "from": "editing",
+      "action": "cancel",
+      "operation": "click",
+      "to": "home",
+      "outcome": "observed",
+      "evidence": "projects/xiaogj-web/private/reference/2026-10-12-home/cancelled-full.ax.txt"
+    },
+    {
+      "from": "quick-config",
+      "action": "search",
+      "operation": "type",
+      "to": "quick-config",
+      "outcome": "unavailable",
+      "evidence": "projects/xiaogj-web/private/reference/2026-10-12-home/quick-search-full.ax.txt",
+      "observation": "原生键入后输入值未出现在 AX；仍显示全部功能。"
+    },
+    {
+      "from": "quick-config",
+      "action": "search",
+      "operation": "paste",
+      "to": "quick-search",
+      "outcome": "observed",
+      "evidence": "projects/xiaogj-web/private/reference/2026-10-12-home/quick-search-pasted-full.ax.txt"
+    },
+    {
+      "from": "quick-search",
+      "action": "add-invitation",
+      "operation": "click",
+      "to": "quick-search",
+      "outcome": "unavailable",
+      "evidence": "projects/xiaogj-web/private/reference/2026-10-12-home/quick-search-pasted-full.ax.txt",
+      "observation": "动作前浏览器连接失败，没有点击后的观察；该探针仍待重跑。"
+    },
+    {
+      "from": "menu-1",
+      "action": "entry-0",
+      "operation": "click",
+      "to": "enrollment",
+      "outcome": "observed",
+      "evidence": "projects/xiaogj-web/private/reference/enrollment.ax.txt"
+    },
+    {
+      "from": "menu-1",
+      "action": "entry-1",
+      "operation": "click",
+      "to": "students",
+      "outcome": "observed",
+      "evidence": "projects/xiaogj-web/private/reference/students.ax.txt"
+    }
+  ],
+  "limitations": [
+    "原版服务端不可任意恢复；没有执行真实业务写入。",
+    "浏览器连接在快捷搜索添加动作前不可用，可能仍停留在快捷配置搜索界面；没有保存原版偏好。",
+    "存在历史快照为 AX 差分；共同场景已另采完整 AX。",
+    "真实发现命令与恢复协议尚未接入 Dream-RSI，不把 frontier 排序当作 RSI。"
+  ]
+}
