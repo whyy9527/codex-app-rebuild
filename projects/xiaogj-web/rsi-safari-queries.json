@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "seed": "projects/xiaogj-web/private/rsi-safari-query-seed",
+  "root_observation": {
+    "state": "Safari authenticated students default",
+    "remote_reset": "Actual Reset then empty Query; readonly; business DB is not reset",
+    "preparation": "Independent Safari app, password reminder cancelled, visual promotion closed; baseline captured and actual parser verified"
+  },
+  "score_semantics": "Fraction of three new readonly query probes whose independently repeated result, reset-cleared input, reset-retained result and restored baseline agree with actually discovered source facts; repeatability only, not visual fidelity or full product acceptance",
+  "initial_policy": "projects/xiaogj-web/tools/rsi_policy_v0.py",
+  "fixed_inputs": [
+    "projects/xiaogj-web/tools/query_exploration.py",
+    "projects/xiaogj-web/tools/query_exploration_native.js",
+    "projects/xiaogj-web/private/rsi-safari-query-seed/cases.json"
+  ],
+  "agent": [
+    "python3",
+    "projects/xiaogj-web/tools/query_exploration.py",
+    "agent"
+  ],
+  "evaluator": [
+    "python3",
+    "projects/xiaogj-web/tools/query_exploration.py",
+    "evaluator"
+  ],
+  "timeout_seconds": 300,
+  "workers": 1,
+  "online_rounds": 4,
+  "replay_rounds": 4,
+  "versions": 2,
+  "parallelism_penalty": 0.05
+}

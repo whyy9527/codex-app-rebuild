@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "scope": "三项实际只读查询发现；不代表完整业务或前端一致性。",
+  "source": "rebuild.json 的 query_fragments_evidence 与 query_fragments_book",
+  "preparation": [
+    "已登录并进入学员信息管理，关闭密码提醒及宣传遮挡。",
+    "实际重置后提交空查询，恢复已观察的默认筛选及首屏；不重置远程数据库。"
+  ],
+  "cases": [
+    {
+      "id": "name-fragment",
+      "source": "observed",
+      "action": "输入已观察的姓氏片段并查询"
+    },
+    {
+      "id": "name-initial",
+      "source": "observed",
+      "action": "输入已观察的姓名首字母并查询"
+    },
+    {
+      "id": "phone-fragment",
+      "source": "observed",
+      "action": "输入已观察电话号码末四位并查询"
+    }
+  ],
+  "assertions": [
+    "查询前基线记录顺序及分页一致",
+    "实际查询记录顺序及分页一致",
+    "重置清空输入",
+    "重置本身保留当前查询结果",
+    "再次提交空查询恢复默认基线"
+  ],
+  "frontend": "实际 AX 与截图已保存；Safari 与 Edge 窗口不同，严格图像比较 not_run。",
+  "remaining_unknown": [
+    "其他首字母及大小写规则、多音字",
+    "多个条件及高级查询、排序与其他筛选",
+    "键盘提交与悬停分支、完整前端一致性"
+  ]
+}
