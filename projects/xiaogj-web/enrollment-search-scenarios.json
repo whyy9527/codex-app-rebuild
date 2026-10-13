@@ -1,0 +1,51 @@
+{
+  "baseline": {
+    "added": []
+  },
+  "cases": [
+    {
+      "id": "courses-no-match",
+      "method": "courses",
+      "query": "rebuildnomatch20261012",
+      "hypothesis": "A distinct readonly query changes the chooser result; reset restores the actually observed default catalog",
+      "expectedResult": {
+        "added": [
+          "0-4",
+          "10",
+          "Columns: 0-4",
+          "field (settable) Description: 按回车键跳转。, Placeholder: 跳转页",
+          "field (settable) Value: rebuildnomatch20261012, Placeholder: 请输入课程名称",
+          "×",
+          "共 0 条 每页",
+          "已选择： 0 清空",
+          "条 第 1 / 0 页",
+          "查询  重置",
+          "选择课程"
+        ]
+      }
+    },
+    {
+      "id": "items-no-match",
+      "method": "items",
+      "query": "rebuildnomatch20261012",
+      "hypothesis": "A distinct readonly query changes the chooser result; reset restores the actually observed default catalog",
+      "expectedResult": {
+        "added": [
+          "0-5",
+          "10",
+          "Columns: 0-5",
+          "field (settable) Description: 按回车键跳转。, Placeholder: 跳转页",
+          "field (settable) Value: rebuildnomatch20261012, Placeholder: 物品名称/编码",
+          "×",
+          "仅显示在当前校区登记过的物品",
+          "共 0 条 每页",
+          "已选择： 0 清空",
+          "条 第 1 / 0 页",
+          "查询",
+          "选择物品",
+          "重置"
+        ]
+      }
+    }
+  ]
+}

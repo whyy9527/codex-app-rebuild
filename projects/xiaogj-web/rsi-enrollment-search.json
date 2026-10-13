@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "seed": "projects/xiaogj-web/private/rsi-enrollment-search-seed",
+  "root_observation": {
+    "state": "Safari authenticated blank enrollment preparation",
+    "remote_reset": "Search then reset and close chooser; no selections, confirmations, save, payment or enrollment",
+    "preparation": "Known sidebar New Enrollment navigation; current source session required"
+  },
+  "score_semantics": "Fraction of two readonly chooser search probes whose actual nonempty caption delta changes on search, independently repeats, resets to observed default chooser, and dismisses to blank enrollment. Repeatability, not product completeness.",
+  "initial_policy": "projects/xiaogj-web/tools/rsi_policy_v0.py",
+  "fixed_inputs": [
+    "projects/xiaogj-web/tools/enrollment_search.py",
+    "projects/xiaogj-web/tools/enrollment_search_native.js",
+    "projects/xiaogj-web/private/rsi-enrollment-search-seed/cases.json"
+  ],
+  "agent": [
+    "python3",
+    "projects/xiaogj-web/tools/enrollment_search.py",
+    "agent"
+  ],
+  "evaluator": [
+    "python3",
+    "projects/xiaogj-web/tools/enrollment_search.py",
+    "evaluator"
+  ],
+  "timeout_seconds": 300,
+  "workers": 1,
+  "online_rounds": 4,
+  "replay_rounds": 4,
+  "versions": 2,
+  "parallelism_penalty": 0.05
+}
