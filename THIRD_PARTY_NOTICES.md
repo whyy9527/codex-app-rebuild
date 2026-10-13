@@ -19,6 +19,7 @@ Duolingo 案例是已结束、未达到 1:1 的独立技术实践。Duolingo 名
 | Rive iOS | [MIT](https://github.com/rive-app/rive-ios/blob/main/LICENSE) | Swift 动画运行时 |
 | Lottie | [Apache-2.0](https://github.com/airbnb/lottie-spm/blob/main/LICENSE) | Swift 动画运行时 |
 | Playwright | [Apache-2.0](https://github.com/microsoft/playwright/blob/main/LICENSE) | 浏览器观察与回放 |
+| Apache ECharts | [Apache-2.0](https://github.com/apache/echarts/blob/6.0.0/LICENSE) | 校管家探索树交互展示；从CDN加载，不随仓库打包 |
 | Pillow | [上游许可](https://github.com/python-pillow/Pillow/blob/main/LICENSE) | 按需图像比较 |
 | @nestjs/jwt | [MIT](https://github.com/nestjs/jwt/blob/master/LICENSE) | 校管家案例 JWT 签发与校验 |
 | bcryptjs | [BSD-3-Clause](https://github.com/dcodeIO/bcrypt.js/blob/main/LICENSE) | 校管家案例本地密码哈希 |

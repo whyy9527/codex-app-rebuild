@@ -55,4 +55,4 @@ Duolingo 观察器／契约在 `projects/duolingo-web`；Swift 的 `LearningCore
 
 案例尚未 1:1，试验已结束。源码中既有未验证交互修改不属于本次仓库整理的交付；边界见 [案例状态](../projects/duolingo-web/STATUS.md)。批次技术细节与旧文档见 [历史索引](history/README.md)，经验见 [复盘](DUOLINGO-LESSONS.md)。
 
-校管家Web案例在 `projects/xiaogj-web`，由React／NestJS／共享契约及Prisma/MySQL实现候选；私有目录保存授权观察和媒体。其 `tools/preview.py` 只管理本次预览启动的本地进程、执行启动检查并打开候选，不访问原版、不启动RSI或Goal。用户已结束试验，范围与未完成项见[案例结论](../projects/xiaogj-web/STATUS.md)，方法反例见[复盘](XIAOGJ-LESSONS.md)。
+校管家Web案例在 `projects/xiaogj-web`，由React／NestJS／共享契约及Prisma/MySQL实现候选；私有目录保存授权观察和媒体。其 `tools/preview.py` 管理本次启动的本地进程、检查认证及业务接口，默认播放可视E2E巡演。`tools/exploration_tree.py` 只读项目入口和不可变历史，生成私有ECharts视图；它是案例工具，尚未抽取通用历史查看器。两个入口均不访问原版、不启动RSI或Goal。用户已结束试验，范围与未完成项见[案例结论](../projects/xiaogj-web/STATUS.md)，方法反例见[复盘](XIAOGJ-LESSONS.md)。

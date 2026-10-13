@@ -24,4 +24,5 @@
 - [目录查询](evidence/2026-10-13-enrollment-search-implementation.md)、[选择与清空](evidence/2026-10-13-enrollment-selection-rsi.md)
 - [确定入表](evidence/2026-10-13-enrollment-confirm-rsi.md)、[数量与金额](evidence/2026-10-13-enrollment-amounts-rsi.md)
 - [正常速度的可视 E2E 预览](evidence/2026-10-13-human-preview.md)
+- [完整探索树展示](evidence/2026-10-13-exploration-tree.md)
 - [框架迭代复盘](../../docs/XIAOGJ-LESSONS.md)；全部契约与运行入口由 [rebuild.json](rebuild.json)连接

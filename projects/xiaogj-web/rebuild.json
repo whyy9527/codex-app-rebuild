@@ -98,7 +98,8 @@
     "enrollment_amounts_evidence": "projects/xiaogj-web/evidence/2026-10-13-enrollment-amounts-rsi.md",
     "case_status": "projects/xiaogj-web/STATUS.md",
     "case_lessons": "docs/XIAOGJ-LESSONS.md",
-    "preview_handoff": "projects/xiaogj-web/evidence/2026-10-13-preview-handoff.md"
+    "preview_handoff": "projects/xiaogj-web/evidence/2026-10-13-preview-handoff.md",
+    "exploration_tree_evidence": "projects/xiaogj-web/evidence/2026-10-13-exploration-tree.md"
   },
   "commands": {
     "build": [
@@ -1227,6 +1228,13 @@
       "projects.xiaogj-web.tools.preview",
       "--check",
       "--no-open"
+    ],
+    "exploration_tree": [
+      "python3",
+      "-m",
+      "projects.xiaogj-web.tools.exploration_tree",
+      "--out",
+      "{out}"
     ]
   }
 }

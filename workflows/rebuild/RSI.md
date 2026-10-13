@@ -61,6 +61,8 @@ python3 -m workflows.rebuild.dream collect --workspace . --config <rsi.json> --p
 
 评分应说明衡量的是重复采集、分支发现还是其他已验证质量。固定两个探针重复成功、停止策略提高回放分数，不证明探索了更广需求或复刻质量提高。已有协议可接续时保留历史；新协议的必要性来自实际恢复／观察／评价变化，不能只为重复获得更高分拆细批次。案例反例见 [校管家复盘](../../docs/XIAOGJ-LESSONS.md)。
 
+展示探索树时，从项目清单读取现有页面历史和当前池，先校验不可变产物，再画实际父子关系。页面状态文件与 RSI 世界各自保留来源，展示分组不伪称环境转移；保留重复分支、不可用操作、未记录结果及未形成新世界的再部署。节点数、分数和空白分支都不转成产品完成率；生成视图只读，不触发新探针或接续 Goal。
+
 ## 策略与回放语义
 
 `select(view, rho)` 返回互异节点 ID 列表，最多 W 个，空列表停止。`view.nodes` 只有当前揭露节点的 `id/parent/seq/score/observation/generation_history`；`view.eligible` 是根及可见叶节点，另有 `round` 与 `max_parallelism`。策略从前缀重建自己的判断，不依赖跨调用内存。在线与离线使用同一接口。

@@ -14,6 +14,12 @@ python3 -m projects.xiaogj-web.tools.preview
 
 巡演只展示本地已实现功能，不连接原版，不点击报名提交；不代表完整 1:1 或原版／候选共同验收通过。
 
+双击 `探索树.command` 可生成并打开整张 ECharts 探索树，支持拖动、缩放和节点折叠。它读取 `rebuild.json` 中的页面历史和当前 RSI 池，校验世界、快照及策略后只嵌入必要元数据；生成页面保留在 `private/visualizations/`。首次显示需要网络加载锁定的 ECharts 6.0.0。缺少私有输入或历史校验失败时不会生成虚假的树。
+
+```sh
+python3 -m projects.xiaogj-web.tools.exploration_tree --open
+```
+
 新检出环境缺少私有数据库、账号与素材时不能直接复原本机内容；程序会报告缺失，不生成假数据或连接原版。准备方法见 [SETUP.md](SETUP.md)。
 
 [项目入口与命令](rebuild.json) · [技术约束](TECHNOLOGY.md) · [本次结论](STATUS.md) · [框架迭代复盘](../../docs/XIAOGJ-LESSONS.md) · [重建工作流](../../workflows/rebuild/WORKFLOW.md)

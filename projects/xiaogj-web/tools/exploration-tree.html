@@ -1,0 +1,126 @@
+<div id="xiaogj-echarts-tree">
+  <h2>校管家 · 完整探索树</h2>
+  <div class="viz-row">
+    <span class="text-small text-muted">页面观察 + RSI 历史池 · 点击折叠 · 滚轮缩放 · 拖动平移</span>
+    <button class="btn" id="xe-expand" type="button">展开整树</button>
+  </div>
+  <div id="xe-count" class="text-small tabular-nums"></div>
+  <div class="xe-legend text-small">
+    <span><i class="xe-mark seen"></i>已观察／实际采集</span>
+    <span><i class="xe-mark failed"></i>操作不可用</span>
+    <span><i class="xe-mark pending"></i>未记录结果</span>
+    <span id="xe-zoom" class="tabular-nums">缩放 1.00×</span>
+  </div>
+  <div id="xe-chart" role="img" aria-label="校管家页面状态与 RSI 历史的完整可缩放探索树"></div>
+  <div id="xe-detail" class="text-small" aria-live="polite">案例已结束；分数为协议评价，不能代表产品完成度。</div>
+  <div id="xe-error" role="alert" hidden></div>
+</div>
+<style>
+ #xiaogj-echarts-tree {color:var(--foreground);}
+ #xiaogj-echarts-tree #xe-count {margin:12px 0 8px;color:var(--muted-foreground);}
+ #xiaogj-echarts-tree .xe-legend {display:flex;flex-wrap:wrap;gap:8px 16px;color:var(--muted-foreground);margin-bottom:6px;}
+ #xiaogj-echarts-tree .xe-mark {display:inline-block;width:9px;height:9px;margin-right:6px;border-radius:50%;box-sizing:border-box;}
+ #xiaogj-echarts-tree .seen {background:var(--viz-series-1);}
+ #xiaogj-echarts-tree .failed {background:var(--viz-series-2);border-radius:0;}
+ #xiaogj-echarts-tree .pending {border:1px solid var(--muted-foreground);}
+ #xiaogj-echarts-tree #xe-chart {width:100%;height:760px;touch-action:none;}
+ #xiaogj-echarts-tree #xe-detail {min-height:2em;overflow-wrap:anywhere;margin-top:8px;}
+ @media(max-width:480px) {#xiaogj-echarts-tree #xe-chart {height:640px;}}
+</style>
+<script id="xe-data" type="application/json">__EXPLORATION_DATA__</script>
+<script src="https://cdn.jsdelivr.net/npm/echarts@6.0.0/dist/echarts.min.js"></script>
+<script>
+(() => {
+ const root=document.getElementById('xiaogj-echarts-tree');
+ const chartElement=root.querySelector('#xe-chart'),detail=root.querySelector('#xe-detail');
+ if(!window.echarts){const error=root.querySelector('#xe-error');error.hidden=false;error.textContent='ECharts 未能加载，请检查网络后重试。';return;}
+ const data=JSON.parse(document.getElementById('xe-data').textContent);
+ const names={home:'首页','menu-0':'招生营销','menu-1':'前台业务','menu-2':'教务管理','menu-3':'人事管理','menu-4':'进销存管理','menu-5':'财务管理','menu-6':'家校服务','menu-7':'报表中心','todos-expanded':'展开待办',background:'背景选项',week:'概览本周',month:'概览本月','student-week':'学员动态本周','student-month':'学员动态本月',schedule:'排课点名',attendance:'出勤率',editing:'首页编辑','todo-config':'待办配置','quick-config':'快捷操作配置','overview-config':'概览配置','add-card':'添加卡片','todo-draft':'待办草稿','quick-search':'快捷搜索',enrollment:'新学员报名',students:'学员列表','student-detail-overview':'详情默认页','student-detail-expanded':'展开基本信息','student-detail-tuition':'学费','student-detail-consumption':'课消明细','student-detail-points':'积分'};
+ const probes={'name-fragment':'姓名片段','name-initial':'姓名首字母','phone-fragment':'电话片段','next-previous':'下一页／上一页','last-first':'末页／首页',zero:'页码 0',overview:'默认详情',expanded:'展开基本信息','return-list':'返回列表',tuition:'学费',consumption:'课消明细',points:'积分','grade-click':'点击年级','grade-keyboard':'键盘年级',courses:'课程目录',items:'物品目录','courses-no-match':'课程空态／重置','items-no-match':'物品空态／重置','courses-select-clear':'课程勾选／清空','items-select-clear':'物品勾选／清空','courses-confirm':'课程确定','items-confirm':'物品确定','quantity-two':'数量 2','discount-ten':'优惠 10'};
+ const ops={'semantic-click':'语义点击','coordinate-click':'坐标点击',click:'点击',hover:'悬停',keyboard:'键盘',type:'键入',paste:'粘贴',activate:'激活'};
+ const statusNames={seen:'已观察／实际采集',failed:'操作不可用',pending:'未记录结果',group:'展示分组',decision:'策略选择'};
+ let serial=0;
+ const node=(name,status='group',description='',children=[])=>({id:'xe-'+serial++,name,status,description,children,collapsed:false});
+ const states=new Map(data.history.states.map(s=>[s.id,s]));
+ const attached=new Set();
+ function pageState(id) {
+  attached.add(id);const state=states.get(id);
+  const out=node(names[id]||id,'seen','状态 '+id+' · '+state.evidence);
+  for(const action of state.actions) {
+   const attempts=data.history.transitions.filter(t=>t.from===id&&t.action===action.id);
+   const done=new Set(attempts.filter(t=>t.outcome==='observed').map(t=>t.operation||'activate'));
+   const modes=action.operations||['activate'];
+   const a=node(action.label||action.id,done.size?'seen':attempts.length?'failed':'pending',`操作观察 ${done.size}/${modes.length}；缺失结果只表示此历史文件未记录。`);
+   for(const operation of modes) {
+    const runs=attempts.filter(t=>(t.operation||'activate')===operation);
+    if(!runs.length) a.children.push(node(ops[operation]||operation,'pending',`状态 ${id} · 控件 ${action.label||action.id} · 尚无记录结果`));
+    for(const t of runs) {
+     const n=node(ops[operation]||operation,t.outcome==='observed'?'seen':'failed',(t.observation||'')+' · '+t.evidence);
+     if(t.outcome==='observed') {
+      if(attached.has(t.to)) n.children.push(node('↩ '+(names[t.to]||t.to),'seen','回到已出现状态 '+t.to+'；不重复展开循环。'));
+      else n.children.push(pageState(t.to));
+     }
+     a.children.push(n);
+    }
+   }
+   out.children.push(a);
+  }
+  return out;
+ }
+ const pages=node('页面观察 · '+data.history.states.length+' 状态','group','页面连线来自已记录操作转移；未知操作不推断新页面。',[pageState('home')]);
+ for(const s of data.history.states)if(!attached.has(s.id))pages.children.push(pageState(s.id));
+ function worldTree(world) {
+  const worldNode=node(world.phase+' · '+world.nodes.length+' 节点','group',world.source+' · '+world.rounds+' 轮 · '+world.stop);
+  const mapped=new Map(world.nodes.map(n=>[n.id,node(n.id+' · '+(probes[n.probe]||n.probe),'seen','独立评价 '+Number(n.score).toFixed(3)+' · '+world.source)]));
+  for(const n of world.nodes) {if(n.parent===null)worldNode.children.push(mapped.get(n.id));else mapped.get(n.parent).children.push(mapped.get(n.id));}
+  return worldNode;
+ }
+ const rsi=node('RSI · '+data.protocols.length+' 组协议','group',data.worlds+' 个历史世界，'+data.nodes+' 个真实树节点；世界内部连线严格按 parent 记录。');
+ for(const protocol of data.protocols) {
+  const p=node(protocol.label,'group',protocol.pool);
+  const collected=protocol.worlds.filter(w=>w.phase==='初始采集');
+  p.children.push(...collected.map(worldTree));
+  const replay=node('完整池回放 → v'+protocol.selected,'decision',protocol.evaluation);
+  replay.children=protocol.scores.map(s=>node('v'+s.version+' · '+Number(s.score).toFixed(3),s.version===protocol.selected?'decision':'group',s.status+'；分数不是产品验收。'));
+  p.children.push(replay);
+  const deployed=protocol.worlds.filter(w=>w.phase==='再部署');
+  p.children.push(...deployed.map(worldTree));
+  if(!deployed.length)p.children.push(node('再部署未形成新世界','failed','保留现有初始池；没有用回放结果冒充新的真实探索。'));
+  rsi.children.push(p);
+ }
+ const tree=node('校管家探索记录','group','2026-10-13 历史快照；两大类为展示分组。',[rsi,pages]);
+ const total=serial;
+ root.querySelector('#xe-count').textContent=`${total} 个展示节点 · ${data.history.states.length} 个页面状态 · ${data.worlds} 个 RSI 世界／${data.nodes} 个实际节点 · 含 ${data.pending} 个未解析操作`;
+ const chart=echarts.init(chartElement,null,{renderer:'svg'});
+ const colorProbe=document.createElement('span');colorProbe.hidden=true;root.append(colorProbe);
+ let palette={};
+ function color(token){if(palette[token])return palette[token];colorProbe.style.color='var('+token+')';return palette[token]=getComputedStyle(colorProbe).color;}
+ let zoom=1;
+ let center;
+ const collapseSet=new Set();
+ function decorate(n,depth=0) {
+  const fg=color('--foreground'),bg=color('--background'),muted=color('--muted-foreground');
+  const selected=n.status==='seen'||n.status==='decision';
+  n.collapsed=collapseSet.has(n.id);
+  n.symbol=n.status==='failed'?'diamond':n.status==='pending'?'emptyCircle':n.status==='group'?'roundRect':'circle';
+  n.symbolSize=depth<2?13:n.status==='group'?7:4;
+  n.itemStyle={color:n.status==='failed'?color('--viz-series-2'):selected?color('--viz-series-1'):muted,borderWidth:0,opacity:n.status==='pending'?.42:1};
+  n.label={show:depth<4||zoom>=3,color:fg,fontSize:12,fontWeight:depth<3?500:400,textBorderColor:bg,textBorderWidth:4};
+  for(const child of n.children)decorate(child,depth+1);
+ }
+ const escape=text=>String(text).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+ function draw() {
+  palette={};root.querySelector('#xe-zoom').textContent='缩放 '+zoom.toFixed(2)+'×';
+  decorate(tree);
+  chart.setOption({animation:false,aria:{enabled:true,description:'校管家完整探索记录。页面树保留不可用及未知操作，RSI 树保留实际 parent 分支。'},tooltip:{trigger:'item',confine:true,backgroundColor:color('--popover'),borderColor:color('--border'),textStyle:{color:color('--popover-foreground'),fontSize:12},formatter:p=>`<div style="max-width:340px;white-space:normal;overflow-wrap:anywhere"><strong>${escape(p.data.name)}</strong><br>${escape(statusNames[p.data.status])}<br>${escape(p.data.description)}</div>`},series:[{id:'whole-tree',type:'tree',layout:'orthogonal',orient:'LR',data:[tree],top:22,bottom:22,left:100,right:140,roam:true,zoom,center,scaleLimit:{min:.2,max:35},initialTreeDepth:-1,expandAndCollapse:true,edgeShape:'curve',lineStyle:{color:color('--border'),width:1.1,curveness:.45},label:{position:'right',align:'left',verticalAlign:'middle'},leaves:{label:{position:'right',align:'left'}},labelLayout:{hideOverlap:true},emphasis:{focus:'none',label:{show:true,color:color('--foreground'),textBorderColor:color('--background'),textBorderWidth:5}},blur:{itemStyle:{opacity:1}},animationDurationUpdate:0}]},{notMerge:true});
+ }
+ chart.on('click',p=>{if(p.componentType!=='series')return;detail.textContent=p.data.name+' · '+statusNames[p.data.status]+' · '+p.data.description;if(p.data.children?.length){if(collapseSet.has(p.data.id))collapseSet.delete(p.data.id);else collapseSet.add(p.data.id);}});
+ let roamTimer;
+ chart.on('treeroam',()=>{clearTimeout(roamTimer);roamTimer=setTimeout(()=>{const s=chart.getOption().series[0];zoom=s.zoom||1;center=s.center;draw();},100);});
+ root.querySelector('#xe-expand').onclick=()=>{collapseSet.clear();zoom=1;center=undefined;draw();detail.textContent='整树已展开 · 全部 '+total+' 个展示节点';};
+ new ResizeObserver(()=>chart.resize()).observe(chartElement);
+ new MutationObserver(()=>draw()).observe(document.documentElement,{attributes:true,attributeFilter:['class','style','data-theme']});
+ matchMedia('(prefers-color-scheme: dark)').addEventListener('change',draw);
+ draw();
+})();
+</script>
