@@ -4,6 +4,7 @@ import { initClient } from "@ts-rest/core";
 import { api } from "@xiaogj/contracts";
 import { CircleHelp, UsersRound, ChevronDown } from "lucide-react";
 import "./enrollment.css";
+import Decimal from "decimal.js";
 import { EnrollmentChooser } from "./enrollment-chooser";
 
 const client = initClient(api, { baseUrl: "" });
@@ -14,6 +15,8 @@ function Field({ label, required, children }: { label: string; required?: boolea
 }
 
 export function EnrollmentPage() {
+  const [charges, setCharges] = useState<{ kind: "courses" | "items"; row: string[]; nameBadge: string | null; quantity: string; discount: string; gift: string }[]>([]);
+  const updateCharge = (index: number, field: "quantity" | "discount" | "gift", value: string) => setCharges(current => current.map((charge, i) => i === index ? { ...charge, [field]: value } : charge));
   const [notice, setNotice] = useState("");
   const [chooser, setChooser] = useState<"courses" | "items" | null>(null);
   const unavailable = () => setNotice("此操作尚未完成复刻");
@@ -55,11 +58,27 @@ export function EnrollmentPage() {
           {["选课", "选班", "选物品", "选模板", "选套餐", "先学后付"].map((label, i) => <button key={label} className={`enrollment-select selection-${i}`} onClick={() => i === 0 ? setChooser("courses") : i === 2 ? setChooser("items") : unavailable()}>{label}</button>)}
         </div>
         <table className="enrollment-table"><colgroup>{[280, 90, 125, 95, 80, 80, 145, 90, 90, 110, 95, 110, 80].map((width, i) => <col key={i} style={{ width }} />)}</colgroup><thead><tr>{headers.map((header) => <th key={header}>{header === "已领取" ? <label><input type="checkbox" aria-label="已领取" onChange={unavailable} />已领取</label> : header === "有效期至" ? <><button onClick={unavailable}>有效期至 <ChevronDown size={13} /></button><CircleHelp size={12} /></> : <>{header}{header === "收费规格" && <CircleHelp size={12} />}</>}</th>)}</tr></thead>
-          <tbody><tr><td colSpan={headers.length}>请选择要收费的课程或物品</td></tr></tbody>
+          <tbody>{!charges.length ? <tr><td colSpan={headers.length}>请选择要收费的课程或物品</td></tr> : charges.map((charge, index) => {
+            const course = charge.kind === "courses", stored = charge.nameBadge === "储", unit = charge.row[course ? 2 : 3];
+            const price = new Decimal(charge.row[course ? 3 : 2].replace(/[^\d.-]/g, "") || "0");
+            const numeric = (value: string) => /^\d+(?:\.\d*)?$/.test(value) ? new Decimal(value) : new Decimal(0);
+            const amount = price.mul(numeric(charge.quantity)).minus(numeric(charge.discount));
+            return <tr className={`enrollment-charge ${stored ? "charge-stored" : ""}`} key={index}>
+              <td><div><span className={`charge-kind ${course ? "course" : "item"}`}>{course ? "课" : "物"}</span>{charge.row[0]}{charge.nameBadge && <span className="chooser-name-badge">{charge.nameBadge}</span>}</div>{course && <button className="charge-class" onClick={unavailable}><span className="charge-kind class">班</span>选班</button>}</td>
+              <td></td><td>{course && <button onClick={unavailable}>不限 <ChevronDown size={13} /></button>}</td>
+              <td>{price.toFixed(2)}</td><td>{stored ? "1" : <div className="charge-quantity"><button aria-label="减少数量" onClick={() => updateCharge(index, "quantity", Decimal.max(0, numeric(charge.quantity).minus(1)).toString())}>−</button><input aria-label="数量" value={charge.quantity} onChange={event => updateCharge(index, "quantity", event.target.value)} /><button aria-label="增加数量" onClick={() => updateCharge(index, "quantity", numeric(charge.quantity).plus(1).toString())}>+</button></div>}</td>
+              <td>{unit}</td><td>{stored && <input type="checkbox" aria-label="已领取物品" onChange={unavailable} />}</td><td>{!stored && <button className="charge-discount" aria-label="优惠方案" onClick={unavailable}>⌄</button>}</td>
+              <td>{!stored && <input aria-label="优惠金额" value={charge.discount} onChange={event => updateCharge(index, "discount", event.target.value)} />}</td>
+              <td>{stored ? "" : amount.toFixed(2)}</td><td>{!stored && <input aria-label="赠送数量" placeholder={unit} value={charge.gift} onChange={event => updateCharge(index, "gift", event.target.value)} />}</td><td>新增</td>
+              <td><button aria-label="移除收费项目" onClick={() => setCharges(current => current.filter((_, i) => i !== index))}>×</button></td>
+            </tr>;
+          })}</tbody>
         </table>
         <div className="enrollment-submit"><button onClick={unavailable}>报名</button></div>
       </div></div>}
-    {chooser && <EnrollmentChooser kind={chooser} onClose={() => setChooser(null)} onUnsupported={unavailable} />}
+    {chooser && <EnrollmentChooser kind={chooser} onClose={() => setChooser(null)} onUnsupported={unavailable} onConfirm={rows => {
+      setCharges(current => [...current, ...rows.map(choice => ({ kind: chooser, row: choice.row, nameBadge: choice.nameBadge, quantity: "", discount: "0", gift: "" }))]); setChooser(null);
+    }} />}
     {notice && <div role="status" className="enrollment-notice">{notice}<button aria-label="关闭提示" onClick={() => setNotice("")}>×</button></div>}
   </div>;
 }

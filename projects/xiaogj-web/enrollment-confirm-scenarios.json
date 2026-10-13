@@ -1,0 +1,31 @@
+{
+  "baseline": {
+    "added": []
+  },
+  "cases": [
+    {
+      "id": "courses-confirm",
+      "method": "courses",
+      "hypothesis": "Chooser confirm inserts selected catalog entry into unsaved billing table; refresh discards local form without submitting.",
+      "expectedResult": {
+        "chooserOpen": false,
+        "tableRows": 2,
+        "inputCount": 3,
+        "dropdownCount": 0,
+        "hasEmptyPrompt": false
+      }
+    },
+    {
+      "id": "items-confirm",
+      "method": "items",
+      "hypothesis": "Chooser confirm inserts selected catalog entry into unsaved billing table; refresh discards local form without submitting.",
+      "expectedResult": {
+        "chooserOpen": false,
+        "tableRows": 2,
+        "inputCount": 0,
+        "dropdownCount": 0,
+        "hasEmptyPrompt": false
+      }
+    }
+  ]
+}
