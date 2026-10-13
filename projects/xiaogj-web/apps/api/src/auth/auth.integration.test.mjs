@@ -35,7 +35,20 @@ test("cookie authenticates persisted session and logout revokes a copied token",
     for (const kind of ["courses", "items"]) {
       const response = await fetch(base + "/api/enrollment/choices/" + kind, { headers: { cookie } });
       assert.equal(response.status, 200);
-      assert.deepEqual(await response.json(), catalogs[kind]);
+      const body = await response.json();
+      assert.deepEqual(body.rows, catalogs[kind].rows.slice(0, 10));
+      assert.equal(body.total, catalogs[kind].rows.length);
+      assert.equal(body.totalPages, Math.ceil(body.total / 10));
+      const empty = await fetch(base + "/api/enrollment/choices/" + kind + "?search=rebuildnomatch20261012", { headers: { cookie } });
+      assert.equal(empty.status, 200);
+      const emptyBody = await empty.json();
+      assert.deepEqual(emptyBody.rows, []); assert.equal(emptyBody.total, 0);
+      assert.equal(emptyBody.page, 1); assert.equal(emptyBody.totalPages, 0);
+      const keyword = catalogs[kind].rows[0][0];
+      const filtered = await fetch(base + "/api/enrollment/choices/" + kind + "?search=" + encodeURIComponent(keyword), { headers: { cookie } });
+      assert.equal(filtered.status, 200);
+      assert.ok((await filtered.json()).rows.some(row => row[0] === keyword));
+      assert.equal((await fetch(base + "/api/enrollment/choices/" + kind + "?pageSize=0", { headers: { cookie } })).status, 400);
     }
     assert.equal((await post("/api/auth/logout", {}, cookie, "https://foreign.invalid")).status, 403);
     assert.equal((await fetch(base + "/api/auth/session", { headers: { cookie } })).status, 200);

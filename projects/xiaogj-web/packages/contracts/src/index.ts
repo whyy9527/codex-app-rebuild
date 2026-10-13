@@ -119,7 +119,7 @@ export const enrollmentSnapshot = z.object({
 export const enrollmentChoiceSnapshot = z.object({
   title: z.string(), headers: z.array(z.string()).min(1), rows: z.array(z.array(z.string())),
   total: z.number().int().nonnegative(), page: z.number().int().positive(),
-  totalPages: z.number().int().positive(), pageSize: z.number().int().positive(),
+  totalPages: z.number().int().nonnegative(), pageSize: z.number().int().positive(),
   observedAt: z.string().datetime({ offset: true }), provenance: z.string(),
   presentation: z.object({ nameBadges: z.array(z.string().nullable()), evidence: z.string() }).optional(),
 }).refine(data => data.rows.every(row => row.length === data.headers.length)
@@ -152,6 +152,7 @@ export const api = c.router({
   enrollmentChoices: {
     method: "GET", path: "/api/enrollment/choices/:kind",
     pathParams: z.object({ kind: z.enum(["courses", "items"]) }),
+    query: z.object({ search: z.string().max(200).optional(), page: z.coerce.number().int().positive().optional(), pageSize: z.coerce.number().int().refine(value => [10, 15, 20, 30, 40, 50, 100, 150, 200].includes(value)).optional() }),
     responses: { 401: unauthorized, 200: enrollmentChoiceSnapshot, 503: z.object({ message: z.string() }) },
   },
   studentDetail: {

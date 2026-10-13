@@ -46,3 +46,6 @@
 .enrollment-chooser input[type=checkbox] { width: 12px; height: 12px; }
 .enrollment-chooser-pagination select { appearance: none; height: 24px; padding: 0 16px 0 6px; background-image: linear-gradient(45deg, transparent 50%, #ccc 50%), linear-gradient(135deg, #ccc 50%, transparent 50%); background-position: right 8px top 10px, right 4px top 10px; background-size: 4px 4px; background-repeat: no-repeat; }
 .enrollment-chooser-pagination button { width: 28px; height: 26px; padding: 0 !important; }
+
+.enrollment-chooser-body { min-height: 462px; }
+.enrollment-chooser .chooser-empty td { height: 32px; text-align: center; color: #333; }

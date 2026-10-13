@@ -76,7 +76,8 @@
     "enrollment_search_scenarios": "projects/xiaogj-web/enrollment-search-scenarios.json",
     "enrollment_search_evidence": "projects/xiaogj-web/evidence/2026-10-13-enrollment-search-rsi.md",
     "enrollment_search_frontend_contract": "projects/xiaogj-web/enrollment-search-frontend-contract.json",
-    "enrollment_search_observations": "projects/xiaogj-web/enrollment-search-observations.json"
+    "enrollment_search_observations": "projects/xiaogj-web/enrollment-search-observations.json",
+    "enrollment_search_implementation": "projects/xiaogj-web/evidence/2026-10-13-enrollment-search-implementation.md"
   },
   "commands": {
     "build": [
@@ -915,6 +916,17 @@
       "--contract",
       "projects/xiaogj-web/enrollment-search-frontend-contract.json",
       "--observed",
+      "{observed}",
+      "--out",
+      "{out}"
+    ],
+    "compare_enrollment_search_semantics": [
+      "python3",
+      "-m",
+      "projects.xiaogj-web.tools.enrollment_search_semantics",
+      "--contract",
+      "projects/xiaogj-web/enrollment-search-observations.json",
+      "--capture",
       "{observed}",
       "--out",
       "{out}"
