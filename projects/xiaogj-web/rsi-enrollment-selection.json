@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "seed": "projects/xiaogj-web/private/rsi-enrollment-selection-seed",
+  "root_observation": {
+    "state": "Safari authenticated blank enrollment preparation",
+    "remote_reset": "Select first visible row, clear selection and close layer; never confirm, save, pay or submit enrollment.",
+    "preparation": "Known sidebar New Enrollment navigation; current source session required"
+  },
+  "score_semantics": "Fraction of two catalog selection probes with observed selected count, independently repeated selected/cleared count and checkbox facts and restored closed state; not product acceptance.",
+  "initial_policy": "projects/xiaogj-web/tools/rsi_policy_v0.py",
+  "fixed_inputs": [
+    "projects/xiaogj-web/tools/enrollment_selection.py",
+    "projects/xiaogj-web/tools/enrollment_selection_native.js",
+    "projects/xiaogj-web/private/rsi-enrollment-selection-seed/cases.json"
+  ],
+  "agent": [
+    "python3",
+    "projects/xiaogj-web/tools/enrollment_selection.py",
+    "agent"
+  ],
+  "evaluator": [
+    "python3",
+    "projects/xiaogj-web/tools/enrollment_selection.py",
+    "evaluator"
+  ],
+  "timeout_seconds": 1200,
+  "workers": 1,
+  "online_rounds": 2,
+  "replay_rounds": 4,
+  "versions": 2,
+  "parallelism_penalty": 0.05
+}

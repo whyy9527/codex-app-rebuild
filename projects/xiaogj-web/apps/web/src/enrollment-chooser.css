@@ -49,3 +49,10 @@
 
 .enrollment-chooser-body { min-height: 462px; }
 .enrollment-chooser .chooser-empty td { height: 32px; text-align: center; color: #333; }
+
+.enrollment-chooser input[type=checkbox]:checked { background: #287ae8; border-color: #287ae8; position: relative; }
+.enrollment-chooser input[type=checkbox]:checked::after { content: ""; position: absolute; width: 4px; height: 7px; border: solid white; border-width: 0 1.5px 1.5px 0; transform: rotate(40deg); left: 3px; top: 0; }
+.enrollment-chooser .chooser-selected { background: #f4f9ff; }
+.chooser-selection { margin: 10px 8px 0; min-height: 40px; padding: 8px 10px; background: #f8f9fb; display: flex; align-items: center; gap: 8px; }
+.chooser-selection span { flex: 1; }
+.enrollment-chooser .chooser-selection button { background: #b5b8bc !important; color: white; border-radius: 50%; width: 14px; height: 14px; line-height: 12px; flex: none; }

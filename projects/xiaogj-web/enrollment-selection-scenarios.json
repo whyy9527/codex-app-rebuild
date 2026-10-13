@@ -1,0 +1,29 @@
+{
+  "baseline": {
+    "added": []
+  },
+  "cases": [
+    {
+      "id": "courses-select-clear",
+      "method": "courses",
+      "hypothesis": "Selecting a visible catalog row changes selected basket; clearing resets it without confirming enrollment.",
+      "expectedResult": {
+        "selected": 1,
+        "selectedChecked": 1,
+        "cleared": 0,
+        "clearedChecked": 0
+      }
+    },
+    {
+      "id": "items-select-clear",
+      "method": "items",
+      "hypothesis": "Selecting a visible catalog row changes selected basket; clearing resets it without confirming enrollment.",
+      "expectedResult": {
+        "selected": 1,
+        "selectedChecked": 1,
+        "cleared": 0,
+        "clearedChecked": 0
+      }
+    }
+  ]
+}

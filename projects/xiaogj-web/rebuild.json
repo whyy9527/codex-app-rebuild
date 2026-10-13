@@ -77,7 +77,13 @@
     "enrollment_search_evidence": "projects/xiaogj-web/evidence/2026-10-13-enrollment-search-rsi.md",
     "enrollment_search_frontend_contract": "projects/xiaogj-web/enrollment-search-frontend-contract.json",
     "enrollment_search_observations": "projects/xiaogj-web/enrollment-search-observations.json",
-    "enrollment_search_implementation": "projects/xiaogj-web/evidence/2026-10-13-enrollment-search-implementation.md"
+    "enrollment_search_implementation": "projects/xiaogj-web/evidence/2026-10-13-enrollment-search-implementation.md",
+    "enrollment_selection_rsi_config": "projects/xiaogj-web/rsi-enrollment-selection-v2.json",
+    "enrollment_selection_rsi_pool": "projects/xiaogj-web/private/rsi-enrollment-selection-redeploy-20261013/iteration-1/collected-pool.json",
+    "enrollment_selection_rsi_evaluation": "projects/xiaogj-web/private/rsi-enrollment-selection-revision-20261013/evaluation.json",
+    "enrollment_selection_scenarios": "projects/xiaogj-web/enrollment-selection-scenarios.json",
+    "enrollment_selection_frontend_contract": "projects/xiaogj-web/enrollment-selection-frontend-contract.json",
+    "enrollment_selection_evidence": "projects/xiaogj-web/evidence/2026-10-13-enrollment-selection-rsi.md"
   },
   "commands": {
     "build": [
@@ -928,6 +934,94 @@
       "projects/xiaogj-web/enrollment-search-observations.json",
       "--capture",
       "{observed}",
+      "--out",
+      "{out}"
+    ],
+    "replay_reference_enrollment_selection": [
+      "python3",
+      "-m",
+      "projects.xiaogj-web.tools.enrollment_selection_v2",
+      "replay",
+      "--book",
+      "projects/xiaogj-web/enrollment-selection-scenarios.json",
+      "--side",
+      "reference",
+      "--out",
+      "{out}"
+    ],
+    "replay_candidate_enrollment_selection": [
+      "python3",
+      "-m",
+      "projects.xiaogj-web.tools.enrollment_selection_v2",
+      "replay",
+      "--book",
+      "projects/xiaogj-web/enrollment-selection-scenarios.json",
+      "--side",
+      "candidate",
+      "--out",
+      "{out}"
+    ],
+    "compare_enrollment_selection": [
+      "python3",
+      "-m",
+      "projects.xiaogj-web.tools.enrollment_selection_v2",
+      "compare",
+      "--book",
+      "projects/xiaogj-web/enrollment-selection-scenarios.json",
+      "--observed",
+      "{observed}",
+      "--out",
+      "{out}"
+    ],
+    "observe_enrollment_selection_frontend": [
+      "python3",
+      "-m",
+      "projects.xiaogj-web.tools.enrollment_selection_frontend",
+      "--capture-root",
+      "{observed}",
+      "--out",
+      "{out}"
+    ],
+    "compare_enrollment_selection_frontend": [
+      "python3",
+      "-m",
+      "capabilities.rebuild.frontend",
+      "--workspace",
+      ".",
+      "--contract",
+      "projects/xiaogj-web/enrollment-selection-frontend-contract.json",
+      "--observed",
+      "{observed}",
+      "--out",
+      "{out}"
+    ],
+    "rsi_enrollment_selection_collect": [
+      "python3",
+      "-m",
+      "workflows.rebuild.dream",
+      "collect",
+      "--workspace",
+      ".",
+      "--config",
+      "projects/xiaogj-web/rsi-enrollment-selection-v2.json",
+      "--pool",
+      "projects/xiaogj-web/private/rsi-enrollment-selection-redeploy-20261013/iteration-1/collected-pool.json",
+      "--out",
+      "{out}"
+    ],
+    "rsi_enrollment_selection_replay": [
+      "python3",
+      "-m",
+      "workflows.rebuild.dream",
+      "replay",
+      "--workspace",
+      ".",
+      "--config",
+      "projects/xiaogj-web/rsi-enrollment-selection-v2.json",
+      "--pool",
+      "{observed}",
+      "--candidate",
+      "projects/xiaogj-web/tools/rsi_policy_v1.py",
       "--out",
       "{out}"
     ]

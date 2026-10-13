@@ -1,0 +1,123 @@
+{
+  "schema_version": 1,
+  "scope": "Observed first visible row selection and clear in paired native Safari captures; representative data allowed by user.",
+  "requirements": [
+    {
+      "id": "enrollment-selection.courses.selected.pixels",
+      "state": "enrollment-selection-courses-selected",
+      "kind": "image_pixels",
+      "reference_image": "projects/xiaogj-web/private/enrollment-selection-reference-e2e-20261013/courses-select-clear/courses-select-clear-selected.png",
+      "evidence": [
+        "projects/xiaogj-web/private/enrollment-selection-reference-e2e-20261013/courses-select-clear/courses-select-clear-selected.png",
+        "projects/xiaogj-web/private/enrollment-selection-reference-e2e-20261013/courses-select-clear/courses-select-clear-selected.ax.txt"
+      ],
+      "pixels": [
+        1324,
+        743
+      ],
+      "reference_capture": {
+        "content_rect_points": [
+          0,
+          90,
+          1324,
+          743
+        ],
+        "backing_scale": 2.0,
+        "window_points": [
+          1324,
+          833
+        ]
+      }
+    },
+    {
+      "id": "enrollment-selection.courses.cleared.pixels",
+      "state": "enrollment-selection-courses-cleared",
+      "kind": "image_pixels",
+      "reference_image": "projects/xiaogj-web/private/enrollment-selection-reference-e2e-20261013/courses-select-clear/courses-select-clear-cleared.png",
+      "evidence": [
+        "projects/xiaogj-web/private/enrollment-selection-reference-e2e-20261013/courses-select-clear/courses-select-clear-cleared.png",
+        "projects/xiaogj-web/private/enrollment-selection-reference-e2e-20261013/courses-select-clear/courses-select-clear-cleared.ax.txt"
+      ],
+      "pixels": [
+        1324,
+        743
+      ],
+      "reference_capture": {
+        "content_rect_points": [
+          0,
+          90,
+          1324,
+          743
+        ],
+        "backing_scale": 2.0,
+        "window_points": [
+          1324,
+          833
+        ]
+      }
+    },
+    {
+      "id": "enrollment-selection.items.selected.pixels",
+      "state": "enrollment-selection-items-selected",
+      "kind": "image_pixels",
+      "reference_image": "projects/xiaogj-web/private/enrollment-selection-reference-e2e-20261013/items-select-clear/items-select-clear-selected.png",
+      "evidence": [
+        "projects/xiaogj-web/private/enrollment-selection-reference-e2e-20261013/items-select-clear/items-select-clear-selected.png",
+        "projects/xiaogj-web/private/enrollment-selection-reference-e2e-20261013/items-select-clear/items-select-clear-selected.ax.txt"
+      ],
+      "pixels": [
+        1324,
+        743
+      ],
+      "reference_capture": {
+        "content_rect_points": [
+          0,
+          90,
+          1324,
+          743
+        ],
+        "backing_scale": 2.0,
+        "window_points": [
+          1324,
+          833
+        ]
+      }
+    },
+    {
+      "id": "enrollment-selection.items.cleared.pixels",
+      "state": "enrollment-selection-items-cleared",
+      "kind": "image_pixels",
+      "reference_image": "projects/xiaogj-web/private/enrollment-selection-reference-e2e-20261013/items-select-clear/items-select-clear-cleared.png",
+      "evidence": [
+        "projects/xiaogj-web/private/enrollment-selection-reference-e2e-20261013/items-select-clear/items-select-clear-cleared.png",
+        "projects/xiaogj-web/private/enrollment-selection-reference-e2e-20261013/items-select-clear/items-select-clear-cleared.ax.txt"
+      ],
+      "pixels": [
+        1324,
+        743
+      ],
+      "reference_capture": {
+        "content_rect_points": [
+          0,
+          90,
+          1324,
+          743
+        ],
+        "backing_scale": 2.0,
+        "window_points": [
+          1324,
+          833
+        ]
+      }
+    },
+    {
+      "id": "enrollment-selection.remaining",
+      "state": "enrollment-selection-courses-selected",
+      "kind": "pending",
+      "description": "Confirm, billing, multi-selection, remove-one, select-all, pagination across selection and persistence remain unverified.",
+      "evidence": [
+        "projects/xiaogj-web/private/enrollment-selection-reference-e2e-20261013/courses-select-clear/courses-select-clear-selected.ax.txt"
+      ]
+    }
+  ]
+}
