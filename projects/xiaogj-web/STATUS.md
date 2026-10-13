@@ -16,11 +16,12 @@
 
 最后产品改动为e3462cb；后续收尾只添加预览、案例结论和框架修订，不继续复刻。92项仓库测试与构建通过只证明所覆盖的工具／编译要求，不证明整个产品完成。
 
-快速预览见 [README](README.md)。预览依赖本机忽略目录中的授权素材、独立候选账号、观察数据及数据库；新检出不能靠Git重建这些私有输入。预览是查看当前产品的入口，不能代替原版／候选共同E2E。
+快速预览见 [README](README.md)。预览依赖本机忽略目录中的授权素材、独立候选账号、观察数据及数据库；新检出不能靠Git重建这些私有输入。预览默认以正常速度播放本地可视E2E巡演，结束后允许手动查看；它不能代替原版／候选共同E2E。
 
 关键来源：
 
 - [学员与MySQL](evidence/2026-10-12-students.md)、[查询RSI](evidence/2026-10-12-safari-query-rsi.md)、[本地认证](evidence/2026-10-12-local-auth.md)
 - [目录查询](evidence/2026-10-13-enrollment-search-implementation.md)、[选择与清空](evidence/2026-10-13-enrollment-selection-rsi.md)
 - [确定入表](evidence/2026-10-13-enrollment-confirm-rsi.md)、[数量与金额](evidence/2026-10-13-enrollment-amounts-rsi.md)
+- [正常速度的可视 E2E 预览](evidence/2026-10-13-human-preview.md)
 - [框架迭代复盘](../../docs/XIAOGJ-LESSONS.md)；全部契约与运行入口由 [rebuild.json](rebuild.json)连接

@@ -64,7 +64,8 @@ def check_authenticated():
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--no-open', action='store_true', help='不自动打开浏览器')
+    parser.add_argument('--no-open', action='store_true', help='只启动服务，不自动播放巡演')
+    parser.add_argument('--serve-only', action='store_true', help='只打开网页供手动查看')
     parser.add_argument('--check', action='store_true', help='启动并验证登录与业务接口后退出')
     parser.add_argument('--skip-build', action='store_true', help='使用已有构建（默认重新构建）')
     args = parser.parse_args(argv)
@@ -103,9 +104,8 @@ def main(argv=None):
         if not npx:
             raise RuntimeError('需要安装 Node.js/npm，确保 npx 在 PATH 中。')
         pnpm = [npx, '--yes', '--package=node@24.18.0', '--package=pnpm@11.15.1', '--', 'pnpm']
-        if not (PROJECT / 'node_modules').is_dir():
-            print('安装锁定依赖…', flush=True)
-            subprocess.run(pnpm + ['--dir', str(PROJECT), 'install', '--frozen-lockfile'], check=True)
+        print('检查锁定依赖…', flush=True)
+        subprocess.run(pnpm + ['--dir', str(PROJECT), 'install', '--frozen-lockfile'], check=True)
         if not args.skip_build:
             print('构建本地复刻…', flush=True)
             subprocess.run(pnpm + ['--dir', str(PROJECT), 'build'], check=True)
@@ -145,7 +145,16 @@ def main(argv=None):
         if args.check:
             print('登录、首页、学员与报名目录接口检查通过。', flush=True)
             return 0
-        if not args.no_open:
+        if not args.no_open and not args.serve_only:
+            browser_env = os.environ.copy()
+            browser_env['PLAYWRIGHT_BROWSERS_PATH'] = str(PROJECT / 'private/playwright-browsers')
+            subprocess.run(pnpm + ['--dir', str(PROJECT), 'exec', 'playwright', 'install', 'chromium'],
+                           env=browser_env, check=True)
+            print('开始正常速度 E2E 巡演；画面中可暂停，结束后可手动查看。', flush=True)
+            result = subprocess.run([npx, '--yes', '--package=node@24.18.0', '--', 'node',
+                                     str(PROJECT / 'tools/showcase.mjs')], env=browser_env)
+            return result.returncode
+        if args.serve_only and not args.no_open:
             webbrowser.open(WEB)
         print('保持此终端开启；Ctrl+C 关闭本次启动的服务，已有服务保留。', flush=True)
         while True:
