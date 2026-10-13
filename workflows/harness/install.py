@@ -4,7 +4,6 @@ import json
 from pathlib import Path
 import shlex
 import sys
-import re
 import time
 import tomllib
 from capabilities.exploration.storage import save
@@ -22,8 +21,6 @@ def install(workspace,repo_root):
     package.mkdir(exist_ok=True)
     config_path=home/'config.toml'
     config=tomllib.loads(config_path.read_text()) if config_path.exists() else {}
-    if config.get('features',{}).get('hooks') is False:
-        raise ValueError('project explicitly disables hooks; enable them before installing')
     launcher=package/'mcp.sh'
     old=config.get('mcp_servers',{}).get(NAME)
     if old and (old.get('command')!=str(launcher) or old.get('args',[])!=[]):
@@ -39,26 +36,29 @@ def install(workspace,repo_root):
             target.write_bytes(path.read_bytes())
             target.chmod(0o600)
     state=package/'state'
-    for name,module in (('mcp','runtime.harness_mcp'),('hook','runtime.harness_hooks')):
-        target=package/(name+'.sh')
-        content='#!/bin/sh\ncd '+shlex.quote(str(repo))+' || exit 1\nexec '+shlex.quote(sys.executable)+' -m '+module+' --state-dir '+shlex.quote(str(state))+'\n'
-        target.write_text(content)
-        target.chmod(0o700)
-    command=shlex.quote(str(package/'hook.sh'))
-    for event in ('SessionStart','Stop','UserPromptSubmit'):
-        entries=hooks['hooks'].setdefault(event,[])
-        if not any(any(h.get('command')==command for h in entry.get('hooks',[])) for entry in entries):
-            entries.append({'hooks':[{'type':'command','command':command,'timeout':3,'statusMessage':'Exploration Lab'}]})
+    content='#!/bin/sh\ncd '+shlex.quote(str(repo))+' || exit 1\nexec '+shlex.quote(sys.executable)+' -m runtime.harness_mcp --state-dir '+shlex.quote(str(state))+'\n'
+    launcher.write_text(content)
+    launcher.chmod(0o700)
+    # Remove only commands belonging to this project's retired launcher.
+    retired=package/'hook.sh'
+    command=shlex.quote(str(retired))
+    changed=False
+    for event,entries in hooks['hooks'].items():
+        kept=[]
+        for entry in entries:
+            children=entry.get('hooks',[])
+            remaining=[h for h in children if h.get('command') not in (command,str(retired))]
+            if len(remaining)!=len(children):
+                changed=True
+                if remaining: kept.append({**entry,'hooks':remaining})
+            else: kept.append(entry)
+        hooks['hooks'][event]=kept
+    if changed: save(hook_path,hooks)
+    if retired.exists(): retired.unlink()
     # Native CLI rewriting can normalize unrelated server definitions. Append only
     # this owned TOML table, preserving every existing byte and semantic value.
     original=config_path.read_text() if config_path.exists() else ''
     updated=original
-    if config.get('features',{}).get('hooks') is not True:
-        if 'features' in config:
-            updated,count=re.subn(r'(?m)^(\[features\][^\n]*\n)',r'\1hooks = true\n',updated,count=1)
-            if count!=1: raise ValueError('unsupported features table formatting; no config changes applied')
-        else:
-            updated+='\n[features]\nhooks = true\n'
     if old is None:
         updated+='\n[mcp_servers.exploration-lab]\ncommand = '+json.dumps(str(launcher))+'\nargs = []\n'
     tomllib.loads(updated)
@@ -66,7 +66,6 @@ def install(workspace,repo_root):
     temporary.write_text(updated)
     temporary.chmod(config_path.stat().st_mode & 0o777 if config_path.exists() else 0o600)
     temporary.replace(config_path)
-    save(hook_path,hooks)
     after=tomllib.loads(config_path.read_text())
     for key,value in config.items():
         if key=='mcp_servers':
@@ -76,8 +75,8 @@ def install(workspace,repo_root):
             for feature,setting in value.items():
                 if after['features'].get(feature)!=setting: raise ValueError('unrelated feature changed')
         elif after.get(key)!=value: raise ValueError('unrelated Codex configuration changed')
-    return {'mcp_server':NAME,'registered':True,'scope':'project','events':['SessionStart','Stop','UserPromptSubmit'],
-            'hook_trust':'requires_native_review','state_directory':str(state),'backup_directory':str(backup)}
+    return {'mcp_server':NAME,'registered':True,'scope':'project','events':[],
+            'retired_hooks_removed':changed,'state_directory':str(state),'backup_directory':str(backup)}
 
 
 def main():

@@ -5,12 +5,11 @@ import threading
 import time
 import unittest
 from capabilities.exploration.harness import Harness
-from runtime.harness_hooks import handle
 from runtime.harness_mcp import invoke
 
 
 class ExplicitAdoption(unittest.TestCase):
-    def test_reopened_session_keeps_feedback_and_budget_and_old_hook_loses_scope(self):
+    def test_reopened_session_keeps_feedback_and_budget_and_transfers_scope(self):
         with tempfile.TemporaryDirectory() as directory:
             root=Path(directory)
             harness=Harness(root/'.codex/state')
@@ -28,9 +27,6 @@ class ExplicitAdoption(unittest.TestCase):
             self.assertEqual(continued['attempts'],failed['attempts'])
             self.assertEqual(continued['deadline'],failed['deadline'])
             self.assertEqual(continued['iterations'],1)
-            event={'cwd':directory,'session_id':'old','hook_event_name':'Stop','turn_id':'one'}
-            self.assertEqual(handle(reopened,event),{})
-            self.assertEqual(handle(reopened,{**event,'session_id':'new'})['decision'],'block')
 
     def test_active_cross_workspace_and_destination_tasks_cannot_be_taken_over(self):
         with tempfile.TemporaryDirectory() as directory:

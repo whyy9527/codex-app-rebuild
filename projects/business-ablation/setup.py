@@ -1,6 +1,4 @@
 """Prepare reference publisher or isolated arms; never copy the finished product."""
-import argparse
-import hashlib
 import json
 from pathlib import Path
 import shlex
@@ -27,7 +25,7 @@ def write(path, data):
 def register(control):
     worker = control / 'worker'
     install(worker, control)
-    for mode in ['mcp', 'hook']:
+    for mode in ['mcp']:
         path = worker / '.codex/exploration-lab' / (mode + '.sh')
         path.write_text('#!/bin/sh\nexec ' + shlex.quote(sys.executable) + ' ' + shlex.quote(str(control / 'experiment-runtime.py')) + ' ' + mode + '\n')
         path.chmod(0o700)
@@ -118,13 +116,4 @@ def clone(master, arm):
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--publisher', action='store_true')
-    parser.add_argument('--master')
-    parser.add_argument('--arm', choices=ARMS)
-    parser.add_argument('--out', required=True)
-    args = parser.parse_args()
-    control = publisher() if args.publisher else clone(Path(args.master).resolve(), args.arm)
-    files = {str(p.relative_to(control)): hashlib.sha256(p.read_bytes()).hexdigest() for p in control.rglob('*') if p.is_file() and 'node_modules' not in p.parts and '.codex' not in p.parts}
-    write(Path(args.out), {'control': str(control), 'worker': str(control / 'worker'), 'product_baseline': BASELINE, 'arm': args.arm, 'files': files})
-    print(json.dumps({'control': str(control), 'worker': str(control / 'worker'), 'files': len(files)}))
+    raise SystemExit('Historical Stop ablation is retired. Replay the experiment from its recorded Git revision; current code only supports manual verifier checks.')

@@ -57,19 +57,6 @@ class Controls(unittest.TestCase):
         self.assertEqual(full, stripped)
         self.assertIn('current actionable failure', stripped['feedback']['output'])
 
-    def test_no_stop_keeps_session_start_but_never_consumes_continuation(self):
-        with tempfile.TemporaryDirectory() as directory:
-            h = Harness(Path(directory) / 'state')
-            state = h.start(workspace=directory, session_id='s', objective='test', verifier=['python3', '-c', 'raise SystemExit(1)'])
-            payload = {'hook_event_name': 'Stop', 'cwd': directory, 'session_id': 's', 'turn_id': 't'}
-            with patch.object(runtime, 'settings', return_value={'automatic_stop_feedback': False}):
-                self.assertEqual(runtime.hook(h, payload), {})
-                self.assertEqual(h.read(state['id'])['hook_events'], [])
-                start = runtime.hook(h, dict(payload, hook_event_name='SessionStart'))
-                self.assertIn('additionalContext', start['hookSpecificOutput'])
-            with patch.object(runtime, 'settings', return_value={'automatic_stop_feedback': True}):
-                self.assertEqual(runtime.hook(h, payload)['decision'], 'block')
-
     def test_registered_task_cannot_reset_budget_or_change_verifier(self):
         with tempfile.TemporaryDirectory() as directory, patch.object(runtime, 'ROOT', Path(directory).resolve()), patch.object(runtime, 'settings', return_value={}), patch.object(runtime, 'check_fixed'):
             root = Path(directory).resolve();worker = root / 'worker';worker.mkdir()

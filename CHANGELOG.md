@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Remove the legacy Stop Hook and lifecycle adapter; native Goals own continuation. Keep optional manual MCP verification and migrate owned project Hook registrations without changing other configuration.
+- Make the main README English, add `README.zh-CN.md`, and update GitHub discovery metadata.
+
 ## 0.2.0 — 2026-10-13
 
 - 新增项目入口 `preflight`，校验真实RSI池、同池策略比较、选中策略及实际再次部署；将缺口接入原生Goal参数。

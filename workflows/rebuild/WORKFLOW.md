@@ -7,7 +7,7 @@
 1. 从用户要求确认原版入口、目标平台和一致性要求。已有项目读取 `rebuild.json`；新项目按 [项目入口](PROJECT.md) 建立一份配置，尚未探索的输入可以暂不填写。
 2. 用 `project preflight` 检查 RSI 与共同 E2E 的方法接线，再用 `project status` 读取模具、历史与入口；检查结果所对应的源码／二进制。缺口先进入本轮行动，历史结果仅用于选择下一步，不等于当前通过。
 3. 用户明确要求创建 Goal 时运行 `project goal`，把输出 JSON 交给原生 `create_goal`。已有同目标 Goal 时读取并接续；目标改变先按宿主能力处理，不另写当前 GOAL 文件或重复启动任务。
-4. 用户没有要求创建 Goal 时仍可按本流程完成已授权工作。原生 Goal 模式不安装 Harness、不启 `exploration_start` 或第二套 Stop 续跑。
+4. 用户没有要求创建 Goal 时仍可按本流程完成已授权工作。原生 Goal 模式不安装 Harness、不启 `exploration_start`；旧 Stop Hook 已删除。
 
 “开始／继续复刻”默认包含真实 RSI 链路，不等用户另行要求接入。第一条业务探索探针前先确定它使用的固定协议与 collect 入口；若正在修登录、状态恢复或观察器，明确记录为准备，准备可用后立即从真实 collect 开始。不能先持续手动探索，再将已有结果补写成 RSI 历史；后续策略比较与实际再部署按下文接续。
 
@@ -81,7 +81,7 @@ python3 -m workflows.rebuild.project run --workspace <工作区> --project <rebu
 
 用户明确停止后结束相应工作。真正需要外部输入时遵循宿主交接／blocked／恢复规则，不靠自动续跑猜测授权。已结束案例只用于提炼经验，除非用户明确要求重新开始。
 
-旧 Harness 与固定批次 Pipeline 保留为可选兼容工具，使用边界见 [兼容说明](../harness/WORKFLOW.md)。不把旧阶段配额或第二套续跑引入默认原生 Goal 路径。
+旧 Stop Hook 已删除。手动 MCP 验证工具与固定批次 Pipeline 保留给显式调用，使用边界见 [兼容说明](../harness/WORKFLOW.md)；它们不负责自动续跑，不把旧阶段配额引入原生 Goal 路径。
 
 ## 完成后的优化
 

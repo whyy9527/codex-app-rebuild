@@ -21,7 +21,8 @@ class FrameworkPackage(unittest.TestCase):
             source.mkdir()
             git(source, 'init', '-q')
             samples = {'pyproject.toml': '[project]\nversion = "0.2.0"\n',
-                       'README.md': '# Fixture framework\n',
+                       'README.md': '# Fixture framework\n[中文](README.zh-CN.md)\n## Case studies\n[Case](projects/xiaogj-web/README.md)\n## Documentation and verification\n',
+                       'README.zh-CN.md': '# 框架\n[English](README.md)\n## Duolingo 实践\n[案例](projects/duolingo-web/README.md)\n## 文档与验证\n',
                        'runtime/dream.py': '# committed runtime\n',
                        'capabilities/rebuild/frontend.py': '# committed comparator\n',
                        'projects/dream-rsi-check/worker.py': '# synthetic fixture\n'}
@@ -41,5 +42,9 @@ class FrameworkPackage(unittest.TestCase):
                     self.assertEqual((output / name).read_bytes(), git(source, 'show', 'HEAD:' + name))
             self.assertTrue(all(name.startswith('projects/dream-rsi-check/') for name in manifest['files'] if name.startswith('projects/')))
             self.assertNotIn('projects/xiaogj-web', (output / 'README.md').read_text())
+            self.assertIn('## Distribution scope', (output / 'README.md').read_text())
+            self.assertIn('[中文](README.zh-CN.md)', (output / 'README.md').read_text())
+            self.assertIn('## 发行范围', (output / 'README.zh-CN.md').read_text())
+            self.assertNotIn('projects/duolingo-web/', (output / 'README.zh-CN.md').read_text())
             with self.assertRaisesRegex(ValueError, 'new output'):
                 export(source, 'HEAD', output, 'whyy9527/codex-app-rebuild')

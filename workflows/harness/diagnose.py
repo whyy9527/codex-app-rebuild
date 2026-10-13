@@ -15,8 +15,8 @@ def diagnose(workspace):
         server=next((s for s in servers if s['name']=='exploration-lab'),None)
         return {'mcp_registered':server is not None,'tools':sorted(server['tools']) if server else [],
                 'native_hooks':own,'hook_errors':sum(len(e['errors']) for e in inventory['data']),
-                'all_hooks_trusted':bool(own) and all(h['trustStatus'] in ('trusted','managed') for h in own),
-                'automatic_stop_continuation':'not_yet_measured','model_calls':0}
+                'retired_hooks_present':bool(own),
+                'automatic_stop_continuation':'removed','model_calls':0}
 
 
 def main():

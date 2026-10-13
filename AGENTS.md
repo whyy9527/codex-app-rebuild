@@ -17,7 +17,7 @@
 
 ## 职责与文档
 
-`capabilities/` 拥有断言、差异和探索历史工具，`runtime/` 拥有命令及宿主适配，`workflows/` 拥有方法和项目入口，`projects/` 拥有案例与证据。Codex 负责决策和编辑；项目 CLI 不创建第二套任务状态机。原生 Goal 与 Stop Hook/Harness 不同时续跑同一任务。
+`capabilities/` 拥有断言、差异和探索历史工具，`runtime/` 拥有命令及宿主适配，`workflows/` 拥有方法和项目入口，`projects/` 拥有案例与证据。Codex 负责决策和编辑；项目 CLI 不创建第二套任务状态机。持续执行由原生 Goal 拥有；旧 Stop Hook 已删除，手动 MCP 验证工具不自动续跑。
 
 README 只保留定位、开始使用和文档入口；哲学写原则，架构写当前职责，Roadmap 写未完成成果。批次进展与失败放案例证据／历史；项目当前契约和运行命令由 `rebuild.json` 指向，不在多个主文档手工维护版本号。
 
@@ -27,4 +27,4 @@ Dream-RSI 与 Cordis 原论文及历史实验由 `docs/RESEARCH.md` 维护。Duo
 
 Python 从仓库根用 `python3 -m ...`。工具改动运行 `python3 -m unittest discover -v` 和 `git diff --check`；Swift 改动另运行对应构建和业务检查。精确暂存任务文件，保留无关改动；用户授权实施后完成相称验证、提交和推送。发布内容遵循 `LICENSE` 与 `THIRD_PARTY_NOTICES.md`；发布、部署和仓库可见性变更按用户明确授权执行。
 
-不提交凭证、签名 URL、本机绝对路径、私有媒体、缓存或模型权重。只录明确拥有的应用，不录环境麦克风或其他应用。旧 Hook 只安装到显式目标项目；跨会话选择和原生 Goal 的停止／恢复按用户授权及宿主规则执行。
+不提交凭证、签名 URL、本机绝对路径、私有媒体、缓存或模型权重。只录明确拥有的应用，不录环境麦克风或其他应用。旧 Hook 注册仅在显式目标项目中清理；跨会话选择和原生 Goal 的停止／恢复按用户授权及宿主规则执行。

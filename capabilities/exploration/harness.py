@@ -1,4 +1,4 @@
-"""Local Codex task state; hooks and tools share the same owner."""
+"""Bounded state for the optional manual MCP verifier; no automatic continuation."""
 from contextlib import contextmanager
 import fcntl
 import json
@@ -71,7 +71,7 @@ class Harness:
             state={'id':uuid.uuid4().hex,'workspace':str(root),'session_id':session_id,'objective':objective,
                    'verifier':verifier,'verifier_digest':digest(verifier),'phase':'ready','iterations':0,
                    'max_iterations':max_iterations,'max_failures':max_failures,'failures':0,
-                   'deadline':time.time()+max_seconds,'attempts':[],'last_error':None,'hook_events':[]}
+                   'deadline':time.time()+max_seconds,'attempts':[],'last_error':None}
             state.update(acceptance_paths=paths,acceptance_files=acceptance,verify_seconds=verify_seconds)
             self.write(state)
             save(self.scope(str(root),session_id),{'id':state['id']})
@@ -141,31 +141,6 @@ class Harness:
         # Existing paused tasks retain the exact old acceptance contract.
         return {k:v for k,v in manifest(state['workspace']).items() if k.startswith('tests/') and k.endswith('.py')}
 
-    def continuation(self,task_id,turn_id):
-        if not isinstance(turn_id,str) or not turn_id: return False
-        with self.lock():
-            state=self.read(task_id)
-            if state['phase'] not in ('ready','working'): return False
-            marker=[state['iterations'],sum(a['evaluation'] is not None for a in state['attempts']),state['phase']]
-            # A native hook continuation can retain its host turn ID. Deduplicate
-            # the checkpoint, not the entire turn, while retaining old receipts.
-            legacy_key=digest([state['session_id'],turn_id,'Stop'])
-            key=digest([state['session_id'],turn_id,'Stop',marker])
-            if key in state['hook_events'] or (legacy_key in state['hook_events'] and state.get('last_hook_progress')==marker):
-                return False
-            state['hook_events'].append(key)
-            if time.time()>=state['deadline'] or len(state['hook_events'])>state['max_iterations']*2+1:
-                state.update(phase='budget_exhausted',last_error='continuation or wall budget exhausted')
-                self.write(state)
-                return False
-            if state.get('last_hook_progress')==marker:
-                state.update(phase='blocked',last_error='no measured progress after continuation')
-                self.write(state)
-                return False
-            state['last_hook_progress']=marker
-            self.write(state)
-            return True
-
     def pause(self,task_id,reason):
         if not isinstance(reason,str) or not 1<=len(reason)<=1000: raise ValueError('pause reason required')
         with self.lock():
@@ -193,7 +168,6 @@ class Harness:
             else:
                 state['phase']='working' if unfinished else 'ready'
                 state['last_error']=None
-                state['last_hook_progress']=None
             return self.write(state)
 
     def adopt(self,task_id,workspace,session_id):

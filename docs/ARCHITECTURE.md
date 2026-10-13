@@ -43,9 +43,9 @@
 
 ## 兼容运行链
 
-旧 `capabilities/exploration/harness.py`、MCP 与短 Hook 管理有界命令尝试／暂停／预算；旧 `capabilities/rebuild/pipeline.py` 管理固定业务批次的阶段与回执。它们保留已有测试和历史宿主证据，供明确需要该模式的环境使用。
+`capabilities/exploration/harness.py` 与 MCP 仅管理手动触发的有界验证尝试／暂停／预算；旧 Hook 适配及自动续跑状态已删除。旧 `capabilities/rebuild/pipeline.py` 管理固定业务批次的阶段与回执。它们保留已有测试和历史宿主证据，供明确需要该模式的环境使用。
 
-原生 Goal 模式不调用安装器或 `exploration_start`，不同时由 Stop Hook 续跑同一任务。旧 Pipeline 的 complete 仅表示其有界业务批次完成，不能作为完整复刻 Goal 的 verifier。当前整理没有改写旧状态机或声称已经完成全部迁移；兼容用法见 [Harness](../workflows/harness/WORKFLOW.md)。
+原生 Goal 模式不调用安装器或 `exploration_start`。安装器只注册 MCP，并清理显式目标项目中旧安装器拥有的 Hook；不启用 Hook 功能。历史宿主与消融证据保留，复跑需使用记录版本。旧 Pipeline 的 complete 仅表示有界业务批次完成，不能作为完整复刻 Goal 的 verifier；手动用法见 [MCP 验证工具](../workflows/harness/WORKFLOW.md)。
 
 ## 案例实现
 

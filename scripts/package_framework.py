@@ -7,7 +7,7 @@ import re
 import subprocess
 import tomllib
 
-ROOT_FILES = {'README.md', 'AGENTS.md', 'CHANGELOG.md', 'THIRD_PARTY_NOTICES.md',
+ROOT_FILES = {'README.md', 'README.zh-CN.md', 'AGENTS.md', 'CHANGELOG.md', 'THIRD_PARTY_NOTICES.md',
               'LICENSE', '.gitignore', 'pyproject.toml', 'tests/__init__.py'}
 CASE_TESTS = {'test_enrollment_choices.py', 'test_exploration_replay.py',
               'test_guide_replay04.py', 'test_exploration_tree.py'}
@@ -40,16 +40,21 @@ def git(root, *argv):
 
 
 def adapt(name, text, source):
-    if name == 'README.md':
-        start, end = text.find('## Duolingo 实践'), text.find('## 文档与验证')
+    if name in ('README.md', 'README.zh-CN.md'):
+        english=name=='README.md'
+        start=text.find('## Case studies' if english else '## Duolingo 实践')
+        end=text.find('## Documentation and verification' if english else '## 文档与验证')
         if start >= 0 and end > start:
-            text = text[:start] + ('## 发行范围\n\n本发行版不包含Duolingo或校管家App、原版素材与私有历史。'
-                    '`projects/`保留合成的Dream-RSI协议夹具，用于独立验证真实发现／评价、全池回放和再次部署。'
-                    '新App按项目入口建立自己的配置。案例复盘见[校管家](docs/XIAOGJ-LESSONS.md)及'
-                    '[Duolingo](docs/DUOLINGO-LESSONS.md)。\n\n') + text[end:]
-        text = text.replace('projects/duolingo-web/rebuild.json', 'projects/my-app/rebuild.json')
-        text += ('\n框架来源和逐文件摘要见 `FRAMEWORK-SOURCE.json`。原始源码：'
-                 f'[{source}]({source})。\n')
+            scope=('## Distribution scope\n\nThis framework snapshot excludes the Duolingo and Xiaoguanjia apps, reference assets, and private history. '
+                   '`projects/` includes only the synthetic Dream-RSI protocol fixture. Create your own app configuration with the project entry point. '
+                   'See the [Xiaoguanjia](docs/XIAOGJ-LESSONS.md) and [Duolingo](docs/DUOLINGO-LESSONS.md) lessons.\n\n' if english else
+                   '## 发行范围\n\n本发行版不包含Duolingo或校管家App、原版素材与私有历史。'
+                   '`projects/`保留合成的Dream-RSI协议夹具；新App按项目入口建立自己的配置。'
+                   '案例复盘见[校管家](docs/XIAOGJ-LESSONS.md)及[Duolingo](docs/DUOLINGO-LESSONS.md)。\n\n')
+            text=text[:start]+scope+text[end:]
+        text=text.replace('projects/duolingo-web/rebuild.json', 'projects/my-app/rebuild.json')
+        text+=('\nFramework provenance and file digests: `FRAMEWORK-SOURCE.json`. Source: '
+               if english else '\n框架来源和逐文件摘要见 `FRAMEWORK-SOURCE.json`。原始源码：')+f'[{source}]({source})'+('.\n' if english else '。\n')
     elif name == 'CHANGELOG.md':
         text = text.replace('- 保存校管家收尾结论、普通速度可视E2E巡演和可重新生成的ECharts探索树；私有数据、素材和历史不随代码提交。',
                             '- 源仓库保留校管家案例收尾、可视E2E巡演与探索树；本框架发行包仅附带复盘和方法修订。')

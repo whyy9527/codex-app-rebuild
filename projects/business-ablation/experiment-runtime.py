@@ -1,14 +1,13 @@
-"""Ablate consumer projections/Stop only; preserve the same Harness semantics."""
+"""Manual consumer projection checks. Historical Stop ablations require their frozen revision."""
 import argparse
 import json
 from pathlib import Path
 import sys
-import time
 
 ROOT = Path(__file__).resolve().parent
 sys.path.insert(0, str(ROOT))
 from capabilities.exploration.harness import Harness
-from runtime import harness_hooks, harness_mcp
+from runtime import harness_mcp
 from controller import check_fixed, progress, settings
 
 BASE_SUMMARY = harness_mcp.summary
@@ -44,35 +43,13 @@ class RegisteredHarness(Harness):
         return state
 
 
-def hook(harness, payload):
-    if payload.get('hook_event_name') == 'Stop' and not settings()['automatic_stop_feedback']:
-        return {}
-    return harness_hooks.handle(harness, payload)
-
-
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('mode', choices=['mcp', 'hook'])
-    args = parser.parse_args()
+    parser.add_argument('mode', choices=['mcp'])
+    parser.parse_args()
     harness_mcp.summary = summary
-    harness_hooks.summary = summary
     harness = RegisteredHarness(ROOT / 'state')
-    if args.mode == 'mcp':
-        harness_mcp.serve(harness, sys.stdin, sys.stdout)
-    else:
-        try:
-            raw = sys.stdin.read(65537)
-            if len(raw) > 65536:
-                raise ValueError('Hook input too large')
-            payload = json.loads(raw)
-            result = hook(harness, payload)
-            with (ROOT / 'state/hook-events.jsonl').open('a') as stream:
-                stream.write(json.dumps({'event': payload.get('hook_event_name'), 'session_id': payload.get('session_id'),
-                                         'turn_id': payload.get('turn_id'), 'decision': result.get('decision'),
-                                         'output_fields': sorted(result), 'time': time.time()}) + '\n')
-        except Exception:
-            result = {}
-        print(json.dumps(result))
+    harness_mcp.serve(harness, sys.stdin, sys.stdout)
 
 
 if __name__ == '__main__':
