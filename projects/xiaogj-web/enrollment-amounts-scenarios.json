@@ -1,0 +1,33 @@
+{
+  "baseline": {
+    "added": []
+  },
+  "cases": [
+    {
+      "id": "quantity-two",
+      "method": "courses",
+      "quantity": "2",
+      "discount": null,
+      "hypothesis": "Typing quantity two and blurring recalculates unsaved course amount.",
+      "expectedResult": {
+        "formula": "price_times_quantity_minus_discount",
+        "quantity": "2",
+        "discount": "0",
+        "inputs": 3
+      }
+    },
+    {
+      "id": "discount-ten",
+      "method": "courses",
+      "quantity": "2",
+      "discount": "10",
+      "hypothesis": "Typing discount ten after quantity two changes unsaved amount.",
+      "expectedResult": {
+        "formula": "price_times_quantity_minus_discount",
+        "quantity": "2",
+        "discount": "10.00",
+        "inputs": 3
+      }
+    }
+  ]
+}

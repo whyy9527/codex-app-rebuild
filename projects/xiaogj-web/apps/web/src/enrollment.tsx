@@ -8,6 +8,10 @@ import Decimal from "decimal.js";
 import { EnrollmentChooser } from "./enrollment-chooser";
 
 const client = initClient(api, { baseUrl: "" });
+const formatMoney = (value: Decimal) => {
+  const [whole, fraction] = value.toFixed(2).split(".");
+  return whole.replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "." + fraction;
+};
 const headers = ["项目名称", "收费规格", "有效期至", "原单价", "数量", "单位", "已领取", "优惠方案", "优惠金额", "金额", "赠送数量", "收费类型", "操作"];
 
 function Field({ label, required, children }: { label: string; required?: boolean; children: ReactNode }) {
@@ -68,8 +72,8 @@ export function EnrollmentPage() {
               <td></td><td>{course && <button onClick={unavailable}>不限 <ChevronDown size={13} /></button>}</td>
               <td>{price.toFixed(2)}</td><td>{stored ? "1" : <div className="charge-quantity"><button aria-label="减少数量" onClick={() => updateCharge(index, "quantity", Decimal.max(0, numeric(charge.quantity).minus(1)).toString())}>−</button><input aria-label="数量" value={charge.quantity} onChange={event => updateCharge(index, "quantity", event.target.value)} /><button aria-label="增加数量" onClick={() => updateCharge(index, "quantity", numeric(charge.quantity).plus(1).toString())}>+</button></div>}</td>
               <td>{unit}</td><td>{stored && <input type="checkbox" aria-label="已领取物品" onChange={unavailable} />}</td><td>{!stored && <button className="charge-discount" aria-label="优惠方案" onClick={unavailable}>⌄</button>}</td>
-              <td>{!stored && <input aria-label="优惠金额" value={charge.discount} onChange={event => updateCharge(index, "discount", event.target.value)} />}</td>
-              <td>{stored ? "" : amount.toFixed(2)}</td><td>{!stored && <input aria-label="赠送数量" placeholder={unit} value={charge.gift} onChange={event => updateCharge(index, "gift", event.target.value)} />}</td><td>新增</td>
+              <td>{!stored && <input aria-label="优惠金额" value={charge.discount} onBlur={() => { if (/^\d+(?:\.\d*)?$/.test(charge.discount)) updateCharge(index, "discount", new Decimal(charge.discount).toFixed(2)); }} onChange={event => updateCharge(index, "discount", event.target.value)} />}</td>
+              <td>{stored ? "" : formatMoney(amount)}</td><td>{!stored && <input aria-label="赠送数量" placeholder={unit} value={charge.gift} onChange={event => updateCharge(index, "gift", event.target.value)} />}</td><td>新增</td>
               <td><button aria-label="移除收费项目" onClick={() => setCharges(current => current.filter((_, i) => i !== index))}>×</button></td>
             </tr>;
           })}</tbody>
