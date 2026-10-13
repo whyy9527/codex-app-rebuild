@@ -95,7 +95,10 @@
     "enrollment_amounts_rsi_evaluation": "projects/xiaogj-web/private/rsi-enrollment-amounts-revision-20261013/evaluation.json",
     "enrollment_amounts_scenarios": "projects/xiaogj-web/enrollment-amounts-scenarios.json",
     "enrollment_amounts_frontend_contract": "projects/xiaogj-web/enrollment-amounts-frontend-contract.json",
-    "enrollment_amounts_evidence": "projects/xiaogj-web/evidence/2026-10-13-enrollment-amounts-rsi.md"
+    "enrollment_amounts_evidence": "projects/xiaogj-web/evidence/2026-10-13-enrollment-amounts-rsi.md",
+    "case_status": "projects/xiaogj-web/STATUS.md",
+    "case_lessons": "docs/XIAOGJ-LESSONS.md",
+    "preview_handoff": "projects/xiaogj-web/evidence/2026-10-13-preview-handoff.md"
   },
   "commands": {
     "build": [
@@ -1212,6 +1215,18 @@
       "projects/xiaogj-web/tools/rsi_policy_v1.py",
       "--out",
       "{out}"
+    ],
+    "preview": [
+      "python3",
+      "-m",
+      "projects.xiaogj-web.tools.preview"
+    ],
+    "check_preview": [
+      "python3",
+      "-m",
+      "projects.xiaogj-web.tools.preview",
+      "--check",
+      "--no-open"
     ]
   }
 }

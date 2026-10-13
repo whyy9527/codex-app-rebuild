@@ -30,6 +30,10 @@ python3 -m workflows.rebuild.project run --workspace . --project projects/duolin
 
 `--out` 使用尚不存在的路径。原版与候选分别准备状态，线上刷新不等于服务端重置。
 
+## 校管家 Web 实践
+
+[校管家 TMS](projects/xiaogj-web/README.md)采用指定Web技术栈，已提供本地预览入口。试验由用户结束，尚未完整1:1；见[案例结论](projects/xiaogj-web/STATUS.md)和[框架复盘](docs/XIAOGJ-LESSONS.md)。查看或预览不会恢复原版探索。
+
 ## 文档与验证
 
 - [Workflow](workflows/rebuild/WORKFLOW.md)：Codex 的执行方法与 Goal 调用。
