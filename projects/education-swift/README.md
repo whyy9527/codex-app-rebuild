@@ -32,4 +32,4 @@ swift run --package-path projects/education-swift LearningCoreChecks
 
 课程实例来自实际观察，不表示完整服务端行为；可运行、核心检查通过、原资源播放或角色能动，都不单独证明复刻一致。可选课程／展示元数据保持兼容，新的基座接口应从实际消费者提取，避免把单次画面常数推广成业务规则。
 
-结束时已有未验证的翻译提示交互修改仍在工作区，未由本轮仓库改进构建验收。历史技术记录与旧完整 README 见 [历史索引](../../docs/history/README.md)。
+结束时遗留的未完成翻译提示交互修改已按用户授权撤销，处理记录见 [案例状态](../duolingo-web/STATUS.md)。历史技术记录与旧完整 README 见 [历史索引](../../docs/history/README.md)。

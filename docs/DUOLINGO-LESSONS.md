@@ -29,7 +29,7 @@
 - [第四课与截图裁剪反例](../projects/duolingo-web/evidence/english-unit12-lesson4-v1/README.md)、[共享模具修复](../projects/duolingo-web/evidence/english-frontend-repair-v80/README.md)：完整旅程、非交互元素和严格失败。
 - [前端反馈实验](../projects/frontend-quality-ablation/REPORT.md)：控件指标饱和、整图不同和固定样本拟合。
 
-这些证据支持上述工程改进；没有把未完成的整站复刻改写为成功，也没有改写旧实验结果。上一轮尚未构建验证的提示词交互修改继续留在工作区，不列入已验证经验。
+这些证据支持上述工程改进；没有把未完成的整站复刻改写为成功，也没有改写旧实验结果。未完成的提示词交互修改及对应临时采集文件已按用户授权清理，处理记录见 [案例状态](../projects/duolingo-web/STATUS.md)。
 
 ## 本次落地范围
 

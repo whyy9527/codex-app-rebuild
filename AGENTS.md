@@ -4,7 +4,7 @@
 
 本仓库运行在 Codex 中：RSI 改进探索，E2E 是复刻模具，原生 Goal 管理目标及持续执行。用户要求重建 App 时读取 `workflows/rebuild/WORKFLOW.md`；已有案例读取其 `rebuild.json`。该工作流拥有执行方法，项目配置拥有目标与入口，当前原生 Goal 拥有运行完成判定，不另写 GOAL.md 或镜像任务状态。
 
-先遵循用户当前要求。用户结束案例试验后，只在授权范围内整理经验与仓库，不自动恢复案例探索。Duolingo 与校管家已结束，状态分别见 `projects/duolingo-web/STATUS.md`、`projects/xiaogj-web/STATUS.md`；现有未验证 Swift 改动不能作为已交付结果，也不能混入无关仓库修改。
+先遵循用户当前要求。用户结束案例试验后，只在授权范围内整理经验与仓库，不自动恢复案例探索。Duolingo 与校管家已结束，状态分别见 `projects/duolingo-web/STATUS.md`、`projects/xiaogj-web/STATUS.md`。
 
 ## 探索与模具
 
