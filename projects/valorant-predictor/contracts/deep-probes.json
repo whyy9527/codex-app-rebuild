@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "source_version": "43482999941120-v26695",
+  "preparation": "Fresh isolated context; keyboard pause, focus main, actual scroll origin. No remote state reset.",
+  "probes": [
+    {"id":"schedule", "kind":"channel_tab", "tab":"schedule", "label":"赛程赛果"},
+    {"id":"bracket", "kind":"channel_tab", "tab":"bracket", "label":"淘汰赛"},
+    {"id":"players", "kind":"channel_tab", "tab":"players", "label":"选手榜"},
+    {"id":"news", "kind":"channel_tab", "tab":"news", "label":"剧情与战报"},
+    {"id":"preseason", "kind":"channel_tab", "tab":"preseason", "label":"赛前评估"},
+    {"id":"process", "kind":"channel_tab", "tab":"process", "label":"预测过程"},
+    {"id":"custom-ranking", "kind":"pickem_ranking", "label":"自定义实力排名"},
+    {"id":"match-review", "kind":"schedule_review", "tab":"schedule", "label":"赛程中的比赛复盘入口"}
+  ]
+}

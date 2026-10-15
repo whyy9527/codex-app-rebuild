@@ -29,3 +29,20 @@ Duolingo 案例是已结束、未达到 1:1 的独立技术实践。Duolingo 名
 锁定版本由案例的依赖清单管理，具体版本随附的许可与通知仍然适用。Dream-RSI、Cordis 的论文及实现来源保留在 [研究说明](docs/RESEARCH.md)；本仓库对它们的引用不改变原作者的权利，也不表示完整复现其算法。
 
 浏览器采集的逐步证据与资源归属设计参考 [REA](https://github.com/morluto/rea)（[MIT](https://github.com/morluto/rea/blob/main/LICENSE)）。本仓库的 Python 实现独立编写，未包含 REA 源码或运行依赖；具体对应与差异由研究说明维护。框架包不捆绑 Playwright 或浏览器二进制，安装者使用依赖随附的上游许可。
+
+## VALORANT 预测器案例
+
+`projects/valorant-predictor/` 独立实现用户指定参考站的体验。Riot 赛事事实、
+战队标志与官方英雄图片 URL 的来源及权利范围见该项目的
+[素材说明](projects/valorant-predictor/ASSET_NOTICES.md)。
+
+该应用随软件捆绑未经修改的 OPPO Sans 4.0 字体，并在界面显著标注使用情况。
+字体来自 [ColorOS 官方发布页](https://www.coloros.com/article/A00000074/)，
+其原始授权协议保留在
+[OPPO Sans 授权说明](projects/valorant-predictor/assets/fonts/OPPO-Sans-LICENSE.txt)。
+该字体不属于根目录 MIT 授权；原始文件摘要由案例记录，不提供改编、子集或格式转换版。
+
+The VALORANT predictor also uses unmodified MiSans (Xiaomi Inc.; bundled with the application
+under its font license), Anton and JetBrains Mono (SIL OFL 1.1). Full licenses and copyright
+notices are retained in `projects/valorant-predictor/assets/fonts/`; see the case's
+`ASSET_NOTICES.md` and `data/font-source.json` for official sources and file hashes.

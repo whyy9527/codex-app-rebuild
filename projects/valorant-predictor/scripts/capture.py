@@ -9,6 +9,7 @@ import json
 import os
 from pathlib import Path
 import sys
+import time
 
 # Allow direct CLI execution while keeping the shared framework as the owner.
 ROOT = Path(__file__).resolve().parents[3]
@@ -64,18 +65,20 @@ def capture_case(workspace, route, out, candidate=None, width=1440, height=1000)
             surface.wait_for_function('() => [...document.images].filter(i => {const r=i.getBoundingClientRect();return r.top < innerHeight && r.bottom > 0 && r.width > 0 && r.height > 0}).every(i => i.complete && i.naturalWidth > 0)')
             if route == '/':
                 pause = surface.locator('button[title="暂停 (空格)"]')
-                if pause.count(): pause.click()
-            surface.locator('#main-content h1').click()
+                if pause.count():
+                    surface.locator('.studio' if candidate else '.studio2').press('Space')
+            surface.locator('#main-content').press('Escape')
             surface.evaluate('window.scrollTo(0,0)')
-            page.mouse.move(-1,-1) if candidate else page.mouse.move(width-1,height/2)
             if not candidate:
                 clock = surface.locator('a.live-badge').inner_text()
                 surface.wait_for_function('previous => document.querySelector("a.live-badge")?.textContent.trim() !== previous', arg=clock)
             step = {'id': route.strip('/') or 'home', 'action': {'type': 'observe'},
                     'ready': {'selector': '#main-content h1', 'state': 'visible'},
                     'capture': ['dom', 'text', 'accessibility', 'screenshot']}
+            started = time.monotonic()
             record = collect_step(surface, workspace, output, 0, step, {'title': '#main-content h1'})
-            record['elapsed_seconds'] = 0
+            record['elapsed_seconds'] = time.monotonic() - started
+            record['preparation_method'] = 'Keyboard pause when playing; Escape focuses main; explicit scroll to origin; original capture starts after a real countdown tick. Pointer never enters content.'
             record['receipt_path'] = (output / '0000-step.json').relative_to(workspace).as_posix()
             result['steps'].append(record)
             result['browser_version'] = browser.version

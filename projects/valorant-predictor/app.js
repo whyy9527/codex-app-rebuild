@@ -2,11 +2,15 @@ import {
   mapProbability,
   seriesDistribution,
   seriesProbability,
+  remainingSeriesProbability,
   teamStats,
   baselineProbability,
   validScore,
   validatePick,
   simulateSeries,
+  validRanking,
+  rankingProbability,
+  moveRanking,
 } from "./engine.mjs";
 const $ = (s) => document.querySelector(s),
   main = $("#main-content");
@@ -50,18 +54,24 @@ let event,
   assets,
   forecast,
   forecasts = {},
+  modelManifest = {},
   selected = store.get("channel", "codex"),
   tab = "live",
   current = 0,
   playing = false,
   speed = 1,
-  muted = store.get("muted", true),
+  muted = store.get("muted", false),
   scenario,
   simFrames = [],
+  simSeries = [],
   simSeed = 20261017,
   playerTimer,
   toastTimer,
   audio;
+let customRanking = store.get("ranking", null),
+  personalReference = store.get("reference", "codex"),
+  rankingDraft = null,
+  rankingSelection = null;
 let pick = store.get("pick", null),
   draft = { lfWinner: null, lfScore: null, champion: null, gfScore: null },
   pageRoute = "/";
@@ -71,20 +81,40 @@ function notify(text) {
   clearTimeout(toastTimer);
   toastTimer = setTimeout(() => $("#toast").classList.remove("show"), 3000);
 }
-function sound() {
+function sound(kind = "pick") {
   if (muted) return;
   try {
     audio ??= new AudioContext();
     audio.resume();
-    const oscillator = audio.createOscillator(),
-      gain = audio.createGain();
-    oscillator.connect(gain);
-    gain.connect(audio.destination);
-    oscillator.frequency.value = 660;
-    gain.gain.setValueAtTime(0.05, audio.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.001, audio.currentTime + 0.12);
-    oscillator.start();
-    oscillator.stop(audio.currentTime + 0.13);
+    const cues = {
+      pick: [
+        [660, 0.12, 0.08, 0],
+        [990, 0.1, 0.05, 0.04],
+      ],
+      win: [523, 659, 784, 1046].map((hz, i) => [hz, 0.35, 0.09, i * 0.09]),
+      advance: [392, 523, 659].map((hz, i) => [hz, 0.25, 0.08, i * 0.08]),
+      champion: [523, 659, 784, 1046, 784, 1046, 1318].map((hz, i) => [
+        hz,
+        0.4,
+        0.1,
+        i * 0.13,
+      ]),
+    };
+    const origin = audio.currentTime;
+    for (const [hz, duration, volume, delay] of cues[kind] || cues.pick) {
+      const oscillator = audio.createOscillator();
+      const envelope = audio.createGain();
+      const start = origin + delay;
+      oscillator.type = "triangle";
+      oscillator.frequency.setValueAtTime(hz, start);
+      envelope.gain.setValueAtTime(0, start);
+      envelope.gain.linearRampToValueAtTime(volume, start + 0.01);
+      envelope.gain.exponentialRampToValueAtTime(0.0001, start + duration);
+      oscillator.connect(envelope);
+      envelope.connect(audio.destination);
+      oscillator.start(start);
+      oscillator.stop(start + duration + 0.02);
+    }
   } catch {}
 }
 function logo(code, size = "") {
@@ -96,7 +126,7 @@ function channel() {
   return channels.find((c) => c.id === selected) || channels[1];
 }
 function avatar(c) {
-  return `<span class="avatar" aria-hidden="true" style="--accent:${c.color}">${c.icon}</span>`;
+  return `<span class="avatar" aria-hidden="true" style="--accent:${c.color}"><img src="${escape(assets.agents[channels.findIndex((ch) => ch.id === c.id)].url)}&w=80" alt=""></span>`;
 }
 function available(id) {
   return Boolean(forecasts[id]);
@@ -112,22 +142,43 @@ function opponentPairs() {
   };
 }
 function pmap(a, b, id = selected) {
+  if (id === "mine")
+    return validRanking(customRanking, finalistsList())
+      ? rankingProbability(customRanking, a, b)
+      : null;
   return id === "baseline"
     ? baselineProbability(event, a, b)
     : forecasts[id]
       ? mapProbability(forecasts[id], a, b)
       : null;
 }
+function finalistsList() {
+  return event.predecessors.flatMap((match) => match.teams);
+}
+function personalProbability(a, b) {
+  return pmap(a, b, personalReference);
+}
 function matchup(id = selected) {
   const { upperWinner, upperLoser, lowerWinner } = opponentPairs();
-  const lp = pmap(upperLoser, lowerWinner, id);
-  const lfWinner = lp == null ? null : lp >= 0.5 ? upperLoser : lowerWinner;
   return {
     lf: [upperLoser, lowerWinner],
-    gf: [upperWinner, lfWinner],
-    lp,
-    gp: lfWinner ? pmap(upperWinner, lfWinner, id) : null,
+    upperWinner,
+    lp: pmap(upperLoser, lowerWinner, id),
   };
+}
+function simulateFinals(id = selected) {
+  const match = matchup(id);
+  if (match.lp == null) return [];
+  const lower = simulateSeries(...match.lf, match.lp, simSeed);
+  return [
+    lower,
+    simulateSeries(
+      match.upperWinner,
+      lower.winner,
+      pmap(match.upperWinner, lower.winner, id),
+      simSeed + 1,
+    ),
+  ];
 }
 function pageHead(title, description) {
   return `<div class="wrap page-head"><div><h1>${title}</h1><p>${description}</p></div><div class="kicker">CHAMPIONS SHANGHAI · FINALS</div></div>`;
@@ -178,18 +229,25 @@ function bindModels() {
       }),
   );
 }
-function buildSimulation() {
+function replaySignature() {
+  return JSON.stringify([
+    event.matches.map((m) => m.id),
+    opponentPairs(),
+    simSeed,
+  ]);
+}
+function saveReplay() {
+  store.set("replay-" + selected, {
+    signature: replaySignature(),
+    index: current,
+  });
+}
+function buildSimulation(restore = true) {
   simFrames = [];
-  const m = matchup();
-  if (m.lp == null) return;
-  const first = simulateSeries(...m.lf, m.lp, simSeed),
-    second = simulateSeries(
-      m.gf[0],
-      first.winner,
-      pmap(m.gf[0], first.winner),
-      simSeed + 1,
-    );
-  for (const [index, series] of [first, second].entries()) {
+  simSeries = [];
+  simSeries = simulateFinals();
+  if (!simSeries.length) return;
+  for (const [index, series] of simSeries.entries()) {
     simFrames.push({
       index,
       teams: series.teams,
@@ -214,15 +272,20 @@ function buildSimulation() {
       kind: "final",
     });
   }
-  current = Math.min(current, simFrames.length - 1);
+  const saved = restore ? store.get("replay-" + selected, null) : null;
+  current =
+    saved?.signature === replaySignature() && Number.isInteger(saved.index)
+      ? Math.max(0, Math.min(saved.index, simFrames.length - 1))
+      : 0;
 }
 function home() {
-  const c = channel(),
-    m = matchup("codex");
-  main.innerHTML = `<section class="hero"><div class="wrap"><div class="hero-top"><div><p class="eyebrow">AI 模拟内容 · 仅供参考</p><h1>VALORANT AI 大模型预测大赛</h1><p>上海全球冠军赛最后两场，同一份官方资料、同一套 BO5 规则，各自给出判断</p></div><div class="hero-actions"><div class="countdown"><small>仅预测 10 月 17 / 18 日</small><strong>决赛周末</strong></div><a class="btn" href="#/pickem">我也来预测</a><a class="btn primary" href="#/leaderboard">看谁最准</a></div></div><div class="portraits" aria-label="选择模型形象">${channels.map((ch, i) => `<button class="portrait ${selected === ch.id ? "on" : ""}" data-channel="${ch.id}" aria-label="进入 ${ch.name} 的频道"><img src="${escape(assets.agents[i].url)}&w=280" alt="" loading="${i < 4 ? "eager" : "lazy"}"><span>${ch.name.split(" · ")[0]}</span></button>`).join("")}</div></div></section><div class="channel-panel"><div class="wrap">${modelGrid()}</div></div><div class="wrap section"><div class="tabs" role="tablist" aria-label="预测频道内容">${[
+  const c = channel();
+  main.innerHTML = `<section class="hero"><div class="wrap"><div class="hero-top"><div><p class="eyebrow">AI 模拟内容 · 仅供参考</p><h1>VALORANT AI 大模型预测大赛</h1><p>上海全球冠军赛最后两场，同一份官方资料、同一套 BO5 规则，各自给出判断</p></div><div class="hero-actions"><div class="countdown"><small>仅预测 10 月 17 / 18 日</small><strong>决赛周末</strong></div><a class="btn" href="#/pickem">我也来预测</a><a class="btn primary" href="#/leaderboard">看谁最准</a></div></div><div class="portraits" aria-label="选择模型形象">${channels.map((ch, i) => `<button class="portrait ${selected === ch.id ? "on" : ""}" data-channel="${ch.id}" aria-label="进入 ${ch.name} 的频道"><img src="${escape(assets.agents[i].url)}&w=280" alt="" loading="${i < 4 ? "eager" : "lazy"}"><span>${ch.name.split(" · ")[0]}</span></button>`).join("")}</div></div></section><div class="channel-panel"><div class="wrap">${modelGrid()}</div></div><div class="wrap section studio-section"><div class="tabs" role="tablist" aria-label="预测频道内容">${[
     ["live", "直播"],
     ["schedule", "赛程赛果"],
     ["bracket", "淘汰赛"],
+    ["players", "选手榜"],
+    ["news", "剧情与战报"],
     ["analysis", "赛前评估"],
     ["process", "预测过程"],
   ]
@@ -232,10 +295,10 @@ function home() {
     )
     .join(
       "",
-    )}</div><p class="muted" style="font-size:12px;margin:12px 0">${escape(c.name)} · ${available(c.id) ? escape(c.name) + " 的独立条件预测；系列赛按模型单图概率推演" : "尚无该模型实际输出"} · <a class="source-link" href="#/about">统计与来源说明</a></p><div id="channel-content"></div></div><section class="wrap section"><div class="section-head"><h2>各 AI 预测的冠军</h2><a class="muted" href="#/compare">完整对比 →</a></div><p class="muted">每个频道保留独立预测。未实际运行的模型显示待预测。</p><div class="grid">${channels
+    )}<span class="channel-meta">${escape(c.name)} · ${available(c.id) ? "独立预测" : "待预测"}</span></div><div id="channel-content"></div></div><section class="wrap section"><div class="section-head"><h2>各 AI 预测的冠军</h2><a class="muted" href="#/compare">完整对比 →</a></div><p class="muted">每个频道保留独立预测。未实际运行的模型显示待预测。</p><div class="grid">${channels
     .map((ch) => {
-      const cm = matchup(ch.id);
-      return `<a class="card forecast-card card-link" style="--accent:${ch.color}" href="#/?ai=${ch.id}"><h3>${ch.name}</h3><small class="muted">${available(ch.id) ? "当前晋级情景下的预测" : "等待独立模型输出"}</small><div class="champ">${available(ch.id) ? logo(cm.gp >= 0.5 ? cm.gf[0] : cm.gf[1]) + " " + (cm.gp >= 0.5 ? cm.gf[0] : cm.gf[1]) : "待预测"}</div><span class="muted">进入频道 →</span></a>`;
+      const champion = simulateFinals(ch.id)[1]?.winner;
+      return `<a class="card forecast-card card-link" style="--accent:${ch.color}" href="#/?ai=${ch.id}"><h3>${ch.name}</h3><small class="muted">${available(ch.id) ? "当前晋级情景下的一次模拟" : "等待独立模型输出"}</small><div class="champ">${available(ch.id) ? logo(champion) + " " + champion : "待预测"}</div><span class="muted">进入频道 →</span></a>`;
     })
     .join(
       "",
@@ -263,6 +326,77 @@ function formatDate(value) {
     hour12: false,
   }).format(new Date(value));
 }
+function reviewLink(index) {
+  return `#/match/${index}?${new URLSearchParams({ ai: selected, upper: opponentPairs().upperWinner, lower: opponentPairs().lowerWinner })}`;
+}
+function pairReason(teams) {
+  return (
+    forecasts[selected]?.pairs.find((p) =>
+      teams.every((t) => p.teams.includes(t)),
+    )?.reason || "该模型尚未输出分析"
+  );
+}
+function simulationCards(withReport = false) {
+  if (!simSeries.length)
+    return '<div class="card empty">该模型尚未预测，暂无模拟战报。</div>';
+  return `<div class="grid simulation-cards">${simSeries
+    .map((series, index) => {
+      const p = seriesProbability(pmap(...series.teams));
+      return `<a class="card card-link simulation-card" href="${reviewLink(index)}"><div class="section-head"><span class="pill">AI 模拟</span><span class="muted">${formatDate(event.matches[index].start_utc)}</span></div><h3>${event.matches[index].label}</h3><div class="simulation-score">${logo(series.teams[0])}<b>${series.teams[0]}</b><strong>${series.score.join(" : ")}</strong><b>${series.teams[1]}</b>${logo(series.teams[1])}</div><p>${series.winner} ${index === 0 ? "晋级总决赛" : "赢得模拟冠军"} · ${series.maps.length} 图</p>${withReport ? `<p class="muted">${escape(pairReason(series.teams))}</p>` : ""}<small class="muted">${series.teams[0]} 赛前 BO5 概率 ${pct(p)} · 查看逐图回看 →</small></a>`;
+    })
+    .join("")}</div>`;
+}
+function reviewPage(index) {
+  const series = simSeries[index];
+  main.innerHTML =
+    pageHead(
+      `${event.matches[index].label} · 模拟回看`,
+      `${channel().name} 的世界 · ${formatDate(event.matches[index].start_utc)}`,
+    ) +
+    `<div class="wrap section"><a class="source-link" href="#/?ai=${selected}&tab=schedule">← 返回该频道赛程</a>${note()}<div id="review-content"></div></div>`;
+  if (!series) {
+    $("#review-content").innerHTML =
+      '<section class="card empty"><h2>该模型等待预测</h2><p class="muted">暂无实际模型输出，不生成回看比分。</p></section>';
+    return;
+  }
+  const p = pmap(...series.teams);
+  const scores = [[0, 0], ...series.maps.map((m) => m.score)];
+  const chances = scores.map((score) => remainingSeriesProbability(score, p));
+  const points = chances.map((chance, i) => [
+    55 + (i * 790) / series.maps.length,
+    210 - chance * 160,
+  ]);
+  const scoreTable = series.maps
+    .map(
+      (map, i) =>
+        `<tr><th>第 ${i + 1} 图</th><td>${map.winner}</td><td class="mono">${map.score.join(" : ")}</td><td>${pct(chances[i + 1])}</td></tr>`,
+    )
+    .join("");
+  $("#review-content").innerHTML =
+    `<section class="card review-head"><span class="pill">AI 模拟 · 非真实赛果</span><div class="versus"><div class="vs-team">${logo(series.teams[0])}<b>${series.teams[0]}</b></div><div class="score">${series.score.join(" : ")}<small>BO5 · ${series.maps.length} 图</small></div><div class="vs-team">${logo(series.teams[1])}<b>${series.teams[1]}</b></div></div><h2>${series.winner} ${index === 0 ? "晋级总决赛" : "夺得模拟冠军"}</h2><p class="muted">当前晋级情景与固定随机种子下的一次推演。它与直播播放器使用同一组逐图结果。</p><div class="odds-bar" aria-label="赛前系列赛概率"><span style="width:${100 * seriesProbability(p)}%">${series.teams[0]} ${pct(seriesProbability(p))}</span><span>${series.teams[1]} ${pct(1 - seriesProbability(p))}</span></div></section><section class="card section-heading"><h2>赛前判断 · ${escape(channel().name)}</h2><p>${escape(pairReason(series.teams))}</p><p class="muted">单图概率 ${pct(p)}；按各图独立且同概率换算，${series.teams[0]} 赢得 BO5 的概率为 ${pct(seriesProbability(p))}。</p></section><section class="card section-heading"><h2>逐图回看</h2><div class="map-tabs" role="group" aria-label="选择模拟地图">${series.maps.map((map, i) => `<button data-review-map="${i}" aria-pressed="${i === 0}" class="${i === 0 ? "on" : ""}">第 ${i + 1} 图 · ${map.winner} 胜</button>`).join("")}</div><div id="review-map" aria-live="polite"></div><div class="table-wrap"><table><thead><tr><th>地图</th><th>模拟胜者</th><th>累计比分</th><th>${series.teams[0]} 此时系列赛概率</th></tr></thead><tbody>${scoreTable}</tbody></table></div></section><section class="card section-heading"><h2>系列赛胜率走势</h2><p class="muted">每图结束后按剩余图数计算的条件概率，沿用模型的固定单图概率。不是实测局内走势。</p><div class="chart-scroll"><svg viewBox="0 0 900 255" class="series-chart" role="img" aria-label="${series.teams[0]} 系列赛条件胜率走势">${[0, 0.25, 0.5, 0.75, 1].map((v) => `<line x1="55" x2="845" y1="${210 - v * 160}" y2="${210 - v * 160}" class="chart-grid"/><text x="42" y="${215 - v * 160}" text-anchor="end">${v * 100}%</text>`).join("")}<polyline points="${points.map((p) => p.join(",")).join(" ")}"/>${points.map(([x, y], i) => `<circle cx="${x}" cy="${y}" r="5"/><text x="${x}" y="240" text-anchor="middle">${i === 0 ? "赛前" : `第 ${i} 图`}</text><text x="${x}" y="${y - 12}" text-anchor="middle" class="chart-value">${pct(chances[i])}</text>`).join("")}</svg></div></section><section class="card section-heading"><h2>地图 BP 与选手明细</h2><p class="muted">暂无可核实的地图名称、禁选顺序、英雄阵容和选手数据。逐图结果只模拟胜负，不填入虚构的官方明细。</p><a class="source-link" href="https://valorantesports.com/en-US/" target="_blank" rel="noreferrer">核对赛事官网 ↗</a></section><div class="form-row section-heading"><a class="btn" href="${reviewLink(1 - index)}">${index === 0 ? "下一场 · 总决赛" : "上一场 · 败者组决赛"} →</a><a class="btn" href="#/?ai=${selected}">返回直播</a><button id="share-review">复制回看链接</button></div>`;
+  const showMap = (i) => {
+    const map = series.maps[i];
+    $("#review-map").innerHTML =
+      `<h3>第 ${i + 1} 图 · ${map.winner} 获胜</h3><p class="muted">累计比分 ${map.score.join(" : ")}。${Math.max(...map.score) === 3 ? `${map.winner} 已赢下系列赛。` : `进入下一图，${series.teams[0]} 赢得系列赛的条件概率为 ${pct(chances[i + 1])}。`}</p><a class="source-link" href="#/?ai=${selected}">在直播中回放 →</a>`;
+    document.querySelectorAll("[data-review-map]").forEach((b) => {
+      const on = Number(b.dataset.reviewMap) === i;
+      b.classList.toggle("on", on);
+      b.setAttribute("aria-pressed", String(on));
+    });
+  };
+  document
+    .querySelectorAll("[data-review-map]")
+    .forEach((b) => (b.onclick = () => showMap(Number(b.dataset.reviewMap))));
+  showMap(0);
+  $("#share-review").onclick = async () => {
+    try {
+      await navigator.clipboard.writeText(location.href);
+      notify("已复制当前模型的回看链接");
+    } catch {
+      notify("自动复制不可用，请复制浏览器地址栏中的回看链接");
+    }
+  };
+}
 function renderChannel() {
   const content = $("#channel-content");
   if (!content) return;
@@ -271,14 +405,16 @@ function renderChannel() {
     content.innerHTML =
       note() +
       officialSchedule() +
-      `<div class="notice blue">以上为官方赛程。模拟比分只出现在直播与淘汰赛视图。</div>`;
+      `<h2 class="section-heading">${escape(channel().name)} 的模拟赛程</h2>` +
+      simulationCards() +
+      `<div class="notice blue">以上两场模拟与官方赛程分别展示。点击模拟比赛查看逐图回看。</div>`;
     return;
   }
   if (tab === "bracket") {
     content.innerHTML =
       note() +
       scenarioForm() +
-      `<div class="bracket"><div class="pick-match"><h3>17 日 · 败者组决赛</h3>${m.lf.map((t) => `<div class="pick-team">${logo(t)}<b>${t}</b></div>`).join("")}</div><div class="bracket-arrow">→</div><div class="pick-match"><h3>18 日 · 总决赛 · 模型推演</h3>${m.gf.map((t) => `<div class="pick-team">${logo(t)}<b>${t || "待预测"}</b></div>`).join("")}</div><div class="bracket-arrow">→</div><div class="result-card card"><small>该频道预测冠军</small><h2>${m.gp == null ? "待预测" : m.gp >= 0.5 ? m.gf[0] : m.gf[1]}</h2></div></div>`;
+      `<div class="bracket"><div class="pick-match"><h3>17 日 · 败者组决赛</h3>${m.lf.map((t) => `<div class="pick-team">${logo(t)}<b>${t}</b></div>`).join("")}</div><div class="bracket-arrow">→</div><div class="pick-match"><h3>18 日 · 总决赛 · 模型推演</h3>${(simSeries[1]?.teams || [m.upperWinner, null]).map((t) => `<div class="pick-team">${logo(t)}<b>${t || "待预测"}</b></div>`).join("")}</div><div class="bracket-arrow">→</div><div class="result-card card"><small>该频道模拟冠军</small><h2>${simSeries[1]?.winner || "待预测"}</h2></div></div>`;
     bindScenario();
     return;
   }
@@ -292,13 +428,23 @@ function renderChannel() {
     bindScenario();
     return;
   }
+  if (tab === "players") {
+    content.innerHTML = `<section class="card empty"><div class="symbol">◇</div><h2>选手数据等待官方明细</h2><p class="muted">当前官方赛事快照只提供系列赛结果，未提供完整出场阵容、ACS、KAST 和逐图 K/D/A。</p><p class="muted">暂无可核实的选手榜。模型概率使用本届战队战绩，未填入模拟选手评分。</p><a class="btn" href="https://valorantesports.com/en-US/" target="_blank" rel="noreferrer">查看官方赛事资料 ↗</a></section>`;
+    return;
+  }
+  if (tab === "news") {
+    content.innerHTML =
+      `<h2>最后两场 · 模拟战报</h2><p class="muted">来自当前频道逐图推演的结果摘要，非真实新闻。赛前理由来自该模型实际输出。</p>` +
+      simulationCards(true);
+    return;
+  }
   if (tab === "process") {
-    content.innerHTML = `<div class="card article"><h2>预测过程</h2><ol><li>从 Riot 官网赛事页提取本届 ${event.history.length} 场已完成系列赛。</li><li>只根据 17、18 日两场的晋级关系建立条件对阵。</li><li>${available(selected) ? escape(channel().name) + " 独立读取官方战绩后，给出六组可能对阵的单图主观概率。" : "该频道尚未运行，不展示代填预测。"}</li><li>把每张地图的独立获胜概率换算为先赢三图的 BO5 系列赛分布。</li><li>播放器按固定随机种子实际推演比赛；一次模拟不代表最可能赛果。</li></ol><p class="muted">${escape(forecast.calibration)}</p><a class="btn" href="data/gpt-6.1-sol-forecast.json" target="_blank">查看原始预测 JSON</a></div>`;
+    content.innerHTML = `<div class="card article"><h2>预测过程</h2><ol><li>从 Riot 官网赛事页提取本届 ${event.history.length} 场已完成系列赛。</li><li>只根据 17、18 日两场的晋级关系建立条件对阵。</li><li>${available(selected) ? escape(channel().name) + " 独立读取官方战绩后，给出六组可能对阵的单图主观概率。" : "该频道尚未运行，不展示代填预测。"}</li><li>把每张地图的独立获胜概率换算为先赢三图的 BO5 系列赛分布。</li><li>播放器按固定随机种子实际推演比赛；一次模拟不代表最可能赛果。</li></ol><p class="muted">${escape(forecasts[selected]?.calibration || "该模型尚未运行")}</p>${available(selected) ? `<a class="btn" href="data/${escape(modelManifest[selected])}" target="_blank">查看 ${escape(channel().name)} 原始预测 JSON</a>` : ""}</div>`;
     return;
   }
   content.innerHTML =
     note() +
-    `<div class="studio" tabindex="0" role="region" aria-label="AI 模拟回放播放器"><div><div class="stage-box"><div class="stage-top"><span class="pill">● AI 模拟</span><span>${escape(channel().name)} 的世界</span><span class="stage-date" id="stage-date"></span></div><div id="stage"></div></div><div class="progress"><i id="progress" style="width:0"></i></div><div class="controls"><button id="prev" aria-label="上一步">◀</button><button id="play" class="play" title="${playing ? "暂停" : "播放"} (空格)">${playing ? "Ⅱ 暂停" : "▶ 播放"}</button><button id="next" aria-label="下一步">▶|</button><button id="next-match">下一场</button><button id="next-day">下一天</button><button id="mute">${muted ? "取消静音" : "静音"}</button><span class="spacer"></span>${[1, 2, 4, 8].map((n) => `<button data-speed="${n}" class="${speed === n ? "on" : ""}">${n}x</button>`).join("")}</div><p class="keyboard-tip">播放器获得焦点后：空格播放/暂停，左右跳步，上下调速，M 静音。</p><div class="date-buttons"><button data-day="0">10/17</button><button data-day="1">10/18</button></div></div><aside class="schedule"><h3>今日赛程 · 最后两场</h3>${event.matches.map((match, i) => `<div class="schedule-row" data-row="${i}"><b>${match.label}<small class="muted" style="display:block;margin-top:8px">${formatDate(match.start_utc)}</small></b><span>BO5</span></div>`).join("")}<div style="padding:12px"><span class="pill official">官方对阵待定</span><p class="muted" style="font-size:12px;margin:12px 0">胜者组败者 → 败者组决赛<br>败者组胜者 → 总决赛</p><a class="btn" href="#/pickem">我也来预测</a></div></aside></div>`;
+    `<div class="studio" tabindex="0" role="region" aria-label="AI 模拟回放播放器"><div><div class="stage-box"><div class="stage-top"><span class="pill">● AI 模拟</span><span>${escape(channel().name)} 的世界</span><span class="stage-date" id="stage-date"></span></div><div id="stage"></div></div><div class="progress"><i id="progress" style="width:0"></i></div><div class="controls"><button id="prev" aria-label="上一步">◀</button><button id="play" class="play" title="${playing ? "暂停" : "播放"} (空格)">${playing ? "Ⅱ 暂停" : "▶ 播放"}</button><button id="next" aria-label="下一步">▶|</button><button id="next-match">下一场</button><button id="next-day">下一天</button><button id="mute">${muted ? "取消静音" : "静音"}</button><span class="spacer"></span>${[1, 2, 4, 8].map((n) => `<button data-speed="${n}" class="${speed === n ? "on" : ""}">${n}x</button>`).join("")}</div><p class="keyboard-tip">播放器获得焦点后：空格播放/暂停，左右跳步，上下调速，M 静音。</p><div class="date-buttons"><button data-day="0">10/17</button><button data-day="1">10/18</button><button id="replay-start">从头播放</button><a id="review-current" class="btn" href="${reviewLink(0)}">查看本场回看 →</a></div></div><aside class="schedule"><h3>今日赛程 · 最后两场</h3>${event.matches.map((match, i) => `<div class="schedule-row" data-row="${i}"><b>${match.label}<small class="muted" style="display:block;margin-top:8px">${formatDate(match.start_utc)}</small></b><span>BO5</span></div>`).join("")}<div style="padding:12px"><span class="pill official">官方对阵待定</span><p class="muted" style="font-size:12px;margin:12px 0">胜者组败者 → 败者组决赛<br>败者组胜者 → 总决赛</p><a class="btn" href="#/pickem">我也来预测</a></div></aside></div>`;
   bindPlayer();
   updatePlayer();
 }
@@ -313,6 +459,8 @@ function updatePlayer() {
     return;
   }
   const frame = simFrames[current];
+  saveReplay();
+  $("#review-current").href = reviewLink(frame.index);
   $("#stage-date").textContent =
     frame.index === 0 ? "10 月 17 日" : "10 月 18 日";
   $("#stage").innerHTML =
@@ -337,13 +485,34 @@ function step(n) {
   current = Math.max(0, Math.min(current + n, simFrames.length - 1));
   if (current === simFrames.length - 1) playing = false;
   updatePlayer();
-  sound();
+  sound(
+    simFrames[current]?.kind === "final"
+      ? simFrames[current].index === 1
+        ? "champion"
+        : "advance"
+      : simFrames[current]?.kind === "map"
+        ? "win"
+        : "pick",
+  );
   setPlayerTimer();
 }
 function setPlayerTimer() {
   clearTimeout(playerTimer);
-  if (playing && pageRoute === "/" && tab === "live" && simFrames.length)
-    playerTimer = setTimeout(() => step(1), 1800 / speed);
+  if (
+    playing &&
+    !document.hidden &&
+    pageRoute === "/" &&
+    tab === "live" &&
+    simFrames.length
+  )
+    playerTimer = setTimeout(
+      () => step(1),
+      (simFrames[current]?.kind === "pre"
+        ? 4000
+        : simFrames[current]?.kind === "final"
+          ? 6000
+          : 7500) / speed,
+    );
 }
 function togglePlay() {
   if (!simFrames.length) return;
@@ -366,6 +535,12 @@ function bindPlayer() {
   $("#next").onclick = () => step(1);
   $("#next-match").onclick = () => jump(1);
   $("#next-day").onclick = () => jump(1);
+  $("#replay-start").onclick = () => {
+    current = 0;
+    playing = true;
+    updatePlayer();
+    setPlayerTimer();
+  };
   $("#mute").onclick = () => {
     muted = !muted;
     store.set("muted", muted);
@@ -469,6 +644,116 @@ function teamsPage(code) {
   renderTeams("");
   $("#team-search").oninput = (e) => renderTeams(e.target.value);
 }
+function referenceRanking(id) {
+  const teams = finalistsList();
+  return [...teams].sort((a, b) => {
+    const strength = (team) =>
+      teams
+        .filter((other) => other !== team)
+        .reduce((sum, other) => sum + (pmap(team, other, id) ?? 0), 0);
+    return strength(b) - strength(a);
+  });
+}
+function renderRankingEditor() {
+  const editor = $("#ranking-editor");
+  if (!editor || !rankingDraft) return;
+  editor.innerHTML = `<section class="card rank-editor" aria-label="自定义实力排名"><div class="section-head"><div><h3>我的实力排名</h3><p class="muted">越靠前越强。拖动抓手、先选队再选位置，或使用上移/下移按钮。</p></div><div class="rank-import"><select id="ranking-import" aria-label="导入排名来源"><option value="baseline">统计基线</option>${channels
+    .filter((c) => available(c.id))
+    .map((c) => `<option value="${c.id}">${c.name}</option>`)
+    .join(
+      "",
+    )}</select><button id="ranking-import-button">导入它的排名</button></div></div><p id="ranking-tip" class="muted" role="status">${rankingSelection === null ? "键盘聚焦一行后，可按上下方向键移动该战队。" : `已选中 ${rankingDraft[rankingSelection]}，点击要放到的位置。`}</p><ol class="ranking-list">${rankingDraft.map((team, i) => `<li data-ranking-row="${i}" tabindex="0" class="${rankingSelection === i ? "selected" : ""}" aria-label="第 ${i + 1} 名 ${team}"><span class="ranking-number">${i + 1}</span><span class="ranking-grip" data-ranking-grip="${i}" aria-hidden="true">⠿</span>${logo(team)}<b>${team}</b><span class="ranking-buttons"><button data-ranking-move="up" data-ranking-index="${i}" aria-label="上移 ${team}" ${i === 0 ? "disabled" : ""}>↑</button><button data-ranking-move="down" data-ranking-index="${i}" aria-label="下移 ${team}" ${i === rankingDraft.length - 1 ? "disabled" : ""}>↓</button></span></li>`).join("")}</ol><div class="actions"><button class="btn primary" id="ranking-use">使用这份排名</button><button class="btn" id="ranking-cancel">取消</button></div><small class="muted">名次差换算沿用参考站的单图公式：1 / (1 + exp(−名次差 × 0.122))。它是个人实力假设，不是 AI 输出。导入模型时，按对其余三队的平均单图概率排序。</small></section>`;
+  const move = (from, to, focus = false) => {
+    if (to < 0 || to >= rankingDraft.length || from === to) return;
+    rankingDraft = moveRanking(rankingDraft, from, to);
+    rankingSelection = null;
+    renderRankingEditor();
+    if (focus) editor.querySelector(`[data-ranking-row="${to}"]`).focus();
+  };
+  editor.querySelectorAll("[data-ranking-move]").forEach(
+    (button) =>
+      (button.onclick = (e) => {
+        e.stopPropagation();
+        const i = Number(button.dataset.rankingIndex);
+        move(i, i + (button.dataset.rankingMove === "up" ? -1 : 1), true);
+      }),
+  );
+  editor.querySelectorAll("[data-ranking-row]").forEach((row) => {
+    row.onclick = (e) => {
+      if (e.target.closest("button,.ranking-grip")) return;
+      const i = Number(row.dataset.rankingRow);
+      if (rankingSelection === null) {
+        rankingSelection = i;
+        renderRankingEditor();
+      } else if (rankingSelection === i) {
+        rankingSelection = null;
+        renderRankingEditor();
+      } else move(rankingSelection, i);
+    };
+    row.onkeydown = (e) => {
+      if (e.target !== row || !["ArrowUp", "ArrowDown"].includes(e.key)) return;
+      e.preventDefault();
+      const i = Number(row.dataset.rankingRow);
+      move(i, i + (e.key === "ArrowUp" ? -1 : 1), true);
+    };
+  });
+  editor.querySelectorAll("[data-ranking-grip]").forEach((handle) => {
+    let from = null,
+      destination = null;
+    handle.onpointerdown = (e) => {
+      e.preventDefault();
+      from = Number(handle.dataset.rankingGrip);
+      destination = from;
+      handle.setPointerCapture(e.pointerId);
+    };
+    handle.onpointermove = (e) => {
+      if (from === null) return;
+      const row = document
+        .elementFromPoint(e.clientX, e.clientY)
+        ?.closest("[data-ranking-row]");
+      if (row) destination = Number(row.dataset.rankingRow);
+    };
+    handle.onpointerup = (e) => {
+      const start = from,
+        end = destination;
+      from = null;
+      destination = null;
+      if (handle.hasPointerCapture(e.pointerId))
+        handle.releasePointerCapture(e.pointerId);
+      if (start !== null && end !== null) move(start, end, true);
+    };
+    handle.onpointercancel = () => {
+      from = null;
+      destination = null;
+    };
+  });
+  $("#ranking-import-button").onclick = () => {
+    rankingDraft = referenceRanking($("#ranking-import").value);
+    rankingSelection = null;
+    renderRankingEditor();
+  };
+  $("#ranking-cancel").onclick = () => {
+    rankingDraft = null;
+    rankingSelection = null;
+    editor.replaceChildren();
+  };
+  $("#ranking-use").onclick = () => {
+    if (!validRanking(rankingDraft, finalistsList())) return;
+    customRanking = [...rankingDraft];
+    personalReference = "mine";
+    rankingDraft = null;
+    rankingSelection = null;
+    const saved =
+      store.set("ranking", customRanking) &&
+      store.set("reference", personalReference);
+    pickemPage();
+    notify(
+      saved
+        ? "已保存四强实力排名，胜率参考已更新"
+        : "排名本次可用，但浏览器未能保存",
+    );
+  };
+}
 function pickemPage() {
   const { upperWinner, upperLoser, lowerWinner } = opponentPairs(),
     teams = [upperLoser, lowerWinner],
@@ -477,11 +762,29 @@ function pickemPage() {
     pageHead("我来预测", "只预测两场：选出败者组决赛胜者，再选出上海全球冠军") +
     `<div class="wrap section"><div class="tabs" role="tablist"><button class="on" role="tab" aria-selected="true" id="my-tab">我的预测</button><button role="tab" aria-selected="false" id="sim-tab">模拟两场</button></div>${note()}${scenarioForm()}<div class="stepper"><span class="on">1 · 败者组决赛</span><span class="${draft.lfWinner ? "on" : ""}">2 · 总决赛</span><span class="${draft.champion ? "on" : ""}">3 · 预测战报</span></div><div class="form-row"><label>战队实力参考<select id="reference-model">${channels
       .filter((c) => available(c.id))
-      .map((c) => `<option value="${c.id}">${c.name}</option>`)
+      .map(
+        (c) =>
+          `<option value="${c.id}" ${personalReference === c.id ? "selected" : ""}>${c.name}</option>`,
+      )
       .join(
         "",
-      )}<option value="baseline">统计基线</option></select></label><button id="autofill" class="btn gold">按实力参考一键填完</button><button id="reset" class="btn">重新预测</button></div><div class="bracket"><div class="pick-match" id="lower-final"><h3>10 / 17 · 败者组决赛 <span>BO5</span></h3>${teams.map((t) => pickTeam(t, draft.lfWinner, "lf", mapProbability(forecast, ...teams), teams[0])).join("")}${draft.lfWinner ? scoreSelect("lf", draft.lfWinner, teams, draft.lfScore) : ""}</div><div class="bracket-arrow">→</div><div class="pick-match" id="grand-final"><h3>10 / 18 · 总决赛 <span>BO5</span></h3>${finalists.map((t) => (t ? pickTeam(t, draft.champion, "gf", draft.lfWinner ? mapProbability(forecast, ...finalists) : null, finalists[0]) : '<button class="pick-team" disabled>等待败者组决赛胜者</button>')).join("")}${draft.champion ? scoreSelect("gf", draft.champion, finalists, draft.gfScore) : ""}</div><div class="bracket-arrow">→</div><div class="card result-card" id="pick-result"><small>你预测的上海全球冠军</small>${draft.champion ? logo(draft.champion) + "<h2>" + draft.champion + "</h2>" : '<h2>?</h2><p class="muted">完成两场选择后生成战报</p>'}</div></div><div class="actions"><button class="btn primary" id="save-pick" ${draft.champion ? "" : "disabled"}>保存预测战报</button><button class="btn" id="poster-button" ${draft.champion ? "" : "disabled"}>生成预测海报</button><button class="btn" id="share-pick" ${draft.champion ? "" : "disabled"}>复制分享链接</button></div><p class="muted" style="font-size:12px;margin-top:14px" id="save-state">${pick ? "上次预测：" + escape(pick.champion) + " 冠军 · " + escape(formatDate(pick.created_at)) : "预测保存在当前浏览器，可随时重新选择。"}</p><section class="card" id="personal-simulation" hidden style="margin-top:20px"></section></div>`;
+      )}<option value="baseline" ${personalReference === "baseline" ? "selected" : ""}>统计基线</option>${validRanking(customRanking, finalistsList()) ? `<option value="mine" ${personalReference === "mine" ? "selected" : ""}>我的实力排名</option>` : ""}</select></label><button id="autofill" class="btn gold">按实力参考一键填完</button><button id="custom-ranking" class="btn">自定义实力排名</button><button id="reset" class="btn">重新预测</button></div><div id="ranking-editor"></div><div class="bracket"><div class="pick-match" id="lower-final"><h3>10 / 17 · 败者组决赛 <span>BO5</span></h3>${teams.map((t) => pickTeam(t, draft.lfWinner, "lf", personalProbability(...teams), teams[0])).join("")}${draft.lfWinner ? scoreSelect("lf", draft.lfWinner, teams, draft.lfScore) : ""}</div><div class="bracket-arrow">→</div><div class="pick-match" id="grand-final"><h3>10 / 18 · 总决赛 <span>BO5</span></h3>${finalists.map((t) => (t ? pickTeam(t, draft.champion, "gf", draft.lfWinner ? personalProbability(...finalists) : null, finalists[0]) : '<button class="pick-team" disabled>等待败者组决赛胜者</button>')).join("")}${draft.champion ? scoreSelect("gf", draft.champion, finalists, draft.gfScore) : ""}</div><div class="bracket-arrow">→</div><div class="card result-card" id="pick-result"><small>你预测的上海全球冠军</small>${draft.champion ? logo(draft.champion) + "<h2>" + draft.champion + "</h2>" : '<h2>?</h2><p class="muted">完成两场选择后生成战报</p>'}</div></div><div class="actions"><button class="btn primary" id="save-pick" ${draft.champion ? "" : "disabled"}>保存预测战报</button><button class="btn" id="poster-button" ${draft.champion ? "" : "disabled"}>生成预测海报</button><button class="btn" id="share-pick" ${draft.champion ? "" : "disabled"}>复制分享链接</button></div><p class="muted" style="font-size:12px;margin-top:14px" id="save-state">${pick ? "上次预测：" + escape(pick.champion) + " 冠军 · " + escape(formatDate(pick.created_at)) : "预测保存在当前浏览器，可随时重新选择。"}</p><section class="card" id="personal-simulation" hidden style="margin-top:20px"></section></div>`;
   bindScenario();
+  $("#reference-model").onchange = (e) => {
+    personalReference = e.target.value;
+    store.set("reference", personalReference);
+    pickemPage();
+  };
+  $("#custom-ranking").onclick = () => {
+    rankingDraft = customRanking
+      ? [...customRanking]
+      : referenceRanking(
+          personalReference === "mine" ? "baseline" : personalReference,
+        );
+    rankingSelection = null;
+    renderRankingEditor();
+  };
+  if (rankingDraft) renderRankingEditor();
   document.querySelectorAll("[data-pick]").forEach(
     (b) =>
       (b.onclick = () => {
@@ -510,8 +813,7 @@ function pickemPage() {
       };
   }
   $("#autofill").onclick = () => {
-    const ref = $("#reference-model").value,
-      p = pmap(...teams, ref);
+    const p = personalProbability(...teams);
     draft.lfWinner = p >= 0.5 ? teams[0] : teams[1];
     draft.lfScore = seriesDistribution(p)
       .filter(
@@ -519,7 +821,7 @@ function pickemPage() {
       )
       .sort((a, b) => b.probability - a.probability)[0].score;
     const fs = [upperWinner, draft.lfWinner],
-      gp = pmap(...fs, ref);
+      gp = personalProbability(...fs);
     draft.champion = gp >= 0.5 ? fs[0] : fs[1];
     draft.gfScore = seriesDistribution(gp)
       .filter((r) => (r.score[0] === 3 ? fs[0] : fs[1]) === draft.champion)
@@ -536,17 +838,17 @@ function pickemPage() {
   $("#poster-button").onclick = showPoster;
   $("#share-pick").onclick = sharePick;
   $("#sim-tab").onclick = () => {
-    const lp = pmap(...teams),
+    const lp = personalProbability(...teams),
       lf = simulateSeries(...teams, lp, Date.now() % 4294967296),
       gf = simulateSeries(
         upperWinner,
         lf.winner,
-        pmap(upperWinner, lf.winner),
+        personalProbability(upperWinner, lf.winner),
         (Date.now() % 4294967296) + 1,
       );
     $("#personal-simulation").hidden = false;
     $("#personal-simulation").innerHTML =
-      `<span class="pill">模拟赛果</span><h2 style="margin-top:15px">${gf.winner} 夺冠</h2><p>17 日 · ${lf.teams.join(" vs ")} · ${lf.score.join(" : ")}<br>18 日 · ${gf.teams.join(" vs ")} · ${gf.score.join(" : ")}</p><p class="muted">按GPT-6.1 sol 的单图概率实际随机推演。本次结果尚未写入你的预测。</p>`;
+      `<span class="pill">模拟赛果</span><h2 style="margin-top:15px">${gf.winner} 夺冠</h2><p>17 日 · ${lf.teams.join(" vs ")} · ${lf.score.join(" : ")}<br>18 日 · ${gf.teams.join(" vs ")} · ${gf.score.join(" : ")}</p><p class="muted">按所选实力参考的单图概率实际随机推演。本次结果尚未写入你的预测。</p>`;
     $("#my-tab").classList.remove("on");
     $("#sim-tab").classList.add("on");
     $("#my-tab").setAttribute("aria-selected", "false");
@@ -657,16 +959,46 @@ function methodPage() {
 function aboutPage() {
   main.innerHTML =
     pageHead("内容、数据与素材说明", "来源可追溯，未知信息保持未知") +
-    `<div class="wrap section article"><section class="card"><h2>赛事数据</h2><p>最近获取：${escape(new Date(event.fetched_at).toLocaleString("zh-CN", { timeZone: "Asia/Shanghai" }))}（北京时间）。官方页面结构化数据中共提取 ${event.history.length} 场已完成系列赛，本应用只预测两场 BO5。</p><ul>${event.sources.map((s) => `<li><a href="${escape(s.url)}" target="_blank" rel="noreferrer">${escape(s.publisher)} · ${s.role === "official_schedule_results" ? "官方赛程与真实结果" : "上海冠军赛赛制说明"} ↗</a></li>`).join("")}</ul><p class="muted">${event.limitations.map(escape).join("<br>")}</p><details><summary>快照与原始数据</summary><p style="overflow-wrap:anywhere">官方响应 SHA-256：${event.source_sha256}</p><a href="data/event.json" target="_blank" class="source-link">查看赛事快照 JSON</a></details></section><section class="card" style="margin-top:20px"><h2>预测来源</h2><p>GPT-6.1 sol 频道由已核实的 gpt-6.1-sol / high 独立运行根据官方记录生成，不代表其他模型。DeepSeek V4.1 Flash 来自经核实的官方 API 实际响应；其他模型等待真实输出。展示中所有主观概率、模拟比分都标识为预测或模拟。</p><a class="source-link" href="data/gpt-6.1-sol-forecast.json" target="_blank">查看GPT-6.1 sol 原始预测与理由</a></section><section class="card" style="margin-top:20px"><h2>视觉参考与素材</h2><p>交互与页面结构参考用户指定的 <a href="https://www.bilibili.com/toy/LkvCZhw12wgT2Pqx/index.html" target="_blank" rel="noreferrer">S16 AI 预测大赛</a>。赛事内容改为 VALORANT，范围限定为最后两场。前端代码独立编写。</p><p>英雄立绘来自 <a href="https://playvalorant.com/en-us/agents/" target="_blank" rel="noreferrer">VALORANT 英雄官网</a>，战队标志来自 Riot 赛事官网页面引用的公开 CDN。仅引用公开 URL，权利归 Riot Games 与各战队；模型频道的装饰英雄不代表任何合作关系。</p></section><section class="card" style="margin-top:20px"><h2>本地保存与分享</h2><p>个人预测、频道、静音和晋级情景保存在当前浏览器。分享链接只包含你选择的晋级情景、两场比分和生成时间。数据不会上传。</p></section></div>`;
+    `<div class="wrap section article"><section class="card"><h2>赛事数据</h2><p>最近获取：${escape(new Date(event.fetched_at).toLocaleString("zh-CN", { timeZone: "Asia/Shanghai" }))}（北京时间）。官方页面结构化数据中共提取 ${event.history.length} 场已完成系列赛，本应用只预测两场 BO5。</p><ul>${event.sources.map((s) => `<li><a href="${escape(s.url)}" target="_blank" rel="noreferrer">${escape(s.publisher)} · ${s.role === "official_schedule_results" ? "官方赛程与真实结果" : "上海冠军赛赛制说明"} ↗</a></li>`).join("")}</ul><p class="muted">${event.limitations.map(escape).join("<br>")}</p><details><summary>快照与原始数据</summary><p style="overflow-wrap:anywhere">官方响应 SHA-256：${event.source_sha256}</p><a href="data/event.json" target="_blank" class="source-link">查看赛事快照 JSON</a></details></section><section class="card" style="margin-top:20px"><h2>预测来源</h2><p>GPT-6.1 sol 频道由已核实的 gpt-6.1-sol / high 独立运行根据官方记录生成，不代表其他模型。DeepSeek V4.1 Flash 来自经核实的官方 API 实际响应；其他模型等待真实输出。展示中所有主观概率、模拟比分都标识为预测或模拟。</p><a class="source-link" href="data/gpt-6.1-sol-forecast.json" target="_blank">查看GPT-6.1 sol 原始预测与理由</a></section><section class="card" style="margin-top:20px"><h2>视觉参考与素材</h2><p>交互与页面结构参考用户指定的 <a href="https://www.bilibili.com/toy/LkvCZhw12wgT2Pqx/index.html" target="_blank" rel="noreferrer">S16 AI 预测大赛</a>。赛事内容改为 VALORANT，范围限定为最后两场。前端代码独立编写。</p><p>英雄立绘来自 <a href="https://playvalorant.com/en-us/agents/" target="_blank" rel="noreferrer">VALORANT 英雄官网</a>，战队标志来自 Riot 赛事官网页面引用的公开 CDN。仅引用公开 URL，权利归 Riot Games 与各战队；模型频道的装饰英雄不代表任何合作关系。</p></section><section class="card" style="margin-top:20px"><h2>字体授权</h2><p>本应用使用 OPPO Sans、MiSans、Anton 与 JetBrains Mono 字体。字体文件保持官方原样，随本应用使用，版权归各权利人。</p><ul><li><a class="source-link" href="assets/fonts/OPPO-Sans-LICENSE.txt" target="_blank">OPPO Sans 许可</a></li><li><a class="source-link" href="assets/fonts/MiSans-LICENSE.pdf" target="_blank">MiSans 许可 · Xiaomi Inc.</a></li><li><a class="source-link" href="assets/fonts/anton-OFL.txt" target="_blank">Anton · SIL OFL 1.1</a></li><li><a class="source-link" href="assets/fonts/jetbrainsmono-OFL.txt" target="_blank">JetBrains Mono · SIL OFL 1.1</a></li></ul></section><section class="card" style="margin-top:20px"><h2>本地保存与分享</h2><p>个人预测、自定义实力排名、频道、各频道回放进度、静音和晋级情景保存在当前浏览器。分享链接只包含你选择的晋级情景、两场比分和生成时间。数据不会上传。</p></section></div>`;
 }
 function route() {
   clearTimeout(playerTimer);
   playing = false;
   const [path, query = ""] = (location.hash.slice(1) || "/").split("?");
   pageRoute = path;
+  if (path === "/") playing = true;
   const params = new URLSearchParams(query);
+  if (
+    params.has("tab") &&
+    [
+      "live",
+      "schedule",
+      "bracket",
+      "players",
+      "news",
+      "analysis",
+      "process",
+    ].includes(params.get("tab"))
+  )
+    tab = params.get("tab");
+  else if (path === "/") tab = "live";
   if (params.get("ai") && channels.some((c) => c.id === params.get("ai")))
     selected = params.get("ai");
+  if (
+    path.startsWith("/match/") &&
+    params.has("upper") &&
+    params.has("lower")
+  ) {
+    if (
+      event.predecessors[0].teams.includes(params.get("upper")) &&
+      event.predecessors[1].teams.includes(params.get("lower"))
+    )
+      scenario = {
+        upperWinner: params.get("upper"),
+        lowerWinner: params.get("lower"),
+      };
+    else notify("回看链接中的晋级情景无效，使用当前情景");
+  }
   if (path === "/pickem" && params.has("share")) {
     try {
       const value = JSON.parse(
@@ -706,12 +1038,19 @@ function render() {
   document.querySelectorAll(".mainnav a").forEach((a) => {
     const on =
       a.getAttribute("href") ===
-      "#" + (pageRoute.startsWith("/team/") ? "/teams" : pageRoute);
+      "#" +
+        (pageRoute.startsWith("/team/")
+          ? "/teams"
+          : pageRoute.startsWith("/match/")
+            ? "/"
+            : pageRoute);
     a.classList.toggle("on", on);
     if (on) a.setAttribute("aria-current", "page");
     else a.removeAttribute("aria-current");
   });
   if (pageRoute === "/") home();
+  else if (/^\/match\/[01]$/.test(pageRoute))
+    reviewPage(Number(pageRoute.split("/")[2]));
   else if (pageRoute === "/compare") comparePage();
   else if (pageRoute === "/teams") teamsPage();
   else if (pageRoute.startsWith("/team/"))
@@ -794,6 +1133,7 @@ async function start() {
         ]),
       ),
     );
+    modelManifest = manifest;
     forecast = forecasts.codex;
     if (!forecast) throw Error("GPT-6.1 sol 预测数据缺失");
     if (
@@ -826,7 +1166,17 @@ async function start() {
       notify("已保存的旧预测与当前资料不一致，原始记录仍保留");
       pick = null;
     }
+    if (!validRanking(customRanking, finalistsList())) customRanking = null;
+    if (
+      !(
+        personalReference === "baseline" ||
+        (personalReference === "mine" && customRanking) ||
+        available(personalReference)
+      )
+    )
+      personalReference = "codex";
     window.addEventListener("hashchange", route);
+    document.addEventListener("visibilitychange", setPlayerTimer);
     route();
     const updateCountdown = () => {
       const remaining = new Date(event.matches[0].start_utc) - Date.now();

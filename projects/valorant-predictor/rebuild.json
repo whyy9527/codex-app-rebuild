@@ -18,7 +18,10 @@
     "rsi_evaluation": "artifacts/valorant-rsi-revised/evaluation.json",
     "fixture": "projects/valorant-predictor/contracts/scenarios.json",
     "frontend_contract": "projects/valorant-predictor/contracts/frontend.json",
-    "case_status": "projects/valorant-predictor/STATUS.md"
+    "case_status": "projects/valorant-predictor/STATUS.md",
+    "rsi_deep_config": "projects/valorant-predictor/rsi/deep-config.json",
+    "rsi_deep_pool": "artifacts/valorant-rsi-deep-redeployed/iteration-1/collected-pool.json",
+    "rsi_deep_evaluation": "artifacts/valorant-rsi-deep-revised/evaluation.json"
   },
   "commands": {
     "rsi_collect": [
@@ -74,6 +77,106 @@
       "{observed}",
       "--reference",
       "artifacts/valorant-reference-final-first-delivery/observed.json",
+      "--out",
+      "{out}"
+    ],
+    "replay_ranking": [
+      "python3",
+      "projects/valorant-predictor/scripts/qa_ranking.py",
+      "--out",
+      "{out}"
+    ],
+    "reference_ranking": [
+      "python3",
+      "projects/valorant-predictor/scripts/reference_ranking_qa.py",
+      "--out",
+      "{out}"
+    ],
+    "compare_ranking": [
+      "python3",
+      "projects/valorant-predictor/scripts/compare_ranking.py",
+      "--observed",
+      "{observed}",
+      "--reference",
+      "artifacts/valorant-reference-ranking-verified/observed.json",
+      "--out",
+      "{out}"
+    ],
+    "replay_review": [
+      "python3",
+      "projects/valorant-predictor/scripts/qa_review.py",
+      "--out",
+      "{out}"
+    ],
+    "reference_review": [
+      "python3",
+      "projects/valorant-predictor/scripts/reference_review_qa.py",
+      "--out",
+      "{out}"
+    ],
+    "compare_review": [
+      "python3",
+      "projects/valorant-predictor/scripts/compare_review.py",
+      "--observed",
+      "{observed}",
+      "--reference",
+      "artifacts/valorant-reference-review-verified/observed.json",
+      "--out",
+      "{out}"
+    ],
+    "replay_typography": [
+      "python3",
+      "projects/valorant-predictor/scripts/qa_typography.py",
+      "--out",
+      "{out}"
+    ],
+    "compare_typography": [
+      "python3",
+      "projects/valorant-predictor/scripts/compare_typography.py",
+      "--observed",
+      "{observed}",
+      "--out",
+      "{out}"
+    ],
+    "replay_audio": [
+      "python3",
+      "projects/valorant-predictor/scripts/qa_audio.py",
+      "--mode",
+      "candidate",
+      "--out",
+      "{out}"
+    ],
+    "reference_audio": [
+      "python3",
+      "projects/valorant-predictor/scripts/qa_audio.py",
+      "--mode",
+      "reference",
+      "--out",
+      "{out}"
+    ],
+    "rsi_deep_collect": [
+      "python3",
+      "-m",
+      "workflows.rebuild.dream",
+      "collect",
+      "--workspace",
+      ".",
+      "--config",
+      "projects/valorant-predictor/rsi/deep-config.json",
+      "--out",
+      "{out}"
+    ],
+    "rsi_deep_replay": [
+      "python3",
+      "-m",
+      "workflows.rebuild.dream",
+      "replay",
+      "--workspace",
+      ".",
+      "--config",
+      "projects/valorant-predictor/rsi/deep-config.json",
+      "--pool",
+      "{observed}",
       "--out",
       "{out}"
     ]

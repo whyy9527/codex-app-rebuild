@@ -97,3 +97,39 @@ test("missing AI forecasts remain absent and simulation stops at three map wins"
     assert.deepEqual(result, simulateSeries("A", "B", 0.55, seed));
   }
 });
+
+test("custom ranking preserves teams and gives reciprocal, ordered probabilities", async () => {
+  const { validRanking, rankingProbability, moveRanking } = await import(
+    "../engine.mjs"
+  );
+  const teams = ["VIT", "LOUD", "100T", "G2"];
+  assert.ok(validRanking(teams, teams));
+  assert.equal(validRanking(["VIT", "VIT", "100T", "G2"], teams), false);
+  assert.deepEqual(moveRanking(teams, 3, 0), ["G2", "VIT", "LOUD", "100T"]);
+  assert.deepEqual(teams, ["VIT", "LOUD", "100T", "G2"]);
+  for (let first = 0; first < teams.length; first++)
+    for (let second = 0; second < teams.length; second++)
+      if (first !== second) {
+        const p = rankingProbability(teams, teams[first], teams[second]);
+        assert.ok(
+          Math.abs(
+            p + rankingProbability(teams, teams[second], teams[first]) - 1,
+          ) < 1e-12,
+        );
+        assert.equal(p > 0.5, first < second);
+      }
+  assert.throws(() => rankingProbability(teams, "VIT", "UNKNOWN"));
+  assert.throws(() => simulateSeries("VIT", "LOUD", null, 1));
+});
+
+test("conditional series probability agrees at the start and reaches exact terminal values", async () => {
+  const { remainingSeriesProbability: chance } = await import("../engine.mjs");
+  for (const p of [0, 0.1, 0.5, 0.9, 1]) {
+    assert.ok(Math.abs(chance([0, 0], p) - seriesProbability(p)) < 1e-12);
+    assert.equal(chance([3, 2], p), 1);
+    assert.equal(chance([1, 3], p), 0);
+    assert.equal(chance([2, 2], p), p);
+  }
+  assert.throws(() => chance([3, 3], 0.5));
+  assert.throws(() => chance([1, -1], 0.5));
+});

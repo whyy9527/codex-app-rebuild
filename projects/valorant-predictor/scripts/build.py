@@ -10,4 +10,5 @@ out.mkdir()
 for name in ('index.html', 'style.css', 'app.js', 'engine.mjs'):
     shutil.copy2(root / name, out / name)
 shutil.copytree(root / 'data', out / 'data', dirs_exist_ok=True)
+if (root / 'assets').exists():shutil.copytree(root / 'assets', out / 'assets', dirs_exist_ok=True)
 print('Built dist/index.html')

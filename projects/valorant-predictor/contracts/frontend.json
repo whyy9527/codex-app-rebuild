@@ -7,10 +7,10 @@
       "kind": "accessible_text",
       "text": "首页",
       "evidence": [
-        "artifacts/valorant-reference-parent-pointer/0000-step.json"
+        "artifacts/valorant-reference-keyboard-neutral/0000-step.json"
       ],
       "browser_capture": {
-        "reference": "artifacts/valorant-reference-parent-pointer/0000-step.json",
+        "reference": "artifacts/valorant-reference-keyboard-neutral/0000-step.json",
         "required": [
           "dom",
           "text",
@@ -24,10 +24,10 @@
       "kind": "accessible_text",
       "text": "数据对比",
       "evidence": [
-        "artifacts/valorant-reference-parent-pointer/0000-step.json"
+        "artifacts/valorant-reference-keyboard-neutral/0000-step.json"
       ],
       "browser_capture": {
-        "reference": "artifacts/valorant-reference-parent-pointer/0000-step.json",
+        "reference": "artifacts/valorant-reference-keyboard-neutral/0000-step.json",
         "required": [
           "dom",
           "text",
@@ -41,10 +41,10 @@
       "kind": "accessible_text",
       "text": "战队",
       "evidence": [
-        "artifacts/valorant-reference-parent-pointer/0000-step.json"
+        "artifacts/valorant-reference-keyboard-neutral/0000-step.json"
       ],
       "browser_capture": {
-        "reference": "artifacts/valorant-reference-parent-pointer/0000-step.json",
+        "reference": "artifacts/valorant-reference-keyboard-neutral/0000-step.json",
         "required": [
           "dom",
           "text",
@@ -58,10 +58,10 @@
       "kind": "accessible_text",
       "text": "我来预测",
       "evidence": [
-        "artifacts/valorant-reference-parent-pointer/0000-step.json"
+        "artifacts/valorant-reference-keyboard-neutral/0000-step.json"
       ],
       "browser_capture": {
-        "reference": "artifacts/valorant-reference-parent-pointer/0000-step.json",
+        "reference": "artifacts/valorant-reference-keyboard-neutral/0000-step.json",
         "required": [
           "dom",
           "text",
@@ -75,10 +75,10 @@
       "kind": "accessible_text",
       "text": "谁最准",
       "evidence": [
-        "artifacts/valorant-reference-parent-pointer/0000-step.json"
+        "artifacts/valorant-reference-keyboard-neutral/0000-step.json"
       ],
       "browser_capture": {
-        "reference": "artifacts/valorant-reference-parent-pointer/0000-step.json",
+        "reference": "artifacts/valorant-reference-keyboard-neutral/0000-step.json",
         "required": [
           "dom",
           "text",
@@ -92,10 +92,10 @@
       "kind": "accessible_text",
       "text": "AI 赛制介绍",
       "evidence": [
-        "artifacts/valorant-reference-parent-pointer/0000-step.json"
+        "artifacts/valorant-reference-keyboard-neutral/0000-step.json"
       ],
       "browser_capture": {
-        "reference": "artifacts/valorant-reference-parent-pointer/0000-step.json",
+        "reference": "artifacts/valorant-reference-keyboard-neutral/0000-step.json",
         "required": [
           "dom",
           "text",
@@ -107,18 +107,20 @@
       "id": "visual-full-frame",
       "state": "home",
       "kind": "pending",
-      "description": "Detailed layout, font and whole-frame evaluation remains open. Domain/art transformations are explicit user scope, not a pixel pass.",
+      "description": "Detailed full-page layout/art/motion evaluation remains open. Six navigation items have a separate exact rendered-font/metric comparison; that does not prove whole-frame parity.",
       "evidence": [
-        "artifacts/valorant-reference-parent-pointer/0000-step.json"
+        "artifacts/valorant-reference-keyboard-neutral/0000-step.json"
       ]
     },
     {
       "id": "app-audio",
       "state": "home",
       "kind": "pending",
-      "description": "Actual application-output audio equality has not been measured. Mute persistence alone is insufficient.",
+      "description": "PID-filtered capture was attempted with real in-recording clicks. Both source and candidate audible captures contained only zero signal; output attribution/transport is unresolved. Silence cannot prove sound equality or effective mute.",
       "evidence": [
-        "artifacts/valorant-reference-parent-pointer/0000-step.json"
+        "artifacts/valorant-reference-keyboard-neutral/0000-step.json",
+        "artifacts/valorant-audio-reference/observed.json",
+        "artifacts/valorant-audio-candidate/observed.json"
       ]
     }
   ]

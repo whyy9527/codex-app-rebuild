@@ -45,8 +45,8 @@ def compare(root, observed, reference):
     check('candidate-page-errors',observed.get('errors'),[])
     rows += [{'id':key,'knowledge_source':'unknown','status':'not_run','reason':reason} for key,reason in [
         ('full-visual-equivalence','VALORANT content/art transforms are required; detailed layout/font/whole-frame comparison remains open.'),
-        ('application-audio-equivalence','Mute persistence is verified; actual application-output sound comparison has not run.'),
-        ('unvisited-reference-branches','Original BP/player/story/review/custom-ranking and deeper hover/keyboard branches remain to explore.')]]
+        ('application-audio-equivalence','Real PID-filtered output captures were zero in both audible scenes; transport/attribution is unresolved, so audio equivalence is not established.'),
+        ('deep-reference-parity','Review and custom-ranking have supplemental common suites. Rich BP/player/story parity and deeper motion/input branches remain unresolved.')]]
     return {'status':'incomplete' if any(row['status']!='pass' for row in rows) else 'pass','rows':rows,
             'counts':{status:sum(row['status']==status for row in rows) for status in ['pass','fail','unavailable','not_run']}}
 

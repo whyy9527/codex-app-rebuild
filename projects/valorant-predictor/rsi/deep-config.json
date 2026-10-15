@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "seed": "projects/valorant-predictor/rsi/seed",
+  "root_observation": {
+    "source": "Deep branches observed in initial live navigation/source UI",
+    "remaining": [
+      "schedule",
+      "bracket",
+      "players",
+      "news",
+      "preseason",
+      "process",
+      "custom-ranking",
+      "match-review"
+    ],
+    "protocol_change": "Keyboard-only preparation avoids verified cross-origin mouseout omission; source branches and evaluator changed, so a fresh protocol/pool is required."
+  },
+  "score_semantics": "Fraction of seven distinct primary navigation surfaces with independently observed loaded live content. Not product acceptance, visual quality, or complete exploration. Sampling drift is retained separately.",
+  "initial_policy": "projects/valorant-predictor/rsi/policy.py",
+  "fixed_inputs": [
+    "projects/valorant-predictor/contracts/deep-probes.json",
+    "projects/valorant-predictor/scripts/deep_capture.py",
+    "projects/valorant-predictor/rsi/deep-worker.py",
+    "runtime/browser.py",
+    "capabilities/rebuild/browser.py"
+  ],
+  "agent": [
+    "python3",
+    "projects/valorant-predictor/rsi/deep-worker.py",
+    "agent"
+  ],
+  "evaluator": [
+    "python3",
+    "projects/valorant-predictor/rsi/deep-worker.py",
+    "evaluator"
+  ],
+  "timeout_seconds": 80,
+  "workers": 1,
+  "online_rounds": 8,
+  "replay_rounds": 8,
+  "versions": 2,
+  "parallelism_penalty": 0.05
+}

@@ -23,3 +23,19 @@ from the Codex CLI startup header or provider response plus official model
 catalog, not a model-authored identity claim. The earlier
 `evidence/current-session-analysis.json` is explicitly a current-session analysis and is not
 served as GPT-6.1 sol's independent output.
+
+The app bundles the unmodified OPPO Sans 4.0 font from the official ColorOS download
+with its complete license notice in `assets/fonts/OPPO-Sans-LICENSE.txt`. The included
+license permits bundling unmodified fonts with software and requires this attribution
+and retained notice. Font bytes match `data/font-source.json`; they are not licensed
+under this repository’s MIT license. No subset or format conversion is shipped.
+
+## MiSans、Anton 与 JetBrains Mono
+
+本应用使用 MiSans 字体，版权归 Xiaomi Inc.。未修改的 MiSans Regular WOFF2 来自
+[小米官方下载](https://hyperos.mi.com/font/en/download/)，仅随本应用使用与分发，
+不是独立字体镜像；完整许可见 `assets/fonts/MiSans-LICENSE.pdf`。
+
+Anton 与 JetBrains Mono 来自 Google Fonts 官方仓库，遵循 SIL Open Font License 1.1，
+完整版权和许可分别保存在 `assets/fonts/anton-OFL.txt`、`assets/fonts/jetbrainsmono-OFL.txt`。
+全部字体来源和 SHA-256 见 `data/font-source.json`；原始文件未改编或子集化。

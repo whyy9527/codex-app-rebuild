@@ -8,12 +8,126 @@
     "Platform social actions are external to the local replica. The original poster follow gate remains an observed platform dependency, not a candidate login requirement."
   ],
   "scenarios": [
-    {"id":"home", "journey":"Open home, inspect all model channels and loaded art", "requirements":["six-primary-navigation","eight-models","loaded-visible-images","home-visual"]},
-    {"id":"player", "journey":"Next step, jump day, change speed, keyboard navigation, mute and reload", "requirements":["step-changes-simulation","date-changes-simulation","speed-controls","keyboard-next","mute-persists"]},
-    {"id":"pickem", "journey":"Choose winner, propagate to final, change lower winner, fill both predictions, save, reload, share and poster", "requirements":["downstream-winner","invalidates-dependent-pick","complete-prediction","save-reload","share-restore","poster-download"]},
-    {"id":"compare", "journey":"Open table, inspect distinct model probabilities and absent channels", "requirements":["independent-models","no-fabricated-output","bo5-scores"]},
-    {"id":"teams", "journey":"Open team and inspect official records; search teams", "requirements":["team-detail","source-records","search-empty-state"]},
-    {"id":"leaderboard", "journey":"Inspect actual-match waiting state before results", "requirements":["no-premature-scoring","official-match-scope"]},
-    {"id":"mobile", "journey":"Repeat home and personal prediction at 390x844", "requirements":["no-document-overflow","touchable-controls","mobile-visual"]}
+    {
+      "id": "home",
+      "journey": "Open home, inspect all model channels and loaded art",
+      "requirements": [
+        "six-primary-navigation",
+        "eight-models",
+        "loaded-visible-images",
+        "home-visual"
+      ]
+    },
+    {
+      "id": "player",
+      "journey": "Next step, jump day, change speed, keyboard navigation, mute and reload",
+      "requirements": [
+        "step-changes-simulation",
+        "date-changes-simulation",
+        "speed-controls",
+        "keyboard-next",
+        "mute-persists"
+      ]
+    },
+    {
+      "id": "pickem",
+      "journey": "Choose winner, propagate to final, change lower winner, fill both predictions, save, reload, share and poster",
+      "requirements": [
+        "downstream-winner",
+        "invalidates-dependent-pick",
+        "complete-prediction",
+        "save-reload",
+        "share-restore",
+        "poster-download"
+      ]
+    },
+    {
+      "id": "compare",
+      "journey": "Open table, inspect distinct model probabilities and absent channels",
+      "requirements": [
+        "independent-models",
+        "no-fabricated-output",
+        "bo5-scores"
+      ]
+    },
+    {
+      "id": "teams",
+      "journey": "Open team and inspect official records; search teams",
+      "requirements": [
+        "team-detail",
+        "source-records",
+        "search-empty-state"
+      ]
+    },
+    {
+      "id": "leaderboard",
+      "journey": "Inspect actual-match waiting state before results",
+      "requirements": [
+        "no-premature-scoring",
+        "official-match-scope"
+      ]
+    },
+    {
+      "id": "mobile",
+      "journey": "Repeat home and personal prediction at 390x844",
+      "requirements": [
+        "no-document-overflow",
+        "touchable-controls",
+        "mobile-visual"
+      ]
+    },
+    {
+      "id": "custom-ranking",
+      "journey": "Select actual model reference, import ranking, move by arrows, keyboard, two clicks, pointer and touch; cancel/save/reload",
+      "requirements": [
+        "selected-model-probabilities",
+        "rank-order-preserved",
+        "cancel-not-saved",
+        "ranking-persists",
+        "touch-drag"
+      ],
+      "source_evidence": "artifacts/valorant-reference-ranking-verified/observed.json",
+      "driver": "scripts/qa_ranking.py",
+      "compare": "scripts/compare_ranking.py"
+    },
+    {
+      "id": "review",
+      "journey": "Resume per-model player; open two simulated series, change map, inspect reason/curve, share advancement scenario into a new context",
+      "requirements": [
+        "source-default-autoplay",
+        "source-restores-progress",
+        "source-review-map-switch",
+        "player-reload-position",
+        "player-channel-position",
+        "player-review-share-result",
+        "conditional-curve-values",
+        "shared-scenario-in-fresh-context",
+        "mobile-review-no-overflow"
+      ],
+      "source_evidence": "artifacts/valorant-reference-review-verified/observed.json",
+      "driver": "scripts/qa_review.py",
+      "compare": "scripts/compare_review.py"
+    },
+    {
+      "id": "navigation-typography",
+      "journey": "Measure both content viewports and inspect actual rendered fonts through CDP",
+      "requirements": [
+        "font-family",
+        "font-size",
+        "font-weight",
+        "line-height",
+        "glyph-size",
+        "control-size"
+      ],
+      "driver": "scripts/qa_typography.py",
+      "compare": "scripts/compare_typography.py",
+      "scope": "six primary navigation items; not full-page visual acceptance"
+    }
+  ],
+  "data_adaptations": [
+    {
+      "source": "Original fictional LoL BP/player statistics and narrative recap",
+      "candidate": "VALORANT review uses actual model reasons, simulated map winners, and mathematical conditional series probabilities. Missing official player/BP details stay explicit. Rich fictional player/story parity remains unresolved, not waived."
+    }
   ]
 }

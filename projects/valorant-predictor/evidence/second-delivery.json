@@ -1,0 +1,152 @@
+{
+  "created_at": "2026-10-15T12:28:45.118080+00:00",
+  "source_version": "43482999941120-v26695",
+  "candidate_url": "http://127.0.0.1:5173/",
+  "runtime_sha256": {
+    "app.js": "d75d880c0307906a4137d2cd1b9fd5faae7df025eb085547103a66621f20f0b0",
+    "assets/fonts/Anton-Regular.ttf": "a4ba3a92350ebb031da0cb47630ac49eb265082ca1bc0450442f4a83ab947cab",
+    "assets/fonts/JetBrainsMono.ttf": "48715a42ec242c21e9f02692891e147d022299a52e48d5e413e1a942193ffeda",
+    "assets/fonts/MiSans-LICENSE.pdf": "4a93a27cd2bd81b3b5ecfd0a853144a876fa26938a93a68443c67d74172fcb86",
+    "assets/fonts/MiSans-Regular.woff2": "d704c1a932c0bd7e8a071d276cd81c0ed0c9fecfa26ac234f4bed0559fe1cb2d",
+    "assets/fonts/OPPO-Sans-4.0.ttf": "6c7d5864c661516e1f400d9f21e4297f2e2a0719909691e29607cc4ef484a9f4",
+    "assets/fonts/OPPO-Sans-LICENSE.txt": "ccd07c15f2ccb1a9a25f4894a0ab7b6a17499beca435d2946f43ee26c640ebb6",
+    "assets/fonts/anton-OFL.txt": "9267baca92b7a7ce9db6dd9e6cc32c9fe3ddf1ac96e421d5f87c5746b9089d6a",
+    "assets/fonts/jetbrainsmono-OFL.txt": "b2fe5e8987594e9ffd1d2ca52a2f5d73eb8335243893c5d6254b5ad69269591d",
+    "data/assets.json": "59103273b3982f672d4ecf8c605cd8ad9ada17da606db78ea29dc71f568c2a44",
+    "data/deepseek-forecast.json": "2ace0e1cd7b3834f89de520660f8e3e313551429de5e59429746b9d1fcf97fbd",
+    "data/event.json": "46c12e54f2c34bb12db6fd76e9e29360c0c6eb7b7f3097cc06e833a81a20db82",
+    "data/font-source.json": "711983247f4a71b4545ebad7446c32bbca0e68322c4f3978d0802b233fa5b119",
+    "data/gpt-6.1-sol-forecast.json": "260a0a02b9daf4d1caf7140f4091e9dfaf45aef88e47f8acf77108cbdb316d46",
+    "data/model-availability.json": "f5a0917b304e02bcb7abb8bf519c6ab58353c8abc21cfe5ea066949e678b2ccf",
+    "data/model-forecasts.json": "985c7f46f38ff5771b437bb5aec2628f8e680ce3534004f1d0388e47f17ab501",
+    "engine.mjs": "8fa281f5b11fddc1d6d74f719c8e8d833dbfba7bbdd61b88a3d1d1df63acb2a2",
+    "index.html": "4ae92ff8c3c35537784785e47da16d3e4875c3e07dd6b98d1a3bec2d6264c6e1",
+    "style.css": "9858679ca86606248fca420883760b0eaa099a5336b726e8feced283400e235b"
+  },
+  "suites": {
+    "basic": {
+      "observed": "artifacts/valorant-basic-consistent/observed.json",
+      "comparison": "artifacts/valorant-basic-consistent-comparison/comparison.json",
+      "counts": {
+        "pass": 29,
+        "fail": 0,
+        "unavailable": 0,
+        "not_run": 3
+      },
+      "frontend_rows": [
+        {
+          "id": "nav-1",
+          "state": "home",
+          "status": "pass",
+          "expected": "首页"
+        },
+        {
+          "id": "nav-2",
+          "state": "home",
+          "status": "pass",
+          "expected": "数据对比"
+        },
+        {
+          "id": "nav-3",
+          "state": "home",
+          "status": "pass",
+          "expected": "战队"
+        },
+        {
+          "id": "nav-4",
+          "state": "home",
+          "status": "pass",
+          "expected": "我来预测"
+        },
+        {
+          "id": "nav-5",
+          "state": "home",
+          "status": "pass",
+          "expected": "谁最准"
+        },
+        {
+          "id": "nav-6",
+          "state": "home",
+          "status": "pass",
+          "expected": "AI 赛制介绍"
+        },
+        {
+          "id": "visual-full-frame",
+          "state": "home",
+          "status": "not_run",
+          "reason": "Detailed full-page layout/art/motion evaluation remains open. Six navigation items have a separate exact rendered-font/metric comparison; that does not prove whole-frame parity."
+        },
+        {
+          "id": "app-audio",
+          "state": "home",
+          "status": "not_run",
+          "reason": "PID-filtered capture was attempted with real in-recording clicks. Both source and candidate audible captures contained only zero signal; output attribution/transport is unresolved. Silence cannot prove sound equality or effective mute."
+        }
+      ]
+    },
+    "ranking": {
+      "source": "artifacts/valorant-reference-ranking-verified/observed.json",
+      "candidate": "artifacts/valorant-ranking-consistent/observed.json",
+      "comparison": "artifacts/valorant-ranking-consistent-comparison/comparison.json",
+      "status": "pass",
+      "passed": 23
+    },
+    "review": {
+      "source": "artifacts/valorant-reference-review-verified/observed.json",
+      "candidate": "artifacts/valorant-review-upset-consistent/observed.json",
+      "comparison": "artifacts/valorant-review-upset-normalized-comparison/comparison.json",
+      "status": "pass",
+      "passed": 33,
+      "notes": "Explicit upset scenario checks that champion cards, bracket, live and recap share the same simulation.",
+      "normalization": "Only outer whitespace around the team identifier beside a decorative logo is normalized; original raw fact and failed strict comparison retained."
+    },
+    "nav_typography": {
+      "observed": "artifacts/valorant-typography-final/observed.json",
+      "comparison": "artifacts/valorant-typography-comparison/comparison.json",
+      "status": "pass",
+      "passed": 43,
+      "scope": "Six primary navigation items only. No claim about full-page visual equality."
+    },
+    "audio": {
+      "status": "unavailable",
+      "source": "artifacts/valorant-audio-reference/observed.json",
+      "candidate": "artifacts/valorant-audio-candidate/observed.json",
+      "reason": "Nonempty PID-filtered samples and in-window real clicks, but both audible scenes contained zero signal. Source restore action also failed due originally guessed toggle label; driver now uses observed 开启音效. No equality or mute pass."
+    }
+  },
+  "deep_rsi": {
+    "initial_pool": "artifacts/valorant-rsi-deep-initial/iteration-1/collected-pool.json",
+    "evaluation": "artifacts/valorant-rsi-deep-revised/evaluation.json",
+    "deployed_pool": "artifacts/valorant-rsi-deep-redeployed/iteration-1/collected-pool.json",
+    "scores": [
+      {
+        "version": 0,
+        "score": -0.05
+      },
+      {
+        "version": 1,
+        "score": 0.3964285714285714
+      }
+    ],
+    "selected_version": 1,
+    "caveats": [
+      "Frozen score description says seven navigation surfaces; actual evaluator scores eight deep probes.",
+      "browser_evidence.py dependency was omitted from this supplementary fixed-input list; it remains unchanged from first delivery."
+    ],
+    "imported_dependency_sha256": "bb4c5cc4bfb359e9280b7b7e2918a021475053a65b14928004dca2db4f4dc7fb",
+    "product_acceptance": "not evaluated by RSI"
+  },
+  "validation": {
+    "engine_tests_passed": 6,
+    "repository_tests_run": 111,
+    "repository_tests_skipped": 8,
+    "repository_tests_status": "pass",
+    "git_diff_check": "pass"
+  },
+  "remaining": [
+    "Full-page and dynamic visual acceptance",
+    "Actual application-output audio transport and tone comparison",
+    "Rich original BP/player/story parity and deeper input branches"
+  ],
+  "completion_claim": "Product not fully accepted; no Goal completion requested."
+}

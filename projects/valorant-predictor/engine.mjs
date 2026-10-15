@@ -32,6 +32,26 @@ export function seriesProbability(p) {
     .filter((r) => r.score[0] === 3)
     .reduce((s, r) => s + r.probability, 0);
 }
+// Conditional chance of winning the series after the observed map score.
+export function remainingSeriesProbability(score, p) {
+  if (
+    !Array.isArray(score) ||
+    score.length !== 2 ||
+    score.some((n) => !Number.isInteger(n) || n < 0 || n > 3) ||
+    score.every((n) => n === 3) ||
+    !Number.isFinite(p) ||
+    p < 0 ||
+    p > 1
+  )
+    throw Error("需要合法 BO5 比分与单图概率");
+  const chance = (a, b) =>
+    a === 3
+      ? 1
+      : b === 3
+        ? 0
+        : p * chance(a + 1, b) + (1 - p) * chance(a, b + 1);
+  return chance(...score);
+}
 export function teamStats(event, code) {
   const matches = event.history.filter((m) => m.teams.includes(code));
   return {
@@ -103,6 +123,8 @@ export function seededRandom(seed) {
   };
 }
 export function simulateSeries(a, b, p, seed) {
+  if (a === b || !Number.isFinite(p) || p < 0 || p > 1)
+    throw Error("需要两支战队与合法单图概率");
   const random = seededRandom(seed),
     score = [0, 0],
     maps = [];
@@ -112,4 +134,38 @@ export function simulateSeries(a, b, p, seed) {
     maps.push({ winner: winner === 0 ? a : b, score: [...score] });
   }
   return { teams: [a, b], score, maps, winner: score[0] === 3 ? a : b };
+}
+
+export function validRanking(order, teams) {
+  return (
+    Array.isArray(order) &&
+    order.length === teams.length &&
+    new Set(order).size === teams.length &&
+    teams.every((team) => order.includes(team))
+  );
+}
+
+export function rankingProbability(order, a, b) {
+  const first = order.indexOf(a),
+    second = order.indexOf(b);
+  if (first < 0 || second < 0 || first === second)
+    throw Error("排名必须包含两支不同的战队");
+  // The reference uses this same logistic conversion for custom ranking.
+  return 1 / (1 + Math.exp(-(second - first) * 0.122));
+}
+
+export function moveRanking(order, from, to) {
+  if (
+    !Number.isInteger(from) ||
+    !Number.isInteger(to) ||
+    from < 0 ||
+    to < 0 ||
+    from >= order.length ||
+    to >= order.length
+  )
+    throw Error("排名位置无效");
+  const next = [...order],
+    [team] = next.splice(from, 1);
+  next.splice(to, 0, team);
+  return next;
 }
