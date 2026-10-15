@@ -70,13 +70,15 @@ def publish(folder, manifest):
     print(remote('set -eu\nfilesystem=$(stat -f -c %T /var/tmp)\ncase "$filesystem" in tmpfs|ramfs) exit 1;; esac\nmkdir -m 700 -p ' + shlex.quote(stage) + '\nfree -m\nuptime\n'), flush=True)
     # One owned temporary object, private ACL, short-lived download URL; never printed.
     key = 'oss://clawaether-ai-personality/bilibili-toy-deploy/' + release + '.tar.gz'
-    command('aliyun', 'oss', 'cp', str(folder / 'site.tar.gz'), key, '--acl', 'private')
-    signed = command('aliyun', 'oss', 'sign', key, '--timeout', '1800')
+    endpoint = 'https://oss-cn-hongkong.aliyuncs.com'
+    command('aliyun', 'oss', 'cp', str(folder / 'site.tar.gz'), key, '--acl', 'private', '--endpoint', endpoint)
+    signed = command('aliyun', 'oss', 'sign', key, '--timeout', '1800', '--endpoint', endpoint)
     urls = re.findall(r'https?://\S+', signed)
     if len(urls) != 1:
         raise RuntimeError('Expected a single private artifact download URL')
+    download_url = urls[0].replace('http://', 'https://', 1)
     digest = manifest['archive_sha256']
-    script = 'set -eu\n' + 'curl --fail --silent --show-error --max-time 300 ' + shlex.quote(urls[0]) + ' -o ' + shlex.quote(stage + '/site.tar.gz') + '\n'
+    script = 'set -eu\n' + 'curl --fail --silent --show-error --max-time 300 ' + shlex.quote(download_url) + ' -o ' + shlex.quote(stage + '/site.tar.gz') + '\n'
     script += "printf '%s  %s\\n' " + shlex.quote(digest) + ' ' + shlex.quote(stage + '/site.tar.gz') + ' | sha256sum -c -\n'
     print(remote(script, timeout=360), flush=True)
     records = json.loads(command('aliyun', 'alidns', 'DescribeDomainRecords', '--profile', 'fenhezhishang', '--DomainName', 'xinxiayiyan.com', '--RRKeyWord', 's16'))['DomainRecords']['Record']
