@@ -1,0 +1,58 @@
+{
+  "date": "2026-10-15",
+  "scope": "User-requested UI removals and public preview health; full 1:1 acceptance remains pending",
+  "url": "https://s16.xinxiayiyan.com/",
+  "release": "bce6f0f21976-20261015T144858Z",
+  "revision": "bce6f0f219768c0722dd062b08c1c1475e4ef47c",
+  "source": "User screenshots and explicit instruction to delete the Toy sidebar and author/follow/topic capsule",
+  "changes": [
+    "Removed platform sidebar mount and its host transport script.",
+    "Omitted the author component mount in the derived application module; original source bytes retained.",
+    "Main iframe fills released width with symmetric outer padding."
+  ],
+  "public_files_verified": 12,
+  "retired_host_script_status": 404,
+  "shared_services": [
+    {
+      "url": "https://landing.xinxiayiyan.com/",
+      "status": 200,
+      "final_url": "https://landing.xinxiayiyan.com/"
+    },
+    {
+      "url": "https://xinxiayiyan.com/",
+      "status": 200,
+      "final_url": "https://landing.xinxiayiyan.com/"
+    },
+    {
+      "url": "https://workflow.xinxiayiyan.com/",
+      "status": 200,
+      "final_url": "https://workflow.xinxiayiyan.com/"
+    }
+  ],
+  "browser": {
+    "endpoint_secure": true,
+    "removed_controls_absent": true,
+    "main_heading_present": true,
+    "screenshot_inspected": true,
+    "main_content_fills_width": true,
+    "ax_sha256": "e77ac45eb72e59eaf7665bd6c0abf070c9c9bacc654df09721f2bc4c7ee30870",
+    "screenshot_sha256": "1751f9b08f48d5b9899023fbcff38ee118b3148a3d6c3b4cf879335a6dc8b0cc"
+  },
+  "evidence_directory": "projects/bilibili-toy/private/deploy/bce6f0f21976-20261015T144858Z",
+  "cleanup": {
+    "artifact_object_removed": true,
+    "server_archive_removed": true,
+    "prior_release_retained": "4a4ab2f7ddb7-20261015T142553Z",
+    "rollback_script": "deploy/rollback.sh",
+    "rollback_syntax": "pass",
+    "rollback_execution": "not_run",
+    "rollback_command": "sh /opt/bilibili-toy/current/deploy/rollback.sh /var/tmp/bilibili-toy-s16-bce6f0f21976-20261015T144858Z"
+  },
+  "validation": {
+    "root_tests": 111,
+    "root_skipped": 8,
+    "node_checks": "pass",
+    "diff_check": "pass"
+  },
+  "remaining": "Full visual, mobile, interaction and sound acceptance continue under the active Goal; original historical contracts retained with the C2 scope amendment."
+}

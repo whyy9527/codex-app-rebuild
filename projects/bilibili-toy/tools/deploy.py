@@ -27,7 +27,8 @@ def package():
     status = command('git', '-C', str(ROOT), 'status', '--porcelain', '--untracked-files=no', '--', str(ROOT))
     if status.strip():
         raise RuntimeError('Commit the reviewed project inputs before deployment')
-    release = revision[:12] + '-' + datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')
+    release_time = datetime.now(timezone.utc)
+    release = revision[:12] + '-' + release_time.strftime('%Y%m%dT%H%M%SZ')
     folder = ROOT / 'private/deploy' / release
     folder.mkdir(parents=True, exist_ok=False)
     files = {}
@@ -56,6 +57,7 @@ def package():
             entry = tarfile.TarInfo(name)
             entry.size = len(data)
             entry.mode = 0o644
+            entry.mtime = int(release_time.timestamp())
             tar.addfile(entry, io.BytesIO(data))
     manifest.update(archive_sha256=hashlib.sha256(archive.read_bytes()).hexdigest(), files=hashes)
     (folder / 'manifest.json').write_text(json.dumps(manifest, ensure_ascii=False, indent=2))
