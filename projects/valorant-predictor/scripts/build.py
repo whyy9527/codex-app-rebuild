@@ -11,4 +11,6 @@ for name in ('index.html', 'style.css', 'app.js', 'engine.mjs'):
     shutil.copy2(root / name, out / name)
 shutil.copytree(root / 'data', out / 'data', dirs_exist_ok=True)
 if (root / 'assets').exists():shutil.copytree(root / 'assets', out / 'assets', dirs_exist_ok=True)
+shutil.copy2(root / 'ASSET_NOTICES.md', out / 'ASSET_NOTICES.md')
+shutil.copy2(root.parents[1] / 'LICENSE', out / 'LICENSE')
 print('Built dist/index.html')

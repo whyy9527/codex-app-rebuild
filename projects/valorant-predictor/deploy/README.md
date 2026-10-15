@@ -3,6 +3,21 @@
 用户明确授权 `https://valorant.xinxiayiyan.com/`，并要求先发布当前可用版，
 再继续补充明确标注为虚构的剧情、BP 和选手评分。此站点不覆盖现有公司官网。
 
+大陆 ECS 首次部署源站成功，但公网 HTTP 返回阿里云备案拦截页（403），
+HTTPS 尚未签发。失败回执保留在 `artifacts/valorant-publication-endpoint-fixed`。
+首版改用同一公开仓库的独立 `valorant-site` 分支及 GitHub Pages，
+仅把本项目 `valorant` 记录从自建源站 A 调整为 `whyy9527.github.io` CNAME。
+其他子域、公司站点和工作流不变。当前发布命令：
+
+```sh
+python3 projects/valorant-predictor/scripts/deploy_pages.py --out artifacts/valorant-pages-release
+```
+
+脚本只发布构建产物，保留源代码提交 SHA、文件摘要和 Pages 分支 SHA；
+不强推分支，拒绝替换其他 Pages 站点或未知 DNS 目标。
+提交发布之后，还需要等待 Pages 构建、证书签发并完成公网浏览器验收，
+`submitted.json` 本身不代表已上线。以下 ECS 流程保留为源站恢复资料。
+
 从仓库根完成构建、浏览器验收和精确提交推送后运行：
 
 ```sh
