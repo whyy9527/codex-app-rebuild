@@ -19,6 +19,17 @@ class HostBoundary(unittest.TestCase):
         cls.temp = tempfile.TemporaryDirectory()
         root = Path(cls.temp.name)
         (root / 'app').mkdir()
+        project = file.parents[1]
+        for name in ('index.html', 'frame-entry.js', 'shell.css'):
+            (root / 'app' / name).write_bytes((project / 'app' / name).read_bytes())
+        data = root / 'private/site/data'
+        run_id = 'gpt-6.1-sol__S16-MAIN'
+        (data / run_id).mkdir(parents=True)
+        (data / 'index.json').write_text(json.dumps({'runs': [{'id': run_id}]}))
+        (data / run_id / 'events.json').write_text(json.dumps([
+            {'type': 'game_pred', 'match_id': 'PI-UB1', 'game_no': 1},
+            {'type': 'game_result', 'match_id': 'PI-UB1', 'game_no': 1},
+            {'type': 'game_result', 'match_id': 'PI-UB1', 'game_no': 2}]))
         (root / 'release.json').write_text('{"release":"test-release","channel":"preview"}')
         (root / 'private/secret.txt').parent.mkdir(parents=True, exist_ok=True)
         (root / 'private/secret.txt').write_text('not-public')
@@ -73,6 +84,29 @@ class HostBoundary(unittest.TestCase):
         for path in ('/content/host/', '/content/%2e%2e/secret.txt', '/%2e%2e/private/secret.txt'):
             with self.assertRaises(HTTPError) as caught:
                 self.get(path)
+            self.assertEqual(caught.exception.code, 404)
+
+    def test_known_world_and_game_share_entries_serve_the_actual_shell(self):
+        prefix = '/share/gpt-6.1-sol__S16-MAIN/'
+        for path, route in [('index.html', '#/ai/gpt-6.1-sol__S16-MAIN'),
+                            ('PI-UB1/g2.html', '#/ai/gpt-6.1-sol__S16-MAIN/match/PI-UB1?g=2')]:
+            with urlopen(self.url + prefix + path + '?p=pickem', timeout=3) as response:
+                body = response.read()
+                self.assertEqual(response.status, 200)
+                self.assertIn(('data-entry-hash="' + route + '"').encode(), body)
+                self.assertIn(b'href="/shell.css"', body)
+                self.assertIn(b'src="/frame-entry.js"', body)
+            with urlopen(Request(self.url + prefix + path, method='HEAD'), timeout=3) as response:
+                self.assertEqual(response.status, 200)
+                self.assertEqual(int(response.headers['Content-Length']), len(body))
+                self.assertEqual(response.read(), b'')
+
+    def test_unknown_share_inputs_do_not_fall_back_to_another_world_or_game(self):
+        for path in ('missing/index.html', 'gpt-6.1-sol__S16-MAIN/missing/g1.html',
+                     'gpt-6.1-sol__S16-MAIN/PI-UB1/g0.html', 'gpt-6.1-sol__S16-MAIN/PI-UB1/g3.html',
+                     'gpt-6.1-sol__S16-MAIN/PI-UB1/g01.html', '../private/secret.txt'):
+            with self.assertRaises(HTTPError) as caught:
+                urlopen(self.url + '/share/' + path, timeout=3)
             self.assertEqual(caught.exception.code, 404)
 
 

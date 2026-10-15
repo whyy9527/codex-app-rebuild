@@ -287,5 +287,69 @@
       ],
       "measurement": "Complete ordinary Safari browser content below its observed 104-pixel toolbar, in unmodified native-export coordinates."
     }
+  },
+  "share_game": {
+    "scope": "Actual UI-copied standalone game sharing entry, refresh retention and jump to this game in the live player. Original and candidate use each own origin; capture pixels remain strict diagnostics.",
+    "driver": "tools/channel_native.mjs installChannelUI open/waitFor/click/collect",
+    "source_path": "/toy/LkvCZhw12wgT2Pqx/share/opus-5.5__S16-MAIN/PI-UB1/g4.html",
+    "cases": [
+      "entry-game4",
+      "entry-reloaded",
+      "entry-live-jump"
+    ],
+    "capture": {
+      "content_rect_points": [
+        0,
+        104,
+        2648,
+        1562
+      ],
+      "backing_scale": 1,
+      "window_points": [
+        2648,
+        1666
+      ],
+      "measurement": "Complete ordinary Safari browser content below its observed 104-pixel toolbar, in unmodified native-export coordinates."
+    },
+    "preparation": "Same owned ordinary desktop Safari private window. The source URL is actual copied report in private/details-source-1/opus-share-url.txt. Current game is number 4, not a seeded or manually edited browser draft.",
+    "steps": [
+      "Open actual copied game URL; wait for source-observed G4 headline and floating report button; collect entry-game4.",
+      "Open QR, scroll by half a native viewport and capture the completely visible QR separately for independent image decoding; close and reset scroll.",
+      "Navigate primary Home, retain actual home AX, then reload the unchanged outer game-sharing URL; wait for G4 and collect entry-reloaded.",
+      "Activate 在直播间看这局; wait for actual player, pause if playing, then activate the already-selected BP toggle while paused (source renders the complete draft) and collect entry-live-jump. Do not compare uncontrolled partial animation progress.",
+      "Copy world-share URL from actual UI; retain clipboard address AX and plain report before restoring real address."
+    ],
+    "limits": [
+      "Sharing QR content must resolve to each endpoint own valid game URL. Its graphic necessarily changes with the hostname; raw full screenshots remain unchanged.",
+      "Source outer unknown share URL returns a shell HTTP 200 and its missing compiled content returns HTTP 404. Preview rejects unknown share inputs with HTTP 404; this negative HTTP boundary does not certify the platform error page.",
+      "Pending PNG authorization remains independent from functional sharing repair."
+    ]
+  },
+  "share_world": {
+    "scope": "Actual copied standalone AI-world sharing entry after the common game/live traversal; each own playback step persists, while game rendering phase resets as observed.",
+    "driver": "tools/channel_native.mjs installChannelUI open/click/collect",
+    "source_path": "/toy/LkvCZhw12wgT2Pqx/share/opus-5.5__S16-MAIN/index.html",
+    "cases": [
+      "world-open"
+    ],
+    "capture": {
+      "content_rect_points": [
+        0,
+        104,
+        2648,
+        1562
+      ],
+      "backing_scale": 1,
+      "window_points": [
+        2648,
+        1666
+      ],
+      "measurement": "Complete ordinary Safari browser content below its observed 104-pixel toolbar, in unmodified native-export coordinates."
+    },
+    "preparation": "After share_game on the same origin, open its actual copied world URL. Wait for player and pause if playing; do not force a model or timeline step.",
+    "steps": [
+      "Open actual copied world URL; wait for player; pause if needed; collect world-open."
+    ],
+    "limits": "This probes the world-entry route and own retained state; other dedicated-channel subviews and full visuals remain separate."
   }
 }

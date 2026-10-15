@@ -28,7 +28,7 @@ function guard(ax,prep) {
 }
 async function observe(value,protocol) {
   const raw=await fs.readFile(await input(value)),capture=JSON.parse(raw),states={};
-  const expected=protocol.models.flatMap(m=>protocol.views.map(v=>m.id+'-'+v.id));
+  const expected=protocol.cases||protocol.models.flatMap(m=>protocol.views.map(v=>m.id+'-'+v.id));
   if(expected.length!==Object.keys(capture.states).length||expected.some(id=>!capture.states[id]))throw Error('Every channel/view pair required');
   for(const [name,state] of Object.entries(capture.states)) {
     const texts=new Map(),snapshots=[];let initial;
@@ -67,7 +67,8 @@ async function observe(value,protocol) {
 }
 function freeze(source,protocol) {
   const url=new URL(source.preparation.url);
-  if(url.origin!=='https://www.bilibili.com'||url.pathname!=='/toy/LkvCZhw12wgT2Pqx/index.html')throw Error('Original endpoint required');
+  const sourcePath=protocol.source_path||'/toy/LkvCZhw12wgT2Pqx/index.html';
+  if(!sourcePath.startsWith('/toy/LkvCZhw12wgT2Pqx/')||url.origin!=='https://www.bilibili.com'||url.pathname!==sourcePath)throw Error('Original endpoint required');
   const requirements=[];
   for(const [name,state] of Object.entries(source.states)) {
     const evidence=[state.snapshots[0].ax];
@@ -80,9 +81,9 @@ function freeze(source,protocol) {
   }
   return {schema_version:1,scope:protocol.scope,source_observation_sha256:source.raw_observation_sha256,requirements};
 }
-const [mode,observed,out]=process.argv.slice(2);
-if(!['freeze','observe'].includes(mode)||!observed||!out)throw Error('Usage: channel_evidence.mjs freeze|observe observed.json private-output');
-const protocol=JSON.parse(await fs.readFile(path.join(project,'journeys.json'),'utf8')).channels;
+const [mode,observed,out,suite='channels']=process.argv.slice(2);
+if(!['freeze','observe'].includes(mode)||!observed||!out||!['channels','share_game','share_world'].includes(suite))throw Error('Usage: channel_evidence.mjs freeze|observe observed.json private-output [channels|share_game|share_world]');
+const protocol=JSON.parse(await fs.readFile(path.join(project,'journeys.json'),'utf8'))[suite];
 const facts=await observe(observed,protocol);
 if(mode==='freeze') {
   const contract=freeze(facts,protocol),directory=output(out);await fs.mkdir(directory);

@@ -182,6 +182,23 @@ python3 -m workflows.rebuild.project run --workspace . --project projects/bilibi
 保持失败，无损截图验证前不归因于压缩或增加容差。结果见
 `evidence/visual-2026-10-16.json`。
 
+实际复制的模型世界／单局分享入口使用 `journeys.json#share_world` 和
+`#share_game`。服务端从已发布数据生成有效路径，不把未知比赛替换为首页。
+根入口继续保留原分享 query，固定分享页使用自身的模型和局数路由。
+
+```sh
+node projects/bilibili-toy/tools/channel_evidence.mjs freeze <原版 observed.json> projects/bilibili-toy/private/share-game-contract-new share_game
+node projects/bilibili-toy/tools/channel_evidence.mjs observe <候选 observed.json> projects/bilibili-toy/private/share-game-facts-new.json share_game
+python3 -m workflows.rebuild.project run --workspace . --project projects/bilibili-toy/rebuild.json --command share_game_compare --observed <候选事实.json> --out projects/bilibili-toy/private/share-game-comparison-new.json
+node projects/bilibili-toy/tools/frame_entry.test.mjs
+```
+
+世界入口将最后参数改为 `share_world`，比较命令为 `share_world_compare`。
+直播跳转会自动播放 BP；共同准备先暂停，再点击已选中的 BP 按钮，显示完整
+选人，避免将不同暂停时刻当成相同状态。二维码用 `tools/decode_qr.swift`
+分析实际 CUA 截图，先确认二维码完整可见。详情见
+`evidence/share-entries-2026-10-16.json`。
+
 用户后续指定的发布目标是 `https://s16.xinxiayiyan.com/`；完成条件修订见
 `rebuild.json`，用户后续要求先发布当前预览版；完整复刻验收继续。现有官网首页保留。
 

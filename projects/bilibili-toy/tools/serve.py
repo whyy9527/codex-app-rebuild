@@ -1,7 +1,9 @@
 """Static preview server; network binding is explicit for isolated deployments."""
 import argparse
+import html
 import json
-from functools import partial
+import re
+from functools import partial, lru_cache
 from http.server import SimpleHTTPRequestHandler, HTTPServer
 from socketserver import ThreadingMixIn
 from pathlib import Path
@@ -10,12 +12,64 @@ from urllib.parse import parse_qs, unquote, urlsplit
 ROOT = Path(__file__).resolve().parents[1]
 
 
+@lru_cache(maxsize=1)
+def share_routes(root):
+    """Valid standalone share entries from the same published model/game data."""
+    folder = root / 'private/site/data'
+    index = folder / 'index.json'
+    if not index.exists():
+        return {}
+    routes = {}
+    for run in json.loads(index.read_text())['runs']:
+        run_id = run['id']
+        if not isinstance(run_id, str) or not re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9_.-]*', run_id):
+            raise ValueError('Invalid published run ID')
+        base = '#/ai/' + run_id
+        routes['/share/' + run_id + '/index.html'] = base
+        for event in json.loads((folder / run_id / 'events.json').read_text()):
+            if event.get('type') != 'game_result':
+                continue
+            match, game = event['match_id'], event['game_no']
+            if not isinstance(match, str) or not re.fullmatch(r'[A-Za-z0-9_-]+', match) or type(game) is not int or game < 1:
+                raise ValueError('Invalid published game identity')
+            route = '/share/' + run_id + '/' + match + '/g' + str(game) + '.html'
+            routes[route] = base + '/match/' + match + '?g=' + str(game)
+    return routes
+
+
 class ThreadingHTTPServer(ThreadingMixIn, HTTPServer):
     daemon_threads = True
 
 
 class Handler(SimpleHTTPRequestHandler):
+    def serve_share(self, head_only=False):
+        route = urlsplit(self.path).path
+        if not route.startswith('/share/'):
+            return False
+        entry = share_routes(ROOT).get(route)
+        if entry is None:
+            self.send_error(404)
+            return True
+        template = (ROOT / 'app/index.html').read_text()
+        marker = 'data-entry-hash=""'
+        if template.count(marker) != 1:
+            raise ValueError('Share-entry iframe marker changed')
+        data = template.replace(marker, 'data-entry-hash="' + html.escape(entry, quote=True) + '"').encode('utf-8')
+        self.send_response(200)
+        self.send_header('Content-Type', 'text/html; charset=utf-8')
+        self.send_header('Content-Length', str(len(data)))
+        self.end_headers()
+        if not head_only:
+            self.wfile.write(data)
+        return True
+
+    def do_HEAD(self):
+        if not self.serve_share(head_only=True):
+            super().do_HEAD()
+
     def do_GET(self):
+        if self.serve_share():
+            return
         route = urlsplit(self.path).path
         if route == '/release.json':
             release = ROOT / 'release.json'
@@ -103,6 +157,9 @@ def main():
     missing = [name for name in required if not (ROOT / 'private/site' / name).exists()]
     if missing:
         parser.error("Run the project build first; missing public-resource baseline: " + ', '.join(missing))
+    # Warm once before accepting concurrent requests, keeping first-load parsing
+    # out of request threads on the memory-limited preview service.
+    share_routes(ROOT)
     with ThreadingHTTPServer((args.bind, args.port), partial(Handler)) as server:
         print(f"http://{args.bind}:{args.port}/", flush=True)
         server.serve_forever()

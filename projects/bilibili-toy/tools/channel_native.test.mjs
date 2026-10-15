@@ -33,4 +33,6 @@ const desktopPlayer=raw.replace('6 text 模型 · EXAMPLE',`6 container AI 模�
 \t\t\t\t16 checkbox 闲置 60 秒后自动换台, Value: 0`);
 assert.equal(channelFacts(desktopPlayer).elements.world.value,'Example Model');
 assert.deepEqual(channelFacts(desktopPlayer).interactions,{player_paused:true,idle_enabled:false});
+const series=raw.replace('6 text 模型 · EXAMPLE','6 link ← Example Model 的赛程, Value: example.test#/ai/model/schedule');
+assert.equal(channelFacts(series).elements.world.value,'Example Model');
 console.log('Channel multiline labels, desktop world and partial-table checks passed');

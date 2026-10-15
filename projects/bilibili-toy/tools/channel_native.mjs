@@ -34,6 +34,7 @@ export function channelFacts(ax) {
     const world=scope.slice(player).match(/\d+ text AI 模拟\s+(.+?)\s+的世界/);
     if(player>=0&&world)elements.world={value:world[1].trim()};
   }
+  if(!elements.world){const back=scope.match(/link ← (.+?) 的赛程, Value:/);if(back)elements.world={value:back[1].trim()};}
   const day=scope.match(/slider \(settable, float\) 比赛日, Value: ([^\n]+)/);
   if(day)elements.match_day={value:day[1].trim()};
   const interactions={};
@@ -84,6 +85,14 @@ export function installChannelUI(app,fs,{url,output,windowUuid}) {
     await ready(ax=>/link Claude Opus 5\.5, Value:/.test(ax));
     await selectModel('Claude Opus 5.5');
   }
+  async function open(pattern) {
+    if(!(await tree()).includes('UUID='+windowUuid))throw Error('Owned window changed');
+    await app.pressKey('super+l');await app.paste(url);await app.pressKey('Return');
+    return waitFor(pattern);
+  }
+  async function waitFor(pattern) {
+    return ready(ax=>pattern.test(appScope(ax))&&ax.includes('button 展开 AI 模拟速报'));
+  }
   async function navigate(label) {
     const before=await tree();guard(before);const signature=JSON.stringify(channelFacts(before).accessible_text);
     await click(new RegExp('\\d+ link '+label+', Value:'));
@@ -128,5 +137,5 @@ export function installChannelUI(app,fs,{url,output,windowUuid}) {
     existing.states[id]=state;await fs.writeFile(output+'/observed.json',JSON.stringify(existing));
     await top();return {id,texts:union.size,frames:observations.length,partial:observations.flatMap(x=>x.facts.partial_ranges)};
   }
-  return {prepare,selectModel,navigate,collect,top,click};
+  return {prepare,open,waitFor,selectModel,navigate,collect,top,click};
 }
