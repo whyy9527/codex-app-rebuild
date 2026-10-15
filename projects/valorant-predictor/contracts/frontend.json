@@ -107,12 +107,13 @@
       "id": "visual-full-frame",
       "state": "home",
       "kind": "pending",
-      "description": "Shared desktop layout/typography and mobile metrics have independent passing suites. Whole-image pixel identity is not claimed: VALORANT content and official card art replace the original LoL artwork. Rich simulated BP/player/story implementation is still pending the user’s new C8 request.",
+      "description": "Shared desktop layout/typography and mobile metrics have independent passing suites. Whole-image pixel identity is not claimed: VALORANT content and official card art replace the original LoL artwork. C8 fictional BP/player/story has its own 429-check browser suite; this umbrella does not certify whole-image identity.",
       "evidence": [
         "artifacts/valorant-reference-keyboard-neutral/0000-step.json",
         "artifacts/valorant-prepublish-layout/observed.json",
         "artifacts/valorant-prepublish-layout-check/comparison.json",
-        "artifacts/valorant-prepublish-mobile-check/comparison.json"
+        "artifacts/valorant-prepublish-mobile-check/comparison.json",
+        "artifacts/valorant-fiction-full-check/comparison.json"
       ]
     },
     {

@@ -13,6 +13,7 @@ import {
   rankingProbability,
   moveRanking,
 } from "./engine.mjs";
+import { fictionFor, aggregateFictionPlayers } from "./fiction.mjs";
 const $ = (s) => document.querySelector(s),
   main = $("#main-content");
 const escape = (s) =>
@@ -56,6 +57,9 @@ let event,
   forecast,
   forecasts = {},
   modelManifest = {},
+  fiction = {},
+  fictionManifest = {},
+  fictionContext,
   selected = store.get("channel", "codex"),
   tab = "live",
   current = 0,
@@ -196,6 +200,32 @@ function simulateFinals(id = selected) {
       simSeed + 1,
     ),
   ];
+}
+function fictionalReview(index, id = selected) {
+  const { upperWinner, lowerWinner } = opponentPairs();
+  return fictionFor(fiction[id], { upperWinner, lowerWinner }, index, simulateFinals(id)[index], event.source_sha256);
+}
+function fictionNotice() {
+  return '<div class="notice fiction-notice"><strong>AI 虚构模拟</strong> · 以下 BP、回合比分、剧情、MVP 和评分均为模型创作，非真实比赛、非选手能力评估。</div>';
+}
+function fictionRatings(review) {
+  return `<div class="table-wrap"><table class="fiction-ratings"><thead><tr><th>选手</th><th>战队</th><th>本场虚构评分 / 10</th><th>虚构表现评语</th></tr></thead><tbody>${Object.entries(review.players).sort((a, b) => b[1].rating - a[1].rating).map(([id, value]) => { const [team, name] = id.split(':'); return `<tr data-fiction-player="${escape(id)}"><th>${escape(name)}</th><td>${escape(team)}</td><td class="mono">${value.rating.toFixed(1)}</td><td>${escape(value.comment)}</td></tr>`; }).join("")}</tbody></table></div>`;
+}
+function fictionDetails(review, index) {
+  if (!review) return '<section class="card section-heading"><h2>虚构剧情与评分待生成</h2><p class="muted">该频道尚无与当前情景匹配的真实模型创作，不代填内容。</p></section>';
+  return `<section class="card section-heading fiction-details">${fictionNotice()}<h2>${escape(review.headline)}</h2><p>${escape(review.summary)}</p><h3>虚构地图 BP</h3><p class="muted">创作使用七张游戏地图组成的模拟池，未核实为本届官方比赛池。禁选和图序均为虚构。</p><div class="fiction-bp">${review.bp.bans.map(map => `<div class="bp-map banned"><small>模拟禁用</small><b>${escape(map)}</b></div>`).join("")}${review.bp.order.map((map, i) => `<div class="bp-map ${i >= review.input.series.maps.length ? "unplayed" : ""}"><small>第 ${i + 1} 图${i >= review.input.series.maps.length ? " · 未进行" : ""}</small><b>${escape(map)}</b></div>`).join("")}</div><p>${escape(review.bp.reason)}</p><h3>本场虚构选手评分</h3><p class="muted">0–10 分，仅描述这段虚构剧情中的系列赛表现；不是 ACS、KAST 或真实能力排名。</p>${fictionRatings(review)}<details class="fiction-sources"><summary>人物索引、地图和生成来源</summary><p>昵称索引不等于比赛当天官方首发。${review.input.series.teams.map(team => `<a class="source-link" href="${escape(fictionContext.teams[team].source_url)}" target="_blank" rel="noreferrer">${team} · ${fictionContext.teams[team].source_kind === "official_team" ? "俱乐部官网" : "赛事数据库补充"} ↗</a>`).join("　")}</p><p><a class="source-link" href="${escape(fictionContext.maps.source_url)}" target="_blank" rel="noreferrer">Riot 游戏地图目录 ↗</a> · <a class="source-link" href="data/${escape(fictionManifest[selected])}" target="_blank">${escape(channel().name)} 实际创作 JSON ↗</a></p></details></section>`;
+}
+function renderFictionPlayers(content) {
+  const rows = aggregateFictionPlayers([fictionalReview(0), fictionalReview(1)]);
+  content.innerHTML = fictionNotice() + scenarioForm() + `<section class="card fiction-player-board"><div class="section-head"><div><h2>虚构选手榜 · ${escape(channel().name)}</h2><p class="muted">取当前情景最后两场的系列赛评分均值；只统计实际写入剧情的出场。0–10 分，不代表真实能力。</p></div><span class="pill">${rows.length} 名剧情选手</span></div><div class="form-row"><label>搜索选手<input id="fiction-player-search" type="search" placeholder="输入昵称" /></label><label>战队<select id="fiction-player-team"><option value="">全部战队</option>${[...new Set(rows.map(r => r.team))].map(team => `<option>${escape(team)}</option>`).join("")}</select></label><label>排序<select id="fiction-player-sort"><option value="rating">虚构均分</option><option value="appearances">模拟出场数</option><option value="name">选手昵称</option></select></label><label><input type="checkbox" id="fiction-player-both" />只看两场均出场</label></div><div id="fiction-player-results"></div><p class="muted">名单依据俱乐部公开阵容索引；LOUD 使用赛事数据库补充。真实比赛数据与本榜分开。</p></section>`;
+  const update = () => {
+    const query = $("#fiction-player-search").value.trim().toLowerCase(), team = $("#fiction-player-team").value, sort = $("#fiction-player-sort").value;
+    const filtered = rows.filter(row => row.name.toLowerCase().includes(query) && (!team || row.team === team) && (!$("#fiction-player-both").checked || row.appearances.length === 2));
+    filtered.sort((a, b) => sort === "name" ? a.name.localeCompare(b.name) : sort === "appearances" ? b.appearances.length - a.appearances.length || b.rating - a.rating : b.rating - a.rating);
+    $("#fiction-player-results").innerHTML = filtered.length ? `<div class="table-wrap"><table><thead><tr><th>排名</th><th>选手</th><th>战队</th><th>虚构均分 / 10</th><th>模拟出场</th><th>对应剧情</th></tr></thead><tbody>${filtered.map((row, i) => `<tr data-fiction-player="${escape(row.id)}"><td>${i + 1}</td><th>${escape(row.name)}</th><td>${row.team}</td><td class="mono">${row.rating.toFixed(1)}</td><td>${row.appearances.length}</td><td>${row.appearances.map(a => `<a class="source-link" href="${reviewLink(a.index)}">${a.index === 0 ? "败者组决赛" : "总决赛"} · ${a.rating.toFixed(1)}</a>`).join("<br>")}</td></tr>`).join("")}</tbody></table></div>` : '<div class="empty">没有匹配的虚构选手评分；该频道未生成时保持空榜。</div>';
+  };
+  for (const id of ["fiction-player-search", "fiction-player-team", "fiction-player-sort", "fiction-player-both"]) $("#" + id).addEventListener("input", update);
+  update();bindScenario();
 }
 function pageHead(title, description) {
   const split = {"数据对比": ["数据", "对比"], "战队": ["参赛", "战队"], "我来预测": ["我来", "预测"], "谁最准": ["谁最", "准"], "AI 赛制介绍": ["VCT · ", "AI 赛制介绍"]}[title] || ["", title];
@@ -397,11 +427,11 @@ function reviewPage(index) {
     )
     .join("");
   $("#review-content").innerHTML =
-    `<section class="card review-head"><span class="pill">AI 模拟 · 非真实赛果</span><div class="versus"><div class="vs-team">${logo(series.teams[0])}<b>${series.teams[0]}</b></div><div class="score">${series.score.join(" : ")}<small>BO5 · ${series.maps.length} 图</small></div><div class="vs-team">${logo(series.teams[1])}<b>${series.teams[1]}</b></div></div><h2>${series.winner} ${index === 0 ? "晋级总决赛" : "夺得模拟冠军"}</h2><p class="muted">当前晋级情景与固定随机种子下的一次推演。它与直播播放器使用同一组逐图结果。</p><div class="odds-bar" aria-label="赛前系列赛概率"><span style="width:${100 * seriesProbability(p)}%">${series.teams[0]} ${pct(seriesProbability(p))}</span><span>${series.teams[1]} ${pct(1 - seriesProbability(p))}</span></div></section><section class="card section-heading"><h2>赛前判断 · ${escape(channel().name)}</h2><p>${escape(pairReason(series.teams))}</p><p class="muted">单图概率 ${pct(p)}；按各图独立且同概率换算，${series.teams[0]} 赢得 BO5 的概率为 ${pct(seriesProbability(p))}。</p></section><section class="card section-heading"><h2>逐图回看</h2><div class="map-tabs" role="group" aria-label="选择模拟地图">${series.maps.map((map, i) => `<button data-review-map="${i}" aria-pressed="${i === 0}" class="${i === 0 ? "on" : ""}">第 ${i + 1} 图 · ${map.winner} 胜</button>`).join("")}</div><div id="review-map" aria-live="polite"></div><div class="table-wrap"><table><thead><tr><th>地图</th><th>模拟胜者</th><th>累计比分</th><th>${series.teams[0]} 此时系列赛概率</th></tr></thead><tbody>${scoreTable}</tbody></table></div></section><section class="card section-heading"><h2>系列赛胜率走势</h2><p class="muted">每图结束后按剩余图数计算的条件概率，沿用模型的固定单图概率。不是实测局内走势。</p><div class="chart-scroll"><svg viewBox="0 0 900 255" class="series-chart" role="img" aria-label="${series.teams[0]} 系列赛条件胜率走势">${[0, 0.25, 0.5, 0.75, 1].map((v) => `<line x1="55" x2="845" y1="${210 - v * 160}" y2="${210 - v * 160}" class="chart-grid"/><text x="42" y="${215 - v * 160}" text-anchor="end">${v * 100}%</text>`).join("")}<polyline points="${points.map((p) => p.join(",")).join(" ")}"/>${points.map(([x, y], i) => `<circle cx="${x}" cy="${y}" r="5"/><text x="${x}" y="240" text-anchor="middle">${i === 0 ? "赛前" : `第 ${i} 图`}</text><text x="${x}" y="${y - 12}" text-anchor="middle" class="chart-value">${pct(chances[i])}</text>`).join("")}</svg></div></section><section class="card section-heading"><h2>地图 BP 与选手明细</h2><p class="muted">暂无可核实的地图名称、禁选顺序、英雄阵容和选手数据。逐图结果只模拟胜负，不填入虚构的官方明细。</p><a class="source-link" href="https://valorantesports.com/en-US/" target="_blank" rel="noreferrer">核对赛事官网 ↗</a></section><div class="form-row section-heading"><a class="btn" href="${reviewLink(1 - index)}">${index === 0 ? "下一场 · 总决赛" : "上一场 · 败者组决赛"} →</a><a class="btn" href="#/?ai=${selected}">返回直播</a><button id="share-review">复制回看链接</button></div>`;
+    `<section class="card review-head"><span class="pill">AI 模拟 · 非真实赛果</span><div class="versus"><div class="vs-team">${logo(series.teams[0])}<b>${series.teams[0]}</b></div><div class="score">${series.score.join(" : ")}<small>BO5 · ${series.maps.length} 图</small></div><div class="vs-team">${logo(series.teams[1])}<b>${series.teams[1]}</b></div></div><h2>${series.winner} ${index === 0 ? "晋级总决赛" : "夺得模拟冠军"}</h2><p class="muted">当前晋级情景与固定随机种子下的一次推演。它与直播播放器使用同一组逐图结果。</p><div class="odds-bar" aria-label="赛前系列赛概率"><span style="width:${100 * seriesProbability(p)}%">${series.teams[0]} ${pct(seriesProbability(p))}</span><span>${series.teams[1]} ${pct(1 - seriesProbability(p))}</span></div></section><section class="card section-heading"><h2>赛前判断 · ${escape(channel().name)}</h2><p>${escape(pairReason(series.teams))}</p><p class="muted">单图概率 ${pct(p)}；按各图独立且同概率换算，${series.teams[0]} 赢得 BO5 的概率为 ${pct(seriesProbability(p))}。</p></section><section class="card section-heading"><h2>逐图回看</h2><div class="map-tabs" role="group" aria-label="选择模拟地图">${series.maps.map((map, i) => `<button data-review-map="${i}" aria-pressed="${i === 0}" class="${i === 0 ? "on" : ""}">第 ${i + 1} 图 · ${map.winner} 胜</button>`).join("")}</div><div id="review-map" aria-live="polite"></div><div class="table-wrap"><table><thead><tr><th>地图</th><th>模拟胜者</th><th>累计比分</th><th>${series.teams[0]} 此时系列赛概率</th></tr></thead><tbody>${scoreTable}</tbody></table></div></section><section class="card section-heading"><h2>系列赛胜率走势</h2><p class="muted">每图结束后按剩余图数计算的条件概率，沿用模型的固定单图概率。不是实测局内走势。</p><div class="chart-scroll"><svg viewBox="0 0 900 255" class="series-chart" role="img" aria-label="${series.teams[0]} 系列赛条件胜率走势">${[0, 0.25, 0.5, 0.75, 1].map((v) => `<line x1="55" x2="845" y1="${210 - v * 160}" y2="${210 - v * 160}" class="chart-grid"/><text x="42" y="${215 - v * 160}" text-anchor="end">${v * 100}%</text>`).join("")}<polyline points="${points.map((p) => p.join(",")).join(" ")}"/>${points.map(([x, y], i) => `<circle cx="${x}" cy="${y}" r="5"/><text x="${x}" y="240" text-anchor="middle">${i === 0 ? "赛前" : `第 ${i} 图`}</text><text x="${x}" y="${y - 12}" text-anchor="middle" class="chart-value">${pct(chances[i])}</text>`).join("")}</svg></div></section>${fictionDetails(fictionalReview(index), index)}<div class="form-row section-heading"><a class="btn" href="${reviewLink(1 - index)}">${index === 0 ? "下一场 · 总决赛" : "上一场 · 败者组决赛"} →</a><a class="btn" href="#/?ai=${selected}">返回直播</a><button id="share-review">复制回看链接</button></div>`;
   const showMap = (i) => {
-    const map = series.maps[i];
+    const map = series.maps[i], review = fictionalReview(index), story = review?.maps[String(i)];
     $("#review-map").innerHTML =
-      `<h3>第 ${i + 1} 图 · ${map.winner} 获胜</h3><p class="muted">累计比分 ${map.score.join(" : ")}。${Math.max(...map.score) === 3 ? `${map.winner} 已赢下系列赛。` : `进入下一图，${series.teams[0]} 赢得系列赛的条件概率为 ${pct(chances[i + 1])}。`}</p><a class="source-link" href="#/?ai=${selected}">在直播中回放 →</a>`;
+      `<h3>第 ${i + 1} 图 · ${map.winner} 获胜</h3><p class="muted">累计比分 ${map.score.join(" : ")}。${Math.max(...map.score) === 3 ? `${map.winner} 已赢下系列赛。` : `进入下一图，${series.teams[0]} 赢得系列赛的条件概率为 ${pct(chances[i + 1])}。`}</p>${story ? `${fictionNotice()}<div class="fiction-map-story"><h3>${escape(review.bp.order[i])} · 虚构回合比分 ${map.winner === series.teams[0] ? `13 : ${story.losing_rounds}` : `${story.losing_rounds} : 13`}</h3><p>${escape(story.story)}</p><p class="muted">本图虚构 MVP · ${escape(story.mvp.split(":")[1])}（${escape(map.winner)}）</p></div>` : ""}<a class="source-link" href="#/?ai=${selected}">在直播中回放 →</a>`;
     document.querySelectorAll("[data-review-map]").forEach((b) => {
       const on = Number(b.dataset.reviewMap) === i;
       b.classList.toggle("on", on);
@@ -453,13 +483,13 @@ function renderChannel() {
     return;
   }
   if (tab === "players") {
-    content.innerHTML = `<section class="card empty"><div class="symbol">◇</div><h2>选手数据等待官方明细</h2><p class="muted">当前官方赛事快照只提供系列赛结果，未提供完整出场阵容、ACS、KAST 和逐图 K/D/A。</p><p class="muted">暂无可核实的选手榜。模型概率使用本届战队战绩，未填入模拟选手评分。</p><a class="btn" href="https://valorantesports.com/en-US/" target="_blank" rel="noreferrer">查看官方赛事资料 ↗</a></section>`;
+    renderFictionPlayers(content);
     return;
   }
   if (tab === "news") {
     content.innerHTML =
       `<h2>最后两场 · 模拟战报</h2><p class="muted">来自当前频道逐图推演的结果摘要，非真实新闻。赛前理由来自该模型实际输出。</p>` +
-      simulationCards(true);
+      simulationCards(true) + fictionNotice() + `<div class="grid two fiction-news">${[0, 1].map(index => { const review = fictionalReview(index); return review ? `<article class="card"><span class="pill">AI 虚构剧情 · ${event.matches[index].label}</span><h3>${escape(review.headline)}</h3><p>${escape(review.summary)}</p><a class="btn" href="${reviewLink(index)}">阅读逐图虚构剧情 →</a></article>` : '<article class="card empty">该频道虚构剧情待生成</article>'; }).join("")}</div>`;
     return;
   }
   if (tab === "process") {
@@ -1024,7 +1054,7 @@ function methodPage() {
 function aboutPage() {
   main.innerHTML =
     pageHead("内容、数据与素材说明", "来源可追溯，未知信息保持未知") +
-    `<div class="wrap section article"><section class="card"><h2>赛事数据</h2><p>最近获取：${escape(new Date(event.fetched_at).toLocaleString("zh-CN", { timeZone: "Asia/Shanghai" }))}（北京时间）。官方页面结构化数据中共提取 ${event.history.length} 场已完成系列赛，本应用只预测两场 BO5。</p><ul>${event.sources.map((s) => `<li><a href="${escape(s.url)}" target="_blank" rel="noreferrer">${escape(s.publisher)} · ${s.role === "official_schedule_results" ? "官方赛程与真实结果" : "上海冠军赛赛制说明"} ↗</a></li>`).join("")}</ul><p class="muted">${event.limitations.map(escape).join("<br>")}</p><details><summary>快照与原始数据</summary><p style="overflow-wrap:anywhere">官方响应 SHA-256：${event.source_sha256}</p><a href="data/event.json" target="_blank" class="source-link">查看赛事快照 JSON</a></details></section><section class="card" style="margin-top:20px"><h2>预测来源</h2><p>GPT-6.1 sol 频道由已核实的 gpt-6.1-sol / high 独立运行根据官方记录生成，不代表其他模型。DeepSeek V4.1 Flash 来自经核实的官方 API 实际响应；其他模型等待真实输出。展示中所有主观概率、模拟比分都标识为预测或模拟。</p><a class="source-link" href="data/gpt-6.1-sol-forecast.json" target="_blank">查看GPT-6.1 sol 原始预测与理由</a></section><section class="card" style="margin-top:20px"><h2>视觉参考与素材</h2><p>交互与页面结构参考用户指定的 <a href="https://www.bilibili.com/toy/LkvCZhw12wgT2Pqx/index.html" target="_blank" rel="noreferrer">S16 AI 预测大赛</a>。赛事内容改为 VALORANT，范围限定为最后两场。前端代码独立编写。</p><p>英雄立绘来自 <a href="https://playvalorant.com/en-us/agents/" target="_blank" rel="noreferrer">VALORANT 英雄官网</a>，战队标志来自 Riot 赛事官网页面引用的公开 CDN。仅引用公开 URL，权利归 Riot Games 与各战队；模型频道的装饰英雄不代表任何合作关系。</p></section><section class="card" style="margin-top:20px"><h2>字体授权</h2><p>本应用使用 OPPO Sans、MiSans、Anton 与 JetBrains Mono 字体。字体文件保持官方原样，随本应用使用，版权归各权利人。</p><ul><li><a class="source-link" href="assets/fonts/OPPO-Sans-LICENSE.txt" target="_blank">OPPO Sans 许可</a></li><li><a class="source-link" href="assets/fonts/MiSans-LICENSE.pdf" target="_blank">MiSans 许可 · Xiaomi Inc.</a></li><li><a class="source-link" href="assets/fonts/anton-OFL.txt" target="_blank">Anton · SIL OFL 1.1</a></li><li><a class="source-link" href="assets/fonts/jetbrainsmono-OFL.txt" target="_blank">JetBrains Mono · SIL OFL 1.1</a></li></ul></section><section class="card" style="margin-top:20px"><h2>本地保存与分享</h2><p>个人预测、自定义实力排名、频道、各频道回放进度、静音和晋级情景保存在当前浏览器。分享链接只包含你选择的晋级情景、两场比分和生成时间。数据不会上传。</p></section></div>`;
+    `<div class="wrap section article"><section class="card"><h2>赛事数据</h2><p>最近获取：${escape(new Date(event.fetched_at).toLocaleString("zh-CN", { timeZone: "Asia/Shanghai" }))}（北京时间）。官方页面结构化数据中共提取 ${event.history.length} 场已完成系列赛，本应用只预测两场 BO5。</p><ul>${event.sources.map((s) => `<li><a href="${escape(s.url)}" target="_blank" rel="noreferrer">${escape(s.publisher)} · ${s.role === "official_schedule_results" ? "官方赛程与真实结果" : "上海冠军赛赛制说明"} ↗</a></li>`).join("")}</ul><p class="muted">${event.limitations.map(escape).join("<br>")}</p><details><summary>快照与原始数据</summary><p style="overflow-wrap:anywhere">官方响应 SHA-256：${event.source_sha256}</p><a href="data/event.json" target="_blank" class="source-link">查看赛事快照 JSON</a></details></section><section class="card" style="margin-top:20px"><h2>预测来源</h2><p>GPT-6.1 sol 频道由已核实的 gpt-6.1-sol / high 独立运行根据官方记录生成，不代表其他模型。DeepSeek V4.1 Flash 来自经核实的官方 API 实际响应；其他模型等待真实输出。展示中所有主观概率、模拟比分都标识为预测或模拟。</p><a class="source-link" href="data/gpt-6.1-sol-forecast.json" target="_blank">查看GPT-6.1 sol 原始预测与理由</a></section><section class="card" style="margin-top:20px"><h2>AI 虚构比赛创作</h2>${fictionNotice()}<p>GPT-6.1 sol 与 DeepSeek V4.1 Flash 分别为四种晋级情景创作最后两场的地图 BP、逐图故事与系列赛选手评分。胜者与大比分由同一个模拟引擎固定，创作不能改写它们。</p><p>选手昵称优先参考俱乐部官网；LOUD 当前名单使用赛事数据库补充。真实首发以比赛当天官方公布为准。七张地图仅组成虚构创作池，不宣称是本届官方地图池。</p><a class="source-link" href="data/fiction-context.json" target="_blank">查看人物与地图索引来源 ↗</a><p class="muted">虚构榜按当前情景两场系列赛评分的均值排序，不是 ACS、KAST、真实能力排名，也不参与预测准确率结算。</p></section><section class="card" style="margin-top:20px"><h2>视觉参考与素材</h2><p>交互与页面结构参考用户指定的 <a href="https://www.bilibili.com/toy/LkvCZhw12wgT2Pqx/index.html" target="_blank" rel="noreferrer">S16 AI 预测大赛</a>。赛事内容改为 VALORANT，范围限定为最后两场。前端代码独立编写。</p><p>英雄立绘来自 <a href="https://playvalorant.com/en-us/agents/" target="_blank" rel="noreferrer">VALORANT 英雄官网</a>，战队标志来自 Riot 赛事官网页面引用的公开 CDN。仅引用公开 URL，权利归 Riot Games 与各战队；模型频道的装饰英雄不代表任何合作关系。</p></section><section class="card" style="margin-top:20px"><h2>字体授权</h2><p>本应用使用 OPPO Sans、MiSans、Anton 与 JetBrains Mono 字体。字体文件保持官方原样，随本应用使用，版权归各权利人。</p><ul><li><a class="source-link" href="assets/fonts/OPPO-Sans-LICENSE.txt" target="_blank">OPPO Sans 许可</a></li><li><a class="source-link" href="assets/fonts/MiSans-LICENSE.pdf" target="_blank">MiSans 许可 · Xiaomi Inc.</a></li><li><a class="source-link" href="assets/fonts/anton-OFL.txt" target="_blank">Anton · SIL OFL 1.1</a></li><li><a class="source-link" href="assets/fonts/jetbrainsmono-OFL.txt" target="_blank">JetBrains Mono · SIL OFL 1.1</a></li></ul></section><section class="card" style="margin-top:20px"><h2>本地保存与分享</h2><p>个人预测、自定义实力排名、频道、各频道回放进度、静音和晋级情景保存在当前浏览器。分享链接只包含你选择的晋级情景、两场比分和生成时间。数据不会上传。</p></section></div>`;
 }
 function route() {
   clearTimeout(playerTimer);
@@ -1204,19 +1234,12 @@ async function start() {
       return response.json();
     };
     let manifest;
-    [event, assets, manifest] = await Promise.all(
-      ["data/event.json", "data/assets.json", "data/model-forecasts.json"].map(
+    [event, assets, manifest, fictionManifest, fictionContext] = await Promise.all(
+      ["data/event.json", "data/assets.json", "data/model-forecasts.json", "data/model-fiction.json", "data/fiction-context.json"].map(
         fetchJSON,
       ),
     );
-    forecasts = Object.fromEntries(
-      await Promise.all(
-        Object.entries(manifest).map(async ([channel, path]) => [
-          channel,
-          await fetchJSON("data/" + path),
-        ]),
-      ),
-    );
+    [forecasts, fiction] = await Promise.all([manifest, fictionManifest].map(async entries => Object.fromEntries(await Promise.all(Object.entries(entries).map(async ([id, path]) => [id, await fetchJSON("data/" + path)])))));
     modelManifest = manifest;
     forecast = forecasts.codex;
     if (!forecast) throw Error("GPT-6.1 sol 预测数据缺失");
@@ -1262,6 +1285,8 @@ async function start() {
     window.addEventListener("hashchange", route);
     document.addEventListener("visibilitychange", setPlayerTimer);
     route();
+    // Let the prediction UI load before requesting the large, unmodified fonts.
+    document.documentElement.classList.add("webfonts-ready");
     const updateCountdown = () => {
       const remaining = new Date(event.matches[0].start_utc) - Date.now();
       const hours = Math.floor(remaining / 3600000),

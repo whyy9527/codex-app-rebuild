@@ -11,7 +11,7 @@
     "C4 按 workflows/rebuild/WORKFLOW.md 完成真实 RSI collect、完整池策略 replay、胜出策略再 collect，并将发现接入共同业务与前端 E2E。",
     "C5 构建并实际浏览器验收原版与候选，保留证据和需求级 pass/fail/not_run/unavailable；本地预览入口可用，完成相称检查、任务文件提交推送。",
     "C6 保留原版 8 个模型频道；有可用的对应模型渠道才运行，未运行频道明确待预测，不以其他模型或脚本输出冒名替代（用户 2026-10-15 确认）。",
-    "C7 发布到用户确认的独立站点 https://valorant.xinxiayiyan.com；核验源站、公网 HTTPS、发布产物摘要与共享服务健康，保留恢复资料，不覆盖现有公司官网。用户 2026-10-15 最新修订：先发布当前可用版本，再继续完整复刻。",
+    "C7 发布到用户确认的独立站点 https://valorant.xinxiayiyan.com；核验源站、公网 HTTPS、发布产物摘要与共享服务健康，保留恢复资料，不覆盖现有公司官网。用户 2026-10-15 最新修订：先发布当前可用版本，再继续完整复刻。 用户后续明确要求阿里云现有国内服务器：青岛 47.104.152.169；不再以 GitHub Pages 作为公开托管。",
     "C8 用户 2026-10-15 明确选择：另加明确标注为虚构的 AI 比赛剧情与选手评分，并补充 BP、逐图回看和选手榜。使用真实运行模型生成的内容，不冒充官方数据；公共页面与分享内容均清楚区分虚构模拟。此修订替代旧目标中对一切模拟选手统计的笼统禁止，官方事实仍不得编造。"
   ],
   "inputs": {
@@ -312,6 +312,20 @@
     "publish": [
       "python3",
       "projects/valorant-predictor/scripts/deploy.py",
+      "--out",
+      "{out}"
+    ],
+    "replay_fiction": [
+      "python3",
+      "projects/valorant-predictor/scripts/qa_fiction.py",
+      "--out",
+      "{out}"
+    ],
+    "compare_fiction": [
+      "python3",
+      "projects/valorant-predictor/scripts/compare_fiction.py",
+      "--observed",
+      "{observed}",
       "--out",
       "{out}"
     ]

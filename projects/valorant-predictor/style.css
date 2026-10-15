@@ -25,12 +25,14 @@
   --blue: #3c52db;
   --gold: #c8aa6e;
   --pink: #e0508c;
-  font-family:
-    "OPPO Sans", "MiSans", "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
   font-size: 16px;
   line-height:1.6;
   background: var(--night);
   color: var(--ink);
+}
+:root.webfonts-ready {
+  font-family: "OPPO Sans", "MiSans", "PingFang SC", "Microsoft YaHei", sans-serif;
 }
 * {
   box-sizing: border-box;
@@ -1850,4 +1852,27 @@ dialog::backdrop {
  .studio>div,.studio-side {min-width:0;}
  .home-tabs button {font-weight:600;line-height:1.6;display:flex;align-items:center;justify-content:center;}
  .hero p {font-size:14px;}
+}
+
+/* Model-authored fiction is visibly separate from official schedule facts. */
+.fiction-notice { border-color: #6b54a5; background: #241c3b; color: #e6d7ff; margin: 20px 0; }
+.fiction-details > h3 { margin-top: 28px; }
+.fiction-bp { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 10px; margin: 20px 0; }
+.bp-map { background: #191e42; border: 1px solid #3e4679; border-radius: 10px; padding: 16px 10px; display: flex; flex-direction: column; gap: 10px; }
+.bp-map small { color: #b5bad8; font-size: 11px; }
+.bp-map.banned { border-color: #8a414b; background: #351e30; }
+.bp-map.banned b { text-decoration: line-through; }
+.bp-map.unplayed { opacity: .55; }
+.fiction-map-story { border-left: 3px solid #9b7bf0; padding-left: 18px; margin: 20px 0; }
+.fiction-map-story p { max-width: 76ch; line-height: 1.85; }
+.fiction-ratings td:last-child { min-width: 240px; }
+.fiction-sources { margin-top: 24px; color: #afb5d8; }
+.fiction-sources summary { cursor: pointer; }
+.fiction-player-board .form-row { align-items: end; margin: 20px 0; }
+.fiction-player-board input[type="checkbox"] { width: auto; }
+.fiction-news { margin-top: 24px; }
+@media (max-width: 760px) {
+  .fiction-bp { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .fiction-player-board .section-head { flex-wrap: wrap; }
+  .fiction-player-board .form-row > label { max-width: 100%; min-width: 0; }
 }

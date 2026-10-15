@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "fetched_at": "2026-10-15T14:51:56.315546+00:00",
+  "purpose": "虚构比赛创作的实名索引；不作为真实上场名单或选手能力数据。",
+  "teams": {
+    "VIT": {
+      "players": [
+        "Derke",
+        "Chronicle",
+        "Jamppi",
+        "Sayonara",
+        "PROFEK"
+      ],
+      "source_url": "https://vitality.gg/en-na/pages/athletes/derke",
+      "source_kind": "official_team",
+      "note": "队伍官网在售 2026 阵容页；Jamppi 拼写另据官方阵容公告核对。"
+    },
+    "G2": {
+      "players": [
+        "jawgemo",
+        "leaf",
+        "valyn",
+        "babybay",
+        "trent"
+      ],
+      "source_url": "https://g2esports.com/pages/team/valorant",
+      "source_kind": "official_team",
+      "note": "官网当前选手列表；简介年份较旧，另据官方 babybay 选手页交叉核对。"
+    },
+    "100T": {
+      "players": [
+        "Cryo",
+        "Asuna",
+        "Timotino",
+        "vora",
+        "bang"
+      ],
+      "source_url": "https://100thieves.com/pages/valorant",
+      "source_kind": "official_team",
+      "note": "官网明确标题 The 2026 100 Thieves VALORANT roster。"
+    },
+    "LOUD": {
+      "players": [
+        "lukxo",
+        "DaviH",
+        "Darker",
+        "erde",
+        "tkzin"
+      ],
+      "source_url": "https://www.vlr.gg/team/6961/loud",
+      "source_kind": "secondary_esports_database",
+      "note": "官网未找到完整当前名单，使用赛事数据库补充，不能标为 Riot 官网名单；与俱乐部 7 月公告的媒体转载交叉核对。",
+      "corroboration_url": "https://www.pichauarena.com.br/valorant/valorant-loud-elenco-fechado-2026/"
+    }
+  },
+  "maps": {
+    "pool": [
+      "Abyss",
+      "Ascent",
+      "Haven",
+      "Lotus",
+      "Split",
+      "Summit",
+      "Sunset"
+    ],
+    "source_url": "https://playvalorant.com/en-us/maps/",
+    "source_kind": "official_game_catalog",
+    "note": "名称来自官方游戏地图目录；此七图集合仅用于虚构创作，未核实为上海全球冠军赛的正式地图池。"
+  },
+  "limitations": [
+    "队伍名单只用于有来源的选手昵称索引；正式首发和替补以比赛当天官方公布为准。",
+    "不得用虚构评分冒充 ACS、KAST、K/D/A 或历史能力。",
+    "地图禁选、回合比分、关键回合、MVP 和评分均由实际模型创作，为虚构内容。"
+  ]
+}

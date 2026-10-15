@@ -1,0 +1,1114 @@
+{
+  "schema_version": 1,
+  "kind": "fiction",
+  "channel": "codex",
+  "created_at": "2026-10-15T14:58:28.293534+00:00",
+  "label": "AI 虚构模拟 · 非真实比赛、非选手能力评估",
+  "event_source_sha256": "614bda2290a8c567e1a32de4e1cabead90a08ed42b85a62aea93e4424dceef69",
+  "forecast_sha256": "260a0a02b9daf4d1caf7140f4091e9dfaf45aef88e47f8acf77108cbdb316d46",
+  "context_sha256": "eed853d90780c31933801c115b43d3f1c19787ae538da6f08224c77418faa70b",
+  "runtime_attestation": {
+    "provider": "openai",
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "high",
+    "startup_header_sha256": "bfbe1bf6be41dd7cf2d9f601688c68d481cbc0c3055b8bf7aaf2164ba7764b00"
+  },
+  "cases": {
+    "LOUD_G2_0": {
+      "input": {
+        "scenario": {
+          "upperWinner": "LOUD",
+          "lowerWinner": "G2"
+        },
+        "match_index": 0,
+        "match_id": "115576361461208325",
+        "series": {
+          "teams": [
+            "VIT",
+            "G2"
+          ],
+          "score": [
+            1,
+            3
+          ],
+          "maps": [
+            {
+              "winner": "VIT",
+              "score": [
+                1,
+                0
+              ]
+            },
+            {
+              "winner": "G2",
+              "score": [
+                1,
+                1
+              ]
+            },
+            {
+              "winner": "G2",
+              "score": [
+                1,
+                2
+              ]
+            },
+            {
+              "winner": "G2",
+              "score": [
+                1,
+                3
+              ]
+            }
+          ],
+          "winner": "G2"
+        }
+      },
+      "headline": "17日虚构回看：G2拆开回防，连取三图击败VIT",
+      "summary": "17日这场虚构比赛中，VIT先取一图，G2随后通过中路控制、转点拦截与同步回防连赢三图，以3比1结束系列赛。第四图的包后交叉火力成为收尾关键。本篇剧情、BP、回合比分、MVP及0至10选手评分均为虚构。",
+      "bp": {
+        "bans": [
+          "Abyss",
+          "Summit"
+        ],
+        "order": [
+          "Haven",
+          "Ascent",
+          "Lotus",
+          "Split",
+          "Sunset"
+        ],
+        "reason": "本次虚构BP禁用Abyss与Summit，将三点轮转与中路争夺放在前段，再以Split检验协同进攻。Sunset列为第五图，实际未进行；此为自定义七图禁选规则。"
+      },
+      "maps": {
+        "0": {
+          "story": "Haven上，VIT先用默认架枪限制前压，再由Derke沿队友道具打开侧翼入口。G2数次回防拿到人数交换，却未能切断包后交叉枪线。VIT最后一轮以假动作牵走支援，转入空档完成安包，以13比8先下一图。",
+          "losing_rounds": 8,
+          "mvp": "VIT:Derke"
+        },
+        "1": {
+          "story": "Ascent的争夺围绕中路展开。G2没有急于冲击包点，而是让trent的探查为两侧推进补足信息；VIT退守后，连接区域又被切断。换边后G2保留回防道具，连续破解包后架枪，以13比9扳平系列赛。",
+          "losing_rounds": 9,
+          "mvp": "G2:trent"
+        },
+        "2": {
+          "story": "Lotus上，G2利用反复施压迫使VIT提前交出阻滞道具，再在另一侧组织集结。leaf多次截住转点队员，使包点防守缺少补位。VIT尝试抱团回防，却被分层站位逐次交换，G2以13比6取得系列赛领先。",
+          "losing_rounds": 6,
+          "mvp": "G2:leaf"
+        },
+        "3": {
+          "story": "Split打到后段仍未拉开差距，VIT借高低位协防连续挡住入口进攻。G2随后改变安包位置，让valyn与侧翼队友形成互相补枪的夹角。最后两轮，VIT的拆包掩护接连被破坏，G2以13比11收图，并以3比1赢下系列赛。",
+          "losing_rounds": 11,
+          "mvp": "G2:valyn"
+        }
+      },
+      "players": {
+        "VIT:Derke": {
+          "rating": 7.8,
+          "comment": "首图突破接应紧密，后续数图的入口空间被对手逐步压缩。"
+        },
+        "VIT:Chronicle": {
+          "rating": 7.1,
+          "comment": "多次补上包点防守缺口，第三图的转点途中遭到拦截。"
+        },
+        "VIT:Jamppi": {
+          "rating": 6.6,
+          "comment": "首图的信息配合有效，中段探查后的推进衔接出现空隙。"
+        },
+        "VIT:Sayonara": {
+          "rating": 6.9,
+          "comment": "第四图贡献数次关键交换，最后的拆包掩护未能延续。"
+        },
+        "VIT:PROFEK": {
+          "rating": 6.4,
+          "comment": "守点延缓过数次进攻，面对多方向回防时补枪距离偏远。"
+        },
+        "G2:jawgemo": {
+          "rating": 8.1,
+          "comment": "后三图的进点与队友道具同步，减少了突破后的孤立交战。"
+        },
+        "G2:leaf": {
+          "rating": 8.8,
+          "comment": "第三图持续拦截转点，为正面进攻创造了明显人数优势。"
+        },
+        "G2:valyn": {
+          "rating": 8.7,
+          "comment": "第四图包后站位发挥突出，收尾阶段连续保护安包区域。"
+        },
+        "G2:babybay": {
+          "rating": 7.7,
+          "comment": "中路牵制为队伍拉开空间，几次补枪守住了进攻成果。"
+        },
+        "G2:trent": {
+          "rating": 8.5,
+          "comment": "第二图探查与回防道具衔接清楚，帮助队伍夺回地图控制。"
+        }
+      }
+    },
+    "LOUD_G2_1": {
+      "input": {
+        "scenario": {
+          "upperWinner": "LOUD",
+          "lowerWinner": "G2"
+        },
+        "match_index": 1,
+        "match_id": "115576361461208331",
+        "series": {
+          "teams": [
+            "LOUD",
+            "G2"
+          ],
+          "score": [
+            3,
+            2
+          ],
+          "maps": [
+            {
+              "winner": "LOUD",
+              "score": [
+                1,
+                0
+              ]
+            },
+            {
+              "winner": "G2",
+              "score": [
+                1,
+                1
+              ]
+            },
+            {
+              "winner": "LOUD",
+              "score": [
+                2,
+                1
+              ]
+            },
+            {
+              "winner": "G2",
+              "score": [
+                2,
+                2
+              ]
+            },
+            {
+              "winner": "LOUD",
+              "score": [
+                3,
+                2
+              ]
+            }
+          ],
+          "winner": "LOUD"
+        }
+      },
+      "headline": "18日虚构回看：LOUD守住决胜图，3比2险胜G2",
+      "summary": "18日的虚构对局五图交替易手：LOUD赢下第一、第三与第五图，G2拿下第二、第四图。决胜图中，LOUD依靠延后接触与交叉补枪守住包点，以3比2收官。本篇剧情、BP、回合比分、MVP及0至10选手评分均为虚构。",
+      "bp": {
+        "bans": [
+          "Ascent",
+          "Sunset"
+        ],
+        "order": [
+          "Lotus",
+          "Split",
+          "Haven",
+          "Abyss",
+          "Summit"
+        ],
+        "reason": "虚构BP移除Ascent与Sunset，让连续转点、狭窄入口和远端支援依次成为考题。Summit作为决胜图承接最后的道具分配较量，五张地图全部进行。"
+      },
+      "maps": {
+        "0": {
+          "story": "Lotus上，LOUD用分散接触覆盖多个入口，等G2交出第一轮道具后才合流进点。lukxo连续完成首轮交战后的补枪，让安包区域始终有人接应。G2几次绕后被及时发现，LOUD以13比9取得开门红。",
+          "losing_rounds": 9,
+          "mvp": "LOUD:lukxo"
+        },
+        "1": {
+          "story": "Split上，G2先争夺中路，再把进攻拆成上下两层同步推进。jawgemo借掩护跨过入口，迅速清理近点，使LOUD的高位支援难以形成夹击。换边后G2守住连接通道，以13比7将系列赛扳成平手。",
+          "losing_rounds": 7,
+          "mvp": "G2:jawgemo"
+        },
+        "2": {
+          "story": "Haven的多点拉扯一直延续到末段。LOUD减少无掩护前压，让DaviH在侧路接触后迅速回收，与包点队友形成第二道防线。G2最后一次转点遭到双向夹击，LOUD以13比11赢下第三图。",
+          "losing_rounds": 11,
+          "mvp": "LOUD:DaviH"
+        },
+        "3": {
+          "story": "Abyss上，G2通过远近两组架枪保护推进路线，leaf则在侧翼切断LOUD的支援。LOUD尝试集中回防，但进点前就被消耗掉关键道具。G2连续守住安包后的外围空间，以13比8将系列赛拖入决胜图。",
+          "losing_rounds": 8,
+          "mvp": "G2:leaf"
+        },
+        "4": {
+          "story": "Summit的决胜较量中，LOUD先退让入口，保留道具等待G2集结。tkzin在第二轮接触时与队友同步探出，连续打断进点后的补枪链。G2追近比分后仍未拆开最后一组交叉站位，LOUD以13比10收图，系列赛3比2获胜。",
+          "losing_rounds": 10,
+          "mvp": "LOUD:tkzin"
+        }
+      },
+      "players": {
+        "LOUD:lukxo": {
+          "rating": 8.5,
+          "comment": "首图补枪为队伍打开局面，决胜图也维持了有效的接应距离。"
+        },
+        "LOUD:DaviH": {
+          "rating": 8.7,
+          "comment": "第三图侧路回收及时，关键回合将单点防守接成双向夹击。"
+        },
+        "LOUD:Darker": {
+          "rating": 7.6,
+          "comment": "多图承担入口延缓，第四图的道具消耗未能换来足够时间。"
+        },
+        "LOUD:erde": {
+          "rating": 7.9,
+          "comment": "转点过程中持续补足防线，决胜图保留道具的收益明显。"
+        },
+        "LOUD:tkzin": {
+          "rating": 9.1,
+          "comment": "决胜图第二轮接触处理突出，连续拆断对手的进点补枪链。"
+        },
+        "G2:jawgemo": {
+          "rating": 8.6,
+          "comment": "第二图突破带动上下层推进，决胜图的入口接应受到限制。"
+        },
+        "G2:leaf": {
+          "rating": 8.8,
+          "comment": "第四图侧翼封锁收效显著，第五图未能再次隔开支援。"
+        },
+        "G2:valyn": {
+          "rating": 7.8,
+          "comment": "包后架枪帮助拿下多轮，末图面对延后接触时交换不足。"
+        },
+        "G2:babybay": {
+          "rating": 7.5,
+          "comment": "中路争夺贡献了空间，后段几次推进未能等到补枪到位。"
+        },
+        "G2:trent": {
+          "rating": 8.2,
+          "comment": "探查为转点提供依据，第三图末段的路线仍被交叉防守封住。"
+        }
+      }
+    },
+    "LOUD_100T_0": {
+      "input": {
+        "scenario": {
+          "upperWinner": "LOUD",
+          "lowerWinner": "100T"
+        },
+        "match_index": 0,
+        "match_id": "115576361461208325",
+        "series": {
+          "teams": [
+            "VIT",
+            "100T"
+          ],
+          "score": [
+            1,
+            3
+          ],
+          "maps": [
+            {
+              "winner": "VIT",
+              "score": [
+                1,
+                0
+              ]
+            },
+            {
+              "winner": "100T",
+              "score": [
+                1,
+                1
+              ]
+            },
+            {
+              "winner": "100T",
+              "score": [
+                1,
+                2
+              ]
+            },
+            {
+              "winner": "100T",
+              "score": [
+                1,
+                3
+              ]
+            }
+          ],
+          "winner": "100T"
+        }
+      },
+      "headline": "17日虚构回看：100T封锁转点，3比1逆转VIT",
+      "summary": "17日这场虚构回看里，VIT凭首图的联动防守领先，100T随后改变接触顺序，连取三图，以3比1结束系列赛。第三图的入口消耗与第四图的远近交叉形成呼应。本篇剧情、BP、回合比分、MVP及0至10选手评分均为虚构。",
+      "bp": {
+        "bans": [
+          "Haven",
+          "Summit"
+        ],
+        "order": [
+          "Ascent",
+          "Sunset",
+          "Split",
+          "Lotus",
+          "Abyss"
+        ],
+        "reason": "这组虚构BP禁用Haven和Summit，把中路控制与包点入口处理排在前面，再由Lotus考验轮转效率。Abyss保留为第五图，但系列赛在第四图结束。"
+      },
+      "maps": {
+        "0": {
+          "story": "Ascent上，VIT通过中路探查收缩防线，没有在第一轮接触中交光道具。Chronicle多次接住侧路回撤的队友，再用交叉枪线封住包点入口。100T虽靠转点追近比分，仍被最后一轮同步回防挡下，VIT以13比10先胜。",
+          "losing_rounds": 10,
+          "mvp": "VIT:Chronicle"
+        },
+        "1": {
+          "story": "Sunset上，100T先用小规模接触换取防守道具，再集中攻击支援较慢的一侧。Asuna进点后立即与第二身位形成补枪，未给VIT重新布置近点防守的时间。100T随后控制中路回防路线，以13比8扳回一图。",
+          "losing_rounds": 8,
+          "mvp": "100T:Asuna"
+        },
+        "2": {
+          "story": "Split上，100T将阻滞道具分两轮投入入口，迫使VIT的进攻停在不同层位。bang在烟雾消散后更换架枪位置，连续接住第二波推进。VIT几次转攻又被中路信息发现，100T以13比7取得系列赛领先。",
+          "losing_rounds": 7,
+          "mvp": "100T:bang"
+        },
+        "3": {
+          "story": "Lotus上，VIT通过快速转点把比赛带入紧咬局面。100T收缩外围站位，改由Cryo守住转点必经的长枪线，再让近点队友承担第一轮交换。最后一轮VIT未能完成安包后的交叉布置，100T以13比11收图，系列赛3比1获胜。",
+          "losing_rounds": 11,
+          "mvp": "100T:Cryo"
+        }
+      },
+      "players": {
+        "VIT:Derke": {
+          "rating": 7.2,
+          "comment": "首图突破创造过空间，第三图连续推进被分轮道具拖住。"
+        },
+        "VIT:Chronicle": {
+          "rating": 8,
+          "comment": "首图交叉防守贡献突出，后续补位常被中路封锁牵制。"
+        },
+        "VIT:Jamppi": {
+          "rating": 6.8,
+          "comment": "早期探查支持了防线收缩，后段信息未能及时转成进点空间。"
+        },
+        "VIT:Sayonara": {
+          "rating": 7,
+          "comment": "第四图转点接应带来追分，最后的包后站位未能展开。"
+        },
+        "VIT:PROFEK": {
+          "rating": 6.5,
+          "comment": "近点防守完成过交换，换位过程数次被对手同步推进抓住。"
+        },
+        "100T:Cryo": {
+          "rating": 8.9,
+          "comment": "第四图长枪线封锁转点，关键收尾与近点队友形成有效配合。"
+        },
+        "100T:Asuna": {
+          "rating": 8.6,
+          "comment": "第二图进点后的接战连续，为队友安包提供了稳定掩护。"
+        },
+        "100T:Timotino": {
+          "rating": 7.8,
+          "comment": "多次补住突破后的侧面空档，减少了包点内的孤立交战。"
+        },
+        "100T:vora": {
+          "rating": 8,
+          "comment": "中路信息帮助队伍辨认转攻，后续支援路线衔接顺畅。"
+        },
+        "100T:bang": {
+          "rating": 8.7,
+          "comment": "第三图分轮道具与换位架枪配合紧密，压缩了对手推进时间。"
+        }
+      }
+    },
+    "LOUD_100T_1": {
+      "input": {
+        "scenario": {
+          "upperWinner": "LOUD",
+          "lowerWinner": "100T"
+        },
+        "match_index": 1,
+        "match_id": "115576361461208331",
+        "series": {
+          "teams": [
+            "LOUD",
+            "100T"
+          ],
+          "score": [
+            3,
+            2
+          ],
+          "maps": [
+            {
+              "winner": "LOUD",
+              "score": [
+                1,
+                0
+              ]
+            },
+            {
+              "winner": "100T",
+              "score": [
+                1,
+                1
+              ]
+            },
+            {
+              "winner": "LOUD",
+              "score": [
+                2,
+                1
+              ]
+            },
+            {
+              "winner": "100T",
+              "score": [
+                2,
+                2
+              ]
+            },
+            {
+              "winner": "LOUD",
+              "score": [
+                3,
+                2
+              ]
+            }
+          ],
+          "winner": "LOUD"
+        }
+      },
+      "headline": "18日虚构回看：LOUD以最后一轮回防赢下五图拉锯",
+      "summary": "18日的虚构比赛按LOUD、100T、LOUD、100T、LOUD的顺序交替分出图胜。决胜图末段，LOUD放弃分散接战，凭集结回防与拆包掩护以3比2结束系列赛。本篇剧情、BP、回合比分、MVP及0至10选手评分均为虚构。",
+      "bp": {
+        "bans": [
+          "Abyss",
+          "Split"
+        ],
+        "order": [
+          "Haven",
+          "Ascent",
+          "Lotus",
+          "Sunset",
+          "Summit"
+        ],
+        "reason": "虚构禁选移除Abyss与Split，前三图依次检验多点支援、中路封锁和快速轮转。Sunset与Summit留在后段，让入口消耗与完整回防成为系列赛的收尾题目。"
+      },
+      "maps": {
+        "0": {
+          "story": "Haven上，LOUD以两人接触、其余队员保留支援距离的方式推进。erde在转点途中守住侧路，数次截断100T的回防补位。包点建立人数优势后，LOUD不再追击，而是依靠安包后的交叉架枪，以13比8拿下首图。",
+          "losing_rounds": 8,
+          "mvp": "LOUD:erde"
+        },
+        "1": {
+          "story": "Ascent上，100T先稳住中路，再借两侧同步接触迫使LOUD收缩。Cryo抓住防守换位的窗口拿到关键击杀，随后退回队友可补枪的位置。LOUD尝试提速进点，但最后的入口交换未占优势，100T以13比10扳平。",
+          "losing_rounds": 10,
+          "mvp": "100T:Cryo"
+        },
+        "2": {
+          "story": "Lotus上，LOUD的第一轮试探只投入少量道具，真正的集结落在100T回收外围之后。Darker守住包点内的近角，使回防队员无法同时处理远近枪线。100T连续几轮拆包受阻，LOUD以13比7再次取得领先。",
+          "losing_rounds": 7,
+          "mvp": "LOUD:Darker"
+        },
+        "3": {
+          "story": "Sunset上，100T改变进点顺序，先清理连接区域再进入包点。Asuna借队友掩护完成突破，进点后继续封住防守支援方向。LOUD虽然通过外围绕行赢下数轮，却未能持续夺回中路，100T以13比9将比赛带到第五图。",
+          "losing_rounds": 9,
+          "mvp": "100T:Asuna"
+        },
+        "4": {
+          "story": "Summit上，双方不断交换外围控制，比分始终紧咬。LOUD末段改为放出入口、集结回防，lukxo沿队友道具清理包点近角，再架住拆包队员的侧面。最后一轮100T的包后火力被逐个隔开，LOUD以13比11收图，系列赛3比2获胜。",
+          "losing_rounds": 11,
+          "mvp": "LOUD:lukxo"
+        }
+      },
+      "players": {
+        "LOUD:lukxo": {
+          "rating": 9,
+          "comment": "决胜图清点与拆包掩护衔接完整，最后一轮回防贡献突出。"
+        },
+        "LOUD:DaviH": {
+          "rating": 7.8,
+          "comment": "多次接应侧路回收，第四图的中路争夺未能持续占优。"
+        },
+        "LOUD:Darker": {
+          "rating": 8.8,
+          "comment": "第三图近角防守接住多轮回防，为包后远点提供了掩护。"
+        },
+        "LOUD:erde": {
+          "rating": 8.6,
+          "comment": "首图侧路拦截效果明显，后续转点也维持了补位距离。"
+        },
+        "LOUD:tkzin": {
+          "rating": 8.1,
+          "comment": "进点后的补枪帮助守住人数优势，末图回防接触较为连贯。"
+        },
+        "100T:Cryo": {
+          "rating": 8.7,
+          "comment": "第二图抓住多次换位窗口，决胜图包后枪线被分隔处理。"
+        },
+        "100T:Asuna": {
+          "rating": 8.9,
+          "comment": "第四图突破后继续封锁支援，带动队伍将系列赛拖入第五图。"
+        },
+        "100T:Timotino": {
+          "rating": 7.7,
+          "comment": "中段近点交换提供了支撑，末图未能及时补到拆包方向。"
+        },
+        "100T:vora": {
+          "rating": 7.9,
+          "comment": "外围探查帮助完成数次转攻，第三图进入包点后的信息不足。"
+        },
+        "100T:bang": {
+          "rating": 8.2,
+          "comment": "连接区域的掩护为推进创造条件，最后一轮道具未挡住回防。"
+        }
+      }
+    },
+    "VIT_G2_0": {
+      "input": {
+        "scenario": {
+          "upperWinner": "VIT",
+          "lowerWinner": "G2"
+        },
+        "match_index": 0,
+        "match_id": "115576361461208325",
+        "series": {
+          "teams": [
+            "LOUD",
+            "G2"
+          ],
+          "score": [
+            1,
+            3
+          ],
+          "maps": [
+            {
+              "winner": "LOUD",
+              "score": [
+                1,
+                0
+              ]
+            },
+            {
+              "winner": "G2",
+              "score": [
+                1,
+                1
+              ]
+            },
+            {
+              "winner": "G2",
+              "score": [
+                1,
+                2
+              ]
+            },
+            {
+              "winner": "G2",
+              "score": [
+                1,
+                3
+              ]
+            }
+          ],
+          "winner": "G2"
+        }
+      },
+      "headline": "17日虚构回看：G2压住转点节奏，3比1击败LOUD",
+      "summary": "17日这场虚构比赛由LOUD先取Split，G2随后连续赢下Haven、Ascent和Abyss，以3比1收官。系列赛的转折来自G2对转点通道的占领，以及包点内外的分层接战。本篇剧情、BP、回合比分、MVP及0至10选手评分均为虚构。",
+      "bp": {
+        "bans": [
+          "Lotus",
+          "Sunset"
+        ],
+        "order": [
+          "Split",
+          "Haven",
+          "Ascent",
+          "Abyss",
+          "Summit"
+        ],
+        "reason": "本组虚构BP禁用Lotus与Sunset，先从垂直空间争夺进入多点轮转，再安排中路与长距离支援的较量。Summit为未进行的第五图，禁选不代表官方规则。"
+      },
+      "maps": {
+        "0": {
+          "story": "Split上，LOUD先用入口道具隔开G2的高低位站位，再由tkzin与第二身位连续补枪。G2尝试从中路回收空间，却被侧面架枪截断。LOUD在防守端保留了第二轮阻滞道具，以13比7赢下第一图。",
+          "losing_rounds": 7,
+          "mvp": "LOUD:tkzin"
+        },
+        "1": {
+          "story": "Haven上，LOUD通过频繁转点制造数次空档，G2则逐渐把防守重心放在连接路线。valyn在末段连续守住回防集合区域，让队友能够同步进点。最后一轮LOUD的安包掩护被双侧夹击拆开，G2以13比11扳平。",
+          "losing_rounds": 11,
+          "mvp": "G2:valyn"
+        },
+        "2": {
+          "story": "Ascent上，G2用中路接触压缩LOUD的转点路线，trent的探查帮助队伍区分试探与集结。LOUD数次转向另一侧时，G2已经完成防守补位。换边后G2沿控制区域稳步推进，以13比8拿到系列赛领先。",
+          "losing_rounds": 8,
+          "mvp": "G2:trent"
+        },
+        "3": {
+          "story": "Abyss上，G2不再让突破队员独自进入纵深，而是由jawgemo打开近点、后续队员同步封锁远端。LOUD的回防先后抵达，难以形成完整交换。G2收尾时守住安包区两侧，以13比9赢下第四图，系列赛3比1获胜。",
+          "losing_rounds": 9,
+          "mvp": "G2:jawgemo"
+        }
+      },
+      "players": {
+        "LOUD:lukxo": {
+          "rating": 7,
+          "comment": "首图第二身位补枪有效，后续推进多次被中路信息提前发现。"
+        },
+        "LOUD:DaviH": {
+          "rating": 6.8,
+          "comment": "第二图转点创造过空档，末段安包掩护被两侧同时压缩。"
+        },
+        "LOUD:Darker": {
+          "rating": 6.5,
+          "comment": "包点近角完成过阻击，第四图回防时与队友接触时间错开。"
+        },
+        "LOUD:erde": {
+          "rating": 7.1,
+          "comment": "首图侧面架枪限制了回收，第三图支援路线受到持续封锁。"
+        },
+        "LOUD:tkzin": {
+          "rating": 8,
+          "comment": "第一图连续交换打出优势，后续数图未能复制入口突破效果。"
+        },
+        "G2:jawgemo": {
+          "rating": 8.9,
+          "comment": "第四图突破始终有后续接应，帮助队伍连续建立包点控制。"
+        },
+        "G2:leaf": {
+          "rating": 8.1,
+          "comment": "转点通道的侧翼站位有效，减少了队伍防守时的背身风险。"
+        },
+        "G2:valyn": {
+          "rating": 8.7,
+          "comment": "第二图守住回防集合区域，关键轮次为同步进点保留了空间。"
+        },
+        "G2:babybay": {
+          "rating": 7.9,
+          "comment": "后三图跟进补枪及时，包点外围的封锁帮助守住安包成果。"
+        },
+        "G2:trent": {
+          "rating": 8.8,
+          "comment": "第三图信息判断转化为及时补位，持续限制了对手的转攻。"
+        }
+      }
+    },
+    "VIT_G2_1": {
+      "input": {
+        "scenario": {
+          "upperWinner": "VIT",
+          "lowerWinner": "G2"
+        },
+        "match_index": 1,
+        "match_id": "115576361461208331",
+        "series": {
+          "teams": [
+            "VIT",
+            "G2"
+          ],
+          "score": [
+            3,
+            2
+          ],
+          "maps": [
+            {
+              "winner": "VIT",
+              "score": [
+                1,
+                0
+              ]
+            },
+            {
+              "winner": "G2",
+              "score": [
+                1,
+                1
+              ]
+            },
+            {
+              "winner": "VIT",
+              "score": [
+                2,
+                1
+              ]
+            },
+            {
+              "winner": "G2",
+              "score": [
+                2,
+                2
+              ]
+            },
+            {
+              "winner": "VIT",
+              "score": [
+                3,
+                2
+              ]
+            }
+          ],
+          "winner": "VIT"
+        }
+      },
+      "headline": "18日虚构回看：VIT决胜图提速，3比2战胜G2",
+      "summary": "18日的虚构五图战中，VIT先后三次取得图胜，G2两度扳平。决胜图里，VIT用短促试探接集结进攻，减少停留在入口的时间，最终以3比2结束系列赛。本篇剧情、BP、回合比分、MVP及0至10选手评分均为虚构。",
+      "bp": {
+        "bans": [
+          "Ascent",
+          "Abyss"
+        ],
+        "order": [
+          "Sunset",
+          "Lotus",
+          "Split",
+          "Haven",
+          "Summit"
+        ],
+        "reason": "虚构BP禁用Ascent与Abyss，让中路接触、多点转攻和高低位协防依次展开。Haven与Summit放在后段，分别考验支援覆盖与进点速度，五图全部打出。"
+      },
+      "maps": {
+        "0": {
+          "story": "Sunset上，VIT通过中路小规模接触吸引道具，再从侧面连接区域完成合流。Sayonara多次清掉近点架枪，使安包队员能顺利进入掩体。G2虽拿回部分外围控制，仍未拆开最后的包后交叉，VIT以13比9先胜。",
+          "losing_rounds": 9,
+          "mvp": "VIT:Sayonara"
+        },
+        "1": {
+          "story": "Lotus上，G2减少包点外的单人停留，把侧翼交给可相互补枪的双人组合。leaf连续抓住VIT转攻时的阵形间隙，使防守支援获得提前量。VIT末段尝试直接集结进点，被保留的道具挡住，G2以13比10扳平。",
+          "losing_rounds": 10,
+          "mvp": "G2:leaf"
+        },
+        "2": {
+          "story": "Split上，VIT先清理高位再展开正面推进，避免进点队员同时暴露给上下两层。Chronicle在攻防两端接住第二轮接触，多次补掉突破后的侧面威胁。G2未能持续夺回中路，VIT以13比8拿下第三图。",
+          "losing_rounds": 8,
+          "mvp": "VIT:Chronicle"
+        },
+        "3": {
+          "story": "Haven上，双方靠转点与回防交替得分。G2在末段让babybay留在包点外侧，专门处理VIT从连接区域赶来的支援。最后两轮，他的拦截让包后队员只需面对正面压力，G2以13比11收图，再次扳平系列赛。",
+          "losing_rounds": 11,
+          "mvp": "G2:babybay"
+        },
+        "4": {
+          "story": "Summit上，VIT缩短试探时间，在探查确认入口后立即集结。Derke借队友掩护抢下近点，再回身与后续队员共同清理侧角。G2的轮换支援多次在包点失守后才抵达，VIT以13比7赢下决胜图，系列赛3比2获胜。",
+          "losing_rounds": 7,
+          "mvp": "VIT:Derke"
+        }
+      },
+      "players": {
+        "VIT:Derke": {
+          "rating": 9.2,
+          "comment": "决胜图突破与回身接应连续完成，为集结进攻打开了入口。"
+        },
+        "VIT:Chronicle": {
+          "rating": 8.9,
+          "comment": "第三图第二轮接触表现突出，清理侧面威胁帮助队伍稳住空间。"
+        },
+        "VIT:Jamppi": {
+          "rating": 8,
+          "comment": "末图探查后衔接推进及时，减少了入口等待造成的道具消耗。"
+        },
+        "VIT:Sayonara": {
+          "rating": 8.6,
+          "comment": "首图清点与安包掩护有效，后续也贡献了多次近距离交换。"
+        },
+        "VIT:PROFEK": {
+          "rating": 7.7,
+          "comment": "高位清理为第三图推进铺路，第四图支援途中受到拦截。"
+        },
+        "G2:jawgemo": {
+          "rating": 8.1,
+          "comment": "中段突破带来多次安包机会，末图未能隔开对手跟进队员。"
+        },
+        "G2:leaf": {
+          "rating": 8.8,
+          "comment": "第二图侧翼接触抓住转攻间隙，决胜图的防线回收空间不足。"
+        },
+        "G2:valyn": {
+          "rating": 7.8,
+          "comment": "几次包后交换守住优势，末图回防面对完整交叉火力受阻。"
+        },
+        "G2:babybay": {
+          "rating": 8.7,
+          "comment": "第四图外围拦截贡献关键图胜，最后一图未能建立相同站位。"
+        },
+        "G2:trent": {
+          "rating": 8,
+          "comment": "道具延缓支撑了中段防守，决胜图首轮消耗未能拖住集结。"
+        }
+      }
+    },
+    "VIT_100T_0": {
+      "input": {
+        "scenario": {
+          "upperWinner": "VIT",
+          "lowerWinner": "100T"
+        },
+        "match_index": 0,
+        "match_id": "115576361461208325",
+        "series": {
+          "teams": [
+            "LOUD",
+            "100T"
+          ],
+          "score": [
+            1,
+            3
+          ],
+          "maps": [
+            {
+              "winner": "LOUD",
+              "score": [
+                1,
+                0
+              ]
+            },
+            {
+              "winner": "100T",
+              "score": [
+                1,
+                1
+              ]
+            },
+            {
+              "winner": "100T",
+              "score": [
+                1,
+                2
+              ]
+            },
+            {
+              "winner": "100T",
+              "score": [
+                1,
+                3
+              ]
+            }
+          ],
+          "winner": "100T"
+        }
+      },
+      "headline": "17日虚构回看：100T连续换速，3比1翻过LOUD",
+      "summary": "17日的虚构对局中，LOUD拿下首图，100T随后通过换速进攻与包后外围封锁连取三图，以3比1获胜。第四图没有延续长时间试探，而是在有限信息下完成连续集结。本篇剧情、BP、回合比分、MVP及0至10选手评分均为虚构。",
+      "bp": {
+        "bans": [
+          "Ascent",
+          "Split"
+        ],
+        "order": [
+          "Lotus",
+          "Haven",
+          "Sunset",
+          "Summit",
+          "Abyss"
+        ],
+        "reason": "本次虚构BP移除Ascent与Split，前两图围绕多点转攻展开，随后转向中路及入口节奏。Summit安排在第四图，Abyss为未进行的第五图；该顺序仅服务本次虚构创作。"
+      },
+      "maps": {
+        "0": {
+          "story": "Lotus上，LOUD通过外围接触反复拉动100T的防守位置。DaviH守在转点队伍后方，连续处理绕侧与追击，使正面能够完整集结。双方打到末段仍只差少量回合，LOUD最后守住包后双人交叉，以13比11拿下首图。",
+          "losing_rounds": 11,
+          "mvp": "LOUD:DaviH"
+        },
+        "1": {
+          "story": "Haven上，100T先用慢速默认限制前压，再突然将人员集中到同一入口。vora的探查与跟进清点衔接及时，LOUD补位时常需同时处理多个角度。换边后100T守住连接通道，以13比6将系列赛扳平。",
+          "losing_rounds": 6,
+          "mvp": "100T:vora"
+        },
+        "2": {
+          "story": "Sunset上，100T将中路控制转化为包点夹击，Cryo在外围架住LOUD的转移路线。LOUD几次用道具夺回入口，却因侧路被封而难以组织完整回防。100T在末段保留一人接应包后队友，以13比9取得领先。",
+          "losing_rounds": 9,
+          "mvp": "100T:Cryo"
+        },
+        "3": {
+          "story": "Summit上，100T在短暂试探后迅速合流，Timotino连续完成进点后的第二次交换，让突破带来的空间没有被回防收回。LOUD改用集中守点，但侧面掩护又被道具隔断。100T以13比8收图，系列赛3比1获胜。",
+          "losing_rounds": 8,
+          "mvp": "100T:Timotino"
+        }
+      },
+      "players": {
+        "LOUD:lukxo": {
+          "rating": 6.9,
+          "comment": "首图集结进攻完成过突破，后续图的入口接应被道具分隔。"
+        },
+        "LOUD:DaviH": {
+          "rating": 8.1,
+          "comment": "第一图保护转点队伍成效明显，后续绕侧路线受到更多封锁。"
+        },
+        "LOUD:Darker": {
+          "rating": 6.6,
+          "comment": "近点阻击换回部分回合，面对夹击时未能连续完成交换。"
+        },
+        "LOUD:erde": {
+          "rating": 6.8,
+          "comment": "外围信息为首图提供支撑，中段连接区域的控制逐渐丢失。"
+        },
+        "LOUD:tkzin": {
+          "rating": 7.2,
+          "comment": "数次夺回入口延缓进攻，后续回防仍缺少可用的侧路空间。"
+        },
+        "100T:Cryo": {
+          "rating": 8.8,
+          "comment": "第三图外围架枪限制转移，帮助包点队友专注处理正面回防。"
+        },
+        "100T:Asuna": {
+          "rating": 8.2,
+          "comment": "换速进攻时与后续队员保持接应，创造了多次清点机会。"
+        },
+        "100T:Timotino": {
+          "rating": 9,
+          "comment": "第四图连续补上进点后的交换，把突破空间转成安包优势。"
+        },
+        "100T:vora": {
+          "rating": 8.9,
+          "comment": "第二图探查与清点相互衔接，带动队伍连续完成集结进攻。"
+        },
+        "100T:bang": {
+          "rating": 8.1,
+          "comment": "侧面道具隔断支援线路，为中后段的正面推进保留了时间。"
+        }
+      }
+    },
+    "VIT_100T_1": {
+      "input": {
+        "scenario": {
+          "upperWinner": "VIT",
+          "lowerWinner": "100T"
+        },
+        "match_index": 1,
+        "match_id": "115576361461208331",
+        "series": {
+          "teams": [
+            "VIT",
+            "100T"
+          ],
+          "score": [
+            3,
+            2
+          ],
+          "maps": [
+            {
+              "winner": "VIT",
+              "score": [
+                1,
+                0
+              ]
+            },
+            {
+              "winner": "100T",
+              "score": [
+                1,
+                1
+              ]
+            },
+            {
+              "winner": "VIT",
+              "score": [
+                2,
+                1
+              ]
+            },
+            {
+              "winner": "100T",
+              "score": [
+                2,
+                2
+              ]
+            },
+            {
+              "winner": "VIT",
+              "score": [
+                3,
+                2
+              ]
+            }
+          ],
+          "winner": "VIT"
+        }
+      },
+      "headline": "18日虚构回看：VIT收紧包后阵形，3比2赢下100T",
+      "summary": "18日这场虚构比赛中，VIT赢下第一、第三与第五图，100T两次以图胜追平。决胜图的差别落在包后距离：VIT收紧相互接应的位置，用连续补枪守住优势，最终3比2获胜。本篇剧情、BP、回合比分、MVP及0至10选手评分均为虚构。",
+      "bp": {
+        "bans": [
+          "Lotus",
+          "Summit"
+        ],
+        "order": [
+          "Abyss",
+          "Sunset",
+          "Haven",
+          "Ascent",
+          "Split"
+        ],
+        "reason": "虚构BP禁用Lotus与Summit，先检验远端支援和中路控制，再逐步转入多点协防与连接区域争夺。Split作为第五图，让高低位清理与包后接应决定最后的图胜。"
+      },
+      "maps": {
+        "0": {
+          "story": "Abyss上，VIT在远端接触后及时回收队员，没有让防线沿途拉长。Jamppi的探查为回防提供落点，队友随后同步处理近角与远端架枪。100T的包后站位数次被切成两段，VIT以13比8先取一图。",
+          "losing_rounds": 8,
+          "mvp": "VIT:Jamppi"
+        },
+        "1": {
+          "story": "Sunset上，100T通过中路施压逼出VIT的阻滞道具，再沿连接区域转入包点。bang保留的掩护让安包队员安全落位，也延缓了侧面回防。VIT追到末段仍未破解最后一轮包后站位，100T以13比11扳平系列赛。",
+          "losing_rounds": 11,
+          "mvp": "100T:bang"
+        },
+        "2": {
+          "story": "Haven上，VIT不再追逐每次外围接触，而是维持各包点之间的支援距离。PROFEK在第一轮交战后及时换位，连续接住100T的后续推进。进攻端VIT又用假动作调走补位，以13比9赢下第三图。",
+          "losing_rounds": 9,
+          "mvp": "VIT:PROFEK"
+        },
+        "3": {
+          "story": "Ascent上，100T在清理中路近角后才展开两侧推进。Asuna借同步道具进入包点，迅速处理威胁跟进队员的位置。VIT尝试从连接区域反夹，却被外围接应挡住，100T以13比7拿下第四图，再次追平。",
+          "losing_rounds": 7,
+          "mvp": "100T:Asuna"
+        },
+        "4": {
+          "story": "Split上，VIT先清高位再进点，安包后主动缩短队员间的补枪距离。Chronicle多次接住100T从侧面发起的回防，使拆解交叉火力的尝试未能奏效。最后一轮VIT保住两侧接应，以13比10收图，系列赛3比2获胜。",
+          "losing_rounds": 10,
+          "mvp": "VIT:Chronicle"
+        }
+      },
+      "players": {
+        "VIT:Derke": {
+          "rating": 8.2,
+          "comment": "末图高位清理后的突破有队友跟进，安包后及时回到接应位置。"
+        },
+        "VIT:Chronicle": {
+          "rating": 9.2,
+          "comment": "决胜图连续处理侧面回防，紧密的补枪位置帮助守住包后优势。"
+        },
+        "VIT:Jamppi": {
+          "rating": 8.7,
+          "comment": "首图探查为同步回防提供落点，避免队伍在长路线逐个接战。"
+        },
+        "VIT:Sayonara": {
+          "rating": 7.9,
+          "comment": "多次跟进清理近角，第四图的反夹未能越过外围接应。"
+        },
+        "VIT:PROFEK": {
+          "rating": 8.8,
+          "comment": "第三图接触后换位及时，将单轮阻击延续成第二道防守。"
+        },
+        "100T:Cryo": {
+          "rating": 8,
+          "comment": "包后远端架枪赢下过关键交换，首图站位被回防切开。"
+        },
+        "100T:Asuna": {
+          "rating": 8.9,
+          "comment": "第四图突破后清理跟进路线，显著提高了队伍的进点完整度。"
+        },
+        "100T:Timotino": {
+          "rating": 7.8,
+          "comment": "中段外围接应挡住数次反夹，末图侧面推进未能形成连续交换。"
+        },
+        "100T:vora": {
+          "rating": 8.1,
+          "comment": "中路清点帮助两侧展开，第三图的后续推进被换位防守接住。"
+        },
+        "100T:bang": {
+          "rating": 8.7,
+          "comment": "第二图保留掩护保障安包，决胜图道具未能拆散紧密交叉站位。"
+        }
+      }
+    }
+  }
+}

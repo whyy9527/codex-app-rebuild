@@ -46,7 +46,7 @@ def compare(root, observed, reference):
     rows += [{'id':key,'knowledge_source':'unknown','status':'not_run','reason':reason} for key,reason in [
         ('full-visual-equivalence','Shared desktop layout and mobile metric suites now pass; original LoL artwork is replaced by official VALORANT card art. Whole-image pixel identity is not certified.'),
         ('application-audio-equivalence','Explicit owned-process captures now verify core cue output, mute/restoration, autofill and save. Full source cue-catalogue equivalence is not certified by this suite.'),
-        ('deep-reference-parity','Review, ranking, comparison, layout, mobile, ticker and sampled scene motion have supplemental common suites. The newly authorized fictional BP/player/story work is pending (C8).')]]
+        ('deep-reference-parity','Review, ranking, comparison, layout, mobile, ticker and sampled scene motion have supplemental common suites. Authorized fictional BP/player/story has a separate 429-check suite; this generic journey does not itself certify all supplemental requirements.')]]
     return {'status':'incomplete' if any(row['status']!='pass' for row in rows) else 'pass','rows':rows,
             'counts':{status:sum(row['status']==status for row in rows) for status in ['pass','fail','unavailable','not_run']}}
 

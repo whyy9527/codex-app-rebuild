@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-10-15T15:34:04.921615+00:00",
+  "scope": "C8 fiction and user-directed return to the existing Aliyun Qingdao server",
+  "runtime_sha256": {
+    "index.html": "6711a0f451d185b58b869114fcc85b9316c257dceb9e11cad08e1a6944462084",
+    "app.js": "273f025e0ea486c5c7ebb559fe634bff2f7c29282af8ab0284923cd3917cd9e0",
+    "engine.mjs": "f6368585e3ae737626f222bbc4887efd5f0ddcda04999186d387b976fd143c01",
+    "fiction.mjs": "309fbe01881f3a256955045288bd389ff31bb1f0fe0c8ec25f7c72480f204a60",
+    "style.css": "a39435e0a226de1b24fd9f7b17b7c1889d0406cb37df4d2b667e672fdbf37c28"
+  },
+  "first_domestic_publication": {
+    "runtime_revision": "c0b88372e56c3f1425fd58a347df3ec616bf2d56",
+    "receipt": "artifacts/valorant-domestic-dns-release/publication.json",
+    "public_browser": "artifacts/valorant-domestic-first-complete-qa/observed.json",
+    "core_comparison": "artifacts/valorant-domestic-first-check/comparison.json",
+    "public_hashes": "artifacts/valorant-domestic-dns-release/public-checksums.json",
+    "github_pages_disabled": true
+  },
+  "fiction": {
+    "channels": [
+      "codex",
+      "deepseek"
+    ],
+    "conditional_reviews": 16,
+    "map_stories": 72,
+    "series_player_ratings": 160,
+    "official_roster_sources": [
+      "VIT",
+      "G2",
+      "100T"
+    ],
+    "secondary_roster_source": "LOUD: VLR, visibly labelled",
+    "map_pool": "Creative seven-map pool using official catalog names; not asserted to be tournament pool",
+    "gpt_run": "artifacts/valorant-fiction-codex-first",
+    "deepseek_runs": [
+      "artifacts/valorant-fiction-deepseek-batch-a",
+      "artifacts/valorant-fiction-deepseek-batch-b",
+      "artifacts/valorant-fiction-deepseek-batch-c",
+      "artifacts/valorant-fiction-deepseek-batch-d"
+    ],
+    "failed_runs_retained": [
+      "artifacts/valorant-fiction-deepseek-first",
+      "artifacts/valorant-fiction-deepseek-semantic-revision"
+    ],
+    "validation_refinement": "Terminal series-score mentions on the last map are allowed only when equal to the engine result. Model text was not rewritten."
+  },
+  "verification": {
+    "fiction_ui": {
+      "comparison": "artifacts/valorant-fiction-startup-final-check/comparison.json",
+      "pass": 429,
+      "fail": 0,
+      "screenshots": "artifacts/valorant-fiction-startup-final-qa"
+    },
+    "core": {
+      "comparison": "artifacts/valorant-fiction-final-core-check/comparison.json",
+      "pass": 29,
+      "fail": 0,
+      "not_run": 3,
+      "note": "Umbrella perfect-pixel/full-cue/supplemental certification remains not_run; no assertion weakened."
+    },
+    "navigation_typography": {
+      "comparison": "artifacts/valorant-fiction-final-font-check/comparison.json",
+      "pass": 43,
+      "fail": 0
+    },
+    "node_tests": 9,
+    "python_fiction_tests": 6,
+    "repository_tests": {
+      "pass": 111,
+      "skip": 8,
+      "log": "artifacts/valorant-delivery-final-unittest.log"
+    }
+  },
+  "limitations": [
+    "Six model channels remain pending under the user-approved channel-availability rule.",
+    "First uncached fonts on the domestic server took 96.7 seconds before startup reordering; fonts are licensed unmodified, not subset. Functional UI now precedes large font requests.",
+    "Whole-image identity with LoL art and the complete source audio-cue catalogue are not certified.",
+    "Existing HTTP filing interception remains; production access is HTTPS with DNS-validated certificate. Renewal currently uses the local DNS-assisted command."
+  ],
+  "next_publication": {
+    "status": "not_run",
+    "expected_origin": "47.104.152.169",
+    "site": "https://valorant.xinxiayiyan.com/"
+  }
+}

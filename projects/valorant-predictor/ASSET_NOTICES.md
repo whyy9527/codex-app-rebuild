@@ -39,3 +39,15 @@ under this repository’s MIT license. No subset or format conversion is shipped
 Anton 与 JetBrains Mono 来自 Google Fonts 官方仓库，遵循 SIL Open Font License 1.1，
 完整版权和许可分别保存在 `assets/fonts/anton-OFL.txt`、`assets/fonts/jetbrainsmono-OFL.txt`。
 全部字体来源和 SHA-256 见 `data/font-source.json`；原始文件未改编或子集化。
+
+## Explicitly fictional match content
+
+`data/codex-fiction.json` and `data/deepseek-fiction.json` contain actual model-authored
+fiction bound to the same deterministic series results. BP, round scores, stories,
+MVPs and 0–10 ratings are labelled fiction and do not represent real performances.
+The player-name index prioritizes official Vitality, G2 and 100 Thieves roster pages;
+LOUD is explicitly supplemented by the VLR esports database. Names are an index,
+not a claim about confirmed match-day starters. Map names come from Riot's game
+catalog; the seven-map creative pool is not certified as the tournament's pool.
+Source URLs and limits are in `data/fiction-context.json`. No invented quotes or
+endorsements are attributed to players.

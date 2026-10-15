@@ -11,11 +11,11 @@ from runtime.browser import collect_step, write_json
 from capabilities.rebuild.browser import observed_state
 
 
-def collect(url, out):
+def collect(url, out, timeout_ms=20000, browser_args=None):
     from playwright.sync_api import sync_playwright
     root=Path(__file__).resolve().parents[3]
     output=root/out;output.mkdir(parents=True,exist_ok=False)
-    result={'schema_version':1,'created_at':datetime.now(timezone.utc).isoformat(),'url':url,'facts':{},'states':{},'steps':[], 'errors':[]}
+    result={'schema_version':1,'created_at':datetime.now(timezone.utc).isoformat(),'url':url,'browser_args':browser_args or [],'facts':{},'states':{},'steps':[], 'errors':[]}
     def fact(name,value):result['facts'][name]=value
     def screenshot(page,name):
         path=output/(name+'.png');page.screenshot(path=str(path),full_page=False);return str(path.relative_to(root))
@@ -27,10 +27,11 @@ def collect(url, out):
         record.update(cleanup='released',receipt_path=str((output/(name+'-step.json')).relative_to(root)))
         write_json(root/record['receipt_path'],record);result['steps'].append(record);result['states'][name]=observed_state(root,record,record['receipt_path'])
     with sync_playwright() as p:
-        browser=p.chromium.launch(executable_path=os.environ.get('REBUILD_BROWSER_EXECUTABLE','/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge'),headless=True)
+        browser=p.chromium.launch(executable_path=os.environ.get('REBUILD_BROWSER_EXECUTABLE','/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge'),headless=True,args=browser_args or [])
         try:
             context=browser.new_context(viewport={'width':1370,'height':988},locale='zh-CN',timezone_id='Asia/Shanghai',accept_downloads=True)
-            page=context.new_page();page.set_default_timeout(20000)
+            context.set_default_timeout(timeout_ms);context.set_default_navigation_timeout(timeout_ms)
+            page=context.new_page()
             page.on('pageerror',lambda e:result['errors'].append(str(e)))
             page.goto(url,wait_until='load');page.locator('.channels').wait_for(state='visible')
             page.wait_for_function('() => [...document.querySelectorAll(".portraits img")].every(i=>i.complete&&i.naturalWidth>0)')
@@ -82,6 +83,7 @@ def collect(url, out):
             page.locator('.mainnav a[href="#/method"]').click();page.locator('h1').filter(has_text='AI 赛制介绍').wait_for();capture(page,'method')
             page.locator('footer a[href="#/about"]').first.click();page.locator('h1').filter(has_text='内容、数据与素材说明').wait_for();capture(page,'about')
             mobile=browser.new_context(viewport={'width':390,'height':844},locale='zh-CN',timezone_id='Asia/Shanghai',is_mobile=True,has_touch=True)
+            mobile.set_default_timeout(timeout_ms);mobile.set_default_navigation_timeout(timeout_ms)
             m=mobile.new_page();m.goto(url,wait_until='load');m.locator('.channels').wait_for();m.locator("#mobile-model").wait_for();fact('mobile_home_width',m.evaluate('({scroll:document.documentElement.scrollWidth,viewport:innerWidth})'));screenshot(m,'mobile-home')
             m.locator('.mainnav a[href="#/pickem"]').click();m.locator('#autofill').click();m.locator('#save-pick').click();fact('mobile_pick_width',m.evaluate('({scroll:document.documentElement.scrollWidth,viewport:innerWidth})'));fact('mobile_pick_champion',m.locator('#pick-result h2').inner_text());screenshot(m,'mobile-pickem')
             m.goto(url+'#/pickem?share=invalid',wait_until='load');m.locator('#lower-final').wait_for();fact('invalid_share_feedback',m.locator('#toast').inner_text())
@@ -93,5 +95,5 @@ def collect(url, out):
 
 
 if __name__=='__main__':
-    parser=argparse.ArgumentParser();parser.add_argument('--url',default='http://127.0.0.1:5173/');parser.add_argument('--out',required=True);args=parser.parse_args()
-    result=collect(args.url,args.out);print(json.dumps({'facts':len(result['facts']),'error':result.get('error'),'page_errors':result['errors'],'out':args.out},ensure_ascii=False));raise SystemExit(1 if result.get('error') or result['errors'] else 0)
+    parser=argparse.ArgumentParser();parser.add_argument('--url',default='http://127.0.0.1:5173/');parser.add_argument('--out',required=True);parser.add_argument('--timeout-ms',type=int,default=20000);parser.add_argument('--browser-arg',action='append',default=[]);args=parser.parse_args()
+    result=collect(args.url,args.out,args.timeout_ms,args.browser_arg);print(json.dumps({'facts':len(result['facts']),'error':result.get('error'),'page_errors':result['errors'],'out':args.out},ensure_ascii=False));raise SystemExit(1 if result.get('error') or result['errors'] else 0)

@@ -13,7 +13,6 @@ import subprocess
 import tarfile
 import tempfile
 import time
-import urllib.request
 
 REPO = Path(__file__).resolve().parents[3]
 PROJECT = Path(__file__).resolve().parents[1]
@@ -61,6 +60,35 @@ def ensure_dns(output):
     else:
         receipt = api('alidns', 'AddDomainRecord', DomainName='xinxiayiyan.com', RR='valorant', Type='A', Value=ADDRESS, TTL=600)
     (output / 'dns.json').write_text(json.dumps(receipt, indent=2) + '\n')
+
+
+def verify_public(checksums, browser_args=None):
+    # Existing domestic sites work in Chromium while this Mac's urllib/curl
+    # TLS connections reset. Verify through a real browser with normal TLS.
+    from playwright.sync_api import sync_playwright
+    with sync_playwright() as p:
+        browser = p.chromium.launch(executable_path='/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge', headless=True, args=browser_args or [])
+        try:
+            page = browser.new_page();page.set_default_timeout(60000)
+            page.goto('https://' + DOMAIN + '/revision.json', wait_until='domcontentloaded')
+            names = ['revision.json', 'index.html', 'app.js', 'engine.mjs', 'style.css', 'data/event.json']
+            if 'fiction.mjs' in checksums:names.append('fiction.mjs')
+            names += [name for name in checksums if name.startswith('data/') and name.endswith('.json') and name not in names]
+            public = page.evaluate('''async names => Object.fromEntries(await Promise.all(names.map(async name => {
+                const response = await fetch('/' + name, {cache:'no-store'});
+                const body = await response.arrayBuffer();
+                const sha256 = [...new Uint8Array(await crypto.subtle.digest('SHA-256', body))].map(n=>n.toString(16).padStart(2,'0')).join('');
+                return [name, {status:response.status, sha256}];
+            })))''', names)
+            for name, row in public.items():
+                if row['status'] != 200 or row['sha256'] != checksums[name]:raise RuntimeError('Public artifact differs: ' + name)
+            shared = {}
+            for host in ['https://landing.xinxiayiyan.com/', 'https://workflow.xinxiayiyan.com/api/health']:
+                response = page.goto(host, wait_until='domcontentloaded')
+                if response.status != 200:raise RuntimeError('Public shared service unhealthy')
+                shared[host] = {'status': response.status}
+            return {'files': public, 'shared': shared, 'browser_args': browser_args or []}
+        finally:browser.close()
 
 
 def main(out):
@@ -145,16 +173,12 @@ if ! docker exec nginx-app test -f /etc/letsencrypt/live/valorant-predictor/full
 fi
 ''', output, 'activate-origin', timeout=240), flush=True)
         ensure_dns(output)
-        for attempt in range(12):
-            try:
-                with urllib.request.urlopen('http://' + DOMAIN + '/revision.json', timeout=10) as response:
-                    if json.load(response)['git_revision'] == revision:break
-            except Exception:
-                if attempt == 11:raise RuntimeError('Public DNS/HTTP readiness not established; origin and recovery retained')
-                time.sleep(5)
         print(remote(f'''set -eu
 STAGING={shlex.quote(stage)}
-docker exec nginx-app certbot certonly --config /etc/letsencrypt.ini --non-interactive --agree-tos --authenticator webroot --preferred-challenges http --webroot-path /data/letsencrypt-acme-challenge --cert-name valorant-predictor -d {DOMAIN}
+if ! docker exec nginx-app openssl x509 -checkend 2592000 -noout -in /etc/letsencrypt/live/valorant-predictor/fullchain.pem; then
+    echo 'DNS certificate issuance/renewal required; run resume_domestic.py for this owned stage'
+    exit 1
+fi
 cp -a {PROXY} "$STAGING/before-https-proxy.conf"
 cp "$STAGING/unpacked/deploy/https.nginx.conf" {PROXY}
 if ! docker exec nginx-app nginx -t; then
@@ -162,12 +186,6 @@ if ! docker exec nginx-app nginx -t; then
     exit 1
 fi
 docker exec nginx-app nginx -s reload
-cp "$STAGING/unpacked/deploy/renew-certificate.sh" /opt/valorant-predictor/
-chmod 750 /opt/valorant-predictor/renew-certificate.sh
-cp "$STAGING/unpacked/deploy/valorant-renew.service" /etc/systemd/system/
-cp "$STAGING/unpacked/deploy/valorant-renew.timer" /etc/systemd/system/
-systemctl daemon-reload
-systemctl enable --now valorant-renew.timer
 (cd /opt/valorant-predictor/current && sha256sum -c "$STAGING/unpacked/SHA256SUMS") > "$STAGING/verify-live.log"
 curl -fsS https://{DOMAIN}/revision.json
 curl -fsS -o /dev/null https://landing.xinxiayiyan.com/
@@ -175,12 +193,7 @@ curl -fsS -o /dev/null https://workflow.xinxiayiyan.com/api/health
 docker inspect media-workflow-app-1 --format '{{{{.State.Health.Status}}}}'
 sha256sum -c "$STAGING/protected-proxies.sha256" > "$STAGING/verify-protected-proxies.log"
 ''', output, 'https-and-shared-health', timeout=150), flush=True)
-        public = {}
-        for name in ['revision.json', 'index.html', 'app.js', 'engine.mjs', 'style.css']:
-            with urllib.request.urlopen('https://' + DOMAIN + '/' + name, timeout=30) as response:
-                actual = hashlib.sha256(response.read()).hexdigest()
-                if actual != checksums[name]:raise RuntimeError('Public artifact differs: ' + name)
-                public[name] = {'sha256': actual, 'status': response.status}
+        public = verify_public(checksums)
         (output / 'publication.json').write_text(json.dumps({'domain': DOMAIN, 'git_revision': revision, 'artifact_sha256': digest, 'recovery_directory': stage, 'public': public}, indent=2) + '\n')
         oss('rm', object_uri)
         remote(f'rm -f -- {shlex.quote(stage)}/site.tar.gz\nrm -rf -- {shlex.quote(stage)}/unpacked\n', output, 'cleanup-owned-upload')
