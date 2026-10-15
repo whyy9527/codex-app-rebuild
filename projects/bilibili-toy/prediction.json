@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "source": "Source observations private/predict-source-2; Safari successfully activated official draw. Current protocol preserves existing drafts by requiring an empty prestate.",
+  "cases": [
+    {
+      "id": "playin",
+      "steps": [
+        {
+          "action": "capture",
+          "capture": "prediction-empty"
+        },
+        {
+          "action": "click",
+          "match": "\\d+ button 揭晓对阵$",
+          "capture": "prediction-draw"
+        },
+        {
+          "action": "click",
+          "match": "\\d+ toggle button C9 41% 0, Value: (?:off|0)$",
+          "capture": "prediction-c9"
+        },
+        {
+          "action": "click",
+          "match": "\\d+ toggle button KC 59% 8, Value: (?:off|0)$",
+          "capture": "prediction-changed-kc"
+        },
+        {
+          "action": "click",
+          "match": "\\d+ toggle button FUR 79% 8, Value: (?:off|0)$",
+          "capture": "prediction-two-winners"
+        },
+        {
+          "action": "click",
+          "match": "\\d+ toggle button KC 76% 8, Value: (?:off|0)$",
+          "capture": "prediction-upper-final"
+        },
+        {
+          "action": "click",
+          "match": "\\d+ toggle button C9 90% 8, Value: (?:off|0)$",
+          "capture": "prediction-four-winners"
+        },
+        {
+          "action": "click",
+          "match": "\\d+ toggle button FUR 32% 2, Value: (?:off|0)$",
+          "capture": "prediction-lower-final"
+        },
+        {
+          "action": "click",
+          "match": "\\d+ toggle button KC 76% 8, Value: (?:off|0)$",
+          "capture": "prediction-complete"
+        },
+        {
+          "action": "reload",
+          "capture": "prediction-reloaded"
+        }
+      ]
+    }
+  ]
+}

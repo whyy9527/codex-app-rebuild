@@ -14,7 +14,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("endpoint", choices=["source", "candidate"])
     parser.add_argument("--out", required=True)
-    parser.add_argument("--suite", choices=['navigation', 'journeys'], default='navigation')
+    parser.add_argument("--suite", choices=['navigation', 'journeys', 'prediction'], default='navigation')
     parser.add_argument("--case")
     parser.add_argument("--content-top", type=int, default=80,
                         help="Measured browser-content top in the actual exported screenshot grid")
@@ -26,7 +26,9 @@ def main():
     BRIDGE.mkdir(parents=True, exist_ok=True)
     source = "https://www.bilibili.com/toy/LkvCZhw12wgT2Pqx/index.html"
     url = source if args.endpoint == "source" else "http://127.0.0.1:4617/"
-    cases = json.loads((ROOT / ('journeys.json' if args.suite == 'journeys' else 'scenarios.json')).read_text())["cases"]
+    suite_files = {'navigation': 'scenarios.json', 'journeys': 'journeys.json',
+                   'prediction': 'prediction.json'}
+    cases = json.loads((ROOT / suite_files[args.suite]).read_text())["cases"]
     if args.case:
         cases = [case for case in cases if case['id'] == args.case]
         if not cases:

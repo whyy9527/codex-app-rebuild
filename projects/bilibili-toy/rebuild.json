@@ -22,7 +22,10 @@
     "journey_scenarios": "projects/bilibili-toy/journeys.json",
     "journey_contract": "projects/bilibili-toy/private/journey-contract-v1.json",
     "historical_journey_result": "projects/bilibili-toy/private/journey-compare-3.json",
-    "entry_contract": "projects/bilibili-toy/entry-contract.json"
+    "entry_contract": "projects/bilibili-toy/entry-contract.json",
+    "prediction_scenarios": "projects/bilibili-toy/prediction.json",
+    "prediction_contract": "projects/bilibili-toy/private/prediction-contract-v2.json",
+    "historical_prediction_result": "projects/bilibili-toy/private/prediction-compare-2.json"
   },
   "commands": {
     "rsi_collect": [
@@ -137,6 +140,31 @@
       "-m",
       "projects.bilibili-toy.tools.freeze_journey",
       "--reference",
+      "{observed}",
+      "--out",
+      "{out}"
+    ],
+    "prediction_replay": [
+      "python3",
+      "-m",
+      "projects.bilibili-toy.tools.e2e",
+      "candidate",
+      "--suite",
+      "prediction",
+      "--content-top",
+      "112",
+      "--out",
+      "{out}"
+    ],
+    "prediction_compare": [
+      "python3",
+      "-m",
+      "capabilities.rebuild.frontend",
+      "--workspace",
+      ".",
+      "--contract",
+      "projects/bilibili-toy/private/prediction-contract-v2.json",
+      "--observed",
       "{observed}",
       "--out",
       "{out}"

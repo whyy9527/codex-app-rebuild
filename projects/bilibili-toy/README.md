@@ -55,3 +55,22 @@ python3 -m projects.bilibili-toy.tools.freeze_journey --reference projects/bilib
 完整原版回放文字只进入本地 private 契约。原生截图尺寸变化后，先实测
 浏览器内容边界，再给 e2e 命令传入 `--content-top`（导出截图像素坐标）；
 旧参考尺寸不匹配时保留 unavailable，不缩放或遮罩以取得通过。
+
+入围赛预测使用 `prediction.json` 和 `tools/prediction_native.mjs` 的
+`installPredictionE2E`。本轮使用 Safari 原生 App，因 Edge 的嵌套内容点击与
+焦点采集不稳定。驱动要求空草稿，遇到已有草稿会停止；它不自动清空预测。
+实际原版“重新预测”未出现确认且没有重置，因此本轮用新建的临时私密窗口
+准备空状态，再在同一窗口回放本地端。运行命令：
+
+```sh
+python3 -m projects.bilibili-toy.tools.e2e source --suite prediction --content-top 112 --out projects/bilibili-toy/private/prediction-reference-new
+python3 -m projects.bilibili-toy.tools.e2e candidate --suite prediction --content-top 112 --out projects/bilibili-toy/private/prediction-candidate-new
+node projects/bilibili-toy/tools/freeze_prediction.mjs projects/bilibili-toy/private/prediction-reference-new/observed.json projects/bilibili-toy/private/prediction-contract-new.json
+node projects/bilibili-toy/tools/prediction_native.test.mjs
+```
+
+`112` 是本轮 Safari 导出截图中的实测内容起点，复跑前须重新测量。
+冻结器从实际 AX 重新提取事实；同名的两场比赛保留独立控件编号。
+本轮 578 项内容和控件要求通过、10 项严格截图失败，详见
+`evidence/prediction-2026-10-15.json`。这只覆盖入围赛及刷新后的草稿保留；
+最终锁定、瑞士轮、分享、资料授权、声音和移动端仍待共同验收。
