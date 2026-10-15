@@ -25,6 +25,16 @@ The working cycle is reference observation → shared behavior/frontend requirem
 
 Native Goals provide continued execution. The legacy Stop Hook has been removed; the optional manual MCP verifier does not resume Codex automatically. Mechanism ablations belong **after** reconstruction and full acceptance, as described in the workflow's optimization stage.
 
+## Browser capture
+
+Install the optional browser dependency with `python3 -m pip install '.[browser]'`, then use an already-installed Chromium-family browser:
+
+```sh
+python3 -m workflows.rebuild.browser --workspace . --scenario browser.json --out artifacts/browser-new
+```
+
+The [browser capture guide](docs/BROWSER-CAPTURE.md) describes explicit readiness, per-step evidence, launch/connect ownership, and integration with existing frontend tests. Capture keeps animation and caret behavior. A declared `browser_capture` reference makes readiness, artifact integrity, sampled state stability, and preparation checks mandatory before the shared assertion runs. This does not establish atomic media capture or whole-app completeness.
+
 ## Case studies
 
 [Duolingo web → Swift](projects/duolingo-web/README.md) informed this workflow through a real reconstruction for Chinese speakers learning English. The experiment has ended and did not reach 1:1 parity. Read the [case status](projects/duolingo-web/STATUS.md) and [lessons learned](docs/DUOLINGO-LESSONS.md) for verified capabilities and remaining gaps.
@@ -48,6 +58,7 @@ Use a new path for `--out`. Prepare reference and candidate state separately; re
 - [Roadmap](docs/ROADMAP.md) and [research](docs/RESEARCH.md): unfinished outcomes and the Dream-RSI/Cordis sources.
 - [History](docs/history/README.md): experiment records and original evidence.
 - [Framework releases](docs/RELEASING.md): packaging, verification, and organization sync.
+- [Browser capture](docs/BROWSER-CAPTURE.md): CLI observations and frontend evidence checks.
 
 ```sh
 python3 -m unittest discover -v

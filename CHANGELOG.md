@@ -1,6 +1,14 @@
 # Changelog
 
-## Unreleased
+## 0.3.0 — 2026-10-15
+
+- Rename the project and source repository to Rebuild Any Web / `rebuild-any-web`.
+- Add an optional Playwright browser capture CLI with explicit launch/connect targets, per-step readiness, original animation/caret behavior, measured preparation, artifact digests, and partial failure receipts.
+- Connect browser evidence to the existing frontend mold: verify reference/candidate identity, readiness, artifact integrity, sampled stability, and preparation before comparing actual text, elements, or pixels.
+- Verify delayed and wrong results, screenshot/font failure, DOM drift, input modes, motion preservation, Service Workers, and external-browser cleanup through a real browser and public CLI against a source-owned fixture.
+- Publish the same framework-only snapshot and release assets to the personal and organization repositories. Real App cases and private inputs remain outside the framework package.
+
+Sampled stability does not establish atomic capture or full animation/audio parity. Browser relative-geometry origins and native/media preparation remain unfinished; this release does not claim complete autonomous reconstruction of an arbitrary site.
 
 - Remove the legacy Stop Hook and lifecycle adapter; native Goals own continuation. Keep optional manual MCP verification and migrate owned project Hook registrations without changing other configuration.
 - Make the main README English, add `README.zh-CN.md`, and update GitHub discovery metadata.

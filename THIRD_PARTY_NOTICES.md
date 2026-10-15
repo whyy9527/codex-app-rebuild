@@ -18,7 +18,7 @@ Duolingo 案例是已结束、未达到 1:1 的独立技术实践。Duolingo 名
 | --- | --- | --- |
 | Rive iOS | [MIT](https://github.com/rive-app/rive-ios/blob/main/LICENSE) | Swift 动画运行时 |
 | Lottie | [Apache-2.0](https://github.com/airbnb/lottie-spm/blob/main/LICENSE) | Swift 动画运行时 |
-| Playwright | [Apache-2.0](https://github.com/microsoft/playwright/blob/main/LICENSE) | 浏览器观察与回放 |
+| Playwright | [Apache-2.0](https://github.com/microsoft/playwright/blob/main/LICENSE) | 框架可选浏览器采集与案例回放；browser extra 由 pyproject.toml 声明 |
 | Apache ECharts | [Apache-2.0](https://github.com/apache/echarts/blob/6.0.0/LICENSE) | 校管家探索树交互展示；从CDN加载，不随仓库打包 |
 | Pillow | [上游许可](https://github.com/python-pillow/Pillow/blob/main/LICENSE) | 按需图像比较 |
 | @nestjs/jwt | [MIT](https://github.com/nestjs/jwt/blob/master/LICENSE) | 校管家案例 JWT 签发与校验 |
@@ -27,3 +27,5 @@ Duolingo 案例是已结束、未达到 1:1 的独立技术实践。Duolingo 名
 | pinyin-pro | [MIT](https://github.com/zh-lx/pinyin-pro/blob/main/LICENSE) | 校管家案例的姓名首字母搜索 |
 
 锁定版本由案例的依赖清单管理，具体版本随附的许可与通知仍然适用。Dream-RSI、Cordis 的论文及实现来源保留在 [研究说明](docs/RESEARCH.md)；本仓库对它们的引用不改变原作者的权利，也不表示完整复现其算法。
+
+浏览器采集的逐步证据与资源归属设计参考 [REA](https://github.com/morluto/rea)（[MIT](https://github.com/morluto/rea/blob/main/LICENSE)）。本仓库的 Python 实现独立编写，未包含 REA 源码或运行依赖；具体对应与差异由研究说明维护。框架包不捆绑 Playwright 或浏览器二进制，安装者使用依赖随附的上游许可。

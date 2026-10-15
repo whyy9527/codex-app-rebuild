@@ -24,6 +24,22 @@ def compare(root, contract, observed):
         for name in evidence:
             local_file(root, name)
         state = observed.get('states', {}).get(requirement['state'])
+        if state is not None and 'browser_capture' in requirement and requirement['kind'] != 'pending':
+            from .browser import comparison_gate, observed_state, read_receipt
+            gate = comparison_gate(root, requirement, state)
+            if gate is None:
+                reference_path = requirement['browser_capture']['reference']
+                reference_state = observed_state(root, read_receipt(root, reference_path), reference_path)
+                reference_requirement = {key: value for key, value in requirement.items() if key != 'browser_capture'}
+                reference_result = compare(root, {'requirements': [reference_requirement]},
+                                           {'states': {requirement['state']: reference_state}})
+                if reference_result['status'] != 'pass':
+                    gate = {'status': 'unavailable', 'reason': 'Reference browser evidence does not satisfy the shared assertion',
+                            'reference_result': reference_result['rows'][0]}
+            if gate:
+                row.update(gate)
+                rows.append(row)
+                continue
         if requirement['kind'] == 'pending':
             row.update(status='not_run', reason=requirement['description'])
         elif state is None:

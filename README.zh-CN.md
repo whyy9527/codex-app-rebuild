@@ -19,6 +19,16 @@ python3 -m workflows.rebuild.project status --workspace . --project projects/duo
 
 每轮由目标缺口决定先探索还是先实现：原版观察 → 共同业务／前端模具 → 跨语言实现 → 实际比较 → 根据遗漏与差异改变下一步。主页、内容、布局、字体、图形、交互、动效、声音与持久化从第一轮共同验收；重复跑已有测试无法发现全部遗漏。
 
+## 浏览器采集
+
+按需安装 `python3 -m pip install '.[browser]'`，使用调用者已安装的 Chromium 系浏览器：
+
+```sh
+python3 -m workflows.rebuild.browser --workspace . --scenario browser.json --out artifacts/browser-new
+```
+
+[采集指南](docs/BROWSER-CAPTURE.md)说明显式就绪、逐步证据、launch/connect 资源归属和前端模具接线。截图保留动画和光标；requirement 声明 `browser_capture` 后，共同断言前先核验就绪、文件摘要、采样稳定性及准备条件。采样稳定不代表原子媒体采集或整站完成。
+
 ## Duolingo 实践
 
 [Duolingo 网页 → Swift](projects/duolingo-web/README.md)是形成这套方法的实际案例，中文母语学习英语。试验已结束，尚未达到 1:1；已验证能力与缺口见 [案例状态](projects/duolingo-web/STATUS.md)，经验见 [实践复盘](docs/DUOLINGO-LESSONS.md)。查看案例不会自动恢复复刻任务。

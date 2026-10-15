@@ -8,7 +8,9 @@ from scripts.package_framework import export, git, selected
 class FrameworkPackage(unittest.TestCase):
     def test_scope_keeps_runtime_fixture_but_excludes_cases_private_and_case_tests(self):
         for name in ('runtime/dream.py', 'capabilities/rebuild/frontend.py',
-                     'tests/rebuild/test_dream.py', 'projects/dream-rsi-check/worker.py'):
+                     'tests/rebuild/test_dream.py', 'projects/dream-rsi-check/worker.py',
+                     'runtime/browser.py', 'capabilities/rebuild/browser.py', 'workflows/rebuild/browser.py',
+                     'tests/rebuild/test_browser_live.py', 'docs/BROWSER-CAPTURE.md'):
             self.assertTrue(selected(name))
         for name in ('projects/xiaogj-web/private/local-auth.json', 'projects/duolingo-web/image.png',
                      'projects/education-swift/Sources/LingoSeed/LearningView.swift',

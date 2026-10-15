@@ -16,6 +16,9 @@
 | `workflows/rebuild/dream.py` | 显式案例配置及新输出目录 | collect/replay/cycle/dream/inspect 工作调用，不创建任务生命周期 |
 | `capabilities/rebuild/contracts.py` | 共同夹具、场景、断言、两端适配器 | 参考确认、冻结批次、行为比较和覆盖 |
 | `frontend.py` / `images.py` / `coverage.py` | 前端契约、实际观测、实测截图与动作库存 | 文字／几何／图像差异和未建模动作 |
+| `runtime/browser.py` | 显式浏览器目标、场景动作与就绪条件 | 逐步真实 artifact、实际状态与清理回执；不判产品通过 |
+| `capabilities/rebuild/browser.py` | 原版／候选步骤证据与 requirement | 文件摘要、采集稳定性和准备条件门禁，接入 frontend 原断言 |
+| `workflows/rebuild/browser.py` | 显式 workspace、scenario 与新输出目录 | 可选 Playwright 的采集 CLI；由项目现有命令或 RSI agent 调用 |
 | 案例观察器与驱动 | 真实浏览器或候选 UI 操作 | 状态、资源、截图、音频和动作回执 |
 | `runtime/runner.py` | 显式命令与输入 | 命令输出、超时与进程组清理 |
 
@@ -39,7 +42,7 @@
 
 业务层由 `contracts.py` 拥有共同动作与 expect，适配器只收到动作和前置状态，返回实际观察。参考确认后冻结，候选使用同批次；新增需求保留父版本。前端层由 `frontend.py` 独立读取状态事实，`images.py` 从实际 PNG 和窗口采样元数据计算比较。平台驱动不能自报通过。
 
-语义、几何、像素和实际音频分别是不同测量；最终以共同用户需求组织交付。当前通用比较器已支持文字、角色、布尔值、矩形、采样颜色和严格整图；动画与声音还依赖案例工具，需求级汇总尚待实现。详细协议见 [BEHAVIOR-CONTRACT](BEHAVIOR-CONTRACT.md)。
+语义、几何、像素和实际音频分别是不同测量；最终以共同用户需求组织交付。当前通用比较器已支持文字、角色、布尔值、矩形、采样颜色和严格整图；动画与声音还依赖案例工具，需求级汇总尚待实现。浏览器 requirement 可引用实际步骤证据，由共同门禁验证就绪、必需文件、采集状态及两端准备后再比较；缺失和不兼容返回 unavailable。采集器保留动效与失败事实，不生成新的验收状态机。详细协议见 [BEHAVIOR-CONTRACT](BEHAVIOR-CONTRACT.md)和[浏览器采集](BROWSER-CAPTURE.md)。
 
 ## 兼容运行链
 

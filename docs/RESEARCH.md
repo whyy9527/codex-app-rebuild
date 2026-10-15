@@ -29,6 +29,14 @@
 
 当前借鉴停留在设计层。运行链没有导入 Cordis，也没有实现其 context、可撤销副作用或响应式依赖机制；普通模块分层和进程清理不能称为 Cordis 核心机制的复现。
 
+## REA 浏览器采集
+
+[REA: Reverse Engineer Anything](https://github.com/morluto/rea)，本次研究固定到提交 [47b4628](https://github.com/morluto/rea/tree/47b4628bac7300e5486dd6018663b1cc5dfbf01c)。阅读了场景采集、artifact、就绪动作、网络事务及 launch/connect 清理实现和相关测试；本仓库未导入其源码或依赖。
+
+借鉴的是逐步证据、显式漏采、资源归属及比较前的完整性检查。独立实现见[采集运行时](../runtime/browser.py)、[证据门禁](../capabilities/rebuild/browser.py)及[CLI](../workflows/rebuild/browser.py)，沿用原 RSI 和共同前端模具。REA 的场景截图关闭动画、环境默认减少动效和阻止 Service Worker；本实现选择保留动画与光标、允许 Service Worker，连接模式测量已有页面环境。
+
+本实现用显式就绪及采集前后状态防止旧结果与跨状态误判，仍不保证原子截图、完整动态媒体或需求全集。真实合成站点验证见[浏览器测试](../tests/rebuild/test_browser_live.py)，运行方式和边界见[采集指南](BROWSER-CAPTURE.md)。REA 的义务台账与 MCP 未引入；不以其字段或工具数量判定本仓库自主复刻能力。
+
 ## 实践与历史实验
 
 | 记录 | 保留的事实与用途 |
