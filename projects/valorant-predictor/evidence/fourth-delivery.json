@@ -7,7 +7,7 @@
     "app.js": "273f025e0ea486c5c7ebb559fe634bff2f7c29282af8ab0284923cd3917cd9e0",
     "engine.mjs": "f6368585e3ae737626f222bbc4887efd5f0ddcda04999186d387b976fd143c01",
     "fiction.mjs": "309fbe01881f3a256955045288bd389ff31bb1f0fe0c8ec25f7c72480f204a60",
-    "style.css": "a39435e0a226de1b24fd9f7b17b7c1889d0406cb37df4d2b667e672fdbf37c28"
+    "style.css": "a79f773122cb6f2866f601cc9d4b171e99d6332f6db3661d2d23fc95004962f2"
   },
   "first_domestic_publication": {
     "runtime_revision": "c0b88372e56c3f1425fd58a347df3ec616bf2d56",
@@ -78,9 +78,46 @@
     "Whole-image identity with LoL art and the complete source audio-cue catalogue are not certified.",
     "Existing HTTP filing interception remains; production access is HTTPS with DNS-validated certificate. Renewal currently uses the local DNS-assisted command."
   ],
-  "next_publication": {
-    "status": "not_run",
-    "expected_origin": "47.104.152.169",
-    "site": "https://valorant.xinxiayiyan.com/"
+  "final_publication": {
+    "status": "pass",
+    "git_revision": "2d8f5fc8ad3d88ea5a1df1e5894bbb6933e0b6ce",
+    "origin": "47.104.152.169",
+    "receipt": "artifacts/valorant-domestic-incremental-final/publication.json",
+    "public_files_verified": 17,
+    "browser_args": [],
+    "shared_services": {
+      "https://landing.xinxiayiyan.com/": {
+        "status": 200
+      },
+      "https://workflow.xinxiayiyan.com/api/health": {
+        "status": 200
+      }
+    },
+    "public_core": {
+      "comparison": "artifacts/valorant-fiction-public-core-check/comparison.json",
+      "pass": 29,
+      "fail": 0,
+      "not_run": 3,
+      "runtime_revision": "276b322a94929d7345e82734b69084b9f6ea31b2"
+    },
+    "public_fiction": {
+      "comparison": "artifacts/valorant-fiction-public-check/comparison.json",
+      "pass": 429,
+      "fail": 0,
+      "functional_only": true,
+      "runtime_revision": "276b322a94929d7345e82734b69084b9f6ea31b2"
+    },
+    "final_paint_change": {
+      "changed_files": [
+        "style.css",
+        "revision.json"
+      ],
+      "local": "artifacts/valorant-hero-text-visibility/observed.json",
+      "public": "artifacts/valorant-domestic-incremental-final/hero-public-check.json",
+      "unchanged_files": "Verified against full preceding release manifest before reuse and full new manifest after copy"
+    },
+    "startup_measurement": "artifacts/valorant-fiction-domestic-publication/startup-timing.json",
+    "failed_large_upload": "artifacts/valorant-domestic-final-publication",
+    "failed_upload_note": "Upload remained incomplete for several minutes; only its owned CLI child was terminated. Public site continued serving the preceding verified release until the manifest-checked two-file update activated."
   }
 }
