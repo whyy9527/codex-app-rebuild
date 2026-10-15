@@ -40,7 +40,9 @@
     "keyboard_contract": "projects/bilibili-toy/private/keyboard-contract-v2/contract.json",
     "historical_keyboard_public_result": "projects/bilibili-toy/private/keyboard-public-compare-2.json",
     "channel_contract": "projects/bilibili-toy/private/channel-contract-v1/contract.json",
-    "historical_channel_public_result": "projects/bilibili-toy/private/channel-public-compare-1.json"
+    "historical_channel_public_result": "projects/bilibili-toy/private/channel-public-compare-1.json",
+    "tournament_contract": "projects/bilibili-toy/private/tournament-contract-v3/contract.json",
+    "historical_tournament_public_result": "projects/bilibili-toy/private/tournament-public-compare-2.json"
   },
   "commands": {
     "rsi_collect": [
@@ -296,6 +298,19 @@
       ".",
       "--contract",
       "projects/bilibili-toy/private/channel-contract-v1/contract.json",
+      "--observed",
+      "{observed}",
+      "--out",
+      "{out}"
+    ],
+    "tournament_compare": [
+      "python3",
+      "-m",
+      "capabilities.rebuild.frontend",
+      "--workspace",
+      ".",
+      "--contract",
+      "projects/bilibili-toy/private/tournament-contract-v3/contract.json",
       "--observed",
       "{observed}",
       "--out",

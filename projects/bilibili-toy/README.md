@@ -136,6 +136,23 @@ node projects/bilibili-toy/tools/prediction_native.test.mjs
 保留，不用随机生成的不同对阵宣称整张预测内容一致。选择一个 `--case`
 后由同一 `installPredictionE2E` 服务，两端使用同一用例。
 
+完整匿名竞猜使用 `prediction.json#tournament`，在 CUA 给
+`installTournamentUI` 传入实际 Safari、文件 API、完整入口、新输出目录与
+窗口 UUID。按协议调用 `begin/click/fill/capture/reload`，保留每次选择前后
+AX。两端各自生成随机对阵，选择策略只读取实际显示概率；不复制存储或种子。
+好友导入使用原版 UI 实际复制的战报编码，两端导入相同编码。
+
+```sh
+node projects/bilibili-toy/tools/tournament_evidence.mjs freeze <原版目录> projects/bilibili-toy/private/tournament-contract-new
+node projects/bilibili-toy/tools/tournament_evidence.mjs observe <候选目录> projects/bilibili-toy/private/tournament-facts-new.json
+python3 -m workflows.rebuild.project run --workspace . --project projects/bilibili-toy/rebuild.json --command tournament_compare --observed <候选事实.json> --out projects/bilibili-toy/private/tournament-comparison-new.json
+node projects/bilibili-toy/tools/prediction_native.test.mjs
+```
+
+本轮验证 46 次逐场选择、七轮记录、锁定与编辑草稿的关系、分享和好友
+默契度。各端锁定时间只和自身记录比较；随机赛程验证晋级与配对规则。
+原始整页截图差异仍保留，详情见 `evidence/tournament-2026-10-16.json`。
+
 用户后续指定的发布目标是 `https://s16.xinxiayiyan.com/`；完成条件修订见
 `rebuild.json`，用户后续要求先发布当前预览版；完整复刻验收继续。现有官网首页保留。
 

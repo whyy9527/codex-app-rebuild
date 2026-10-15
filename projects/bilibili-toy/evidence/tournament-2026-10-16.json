@@ -1,0 +1,89 @@
+{
+  "date": "2026-10-16",
+  "scope": "Complete anonymous prediction traversal on original and published preview; full fidelity remains pending",
+  "source_build": "43482999941120-v26695",
+  "public_release": "bce6f0f21976-20261015T144858Z",
+  "protocol": "projects/bilibili-toy/prediction.json#tournament",
+  "source": "projects/bilibili-toy/private/tournament-source-1",
+  "candidate": "projects/bilibili-toy/private/tournament-public-1",
+  "contract": "projects/bilibili-toy/private/tournament-contract-v3/contract.json",
+  "source_self_result": {
+    "pass": 675,
+    "fail": 0,
+    "not_run": 0,
+    "unavailable": 0
+  },
+  "public_result": {
+    "evidence": "projects/bilibili-toy/private/tournament-public-compare-2.json",
+    "states": 39,
+    "pass": 636,
+    "fail": 39,
+    "not_run": 0,
+    "unavailable": 0,
+    "interpretation": "All frozen structural, interaction, rule and persistence checks pass. All 39 strict full-content image comparisons fail. Different actual random draws, dynamic clocks, user-authorized removals and width changes remain in raw screenshots; no visual pass inferred."
+  },
+  "actual_ui_choices": {
+    "total": 46,
+    "playin": 6,
+    "swiss": [
+      8,
+      8,
+      8,
+      6,
+      3
+    ],
+    "knockout": [
+      4,
+      2,
+      1
+    ],
+    "policy": "Higher actual displayed win probability; lexical label tie-break; independent random draws, no seed injection."
+  },
+  "checked_rules": [
+    "Unique 16-team Swiss roster; actual play-in winner enters and other play-in teams excluded.",
+    "Each active team paired once per round, same-record pairs and no rematches observed.",
+    "One selected winner per pair; eight teams qualify and eight eliminated.",
+    "Knockout uses actual qualified teams; unbeaten teams occupy opposite halves and face 3-2 teams.",
+    "Quarterfinal winners feed semifinals and semifinal winners feed final.",
+    "Actual source report team sets match its editor; each endpoint report uses own origin and valid static entry.",
+    "Imported friend report matches the common actual source-copied input; compatibility independently computed as eight quarterfinalists × 1, four semifinalists × 2, champion × 5. Source 16/21, candidate 13/21 from each own draft."
+  ],
+  "persistence_findings": [
+    "All seven completed rounds retain each origin own choices through reload.",
+    "Saved lock is separate from editable draft. Changing finalist unlocks current draft; restoring original winner restores original saved lock timestamp automatically.",
+    "Reset attempts do not clear draft under observed sandbox; no browser storage cleared by driver.",
+    "Full original share-query reload returns home; re-enter prediction through primary navigation. Choices and lock persist; nickname resets to B站召唤师.",
+    "Shared challenge collapses and re-expands on reload, preserving own edited draft.",
+    "Original Who Is Most Accurate view explicitly says local saved predictions do not enter public rankings."
+  ],
+  "observer_corrections": {
+    "retained_first_result": "projects/bilibili-toy/private/tournament-public-compare-1.json",
+    "first_counts": {
+      "pass": 630,
+      "fail": 45
+    },
+    "corrections": [
+      "Two path checks falsely rejected /index.html versus /. Both routes verified served by same application; foreign origins and unrelated paths still rejected.",
+      "Four friend checks compared imported original report to candidate own copied report. Parser now reads actual import URL recorded in guarded preparation. Negative score/content regressions verify it detects real mismatches."
+    ],
+    "other_retained_attempts": [
+      "Source Chinese typeText did not apply; native paste applied verified nickname.",
+      "Early public readiness saw incomplete page; bounded readiness requires both prediction heading and footer.",
+      "One-Escape clipboard inspection retained report in omnibar; endpoint guard stopped; two Escapes restored actual address.",
+      "Original initial reload landed home; helper now records reload entry and reopens prediction."
+    ]
+  },
+  "verification": {
+    "root_tests": "111 tests OK, 8 skipped",
+    "project_tests": "11 tests OK",
+    "native_checks": "Prediction parser, round gating, disabled controls, incomplete AX, entry aliases and independent friend import checks passed",
+    "release_check": "Trusted HTTPS requiring TLS 1.3; release.json and /index.html HTTP 200, active preview unchanged.",
+    "diff_check": "passed"
+  },
+  "remaining": [
+    "Visual/geometry acceptance after authorized UI removals.",
+    "Simulation tab, alternate strength references and custom ranking inputs, remaining match/story expansions and hover.",
+    "Follow-gated poster and topic posting unexercised; no follow, login or external message performed.",
+    "Timing and all sound types beyond historical BP/mute observations; responsive secondary views."
+  ]
+}

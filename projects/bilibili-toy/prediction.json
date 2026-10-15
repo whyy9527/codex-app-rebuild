@@ -99,5 +99,42 @@
         }
       ]
     }
-  ]
+  ],
+  "tournament": {
+    "scope": "Complete anonymous local prediction traversal, per-round gating, locking and persistence. Random brackets remain actual data; no seed injection or copying of browser storage.",
+    "driver": "tools/prediction_native.mjs installTournamentUI",
+    "preparation": "Same owned ordinary desktop Safari private window and full share query. Require actual empty draft; preserve any existing draft. Default displayed strength reference 隐藏分.",
+    "choice_policy": "Within each unselected match, choose the higher displayed win probability; lexical label tie-break for displayed ties. Record actual before/after AX and chosen labels.",
+    "steps": [
+      "Capture empty draft; reveal official PI draw; fill its six matches individually.",
+      "For Swiss rounds 1 through 5, start the observed draw, capture unselected pairs, fill 8/8/8/6/3 matches and observe future-round gating.",
+      "Observe knockout draw, choose four quarterfinal, two semifinal and one final winners individually.",
+      "Paste poster nickname; lock; reload through actual home entry; review retained choices in all seven rounds.",
+      "Change final winner; observe unlocked draft with saved record retained; attempt reset; copy actual current report.",
+      "Restore original final winner; observe automatic return of original lock timestamp; copy preferred report; edit again and reload.",
+      "Import the actual source-copied preferred report on both origins; compare its visible teams and each own compatibility score; collapse and reload."
+    ],
+    "capture": {
+      "content_rect_points": [
+        0,
+        104,
+        2648,
+        1562
+      ],
+      "backing_scale": 1,
+      "window_points": [
+        2648,
+        1666
+      ]
+    },
+    "limits": "No claim of exact random bracket or lock timestamp equality across independent origins. Shared report content and each origin own persistence must be compared separately.",
+    "observed_findings": [
+      "Lock stores a prediction record separately from the editable draft. Changing the final winner unlocks the draft; restoring the original winner restores the saved lock timestamp automatically.",
+      "Original and candidate reset attempts are no-ops under the observed iframe sandbox. Existing storage is never cleared by the driver.",
+      "Reloading the full original share entry returns to home; reopen My Prediction through its primary link. Choices and saved record persist; nickname resets to B站召唤师.",
+      "Actual clipboard report is plain text plus URL. Safari omnibar inspection requires Escape twice to restore its actual address before guarded captures.",
+      "Published report points to the same origin at /index.html; both / and /index.html were verified HTTP 200. Imported friend code comes from the source report, independently from each origin own report.",
+      "Anonymous saved predictions do not join public user rankings, as stated by original Who Is Most Accurate view. Follow-gated poster and topic posting remain unexercised."
+    ]
+  }
 }

@@ -151,3 +151,119 @@ export function installPredictionE2E(app, fs, bridge) {
     return {pending: false};
   };
 }
+
+// Full tournament traversal keeps random brackets as actual observed data.
+// The shared policy reads displayed probabilities, without injecting a seed.
+export function tournamentFacts(ax) {
+  const base=predictionFacts(ax),lines=ax.split('\n');
+  const start=lines.findIndex(x=>/heading 我来预测, Value: 1/.test(x));
+  const end=lines.findIndex((x,i)=>i>start&&/button 展开 AI 模拟速报/.test(x));
+  const scope=lines.slice(start,end).join('\n');
+  if(/\(showing \d+-\d+ of \d+ items\)/.test(scope))throw Error('Prediction AX content is incomplete');
+  const toggles=[...scope.matchAll(/^\s*(\d+) toggle button (\(disabled\) )?(.*?), Value: (on|off|1|0)$/gm)].map(m=>({index:+m[1],label:m[3],checked:/^(on|1)$/.test(m[4]),enabled:!m[2]}));
+  const heading=scope.match(/heading (.*?), Value: 3/);
+  const reference=scope.match(/pop up button 战队实力参考, Value: ([^\n]+)/);
+  const tab=scope.match(/tab \(selected\) ([^\n]+)/);
+  const nickname=scope.match(/text field (?:\([^)]*\) )?海报昵称, Value: ([^,\n]*)/);
+  const roundControls={};
+  for(const match of scope.matchAll(/^\s*\d+ button (\(disabled\) )?(?:[1-7] )?(入围赛|第 [1-5] 轮|淘汰赛)$/gm))roundControls['round '+match[2]]={role:'button',enabled:!match[1]};
+  const finals=finalPredictionFacts(ax);
+  return {...base,elements:{...base.elements,...roundControls,round:{value:heading?.[1]||''},reference:{value:reference?.[1]||''},nickname:{value:nickname?.[1]||''},
+      mode:{value:tab?.[1]||''},visible_choices:{value:String(toggles.length)},selected_matches:{value:String(toggles.filter(x=>x.checked).length)}},
+    interactions:{prediction_locked:finals.interactions.prediction_locked,copy_succeeded:finals.interactions.copy_succeeded},
+    toggles,lock_timestamp:finals.lock_timestamp,champion:finals.elements.champion.value};
+}
+
+export function installTournamentUI(app,fs,{url,output,windowUuid}) {
+  const tree=()=>app.getAXState({emit:false,disableDiffing:true});
+  function guard(ax) {
+    if(!ax.includes('UUID='+windowUuid))throw Error('Owned prediction window changed');
+    const field=ax.split('\n').find(x=>x.includes('smart search field'))||'';
+    const value=field.match(/Value: (.*)$/)?.[1]?.split(/, (?:ID|Placeholder):/)[0]||'';
+    const expected=new URL(url),actual=new URL(value.includes('://')?value:expected.protocol+'//'+value);
+    if(actual.origin!==expected.origin||actual.pathname!==expected.pathname||actual.search!==expected.search)throw Error('Prediction endpoint/share query changed');
+  }
+  async function ready() {
+    const deadline=Date.now()+20000;
+    do{const ax=await tree();guard(ax);if(ax.includes('heading 我来预测, Value: 1')&&ax.includes('button 展开 AI 模拟速报'))return ax;}while(Date.now()<deadline);
+    throw Error('Prediction did not become ready');
+  }
+  async function click(pattern) {
+    const ax=await tree();guard(ax);const line=ax.split('\n').find(x=>pattern.test(x));
+    if(!line)throw Error('Prediction control missing: '+pattern);
+    await app.click(Number(line.trim().match(/^\d+/)[0]));const after=await tree();guard(after);return after;
+  }
+  async function capture(id) {
+    if(!/^[a-z0-9-]+$/.test(id))throw Error('Invalid prediction capture identifier');
+    await fs.mkdir(output,{recursive:true});
+    const stem=output+'/'+id;
+    try{await fs.access(stem+'.ax.txt');throw Error('Prediction capture already exists');}catch(e){if(e.code!=='ENOENT')throw e;}
+    const ax=await ready(),facts=tournamentFacts(ax),bytes=await app.getScreenshot({emit:false}),after=await ready();
+    await fs.writeFile(stem+'.ax.txt',ax);await fs.writeFile(stem+'.after.ax.txt',after);
+    const image=stem+(bytes[0]===255?'.jpg':'.png');await fs.writeFile(image,bytes);
+    let map={states:{},preparation:{url,windowUuid,policy:'Choose the higher displayed win probability within each unselected match; lexical team-label tie-break. Existing drafts never reset.'}};
+    try{map=JSON.parse(await fs.readFile(output+'/observed.json','utf8'));}catch(e){if(e.code!=='ENOENT')throw e;}
+    if(map.preparation.url!==url||map.preparation.windowUuid!==windowUuid)throw Error('Existing prediction preparation differs');
+    map.states[id]={...facts,ax:stem+'.ax.txt',image,state_consistent:JSON.stringify(facts)===JSON.stringify(tournamentFacts(after))};
+    await fs.writeFile(output+'/observed.json',JSON.stringify(map));
+    return {id,round:facts.elements.round.value,selected:facts.elements.selected_matches.value,choices:facts.toggles.length,locked:facts.interactions.prediction_locked};
+  }
+  async function begin() {
+    const ax=await tree();if(!ax.includes('UUID='+windowUuid))throw Error('Owned window changed');
+    await app.pressKey('super+l');await app.paste(url);await app.pressKey('Return');
+    const deadline=Date.now()+20000;
+    do{const home=await tree();guard(home);if(home.includes('link 我来预测, Value:'))break;}while(Date.now()<deadline);
+    await click(/\d+ link 我来预测, Value:/);const initial=await ready();
+    if(!/button 揭晓对阵$/.test(initial.split('\n').find(x=>/button 揭晓对阵/.test(x))||'')||tournamentFacts(initial).toggles.some(x=>x.checked)||initial.includes('text 已锁定'))throw Error('Empty prediction required; existing draft preserved');
+    return capture('empty');
+  }
+  async function fill(id,{limit=16}={}) {
+    if(!Number.isInteger(limit)||limit<1||limit>16)throw Error('Invalid bounded choice count');
+    await fs.mkdir(output,{recursive:true});const actions=[];
+    for(let step=0;step<limit;step++) {
+      const ax=await ready(),facts=tournamentFacts(ax);let pair;
+      if(facts.interactions.prediction_locked)throw Error('Locked prediction cannot be filled');
+      for(let i=0;i<facts.toggles.length;i+=2) {
+        const candidates=facts.toggles.slice(i,i+2);
+        if(candidates.length===2&&candidates.every(x=>!x.checked&&x.enabled)){pair=candidates;break;}
+      }
+      if(!pair)break;
+      const ranked=pair.map(x=>({...x,probability:Number(x.label.match(/ (\d+(?:\.\d+)?)%/)?.[1])}));
+      if(ranked.some(x=>!Number.isFinite(x.probability)))throw Error('Actual displayed match probabilities unavailable');
+      ranked.sort((a,b)=>b.probability-a.probability||a.label.localeCompare(b.label));
+      const stamp=Date.now();await app.click(ranked[0].index);const after=await ready();
+      const stem=output+'/'+id+'-action-'+String(step).padStart(2,'0');
+      await fs.writeFile(stem+'.before.ax.txt',ax,{flag:'wx'});await fs.writeFile(stem+'.after.ax.txt',after,{flag:'wx'});
+      actions.push({pair:ranked.map(({label,probability})=>({label,probability})),chosen:ranked[0].label,before_unix_ms:stamp,after_unix_ms:Date.now(),before_ax:stem+'.before.ax.txt',after_ax:stem+'.after.ax.txt'});
+    }
+    await fs.writeFile(output+'/'+id+'.actions.json',JSON.stringify(actions),{flag:'wx'});
+    return capture(id);
+  }
+  async function reload(id) {
+    await app.pressKey('super+r');const deadline=Date.now()+20000;let entry,ax;
+    do {
+      ax=await tree();guard(ax);
+      if(ax.includes('heading 我来预测, Value: 1')){entry='prediction';break;}
+      if(ax.includes('heading S16 AI 大模型预测大赛, Value: 1')){entry='home';break;}
+    }while(Date.now()<deadline);
+    if(!entry)throw Error('Reload entry did not become ready');
+    await fs.writeFile(output+'/'+id+'.reload-entry.ax.txt',ax,{flag:'wx'});
+    await fs.writeFile(output+'/'+id+'.reload.json',JSON.stringify({entry}),{flag:'wx'});
+    if(entry==='home')await click(/\d+ link 我来预测, Value:/);
+    await ready();return capture(id);
+  }
+  async function nickname(value) {
+    const ax=await ready(),line=ax.split('\n').find(x=>/text field \(settable\) 海报昵称, Value:/.test(x));
+    if(!line)throw Error('Editable poster nickname unavailable');
+    await app.click(Number(line.trim().match(/^\d+/)[0]));await app.pressKey('super+a');await app.paste(value);
+    const after=await ready();if(tournamentFacts(after).elements.nickname.value!==value)throw Error('Nickname input did not apply');
+    return after;
+  }
+  async function toggleFinal(id) {
+    const ax=await ready(),facts=tournamentFacts(ax),pair=facts.toggles.slice(-2);
+    if(facts.elements.round.value!=='淘汰赛'||pair.length!==2||pair.filter(x=>x.checked).length!==1)throw Error('Completed final pair required');
+    const other=pair.find(x=>!x.checked&&x.enabled);if(!other)throw Error('Other finalist is not interactive');
+    await app.click(other.index);await ready();return capture(id);
+  }
+  return {begin,click,capture,fill,reload,nickname,toggleFinal};
+}
