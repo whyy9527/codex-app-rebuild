@@ -19,6 +19,26 @@ function code(text){const raw=text.match(/https?:\/\/[^\s]+/)?.[0];if(!raw)throw
 const equalSet=(a,b)=>a.length===b.length&&[...a].sort().join('|')===[...b].sort().join('|');
 function reportMatches(a,b){return equalSet(a.quarterfinalists,b.quarterfinalists)&&equalSet(a.semifinalists,b.semifinalists)&&a.champion===b.champion;}
 export {code as decodePredictionReport,result as predictionResult,reportMatches};
+export function modelAffinityChecks(ax,runs){
+  const facts=tournamentFacts(ax),own=result(facts);
+  if(facts.toggles.length!==14||facts.toggles.filter(x=>x.checked).length!==7||!own.champion)throw Error('Completed actual knockout choices required');
+  const rowPositions=new Map();
+  const rows=runs.map(run=>{
+    const escaped=run.name.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+    const shown=ax.match(new RegExp('link '+escaped+'\\s*八强(\\d+)·四强(\\d+) (\\d+), Value:'));
+    if(!shown)throw Error('Actual model-affinity row unavailable: '+run.name);
+    rowPositions.set(run.name,shown.index);
+    const entries=Object.entries(run.summary.placement),qf=entries.filter(([,p])=>['QF','SF','RU','CHAMP'].includes(p)).map(([t])=>t),sf=entries.filter(([,p])=>['SF','RU','CHAMP'].includes(p)).map(([t])=>t);
+    const q=own.quarterfinalists.filter(x=>qf.includes(x)).length,s=own.semifinalists.filter(x=>sf.includes(x)).length,total=q+2*s+5*Number(own.champion===run.summary.champion);
+    return {name:run.name,expected:{qf:q,sf:s,total},actual:{qf:Number(shown[1]),sf:Number(shown[2]),total:Number(shown[3])},matches:q===Number(shown[1])&&s===Number(shown[2])&&total===Number(shown[3])};
+  });
+  const nearest=ax.match(/text 最像\s*\n(?:\s*\d+ container[^\n]*\n)?\s*\d+ text ([^\n]+)/)?.[1]?.trim();
+  const best=ax.match(/text 按它的剧情结果对答案，这份能拿\s*\n\s*\d+ text (\d+)/)?.[1];
+  const maximum=Math.max(...rows.map(x=>x.expected.total));
+  const expectedOrder=[...rows].sort((a,b)=>b.expected.total-a.expected.total).map(x=>x.name);
+  const actualOrder=[...rows].sort((a,b)=>rowPositions.get(a.name)-rowPositions.get(b.name)).map(x=>x.name);
+  return {own,rows,nearest,best_score:Number(best),checks:{...Object.fromEntries(rows.map(x=>['affinity '+x.name,x.matches])),nearest_has_maximum_score:rows.some(x=>x.name===nearest&&x.expected.total===maximum),best_score_matches_actual_teams:Number(best)===maximum,affinity_order_matches_scores:JSON.stringify(actualOrder)===JSON.stringify(expectedOrder),nearest_matches_first_ranked_model:nearest===expectedOrder[0]}};
+}
 export function ownReportEndpoint(reportUrl,entryUrl){
   const report=new URL(reportUrl),entry=new URL(entryUrl);
   // The deployed static entry is served at both / and /index.html.

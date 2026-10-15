@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import {predictionFacts, sharedPredictionFacts, finalPredictionFacts,tournamentFacts} from './prediction_native.mjs';
-import {ownReportEndpoint,friendReportChecks} from './tournament_evidence.mjs';
+import {ownReportEndpoint,friendReportChecks,modelAffinityChecks} from './tournament_evidence.mjs';
 
 // Two separate series can have the same side, odds and AI count, but differ in selection.
 const ax = `1 heading 我来预测, Value: 1
@@ -67,3 +67,25 @@ assert.deepEqual(friendReportChecks(friendUrl,own,friendText),{score_matches:tru
 assert.equal(friendReportChecks(friendUrl,own,friendText.replace('11 / 21','12 / 21')).score_matches,false);
 assert.equal(friendReportChecks(friendUrl,own,friendText.replace('冠军 A','冠军 B')).report_matches,false);
 console.log('Tournament gating, incomplete AX, static entry aliases and independent friend input checks passed');
+
+const pairs=[['A','B'],['C','D'],['E','F'],['G','H'],['A','C'],['E','G'],['A','E']];
+const affinityAX=['1 heading 我来预测, Value: 1','2 heading 淘汰赛, Value: 3',
+  ...pairs.flatMap((pair,i)=>pair.map((t,j)=>`${10+i*2+j} toggle button ${t} 50% 0, Value: ${j?'off':'on'}`)),
+  '30 text 最像','31 container Example','32 text Example.Model+',
+  '33 text 按它的剧情结果对答案，这份能拿','34 text 21',
+  '35 link Example.Model+ 八强8·四强4 21, Value: https://example.test/model',
+  '36 button 展开 AI 模拟速报'].join('\n');
+const affinityRuns=[{name:'Example.Model+',summary:{champion:'A',placement:{A:'CHAMP',E:'RU',C:'SF',G:'SF',B:'QF',D:'QF',F:'QF',H:'QF'}}}];
+assert.equal(Object.values(modelAffinityChecks(affinityAX,affinityRuns).checks).every(Boolean),true);
+assert.equal(modelAffinityChecks(affinityAX.replace('八强8','八强7'),affinityRuns).checks['affinity Example.Model+'],false);
+assert.equal(modelAffinityChecks(affinityAX.replace('34 text 21','34 text 20'),affinityRuns).checks.best_score_matches_actual_teams,false);
+assert.equal(modelAffinityChecks(affinityAX.replace('32 text Example.Model+','32 text Other'),affinityRuns).checks.nearest_has_maximum_score,false);
+assert.throws(()=>modelAffinityChecks(affinityAX.replace('35 link','35 text'),affinityRuns),/row unavailable/);
+const tieRuns=[...affinityRuns,{...affinityRuns[0],name:'Alternate'}];
+const tieAX=affinityAX.replace('36 button','35 link Alternate 八强8·四强4 21, Value: https://example.test/alternate\n36 button');
+assert.equal(modelAffinityChecks(tieAX,tieRuns).checks.affinity_order_matches_scores,true);
+assert.equal(modelAffinityChecks('0 link Alternate dashboard, Value: https://example.test/dashboard\n'+tieAX,tieRuns).checks.affinity_order_matches_scores,true);
+assert.equal(modelAffinityChecks(tieAX.replace('32 text Example.Model+','32 text Alternate'),tieRuns).checks.nearest_matches_first_ranked_model,false);
+const reversedTie=tieAX.replace('35 link Example.Model+','35 link Placeholder').replace('35 link Alternate','35 link Example.Model+').replace('35 link Placeholder','35 link Alternate');
+assert.equal(modelAffinityChecks(reversedTie,tieRuns).checks.affinity_order_matches_scores,false);
+console.log('Independent model-affinity score, split SVG label, missing row and incorrect best-model checks passed');

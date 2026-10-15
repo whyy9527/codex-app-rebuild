@@ -1,0 +1,77 @@
+{
+  "date": "2026-10-16",
+  "source_build": "43482999941120-v26934",
+  "public_release": "35580861f7bf-20261015T231522Z",
+  "scope": "Live polling/failure/last-good recovery, KC-C9 completed five-game score breakdown and per-origin existing-draft model-affinity verification. Full Goal remains active.",
+  "protocol": "projects/bilibili-toy/live-cycle.json",
+  "captures": "projects/bilibili-toy/private/live-cycle-1",
+  "live_cycle": {
+    "contract": "projects/bilibili-toy/private/live-cycle-source-facts-5-contract.json",
+    "source_facts": "projects/bilibili-toy/private/live-cycle-source-facts-5.json",
+    "public_facts": "projects/bilibili-toy/private/live-cycle-public-facts-5.json",
+    "result": "projects/bilibili-toy/private/live-cycle-project-result-1.json",
+    "counts": {
+      "pass": 31,
+      "fail": 0,
+      "not_run": 0,
+      "unavailable": 0
+    },
+    "observed": [
+      "Both actual visible pages send successful consecutive minute-parameter requests without clicking refresh between them. Source response Dates23:29:23Z and23:30:23Z; public23:32:50Z and23:33:49Z. Intervals60s and59s, with network/scheduler jitter retained.",
+      "Temporary browser-local anchored Block rules affect only each live-results endpoint with numeric t; original scripts, CSS, data, production service and network settings unchanged.",
+      "Failed refresh shows 暂时无法加载, 当前保留上次成功加载的数据, 暂用上次赛果 and retry. All eight score breakdowns and prior timestamp remain.",
+      "Disable rule and click immediate refresh: success returns, stale/error notices disappear, all eight original model score vectors match. Owned rules removed and original/public restored.",
+      "Actual shared native expansion gives six tables (one total, five games), eight model rows per table and five official MVP headings. All observed cells/headings and before/after match consistency match."
+    ],
+    "preparation_corrections": [
+      "Detached Inspector hid the fullscreen page, so original visibility-gated polling correctly did not occur. Those unsuccessful acquisition frames are retained; accepted timing uses docked visible page.",
+      "setValue did not populate the Inspector search field; click/paste and actual AX Value verified the filter.",
+      "Blocking an old minute URL did not trigger the source failure. Failed first attempt retained; anchored endpoint-only regex verified in actual Sources rule before second attempt.",
+      "CodeMirror hidden textarea retained stale AX text; fresh screenshot and actual visible input click/Return committed regex. Both cleanup AX snapshots prove no remaining Block rows."
+    ],
+    "not_certified": [
+      "Exact zero-jitter scheduling",
+      "Network-error and expanded-table pixels/geometry",
+      "Cold-load failure without a previous good result",
+      "Retry button activation distinct from immediate refresh"
+    ]
+  },
+  "affinity": {
+    "native_driver": "projects/bilibili-toy/tools/live_cycle_native.mjs#capturePredictionResult",
+    "contract": "projects/bilibili-toy/private/affinity-source-facts-2-contract.json",
+    "source_facts": "projects/bilibili-toy/private/affinity-source-facts-2.json",
+    "public_facts": "projects/bilibili-toy/private/affinity-public-facts-2.json",
+    "result": "projects/bilibili-toy/private/affinity-project-result-1.json",
+    "counts": {
+      "pass": 14,
+      "fail": 0,
+      "not_run": 0,
+      "unavailable": 0
+    },
+    "source_best": {
+      "model": "Qwen3.8 Max",
+      "score": 13
+    },
+    "public_best": {
+      "model": "Qwen3.8 Max",
+      "score": 12
+    },
+    "derivation": "Each actual seven-match knockout yields its own eight quarterfinalists, four semifinalists and champion. Original frozen model run placements score qf overlap×1 + sf overlap×2 + champion equality×5. All eight displayed qf/sf/total values, descending order and stable source-index tie winner verified. Capture choices/scores stable before/after. Original run dataset hashes retained in facts.",
+    "preservation": "No choices, saved lock, nickname, storage or seeds cleared/copied. Navigation to knockout is read-only.",
+    "correction": "Previous live-update evidence confused public friend-report compatibility16 with model-affinity score12. Rechecked old saved AX and new actual read-only capture; corrected tracked description only. Raw original13/public12 pixel/semantic diagnostic and historical friend-report tests remain unchanged."
+  },
+  "verification": {
+    "root": "111 tests OK, 8 skipped",
+    "project": "25 tests OK",
+    "node": "Prediction duplicate selection, split SVG model label, independent affinity, wrong score/nearest model, wrong tie ordering and missing row negative controls passed; both native modules syntax checked",
+    "preflight": "connected, no gaps",
+    "project_commands": "live_cycle_compare31pass; prediction_affinity_compare14pass",
+    "diff_check": "passed"
+  },
+  "remaining": [
+    "Same-state below-fold/error/expanded-table visual comparisons, desktop new-release layout",
+    "Remaining chart hover, ranking drag, alternate series/story and simulation boundaries",
+    "Remaining sound types and native animation timing",
+    "Cold-load network failure and actual retry activation beyond current last-good/immediate-refresh cycle"
+  ]
+}

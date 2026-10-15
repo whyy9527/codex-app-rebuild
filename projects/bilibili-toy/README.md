@@ -318,3 +318,20 @@ python3 -m workflows.rebuild.project run --workspace . --project projects/bilibi
 原版重复帧不稳定的区域保持 pending，独立草稿和实时赛果时间差保持原始失败，
 不据此宣称完整 1:1 验收通过。最新升级结果见
 `evidence/live-update-2026-10-16.json`。
+
+实时赛果行为、已结束系列赛的五局明细和现有草稿相似度复跑见
+`live-cycle.json`。原生浏览器中停靠 Inspector 后才采样可见页面轮询，
+保留真实 Headers 的 URL、Status、Date；Date 与 Last-Modified 分开读取。
+只对目标赛果 URL 创建本会话临时 Block 规则，故障后禁用并删除该规则。
+比赛和预测只读采集复用 `tools/live_cycle_native.mjs`，传入实际窗口 UUID、
+完整入口及新输出 stem；不清空或复制草稿。
+
+`tools/live_cycle_probe.py source|public --captures <本次目录> --out <新事实.json>
+--window-uuid <实际UUID> --match-capture <共同驱动输出stem名称>` 重新提取
+保留／恢复状态及全部计分表。
+`tools/prediction_affinity_probe.mjs source|public <capture-stem> <新事实.json>
+<实际UUID>` 按各自实际选队和原始模型结果核算相似度、最佳模型及并列顺序。
+原版生成契约后，候选分别通过项目的 `live_cycle_compare`、
+`prediction_affinity_compare` 比较。截图仅是原始证据，本组业务通过不代表
+故障布局、逐局表格视觉或动画时序通过。结果见
+`evidence/live-cycle-2026-10-16.json`。

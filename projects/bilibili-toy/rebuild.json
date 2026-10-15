@@ -68,7 +68,15 @@
     "historical_mobile_sampling_scenarios": "projects/bilibili-toy/mobile-png.json",
     "historical_mobile_sampling_result": "projects/bilibili-toy/private/mobile-png-public-result-1.json",
     "historical_visual_probe_public_result": "projects/bilibili-toy/private/user-removal-desktop-public-result-1.json",
-    "historical_mobile_visual_public_result": "projects/bilibili-toy/private/user-removal-mobile-public-result-1.json"
+    "historical_mobile_visual_public_result": "projects/bilibili-toy/private/user-removal-mobile-public-result-1.json",
+    "major_page_scenarios": "projects/bilibili-toy/major-pages.json",
+    "major_page_contract": "projects/bilibili-toy/private/major-pages-frozen-26934-1/contract.json",
+    "historical_major_page_public_result": "projects/bilibili-toy/private/major-pages-public-result-26934-1.json",
+    "live_cycle_scenarios": "projects/bilibili-toy/live-cycle.json",
+    "live_cycle_contract": "projects/bilibili-toy/private/live-cycle-source-facts-5-contract.json",
+    "historical_live_cycle_public_result": "projects/bilibili-toy/private/live-cycle-public-result-5.json",
+    "prediction_affinity_contract": "projects/bilibili-toy/private/affinity-source-facts-2-contract.json",
+    "historical_prediction_affinity_public_result": "projects/bilibili-toy/private/affinity-public-result-2.json"
   },
   "commands": {
     "rsi_collect": [
@@ -415,6 +423,45 @@
       ".",
       "--contract",
       "projects/bilibili-toy/private/user-removal-contract-v1/contract.json",
+      "--observed",
+      "{observed}",
+      "--out",
+      "{out}"
+    ],
+    "major_page_compare": [
+      "python3",
+      "-m",
+      "capabilities.rebuild.frontend",
+      "--workspace",
+      ".",
+      "--contract",
+      "projects/bilibili-toy/private/major-pages-frozen-26934-1/contract.json",
+      "--observed",
+      "{observed}",
+      "--out",
+      "{out}"
+    ],
+    "live_cycle_compare": [
+      "python3",
+      "-m",
+      "capabilities.rebuild.frontend",
+      "--workspace",
+      ".",
+      "--contract",
+      "projects/bilibili-toy/private/live-cycle-source-facts-5-contract.json",
+      "--observed",
+      "{observed}",
+      "--out",
+      "{out}"
+    ],
+    "prediction_affinity_compare": [
+      "python3",
+      "-m",
+      "capabilities.rebuild.frontend",
+      "--workspace",
+      ".",
+      "--contract",
+      "projects/bilibili-toy/private/affinity-source-facts-2-contract.json",
       "--observed",
       "{observed}",
       "--out",
