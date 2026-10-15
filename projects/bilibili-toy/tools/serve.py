@@ -80,7 +80,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--port", type=int, default=4617)
     args = parser.parse_args()
-    required = ['index.html', 'host/pc-detail.js', 'host/responses.json']
+    required = ['index.html', 'assets/local-index.js', 'host/pc-detail.js', 'host/responses.json']
     missing = [name for name in required if not (ROOT / 'private/site' / name).exists()]
     if missing:
         parser.error("Run the project build first; missing public-resource baseline: " + ', '.join(missing))

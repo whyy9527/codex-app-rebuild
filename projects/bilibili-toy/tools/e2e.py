@@ -19,6 +19,8 @@ def main():
     parser.add_argument("--content-top", type=int, default=80,
                         help="Measured browser-content top in the actual exported screenshot grid")
     args = parser.parse_args()
+    if args.suite == 'prediction' and not args.case:
+        parser.error('Prediction cases have independent prestates; select --case playin, share, or locked')
     output = (WORKSPACE / args.out).resolve()
     if not output.is_relative_to(WORKSPACE):
         parser.error("Evidence must stay in workspace")

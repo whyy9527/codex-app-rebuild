@@ -2,14 +2,14 @@
   "schema_version": 1,
   "name": "Bilibili Toy LkvCZhw12wgT2Pqx",
   "source": "https://www.bilibili.com/toy/LkvCZhw12wgT2Pqx/index.html (user supplied Android share entry; preserve and measure any query-dependent behavior)",
-  "target": "Local browser web implementation in this isolated Git worktree; match the source at identical desktop and mobile viewports",
-  "objective": "按用户 2026-10-15 要求，1:1 复刻指定 Bilibili Toy 页面，交付可独立启动的本地实现。由真实原版观察确定玩法与范围，不用原创内容或替代素材缩小目标。",
+  "target": "Local browser web implementation in this isolated Git worktree; match the source at identical desktop and mobile viewports, then publish the accepted build at https://s16.xinxiayiyan.com/ while retaining the existing landing homepage",
+  "objective": "按用户 2026-10-15 要求，1:1 复刻指定 Bilibili Toy 页面，交付可独立启动的本地实现。由真实原版观察确定玩法与范围，不用原创内容或替代素材缩小目标。 用户 2026-10-15 追加要求：复刻和完整验收完成后，发布到 https://s16.xinxiayiyan.com/，保留现有官网首页。",
   "completion": [
     "C1: 实际访问用户原版入口，保存版本、加载与重置限制、主要旅程和未知分支；原版发现进入同一业务及前端契约。",
     "C2: 在相同状态、内容、视口、滚动和采样条件下，实现并共同验收原版的主页、全部已发现导航、内容、布局、字体、颜色、素材、Canvas/CSS 背景、反馈和响应式表现；以实际截图与几何比较为证。",
     "C3: 实现并通过真实两端操作验收主要玩法、点击、悬停、焦点、键盘、退出/重开、持久化和已发现边界；有动效或声音时验收真实时序与应用输出，未观察项保留 unknown。",
     "C4: 固定可恢复原版准备和发现/评价协议，执行真实 RSI collect、完整历史池策略 replay、基于反馈的可执行策略修订与胜出策略再 collect，并将实际发现接入共同 E2E。",
-    "C5: 交付源码、启动和复跑命令、需求级业务/前端验收结果与证据；完成相称检查、精确提交并推送本任务分支，保留原工作区无关改动，不发布或部署线上站点。",
+    "C5: 交付源码、启动和复跑命令、需求级业务/前端验收结果与证据；完成相称检查、精确提交并推送本任务分支，保留原工作区无关改动。按用户 2026-10-15 后续授权，完整复刻验收后发布到 https://s16.xinxiayiyan.com/；验证线上版本、源站、公网 HTTPS、资源和主要旅程，并保留回退资料及现有官网首页。",
     "C6: 所有当前要求均有实际通过证据，主要旅程与剩余未知已检查；不以局部测试、空队列或方法接线成功宣称 1:1 完成，未通过项必须继续修复或明确交接。"
   ],
   "inputs": {
@@ -25,7 +25,11 @@
     "entry_contract": "projects/bilibili-toy/entry-contract.json",
     "prediction_scenarios": "projects/bilibili-toy/prediction.json",
     "prediction_contract": "projects/bilibili-toy/private/prediction-contract-v2.json",
-    "historical_prediction_result": "projects/bilibili-toy/private/prediction-compare-2.json"
+    "historical_prediction_result": "projects/bilibili-toy/private/prediction-compare-2.json",
+    "share_contract": "projects/bilibili-toy/private/share-contract-v2.json",
+    "historical_share_result": "projects/bilibili-toy/private/share-compare-2.json",
+    "locked_contract": "projects/bilibili-toy/private/locked-contract-v2.json",
+    "historical_locked_result": "projects/bilibili-toy/private/locked-compare-1.json"
   },
   "commands": {
     "rsi_collect": [
@@ -151,6 +155,8 @@
       "candidate",
       "--suite",
       "prediction",
+      "--case",
+      "playin",
       "--content-top",
       "112",
       "--out",
@@ -168,6 +174,69 @@
       "{observed}",
       "--out",
       "{out}"
+    ],
+    "share_replay": [
+      "python3",
+      "-m",
+      "projects.bilibili-toy.tools.e2e",
+      "candidate",
+      "--suite",
+      "prediction",
+      "--case",
+      "share",
+      "--content-top",
+      "112",
+      "--out",
+      "{out}"
+    ],
+    "share_compare": [
+      "python3",
+      "-m",
+      "capabilities.rebuild.frontend",
+      "--workspace",
+      ".",
+      "--contract",
+      "projects/bilibili-toy/private/share-contract-v2.json",
+      "--observed",
+      "{observed}",
+      "--out",
+      "{out}"
+    ],
+    "locked_replay": [
+      "python3",
+      "-m",
+      "projects.bilibili-toy.tools.e2e",
+      "candidate",
+      "--suite",
+      "prediction",
+      "--case",
+      "locked",
+      "--content-top",
+      "112",
+      "--out",
+      "{out}"
+    ],
+    "locked_compare": [
+      "python3",
+      "-m",
+      "capabilities.rebuild.frontend",
+      "--workspace",
+      ".",
+      "--contract",
+      "projects/bilibili-toy/private/locked-contract-v2.json",
+      "--observed",
+      "{observed}",
+      "--out",
+      "{out}"
     ]
-  }
+  },
+  "amendments": [
+    {
+      "date": "2026-10-15",
+      "source": "用户「完成后发布到xinxiayiyan」；随后选择「s16.xinxiayiyan.com（推荐）」。",
+      "criterion": "C5",
+      "superseded": "C5: 交付源码、启动和复跑命令、需求级业务/前端验收结果与证据；完成相称检查、精确提交并推送本任务分支，保留原工作区无关改动，不发布或部署线上站点。",
+      "decision": "新增完整验收后的独立子域名发布；不覆盖现有官网首页。活动原生 Goal 正文不能编辑，本项目完成条件修订优先于其中旧的不部署限制。"
+    }
+  ]
 }

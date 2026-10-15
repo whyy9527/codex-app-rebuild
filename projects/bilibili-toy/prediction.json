@@ -54,6 +54,50 @@
           "capture": "prediction-reloaded"
         }
       ]
+    },
+    {
+      "id": "share",
+      "query": "?p=pickem&pick=GEN.AL.DK.G2.T1.HLE.BLG.LYON_HLE.T1.GEN.BLG_GEN",
+      "source": "Actual UI-copied original prediction report; private/result-source-safari-1/copied-report-address.ax.txt. Both endpoints must have no selected PI winners or locked result.",
+      "steps": [
+        {
+          "action": "scroll_top",
+          "capture": "share-imported"
+        },
+        {
+          "action": "click",
+          "match": "\\d+ button 收起$",
+          "capture": "share-collapsed"
+        },
+        {
+          "action": "reload",
+          "capture": "share-reloaded"
+        }
+      ]
+    },
+    {
+      "id": "locked",
+      "source": "Already locked test prediction from the observed anonymous autofill/lock UI. Random brackets stay distinct; this case compares champion, choice counts, copy feedback and retention of each endpoint actual timestamp and choices.",
+      "steps": [
+        {
+          "action": "capture",
+          "capture": "final-locked"
+        },
+        {
+          "action": "reload",
+          "capture": "final-reloaded"
+        },
+        {
+          "action": "click",
+          "match": "\\d+ button 重新预测$",
+          "capture": "final-reset-attempt"
+        },
+        {
+          "action": "click",
+          "match": "\\d+ button 复制预测战报$",
+          "capture": "final-copied"
+        }
+      ]
     }
   ]
 }

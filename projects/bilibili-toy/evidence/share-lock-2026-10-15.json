@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-15",
+  "scope": "Actual original/candidate Safari shared-link and locked-result UI replays; relocating share URLs; source iframe sandbox parity. This does not establish full random tournament content or overall 1:1 completion.",
+  "changes": [
+    {
+      "path": "app/index.html",
+      "knowledge": "observed",
+      "source": "projects/bilibili-toy/private/source.html",
+      "change": "Copy the actual original iframe sandbox and no-referrer policy. allow-modals is absent; original reset confirm is suppressed. The local reset attempt now preserves the locked test prediction as observed on source."
+    },
+    {
+      "path": "tools/prepare.py",
+      "knowledge": "decision",
+      "source": "User approved deployment at s16.xinxiayiyan.com; actual UI-copied original link in private/result-source-safari-1/copied-report-address.ax.txt.",
+      "change": "Keep original bundle unchanged; emit separate assets/local-index.js with only share/report/QR base changed to window.location.origin. Preserve path, prediction encoding and external author/topic destinations.",
+      "manifest": [
+        {
+          "path": "assets/local-index.js",
+          "source_path": "assets/index-c1ZjPqQS.js",
+          "source_sha256": "25959bdce6668acff20275802b7c9b6c027bc0d9e8e46162ee640f42fab9a675",
+          "sha256": "4efaaef81c268ff0d8e4299b3f05e2af40f36beb6c2c94752d745648ab679301",
+          "change": "Share/report/QR base uses the current origin; prediction path and encoding unchanged."
+        }
+      ]
+    }
+  ],
+  "shared_link": {
+    "source": "projects/bilibili-toy/private/share-source-safari-3/observed.json",
+    "candidate": "projects/bilibili-toy/private/share-candidate-safari-2/observed.json",
+    "contract": "projects/bilibili-toy/private/share-contract-v2.json",
+    "source_self_check": {
+      "pass": 8
+    },
+    "comparison": {
+      "pass": 5,
+      "fail": 3
+    },
+    "actual_steps": [
+      "Import original UI-copied encoded prediction after preparing unselected official PI.",
+      "Scroll the inner prediction frame to top.",
+      "Collapse the friend challenge.",
+      "Reload; the query restores the challenge."
+    ],
+    "parser_revision": "First strict text leaf comparison failed because inline SVG loading split the same sentence differently. v2 retains all words in order as the normalized complete section; original raw AX, v1 contract and failed result retained. Explicit frame scrolling corrects the first-run reveal autoscroll prestate.",
+    "prior_result": "projects/bilibili-toy/private/share-compare-1.json"
+  },
+  "locked_result": {
+    "source": "projects/bilibili-toy/private/locked-source-safari-1/observed.json",
+    "candidate": "projects/bilibili-toy/private/locked-candidate-safari-1/observed.json",
+    "contract": "projects/bilibili-toy/private/locked-contract-v2.json",
+    "source_self_check": {
+      "pass": 36
+    },
+    "comparison": {
+      "pass": 32,
+      "fail": 4
+    },
+    "actual_steps": [
+      "Start with each endpoint own UI-generated and locked GEN prediction.",
+      "Refresh.",
+      "Attempt 重新预测 under original sandbox restrictions.",
+      "Copy prediction report; success feedback appears."
+    ],
+    "retention": "Each endpoint retains its exact own champion, lock timestamp and all 14 knockout button selections. Source and candidate timestamps differ because the locks were performed at different times; the assertion compares actual retention within each run.",
+    "limit": "Random Swiss/KO brackets differ between runs. Champion, 7 selected winners, 14 choices, copy feedback and locked-state retention pass; this is not complete bracket equivalence."
+  },
+  "copied_local_url": {
+    "source": "projects/bilibili-toy/private/result-candidate-safari-1/copied-report-address.ax.txt",
+    "observed_origin": "http://127.0.0.1:4617",
+    "observed_path": "/index.html",
+    "query": "p=pickem plus actual locally generated pick encoding",
+    "knowledge": "observed",
+    "result": "pass"
+  },
+  "evidence_correction": {
+    "invalid_group": "projects/bilibili-toy/private/result-source-safari-1/INVALID-MIXED-CAPTURES.json",
+    "cause": "Manual helper closed over its first REPL directory binding; subsequent endpoint snapshots overwrote names in that directory. Mixed manual screenshots are not used for the final-flow comparison. Directly saved source copied URL and candidate clipboard AX have independent correct paths.",
+    "replacement": "Formal source/candidate locked receipts use immutable request workspace paths and fresh origin/path guards."
+  },
+  "deployment": {
+    "authorized_domain": "https://s16.xinxiayiyan.com/",
+    "source": "User: 完成后发布到xinxiayiyan; then selected s16.xinxiayiyan.com（推荐）.",
+    "criterion": "C5 amended in rebuild.json; native Goal text cannot be edited.",
+    "release_order": "After complete replication and acceptance. Dedicated endpoint; retain existing landing homepage.",
+    "known_existing_route": "Existing xinxia landing repository documents Aliyun Cloud Assistant, Docker, SHA-256 verification, /var/tmp disk staging, origin/public/shared-service checks and rollback. It was inspected read-only; no production change or deployment performed.",
+    "rights_boundary": "THIRD_PARTY_NOTICES.md still limits downloaded published code/media to private local comparison. Public redistribution rights are not recorded; this remains a release input to resolve before public hosting, independently of site deployment authorization."
+  },
+  "validation": {
+    "python_suite": "projects/bilibili-toy/private/unittest-share-commit.log",
+    "python_result": "111 tests, 8 skipped, OK after final tool changes.",
+    "node_regression": "Duplicate toggle identities, split/merged shared text, missing scope, final champion/counts and timestamp signature checks.",
+    "build": "projects/bilibili-toy/private/prepare-share-origin.json",
+    "host_tests": "3 public-read boundary and platform-write rejection tests passed.",
+    "cold_start": "Independent freshly started origin served shell, bootstrap and byte-identical derived module; temporary verification process terminated normally."
+  },
+  "remaining": [
+    "All 7 strict screenshots in these new comparisons fail; raw images, actual dimensions and ICC-aware pixel results retained. Share screenshot differences include clock/count/hover; final screenshots also contain different random brackets.",
+    "Full random Swiss/KO same-content validation, user ranking, simulation independence and remaining channels/details.",
+    "SDK authenticated/profile state, media timing/application output and responsive mobile.",
+    "Resolve public release inputs, prepare site artifact, deploy only after full acceptance, verify production and rollback.",
+    "Completion audit must use amended C1-C6 and cannot use the partial passed invariants as full 1:1 evidence."
+  ]
+}

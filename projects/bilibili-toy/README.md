@@ -21,6 +21,9 @@ python3 -m projects.bilibili-toy.tools.serve --port 4617
 快照来源及派生包摘要位于 `private/site/host/provenance.json`。默认构建
 复用已有快照，显式更新使用 `python3 -m projects.bilibili-toy.tools.prepare_host --refresh`。
 账号写入未接入，外链仍打开原站；服务工作线程及远端遥测不注入。
+战报及二维码基址适配为当前域名；原版模块保持原字节，派生的
+`assets/local-index.js` 和变更摘要记入资源清单。外壳 iframe 使用原版实测
+沙箱权限，原生确认框未开放；因此“重新预测”与原版一样不清空草稿。
 
 共同 E2E 使用 `scenarios.json` 与 `frontend-contract.json`。原生 UI 回放
 须由当前 Codex 在 `cua_repl` 中给 `tools/e2e_native.mjs` 的
@@ -63,14 +66,22 @@ python3 -m projects.bilibili-toy.tools.freeze_journey --reference projects/bilib
 准备空状态，再在同一窗口回放本地端。运行命令：
 
 ```sh
-python3 -m projects.bilibili-toy.tools.e2e source --suite prediction --content-top 112 --out projects/bilibili-toy/private/prediction-reference-new
-python3 -m projects.bilibili-toy.tools.e2e candidate --suite prediction --content-top 112 --out projects/bilibili-toy/private/prediction-candidate-new
+python3 -m projects.bilibili-toy.tools.e2e source --suite prediction --case playin --content-top 112 --out projects/bilibili-toy/private/prediction-reference-new
+python3 -m projects.bilibili-toy.tools.e2e candidate --suite prediction --case playin --content-top 112 --out projects/bilibili-toy/private/prediction-candidate-new
 node projects/bilibili-toy/tools/freeze_prediction.mjs projects/bilibili-toy/private/prediction-reference-new/observed.json projects/bilibili-toy/private/prediction-contract-new.json
 node projects/bilibili-toy/tools/prediction_native.test.mjs
 ```
 
 `112` 是本轮 Safari 导出截图中的实测内容起点，复跑前须重新测量。
 冻结器从实际 AX 重新提取事实；同名的两场比赛保留独立控件编号。
-本轮 578 项内容和控件要求通过、10 项严格截图失败，详见
-`evidence/prediction-2026-10-15.json`。这只覆盖入围赛及刷新后的草稿保留；
-最终锁定、瑞士轮、分享、资料授权、声音和移动端仍待共同验收。
+入围赛的历史比较见 `evidence/prediction-2026-10-15.json`；覆盖入围赛及
+刷新后的草稿保留。完整随机赛程内容、资料授权、声音和移动端需分别验收。
+
+预测用例分别准备状态：`playin` 要求空草稿；`share` 要求没有选中胜者或
+锁定结果，并使用实际原版 UI 复制的战帖编码；`locked` 要求已有完整、锁定
+的测试预测。后者核验各端自己的锁定时间及选择在刷新、重置尝试和复制后
+保留，不用随机生成的不同对阵宣称整张预测内容一致。选择一个 `--case`
+后由同一 `installPredictionE2E` 服务，两端使用同一用例。
+
+用户后续指定的发布目标是 `https://s16.xinxiayiyan.com/`；完成条件修订见
+`rebuild.json`，发布在完整验收之后执行。现有官网首页保留。

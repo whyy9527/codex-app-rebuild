@@ -74,6 +74,14 @@ def main():
     with ThreadPoolExecutor(max_workers=2) as pool:
         records += [r for r in pool.map(attempt, sorted(names)) if r is not None]
     records.append(fetch("host-cover.png", "https://i0.hdslb.com/bfs/static/toy/app/LkvCZhw12wgT2Pqx/icon_25819_upload"))
+    # A relocated copy must link back to its own host. Keep the published bytes
+    # intact and give the derived module its own local path and provenance.
+    original = (SITE / MAIN).read_text()
+    share_base = 've=`https://www.bilibili.com/toy/LkvCZhw12wgT2Pqx/`'
+    if original.count(share_base) != 1:
+        raise ValueError('Published share base changed; inspect before adapting')
+    local_main = original.replace(share_base, 've=window.location.origin+`/`')
+    (SITE / 'assets/local-index.js').write_text(local_main)
     # Local bootstrap deliberately omits host redirects, SDK, SW and analytics.
     (SITE / "index.html").write_text('''<!doctype html>
 <html lang="zh-CN"><head><meta charset="UTF-8">
@@ -84,9 +92,13 @@ def main():
 <link rel="stylesheet" href="assets/index-2AhI0v6_.css">
 </head><body><div id="root"></div>
 <script src="/content-host.js"></script>
-<script type="module" src="assets/index-c1ZjPqQS.js"></script></body></html>''')
+<script type="module" src="assets/local-index.js"></script></body></html>''')
     manifest = {"source": BASE, "scope": "published build reused as private offline baseline",
-                "resources": sorted(records, key=lambda r: r["path"]), "unavailable": failures}
+                "resources": sorted(records, key=lambda r: r["path"]), "unavailable": failures,
+                "local_adaptations": [{"path": "assets/local-index.js", "source_path": MAIN,
+                    "source_sha256": hashlib.sha256(original.encode()).hexdigest(),
+                    "sha256": hashlib.sha256(local_main.encode()).hexdigest(),
+                    "change": "Share/report/QR base uses the current origin; prediction path and encoding unchanged."}]}
     (ROOT / "private/resources.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2))
     host_result = subprocess.run(["python3", "-m", "projects.bilibili-toy.tools.prepare_host"],
                                  cwd=ROOT.parents[1], capture_output=True, text=True)
