@@ -38,7 +38,9 @@
     "historical_mobile_result": "projects/bilibili-toy/private/mobile-candidate-compare-1.json",
     "historical_mobile_public_result": "projects/bilibili-toy/private/mobile-public-compare-1.json",
     "keyboard_contract": "projects/bilibili-toy/private/keyboard-contract-v2/contract.json",
-    "historical_keyboard_public_result": "projects/bilibili-toy/private/keyboard-public-compare-2.json"
+    "historical_keyboard_public_result": "projects/bilibili-toy/private/keyboard-public-compare-2.json",
+    "channel_contract": "projects/bilibili-toy/private/channel-contract-v1/contract.json",
+    "historical_channel_public_result": "projects/bilibili-toy/private/channel-public-compare-1.json"
   },
   "commands": {
     "rsi_collect": [
@@ -281,6 +283,19 @@
       ".",
       "--contract",
       "projects/bilibili-toy/private/keyboard-contract-v2/contract.json",
+      "--observed",
+      "{observed}",
+      "--out",
+      "{out}"
+    ],
+    "channel_compare": [
+      "python3",
+      "-m",
+      "capabilities.rebuild.frontend",
+      "--workspace",
+      ".",
+      "--contract",
+      "projects/bilibili-toy/private/channel-contract-v1/contract.json",
       "--observed",
       "{observed}",
       "--out",

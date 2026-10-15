@@ -82,6 +82,26 @@ python3 -m workflows.rebuild.project run --workspace . --project projects/bilibi
 冻结器从前后 AX 重新提取事实；采样期间变化的原版字段保持 pending，
 不成为静态参考。结果和观察器修订见 `evidence/keyboard-2026-10-16.json`。
 
+八个 AI 频道的桌面视图由 `journeys.json#channels` 定义，CUA 中给
+`tools/channel_native.mjs` 的 `installChannelUI` 传入实际 Safari、文件
+API、完整入口、独立输出目录和窗口 UUID。`prepare` 后按模型调用
+`selectModel`，再逐视图 `navigate`、`collect`；同一套动作操作原版和候选。
+普通桌面模式及手机模式分别记录，不复用两者的截图几何。
+
+选手表的 AX 行会随实际滚动逐段出现。驱动保留各段原文和截图，冻结器
+重新提取完整原生表格的行数；`showing … of … items` 不能直接作为行数。
+通用容器仍被截断时停止，不把末尾片段当成完整页面。
+
+```sh
+node projects/bilibili-toy/tools/channel_evidence.mjs freeze <原版-observed.json> projects/bilibili-toy/private/channel-contract-new
+node projects/bilibili-toy/tools/channel_evidence.mjs observe <候选-observed.json> projects/bilibili-toy/private/channel-facts-new.json
+python3 -m workflows.rebuild.project run --workspace . --project projects/bilibili-toy/rebuild.json --command channel_compare --observed <候选事实.json> --out projects/bilibili-toy/private/channel-comparison-new.json
+node projects/bilibili-toy/tools/channel_native.test.mjs
+```
+
+范围和结果见 `evidence/channels-2026-10-16.json`。内容比较覆盖主视图，
+比赛详情、战报展开和整页视觉仍需各自的实际证据。
+
 冻结回放契约：
 
 ```sh

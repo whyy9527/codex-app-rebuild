@@ -1,0 +1,47 @@
+{
+  "date": "2026-10-16",
+  "scope": "Eight AI channels × eight main desktop views, actual original and published UI; full fidelity remains pending",
+  "source_build": "43482999941120-v26695",
+  "public_release": "bce6f0f21976-20261015T144858Z",
+  "protocol": "projects/bilibili-toy/journeys.json#channels",
+  "source": "projects/bilibili-toy/private/channels-desktop-source-1/shared/observed.json",
+  "candidate": "projects/bilibili-toy/private/channels-desktop-public-1/shared/observed.json",
+  "contract": "projects/bilibili-toy/private/channel-contract-v1/contract.json",
+  "source_self_result": {"pass": 26531, "fail": 0, "not_run": 0, "unavailable": 0},
+  "public_result": {
+    "evidence": "projects/bilibili-toy/private/channel-public-compare-1.json",
+    "states": 64,
+    "pass": 26467,
+    "fail": 64,
+    "not_run": 0,
+    "unavailable": 0,
+    "interpretation": "Every frozen text, world, match-day, playback/idle and complete native-table row-count requirement passed. All 64 strict full-content viewport image comparisons failed; user-requested sidebar/author removal, width reflow, dynamic clocks and any other differences remain visible in the raw images. No full visual pass inferred."
+  },
+  "models": ["Claude Opus 5.5", "GPT-6.1 sol", "Gemini 3.8", "DeepSeek V4.1 Flash", "Qwen3.8 Max", "GLM-5.3", "豆包", "MiMo V2.6 Pro"],
+  "views": ["直播", "赛程赛果", "瑞士轮", "淘汰赛", "选手榜", "剧情与战报", "赛前评估", "预测过程"],
+  "table_observation": {
+    "method": "Actual native viewport scrolling, retaining each before/after AX and screenshot. The independent evidence converter re-derives facts and requires a complete, untruncated native table structure with stable row count.",
+    "players": "Every original/public channel exposed 96 actual rows: one header plus 95 player rows.",
+    "range_count_limit": "The earlier table hint said 100 items; it was not an actual player-row count. The exact reason for that item/row difference is not established.",
+    "other_tables": "Schedule/standings, scouting matrices, rank distributions and shared summaries retain their actual source-derived row counts and content."
+  },
+  "preparation_findings": [
+    "Changing the model preserves the selected subview. Common preparation explicitly selects Live before each model, then pauses, disables idle rotation, selects preseason and clicks 1x.",
+    "At the mobile viewport, the original Swiss container omitted items 0-120 and exported only 121-221. Scrolling and page Find did not restore that generic-container prefix. The partial raw observation is retained in private/channels-source-1 and is not the formal channel reference.",
+    "A fresh attempt to bind the owned original Edge tab through its extension failed after 30 seconds. No tab-control result inferred. Safari ownership remained available.",
+    "Exiting Responsive Design Mode restored complete Swiss navigation/content structure. This channel suite uses the same ordinary desktop Safari window on both endpoints; earlier responsive observations remain separate.",
+    "Desktop player AX combines the simulation headline into one text node. The channel parser derives the actual model from that combined headline rather than requiring the mobile multiline form."
+  ],
+  "verification": {
+    "root_tests": "111 tests OK, 8 skipped",
+    "project_tests": "11 tests OK",
+    "native_checks": "Channel multiline labels, desktop world, partial/full table distinction and existing mobile parser checks passed",
+    "release_check": "Trusted HTTPS/TLS 1.3, public release.json HTTP 200; private/channels-desktop-public-1/release.json"
+  },
+  "remaining": [
+    "Visual and geometric acceptance after the two authorized UI removals; raw whole-page mismatches remain diagnostic evidence.",
+    "Complete prediction stages and remaining match/story expansions, hover and persistence boundaries.",
+    "Actual timing and all sound types beyond the previously observed BP output/mute cases.",
+    "Responsive secondary-view checks where original mobile AX omits generic-container content."
+  ]
+}

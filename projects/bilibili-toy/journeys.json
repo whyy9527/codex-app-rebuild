@@ -199,5 +199,93 @@
       ],
       "measurement": "Complete phone viewport in the observed 98% private Safari window, in native-export coordinates; both sides use this same window."
     }
+  },
+  "channels": {
+    "scope": "All eight observed AI channels and their eight main views, through actual desktop UI. This does not certify every match/story expansion, prediction stage, sound or complete visual fidelity.",
+    "driver": "tools/channel_native.mjs installChannelUI",
+    "preparation": "Same owned Safari private window in ordinary desktop mode. Preserve full original share query. Select Live before each model; pause, idle off, preseason, 1x, actual scroll origin. Static views retain actual observed match-day state.",
+    "models": [
+      {
+        "id": "opus",
+        "label": "Claude Opus 5.5"
+      },
+      {
+        "id": "gpt",
+        "label": "GPT-6.1 sol"
+      },
+      {
+        "id": "gemini",
+        "label": "Gemini 3.8"
+      },
+      {
+        "id": "deepseek",
+        "label": "DeepSeek V4.1 Flash"
+      },
+      {
+        "id": "qwen",
+        "label": "Qwen3.8 Max"
+      },
+      {
+        "id": "glm",
+        "label": "GLM-5.3"
+      },
+      {
+        "id": "doubao",
+        "label": "豆包"
+      },
+      {
+        "id": "mimo",
+        "label": "MiMo V2.6 Pro"
+      }
+    ],
+    "views": [
+      {
+        "id": "live",
+        "label": "直播"
+      },
+      {
+        "id": "schedule",
+        "label": "赛程赛果"
+      },
+      {
+        "id": "swiss",
+        "label": "瑞士轮"
+      },
+      {
+        "id": "knockout",
+        "label": "淘汰赛"
+      },
+      {
+        "id": "players",
+        "label": "选手榜"
+      },
+      {
+        "id": "stories",
+        "label": "剧情与战报"
+      },
+      {
+        "id": "scout",
+        "label": "赛前评估"
+      },
+      {
+        "id": "process",
+        "label": "预测过程"
+      }
+    ],
+    "table_observation": "Keep original partial AX ranges. Scroll by real viewport pages to expose rows. Preserve every raw before/after AX and screenshot; independently check observed row coverage. Non-table omission stops capture.",
+    "capture": {
+      "content_rect_points": [
+        0,
+        104,
+        2648,
+        1562
+      ],
+      "backing_scale": 1,
+      "window_points": [
+        2648,
+        1666
+      ],
+      "measurement": "Complete ordinary Safari browser content below its observed 104-pixel toolbar, in unmodified native-export coordinates."
+    }
   }
 }
