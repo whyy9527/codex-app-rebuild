@@ -12,7 +12,10 @@ def collect(out):
     with sync_playwright() as p:
         browser=p.chromium.launch(executable_path=os.environ.get('REBUILD_BROWSER_EXECUTABLE','/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge'),headless=True)
         try:
-            context=browser.new_context(viewport={'width':1370,'height':988},locale='zh-CN',timezone_id='Asia/Shanghai');page=context.new_page();page.set_default_timeout(15000);page.on('pageerror',lambda e:result['errors'].append(str(e)))
+            context=browser.new_context(viewport={'width':1370,'height':988},locale='zh-CN',timezone_id='Asia/Shanghai');page=context.new_page();page.set_default_timeout(15000)
+            def page_error(error):
+                result['errors'].append(str(error));result.setdefault('error_details',[]).append({'message':str(error),'stack':error.stack,'url':page.url})
+            page.on('pageerror',page_error)
             page.goto('http://127.0.0.1:5173/#/pickem',wait_until='load');page.locator('#reference-model').wait_for()
             f['initial_matchup']=page.locator('#lower-final [data-pick]').evaluate_all('(buttons)=>buttons.map(b=>b.dataset.team)');f['initial_reference']=page.locator('#reference-model').input_value();f['initial_odds']=page.locator('#lower-final [data-pick] small').all_text_contents()
             page.locator('#reference-model').select_option('deepseek');f['deepseek_reference']=page.locator('#reference-model').input_value();f['deepseek_odds']=page.locator('#lower-final [data-pick] small').all_text_contents()

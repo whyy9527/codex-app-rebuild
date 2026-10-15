@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "source_version": "43482999941120-v26695",
+  "outer_viewport": {"width":390,"height":844},
+  "expected_content_viewport": {"width":320,"height":832},
+  "preparation": "Fresh isolated context. Source iframe has an observed 320x832 content viewport inside the 390x844 outer shell. Real keyboard pause, main focus and scroll origin; no pointer enters before home capture.",
+  "probes": [
+    {"id":"mobile-home","kind":"home","ready":".mobile-channel select"},
+    {"id":"mobile-model","kind":"model","ready":".mobile-channel select"},
+    {"id":"mobile-pickem","kind":"pickem","ready":".pk-result"},
+    {"id":"mobile-review","kind":"review","ready":".game-tabs .gt.on"}
+  ]
+}

@@ -2,6 +2,7 @@ import {
   mapProbability,
   seriesDistribution,
   seriesProbability,
+  finalsProbabilities,
   remainingSeriesProbability,
   teamStats,
   baselineProbability,
@@ -41,14 +42,14 @@ const store = {
   },
 };
 const channels = [
-  ["opus", "Claude Opus 5.5", "✳", "#c2826a"],
-  ["codex", "GPT-6.1 sol", "◎", "#d17d4d"],
-  ["gemini", "Gemini 3.8", "✦", "#49bfb4"],
-  ["deepseek", "DeepSeek V4.1 Flash", "≈", "#be9b48"],
-  ["qwen", "Qwen3.8 Max", "✧", "#cc62a4"],
-  ["glm", "GLM-5.3", "❋", "#75ad64"],
-  ["doubao", "豆包", "●", "#9c7be8"],
-  ["mimo", "MiMo V2.6 Pro", "M", "#eb6577"],
+  ["opus", "Claude Opus 5.5", "✳", "#5b6ff0"],
+  ["codex", "GPT-6.1 sol", "◎", "#d96a24"],
+  ["gemini", "Gemini 3.8", "✦", "#1a9e95"],
+  ["deepseek", "DeepSeek V4.1 Flash", "≈", "#b08a14"],
+  ["qwen", "Qwen3.8 Max", "✧", "#cc4a94"],
+  ["glm", "GLM-5.3", "❋", "#4a9636"],
+  ["doubao", "豆包", "●", "#8b6ef0"],
+  ["mimo", "MiMo V2.6 Pro", "M", "#dd4a51"],
 ].map(([id, name, icon, color]) => ({ id, name, icon, color }));
 let event,
   assets,
@@ -75,6 +76,8 @@ let customRanking = store.get("ranking", null),
 let pick = store.get("pick", null),
   draft = { lfWinner: null, lfScore: null, champion: null, gfScore: null },
   pageRoute = "/";
+let tickerOpen = false,
+  tickerPaused = matchMedia("(prefers-reduced-motion: reduce)").matches;
 function notify(text) {
   $("#toast").textContent = text;
   $("#toast").classList.add("show");
@@ -99,14 +102,16 @@ function sound(kind = "pick") {
         0.1,
         i * 0.13,
       ]),
+      stamp: [[140, 0.12, 0.2, 0]],
     };
     const origin = audio.currentTime;
     for (const [hz, duration, volume, delay] of cues[kind] || cues.pick) {
       const oscillator = audio.createOscillator();
       const envelope = audio.createGain();
       const start = origin + delay;
-      oscillator.type = "triangle";
+      oscillator.type = kind === "stamp" ? "sine" : "triangle";
       oscillator.frequency.setValueAtTime(hz, start);
+      if (kind === "stamp") oscillator.frequency.exponentialRampToValueAtTime(hz - 60, start + duration);
       envelope.gain.setValueAtTime(0, start);
       envelope.gain.linearRampToValueAtTime(volume, start + 0.01);
       envelope.gain.exponentialRampToValueAtTime(0.0001, start + duration);
@@ -115,6 +120,18 @@ function sound(kind = "pick") {
       oscillator.start(start);
       oscillator.stop(start + duration + 0.02);
     }
+    const noise = (duration, volume, delay, cutoff) => {
+      const buffer = audio.createBuffer(1, Math.floor(audio.sampleRate * duration), audio.sampleRate);
+      const samples = buffer.getChannelData(0);
+      for (let i = 0; i < samples.length; i++) samples[i] = (Math.random() * 2 - 1) * (1 - i / samples.length);
+      const source = audio.createBufferSource(), filter = audio.createBiquadFilter(), envelope = audio.createGain();
+      source.buffer = buffer; filter.type = "highpass"; filter.frequency.value = cutoff;
+      const start = origin + delay;
+      envelope.gain.value = volume;
+      source.connect(filter); filter.connect(envelope); envelope.connect(audio.destination); source.start(start);
+    };
+    if (kind === "champion") for (let i = 0; i < 8; i++) noise(0.25, 0.04, 0.9 + i * 0.07, 1200);
+    if (kind === "stamp") noise(0.06, 0.06, 0, 1500);
   } catch {}
 }
 function logo(code, size = "") {
@@ -181,7 +198,8 @@ function simulateFinals(id = selected) {
   ];
 }
 function pageHead(title, description) {
-  return `<div class="wrap page-head"><div><h1>${title}</h1><p>${description}</p></div><div class="kicker">CHAMPIONS SHANGHAI · FINALS</div></div>`;
+  const split = {"数据对比": ["数据", "对比"], "战队": ["参赛", "战队"], "我来预测": ["我来", "预测"], "谁最准": ["谁最", "准"], "AI 赛制介绍": ["VCT · ", "AI 赛制介绍"]}[title] || ["", title];
+  return `<div class="wrap page-head"><div><h1>${escape(split[0])}<span class="page-title-cn">${escape(split[1])}</span></h1><p>${description}</p></div><div class="kicker">CHAMPIONS SHANGHAI · FINALS</div></div>`;
 }
 function note() {
   return `<div class="notice">官方对阵${event.matches.every((m) => m.teams.includes("TBD")) ? "尚未确定" : "已更新"}。下方晋级情景用于分析 17、18 日的两场比赛；情景选择不是官方赛果。</div>`;
@@ -215,19 +233,25 @@ function bindScenario() {
   }
 }
 function modelGrid() {
-  return `<div class="channels">${channels.map((c) => `<button class="channel ${selected === c.id ? "on" : ""}" data-channel="${c.id}" aria-pressed="${selected === c.id}" style="--accent:${c.color}">${avatar(c)}<span>${c.name}</span><small>${available(c.id) ? "已预测" : "待预测"}</small></button>`).join("")}</div>`;
+  return `<div class="channels"><label class="mobile-channel">当前 AI <select id="mobile-model" aria-label="选择 AI 频道">${channels.map((c) => `<option value="${c.id}" ${c.id === selected ? "selected" : ""}>${c.name}</option>`).join("")}</select></label>${channels.map((c) => `<button class="channel ${selected === c.id ? "on" : ""}" data-channel="${c.id}" aria-pressed="${selected === c.id}" style="--accent:${c.color}">${avatar(c)}<span>${c.name}</span><small>${available(c.id) ? "已预测" : "待预测"}</small></button>`).join("")}</div>`;
+}
+function selectChannel(id) {
+  if (!channels.some((c) => c.id === id)) return;
+  selected = id;
+  store.set("channel", selected);
+  current = 0;
+  buildSimulation();
+  render();
 }
 function bindModels() {
-  document.querySelectorAll("[data-channel]").forEach(
-    (button) =>
-      (button.onclick = () => {
-        selected = button.dataset.channel;
-        store.set("channel", selected);
-        current = 0;
-        buildSimulation();
-        render();
-      }),
-  );
+  document
+    .querySelectorAll("[data-channel]")
+    .forEach(
+      (button) =>
+        (button.onclick = () => selectChannel(button.dataset.channel)),
+    );
+  if ($("#mobile-model"))
+    $("#mobile-model").onchange = (e) => selectChannel(e.target.value);
 }
 function replaySignature() {
   return JSON.stringify([
@@ -280,7 +304,7 @@ function buildSimulation(restore = true) {
 }
 function home() {
   const c = channel();
-  main.innerHTML = `<section class="hero"><div class="wrap"><div class="hero-top"><div><p class="eyebrow">AI 模拟内容 · 仅供参考</p><h1>VALORANT AI 大模型预测大赛</h1><p>上海全球冠军赛最后两场，同一份官方资料、同一套 BO5 规则，各自给出判断</p></div><div class="hero-actions"><div class="countdown"><small>仅预测 10 月 17 / 18 日</small><strong>决赛周末</strong></div><a class="btn" href="#/pickem">我也来预测</a><a class="btn primary" href="#/leaderboard">看谁最准</a></div></div><div class="portraits" aria-label="选择模型形象">${channels.map((ch, i) => `<button class="portrait ${selected === ch.id ? "on" : ""}" data-channel="${ch.id}" aria-label="进入 ${ch.name} 的频道"><img src="${escape(assets.agents[i].url)}&w=280" alt="" loading="${i < 4 ? "eager" : "lazy"}"><span>${ch.name.split(" · ")[0]}</span></button>`).join("")}</div></div></section><div class="channel-panel"><div class="wrap">${modelGrid()}</div></div><div class="wrap section studio-section"><div class="tabs" role="tablist" aria-label="预测频道内容">${[
+  main.innerHTML = `<section class="hero"><div class="wrap"><div class="hero-top"><div><p class="eyebrow">AI 模拟内容 · 仅供参考</p><h1><span>VALORANT</span> <span class="hero-title-text">AI 大模型预测大赛</span></h1><p>上海全球冠军赛最后两场，同一份官方资料、同一套 BO5 规则，各自给出判断</p></div><div class="hero-actions"><div class="countdown"><small>仅预测 10 月 17 / 18 日</small><strong>决赛周末</strong></div><a class="btn" href="#/pickem">我也来预测</a><a class="btn primary" href="#/leaderboard">看谁最准</a></div></div><div class="portraits" aria-label="选择模型形象">${channels.map((ch, i) => `<button class="portrait ${selected === ch.id ? "on" : ""}" data-channel="${ch.id}" aria-label="进入 ${ch.name} 的频道"><img src="${escape(assets.agents[i].url)}&w=280" alt="" loading="${i < 4 ? "eager" : "lazy"}"><span>${ch.name.split(" · ")[0]}</span></button>`).join("")}</div></div></section><div class="channel-panel"><div class="wrap">${modelGrid()}</div></div><div class="wrap tabs home-tabs" role="tablist" aria-label="预测频道内容">${[
     ["live", "直播"],
     ["schedule", "赛程赛果"],
     ["bracket", "淘汰赛"],
@@ -295,7 +319,7 @@ function home() {
     )
     .join(
       "",
-    )}<span class="channel-meta">${escape(c.name)} · ${available(c.id) ? "独立预测" : "待预测"}</span></div><div id="channel-content"></div></div><section class="wrap section"><div class="section-head"><h2>各 AI 预测的冠军</h2><a class="muted" href="#/compare">完整对比 →</a></div><p class="muted">每个频道保留独立预测。未实际运行的模型显示待预测。</p><div class="grid">${channels
+    )}<span class="channel-meta">${escape(c.name)} · ${available(c.id) ? "独立预测" : "待预测"}</span></div><div class="wrap section studio-section"><div id="channel-content"></div></div><section class="wrap section"><div class="section-head"><h2>各 AI 预测的冠军</h2><a class="muted" href="#/compare">完整对比 →</a></div><p class="muted">每个频道保留独立预测。未实际运行的模型显示待预测。</p><div class="grid">${channels
     .map((ch) => {
       const champion = simulateFinals(ch.id)[1]?.winner;
       return `<a class="card forecast-card card-link" style="--accent:${ch.color}" href="#/?ai=${ch.id}"><h3>${ch.name}</h3><small class="muted">${available(ch.id) ? "当前晋级情景下的一次模拟" : "等待独立模型输出"}</small><div class="champ">${available(ch.id) ? logo(champion) + " " + champion : "待预测"}</div><span class="muted">进入频道 →</span></a>`;
@@ -326,8 +350,8 @@ function formatDate(value) {
     hour12: false,
   }).format(new Date(value));
 }
-function reviewLink(index) {
-  return `#/match/${index}?${new URLSearchParams({ ai: selected, upper: opponentPairs().upperWinner, lower: opponentPairs().lowerWinner })}`;
+function reviewLink(index, model = selected) {
+  return `#/match/${index}?${new URLSearchParams({ ai: model, upper: opponentPairs().upperWinner, lower: opponentPairs().lowerWinner })}`;
 }
 function pairReason(teams) {
   return (
@@ -444,7 +468,7 @@ function renderChannel() {
   }
   content.innerHTML =
     note() +
-    `<div class="studio" tabindex="0" role="region" aria-label="AI 模拟回放播放器"><div><div class="stage-box"><div class="stage-top"><span class="pill">● AI 模拟</span><span>${escape(channel().name)} 的世界</span><span class="stage-date" id="stage-date"></span></div><div id="stage"></div></div><div class="progress"><i id="progress" style="width:0"></i></div><div class="controls"><button id="prev" aria-label="上一步">◀</button><button id="play" class="play" title="${playing ? "暂停" : "播放"} (空格)">${playing ? "Ⅱ 暂停" : "▶ 播放"}</button><button id="next" aria-label="下一步">▶|</button><button id="next-match">下一场</button><button id="next-day">下一天</button><button id="mute">${muted ? "取消静音" : "静音"}</button><span class="spacer"></span>${[1, 2, 4, 8].map((n) => `<button data-speed="${n}" class="${speed === n ? "on" : ""}">${n}x</button>`).join("")}</div><p class="keyboard-tip">播放器获得焦点后：空格播放/暂停，左右跳步，上下调速，M 静音。</p><div class="date-buttons"><button data-day="0">10/17</button><button data-day="1">10/18</button><button id="replay-start">从头播放</button><a id="review-current" class="btn" href="${reviewLink(0)}">查看本场回看 →</a></div></div><aside class="schedule"><h3>今日赛程 · 最后两场</h3>${event.matches.map((match, i) => `<div class="schedule-row" data-row="${i}"><b>${match.label}<small class="muted" style="display:block;margin-top:8px">${formatDate(match.start_utc)}</small></b><span>BO5</span></div>`).join("")}<div style="padding:12px"><span class="pill official">官方对阵待定</span><p class="muted" style="font-size:12px;margin:12px 0">胜者组败者 → 败者组决赛<br>败者组胜者 → 总决赛</p><a class="btn" href="#/pickem">我也来预测</a></div></aside></div>`;
+    `<div class="studio" style="--mc:${channel().color}" tabindex="0" role="region" aria-label="AI 模拟回放播放器"><div><div class="stage-box"><div class="stage-top"><span class="pill">● AI 模拟</span>${avatar(channel())}<span>${escape(channel().name)} 的世界</span><span class="stage-date" id="stage-date"></span></div><div id="stage"></div></div><div class="progress"><i id="progress" style="width:0"></i></div><div class="controls"><button id="prev" aria-label="上一步">◀</button><button id="play" class="play" title="${playing ? "暂停" : "播放"} (空格)">${playing ? "Ⅱ 暂停" : "▶ 播放"}</button><button id="next" aria-label="下一步">▶|</button><button id="next-match">下一场</button><button id="next-day">下一天</button><button id="mute">${muted ? "取消静音" : "静音"}</button><span class="spacer"></span>${[1, 2, 4, 8].map((n) => `<button data-speed="${n}" class="${speed === n ? "on" : ""}">${n}x</button>`).join("")}</div><p class="keyboard-tip">播放器获得焦点后：空格播放/暂停，左右跳步，上下调速，M 静音。</p><div class="date-buttons"><button data-day="0">10/17</button><button data-day="1">10/18</button><button id="replay-start">从头播放</button><a id="review-current" class="btn" href="${reviewLink(0)}">查看本场回看 →</a></div></div><aside class="studio-side"><div class="schedule"><h3>最后两场 · 模拟赛程</h3>${event.matches.map((match, i) => `<button class="schedule-row" data-row="${i}" aria-label="跳到${match.label}"><b>${match.label}<small class="muted" style="display:block;margin-top:8px">${formatDate(match.start_utc)}</small></b><span>BO5</span></button>`).join("")}<div style="padding:12px"><span class="pill official">官方对阵待定</span><p class="muted" style="font-size:12px;margin:12px 0">胜者组败者 → 败者组决赛<br>败者组胜者 → 总决赛</p><a class="btn" href="#/pickem">我也来预测</a></div></div><section class="feed"><h3>赛事动态</h3><div class="feed-model">${avatar(channel())}<span>${escape(channel().name)} 的世界</span></div><div id="feed-events" aria-live="polite"></div></section></aside></div>`;
   bindPlayer();
   updatePlayer();
 }
@@ -454,17 +478,26 @@ function updatePlayer() {
     $("#stage").innerHTML =
       `<div class="empty"><div class="symbol">◌</div><h2>该模型等待预测</h2><p class="muted">没有真实模型输出，暂不生成模拟比分。</p></div>`;
     $("#stage-date").textContent = "10 月 17 / 18 日";
+    $("#feed-events").textContent = "该模型等待预测";
     for (const id of ["play", "prev", "next", "next-match", "next-day"])
       $("#" + id).disabled = true;
     return;
   }
   const frame = simFrames[current];
   saveReplay();
+  $("#feed-events").innerHTML = simFrames
+    .slice(Math.max(0, current - 4), current + 1)
+    .reverse()
+    .map(
+      (item, i) =>
+        `<a class="feed-event ${i === 0 ? "active" : ""}" href="${reviewLink(item.index)}"><span>${item.kind === "pre" ? "◇" : item.kind === "final" ? "★" : "↗"}</span><span>${escape(item.caption)}</span></a>`,
+    )
+    .join("");
   $("#review-current").href = reviewLink(frame.index);
   $("#stage-date").textContent =
     frame.index === 0 ? "10 月 17 日" : "10 月 18 日";
   $("#stage").innerHTML =
-    `<div class="versus"><div class="vs-team">${logo(frame.teams[0])}<b>${frame.teams[0]}</b></div><div class="score">${frame.score.join(" : ")}<small>BO5 · ${frame.kind === "pre" ? "赛前" : frame.kind === "final" ? "模拟赛果" : "模拟地图"}</small></div><div class="vs-team">${logo(frame.teams[1])}<b>${frame.teams[1]}</b></div></div><p class="stage-caption">${frame.caption}</p>`;
+    `<div class="stage-scene"><div class="versus"><div class="vs-team">${logo(frame.teams[0])}<b>${frame.teams[0]}</b></div><div class="score">${frame.score.join(" : ")}<small>BO5 · ${frame.kind === "pre" ? "赛前" : frame.kind === "final" ? "模拟赛果" : "模拟地图"}</small></div><div class="vs-team">${logo(frame.teams[1])}<b>${frame.teams[1]}</b></div></div><p class="stage-caption">${frame.caption}</p></div>`;
   $("#progress").style.width = `${(100 * (current + 1)) / simFrames.length}%`;
   $("#prev").disabled = current === 0;
   $("#next").disabled = current === simFrames.length - 1;
@@ -535,6 +568,9 @@ function bindPlayer() {
   $("#next").onclick = () => step(1);
   $("#next-match").onclick = () => jump(1);
   $("#next-day").onclick = () => jump(1);
+  document
+    .querySelectorAll("[data-row]")
+    .forEach((b) => (b.onclick = () => jump(Number(b.dataset.row))));
   $("#replay-start").onclick = () => {
     current = 0;
     playing = true;
@@ -594,20 +630,47 @@ function analysisTable(model = forecast) {
   return `<div class="table-wrap" style="margin-top:20px"><table><thead><tr><th>可能对阵</th><th>左队单图概率</th><th>左队 BO5 概率</th><th>依据（${escape(model.model_id)}）</th></tr></thead><tbody>${model.pairs.map((p) => `<tr><td>${p.teams.join(" vs ")}</td><td class="heat">${pct(p.p_first)}</td><td class="heat">${pct(seriesProbability(p.p_first))}</td><td style="white-space:normal;min-width:300px">${escape(p.reason)}</td></tr>`).join("")}</tbody></table></div>`;
 }
 function comparePage() {
-  main.innerHTML =
-    pageHead("数据对比", "同一份官方战绩，比较每个模型的两场条件预测") +
-    `<div class="wrap section">${note()}${scenarioForm()}<div class="section"><h2>BO5 预测概率对比</h2><p class="muted">左侧队伍获胜的概率。未运行的模型保持待预测；统计基线由公开公式计算。</p><div class="table-wrap"><table><thead><tr><th>可能对阵</th>${channels.map((c) => `<th>${c.name}</th>`).join("")}<th>统计基线</th></tr></thead><tbody>${forecast.pairs.map((p) => `<tr><td>${p.teams.join(" vs ")}</td>${channels.map((c) => `<td class="${available(c.id) ? "heat" : "muted"}">${available(c.id) ? pct(seriesProbability(pmap(...p.teams, c.id))) : "待预测"}</td>`).join("")}<td class="heat">${pct(seriesProbability(baselineProbability(event, ...p.teams)))}</td></tr>`).join("")}</tbody></table></div></div><h2>当前情景 · 比分分布</h2><p class="muted">六个可能的 BO5 最终比分概率之和为 100%；来自单图独立、同概率假设。</p><div class="grid" id="distributions"></div>${analysisTable()}</div>`;
+  const columns = [...channels, { id: "baseline", name: "统计基线", color: "#a4acd3" }],
+    running = columns.filter((c) => c.id === "baseline" || available(c.id)),
+    teams = finalistsList(),
+    { upperWinner, upperLoser, lowerWinner } = opponentPairs();
+  const champion = (id) => {
+    const values = finalsProbabilities(
+      pmap(upperLoser, lowerWinner, id),
+      pmap(upperWinner, upperLoser, id),
+      pmap(upperWinner, lowerWinner, id),
+    );
+    return Object.fromEntries([[upperWinner, values[0]], [upperLoser, values[1]], [lowerWinner, values[2]]]);
+  };
+  const championships = Object.fromEntries(running.map((c) => [c.id, champion(c.id)])),
+    ranks = Object.fromEntries(running.map((c) => [c.id, referenceRanking(c.id)])),
+    headings = columns.map((c) => `<th><i style="background:${c.color}"></i>${escape(c.name)}</th>`).join("");
+  const teamLabel = (team) => `<th scope="row"><a href="#/team/${team}">${logo(team)}${team}</a><small>${escape(event.teams[team].region?.toUpperCase())}</small></th>`;
+  const cell = (value, text) => `<td class="compare-heat" style="--heat:${value};color:${value > 0.45 ? "#0b1434" : "var(--ink)"}" data-value="${value}">${text}</td>`;
+  const probabilities = teams.map((team) => `<tr>${teamLabel(team)}${columns.map((c) => championships[c.id] ? cell(championships[c.id][team] || 0, pct(championships[c.id][team] || 0)) : '<td class="muted">待预测</td>').join("")}</tr>`).join("");
+  const rankings = teams.map((team) => {
+    const actual = channels.filter((c) => available(c.id)).map((c) => ranks[c.id].indexOf(team) + 1);
+    return `<tr>${teamLabel(team)}${columns.map((c) => ranks[c.id] ? cell(1 - ranks[c.id].indexOf(team) / teams.length, ranks[c.id].indexOf(team) + 1) : '<td class="muted">待预测</td>').join("")}<td>${actual.length ? (actual.reduce((a, b) => a + b, 0) / actual.length).toFixed(1) : "—"}</td><td>${actual.length > 1 ? Math.max(...actual) - Math.min(...actual) : "—"}</td></tr>`;
+  }).join("");
+  const disagreements = forecast.pairs.map((pair) => {
+    const values = channels.filter((c) => available(c.id)).map((c) => ({ ...c, p: pmap(...pair.teams, c.id) }));
+    return { teams: pair.teams, values, spread: values.length > 1 ? Math.max(...values.map((v) => v.p)) - Math.min(...values.map((v) => v.p)) : null };
+  }).sort((a, b) => (b.spread || 0) - (a.spread || 0));
+  const dots = disagreements.map((row, i) => {
+    const y = 60 + i * 60;
+    return `<text x="10" y="${y + 5}">${row.teams.join(" 对 ")}</text><text x="140" y="${y + 5}" class="chart-value">差 ${row.spread == null ? "—" : (row.spread * 100).toFixed(1)} 点</text>${row.values.map((v) => `<circle cx="${240 + v.p * 600}" cy="${y}" r="6" fill="${v.color}"><title>${escape(v.name)} · ${row.teams[0]} ${pct(v.p)}</title></circle>`).join("")}<circle cx="${240 + pmap(...row.teams, "baseline") * 600}" cy="${y}" r="8" fill="none" stroke="#a4acd3" stroke-width="2"><title>统计基线 ${pct(pmap(...row.teams, "baseline"))}</title></circle>`;
+  }).join("");
+  main.innerHTML = pageHead("数据对比", "8 个 AI 的赛前判断放在一起看：谁看好谁，谁和谁意见最不一样") +
+    `<div class="wrap section compare-page">${note()}${scenarioForm()}<section class="section"><h2>夺冠概率对比</h2><p class="muted">在所选 16 日晋级情景下，枚举最后两场 BO5 的全部胜负路径，计算各队夺冠概率。颜色越亮，概率越高。不是额外预测 16 日赛果；未晋级队在该情景下为 0%。</p><div class="table-wrap"><table id="champion-comparison" class="compare-matrix"><thead><tr><th>战队</th>${headings}</tr></thead><tbody>${probabilities}</tbody></table></div><p class="muted compare-caption">仅消费已运行模型的单图概率。每图独立且同概率，精确计算而非声称运行十万次模拟。</p></section><section class="section"><h2>实力排序对比</h2><p class="muted">四队相互对阵的平均单图胜率由高到低排序，是概率推导的参考排名。平均与名次差仅统计已运行 AI；统计基线单独列出。</p><div class="table-wrap"><table id="ranking-comparison" class="compare-matrix"><thead><tr><th>战队</th>${headings}<th>AI 平均</th><th>名次差</th></tr></thead><tbody>${rankings}</tbody></table></div></section><section class="section"><h2>分歧榜 · 模型意见最不一致的对阵</h2><p class="muted">点表示左队在中立场地的单图胜率，按已运行 AI 的最高与最低概率之差排序。空心圈为统计基线。六个待预测模型不参与分歧计算。</p><div class="model-legend">${running.map((c) => `<span><i style="background:${c.color}"></i>${escape(c.name)}</span>`).join("")}</div><div class="chart-scroll"><svg id="disagreement-chart" viewBox="0 0 900 430" role="img" aria-label="六组可能对阵的模型单图胜率分歧">${[0, .2, .4, .5, .6, .8, 1].map((p) => `<line class="chart-grid" x1="${240 + p * 600}" x2="${240 + p * 600}" y1="38" y2="390"/><text x="${240 + p * 600}" y="24" text-anchor="middle">${p * 100}%</text>`).join("")}${dots}</svg></div></section><section class="section"><h2>BO5 预测概率对比</h2><p class="muted">左侧队伍赢得系列赛的概率。统计基线由本届官方地图战绩的公开公式计算。</p><div class="table-wrap"><table><thead><tr><th>可能对阵</th>${headings}</tr></thead><tbody>${forecast.pairs.map((pair) => `<tr><th>${pair.teams.join(" vs ")}</th>${columns.map((c) => running.includes(c) ? cell(seriesProbability(pmap(...pair.teams, c.id)), pct(seriesProbability(pmap(...pair.teams, c.id)))) : '<td class="muted">待预测</td>').join("")}</tr>`).join("")}</tbody></table></div></section><section class="section"><div class="section-head"><h2>当前情景 · 比分分布</h2><label>实力参考 <select id="compare-model">${running.map((c) => `<option value="${c.id}">${escape(c.name)}</option>`).join("")}</select></label></div><p class="muted">败者组决赛六个可能比分之和为 100%；来自单图独立、同概率假设。</p><div class="grid" id="distributions"></div><div id="compare-reasons"></div></section></div>`;
   bindScenario();
-  const m = matchup();
-  $("#distributions").innerHTML = seriesDistribution(
-    mapProbability(forecast, ...m.lf),
-  )
-    .sort((a, b) => b.probability - a.probability)
-    .map(
-      (r) =>
-        `<div class="card"><h3>${m.lf[0]} ${r.score.join(" : ")} ${m.lf[1]}</h3><b class="gold">${pct(r.probability)}</b></div>`,
-    )
-    .join("");
+  const update = (id) => {
+    const m = matchup(id);
+    $("#distributions").innerHTML = seriesDistribution(m.lp).sort((a, b) => b.probability - a.probability).map((r) => `<div class="card"><h3>${m.lf[0]} ${r.score.join(" : ")} ${m.lf[1]}</h3><b class="gold">${pct(r.probability)}</b></div>`).join("");
+    $("#compare-reasons").innerHTML = forecasts[id] ? analysisTable(forecasts[id]) : '<p class="muted">统计基线：每队实力 =（本届地图胜场 + 1）/（地图负场 + 1）；两队实力之比换算单图概率。</p>';
+  };
+  $("#compare-model").value = available(selected) ? selected : "codex";
+  $("#compare-model").onchange = (e) => update(e.target.value);
+  update($("#compare-model").value);
 }
 function teamsPage(code) {
   if (code && event.teams[code]) {
@@ -827,6 +890,7 @@ function pickemPage() {
       .filter((r) => (r.score[0] === 3 ? fs[0] : fs[1]) === draft.champion)
       .sort((a, b) => b.probability - a.probability)[0].score;
     pickemPage();
+    sound("champion");
     notify("已按所选实力参考填入两场预测");
   };
   $("#reset").onclick = () => {
@@ -890,6 +954,7 @@ function savePick() {
   }
   pick = value;
   if (store.set("pick", pick)) {
+    sound("stamp");
     notify("两场预测已保存");
     $("#save-state").textContent =
       "已保存 · " +
@@ -1065,6 +1130,25 @@ function render() {
       '<div class="wrap section"><a class="btn" href="#/">返回首页</a></div>';
   document.title =
     (pageRoute === "/pickem" ? "我来预测 · " : "") + "VALORANT AI 决赛预测大赛";
+  renderTicker();
+}
+function renderTicker() {
+  const ticker = $("#simulation-ticker");
+  ticker.className = `ticker${tickerOpen ? tickerPaused ? " paused" : "" : " ticker-closed"}`;
+  if (!tickerOpen) {
+    ticker.innerHTML = '<button class="ticker-label">展开 AI 模拟速报（含后续剧情）</button>';
+    ticker.querySelector("button").onclick = () => { tickerOpen = true; renderTicker(); };
+    return;
+  }
+  const reports = channels.filter((c) => available(c.id)).flatMap((c) => simulateFinals(c.id).map((series, index) => {
+    const winnerIndex = series.teams.indexOf(series.winner), loser = series.teams[1 - winnerIndex],
+      chance = seriesProbability(pmap(series.winner, loser, c.id));
+    return { c, series, index, loser, chance, winnerIndex };
+  }));
+  const row = (duplicate) => `<div class="ticker-row"${duplicate ? ' aria-hidden="true"' : ""}>${reports.map(({ c, series, index, loser, chance, winnerIndex }) => `<a class="tick" href="${reviewLink(index, c.id)}"${duplicate ? ' tabindex="-1"' : ""}><span class="pill">AI 模拟</span><span class="muted">${escape(c.name)} 的世界</span>${logo(series.winner)}<b>${series.winner}</b><span>${series.score[winnerIndex]}–${series.score[1 - winnerIndex]}</span><span>${loser}</span><span class="muted">赛前 ${pct(chance)}</span></a>`).join("")}</div>`;
+  ticker.innerHTML = `<button class="ticker-label" aria-pressed="${tickerPaused}">${tickerPaused ? "滚动速报" : "暂停速报"}</button><div class="ticker-track"><div class="ticker-move">${row(false)}${tickerPaused ? "" : row(true)}</div></div><button class="ticker-close" aria-label="收起模拟速报">×</button>`;
+  ticker.querySelector(".ticker-label").onclick = () => { tickerPaused = !tickerPaused; renderTicker(); };
+  ticker.querySelector(".ticker-close").onclick = () => { tickerOpen = false; renderTicker(); };
 }
 $(".skip-link").onclick = (e) => {
   e.preventDefault();

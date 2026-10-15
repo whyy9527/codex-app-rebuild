@@ -44,9 +44,9 @@ def compare(root, observed, reference):
     check('invalid-share-feedback',f.get('invalid_share_feedback'),'分享链接无效或不适用于当前赛事数据')
     check('candidate-page-errors',observed.get('errors'),[])
     rows += [{'id':key,'knowledge_source':'unknown','status':'not_run','reason':reason} for key,reason in [
-        ('full-visual-equivalence','VALORANT content/art transforms are required; detailed layout/font/whole-frame comparison remains open.'),
-        ('application-audio-equivalence','Real PID-filtered output captures were zero in both audible scenes; transport/attribution is unresolved, so audio equivalence is not established.'),
-        ('deep-reference-parity','Review and custom-ranking have supplemental common suites. Rich BP/player/story parity and deeper motion/input branches remain unresolved.')]]
+        ('full-visual-equivalence','Shared desktop layout and mobile metric suites now pass; original LoL artwork is replaced by official VALORANT card art. Whole-image pixel identity is not certified.'),
+        ('application-audio-equivalence','Explicit owned-process captures now verify core cue output, mute/restoration, autofill and save. Full source cue-catalogue equivalence is not certified by this suite.'),
+        ('deep-reference-parity','Review, ranking, comparison, layout, mobile, ticker and sampled scene motion have supplemental common suites. The newly authorized fictional BP/player/story work is pending (C8).')]]
     return {'status':'incomplete' if any(row['status']!='pass' for row in rows) else 'pass','rows':rows,
             'counts':{status:sum(row['status']==status for row in rows) for status in ['pass','fail','unavailable','not_run']}}
 

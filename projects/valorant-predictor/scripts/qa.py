@@ -20,6 +20,8 @@ def collect(url, out):
     def screenshot(page,name):
         path=output/(name+'.png');page.screenshot(path=str(path),full_page=False);return str(path.relative_to(root))
     def capture(page,name):
+        page.wait_for_function('() => [...document.querySelectorAll(".stage-scene")].every(e=>e.getAnimations().every(a=>a.playState==="finished"))')
+        page.wait_for_function('getComputedStyle(document.querySelector("#toast")).opacity==="0"')
         step={'id':name,'action':{'type':'observe'},'ready':{'selector':'h1','state':'visible'},'capture':['dom','text','screenshot','accessibility']}
         record=collect_step(page,root,output,len(result['steps']),step,{'title':'#main-content h1'})
         record.update(cleanup='released',receipt_path=str((output/(name+'-step.json')).relative_to(root)))
@@ -80,7 +82,7 @@ def collect(url, out):
             page.locator('.mainnav a[href="#/method"]').click();page.locator('h1').filter(has_text='AI 赛制介绍').wait_for();capture(page,'method')
             page.locator('footer a[href="#/about"]').first.click();page.locator('h1').filter(has_text='内容、数据与素材说明').wait_for();capture(page,'about')
             mobile=browser.new_context(viewport={'width':390,'height':844},locale='zh-CN',timezone_id='Asia/Shanghai',is_mobile=True,has_touch=True)
-            m=mobile.new_page();m.goto(url,wait_until='load');m.locator('.channels').wait_for();m.wait_for_function('() => [...document.querySelectorAll(".portraits img")].every(i=>i.complete&&i.naturalWidth>0)');fact('mobile_home_width',m.evaluate('({scroll:document.documentElement.scrollWidth,viewport:innerWidth})'));screenshot(m,'mobile-home')
+            m=mobile.new_page();m.goto(url,wait_until='load');m.locator('.channels').wait_for();m.locator("#mobile-model").wait_for();fact('mobile_home_width',m.evaluate('({scroll:document.documentElement.scrollWidth,viewport:innerWidth})'));screenshot(m,'mobile-home')
             m.locator('.mainnav a[href="#/pickem"]').click();m.locator('#autofill').click();m.locator('#save-pick').click();fact('mobile_pick_width',m.evaluate('({scroll:document.documentElement.scrollWidth,viewport:innerWidth})'));fact('mobile_pick_champion',m.locator('#pick-result h2').inner_text());screenshot(m,'mobile-pickem')
             m.goto(url+'#/pickem?share=invalid',wait_until='load');m.locator('#lower-final').wait_for();fact('invalid_share_feedback',m.locator('#toast').inner_text())
             mobile.close();context.close()

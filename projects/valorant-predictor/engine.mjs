@@ -32,6 +32,18 @@ export function seriesProbability(p) {
     .filter((r) => r.score[0] === 3)
     .reduce((s, r) => s + r.probability, 0);
 }
+// Exact two-series tree, conditional on the chosen preceding-day qualifiers.
+// pUpperA/B are the upper finalist's single-map chances against each lower team.
+export function finalsProbabilities(pLower, pUpperA, pUpperB) {
+  const lowerA = seriesProbability(pLower),
+    upperA = seriesProbability(pUpperA),
+    upperB = seriesProbability(pUpperB);
+  return [
+    lowerA * upperA + (1 - lowerA) * upperB,
+    lowerA * (1 - upperA),
+    (1 - lowerA) * (1 - upperB),
+  ];
+}
 // Conditional chance of winning the series after the observed map score.
 export function remainingSeriesProbability(score, p) {
   if (

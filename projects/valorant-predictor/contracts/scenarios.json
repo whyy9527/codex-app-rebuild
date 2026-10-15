@@ -122,12 +122,34 @@
       "driver": "scripts/qa_typography.py",
       "compare": "scripts/compare_typography.py",
       "scope": "six primary navigation items; not full-page visual acceptance"
+    },
+    {
+      "id": "conditional-comparison",
+      "journey": "Four qualifier scenarios, championship heatmap, reference rankings, model disagreement, model-specific distributions and actual model reasons",
+      "driver": "scripts/qa_comparison.py",
+      "compare": "scripts/compare_comparison.py",
+      "source_evidence": "artifacts/valorant-third-final-comparison/observed.json"
+    },
+    {
+      "id": "shared-layout",
+      "journey": "Matching home and five main routes, actual styles, geometry, loaded artwork and rendered screenshots",
+      "driver": "scripts/qa_layout.py",
+      "compare": "scripts/compare_layout.py",
+      "source_evidence": "artifacts/valorant-prepublish-layout/observed.json"
+    },
+    {
+      "id": "simulation-ticker",
+      "journey": "Reveal, pause, resume, close, review, pointer/hover on candidate, reduced motion and mobile overflow",
+      "driver": "scripts/qa_ticker.py",
+      "compare": "scripts/compare_ticker.py",
+      "source_evidence": "artifacts/valorant-ticker-reference-complete/observed.json",
+      "limitations": "Source sticky OOPIF pointer activation/hover not established; keyboard reference workflow and candidate native pointer/hover are independently recorded."
     }
   ],
   "data_adaptations": [
     {
       "source": "Original fictional LoL BP/player statistics and narrative recap",
-      "candidate": "VALORANT review uses actual model reasons, simulated map winners, and mathematical conditional series probabilities. Missing official player/BP details stay explicit. Rich fictional player/story parity remains unresolved, not waived."
+      "candidate": "User 2026-10-15 now explicitly authorizes fictional AI BP, player scores and match stories, clearly labelled and separate from official facts. C8 implementation is pending after the user-authorized first usable release."
     }
   ]
 }

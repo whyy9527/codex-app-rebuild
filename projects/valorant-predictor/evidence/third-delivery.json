@@ -1,0 +1,149 @@
+{
+  "created_at": "2026-10-15T14:24:57.673558+00:00",
+  "source_version": "43482999941120-v26695",
+  "scope": "User-authorized first usable release before continuing C8 fictional BP/player/story work",
+  "runtime_sha256": {
+    "app.js": "6d8fc0f6c7460627aaca6c0316e0888f68af4b2c1c9eb2d614f64de38c99a865",
+    "assets/fonts/Anton-Regular.ttf": "a4ba3a92350ebb031da0cb47630ac49eb265082ca1bc0450442f4a83ab947cab",
+    "assets/fonts/JetBrainsMono.ttf": "48715a42ec242c21e9f02692891e147d022299a52e48d5e413e1a942193ffeda",
+    "assets/fonts/MiSans-LICENSE.pdf": "4a93a27cd2bd81b3b5ecfd0a853144a876fa26938a93a68443c67d74172fcb86",
+    "assets/fonts/MiSans-Regular.woff2": "d704c1a932c0bd7e8a071d276cd81c0ed0c9fecfa26ac234f4bed0559fe1cb2d",
+    "assets/fonts/OPPO-Sans-4.0.ttf": "6c7d5864c661516e1f400d9f21e4297f2e2a0719909691e29607cc4ef484a9f4",
+    "assets/fonts/OPPO-Sans-LICENSE.txt": "ccd07c15f2ccb1a9a25f4894a0ab7b6a17499beca435d2946f43ee26c640ebb6",
+    "assets/fonts/anton-OFL.txt": "9267baca92b7a7ce9db6dd9e6cc32c9fe3ddf1ac96e421d5f87c5746b9089d6a",
+    "assets/fonts/jetbrainsmono-OFL.txt": "b2fe5e8987594e9ffd1d2ca52a2f5d73eb8335243893c5d6254b5ad69269591d",
+    "data/assets.json": "59103273b3982f672d4ecf8c605cd8ad9ada17da606db78ea29dc71f568c2a44",
+    "data/deepseek-forecast.json": "2ace0e1cd7b3834f89de520660f8e3e313551429de5e59429746b9d1fcf97fbd",
+    "data/event.json": "46c12e54f2c34bb12db6fd76e9e29360c0c6eb7b7f3097cc06e833a81a20db82",
+    "data/font-source.json": "711983247f4a71b4545ebad7446c32bbca0e68322c4f3978d0802b233fa5b119",
+    "data/gpt-6.1-sol-forecast.json": "260a0a02b9daf4d1caf7140f4091e9dfaf45aef88e47f8acf77108cbdb316d46",
+    "data/model-availability.json": "f5a0917b304e02bcb7abb8bf519c6ab58353c8abc21cfe5ea066949e678b2ccf",
+    "data/model-forecasts.json": "985c7f46f38ff5771b437bb5aec2628f8e680ce3534004f1d0388e47f17ab501",
+    "engine.mjs": "f6368585e3ae737626f222bbc4887efd5f0ddcda04999186d387b976fd143c01",
+    "index.html": "05951326447ca17fc1af451a3cda6a142969b17822a6855f5411a65e91bd2988",
+    "style.css": "e3eebf5c201fc6a1545676385f3e733da28d6a661a6f3fd14b905d46a09237c9"
+  },
+  "suites": {
+    "ranking": {
+      "receipt": "artifacts/valorant-prepublish-ranking-check/comparison.json",
+      "sha256": "b69f6187864d0b8fdad5ca63d8404b02ae90c58c2ad32b9361953896cff23905",
+      "status": "pass",
+      "passed": 23,
+      "total": 23
+    },
+    "review": {
+      "receipt": "artifacts/valorant-prepublish-review-check/comparison.json",
+      "sha256": "d2194f90814e75c75dadb78758a8a27ffd71eb20132881d361adb10be3b2d9be",
+      "status": "pass",
+      "passed": 33,
+      "total": 33
+    },
+    "mobile": {
+      "receipt": "artifacts/valorant-prepublish-mobile-check/comparison.json",
+      "sha256": "f5c782434aa2a7fbaf18e797404f5cd44719b36972f88c46e019dc6615d47e5c",
+      "status": "pass",
+      "passed": 99,
+      "total": 99
+    },
+    "layout": {
+      "receipt": "artifacts/valorant-prepublish-layout-check/comparison.json",
+      "sha256": "b369f2a9fc71bf20da3fdec04972734847de2aac5efc84a7e755211be0c44c73",
+      "status": "pass",
+      "passed": 168,
+      "total": 168
+    },
+    "audio-pick": {
+      "receipt": "artifacts/valorant-prepublish-audio-check/comparison.json",
+      "sha256": "0d927f2f4e2abd0239ede8376a89a91033b181a5e6b936d0ffdbd470cae67d3a",
+      "status": "pass",
+      "passed": 58,
+      "total": 58
+    },
+    "audio-fill": {
+      "receipt": "artifacts/valorant-audio-fill-verification/comparison.json",
+      "sha256": "1678a1b8ee694d51ae3a02a4c7e84c740863dd3a98264e7a4a3563b542bb9480",
+      "status": "pass",
+      "passed": 20,
+      "total": 20
+    },
+    "audio-save": {
+      "receipt": "artifacts/valorant-audio-save-complete-verification/comparison.json",
+      "sha256": "22d3370433b689957755b657318ae246f964dbd06ed52a5653fb5c8c2a786b0f",
+      "status": "pass",
+      "passed": 20,
+      "total": 20
+    },
+    "ticker": {
+      "receipt": "artifacts/valorant-ticker-verification/comparison.json",
+      "sha256": "90ea552bd07358e7be1de38b8ef2d82d8c271557dd06610b2bb9462e2cfd8670",
+      "status": "pass",
+      "passed": 19,
+      "total": 19
+    },
+    "comparison": {
+      "receipt": "artifacts/valorant-third-final-comparison-verification/comparison.json",
+      "sha256": "5de83350f61f1f10b6fd74257764034d46505efc5344a0d7493b4f2ff3f0d451",
+      "status": "pass",
+      "passed": 97,
+      "total": 97
+    },
+    "navigation-fonts": {
+      "receipt": "artifacts/valorant-third-final-typography-verification/comparison.json",
+      "sha256": "eb64c3abe8b45521c1d6d1d75cd915e475c7c88897d3b985d676f7856d1ca2fc",
+      "status": "pass",
+      "passed": 43,
+      "total": 43
+    },
+    "basic": {
+      "receipt": "artifacts/valorant-prepublish-base-check/comparison.json",
+      "sha256": "88e5e02d49f8451e39b2a261460df8f969bc1a59c48b2eca2990bebb0ba02e62",
+      "status": "incomplete",
+      "counts": {
+        "pass": 29,
+        "fail": 0,
+        "unavailable": 0,
+        "not_run": 3
+      },
+      "scope": "29 implemented core requirements pass; full replication items remain explicit and do not gate the newly authorized first usable release."
+    }
+  },
+  "publication": {
+    "target": "https://valorant.xinxiayiyan.com/",
+    "status": "not_run"
+  },
+  "remaining": [
+    "C8 fictional BP, player scores and game stories are explicitly authorized and still pending.",
+    "Six model channels have no verified matching usable channel; remain pending per user confirmation.",
+    "Source sticky OOPIF pointer activation/hover were not established; keyboard workflow observed and candidate native pointer/hover verified.",
+    "Original LoL and official VALORANT card-art composition differ; no pixel-identity claim.",
+    "Fresh restored audio first event measured 7423 nonzero PCM16 samples versus source 7678; other events and earlier paired captures were 7678. Continuous measurements retained; no all-cue parity claim.",
+    "A ranking run emitted mediaRuntime is not defined with no matching project symbol. The failure is retained; a diagnostic rerun and all current acceptance facts passed without page errors. Root cause not established."
+  ],
+  "checks": {
+    "repository_tests": {
+      "log": "artifacts/valorant-prepublish-unittest.log",
+      "tests": 111,
+      "skipped": 8,
+      "status": "pass"
+    },
+    "engine_tests": {
+      "tests": 7,
+      "status": "pass"
+    },
+    "javascript_and_python_syntax": "pass",
+    "swift_compile": "pass",
+    "actual_compiled_audio_collector_sha256": "46a4c2818cee95d96831b112a56cd29c75229bc96a2fba408b3eabc3e4157ffe",
+    "method_preflight": "connected; not product acceptance"
+  },
+  "rsi_mobile": {
+    "config": "rsi/mobile-config.json",
+    "pool": "artifacts/valorant-rsi-mobile-redeployed/iteration-1/collected-pool.json",
+    "evaluation": "artifacts/valorant-rsi-mobile-revised/evaluation.json",
+    "scores": [
+      -0.05,
+      0.325
+    ],
+    "selected_version": 1,
+    "scope": "Discovery efficiency over four frozen mobile journeys, not product parity"
+  }
+}

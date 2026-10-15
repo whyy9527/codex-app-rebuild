@@ -107,20 +107,26 @@
       "id": "visual-full-frame",
       "state": "home",
       "kind": "pending",
-      "description": "Detailed full-page layout/art/motion evaluation remains open. Six navigation items have a separate exact rendered-font/metric comparison; that does not prove whole-frame parity.",
+      "description": "Shared desktop layout/typography and mobile metrics have independent passing suites. Whole-image pixel identity is not claimed: VALORANT content and official card art replace the original LoL artwork. Rich simulated BP/player/story implementation is still pending the user’s new C8 request.",
       "evidence": [
-        "artifacts/valorant-reference-keyboard-neutral/0000-step.json"
+        "artifacts/valorant-reference-keyboard-neutral/0000-step.json",
+        "artifacts/valorant-prepublish-layout/observed.json",
+        "artifacts/valorant-prepublish-layout-check/comparison.json",
+        "artifacts/valorant-prepublish-mobile-check/comparison.json"
       ]
     },
     {
       "id": "app-audio",
       "state": "home",
       "kind": "pending",
-      "description": "PID-filtered capture was attempted with real in-recording clicks. Both source and candidate audible captures contained only zero signal; output attribution/transport is unresolved. Silence cannot prove sound equality or effective mute.",
+      "description": "Real explicit-owned-process output captures verify pick sound, sampled mute/restoration and the autofill/save cues via independent comparators. Continuous waveform measurements and transport anomalies are retained; this generic frontend contract does not certify the entire source cue catalogue.",
       "evidence": [
         "artifacts/valorant-reference-keyboard-neutral/0000-step.json",
         "artifacts/valorant-audio-reference/observed.json",
-        "artifacts/valorant-audio-candidate/observed.json"
+        "artifacts/valorant-audio-candidate/observed.json",
+        "artifacts/valorant-prepublish-audio-check/comparison.json",
+        "artifacts/valorant-audio-fill-verification/comparison.json",
+        "artifacts/valorant-audio-save-complete-verification/comparison.json"
       ]
     }
   ]

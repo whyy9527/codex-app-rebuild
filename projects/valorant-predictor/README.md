@@ -10,7 +10,7 @@ npm run build
 python3 -m http.server 5173 --bind 127.0.0.1 --directory dist
 ```
 
-打开 `http://127.0.0.1:5173/`。这是本地预览，未部署到外部站点。
+打开 `http://127.0.0.1:5173/`。用户已确认独立发布目标 `https://valorant.xinxiayiyan.com/`；当前发布回执见 [STATUS.md](STATUS.md)。
 
 更新官方数据并重新构建：
 
@@ -27,3 +27,5 @@ npm run build
 项目方法与命令入口为 [rebuild.json](rebuild.json)，素材和来源见
 [ASSET_NOTICES.md](ASSET_NOTICES.md)。浏览器验收的细节由
 [contracts/scenarios.json](contracts/scenarios.json) 连接。
+
+发布流程与独立站点恢复说明见 [deploy/README.md](deploy/README.md)。

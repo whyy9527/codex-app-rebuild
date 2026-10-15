@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "seed": "projects/valorant-predictor/rsi/seed",
+  "root_observation": {
+    "source": "Live source mobile preparation at 390x844 outer / 320x832 content",
+    "restoration": "Fresh local context, no remote reset",
+    "remaining": [
+      "mobile-home",
+      "mobile-model",
+      "mobile-pickem",
+      "mobile-review"
+    ],
+    "protocol_change": "Mobile content viewport, rendered readiness and target journeys differ; new frozen pool. All imported source-capture dependencies included."
+  },
+  "score_semantics": "Fraction of four distinct mobile journeys with complete browser receipts and the observed content viewport. Not product parity or acceptance.",
+  "initial_policy": "projects/valorant-predictor/rsi/policy.py",
+  "fixed_inputs": [
+    "projects/valorant-predictor/contracts/mobile-probes.json",
+    "projects/valorant-predictor/scripts/mobile_capture.py",
+    "projects/valorant-predictor/scripts/browser_evidence.py",
+    "projects/valorant-predictor/rsi/mobile-worker.py",
+    "runtime/browser.py",
+    "capabilities/rebuild/browser.py"
+  ],
+  "agent": [
+    "python3",
+    "projects/valorant-predictor/rsi/mobile-worker.py",
+    "agent"
+  ],
+  "evaluator": [
+    "python3",
+    "projects/valorant-predictor/rsi/mobile-worker.py",
+    "evaluator"
+  ],
+  "timeout_seconds": 80,
+  "workers": 1,
+  "online_rounds": 4,
+  "replay_rounds": 4,
+  "versions": 2,
+  "parallelism_penalty": 0.05
+}

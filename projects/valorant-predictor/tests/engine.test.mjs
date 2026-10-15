@@ -4,6 +4,7 @@ import { readFileSync } from "node:fs";
 import {
   seriesDistribution,
   seriesProbability,
+  finalsProbabilities,
   mapProbability,
   validScore,
   validatePick,
@@ -28,6 +29,18 @@ test("BO5 exact distribution conserves probability and swaps teams", () => {
   }
   assert.equal(seriesProbability(0.5), 0.5);
   assert.throws(() => seriesProbability(NaN));
+});
+test("conditional championship tree accounts for lower-team elimination", () => {
+  // Fair teams: the upper finalist needs one win, either lower team needs two.
+  assert.deepEqual(finalsProbabilities(.5, .5, .5), [.5, .25, .25]);
+  assert.deepEqual(finalsProbabilities(1, 0, 1), [0, 1, 0]);
+  assert.deepEqual(finalsProbabilities(0, 0, 1), [1, 0, 0]);
+  for (const p of [0, .17, .5, .81, 1]) {
+    const values = finalsProbabilities(p, .63, .42);
+    assert.ok(Math.abs(values.reduce((a, b) => a + b, 0) - 1) < 1e-12);
+    assert.ok(values.every((v) => v >= 0 && v <= 1));
+  }
+  assert.throws(() => finalsProbabilities(null, .5, .5));
 });
 test("official snapshot retains two unique BO5 targets and no future results", () => {
   assert.deepEqual(

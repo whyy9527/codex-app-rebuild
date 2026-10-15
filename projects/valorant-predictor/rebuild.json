@@ -3,14 +3,16 @@
   "name": "VALORANT 决赛预测器",
   "source": "https://www.bilibili.com/toy/LkvCZhw12wgT2Pqx/index.html；原版为体验与交互参考，赛事内容按用户要求改为瓦洛兰特。",
   "target": "响应式中文 Web 应用；现有仓库内独立项目，可本地启动。",
-  "objective": "复刻指定 Bilibili toy 的核心预测体验、布局与交互，改为 VALORANT；只预测 2026 年 10 月 17 日败者组决赛和 10 月 18 日总决赛。优先拉取无畏契约官网/官方赛事项目数据，可辅以有来源的 GitHub 数据；未确定对阵保持待定，不编造比赛、选手统计或预测概率。",
+  "objective": "复刻指定 Bilibili toy 的核心预测体验、布局与交互，改为 VALORANT；只预测 2026 年 10 月 17 日败者组决赛和 10 月 18 日总决赛。优先拉取无畏契约官网/官方赛事项目数据，可辅以有来源的 GitHub 数据；未确定对阵保持待定。真实模型概率不得冒名或编造；用户 2026-10-15 新增允许明确标注为虚构的 AI 比赛剧情、BP 与选手评分，必须与官方事实分开。先发布当前可用版，再继续这部分复刻。",
   "completion": [
     "C1 观察原版完整主要旅程，记录布局、字体、素材、控件、动效、声音及持久化；用户指定的游戏与两场范围差异单独记录。",
     "C2 核实两场赛事、日期、赛制、对阵及数据来源，交付可复跑数据获取入口、来源和更新时间；未确定对阵正确展示晋级来源。",
     "C3 实现仅含这两场比赛的 VALORANT 预测完整主旅程，预测规则可解释，输入反馈、结果、重置及原版实际发现的持久化与移动端体验通过验证。",
     "C4 按 workflows/rebuild/WORKFLOW.md 完成真实 RSI collect、完整池策略 replay、胜出策略再 collect，并将发现接入共同业务与前端 E2E。",
     "C5 构建并实际浏览器验收原版与候选，保留证据和需求级 pass/fail/not_run/unavailable；本地预览入口可用，完成相称检查、任务文件提交推送。",
-    "C6 保留原版 8 个模型频道；有可用的对应模型渠道才运行，未运行频道明确待预测，不以其他模型或脚本输出冒名替代（用户 2026-10-15 确认）。"
+    "C6 保留原版 8 个模型频道；有可用的对应模型渠道才运行，未运行频道明确待预测，不以其他模型或脚本输出冒名替代（用户 2026-10-15 确认）。",
+    "C7 发布到用户确认的独立站点 https://valorant.xinxiayiyan.com；核验源站、公网 HTTPS、发布产物摘要与共享服务健康，保留恢复资料，不覆盖现有公司官网。用户 2026-10-15 最新修订：先发布当前可用版本，再继续完整复刻。",
+    "C8 用户 2026-10-15 明确选择：另加明确标注为虚构的 AI 比赛剧情与选手评分，并补充 BP、逐图回看和选手榜。使用真实运行模型生成的内容，不冒充官方数据；公共页面与分享内容均清楚区分虚构模拟。此修订替代旧目标中对一切模拟选手统计的笼统禁止，官方事实仍不得编造。"
   ],
   "inputs": {
     "rsi_config": "projects/valorant-predictor/rsi/config.json",
@@ -21,7 +23,10 @@
     "case_status": "projects/valorant-predictor/STATUS.md",
     "rsi_deep_config": "projects/valorant-predictor/rsi/deep-config.json",
     "rsi_deep_pool": "artifacts/valorant-rsi-deep-redeployed/iteration-1/collected-pool.json",
-    "rsi_deep_evaluation": "artifacts/valorant-rsi-deep-revised/evaluation.json"
+    "rsi_deep_evaluation": "artifacts/valorant-rsi-deep-revised/evaluation.json",
+    "rsi_mobile_config": "projects/valorant-predictor/rsi/mobile-config.json",
+    "rsi_mobile_pool": "artifacts/valorant-rsi-mobile-redeployed/iteration-1/collected-pool.json",
+    "rsi_mobile_evaluation": "artifacts/valorant-rsi-mobile-revised/evaluation.json"
   },
   "commands": {
     "rsi_collect": [
@@ -144,7 +149,11 @@
       "--mode",
       "candidate",
       "--out",
-      "{out}"
+      "{out}",
+      "--collector",
+      "artifacts/capture-owned-process-audio",
+      "--warmup-audio",
+      "--inspect-processes"
     ],
     "reference_audio": [
       "python3",
@@ -152,7 +161,11 @@
       "--mode",
       "reference",
       "--out",
-      "{out}"
+      "{out}",
+      "--collector",
+      "artifacts/capture-owned-process-audio",
+      "--warmup-audio",
+      "--inspect-processes"
     ],
     "rsi_deep_collect": [
       "python3",
@@ -179,6 +192,128 @@
       "{observed}",
       "--out",
       "{out}"
+    ],
+    "replay_layout": [
+      "python3",
+      "projects/valorant-predictor/scripts/qa_layout.py",
+      "--out",
+      "{out}"
+    ],
+    "replay_comparison": [
+      "python3",
+      "projects/valorant-predictor/scripts/qa_comparison.py",
+      "--out",
+      "{out}"
+    ],
+    "compare_layout": [
+      "python3",
+      "projects/valorant-predictor/scripts/compare_layout.py",
+      "--observed",
+      "{observed}",
+      "--out",
+      "{out}"
+    ],
+    "compare_comparison": [
+      "python3",
+      "projects/valorant-predictor/scripts/compare_comparison.py",
+      "--observed",
+      "{observed}",
+      "--out",
+      "{out}"
+    ],
+    "replay_mobile": [
+      "python3",
+      "projects/valorant-predictor/scripts/qa_mobile.py",
+      "--mode",
+      "candidate",
+      "--out",
+      "{out}"
+    ],
+    "reference_mobile": [
+      "python3",
+      "projects/valorant-predictor/scripts/qa_mobile.py",
+      "--mode",
+      "reference",
+      "--out",
+      "{out}"
+    ],
+    "replay_ticker": [
+      "python3",
+      "projects/valorant-predictor/scripts/qa_ticker.py",
+      "--mode",
+      "candidate",
+      "--out",
+      "{out}"
+    ],
+    "reference_ticker": [
+      "python3",
+      "projects/valorant-predictor/scripts/qa_ticker.py",
+      "--mode",
+      "reference",
+      "--out",
+      "{out}"
+    ],
+    "compare_mobile": [
+      "python3",
+      "projects/valorant-predictor/scripts/compare_mobile.py",
+      "--observed",
+      "{observed}",
+      "--reference",
+      "artifacts/valorant-mobile-reference-journeys/observed.json",
+      "--out",
+      "{out}"
+    ],
+    "compare_ticker": [
+      "python3",
+      "projects/valorant-predictor/scripts/compare_ticker.py",
+      "--observed",
+      "{observed}",
+      "--reference",
+      "artifacts/valorant-ticker-reference-complete/observed.json",
+      "--out",
+      "{out}"
+    ],
+    "compare_audio": [
+      "python3",
+      "projects/valorant-predictor/scripts/compare_audio.py",
+      "--observed",
+      "{observed}",
+      "--reference",
+      "artifacts/valorant-audio-reference-process-tap",
+      "--out",
+      "{out}"
+    ],
+    "rsi_mobile_collect": [
+      "python3",
+      "-m",
+      "workflows.rebuild.dream",
+      "collect",
+      "--workspace",
+      ".",
+      "--config",
+      "projects/valorant-predictor/rsi/mobile-config.json",
+      "--out",
+      "{out}"
+    ],
+    "rsi_mobile_replay": [
+      "python3",
+      "-m",
+      "workflows.rebuild.dream",
+      "replay",
+      "--workspace",
+      ".",
+      "--config",
+      "projects/valorant-predictor/rsi/mobile-config.json",
+      "--pool",
+      "{observed}",
+      "--out",
+      "{out}"
+    ],
+    "publish": [
+      "python3",
+      "projects/valorant-predictor/scripts/deploy.py",
+      "--out",
+      "{out}"
     ]
   },
   "model_scope": {
@@ -194,5 +329,10 @@
       "MiMo V2.6 Pro"
     ],
     "availability_rule": "Only actual matching model outputs are published. Unavailable models remain pending; current-session analysis must not be attributed to an unverified model identity."
+  },
+  "publication": {
+    "target": "https://valorant.xinxiayiyan.com",
+    "authorization": "User explicitly selected independent domain and then requested first usable release before continuing on 2026-10-15",
+    "separation": "Own static container, proxy file, certificate and renewal timer; existing company site preserved"
   }
 }

@@ -1,0 +1,24 @@
+name: valorant-predictor
+services:
+  web:
+    image: goharbor/nginx-photon:v2.10.0
+    pull_policy: never
+    entrypoint: ["nginx"]
+    command: ["-c", "/etc/nginx/valorant.conf", "-g", "daemon off;"]
+    container_name: valorant-predictor
+    volumes:
+      - ./current:/srv:ro
+      - ./static.nginx.conf:/etc/nginx/valorant.conf:ro
+    restart: unless-stopped
+    mem_limit: 64m
+    cpus: 0.25
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://127.0.0.1:8080/"]
+      interval: 15s
+      timeout: 3s
+      retries: 3
+    networks: [edge]
+networks:
+  edge:
+    external: true
+    name: nginx-proxy-manage_default

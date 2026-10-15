@@ -1,0 +1,10 @@
+[Unit]
+Description=Check VALORANT predictor certificate daily
+
+[Timer]
+OnCalendar=*-*-* 05:40:00
+RandomizedDelaySec=30m
+Persistent=true
+
+[Install]
+WantedBy=timers.target
