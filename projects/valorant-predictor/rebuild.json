@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "name": "VALORANT 决赛预测器",
+  "source": "https://www.bilibili.com/toy/LkvCZhw12wgT2Pqx/index.html；原版为体验与交互参考，赛事内容按用户要求改为瓦洛兰特。",
+  "target": "响应式中文 Web 应用；现有仓库内独立项目，可本地启动。",
+  "objective": "复刻指定 Bilibili toy 的核心预测体验、布局与交互，改为 VALORANT；只预测 2026 年 10 月 17 日败者组决赛和 10 月 18 日总决赛。优先拉取无畏契约官网/官方赛事项目数据，可辅以有来源的 GitHub 数据；未确定对阵保持待定，不编造比赛、选手统计或预测概率。",
+  "completion": [
+    "C1 观察原版完整主要旅程，记录布局、字体、素材、控件、动效、声音及持久化；用户指定的游戏与两场范围差异单独记录。",
+    "C2 核实两场赛事、日期、赛制、对阵及数据来源，交付可复跑数据获取入口、来源和更新时间；未确定对阵正确展示晋级来源。",
+    "C3 实现仅含这两场比赛的 VALORANT 预测完整主旅程，预测规则可解释，输入反馈、结果、重置及原版实际发现的持久化与移动端体验通过验证。",
+    "C4 按 workflows/rebuild/WORKFLOW.md 完成真实 RSI collect、完整池策略 replay、胜出策略再 collect，并将发现接入共同业务与前端 E2E。",
+    "C5 构建并实际浏览器验收原版与候选，保留证据和需求级 pass/fail/not_run/unavailable；本地预览入口可用，完成相称检查、任务文件提交推送。",
+    "C6 保留原版 8 个模型频道；有可用的对应模型渠道才运行，未运行频道明确待预测，不以其他模型或脚本输出冒名替代（用户 2026-10-15 确认）。"
+  ],
+  "inputs": {
+    "rsi_config": "projects/valorant-predictor/rsi/config.json",
+    "rsi_pool": "artifacts/valorant-rsi-redeployed/iteration-1/collected-pool.json",
+    "rsi_evaluation": "artifacts/valorant-rsi-revised/evaluation.json",
+    "fixture": "projects/valorant-predictor/contracts/scenarios.json",
+    "frontend_contract": "projects/valorant-predictor/contracts/frontend.json",
+    "case_status": "projects/valorant-predictor/STATUS.md"
+  },
+  "commands": {
+    "rsi_collect": [
+      "python3",
+      "-m",
+      "workflows.rebuild.dream",
+      "collect",
+      "--workspace",
+      ".",
+      "--config",
+      "projects/valorant-predictor/rsi/config.json",
+      "--out",
+      "{out}"
+    ],
+    "rsi_replay": [
+      "python3",
+      "-m",
+      "workflows.rebuild.dream",
+      "replay",
+      "--workspace",
+      ".",
+      "--config",
+      "projects/valorant-predictor/rsi/config.json",
+      "--pool",
+      "{observed}",
+      "--out",
+      "{out}"
+    ],
+    "sync_data": [
+      "python3",
+      "projects/valorant-predictor/scripts/sync_data.py"
+    ],
+    "build": [
+      "python3",
+      "projects/valorant-predictor/scripts/build.py"
+    ],
+    "replay": [
+      "python3",
+      "projects/valorant-predictor/scripts/qa.py",
+      "--out",
+      "{out}"
+    ],
+    "reference_replay": [
+      "python3",
+      "projects/valorant-predictor/scripts/reference_qa.py",
+      "--out",
+      "{out}"
+    ],
+    "compare": [
+      "python3",
+      "projects/valorant-predictor/scripts/compare_qa.py",
+      "--observed",
+      "{observed}",
+      "--reference",
+      "artifacts/valorant-reference-final-first-delivery/observed.json",
+      "--out",
+      "{out}"
+    ]
+  },
+  "model_scope": {
+    "source": "User confirmation 2026-10-15: 保留原版 8 个模型，有可用渠道再运行",
+    "models": [
+      "Claude Opus 5.5",
+      "GPT-6.1 sol",
+      "Gemini 3.8",
+      "DeepSeek V4.1 Flash",
+      "Qwen3.8 Max",
+      "GLM-5.3",
+      "豆包",
+      "MiMo V2.6 Pro"
+    ],
+    "availability_rule": "Only actual matching model outputs are published. Unavailable models remain pending; current-session analysis must not be attributed to an unverified model identity."
+  }
+}

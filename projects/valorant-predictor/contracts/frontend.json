@@ -1,0 +1,125 @@
+{
+  "schema_version": 1,
+  "requirements": [
+    {
+      "id": "nav-1",
+      "state": "home",
+      "kind": "accessible_text",
+      "text": "首页",
+      "evidence": [
+        "artifacts/valorant-reference-parent-pointer/0000-step.json"
+      ],
+      "browser_capture": {
+        "reference": "artifacts/valorant-reference-parent-pointer/0000-step.json",
+        "required": [
+          "dom",
+          "text",
+          "screenshot"
+        ]
+      }
+    },
+    {
+      "id": "nav-2",
+      "state": "home",
+      "kind": "accessible_text",
+      "text": "数据对比",
+      "evidence": [
+        "artifacts/valorant-reference-parent-pointer/0000-step.json"
+      ],
+      "browser_capture": {
+        "reference": "artifacts/valorant-reference-parent-pointer/0000-step.json",
+        "required": [
+          "dom",
+          "text",
+          "screenshot"
+        ]
+      }
+    },
+    {
+      "id": "nav-3",
+      "state": "home",
+      "kind": "accessible_text",
+      "text": "战队",
+      "evidence": [
+        "artifacts/valorant-reference-parent-pointer/0000-step.json"
+      ],
+      "browser_capture": {
+        "reference": "artifacts/valorant-reference-parent-pointer/0000-step.json",
+        "required": [
+          "dom",
+          "text",
+          "screenshot"
+        ]
+      }
+    },
+    {
+      "id": "nav-4",
+      "state": "home",
+      "kind": "accessible_text",
+      "text": "我来预测",
+      "evidence": [
+        "artifacts/valorant-reference-parent-pointer/0000-step.json"
+      ],
+      "browser_capture": {
+        "reference": "artifacts/valorant-reference-parent-pointer/0000-step.json",
+        "required": [
+          "dom",
+          "text",
+          "screenshot"
+        ]
+      }
+    },
+    {
+      "id": "nav-5",
+      "state": "home",
+      "kind": "accessible_text",
+      "text": "谁最准",
+      "evidence": [
+        "artifacts/valorant-reference-parent-pointer/0000-step.json"
+      ],
+      "browser_capture": {
+        "reference": "artifacts/valorant-reference-parent-pointer/0000-step.json",
+        "required": [
+          "dom",
+          "text",
+          "screenshot"
+        ]
+      }
+    },
+    {
+      "id": "nav-6",
+      "state": "home",
+      "kind": "accessible_text",
+      "text": "AI 赛制介绍",
+      "evidence": [
+        "artifacts/valorant-reference-parent-pointer/0000-step.json"
+      ],
+      "browser_capture": {
+        "reference": "artifacts/valorant-reference-parent-pointer/0000-step.json",
+        "required": [
+          "dom",
+          "text",
+          "screenshot"
+        ]
+      }
+    },
+    {
+      "id": "visual-full-frame",
+      "state": "home",
+      "kind": "pending",
+      "description": "Detailed layout, font and whole-frame evaluation remains open. Domain/art transformations are explicit user scope, not a pixel pass.",
+      "evidence": [
+        "artifacts/valorant-reference-parent-pointer/0000-step.json"
+      ]
+    },
+    {
+      "id": "app-audio",
+      "state": "home",
+      "kind": "pending",
+      "description": "Actual application-output audio equality has not been measured. Mute persistence alone is insufficient.",
+      "evidence": [
+        "artifacts/valorant-reference-parent-pointer/0000-step.json"
+      ]
+    }
+  ]
+}

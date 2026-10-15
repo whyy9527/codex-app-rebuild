@@ -1,0 +1,115 @@
+{
+  "date": "2026-10-15",
+  "source_version": "43482999941120-v26695",
+  "source_url": "https://www.bilibili.com/toy/LkvCZhw12wgT2Pqx/index.html",
+  "candidate_url": "http://127.0.0.1:5173/",
+  "source_scope": "Original full LoL tournament",
+  "candidate_scope": "User: VALORANT Lower Final 2026-10-17 and Grand Final 2026-10-18 only",
+  "candidate_observed": "artifacts/valorant-qa-manifest-verified/observed.json",
+  "reference_observed": "artifacts/valorant-reference-final-first-delivery/observed.json",
+  "comparison": "artifacts/valorant-comparison-manifest-verified/comparison.json",
+  "behavior_counts": {
+    "pass": 29,
+    "fail": 0,
+    "unavailable": 0,
+    "not_run": 3
+  },
+  "frontend": {
+    "kind": "frontend_requirements",
+    "contract_digest": "9f8244b6864b1d8dc7ea2cce34b525223fd9d51e5f4b22b971ba193093915265",
+    "observation_digest": "550e60585819ac5b2a4bdabf40f48b172e43af9ad2e782e78acdeed740a26f5e",
+    "rows": [
+      {
+        "id": "nav-1",
+        "state": "home",
+        "status": "unavailable",
+        "reason": "browser preparation differs: hover"
+      },
+      {
+        "id": "nav-2",
+        "state": "home",
+        "status": "unavailable",
+        "reason": "browser preparation differs: hover"
+      },
+      {
+        "id": "nav-3",
+        "state": "home",
+        "status": "unavailable",
+        "reason": "browser preparation differs: hover"
+      },
+      {
+        "id": "nav-4",
+        "state": "home",
+        "status": "unavailable",
+        "reason": "browser preparation differs: hover"
+      },
+      {
+        "id": "nav-5",
+        "state": "home",
+        "status": "unavailable",
+        "reason": "browser preparation differs: hover"
+      },
+      {
+        "id": "nav-6",
+        "state": "home",
+        "status": "unavailable",
+        "reason": "browser preparation differs: hover"
+      },
+      {
+        "id": "visual-full-frame",
+        "state": "home",
+        "status": "not_run",
+        "reason": "Detailed layout, font and whole-frame evaluation remains open. Domain/art transformations are explicit user scope, not a pixel pass."
+      },
+      {
+        "id": "app-audio",
+        "state": "home",
+        "status": "not_run",
+        "reason": "Actual application-output audio equality has not been measured. Mute persistence alone is insufficient."
+      }
+    ],
+    "status": "fail"
+  },
+  "rsi": {
+    "initial_pool": "artifacts/valorant-rsi-initial/iteration-1/collected-pool.json",
+    "evaluation": "artifacts/valorant-rsi-revised/evaluation.json",
+    "deployed_pool": "artifacts/valorant-rsi-redeployed/iteration-1/collected-pool.json",
+    "selected_version": 1,
+    "scores": [
+      {
+        "version": 0,
+        "score": -0.05
+      },
+      {
+        "version": 1,
+        "score": 0.4708333333333334
+      }
+    ],
+    "product_acceptance": "not evaluated by RSI"
+  },
+  "model_outputs": [
+    "data/gpt-6.1-sol-forecast.json",
+    "data/deepseek-forecast.json"
+  ],
+  "validation": {
+    "project_engine_tests": {
+      "pass": 4
+    },
+    "browser": {
+      "facts": 32,
+      "page_errors": []
+    },
+    "repository_unit_tests": {
+      "pass": true,
+      "run": 111,
+      "skipped": 8
+    }
+  },
+  "remaining": [
+    "Full visual/font/geometry/motion comparison",
+    "Actual application-output audio comparison",
+    "Deep reference branches and unsupported official stats",
+    "Shared browser evidence gate currently unavailable due source iframe hover mismatch"
+  ],
+  "completion_claim": "Not complete; native Goal continues against rebuild.json completion criteria"
+}

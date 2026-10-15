@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "seed": "projects/valorant-predictor/rsi/seed",
+  "root_observation": {
+    "source": "live Bilibili Toy content iframe",
+    "restoration": "Fresh isolated local context; remote CDN/server state is not reset",
+    "remaining": [
+      "/",
+      "/compare",
+      "/teams",
+      "/pickem",
+      "/leaderboard",
+      "/method",
+      "/about"
+    ]
+  },
+  "score_semantics": "Fraction of seven distinct primary navigation surfaces with independently observed loaded live content. Not product acceptance, visual quality, or complete exploration. Sampling drift is retained separately.",
+  "initial_policy": "projects/valorant-predictor/rsi/policy.py",
+  "fixed_inputs": [
+    "projects/valorant-predictor/rsi/worker.py",
+    "projects/valorant-predictor/scripts/browser_evidence.py",
+    "runtime/browser.py",
+    "capabilities/rebuild/browser.py"
+  ],
+  "agent": [
+    "python3",
+    "projects/valorant-predictor/rsi/worker.py",
+    "agent"
+  ],
+  "evaluator": [
+    "python3",
+    "projects/valorant-predictor/rsi/worker.py",
+    "evaluator"
+  ],
+  "timeout_seconds": 80,
+  "workers": 1,
+  "online_rounds": 8,
+  "replay_rounds": 8,
+  "versions": 2,
+  "parallelism_penalty": 0.05
+}

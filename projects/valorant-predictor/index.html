@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#0c102a" />
+    <title>VALORANT AI 决赛预测大赛</title>
+    <meta
+      name="description"
+      content="2026 无畏契约上海全球冠军赛，10 月 17 日败者组决赛与 18 日总决赛。官方赛事数据、AI 条件预测与我的预测。"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">跳到主要内容</a>
+    <header class="topbar">
+      <div class="wrap topbar-in">
+        <a class="brand" href="#/"
+          ><span class="mark">V</span
+          ><span>VALORANT <b>AI 预测大赛</b></span></a
+        >
+        <nav class="mainnav" aria-label="主导航">
+          <a href="#/">首页</a><a href="#/compare">数据对比</a
+          ><a href="#/teams">战队</a><a href="#/pickem">我来预测</a
+          ><a href="#/leaderboard">谁最准</a><a href="#/method">AI 赛制介绍</a>
+        </nav>
+        <a class="live-badge" href="#/about"
+          ><i></i><span id="countdown">官方数据快照</span></a
+        >
+      </div>
+    </header>
+    <main id="main-content" tabindex="-1">
+      <div class="wrap loading">
+        <h1>正在加载官方赛事数据</h1>
+        <p>上海全球冠军赛 · 最后两场</p>
+      </div>
+    </main>
+    <footer class="wrap">
+      <p>
+        非官方制作。预测、模拟与真实赛果分别标识。VALORANT
+        与战队标志、英雄图像的权利归各权利人。
+      </p>
+      <a href="#/about">内容、数据与素材说明</a>
+    </footer>
+    <div id="toast" role="status" aria-live="polite"></div>
+    <dialog id="poster">
+      <button id="close-poster" aria-label="关闭预测海报">×</button>
+      <div id="poster-content"></div>
+      <p>预测已保存在当前浏览器</p>
+      <button id="download-poster" class="btn">下载预测海报</button>
+    </dialog>
+    <script type="module" src="app.js"></script>
+  </body>
+</html>

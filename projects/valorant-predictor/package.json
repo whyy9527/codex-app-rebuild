@@ -1,0 +1,13 @@
+{
+  "name": "valorant-finals-predictor",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "python3 -m http.server 5173 --bind 127.0.0.1 --directory .",
+    "check": "node --check app.js && node --check engine.mjs",
+    "test": "node --test tests/engine.test.mjs",
+    "sync-data": "python3 scripts/sync_data.py",
+    "build": "python3 scripts/build.py"
+  }
+}

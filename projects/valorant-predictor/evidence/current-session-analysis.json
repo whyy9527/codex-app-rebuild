@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "model_id": "codex-session",
+  "model_name": "Codex · 当前会话",
+  "kind": "llm_analysis",
+  "created_at": "2026-10-15T11:00:00Z",
+  "source_sha256": "614bda2290a8c567e1a32de4e1cabead90a08ed42b85a62aea93e4424dceef69",
+  "data_cutoff": "2026-10-11T12:00:00Z",
+  "scope": [
+    "115576361461208325",
+    "115576361461208331"
+  ],
+  "probability_unit": "single_map",
+  "calibration": "主观赛前判断，未校准；仅用于两场 BO5 的条件预测。没有地图 BP、选手 ACS 和当前阵容数据。",
+  "pairs": [
+    {
+      "teams": [
+        "VIT",
+        "LOUD"
+      ],
+      "p_first": 0.63,
+      "reason": "VIT 本届 4 胜 0 负、地图 8–2；小组赛曾 2–0 LOUD。对手仅限本届样本，BO5 地图池仍未知。"
+    },
+    {
+      "teams": [
+        "VIT",
+        "G2"
+      ],
+      "p_first": 0.66,
+      "reason": "VIT 本届淘汰赛曾 2–0 G2，整体 8–2 的地图表现也优于 G2 的 9–5；一次交手不能排除调整。"
+    },
+    {
+      "teams": [
+        "VIT",
+        "100T"
+      ],
+      "p_first": 0.59,
+      "reason": "VIT 本届保持全胜；100T 在败者组连续淘汰 NS 和 NRG，近期状态有上升迹象。双方本届尚未交手，轻度倾向 VIT。"
+    },
+    {
+      "teams": [
+        "LOUD",
+        "G2"
+      ],
+      "p_first": 0.55,
+      "reason": "LOUD 地图 8–3，G2 为 9–5。仅按本届表现轻度倾向 LOUD；两队本届未交手，地区与地图池影响未知。"
+    },
+    {
+      "teams": [
+        "LOUD",
+        "100T"
+      ],
+      "p_first": 0.52,
+      "reason": "两队本届均 4 胜 1 负、地图 8–3。LOUD 走胜者组，100T 近期败者组连胜；资料不足以支持明显差距，接近五五开。"
+    },
+    {
+      "teams": [
+        "G2",
+        "100T"
+      ],
+      "p_first": 0.55,
+      "reason": "G2 在本届淘汰赛曾 2–0 100T；100T 随后两场均获胜。给 G2 小幅优势，避免用一次系列赛断言复赛。"
+    }
+  ]
+}

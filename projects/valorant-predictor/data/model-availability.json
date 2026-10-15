@@ -1,0 +1,41 @@
+{
+  "checked_at": "2026-10-15",
+  "models": [
+    {
+      "channel": "codex",
+      "model": "gpt-6.1-sol",
+      "status": "available",
+      "evidence": "gpt-6.1-sol-forecast.json",
+      "verification": "Codex startup header: model and reasoning effort"
+    },
+    {
+      "channel": "opus",
+      "model": "claude-opus-5-5",
+      "status": "unavailable",
+      "reason": "Installed Claude CLI returned Not logged in; no model output accepted"
+    },
+    {
+      "channels": [
+        "gemini",
+        "qwen",
+        "glm",
+        "mimo"
+      ],
+      "status": "not_run",
+      "reason": "No matching authenticated channel has yet been verified"
+    },
+    {
+      "channel": "deepseek",
+      "model": "deepseek-flash",
+      "status": "available",
+      "evidence": "deepseek-forecast.json",
+      "verification": "Provider response model deepseek-flash and provider catalog name DeepSeek-V4.1-Flash"
+    },
+    {
+      "channel": "doubao",
+      "model": "doubao-seed-2-1-pro-260915",
+      "status": "unavailable",
+      "reason": "Provider returned ModelNotOpen; model service is not activated for the existing account. No output accepted."
+    }
+  ]
+}

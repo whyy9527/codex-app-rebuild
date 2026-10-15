@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "source": "https://www.bilibili.com/toy/LkvCZhw12wgT2Pqx/index.html",
+  "source_version": "43482999941120-v26695",
+  "scope_changes": [
+    "User: VALORANT replaces LoL; only 2026-10-17 Lower Final and 2026-10-18 Grand Final are predicted.",
+    "User confirmation: keep original eight models, run only matching available channels; missing outputs remain pending.",
+    "Platform social actions are external to the local replica. The original poster follow gate remains an observed platform dependency, not a candidate login requirement."
+  ],
+  "scenarios": [
+    {"id":"home", "journey":"Open home, inspect all model channels and loaded art", "requirements":["six-primary-navigation","eight-models","loaded-visible-images","home-visual"]},
+    {"id":"player", "journey":"Next step, jump day, change speed, keyboard navigation, mute and reload", "requirements":["step-changes-simulation","date-changes-simulation","speed-controls","keyboard-next","mute-persists"]},
+    {"id":"pickem", "journey":"Choose winner, propagate to final, change lower winner, fill both predictions, save, reload, share and poster", "requirements":["downstream-winner","invalidates-dependent-pick","complete-prediction","save-reload","share-restore","poster-download"]},
+    {"id":"compare", "journey":"Open table, inspect distinct model probabilities and absent channels", "requirements":["independent-models","no-fabricated-output","bo5-scores"]},
+    {"id":"teams", "journey":"Open team and inspect official records; search teams", "requirements":["team-detail","source-records","search-empty-state"]},
+    {"id":"leaderboard", "journey":"Inspect actual-match waiting state before results", "requirements":["no-premature-scoring","official-match-scope"]},
+    {"id":"mobile", "journey":"Repeat home and personal prediction at 390x844", "requirements":["no-document-overflow","touchable-controls","mobile-visual"]}
+  ]
+}
