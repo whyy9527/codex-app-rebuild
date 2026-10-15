@@ -65,6 +65,27 @@
         148
       ],
       "interpretation": "All whole-viewport differences are confined to the animated live-badge dot phase. Full raw PNGs retained; no whole-image zero-difference claim or mask applied."
+    },
+    "public_after": {
+      "pass": 144,
+      "fail": 0,
+      "four_static_regions_rgb_difference": [
+        0,
+        0,
+        0
+      ],
+      "path": "projects/bilibili-toy/private/user-removal-mobile-public-result-1.json",
+      "unmasked_full_image_difference_bbox": [
+        54,
+        132,
+        70,
+        148
+      ],
+      "unmasked_rgb_mean": [
+        0.002590704647676162,
+        0.0007956021989005497,
+        0.0010394802598700649
+      ]
     }
   },
   "desktop": {
@@ -106,6 +127,16 @@
       ],
       "observed": "Original reference has 我来预测 hover background; candidate does not. Live badge dot phase also differs. Navigation preview images retained.",
       "interpretation": "Whole-header state preparation remains separate; business-area regression passes without changing pixel assertions."
+    },
+    "public_after": {
+      "pass": 135,
+      "fail": 0,
+      "business_rgb_difference": [
+        0,
+        0,
+        0
+      ],
+      "path": "projects/bilibili-toy/private/user-removal-desktop-public-result-1.json"
     }
   },
   "verification": {
@@ -120,12 +151,17 @@
       "Real parent-menu-only deletion attempt rejected",
       "Local endpoint scheme elision preserved; altered port/query rejected"
     ],
-    "diff_check": "passed"
+    "diff_check": "passed",
+    "public_https": "23 trusted TLS 1.3 checks passed: release identity, root/resources matched reviewed manifest hashes, eight world and representative game share entries GET/HEAD, unknown game404. Receipt: projects/bilibili-toy/private/shell-fix-public-http-1.json",
+    "public_ui": "Actual native Safari independent desktop1200×600 and mobile375×667 repeated PNGs passed the prepublication original contracts through project visual_compare/mobile_visual_compare commands.",
+    "deployment": "Dedicated systemd service active; existing landing and media application containers healthy; prior release retained.",
+    "cleanup": "Owned OSS transfer object and local/server transfer archives removed after public HTTPS and UI verification. Previous release db672b1c0da4-20261015T201308Z and rollback staging retained. Receipt: projects/bilibili-toy/private/deploy/922cd01b1016-20261015T215737Z/cleanup.json",
+    "service_memory_bytes": 24199168
   },
   "remaining": [
-    "Postpublication HTTPS and actual UI verification for this shell fix.",
     "Homepage and other full responsive layouts under the explicit requested-deletion reference.",
     "Desktop navigation hover preparation and live-badge phase/timing.",
     "Other series/story branches, chart hover, ranking drag, simulation boundaries, remaining audio/animation coverage."
-  ]
+  ],
+  "public_release": "922cd01b1016-20261015T215737Z"
 }
