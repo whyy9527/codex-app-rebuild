@@ -53,7 +53,9 @@
     "share_world_contract": "projects/bilibili-toy/private/share-world-contract-v1/contract.json",
     "historical_share_world_local_result": "projects/bilibili-toy/private/share-world-local-compare-1.json",
     "historical_share_game_public_result": "projects/bilibili-toy/private/share-game-public-compare-1.json",
-    "historical_share_world_public_result": "projects/bilibili-toy/private/share-world-public-compare-1.json"
+    "historical_share_world_public_result": "projects/bilibili-toy/private/share-world-public-compare-1.json",
+    "details_contract": "projects/bilibili-toy/private/details-contract-v1/contract.json",
+    "historical_details_public_result": "projects/bilibili-toy/private/details-public-compare-1.json"
   },
   "commands": {
     "rsi_collect": [
@@ -374,6 +376,19 @@
       ".",
       "--contract",
       "projects/bilibili-toy/private/share-world-contract-v1/contract.json",
+      "--observed",
+      "{observed}",
+      "--out",
+      "{out}"
+    ],
+    "details_compare": [
+      "python3",
+      "-m",
+      "capabilities.rebuild.frontend",
+      "--workspace",
+      ".",
+      "--contract",
+      "projects/bilibili-toy/private/details-contract-v1/contract.json",
       "--observed",
       "{observed}",
       "--out",

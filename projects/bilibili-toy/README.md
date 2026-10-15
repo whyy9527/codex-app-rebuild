@@ -199,6 +199,22 @@ node projects/bilibili-toy/tools/frame_entry.test.mjs
 分析实际 CUA 截图，先确认二维码完整可见。详情见
 `evidence/share-entries-2026-10-16.json`。
 
+比赛详情使用 `journeys.json#details` 和 `tools/details_native.mjs`。
+在 CUA 绑定 `installDetailsUI` 后调用 `prepare()`，再按协议的 `models`
+逐一调用 `model(model)`；每次输出新目录。驱动从实际赛程选择首场，
+展开全文并遍历实际各局链接，保留选中入口及动作清单。
+
+```sh
+node projects/bilibili-toy/tools/channel_evidence.mjs freeze <原版 observed.json> projects/bilibili-toy/private/details-contract-new details
+node projects/bilibili-toy/tools/channel_evidence.mjs observe <候选 observed.json> projects/bilibili-toy/private/details-facts-new.json details
+python3 -m workflows.rebuild.project run --workspace . --project projects/bilibili-toy/rebuild.json --command details_compare --observed <候选事实.json> --out projects/bilibili-toy/private/details-comparison-new.json
+node projects/bilibili-toy/tools/details_native.test.mjs
+```
+
+案例 ID 由实际原版八个模型的完整首场导航冻结；原版首场比分和局数不同，
+不要用固定四局或遗漏“小冷／爆冷”等标签的解析器缩小采集。结果与未覆盖项
+见 `evidence/details-2026-10-16.json`。
+
 用户后续指定的发布目标是 `https://s16.xinxiayiyan.com/`；完成条件修订见
 `rebuild.json`，用户后续要求先发布当前预览版；完整复刻验收继续。现有官网首页保留。
 

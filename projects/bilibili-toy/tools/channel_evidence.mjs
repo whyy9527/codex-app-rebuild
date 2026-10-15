@@ -82,7 +82,7 @@ function freeze(source,protocol) {
   return {schema_version:1,scope:protocol.scope,source_observation_sha256:source.raw_observation_sha256,requirements};
 }
 const [mode,observed,out,suite='channels']=process.argv.slice(2);
-if(!['freeze','observe'].includes(mode)||!observed||!out||!['channels','share_game','share_world'].includes(suite))throw Error('Usage: channel_evidence.mjs freeze|observe observed.json private-output [channels|share_game|share_world]');
+if(!['freeze','observe'].includes(mode)||!observed||!out||!['channels','share_game','share_world','details'].includes(suite))throw Error('Usage: channel_evidence.mjs freeze|observe observed.json private-output [channels|share_game|share_world|details]');
 const protocol=JSON.parse(await fs.readFile(path.join(project,'journeys.json'),'utf8'))[suite];
 const facts=await observe(observed,protocol);
 if(mode==='freeze') {

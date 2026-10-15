@@ -351,5 +351,118 @@
       "Open actual copied world URL; wait for player; pause if needed; collect world-open."
     ],
     "limits": "This probes the world-entry route and own retained state; other dedicated-channel subviews and full visuals remain separate."
+  },
+  "details": {
+    "scope": "All 8 AI models: actual first scheduled series, series full-text expansion, and each game in that series. Does not certify every remaining series or interactive chart hover.",
+    "driver": "tools/details_native.mjs installDetailsUI prepare/model; channel_evidence freeze/observe details",
+    "models": [
+      {
+        "id": "opus",
+        "label": "Claude Opus 5.5"
+      },
+      {
+        "id": "gpt",
+        "label": "GPT-6.1 sol"
+      },
+      {
+        "id": "gemini",
+        "label": "Gemini 3.8"
+      },
+      {
+        "id": "deepseek",
+        "label": "DeepSeek V4.1 Flash"
+      },
+      {
+        "id": "qwen",
+        "label": "Qwen3.8 Max"
+      },
+      {
+        "id": "glm",
+        "label": "GLM-5.3"
+      },
+      {
+        "id": "doubao",
+        "label": "豆包"
+      },
+      {
+        "id": "mimo",
+        "label": "MiMo V2.6 Pro"
+      }
+    ],
+    "capture": {
+      "content_rect_points": [
+        0,
+        104,
+        2648,
+        1562
+      ],
+      "backing_scale": 1,
+      "window_points": [
+        2648,
+        1666
+      ],
+      "measurement": "Complete ordinary Safari browser content below its observed 104-pixel toolbar, in unmodified native-export coordinates."
+    },
+    "preparation": "Same ordinary owned Safari private window, original complete Android share query or published root. Model selection, date and playback preparation reuse channel UI; enter series only by actual first schedule button.",
+    "steps": [
+      "Home, actual model channel, 赛程赛果; retain schedule AX; activate first actual series button.",
+      "Capture series-collapsed, activate 展开全文 ↓ and capture series-expanded.",
+      "Read all actual per-game links, activate each in order and collect game-N. No direct route or expected content injection."
+    ],
+    "limits": [
+      "Each model may have a different game count. Actual source navigation will define immutable case IDs before candidate replay.",
+      "Native full-page screenshots retain the user-authorized two UI deletions and layout differences as strict pixel diagnostics.",
+      "Expansion, chart hover, story branches and other series remain individually scoped; this batch does not claim complete Goal acceptance."
+    ],
+    "cases": [
+      "opus-series-collapsed",
+      "opus-series-expanded",
+      "opus-game-1",
+      "opus-game-2",
+      "opus-game-3",
+      "opus-game-4",
+      "gpt-series-collapsed",
+      "gpt-series-expanded",
+      "gpt-game-1",
+      "gpt-game-2",
+      "gpt-game-3",
+      "gpt-game-4",
+      "gemini-series-collapsed",
+      "gemini-series-expanded",
+      "gemini-game-1",
+      "gemini-game-2",
+      "gemini-game-3",
+      "gemini-game-4",
+      "deepseek-series-collapsed",
+      "deepseek-series-expanded",
+      "deepseek-game-1",
+      "deepseek-game-2",
+      "deepseek-game-3",
+      "deepseek-game-4",
+      "qwen-series-collapsed",
+      "qwen-series-expanded",
+      "qwen-game-1",
+      "qwen-game-2",
+      "qwen-game-3",
+      "glm-series-collapsed",
+      "glm-series-expanded",
+      "glm-game-1",
+      "glm-game-2",
+      "glm-game-3",
+      "glm-game-4",
+      "doubao-series-collapsed",
+      "doubao-series-expanded",
+      "doubao-game-1",
+      "doubao-game-2",
+      "doubao-game-3",
+      "doubao-game-4",
+      "mimo-series-collapsed",
+      "mimo-series-expanded",
+      "mimo-game-1",
+      "mimo-game-2",
+      "mimo-game-3",
+      "mimo-game-4"
+    ],
+    "case_source": "projects/bilibili-toy/private/details-source-3/observed.json and each model-actions.json; frozen before public replay"
   }
 }
