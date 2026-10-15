@@ -103,7 +103,7 @@ find /clouddream/nginx-proxy-manage/data/nginx/proxy_host -maxdepth 1 -type f -n
         config.write_text('[Credentials]\nlanguage=EN\nendpoint=' + OSS_ENDPOINT + '\naccessKeyID=' + profile['access_key_id'] + '\naccessKeySecret=' + profile['access_key_secret'] + '\n')
         config.chmod(0o600)
         def oss(*args):
-            result = subprocess.run(['aliyun', 'oss', *args, '-c', str(config)], capture_output=True, text=True)
+            result = subprocess.run(['aliyun', 'oss', *args, '-c', str(config), '-e', 'https://' + OSS_ENDPOINT], capture_output=True, text=True)
             if result.returncode:raise RuntimeError('Private artifact transport failed (details suppressed to protect signed URLs)')
             return result.stdout
         oss('cp', str(artifact), object_uri, '--acl', 'private')

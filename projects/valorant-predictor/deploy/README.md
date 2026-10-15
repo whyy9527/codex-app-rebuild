@@ -13,6 +13,8 @@ python3 projects/valorant-predictor/scripts/deploy.py --out artifacts/valorant-p
 profile `fenhezhishang`，凭证从本机 CLI 配置读取，不写入代码或公开产物。
 通过临时私有 OSS 对象传输已校验压缩包；签名 URL 不打印、不提交，成功后删除
 该对象。直接下载 GitHub 的准备探针曾遇到服务器 TLS 连接失败，原记录保留。
+`aliyun oss` 还需要显式 `-e` 指定存储桶区域端点；仅配置文件中的 endpoint
+曾返回区域不匹配的 403。显式端点已通过私有上传、签名下载与清理探针验证。
 
 所有上传、解压、校验日志及恢复记录位于本项目的 `/var/tmp/valorant-predictor-*`。
 首次上传前检查文件系统，拒绝 tmpfs/ramfs；不使用共享服务器的 `/tmp` 暂存大文件。
