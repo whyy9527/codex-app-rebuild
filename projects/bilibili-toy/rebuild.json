@@ -42,7 +42,9 @@
     "channel_contract": "projects/bilibili-toy/private/channel-contract-v1/contract.json",
     "historical_channel_public_result": "projects/bilibili-toy/private/channel-public-compare-1.json",
     "tournament_contract": "projects/bilibili-toy/private/tournament-contract-v3/contract.json",
-    "historical_tournament_public_result": "projects/bilibili-toy/private/tournament-public-compare-2.json"
+    "historical_tournament_public_result": "projects/bilibili-toy/private/tournament-public-compare-2.json",
+    "prediction_options_contract": "projects/bilibili-toy/private/prediction-options-contract-v2/contract.json",
+    "historical_prediction_options_public_result": "projects/bilibili-toy/private/prediction-options-public-compare-2.json"
   },
   "commands": {
     "rsi_collect": [
@@ -311,6 +313,19 @@
       ".",
       "--contract",
       "projects/bilibili-toy/private/tournament-contract-v3/contract.json",
+      "--observed",
+      "{observed}",
+      "--out",
+      "{out}"
+    ],
+    "prediction_options_compare": [
+      "python3",
+      "-m",
+      "capabilities.rebuild.frontend",
+      "--workspace",
+      ".",
+      "--contract",
+      "projects/bilibili-toy/private/prediction-options-contract-v2/contract.json",
       "--observed",
       "{observed}",
       "--out",

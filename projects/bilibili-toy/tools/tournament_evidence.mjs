@@ -18,6 +18,7 @@ function result(f){const p=matches(f);return {quarterfinalists:p.slice(0,4).flat
 function code(text){const raw=text.match(/https?:\/\/[^\s]+/)?.[0];if(!raw)throw Error('Actual copied URL unavailable');const url=new URL(raw),parts=url.searchParams.get('pick')?.split('_').map(x=>x.split('.'));if(url.searchParams.get('p')!=='pickem'||parts?.map(x=>x.length).join(',')!=='8,4,1')throw Error('Unexpected actual report encoding');return {url,quarterfinalists:parts[0],semifinalists:parts[1],champion:parts[2][0]};}
 const equalSet=(a,b)=>a.length===b.length&&[...a].sort().join('|')===[...b].sort().join('|');
 function reportMatches(a,b){return equalSet(a.quarterfinalists,b.quarterfinalists)&&equalSet(a.semifinalists,b.semifinalists)&&a.champion===b.champion;}
+export {code as decodePredictionReport,result as predictionResult,reportMatches};
 export function ownReportEndpoint(reportUrl,entryUrl){
   const report=new URL(reportUrl),entry=new URL(entryUrl);
   // The deployed static entry is served at both / and /index.html.
@@ -51,7 +52,7 @@ async function readMap(file,geometry){
   }
   return {states,preparation:map.preparation,raw_sha256:hash(raw)};
 }
-function swissChecks(states){
+export function swissChecks(states){
   const checks={},draw=states['r1-draw'].facts,ids=choices(draw).map(x=>x.team),records=new Map(ids.map(x=>[x,{w:0,l:0}]));
   checks.initial_roster_unique=ids.length===16&&new Set(ids).size===16&&ids.every(Boolean);
   const pi=matches(states['pi-complete'].facts),qualifier=pi.at(-1).find(x=>x.checked)?.team;
@@ -71,7 +72,7 @@ function swissChecks(states){
   }
   checks.swiss_uses_active_teams_once=active;checks.swiss_pairs_same_record=grouped;
   checks.no_swiss_rematches_observed=notRepeated;checks.one_winner_per_match=validWinners;
-  const qualified=[...records].filter(([,v])=>v.w===3).map(([id])=>id),ko=matches(states['ko-draw'].facts);
+  const qualified=[...records].filter(([,v])=>v.w===3).map(([id])=>id),ko=matches(states['ko-draw'].facts).slice(0,4);
   checks.eight_qualifiers_eight_eliminated=qualified.length===8&&[...records.values()].filter(v=>v.l===3).length===8;
   checks.knockout_uses_qualified_teams=equalSet(ko.flat().map(x=>x.team),qualified);
   const unbeaten=[...records].filter(([,v])=>v.w===3&&v.l===0).map(([id])=>id);

@@ -136,5 +136,45 @@
       "Published report points to the same origin at /index.html; both / and /index.html were verified HTTP 200. Imported friend code comes from the source report, independently from each origin own report.",
       "Anonymous saved predictions do not join public user rankings, as stated by original Who Is Most Accurate view. Follow-gated poster and topic posting remain unexercised."
     ]
+  },
+  "options": {
+    "scope": "Strength references, 19-team custom ranking editor and anonymous tournament simulation; source and candidate retain independent random draws.",
+    "driver": "tools/prediction_native.mjs installTournamentUI",
+    "preparation": "Same owned desktop private Safari window and full original share query, previously completed edited local draft with HLE/GEN finalists, hidden-strength reference, no custom ranking yet. Preserve all existing choices.",
+    "steps": [
+      "Capture current draft; open strength menu; select eight AI references in menu order, then hidden strength.",
+      "Open custom ranking; HLE up, HLE down, GEN down; cancel. Reopen; GEN down; apply; reload and reopen to inspect retention.",
+      "Open import-source menu; import all eight AI rankings in menu order then hidden strength; cancel.",
+      "Enter simulation; start and observe playing. Wait for an actual round heading before pausing; select 2x and 4x; resume/pause; directly finish.",
+      "Select each completed round through actual available UI. If AX omits the whole result, focus primary My Prediction navigation, Option-Tab to round button, confirm visible focus in screenshot and press Space. Copy actual report and retain clipboard text.",
+      "Start another tournament; wait for actual first-round heading; pause and directly finish; retain screenshot and AX even if whole container is omitted.",
+      "Navigate home, return My Prediction, inspect retained draft; enter simulation again and observe restart state."
+    ],
+    "capture": {
+      "content_rect_points": [
+        0,
+        104,
+        2648,
+        1562
+      ],
+      "backing_scale": 1,
+      "window_points": [
+        2648,
+        1666
+      ]
+    },
+    "limits": [
+      "No exact equality of random draws across origins. Each own prediction retention and simulated pairing/progression rules checked independently.",
+      "Pause snapshots may represent different actual progress because UI observation takes time; no cross-origin progress count equality inferred.",
+      "Safari sometimes omits entire all-round result container with no truncation marker, despite visible rendered result. Retain raw failures and use individual-round UI, never infer missing text from compiled code.",
+      "AX has no selected-speed value; actual speed styling and timing remain pending.",
+      "Coordinate actions repeatedly selected the other Safari window, including after Raise; endpoint/window guards stopped capture. Keyboard focus plus screenshot confirmation recovered round selection. Ranking drag and click-to-position remain pending."
+    ],
+    "findings": [
+      "Pausing before the first simulation tick leaves no round and returns to Start. Pausing after a round appears shows Continue; do not compare these different preparations.",
+      "Applying custom ranking persists through parent reload and updates displayed final probabilities. Cancelling imported/editable ranks keeps previously applied ranking.",
+      "Returning through home resets simulation session but preserves own prediction and custom reference.",
+      "Full result AX can omit the entire visible container without showing a truncation marker; screenshot and keyboard focus are necessary evidence."
+    ]
   }
 }

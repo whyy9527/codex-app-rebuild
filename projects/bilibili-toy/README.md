@@ -153,6 +153,19 @@ node projects/bilibili-toy/tools/prediction_native.test.mjs
 默契度。各端锁定时间只和自身记录比较；随机赛程验证晋级与配对规则。
 原始整页截图差异仍保留，详情见 `evidence/tournament-2026-10-16.json`。
 
+实力参考、19 队自定义排名和“模拟一届”按 `prediction.json#options`
+复用同一原生驱动，转换器为 `tools/prediction_options_evidence.mjs`，其
+`freeze/observe` 参数与完整竞猜转换器相同。比较使用项目命令
+`prediction_options_compare`，回归检查运行
+`node projects/bilibili-toy/tools/prediction_options.test.mjs`。
+
+模拟开始后，先实际观察到首轮出现，再暂停。首轮生成前暂停会返回
+“开始模拟”，属于另一种真实状态。整届结果有时在画面正常显示，而
+Safari AX 漏掉整块内容；可从主导航聚焦后用 Option-Tab 找到轮次按钮，
+截图确认焦点，再按空格。不同页面控件数量不同，不固定按键次数。
+本轮重试保留原采集，选择清单引用实际帧及原清单摘要；不会覆写失败截图。
+完整结果和限制见 `evidence/prediction-options-2026-10-16.json`。
+
 用户后续指定的发布目标是 `https://s16.xinxiayiyan.com/`；完成条件修订见
 `rebuild.json`，用户后续要求先发布当前预览版；完整复刻验收继续。现有官网首页保留。
 
