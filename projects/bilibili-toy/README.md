@@ -4,21 +4,23 @@
 目标与完成条件由 `rebuild.json` 连接原生 Goal；方法见仓库复刻工作流。
 
 当前可运行基线使用原站公开发布的静态应用代码、数据、字体与素材，
-加上本仓库编写的本地启动器和宿主外壳。这不是独立重写的应用源码。
+配合本仓库编写的本地启动、只读接口与参数转发适配。这不是独立重写的应用源码。
 发布包和原始证据保存在被 Git 忽略的 `private/` 中，不随仓库再分发。
 来源及摘要由准备命令写入 `private/resources.json`。
 
 从仓库根运行：
 
 ```sh
-python3 projects/bilibili-toy/tools/prepare.py
-python3 projects/bilibili-toy/tools/serve.py --port 4617
+python3 -m projects.bilibili-toy.tools.prepare
+python3 -m projects.bilibili-toy.tools.serve --port 4617
 ```
 
 打开 <http://127.0.0.1:4617/>。准备命令需要 curl 和原版公开资源可访问；
 本地服务只监听 loopback。准备成功后应用数据与素材从本地读取。
-宿主 SDK、服务工作线程及遥测不注入本地基线。Bilibili 平台侧栏当前
-为本地外壳，保留的外链会打开原站；与原版的差异仍需验收。
+平台侧栏复用公开发布 UI，作者信息和相关内容接入公开只读响应快照；
+快照来源及派生包摘要位于 `private/site/host/provenance.json`。默认构建
+复用已有快照，显式更新使用 `python3 -m projects.bilibili-toy.tools.prepare_host --refresh`。
+账号写入未接入，外链仍打开原站；服务工作线程及远端遥测不注入。
 
 共同 E2E 使用 `scenarios.json` 与 `frontend-contract.json`。原生 UI 回放
 须由当前 Codex 在 `cua_repl` 中给 `tools/e2e_native.mjs` 的
@@ -27,8 +29,8 @@ python3 projects/bilibili-toy/tools/serve.py --port 4617
 原版或本地标签页；来源守卫不匹配会停止，不争抢其他标签页。
 
 ```sh
-python3 projects/bilibili-toy/tools/e2e.py source --out projects/bilibili-toy/private/reference-new
-python3 projects/bilibili-toy/tools/e2e.py candidate --out projects/bilibili-toy/private/candidate-new
+python3 -m projects.bilibili-toy.tools.e2e source --out projects/bilibili-toy/private/reference-new
+python3 -m projects.bilibili-toy.tools.e2e candidate --out projects/bilibili-toy/private/candidate-new
 python3 -m workflows.rebuild.project run --workspace . --project projects/bilibili-toy/rebuild.json --command compare --observed projects/bilibili-toy/private/candidate-new/observed.json --out projects/bilibili-toy/private/comparison-new.json
 ```
 
@@ -36,5 +38,20 @@ RSI 使用 `rsi/config.json` 与 `tools/native.mjs`，桥接方法相同；每�
 须实际服务新的发现与独立评价请求。历史池是不可覆写的探针证据，
 不是浏览器远程状态备份。页面刷新保留浏览器存储与真实时钟。
 
+回放阶段与侧栏旅程使用 `journeys.json` 和 `rebuild.json` 指向的本地冻结契约，运行
+`python3 -m projects.bilibili-toy.tools.e2e source --suite journeys --out <新证据目录>` 或相同的 candidate
+命令，并在 CUA 装载 `tools/journey_native.mjs` 的 `installJourneyE2E`。
+该驱动按相同动作采集赛前、事件跳转、四个阶段及侧栏状态。
+
 历史结果与局限见 `evidence/`。导航、方法接线或单元测试通过不能
 替代完整视觉、播放、声音、预测保存与移动端验收。
+
+冻结回放契约：
+
+```sh
+python3 -m projects.bilibili-toy.tools.freeze_journey --reference projects/bilibili-toy/private/reference-journey/observed.json --out projects/bilibili-toy/private/contract-new.json
+```
+
+完整原版回放文字只进入本地 private 契约。原生截图尺寸变化后，先实测
+浏览器内容边界，再给 e2e 命令传入 `--content-top`（导出截图像素坐标）；
+旧参考尺寸不匹配时保留 unavailable，不缩放或遮罩以取得通过。

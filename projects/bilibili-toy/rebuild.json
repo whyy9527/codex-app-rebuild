@@ -18,7 +18,11 @@
     "rsi_evaluation": "projects/bilibili-toy/private/rsi-revisions-1/evaluation.json",
     "frontend_scenarios": "projects/bilibili-toy/scenarios.json",
     "frontend_contract": "projects/bilibili-toy/frontend-contract.json",
-    "historical_frontend_result": "projects/bilibili-toy/private/compare-2.json"
+    "historical_frontend_result": "projects/bilibili-toy/private/compare-2.json",
+    "journey_scenarios": "projects/bilibili-toy/journeys.json",
+    "journey_contract": "projects/bilibili-toy/private/journey-contract-v1.json",
+    "historical_journey_result": "projects/bilibili-toy/private/journey-compare-3.json",
+    "entry_contract": "projects/bilibili-toy/entry-contract.json"
   },
   "commands": {
     "rsi_collect": [
@@ -49,15 +53,18 @@
     ],
     "build": [
       "python3",
-      "projects/bilibili-toy/tools/prepare.py"
+      "-m",
+      "projects.bilibili-toy.tools.prepare"
     ],
     "serve": [
       "python3",
-      "projects/bilibili-toy/tools/serve.py"
+      "-m",
+      "projects.bilibili-toy.tools.serve"
     ],
     "replay": [
       "python3",
-      "projects/bilibili-toy/tools/e2e.py",
+      "-m",
+      "projects.bilibili-toy.tools.e2e",
       "candidate",
       "--out",
       "{out}"
@@ -71,6 +78,65 @@
       "--contract",
       "projects/bilibili-toy/frontend-contract.json",
       "--observed",
+      "{observed}",
+      "--out",
+      "{out}"
+    ],
+    "journey_replay": [
+      "python3",
+      "-m",
+      "projects.bilibili-toy.tools.e2e",
+      "candidate",
+      "--suite",
+      "journeys",
+      "--out",
+      "{out}"
+    ],
+    "journey_compare": [
+      "python3",
+      "-m",
+      "capabilities.rebuild.frontend",
+      "--workspace",
+      ".",
+      "--contract",
+      "projects/bilibili-toy/private/journey-contract-v1.json",
+      "--observed",
+      "{observed}",
+      "--out",
+      "{out}"
+    ],
+    "entry_replay": [
+      "python3",
+      "-m",
+      "projects.bilibili-toy.tools.e2e",
+      "candidate",
+      "--suite",
+      "journeys",
+      "--case",
+      "entry",
+      "--content-top",
+      "160",
+      "--out",
+      "{out}"
+    ],
+    "entry_compare": [
+      "python3",
+      "-m",
+      "capabilities.rebuild.frontend",
+      "--workspace",
+      ".",
+      "--contract",
+      "projects/bilibili-toy/entry-contract.json",
+      "--observed",
+      "{observed}",
+      "--out",
+      "{out}"
+    ],
+    "freeze_journey": [
+      "python3",
+      "-m",
+      "projects.bilibili-toy.tools.freeze_journey",
+      "--reference",
       "{observed}",
       "--out",
       "{out}"

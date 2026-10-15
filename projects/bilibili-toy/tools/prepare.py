@@ -83,12 +83,17 @@ def main():
 <link rel="stylesheet" href="assets/vendor-BsAqU1mh.css">
 <link rel="stylesheet" href="assets/index-2AhI0v6_.css">
 </head><body><div id="root"></div>
+<script src="/content-host.js"></script>
 <script type="module" src="assets/index-c1ZjPqQS.js"></script></body></html>''')
     manifest = {"source": BASE, "scope": "published build reused as private offline baseline",
                 "resources": sorted(records, key=lambda r: r["path"]), "unavailable": failures}
     (ROOT / "private/resources.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2))
+    host_result = subprocess.run(["python3", "-m", "projects.bilibili-toy.tools.prepare_host"],
+                                 cwd=ROOT.parents[1], capture_output=True, text=True)
+    if host_result.returncode:
+        raise RuntimeError(host_result.stderr or host_result.stdout)
     print(json.dumps({"resources": len(records), "bytes": sum(r["bytes"] for r in records),
-                      "unavailable": failures}, ensure_ascii=False, indent=2))
+                      "unavailable": failures, "host": json.loads(host_result.stdout)}, ensure_ascii=False, indent=2))
     return bool(failures)
 
 

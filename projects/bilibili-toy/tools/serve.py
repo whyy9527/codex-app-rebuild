@@ -1,14 +1,67 @@
 """Loopback-only static server for the local shell and private published baseline."""
 import argparse
+import json
 from functools import partial
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
-from urllib.parse import unquote, urlsplit
+from urllib.parse import parse_qs, unquote, urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
 
 
 class Handler(SimpleHTTPRequestHandler):
+    def do_GET(self):
+        route = urlsplit(self.path).path
+        if route.startswith('/host-api/'):
+            name = route.removeprefix('/host-api')
+            file = ROOT / 'private/site/host/responses.json'
+            responses = json.loads(file.read_text()) if file.exists() else {}
+            params = parse_qs(urlsplit(self.path).query)
+            required = {
+                '/x/toy/detail': ('id', '43482999941120'),
+                '/x/toy/related/videos': ('id', '43482999941120'),
+                '/x/toy/sdk/author/profile': ('id', '43482999941120'),
+                '/x/toy/author/toys': ('mid', '24602611'),
+                '/x/web-interface/card': ('mid', '24602611'),
+                '/x/v2/reply': ('oid', '412129529')
+            }
+            valid = name in responses
+            if name in required:
+                key, value = required[name]
+                valid = valid and params.get(key) == [value]
+            if name == '/x/toy/plaza/category':
+                valid = valid and params.get('category') == ['ALL']
+            if name == '/x/v2/reply':
+                valid = valid and params.get('type') == ['11'] and params.get('sort', ['2']) == ['2']
+                valid = valid and params.get('pn', ['1']) == ['1'] and params.get('ps', ['20']) == ['20']
+            if name in ('/x/toy/plaza/category', '/x/toy/author/toys'):
+                valid = valid and params.get('pn', ['1']) == ['1']
+                try:
+                    valid = valid and len(params.get('ps', ['3'])) == 1
+                    size = int(params.get('ps', ['3'])[0])
+                    valid = valid and 1 <= size <= 16
+                except ValueError:
+                    valid = False
+            payload = responses[name] if valid else {"code": -404, "message": "Requested input has no local snapshot"}
+            if valid and name in ('/x/toy/plaza/category', '/x/toy/author/toys'):
+                payload = {**payload, 'data': {**payload['data'], 'list': payload['data']['list'][:size]}}
+            data = json.dumps(payload, ensure_ascii=False).encode()
+            self.send_response(200 if valid else 404)
+            self.send_header('Content-Type', 'application/json; charset=utf-8')
+            self.send_header('Content-Length', str(len(data)))
+            self.end_headers()
+            self.wfile.write(data)
+            return
+        super().do_GET()
+
+    def do_POST(self):
+        data = b'{"code":-403,"message":"Authenticated platform writes unavailable in local preview"}'
+        self.send_response(403)
+        self.send_header('Content-Type', 'application/json')
+        self.send_header('Content-Length', str(len(data)))
+        self.end_headers()
+        self.wfile.write(data)
+
     def translate_path(self, path):
         route = unquote(urlsplit(path).path)
         base = ROOT / ("private/site" if route.startswith("/content/") else "app")
@@ -27,8 +80,10 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--port", type=int, default=4617)
     args = parser.parse_args()
-    if not (ROOT / "private/site/index.html").exists():
-        parser.error("Run tools/prepare.py first to obtain the private public-resource baseline")
+    required = ['index.html', 'host/pc-detail.js', 'host/responses.json']
+    missing = [name for name in required if not (ROOT / 'private/site' / name).exists()]
+    if missing:
+        parser.error("Run the project build first; missing public-resource baseline: " + ', '.join(missing))
     with ThreadingHTTPServer(("127.0.0.1", args.port), partial(Handler)) as server:
         print(f"http://127.0.0.1:{args.port}/", flush=True)
         server.serve_forever()

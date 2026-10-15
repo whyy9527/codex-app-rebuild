@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "scope": "Forward the source share-entry query p=pickem into the inner local app before routing. This checks route/content, not saved draft equivalence or live clocks. New native exports are 2940x1666, with observed browser-content top at export y=160. Original geometry mismatch is retained in private/entry-source-self-1.json.",
+  "requirements": [
+    {
+      "id": "entry.pickem.text.0",
+      "state": "entry-pickem",
+      "kind": "accessible_text",
+      "text": "我来预测",
+      "evidence": [
+        "projects/bilibili-toy/private/entry-source-2/entry-pickem.ax.txt"
+      ]
+    },
+    {
+      "id": "entry.pickem.text.1",
+      "state": "entry-pickem",
+      "kind": "accessible_text",
+      "text": "从入围赛打到决赛：每一轮先抽签，再选出你看好的胜者",
+      "evidence": [
+        "projects/bilibili-toy/private/entry-source-2/entry-pickem.ax.txt"
+      ]
+    },
+    {
+      "id": "entry.pickem.text.2",
+      "state": "entry-pickem",
+      "kind": "accessible_text",
+      "text": "战队实力参考",
+      "evidence": [
+        "projects/bilibili-toy/private/entry-source-2/entry-pickem.ax.txt"
+      ]
+    },
+    {
+      "id": "entry.pickem.pixels",
+      "state": "entry-pickem",
+      "kind": "image_pixels",
+      "reference_image": "projects/bilibili-toy/private/entry-source-2/entry-pickem.jpg",
+      "pixels": [
+        2940,
+        1506
+      ],
+      "reference_capture": {
+        "content_rect_points": [
+          0,
+          160,
+          2940,
+          1506
+        ],
+        "backing_scale": 1,
+        "window_points": [
+          2940,
+          1666
+        ]
+      },
+      "evidence": [
+        "projects/bilibili-toy/private/entry-source-2/entry-pickem.jpg"
+      ]
+    }
+  ]
+}
