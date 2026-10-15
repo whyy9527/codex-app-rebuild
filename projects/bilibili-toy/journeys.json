@@ -112,5 +112,92 @@
         }
       ]
     }
-  ]
+  ],
+  "keyboard": {
+    "scope": "Actual native keyboard focus, step boundaries, speed limits, mute/play and model-switch state. This extends the player journey; it does not replace whole-image or all-sound acceptance.",
+    "driver": "tools/mobile_native.mjs installMobileUI; same actions for original and candidate",
+    "preparation": "Task-owned Safari private window, default UA, observed 375x667/98%/2x. Select Claude; pause, idle off, preseason, click 1x, enable sound when muted, click player help text and observe player region focus.",
+    "steps": [
+      {
+        "key": "Right",
+        "id": "right-series"
+      },
+      {
+        "key": "Left",
+        "id": "left-preseason"
+      },
+      {
+        "key": "Left",
+        "id": "left-floor"
+      },
+      {
+        "key": "Up",
+        "id": "speed-2"
+      },
+      {
+        "key": "Up",
+        "id": "speed-4"
+      },
+      {
+        "key": "Up",
+        "id": "speed-8"
+      },
+      {
+        "key": "Up",
+        "id": "speed-ceiling"
+      },
+      {
+        "key": "Down",
+        "id": "speed-down-4"
+      },
+      {
+        "key": "Down",
+        "id": "speed-down-2"
+      },
+      {
+        "key": "Down",
+        "id": "speed-down-1"
+      },
+      {
+        "key": "Down",
+        "id": "speed-floor"
+      },
+      {
+        "key": "m",
+        "id": "mute"
+      },
+      {
+        "key": "m",
+        "id": "unmute"
+      },
+      {
+        "key": "space",
+        "id": "playing"
+      },
+      {
+        "key": "space",
+        "id": "paused"
+      }
+    ],
+    "follow_up": [
+      "AX-click Play then press Space; preserve the actual focus result. Safari pointer activation did not focus that button, so this attempt alone does not prove native button keyboard handling.",
+      "Click primary Home then M; collect actual outside-player focus and unchanged sound.",
+      "Select GPT-6.1 sol and Claude Opus 5.5 with prepare=false; observe automatic playback and retain unstable timeline snapshots.",
+      "Re-prepare paused Claude; focus player help and press Tab, then re-focus help and press Option-Tab. Press Space on the actually focused native button."
+    ],
+    "capture": {
+      "content_rect_points": [
+        952,
+        294,
+        750,
+        1322
+      ],
+      "backing_scale": 1,
+      "window_points": [
+        2648,
+        1666
+      ],
+      "measurement": "Complete phone viewport in the observed 98% private Safari window, in native-export coordinates; both sides use this same window."
+    }
+  }
 }

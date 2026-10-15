@@ -1,0 +1,51 @@
+{
+  "date": "2026-10-16",
+  "scope": "Original/public player keyboard and focus behavior in the same Safari responsive private window; full fidelity remains pending",
+  "source_build": "43482999941120-v26695",
+  "public_release": "bce6f0f21976-20261015T144858Z",
+  "protocol": "projects/bilibili-toy/journeys.json#keyboard",
+  "source": "projects/bilibili-toy/private/keyboard-source-1/shared/observed.json",
+  "candidate": "projects/bilibili-toy/private/keyboard-public-1/shared/observed.json",
+  "contract": "projects/bilibili-toy/private/keyboard-contract-v2/contract.json",
+  "source_self_result": {"pass": 1175, "fail": 0, "not_run": 4, "unavailable": 0},
+  "public_result": {
+    "evidence": "projects/bilibili-toy/private/keyboard-public-compare-2.json",
+    "states": 23,
+    "pass": 1154,
+    "fail": 21,
+    "not_run": 4,
+    "unavailable": 0,
+    "interpretation": "Every frozen content, focus role, key action, viewport, selected-speed label and control-state requirement passed. Twenty-one strict image comparisons failed. Four original timeline/image requirements remain pending because captures changed during automatic playback after model switching."
+  },
+  "observed_matches": [
+    "Right from preseason reaches first series; Left returns to preseason and another Left remains at the beginning.",
+    "Up selects 2x, 4x and 8x; another Up stays at 8x. Down selects 4x, 2x and 1x; another Down stays at 1x.",
+    "M changes the sound-control label to muted, then enabled; Space changes actual player control state to playing, then paused.",
+    "After clicking Home, actual focus is outside the player and M leaves sound enabled.",
+    "Selecting GPT then Claude without intro preparation starts playback on both endpoints. The changing phase text and screenshots are retained rather than treated as comparable static frames.",
+    "After focusing the player help text, Tab reaches the AI selector; re-focusing help then Option-Tab reaches the preseason button. Space on that actually keyboard-focused native button leaves playback paused."
+  ],
+  "evidence_method": {
+    "ui_actions": "CUA only; key action files record actual before/after timestamps and focus.",
+    "facts": "keyboard_evidence.mjs re-derives player facts from original raw before/after AX files; endpoint, full share query and owned-window UUID are checked.",
+    "speed": "Codex inspected each original and public unmodified screenshot, recording observed selected labels with exact image hashes in private visual-speed-observations.json. This supports label equality, not whole-image fidelity.",
+    "images": "Complete measured phone viewport, same 375x667/98%/2x native window; no author/sidebar masks, tolerance or alignment search.",
+    "release": "Verified public release.json with trusted HTTPS/TLS 1.3, HTTP 200; evidence in private/keyboard-public-1/release.json."
+  },
+  "observer_revisions_and_retained_failures": [
+    "AX-clicking Play did not give the button keyboard focus in Safari. The button-space-paused attempt remains in both raw maps, but alone does not prove native button handling; actual Option-Tab/button-focus evidence was added.",
+    "Version 1 public comparison retained two false focus mismatches: original HTML content … versus candidate HTML content Description/URL metadata. Version 2 compares the actual HTML-content focus role while retaining full raw focus_detail. Regression checks cover this exact formatting difference.",
+    "Version 1 counts: source 1175 pass/4 pending; public 1152 pass/23 fail/4 pending. Old contract and comparisons remain private."
+  ],
+  "verification": {
+    "root_tests": "111 tests OK, 8 skipped",
+    "project_tests": "11 tests OK",
+    "native_parser_checks": "Passed, including player scope, playback/mute facts and original/candidate HTML-content focus metadata regression"
+  },
+  "remaining": [
+    "Visual acceptance must distinguish the two authorized UI removals from remaining content differences; existing raw image failures are retained.",
+    "All remaining AI channel journeys, complete prediction stages and hover branches.",
+    "Temporal frame alignment and all actual sound types; keyboard mute-control labels are not audio-output evidence.",
+    "Other viewport sizes and real Android/iOS devices."
+  ]
+}

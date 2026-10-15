@@ -67,6 +67,21 @@ node projects/bilibili-toy/tools/mobile_native.test.mjs
 倒计时或交互状态来取得图片通过。最新手机结果见
 `evidence/mobile-2026-10-15.json`；内容检查通过不代表整页视觉通过。
 
+播放器键盘旅程在 `journeys.json` 的 `keyboard` 中，复用同一 Safari
+驱动的 `focusPlayer`、`key` 和 `selectModel`；后者传入
+`{prepare:false}` 时保留真实切换后的自动播放行为。按共享步骤执行后，
+原始 AX、截图及按键时间戳进入各端新 private 目录。倍速按钮没有 AX
+选中值，需从原始截图观察标签，并保存对应图片摘要，不能用预期值回填。
+
+```sh
+node projects/bilibili-toy/tools/keyboard_evidence.mjs freeze <原版-observed.json> projects/bilibili-toy/private/keyboard-contract-new
+node projects/bilibili-toy/tools/keyboard_evidence.mjs observe <候选-observed.json> projects/bilibili-toy/private/keyboard-facts-new.json
+python3 -m workflows.rebuild.project run --workspace . --project projects/bilibili-toy/rebuild.json --command keyboard_compare --observed <候选事实.json> --out projects/bilibili-toy/private/keyboard-comparison-new.json
+```
+
+冻结器从前后 AX 重新提取事实；采样期间变化的原版字段保持 pending，
+不成为静态参考。结果和观察器修订见 `evidence/keyboard-2026-10-16.json`。
+
 冻结回放契约：
 
 ```sh
