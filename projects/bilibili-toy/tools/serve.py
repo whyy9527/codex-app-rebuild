@@ -1,19 +1,33 @@
-"""Loopback-only static server for the local shell and private published baseline."""
+"""Static preview server; network binding is explicit for isolated deployments."""
 import argparse
 import json
 from functools import partial
-from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
+from http.server import SimpleHTTPRequestHandler, HTTPServer
+from socketserver import ThreadingMixIn
 from pathlib import Path
 from urllib.parse import parse_qs, unquote, urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
 
 
+class ThreadingHTTPServer(ThreadingMixIn, HTTPServer):
+    daemon_threads = True
+
+
 class Handler(SimpleHTTPRequestHandler):
     def do_GET(self):
         route = urlsplit(self.path).path
+        if route == '/release.json':
+            release = ROOT / 'release.json'
+            data = release.read_bytes() if release.exists() else b'{"channel":"local"}'
+            self.send_response(200)
+            self.send_header('Content-Type', 'application/json')
+            self.send_header('Content-Length', str(len(data)))
+            self.end_headers()
+            self.wfile.write(data)
+            return
         if route.startswith('/host-api/'):
-            name = route.removeprefix('/host-api')
+            name = route[len('/host-api'):]
             file = ROOT / 'private/site/host/responses.json'
             responses = json.loads(file.read_text()) if file.exists() else {}
             params = parse_qs(urlsplit(self.path).query)
@@ -54,6 +68,10 @@ class Handler(SimpleHTTPRequestHandler):
             return
         super().do_GET()
 
+    def list_directory(self, path):
+        self.send_error(404)
+        return None
+
     def do_POST(self):
         data = b'{"code":-403,"message":"Authenticated platform writes unavailable in local preview"}'
         self.send_response(403)
@@ -65,9 +83,9 @@ class Handler(SimpleHTTPRequestHandler):
     def translate_path(self, path):
         route = unquote(urlsplit(path).path)
         base = ROOT / ("private/site" if route.startswith("/content/") else "app")
-        relative = route.removeprefix("/content/") if route.startswith("/content/") else route.lstrip("/")
+        relative = route[len('/content/'):] if route.startswith("/content/") else route.lstrip("/")
         target = (base / relative).resolve()
-        if not target.is_relative_to(base.resolve()):
+        if target != base.resolve() and base.resolve() not in target.parents:
             return str(ROOT / "private/nonexistent")
         return str(target)
 
@@ -79,13 +97,14 @@ class Handler(SimpleHTTPRequestHandler):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--port", type=int, default=4617)
+    parser.add_argument("--bind", default="127.0.0.1", help="Explicit container binding; default stays loopback")
     args = parser.parse_args()
     required = ['index.html', 'assets/local-index.js', 'host/pc-detail.js', 'host/responses.json']
     missing = [name for name in required if not (ROOT / 'private/site' / name).exists()]
     if missing:
         parser.error("Run the project build first; missing public-resource baseline: " + ', '.join(missing))
-    with ThreadingHTTPServer(("127.0.0.1", args.port), partial(Handler)) as server:
-        print(f"http://127.0.0.1:{args.port}/", flush=True)
+    with ThreadingHTTPServer((args.bind, args.port), partial(Handler)) as server:
+        print(f"http://{args.bind}:{args.port}/", flush=True)
         server.serve_forever()
 
 

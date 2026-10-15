@@ -84,4 +84,20 @@ node projects/bilibili-toy/tools/prediction_native.test.mjs
 后由同一 `installPredictionE2E` 服务，两端使用同一用例。
 
 用户后续指定的发布目标是 `https://s16.xinxiayiyan.com/`；完成条件修订见
-`rebuild.json`，发布在完整验收之后执行。现有官网首页保留。
+`rebuild.json`，用户后续要求先发布当前预览版；完整复刻验收继续。现有官网首页保留。
+
+预览版发布使用独立的 `bilibili-toy-s16` systemd 服务（128 MiB、25% CPU），
+仅绑定代理 Docker 网络的宿主网关，外部流量经现有 Nginx TLS 入口。默认本地
+启动仍只监听 loopback。无需构建容器或修改现有官网部署仓库。
+
+```sh
+python3 -m projects.bilibili-toy.tools.deploy --publish
+```
+
+先提交和推送审核后的部署输入。发布包在本地 ignored `private/deploy/`，
+逐文件 SHA-256 与包摘要核验；短期私有 OSS 对象用于传输。服务器暂存必须
+为磁盘上的 `/var/tmp/bilibili-toy-s16-*`。线上 `/release.json` 提供版本及
+验收状态。公共 HTTPS、资源和 UI 验证通过后才删除传输对象与压缩包，保留
+旧 release、代理配置及回退目录。回退命令为服务器上的
+`sh /opt/bilibili-toy/current/deploy/rollback.sh <本次暂存目录>`。首次发布
+回退会停用本站入口；后续回退恢复上一版本，不修改现有官网。

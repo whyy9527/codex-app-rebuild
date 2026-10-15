@@ -1,0 +1,18 @@
+[Unit]
+Description=S16 preview
+After=network-online.target
+[Service]
+User=nobody
+Group=nobody
+WorkingDirectory=/opt/bilibili-toy/current
+ExecStart=/usr/bin/python3 tools/serve.py --bind __GATEWAY__ --port 18086
+Restart=on-failure
+MemoryMax=128M
+CPUQuota=25%
+TasksMax=64
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+[Install]
+WantedBy=multi-user.target

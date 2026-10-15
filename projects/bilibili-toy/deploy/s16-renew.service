@@ -1,0 +1,5 @@
+[Unit]
+Description=Renew S16 preview HTTPS certificate
+[Service]
+Type=oneshot
+ExecStart=/bin/sh /opt/bilibili-toy/current/deploy/renew.sh

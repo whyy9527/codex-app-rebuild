@@ -19,6 +19,9 @@ class HostBoundary(unittest.TestCase):
         cls.temp = tempfile.TemporaryDirectory()
         root = Path(cls.temp.name)
         (root / 'app').mkdir()
+        (root / 'release.json').write_text('{"release":"test-release","channel":"preview"}')
+        (root / 'private/secret.txt').parent.mkdir(parents=True, exist_ok=True)
+        (root / 'private/secret.txt').write_text('not-public')
         folder = root / 'private/site/host'
         folder.mkdir(parents=True)
         cls.snapshot = {'/x/toy/detail': {'code': 0, 'data': {'title': 'fixed reference'}},
@@ -64,6 +67,13 @@ class HostBoundary(unittest.TestCase):
         self.assertEqual(caught.exception.code, 403)
         self.assertEqual(json.load(caught.exception)['code'], -403)
         self.assertEqual(self.get('/host-api/x/toy/detail?id=43482999941120'), self.snapshot['/x/toy/detail'])
+
+    def test_release_is_public_but_private_files_and_directory_lists_are_not(self):
+        self.assertEqual(self.get('/release.json')['release'], 'test-release')
+        for path in ('/content/host/', '/content/%2e%2e/secret.txt', '/%2e%2e/private/secret.txt'):
+            with self.assertRaises(HTTPError) as caught:
+                self.get(path)
+            self.assertEqual(caught.exception.code, 404)
 
 
 if __name__ == '__main__':
