@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>S16AI预测大赛</title>
+  <link rel="stylesheet" href="shell.css">
+</head>
+<body>
+  <div class="toy-shell-stage"><iframe title="S16 AI 预测大赛" src="/content/index.html" allow="pointer-lock" allowfullscreen></iframe></div>
+  <aside class="toy-shell-sidebar" aria-label="Toy 详情">
+    <div class="sidebar-top">
+      <button title="展开详情" aria-label="展开详情" data-dialog="detail"><img class="cover" src="/content/host-cover.png" alt=""></button>
+      <a class="author" href="https://space.bilibili.com/24602611" target="_blank" rel="noreferrer" aria-label="进入作者空间"><img src="/content/zhangdamiao.png" alt=""></a>
+      <button title="点赞" aria-label="点赞" data-dialog="like"><span class="icon">♧</span><small>74</small></button>
+      <button title="评论" aria-label="评论" data-dialog="comment"><span class="icon">♧</span><small>8</small></button>
+      <button title="收藏" aria-label="收藏" data-dialog="favorite"><span class="icon">☆</span><small>63</small></button>
+      <button title="分享" aria-label="分享" data-dialog="share"><span class="icon">➦</span><small>1</small></button>
+    </div>
+    <div class="sidebar-bottom">
+      <a href="https://www.bilibili.com/toy/" target="_blank" rel="noreferrer"><span class="icon">♧</span><small>Toy广场</small></a>
+      <button data-dialog="favorite"><span class="icon">☆</span><small>我收藏的</small></button>
+      <button data-dialog="recent"><span class="icon">◴</span><small>近期玩过</small></button>
+      <button data-dialog="created"><span class="icon">♧</span><small>我创作的</small></button>
+      <button data-dialog="install"><span class="icon">⊞</span><small>添加到桌面</small></button>
+    </div>
+  </aside>
+  <dialog id="shell-dialog"><button class="close" aria-label="关闭">×</button><div id="shell-dialog-content"></div></dialog>
+  <script src="shell.js"></script>
+</body>
+</html>

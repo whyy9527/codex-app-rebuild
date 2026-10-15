@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "seed": "projects/bilibili-toy/rsi/seed",
+  "root_observation": {"source": "https://www.bilibili.com/toy/LkvCZhw12wgT2Pqx/index.html", "observed": "S16 AI prediction page with five primary non-home navigation links", "reset": "navigate home; remote state and browser storage not reset"},
+  "score_semantics": "Fraction of five frozen primary navigation branches discovered and independently reproduced by actual native UI heading signatures. Limited to navigation; not frontend fidelity or product completion.",
+  "initial_policy": "projects/bilibili-toy/rsi/policy-v0.py",
+  "fixed_inputs": ["projects/bilibili-toy/tools/rsi_worker.py", "projects/bilibili-toy/tools/native.mjs"],
+  "agent": ["python3", "projects/bilibili-toy/tools/rsi_worker.py", "agent"],
+  "evaluator": ["python3", "projects/bilibili-toy/tools/rsi_worker.py", "evaluator"],
+  "timeout_seconds": 300,
+  "workers": 1,
+  "online_rounds": 3,
+  "replay_rounds": 3,
+  "versions": 2,
+  "parallelism_penalty": 0.05
+}

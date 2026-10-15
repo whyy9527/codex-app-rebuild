@@ -1,0 +1,52 @@
+{
+  "date": "2026-10-15",
+  "source": "https://www.bilibili.com/toy/LkvCZhw12wgT2Pqx/index.html",
+  "published_version": "43482999941120-v26695",
+  "implementation": "Private offline baseline reuses the publicly published application build; local server and host shell are authored here. Not an independent rewrite.",
+  "resources": {
+    "manifest": "projects/bilibili-toy/private/resources.json",
+    "downloaded": 438,
+    "unavailable": 0,
+    "bytes": 21832882
+  },
+  "rsi": {
+    "collect": "projects/bilibili-toy/private/rsi-collect-1/iteration-1/collected-pool.json",
+    "full_pool_evaluation": "projects/bilibili-toy/private/rsi-revisions-1/evaluation.json",
+    "baseline_score": 0.45,
+    "candidate_score": 0.45999999999999996,
+    "selected_policy": "rsi/policy-v1.py",
+    "actual_redeployment": "projects/bilibili-toy/private/rsi-collect-2/iteration-1/collected-pool.json",
+    "scope": "Two reproducible primary-navigation branches; second deployment repeated those branches. Five-page E2E adds observations separately. Scores are not product completion."
+  },
+  "e2e": {
+    "source": "projects/bilibili-toy/private/e2e-source-1/observed.json",
+    "candidate": "projects/bilibili-toy/private/e2e-candidate-2/observed.json",
+    "comparison": "projects/bilibili-toy/private/compare-2.json",
+    "status": "fail",
+    "counts": {
+      "pass": 26,
+      "fail": 5,
+      "not_run": 7,
+      "unavailable": 0
+    },
+    "knowledge": "Five primary navigation pages observed on both endpoints; accepted heading assertions derive from original AX evidence.",
+    "visual_limit": "Raw strict image mismatch preserved. Native screenshot exports use JPEG; live clocks, author SDK data, host shell, focus and hover sampling can differ. First-run files have .png suffix despite JPEG content. No image alignment or masks were applied."
+  },
+  "checks": {
+    "unittest": "111 tests, 8 skipped, OK; private/unittest-final.log",
+    "javascript": "node --check for shell.js, e2e_native.mjs, native.mjs passed",
+    "method": "project preflight connected; not product acceptance",
+    "diff": "git diff --check passed"
+  },
+  "next_observation": "Align homepage replay date/phase, pause state, scroll and focus on both endpoints. Inspect platform sidebar and author SDK differences, then deepen playback and saved-prediction journeys using their real sources.",
+  "pending": [
+    "Strict visual fidelity on all pages",
+    "Host sidebar behavior and author SDK information",
+    "All eight channels and subviews; team and match detail",
+    "Prediction editing, export and persistence",
+    "Keyboard, hover, idle switching and motion",
+    "Real application audio comparison",
+    "Mobile layout and interactions"
+  ],
+  "retention": "Active Goal owns this worktree. Preserve unique source/candidate native evidence and ignored public-resource baseline locally; no worktree retirement while active."
+}
