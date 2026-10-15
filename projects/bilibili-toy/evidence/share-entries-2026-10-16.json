@@ -45,7 +45,8 @@
     "decoder": "tools/decode_qr.swift; Apple Vision on existing CUA screenshots, no screen capture",
     "source": "projects/bilibili-toy/private/share-entry-source-1/qr-decoded.json",
     "candidate": "projects/bilibili-toy/private/share-entry-local-1/qr-decoded.json",
-    "result": "Both decode to their own actual game URL. Initial source QR was obscured by the fixed footer; half-page scrolling exposed the full QR."
+    "result": "Source, local and published screenshots decode to each own actual valid game URL.",
+    "public": "projects/bilibili-toy/private/share-entry-public-1/qr-decoded.json"
   },
   "preparation_revision": {
     "retained_failure": "projects/bilibili-toy/private/share-game-local-compare-1.json",
@@ -58,13 +59,46 @@
       "frame_entry.test.mjs",
       "channel_native.test.mjs"
     ],
-    "swift": "Built offline QR decoder and decoded actual source/local visible screenshots",
-    "root_tests": "111 tests OK, 8 skipped"
+    "swift": "Built offline QR decoder and decoded actual source, local and public visible screenshots",
+    "root_tests": "111 tests OK, 8 skipped",
+    "public_https": "24 trusted TLS 1.3 checks passed: GET/HEAD for all 8 model worlds and one game per model, actual copied Opus G4, root and resources, release identity, unknown game HTTP 404. Receipt: projects/bilibili-toy/private/share-public-http-1.json",
+    "deployment": "Dedicated service active; both existing shared application containers healthy; existing landing homepage responds. Server checksum manifest passed before activation.",
+    "public_ui": "Actual game copy, independently decoded QR, Home then reload, live jump/full BP and actual copied world entry all replayed. Every semantic requirement passes; four strict full-page images still fail.",
+    "cleanup": "Owned OSS transfer object and local/server transfer archives removed after public HTTP/UI verification. Previous release and rollback staging retained. Receipt: projects/bilibili-toy/private/deploy/db672b1c0da4-20261015T201308Z/cleanup.json",
+    "service_memory_bytes": 22614016
   },
   "limitations": [
     "Original unknown share outer shell returns 200 with missing compiled content 404; preview rejects unknown inputs at outer HTTP 404. Platform error page is not certified.",
     "Raw full-page screenshots differ and remain strict failures. No visual success inferred from semantic results.",
     "Source share metadata and external-link previews are not reproduced by the minimal shell.",
     "Other dedicated model detail/hover states, animation timing, sound coverage and complete mobile/desktop visuals remain pending."
-  ]
+  ],
+  "public_release": "db672b1c0da4-20261015T201308Z",
+  "public_url": "https://s16.xinxiayiyan.com/",
+  "public_results": {
+    "game": {
+      "path": "projects/bilibili-toy/private/share-game-public-compare-1.json",
+      "pass": 436,
+      "fail": 3,
+      "failed_kind": "image_pixels"
+    },
+    "world": {
+      "path": "projects/bilibili-toy/private/share-world-public-compare-1.json",
+      "pass": 87,
+      "fail": 1,
+      "failed_kind": "image_pixels"
+    }
+  },
+  "source_self_results": {
+    "game": {
+      "pass": 439,
+      "fail": 0,
+      "path": "projects/bilibili-toy/private/share-game-source-self-2.json"
+    },
+    "world": {
+      "pass": 88,
+      "fail": 0,
+      "path": "projects/bilibili-toy/private/share-world-source-self-1.json"
+    }
+  }
 }
