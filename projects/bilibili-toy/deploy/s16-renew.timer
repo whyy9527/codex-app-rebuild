@@ -1,8 +1,0 @@
-[Unit]
-Description=Check S16 certificate twice daily
-[Timer]
-OnCalendar=*-*-* 04,16:37:00
-RandomizedDelaySec=600
-Persistent=true
-[Install]
-WantedBy=timers.target

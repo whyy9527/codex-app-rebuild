@@ -30,9 +30,10 @@ docker exec nginx-app curl -fsS "http://$GATEWAY:18086/release.json"
 cp deploy/s16.http.conf "$PROXY"
 docker exec nginx-app nginx -t
 docker exec nginx-app nginx -s reload
-if ! docker exec nginx-app test -f /etc/letsencrypt/live/bilibili-toy-s16/fullchain.pem; then
-    docker exec nginx-app certbot certonly --config /etc/letsencrypt.ini --authenticator webroot --preferred-challenges http --webroot-path /data/letsencrypt-acme-challenge --cert-name bilibili-toy-s16 -d s16.xinxiayiyan.com --non-interactive --agree-tos --register-unsafely-without-email
-fi
+docker exec nginx-app test -f /etc/letsencrypt/live/bilibili-toy-s16/fullchain.pem || {
+    printf 'Install the S16 DNS-01 certificate with tools.certificate before publishing.\n' >&2
+    exit 1
+}
 cat deploy/s16.http.conf > "$PROXY"
 sed "s/__GATEWAY__/$GATEWAY/g" deploy/s16.https.conf >> "$PROXY"
 if ! docker exec nginx-app nginx -t; then
@@ -42,10 +43,6 @@ if ! docker exec nginx-app nginx -t; then
     exit 1
 fi
 docker exec nginx-app nginx -s reload
-cp deploy/s16-renew.service /etc/systemd/system/bilibili-toy-s16-renew.service
-cp deploy/s16-renew.timer /etc/systemd/system/bilibili-toy-s16-renew.timer
-systemctl daemon-reload
-systemctl enable --now bilibili-toy-s16-renew.timer
 systemctl is-active bilibili-toy-s16.service
 # Check the existing shared services after activation.
 docker inspect --format '{{.Name}} {{.State.Health.Status}}' xinxia-landing media-workflow-app-1

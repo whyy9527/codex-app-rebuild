@@ -91,6 +91,7 @@ node projects/bilibili-toy/tools/prediction_native.test.mjs
 启动仍只监听 loopback。无需构建容器或修改现有官网部署仓库。
 
 ```sh
+python3 -m projects.bilibili-toy.tools.certificate --install
 python3 -m projects.bilibili-toy.tools.deploy --publish
 ```
 
@@ -101,3 +102,11 @@ python3 -m projects.bilibili-toy.tools.deploy --publish
 旧 release、代理配置及回退目录。回退命令为服务器上的
 `sh /opt/bilibili-toy/current/deploy/rollback.sh <本次暂存目录>`。首次发布
 回退会停用本站入口；后续回退恢复上一版本，不修改现有官网。
+
+公网 HTTP 当前被阿里云 ICP 接入层拦截，HTTP-01 不能用于签发证书。
+本站改用 Certbot DNS-01；TXT 验证及清理由本机 Aliyun CLI 完成，
+DNS 凭证不上传服务器。证书与私钥只进入本机 ignored private 目录、
+短期私有传输对象及服务器 TLS 目录，不进入 Git 或应用发布包。
+`tools.certificate --install` 在接近到期时续签并安装；安装后需要
+`docker exec nginx-app nginx -t` 与平滑 reload。当前没有安装本机定时任务，
+维护者需在证书到期前执行该命令。访问本站使用完整 HTTPS 地址。
