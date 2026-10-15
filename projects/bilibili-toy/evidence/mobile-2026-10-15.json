@@ -1,0 +1,65 @@
+{
+  "date": "2026-10-15",
+  "scope": "Observed Safari responsive-web navigation at 375x667; full mobile and 1:1 fidelity acceptance remain pending",
+  "source_build": "43482999941120-v26695",
+  "candidate_application_revision": "bce6f0f219768c0722dd062b08c1c1475e4ef47c",
+  "public_release": "bce6f0f21976-20261015T144858Z",
+  "protocol": "projects/bilibili-toy/mobile.json",
+  "source": "projects/bilibili-toy/private/mobile-safari-source-1/shared-v3/observed.json",
+  "candidate": "projects/bilibili-toy/private/mobile-safari-candidate-2/shared/observed.json",
+  "contract": "projects/bilibili-toy/private/mobile-contract-v1/contract.json",
+  "source_self_result": {"pass": 728, "fail": 0, "not_run": 0, "unavailable": 0},
+  "candidate_result": {
+    "evidence": "projects/bilibili-toy/private/mobile-candidate-compare-1.json",
+    "pass": 720,
+    "fail": 8,
+    "not_run": 0,
+    "unavailable": 0,
+    "interpretation": "All frozen text, viewport, model and pause/idle/scroll checks passed across eight scenes. Every strict raw viewport-image comparison failed. Images retain user-requested component removal/reflow, live countdown, focus/hover and any other differences; these are not full visual passes."
+  },
+  "public_result": {
+    "evidence": "projects/bilibili-toy/private/mobile-public-compare-1.json",
+    "pass": 711,
+    "fail": 17,
+    "not_run": 0,
+    "unavailable": 0,
+    "interpretation": "All eight HTTPS scenes opened. Eight raw-image comparisons failed; nine additional pickem text assertions failed because this public origin retained an earlier test prediction while the source reference was empty. Existing storage was preserved.",
+    "release_check": "projects/bilibili-toy/private/mobile-safari-public-1/release.json",
+    "release_check_http_status": 200,
+    "release_check_transport": "Python verified TLS 1.3, hostname and default CA trust. System curl lacks the requested TLS 1.3 feature; that client failure was not treated as a server failure."
+  },
+  "public_empty_prediction": {
+    "evidence": "projects/bilibili-toy/private/mobile-public-private-pickem-compare-1.json",
+    "raw": "projects/bilibili-toy/private/mobile-safari-public-private-1/shared/observed.json",
+    "preparation": "New task-created Safari private window; existing normal-window prediction untouched.",
+    "pass": 39,
+    "fail": 1,
+    "not_run": 0,
+    "unavailable": 1,
+    "interpretation": "Original pickem-view requirements selected unchanged. Text, width, height, pixel ratio and scroll passed. Actual private-window screenshot zoom was 98% versus source 99%, so the zoom assertion failed and image geometry was not declared comparable. No visual pass inferred."
+  },
+  "original_android_branch": {
+    "evidence": "projects/bilibili-toy/private/mobile-safari-source-1/android-ua.ax.txt",
+    "image": "projects/bilibili-toy/private/mobile-safari-source-1/android-ua.jpg",
+    "observed": "Android user agent triggered the original 请在哔哩哔哩 App 中使用 modal and a B站内打开 banner.",
+    "status": "unavailable",
+    "interpretation": "Full Android App-gated journey was not completed. Responsive-web cases use Safari default UA, not an actual Android device."
+  },
+  "retained_preparation_failures": [
+    "Initial shared/home-opus capture was scrolled into the player and retained prior 4x speed; it is not the formal reference. Driver now clicks 1x and resets observed native application scrollbars rather than relying on a focused-button Command-Up shortcut.",
+    "shared-v2 partial maps and failed attempts remain private; shared-v3 is the eight-scene formal source map.",
+    "Candidate-1 used an existing draft and was not equivalent to the empty source. Candidate-2 uses a fresh loopback port with empty local storage, without deleting earlier drafts.",
+    "Initial public preparation readiness loop ended while summary data was still loading. Subsequent actual AX showed ready content before actions/captures; the driver now allows a bounded 20-second native observation loop."
+  ],
+  "verification": {
+    "root_tests": "111 tests OK, 8 skipped",
+    "project_tests": "11 tests OK",
+    "native_parser_checks": "Mobile scope, native indentation, outer-scrollbar selection and scroll-origin checks passed"
+  },
+  "remaining": [
+    "Visual acceptance for remaining content after the two user-authorized UI removals",
+    "Other mobile viewport sizes and actual Android/iOS device behavior",
+    "All AI channels, full prediction stages, keyboard/hover branches and all sound types",
+    "Full current-Goal completion; this report does not replace its acceptance criteria"
+  ]
+}

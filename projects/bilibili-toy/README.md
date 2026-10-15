@@ -50,6 +50,23 @@ RSI 使用 `rsi/config.json` 与 `tools/native.mjs`，桥接方法相同；每�
 历史结果与局限见 `evidence/`。导航、方法接线或单元测试通过不能
 替代完整视觉、播放、声音、预测保存与移动端验收。
 
+手机响应式观察使用 `mobile.json` 和 `tools/mobile_native.mjs`。在 CUA 中
+给 `installMobileUI` 传入实际 Safari App、文件 API、完整入口 URL、
+新证据目录及实测窗口 UUID；两端使用同一准备与操作。原版参考为
+375×667、99% 截图缩放、2x 像素比和 Safari 默认 UA，滚动归零并将
+播放器暂停在赛前、1x、关闭闲置换台。空草稿通过独立测试 origin
+准备，保留已有草稿。原版 Android UA 会触发 B站 App 限制，单独记录。
+
+```sh
+python3 -m projects.bilibili-toy.tools.freeze_mobile --reference <原版-observed.json> --candidate <候选-observed.json> --out projects/bilibili-toy/private/mobile-contract-new
+python3 -m workflows.rebuild.project run --workspace . --project projects/bilibili-toy/rebuild.json --command mobile_compare --observed <候选事实.json> --out projects/bilibili-toy/private/mobile-comparison-new.json
+node projects/bilibili-toy/tools/mobile_native.test.mjs
+```
+
+完整截图保留，比较只取实测的完整手机视口；不遮挡作者区域、侧栏、
+倒计时或交互状态来取得图片通过。最新手机结果见
+`evidence/mobile-2026-10-15.json`；内容检查通过不代表整页视觉通过。
+
 冻结回放契约：
 
 ```sh
