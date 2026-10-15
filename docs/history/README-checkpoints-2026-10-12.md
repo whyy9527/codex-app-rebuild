@@ -2,7 +2,7 @@
 
 以下保留既有批次记录及当时的能力描述，不代表当前状态或完成率。当前阶段证据由 Roadmap 和相应原始回执拥有。
 
-# Codex App Rebuild
+# Rebuild Any Web
 
 最新进展：修普通选择题radio布局、生命图标和遗漏跳过控件；未放宽的v71失败282→236，整图仍未通过。实录两次自有应用语音输出，继续探索第三课跳过。 [证据与复跑](../../projects/duolingo-web/evidence/english-unit12-frontend-repair-v1/README.md)。
 

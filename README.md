@@ -1,4 +1,4 @@
-# Codex App Rebuild
+# Rebuild Any Web
 
 English | [简体中文](README.zh-CN.md)
 
@@ -55,6 +55,6 @@ python3 -m unittest discover -v
 
 ## Releases and license
 
-See [GitHub Releases](https://github.com/whyy9527/codex-app-rebuild/releases) for downloads and the [changelog](CHANGELOG.md) for changes. Original code and documentation are [MIT licensed](LICENSE). Captured content, Duolingo assets, and dependencies have separate boundaries in [third-party notices](THIRD_PARTY_NOTICES.md).
+See [GitHub Releases](https://github.com/whyy9527/rebuild-any-web/releases) for downloads and the [changelog](CHANGELOG.md) for changes. Original code and documentation are [MIT licensed](LICENSE). Captured content, Duolingo assets, and dependencies have separate boundaries in [third-party notices](THIRD_PARTY_NOTICES.md).
 
 This is an independent app reconstruction project, with no affiliation with or endorsement by Duolingo or OpenAI.

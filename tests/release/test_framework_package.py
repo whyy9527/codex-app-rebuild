@@ -35,7 +35,7 @@ class FrameworkPackage(unittest.TestCase):
                 'commit', '-qm', 'fixture')
             (source / 'runtime/dream.py').write_text('# unrelated dirty work\n')
             output = Path(directory) / 'snapshot'
-            manifest = export(source, 'HEAD', output, 'whyy9527/codex-app-rebuild')
+            manifest = export(source, 'HEAD', output, 'whyy9527/rebuild-any-web')
             for name in manifest['files']:
                 self.assertEqual(hashlib.sha256((output / name).read_bytes()).hexdigest(), manifest['files'][name])
                 if name.startswith(('capabilities/', 'runtime/')):
@@ -47,4 +47,4 @@ class FrameworkPackage(unittest.TestCase):
             self.assertIn('## 发行范围', (output / 'README.zh-CN.md').read_text())
             self.assertNotIn('projects/duolingo-web/', (output / 'README.zh-CN.md').read_text())
             with self.assertRaisesRegex(ValueError, 'new output'):
-                export(source, 'HEAD', output, 'whyy9527/codex-app-rebuild')
+                export(source, 'HEAD', output, 'whyy9527/rebuild-any-web')

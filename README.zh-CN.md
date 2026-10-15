@@ -1,4 +1,4 @@
-# Codex App Rebuild
+# Rebuild Any Web
 
 [English](README.md) | 简体中文
 
@@ -53,4 +53,4 @@ python3 -m unittest discover -v
 
 ## 版本与许可
 
-版本下载见 [GitHub Releases](https://github.com/whyy9527/codex-app-rebuild/releases)，版本变化见 [CHANGELOG](CHANGELOG.md)。原创代码与文档采用 [MIT](LICENSE)；Duolingo 素材、采集内容和依赖的授权边界见 [第三方说明](THIRD_PARTY_NOTICES.md)。本仓库是独立的复刻方法实践，与 Duolingo 或 OpenAI 没有隶属或背书关系。
+版本下载见 [GitHub Releases](https://github.com/whyy9527/rebuild-any-web/releases)，版本变化见 [CHANGELOG](CHANGELOG.md)。原创代码与文档采用 [MIT](LICENSE)；Duolingo 素材、采集内容和依赖的授权边界见 [第三方说明](THIRD_PARTY_NOTICES.md)。本仓库是独立的复刻方法实践，与 Duolingo 或 OpenAI 没有隶属或背书关系。

@@ -133,7 +133,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--workspace', default='.')
     parser.add_argument('--ref', default='HEAD')
-    parser.add_argument('--source-repo', default='whyy9527/codex-app-rebuild')
+    parser.add_argument('--source-repo', default='whyy9527/rebuild-any-web')
     parser.add_argument('--out', required=True)
     args = parser.parse_args()
     result = export(args.workspace, args.ref, args.out, args.source_repo)
