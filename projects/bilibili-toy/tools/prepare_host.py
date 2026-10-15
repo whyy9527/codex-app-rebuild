@@ -28,9 +28,16 @@ def download(url):
 
 
 def main():
+    global SITE, HOST
     parser = argparse.ArgumentParser()
     parser.add_argument('--refresh', action='store_true')
+    parser.add_argument('--site', type=Path)
     args = parser.parse_args()
+    if args.site:
+        SITE = args.site.resolve()
+        if not SITE.is_relative_to(ROOT / "private"):
+            raise ValueError("Prepared host site must stay private")
+        HOST = SITE / "host"
     HOST.mkdir(parents=True, exist_ok=True)
     provenance = []
     def save(name, url):

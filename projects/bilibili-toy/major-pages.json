@@ -1,0 +1,177 @@
+{
+  "schema_version": 1,
+  "scope": "Nine responsive major-page first folds after only the two requested removals. Same actual375×667 viewport, original CSS/data preserved. Existing prediction drafts retained. This does not certify below-fold pixels, all channel states, sound or animation timing.",
+  "height_css": 667,
+  "zoom_label": "( 100% )",
+  "pixel_ratio_label": "2x",
+  "actual_samples_per_css_pixel": 2,
+  "scene_heading": "heading S16 · AI 赛制介绍, Value: 1",
+  "source": {
+    "width_css": 375,
+    "viewport_pixels": [
+      0,
+      0,
+      750,
+      1334
+    ],
+    "header_css": 191,
+    "header_evidence": "header.inspector.ax.txt",
+    "frames": [
+      "page-a",
+      "page-b"
+    ]
+  },
+  "candidate": {
+    "width_css": 375,
+    "viewport_pixels": [
+      0,
+      0,
+      750,
+      1334
+    ],
+    "header_css": 191,
+    "header_evidence": "header.inspector.ax.txt",
+    "frames": [
+      "page-a",
+      "page-b"
+    ]
+  },
+  "regions": {
+    "business": {
+      "source": [
+        12,
+        394,
+        738,
+        838
+      ],
+      "candidate": [
+        12,
+        394,
+        738,
+        838
+      ]
+    },
+    "branding": {
+      "source": [
+        12,
+        12,
+        738,
+        92
+      ],
+      "candidate": [
+        12,
+        12,
+        738,
+        92
+      ]
+    },
+    "navigation": {
+      "source": [
+        36,
+        192,
+        690,
+        184
+      ],
+      "candidate": [
+        36,
+        192,
+        690,
+        184
+      ]
+    },
+    "ticker": {
+      "source": [
+        12,
+        1232,
+        738,
+        90
+      ],
+      "candidate": [
+        12,
+        1232,
+        738,
+        90
+      ]
+    }
+  },
+  "geometry_sources": [
+    "Actual original DOM element deletions: .author-bar and aside#toy-shell-sidebar. No original CSS, scripts, data or other nodes edited. Reload restores original DOM.",
+    "Original shell retains flex layout and padding 6px 0 6px 6px. After removing its 64px sidebar, the 375px body gives a 369px iframe.",
+    "Actual original header ResizeObserver reports --header-height 191px after author deletion, matching visible flow. Navigation is two 44px rows plus 4px gap; header bottom padding/border 9px.",
+    "Closed ticker actual flow is 45px: its 44px child plus the 1px border. Prior 44px declaration accidentally included the top ticker border in the business region; original failed comparison remains unchanged."
+  ],
+  "limits": [
+    "This original reference variant implements only the user-authorized two removals through native DOM Delete → Node. Other baseline references remain immutable.",
+    "Failed attempts that opened only the Delete submenu did not remove nodes; those raw frames are excluded by observed before/after node-presence checks.",
+    "Animated live-badge dot phase remains in full unmasked PNGs. Static region requirements do not certify its timing.",
+    "Other pages and animation/audio coverage remain required; no full Goal completion inferred."
+  ],
+  "author_removed": true,
+  "source_node_deletions": [
+    {
+      "before": "../author-node-delete.before.ax.txt",
+      "after": "../author-node-delete.after.ax.txt",
+      "menu": "../author-node-delete.menu.ax.txt",
+      "node_pattern": "row .*<div.*author-bar"
+    },
+    {
+      "before": "../sidebar-node-delete.before.ax.txt",
+      "after": "../sidebar-node-delete.after.ax.txt",
+      "menu": "../sidebar-node-delete.menu.ax.txt",
+      "node_pattern": "row .*<aside.*toy-shell-sidebar"
+    }
+  ],
+  "cases": [
+    {
+      "id": "home-opus",
+      "model": "Claude Opus 5.5",
+      "heading_pattern": "heading S16 AI 大模型预测大赛, Value: 1"
+    },
+    {
+      "id": "home-gpt",
+      "model": "GPT-6.1 sol",
+      "heading_pattern": "heading S16 AI 大模型预测大赛, Value: 1"
+    },
+    {
+      "id": "compare",
+      "link": "数据对比",
+      "heading_pattern": "heading 数据对比, Value: 1"
+    },
+    {
+      "id": "teams",
+      "link": "战队",
+      "heading_pattern": "heading 参赛战队, Value: 1"
+    },
+    {
+      "id": "team-gen",
+      "heading_pattern": "heading GEN Gen.G, Value: 1"
+    },
+    {
+      "id": "pickem-view",
+      "link": "我来预测",
+      "heading_pattern": "heading 我来预测, Value: 1"
+    },
+    {
+      "id": "leaderboard",
+      "link": "谁最准",
+      "heading_pattern": "heading 谁最准, Value: 1"
+    },
+    {
+      "id": "method",
+      "link": "AI 赛制介绍",
+      "heading_pattern": "heading S16 · AI 赛制介绍, Value: 1"
+    },
+    {
+      "id": "about",
+      "link": "内容、数据与素材说明",
+      "heading_pattern": "heading 内容、数据与\\s*素材说明, Value: 1"
+    }
+  ],
+  "preparation": [
+    "Source and candidate use the same actual window/viewport and full original query. Source reference removes only .author-bar and aside#toy-shell-sidebar through the saved native driver.",
+    "Select each home channel by actual UI; pause, disable idle switching, select intro and1x. Navigate other pages by their actual links.",
+    "Reset actual app scrollbars; click the actual scene heading to leave navigation/card hover, then capture header measurement and two body PNGs.",
+    "Prediction is observed in each origin own existing state; no storage, seed or draft copying/reset. Content differences remain failures and require separate comparable-state work."
+  ],
+  "source_pixel_rule": "If a source region is actually unstable across the two frames, freeze it as pending with raw frames retained; never turn the differing source pixels into a passing image requirement."
+}

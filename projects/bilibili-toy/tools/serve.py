@@ -8,6 +8,9 @@ from http.server import SimpleHTTPRequestHandler, HTTPServer
 from socketserver import ThreadingMixIn
 from pathlib import Path
 from urllib.parse import parse_qs, unquote, urlsplit
+from urllib.error import HTTPError, URLError
+from urllib.request import Request, urlopen
+import time
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -42,6 +45,38 @@ class ThreadingHTTPServer(ThreadingMixIn, HTTPServer):
 
 
 class Handler(SimpleHTTPRequestHandler):
+    def serve_live_results(self, head_only=False):
+        parsed = urlsplit(self.path)
+        if parsed.path != '/content/live-results.json':
+            return False
+        params = parse_qs(parsed.query, keep_blank_values=True)
+        minute = params.get('t', [str(int(time.time() // 60))])
+        if set(params) - {'t'} or len(minute) != 1 or not re.fullmatch(r'[0-9]{1,12}', minute[0]):
+            self.send_error(400)
+            return True
+        try:
+            source = json.loads((ROOT / 'private/site/live-source.json').read_text())['url']
+            upstream = urlsplit(source)
+            if upstream.scheme != 'https' or not upstream.hostname or upstream.username or upstream.password or upstream.query or upstream.fragment:
+                raise ValueError('Invalid fixed live-results source')
+            request = Request(source + '?t=' + minute[0], headers={'Accept': 'application/json'})
+            with urlopen(request, timeout=15) as response:
+                data = response.read()
+            json.loads(data.decode('utf-8'))
+        except HTTPError as error:
+            self.send_error(error.code)
+            return True
+        except (OSError, URLError, ValueError, KeyError):
+            self.send_error(502)
+            return True
+        self.send_response(200)
+        self.send_header('Content-Type', 'application/json; charset=utf-8')
+        self.send_header('Content-Length', str(len(data)))
+        self.end_headers()
+        if not head_only:
+            self.wfile.write(data)
+        return True
+
     def serve_share(self, head_only=False):
         route = urlsplit(self.path).path
         if not route.startswith('/share/'):
@@ -64,10 +99,12 @@ class Handler(SimpleHTTPRequestHandler):
         return True
 
     def do_HEAD(self):
-        if not self.serve_share(head_only=True):
+        if not self.serve_live_results(head_only=True) and not self.serve_share(head_only=True):
             super().do_HEAD()
 
     def do_GET(self):
+        if self.serve_live_results():
+            return
         if self.serve_share():
             return
         route = urlsplit(self.path).path

@@ -1,10 +1,12 @@
 """HTTP-boundary checks for the standalone preview's local public snapshots."""
 import importlib.util
+import io
 import json
 from pathlib import Path
 import tempfile
 from threading import Thread
 import unittest
+from unittest.mock import patch
 from urllib.error import HTTPError
 from urllib.request import Request, urlopen
 
@@ -62,6 +64,38 @@ class HostBoundary(unittest.TestCase):
                 self.get('/host-api/x/toy/detail?' + query)
             self.assertEqual(caught.exception.code, 404)
             self.assertEqual(json.load(caught.exception)['code'], -404)
+
+    def test_live_relay_uses_fixed_source_and_does_not_forward_client_credentials(self):
+        source = 'https://public.example/results.json'
+        (self.module.ROOT / 'private/site/live-source.json').write_text(json.dumps({'url': source}))
+        body = b'{"updated_utc":"2026-10-16T00:00:00Z","schema_version":2}'
+        for method in ('GET', 'HEAD'):
+            with patch.object(self.module, 'urlopen', return_value=io.BytesIO(body)) as upstream:
+                request = Request(self.url + '/content/live-results.json?t=123', method=method,
+                                  headers={'Cookie': 'private=secret', 'Authorization': 'secret'})
+                with urlopen(request, timeout=3) as response:
+                    self.assertEqual(response.status, 200)
+                    self.assertEqual(int(response.headers['Content-Length']), len(body))
+                    self.assertEqual(response.read(), body if method == 'GET' else b'')
+                forwarded = upstream.call_args[0][0]
+                self.assertEqual(forwarded.full_url, source + '?t=123')
+                self.assertNotIn('Cookie', forwarded.headers)
+                self.assertNotIn('Authorization', forwarded.headers)
+        for query in ('url=https://other.example/', 't=1&t=2', 't=', 't=abc'):
+            with patch.object(self.module, 'urlopen') as upstream:
+                with self.assertRaises(HTTPError) as caught:
+                    urlopen(self.url + '/content/live-results.json?' + query, timeout=3)
+                self.assertEqual(caught.exception.code, 400)
+                upstream.assert_not_called()
+
+    def test_live_failure_is_visible_without_substituting_stale_results(self):
+        (self.module.ROOT / 'private/site/live-source.json').write_text(json.dumps({'url': 'https://public.example/results.json'}))
+        for error, expected in ((HTTPError('https://public.example/', 503, 'unavailable', {}, None), 503),
+                                (OSError('network unavailable'), 502)):
+            with patch.object(self.module, 'urlopen', side_effect=error):
+                with self.assertRaises(HTTPError) as caught:
+                    urlopen(self.url + '/content/live-results.json', timeout=3)
+                self.assertEqual(caught.exception.code, expected)
 
     def test_size_is_honored_and_unrecorded_pages_fail(self):
         data = self.get('/host-api/x/toy/plaza/category?category=ALL&pn=1&ps=3')['data']

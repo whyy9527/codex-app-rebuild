@@ -16,10 +16,15 @@ python3 -m projects.bilibili-toy.tools.serve --port 4617
 ```
 
 打开 <http://127.0.0.1:4617/>。准备命令需要 curl 和原版公开资源可访问；
-本地服务只监听 loopback。准备成功后应用数据与素材从本地读取。
+本地服务只监听 loopback。准备成功后冻结应用数据与素材从本地读取；实时赛果通过固定公开源的同源只读转发取得。
+当前原版版本与资源入口集中在 `source-build.json`；更新准备先在独立目录完成，
+全部资源和宿主准备成功后才切换，并保留上一份本地目录。
 右侧 Toy 平台侧栏和顶部作者／关注／话题区域已按用户截图要求删除，
 主内容占满释放出的宽度。原版静态发布包保留；派生模块只调整分享基址
-并取消挂载顶部作者组件。公开只读响应快照供原应用可选 SDK 读取，
+并取消挂载顶部作者组件，以及将实时赛果地址适配为本站同源接口。
+`/content/live-results.json` 只读取配置中的固定公开 JSON，不转发客户端凭证，
+不增加服务端缓存；原应用的每分钟检查、手动刷新、积分算法和失败保留逻辑不变。
+公开只读响应快照供原应用可选 SDK 读取，
 来源及摘要位于 `private/site/host/provenance.json`。
 账号写入未接入，外链仍打开原站；服务工作线程及远端遥测不注入。
 战报及二维码基址适配为当前域名；原版模块保持原字节，派生的
@@ -305,3 +310,11 @@ python3 -m workflows.rebuild.project run --workspace . --project projects/bilibi
 本机可选 NumPy/SciPy。共同断言只覆盖已观察 BP 场景的输出、静音及
 恢复；首个音效波形和原版重复测量单独报告，不作为全音效一致判定。
 历史录音早于用户删除两个 UI 区域，详见 `evidence/audio-2026-10-15.json`。
+
+手机主页面首屏回归使用 `major-pages.json`、`tools/major_pages_native.mjs`
+和 `tools/major_pages_probe.py`。在 CUA 中准备各端，再逐个执行协议的
+`cases`，采集真实 header 几何及重复 PNG。先 freeze 原版，再 observe 候选
+（本地可提供 `--candidate-url`），使用 `capabilities.rebuild.frontend` 比较。
+原版重复帧不稳定的区域保持 pending，独立草稿和实时赛果时间差保持原始失败，
+不据此宣称完整 1:1 验收通过。最新升级结果见
+`evidence/live-update-2026-10-16.json`。

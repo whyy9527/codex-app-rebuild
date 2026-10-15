@@ -45,8 +45,12 @@ def package():
     for required in ('private/site/assets/local-index.js', 'private/site/host/responses.json'):
         if required not in files:
             raise RuntimeError('Missing prepared baseline: ' + required)
+    prepared_build = json.loads((ROOT / 'private/site/source-build.json').read_text())
+    expected_build = json.loads((ROOT / 'source-build.json').read_text())
+    if prepared_build != expected_build:
+        raise RuntimeError('Prepared source build differs from reviewed configuration')
     manifest = {'release': release, 'revision': revision, 'channel': 'preview',
-                'source_build': '43482999941120-v26695', 'full_fidelity_acceptance': 'pending',
+                'source_build': prepared_build['id'], 'full_fidelity_acceptance': 'pending',
                 'resource_origin': 'Original publicly published application reused; third-party rights remain with their owners.'}
     files['release.json'] = (json.dumps(manifest, ensure_ascii=False, indent=2) + '\n').encode()
     hashes = {name: hashlib.sha256(data).hexdigest() for name, data in sorted(files.items())}
