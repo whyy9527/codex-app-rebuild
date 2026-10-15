@@ -81,6 +81,10 @@ def main():
     if original.count(share_base) != 1:
         raise ValueError('Published share base changed; inspect before adapting')
     local_main = original.replace(share_base, 've=window.location.origin+`/`')
+    author_mount = '(0,L.jsx)(Ie,{})'
+    if local_main.count(author_mount) != 1:
+        raise ValueError('Published author-bar mount changed; inspect before adapting')
+    local_main = local_main.replace(author_mount, 'null')
     (SITE / 'assets/local-index.js').write_text(local_main)
     # Local bootstrap deliberately omits host redirects, SDK, SW and analytics.
     (SITE / "index.html").write_text('''<!doctype html>
@@ -98,7 +102,7 @@ def main():
                 "local_adaptations": [{"path": "assets/local-index.js", "source_path": MAIN,
                     "source_sha256": hashlib.sha256(original.encode()).hexdigest(),
                     "sha256": hashlib.sha256(local_main.encode()).hexdigest(),
-                    "change": "Share/report/QR base uses the current origin; prediction path and encoding unchanged."}]}
+                    "change": "Share/report/QR base uses the current origin; omit the topbar author component at the user's explicit request. Prediction path and encoding unchanged."}]}
     (ROOT / "private/resources.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2))
     host_result = subprocess.run(["python3", "-m", "projects.bilibili-toy.tools.prepare_host"],
                                  cwd=ROOT.parents[1], capture_output=True, text=True)

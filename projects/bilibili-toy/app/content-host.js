@@ -1,4 +1,4 @@
-// The author bar consumes the same public author snapshot as the host sidebar.
+// Optional published-app profile SDK reads use the public snapshot.
 let responses;
 const read = () => responses ||= fetch('/content/host/responses.json').then(r => {
   if (!r.ok) throw new Error('Author snapshot unavailable');

@@ -27,9 +27,6 @@ for attempt in $(seq 1 20); do
 done
 curl -fsS "http://$GATEWAY:18086/content/assets/local-index.js" -o /dev/null
 docker exec nginx-app curl -fsS "http://$GATEWAY:18086/release.json"
-cp deploy/s16.http.conf "$PROXY"
-docker exec nginx-app nginx -t
-docker exec nginx-app nginx -s reload
 docker exec nginx-app test -f /etc/letsencrypt/live/bilibili-toy-s16/fullchain.pem || {
     printf 'Install the S16 DNS-01 certificate with tools.certificate before publishing.\n' >&2
     exit 1

@@ -1,0 +1,99 @@
+{
+  "date": "2026-10-15",
+  "scope": "First public preview delivery health; not full 1:1 acceptance",
+  "url": "https://s16.xinxiayiyan.com/",
+  "release": "4a4ab2f7ddb7-20261015T142553Z",
+  "app_revision": "4a4ab2f7ddb756e2deeb7922ff13f8912c8cae17",
+  "management_revision": "6538d6fa1e71339b00d2adff72923c8b272c825b",
+  "source_build": "43482999941120-v26695",
+  "resources": "Reuses the original published application, data and assets; third-party licensing remains unknown.",
+  "evidence_directory": "projects/bilibili-toy/private/deploy/4a4ab2f7ddb7-20261015T142553Z",
+  "public_http_checks": 13,
+  "public_release_checksum_matches": 12,
+  "tls": {
+    "protocol": "TLSv1.3",
+    "subject_alt_names": [
+      [
+        "DNS",
+        "s16.xinxiayiyan.com"
+      ]
+    ],
+    "not_after": "Jan 13 13:37:25 2027 GMT",
+    "sha256": "42d478ac7fd05d7986f70ee5a1a6e54b988961bfe07f5bd6a11db8d433a5b9e5",
+    "chain_and_hostname_verified": true
+  },
+  "ui_checks": [
+    {
+      "case": "home",
+      "observed": "heading S16 AI 大模型预测大赛",
+      "status": "pass",
+      "ax_sha256": "9e8f3803d3d0a8d0eedc070fd78ca6c0f0107e8577ab86e90f4541457bbb3f21",
+      "screenshot_present": true
+    },
+    {
+      "case": "compare",
+      "observed": "heading 数据对比",
+      "status": "pass",
+      "ax_sha256": "b1b88c3e823bc6eaf8bfb914f96f18213e454c93b9f70fe940bdbf2e7bd1b0f8",
+      "screenshot_present": true
+    },
+    {
+      "case": "teams-loaded",
+      "observed": "heading 参赛战队",
+      "status": "pass",
+      "ax_sha256": "99ea3054e578fa3633eb6d29a2f3b47d4034221d895965124210aa5a74a88a53",
+      "screenshot_present": true
+    },
+    {
+      "case": "prediction-revealed",
+      "observed": "toggle button KC",
+      "status": "pass",
+      "ax_sha256": "2db1ef912e12a269cf717338f1971cbf2d557dc91d735e8ad1b93941d9c602b2",
+      "screenshot_present": true
+    },
+    {
+      "case": "prediction-after-reload",
+      "observed": "toggle button KC 59% 8, Value: on",
+      "status": "pass",
+      "ax_sha256": "8e47c940ed520dad8699f3f6aabf9d19cb5b75211605a2606c033dd19c25eec4",
+      "screenshot_present": true
+    },
+    {
+      "case": "player",
+      "observed": "button 暂停",
+      "status": "pass",
+      "ax_sha256": "70a7664313a2f4fdf86d27dcee01b955dc315e19c02c9410150ac620aa84eda2",
+      "screenshot_present": true
+    },
+    {
+      "case": "player-paused",
+      "observed": "button 播放",
+      "status": "pass",
+      "ax_sha256": "eaf89bad1699f30cad125b6ba3796b2f54305457a71be3097c257b07edf65860",
+      "screenshot_present": true
+    }
+  ],
+  "shared_services": {
+    "landing_origin": "pass",
+    "landing_public_https": 200,
+    "root_https_redirect_to_landing": "pass",
+    "workflow_public_https": 200,
+    "landing_container": "healthy",
+    "workflow_container": "healthy"
+  },
+  "cleanup": {
+    "artifact_object_removed": true,
+    "server_archive_removed": true,
+    "rollback_script_sha256": "f46b6f863024693e81036c81385521831142ea8cd99bb81eb4fe546e50ab95d8",
+    "rollback_command": "sh /var/tmp/bilibili-toy-s16-4a4ab2f7ddb7-20261015T142553Z/rollback.sh /var/tmp/bilibili-toy-s16-4a4ab2f7ddb7-20261015T142553Z",
+    "prior_release": "none-first-preview",
+    "release_retained": true,
+    "diagnostics_retained": true
+  },
+  "limitations": [
+    "Public HTTP is intercepted by Aliyun ICP layer (Beaver 403); use HTTPS.",
+    "Certificate issued through local DNS-01 hooks; DNS credentials remain local. No renewal scheduler installed; certificate expires 2027-01-13.",
+    "Full fidelity, mobile and remaining interaction/audio acceptance pending.",
+    "This first preview retains the two UI areas that the user subsequently requested to remove; the next release will apply that request."
+  ]
+}

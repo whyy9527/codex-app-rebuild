@@ -17,9 +17,10 @@ python3 -m projects.bilibili-toy.tools.serve --port 4617
 
 打开 <http://127.0.0.1:4617/>。准备命令需要 curl 和原版公开资源可访问；
 本地服务只监听 loopback。准备成功后应用数据与素材从本地读取。
-平台侧栏复用公开发布 UI，作者信息和相关内容接入公开只读响应快照；
-快照来源及派生包摘要位于 `private/site/host/provenance.json`。默认构建
-复用已有快照，显式更新使用 `python3 -m projects.bilibili-toy.tools.prepare_host --refresh`。
+右侧 Toy 平台侧栏和顶部作者／关注／话题区域已按用户截图要求删除，
+主内容占满释放出的宽度。原版静态发布包保留；派生模块只调整分享基址
+并取消挂载顶部作者组件。公开只读响应快照供原应用可选 SDK 读取，
+来源及摘要位于 `private/site/host/provenance.json`。
 账号写入未接入，外链仍打开原站；服务工作线程及远端遥测不注入。
 战报及二维码基址适配为当前域名；原版模块保持原字节，派生的
 `assets/local-index.js` 和变更摘要记入资源清单。外壳 iframe 使用原版实测
