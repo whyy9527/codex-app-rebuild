@@ -29,7 +29,10 @@
     "share_contract": "projects/bilibili-toy/private/share-contract-v2.json",
     "historical_share_result": "projects/bilibili-toy/private/share-compare-2.json",
     "locked_contract": "projects/bilibili-toy/private/locked-contract-v2.json",
-    "historical_locked_result": "projects/bilibili-toy/private/locked-compare-1.json"
+    "historical_locked_result": "projects/bilibili-toy/private/locked-compare-1.json",
+    "audio_scenarios": "projects/bilibili-toy/audio.json",
+    "audio_contract": "projects/bilibili-toy/private/audio-contract-v1/contract.json",
+    "historical_audio_result": "projects/bilibili-toy/private/audio-compare-1.json"
   },
   "commands": {
     "rsi_collect": [
@@ -225,6 +228,28 @@
       "--contract",
       "projects/bilibili-toy/private/locked-contract-v2.json",
       "--observed",
+      "{observed}",
+      "--out",
+      "{out}"
+    ],
+    "audio_compare": [
+      "python3",
+      "-m",
+      "capabilities.rebuild.frontend",
+      "--workspace",
+      ".",
+      "--contract",
+      "projects/bilibili-toy/private/audio-contract-v1/contract.json",
+      "--observed",
+      "{observed}",
+      "--out",
+      "{out}"
+    ],
+    "audio_freeze": [
+      "python3",
+      "-m",
+      "projects.bilibili-toy.tools.freeze_audio",
+      "--captures",
       "{observed}",
       "--out",
       "{out}"

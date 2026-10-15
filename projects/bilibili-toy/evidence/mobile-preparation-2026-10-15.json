@@ -1,0 +1,36 @@
+{
+  "date": "2026-10-15",
+  "scope": "Mobile observer preparation; not accepted mobile fidelity evidence",
+  "method": "Task-created Edge window, DevTools device emulation observed iPhone SE 375x667",
+  "observed_controls": [
+    "Mobile AI channel native select",
+    "Horizontal-data-table swipe hint",
+    "Mobile Toy My entry"
+  ],
+  "results": [
+    {
+      "status": "unavailable",
+      "evidence": "projects/bilibili-toy/private/mobile-preparation-1/INVALID-MIXED-CAPTURE.json",
+      "reason": "AX/device preparation belongs to S16 but screenshot captured another concurrent task window."
+    },
+    {
+      "status": "unavailable",
+      "reason": "Extension browser nameSession timed out; CUA kernel reset. No controlled mobile tab or viewport result inferred."
+    }
+  ],
+  "next_preparation": "Use the observed Safari responsive viewport for a shared source/candidate mobile protocol; preserve the raw Edge conflict failure.",
+  "recovery": {
+    "authorization": "User explicitly approved Show features for web developers.",
+    "actual_preference": "Enabled and observed Value: 1 through CUA.",
+    "responsive_mode": "Entered using Develop → Enter Responsive Design Mode.",
+    "viewport_observed": {
+      "width": 375,
+      "height": 667,
+      "zoom_percent": 99,
+      "pixel_ratio": "2x"
+    },
+    "evidence": "projects/bilibili-toy/private/mobile-safari-source-1/viewport-preparation.ax.txt",
+    "screenshot": "projects/bilibili-toy/private/mobile-safari-source-1/viewport-preparation.jpg",
+    "result": "Preparation available; no complete mobile fidelity assertion yet."
+  }
+}

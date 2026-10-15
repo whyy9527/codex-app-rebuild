@@ -111,3 +111,23 @@ DNS 凭证不上传服务器。证书与私钥只进入本机 ignored private �
 `tools.certificate --install` 在接近到期时续签并安装；安装后需要
 `docker exec nginx-app nginx -t` 与平滑 reload。当前没有安装本机定时任务，
 维护者需在证书到期前执行该命令。访问本站使用完整 HTTPS 地址。
+
+声音行为协议在 `audio.json`。先在 CUA 中将 `tools/audio_native.mjs` 的
+`installAudioUI` 绑定到本任务独占的 Safari，再用 `prepare` 准备各用例。
+只录本任务 Safari PID 的应用输出；录音前确认其他 Safari 窗口没有播放。
+CLI 复用仓库已有 ScreenCaptureKit collector，不传 Swift AX 动作、不录
+麦克风或屏幕。启动后必须等本次 `ready.json`，再由 CUA 调用
+`run({url, dir, seconds:3})` 实际播放和暂停；本轮使用 30 秒采集窗口
+以容纳工具往返，12 秒早期尝试因动作未落在窗口内而无效。
+
+```sh
+python3 -m projects.bilibili-toy.tools.capture_audio --pid <本任务实际 Safari PID> --seconds 30 --out <新的 private 录音目录>
+python3 -m projects.bilibili-toy.tools.freeze_audio --captures <private 两端录音目录映射 JSON> --out <新的 private 契约目录>
+python3 -m workflows.rebuild.project run --workspace . --project projects/bilibili-toy/rebuild.json --command audio_compare --observed projects/bilibili-toy/private/audio-contract-v1/candidate.json --out <新的 private 比较结果.json>
+```
+
+采集必须顺序进行：上一个 collector 终态后才能切换到下一端页面。
+每次使用新目录，录音、UI 动作时间和采样帧共同构成证据。分析依赖
+本机可选 NumPy/SciPy。共同断言只覆盖已观察 BP 场景的输出、静音及
+恢复；首个音效波形和原版重复测量单独报告，不作为全音效一致判定。
+历史录音早于用户删除两个 UI 区域，详见 `evidence/audio-2026-10-15.json`。
