@@ -1,6 +1,6 @@
 ---
 name: macos-owned-app-audio-output
-description: Verify macOS application sound and mute through ScreenCaptureKit output recordings with timed UI actions. Use when player logs or generated WAV files do not prove that the actual owned app emits audio.
+description: Verify macOS application sound and mute through PID-filtered ScreenCaptureKit or CoreAudio process taps with timed UI actions. Use when player logs or generated WAV files are insufficient, or a Chromium root-PID recording is silent despite active WebAudio.
 ---
 # Verify owned application audio output
 
@@ -33,6 +33,46 @@ Essential mechanics:
 
 Verified on an actual SwiftUI client: choice and instruction speech, correct/incorrect/completion cues, automatic matching feedback, mute during real matching clicks, and restored output. The collector records digital application output; it does not prove physical speaker volume or subjective sound quality. Use a host SDK supporting the collector's ScreenCaptureKit properties; permission/API failure remains unavailable, not pass.
 
+## Chromium audio-child fallback
+
+A Chromium root-PID ScreenCaptureKit recording can contain only zeros while an
+owned audio-service child emits sound. This was observed with both application
+and window filters; an active WebAudio context alone did not prove system output.
+Keep those failed receipts and inspect the isolated browser's owned PID tree.
+
+[inspect_owned_audio.swift](../../../projects/valorant-predictor/scripts/inspect_owned_audio.swift)
+queries `kAudioProcessPropertyIsRunningOutput` only for explicitly supplied PIDs.
+Use the root and known descendants from the task's isolated browser, not an
+existing browser containing unrelated user tabs.
+
+The tested fallback is
+[capture_owned_process_audio.swift](../../../projects/valorant-predictor/scripts/capture_owned_process_audio.swift).
+Compile with its audio-usage description embedded, using a host SDK exposing the
+CoreAudio process-tap APIs:
+
+```sh
+swiftc -parse-as-library projects/valorant-predictor/scripts/capture_owned_process_audio.swift \
+  -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __info_plist \
+  -Xlinker projects/valorant-predictor/scripts/audio_capture_info.plist \
+  -o artifacts/capture-owned-process-audio
+artifacts/capture-owned-process-audio OWNED_BROWSER_ROOT_PID artifacts/output.wav 5
+```
+
+The collector maps the owned PID tree to explicit CoreAudio process objects,
+uses `CATapDescription(stereoMixdownOfProcesses:)` with `.unmuted`, and reads a
+private aggregate device. It copies float PCM into `AVAudioPCMBuffer` and flushes
+the serial writer queue after stopping. The sidecar reports captured PIDs,
+frames, peak/RMS and callback failures; it does not open a microphone or global tap.
+
+Initialize the product's audio service first if no owned audio object exists,
+reset the scenario, then wait for `READY` before the measured UI triggers.
+[qa_audio.py](../../../projects/valorant-predictor/scripts/qa_audio.py) demonstrates
+that handshake and audible/muted/restored phases. Adapt the actual product controls.
+The fallback was verified with real clicks, sampled mute, restored output,
+autofill and save cues. Nonzero output establishes audibility, not complete sound
+identity; retain waveform differences and any transport anomalies.
+
 ## Avoid false evidence
 
 Never record another app or microphone as a substitute. Do not bypass permission failures, use an unrelated tone generator to prove the product UI, accept silence without in-window triggers, or weaken behavior assertions to make capture succeed. Run UI suites sequentially to avoid focus competition; preserve user progress and failed receipts.
+Do not replace an explicit owned-process tap with a global tap to obtain a nonzero recording.
