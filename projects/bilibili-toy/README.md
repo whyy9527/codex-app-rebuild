@@ -166,8 +166,8 @@ Safari AX 漏掉整块内容；可从主导航聚焦后用 Option-Tab 找到轮�
 本轮重试保留原采集，选择清单引用实际帧及原清单摘要；不会覆写失败截图。
 完整结果和限制见 `evidence/prediction-options-2026-10-16.json`。
 
-历史 JPEG 视觉探针由 `visual.json` 定义。用户删除侧栏后，同一外部视口会给主内容
-多出 58px。需分别观察该扩宽布局和相同 iframe 视口下的保留区域；
+历史 JPEG 视觉探针由 `visual.json` 定义。旧预览删除侧栏时额外加了 6px 右边距，同一外部视口曾只释放
+58px；后续已恢复原版容器规则，实际释放完整 64px。历史探针需分别观察该扩宽布局和相同 iframe 视口下的保留区域；
 不能用整页重排掩盖主内容差异，也不能把局部区域通过当作整页通过。
 该 Method 探针保留完整可见业务区域，导航布局仍单独待验收。
 
@@ -182,7 +182,7 @@ python3 -m capabilities.rebuild.frontend --workspace . --contract <本次探针�
 保持失败，不归因于压缩或增加容差；后续无损复验见下文。历史结果见
 `evidence/visual-2026-10-16.json`。
 
-无损复验使用 `visual-png.json`。在 CUA 中绑定
+历史无损复验使用 `visual-png.json`，保留当时的外宽和右边距。在 CUA 中绑定
 `tools/visual_png_native.mjs` 的 `installLosslessUI`，传入实际页面 URL、
 新证据目录和窗口 UUID，再调用 `capture(stem)`。驱动通过 Web Inspector
 原生节点菜单保存 body PNG，分离检查器窗口以保持页面视口，并核对实际
@@ -190,12 +190,40 @@ python3 -m capabilities.rebuild.frontend --workspace . --contract <本次探针�
 
 ```sh
 python3 -m projects.bilibili-toy.tools.visual_probe --lossless --captures <原始证据目录> --out projects/bilibili-toy/private/visual-png-probe-new
-python3 -m workflows.rebuild.project run --workspace . --project projects/bilibili-toy/rebuild.json --command visual_compare --observed <候选事实.json> --out projects/bilibili-toy/private/visual-png-comparison-new.json
+python3 -m capabilities.rebuild.frontend --workspace . --contract <本次无损探针目录/contract.json> --observed <本次无损探针目录/public.json> --out projects/bilibili-toy/private/visual-png-comparison-new.json
 ```
 
 原版契约冻结后另取候选重复帧，用相同要求复验。此轮 Method 的完整可见
 业务区域达到严格零像素差，原 JPEG 失败和初始未稳定 PNG 均保留。
 这不替代导航、其他页面和手机布局检查。见 `evidence/visual-png-2026-10-16.json`。
+
+当前删除后的排版参考由 `tools/user_removal_native.mjs` 准备：在实际原版
+任务窗口进入同一页面，再在 CUA 调用 `installRequestedRemovalReference`
+的 `prepare()`。它仅通过原生检查器删除 `.author-bar` 和
+`aside#toy-shell-sidebar`，记录节点确实从存在变为不存在；原版 CSS、脚本
+和数据保持原样。刷新恢复原版。`Delete` 是菜单分组，真正动作是子项 `Node`，
+不能把打开分组当成删除成功。
+
+主内容恢复原版 flex 容器与 `6px 0 6px 6px` 内边距。手机端两个区域删除后，
+375px 外宽给主内容 369px；原版作者行删除使导航高度从 239px 降为 191px。
+当前手机静态区域协议为 `user-removal-png.json`，桌面业务区域为
+`user-removal-desktop.json`。使用相同实际外部视口和完整分享 query，先冻结
+原版参考，再独立重放候选；`installLosslessUI` 保存真实 body PNG 与 UI 证据。
+
+```sh
+python3 -m projects.bilibili-toy.tools.mobile_png_probe freeze --protocol user-removal-png.json --captures <原版参考目录> --out projects/bilibili-toy/private/requested-removal-contract-new
+python3 -m projects.bilibili-toy.tools.mobile_png_probe observe --protocol user-removal-png.json --captures <候选目录> --out projects/bilibili-toy/private/requested-removal-facts-new.json
+python3 -m workflows.rebuild.project run --workspace . --project projects/bilibili-toy/rebuild.json --command mobile_visual_compare --observed <候选事实.json> --out projects/bilibili-toy/private/requested-removal-comparison-new.json
+node projects/bilibili-toy/tools/visual_png_native.test.mjs
+```
+
+桌面将协议改为 `user-removal-desktop.json`，比较命令为 `visual_compare`。
+预发布本地观察可增加 `--candidate-url http://127.0.0.1:4619/`；工具仍核对
+实际端口、源站和完整分享 query。实际 body 的 Computed 尺寸、PNG 尺寸与
+响应式工具栏须同时一致；100% 标签有取整误差。全透明节点图被判为不可用。
+失败样本、当前修复及完整原始帧见 `evidence/mobile-png-2026-10-16.json` 和
+`evidence/shell-layout-2026-10-16.json`。原始整图中的悬停和动画相位差异
+独立保留，不使用遮罩或提高容差。
 
 实际复制的模型世界／单局分享入口使用 `journeys.json#share_world` 和
 `#share_game`。服务端从已发布数据生成有效路径，不把未知比赛替换为首页。

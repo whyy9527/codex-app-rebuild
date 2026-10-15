@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "scope": "Same actual 375×667 mobile viewport on the original page with only the two explicitly user-requested DOM nodes removed locally, compared with the implementation. This reference variant preserves all original CSS and application data. Four complete static regions plus original Method text; full PNGs and dynamic live-dot differences retained separately.",
+  "height_css": 667,
+  "zoom_label": "( 100% )",
+  "pixel_ratio_label": "2x",
+  "actual_samples_per_css_pixel": 2,
+  "scene_heading": "heading S16 · AI 赛制介绍, Value: 1",
+  "source": {
+    "width_css": 375,
+    "viewport_pixels": [
+      0,
+      0,
+      750,
+      1334
+    ],
+    "header_css": 191,
+    "header_evidence": "source-requested-header.inspector.ax.txt",
+    "frames": [
+      "source-requested-removals-c",
+      "source-requested-removals-d"
+    ]
+  },
+  "candidate": {
+    "width_css": 375,
+    "viewport_pixels": [
+      0,
+      0,
+      750,
+      1334
+    ],
+    "header_css": 191,
+    "header_evidence": "public-requested-header.inspector.ax.txt",
+    "frames": [
+      "public-requested-a",
+      "public-requested-b"
+    ]
+  },
+  "regions": {
+    "business": {
+      "source": [
+        12,
+        394,
+        738,
+        838
+      ],
+      "candidate": [
+        12,
+        394,
+        738,
+        838
+      ]
+    },
+    "branding": {
+      "source": [
+        12,
+        12,
+        738,
+        92
+      ],
+      "candidate": [
+        12,
+        12,
+        738,
+        92
+      ]
+    },
+    "navigation": {
+      "source": [
+        36,
+        192,
+        690,
+        184
+      ],
+      "candidate": [
+        36,
+        192,
+        690,
+        184
+      ]
+    },
+    "ticker": {
+      "source": [
+        12,
+        1232,
+        738,
+        90
+      ],
+      "candidate": [
+        12,
+        1232,
+        738,
+        90
+      ]
+    }
+  },
+  "geometry_sources": [
+    "Actual original DOM element deletions: .author-bar and aside#toy-shell-sidebar. No original CSS, scripts, data or other nodes edited. Reload restores original DOM.",
+    "Original shell retains flex layout and padding 6px 0 6px 6px. After removing its 64px sidebar, the 375px body gives a 369px iframe.",
+    "Actual original header ResizeObserver reports --header-height 191px after author deletion, matching visible flow. Navigation is two 44px rows plus 4px gap; header bottom padding/border 9px.",
+    "Closed ticker actual flow is 45px: its 44px child plus the 1px border. Prior 44px declaration accidentally included the top ticker border in the business region; original failed comparison remains unchanged."
+  ],
+  "limits": [
+    "This original reference variant implements only the user-authorized two removals through native DOM Delete → Node. Other baseline references remain immutable.",
+    "Failed attempts that opened only the Delete submenu did not remove nodes; those raw frames are excluded by observed before/after node-presence checks.",
+    "Animated live-badge dot phase remains in full unmasked PNGs. Static region requirements do not certify its timing.",
+    "Other pages and animation/audio coverage remain required; no full Goal completion inferred."
+  ],
+  "author_removed": true,
+  "source_node_deletions": [
+    {
+      "before": "author-node-delete.before.ax.txt",
+      "after": "author-node-delete.after.ax.txt",
+      "menu": "author-node-delete.menu.ax.txt",
+      "node_pattern": "row .*<div.*author-bar"
+    },
+    {
+      "before": "sidebar-node-delete.before.ax.txt",
+      "after": "sidebar-node-delete.after.ax.txt",
+      "menu": "sidebar-node-delete.menu.ax.txt",
+      "node_pattern": "row .*<aside.*toy-shell-sidebar"
+    }
+  ]
+}

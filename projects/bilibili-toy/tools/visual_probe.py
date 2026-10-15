@@ -41,7 +41,7 @@ def ax_facts(ax, expected_url, spec, protocol, window_uuid=None):
     value = re.search(r'Value: (.*?)(?:, (?:ID|Placeholder):|$)', field)
     if not value:
         raise ValueError('Actual browser address unavailable')
-    address = value[1] if '://' in value[1] else 'https://' + value[1]
+    address = value[1] if '://' in value[1] else urlsplit(expected_url).scheme + '://' + value[1]
     if urlsplit(address) != urlsplit(expected_url):
         raise ValueError('Actual visual endpoint or share query differs')
     for label, expected in [('Width', str(spec['width_css'])), ('Height', str(protocol['height_css'])),
@@ -68,13 +68,22 @@ def inspector_provenance(directory, stem, expected_url):
     ax = inspector.read_text()
     hostname = urlsplit(expected_url).hostname
     if ('standard window Web Inspector — ' + hostname not in ax or
-            not re.search(r'row \(selected(?:,[^)]*)?\) Description: <body', ax)):
+            not re.search(r'row \(selected(?:,[^)]*)?\) (?:Description: )?<body', ax)):
         raise ValueError('Owned inspector body selection unavailable')
     save_ax = saved.read_text()
     if ('Value: ' + stem + '.png' not in save_ax or
             'Value: ' + directory.name not in save_ax or 'ID: save-panel' not in save_ax):
         raise ValueError('Owned PNG save destination unavailable')
     return [inspector, saved]
+
+
+def validate_lossless_image(image, pixels):
+    if list(image.size) != pixels:
+        raise ValueError('Actual PNG dimensions differ from measured viewport')
+    if image.format != 'PNG':
+        raise ValueError('Lossless evidence must be actual PNG')
+    if 'A' in image.getbands() and image.getchannel('A').getextrema() == (0, 0):
+        raise ValueError('All-transparent node snapshot is unavailable')
 
 
 def observe(directory, side, protocol, url, window_uuid=None):
@@ -94,8 +103,8 @@ def observe(directory, side, protocol, url, window_uuid=None):
             window = spec['viewport_pixels'][2:] if lossless else protocol['window_pixels']
             if list(im.size) != window:
                 raise ValueError('Native window image dimensions differ')
-            if lossless and im.format != 'PNG':
-                raise ValueError('Lossless evidence must be actual PNG')
+            if lossless:
+                validate_lossless_image(im, window)
             rect = spec['body_business_pixels'] if lossless else spec['business_pixels']
             x, y, w, h = rect
             crop = srgb_image(im).crop((x, y, x + w, y + h))

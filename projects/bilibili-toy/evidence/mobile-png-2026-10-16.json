@@ -1,0 +1,22 @@
+{
+  "date": "2026-10-16",
+  "scope": "Mobile PNG observation preparation, retained sampling failures and original-vs-removed-header diagnostic. Superseded as current acceptance by the explicit requested-deletion reference in shell-layout-2026-10-16.json.",
+  "captures": "projects/bilibili-toy/private/mobile-png-1",
+  "protocol": "projects/bilibili-toy/mobile-png.json",
+  "actual_findings": [
+    "Original body at control 375×667 is actual 375×667 and PNG 750×1334. Candidate control 317×667 produced actual body 316×666, PNG 632×1332; rounded 99% or 100% labels alone did not establish correct sampling.",
+    "Zooming the owned Safari window changed native width 2648→2940 without height change. Fullscreen exposed a 100% label but did not correct the 317×667 actual-body discrepancy.",
+    "Control 318×668 produced actual 318×668 and PNG 636×1336; original 376×668 produced actual 376×668 and PNG 752×1336. Both actual iframes then 306×656.",
+    "Original mobile header actual --header-height 239px. Removing author physically gives 191px, a 48px row reduction.",
+    "Original CSS body background becomes scroll-attached on mobile; comparing shifted content against an unmodified original mixes intentional layout changes with implementation effects.",
+    "Closed ticker was originally declared 44px; its child minimum 44px plus top border gives 45px actual flow. The old crop included a ticker border line in the business comparison.",
+    "Inner full-main screenshot returned 2260×8596 with RGBA all zero. It is unavailable and now explicitly rejected."
+  ],
+  "retained_comparison": {
+    "contract": "projects/bilibili-toy/private/mobile-png-contract-v1/contract.json",
+    "source_self": "144 pass",
+    "candidate": "141 pass / 3 pixel fails",
+    "path": "projects/bilibili-toy/private/mobile-png-public-result-1.json",
+    "interpretation": "Retained diagnostic, not a current verdict on the requested after-deletion layout. No failures silently converted to passes."
+  }
+}

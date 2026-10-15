@@ -2,6 +2,8 @@ import importlib.util
 from pathlib import Path
 import unittest
 import tempfile
+from io import BytesIO
+from PIL import Image
 
 MODULE = Path(__file__).resolve().parents[1] / 'tools/visual_probe.py'
 SPEC = importlib.util.spec_from_file_location('visual_probe', MODULE)
@@ -61,6 +63,8 @@ class VisualPreparation(unittest.TestCase):
             inspector.write_text(good_inspector)
             saved.write_text(good_save)
             self.assertEqual(visual.inspector_provenance(folder, 'source', self.url), [inspector, saved])
+            inspector.write_text(good_inspector.replace('Description: ', ''))
+            self.assertEqual(visual.inspector_provenance(folder, 'source', self.url), [inspector, saved])
             for changed in [good_inspector.replace('www.bilibili.com', 'other.test'), good_inspector.replace('<body>', '<head>')]:
                 inspector.write_text(changed)
                 with self.assertRaisesRegex(ValueError, 'body selection'):
@@ -70,3 +74,28 @@ class VisualPreparation(unittest.TestCase):
                 saved.write_text(changed)
                 with self.assertRaisesRegex(ValueError, 'save destination'):
                     visual.inspector_provenance(folder, 'source', self.url)
+
+    def test_actual_lossless_format_size_and_nonempty_alpha_required(self):
+        for fmt, mode, color, message in [
+                ('JPEG', 'RGB', 'white', 'actual PNG'),
+                ('PNG', 'RGBA', (0, 0, 0, 0), 'All-transparent')]:
+            data = BytesIO()
+            Image.new(mode, (4, 4), color).save(data, format=fmt)
+            data.seek(0)
+            with Image.open(data) as image:
+                with self.assertRaisesRegex(ValueError, message):
+                    visual.validate_lossless_image(image, [4, 4])
+        data = BytesIO()
+        Image.new('RGB', (4, 4), 'white').save(data, format='PNG')
+        data.seek(0)
+        with Image.open(data) as image:
+            visual.validate_lossless_image(image, [4, 4])
+            with self.assertRaisesRegex(ValueError, 'dimensions differ'):
+                visual.validate_lossless_image(image, [5, 4])
+
+    def test_loopback_scheme_elision_preserves_actual_endpoint(self):
+        url = 'http://127.0.0.1:4619/?plat_id=620'
+        ax = self.ax.replace(self.url, '127.0.0.1:4619/?plat_id=620')
+        self.assertTrue(visual.ax_facts(ax, url, self.spec, self.protocol)['at_scroll_origin'])
+        with self.assertRaisesRegex(ValueError, 'share query differs'):
+            visual.ax_facts(ax.replace('4619', '4618'), url, self.spec, self.protocol)

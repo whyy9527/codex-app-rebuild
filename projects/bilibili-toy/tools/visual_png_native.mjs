@@ -1,12 +1,17 @@
+export function guardOwnedPage(ax,url,windowUuid) {
+  if(!ax.includes('UUID='+windowUuid))throw Error('Owned screenshot page changed');
+  const field=ax.split('\n').find(x=>x.includes('smart search field'))||'';
+  const value=field.match(/Value: (.*)$/)?.[1]?.split(/, (?:ID|Placeholder):/)[0];
+  if(!value)throw Error('Owned screenshot address unavailable');
+  const expected=new URL(url),actual=new URL(value.includes('://')?value:expected.protocol+'//'+value);
+  if(actual.href!==expected.href)throw Error('Owned screenshot endpoint changed');
+}
+
 // Use only with a native CUA App binding; captures via actual inspector UI.
 export function installLosslessUI(app,fs,{url,output,windowUuid}) {
   const tree=()=>app.getAXState({emit:false,disableDiffing:true});
   const index=line=>Number(line.trim().match(/^\d+/)[0]);
-  function pageGuard(ax) {
-    if(!ax.includes('UUID='+windowUuid))throw Error('Owned screenshot page changed');
-    const field=ax.split('\n').find(x=>x.includes('smart search field'))||'';
-    if(!field.includes('Value: '+url))throw Error('Owned screenshot endpoint changed');
-  }
+  const pageGuard=ax=>guardOwnedPage(ax,url,windowUuid);
   async function capture(stem) {
     if(!/^[a-z0-9-]+$/.test(stem))throw Error('Invalid screenshot stem');
     await fs.mkdir(output,{recursive:true});
@@ -16,10 +21,10 @@ export function installLosslessUI(app,fs,{url,output,windowUuid}) {
     const detach=ax.split('\n').find(x=>x.includes('button Detach into separate window'));
     if(detach){await app.click(index(detach));ax=await tree();}
     if(!ax.includes('standard window Web Inspector — '+new URL(url).hostname))throw Error('Owned inspector unavailable');
-    const body=ax.split('\n').find(x=>/row .*Description: <body/.test(x));
+    const body=ax.split('\n').find(x=>/row .*?(?:Description: )?<body/.test(x));
     if(!body)throw Error('Actual body node unavailable');
     await app.click(index(body));ax=await tree();
-    const selected=ax.split('\n').find(x=>/row \(selected(?:,[^)]*)?\) Description: <body/.test(x));
+    const selected=ax.split('\n').find(x=>/row \(selected(?:,[^)]*)?\) (?:Description: )?<body/.test(x));
     if(!selected)throw Error('Actual body selection did not update');
     await fs.writeFile(output+'/'+stem+'.inspector.ax.txt',ax,{flag:'wx'});
     await app.click(index(selected),{mouseButton:'right'});ax=await tree();
