@@ -166,6 +166,22 @@ Safari AX 漏掉整块内容；可从主导航聚焦后用 Option-Tab 找到轮�
 本轮重试保留原采集，选择清单引用实际帧及原清单摘要；不会覆写失败截图。
 完整结果和限制见 `evidence/prediction-options-2026-10-16.json`。
 
+视觉探针由 `visual.json` 定义。用户删除侧栏后，同一外部视口会给主内容
+多出 58px。需分别观察该扩宽布局和相同 iframe 视口下的保留区域；
+不能用整页重排掩盖主内容差异，也不能把局部区域通过当作整页通过。
+当前 Method 探针保留完整可见业务区域，导航布局仍单独待验收。
+
+```sh
+python3 -m projects.bilibili-toy.tools.visual_probe --captures <原始AX和截图目录> --out projects/bilibili-toy/private/visual-probe-new
+python3 -m workflows.rebuild.project run --workspace . --project projects/bilibili-toy/rebuild.json --command visual_compare --observed <public.json> --out projects/bilibili-toy/private/visual-comparison-new.json
+```
+
+工具重新核验原入口、完整分享参数、窗口身份、截图前后文本、滚动原点和
+真实采样比例，再从原版冻结文本、几何和严格像素要求。Safari 的 100%
+标签可能经过取整，需结合截图中的完整视口边界测量。JPEG 的非零差异
+保持失败，无损截图验证前不归因于压缩或增加容差。结果见
+`evidence/visual-2026-10-16.json`。
+
 用户后续指定的发布目标是 `https://s16.xinxiayiyan.com/`；完成条件修订见
 `rebuild.json`，用户后续要求先发布当前预览版；完整复刻验收继续。现有官网首页保留。
 

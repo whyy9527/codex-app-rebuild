@@ -44,7 +44,10 @@
     "tournament_contract": "projects/bilibili-toy/private/tournament-contract-v3/contract.json",
     "historical_tournament_public_result": "projects/bilibili-toy/private/tournament-public-compare-2.json",
     "prediction_options_contract": "projects/bilibili-toy/private/prediction-options-contract-v2/contract.json",
-    "historical_prediction_options_public_result": "projects/bilibili-toy/private/prediction-options-public-compare-2.json"
+    "historical_prediction_options_public_result": "projects/bilibili-toy/private/prediction-options-public-compare-2.json",
+    "visual_scenarios": "projects/bilibili-toy/visual.json",
+    "visual_probe_contract": "projects/bilibili-toy/private/visual-content-1/shared-probe-2/contract.json",
+    "historical_visual_probe_public_result": "projects/bilibili-toy/private/visual-content-1/shared-probe-2/public-result.json"
   },
   "commands": {
     "rsi_collect": [
@@ -326,6 +329,19 @@
       ".",
       "--contract",
       "projects/bilibili-toy/private/prediction-options-contract-v2/contract.json",
+      "--observed",
+      "{observed}",
+      "--out",
+      "{out}"
+    ],
+    "visual_compare": [
+      "python3",
+      "-m",
+      "capabilities.rebuild.frontend",
+      "--workspace",
+      ".",
+      "--contract",
+      "projects/bilibili-toy/private/visual-content-1/shared-probe-2/contract.json",
       "--observed",
       "{observed}",
       "--out",
