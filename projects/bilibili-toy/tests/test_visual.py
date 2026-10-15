@@ -1,6 +1,7 @@
 import importlib.util
 from pathlib import Path
 import unittest
+import tempfile
 
 MODULE = Path(__file__).resolve().parents[1] / 'tools/visual_probe.py'
 SPEC = importlib.util.spec_from_file_location('visual_probe', MODULE)
@@ -49,3 +50,23 @@ class VisualPreparation(unittest.TestCase):
         source = {'states': {'method-main': {'interactions': {'repeat_pixels_identical': False, 'at_scroll_origin': True}}}}
         with self.assertRaisesRegex(ValueError, 'Stable source pixels'):
             visual.freeze(source, self.protocol)
+
+    def test_inspector_must_select_owned_body_and_save_owned_filename(self):
+        with tempfile.TemporaryDirectory() as temp:
+            folder = Path(temp)
+            inspector = folder / 'source.inspector.ax.txt'
+            saved = folder / 'source.save.ax.txt'
+            good_inspector = '0 standard window Web Inspector — www.bilibili.com — index.html\n1 row (selected, expanded) Description: <body>'
+            good_save = '0 sheet ID: save-panel\n1 text field Value: source.png\n2 pop up button Value: ' + folder.name
+            inspector.write_text(good_inspector)
+            saved.write_text(good_save)
+            self.assertEqual(visual.inspector_provenance(folder, 'source', self.url), [inspector, saved])
+            for changed in [good_inspector.replace('www.bilibili.com', 'other.test'), good_inspector.replace('<body>', '<head>')]:
+                inspector.write_text(changed)
+                with self.assertRaisesRegex(ValueError, 'body selection'):
+                    visual.inspector_provenance(folder, 'source', self.url)
+            inspector.write_text(good_inspector)
+            for changed in [good_save.replace('source.png', 'unrelated.png'), good_save.replace(folder.name, 'Documents')]:
+                saved.write_text(changed)
+                with self.assertRaisesRegex(ValueError, 'save destination'):
+                    visual.inspector_provenance(folder, 'source', self.url)

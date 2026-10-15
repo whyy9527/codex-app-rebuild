@@ -62,25 +62,47 @@ def ax_facts(ax, expected_url, spec, protocol, window_uuid=None):
     return {'uuid': identity[1], 'texts': texts, 'at_scroll_origin': bool(scroll) and all(float(x) == 0 for x in scroll)}
 
 
+def inspector_provenance(directory, stem, expected_url):
+    inspector = directory / (stem + '.inspector.ax.txt')
+    saved = directory / (stem + '.save.ax.txt')
+    ax = inspector.read_text()
+    hostname = urlsplit(expected_url).hostname
+    if ('standard window Web Inspector — ' + hostname not in ax or
+            not re.search(r'row \(selected(?:,[^)]*)?\) Description: <body', ax)):
+        raise ValueError('Owned inspector body selection unavailable')
+    save_ax = saved.read_text()
+    if ('Value: ' + stem + '.png' not in save_ax or
+            'Value: ' + directory.name not in save_ax or 'ID: save-panel' not in save_ax):
+        raise ValueError('Owned PNG save destination unavailable')
+    return [inspector, saved]
+
+
 def observe(directory, side, protocol, url, window_uuid=None):
     spec = protocol[side]
     measure_sampling(spec, protocol)
     records = []
     for stem in spec['frames']:
-        before, after, image = [directory / (stem + suffix) for suffix in ('.ax.txt', '.after.ax.txt', '.jpg')]
+        extension = protocol.get('image_extension', '.jpg')
+        before, after, image = [directory / (stem + suffix) for suffix in ('.ax.txt', '.after.ax.txt', extension)]
+        lossless = protocol.get('image_space') == 'inspector_body'
+        provenance = inspector_provenance(directory, stem, url) if lossless else []
         first = ax_facts(before.read_text(), url, spec, protocol, window_uuid)
         last = ax_facts(after.read_text(), url, spec, protocol, first['uuid'])
         if first != last:
             raise ValueError('Static source/candidate facts changed around capture')
         with Image.open(image) as im:
-            if list(im.size) != protocol['window_pixels']:
+            window = spec['viewport_pixels'][2:] if lossless else protocol['window_pixels']
+            if list(im.size) != window:
                 raise ValueError('Native window image dimensions differ')
-            x, y, w, h = spec['business_pixels']
+            if lossless and im.format != 'PNG':
+                raise ValueError('Lossless evidence must be actual PNG')
+            rect = spec['body_business_pixels'] if lossless else spec['business_pixels']
+            x, y, w, h = rect
             crop = srgb_image(im).crop((x, y, x + w, y + h))
-        capture = {'path': relative(image), 'content_rect_points': spec['business_pixels'], 'backing_scale': 1,
-                   'window_points': protocol['window_pixels'], 'state_consistent': True}
+        capture = {'path': relative(image), 'content_rect_points': rect, 'backing_scale': 1,
+                   'window_points': window, 'state_consistent': True}
         records.append({'facts': first, 'crop': crop, 'capture': capture, 'ax': relative(before), 'after_ax': relative(after),
-                        'sha256': {relative(f): hashlib.sha256(f.read_bytes()).hexdigest() for f in (before, after, image)}})
+                        'sha256': {relative(f): hashlib.sha256(f.read_bytes()).hexdigest() for f in (before, after, image, *provenance)}})
     stable = all(all(hi == 0 for lo, hi in ImageChops.difference(records[0]['crop'], record['crop']).getextrema()) for record in records[1:])
     state = {'capture': records[0]['capture'], 'accessible_text': records[0]['facts']['texts'],
              'interactions': {'at_scroll_origin': records[0]['facts']['at_scroll_origin'], 'repeat_pixels_identical': stable},
@@ -113,8 +135,9 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--captures', required=True)
     parser.add_argument('--out', required=True)
+    parser.add_argument('--lossless', action='store_true', help='Use actual Safari inspector body PNG evidence')
     args = parser.parse_args()
-    protocol = json.loads((ROOT / 'visual.json').read_text())
+    protocol = json.loads((ROOT / ('visual-png.json' if args.lossless else 'visual.json')).read_text())
     original = (ROOT / 'private/original-share-entry-url.txt').read_text().strip()
     endpoint = urlsplit(original)
     if (endpoint.scheme, endpoint.netloc, endpoint.path) != ('https', 'www.bilibili.com', '/toy/LkvCZhw12wgT2Pqx/index.html'):

@@ -166,21 +166,36 @@ Safari AX 漏掉整块内容；可从主导航聚焦后用 Option-Tab 找到轮�
 本轮重试保留原采集，选择清单引用实际帧及原清单摘要；不会覆写失败截图。
 完整结果和限制见 `evidence/prediction-options-2026-10-16.json`。
 
-视觉探针由 `visual.json` 定义。用户删除侧栏后，同一外部视口会给主内容
+历史 JPEG 视觉探针由 `visual.json` 定义。用户删除侧栏后，同一外部视口会给主内容
 多出 58px。需分别观察该扩宽布局和相同 iframe 视口下的保留区域；
 不能用整页重排掩盖主内容差异，也不能把局部区域通过当作整页通过。
-当前 Method 探针保留完整可见业务区域，导航布局仍单独待验收。
+该 Method 探针保留完整可见业务区域，导航布局仍单独待验收。
 
 ```sh
 python3 -m projects.bilibili-toy.tools.visual_probe --captures <原始AX和截图目录> --out projects/bilibili-toy/private/visual-probe-new
-python3 -m workflows.rebuild.project run --workspace . --project projects/bilibili-toy/rebuild.json --command visual_compare --observed <public.json> --out projects/bilibili-toy/private/visual-comparison-new.json
+python3 -m capabilities.rebuild.frontend --workspace . --contract <本次探针目录/contract.json> --observed <本次探针目录/public.json> --out projects/bilibili-toy/private/visual-comparison-new.json
 ```
 
 工具重新核验原入口、完整分享参数、窗口身份、截图前后文本、滚动原点和
 真实采样比例，再从原版冻结文本、几何和严格像素要求。Safari 的 100%
-标签可能经过取整，需结合截图中的完整视口边界测量。JPEG 的非零差异
-保持失败，无损截图验证前不归因于压缩或增加容差。结果见
+标签可能经过取整，需结合截图中的完整视口边界测量。历史 JPEG 的非零差异
+保持失败，不归因于压缩或增加容差；后续无损复验见下文。历史结果见
 `evidence/visual-2026-10-16.json`。
+
+无损复验使用 `visual-png.json`。在 CUA 中绑定
+`tools/visual_png_native.mjs` 的 `installLosslessUI`，传入实际页面 URL、
+新证据目录和窗口 UUID，再调用 `capture(stem)`。驱动通过 Web Inspector
+原生节点菜单保存 body PNG，分离检查器窗口以保持页面视口，并核对实际
+保存路径。页面、检查器、保存框的 AX 一起保留。
+
+```sh
+python3 -m projects.bilibili-toy.tools.visual_probe --lossless --captures <原始证据目录> --out projects/bilibili-toy/private/visual-png-probe-new
+python3 -m workflows.rebuild.project run --workspace . --project projects/bilibili-toy/rebuild.json --command visual_compare --observed <候选事实.json> --out projects/bilibili-toy/private/visual-png-comparison-new.json
+```
+
+原版契约冻结后另取候选重复帧，用相同要求复验。此轮 Method 的完整可见
+业务区域达到严格零像素差，原 JPEG 失败和初始未稳定 PNG 均保留。
+这不替代导航、其他页面和手机布局检查。见 `evidence/visual-png-2026-10-16.json`。
 
 实际复制的模型世界／单局分享入口使用 `journeys.json#share_world` 和
 `#share_game`。服务端从已发布数据生成有效路径，不把未知比赛替换为首页。

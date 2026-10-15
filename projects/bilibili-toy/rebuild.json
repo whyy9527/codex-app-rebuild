@@ -45,9 +45,9 @@
     "historical_tournament_public_result": "projects/bilibili-toy/private/tournament-public-compare-2.json",
     "prediction_options_contract": "projects/bilibili-toy/private/prediction-options-contract-v2/contract.json",
     "historical_prediction_options_public_result": "projects/bilibili-toy/private/prediction-options-public-compare-2.json",
-    "visual_scenarios": "projects/bilibili-toy/visual.json",
-    "visual_probe_contract": "projects/bilibili-toy/private/visual-content-1/shared-probe-2/contract.json",
-    "historical_visual_probe_public_result": "projects/bilibili-toy/private/visual-content-1/shared-probe-2/public-result.json",
+    "visual_scenarios": "projects/bilibili-toy/visual-png.json",
+    "visual_probe_contract": "projects/bilibili-toy/private/visual-png-contract-v1/contract.json",
+    "historical_visual_probe_public_result": "projects/bilibili-toy/private/visual-png-contract-v1/public-independent-result.json",
     "share_game_contract": "projects/bilibili-toy/private/share-game-contract-v2/contract.json",
     "historical_share_game_local_result": "projects/bilibili-toy/private/share-game-local-compare-2.json",
     "share_world_contract": "projects/bilibili-toy/private/share-world-contract-v1/contract.json",
@@ -55,7 +55,10 @@
     "historical_share_game_public_result": "projects/bilibili-toy/private/share-game-public-compare-1.json",
     "historical_share_world_public_result": "projects/bilibili-toy/private/share-world-public-compare-1.json",
     "details_contract": "projects/bilibili-toy/private/details-contract-v1/contract.json",
-    "historical_details_public_result": "projects/bilibili-toy/private/details-public-compare-1.json"
+    "historical_details_public_result": "projects/bilibili-toy/private/details-public-compare-1.json",
+    "historical_jpeg_visual_scenarios": "projects/bilibili-toy/visual.json",
+    "historical_jpeg_visual_contract": "projects/bilibili-toy/private/visual-content-1/shared-probe-2/contract.json",
+    "historical_jpeg_visual_public_result": "projects/bilibili-toy/private/visual-content-1/shared-probe-2/public-result.json"
   },
   "commands": {
     "rsi_collect": [
@@ -349,7 +352,7 @@
       "--workspace",
       ".",
       "--contract",
-      "projects/bilibili-toy/private/visual-content-1/shared-probe-2/contract.json",
+      "projects/bilibili-toy/private/visual-png-contract-v1/contract.json",
       "--observed",
       "{observed}",
       "--out",

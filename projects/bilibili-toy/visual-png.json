@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "scope": "Static method page: complete visible business area below global navigation, at identical actual iframe width/height and pixel sampling. Global navigation, other pages, scrolling and mobile views remain separate acceptance.",
+  "scene_heading": "heading S16 · AI 赛制介绍, Value: 1",
+  "capture_space": "Safari Web Inspector Capture Screenshot of the actual inspected body, saved as PNG through native UI. Viewport-only exported pixels; no resizing, masks, alignment search or tolerance. Corresponding page AX and inspector/save UI are retained.",
+  "window_pixels": [
+    2648,
+    1666
+  ],
+  "height_css": 600,
+  "zoom_label": "( 100% )",
+  "pixel_ratio_label": "2x",
+  "actual_samples_per_css_pixel": 2,
+  "source": {
+    "width_css": 1200,
+    "viewport_pixels": [
+      124,
+      298,
+      2400,
+      1200
+    ],
+    "iframe_pixels": [
+      136,
+      310,
+      2260,
+      1176
+    ],
+    "business_pixels": [
+      136,
+      424,
+      2260,
+      1062
+    ],
+    "frames": [
+      "source-method-a",
+      "source-method-b"
+    ],
+    "body_business_pixels": [
+      12,
+      126,
+      2260,
+      1062
+    ]
+  },
+  "candidate": {
+    "width_css": 1142,
+    "viewport_pixels": [
+      182,
+      298,
+      2284,
+      1200
+    ],
+    "iframe_pixels": [
+      194,
+      310,
+      2260,
+      1176
+    ],
+    "business_pixels": [
+      194,
+      424,
+      2260,
+      1062
+    ],
+    "frames": [
+      "public-method-d",
+      "public-method-e"
+    ],
+    "body_business_pixels": [
+      12,
+      126,
+      2260,
+      1062
+    ]
+  },
+  "preparation": [
+    "Use the same task-owned Safari private window and full user share query. Navigate through the actual AI Method link; keep scroll at zero.",
+    "Wait for both the Method heading and the floating AI report button. The heading alone can precede font and data loading.",
+    "Observe native screenshot viewport bounds as well as the rounded zoom label. At outer width 1280 the label said 100%, but the exported viewport was 2548 pixels wide instead of 2560; that trial is retained and is not the formal reference.",
+    "Source outer width 1200 and candidate outer width 1142 produce the same 1130 CSS px iframe width: the original has a 64px sidebar and 6px left padding; the candidate has 6px padding on each side.",
+    "Measure the full iframe and the complete visible business area. Excluding global navigation here does not certify the retained navigation or hide its outstanding layout comparison.",
+    "Open native Web Inspector and detach into a separate window; docked inspector shortens the actual page viewport. Capture actual body using its DOM tree context menu, save to a new owned PNG path, close inspector and retain after-page AX.",
+    "Native Go To Folder paste failed in the first attempt; cancel it. Use AX setValue and inspect both filename and destination before saving.",
+    "Source a/b frozen in private/visual-png-contract-v1 before the independent candidate d/e replay. Candidate a transient and stable exploratory b/c are retained, but d/e are the predetermined final candidate pair."
+  ],
+  "limits": [
+    "Same actual visible Method business scope as the previous JPEG probe, now using lossless PNG. Original JPEG failure remains immutable.",
+    "Public initial a differs from b by 18,323 pixels, max 2 channel units; b and c are identical. No cause inferred for the initial transient.",
+    "Global navigation, other pages, scroll positions and responsive/mobile layouts remain separate."
+  ],
+  "image_extension": ".png",
+  "image_space": "inspector_body"
+}
