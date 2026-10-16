@@ -69,3 +69,12 @@ The fixed example lineups, initial positions and hand-authored movement polyline
 are a UI demonstration shared across all model channels. They are not predictions,
 confirmed team selections, real match telemetry or a collision-validated simulator.
 No new model calls are involved.
+
+## 2026-10-16 font loading optimization
+
+Body copy and Chinese headings use the device's system sans-serif stack. OPPO
+Sans and MiSans are retained as unmodified historical assets with their complete
+notices, but are no longer declared or requested by runtime CSS. No font subset
+or conversion is made. Anton and JetBrains Mono remain on-demand Latin/numeric
+fonts retaining `font-display: swap`, so system text remains available while
+these small optional display resources load.

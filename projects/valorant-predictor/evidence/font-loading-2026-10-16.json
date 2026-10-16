@@ -1,0 +1,134 @@
+{
+  "baseline": {
+    "url": "https://valorant.xinxiayiyan.com/",
+    "viewport": {
+      "width": 1440,
+      "height": 1400
+    },
+    "cache": "new isolated context, browser cache disabled via CDP",
+    "phases": {
+      "body_and_controls_ready_ms": 1314.6999999284744,
+      "font_status_at_body_ready": "loading",
+      "map_image_decoded_ms": 12868,
+      "map_and_all_agent_images_ready_ms": 32667.600000023842,
+      "play_control_responded_ms": 32707,
+      "fonts_settled_ms": 62864.5,
+      "total_ms": 63001.10000002384
+    },
+    "errors": [],
+    "body_font": "\"OPPO Sans\", MiSans, \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+    "fonts": [
+      {
+        "family": "MiSans",
+        "status": "loaded",
+        "display": "swap"
+      },
+      {
+        "family": "OPPO Sans",
+        "status": "loaded",
+        "display": "swap"
+      },
+      {
+        "family": "Anton",
+        "status": "loaded",
+        "display": "swap"
+      },
+      {
+        "family": "JetBrains Mono",
+        "status": "loaded",
+        "display": "swap"
+      }
+    ],
+    "font_resources": [
+      {
+        "url": "https://valorant.xinxiayiyan.com/assets/fonts/OPPO-Sans-4.0.ttf",
+        "duration_ms": 54015.699999928474,
+        "transfer_bytes": 16358563,
+        "encoded_bytes": 16358263,
+        "decoded_bytes": 22741096
+      },
+      {
+        "url": "https://valorant.xinxiayiyan.com/assets/fonts/Anton-Regular.ttf",
+        "duration_ms": 11011.200000047684,
+        "transfer_bytes": 79853,
+        "encoded_bytes": 79553,
+        "decoded_bytes": 170812
+      },
+      {
+        "url": "https://valorant.xinxiayiyan.com/assets/fonts/JetBrainsMono.ttf",
+        "duration_ms": 11169.799999952316,
+        "transfer_bytes": 91133,
+        "encoded_bytes": 90833,
+        "decoded_bytes": 187208
+      },
+      {
+        "url": "https://valorant.xinxiayiyan.com/assets/fonts/MiSans-Regular.woff2",
+        "duration_ms": 61929.200000047684,
+        "transfer_bytes": 4858924,
+        "encoded_bytes": 4858624,
+        "decoded_bytes": 4858624
+      }
+    ],
+    "paints": [
+      {
+        "name": "first-paint",
+        "startTime": 487.5
+      },
+      {
+        "name": "first-contentful-paint",
+        "startTime": 487.5
+      }
+    ],
+    "cumulative_layout_shift": 0.09372507430249842,
+    "geometry": {
+      "width": 1440,
+      "scroll": 1440
+    },
+    "revision": {
+      "git_revision": "01b9e1f457d423e4a639c01d99e45b6b16d57f0e",
+      "domain": "valorant.xinxiayiyan.com"
+    },
+    "status": "pass"
+  },
+  "local_checks": {
+    "url": "http://127.0.0.1:8897/",
+    "checks": [
+      "no OPPO or MiSans download on a fresh visit",
+      "remaining small custom fonts retain nonblocking swap display",
+      "Chinese paragraph is rendered by installed system glyphs",
+      "no document overflow at 320px",
+      "ten tactical agents retained at 320px",
+      "play control works at 320px",
+      "no document overflow at 390px",
+      "ten tactical agents retained at 390px",
+      "play control works at 390px",
+      "no document overflow at 768px",
+      "ten tactical agents retained at 768px",
+      "play control works at 768px",
+      "no document overflow at 1440px",
+      "ten tactical agents retained at 1440px",
+      "play control works at 1440px",
+      "Chinese body remains visible when all web fonts are unavailable",
+      "map controls respond when all web fonts are unavailable",
+      "font failure has no mobile horizontal overflow",
+      "no normal-mode JavaScript errors"
+    ],
+    "page_errors": [],
+    "normal_font_requests": [
+      "http://127.0.0.1:8897/assets/fonts/Anton-Regular.ttf",
+      "http://127.0.0.1:8897/assets/fonts/JetBrainsMono.ttf"
+    ],
+    "rendered_chinese_fonts": [
+      {
+        "familyName": "PingFang SC",
+        "postScriptName": "PingFangSC-Regular",
+        "isCustomFont": false,
+        "glyphCount": 44
+      }
+    ],
+    "status": "pass"
+  },
+  "scope": "System body/Chinese font stack; preserve original on-demand small display fonts and font files; no map/model changes",
+  "authorization": "Explicit user approval for this font optimization, main push and production deployment received through delegated transcript",
+  "public_after": "To be measured after deployment; no local/public timing equivalence claimed"
+}

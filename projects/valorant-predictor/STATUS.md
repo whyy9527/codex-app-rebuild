@@ -160,3 +160,23 @@ half/head WebP 一共八张，未改图片，来源地址和摘要见 `data/asse
   `playwright-cli -s=valorant-tactical run-code --filename=projects/valorant-predictor/scripts/qa_tactical.js`。
 
 本轮代码与截图交付完成；官网部署待用户明确要求，不运行部署脚本。
+
+## 2026-10-16 正文系统字体与冷加载优化
+
+用户单独明确批准字体优化、main 推送及验证后部署，补充了此前仅地图版本的发布授权。
+原实现虽有 font-display: swap，仍在渲染后主动启用整份 OPPO Sans 和 MiSans；
+正文现改为设备系统字体，中文标题与图表文字使用同一 fallback。两份大字体
+不再在运行 CSS 中声明或请求，历史原文件与许可保留且未修改、未子集化。
+Anton、JetBrains Mono 保持原有按需加载和 swap 行为。地图逻辑与模型输出不变。
+
+独立无缓存公网基线：正文/控件 1.315 秒、地图底图 12.868 秒、全部特工图
+32.668 秒、字体 62.865 秒，字体实际传输共约 21.39 MB。此前另一次公网连接
+大字体曾耗时约 127 秒；不同运行的网络波动分别保留，不将两次数据混为同次测量。
+
+项目语法、12 项 JS、7 项 Python 测试与构建通过；19 项字体浏览器检查通过，
+含无大字体请求、实际系统中文 glyph、320/390/768/1440 无横向溢出与播放可用、
+字体全部不可用时的正文及控制。故障注入仅用于行为验证，不当作正常视觉截图。
+正常桌面与手机截图已检查。公网优化后实测由本次独立发布回执保存，不把本机
+测试速度当成公网结果。基线与本机回执：`evidence/font-loading-2026-10-16.json`；
+可复跑入口：`scripts/measure_fonts.py --url URL --out DIR`、
+`scripts/qa_fonts.py --url URL --out DIR`（使用已有 Python Playwright 环境）。
