@@ -1,0 +1,887 @@
+{
+  "schema_version": 1,
+  "id": "ascent-default-control-30s-v1",
+  "map": {
+    "id": "ascent",
+    "name": "亚海悬城",
+    "english": "ASCENT",
+    "image": "assets/tactical/ascent.png",
+    "sha256": "287357fcfce230ecb67704cafdb519a5bdb91602ed30f897474a65e86469c550",
+    "sites": [
+      [
+        "A",
+        310,
+        155
+      ],
+      [
+        "B",
+        285,
+        800
+      ]
+    ]
+  },
+  "duration_s": 30,
+  "max_speed_units_s": 35,
+  "title": "同阵容 · 亚海悬城 30 秒默认控图方案",
+  "scenario": "假设的5v5标准回合控图决策。回放0秒为双方进入基础控图区的分析起点，不是开局出生时刻。红方选择进攻A/B或继续控图，蓝方选择守点与轮转。双方均为给定假设阵容，不绑定真实战队或选手。",
+  "assumptions": [
+    "可操作门均视为已打开；不模拟技能改地形、穿墙、跳跃、高低差与射击。",
+    "仅检查此二维规划图谱上的连通性、边界、时间和数量；不是FPS物理模拟器，也不保证真实比赛走位可复现。",
+    "模型独立选择节点、时间与理由；坐标和节点间通路由冻结地图图谱确定性展开，不静默修复模型路线。"
+  ],
+  "actors": {
+    "A1": {
+      "side": "attack",
+      "number": 1,
+      "icon": "wushu",
+      "agent": "捷风",
+      "role": "决斗"
+    },
+    "A2": {
+      "side": "attack",
+      "number": 2,
+      "icon": "hunter",
+      "agent": "猎枭",
+      "role": "先锋"
+    },
+    "A3": {
+      "side": "attack",
+      "number": 3,
+      "icon": "wraith",
+      "agent": "幽影",
+      "role": "控场"
+    },
+    "A4": {
+      "side": "attack",
+      "number": 4,
+      "icon": "killjoy",
+      "agent": "奇乐",
+      "role": "哨卫"
+    },
+    "A5": {
+      "side": "attack",
+      "number": 5,
+      "icon": "grenadier",
+      "agent": "K/O",
+      "role": "先锋"
+    },
+    "D1": {
+      "side": "defend",
+      "number": 1,
+      "icon": "clay",
+      "agent": "雷兹",
+      "role": "决斗"
+    },
+    "D2": {
+      "side": "defend",
+      "number": 2,
+      "icon": "breach",
+      "agent": "铁臂",
+      "role": "先锋"
+    },
+    "D3": {
+      "side": "defend",
+      "number": 3,
+      "icon": "gumshoe",
+      "agent": "零",
+      "role": "哨卫"
+    },
+    "D4": {
+      "side": "defend",
+      "number": 4,
+      "icon": "pandemic",
+      "agent": "蝰蛇",
+      "role": "控场"
+    },
+    "D5": {
+      "side": "defend",
+      "number": 5,
+      "icon": "guide",
+      "agent": "斯凯",
+      "role": "先锋"
+    }
+  },
+  "start_nodes": {
+    "attack": [
+      "atk_spawn",
+      "a_lobby",
+      "a_main",
+      "mid_top",
+      "mid_courtyard",
+      "mid_link",
+      "b_lobby",
+      "b_main"
+    ],
+    "defend": [
+      "a_site",
+      "a_tree",
+      "a_garden",
+      "def_spawn",
+      "mid_market",
+      "b_site"
+    ]
+  },
+  "nodes": {
+    "atk_spawn": {
+      "label": "进攻出生区",
+      "xy": [
+        818.3594,
+        568.3594
+      ]
+    },
+    "a_lobby": {
+      "label": "A 大厅",
+      "xy": [
+        603.5156,
+        259.7656
+      ]
+    },
+    "a_main": {
+      "label": "A 入口",
+      "xy": [
+        482.4219,
+        201.1719
+      ]
+    },
+    "a_tree": {
+      "label": "A 树房",
+      "xy": [
+        396.4844,
+        294.9219
+      ]
+    },
+    "a_site": {
+      "label": "A 包点",
+      "xy": [
+        310.5469,
+        150.3906
+      ]
+    },
+    "a_garden": {
+      "label": "A 花园",
+      "xy": [
+        283.2031,
+        310.5469
+      ]
+    },
+    "def_spawn": {
+      "label": "防守出生区",
+      "xy": [
+        134.7656,
+        431.6406
+      ]
+    },
+    "mid_courtyard": {
+      "label": "中路庭院",
+      "xy": [
+        494.1406,
+        486.3281
+      ]
+    },
+    "mid_top": {
+      "label": "中路上段",
+      "xy": [
+        666.0156,
+        380.8594
+      ]
+    },
+    "mid_market": {
+      "label": "中路市场",
+      "xy": [
+        298.8281,
+        498.0469
+      ]
+    },
+    "mid_link": {
+      "label": "中路连接",
+      "xy": [
+        513.6719,
+        615.2344
+      ]
+    },
+    "b_lobby": {
+      "label": "B 大厅",
+      "xy": [
+        716.7969,
+        673.8281
+      ]
+    },
+    "b_main": {
+      "label": "B 入口",
+      "xy": [
+        404.2969,
+        712.8906
+      ]
+    },
+    "b_site": {
+      "label": "B 包点",
+      "xy": [
+        291.0156,
+        787.1094
+      ]
+    }
+  },
+  "edges": [
+    {
+      "a": "atk_spawn",
+      "b": "a_lobby",
+      "length": 523.4376,
+      "points": [
+        [
+          818.3594,
+          568.3594
+        ],
+        [
+          791.0156,
+          568.3594
+        ],
+        [
+          791.0156,
+          560.5469
+        ],
+        [
+          787.1094,
+          560.5469
+        ],
+        [
+          787.1094,
+          556.6406
+        ],
+        [
+          748.0469,
+          556.6406
+        ],
+        [
+          748.0469,
+          345.7031
+        ],
+        [
+          642.5781,
+          345.7031
+        ],
+        [
+          642.5781,
+          294.9219
+        ],
+        [
+          603.5156,
+          294.9219
+        ],
+        [
+          603.5156,
+          259.7656
+        ]
+      ]
+    },
+    {
+      "a": "atk_spawn",
+      "b": "mid_top",
+      "length": 410.1564,
+      "points": [
+        [
+          818.3594,
+          568.3594
+        ],
+        [
+          791.0156,
+          568.3594
+        ],
+        [
+          791.0156,
+          560.5469
+        ],
+        [
+          787.1094,
+          560.5469
+        ],
+        [
+          787.1094,
+          556.6406
+        ],
+        [
+          748.0469,
+          556.6406
+        ],
+        [
+          748.0469,
+          345.7031
+        ],
+        [
+          666.0156,
+          345.7031
+        ],
+        [
+          666.0156,
+          380.8594
+        ]
+      ]
+    },
+    {
+      "a": "atk_spawn",
+      "b": "b_lobby",
+      "length": 207.0312,
+      "points": [
+        [
+          818.3594,
+          568.3594
+        ],
+        [
+          791.0156,
+          568.3594
+        ],
+        [
+          791.0156,
+          576.1719
+        ],
+        [
+          787.1094,
+          576.1719
+        ],
+        [
+          787.1094,
+          580.0781
+        ],
+        [
+          728.5156,
+          580.0781
+        ],
+        [
+          728.5156,
+          638.6719
+        ],
+        [
+          716.7969,
+          638.6719
+        ],
+        [
+          716.7969,
+          673.8281
+        ]
+      ]
+    },
+    {
+      "a": "a_lobby",
+      "b": "a_main",
+      "length": 179.6874,
+      "points": [
+        [
+          603.5156,
+          259.7656
+        ],
+        [
+          482.4219,
+          259.7656
+        ],
+        [
+          482.4219,
+          201.1719
+        ]
+      ]
+    },
+    {
+      "a": "a_lobby",
+      "b": "mid_top",
+      "length": 183.5938,
+      "points": [
+        [
+          603.5156,
+          259.7656
+        ],
+        [
+          662.1094,
+          259.7656
+        ],
+        [
+          662.1094,
+          318.3594
+        ],
+        [
+          666.0156,
+          318.3594
+        ],
+        [
+          666.0156,
+          380.8594
+        ]
+      ]
+    },
+    {
+      "a": "a_main",
+      "b": "a_tree",
+      "length": 265.6251,
+      "points": [
+        [
+          482.4219,
+          201.1719
+        ],
+        [
+          470.7031,
+          201.1719
+        ],
+        [
+          470.7031,
+          158.2031
+        ],
+        [
+          396.4844,
+          158.2031
+        ],
+        [
+          396.4844,
+          294.9219
+        ]
+      ]
+    },
+    {
+      "a": "a_tree",
+      "b": "a_site",
+      "length": 230.4688,
+      "points": [
+        [
+          396.4844,
+          294.9219
+        ],
+        [
+          392.5781,
+          294.9219
+        ],
+        [
+          392.5781,
+          162.1094
+        ],
+        [
+          310.5469,
+          162.1094
+        ],
+        [
+          310.5469,
+          150.3906
+        ]
+      ]
+    },
+    {
+      "a": "a_tree",
+      "b": "a_garden",
+      "length": 136.7189,
+      "points": [
+        [
+          396.4844,
+          294.9219
+        ],
+        [
+          373.0469,
+          294.9219
+        ],
+        [
+          373.0469,
+          291.0156
+        ],
+        [
+          287.1094,
+          291.0156
+        ],
+        [
+          287.1094,
+          302.7344
+        ],
+        [
+          283.2031,
+          302.7344
+        ],
+        [
+          283.2031,
+          310.5469
+        ]
+      ]
+    },
+    {
+      "a": "a_garden",
+      "b": "def_spawn",
+      "length": 269.5312,
+      "points": [
+        [
+          283.2031,
+          310.5469
+        ],
+        [
+          275.3906,
+          310.5469
+        ],
+        [
+          275.3906,
+          345.7031
+        ],
+        [
+          146.4844,
+          345.7031
+        ],
+        [
+          146.4844,
+          380.8594
+        ],
+        [
+          134.7656,
+          380.8594
+        ],
+        [
+          134.7656,
+          431.6406
+        ]
+      ]
+    },
+    {
+      "a": "mid_top",
+      "b": "mid_courtyard",
+      "length": 277.3437,
+      "points": [
+        [
+          666.0156,
+          380.8594
+        ],
+        [
+          658.2031,
+          380.8594
+        ],
+        [
+          658.2031,
+          404.2969
+        ],
+        [
+          509.7656,
+          404.2969
+        ],
+        [
+          509.7656,
+          466.7969
+        ],
+        [
+          494.1406,
+          466.7969
+        ],
+        [
+          494.1406,
+          486.3281
+        ]
+      ]
+    },
+    {
+      "a": "mid_courtyard",
+      "b": "a_tree",
+      "length": 320.3124,
+      "points": [
+        [
+          494.1406,
+          486.3281
+        ],
+        [
+          509.7656,
+          486.3281
+        ],
+        [
+          509.7656,
+          416.0156
+        ],
+        [
+          455.0781,
+          416.0156
+        ],
+        [
+          455.0781,
+          404.2969
+        ],
+        [
+          443.3594,
+          404.2969
+        ],
+        [
+          443.3594,
+          337.8906
+        ],
+        [
+          396.4844,
+          337.8906
+        ],
+        [
+          396.4844,
+          294.9219
+        ]
+      ]
+    },
+    {
+      "a": "mid_courtyard",
+      "b": "mid_market",
+      "length": 207.0313,
+      "points": [
+        [
+          494.1406,
+          486.3281
+        ],
+        [
+          298.8281,
+          486.3281
+        ],
+        [
+          298.8281,
+          498.0469
+        ]
+      ]
+    },
+    {
+      "a": "mid_courtyard",
+      "b": "mid_link",
+      "length": 156.25,
+      "points": [
+        [
+          494.1406,
+          486.3281
+        ],
+        [
+          509.7656,
+          486.3281
+        ],
+        [
+          509.7656,
+          501.9531
+        ],
+        [
+          513.6719,
+          501.9531
+        ],
+        [
+          513.6719,
+          505.8594
+        ],
+        [
+          517.5781,
+          505.8594
+        ],
+        [
+          517.5781,
+          560.5469
+        ],
+        [
+          513.6719,
+          560.5469
+        ],
+        [
+          513.6719,
+          615.2344
+        ]
+      ]
+    },
+    {
+      "a": "mid_link",
+      "b": "b_lobby",
+      "length": 261.7187,
+      "points": [
+        [
+          513.6719,
+          615.2344
+        ],
+        [
+          529.2969,
+          615.2344
+        ],
+        [
+          529.2969,
+          638.6719
+        ],
+        [
+          716.7969,
+          638.6719
+        ],
+        [
+          716.7969,
+          673.8281
+        ]
+      ]
+    },
+    {
+      "a": "mid_link",
+      "b": "b_main",
+      "length": 269.5312,
+      "points": [
+        [
+          513.6719,
+          615.2344
+        ],
+        [
+          509.7656,
+          615.2344
+        ],
+        [
+          509.7656,
+          673.8281
+        ],
+        [
+          490.2344,
+          673.8281
+        ],
+        [
+          490.2344,
+          744.1406
+        ],
+        [
+          404.2969,
+          744.1406
+        ],
+        [
+          404.2969,
+          712.8906
+        ]
+      ]
+    },
+    {
+      "a": "b_lobby",
+      "b": "b_main",
+      "length": 414.0625,
+      "points": [
+        [
+          716.7969,
+          673.8281
+        ],
+        [
+          490.2344,
+          673.8281
+        ],
+        [
+          490.2344,
+          744.1406
+        ],
+        [
+          404.2969,
+          744.1406
+        ],
+        [
+          404.2969,
+          712.8906
+        ]
+      ]
+    },
+    {
+      "a": "b_main",
+      "b": "b_site",
+      "length": 281.2501,
+      "points": [
+        [
+          404.2969,
+          712.8906
+        ],
+        [
+          376.9531,
+          712.8906
+        ],
+        [
+          376.9531,
+          666.0156
+        ],
+        [
+          341.7969,
+          666.0156
+        ],
+        [
+          341.7969,
+          751.9531
+        ],
+        [
+          291.0156,
+          751.9531
+        ],
+        [
+          291.0156,
+          787.1094
+        ]
+      ]
+    },
+    {
+      "a": "b_site",
+      "b": "mid_market",
+      "length": 414.0624,
+      "points": [
+        [
+          291.0156,
+          787.1094
+        ],
+        [
+          291.0156,
+          779.2969
+        ],
+        [
+          232.4219,
+          779.2969
+        ],
+        [
+          232.4219,
+          693.3594
+        ],
+        [
+          263.6719,
+          693.3594
+        ],
+        [
+          263.6719,
+          611.3281
+        ],
+        [
+          291.0156,
+          611.3281
+        ],
+        [
+          291.0156,
+          587.8906
+        ],
+        [
+          298.8281,
+          587.8906
+        ],
+        [
+          298.8281,
+          498.0469
+        ]
+      ]
+    },
+    {
+      "a": "mid_market",
+      "b": "def_spawn",
+      "length": 230.4688,
+      "points": [
+        [
+          298.8281,
+          498.0469
+        ],
+        [
+          208.9844,
+          498.0469
+        ],
+        [
+          208.9844,
+          443.3594
+        ],
+        [
+          138.6719,
+          443.3594
+        ],
+        [
+          138.6719,
+          431.6406
+        ],
+        [
+          134.7656,
+          431.6406
+        ]
+      ]
+    }
+  ],
+  "geometry_audit": {
+    "source": "Existing Riot game minimap via Valorant-API; conservative raster floor plus plant-zone marking interpretation",
+    "source_sha256": "287357fcfce230ecb67704cafdb519a5bdb91602ed30f897474a65e86469c550",
+    "raster_size": [
+      1024,
+      1024
+    ],
+    "grid_step_px": 4,
+    "clearance_px": 2,
+    "mask_zlib_base64": "eNrt3d1a20YUhlHd/03vnrTpYxDElmY0P996jwqhRhrtNQHZkOOQJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSpJbVr1kfiX9J/EviX9L2/PmXcvnzL+Xy518Ktc+/xL8k/iXxL4l/SfxL4l8S/5L4l8S/JP4l8S+Jf0n8S+JfEv+S+JfEvyT+JfEviX9J/EviXxL/kviXLmt4eefpB36g6A1jXz7jGyjviuVf4p9/iX/+xT///It//vkX//xL/PMv8c+/xP+2/o2C+K+bij7+S/Vz/63PmH/xz7/EP/8S//xL/PMv8T+Pf/f/pV7+P2XX7GlA/qWJ/ffaBfiX+Odf4p9/iX/+Jf75l8b7d/9f4p9/if9R/judsVEQ//xL/PMv8c+/xD//Ev9D/bfZHPiX+Odf4p9/8d/E//WH51/in3+Jf/4l/vmX+Odf4r+ff7uB+M99/o9/8c8//+Kff4l//iX++Zf451/in3+J/7+J4V/in39pZf9/+x/4l/b3/9P/xL/EP/8S//xLOf49/yfxz7/EP/8S/2tmMMQ//xL//Ev88y/xv/8uYTDEP/8S//xL/PMv8c+/xD//Ev+e/5P451/in3+Jf/4l/vmX+Odf4p9/iX/+Jf75l/jnX+Kff4l//iX++Zf451/in3+Jf/4l/vmX+Odf4p9/iX/+pQz/Lc+Yf/HPv8Q//1Ko/+uE+Jf4v0+Nf4l//iX++ZdG+X/+G3f+pdH+x92441/a2r/7/xL//Ev88y/xz7/EP/8S//xL/PMv8c+/xD//0hD/dz8h/xL//Ev88y/xz7/EP/8S//xLs/r3/J/EP/8S//xL/PMv8c+/xD//Ev/8S/zzL/HPv7S3//MP5F/in3+Jf/4l/vmX+Odfmte/3/8p8c+/xD//Ev/8S/zzL/HPv8Q//xL//Ev88y/xz7/EP/8S//xL/PMv8c+/tIX/l4fkX+Kff2le/0MPg3+Jf/4l/vmX+Odf4p9/iX/+Jf75l/jnX+Kff4l//iX++Zf451/888+/1oba86fz5zrnJxbSvIl//iX++Zf451/iP9p/nxU+/91Ia18+8b+F/66/B/XM/x6XT/zzz7/49/U//+Kff/7FP//8i3/++Rf/6f47fQ5u+Oeff/HPP//in3/+xf+EA/TEEfIv/vmfxX/xL/5n9v/cQnv+T/zzz7/4z/Pv63/xzz//4p9//sU///zzzz///PPP/47+N3z5pvjnn3/xzz//4v9R/61Om38l+r97rL8c++T+d4mbEP9dHrjjTsU//9rRf/HPv1L9F//8K9T/zcHkn3+t67/451+p/ot//sU///yLf/7518T+mz3oE4fDP//8P+j//cct/vlXqP/nDod//vnnn3/++Z/C/6OHwz///M/kv+mE8s+/5vT/+p5q9S9V8M+/+Oeff/HPP//in3/+Na3/ZsT451/8z+V/l32EG/7n9t9zxPnnhn/++Rf//PMv/lvd/59/xPnnhv+jrRD++Rf//PMv/vnnX/zzz7/4559/8b/RiPMv/vm/d1j8i3/++Rf//POv6f1//1D++Rf//PMv/vn/+bBO3+Bf/PPPv/jv8IU2//zzzz///PPPP//i/67/Tjez+edf/PPPv/jnn3/xb8RbLDY3/PPPv/i/6f+JuTPi/It/I86/+Dfi/It//vnnn3/+ey+O5xyj/D87Ge7/8y/++edf/PPPv/jnn3/xz/9nSz/nVWaVf/75V7r/j2fYuPGvFf2Pm74OexX//PPPP//8888///zzzz///PPPP//8888///zzzz///PPP/6BrP1ms8s8//+Kff/7FP//8i3/++Rf//PMv/vlfxf/7x8Uq/+sNOv/8888///zzzz///PPPP//8888//y9Hwj///PPP/46X/eRa888///zzzz///PPPP//8888///zzzz///PPPv/jnn3/xz/9O/t85LnD5559/re3/o6MZd8aNHscg8O+y828Q+Od/kP8rp80///xv5P/DE+d/2Ezwz3+fi87/dP63WEn+1/B/8M8//8EXnX/++eeff/75D7zo/F86nfEzBy7/18+Yf/6V6//jDYB//vnfx3/xz79y/Rf//It//vnnP+z+P//8K9f/qJXjn3/++eeff/75559//vnnn3/++eeff/75559//vnnn3/+V/S/9yDM4t+ewD///PPPP//8i3/++Rf//PMv/vnnX00ujAXin3/+xT///Fss/vnn32Lxzz//Fot//vm3WPzzzz///PPPP//8888///zzzz///PPPP//8888///zzzz///PPPP//88990vVJ+KJf/JP8mjX/+nx85/vnnn3/++eeff/75559//vl3Vfh/YJ5NGv/85/pPmkT++X/udPjn36rzzz///PPPP//8888///y7/8c///zzzz///PPPP//8888///zzzz///PPPP//8888///zzzz///PPPP//8828S+XdVlox/k8Y///ybNP75559//vnnn3/++eeff/75559/uwH//Cf4j94r+Oeff/75559//vnnn3/++eef/x2v0OtJ8c8///zzzz///PPPP//8888///zzzz///PPPP//8888///zzzz//wU2zYvzzzz///PPvCvHPP/+uEP/88+8K8c8//64Q//zz7wrxzz//rhD//PPPP//885/4+r+ba9Hiox44EP75d4X4559/V4h//hf1P3JncVX4538i/wf//POf6//gn3/+c/wPvbngqvDP/7j1Gn130VXhn3/+b533v3/09SP455//91foz1tL+v/+Efzzz/8n/p/fAPjnn//x/l/f5J9//gP9F//8888///zz7+t//vnn3/2/qf2/Pg14+erfO/6n2PHPfyf/A14AwD///M/hv/XXsR3+/Q/+n/T/werwz/8U/h9eVP75X9l/dfj5H/75538Z/81//pd//vlf1X/xzz//qf6Lf/75T/Lfb9X53+L5P/75X8D/3avPP//8888///zzzz///PPPP//8888///zzzz///PPPP//88z+rf/PMP/+x/s0z//zH+jfP/PMf6988889/rH/zzP9+/mtr/8GDbxlC/VfHs871b2b5X8R/9TvpWP9mlv9l/Fe3c071b2b5X8h/9TrlUP9mlv+l/FenM870b2b5X8x/9bYZ5N/M8r+c/+pyvmn+zSz/i/qvVU+Xf/75b2Bi0bPln3/+W5hY82T555//JiaSzpV/K8L/W1er+Oef/4S/E9fjzz///E9sgn/++ec/4lzNLP9M8G9m+WeCf/75559//vnnn3/++eeff/75559//vnnf8fNyMzyzz///PPP/8bfXJhZ/vkP+Nucf/75D/5inn/++Q/+Xp5//vnnn3/++Q+8lf/zx7n/zz//O/r/+t/8889/jP+TN/jnn/8M/+dv8c8///zzzz///PPPP//8888//+7/mdnt/U9y1c4/Imaj8/wf//zz/9DkLj7h/PPP//XRLf75559//vnnP20DKP755z91Ayj++ec/dAfYYdz555//3HG3IPxv53+qI+Wff/75559//vnnX/zzz7/4559/8c8//+Kff/41uf+3DmTggPLPP/9j/R9T+J/gyxb++ef/qQGd79sW/m0C/PPPv02Af/75twvwzz//dgH+O/t/ea/Bnti//YR//vnnn3/++ed/bf/FP//8b+b/+evBP//8r++/+Offsuf6L/75t+y5/ot//i17rv963v8Es86/Zef/8kHwzz//m/gv/vm37Ln+i3/+LXuu/+Kff8ue678e9W8Q+ed/Kv/FP//85/ov/m0Dlj3Xf3X4jPPONf+Wnf/LB8M///xv5r/459+y5/ov/vm37Ln+i3/++c/1X/zzz3+u/2rv//sjG0T++Z/Tf/HPP/+5/ot//vnP9V/8889/rv/in3/++eeff/75559//vlfZeUjBop//vnnn3/++eeff/75559//vnnn3/++eeff/75559//vnnn3/++effBsA///zbAPhf4hr9ObCYCbx+ZnYA/vfzf/D/9nnZAPjfzP/B/wenZQPgf8vrU/y/dVa+B+Cff/7555//zf0v9vQB//yPOtmt/X/9b3sA/1tdmeL/l5M6ecMOwP821yVr6j4+qfO3bAD87/H6n+J/K//FP//85/rfagfgn3/+czcA/vl3/y93B+Cf/8H+V3r+b7sNgH/+R/vvORY2AP75n/SMV+a/yQ7AP//8524A/PM/7ozX5r/DBsA//wPPeG3+G+wAw06Of/5fz6uWjH/++b/rvxaOf/75559//vmvvPjnn3/++eeff/75559//vnnn3/++eeff/75559//vnnn3/++eeff/75559//vnnn3/++eeff/639v/7cRybxD///PPPP//8888///zzzz///PPPP//8888///zzzz///PPPP//8888///zzzz///PPPP//8888//zv7L/75538j/w1XeaGl559//vnffIr4559//vnnn3/++eeff/75559//vnnn3/++d/gcvHPP//888//lP4Pze//48/OP//k888//+Tzzz//5PPPf6x/fPnnn3/x/8Rk8s8///zzzz///PPPP//88z/evx2Bf/5T/fuKgH/+w/zfngjxz//6/t0U4J//WP9uC+b4v3GAs9xv5r+tf88L8P/OEfK/pX9PDPL/1iHyv6N/rwzg/71j5J9/Zfgv/vlXrv/in3/l+i/++dfc/rseL//8K9d/8c+/cv0X//wr13/xv73/g3/++c/1f+C/ov8nJ4T/nf0f+I/zX1O3kn9dvhz4889/rn+/AIB//m0A+PPPf/YGgDT//OdtAOKffxuA+OffBiDDOOesWUcbAP/8q9tVsSkYRv5jL4svCgwj/66UDCP/rpQMI/+ulAwj/66UDCP/rpQMI/+uFP/i35XiX/y7UvyLf1eKf/HPP//in3/+TZUl559/U2XJ+effVFly/vk3VZacf/5NlSXnn39TZcn5599UWXL++TdVlpx//k2VJed/bf8LDXPjQ+Wff/75559//vnnn3/++eeff/75559//vlnnX/++eeff/7550H888+/+Oeff/HPP//in3/+xT///Gv//YN//sU///yLf/75F//88y/++edf/PPPv/jnn3/xzz//4v8J/7stj0EV//xL/PMv8c+/xD//Ev/8S08OeOfPwz//mtT/A5+If/41xP/f5r/RZ/r9MPjnXwP9Dz4M/vkX//xL/PMv8c+/xD//Ul//P/xR28Hmn3/xzz//4p9//sU///yLf/6lSfx3GGz++ddS/tv44J9/Leu/1Q8Q88+/+Oeff/HPP//in3/+NaX/NncA+edfa/r3/B//4p9//sU///yLf/75F//88y/++edf/PPPv/jnn3/xzz//4p9//sU///yLf/75F//886/R/kceBv/8i3/+Jf75l/jnX+Kff6mj/6emmH/+xT///It//vkX//zzrxH+O0+x1//xL/47+W99mPyLf/75F/9j/D92AvyLf/75F//88y/++edf/PPPv/gfd///v7f4l/gPyKCK/6GvCuBf/PPPv/jnn3/xzz//4v+Bsedf4p9/Kd1/RWVQle5/jQPvs+QGVfzzL/HPv8Q//xL//Esx9//nP+RLf8i/+OeffwX5/+0w+OdfO/v//TD451/88y/xz7/EP//SPv7d/+df/PPPv5J2gxn93/qc/It//vkX//zzL/7551/888+/+Oeff0WK559/8f+x/zWWh3/xzz//4p9//sU///yLf/75F//88y/+Z/cv2Q34l/jnX+Kff4n/71L5l/L8X34E/qXV/X97hLcfjX9p8e/4D/6lVP8nD8i/tLf/Pw9w8oj8S5H+/38X/9L2/m89KP/Syv7vPSr/0sL+v33V/9nD8i9t4P/8dQD8SwH+r74OkH9pef/f3sm/5O9//iXf//Mvbez/qEv/cA7/0g7+j7ry2PxLC/s/f/0P/1KE/9PX//IvZfj38z9SsP+TlwLwL8X4r8uPyL+0vP/LvwCUf2kf/37/rxTh3+//l/j37/9I/PMv8c+/xD//Ev/8S/zzL/HPv8Q//xL//Ev88y/xz7/EP/8S/5L4l8S/JP4l8S+Jf0n8S+JfEv+S+JfEvyT+Jf75l/jnX+Kff4l//iX++Zf451/in3+Jf/4l/vmX+Odf4p9/iX/+Jf75l/jnX+Kff4l//iX++Zf451/in3+Jf/4lSZIkSZIkSerSzZvw7uFL/EviX9J6/ot/iX/+Jf75l7Ym3/4l/v8+tiWWIv0f/Eu5/g/+pTT/LxuAJZay/EMvBfu3A0jJ/m0AUrB/G4AU7N8GIAX7twFIwf5tAFKwfxuAFOzfBiAF+7cDSPxL4l8S/5L4l8S/JP4l8S+Jf0n8S+JfEv+S+JfEvyT+JfEviX9J/EviXxL/kviX+Odf4p9/iX/+Jf75l/jnX+Kff4l//iX++Zf451/in3+Jf/4l/vmX+JfEvyT+JfEviX9J/EuSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJElatH8AlV3iBA==",
+    "mask_sha256": "c784d7612ef0a06806ab7e23518fed25fb1fc8721740d37123e18bb2ba0820dc"
+  }
+}

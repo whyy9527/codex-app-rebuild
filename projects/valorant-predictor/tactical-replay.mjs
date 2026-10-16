@@ -1,170 +1,73 @@
-// Hand-authored demonstration only. No model forecast is interpreted as telemetry.
+// Model choices own node/time/intent; the frozen graph owns coordinates.
 export const DURATION = 30;
-export const MAPS = {
-  ascent: {
-    name: '亚海悬城', english: 'ASCENT', image: 'assets/tactical/ascent.png',
-    sites: [['A', 310, 155], ['B', 285, 800]],
-    zones: [['中路', 520, 530], ['进攻方向 ←', 800, 740]],
-    attack: [
-      [[480,195],[480,230],[480,255],[480,280]],
-      [[610,265],[565,265],[525,265],[490,265],[480,245]],
-      [[560,500],[520,500],[455,500],[455,450],[455,405],[455,370]],
-      [[410,715],[400,715],[400,740],[385,740]],
-      [[670,655],[620,655],[570,655],[540,655],[540,675]],
-    ],
-    defend: [
-      [[305,135],[325,135],[325,170]],
-      [[400,295],[400,325],[410,345]],
-      [[280,795],[300,795],[310,765]],
-      [[300,495],[340,495],[375,495]],
-      [[300,295],[300,280],[325,280]],
-    ],
-  },
-  haven: {
-    name: '隐世修所', english: 'HAVEN', image: 'assets/tactical/haven.png',
-    sites: [['A', 385, 150], ['B', 390, 490], ['C', 370, 835]],
-    zones: [['中路', 575, 560], ['进攻方向 ←', 835, 715]],
-    attack: [
-      [[570,180],[580,200],[590,220],[600,240],[610,260]],
-      [[630,390],[620,370],[620,340],[610,310],[600,290],[600,260]],
-      [[600,520],[560,520],[530,520],[500,520]],
-      [[650,855],[600,855],[550,855],[505,855],[465,855]],
-      [[505,635],[475,635],[445,635],[430,615]],
-    ],
-    defend: [
-      [[395,130],[420,130],[435,150]],
-      [[395,490],[420,490],[435,520]],
-      [[360,840],[350,810],[375,800]],
-      [[285,320],[315,320],[350,320]],
-      [[285,660],[285,700],[310,735]],
-    ],
-  },
-};
-export const LINEUPS = {
-  attack: [
-    ['wushu', '捷风', '决斗'], ['hunter', '猎枭', '先锋'],
-    ['wraith', '幽影', '控场'], ['killjoy', '奇乐', '哨卫'], ['grenadier', 'K/O', '先锋'],
-  ],
-  defend: [
-    ['clay', '雷兹', '决斗'], ['breach', '铁臂', '先锋'],
-    ['gumshoe', '零', '哨卫'], ['pandemic', '蝰蛇', '控场'], ['guide', '斯凯', '先锋'],
-  ],
-};
+export const MODELS = {codex:'gpt-6.1-sol',deepseek:'deepseek-flash',doubao:'doubao-seed-2-1-pro-260915',mimo:'mimo-v2.6-pro'};
+const LABELS = {codex:'GPT-6.1 sol',deepseek:'DeepSeek',doubao:'豆包',mimo:'MiMo'};
+const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 export function pointAt(points, progress) {
-  const p = Math.max(0, Math.min(1, progress));
-  const lengths = points.slice(1).map((point, i) => Math.hypot(point[0] - points[i][0], point[1] - points[i][1]));
-  let remaining = lengths.reduce((a, b) => a + b, 0) * p;
-  for (let i = 0; i < lengths.length; i++) {
-    if (remaining <= lengths[i]) {
-      const f = lengths[i] ? remaining / lengths[i] : 0;
-      return [points[i][0] + (points[i + 1][0] - points[i][0]) * f, points[i][1] + (points[i + 1][1] - points[i][1]) * f];
-    }
-    remaining -= lengths[i];
-  }
+  const lengths=points.slice(1).map((p,i)=>Math.hypot(p[0]-points[i][0],p[1]-points[i][1]));
+  let left=lengths.reduce((a,b)=>a+b,0)*Math.max(0,Math.min(1,progress));
+  for(let i=0;i<lengths.length;i++){if(left<=lengths[i]){const f=lengths[i]?left/lengths[i]:0;return points[i].map((v,j)=>v+(points[i+1][j]-v)*f);}left-=lengths[i];}
   return points.at(-1);
 }
-export function phaseAt(time) {
-  return time < 8 ? 0 : time < 20 ? 1 : time < DURATION ? 2 : 3;
+export function edgeFor(context,a,b){
+  if(a===b)return [context.nodes[a].xy,context.nodes[a].xy];
+  const edge=context.edges.find(e=>(e.a===a&&e.b===b)||(e.b===a&&e.a===b));
+  if(!edge)throw Error(`未授权通路 ${a} → ${b}`);
+  return edge.a===a?edge.points:[...edge.points].reverse();
 }
-const phases = [
-  ['初始站位', '两侧分线落位，先看双方的特工配置。'],
-  ['多线推进', '红方沿入口移动，蓝方在包点与中路调整站位。'],
-  ['控图收束', '观察两翼与中路的距离；此演示不计算交火或胜负。'],
-  ['演示结束', '可以拖动时间轴回看，或换一张地图重新播放。'],
-];
-const state = { map: 'ascent', time: 0, playing: false, speed: 1, routes: true, selected: 'attack-0' };
-let frameId, activeRoot, teardown;
-const clock = time => `00:${String(Math.floor(time)).padStart(2, '0')}`;
-export function tacticalMarkup() {
-  return `<section id="tactical-replay" class="tactical" aria-label="战术沙盘演示"><header class="tactical-heading"><div><p class="tactical-eyebrow">TACTICAL SANDBOX · 5 VS 5</p><h2>战术沙盘 · 阵容与走位</h2></div><span class="tactical-demo">演示回放 · 非模型预测</span></header><p class="tactical-disclosure">当前模型未输出特工选用与逐秒坐标。以下阵容与路线为各频道共用的手工示例，不代表真实赛况。</p><div class="tactical-toolbar"><div class="tactical-maps" role="group" aria-label="选择演示地图">${Object.entries(MAPS).map(([id, m]) => `<button data-tactical-map="${id}" aria-pressed="${state.map === id}">${m.name}<small>${m.english}</small></button>`).join('')}</div><div class="tactical-toolbar-end"><label><input type="checkbox" id="tactical-routes" ${state.routes ? 'checked' : ''}>显示路线</label><button id="tactical-focus" aria-pressed="false">专注地图</button></div></div><div id="tactical-arena"></div><div class="tactical-transport"><button id="tactical-play" class="tactical-play">▶ 播放演示</button><button id="tactical-reset" aria-label="回到初始站位">↺ 重置</button><label class="tactical-scrub"><span class="sr-only">演示进度</span><input id="tactical-progress" type="range" min="0" max="30" step="0.1" value="${state.time}" aria-label="演示进度"><span class="tactical-time"><output id="tactical-time">${clock(state.time)}</output> / 00:30</span></label><label class="tactical-speed">速度<select id="tactical-speed" aria-label="演示速度"><option value="0.5">0.5×</option><option value="1" selected>1×</option><option value="2">2×</option></select></label></div><div class="tactical-phase"><b id="tactical-phase-title"></b><span id="tactical-phase-copy"></span></div><details class="tactical-sources"><summary>演示边界与素材来源</summary><p>底图与特工图标为 Riot 游戏素材，经 <a href="https://valorant-api.com/" target="_blank" rel="noreferrer">Valorant-API</a> 公开目录取得。路线是用于讲解的手工折线，未接入碰撞、技能、枪械、经济与逐回合胜负；地图选择不代表本届官方地图池。</p><p>本非官方社区展示使用 Riot Games 素材，依据其 <a href="https://www.riotgames.com/en/legal" target="_blank" rel="noreferrer">Legal Jibber Jabber</a> 政策创作；Riot Games 未认可或赞助本项目。<a href="data/tactical-assets.json" target="_blank">素材来源与摘要 ↗</a></p></details></section>`;
+export function actorPosition(context,actor,time){
+  const points=actor.waypoints,t=Math.max(0,Math.min(DURATION,time));
+  for(let i=1;i<points.length;i++)if(t<=points[i].at_s)return pointAt(edgeFor(context,points[i-1].node,points[i].node),(t-points[i-1].at_s)/(points[i].at_s-points[i-1].at_s));
+  return context.nodes[points.at(-1).node].xy;
 }
-export function stopTactical() {
-  cancelAnimationFrame(frameId);
-  state.playing = false;
-  teardown?.();
-  teardown = null;
-  activeRoot = null;
+export function validatePlan(value,context,channel){
+  if(value.kind!=='model_tactical_plan'||value.channel!==channel||value.scenario_id!==context.id||value.runtime_attestation?.model!==MODELS[channel])throw Error('模型或场景凭据不匹配');
+  const plan=value.plan,keys=Object.keys(context.actors),starts={attack:new Set(),defend:new Set()};
+  if(!plan||Object.keys(plan).sort().join()!=='actors,attack_goal,defense_goal,headline'||!plan.actors||Object.keys(plan.actors).sort().join()!==keys.sort().join())throw Error('方案必须包含固定十人');
+  for(const [field,lo,hi] of [['headline',5,80],['attack_goal',8,180],['defense_goal',8,180]])if(typeof plan[field]!=='string'||plan[field].trim().length<lo||plan[field].length>hi)throw Error('方案说明格式不合法');
+  for(const key of keys){const a=plan.actors[key],side=context.actors[key].side,p=a?.waypoints;
+    if(!a||Object.keys(a).sort().join()!=='intent,waypoints'||typeof a.intent!=='string'||a.intent.trim().length<4||a.intent.length>120||!Array.isArray(p)||p.length<2||p.length>8)throw Error('角色格式不合法');
+    for(const point of p)if(Object.keys(point).sort().join()!=='at_s,node'||typeof point.at_s!=='number'||!Number.isFinite(point.at_s)||point.at_s<0||point.at_s>DURATION||typeof point.node!=='string'||!context.nodes[point.node])throw Error('节点或时间不合法');
+    if(p[0].at_s!==0||p.at(-1).at_s!==DURATION||!context.start_nodes[side].includes(p[0].node)||starts[side].has(p[0].node))throw Error('起点或时段不合法');
+    starts[side].add(p[0].node);
+    for(let i=1;i<p.length;i++){const route=edgeFor(context,p[i-1].node,p[i].node),length=route.slice(1).reduce((sum,v,j)=>sum+Math.hypot(v[0]-route[j][0],v[1]-route[j][1]),0),dt=p[i].at_s-p[i-1].at_s;if(dt<=0||length/dt>context.max_speed_units_s+1e-6)throw Error('移动通路或耗时不合法');}
+  }
+  return value;
 }
-export function mountTactical() {
-  const root = document.querySelector('#tactical-replay');
-  if (!root) return;
-  activeRoot = root;
-  const find = selector => root.querySelector(selector);
-  const stop = () => { state.playing = false; cancelAnimationFrame(frameId); update(); };
-  const actors = () => Object.entries(LINEUPS).flatMap(([side, lineup]) => lineup.map(([id, name, role], index) => ({ id: `${side}-${index}`, icon: id, name, role, side, index, path: MAPS[state.map][side][index] })));
-  function roster(side) {
-    return `<aside class="tactical-roster ${side}"><div class="tactical-team"><span>${side === 'attack' ? 'ATK' : 'DEF'}</span><h3>${side === 'attack' ? '红方 · 进攻' : '蓝方 · 防守'}</h3><small>示例阵容 / 5 人</small></div>${actors().filter(a => a.side === side).map(a => `<button class="tactical-agent" data-tactical-agent="${a.id}" aria-pressed="${state.selected === a.id}"><span class="tactical-agent-number">${a.index + 1}</span><img src="assets/tactical/${a.icon}.png" alt=""><span><b>${a.name}</b><small>${a.role}</small></span><span class="tactical-agent-arrow" aria-hidden="true">↗</span></button>`).join('')}</aside>`;
-  }
-  function draw() {
-    const map = MAPS[state.map];
-    find('#tactical-arena').innerHTML = `<div class="tactical-layout">${roster('attack')}<div class="tactical-map"><div class="tactical-map-caption"><b>${map.english}</b><span>全图视角 · 示例</span></div><div class="tactical-map-canvas"><img class="tactical-map-image" src="${map.image}" alt="${map.name}真实游戏小地图"><svg class="tactical-overlay" viewBox="0 0 1000 1000" aria-hidden="true"><g class="tactical-site-labels">${map.sites.map(([name,x,y]) => `<g transform="translate(${x} ${y})"><circle r="34"/><text y="10">${name}</text></g>`).join('')}${map.zones.map(([name,x,y]) => `<text class="tactical-zone" x="${x}" y="${y}">${name}</text>`).join('')}</g><g class="tactical-paths">${actors().map(a => `<polyline class="tactical-path ${a.side}" data-path="${a.id}" points="${a.path.map(p => p.join(',')).join(' ')}"/>`).join('')}</g></svg>${actors().map(a => `<button class="tactical-marker ${a.side}" data-marker="${a.id}" aria-label="${a.side === 'attack' ? '进攻' : '防守'}方 ${a.index + 1}号 ${a.name}" title="${a.name} · ${a.role}"><img src="assets/tactical/${a.icon}.png" alt=""><span>${a.index + 1}</span></button>`).join('')}<div class="tactical-map-error" hidden>地图素材加载失败，请刷新重试。</div></div><div class="tactical-map-legend"><span class="attack">▲ 进攻方</span><span class="defend">◆ 防守方</span><span>折线为演示移动路线</span></div></div>${roster('defend')}</div>`;
-    find('.tactical-map-image').onerror = () => { stop(); find('.tactical-map-error').hidden = false; find('#tactical-play').disabled = true; };
-    root.querySelectorAll('[data-tactical-agent], [data-marker]').forEach(button => button.onclick = () => {state.selected = button.dataset.tacticalAgent || button.dataset.marker;update();});
-    update();
-  }
-  function update() {
-    if (activeRoot !== root || !root.isConnected) return;
-    root.dataset.time = state.time.toFixed(2);
-    root.dataset.playing = String(state.playing);
-    root.dataset.map = state.map;
-    find('#tactical-play').textContent = state.playing ? 'Ⅱ 暂停演示' : state.time >= DURATION ? '↺ 重播演示' : '▶ 播放演示';
-    find('#tactical-play').setAttribute('aria-pressed', String(state.playing));
-    find('#tactical-progress').value = state.time;
-    find('#tactical-progress').setAttribute('aria-valuetext', `${clock(state.time)}，${phases[phaseAt(state.time)][0]}`);
-    find('#tactical-time').textContent = clock(state.time);
-    const phase = phases[phaseAt(state.time)];
-    find('#tactical-phase-title').textContent = phase[0];
-    find('#tactical-phase-copy').textContent = phase[1];
-    actors().forEach(a => {
-      // First 3 seconds expose initial positions; end at 25s and hold for narration.
-      const [x,y] = pointAt(a.path, (state.time - 3) / 22);
-      const marker = find(`[data-marker="${a.id}"]`);
-      marker.style.left = `${x / 10}%`; marker.style.top = `${y / 10}%`;
-      marker.classList.toggle('selected', state.selected === a.id);
-      marker.setAttribute('aria-pressed', String(state.selected === a.id));
-      const row = find(`[data-tactical-agent="${a.id}"]`);
-      row.setAttribute('aria-pressed', String(state.selected === a.id));
-      const path = find(`[data-path="${a.id}"]`);
-      path.style.display = state.routes ? '' : 'none';
-      path.classList.toggle('selected', state.selected === a.id);
-    });
-  }
-  function start() {
-    if (state.time >= DURATION) state.time = 0;
-    state.playing = true;
-    let previous;
-    function tick(now) {
-      if (!state.playing || activeRoot !== root || !root.isConnected) return;
-      if (previous !== undefined) state.time = Math.min(DURATION, state.time + Math.min((now - previous) / 1000, 0.1) * state.speed);
-      previous = now;
-      if (state.time >= DURATION) state.playing = false;
-      update();
-      if (state.playing) frameId = requestAnimationFrame(tick);
-    }
-    frameId = requestAnimationFrame(tick);
-    update();
-  }
-  root.querySelectorAll('[data-tactical-map]').forEach(button => button.onclick = () => {
-    stop(); state.map = button.dataset.tacticalMap; state.time = 0;
-    root.querySelectorAll('[data-tactical-map]').forEach(b => b.setAttribute('aria-pressed', String(b === button)));
-    draw(); find('#tactical-play').disabled = false;
-  });
-  find('#tactical-play').onclick = () => state.playing ? stop() : start();
-  find('#tactical-reset').onclick = () => { stop(); state.time = 0; update(); };
-  find('#tactical-progress').oninput = event => { const time = Number(event.target.value); stop(); state.time = time; update(); };
-  find('#tactical-speed').value = state.speed;
-  find('#tactical-speed').onchange = event => { state.speed = Number(event.target.value); };
-  find('#tactical-routes').onchange = event => { state.routes = event.target.checked; update(); };
-  find('#tactical-focus').onclick = event => {
-    const focused = root.classList.toggle('tactical-focused');
-    event.target.setAttribute('aria-pressed', String(focused));
-    event.target.textContent = focused ? '退出专注' : '专注地图';
-    if (focused) root.scrollIntoView({block: 'start'});
-  };
-  const onKey = event => { if (event.key === 'Escape' && root.classList.contains('tactical-focused')) find('#tactical-focus').click(); };
-  document.addEventListener('keydown', onKey);
-  const onVisibility = () => { if (document.hidden) stop(); };
-  document.addEventListener('visibilitychange', onVisibility);
-  teardown = () => { document.removeEventListener('visibilitychange', onVisibility); document.removeEventListener('keydown', onKey); };
-  draw();
+const canonical=value=>value&&typeof value==='object'?Array.isArray(value)?`[${value.map(canonical).join(',')}]`:`{${Object.keys(value).sort().map(k=>JSON.stringify(k)+':'+canonical(value[k])).join(',')}}`:JSON.stringify(value);
+const hash=async text=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(text))),v=>v.toString(16).padStart(2,'0')).join('');
+const state={model:'codex',time:0,playing:false,speed:1,routes:true,selected:'A1'};
+let frameId,activeRoot,teardown;
+const clock=t=>`00:${String(Math.floor(t)).padStart(2,'0')}`;
+export function tacticalMarkup(){return `<section id="tactical-replay" class="tactical" aria-label="四模型战术沙盘"><header class="tactical-heading"><div><p class="tactical-eyebrow">FOUR MODELS · ONE SCENARIO · 5 VS 5</p><h2>四模型战术沙盘</h2></div><span class="tactical-demo" id="tactical-status">正在读取方案</span></header><p class="tactical-disclosure" id="tactical-disclosure">同一张亚海悬城、同一假设阵容，由四个模型各自选择站位、时间与路线。方案校验通过后才能播放。</p><div class="tactical-models" role="group" aria-label="选择战术模型">${Object.entries(LABELS).map(([id,label])=>`<button data-tactical-model="${id}">${label}<small>等待方案</small></button>`).join('')}</div><div class="tactical-toolbar"><div class="tactical-maps"><button aria-pressed="true">亚海悬城<small>ASCENT · 共同场景 / 30s</small></button></div><div class="tactical-toolbar-end"><label><input type="checkbox" id="tactical-routes" checked>显示路线</label><button id="tactical-focus" aria-pressed="false">专注地图</button></div></div><div id="tactical-arena"></div><div class="tactical-transport"><button id="tactical-play" class="tactical-play" disabled>等待模型方案</button><button id="tactical-reset" disabled>↺ 重置</button><label class="tactical-scrub"><span class="sr-only">方案进度</span><input id="tactical-progress" type="range" min="0" max="30" step="0.1" value="0" aria-label="方案进度" disabled><span class="tactical-time"><output id="tactical-time">00:00</output> / 00:30</span></label><label class="tactical-speed">速度<select id="tactical-speed" aria-label="播放速度" disabled><option value="0.5">0.5×</option><option value="1" selected>1×</option><option value="2">2×</option></select></label></div><div class="tactical-phase"><b id="tactical-phase-title">等待模型方案</b><span id="tactical-phase-copy">不以手工示例轨迹替代模型输出。</span></div><div class="tactical-comparison" id="tactical-comparison" aria-label="四模型方案对比"></div><details class="tactical-sources"><summary>共同输入、校验边界与素材来源</summary><p>假设阵容固定，不对应真实战队选人。0 秒是默认控图后的分析起点，并非回合出生时刻。模型独立选择图谱节点、时间与战术理由；播放器沿冻结通路展开位置。所有门视为打开；未模拟高低差、跳跃、技能、枪械、经济或交火，不保证真实 FPS 物理可执行。检查仅覆盖本二维图谱的边界、相邻通路、人数与时间。</p><p><a href="data/tactical/context.json" target="_blank">冻结场景与地图图谱 ↗</a> · <a href="data/tactical/models.json" target="_blank">四模型生成状态 ↗</a> · 原始输入与失败回执由本地运行档案保留；通过校验的原始方案随页面公开。</p><p>真实游戏底图与特工图标经 <a href="https://valorant-api.com/" target="_blank" rel="noreferrer">Valorant-API</a> 公开目录取得。依据 Riot <a href="https://www.riotgames.com/en/legal" target="_blank" rel="noreferrer">Legal Jibber Jabber</a> 创作；Riot 未认可或赞助。<a href="data/tactical-assets.json" target="_blank">素材来源与摘要 ↗</a></p></details></section>`;}
+export function stopTactical(){cancelAnimationFrame(frameId);state.playing=false;teardown?.();teardown=null;activeRoot=null;}
+export async function mountTactical({model='codex',onModelChange}={}){
+  const root=document.querySelector('#tactical-replay');if(!root)return;activeRoot=root;state.model=model in MODELS?model:'codex';state.time=0;state.playing=false;
+  const find=q=>root.querySelector(q),alive=()=>activeRoot===root&&root.isConnected;
+  let context,index,plans={},failures={};
+  try{
+    [context,index]=await Promise.all(['context','models'].map(async name=>{const response=await fetch(`data/tactical/${name}.json`,{cache:'no-store'});if(!response.ok)throw Error('HTTP '+response.status);return response.json();}));
+    const contextHash=await hash(canonical(context));
+    await Promise.all(Object.keys(MODELS).map(async channel=>{const record=index.models[channel];if(record?.status!=='ready')return;try{if(record.file!==`data/tactical/${channel}-plan.json`)throw Error('方案路径不合法');const response=await fetch(record.file,{cache:'no-store'});if(!response.ok)throw Error('方案读取失败');const text=await response.text();if(await hash(text)!==record.sha256)throw Error('方案文件摘要不匹配');const value=validatePlan(JSON.parse(text),context,channel);if(value.context_sha256!==contextHash||value.raw_plan_sha256!==await hash(canonical(value.plan)))throw Error('输入或原文摘要不匹配');plans[channel]=value;}catch(e){failures[channel]=e.message;}}));
+  }catch(e){if(alive()){find('#tactical-status').textContent='方案读取失败';find('#tactical-phase-copy').textContent=e.message;}return;}
+  if(!alive())return;
+  const current=()=>plans[state.model],actors=()=>Object.entries(context.actors).map(([id,a],i)=>({...a,name:a.agent,id,index:i%5}));
+  const pending=channel=>failures[channel]?'校验失败 · 已停用':index.models[channel]?.status==='awaiting_budget_approval'?'等待本轮调用授权':index.models[channel]?.diagnostic||'尚无通过校验的方案';
+  const stop=()=>{state.playing=false;cancelAnimationFrame(frameId);update();};
+  function roster(side){return `<aside class="tactical-roster ${side}"><div class="tactical-team"><span>${side==='attack'?'ATK':'DEF'}</span><h3>${side==='attack'?'红方 · 进攻':'蓝方 · 防守'}</h3><small>共同假设阵容 / 5 人</small></div>${actors().filter(a=>a.side===side).map(a=>`<button class="tactical-agent" data-tactical-agent="${a.id}"><span class="tactical-agent-number">${a.index+1}</span><img src="assets/tactical/${esc(a.icon)}.png" alt=""><span><b>${esc(a.name)}</b><small>${esc(a.role)}</small></span><span class="tactical-agent-arrow">↗</span></button>`).join('')}</aside>`;}
+  function draw(){const value=current();find('#tactical-arena').innerHTML=`<div class="tactical-layout">${roster('attack')}<div class="tactical-map"><div class="tactical-map-caption"><b>ASCENT</b><span>${value?'模型方案 · 非真实赛况':'等待模型站位'}</span></div><div class="tactical-map-canvas"><img class="tactical-map-image" src="${esc(context.map.image)}" alt="亚海悬城真实游戏小地图"><svg class="tactical-overlay" viewBox="0 0 1000 1000" aria-hidden="true"><g class="tactical-site-labels"><g transform="translate(310 155)"><circle r="34"/><text y="10">A</text></g><g transform="translate(285 800)"><circle r="34"/><text y="10">B</text></g></g><g class="tactical-paths">${value?actors().map(a=>`<polyline class="tactical-path ${a.side}" data-path="${a.id}" points="${value.plan.actors[a.id].waypoints.slice(1).flatMap((p,i)=>edgeFor(context,value.plan.actors[a.id].waypoints[i].node,p.node)).map(p=>p.join(',')).join(' ')}"/>`).join(''):''}</g></svg>${value?actors().map(a=>`<button class="tactical-marker ${a.side}" data-marker="${a.id}" aria-label="${a.side==='attack'?'进攻':'防守'}方 ${a.index+1}号 ${esc(a.name)}"><img src="assets/tactical/${esc(a.icon)}.png" alt=""><span>${a.index+1}</span></button>`).join(''):`<div class="tactical-await"><b>${esc(LABELS[state.model])}</b><span>${esc(pending(state.model))}</span><small>真实地图已就绪，站位与路线等待该模型生成。</small></div>`}<div class="tactical-map-error" hidden>地图素材加载失败，请刷新重试。</div></div><div class="tactical-map-legend"><span class="attack">● 进攻方</span><span class="defend">■ 防守方</span><span>${value?'同位标记可点阵容逐人查看':'不展示替代轨迹'}</span></div></div>${roster('defend')}</div>`;
+    find('.tactical-map-image').onerror=()=>{stop();find('.tactical-map-error').hidden=false;find('#tactical-play').disabled=true;};
+    root.querySelectorAll('[data-tactical-agent],[data-marker]').forEach(button=>button.onclick=()=>{state.selected=button.dataset.tacticalAgent||button.dataset.marker;update();});
+    find('#tactical-status').textContent=`${Object.keys(plans).length} / 4 模型方案已校验`;
+    find('#tactical-disclosure').textContent=value?`${MODELS[state.model]} · ${value.plan.headline} · 真实模型生成的假设战术方案，非真实赛况。`:'四模型使用同一冻结场景独立规划。当前选择尚无有效输出；不以手工轨迹替代。';
+    for(const id of ['play','reset','progress','speed'])find('#tactical-'+id).disabled=!value;
+    root.querySelectorAll('[data-tactical-model]').forEach(button=>{const id=button.dataset.tacticalModel;button.setAttribute('aria-pressed',String(id===state.model));button.querySelector('small').textContent=plans[id]?'方案已校验':pending(id);});
+    find('#tactical-comparison').innerHTML=Object.keys(MODELS).map(channel=>{const p=plans[channel];return `<article><b>${esc(LABELS[channel])}</b><small>${esc(MODELS[channel])}</small>${p?`<h4>${esc(p.plan.headline)}</h4><p><strong>进攻</strong> ${esc(p.plan.attack_goal)}</p><p><strong>防守</strong> ${esc(p.plan.defense_goal)}</p><p class="tactical-distribution">${['attack','defend'].map(side=>`${side==='attack'?'红方':'蓝方'}末位：${actors().filter(a=>a.side===side).map(a=>context.nodes[p.plan.actors[a.id].waypoints.at(-1).node].label).join(' / ')}`).map(esc).join('<br>')}</p><small>生成 ${esc(p.created_at)} · ${p.attempts.length} 次尝试</small><a href="data/tactical/${channel}-plan.json" target="_blank">原始方案与凭据 ↗</a>`:`<p>${esc(pending(channel))}</p>`}</article>`;}).join('');update();}
+  function update(){if(!alive())return;const value=current();root.dataset.model=state.model;root.dataset.map='ascent';root.dataset.time=state.time.toFixed(2);root.dataset.playing=String(state.playing);root.dataset.ready=String(Boolean(value));find('#tactical-play').textContent=value?(state.playing?'Ⅱ 暂停方案':state.time>=DURATION?'↺ 重播方案':'▶ 播放方案'):'等待模型方案';find('#tactical-play').setAttribute('aria-pressed',String(state.playing));find('#tactical-time').textContent=clock(state.time);find('#tactical-progress').value=state.time;find('#tactical-progress').setAttribute('aria-valuetext',clock(state.time));
+    const selected=context.actors[state.selected];find('#tactical-phase-title').textContent=value?`${state.selected} · ${selected.agent}`:'等待模型方案';find('#tactical-phase-copy').textContent=value?value.plan.actors[state.selected].intent:pending(state.model);
+    for(const a of actors()){find(`[data-tactical-agent="${a.id}"]`).setAttribute('aria-pressed',String(a.id===state.selected));if(!value)continue;const [x,y]=actorPosition(context,value.plan.actors[a.id],state.time),marker=find(`[data-marker="${a.id}"]`);marker.style.left=`${x/10}%`;marker.style.top=`${y/10}%`;marker.classList.toggle('selected',a.id===state.selected);marker.setAttribute('aria-pressed',String(a.id===state.selected));const path=find(`[data-path="${a.id}"]`);path.style.display=state.routes?'':'none';path.classList.toggle('selected',a.id===state.selected);}}
+  function start(){if(!current())return;if(state.time>=DURATION)state.time=0;state.playing=true;let previous;const tick=now=>{if(!state.playing||!alive())return;if(previous!==undefined)state.time=Math.min(DURATION,state.time+Math.min((now-previous)/1000,.1)*state.speed);previous=now;if(state.time>=DURATION)state.playing=false;update();if(state.playing)frameId=requestAnimationFrame(tick);};frameId=requestAnimationFrame(tick);update();}
+  root.querySelectorAll('[data-tactical-model]').forEach(button=>button.onclick=()=>{stop();const id=button.dataset.tacticalModel;if(onModelChange)onModelChange(id);else{state.model=id;state.time=0;draw();}});
+  find('#tactical-play').onclick=()=>state.playing?stop():start();find('#tactical-reset').onclick=()=>{stop();state.time=0;update();};find('#tactical-progress').oninput=event=>{const time=Number(event.target.value);stop();state.time=time;update();};find('#tactical-speed').value=state.speed;find('#tactical-speed').onchange=e=>{state.speed=Number(e.target.value);};find('#tactical-routes').checked=state.routes;find('#tactical-routes').onchange=e=>{state.routes=e.target.checked;update();};find('#tactical-focus').onclick=e=>{const focused=root.classList.toggle('tactical-focused');e.target.setAttribute('aria-pressed',String(focused));e.target.textContent=focused?'退出专注':'专注地图';};
+  const onKey=e=>{if(e.key==='Escape'&&root.classList.contains('tactical-focused'))find('#tactical-focus').click();},onVisibility=()=>{if(document.hidden)stop();};document.addEventListener('keydown',onKey);document.addEventListener('visibilitychange',onVisibility);teardown=()=>{document.removeEventListener('keydown',onKey);document.removeEventListener('visibilitychange',onVisibility);};draw();
 }

@@ -1,0 +1,262 @@
+{
+  "schema_version": 1,
+  "kind": "model_tactical_plan",
+  "channel": "mimo",
+  "label": "真实模型生成的战术方案 · 非真实赛况",
+  "scenario_id": "ascent-default-control-30s-v1",
+  "context_sha256": "33c83c75e4242fadb2d8b3a30bfa7216aea3474691c680fad40fe63cca5e9822",
+  "raw_plan_sha256": "fb260ec382665aad5c50c6afe7b9e0c0d38bb81e6c4e6710e27232ccef687ef7",
+  "created_at": "2026-10-16T12:18:17.687830+00:00",
+  "runtime_attestation": {
+    "provider": "mimo",
+    "model": "mimo-v2.6-pro",
+    "response_id": "a5d2bdaa-a280-4b4a-ad7f-bab5488afec2_29e275a01b44454785b7110af8d0f5fe",
+    "usage": {
+      "completion_tokens": 3644,
+      "prompt_tokens": 2013,
+      "total_tokens": 5657,
+      "completion_tokens_details": {
+        "reasoning_tokens": 2363
+      },
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      }
+    },
+    "finish_reason": "stop",
+    "response_sha256": "45f52ff9c309ad46f2a7ab34aaeb4f5f2f2881fa172f21efa205fc412de7da5f"
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "status": "valid",
+      "errors": [],
+      "raw_sha256": "76e8b4a906fb58117dc4f080bc7c95654ee4d8008232e29d730f394606661b54"
+    }
+  ],
+  "plan": {
+    "headline": "A区主攻与中路市场切断并行，防守保留B点单锚与后段轮转",
+    "attack_goal": "先以三人压A树房与A入口形成A区挤压，中路两人从庭院切入市场以阻断防守轮转；仅留奇乐在B大厅控制侧翼，不急于下包。",
+    "defense_goal": "A点双人坚守并由树房后撤回包点收口，中路市场保持观察后向出生区退守，B点单锚不离点，花园位置预留迎击绕后。",
+    "actors": {
+      "A1": {
+        "intent": "捷风从A入口推进树房，后段抢入A包点占位，承担第一突破。",
+        "waypoints": [
+          {
+            "at_s": 0,
+            "node": "a_main"
+          },
+          {
+            "at_s": 4,
+            "node": "a_main"
+          },
+          {
+            "at_s": 11.6,
+            "node": "a_tree"
+          },
+          {
+            "at_s": 18,
+            "node": "a_tree"
+          },
+          {
+            "at_s": 24.6,
+            "node": "a_site"
+          },
+          {
+            "at_s": 30,
+            "node": "a_site"
+          }
+        ]
+      },
+      "A2": {
+        "intent": "猎枭由A大厅跟进入口，为捷风提供入口信息与火力支援，不单独深入。",
+        "waypoints": [
+          {
+            "at_s": 0,
+            "node": "a_lobby"
+          },
+          {
+            "at_s": 6,
+            "node": "a_lobby"
+          },
+          {
+            "at_s": 11.2,
+            "node": "a_main"
+          },
+          {
+            "at_s": 30,
+            "node": "a_main"
+          }
+        ]
+      },
+      "A3": {
+        "intent": "幽影经中路庭院压向市场，切断防守中路转A通道，随后与A包点方向呼应。",
+        "waypoints": [
+          {
+            "at_s": 0,
+            "node": "mid_top"
+          },
+          {
+            "at_s": 4,
+            "node": "mid_top"
+          },
+          {
+            "at_s": 11.93,
+            "node": "mid_courtyard"
+          },
+          {
+            "at_s": 18,
+            "node": "mid_courtyard"
+          },
+          {
+            "at_s": 23.92,
+            "node": "mid_market"
+          },
+          {
+            "at_s": 30,
+            "node": "mid_market"
+          }
+        ]
+      },
+      "A4": {
+        "intent": "奇乐驻守B大厅控制侧翼信息，防止防守绕后，不参与主攻。",
+        "waypoints": [
+          {
+            "at_s": 0,
+            "node": "atk_spawn"
+          },
+          {
+            "at_s": 6,
+            "node": "atk_spawn"
+          },
+          {
+            "at_s": 11.92,
+            "node": "b_lobby"
+          },
+          {
+            "at_s": 30,
+            "node": "b_lobby"
+          }
+        ]
+      },
+      "A5": {
+        "intent": "K/O从中路连接先占庭院，再转入A树房与捷风汇合形成双人开口。",
+        "waypoints": [
+          {
+            "at_s": 0,
+            "node": "mid_link"
+          },
+          {
+            "at_s": 3,
+            "node": "mid_link"
+          },
+          {
+            "at_s": 7.47,
+            "node": "mid_courtyard"
+          },
+          {
+            "at_s": 10,
+            "node": "mid_courtyard"
+          },
+          {
+            "at_s": 19.16,
+            "node": "a_tree"
+          },
+          {
+            "at_s": 30,
+            "node": "a_tree"
+          }
+        ]
+      },
+      "D1": {
+        "intent": "雷兹先在A树房前压观察，察觉压力后退回A包点与铁臂并肩收口。",
+        "waypoints": [
+          {
+            "at_s": 0,
+            "node": "a_tree"
+          },
+          {
+            "at_s": 20,
+            "node": "a_tree"
+          },
+          {
+            "at_s": 26.6,
+            "node": "a_site"
+          },
+          {
+            "at_s": 30,
+            "node": "a_site"
+          }
+        ]
+      },
+      "D2": {
+        "intent": "铁臂全程固守A包点，作为A区最后防线不提前轮转。",
+        "waypoints": [
+          {
+            "at_s": 0,
+            "node": "a_site"
+          },
+          {
+            "at_s": 30,
+            "node": "a_site"
+          }
+        ]
+      },
+      "D3": {
+        "intent": "零单人锚定B包点，靠哨卫布置获取B侧信息，保持点位不脱手。",
+        "waypoints": [
+          {
+            "at_s": 0,
+            "node": "b_site"
+          },
+          {
+            "at_s": 30,
+            "node": "b_site"
+          }
+        ]
+      },
+      "D4": {
+        "intent": "蝰蛇先守住中路市场通道，后段退向防守出生区以便双向支援。",
+        "waypoints": [
+          {
+            "at_s": 0,
+            "node": "mid_market"
+          },
+          {
+            "at_s": 20,
+            "node": "mid_market"
+          },
+          {
+            "at_s": 26.6,
+            "node": "def_spawn"
+          },
+          {
+            "at_s": 30,
+            "node": "def_spawn"
+          }
+        ]
+      },
+      "D5": {
+        "intent": "斯凯从出生区看护后方，后段前移A花园迎击绕后并支援A区。",
+        "waypoints": [
+          {
+            "at_s": 0,
+            "node": "def_spawn"
+          },
+          {
+            "at_s": 20,
+            "node": "def_spawn"
+          },
+          {
+            "at_s": 27.71,
+            "node": "a_garden"
+          },
+          {
+            "at_s": 30,
+            "node": "a_garden"
+          }
+        ]
+      }
+    }
+  },
+  "prompt_sha256": "9a7d5d4bdd484eba9bbaef815ff8702ff1d3c11247435d678729d3ef2753ffd9"
+}

@@ -1,0 +1,202 @@
+{
+  "schema_version": 1,
+  "kind": "model_tactical_plan",
+  "channel": "doubao",
+  "label": "真实模型生成的战术方案 · 非真实赛况",
+  "scenario_id": "ascent-default-control-30s-v1",
+  "context_sha256": "33c83c75e4242fadb2d8b3a30bfa7216aea3474691c680fad40fe63cca5e9822",
+  "raw_plan_sha256": "f892d803d81b4c259e9ee4c33452932dea293c695d9235c03c62428b90f9ea00",
+  "created_at": "2026-10-16T12:17:12.862306+00:00",
+  "runtime_attestation": {
+    "provider": "doubao",
+    "model": "doubao-seed-2-1-pro-260915",
+    "response_id": "021792152894426c897e1d930e500589fc980a11d7a6eebca50b3",
+    "usage": {
+      "completion_tokens": 6665,
+      "prompt_tokens": 2225,
+      "total_tokens": 8890,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 5742
+      }
+    },
+    "finish_reason": "stop",
+    "response_sha256": "e468b432856aa047d4c7eca3396de01f353ce73317db3f24da3c19a3039ba0f4"
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "status": "valid",
+      "errors": [],
+      "raw_sha256": "323f0691ce190dbf86ec4b06bcbaa957ae4cd5eb47fcb1ef53ad0fd498dcccdb"
+    }
+  ],
+  "plan": {
+    "headline": "亚海悬城30秒默认控图与分区防守站位规划",
+    "attack_goal": "进攻方执行默认控图战术，分别对A区施压、控制中路、试探B区，收集防守位置信息，保留灵活转点选择权，不仓促突进。",
+    "defense_goal": "防守方执行分区架点战术，A区前压侦察，中路与B区固定驻防，保留快速轮转空间，拦阻进攻方早期突进。",
+    "actors": {
+      "A1": {
+        "intent": "作为A区决斗位，初期控A入口，前压树房收集信息后驻守，不贸然突入A包点。",
+        "waypoints": [
+          {
+            "at_s": 0,
+            "node": "a_main"
+          },
+          {
+            "at_s": 8,
+            "node": "a_tree"
+          },
+          {
+            "at_s": 30,
+            "node": "a_tree"
+          }
+        ]
+      },
+      "A2": {
+        "intent": "作为A区先锋支援位，控A大厅后向A入口靠拢，接应队友同时兼顾中路动静。",
+        "waypoints": [
+          {
+            "at_s": 0,
+            "node": "a_lobby"
+          },
+          {
+            "at_s": 6,
+            "node": "a_main"
+          },
+          {
+            "at_s": 30,
+            "node": "a_main"
+          }
+        ]
+      },
+      "A3": {
+        "intent": "作为中路控场位，占中路上段后下控庭院，扼守中路节点掌握转点主动权。",
+        "waypoints": [
+          {
+            "at_s": 0,
+            "node": "mid_top"
+          },
+          {
+            "at_s": 8,
+            "node": "mid_courtyard"
+          },
+          {
+            "at_s": 30,
+            "node": "mid_courtyard"
+          }
+        ]
+      },
+      "A4": {
+        "intent": "作为后方哨卫兜底，从出生区向中路靠拢，随时准备补防A/B两区，保留部署空间。",
+        "waypoints": [
+          {
+            "at_s": 0,
+            "node": "atk_spawn"
+          },
+          {
+            "at_s": 12,
+            "node": "mid_top"
+          },
+          {
+            "at_s": 30,
+            "node": "mid_top"
+          }
+        ]
+      },
+      "A5": {
+        "intent": "作为B区先锋试探位，控B大厅后向B入口施压，收集B区防守信息不强行进点。",
+        "waypoints": [
+          {
+            "at_s": 0,
+            "node": "b_lobby"
+          },
+          {
+            "at_s": 12,
+            "node": "b_main"
+          },
+          {
+            "at_s": 30,
+            "node": "b_main"
+          }
+        ]
+      },
+      "D1": {
+        "intent": "作为A包点决斗主防，长期驻守包点，架住树房进点路线，等待前压队友信息。",
+        "waypoints": [
+          {
+            "at_s": 0,
+            "node": "a_site"
+          },
+          {
+            "at_s": 30,
+            "node": "a_site"
+          }
+        ]
+      },
+      "D2": {
+        "intent": "作为中路先锋主防，驻守中路市场，兼顾庭院与B连接方向，随时准备回防。",
+        "waypoints": [
+          {
+            "at_s": 0,
+            "node": "mid_market"
+          },
+          {
+            "at_s": 30,
+            "node": "mid_market"
+          }
+        ]
+      },
+      "D3": {
+        "intent": "作为A区哨卫前压，初期控树房侦察A入口，感知压力后及时退回A包点驻防。",
+        "waypoints": [
+          {
+            "at_s": 0,
+            "node": "a_tree"
+          },
+          {
+            "at_s": 7,
+            "node": "a_site"
+          },
+          {
+            "at_s": 30,
+            "node": "a_site"
+          }
+        ]
+      },
+      "D4": {
+        "intent": "作为B包点控场主防，长期驻守B包点，架住B入口路线，保留中路回防选项。",
+        "waypoints": [
+          {
+            "at_s": 0,
+            "node": "b_site"
+          },
+          {
+            "at_s": 30,
+            "node": "b_site"
+          }
+        ]
+      },
+      "D5": {
+        "intent": "作为A区侧翼侦察位，初期控A花园，监控庭院绕侧，随后退向防守出生区待命。",
+        "waypoints": [
+          {
+            "at_s": 0,
+            "node": "a_garden"
+          },
+          {
+            "at_s": 8,
+            "node": "def_spawn"
+          },
+          {
+            "at_s": 30,
+            "node": "def_spawn"
+          }
+        ]
+      }
+    }
+  },
+  "prompt_sha256": "9a7d5d4bdd484eba9bbaef815ff8702ff1d3c11247435d678729d3ef2753ffd9"
+}

@@ -1,41 +1,12 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { pointAt, phaseAt, DURATION, MAPS, LINEUPS } from '../tactical-replay.mjs';
-import { createHash } from 'node:crypto';
-import { readFileSync } from 'node:fs';
-
-test('distance-based interpolation handles unequal legs, endpoints and stationary actors', () => {
-  const path = [[0,0],[3,0],[3,4]];
-  assert.deepEqual(pointAt(path, -1), [0,0]);
-  assert.deepEqual(pointAt(path, 3 / 7), [3,0]);
-  assert.deepEqual(pointAt(path, 5 / 7), [3,2]);
-  assert.deepEqual(pointAt(path, 2), [3,4]);
-  assert.deepEqual(pointAt([[2,2],[2,2]], 0.5), [2,2]);
-});
-
-test('scrubbing reversibly selects the correct narration phase including the end', () => {
-  assert.equal(phaseAt(0), 0);
-  assert.equal(phaseAt(8), 1);
-  assert.equal(phaseAt(20), 2);
-  assert.equal(phaseAt(DURATION), 3);
-  assert.equal(phaseAt(5), 0);
-});
-
-test('each demo map has five bounded routes per side and traceable original game assets', () => {
-  const manifest = JSON.parse(readFileSync(new URL('../data/tactical-assets.json', import.meta.url)));
-  assert.equal(manifest.assets.length, 12);
-  for (const map of Object.values(MAPS)) {
-    for (const side of ['attack','defend']) {
-      assert.equal(map[side].length, LINEUPS[side].length);
-      assert.equal(map[side].length, 5);
-      for (const path of map[side]) {
-        assert.ok(path.length >= 2);
-        for (const point of path) assert.ok(point.every(x => Number.isFinite(x) && x >= 0 && x <= 1000));
-      }
-    }
-  }
-  for (const asset of manifest.assets) {
-    const bytes = readFileSync(new URL('../' + asset.path, import.meta.url));
-    assert.equal(createHash('sha256').update(bytes).digest('hex'), asset.sha256);
-  }
-});
+import {pointAt,actorPosition,edgeFor,validatePlan,MODELS} from '../tactical-replay.mjs';
+import {createHash} from 'node:crypto';
+import {readFileSync} from 'node:fs';
+const context=JSON.parse(readFileSync(new URL('../data/tactical/context.json',import.meta.url)));
+function fixture(){const actors={};for(const side of ['attack','defend'])context.start_nodes[side].slice(0,5).forEach((node,i)=>actors[(side==='attack'?'A':'D')+(i+1)]={intent:'仅用于机械测试的站位',waypoints:[{at_s:0,node},{at_s:30,node}]});return {kind:'model_tactical_plan',channel:'codex',scenario_id:context.id,runtime_attestation:{model:MODELS.codex},plan:{headline:'测试夹具禁止发布',attack_goal:'测试边界与时序，不对应模型方案',defense_goal:'固定站位验证，不对应真实赛况',actors}};}
+test('distance interpolation handles unequal legs and holds',()=>{assert.deepEqual(pointAt([[0,0],[3,0],[3,4]],5/7),[3,2]);assert.deepEqual(pointAt([[2,2],[2,2]],.5),[2,2]);});
+test('model timestamps control location, with reversible scrubbing',()=>{const e=context.edges[0],actor={waypoints:[{at_s:0,node:e.a},{at_s:20,node:e.b},{at_s:30,node:e.b}]};assert.deepEqual(actorPosition(context,actor,10),pointAt(e.points,.5));assert.deepEqual(actorPosition(context,actor,30),context.nodes[e.b].xy);assert.deepEqual(actorPosition(context,actor,0),context.nodes[e.a].xy);assert.deepEqual(edgeFor(context,e.b,e.a),[...e.points].reverse());});
+test('closed actors, provenance and invalid jumps fail rather than getting repaired',()=>{const plan=fixture();assert.equal(validatePlan(plan,context,'codex'),plan);let bad=structuredClone(plan);bad.runtime_attestation.model='wrong';assert.throws(()=>validatePlan(bad,context,'codex'));bad=structuredClone(plan);delete bad.plan.actors.A5;assert.throws(()=>validatePlan(bad,context,'codex'));bad=structuredClone(plan);bad.plan.actors.A1.waypoints[1].node='b_site';const before=JSON.stringify(bad);assert.throws(()=>validatePlan(bad,context,'codex'));assert.equal(JSON.stringify(bad),before);});
+test('too-fast travel, duplicate starts and nonfinite times rejected',()=>{let p=fixture();p.plan.actors.A2.waypoints[0].node=p.plan.actors.A1.waypoints[0].node;assert.throws(()=>validatePlan(p,context,'codex'));p=fixture();p.plan.actors.A1.waypoints[1].at_s=NaN;assert.throws(()=>validatePlan(p,context,'codex'));p=fixture();const e=context.edges[0];p.plan.actors.A1.waypoints=[{at_s:0,node:e.a},{at_s:.1,node:e.b},{at_s:30,node:e.b}];assert.throws(()=>validatePlan(p,context,'codex'));});
+test('all game assets retain source digests',()=>{const manifest=JSON.parse(readFileSync(new URL('../data/tactical-assets.json',import.meta.url)));assert.equal(manifest.assets.length,12);for(const asset of manifest.assets)assert.equal(createHash('sha256').update(readFileSync(new URL('../'+asset.path,import.meta.url))).digest('hex'),asset.sha256);});

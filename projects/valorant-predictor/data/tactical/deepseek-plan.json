@@ -1,0 +1,256 @@
+{
+  "schema_version": 1,
+  "kind": "model_tactical_plan",
+  "channel": "deepseek",
+  "label": "真实模型生成的战术方案 · 非真实赛况",
+  "scenario_id": "ascent-default-control-30s-v1",
+  "context_sha256": "33c83c75e4242fadb2d8b3a30bfa7216aea3474691c680fad40fe63cca5e9822",
+  "raw_plan_sha256": "cc3cdf47c5cfe94c0f32e1793c83a839d516f7005686f7a33a397f9efefb54e6",
+  "created_at": "2026-10-16T12:14:53.483583+00:00",
+  "runtime_attestation": {
+    "provider": "deepseek",
+    "model": "deepseek-flash",
+    "response_id": "5d7bff79-e75b-40be-afc7-4ede15e01b73",
+    "usage": {
+      "prompt_tokens": 1941,
+      "completion_tokens": 7802,
+      "total_tokens": 9743,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 6970
+      },
+      "prompt_cache_hit_tokens": 0,
+      "prompt_cache_miss_tokens": 1941
+    },
+    "finish_reason": "stop",
+    "response_sha256": "6fdad30f00a50f0d483aa7d40314149947a7e577f55418983c880e81895e22da"
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "status": "valid",
+      "errors": [],
+      "raw_sha256": "5146319a904ad5bc18816a7865be3680e0cd787103155bf122b6d2e8b768a7de"
+    }
+  ],
+  "plan": {
+    "headline": "假设30秒：红方默认控图，蓝方A前压中控",
+    "attack_goal": "红方前30秒以A树压力、中路连接和B入口牵制为主，不急于下包，逼蓝方暴露轮转。",
+    "defense_goal": "蓝方以A入口双人前压、B单守、中路控上段为假设取舍，优先拿信息再回防。",
+    "actors": {
+      "A1": {
+        "intent": "A大厅到A入口，再进树房和包点拉枪线。",
+        "waypoints": [
+          {
+            "at_s": 0,
+            "node": "a_lobby"
+          },
+          {
+            "at_s": 6,
+            "node": "a_main"
+          },
+          {
+            "at_s": 14,
+            "node": "a_tree"
+          },
+          {
+            "at_s": 21,
+            "node": "a_site"
+          },
+          {
+            "at_s": 30,
+            "node": "a_site"
+          }
+        ]
+      },
+      "A2": {
+        "intent": "中路侦查后靠连接，准备转B或夹市场。",
+        "waypoints": [
+          {
+            "at_s": 0,
+            "node": "atk_spawn"
+          },
+          {
+            "at_s": 12,
+            "node": "mid_top"
+          },
+          {
+            "at_s": 20,
+            "node": "mid_courtyard"
+          },
+          {
+            "at_s": 25,
+            "node": "mid_link"
+          },
+          {
+            "at_s": 30,
+            "node": "mid_link"
+          }
+        ]
+      },
+      "A3": {
+        "intent": "控中路后转B大厅，牵制防守轮转。",
+        "waypoints": [
+          {
+            "at_s": 0,
+            "node": "mid_top"
+          },
+          {
+            "at_s": 8,
+            "node": "mid_courtyard"
+          },
+          {
+            "at_s": 13,
+            "node": "mid_link"
+          },
+          {
+            "at_s": 21,
+            "node": "b_lobby"
+          },
+          {
+            "at_s": 30,
+            "node": "b_lobby"
+          }
+        ]
+      },
+      "A4": {
+        "intent": "占中路市场，看防守出生方向与侧翼。",
+        "waypoints": [
+          {
+            "at_s": 0,
+            "node": "mid_courtyard"
+          },
+          {
+            "at_s": 6,
+            "node": "mid_market"
+          },
+          {
+            "at_s": 30,
+            "node": "mid_market"
+          }
+        ]
+      },
+      "A5": {
+        "intent": "占B入口，等中路信息再决定进B。",
+        "waypoints": [
+          {
+            "at_s": 0,
+            "node": "b_lobby"
+          },
+          {
+            "at_s": 12,
+            "node": "b_main"
+          },
+          {
+            "at_s": 30,
+            "node": "b_main"
+          }
+        ]
+      },
+      "D1": {
+        "intent": "从A包点前压树房和入口，延缓进攻。",
+        "waypoints": [
+          {
+            "at_s": 0,
+            "node": "a_site"
+          },
+          {
+            "at_s": 7,
+            "node": "a_tree"
+          },
+          {
+            "at_s": 15,
+            "node": "a_main"
+          },
+          {
+            "at_s": 30,
+            "node": "a_main"
+          }
+        ]
+      },
+      "D2": {
+        "intent": "从A花园压树房和入口，与D1夹A。",
+        "waypoints": [
+          {
+            "at_s": 0,
+            "node": "a_garden"
+          },
+          {
+            "at_s": 4,
+            "node": "a_tree"
+          },
+          {
+            "at_s": 12,
+            "node": "a_main"
+          },
+          {
+            "at_s": 30,
+            "node": "a_main"
+          }
+        ]
+      },
+      "D3": {
+        "intent": "单守B包点，留陷阱拖时间。",
+        "waypoints": [
+          {
+            "at_s": 0,
+            "node": "b_site"
+          },
+          {
+            "at_s": 30,
+            "node": "b_site"
+          }
+        ]
+      },
+      "D4": {
+        "intent": "中路市场前压到上段，拿中路信息。",
+        "waypoints": [
+          {
+            "at_s": 0,
+            "node": "mid_market"
+          },
+          {
+            "at_s": 6,
+            "node": "mid_courtyard"
+          },
+          {
+            "at_s": 14,
+            "node": "mid_top"
+          },
+          {
+            "at_s": 30,
+            "node": "mid_top"
+          }
+        ]
+      },
+      "D5": {
+        "intent": "从防守出生区补A花园、树房，最后回A包点。",
+        "waypoints": [
+          {
+            "at_s": 0,
+            "node": "def_spawn"
+          },
+          {
+            "at_s": 8,
+            "node": "a_garden"
+          },
+          {
+            "at_s": 12,
+            "node": "a_tree"
+          },
+          {
+            "at_s": 20,
+            "node": "a_site"
+          },
+          {
+            "at_s": 30,
+            "node": "a_site"
+          }
+        ]
+      }
+    }
+  },
+  "prompt_sha256": "9a7d5d4bdd484eba9bbaef815ff8702ff1d3c11247435d678729d3ef2753ffd9"
+}

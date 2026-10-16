@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "kind": "model_tactical_plan",
+  "channel": "codex",
+  "label": "真实模型生成的战术方案 · 非真实赛况",
+  "scenario_id": "ascent-default-control-30s-v1",
+  "context_sha256": "33c83c75e4242fadb2d8b3a30bfa7216aea3474691c680fad40fe63cca5e9822",
+  "raw_plan_sha256": "eaa8cd19152d8b6d03c905a169171a09b7f486485369cf7ed85c873054dff35a",
+  "created_at": "2026-10-16T12:14:12.213015+00:00",
+  "runtime_attestation": {
+    "provider": "openai_chatgpt_cli",
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "high",
+    "startup_header_sha256": "55ccc338f83bc604f70b06966d1e6a5fce4b2be1169cde63080ef2fdbbe0dc0e"
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "status": "valid",
+      "errors": [],
+      "raw_sha256": "a7c60e4b254eccfc7302dad9d67777ccca5bd67b9bee33712e7dbcdc35dd9ec6"
+    }
+  ],
+  "plan": {
+    "headline": "进攻集中A侧施压，防守收缩并保留双点",
+    "attack_goal": "三人分路靠近A树房，中路与B大厅各留一人控图，30秒内暂不深入包点。",
+    "defense_goal": "树房人员分批退至A点与花园，市场和B点保持驻守，兼顾A侧压力与另一侧空当。",
+    "actors": {
+      "A1": {
+        "intent": "先守A入口，再前出树房施压，暂缓深入包点。",
+        "waypoints": [
+          {
+            "at_s": 0,
+            "node": "a_main"
+          },
+          {
+            "at_s": 12,
+            "node": "a_main"
+          },
+          {
+            "at_s": 20,
+            "node": "a_tree"
+          },
+          {
+            "at_s": 30,
+            "node": "a_tree"
+          }
+        ]
+      },
+      "A2": {
+        "intent": "从A大厅跟进入口，延后抵达树房支援前排。",
+        "waypoints": [
+          {
+            "at_s": 0,
+            "node": "a_lobby"
+          },
+          {
+            "at_s": 6,
+            "node": "a_main"
+          },
+          {
+            "at_s": 15,
+            "node": "a_main"
+          },
+          {
+            "at_s": 23,
+            "node": "a_tree"
+          },
+          {
+            "at_s": 30,
+            "node": "a_tree"
+          }
+        ]
+      },
+      "A3": {
+        "intent": "经中路庭院靠近树房，形成另一方向的A侧压力。",
+        "waypoints": [
+          {
+            "at_s": 0,
+            "node": "mid_top"
+          },
+          {
+            "at_s": 9,
+            "node": "mid_courtyard"
+          },
+          {
+            "at_s": 17,
+            "node": "mid_courtyard"
+          },
+          {
+            "at_s": 27,
+            "node": "a_tree"
+          },
+          {
+            "at_s": 30,
+            "node": "a_tree"
+          }
+        ]
+      },
+      "A4": {
+        "intent": "留守B大厅观察侧翼，接受暂时无法直接支援A侧的取舍。",
+        "waypoints": [
+          {
+            "at_s": 0,
+            "node": "b_lobby"
+          },
+          {
+            "at_s": 30,
+            "node": "b_lobby"
+          }
+        ]
+      },
+      "A5": {
+        "intent": "从连接区进入庭院并驻守，维持中路控制与回转空间。",
+        "waypoints": [
+          {
+            "at_s": 0,
+            "node": "mid_link"
+          },
+          {
+            "at_s": 5,
+            "node": "mid_courtyard"
+          },
+          {
+            "at_s": 30,
+            "node": "mid_courtyard"
+          }
+        ]
+      },
+      "D1": {
+        "intent": "留守A包点，接应树房退回的队友，保持点内人数。",
+        "waypoints": [
+          {
+            "at_s": 0,
+            "node": "a_site"
+          },
+          {
+            "at_s": 30,
+            "node": "a_site"
+          }
+        ]
+      },
+      "D2": {
+        "intent": "树房短暂前置后退守A点，放弃持续争夺树房。",
+        "waypoints": [
+          {
+            "at_s": 0,
+            "node": "a_tree"
+          },
+          {
+            "at_s": 12,
+            "node": "a_tree"
+          },
+          {
+            "at_s": 19,
+            "node": "a_site"
+          },
+          {
+            "at_s": 30,
+            "node": "a_site"
+          }
+        ]
+      },
+      "D3": {
+        "intent": "独留B包点维持防线，避免全员向A侧倾斜。",
+        "waypoints": [
+          {
+            "at_s": 0,
+            "node": "b_site"
+          },
+          {
+            "at_s": 30,
+            "node": "b_site"
+          }
+        ]
+      },
+      "D4": {
+        "intent": "驻守市场观察中路，保留通往防守出生区与B点的轮转选择。",
+        "waypoints": [
+          {
+            "at_s": 0,
+            "node": "mid_market"
+          },
+          {
+            "at_s": 30,
+            "node": "mid_market"
+          }
+        ]
+      },
+      "D5": {
+        "intent": "从花园短暂支援树房，随后回花园保持A侧纵深。",
+        "waypoints": [
+          {
+            "at_s": 0,
+            "node": "a_garden"
+          },
+          {
+            "at_s": 4,
+            "node": "a_tree"
+          },
+          {
+            "at_s": 14,
+            "node": "a_tree"
+          },
+          {
+            "at_s": 18,
+            "node": "a_garden"
+          },
+          {
+            "at_s": 30,
+            "node": "a_garden"
+          }
+        ]
+      }
+    }
+  },
+  "prompt_sha256": "9a7d5d4bdd484eba9bbaef815ff8702ff1d3c11247435d678729d3ef2753ffd9"
+}

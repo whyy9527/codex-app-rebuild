@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "scenario_id": "ascent-default-control-30s-v1",
+  "models": {
+    "codex": {
+      "model": "gpt-6.1-sol",
+      "label": "GPT-6.1 sol",
+      "status": "ready",
+      "file": "data/tactical/codex-plan.json",
+      "sha256": "d9f58acad50d0fc2fece7fe6c80570ba0bc302d607226f47d25a87c5659cfadd",
+      "diagnostic": null
+    },
+    "deepseek": {
+      "model": "deepseek-flash",
+      "label": "DeepSeek V4.1 Flash",
+      "status": "ready",
+      "file": "data/tactical/deepseek-plan.json",
+      "sha256": "d89dd932a4f0f0c6fc97dc63e1cd764a85154db3797d754a4f38c6c5665f7cce",
+      "diagnostic": null
+    },
+    "doubao": {
+      "model": "doubao-seed-2-1-pro-260915",
+      "label": "豆包",
+      "status": "ready",
+      "file": "data/tactical/doubao-plan.json",
+      "sha256": "36882f4fd092403d5b695d2f021d8f52b25f596287ea7d3acf6c61e476f4b139",
+      "diagnostic": null
+    },
+    "mimo": {
+      "model": "mimo-v2.6-pro",
+      "label": "MiMo V2.6 Pro",
+      "status": "ready",
+      "file": "data/tactical/mimo-plan.json",
+      "sha256": "dcbf36cf0244eeb6b6a6e9146cfae06d3633e0865ea1361d918e6afd5e16184d",
+      "diagnostic": null
+    }
+  }
+}

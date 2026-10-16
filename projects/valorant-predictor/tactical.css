@@ -1,70 +1,70 @@
 /* Tactical replay: game geometry owns the map; the overlay only illustrates movement. */
-.tactical {--atk:#ff6474;--def:#61ccfa;--tactical-line:#263647;background:#0c151e;border:1px solid var(--tactical-line);border-radius:12px;margin:18px 0 36px;overflow:hidden;scroll-margin-top:80px;color:#e8eff5;}
+.tactical {--atk:#ff6474;--def:#61ccfa;--tactical-line:#34362d;background:#0b0d0b;border:1px solid var(--tactical-line);border-radius:12px;margin:18px 0 36px;overflow:hidden;scroll-margin-top:80px;color:#f2f2f2;}
 .tactical-heading {padding:26px 28px 12px;display:flex;gap:20px;align-items:center;justify-content:space-between;}
-.tactical-eyebrow {font:11px 'JetBrains Mono',monospace;letter-spacing:.13em;color:#a5b5c5;margin:0 0 10px;}
+.tactical-eyebrow {font:11px 'JetBrains Mono',monospace;letter-spacing:.13em;color:#b3b5aa;margin:0 0 10px;}
 .tactical-heading h2 {font-size:clamp(20px,2.2vw,30px);margin:0;font-weight:700;letter-spacing:.02em;}
 .tactical-demo {flex-shrink:0;border:1px solid #9c7d46;background:#332a1c;color:#f3cf8e;font-size:12px;padding:7px 10px;border-radius:4px;}
-.tactical-disclosure {font-size:13px;color:#adbdcb;line-height:1.8;padding:0 28px;margin:0 0 20px;}
-.tactical-toolbar {display:flex;align-items:center;justify-content:space-between;gap:12px;border-top:1px solid var(--tactical-line);border-bottom:1px solid var(--tactical-line);padding:12px 22px;background:#111d28;}
+.tactical-disclosure {font-size:13px;color:#b3b5aa;line-height:1.8;padding:0 28px;margin:0 0 20px;}
+.tactical-toolbar {display:flex;align-items:center;justify-content:space-between;gap:12px;border-top:1px solid var(--tactical-line);border-bottom:1px solid var(--tactical-line);padding:12px 22px;background:#131611;}
 .tactical button {font-family:inherit;cursor:pointer;}
 .tactical-maps {display:flex;gap:8px;}
-.tactical-maps button {border:1px solid transparent;background:transparent;color:#aab9c7;padding:7px 15px;min-width:122px;font-size:14px;border-radius:4px;text-align:left;}
+.tactical-maps button {border:1px solid transparent;background:transparent;color:#b3b5aa;padding:7px 15px;min-width:122px;font-size:14px;border-radius:4px;text-align:left;}
 .tactical-maps small {display:block;font:9px 'JetBrains Mono',monospace;letter-spacing:.12em;margin-top:4px;}
-.tactical-maps button[aria-pressed="true"] {border-color:#728d9e;background:#243644;color:#fff;}
-.tactical-toolbar-end {display:flex;align-items:center;gap:18px;font-size:12px;color:#b7c6d2;}
+.tactical-maps button[aria-pressed="true"] {border-color:#c5b174;background:#28271e;color:#fff;}
+.tactical-toolbar-end {display:flex;align-items:center;gap:18px;font-size:12px;color:#c9c8bd;}
 .tactical-toolbar-end label {display:flex;align-items:center;gap:7px;white-space:nowrap;}
-.tactical-toolbar-end input {width:14px;height:14px;accent-color:#91cfe9;}
-.tactical-toolbar-end button,.tactical-transport button {border:1px solid #3a4d5e;background:#182633;color:#e4edf5;border-radius:5px;padding:9px 12px;white-space:nowrap;}
+.tactical-toolbar-end input {width:14px;height:14px;accent-color:#c5b174;}
+.tactical-toolbar-end button,.tactical-transport button {border:1px solid #45483b;background:#1c1f18;color:#f2f2f2;border-radius:5px;padding:9px 12px;white-space:nowrap;}
 .tactical-layout {display:grid;grid-template-columns:180px minmax(0,1fr) 180px;}
-.tactical-roster {padding:22px 12px;background:#101b25;min-width:0;}
+.tactical-roster {padding:22px 12px;background:#11140f;min-width:0;}
 .tactical-roster.attack {border-right:1px solid var(--tactical-line);}
 .tactical-roster.defend {border-left:1px solid var(--tactical-line);}
 .tactical-team {padding:0 8px 20px;}
 .tactical-team>span {font:11px 'JetBrains Mono',monospace;letter-spacing:.12em;}
-.tactical-team h3 {font-size:16px;color:#f1f5f7;margin:8px 0;}
-.tactical-team small {color:#8fa4b5;font-size:11px;}
+.tactical-team h3 {font-size:16px;color:#f2f2f2;margin:8px 0;}
+.tactical-team small {color:#a3a699;font-size:11px;}
 .attack .tactical-team>span {color:var(--atk);}.defend .tactical-team>span {color:var(--def);}
-.tactical-agent {display:flex;align-items:center;gap:8px;width:100%;border:1px solid transparent;border-radius:5px;padding:12px 6px;margin-bottom:6px;background:transparent;color:#e9f0f5;text-align:left;}
+.tactical-agent {display:flex;align-items:center;gap:8px;width:100%;border:1px solid transparent;border-radius:5px;padding:12px 6px;margin-bottom:6px;background:transparent;color:#f2f2f2;text-align:left;}
 .tactical-agent[aria-pressed="true"] {background:#ff647411;border-color:#ff64745c;}
 .defend .tactical-agent[aria-pressed="true"] {background:#61ccfa11;border-color:#61ccfa5c;}
-.tactical-agent-number {font:10px monospace;color:#8299ab;}
-.tactical-agent img {width:33px;height:33px;object-fit:contain;background:#263a49;border-radius:4px;}
-.tactical-agent b {font-size:13px;display:block;}.tactical-agent small {font-size:10px;display:block;color:#8fa4b5;margin-top:5px;}
-.tactical-agent-arrow {color:#778e9f;font-size:12px;margin-left:auto;}
-.tactical-map {min-width:0;background:radial-gradient(ellipse at 50% 45%,#20303a,#0c151e 72%);position:relative;}
-.tactical-map-caption {padding:16px 20px;display:flex;justify-content:space-between;gap:10px;color:#92a8b8;align-items:center;}
-.tactical-map-caption b {font:13px 'JetBrains Mono',monospace;letter-spacing:.12em;color:#d3e5ef;}.tactical-map-caption span {font-size:10px;}
+.tactical-agent-number {font:10px monospace;color:#a3a699;}
+.tactical-agent img {width:33px;height:33px;object-fit:contain;background:#282c23;border-radius:4px;}
+.tactical-agent b {font-size:13px;display:block;}.tactical-agent small {font-size:10px;display:block;color:#a3a699;margin-top:5px;}
+.tactical-agent-arrow {color:#a3a699;font-size:12px;margin-left:auto;}
+.tactical-map {min-width:0;background:radial-gradient(ellipse at 50% 45%,#24271e,#0b0d0b 72%);position:relative;}
+.tactical-map-caption {padding:16px 20px;display:flex;justify-content:space-between;gap:10px;color:#a3a699;align-items:center;}
+.tactical-map-caption b {font:13px 'JetBrains Mono',monospace;letter-spacing:.12em;color:#eeeae1;}.tactical-map-caption span {font-size:10px;}
 .tactical-map-canvas {position:relative;aspect-ratio:1;max-width:500px;margin:0 auto;isolation:isolate;}
-.tactical-map-image {position:absolute;width:100%;height:100%;object-fit:contain;opacity:.69;filter:sepia(.15) saturate(.55) hue-rotate(130deg);}
+.tactical-map-image {position:absolute;width:100%;height:100%;object-fit:contain;opacity:.69;filter:grayscale(1);}
 .tactical-overlay {position:absolute;inset:0;width:100%;height:100%;overflow:visible;}
 .tactical-site-labels circle {fill:#dcd8a01c;stroke:#eee5b070;stroke-width:1.5;stroke-dasharray:5 5;}
-.tactical-site-labels text {fill:#ede4ad;font:bold 28px 'JetBrains Mono',monospace;text-anchor:middle;paint-order:stroke;stroke:#17222b;stroke-width:6px;stroke-linejoin:round;}
-.tactical-site-labels .tactical-zone {font:18px sans-serif;fill:#b5c7d4;}
+.tactical-site-labels text {fill:#ede4ad;font:bold 28px 'JetBrains Mono',monospace;text-anchor:middle;paint-order:stroke;stroke:#131610;stroke-width:6px;stroke-linejoin:round;}
+.tactical-site-labels .tactical-zone {font:18px sans-serif;fill:#c1c3b6;}
 .tactical-path {fill:none;stroke-width:2.5;stroke-dasharray:5 7;stroke-linecap:round;stroke-linejoin:round;opacity:.36;}
 .tactical-path.attack {stroke:var(--atk);}.tactical-path.defend {stroke:var(--def);}
 .tactical-path.selected {stroke-width:4;opacity:.95;stroke-dasharray:8 6;filter:drop-shadow(0 0 5px #ff647444);}
 .tactical-marker {position:absolute;transform:translate(-50%,-50%);width:28px;height:28px;border:2px solid var(--atk);border-radius:50%;background:#412a34;box-shadow:0 2px 8px #000c;padding:0;z-index:2;}
 .tactical-marker.defend {border-color:var(--def);background:#213c50;border-radius:5px;}
 .tactical-marker img {width:100%;height:100%;object-fit:cover;border-radius:inherit;pointer-events:none;}
-.tactical-marker span {position:absolute;right:-6px;bottom:-5px;font:bold 9px 'JetBrains Mono',monospace;background:var(--atk);color:#0c151e;border-radius:2px;min-width:12px;padding:1px;}
+.tactical-marker span {position:absolute;right:-6px;bottom:-5px;font:bold 9px 'JetBrains Mono',monospace;background:var(--atk);color:#0b0d0b;border-radius:2px;min-width:12px;padding:1px;}
 .tactical-marker.defend span {background:var(--def);}
 .tactical-marker.selected {box-shadow:0 0 0 4px #ff64742b,0 0 18px #ff647480;z-index:3;}
 .tactical-marker.defend.selected {box-shadow:0 0 0 4px #61ccfa2b,0 0 18px #61ccfa80;}
-.tactical-map-legend {display:flex;gap:16px;justify-content:center;flex-wrap:wrap;color:#8ba0b2;font-size:10px;padding:14px 12px 18px;}
+.tactical-map-legend {display:flex;gap:16px;justify-content:center;flex-wrap:wrap;color:#a3a699;font-size:10px;padding:14px 12px 18px;}
 .tactical-map-legend .attack {color:var(--atk);}.tactical-map-legend .defend {color:var(--def);}
-.tactical-transport {display:flex;align-items:center;gap:10px;border-top:1px solid var(--tactical-line);padding:18px 24px;background:#111e29;}
-.tactical-transport .tactical-play {background:#e3ecf2;color:#10212d;font-weight:800;border-color:#e3ecf2;min-width:120px;}
+.tactical-transport {display:flex;align-items:center;gap:10px;border-top:1px solid var(--tactical-line);padding:18px 24px;background:#141710;}
+.tactical-transport .tactical-play {background:#c5b174;color:#11130e;font-weight:800;border-color:#c5b174;min-width:120px;}
 .tactical-scrub {display:flex;align-items:center;flex:1;gap:18px;min-width:0;}
-.tactical-scrub input {flex:1;min-width:40px;accent-color:#8bd5f0;cursor:pointer;height:5px;padding:0;}
-.tactical-time {font:11px 'JetBrains Mono',monospace;color:#8fa6b8;white-space:nowrap;}.tactical-time output {color:#f0f6fa;}
-.tactical-speed {display:flex;align-items:center;gap:8px;font-size:11px;color:#8fa6b8;}
-.tactical-speed select {background:#192b39;color:#eef3f7;border:1px solid #3a4d5e;padding:6px;width:65px;border-radius:4px;}
+.tactical-scrub input {flex:1;min-width:40px;accent-color:#c5b174;cursor:pointer;height:5px;padding:0;}
+.tactical-time {font:11px 'JetBrains Mono',monospace;color:#a3a699;white-space:nowrap;}.tactical-time output {color:#eeeae1;}
+.tactical-speed {display:flex;align-items:center;gap:8px;font-size:11px;color:#a3a699;}
+.tactical-speed select {background:#1c1f18;color:#eeeae1;border:1px solid #45483b;padding:6px;width:65px;border-radius:4px;}
 .tactical-phase {display:flex;align-items:baseline;gap:18px;padding:17px 26px;border-top:1px solid var(--tactical-line);}
-.tactical-phase b {font-size:13px;white-space:nowrap;color:#f1d191;}.tactical-phase span {font-size:12px;line-height:1.7;color:#a4b7c6;}
-.tactical-sources {border-top:1px solid var(--tactical-line);padding:13px 26px;font-size:11px;color:#8da4b6;line-height:1.8;}
-.tactical-sources summary {cursor:pointer;}.tactical-sources a {color:#b4d8ee;text-decoration:underline;}.tactical-sources p {max-width:900px;}
-.tactical-map-error {position:absolute;inset:0;padding:40% 10px;background:#14212c;text-align:center;z-index:5;}
-.tactical-focused {position:fixed;inset:12px;z-index:5000;margin:0;overflow:auto;box-shadow:0 0 0 20px #060b12f5;}.tactical-focused .tactical-layout {grid-template-columns:140px minmax(0,1fr) 140px;}.tactical-focused .tactical-map-canvas {max-width:min(56vh,650px);}
+.tactical-phase b {font-size:13px;white-space:nowrap;color:#f1d191;}.tactical-phase span {font-size:12px;line-height:1.7;color:#b3b5aa;}
+.tactical-sources {border-top:1px solid var(--tactical-line);padding:13px 26px;font-size:11px;color:#a3a699;line-height:1.8;}
+.tactical-sources summary {cursor:pointer;}.tactical-sources a {color:#d8c88e;text-decoration:underline;}.tactical-sources p {max-width:900px;}
+.tactical-map-error {position:absolute;inset:0;padding:40% 10px;background:#181c14;text-align:center;z-index:5;}
+.tactical-focused {position:fixed;inset:12px;z-index:5000;margin:0;overflow:auto;box-shadow:0 0 0 20px #080a07f5;}.tactical-focused .tactical-layout {grid-template-columns:140px minmax(0,1fr) 140px;}.tactical-focused .tactical-map-canvas {max-width:min(56vh,650px);}
 .tactical button:focus-visible,.tactical input:focus-visible,.tactical select:focus-visible {outline:2px solid #fff;outline-offset:3px;}
 .tactical button:hover {filter:brightness(1.2);}.tactical button:disabled {opacity:.5;cursor:default;}
 .sr-only {position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
@@ -80,7 +80,10 @@
  .tactical-focused .tactical-roster {display:none;}
 }
 
-.hero .tactical .tactical-eyebrow {font:10px 'JetBrains Mono',monospace;letter-spacing:.13em;color:#92a8b8;margin:0 0 8px;}
-.hero .tactical .tactical-disclosure {font-size:12px;line-height:1.8;font-weight:400;color:#a4b7c6;margin:0 0 18px;}
-.hero .tactical .tactical-sources p {font-size:11px;line-height:1.8;color:#8da4b6;margin:8px 0;}
+.hero .tactical .tactical-eyebrow {font:10px 'JetBrains Mono',monospace;letter-spacing:.13em;color:#a3a699;margin:0 0 8px;}
+.hero .tactical .tactical-disclosure {font-size:12px;line-height:1.8;font-weight:400;color:#b3b5aa;margin:0 0 18px;}
+.hero .tactical .tactical-sources p {font-size:11px;line-height:1.8;color:#a3a699;margin:8px 0;}
 @media(max-width:700px){.tactical-focused {inset:6px;}.tactical-focused .tactical-map-canvas {max-width:500px;}}
+.tactical .tactical-play:hover:not(:disabled) { background: #d8c88e; color: #11130e; }
+
+.tactical-models{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));padding:0 24px 18px;gap:8px}.tactical-models button{background:#151710;border:1px solid #45483b;border-radius:5px;color:#eeeae1;padding:12px;text-align:left;font-size:14px}.tactical-models button[aria-pressed="true"]{border-color:#c5b174;background:#28271e;color:#f4df9c}.tactical-models small{display:block;margin-top:6px;font-size:10px;color:#b3b5aa}.tactical-await{position:absolute;inset:30% 9%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:12px;padding:20px;background:#0b0d0bea;border:1px solid #45483b;border-radius:6px}.tactical-await b{color:#d8c88e;font-size:22px}.tactical-await span{font-size:13px}.tactical-await small{color:#b3b5aa;font-size:11px;line-height:1.8}.tactical-comparison{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--tactical-line);background:#10130f}.tactical-comparison article{padding:20px 18px;min-width:0;border-right:1px solid var(--tactical-line)}.tactical-comparison article:last-child{border-right:0}.tactical-comparison article>b{font-size:14px;color:#d8c88e}.tactical-comparison small{display:block;font-size:9px;color:#a3a699;margin-top:7px;overflow-wrap:anywhere}.tactical-comparison h4{font-size:13px;margin:16px 0 8px;line-height:1.6}.hero .tactical .tactical-comparison p{font-size:11px;color:#b3b5aa;line-height:1.8;margin:10px 0;font-weight:400}.tactical-comparison strong{color:#eeeae1}.tactical-comparison a{display:block;font-size:10px;color:#d8c88e;margin-top:12px;text-decoration:underline}.tactical-distribution{border-top:1px solid #34362d;padding-top:10px}@media(max-width:700px){.tactical-models{grid-template-columns:repeat(2,minmax(0,1fr));padding:0 12px 14px}.tactical-models button{padding:10px;font-size:13px}.tactical-comparison{grid-template-columns:1fr 1fr}.tactical-comparison article{padding:16px 12px;border-bottom:1px solid #34362d}.tactical-await{inset:25% 8%;padding:12px}.tactical-await b{font-size:18px}.tactical-await small{font-size:10px}}

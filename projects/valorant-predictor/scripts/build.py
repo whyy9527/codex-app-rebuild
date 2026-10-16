@@ -6,6 +6,7 @@ import subprocess
 root = Path(__file__).resolve().parents[1]
 if (root / 'data/model-fiction.json').exists():
     subprocess.run(['python3', str(root / 'scripts/validate_fiction.py')], check=True)
+subprocess.run(['python3', str(root / 'scripts/validate_tactical.py')], check=True)
 out = root / 'dist'
 if out.is_symlink():raise ValueError('Build destination must not be a symlink')
 if out.exists():shutil.rmtree(out)

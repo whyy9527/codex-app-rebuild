@@ -29,3 +29,5 @@ npm run build
 [contracts/scenarios.json](contracts/scenarios.json) 连接。
 
 发布流程与独立站点恢复说明见 [deploy/README.md](deploy/README.md)。
+
+首页战术沙盘的共同输入、真实生成与校验边界见 [TACTICAL.md](TACTICAL.md)。用户已批准本轮四模型真实沙盘与黑白金改动发布，具体回执与状态见 [STATUS.md](STATUS.md)。

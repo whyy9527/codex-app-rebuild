@@ -74,9 +74,10 @@ def verify_public(checksums, browser_args=None):
             # the same normal-TLS request succeeds from the application page.
             page.goto('https://' + DOMAIN + '/', wait_until='domcontentloaded')
             names = ['revision.json', 'index.html', 'app.js', 'engine.mjs', 'style.css', 'data/event.json']
-            if 'fiction.mjs' in checksums:names.append('fiction.mjs')
+            for name in ['fiction.mjs', 'tactical-replay.mjs', 'tactical.css']:
+                if name in checksums:names.append(name)
             names += [name for name in checksums if name.startswith('data/') and name.endswith('.json') and name not in names]
-            names += [name for name in checksums if name.startswith('assets/models/')]
+            names += [name for name in checksums if name.startswith(('assets/models/', 'assets/tactical/'))]
             public = page.evaluate('''async names => Object.fromEntries(await Promise.all(names.map(async name => {
                 const response = await fetch('/' + name, {cache:'no-store'});
                 const body = await response.arrayBuffer();

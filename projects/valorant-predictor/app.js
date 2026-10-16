@@ -44,10 +44,10 @@ const store = {
   },
 };
 const channels = [
-  ["codex", "GPT-6.1 sol", "◎", "#d96a24"],
-  ["deepseek", "DeepSeek V4.1 Flash", "≈", "#b08a14"],
-  ["doubao", "豆包", "●", "#8b6ef0"],
-  ["mimo", "MiMo V2.6 Pro", "M", "#dd4a51"],
+  ["codex", "GPT-6.1 sol", "◎", "#c5b174"],
+  ["deepseek", "DeepSeek V4.1 Flash", "≈", "#eeeae1"],
+  ["doubao", "豆包", "●", "#a89758"],
+  ["mimo", "MiMo V2.6 Pro", "M", "#9b9d94"],
 ].map(([id, name, icon, color]) => ({ id, name, icon, color }));
 let event,
   assets,
@@ -363,7 +363,7 @@ function home() {
       }),
   );
   renderChannel();
-  if (tab === "live") mountTactical();
+  if (tab === "live") mountTactical({ model: selected, onModelChange: selectChannel });
 }
 function officialSchedule() {
   return `<div class="table-wrap"><table><thead><tr><th>比赛</th><th>北京时间</th><th>官方对阵</th><th>赛制</th><th>状态</th></tr></thead><tbody>${event.matches.map((m) => `<tr><td>${m.label}</td><td>${formatDate(m.start_utc)}</td><td>${m.teams.join(" vs ")}</td><td>BO${m.best_of}</td><td>${m.winner ? m.score.join(" : ") : "待开赛"}</td></tr>`).join("")}</tbody></table></div>`;
@@ -658,7 +658,7 @@ function analysisTable(model = forecast) {
   return `<div class="table-wrap" style="margin-top:20px"><table><thead><tr><th>可能对阵</th><th>左队单图概率</th><th>左队 BO5 概率</th><th>依据（${escape(model.model_id)}）</th></tr></thead><tbody>${model.pairs.map((p) => `<tr><td>${p.teams.join(" vs ")}</td><td class="heat">${pct(p.p_first)}</td><td class="heat">${pct(seriesProbability(p.p_first))}</td><td style="white-space:normal;min-width:300px">${escape(p.reason)}</td></tr>`).join("")}</tbody></table></div>`;
 }
 function comparePage() {
-  const columns = [...channels, { id: "baseline", name: "统计基线", color: "#a4acd3" }],
+  const columns = [...channels, { id: "baseline", name: "统计基线", color: "#c9c8bd" }],
     running = columns.filter((c) => c.id === "baseline" || available(c.id)),
     teams = finalistsList(),
     { upperWinner, upperLoser, lowerWinner } = opponentPairs();
@@ -674,7 +674,7 @@ function comparePage() {
     ranks = Object.fromEntries(running.map((c) => [c.id, referenceRanking(c.id)])),
     headings = columns.map((c) => `<th><i style="background:${c.color}"></i>${escape(c.name)}</th>`).join("");
   const teamLabel = (team) => `<th scope="row"><a href="#/team/${team}">${logo(team)}${team}</a><small>${escape(event.teams[team].region?.toUpperCase())}</small></th>`;
-  const cell = (value, text) => `<td class="compare-heat" style="--heat:${value};color:${value > 0.45 ? "#0b1434" : "var(--ink)"}" data-value="${value}">${text}</td>`;
+  const cell = (value, text) => `<td class="compare-heat" style="--heat:${value}" data-value="${value}">${text}</td>`;
   const probabilities = teams.map((team) => `<tr>${teamLabel(team)}${columns.map((c) => championships[c.id] ? cell(championships[c.id][team] || 0, pct(championships[c.id][team] || 0)) : '<td class="muted">待预测</td>').join("")}</tr>`).join("");
   const rankings = teams.map((team) => {
     const actual = channels.filter((c) => available(c.id)).map((c) => ranks[c.id].indexOf(team) + 1);
@@ -686,7 +686,7 @@ function comparePage() {
   }).sort((a, b) => (b.spread || 0) - (a.spread || 0));
   const dots = disagreements.map((row, i) => {
     const y = 60 + i * 60;
-    return `<text x="10" y="${y + 5}">${row.teams.join(" 对 ")}</text><text x="140" y="${y + 5}" class="chart-value">差 ${row.spread == null ? "—" : (row.spread * 100).toFixed(1)} 点</text>${row.values.map((v) => `<circle cx="${240 + v.p * 600}" cy="${y}" r="6" fill="${v.color}"><title>${escape(v.name)} · ${row.teams[0]} ${pct(v.p)}</title></circle>`).join("")}<circle cx="${240 + pmap(...row.teams, "baseline") * 600}" cy="${y}" r="8" fill="none" stroke="#a4acd3" stroke-width="2"><title>统计基线 ${pct(pmap(...row.teams, "baseline"))}</title></circle>`;
+    return `<text x="10" y="${y + 5}">${row.teams.join(" 对 ")}</text><text x="140" y="${y + 5}" class="chart-value">差 ${row.spread == null ? "—" : (row.spread * 100).toFixed(1)} 点</text>${row.values.map((v) => `<circle cx="${240 + v.p * 600}" cy="${y}" r="6" fill="${v.color}"><title>${escape(v.name)} · ${row.teams[0]} ${pct(v.p)}</title></circle>`).join("")}<circle cx="${240 + pmap(...row.teams, "baseline") * 600}" cy="${y}" r="8" fill="none" stroke="#c9c8bd" stroke-width="2"><title>统计基线 ${pct(pmap(...row.teams, "baseline"))}</title></circle>`;
   }).join("");
   main.innerHTML = pageHead("数据对比", "已完成的 AI 预测放在一起看：谁看好谁，谁和谁意见最不一样") +
     `<div class="wrap section compare-page">${note()}${scenarioForm()}<section class="section"><h2>夺冠概率对比</h2><p class="muted">在所选 16 日晋级情景下，枚举最后两场 BO5 的全部胜负路径，计算各队夺冠概率。颜色越亮，概率越高。不是额外预测 16 日赛果；未晋级队在该情景下为 0%。</p><div class="table-wrap"><table id="champion-comparison" class="compare-matrix"><thead><tr><th>战队</th>${headings}</tr></thead><tbody>${probabilities}</tbody></table></div><p class="muted compare-caption">仅消费已运行模型的单图概率。每图独立且同概率，精确计算而非声称运行十万次模拟。</p></section><section class="section"><h2>实力排序对比</h2><p class="muted">四队相互对阵的平均单图胜率由高到低排序，是概率推导的参考排名。平均与名次差仅统计已运行 AI；统计基线单独列出。</p><div class="table-wrap"><table id="ranking-comparison" class="compare-matrix"><thead><tr><th>战队</th>${headings}<th>AI 平均</th><th>名次差</th></tr></thead><tbody>${rankings}</tbody></table></div></section><section class="section"><h2>分歧榜 · 模型意见最不一致的对阵</h2><p class="muted">点表示左队在中立场地的单图胜率，按已运行 AI 的最高与最低概率之差排序。空心圈为统计基线。仅比较这四个已完成预测的模型。</p><div class="model-legend">${running.map((c) => `<span><i style="background:${c.color}"></i>${escape(c.name)}</span>`).join("")}</div><div class="chart-scroll"><svg id="disagreement-chart" viewBox="0 0 900 430" role="img" aria-label="六组可能对阵的模型单图胜率分歧">${[0, .2, .4, .5, .6, .8, 1].map((p) => `<line class="chart-grid" x1="${240 + p * 600}" x2="${240 + p * 600}" y1="38" y2="390"/><text x="${240 + p * 600}" y="24" text-anchor="middle">${p * 100}%</text>`).join("")}${dots}</svg></div></section><section class="section"><h2>BO5 预测概率对比</h2><p class="muted">左侧队伍赢得系列赛的概率。统计基线由本届官方地图战绩的公开公式计算。</p><div class="table-wrap"><table><thead><tr><th>可能对阵</th>${headings}</tr></thead><tbody>${forecast.pairs.map((pair) => `<tr><th>${pair.teams.join(" vs ")}</th>${columns.map((c) => running.includes(c) ? cell(seriesProbability(pmap(...pair.teams, c.id)), pct(seriesProbability(pmap(...pair.teams, c.id)))) : '<td class="muted">待预测</td>').join("")}</tr>`).join("")}</tbody></table></div></section><section class="section"><div class="section-head"><h2>当前情景 · 比分分布</h2><label>实力参考 <select id="compare-model">${running.map((c) => `<option value="${c.id}">${escape(c.name)}</option>`).join("")}</select></label></div><p class="muted">败者组决赛六个可能比分之和为 100%；来自单图独立、同概率假设。</p><div class="grid" id="distributions"></div><div id="compare-reasons"></div></section></div>`;
@@ -1193,19 +1193,19 @@ $("#download-poster").onclick = () => {
   canvas.width = 800;
   canvas.height = 1000;
   const ctx = canvas.getContext("2d");
-  ctx.fillStyle = "#101632";
+  ctx.fillStyle = "#0b0d0b";
   ctx.fillRect(0, 0, 800, 1000);
-  ctx.fillStyle = "#c8aa6e";
+  ctx.fillStyle = "#c5b174";
   ctx.textAlign = "center";
   ctx.font = "bold 28px sans-serif";
   ctx.fillText("CHAMPIONS SHANGHAI 2026", 400, 120);
-  ctx.fillStyle = "#e6e1e5";
+  ctx.fillStyle = "#f2f2f2";
   ctx.font = "bold 48px sans-serif";
   ctx.fillText("我的决赛预测", 400, 230);
-  ctx.fillStyle = "#c8aa6e";
+  ctx.fillStyle = "#c5b174";
   ctx.font = "bold 120px sans-serif";
   ctx.fillText(draft.champion, 400, 450);
-  ctx.fillStyle = "#c1e5ff";
+  ctx.fillStyle = "#eeeae1";
   ctx.font = "26px sans-serif";
   ctx.fillText(
     `10/17  ${opponentPairs().upperLoser} ${draft.lfScore.join(":")} ${opponentPairs().lowerWinner}`,
@@ -1217,7 +1217,7 @@ $("#download-poster").onclick = () => {
     400,
     690,
   );
-  ctx.fillStyle = "#8a90bd";
+  ctx.fillStyle = "#a9aaa3";
   ctx.font = "22px sans-serif";
   ctx.fillText("个人情景预测 · 非官方赛果", 400, 880);
   const a = document.createElement("a");

@@ -1,0 +1,134 @@
+{
+  "$defs": {
+    "point": {
+      "type": "object",
+      "properties": {
+        "at_s": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 30
+        },
+        "node": {
+          "type": "string",
+          "enum": [
+            "atk_spawn",
+            "a_lobby",
+            "a_main",
+            "a_tree",
+            "a_site",
+            "a_garden",
+            "def_spawn",
+            "mid_courtyard",
+            "mid_top",
+            "mid_market",
+            "mid_link",
+            "b_lobby",
+            "b_main",
+            "b_site"
+          ]
+        }
+      },
+      "required": [
+        "at_s",
+        "node"
+      ],
+      "additionalProperties": false
+    },
+    "actor": {
+      "type": "object",
+      "properties": {
+        "intent": {
+          "type": "string",
+          "minLength": 4,
+          "maxLength": 120
+        },
+        "waypoints": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 8,
+          "items": {
+            "$ref": "#/$defs/point"
+          }
+        }
+      },
+      "required": [
+        "intent",
+        "waypoints"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "type": "object",
+  "properties": {
+    "headline": {
+      "type": "string",
+      "minLength": 5,
+      "maxLength": 80
+    },
+    "attack_goal": {
+      "type": "string",
+      "minLength": 8,
+      "maxLength": 180
+    },
+    "defense_goal": {
+      "type": "string",
+      "minLength": 8,
+      "maxLength": 180
+    },
+    "actors": {
+      "type": "object",
+      "properties": {
+        "A1": {
+          "$ref": "#/$defs/actor"
+        },
+        "A2": {
+          "$ref": "#/$defs/actor"
+        },
+        "A3": {
+          "$ref": "#/$defs/actor"
+        },
+        "A4": {
+          "$ref": "#/$defs/actor"
+        },
+        "A5": {
+          "$ref": "#/$defs/actor"
+        },
+        "D1": {
+          "$ref": "#/$defs/actor"
+        },
+        "D2": {
+          "$ref": "#/$defs/actor"
+        },
+        "D3": {
+          "$ref": "#/$defs/actor"
+        },
+        "D4": {
+          "$ref": "#/$defs/actor"
+        },
+        "D5": {
+          "$ref": "#/$defs/actor"
+        }
+      },
+      "required": [
+        "A1",
+        "A2",
+        "A3",
+        "A4",
+        "A5",
+        "D1",
+        "D2",
+        "D3",
+        "D4",
+        "D5"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "headline",
+    "attack_goal",
+    "defense_goal",
+    "actors"
+  ],
+  "additionalProperties": false
+}
