@@ -15,7 +15,8 @@ def compare(root, observed, reference):
     def changed(key):
         item=f.get(key);return None if not item else item['before']!=item['after']
     check('primary-navigation',f.get('navigation'),r.get('navigation'))
-    check('eight-model-channels',f.get('channel_count'),r.get('channel_count'))
+    check('four-actual-model-channels',f.get('channel_count'),4,'decision:user-four-model-revision')
+    check('only-selected-four-channel-ids',f.get('channel_ids'),['codex','deepseek','doubao','mimo'],'decision:user-four-model-revision')
     check('visible-hero-assets-loaded',all(i['loaded'] for i in f['hero_images']) if f.get('hero_images') else None,True)
     check('player-next-step',changed('player_next'),True)
     check('player-keyboard-next',changed('keyboard_next'),True)
@@ -35,9 +36,8 @@ def compare(root, observed, reference):
     check('team-empty-state',f.get('search_empty'),'没有找到匹配战队')
     check('official-VIT-map-record','8–2' in f['team_detail'] if 'team_detail'in f else None,True,'observed:official-snapshot')
     check('no-premature-scoring','0 / 2 场已结算' in f['leaderboard'] if 'leaderboard'in f else None,True,'decision:user-two-dates')
-    check('unrun-model-stays-pending','该模型等待预测' in f['pending_channel'] if 'pending_channel'in f else None,True,'decision:user-model-availability')
     check('available-model-independent','DeepSeek' in f['deepseek_channel'] and '等待预测' not in f['deepseek_channel'] if 'deepseek_channel'in f else None,True)
-    check('model-cards-independent-of-selection','null' not in f['codex_card_with_pending_selected'] and '待预测' not in f['codex_card_with_pending_selected'] if 'codex_card_with_pending_selected'in f else None,True)
+    check('model-cards-independent-of-selection','null' not in f['codex_card_with_other_selected'] and '待预测' not in f['codex_card_with_other_selected'] if 'codex_card_with_other_selected'in f else None,True)
     for key in ['mobile_home_width','mobile_pick_width']:
         v=f.get(key);check(key,None if v is None else v['scroll']<=v['viewport'],True)
     check('mobile-prediction',bool(f.get('mobile_pick_champion')),True)

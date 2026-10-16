@@ -46,10 +46,6 @@ def collect(url, output, functional_only=False):
                 page.locator('.fiction-news').evaluate('(e)=>e.scrollIntoView({block:"start",behavior:"instant"})')
                 page.wait_for_function('getComputedStyle(document.querySelector("#toast")).opacity === "0"')
                 if not functional_only:page.screenshot(path=str(output / (channel + '-news.png')))
-            for channel in ['opus', 'codex', 'gemini', 'deepseek', 'qwen', 'glm', 'doubao', 'mimo']:
-                if channel in manifest:continue
-                page.goto(url + f'#/?ai={channel}&tab=players', wait_until=ready);page.locator('#fiction-player-results').wait_for()
-                result['pending'][channel] = {'rows':page.locator('[data-fiction-player]').count(), 'text':page.locator('#fiction-player-results').inner_text()}
             for width in [320, 390]:
                 mobile = browser.new_context(viewport={'width':width, 'height':844}, is_mobile=True, has_touch=True)
                 mobile.set_default_timeout(60000)

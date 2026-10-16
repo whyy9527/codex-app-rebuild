@@ -76,6 +76,7 @@ def verify_public(checksums, browser_args=None):
             names = ['revision.json', 'index.html', 'app.js', 'engine.mjs', 'style.css', 'data/event.json']
             if 'fiction.mjs' in checksums:names.append('fiction.mjs')
             names += [name for name in checksums if name.startswith('data/') and name.endswith('.json') and name not in names]
+            names += [name for name in checksums if name.startswith('assets/models/')]
             public = page.evaluate('''async names => Object.fromEntries(await Promise.all(names.map(async name => {
                 const response = await fetch('/' + name, {cache:'no-store'});
                 const body = await response.arrayBuffer();

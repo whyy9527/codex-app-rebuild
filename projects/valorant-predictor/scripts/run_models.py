@@ -44,7 +44,7 @@ def normalize(value, event, model, channel, attestation):
 
 def main():
     parser=argparse.ArgumentParser()
-    parser.add_argument('--provider',choices=['codex','claude'],required=True)
+    parser.add_argument('--provider',choices=['codex'],required=True)
     parser.add_argument('--out',type=Path,required=True)
     args=parser.parse_args();args.out.mkdir(parents=True,exist_ok=False)
     event=json.loads((ROOT/'data/event.json').read_text())
@@ -52,31 +52,18 @@ def main():
     (args.out/'prompt.txt').write_text(prompt)
     (args.out/'schema.json').write_text(json.dumps(SCHEMA))
     with tempfile.TemporaryDirectory(prefix='valorant-forecast-') as temp:
-        if args.provider=='codex':
-            model='gpt-6.1-sol';channel='codex';result=args.out/'last-message.json'
-            command=['codex','exec','--skip-git-repo-check','--ephemeral','--sandbox','read-only','--color','never',
-                     '--model',model,'-c','model_reasoning_effort="high"','--output-schema',str((args.out/'schema.json').resolve()),
-                     '--output-last-message',str(result.resolve()),'-']
-        else:
-            model='claude-opus-5-5';channel='opus'
-            command=['claude','--print','--model',model,'--output-format','json','--json-schema',json.dumps(SCHEMA),
-                     '--tools','','--no-session-persistence','--setting-sources','user']
+        model='gpt-6.1-sol';channel='codex';result=args.out/'last-message.json'
+        command=['codex','exec','--skip-git-repo-check','--ephemeral','--sandbox','read-only','--color','never',
+                 '--model',model,'-c','model_reasoning_effort="high"','--output-schema',str((args.out/'schema.json').resolve()),
+                 '--output-last-message',str(result.resolve()),'-']
         completed=subprocess.run(command,input=prompt,cwd=temp,capture_output=True,text=True,timeout=240)
     (args.out/'stdout.log').write_text(completed.stdout);(args.out/'stderr.log').write_text(completed.stderr)
     if completed.returncode: raise RuntimeError('Model channel unavailable; see private run logs (no fallback used)')
-    if args.provider=='codex':
-        header=completed.stderr.split('user\n',1)[0]
-        actual=re.search(r'^model:\s*(\S+)',header,re.M);effort=re.search(r'^reasoning effort:\s*(\S+)',header,re.M)
-        if not actual or actual[1]!=model or not effort or effort[1]!='high':raise ValueError('Codex runtime identity/effort unavailable or mismatched')
-        value=json.loads(result.read_text());attestation={'provider':'openai','model':actual[1],'reasoning_effort':effort[1],
-            'startup_header_sha256':hashlib.sha256(header.encode()).hexdigest()}
-    else:
-        response=json.loads(completed.stdout)
-        runtime=list(response.get('modelUsage',{}))
-        if runtime != [model] or response.get('is_error'):raise ValueError('Claude runtime identity unavailable or mismatched: '+repr(runtime))
-        value=response.get('structured_output')
-        if value is None:value=json.loads(response['result'])
-        attestation={'provider':'anthropic','model':runtime[0]}
+    header=completed.stderr.split('user\n',1)[0]
+    actual=re.search(r'^model:\s*(\S+)',header,re.M);effort=re.search(r'^reasoning effort:\s*(\S+)',header,re.M)
+    if not actual or actual[1]!=model or not effort or effort[1]!='high':raise ValueError('Codex runtime identity/effort unavailable or mismatched')
+    value=json.loads(result.read_text());attestation={'provider':'openai','model':actual[1],'reasoning_effort':effort[1],
+        'startup_header_sha256':hashlib.sha256(header.encode()).hexdigest()}
     normalized=normalize(value,event,model,channel,attestation)
     (args.out/'validated-forecast.json').write_text(json.dumps(normalized,ensure_ascii=False,indent=2)+'\n')
     print(json.dumps({'provider':args.provider,'model':model,'pairs':len(normalized['pairs']),'result':str(args.out/'validated-forecast.json')},ensure_ascii=False))

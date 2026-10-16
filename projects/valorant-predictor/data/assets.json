@@ -1,39 +1,76 @@
 {
-  "source": "https://playvalorant.com/en-us/agents/",
-  "publisher": "Riot Games",
-  "use": "Decorative character artwork for channel selection; no association with AI providers",
-  "agents": [
-    {
-      "name": "Astra",
-      "url": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/news/ba51d43803082941b0274b66413b0acc972546dd-616x822.png?accountingTag=VAL"
+  "source": "https://www.bilibili.com/toy/LkvCZhw12wgT2Pqx/index.html",
+  "content_version": "43482999941120-v26947",
+  "creator": "我叫张大喵",
+  "use": "User-requested model persona portraits from S16; no LoL gameplay, characters or predictions imported; no provider endorsement implied",
+  "models": {
+    "codex": {
+      "name": "GPT-6.1 sol",
+      "portrait": "assets/models/gpt_half.webp",
+      "half_source": {
+        "path": "assets/models/gpt_half.webp",
+        "source_url": "https://www.bilibilitoy.com/toy/LkvCZhw12wgT2Pqx/43482999941120-v26947/avatars/gpt_half.webp",
+        "sha256": "24ab2a0e5cd8324ee3dc7cb420ca660f5dcd4d2ca77516b0cc1e2d4808bbcb50",
+        "bytes": 77036
+      },
+      "avatar": "assets/models/gpt_head.webp",
+      "head_source": {
+        "path": "assets/models/gpt_head.webp",
+        "source_url": "https://www.bilibilitoy.com/toy/LkvCZhw12wgT2Pqx/43482999941120-v26947/avatars/gpt_head.webp",
+        "sha256": "ece87219deafdc9ea0b2645543ce45a0e866b8f2aa347447629dd912a7bc41c7",
+        "bytes": 44646
+      }
     },
-    {
-      "name": "Jett",
-      "url": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/news/d41286dc9017bf79c0b4d907b7a260c27b0adb69-616x822.png?accountingTag=VAL"
+    "deepseek": {
+      "name": "DeepSeek V4.1 Flash",
+      "portrait": "assets/models/deepseek_half.webp",
+      "half_source": {
+        "path": "assets/models/deepseek_half.webp",
+        "source_url": "https://www.bilibilitoy.com/toy/LkvCZhw12wgT2Pqx/43482999941120-v26947/avatars/deepseek_half.webp",
+        "sha256": "8ede083f90936466dd740d4aa35edd989bc72500d291c9051a522fb6c9a2992e",
+        "bytes": 110002
+      },
+      "avatar": "assets/models/deepseek_head.webp",
+      "head_source": {
+        "path": "assets/models/deepseek_head.webp",
+        "source_url": "https://www.bilibilitoy.com/toy/LkvCZhw12wgT2Pqx/43482999941120-v26947/avatars/deepseek_head.webp",
+        "sha256": "67e6dafc4a093cbfb4cc1d7025a178ec2dd76674d5586d3c3312919533d3c060",
+        "bytes": 44080
+      }
     },
-    {
-      "name": "Omen",
-      "url": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/news/015a083717e9687de8a741cfceddb836775b5f9f-616x822.png?accountingTag=VAL"
+    "doubao": {
+      "name": "豆包",
+      "portrait": "assets/models/doubao_half.webp",
+      "half_source": {
+        "path": "assets/models/doubao_half.webp",
+        "source_url": "https://www.bilibilitoy.com/toy/LkvCZhw12wgT2Pqx/43482999941120-v26947/avatars/doubao_half.webp",
+        "sha256": "85e5cbd303e9b2ae0a7bee553183f62a7018f19a3a3d3dbb6a76a085e1d4855d",
+        "bytes": 31376
+      },
+      "avatar": "assets/models/doubao_head.webp",
+      "head_source": {
+        "path": "assets/models/doubao_head.webp",
+        "source_url": "https://www.bilibilitoy.com/toy/LkvCZhw12wgT2Pqx/43482999941120-v26947/avatars/doubao_head.webp",
+        "sha256": "3ebbe50485d767237dc3894edc4be36ff24935e93965f37ebada33dd8fc970e1",
+        "bytes": 28276
+      }
     },
-    {
-      "name": "Viper",
-      "url": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/news/152244f121e61ca32bdd2bea9fc5370e315664fb-616x822.png?accountingTag=VAL"
-    },
-    {
-      "name": "Killjoy",
-      "url": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/news/820d36d431fff77b1e1ece39ad6f007746bd31f6-616x822.png?accountingTag=VAL"
-    },
-    {
-      "name": "Sova",
-      "url": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/news/08b3d8822544bd327ebed0768c8b90fcec83d1a5-616x822.png?accountingTag=VAL"
-    },
-    {
-      "name": "Reyna",
-      "url": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/news/7cb513c9b3eae3286449776e85753138436d553c-616x822.png?accountingTag=VAL"
-    },
-    {
-      "name": "Fade",
-      "url": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/news/e7099cc13a665ed2b556d514e50984393ed49967-616x822.png?accountingTag=VAL"
+    "mimo": {
+      "name": "MiMo V2.6 Pro",
+      "portrait": "assets/models/mimo_half.webp",
+      "half_source": {
+        "path": "assets/models/mimo_half.webp",
+        "source_url": "https://www.bilibilitoy.com/toy/LkvCZhw12wgT2Pqx/43482999941120-v26947/avatars/mimo_half.webp",
+        "sha256": "88edf752f512c4e650a18e3da28f511671c4257f9b4982b06a47f897ddf5d836",
+        "bytes": 146574
+      },
+      "avatar": "assets/models/mimo_head.webp",
+      "head_source": {
+        "path": "assets/models/mimo_head.webp",
+        "source_url": "https://www.bilibilitoy.com/toy/LkvCZhw12wgT2Pqx/43482999941120-v26947/avatars/mimo_head.webp",
+        "sha256": "f12c49fca827907147d239fb8a9eeef5501128e21ddf3f35ffb2189694eeef35",
+        "bytes": 54640
+      }
     }
-  ]
+  }
 }

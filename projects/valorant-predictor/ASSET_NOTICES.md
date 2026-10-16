@@ -2,22 +2,25 @@
 
 The front end is independently written for this repository. The user's reference
 is [S16 AI 预测大赛](https://www.bilibili.com/toy/LkvCZhw12wgT2Pqx/index.html),
-content version `43482999941120-v26695`. Its code, datasets, fonts and character
-art are not redistributed by this project.
+interaction reference originally recorded at `43482999941120-v26695`.
+On 2026-10-16 the user explicitly requested its four model-persona portraits.
+Unmodified half-body and head images for GPT, DeepSeek, Doubao and MiMo are
+bundled from current version `43482999941120-v26947`; model mapping, URLs and
+SHA-256 digests are retained in `data/assets.json`. The source author is
+我叫张大喵. Its application code, LoL characters, match data and predictions
+are not shipped. Attribution does not imply a provider endorsement; image rights
+remain with the respective rights holders and are outside the repository MIT license.
 
 Tournament facts are normalized from the public Riot Games VALORANT Esports
 site. `data/event.json` retains the official source URLs and response digest.
 The stage/date source is [Champions Shanghai: Everything You Need To Know](https://valorantesports.com/en-US/news/champions-shanghai-everything-you-need-to-know).
 
-Team logo URLs are taken from the official schedule's team records. Decorative
-agent image URLs are taken from the [official agent directory](https://playvalorant.com/en-us/agents/).
-Those marks and images remain the property of Riot Games and the respective
-teams. The source files contain URL references, not redistributed media files;
-the repository's MIT license does not grant rights to those external assets.
-No partnership with Riot, the teams, the reference author or model providers is
-implied. The decorative agent/channel pairing is a design choice.
+Team logo URLs are taken from the official schedule's team records and remain
+the property of Riot Games and the respective teams. The previous decorative
+VALORANT agent images have been removed from the runtime asset manifest.
+No partnership with Riot, the teams, the reference author or model providers is implied.
 
-`data/gpt-6.1-sol-forecast.json` and `data/deepseek-forecast.json` contain actual,
+The four files listed in `data/model-forecasts.json` contain actual,
 independent model responses after schema validation. Model identity is verified
 from the Codex CLI startup header or provider response plus official model
 catalog, not a model-authored identity claim. The earlier
@@ -42,7 +45,7 @@ Anton 与 JetBrains Mono 来自 Google Fonts 官方仓库，遵循 SIL Open Font
 
 ## Explicitly fictional match content
 
-`data/codex-fiction.json` and `data/deepseek-fiction.json` contain actual model-authored
+The four files listed in `data/model-fiction.json` contain actual model-authored
 fiction bound to the same deterministic series results. BP, round scores, stories,
 MVPs and 0–10 ratings are labelled fiction and do not represent real performances.
 The player-name index prioritizes official Vitality, G2 and 100 Thieves roster pages;

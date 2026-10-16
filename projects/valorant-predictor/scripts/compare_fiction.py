@@ -54,10 +54,6 @@ def compare(observed):
         check(channel + ':fresh-context-shared-review', board['shared_headline'], dataset['cases'][key]['headline'])
         check(channel + ':news-uses-same-two-reviews', board['news'], [dataset['cases'][f'VIT_100T_{i}']['headline'] for i in [0, 1]])
         check(channel + ':news-label', '非真实比赛' in board['news_notice'], True)
-    for channel in ['opus', 'codex', 'gemini', 'deepseek', 'qwen', 'glm', 'doubao', 'mimo']:
-        if channel in manifest:continue
-        check(channel + ':no-impersonated-ratings', observed['pending'][channel]['rows'], 0)
-        check(channel + ':pending-empty-state', '未生成' in observed['pending'][channel]['text'], True)
     for width in ['320', '390']:
         item = observed['mobile'][width]
         for view in ['review', 'board']:check(width + ':' + view + ':no-horizontal-document-overflow', item[view]['scroll'] <= item[view]['viewport'], True)

@@ -4,7 +4,7 @@
   "source_version": "43482999941120-v26695",
   "scope_changes": [
     "User: VALORANT replaces LoL; only 2026-10-17 Lower Final and 2026-10-18 Grand Final are predicted.",
-    "User confirmation: keep original eight models, run only matching available channels; missing outputs remain pending.",
+    "User revision 2026-10-16 supersedes eight channels: keep only GPT, DeepSeek, Doubao, MiMo and use their S16 model portraits.",
     "Platform social actions are external to the local replica. The original poster follow gate remains an observed platform dependency, not a candidate login requirement."
   ],
   "scenarios": [
@@ -13,7 +13,7 @@
       "journey": "Open home, inspect all model channels and loaded art",
       "requirements": [
         "six-primary-navigation",
-        "eight-models",
+        "four-actual-models",
         "loaded-visible-images",
         "home-visual"
       ]
@@ -43,7 +43,7 @@
     },
     {
       "id": "compare",
-      "journey": "Open table, inspect distinct model probabilities and absent channels",
+      "journey": "Open comparison, inspect four actual independent models plus separate statistical baseline",
       "requirements": [
         "independent-models",
         "no-fabricated-output",
