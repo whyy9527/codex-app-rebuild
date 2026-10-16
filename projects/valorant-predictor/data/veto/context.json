@@ -1,0 +1,153 @@
+{
+  "id": "shanghai-2026-veto-v1",
+  "kind": "conditional_ai_veto_prediction",
+  "pool": [
+    "Split",
+    "Summit",
+    "Sunset",
+    "Haven",
+    "Lotus",
+    "Ascent",
+    "Abyss"
+  ],
+  "patch": "13.05 (13.05b / 13.05c)",
+  "event_source_sha256": "614bda2290a8c567e1a32de4e1cabead90a08ed42b85a62aea93e4424dceef69",
+  "event_snapshot_at": "2026-10-15T10:53:29.574058+00:00",
+  "rules": {
+    "specific_url": "https://cdn.sanity.io/files/dsfx7636/news_live/b476c425bfe9d5235d438ade60674e3e4cac36a9.pdf",
+    "specific_sha256": "b1b8afddbbf229e486b5a3a7dfef48a2d05771e0fc164f396ba0d92ad178c331",
+    "competition_url": "https://cdn.sanity.io/files/dsfx7636/news_live/f600a428dbcb54cff5814750f4c4be2b699d7934.pdf",
+    "sections": "上海 §§1.2,2.1,2.4,6,7；通用 §§4.6.8–11",
+    "bo5_bans": [
+      "A",
+      "B"
+    ],
+    "grand_final_bans": [
+      "upper",
+      "upper"
+    ],
+    "pick_roles": [
+      "A",
+      "B",
+      "A",
+      "B"
+    ],
+    "side_chooser_roles": [
+      "B",
+      "A",
+      "B",
+      "A",
+      "B"
+    ],
+    "agent_select_seconds": 85,
+    "agent_select": "simultaneous"
+  },
+  "cases": {
+    "LOUD_G2_0": {
+      "match_index": 0,
+      "label": "败者组决赛",
+      "teams": [
+        "VIT",
+        "G2"
+      ],
+      "priority_team": "VIT",
+      "protocol": "bo5",
+      "scenario": {
+        "upperWinner": "LOUD",
+        "lowerWinner": "G2"
+      }
+    },
+    "LOUD_G2_1": {
+      "match_index": 1,
+      "label": "总决赛",
+      "priority_team": "LOUD",
+      "protocol": "grand_final",
+      "scenario": {
+        "upperWinner": "LOUD",
+        "lowerWinner": "G2"
+      },
+      "opponent_source": "that model retained fiction case input.series.teams"
+    },
+    "LOUD_100T_0": {
+      "match_index": 0,
+      "label": "败者组决赛",
+      "teams": [
+        "VIT",
+        "100T"
+      ],
+      "priority_team": "VIT",
+      "protocol": "bo5",
+      "scenario": {
+        "upperWinner": "LOUD",
+        "lowerWinner": "100T"
+      }
+    },
+    "LOUD_100T_1": {
+      "match_index": 1,
+      "label": "总决赛",
+      "priority_team": "LOUD",
+      "protocol": "grand_final",
+      "scenario": {
+        "upperWinner": "LOUD",
+        "lowerWinner": "100T"
+      },
+      "opponent_source": "that model retained fiction case input.series.teams"
+    },
+    "VIT_G2_0": {
+      "match_index": 0,
+      "label": "败者组决赛",
+      "teams": [
+        "LOUD",
+        "G2"
+      ],
+      "priority_team": "LOUD",
+      "protocol": "bo5",
+      "scenario": {
+        "upperWinner": "VIT",
+        "lowerWinner": "G2"
+      }
+    },
+    "VIT_G2_1": {
+      "match_index": 1,
+      "label": "总决赛",
+      "priority_team": "VIT",
+      "protocol": "grand_final",
+      "scenario": {
+        "upperWinner": "VIT",
+        "lowerWinner": "G2"
+      },
+      "opponent_source": "that model retained fiction case input.series.teams"
+    },
+    "VIT_100T_0": {
+      "match_index": 0,
+      "label": "败者组决赛",
+      "teams": [
+        "LOUD",
+        "100T"
+      ],
+      "priority_team": "LOUD",
+      "protocol": "bo5",
+      "scenario": {
+        "upperWinner": "VIT",
+        "lowerWinner": "100T"
+      }
+    },
+    "VIT_100T_1": {
+      "match_index": 1,
+      "label": "总决赛",
+      "priority_team": "VIT",
+      "protocol": "grand_final",
+      "scenario": {
+        "upperWinner": "VIT",
+        "lowerWinner": "100T"
+      },
+      "opponent_source": "that model retained fiction case input.series.teams"
+    }
+  },
+  "limitations": [
+    "本轮为条件化AI地图veto与起始边预测，不是官方已执行的BP。",
+    "各模型使用自身已有系列赛推演确定总决赛另一队；未改变既有比分、冠军与剧情。",
+    "没有队伍逐地图胜率资料，不得声称掌握地图专长统计。",
+    "Ascent走位与十人阵容是另一份固定假设输入；地图BP未包含Ascent时不得接成该场真实后续。"
+  ]
+}

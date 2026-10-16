@@ -1,0 +1,312 @@
+{
+  "kind": "model_veto_prediction",
+  "channel": "codex",
+  "context_sha256": "1fab0ae7d2c26c469f4d95469bae3d58c8eabd71b08c59c86e563d1029a957b8",
+  "input_cases": {
+    "LOUD_G2_0": {
+      "match_index": 0,
+      "label": "败者组决赛",
+      "teams": [
+        "VIT",
+        "G2"
+      ],
+      "priority_team": "VIT",
+      "protocol": "bo5",
+      "scenario": {
+        "upperWinner": "LOUD",
+        "lowerWinner": "G2"
+      }
+    },
+    "LOUD_G2_1": {
+      "match_index": 1,
+      "label": "总决赛",
+      "priority_team": "LOUD",
+      "protocol": "grand_final",
+      "scenario": {
+        "upperWinner": "LOUD",
+        "lowerWinner": "G2"
+      },
+      "opponent_source": "that model retained fiction case input.series.teams",
+      "teams": [
+        "LOUD",
+        "G2"
+      ]
+    },
+    "LOUD_100T_0": {
+      "match_index": 0,
+      "label": "败者组决赛",
+      "teams": [
+        "VIT",
+        "100T"
+      ],
+      "priority_team": "VIT",
+      "protocol": "bo5",
+      "scenario": {
+        "upperWinner": "LOUD",
+        "lowerWinner": "100T"
+      }
+    },
+    "LOUD_100T_1": {
+      "match_index": 1,
+      "label": "总决赛",
+      "priority_team": "LOUD",
+      "protocol": "grand_final",
+      "scenario": {
+        "upperWinner": "LOUD",
+        "lowerWinner": "100T"
+      },
+      "opponent_source": "that model retained fiction case input.series.teams",
+      "teams": [
+        "LOUD",
+        "100T"
+      ]
+    },
+    "VIT_G2_0": {
+      "match_index": 0,
+      "label": "败者组决赛",
+      "teams": [
+        "LOUD",
+        "G2"
+      ],
+      "priority_team": "LOUD",
+      "protocol": "bo5",
+      "scenario": {
+        "upperWinner": "VIT",
+        "lowerWinner": "G2"
+      }
+    },
+    "VIT_G2_1": {
+      "match_index": 1,
+      "label": "总决赛",
+      "priority_team": "VIT",
+      "protocol": "grand_final",
+      "scenario": {
+        "upperWinner": "VIT",
+        "lowerWinner": "G2"
+      },
+      "opponent_source": "that model retained fiction case input.series.teams",
+      "teams": [
+        "VIT",
+        "G2"
+      ]
+    },
+    "VIT_100T_0": {
+      "match_index": 0,
+      "label": "败者组决赛",
+      "teams": [
+        "LOUD",
+        "100T"
+      ],
+      "priority_team": "LOUD",
+      "protocol": "bo5",
+      "scenario": {
+        "upperWinner": "VIT",
+        "lowerWinner": "100T"
+      }
+    },
+    "VIT_100T_1": {
+      "match_index": 1,
+      "label": "总决赛",
+      "priority_team": "VIT",
+      "protocol": "grand_final",
+      "scenario": {
+        "upperWinner": "VIT",
+        "lowerWinner": "100T"
+      },
+      "opponent_source": "that model retained fiction case input.series.teams",
+      "teams": [
+        "VIT",
+        "100T"
+      ]
+    }
+  },
+  "input_sha256": "7808e65d3b77b149021310a9d3b218e63783f55d79c0acb4072fa46e6e56b93a",
+  "raw_plan_sha256": "a6cadbd570aca66b7e05d596ffeda7b392652503867bba76b8acabc231955809",
+  "runtime_attestation": {
+    "provider": "openai_chatgpt_cli",
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "high",
+    "startup_header_sha256": "fb86f08768914865e61ebe0e0cd6df987e17b0327639959b7c990171d3752230"
+  },
+  "created_at": "2026-10-16T12:48:17.310164+00:00",
+  "plan": {
+    "cases": {
+      "LOUD_G2_0": {
+        "priority_role": "A",
+        "bans": [
+          "Summit",
+          "Abyss"
+        ],
+        "maps": [
+          "Haven",
+          "Split",
+          "Lotus",
+          "Sunset",
+          "Ascent"
+        ],
+        "a_start_sides": [
+          "DEF",
+          "ATK",
+          "DEF",
+          "ATK",
+          "DEF"
+        ],
+        "reason": "假设VIT重视首选，选择A先禁Summit、首选Haven；预测G2禁Abyss。选边假设双方均在自身选边时先攻，不依据战队地图统计。"
+      },
+      "LOUD_G2_1": {
+        "priority_role": "B",
+        "bans": [
+          "Ascent",
+          "Summit"
+        ],
+        "maps": [
+          "Split",
+          "Haven",
+          "Sunset",
+          "Lotus",
+          "Abyss"
+        ],
+        "a_start_sides": [
+          "ATK",
+          "DEF",
+          "ATK",
+          "DEF",
+          "ATK"
+        ],
+        "reason": "假设LOUD用双禁排除Ascent与Summit，选择B以掌握首图、第三图和决胜图选边，均先守；预测A队G2在其选边图也先守。"
+      },
+      "LOUD_100T_0": {
+        "priority_role": "B",
+        "bans": [
+          "Abyss",
+          "Summit"
+        ],
+        "maps": [
+          "Sunset",
+          "Lotus",
+          "Ascent",
+          "Haven",
+          "Split"
+        ],
+        "a_start_sides": [
+          "ATK",
+          "DEF",
+          "ATK",
+          "DEF",
+          "ATK"
+        ],
+        "reason": "假设VIT更重视三张图的选边权，选择B并禁Summit；预测A队100T先禁Abyss、首选Sunset。起始边按双方各自选边时先守规划。"
+      },
+      "LOUD_100T_1": {
+        "priority_role": "A",
+        "bans": [
+          "Summit",
+          "Split"
+        ],
+        "maps": [
+          "Lotus",
+          "Sunset",
+          "Haven",
+          "Ascent",
+          "Abyss"
+        ],
+        "a_start_sides": [
+          "DEF",
+          "ATK",
+          "DEF",
+          "ATK",
+          "DEF"
+        ],
+        "reason": "假设LOUD选择A，用双禁压缩备选范围，并优先安排Lotus、Haven；预测100T穿插Sunset、Ascent。选边假设双方在自身选边时均先攻。"
+      },
+      "VIT_G2_0": {
+        "priority_role": "B",
+        "bans": [
+          "Lotus",
+          "Ascent"
+        ],
+        "maps": [
+          "Split",
+          "Sunset",
+          "Haven",
+          "Summit",
+          "Abyss"
+        ],
+        "a_start_sides": [
+          "ATK",
+          "DEF",
+          "ATK",
+          "DEF",
+          "ATK"
+        ],
+        "reason": "假设LOUD选择B，以首图及决胜图先守换取让出首选，并禁Ascent；预测A队G2先禁Lotus、首选Split，且在自身选边时先守。"
+      },
+      "VIT_G2_1": {
+        "priority_role": "A",
+        "bans": [
+          "Abyss",
+          "Sunset"
+        ],
+        "maps": [
+          "Haven",
+          "Split",
+          "Lotus",
+          "Summit",
+          "Ascent"
+        ],
+        "a_start_sides": [
+          "DEF",
+          "ATK",
+          "DEF",
+          "ATK",
+          "DEF"
+        ],
+        "reason": "假设VIT选择A，双禁Abyss与Sunset，把首选和第三选安排为Haven、Lotus；预测G2选择Split、Summit。双方有选边权时均假设先攻。"
+      },
+      "VIT_100T_0": {
+        "priority_role": "A",
+        "bans": [
+          "Split",
+          "Haven"
+        ],
+        "maps": [
+          "Sunset",
+          "Lotus",
+          "Summit",
+          "Abyss",
+          "Ascent"
+        ],
+        "a_start_sides": [
+          "DEF",
+          "ATK",
+          "DEF",
+          "ATK",
+          "DEF"
+        ],
+        "reason": "假设LOUD选择A，先禁Split并以Sunset开局；预测100T禁Haven。将Summit作为LOUD的另一张假设准备图，双方在自身选边时均先攻。"
+      },
+      "VIT_100T_1": {
+        "priority_role": "B",
+        "bans": [
+          "Ascent",
+          "Haven"
+        ],
+        "maps": [
+          "Sunset",
+          "Lotus",
+          "Split",
+          "Summit",
+          "Abyss"
+        ],
+        "a_start_sides": [
+          "ATK",
+          "DEF",
+          "ATK",
+          "DEF",
+          "ATK"
+        ],
+        "reason": "假设VIT双禁Ascent与Haven，选择B保留三次选边权，安排Lotus、Summit为自身选图；预测A队100T首选Sunset，双方各自选边时均先守。"
+      }
+    }
+  }
+}

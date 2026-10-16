@@ -14,6 +14,7 @@ import {
   moveRanking,
 } from "./engine.mjs";
 import { fictionFor, aggregateFictionPlayers } from "./fiction.mjs";
+import { vetoMarkup, mountVeto } from "./veto.mjs";
 import { tacticalMarkup, mountTactical, stopTactical } from "./tactical-replay.mjs";
 const $ = (s) => document.querySelector(s),
   main = $("#main-content");
@@ -50,6 +51,7 @@ const channels = [
   ["mimo", "MiMo V2.6 Pro", "M", "#9b9d94"],
 ].map(([id, name, icon, color]) => ({ id, name, icon, color }));
 let event,
+  officialCurrent,
   assets,
   forecast,
   forecasts = {},
@@ -58,7 +60,7 @@ let event,
   fictionManifest = {},
   fictionContext,
   selected = store.get("channel", "codex"),
-  tab = "live",
+  tab = "veto",
   current = 0,
   playing = false,
   speed = 1,
@@ -210,7 +212,7 @@ function fictionRatings(review) {
 }
 function fictionDetails(review, index) {
   if (!review) return '<section class="card section-heading"><h2>虚构剧情与评分待生成</h2><p class="muted">该频道尚无与当前情景匹配的真实模型创作，不代填内容。</p></section>';
-  return `<section class="card section-heading fiction-details">${fictionNotice()}<h2>${escape(review.headline)}</h2><p>${escape(review.summary)}</p><h3>虚构地图 BP</h3><p class="muted">创作使用七张游戏地图组成的模拟池，未核实为本届官方比赛池。禁选和图序均为虚构。</p><div class="fiction-bp">${review.bp.bans.map(map => `<div class="bp-map banned"><small>模拟禁用</small><b>${escape(map)}</b></div>`).join("")}${review.bp.order.map((map, i) => `<div class="bp-map ${i >= review.input.series.maps.length ? "unplayed" : ""}"><small>第 ${i + 1} 图${i >= review.input.series.maps.length ? " · 未进行" : ""}</small><b>${escape(map)}</b></div>`).join("")}</div><p>${escape(review.bp.reason)}</p><h3>本场虚构选手评分</h3><p class="muted">0–10 分，仅描述这段虚构剧情中的系列赛表现；不是 ACS、KAST 或真实能力排名。</p>${fictionRatings(review)}<details class="fiction-sources"><summary>人物索引、地图和生成来源</summary><p>昵称索引不等于比赛当天官方首发。${review.input.series.teams.map(team => `<a class="source-link" href="${escape(fictionContext.teams[team].source_url)}" target="_blank" rel="noreferrer">${team} · ${fictionContext.teams[team].source_kind === "official_team" ? "俱乐部官网" : "赛事数据库补充"} ↗</a>`).join("　")}</p><p><a class="source-link" href="${escape(fictionContext.maps.source_url)}" target="_blank" rel="noreferrer">Riot 游戏地图目录 ↗</a> · <a class="source-link" href="data/${escape(fictionManifest[selected])}" target="_blank">${escape(channel().name)} 实际创作 JSON ↗</a></p></details></section>`;
+  return `<section class="card section-heading fiction-details">${fictionNotice()}<h2>${escape(review.headline)}</h2><p>${escape(review.summary)}</p><h3>虚构地图 BP</h3><p class="muted">这是较早的虚构创作版图序，未按本轮官方 veto 步骤与选边重新生成；请从首页“地图 BP”查看新结构化预测，不能把两版串成同一次比赛。</p><div class="fiction-bp">${review.bp.bans.map(map => `<div class="bp-map banned"><small>模拟禁用</small><b>${escape(map)}</b></div>`).join("")}${review.bp.order.map((map, i) => `<div class="bp-map ${i >= review.input.series.maps.length ? "unplayed" : ""}"><small>第 ${i + 1} 图${i >= review.input.series.maps.length ? " · 未进行" : ""}</small><b>${escape(map)}</b></div>`).join("")}</div><p>${escape(review.bp.reason)}</p><h3>本场虚构选手评分</h3><p class="muted">0–10 分，仅描述这段虚构剧情中的系列赛表现；不是 ACS、KAST 或真实能力排名。</p>${fictionRatings(review)}<details class="fiction-sources"><summary>人物索引、地图和生成来源</summary><p>昵称索引不等于比赛当天官方首发。${review.input.series.teams.map(team => `<a class="source-link" href="${escape(fictionContext.teams[team].source_url)}" target="_blank" rel="noreferrer">${team} · ${fictionContext.teams[team].source_kind === "official_team" ? "俱乐部官网" : "赛事数据库补充"} ↗</a>`).join("　")}</p><p><a class="source-link" href="${escape(fictionContext.maps.source_url)}" target="_blank" rel="noreferrer">Riot 游戏地图目录 ↗</a> · <a class="source-link" href="data/${escape(fictionManifest[selected])}" target="_blank">${escape(channel().name)} 实际创作 JSON ↗</a></p></details></section>`;
 }
 function renderFictionPlayers(content) {
   const rows = aggregateFictionPlayers([fictionalReview(0), fictionalReview(1)]);
@@ -228,13 +230,19 @@ function pageHead(title, description) {
   const split = {"数据对比": ["数据", "对比"], "战队": ["参赛", "战队"], "我来预测": ["我来", "预测"], "谁最准": ["谁最", "准"], "AI 赛制介绍": ["VCT · ", "AI 赛制介绍"]}[title] || ["", title];
   return `<div class="wrap page-head"><div><h1>${escape(split[0])}<span class="page-title-cn">${escape(split[1])}</span></h1><p>${description}</p></div><div class="kicker">CHAMPIONS SHANGHAI · FINALS</div></div>`;
 }
+function officialBanner() {
+  const upper = officialCurrent?.predecessors[0];
+  if (!upper?.winner) return "";
+  const loser = upper.teams.find(t => t !== upper.winner), alternate = scenario.upperWinner !== upper.winner;
+  return `<div class="official-current ${alternate ? "counterfactual" : ""}"><span><b>官方已确认 · 10/16</b> ${upper.teams.join(" ")} ${upper.score.join(" : ")}；${upper.winner} 进入总决赛，${loser} 进入败者组决赛。另一支晋级队待核实。${alternate ? `<strong> 当前正在查看“${scenario.upperWinner} 晋级”的反事实情景。</strong>` : ""}</span><a href="${officialCurrent.source_url}" target="_blank" rel="noreferrer">官方记录 ↗</a></div>`;
+}
 function note() {
-  return `<div class="notice">官方对阵${event.matches.every((m) => m.teams.includes("TBD")) ? "尚未确定" : "已更新"}。下方晋级情景用于分析 17、18 日的两场比赛；情景选择不是官方赛果。</div>`;
+  return `<div class="notice">预测使用 ${escape(event.fetched_at.slice(0,10))} 冻结资料；最新官方状态另列。下方是晋级条件下的模型推演，情景选择不是官方赛果。${officialCurrent?.predecessors[0].winner && scenario.upperWinner !== officialCurrent.predecessors[0].winner ? " 当前为反事实情景。" : ""}</div>`;
 }
 function scenarioForm() {
   const upper = event.predecessors[0],
     lower = event.predecessors[1];
-  return `<section class="card" aria-label="晋级情景"><h3>先选定决赛周末的晋级情景</h3><p class="muted">17 日：胜者组决赛败者 vs 败者组半决赛胜者。18 日：胜者组决赛胜者 vs 17 日胜者。</p><div class="form-row"><label>胜者组决赛胜者（16 日，不在预测范围）<select id="upper-winner" ${upper.winner ? "disabled" : ""}>${upper.teams.map((c) => `<option ${c === (upper.winner || scenario.upperWinner) ? "selected" : ""}>${c}</option>`).join("")}</select></label><label>败者组半决赛胜者（16 日，不在预测范围）<select id="lower-winner" ${lower.winner ? "disabled" : ""}>${lower.teams.map((c) => `<option ${c === (lower.winner || scenario.lowerWinner) ? "selected" : ""}>${c}</option>`).join("")}</select></label></div><small class="muted">已确定的官方晋级结果会自动接入。官方最新状态见 <a class="source-link" href="https://valorantesports.com/en-US/" target="_blank" rel="noreferrer">赛事官网 ↗</a></small></section>`;
+  return `<section class="card" aria-label="晋级情景"><h3>最后两场的晋级条件</h3><p class="muted">17 日：胜者组决赛败者 vs 败者组半决赛胜者。18 日：胜者组决赛胜者 vs 17 日胜者。</p><div class="form-row"><label>胜者组决赛胜者（16 日，不在预测范围）<select id="upper-winner" ${upper.winner ? "disabled" : ""}>${upper.teams.map((c) => `<option value="${c}" ${c === (upper.winner || scenario.upperWinner) ? "selected" : ""}>${c}${officialCurrent?.predecessors[0].winner ? c === officialCurrent.predecessors[0].winner ? " · 官方已确认" : " · 反事实分支" : ""}</option>`).join("")}</select></label><label>败者组半决赛胜者（16 日，不在预测范围）<select id="lower-winner" ${lower.winner ? "disabled" : ""}>${lower.teams.map((c) => `<option ${c === (lower.winner || scenario.lowerWinner) ? "selected" : ""}>${c}</option>`).join("")}</select></label></div><small class="muted">默认采用已确认的胜者；仍可回看历史反事实分支。未确认的另一场保持条件选择。官方最新状态见 <a class="source-link" href="https://valorantesports.com/en-US/" target="_blank" rel="noreferrer">赛事官网 ↗</a></small></section>`;
 }
 function bindScenario() {
   for (const [id, key] of [
@@ -260,22 +268,37 @@ function bindScenario() {
   }
 }
 function modelGrid() {
-  return `<div class="channels"><label class="mobile-channel">当前 AI <select id="mobile-model" aria-label="选择 AI 频道">${channels.map((c) => `<option value="${c.id}" ${c.id === selected ? "selected" : ""}>${c.name}</option>`).join("")}</select></label>${channels.map((c) => `<button class="channel ${selected === c.id ? "on" : ""}" data-channel="${c.id}" aria-pressed="${selected === c.id}" style="--accent:${c.color}">${avatar(c)}<span>${c.name}</span><small>${available(c.id) ? "已预测" : "待预测"}</small></button>`).join("")}</div>`;
+  return `<div id="home-model-selector" class="model-deck channels portraits" aria-label="选择模型，查看其沙盘与赛事预测">${channels.map(ch => {
+    const champion = simulateFinals(ch.id)[1]?.winner;
+    return `<a class="home-model channel portrait forecast-card ${selected === ch.id ? "on" : ""}" href="#/?ai=${ch.id}" role="button" aria-pressed="${selected === ch.id}" data-channel="${ch.id}" data-tactical-model="${ch.id}" style="--accent:${ch.color}"><img class="model-portrait" src="${escape(assets.models[ch.id].portrait)}" alt="" loading="eager"><div class="model-overview"><h2>${escape(ch.name)}</h2><small class="model-forecast-status">${available(ch.id) ? "赛事预测已生成" : "赛事预测待生成"}</small><div class="model-champion"><small>本次模拟冠军</small><b class="champ">${available(ch.id) ? logo(champion) + " " + champion : "待预测"}</b></div><small class="model-tactical-status" data-tactical-status>${tab === "sandbox" ? "沙盘方案读取中" : "沙盘方案 · 见战术页"}</small></div></a>`;
+  }).join("")}</div>`;
 }
 function selectChannel(id) {
+  const focused = Boolean(document.querySelector("#tactical-replay.tactical-focused"));
   if (!channels.some((c) => c.id === id)) return;
   selected = id;
+  if (pageRoute === "/") history.replaceState(null, "", "#/?" + new URLSearchParams({ ai: selected, tab }));
   store.set("channel", selected);
   current = 0;
   buildSimulation();
   render();
+  if (focused) {
+    const root = document.querySelector("#tactical-replay");
+    root?.classList.add("tactical-focused");
+    const button = root?.querySelector("#tactical-focus");
+    if (button) { button.textContent = "退出专注"; button.setAttribute("aria-pressed", "true"); }
+  }
 }
 function bindModels() {
   document
     .querySelectorAll("[data-channel]")
     .forEach(
       (button) =>
-        (button.onclick = () => selectChannel(button.dataset.channel)),
+        (button.onclick = event => {
+          if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+          event.preventDefault();
+          selectChannel(button.dataset.channel);
+        }),
     );
   if ($("#mobile-model"))
     $("#mobile-model").onchange = (e) => selectChannel(e.target.value);
@@ -331,42 +354,16 @@ function buildSimulation(restore = true) {
 }
 function home() {
   const c = channel();
-  main.innerHTML = `<section class="hero"><div class="wrap"><div class="hero-top"><div><p class="eyebrow">AI 模拟内容 · 仅供参考</p><h1><span>VALORANT</span> <span class="hero-title-text">AI 大模型预测大赛</span></h1><p>上海全球冠军赛最后两场，同一份官方资料、同一套 BO5 规则，各自给出判断</p></div><div class="hero-actions"><div class="countdown"><small>仅预测 10 月 17 / 18 日</small><strong>决赛周末</strong></div><a class="btn" href="#/pickem">我也来预测</a><a class="btn primary" href="#/leaderboard">看谁最准</a></div></div>${tab === "live" ? tacticalMarkup() : ""}<div class="portraits" aria-label="选择模型形象">${channels.map((ch, i) => `<button class="portrait ${selected === ch.id ? "on" : ""}" data-channel="${ch.id}" aria-label="进入 ${ch.name} 的频道"><img src="${escape(assets.models[ch.id].portrait)}" alt="" loading="${i < 4 ? "eager" : "lazy"}"><span>${ch.name.split(" · ")[0]}</span></button>`).join("")}</div></div></section><div class="channel-panel"><div class="wrap">${modelGrid()}</div></div><div class="wrap tabs home-tabs" role="tablist" aria-label="预测频道内容">${[
-    ["live", "直播"],
-    ["schedule", "赛程赛果"],
-    ["bracket", "淘汰赛"],
-    ["players", "选手榜"],
-    ["news", "剧情与战报"],
-    ["analysis", "赛前评估"],
-    ["process", "预测过程"],
-  ]
-    .map(
-      ([id, name]) =>
-        `<button role="tab" aria-selected="${tab === id}" data-tab="${id}" class="${tab === id ? "on" : ""}">${name}</button>`,
-    )
-    .join(
-      "",
-    )}<span class="channel-meta">${escape(c.name)} · ${available(c.id) ? "独立预测" : "待预测"}</span></div><div class="wrap section studio-section"><div id="channel-content"></div></div><section class="wrap section"><div class="section-head"><h2>各 AI 预测的冠军</h2><a class="muted" href="#/compare">完整对比 →</a></div><p class="muted">四个模型各自给出独立预测；下方冠军来自当前晋级情景的一次模拟。</p><div class="grid">${channels
-    .map((ch) => {
-      const champion = simulateFinals(ch.id)[1]?.winner;
-      return `<a class="card forecast-card card-link" style="--accent:${ch.color}" href="#/?ai=${ch.id}"><h3>${ch.name}</h3><small class="muted">${available(ch.id) ? "当前晋级情景下的一次模拟" : "等待独立模型输出"}</small><div class="champ">${available(ch.id) ? logo(champion) + " " + champion : "待预测"}</div><span class="muted">进入频道 →</span></a>`;
-    })
-    .join(
-      "",
-    )}</div></section><section class="wrap section"><div class="section-head"><h2>最后两场 · 官方赛程</h2><a class="muted" href="#/pickem">写下你的判断 →</a></div>${officialSchedule()}</section><section class="wrap section"><div class="card"><h2>谁才是真正的预言家？</h2><p class="muted">两场比赛结束后，用真实赛果检验预测。没有赛果时，排行榜保持等待结算。</p><a class="btn" href="#/leaderboard">查看排行榜</a></div></section>`;
+  main.innerHTML = `<section class="hero home-intro"><div class="wrap"><div class="hero-top"><div><p class="eyebrow">CHAMPIONS SHANGHAI 2026 · 10/17–18</p><h1>四个模型，同场推演</h1><p>选一个模型，看它如何走位、如何判断最后两场比赛。</p></div><span class="home-label">AI 假设方案与模拟 · 非真实赛况</span></div>${officialBanner()}${modelGrid()}<p class="model-deck-note">冠军来自当前晋级情景的一次模拟；战术沙盘使用独立假设场景。<a href="#/compare">比较赛事概率 →</a></p></div></section><section class="wrap home-workspace"><div class="tabs home-tabs" role="tablist" aria-label="预测频道内容">${[
+    ["veto", "01 地图 BP"], ["sandbox", "02 阵容与走位"], ["live", "03 比赛推演"], ["schedule", "赛程赛果"], ["bracket", "淘汰赛"], ["players", "选手榜"], ["news", "剧情与战报"], ["analysis", "赛前评估"], ["process", "预测过程"],
+  ].map(([id,name]) => `<button role="tab" aria-selected="${tab === id}" aria-controls="channel-content" data-tab="${id}" class="${tab === id ? "on" : ""}">${name}</button>`).join("")}<span class="channel-meta">${escape(c.name)}</span></div><div class="studio-section"><div id="channel-content" role="tabpanel"></div></div></section>`;
   bindModels();
-  document.querySelectorAll("[data-tab]").forEach(
-    (b) =>
-      (b.onclick = () => {
-        tab = b.dataset.tab;
-        render();
-      }),
-  );
+  document.querySelectorAll("[data-tab]").forEach(b => b.onclick = () => { tab = b.dataset.tab; history.replaceState(null, "", "#/?" + new URLSearchParams({ ai: selected, tab })); clearTimeout(playerTimer); render(); });
   renderChannel();
-  if (tab === "live") mountTactical({ model: selected, onModelChange: selectChannel });
 }
+
 function officialSchedule() {
-  return `<div class="table-wrap"><table><thead><tr><th>比赛</th><th>北京时间</th><th>官方对阵</th><th>赛制</th><th>状态</th></tr></thead><tbody>${event.matches.map((m) => `<tr><td>${m.label}</td><td>${formatDate(m.start_utc)}</td><td>${m.teams.join(" vs ")}</td><td>BO${m.best_of}</td><td>${m.winner ? m.score.join(" : ") : "待开赛"}</td></tr>`).join("")}</tbody></table></div>`;
+  return `<div class="table-wrap"><table><thead><tr><th>比赛</th><th>北京时间</th><th>官方对阵</th><th>赛制</th><th>状态</th></tr></thead><tbody>${(officialCurrent?.matches || event.matches).map((m) => `<tr><td>${m.label}</td><td>${formatDate(m.start_utc)}</td><td>${m.teams.join(" vs ")}</td><td>BO${m.best_of}</td><td>${m.winner ? m.score.join(" : ") : "待开赛"}</td></tr>`).join("")}</tbody></table></div>`;
 }
 function formatDate(value) {
   return new Intl.DateTimeFormat("zh-CN", {
@@ -453,6 +450,17 @@ function renderChannel() {
   const content = $("#channel-content");
   if (!content) return;
   const m = matchup();
+  if (tab === "veto") {
+    content.innerHTML = scenarioForm() + vetoMarkup();
+    bindScenario();
+    mountVeto({ model: selected, scenario, onSandbox: () => document.querySelector('[data-tab="sandbox"]').click() });
+    return;
+  }
+  if (tab === "sandbox") {
+    content.innerHTML = tacticalMarkup();
+    mountTactical({ model: selected, onModelChange: selectChannel });
+    return;
+  }
   if (tab === "schedule") {
     content.innerHTML =
       note() +
@@ -496,7 +504,7 @@ function renderChannel() {
   }
   content.innerHTML =
     note() +
-    `<div class="studio" style="--mc:${channel().color}" tabindex="0" role="region" aria-label="AI 模拟回放播放器"><div><div class="stage-box"><div class="stage-top"><span class="pill">● AI 模拟</span>${avatar(channel())}<span>${escape(channel().name)} 的世界</span><span class="stage-date" id="stage-date"></span></div><div id="stage"></div></div><div class="progress"><i id="progress" style="width:0"></i></div><div class="controls"><button id="prev" aria-label="上一步">◀</button><button id="play" class="play" title="${playing ? "暂停" : "播放"} (空格)">${playing ? "Ⅱ 暂停" : "▶ 播放"}</button><button id="next" aria-label="下一步">▶|</button><button id="next-match">下一场</button><button id="next-day">下一天</button><button id="mute">${muted ? "取消静音" : "静音"}</button><span class="spacer"></span>${[1, 2, 4, 8].map((n) => `<button data-speed="${n}" class="${speed === n ? "on" : ""}">${n}x</button>`).join("")}</div><p class="keyboard-tip">播放器获得焦点后：空格播放/暂停，左右跳步，上下调速，M 静音。</p><div class="date-buttons"><button data-day="0">10/17</button><button data-day="1">10/18</button><button id="replay-start">从头播放</button><a id="review-current" class="btn" href="${reviewLink(0)}">查看本场回看 →</a></div></div><aside class="studio-side"><div class="schedule"><h3>最后两场 · 模拟赛程</h3>${event.matches.map((match, i) => `<button class="schedule-row" data-row="${i}" aria-label="跳到${match.label}"><b>${match.label}<small class="muted" style="display:block;margin-top:8px">${formatDate(match.start_utc)}</small></b><span>BO5</span></button>`).join("")}<div style="padding:12px"><span class="pill official">官方对阵待定</span><p class="muted" style="font-size:12px;margin:12px 0">胜者组败者 → 败者组决赛<br>败者组胜者 → 总决赛</p><a class="btn" href="#/pickem">我也来预测</a></div></div><section class="feed"><h3>赛事动态</h3><div class="feed-model">${avatar(channel())}<span>${escape(channel().name)} 的世界</span></div><div id="feed-events" aria-live="polite"></div></section></aside></div>`;
+    `<div class="studio" style="--mc:${channel().color}" tabindex="0" role="region" aria-label="AI 模拟回放播放器"><div><div class="stage-box"><div class="stage-top"><span class="pill">● AI 模拟</span>${avatar(channel())}<span>${escape(channel().name)} 的世界</span><span class="stage-date" id="stage-date"></span></div><div id="stage"></div></div><div class="progress"><i id="progress" style="width:0"></i></div><div class="controls"><button id="prev" aria-label="上一步">◀</button><button id="play" class="play" title="${playing ? "暂停" : "播放"} (空格)">${playing ? "Ⅱ 暂停" : "▶ 播放"}</button><button id="next" aria-label="下一步">▶|</button><button id="next-match">下一场</button><button id="next-day">下一天</button><button id="mute">${muted ? "取消静音" : "静音"}</button><span class="spacer"></span>${[1, 2, 4, 8].map((n) => `<button data-speed="${n}" class="${speed === n ? "on" : ""}">${n}x</button>`).join("")}</div><p class="keyboard-tip">播放器获得焦点后：空格播放/暂停，左右跳步，上下调速，M 静音。</p><div class="date-buttons"><button data-day="0">10/17</button><button data-day="1">10/18</button><button id="replay-start">从头播放</button><a id="review-current" class="btn" href="${reviewLink(0)}">查看本场回看 →</a></div></div><aside class="studio-side"><div class="schedule"><h3>最后两场 · 模拟赛程</h3>${event.matches.map((match, i) => `<button class="schedule-row" data-row="${i}" aria-label="跳到${match.label}"><b>${match.label}<small class="muted" style="display:block;margin-top:8px">${formatDate(match.start_utc)}</small></b><span>BO5</span></button>`).join("")}<div style="padding:12px"><span class="pill official">官方对阵待定</span><p class="muted" style="font-size:12px;margin:12px 0">胜者组败者 → 败者组决赛<br>败者组胜者 → 总决赛</p></div></div><section class="feed"><h3>赛事动态</h3><div class="feed-model">${avatar(channel())}<span>${escape(channel().name)} 的世界</span></div><div id="feed-events" aria-live="polite"></div></section></aside></div>`;
   bindPlayer();
   updatePlayer();
 }
@@ -1064,6 +1072,8 @@ function route() {
   if (
     params.has("tab") &&
     [
+      "veto",
+      "sandbox",
       "live",
       "schedule",
       "bracket",
@@ -1074,7 +1084,7 @@ function route() {
     ].includes(params.get("tab"))
   )
     tab = params.get("tab");
-  else if (path === "/") tab = "live";
+  else if (path === "/") tab = "veto";
   if (params.get("ai") && channels.some((c) => c.id === params.get("ai")))
     selected = params.get("ai");
   if (
@@ -1233,8 +1243,8 @@ async function start() {
       return response.json();
     };
     let manifest;
-    [event, assets, manifest, fictionManifest, fictionContext] = await Promise.all(
-      ["data/event.json", "data/assets.json", "data/model-forecasts.json", "data/model-fiction.json", "data/fiction-context.json"].map(
+    [event, assets, manifest, fictionManifest, fictionContext, officialCurrent] = await Promise.all(
+      ["data/event.json", "data/assets.json", "data/model-forecasts.json", "data/model-fiction.json", "data/fiction-context.json", "data/official-current.json"].map(
         fetchJSON,
       ),
     );
@@ -1248,8 +1258,8 @@ async function start() {
     )
       throw Error("赛事数据不符合两场 BO5 范围");
     scenario = store.get("scenario", {
-      upperWinner: event.predecessors[0].teams[1],
-      lowerWinner: event.predecessors[1].teams[1],
+      upperWinner: officialCurrent.predecessors[0].winner || event.predecessors[0].teams[1],
+      lowerWinner: officialCurrent.predecessors[1].winner || event.predecessors[1].teams[1],
     });
     for (const [key, index] of [
       ["upperWinner", 0],

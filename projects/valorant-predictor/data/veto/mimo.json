@@ -1,0 +1,324 @@
+{
+  "kind": "model_veto_prediction",
+  "channel": "mimo",
+  "context_sha256": "1fab0ae7d2c26c469f4d95469bae3d58c8eabd71b08c59c86e563d1029a957b8",
+  "input_cases": {
+    "LOUD_G2_0": {
+      "match_index": 0,
+      "label": "败者组决赛",
+      "teams": [
+        "VIT",
+        "G2"
+      ],
+      "priority_team": "VIT",
+      "protocol": "bo5",
+      "scenario": {
+        "upperWinner": "LOUD",
+        "lowerWinner": "G2"
+      }
+    },
+    "LOUD_G2_1": {
+      "match_index": 1,
+      "label": "总决赛",
+      "priority_team": "LOUD",
+      "protocol": "grand_final",
+      "scenario": {
+        "upperWinner": "LOUD",
+        "lowerWinner": "G2"
+      },
+      "opponent_source": "that model retained fiction case input.series.teams",
+      "teams": [
+        "LOUD",
+        "G2"
+      ]
+    },
+    "LOUD_100T_0": {
+      "match_index": 0,
+      "label": "败者组决赛",
+      "teams": [
+        "VIT",
+        "100T"
+      ],
+      "priority_team": "VIT",
+      "protocol": "bo5",
+      "scenario": {
+        "upperWinner": "LOUD",
+        "lowerWinner": "100T"
+      }
+    },
+    "LOUD_100T_1": {
+      "match_index": 1,
+      "label": "总决赛",
+      "priority_team": "LOUD",
+      "protocol": "grand_final",
+      "scenario": {
+        "upperWinner": "LOUD",
+        "lowerWinner": "100T"
+      },
+      "opponent_source": "that model retained fiction case input.series.teams",
+      "teams": [
+        "LOUD",
+        "100T"
+      ]
+    },
+    "VIT_G2_0": {
+      "match_index": 0,
+      "label": "败者组决赛",
+      "teams": [
+        "LOUD",
+        "G2"
+      ],
+      "priority_team": "LOUD",
+      "protocol": "bo5",
+      "scenario": {
+        "upperWinner": "VIT",
+        "lowerWinner": "G2"
+      }
+    },
+    "VIT_G2_1": {
+      "match_index": 1,
+      "label": "总决赛",
+      "priority_team": "VIT",
+      "protocol": "grand_final",
+      "scenario": {
+        "upperWinner": "VIT",
+        "lowerWinner": "G2"
+      },
+      "opponent_source": "that model retained fiction case input.series.teams",
+      "teams": [
+        "VIT",
+        "G2"
+      ]
+    },
+    "VIT_100T_0": {
+      "match_index": 0,
+      "label": "败者组决赛",
+      "teams": [
+        "LOUD",
+        "100T"
+      ],
+      "priority_team": "LOUD",
+      "protocol": "bo5",
+      "scenario": {
+        "upperWinner": "VIT",
+        "lowerWinner": "100T"
+      }
+    },
+    "VIT_100T_1": {
+      "match_index": 1,
+      "label": "总决赛",
+      "priority_team": "VIT",
+      "protocol": "grand_final",
+      "scenario": {
+        "upperWinner": "VIT",
+        "lowerWinner": "100T"
+      },
+      "opponent_source": "that model retained fiction case input.series.teams",
+      "teams": [
+        "VIT",
+        "100T"
+      ]
+    }
+  },
+  "input_sha256": "7808e65d3b77b149021310a9d3b218e63783f55d79c0acb4072fa46e6e56b93a",
+  "raw_plan_sha256": "1820fd71c79e4fe905de980ceb20b7bd6392c5784010c5ba484280ae3c52f3e1",
+  "runtime_attestation": {
+    "provider": "mimo",
+    "model": "mimo-v2.6-pro",
+    "response_id": "1afb4fd9-d9ec-45d8-9189-512c8d780fea_10a8980ffc3f4b4294787255282cc602",
+    "usage": {
+      "completion_tokens": 7780,
+      "prompt_tokens": 1657,
+      "total_tokens": 9437,
+      "completion_tokens_details": {
+        "reasoning_tokens": 7046
+      },
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      }
+    },
+    "finish_reason": "stop",
+    "response_sha256": "7647a3816f6ce55e23d9401556fd2d08374405ff5c7ca5828d5bb84e37fec662"
+  },
+  "created_at": "2026-10-16T12:50:26.870529+00:00",
+  "plan": {
+    "cases": {
+      "LOUD_G2_0": {
+        "priority_role": "A",
+        "bans": [
+          "Abyss",
+          "Lotus"
+        ],
+        "maps": [
+          "Ascent",
+          "Haven",
+          "Split",
+          "Sunset",
+          "Summit"
+        ],
+        "a_start_sides": [
+          "DEF",
+          "ATK",
+          "DEF",
+          "ATK",
+          "DEF"
+        ],
+        "reason": "假设A队先ban两张节奏不确定图，前四pick取常规池；边权按B/A/B/A/B展开，A多起DEF求稳健。"
+      },
+      "LOUD_G2_1": {
+        "priority_role": "B",
+        "bans": [
+          "Summit",
+          "Lotus"
+        ],
+        "maps": [
+          "Ascent",
+          "Haven",
+          "Split",
+          "Sunset",
+          "Abyss"
+        ],
+        "a_start_sides": [
+          "ATK",
+          "DEF",
+          "ATK",
+          "ATK",
+          "DEF"
+        ],
+        "reason": "假设胜者组双ban后取身份B，让对手先pick作补偿；五图按攻防交替设边，A多起ATK抢开局。"
+      },
+      "LOUD_100T_0": {
+        "priority_role": "A",
+        "bans": [
+          "Abyss",
+          "Split"
+        ],
+        "maps": [
+          "Haven",
+          "Lotus",
+          "Ascent",
+          "Sunset",
+          "Summit"
+        ],
+        "a_start_sides": [
+          "ATK",
+          "DEF",
+          "ATK",
+          "DEF",
+          "ATK"
+        ],
+        "reason": "假设A队先ban不愿处理的Abyss，B弃Split；pick顺序保留常规池，决胜图不预设优势。"
+      },
+      "LOUD_100T_1": {
+        "priority_role": "B",
+        "bans": [
+          "Summit",
+          "Abyss"
+        ],
+        "maps": [
+          "Haven",
+          "Lotus",
+          "Split",
+          "Sunset",
+          "Ascent"
+        ],
+        "a_start_sides": [
+          "DEF",
+          "ATK",
+          "DEF",
+          "ATK",
+          "DEF"
+        ],
+        "reason": "假设胜者组双ban两张偏图后取身份B；Ascent仅作第五图假设，不与独立走位场景联动。"
+      },
+      "VIT_G2_0": {
+        "priority_role": "A",
+        "bans": [
+          "Sunset",
+          "Abyss"
+        ],
+        "maps": [
+          "Ascent",
+          "Lotus",
+          "Split",
+          "Haven",
+          "Summit"
+        ],
+        "a_start_sides": [
+          "ATK",
+          "DEF",
+          "ATK",
+          "DEF",
+          "ATK"
+        ],
+        "reason": "假设A队先ban未知池Summit，B弃Abyss；五图偏向两侧都能打的池子，决胜图边权交给B。"
+      },
+      "VIT_G2_1": {
+        "priority_role": "B",
+        "bans": [
+          "Summit",
+          "Sunset"
+        ],
+        "maps": [
+          "Ascent",
+          "Split",
+          "Haven",
+          "Lotus",
+          "Abyss"
+        ],
+        "a_start_sides": [
+          "DEF",
+          "ATK",
+          "ATK",
+          "DEF",
+          "ATK"
+        ],
+        "reason": "假设胜者组双ban后取身份B，让对手先pick作补偿；边权B/A/B/A/B下A交替起手，Abyss压后。"
+      },
+      "VIT_100T_0": {
+        "priority_role": "A",
+        "bans": [
+          "Split",
+          "Lotus"
+        ],
+        "maps": [
+          "Ascent",
+          "Haven",
+          "Sunset",
+          "Abyss",
+          "Summit"
+        ],
+        "a_start_sides": [
+          "DEF",
+          "DEF",
+          "ATK",
+          "ATK",
+          "DEF"
+        ],
+        "reason": "假设A队先banSplit，B弃Lotus；Haven与Sunset置于中段，Abyss与Summit留在后段决胜。"
+      },
+      "VIT_100T_1": {
+        "priority_role": "B",
+        "bans": [
+          "Lotus",
+          "Abyss"
+        ],
+        "maps": [
+          "Haven",
+          "Split",
+          "Ascent",
+          "Sunset",
+          "Summit"
+        ],
+        "a_start_sides": [
+          "ATK",
+          "DEF",
+          "DEF",
+          "ATK",
+          "ATK"
+        ],
+        "reason": "假设胜者组双ban两张偏图后取身份B；四图攻防交替设边，Summit留作决胜图不预设倾向。"
+      }
+    }
+  }
+}

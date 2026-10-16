@@ -1,0 +1,326 @@
+{
+  "kind": "model_veto_prediction",
+  "channel": "deepseek",
+  "context_sha256": "1fab0ae7d2c26c469f4d95469bae3d58c8eabd71b08c59c86e563d1029a957b8",
+  "input_cases": {
+    "LOUD_G2_0": {
+      "match_index": 0,
+      "label": "败者组决赛",
+      "teams": [
+        "VIT",
+        "G2"
+      ],
+      "priority_team": "VIT",
+      "protocol": "bo5",
+      "scenario": {
+        "upperWinner": "LOUD",
+        "lowerWinner": "G2"
+      }
+    },
+    "LOUD_G2_1": {
+      "match_index": 1,
+      "label": "总决赛",
+      "priority_team": "LOUD",
+      "protocol": "grand_final",
+      "scenario": {
+        "upperWinner": "LOUD",
+        "lowerWinner": "G2"
+      },
+      "opponent_source": "that model retained fiction case input.series.teams",
+      "teams": [
+        "LOUD",
+        "G2"
+      ]
+    },
+    "LOUD_100T_0": {
+      "match_index": 0,
+      "label": "败者组决赛",
+      "teams": [
+        "VIT",
+        "100T"
+      ],
+      "priority_team": "VIT",
+      "protocol": "bo5",
+      "scenario": {
+        "upperWinner": "LOUD",
+        "lowerWinner": "100T"
+      }
+    },
+    "LOUD_100T_1": {
+      "match_index": 1,
+      "label": "总决赛",
+      "priority_team": "LOUD",
+      "protocol": "grand_final",
+      "scenario": {
+        "upperWinner": "LOUD",
+        "lowerWinner": "100T"
+      },
+      "opponent_source": "that model retained fiction case input.series.teams",
+      "teams": [
+        "LOUD",
+        "100T"
+      ]
+    },
+    "VIT_G2_0": {
+      "match_index": 0,
+      "label": "败者组决赛",
+      "teams": [
+        "LOUD",
+        "G2"
+      ],
+      "priority_team": "LOUD",
+      "protocol": "bo5",
+      "scenario": {
+        "upperWinner": "VIT",
+        "lowerWinner": "G2"
+      }
+    },
+    "VIT_G2_1": {
+      "match_index": 1,
+      "label": "总决赛",
+      "priority_team": "VIT",
+      "protocol": "grand_final",
+      "scenario": {
+        "upperWinner": "VIT",
+        "lowerWinner": "G2"
+      },
+      "opponent_source": "that model retained fiction case input.series.teams",
+      "teams": [
+        "VIT",
+        "G2"
+      ]
+    },
+    "VIT_100T_0": {
+      "match_index": 0,
+      "label": "败者组决赛",
+      "teams": [
+        "LOUD",
+        "100T"
+      ],
+      "priority_team": "LOUD",
+      "protocol": "bo5",
+      "scenario": {
+        "upperWinner": "VIT",
+        "lowerWinner": "100T"
+      }
+    },
+    "VIT_100T_1": {
+      "match_index": 1,
+      "label": "总决赛",
+      "priority_team": "VIT",
+      "protocol": "grand_final",
+      "scenario": {
+        "upperWinner": "VIT",
+        "lowerWinner": "100T"
+      },
+      "opponent_source": "that model retained fiction case input.series.teams",
+      "teams": [
+        "VIT",
+        "100T"
+      ]
+    }
+  },
+  "input_sha256": "7808e65d3b77b149021310a9d3b218e63783f55d79c0acb4072fa46e6e56b93a",
+  "raw_plan_sha256": "4f2aa5326f8d5a3f85028cc52c05877bcf093140af5f4380693628392c92c550",
+  "runtime_attestation": {
+    "provider": "deepseek",
+    "model": "deepseek-flash",
+    "response_id": "33ef919c-482b-43bb-a3b8-bfd7664b4438",
+    "usage": {
+      "prompt_tokens": 1723,
+      "completion_tokens": 7389,
+      "total_tokens": 9112,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 6601
+      },
+      "prompt_cache_hit_tokens": 0,
+      "prompt_cache_miss_tokens": 1723
+    },
+    "finish_reason": "stop",
+    "response_sha256": "7b2a8f10a412c242137bfa4771946c46838605d2d8a07d8a98c281fc3d534bb3"
+  },
+  "created_at": "2026-10-16T12:47:55.987367+00:00",
+  "plan": {
+    "cases": {
+      "LOUD_G2_0": {
+        "priority_role": "A",
+        "bans": [
+          "Split",
+          "Ascent"
+        ],
+        "maps": [
+          "Summit",
+          "Sunset",
+          "Haven",
+          "Lotus",
+          "Abyss"
+        ],
+        "a_start_sides": [
+          "DEF",
+          "ATK",
+          "DEF",
+          "DEF",
+          "ATK"
+        ],
+        "reason": "条件化方案：VIT取A，按A/B禁选；无逐图胜率，仅覆盖七图并固定选边角色，不接Ascent实况。"
+      },
+      "LOUD_G2_1": {
+        "priority_role": "A",
+        "bans": [
+          "Sunset",
+          "Lotus"
+        ],
+        "maps": [
+          "Split",
+          "Summit",
+          "Haven",
+          "Ascent",
+          "Abyss"
+        ],
+        "a_start_sides": [
+          "ATK",
+          "DEF",
+          "ATK",
+          "ATK",
+          "DEF"
+        ],
+        "reason": "总决赛假设：LOUD取A，两ban归A；无地图数据，按A/B/A/B取图与B/A/B/A/B选边框架。"
+      },
+      "LOUD_100T_0": {
+        "priority_role": "B",
+        "bans": [
+          "Haven",
+          "Abyss"
+        ],
+        "maps": [
+          "Split",
+          "Summit",
+          "Sunset",
+          "Lotus",
+          "Ascent"
+        ],
+        "a_start_sides": [
+          "DEF",
+          "ATK",
+          "ATK",
+          "DEF",
+          "ATK"
+        ],
+        "reason": "条件化方案：100T为A、VIT为B，按A/B禁选；无真实偏好，仅覆盖七图并推选边角色。"
+      },
+      "LOUD_100T_1": {
+        "priority_role": "B",
+        "bans": [
+          "Split",
+          "Sunset"
+        ],
+        "maps": [
+          "Summit",
+          "Haven",
+          "Lotus",
+          "Ascent",
+          "Abyss"
+        ],
+        "a_start_sides": [
+          "ATK",
+          "ATK",
+          "DEF",
+          "DEF",
+          "DEF"
+        ],
+        "reason": "总决赛假设：LOUD取B，两ban归B；无逐图数据，按固定pick与选边框架条件覆盖七图。"
+      },
+      "VIT_G2_0": {
+        "priority_role": "A",
+        "bans": [
+          "Summit",
+          "Haven"
+        ],
+        "maps": [
+          "Split",
+          "Sunset",
+          "Lotus",
+          "Ascent",
+          "Abyss"
+        ],
+        "a_start_sides": [
+          "DEF",
+          "DEF",
+          "DEF",
+          "ATK",
+          "ATK"
+        ],
+        "reason": "条件化方案：LOUD取A，按A/B禁选；无逐图胜率，仅按固定顺序覆盖七图，不代表真实BP。"
+      },
+      "VIT_G2_1": {
+        "priority_role": "B",
+        "bans": [
+          "Ascent",
+          "Abyss"
+        ],
+        "maps": [
+          "Split",
+          "Summit",
+          "Sunset",
+          "Haven",
+          "Lotus"
+        ],
+        "a_start_sides": [
+          "ATK",
+          "ATK",
+          "ATK",
+          "DEF",
+          "DEF"
+        ],
+        "reason": "总决赛假设：VIT取B，两ban归B；无地图数据，按固定顺序覆盖七图并推选边角色。"
+      },
+      "VIT_100T_0": {
+        "priority_role": "B",
+        "bans": [
+          "Lotus",
+          "Ascent"
+        ],
+        "maps": [
+          "Split",
+          "Summit",
+          "Sunset",
+          "Haven",
+          "Abyss"
+        ],
+        "a_start_sides": [
+          "DEF",
+          "DEF",
+          "ATK",
+          "ATK",
+          "DEF"
+        ],
+        "reason": "条件化方案：100T为A、LOUD为B，按A/B禁选；无真实地图偏好，仅覆盖七图并推选边。"
+      },
+      "VIT_100T_1": {
+        "priority_role": "A",
+        "bans": [
+          "Summit",
+          "Lotus"
+        ],
+        "maps": [
+          "Split",
+          "Sunset",
+          "Haven",
+          "Ascent",
+          "Abyss"
+        ],
+        "a_start_sides": [
+          "ATK",
+          "DEF",
+          "DEF",
+          "ATK",
+          "ATK"
+        ],
+        "reason": "总决赛假设：VIT取A，两ban归A；无逐图数据，仅按固定顺序覆盖七图，不映射Ascent实况。"
+      }
+    }
+  }
+}
