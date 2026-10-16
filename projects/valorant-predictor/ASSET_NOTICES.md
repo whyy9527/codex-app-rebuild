@@ -54,3 +54,18 @@ not a claim about confirmed match-day starters. Map names come from Riot's game
 catalog; the seven-map creative pool is not certified as the tournament's pool.
 Source URLs and limits are in `data/fiction-context.json`. No invented quotes or
 endorsements are attributed to players.
+
+## Tactical sandbox demonstration
+
+The Ascent/Haven minimaps and ten agent display icons are unmodified Riot Games
+game assets obtained via the public, unofficial [Valorant-API](https://valorant-api.com/)
+catalog on 2026-10-16. Source URLs, UUIDs and SHA-256 digests are retained in
+`data/tactical-assets.json`. These assets are not covered by the repository MIT license.
+This free, nonofficial community visualization was created under Riot Games'
+[Legal Jibber Jabber](https://www.riotgames.com/en/legal) policy using assets owned
+by Riot Games. Riot Games does not endorse or sponsor this project.
+
+The fixed example lineups, initial positions and hand-authored movement polylines
+are a UI demonstration shared across all model channels. They are not predictions,
+confirmed team selections, real match telemetry or a collision-validated simulator.
+No new model calls are involved.

@@ -14,6 +14,7 @@ import {
   moveRanking,
 } from "./engine.mjs";
 import { fictionFor, aggregateFictionPlayers } from "./fiction.mjs";
+import { tacticalMarkup, mountTactical, stopTactical } from "./tactical-replay.mjs";
 const $ = (s) => document.querySelector(s),
   main = $("#main-content");
 const escape = (s) =>
@@ -330,7 +331,7 @@ function buildSimulation(restore = true) {
 }
 function home() {
   const c = channel();
-  main.innerHTML = `<section class="hero"><div class="wrap"><div class="hero-top"><div><p class="eyebrow">AI 模拟内容 · 仅供参考</p><h1><span>VALORANT</span> <span class="hero-title-text">AI 大模型预测大赛</span></h1><p>上海全球冠军赛最后两场，同一份官方资料、同一套 BO5 规则，各自给出判断</p></div><div class="hero-actions"><div class="countdown"><small>仅预测 10 月 17 / 18 日</small><strong>决赛周末</strong></div><a class="btn" href="#/pickem">我也来预测</a><a class="btn primary" href="#/leaderboard">看谁最准</a></div></div><div class="portraits" aria-label="选择模型形象">${channels.map((ch, i) => `<button class="portrait ${selected === ch.id ? "on" : ""}" data-channel="${ch.id}" aria-label="进入 ${ch.name} 的频道"><img src="${escape(assets.models[ch.id].portrait)}" alt="" loading="${i < 4 ? "eager" : "lazy"}"><span>${ch.name.split(" · ")[0]}</span></button>`).join("")}</div></div></section><div class="channel-panel"><div class="wrap">${modelGrid()}</div></div><div class="wrap tabs home-tabs" role="tablist" aria-label="预测频道内容">${[
+  main.innerHTML = `<section class="hero"><div class="wrap"><div class="hero-top"><div><p class="eyebrow">AI 模拟内容 · 仅供参考</p><h1><span>VALORANT</span> <span class="hero-title-text">AI 大模型预测大赛</span></h1><p>上海全球冠军赛最后两场，同一份官方资料、同一套 BO5 规则，各自给出判断</p></div><div class="hero-actions"><div class="countdown"><small>仅预测 10 月 17 / 18 日</small><strong>决赛周末</strong></div><a class="btn" href="#/pickem">我也来预测</a><a class="btn primary" href="#/leaderboard">看谁最准</a></div></div>${tab === "live" ? tacticalMarkup() : ""}<div class="portraits" aria-label="选择模型形象">${channels.map((ch, i) => `<button class="portrait ${selected === ch.id ? "on" : ""}" data-channel="${ch.id}" aria-label="进入 ${ch.name} 的频道"><img src="${escape(assets.models[ch.id].portrait)}" alt="" loading="${i < 4 ? "eager" : "lazy"}"><span>${ch.name.split(" · ")[0]}</span></button>`).join("")}</div></div></section><div class="channel-panel"><div class="wrap">${modelGrid()}</div></div><div class="wrap tabs home-tabs" role="tablist" aria-label="预测频道内容">${[
     ["live", "直播"],
     ["schedule", "赛程赛果"],
     ["bracket", "淘汰赛"],
@@ -362,6 +363,7 @@ function home() {
       }),
   );
   renderChannel();
+  if (tab === "live") mountTactical();
 }
 function officialSchedule() {
   return `<div class="table-wrap"><table><thead><tr><th>比赛</th><th>北京时间</th><th>官方对阵</th><th>赛制</th><th>状态</th></tr></thead><tbody>${event.matches.map((m) => `<tr><td>${m.label}</td><td>${formatDate(m.start_utc)}</td><td>${m.teams.join(" vs ")}</td><td>BO${m.best_of}</td><td>${m.winner ? m.score.join(" : ") : "待开赛"}</td></tr>`).join("")}</tbody></table></div>`;
@@ -1126,6 +1128,7 @@ function escapeUnicode(s) {
     .join("");
 }
 function render() {
+  stopTactical();
   document.querySelectorAll(".mainnav a").forEach((a) => {
     const on =
       a.getAttribute("href") ===

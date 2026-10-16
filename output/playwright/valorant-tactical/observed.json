@@ -1,0 +1,92 @@
+{
+  "status": "pass",
+  "checks": 38,
+  "facts": [
+    "starts paused at initial positions",
+    "ten map agents and ten matching roster entries",
+    "both complete lineups visible",
+    "demo provenance visibly distinct from actual forecasts",
+    "all local map and agent images loaded",
+    "pause freezes time",
+    "play moves agents along routes",
+    "keyboard seek reaches end",
+    "end state has correct narration",
+    "replay restarts from zero after end",
+    "switching map resets and pauses playback",
+    "Haven has three sites on its own real map",
+    "selecting roster highlights corresponding map agent",
+    "route visibility toggle hides all paths",
+    "2x speed advances playback",
+    "focus mode opens for recording",
+    "Escape exits focus mode",
+    "reset restores initial stance without autoplay",
+    "seeking updates tactical phase and positions",
+    "deepseek channel retains a paused, clearly labeled independent demo",
+    "deepseek actual forecast still available",
+    "doubao channel retains a paused, clearly labeled independent demo",
+    "doubao actual forecast still available",
+    "mimo channel retains a paused, clearly labeled independent demo",
+    "mimo actual forecast still available",
+    "codex channel retains a paused, clearly labeled independent demo",
+    "codex actual forecast still available",
+    "leaving live tab removes tactical player",
+    "returning to live tab does not leave a background animation",
+    "320px layout has no horizontal overflow",
+    "320px map retains ten agents",
+    "390px layout has no horizontal overflow",
+    "390px map retains ten agents",
+    "768px layout has no horizontal overflow",
+    "768px map retains ten agents",
+    "reduced-motion preference has no map autoplay",
+    "zero page errors",
+    "zero failing local runtime requests"
+  ],
+  "errors": [],
+  "failedLocalRequests": [],
+  "preview_url": "http://127.0.0.1:8897/",
+  "browser": "Microsoft Edge, isolated headless Playwright CLI session valorant-tactical",
+  "frontmost_browser_touched": false,
+  "screenshots": {
+    "mobile-390.png": "988eb988a6fc53d45707474d8f3c1ff1f237953e72d636b3716b79c6f6047426",
+    "ascent-desktop.png": "e3d0e3016b852b1454bef2fcd31ff99ce0c2bca81bb0445f677c0454a3e0bbf7",
+    "haven-desktop.png": "6b7b77acaef7893caf72521bc13e118b51e5c82149c06a3484d761d27d920dc2",
+    "home-desktop.png": "6128091fd62d5da86e37b56c00f732a66bb128f2162d7e6cc52d15a013b8397b",
+    "ascent-progress.png": "13cef579768a8d61c855ad23430f855cd600eec71680f2e605afb637e0e37b4b"
+  },
+  "project_tests": {
+    "javascript": 12,
+    "python": 7,
+    "status": "pass"
+  },
+  "repository_tests": {
+    "total": 111,
+    "skipped": 8,
+    "status": "pass",
+    "initial_sparse_dependency_errors": "Resolved by normally checking out the existing project test dependencies; no test assertions changed."
+  },
+  "build": "pass",
+  "public_models": {
+    "codex": {
+      "file": "gpt-6.1-sol-forecast.json",
+      "matches_local_sha256": true
+    },
+    "deepseek": {
+      "file": "deepseek-forecast.json",
+      "matches_local_sha256": true
+    },
+    "mimo": {
+      "file": "mimo-forecast.json",
+      "matches_local_sha256": true
+    },
+    "doubao": {
+      "file": "doubao-forecast.json",
+      "matches_local_sha256": true
+    }
+  },
+  "publication": "not_deployed",
+  "limits": [
+    "Same hand-authored demo shared across all channels; no model-generated coordinates or confirmed team lineups.",
+    "Real game minimaps; illustrative paths are not a physics/collision simulator.",
+    "Weapon, economy, utility and ability simulation deferred."
+  ]
+}
