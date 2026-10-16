@@ -70,7 +70,9 @@ def verify_public(checksums, browser_args=None):
         browser = p.chromium.launch(executable_path='/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge', headless=True, args=browser_args or [])
         try:
             page = browser.new_page();page.set_default_timeout(60000)
-            page.goto('https://' + DOMAIN + '/revision.json', wait_until='domcontentloaded')
+            # Edge's JSON document viewer rejects page-scope fetch even when
+            # the same normal-TLS request succeeds from the application page.
+            page.goto('https://' + DOMAIN + '/', wait_until='domcontentloaded')
             names = ['revision.json', 'index.html', 'app.js', 'engine.mjs', 'style.css', 'data/event.json']
             if 'fiction.mjs' in checksums:names.append('fiction.mjs')
             names += [name for name in checksums if name.startswith('data/') and name.endswith('.json') and name not in names]
