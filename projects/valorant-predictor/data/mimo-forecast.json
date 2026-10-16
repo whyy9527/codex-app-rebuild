@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "channel": "mimo",
+  "model_id": "mimo-v2.6-pro",
+  "kind": "llm_analysis",
+  "created_at": "2026-10-16T07:25:43.511797+00:00",
+  "source_sha256": "614bda2290a8c567e1a32de4e1cabead90a08ed42b85a62aea93e4424dceef69",
+  "data_cutoff": "2026-10-11T12:00:00Z",
+  "scope": [
+    "115576361461208325",
+    "115576361461208331"
+  ],
+  "probability_unit": "single_map",
+  "calibration": "独立模型的主观赛前判断，未校准。仅为基于冻结的 Riot 官网赛事资料所做的主观单图胜率判断，不是统计校准结果，也未运行模拟；官方资料只提供系列赛比分与胜者，未提供地图名称、地图 BP、选手数据、阵容或伤病信息，这些均不补造；两场目标对阵目前均为 TBD，此处只覆盖四强 LOUD、VIT、G2、100T 之间全部六组可能对阵，不预测 2026-10-16 比赛；BO5 系列赛胜率由程序基于单图胜率转换，p_first 不是系列赛胜率。",
+  "pairs": [
+    {
+      "teams": [
+        "LOUD",
+        "VIT"
+      ],
+      "p_first": 0.42,
+      "reason": "双方在小组赛直接交手，VIT 以 2-0 胜 LOUD，是现有资料中最直接的单图证据；不过 LOUD 此后连续以 2-0 胜 PRX、2-1 胜 NRG，状态回暖，因此给 LOUD 略低于均势的单图胜率。"
+    },
+    {
+      "teams": [
+        "VIT",
+        "G2"
+      ],
+      "p_first": 0.62,
+      "reason": "两队在 2026-10-10 直接交手，VIT 以 2-0 胜 G2，为该对阵提供了明确的近期单图层面优势依据，故 VIT 胜率略高于均势。"
+    },
+    {
+      "teams": [
+        "G2",
+        "100T"
+      ],
+      "p_first": 0.58,
+      "reason": "两队在 2026-10-08 直接交手，G2 以 2-0 胜 100T；但 100T 之后 2-1 胜 NS、2-0 胜 NRG，表现有提升，故 G2 仅小幅领先。"
+    },
+    {
+      "teams": [
+        "LOUD",
+        "G2"
+      ],
+      "p_first": 0.55,
+      "reason": "两队无直接交手记录。LOUD 淘汰赛 2-0 胜 PRX、2-1 胜 NRG；G2 2-0 胜 100T、2-1 胜 T1，但 0-2 负于 VIT。综合近期淘汰赛结果，LOUD 略占优但差距很小。"
+    },
+    {
+      "teams": [
+        "LOUD",
+        "100T"
+      ],
+      "p_first": 0.56,
+      "reason": "两队无直接交手记录。LOUD 以 2-0 胜 PRX、2-1 胜 NRG；100T 以 2-1 胜 NS、2-0 胜 NRG（间接参照均为对 NRG，LOUD 仅 2-1 而 100T 为 2-0），但 LOUD 另有 2-0 胜 PRX 的强胜场，整体给 LOUD 略优。"
+    },
+    {
+      "teams": [
+        "VIT",
+        "100T"
+      ],
+      "p_first": 0.58,
+      "reason": "两队无直接交手记录。VIT 以 2-0 直接击败 LOUD 与 G2，淘汰赛 2-1 胜 NS、2-0 胜 G2；100T 虽 2-0 胜 NRG，但曾 0-2 负于 G2，而 VIT 恰以 2-0 胜 G2，故 VIT 略优。"
+    }
+  ],
+  "runtime_attestation": {
+    "provider": "mimo",
+    "model": "mimo-v2.6-pro",
+    "catalog_name": null,
+    "model_mapping_source": "https://api.xiaomimimo.com/v1/models"
+  }
+}

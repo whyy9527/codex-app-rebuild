@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-10-15",
+  "checked_at": "2026-10-16",
   "models": [
     {
       "channel": "codex",
@@ -18,8 +18,7 @@
       "channels": [
         "gemini",
         "qwen",
-        "glm",
-        "mimo"
+        "glm"
       ],
       "status": "not_run",
       "reason": "No matching authenticated channel has yet been verified"
@@ -29,13 +28,21 @@
       "model": "deepseek-flash",
       "status": "available",
       "evidence": "deepseek-forecast.json",
-      "verification": "Provider response model deepseek-flash and provider catalog name DeepSeek-V4.1-Flash"
+      "verification": "2026-10-16 provider response deepseek-flash; six pairs validated against frozen event"
     },
     {
       "channel": "doubao",
       "model": "doubao-seed-2-1-pro-260915",
-      "status": "unavailable",
-      "reason": "Provider returned ModelNotOpen; model service is not activated for the existing account. No output accepted."
+      "status": "available",
+      "evidence": "doubao-forecast.json",
+      "verification": "2026-10-16 service opened with user confirmation; official response identity and complete six-pair prediction verified"
+    },
+    {
+      "channel": "mimo",
+      "model": "mimo-v2.6-pro",
+      "status": "available",
+      "evidence": "mimo-forecast.json",
+      "verification": "2026-10-16 official API response model; complete six-pair JSON validated"
     }
   ]
 }

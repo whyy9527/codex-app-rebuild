@@ -2,10 +2,10 @@
   "schema_version": 1,
   "kind": "fiction",
   "channel": "deepseek",
-  "created_at": "2026-10-15T15:17:32.526293+00:00",
+  "created_at": "2026-10-16T07:29:31.729731+00:00",
   "label": "AI 虚构模拟 · 非真实比赛、非选手能力评估",
   "event_source_sha256": "614bda2290a8c567e1a32de4e1cabead90a08ed42b85a62aea93e4424dceef69",
-  "forecast_sha256": "2ace0e1cd7b3834f89de520660f8e3e313551429de5e59429746b9d1fcf97fbd",
+  "forecast_sha256": "a8e55142f584f3e86862e7223d18778f3281c4bced64440b99bd47b106ac1148",
   "context_sha256": "eed853d90780c31933801c115b43d3f1c19787ae538da6f08224c77418faa70b",
   "runtime_attestation": {
     "provider": "deepseek",
@@ -13,32 +13,32 @@
     "catalog_name": "DeepSeek-V4.1-Flash",
     "batches": [
       {
-        "batch": "a",
-        "response_sha256": "04e0f7904529f43379c79155c6279d6c3bb759733bea681e0281672d4d06b2ed",
+        "batch": "LOUD_G2",
+        "validated_sha256": "2e45c9f35011b8a7ae578af38ce7ab97b352f551fa6daffe402e5f0ee28ce614",
         "case_ids": [
           "LOUD_G2_0",
           "LOUD_G2_1"
         ]
       },
       {
-        "batch": "b",
-        "response_sha256": "42af5482b6c0eb41c402e619aedf8b11aa687203206a73b25abd3ad9ccfae864",
+        "batch": "LOUD_100T",
+        "validated_sha256": "4c33fbeae7bfd6c84fdf9066695c223f5aaf9003f5cd8f3e22a3c73f25c8f140",
         "case_ids": [
           "LOUD_100T_0",
           "LOUD_100T_1"
         ]
       },
       {
-        "batch": "c",
-        "response_sha256": "15a23944017f444519669ab002141b391693eb567fe6811d988d4fa932f6d8bc",
+        "batch": "VIT_G2",
+        "validated_sha256": "05a7536521b74a4c34a6663435524cc0f3029f1973270fb623df48762da18cc4",
         "case_ids": [
           "VIT_G2_0",
           "VIT_G2_1"
         ]
       },
       {
-        "batch": "d",
-        "response_sha256": "403a83e1997db777edca1b3a6a688fef24377f33a49156cc09aaa87ef9b87d4c",
+        "batch": "VIT_100T",
+        "validated_sha256": "666c54e0e326b37e5802b6d0fe46a978210839f4df8fab4eb63de2843c39e75d",
         "case_ids": [
           "VIT_100T_0",
           "VIT_100T_1"
@@ -97,8 +97,8 @@
           "winner": "G2"
         }
       },
-      "headline": "虚构回看：G2连下三图，3比1逆转VIT",
-      "summary": "虚拟赛前回看，非真实战报或能力评估。VIT先拿首图取得领先，随后G2连赢三图完成逆转，系列赛定格在3比1。BP、逐图比分、MVP与选手评分均为虚构创作，仅作叙事演练，页面会醒目标注为虚构内容。",
+      "headline": "10月17日虚构回看：VIT 1比3 G2，G2连下三图",
+      "summary": "本场为虚构赛前回看。七图池内BP后，VIT先在图一以13比9拿下，但G2随后在图二至图四连续取胜，最终系列赛G2以3比1击败VIT。所有比分、MVP与评分均为创作内容，不构成真实战报。",
       "bp": {
         "bans": [
           "Abyss",
@@ -108,73 +108,73 @@
           "Ascent",
           "Haven",
           "Lotus",
-          "Sunset",
-          "Split"
+          "Split",
+          "Sunset"
         ],
-        "reason": "虚构设定：双方先各禁一张风格不合的地图，随后按节奏偏好依次选择控图与转点空间较大的地图，最后一张留作未打的备选。"
+        "reason": "虚构BP：两队先禁Abyss与Summit，随后按Ascent、Haven、Lotus、Split、Sunset顺序展开；此顺序仅服务本文创作，并非官方赛事BP规则。"
       },
       "maps": {
         "0": {
-          "story": "虚构：Ascent首图VIT以默认控图起步，中路与侧翼轮转拉出包点空间，多次夹击得手；G2靠守点回防拖入残局，却在拆包时限上被压制，VIT以13比9先下一城。",
+          "story": "虚构图一在Ascent展开。VIT靠中路夹击与入口烟墙反复压缩防守，Derke在侧翼连续首杀建立人数优势；G2试图转点拖延，但VIT在包点残局更稳，最终以13比9拿下该图。",
           "losing_rounds": 9,
           "mvp": "VIT:Derke"
         },
         "1": {
-          "story": "虚构：Haven上G2改用更快的入口烟与闪光衔接，中路转点制造人数差；VIT多次靠回防把局面拖进残局，但先手枪线被对手打开，G2以13比10拿下该图。",
-          "losing_rounds": 10,
+          "story": "虚构图二在Haven。G2前压入口拿到早期信息，jawgemo在中路与侧翼的交叉火力中频频完成多杀；VIT多次转点却被包点回防截住，G2以13比7扳回一图。",
+          "losing_rounds": 7,
           "mvp": "G2:jawgemo"
         },
         "2": {
-          "story": "虚构：Lotus上G2延续主动，利用转点与包点夹击不断拉开地图控制；VIT的守点轮换被牵制，多次被迫在劣势残局中应战，G2以13比7再胜一图。",
-          "losing_rounds": 7,
-          "mvp": "G2:trent"
+          "story": "虚构图三来到Lotus。VIT一度用快攻入口与包点夹击追近，但G2靠中路控制与侧翼反清稳住经济；leaf在残局中的道具衔接帮助队伍以13比10再下一城。",
+          "losing_rounds": 10,
+          "mvp": "G2:leaf"
         },
         "3": {
-          "story": "虚构：Sunset终结图上VIT加强侧翼前压取得主动，G2则凭入口烟与残局配合慢慢收回节奏；关键局包点混战拖到时间耗尽，G2以13比11收官。",
-          "losing_rounds": 11,
-          "mvp": "G2:valyn"
+          "story": "虚构图四在Split。G2用中路施压牵制轮转，babybay在入口对枪与包点补枪中连续得分；VIT的转点被侧翼埋伏打断，G2以13比8结束该图并完成系列赛。",
+          "losing_rounds": 8,
+          "mvp": "G2:babybay"
         }
       },
       "players": {
         "VIT:Derke": {
-          "rating": 6.8,
-          "comment": "虚构：首图火力最亮，后续被对手重点针对，仍有多处先手打开局面。"
+          "rating": 7.8,
+          "comment": "虚构表现：图一多次侧翼首杀，后续被针对但仍有关键残局。"
         },
         "VIT:Chronicle": {
-          "rating": 6.2,
-          "comment": "虚构：中期调度与转点节奏稳，个别残局处理稍显仓促。"
+          "rating": 7.4,
+          "comment": "虚构表现：中路调度清晰，图一包点回防有效，后三图受压。"
         },
         "VIT:Jamppi": {
-          "rating": 5.9,
-          "comment": "虚构：守点回防积极，远点对枪成功率起伏较大。"
+          "rating": 7.1,
+          "comment": "虚构表现：入口对枪有收获，转点衔接一般，图三残局失手。"
         },
         "VIT:Sayonara": {
-          "rating": 5.6,
-          "comment": "虚构：包点夹击执行到位，但被对手先手压制次数偏多。"
+          "rating": 6.9,
+          "comment": "虚构表现：道具覆盖到位，但面对G2前压时信息收集不足。"
         },
         "VIT:PROFEK": {
-          "rating": 5.4,
-          "comment": "虚构：道具与烟位封锁有亮点，残局决断略显保守。"
+          "rating": 6.7,
+          "comment": "虚构表现：防守端有几次多杀，进攻端未能持续打开包点。"
         },
         "G2:jawgemo": {
-          "rating": 8.1,
-          "comment": "虚构：次图起势关键，入口突破与残局收割贡献突出。"
+          "rating": 8.6,
+          "comment": "虚构表现：图二起节奏核心，入口突破与中路多杀带动连胜。"
         },
         "G2:leaf": {
-          "rating": 7.6,
-          "comment": "虚构：中路控图稳定，多次为队伍争取转点时间。"
+          "rating": 8.2,
+          "comment": "虚构表现：残局处理稳健，图三道具衔接帮助队伍拿下关键图。"
         },
         "G2:valyn": {
-          "rating": 7.9,
-          "comment": "虚构：终结图残局处理冷静，收官回合表现亮眼。"
+          "rating": 8.0,
+          "comment": "虚构表现：指挥调度让转点更顺，侧翼反清多次奏效。"
         },
         "G2:babybay": {
-          "rating": 7.4,
-          "comment": "虚构：侧翼火力持续输出，为队友创造包点空间。"
+          "rating": 8.4,
+          "comment": "虚构表现：图四入口对枪强势，包点补枪效率高，收下赛点图。"
         },
         "G2:trent": {
-          "rating": 8.0,
-          "comment": "虚构：第三图节奏掌控出色，夹击与转点衔接顺畅。"
+          "rating": 7.9,
+          "comment": "虚构表现：防守端信息给足，包点残局与回防配合稳定。"
         }
       }
     },
@@ -235,89 +235,89 @@
           "winner": "LOUD"
         }
       },
-      "headline": "虚构回看：LOUD决胜图力克G2，3比2险胜",
-      "summary": "虚拟赛前回看，非真实战报或能力评估。系列赛五图拉锯，LOUD先取首图，G2两度追平，决胜图LOUD顶住压力收下3比2。BP、逐图比分、MVP与评分均为虚构创作，页面会统一醒目标注。",
+      "headline": "10月18日虚构回看：LOUD 3比2 G2，决胜图险胜",
+      "summary": "本场为虚构赛前回看。LOUD与G2在七图池内完成BP，五图全部实际模拟：LOUD先赢图一，G2两次扳平，LOUD在图五顶住压力，最终系列赛LOUD以3比2取胜。所有比分、MVP与评分均为创作内容，不构成真实战报。",
       "bp": {
         "bans": [
-          "Abyss",
-          "Ascent"
+          "Ascent",
+          "Sunset"
         ],
         "order": [
+          "Abyss",
           "Haven",
           "Lotus",
           "Split",
-          "Summit",
-          "Sunset"
+          "Summit"
         ],
-        "reason": "虚构设定：双方各禁一张偏慢节奏地图，随后按队伍习惯依次排列五图，优先打入攻防转换频繁的地图，把收官图留给残局处理更稳的一方。"
+        "reason": "虚构BP：双方先禁Ascent与Sunset，随后依次选择Abyss、Haven、Lotus、Split、Summit；该流程为本文虚构，不代表官方BP规则或真实选图。"
       },
       "maps": {
         "0": {
-          "story": "虚构：Haven首图LOUD以慢推控图为主，中路与侧翼轮转反复拉扯，包点夹击屡次奏效；G2守点回防虽多次拖入残局，仍被对手先手枪线压制，LOUD以13比8先下一图。",
+          "story": "虚构图一在Abyss。LOUD用入口快攻与中路夹击抢先建立优势，Darker在侧翼连续首杀并守住包点；G2多次转点未果，LOUD以13比8先下一图。",
           "losing_rounds": 8,
-          "mvp": "LOUD:lukxo"
-        },
-        "1": {
-          "story": "虚构：Lotus上G2提高进攻速度，入口烟与闪光衔接打开缺口，转点制造人数差；LOUD靠回防与残局追回节奏，但关键对枪被对手先手打开，G2以13比10扳回。",
-          "losing_rounds": 10,
-          "mvp": "G2:babybay"
-        },
-        "2": {
-          "story": "虚构：Split上LOUD加强侧翼前压与中路争夺，压缩对手转点路线；G2多次尝试包点强攻被道具封锁，残局处理也稍逊，LOUD以13比9重新取得系列赛领先。",
-          "losing_rounds": 9,
           "mvp": "LOUD:Darker"
         },
+        "1": {
+          "story": "虚构图二在Haven。G2调整前压节奏，jawgemo在中路与包点补枪中连续得分；LOUD的入口推进被侧翼反清打断，G2以13比9扳平大比分。",
+          "losing_rounds": 9,
+          "mvp": "G2:jawgemo"
+        },
+        "2": {
+          "story": "虚构图三在Lotus。双方围绕中路控制反复交换道具，lukxo在残局中多次完成关键击杀；LOUD靠转点拉扯包点防线，以13比11重新领先。",
+          "losing_rounds": 11,
+          "mvp": "LOUD:lukxo"
+        },
         "3": {
-          "story": "虚构：Summit上G2的默认控图极为耐心，入口道具与侧翼包夹接连打穿防线；LOUD守点轮换被牵制，多次在劣势局面下被迫接团，G2以13比5大比分拿下。",
-          "losing_rounds": 5,
-          "mvp": "G2:leaf"
+          "story": "虚构图四在Split。G2通过中路施压与侧翼夹击打乱LOUD轮转，valyn的调度让包点回防更及时；G2以13比10再次追平系列赛。",
+          "losing_rounds": 10,
+          "mvp": "G2:valyn"
         },
         "4": {
-          "story": "虚构：Sunset决胜图双方拉锯，LOUD靠中路控图与转点夹击取得主动，G2则以残局回敬；末段包点混战中LOUD拆包时限把握更好，以13比11收下比赛。",
-          "losing_rounds": 11,
+          "story": "虚构决胜图在Summit。LOUD稳住经济，erde在入口对枪与包点残局中连续得分；G2试图转点拖延，但LOUD以13比9收下决胜图。",
+          "losing_rounds": 9,
           "mvp": "LOUD:erde"
         }
       },
       "players": {
         "LOUD:lukxo": {
-          "rating": 7.9,
-          "comment": "虚构：首图控图与残局处理稳健，多次先手打开包点突破口。"
+          "rating": 8.8,
+          "comment": "虚构表现：图三残局多次关键击杀，决胜图信息与补枪稳定。"
         },
         "LOUD:DaviH": {
-          "rating": 7.3,
-          "comment": "虚构：道具封锁与守点轮换到位，节奏衔接较为顺畅。"
+          "rating": 8.1,
+          "comment": "虚构表现：图一首杀与侧翼压制有效，后续对枪略有起伏。"
         },
         "LOUD:Darker": {
-          "rating": 8.2,
-          "comment": "虚构：第三图节奏掌控出色，转点夹击贡献关键火力。"
+          "rating": 8.5,
+          "comment": "虚构表现：图一入口突破强势，包点残局帮助队伍先声夺人。"
         },
         "LOUD:erde": {
-          "rating": 8.0,
-          "comment": "虚构：决胜图残局冷静，收官阶段拆包时限把握精准。"
+          "rating": 8.7,
+          "comment": "虚构表现：决胜图入口对枪与残局连续得分，收下系列赛。"
         },
         "LOUD:tkzin": {
-          "rating": 7.1,
-          "comment": "虚构：侧翼输出稳定，包点混战中生存率较高。"
+          "rating": 7.9,
+          "comment": "虚构表现：道具覆盖与中路协防到位，图二受压后及时调整。"
         },
         "G2:jawgemo": {
-          "rating": 7.0,
-          "comment": "虚构：入口突破有亮点，个别残局决断稍显仓促。"
+          "rating": 8.3,
+          "comment": "虚构表现：图二起突破节奏明显，多次中路多杀扳平比分。"
         },
         "G2:leaf": {
           "rating": 7.8,
-          "comment": "虚构：第四图节奏掌控出色，包夹与道具衔接顺畅。"
+          "comment": "虚构表现：残局处理有亮点，但决胜图包点回防被LOUD突破。"
         },
         "G2:valyn": {
-          "rating": 7.2,
-          "comment": "虚构：中路控图稳定，多次为队伍争取转点时间。"
+          "rating": 8.2,
+          "comment": "虚构表现：图四调度出色，侧翼反清与回防配合帮助追平。"
         },
         "G2:babybay": {
           "rating": 7.6,
-          "comment": "虚构：次图火力最亮，侧翼输出持续为队友创造空间。"
+          "comment": "虚构表现：入口对枪有收获，面对LOUD快攻时失误偏多。"
         },
         "G2:trent": {
-          "rating": 6.9,
-          "comment": "虚构：守点回防积极，远点对枪成功率起伏较大。"
+          "rating": 7.7,
+          "comment": "虚构表现：防守信息给足，图三图五残局未能顶住压力。"
         }
       }
     },
@@ -371,11 +371,11 @@
           "winner": "100T"
         }
       },
-      "headline": "虚构回看：100T 让一追三击败 VIT",
-      "summary": "虚构赛前回看：VIT 先取 Ascent，但 100T 随后在 Haven、Lotus 与 Sunset 连续取胜，最终以 3比1 完成逆转。所有 BP、比分、MVP 与评分均为模拟创作。",
+      "headline": "100T 让一追三击败 VIT：虚构四图回看",
+      "summary": "本场为虚构模拟回看。VIT 先在首图靠入口道具与侧翼切入取得主动，但 100T 随后在两支哨位体系下连续三图完成压制，最终以 3 比 1 结束系列赛。所有 BP、回合比分、MVP 与评分均为创作内容，不代表真实战报或能力评估。",
       "bp": {
         "bans": [
-          "Split",
+          "Abyss",
           "Summit"
         ],
         "order": [
@@ -383,72 +383,72 @@
           "Haven",
           "Lotus",
           "Sunset",
-          "Abyss"
+          "Split"
         ],
-        "reason": "虚构 BP：VIT 与 100T 选择禁掉 Split 和 Summit，随后按 Ascent、Haven、Lotus、Sunset、Abyss 的顺序展开；该顺序仅为模拟创作，并非官方赛事规则。"
+        "reason": "虚构禁选先移走 100T 较擅长的 Abyss 与双方都不愿首抢的 Summit，把 Ascent 放首位试探对手体系，随后依次排入 Haven、Lotus、Sunset，末位留 Split 作为未必要进行的候补图。"
       },
       "maps": {
         "0": {
-          "story": "VIT 在 Ascent 凭借中路控图与包点回防拿下首图。Derke 多次从侧翼切入撕开防线，Chronicle 在残局中稳住节奏，最终以 13比8 结束该图。",
-          "losing_rounds": 8,
+          "story": "虚构首图 Ascent。VIT 用入口道具封锁配合双人夹击抢下主动，Chronicle 在中路持续换线牵制，Derke 多次从侧翼切入包点收下残局。100T 靠后置防守追近差距，但 VIT 守住转点节奏，此图 13比9 由 VIT 拿下。",
+          "losing_rounds": 9,
           "mvp": "VIT:Derke"
         },
         "1": {
-          "story": "100T 在 Haven 通过转点拉扯与侧翼夹击打乱 VIT 的防守轮转。Cryo 持续输出关键击杀，Asuna 在入口突破中打开局面，该图以 13比9 由 100T 收下。",
-          "losing_rounds": 9,
+          "story": "虚构第二图 Haven。100T 改用三人抱团快攻，Cryo 的长枪在入口对枪中不断打开局面，Asuna 从侧翼绕后切断轮转。VIT 试图用道具拖延包点争夺，但中期连续丢掉残局处理，此图 13比8 由 100T 收下。",
+          "losing_rounds": 8,
           "mvp": "100T:Cryo"
         },
         "2": {
-          "story": "Lotus 图上 100T 的包点进攻更为流畅，vora 与 bang 的道具配合压缩 VIT 的防守空间。VIT 多次尝试前压但未能逆转，100T 以 13比7 再取一图。",
-          "losing_rounds": 7,
-          "mvp": "100T:Asuna"
-        },
-        "3": {
-          "story": "Sunset 成为系列赛终点，100T 在入口争夺与转点决策上更胜一筹。vora 的侧翼偷袭与 Timotino 的残局处理锁定优势，最终 100T 以 13比10 赢得该图并结束系列赛。",
+          "story": "虚构第三图 Lotus。双方在转点与包点争夺上反复拉锯，Timotino 的烟位配合帮助 100T 抢下关键区域，vora 在侧翼多次先行换人。VIT 靠 Jamppi 的中路狙击艰难追分，但 100T 在后段守住两次进攻，此图 13比10 由 100T 收下。",
           "losing_rounds": 10,
           "mvp": "100T:vora"
+        },
+        "3": {
+          "story": "虚构第四图 Sunset。100T 开局便用双人前压压缩 VIT 的入口空间，bang 的中路支援几次及时补枪。VIT 虽由 Sayonara 与 PROFEK 在包点内做出防守换人，仍难以阻止对手的转点节奏，最终 13比7 结束本图，系列赛总比分 3 比 1。",
+          "losing_rounds": 7,
+          "mvp": "100T:bang"
         }
       },
       "players": {
         "VIT:Derke": {
-          "rating": 7.8,
-          "comment": "本场虚构表现：突破与侧翼切入稳定，首图多次打开局面。"
+          "rating": 7.4,
+          "comment": "首图多次侧翼切入与残局收尾，是 VIT 相对稳定的火力点。"
         },
         "VIT:Chronicle": {
-          "rating": 6.9,
-          "comment": "残局处理与中路控图有亮点，但整体火力被对手压制。"
+          "rating": 6.5,
+          "comment": "中路换线与信息拉扯做得不错，但后三图对枪效率明显下滑。"
         },
         "VIT:Jamppi": {
           "rating": 6.2,
-          "comment": "道具覆盖尚可，入口对枪与转点衔接多次吃亏。"
+          "comment": "狙击在 Lotus 有若干关键击杀，整体节奏被对手前压打乱。"
         },
         "VIT:Sayonara": {
           "rating": 5.8,
-          "comment": "包点防守有几次成功拖延，后续回合影响力有限。"
+          "comment": "包点内防守换人有亮点，转点判断多次慢了一拍。"
         },
         "VIT:PROFEK": {
           "rating": 5.5,
-          "comment": "指挥与调度尝试改变节奏，未能持续破解对手转点。"
+          "comment": "道具封锁尚可，残局处理与队友衔接不够顺畅。"
         },
         "100T:Cryo": {
-          "rating": 8.6,
-          "comment": "本场虚构表现：持续输出关键击杀，是 100T 反攻的核心火力。"
+          "rating": 8.2,
+          "comment": "Haven 入口对枪连续打开局面，是本次逆转的起点。"
         },
         "100T:Asuna": {
-          "rating": 8.2,
-          "comment": "入口突破与侧翼夹击效率高，多次为队伍打开包点。"
+          "rating": 7.9,
+          "comment": "侧翼绕后与切断轮转稳定，多次打乱对手包点节奏。"
         },
         "100T:Timotino": {
-          "rating": 7.4,
-          "comment": "残局判断稳健，道具与枪线配合帮助队伍稳住优势。"
+          "rating": 7.5,
+          "comment": "烟位布置为队伍抢下关键区域，进点掩护质量高。"
         },
         "100T:vora": {
-          "rating": 7.9,
-          "comment": "转点与侧翼偷袭屡次奏效，关键回合贡献突出。"
+          "rating": 7.7,
+          "comment": "侧翼先行换人效率突出，Lotus 关键回合贡献明显。"
         },
         "100T:bang": {
-          "rating": 7.1,
-          "comment": "道具封锁与包点回防可靠，为队友创造输出空间。"
+          "rating": 7.6,
+          "comment": "中路支援及时，Sunset 收尾阶段补枪干净利落。"
         }
       }
     },
@@ -509,89 +509,89 @@
           "winner": "LOUD"
         }
       },
-      "headline": "虚构回看：LOUD 五图鏖战险胜 100T",
-      "summary": "虚构赛前回看：LOUD 与 100T 打满五图，LOUD 在 Ascent、Lotus 与 Sunset 取胜，100T 则拿下 Haven 与 Summit，最终 LOUD 以 3比2 赢得系列赛。所有内容均为模拟创作。",
+      "headline": "LOUD 决胜图险胜 100T：虚构五图回看",
+      "summary": "本场为虚构模拟回看。双方在图池上交替占优，LOUD 在决胜图 Summit 上靠更稳的包点残局处理取得优势，最终以 3 比 2 结束系列赛。所有 BP、回合比分、MVP 与评分均为创作内容，不代表真实战报或能力评估。",
       "bp": {
         "bans": [
-          "Abyss",
-          "Split"
+          "Haven",
+          "Sunset"
         ],
         "order": [
           "Ascent",
-          "Haven",
           "Lotus",
-          "Summit",
-          "Sunset"
+          "Split",
+          "Abyss",
+          "Summit"
         ],
-        "reason": "虚构 BP：LOUD 与 100T 禁掉 Abyss 和 Split，模拟顺序为 Ascent、Haven、Lotus、Summit、Sunset；所有地图选取均为虚构设定。"
+        "reason": "虚构禁选先移除双方都较偏重的 Haven 与 Sunset，把 Ascent 列为首图；中段安排 Lotus、Split 与 Abyss 试探体系，决胜权留给 Summit，五张排定图全部进入模拟。"
       },
       "maps": {
         "0": {
-          "story": "LOUD 在 Ascent 依靠中路控图与包点转点取得主动，lukxo 的调度让进攻层次清晰。100T 多次回防成功但仍被拉开，LOUD 以 13比10 赢下首图。",
-          "losing_rounds": 10,
-          "mvp": "LOUD:lukxo"
+          "story": "虚构首图 Ascent。LOUD 用入口双人道具封锁配合中路夹击抢下主动，Darker 在入口对枪中连续拿到人头，tkzin 从侧翼切入包点补足伤害。100T 后段靠防守换人追近，但 LOUD 守住转点，以 13比9 先下此图。",
+          "losing_rounds": 9,
+          "mvp": "LOUD:Darker"
         },
         "1": {
-          "story": "Haven 图上 100T 的侧翼夹击与入口突破奏效，Asuna 连续打开局面。LOUD 的防守轮转被拉扯，100T 以 13比9 扳回一图。",
-          "losing_rounds": 9,
-          "mvp": "100T:Asuna"
-        },
-        "2": {
-          "story": "Lotus 成为拉锯战，LOUD 通过转点与包点道具配合逐步积累优势。DaviH 在残局中多次稳住局面，最终 LOUD 以 13比11 再下一图。",
+          "story": "虚构第二图 Lotus。100T 改为先控中路再分推，Cryo 的长枪在包点入口持续压制，bang 负责后置保护。LOUD 用快速转点多次化解进攻，但关键残局被对手拿下，此图 13比11 由 100T 收下。",
           "losing_rounds": 11,
-          "mvp": "LOUD:DaviH"
-        },
-        "3": {
-          "story": "Summit 图上 100T 的防守布局更为紧凑，Cryo 的连续多杀打乱 LOUD 的进攻节奏。LOUD 尝试侧翼突破未果，100T 以 13比8 将系列赛拖入决胜图。",
-          "losing_rounds": 8,
           "mvp": "100T:Cryo"
         },
+        "2": {
+          "story": "虚构第三图 Split。LOUD 主动提速，lukxo 在中路与包点之间频繁游走，几次单人开团为队伍创造人数优势；DaviH 的道具封锁让 100T 难以组织反打。100T 尝试侧翼偷袭挽回局面，但 LOUD 稳住防守，以 13比8 收下此图。",
+          "losing_rounds": 8,
+          "mvp": "LOUD:lukxo"
+        },
+        "3": {
+          "story": "虚构第四图 Abyss。100T 打出本场最流畅的一段进攻，Asuna 在入口对枪与转点上接连得手，Timotino 的烟位掩护让队伍顺利进点。LOUD 的道具衔接出现空档，包点内多次被打成一对一，此图 13比6 由 100T 收下。",
+          "losing_rounds": 6,
+          "mvp": "100T:Asuna"
+        },
         "4": {
-          "story": "决胜图 Sunset，LOUD 在入口争夺与转点决策上全面占优，Darker 的侧翼切入持续制造压力。100T 未能找到稳定回防方案，LOUD 以 13比7 赢下该图并取得系列赛胜利。",
-          "losing_rounds": 7,
-          "mvp": "LOUD:Darker"
+          "story": "虚构决胜图 Summit。双方在包点与侧翼反复交换人数，erde 在残局中两次单人守住包点，lukxo 的转点判断帮助 LOUD 抢回节奏。100T 靠 Cryo 的长枪紧咬比分，但 LOUD 最终以 13比10 结束此图，系列赛总比分 3 比 2。",
+          "losing_rounds": 10,
+          "mvp": "LOUD:erde"
         }
       },
       "players": {
         "LOUD:lukxo": {
-          "rating": 8.5,
-          "comment": "本场虚构表现：首图与决胜图节奏掌控出色，多次赢下关键对枪。"
+          "rating": 8.3,
+          "comment": "中路游走与转点判断是 LOUD 进攻的主要发起点。"
         },
         "LOUD:DaviH": {
-          "rating": 7.8,
-          "comment": "包点进攻与残局处理稳定，中段为队伍稳住局面。"
+          "rating": 7.6,
+          "comment": "道具封锁扎实，多次为队伍创造干净的进点空间。"
         },
         "LOUD:Darker": {
-          "rating": 8.3,
-          "comment": "决胜图侧翼切入果断，持续输出帮助 LOUD 拿下系列赛。"
+          "rating": 8.0,
+          "comment": "首图入口对枪压制力强，多回合先行打开人数差。"
         },
         "LOUD:erde": {
-          "rating": 7.0,
-          "comment": "道具与入口配合可靠，防守轮转中规中矩。"
+          "rating": 8.1,
+          "comment": "决胜图残局单人守包，扛住了最紧的几回合。"
         },
         "LOUD:tkzin": {
-          "rating": 6.8,
-          "comment": "转点支援及时，但部分回合对枪处于下风。"
+          "rating": 7.4,
+          "comment": "侧翼切入补伤害稳定，与决斗位配合较为顺畅。"
         },
         "100T:Cryo": {
-          "rating": 8.4,
-          "comment": "本场虚构表现：多次在劣势回合打出多杀，是 100T 追分的关键。"
+          "rating": 7.9,
+          "comment": "Lotus 与决胜图长枪持续输出，是追分的关键点。"
         },
         "100T:Asuna": {
-          "rating": 7.9,
-          "comment": "入口突破与侧翼夹击有效，帮助 100T 拿下第二图。"
+          "rating": 7.8,
+          "comment": "Abyss 入口对枪与转点效率突出，单图存在感强。"
         },
         "100T:Timotino": {
           "rating": 7.2,
-          "comment": "残局判断不错，道具使用为队伍创造空间。"
+          "comment": "烟位掩护到位，但决胜图道具节奏多次被打断。"
         },
         "100T:vora": {
-          "rating": 7.0,
-          "comment": "转点与包点防守有亮点，稳定性稍显不足。"
+          "rating": 6.9,
+          "comment": "侧翼尝试积极，几次被对手反读而损失人数。"
         },
         "100T:bang": {
-          "rating": 6.9,
-          "comment": "道具封锁与回防支援到位，但火力输出不够持续。"
+          "rating": 7.1,
+          "comment": "后置保护稳健，进攻端参与度相对有限。"
         }
       }
     },
@@ -645,8 +645,8 @@
           "winner": "G2"
         }
       },
-      "headline": "虚构回看：LOUD 先下一图，G2 随后赢下三图以 3比1 取胜",
-      "summary": "本场为虚构赛前回看，LOUD 在首图 Ascent 先下一城，G2 随后在 Haven、Lotus 与 Split 赢下三图，最终以 3比1 完成逆转。双方围绕包点入口、中路控制和侧翼转点展开攻防，所有 BP、回合比分与选手评分均为虚构推演，与真实战报或能力评估无关。",
+      "headline": "虚构回看：G2连下三图逆转LOUD",
+      "summary": "本文为虚构赛前回看，非真实战报。虚构系列赛中LOUD先取首图，随后G2连下三图，以三比一完成逆转。BP、逐图回合比分、MVP与选手评分均为创作内容，不代表任何真实比赛或能力评估。",
       "bp": {
         "bans": [
           "Abyss",
@@ -659,70 +659,70 @@
           "Split",
           "Sunset"
         ],
-        "reason": "虚构 BP 推演：双方先禁 Abyss 与 Summit，再依次选择 Ascent、Haven、Lotus、Split 与 Sunset。该顺序只服务于本次虚构回看，并非官方赛事禁选规则。"
+        "reason": "虚构BP思路：双方先移除结构偏难控的Abyss与Summit，再把Ascent、Haven放在前两图试探开局节奏，Lotus与Split用于中段拉扯，Sunset留作后手。"
       },
       "maps": {
         "0": {
-          "story": "虚构图一在 Ascent 展开，LOUD 围绕包点入口做前置争夺，用中路夹击与侧翼拉扯逼出 G2 的防守轮转。G2 依靠道具反清和转点回收数次打回人数，但 LOUD 在残局处理与守包站位上更稳，最终以 13比9 拿下这张图。",
+          "story": "虚构图中，LOUD防守端用双人夹击卡住包点入口，中路前压换来人数优势，转点后由Darker收下残局，13比9先取一图。",
           "losing_rounds": 9,
           "mvp": "LOUD:Darker"
         },
         "1": {
-          "story": "虚构图二转到 Haven，G2 在入口交火中更早拿到人数优势，攻守转换时以快速转点牵制 LOUD 的回防。LOUD 尝试用侧翼前压和包点回缩延缓节奏，但 G2 的道具封锁与残局补枪更完整，最终 13比7 扳回一图。",
-          "losing_rounds": 7,
+          "story": "虚构图中，G2进攻端以烟雾切开中路，侧翼快打反复撕开LOUD站位，包点内二打二由jawgemo连收两人，13比8扳回一图。",
+          "losing_rounds": 8,
           "mvp": "G2:jawgemo"
         },
         "2": {
-          "story": "虚构图三来到 Lotus，G2 持续用中路控制压缩 LOUD 的转点空间，包点入口的闪光与烟雾衔接顺畅。LOUD 多次调整防守站位仍难挡对手的分推与夹击，G2 以 13比5 再下一城，把系列赛优势扩大。",
-          "losing_rounds": 5,
+          "story": "虚构图中，双方在入口大量互换道具，G2靠转点拉扯出空档，leaf在残局用位移接连击杀，13比10再下一图。",
+          "losing_rounds": 10,
           "mvp": "G2:leaf"
         },
         "3": {
-          "story": "虚构图四在 Split 进行，G2 的侧翼包夹和转点速度让 LOUD 的回防频频迟到，入口交火也占得上风。LOUD 靠守包与残局互换追回若干回合，但 G2 在关键枪线上更稳定，最终 13比8 结束此图，系列赛比分来到 3比1。",
-          "losing_rounds": 8,
+          "story": "虚构图中，G2防守时凭中路信息抢先补位，valyn在包点外连续首杀，LOUD强攻入口被反清，13比7结束系列赛。",
+          "losing_rounds": 7,
           "mvp": "G2:valyn"
         }
       },
       "players": {
         "LOUD:lukxo": {
-          "rating": 5.8,
-          "comment": "虚构评语：图一首图残局处理稳健，后续图被对手转点牵制，整体起伏明显。"
+          "rating": 6.3,
+          "comment": "虚构评语：首图入口道具布置尚可，后续被针对后转点节奏偏慢。"
         },
         "LOUD:DaviH": {
-          "rating": 5.2,
-          "comment": "虚构评语：入口交火有亮点，但面对 G2 的分推时常被迫回防，影响力有限。"
+          "rating": 6.9,
+          "comment": "虚构评语：中路对枪有亮点，残局两次收尾帮助队伍拿下首图。"
         },
         "LOUD:Darker": {
-          "rating": 6.5,
-          "comment": "虚构评语：图一多次在包点守包中拿到关键击杀，是 LOUD 唯一胜图的重要支点。"
+          "rating": 7.6,
+          "comment": "虚构评语：首图残局表现突出，后续在包点外多次被先手清掉。"
         },
         "LOUD:erde": {
-          "rating": 5.0,
-          "comment": "虚构评语：道具封锁时机尚可，个人对枪阶段稳定性不足，未能延续图一手感。"
+          "rating": 6.0,
+          "comment": "虚构评语：防守补位偶有迟疑，道具消耗后难以维持入口封锁。"
         },
         "LOUD:tkzin": {
-          "rating": 4.8,
-          "comment": "虚构评语：转点与侧翼尝试积极，但多次被 G2 预判，残局贡献较少。"
+          "rating": 6.5,
+          "comment": "虚构评语：侧翼前压拿到过首杀，但整体信息交换不占优势。"
         },
         "G2:jawgemo": {
-          "rating": 7.4,
-          "comment": "虚构评语：图二起在入口与残局持续施压，多次率先打开局面，带动队伍追分。"
+          "rating": 8.3,
+          "comment": "虚构评语：第二图起进攻端持续输出，包点内多次打出双杀打开局面。"
         },
         "G2:leaf": {
-          "rating": 7.0,
-          "comment": "虚构评语：中路控制与转点配合到位，图三多次在夹击路线完成补枪。"
+          "rating": 7.9,
+          "comment": "虚构评语：转点时机把握到位，第三图残局连收两人锁定胜势。"
         },
         "G2:valyn": {
-          "rating": 6.8,
-          "comment": "虚构评语：防守轮转与道具使用稳定，图四关键回合的守包站位很扎实。"
+          "rating": 7.5,
+          "comment": "虚构评语：防守端中路信息给得及时，末图连续首杀压制入口强攻。"
         },
         "G2:babybay": {
-          "rating": 6.4,
-          "comment": "虚构评语：分推时对侧翼的牵扯有效，为队伍创造了不少人数交换机会。"
+          "rating": 7.1,
+          "comment": "虚构评语：道具配合稳定，配合队友拉扯出多次转点空间。"
         },
         "G2:trent": {
-          "rating": 6.6,
-          "comment": "虚构评语：残局与包点回收处理冷静，图二图三多次完成补防与反清。"
+          "rating": 7.3,
+          "comment": "虚构评语：包点内防守站位扎实，多回合用技能拖延对手进攻节奏。"
         }
       }
     },
@@ -783,89 +783,89 @@
           "winner": "VIT"
         }
       },
-      "headline": "虚构回看：VIT 与 G2 战满五图，VIT 以 3比2 险胜",
-      "summary": "本场为虚构赛前回看，VIT 与 G2 打满五张地图。VIT 在图一 Ascent 先声夺人，G2 随后在 Haven 与 Sunset 两次扳平，VIT 则在 Lotus 和决胜图 Summit 站稳，最终以 3比2 拿下系列赛。所有 BP、回合与评分均为模型虚构。",
+      "headline": "虚构回看：VIT五图鏖战险胜G2",
+      "summary": "本文为虚构赛前回看，非真实战报。虚构系列赛中VIT先取首图，G2两度扳平，决胜图由VIT守住并拿下三比二胜利。BP、逐图回合比分、MVP与选手评分均为创作内容，不代表真实比赛结果或能力评估。",
       "bp": {
         "bans": [
-          "Abyss",
-          "Split"
-        ],
-        "order": [
-          "Ascent",
           "Haven",
-          "Lotus",
-          "Sunset",
           "Summit"
         ],
-        "reason": "虚构 BP 思路：双方先禁 Abyss 与 Split，随后依次选择 Ascent、Haven、Lotus、Sunset 与 Summit。该顺序仅用于本次虚构推演，并非官方赛事禁选规则。"
+        "order": [
+          "Abyss",
+          "Ascent",
+          "Lotus",
+          "Split",
+          "Sunset"
+        ],
+        "reason": "虚构BP思路：两队先封掉Haven与Summit，把Abyss与Ascent作为开场试探图，Lotus和Split承担中段博弈，Sunset被安排为决胜图。"
       },
       "maps": {
         "0": {
-          "story": "虚构图一在 Ascent 开打，VIT 通过中路控制与包点入口的同步施压拿到先手，Derke 在残局中多次完成关键击杀。G2 用侧翼前压和转点回防咬住差距，但 VIT 守包站位更稳，以 13比9 取得领先。",
+          "story": "虚构图中，VIT进攻端沿中路铺开烟雾，Derke在入口对枪连拿首杀，转点后包点内配合收尾，13比9先下一图。",
           "losing_rounds": 9,
           "mvp": "VIT:Derke"
         },
         "1": {
-          "story": "虚构图二转到 Haven，G2 调整入口交火节奏，babybay 在分推与残局中持续拿到首杀。VIT 靠道具封锁和侧翼包夹制造压力，但 G2 在守包回合的补枪更完整，以 13比10 扳回一图。",
+          "story": "虚构图中，G2防守端用侧翼前压抢下信息，babybay在包点内打出双杀稳住局面，随后靠转点反击收下残局，13比10扳平。",
           "losing_rounds": 10,
           "mvp": "G2:babybay"
         },
         "2": {
-          "story": "虚构图三来到 Lotus，Chronicle 在中路与转点路线上频繁截断 G2 的进攻衔接。VIT 用包点入口的烟雾与闪光压缩对手空间，残局处理也更冷静，以 13比7 再下一图。",
-          "losing_rounds": 7,
+          "story": "虚构图中，双方在入口反复拉扯道具，VIT靠中路转点制造空档，Chronicle在残局一打二收尾，13比8再度领先。",
+          "losing_rounds": 8,
           "mvp": "VIT:Chronicle"
         },
         "3": {
-          "story": "虚构图四在 Sunset 进行，G2 的侧翼牵扯和快速转点让 VIT 的回防不断被动，trent 在守包与残局中多次稳住局面。VIT 尝试以入口前压换回节奏，但 G2 枪线更整齐，以 13比8 把系列赛再度扳平。",
-          "losing_rounds": 8,
+          "story": "虚构图中，G2控图节奏稳健，trent侧翼前压带来人数优势，多次在包点外先手清人，13比11把系列赛拖入决胜图。",
+          "losing_rounds": 11,
           "mvp": "G2:trent"
         },
         "4": {
-          "story": "虚构决胜图 Summit，双方在包点入口与中路的争夺一直胶着，VIT 依靠 PROFEK 的残局与守包站位逐渐稳住。G2 的转点和侧翼包夹也制造了压力，但 VIT 在最后的关键交火中把握住机会，以 13比11 结束系列赛。",
-          "losing_rounds": 11,
-          "mvp": "VIT:PROFEK"
+          "story": "虚构图中，VIT防守端补位迅速，Jamppi与队友轮流守住入口，转点反击连续奏效，13比7拿下决胜图与系列赛。",
+          "losing_rounds": 7,
+          "mvp": "VIT:Jamppi"
         }
       },
       "players": {
         "VIT:Derke": {
-          "rating": 7.6,
-          "comment": "虚构评语：图一 Ascent 的残局与首杀效率突出，为 VIT 建立优势，后段仍保持稳定输出。"
+          "rating": 8.4,
+          "comment": "虚构评语：首图入口对枪效率高，多次拉开角度完成首杀。"
         },
         "VIT:Chronicle": {
-          "rating": 7.2,
-          "comment": "虚构评语：Lotus 的中路截断和转点判断出色，多次打乱 G2 的进攻衔接。"
+          "rating": 8.0,
+          "comment": "虚构评语：第三图残局判断冷静，包点内一打二收尾稳住局面。"
         },
         "VIT:Jamppi": {
-          "rating": 6.3,
-          "comment": "虚构评语：道具封锁与入口辅助到位，对枪阶段偶有波动，但整体完成任务。"
+          "rating": 7.8,
+          "comment": "虚构评语：决胜图防守端节奏稳固，配合队友守住关键入口。"
         },
         "VIT:Sayonara": {
-          "rating": 6.0,
-          "comment": "虚构评语：侧翼防守和回防时机合理，在多张地图上承担了稳健的辅助职责。"
+          "rating": 7.2,
+          "comment": "虚构评语：道具覆盖合理，为转点与包点进攻创造空间。"
         },
         "VIT:PROFEK": {
-          "rating": 7.8,
-          "comment": "虚构评语：决胜图 Summit 的残局与守包站位极为关键，是 VIT 拿下系列赛的重要一环。"
+          "rating": 7.0,
+          "comment": "虚构评语：侧翼信息收集有效，多次提前报点帮助队伍补位。"
         },
         "G2:jawgemo": {
-          "rating": 6.9,
-          "comment": "虚构评语：入口交火与分推施压积极，在 G2 的两张胜图中都有稳定贡献。"
+          "rating": 7.7,
+          "comment": "虚构评语：第二图进攻端连续拿分，包点外首杀转化率较高。"
         },
         "G2:leaf": {
-          "rating": 6.5,
-          "comment": "虚构评语：中路控制与夹击路线执行到位，多次帮助队伍在人数交换中占优。"
+          "rating": 7.4,
+          "comment": "虚构评语：第四图残局处理果断，多次在转点后收掉对手。"
         },
         "G2:valyn": {
-          "rating": 6.2,
-          "comment": "虚构评语：防守轮转和道具使用可靠，但决胜图的关键回合未能延续此前节奏。"
+          "rating": 7.1,
+          "comment": "虚构评语：防守补位及时，但决胜图入口防守被反复针对。"
         },
         "G2:babybay": {
-          "rating": 7.1,
-          "comment": "虚构评语：Haven 图的分推与残局表现亮眼，首杀效率帮助 G2 扳回一图。"
+          "rating": 7.6,
+          "comment": "虚构评语：第二图包点内双杀打开局面，帮助队伍扳平系列赛。"
         },
         "G2:trent": {
-          "rating": 7.0,
-          "comment": "虚构评语：Sunset 的守包与残局处理冷静，是 G2 把系列赛拖入决胜图的关键。"
+          "rating": 7.3,
+          "comment": "虚构评语：第四图控图稳健，侧翼前压为队伍带来人数优势。"
         }
       }
     },
@@ -919,8 +919,8 @@
           "winner": "100T"
         }
       },
-      "headline": "虚构回看：LOUD 先下一图，100T 连追三图以 3比1 拿下",
-      "summary": "虚构赛前回看，非真实战报。LOUD 在首图凭借控场与侧翼夹击先声夺人，但 100T 随后三图在入口争夺、烟雾分割包点与残局处理上持续占优，连扳三图，以 3比1 结束系列赛。所有比分、MVP 与评分均为创作内容。",
+      "headline": "虚构回看：LOUD 先下一图，100T 后三图反超取胜 3比1",
+      "summary": "本场为虚构赛前回看，并非真实战报。虚构系列赛由 LOUD 对阵 100T，LOUD 在首图 Ascent 先下一城，随后 100T 在 Haven、Lotus、Sunset 三图取胜，最终以 3比1 赢下该虚构系列赛。地图禁选、回合比分、MVP 与选手评分均为创作内容，不代表任何真实表现或能力评估。",
       "bp": {
         "bans": [
           "Abyss",
@@ -930,73 +930,73 @@
           "Ascent",
           "Haven",
           "Lotus",
-          "Split",
-          "Sunset"
+          "Sunset",
+          "Split"
         ],
-        "reason": "虚构 BP：双方先移除不利于己方体系的 Abyss 与 Summit，随后依次选出偏控场与拉扯的图，让中路与转点节奏成为系列赛主线。"
+        "reason": "虚构禁选：双方各自排除 Abyss 与 Summit，随后按 Ascent、Haven、Lotus、Sunset、Split 的顺序展开，其中 Split 未进行。此为虚构 BP，非官方规则。"
       },
       "maps": {
         "0": {
-          "story": "虚构情景：LOUD 用双控场拖慢对手提速，前期靠中路试探换取信息，关键回合以侧翼夹击清空包点，防守端道具交换稳定，最终 13比9 收下首图。",
+          "story": "首图在 Ascent 展开，100T 试图用中路夹击抢节奏，LOUD 依靠包点外的交叉火力与侧翼拉扯稳住阵脚。转点牵制成型后 LOUD 逐步掌控局面，以 13比9 拿下这一图。",
           "losing_rounds": 9,
           "mvp": "LOUD:Darker"
         },
         "1": {
-          "story": "虚构情景：100T 调整站位，防守端频繁前压入口争夺信息，交叉火力切断对手转点路线，进攻端则用快速包点压制收尾，13比7 扳平大比分。",
-          "losing_rounds": 7,
+          "story": "第二图 Haven，LOUD 前期靠入口强攻取得主动，100T 换成双控道具后把包点封得严实。中段转点与侧翼包夹接连得手，100T 以 13比8 拿下这一图。",
+          "losing_rounds": 8,
           "mvp": "100T:Cryo"
         },
         "2": {
-          "story": "虚构情景：100T 延续手感，用烟雾分割包点视野，配合侧翼绕后制造人数优势；LOUD 的提速屡屡被入口架死，13比4 让系列赛天平倾斜。",
-          "losing_rounds": 4,
+          "story": "第三图 Lotus，双方在中路与侧翼反复交换人数，LOUD 的道具封路一度拖慢进攻节奏。100T 改用分散入口与快速转点，包点内的残局处理更稳，以 13比10 再下一图。",
+          "losing_rounds": 10,
           "mvp": "100T:Asuna"
         },
         "3": {
-          "story": "虚构情景：LOUD 一度靠中路控图找回节奏，但 100T 的经济管理与残局处理更稳，反复在包点后点收下换人战，13比8 结束系列赛。",
-          "losing_rounds": 8,
-          "mvp": "100T:vora"
+          "story": "第四图 Sunset，100T 手感延续，入口对枪与侧翼绕后屡屡奏效，LOUD 的防守布置被反复撕开。100T 把优势保持到终局，以 13比7 结束这场虚构系列赛，最终系列赛 3比1 取胜。",
+          "losing_rounds": 7,
+          "mvp": "100T:bang"
         }
       },
       "players": {
         "LOUD:lukxo": {
           "rating": 6.4,
-          "comment": "虚构表现：首图控场调度清晰，后三图入口对抗明显吃亏。"
+          "comment": "虚构评分：控图与前期摸排到位，数次先手开团为队伍争到空间。"
         },
         "LOUD:DaviH": {
-          "rating": 6.7,
-          "comment": "虚构表现：道具覆盖尚可，但转点时机多次被对手预判。"
+          "rating": 5.8,
+          "comment": "虚构评分：中路对枪偶有亮点，残局处理稍显冒进。"
         },
         "LOUD:Darker": {
-          "rating": 7.3,
-          "comment": "虚构表现：本队少数能在中路制造突破的选手，首图尤为突出。"
+          "rating": 7.2,
+          "comment": "虚构评分：首图火力输出稳定，多次在包点外切入打开缺口。"
         },
         "LOUD:erde": {
-          "rating": 5.8,
-          "comment": "虚构表现：残局处理偏急，多次在包点交换中先被清掉。"
+          "rating": 5.5,
+          "comment": "虚构评分：道具铺排尚可，正面对枪吃亏较多。"
         },
         "LOUD:tkzin": {
-          "rating": 6.1,
-          "comment": "虚构表现：防守端架枪有亮点，进攻端节奏衔接不够顺。"
+          "rating": 6,
+          "comment": "虚构评分：转点与补枪衔接顺畅，关键局面把握不足。"
         },
         "100T:Cryo": {
-          "rating": 8.5,
-          "comment": "虚构表现：入口争夺与残局收割稳定，是翻盘节奏的核心。"
+          "rating": 7.8,
+          "comment": "虚构评分：后三图持续高产，长枪局多次改写人数劣势。"
         },
         "100T:Asuna": {
-          "rating": 8.0,
-          "comment": "虚构表现：侧翼绕后与包点分割效率高，第三图压制力最强。"
+          "rating": 7.5,
+          "comment": "虚构评分：突破节奏明快，入口争夺与侧翼绕后均有收获。"
         },
         "100T:Timotino": {
-          "rating": 7.0,
-          "comment": "虚构表现：控图与道具交换扎实，为队友创造多次先手。"
+          "rating": 6.9,
+          "comment": "虚构评分：控图稳健，道具与架枪为队友创造推进空间。"
         },
         "100T:vora": {
-          "rating": 7.6,
-          "comment": "虚构表现：决胜图包点后点处理冷静，收下多个关键换人战。"
+          "rating": 7.1,
+          "comment": "虚构评分：残局读秒冷静，防守端多次扛住对手第一波推进。"
         },
         "100T:bang": {
-          "rating": 6.8,
-          "comment": "虚构表现：经济管理稳健，偶有架枪失误但整体影响有限。"
+          "rating": 7.6,
+          "comment": "虚构评分：调度清晰，后三图节奏几乎由他掌控。"
         }
       }
     },
@@ -1057,89 +1057,89 @@
           "winner": "VIT"
         }
       },
-      "headline": "虚构回看：VIT 决胜图 13比11 险胜 100T，系列赛 3比2",
-      "summary": "虚构赛前回看，非真实战报。五图拉锯，VIT 先取首图，100T 靠防守反击与残局处理两度追平；决胜图 VIT 在中路联动与转点节奏上更耐心，以 13比11 收下关键图，系列赛 3比2 胜出。全部内容为创作。",
+      "headline": "虚构回看：五图鏖战，VIT 决胜图击败 100T 取得 3比2",
+      "summary": "本场为虚构赛前回看，并非真实战报。虚构系列赛由 VIT 对阵 100T，双方在 Abyss、Ascent、Haven、Lotus、Sunset 五图上交替取胜，VIT 在决胜图 Sunset 把握终局，最终以 3比2 赢下该虚构系列赛。所有 BP、比分、MVP 与选手评分均为创作内容，不代表真实表现或能力评估。",
       "bp": {
         "bans": [
           "Split",
-          "Sunset"
-        ],
-        "order": [
-          "Haven",
-          "Lotus",
-          "Abyss",
-          "Ascent",
           "Summit"
         ],
-        "reason": "虚构 BP：两队各自封掉不擅长的 Split 与 Sunset，随后把偏控图与拉扯的图排在前段，希望用中后期道具消耗把系列赛拖入决胜图。"
+        "order": [
+          "Abyss",
+          "Ascent",
+          "Haven",
+          "Lotus",
+          "Sunset"
+        ],
+        "reason": "虚构禁选：双方排除 Split 与 Summit，按 Abyss、Ascent、Haven、Lotus、Sunset 的顺序打满五图，全部进行。此为虚构 BP，非官方赛事规则。"
       },
       "maps": {
         "0": {
-          "story": "虚构情景：VIT 用双决斗配控场，靠中路快速转点打乱 100T 的包点站位，防守端以侧翼夹击收下残局，13比6 先下一图。",
-          "losing_rounds": 6,
+          "story": "首图 Abyss，100T 抢先在中路制造人数优势，VIT 靠包点外的交叉火力与快速转点稳住局面。终局阶段 VIT 的对枪成功率更高，以 13比9 先下一图。",
+          "losing_rounds": 9,
           "mvp": "VIT:Derke"
         },
         "1": {
-          "story": "虚构情景：100T 调整节奏，用入口烟封与后点架枪拖慢 VIT 提速，进攻端多次包点分割得手，13比9 扳平系列赛。",
-          "losing_rounds": 9,
+          "story": "第二图 Ascent，100T 用分散入口和侧翼包夹打乱 VIT 的防守站位，包点内的残局处理更果断。VIT 多次尝试转点牵制未能翻盘，100T 以 13比10 拿下这一图。",
+          "losing_rounds": 10,
           "mvp": "100T:Cryo"
         },
         "2": {
-          "story": "虚构情景：VIT 提升个人强度，前压入口频繁拿信息，转点压制 100T 的回防路线，防守反击效率很高，13比5 再度领先。",
-          "losing_rounds": 5,
+          "story": "第三图 Haven，双方围绕中路控制反复拉锯，VIT 的道具铺排让入口争夺逐渐占优。100T 靠残局咬住局面，但 VIT 在终局阶段抓住关键交火，以 13比11 拿下这一图。",
+          "losing_rounds": 11,
           "mvp": "VIT:Chronicle"
         },
         "3": {
-          "story": "虚构情景：100T 在拉锯中靠残局与道具交换稳住经济，包点反清多次成功，入口对抗不再吃亏，13比10 把系列赛拖入决胜图。",
-          "losing_rounds": 10,
+          "story": "第四图 Lotus，100T 加强侧翼施压，入口对枪与快速转点连续奏效，VIT 的防守被拉扯出空档。100T 一路保持领先，以 13比8 把虚构系列赛拖入决胜图。",
+          "losing_rounds": 8,
           "mvp": "100T:Asuna"
         },
         "4": {
-          "story": "虚构情景：决胜图双方反复交换包点控制权，VIT 在中路与侧翼的联动更耐心，最后以 13比11 拿下该图，系列赛 3比2 胜出。",
-          "losing_rounds": 11,
-          "mvp": "VIT:Jamppi"
+          "story": "决胜图 Sunset，双方在中路与包点外长时间互有攻守，VIT 转而用侧翼牵扯配合包点入口强攻。终局阶段 VIT 的残局处理更稳，以 13比10 锁定最终系列赛 3比2 的胜利。",
+          "losing_rounds": 10,
+          "mvp": "VIT:PROFEK"
         }
       },
       "players": {
         "VIT:Derke": {
-          "rating": 8.7,
-          "comment": "虚构表现：首图入口突破犀利，多次为队伍打开局面。"
+          "rating": 8,
+          "comment": "虚构评分：首图与决胜图火力凶猛，长枪局屡次率先打开人数差。"
         },
         "VIT:Chronicle": {
-          "rating": 8.3,
-          "comment": "虚构表现：第三图控图与转点调度出色，节奏掌控稳定。"
+          "rating": 7.9,
+          "comment": "虚构评分：中路控制与残局判断出色，关键图贡献多次多杀。"
         },
         "VIT:Jamppi": {
-          "rating": 8.1,
-          "comment": "虚构表现：决胜图残局处理冷静，收下关键包点交换。"
+          "rating": 7.3,
+          "comment": "虚构评分：狙击与步枪切换顺畅，防守端压制对手入口推进。"
         },
         "VIT:Sayonara": {
-          "rating": 7.3,
-          "comment": "虚构表现：道具覆盖到位，但个别回合前压时机偏冒进。"
+          "rating": 7,
+          "comment": "虚构评分：道具铺排细腻，掩护队友推进与转点执行到位。"
         },
         "VIT:PROFEK": {
-          "rating": 7.2,
-          "comment": "虚构表现：防守端架枪可靠，进攻端衔接偶有迟滞。"
+          "rating": 7.4,
+          "comment": "虚构评分：节奏组织稳定，决胜图读秒决策清晰果断。"
         },
         "100T:Cryo": {
-          "rating": 8.2,
-          "comment": "虚构表现：第二图防守反击核心，入口争夺与残局均稳。"
+          "rating": 7.7,
+          "comment": "虚构评分：两图取胜的关键火力，包点外对枪成功率高。"
         },
         "100T:Asuna": {
-          "rating": 7.9,
-          "comment": "虚构表现：第四图包点反清效率高，把系列赛拖入决胜。"
+          "rating": 7.5,
+          "comment": "虚构评分：突破节奏凌厉，Lotus 一图入口争夺几乎占尽上风。"
         },
         "100T:Timotino": {
-          "rating": 6.9,
-          "comment": "虚构表现：控图与道具交换中规中矩，亮点回合偏少。"
+          "rating": 6.8,
+          "comment": "虚构评分：架枪稳定，防守转攻的道具衔接较为可靠。"
         },
         "100T:vora": {
-          "rating": 7.5,
-          "comment": "虚构表现：转点路线判断准确，多次带出人数优势。"
+          "rating": 7.2,
+          "comment": "虚构评分：残局处理冷静，多次在人数劣势下守住包点。"
         },
         "100T:bang": {
-          "rating": 7.0,
-          "comment": "虚构表现：经济管理稳健，决胜图个别架枪被反清。"
+          "rating": 7.1,
+          "comment": "虚构评分：调度灵活，两图取胜期间节奏梳理清晰。"
         }
       }
     }

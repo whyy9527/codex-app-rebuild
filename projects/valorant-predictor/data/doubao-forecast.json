@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "channel": "doubao",
+  "model_id": "doubao-seed-2-1-pro-260915",
+  "kind": "llm_analysis",
+  "created_at": "2026-10-16T07:43:48.227785+00:00",
+  "source_sha256": "614bda2290a8c567e1a32de4e1cabead90a08ed42b85a62aea93e4424dceef69",
+  "data_cutoff": "2026-10-11T12:00:00Z",
+  "scope": [
+    "115576361461208325",
+    "115576361461208331"
+  ],
+  "probability_unit": "single_map",
+  "calibration": "独立模型的主观赛前判断，未校准。六组覆盖四强全部两两组合，属于按要求给出的假设对位参数；10月17日与18日实际对阵仍取决于10月16日结果，不对16日比赛作赛果预测。p_first为主观单张地图胜率，不是BO5系列赛胜率，未作统计校准或模拟；判断只使用冻结官网资料中的已完成系列赛与地图比分，未使用地图BP、选手数据、阵容、伤病、历史荣誉或资料外事实。",
+  "pairs": [
+    {
+      "teams": [
+        "LOUD",
+        "VIT"
+      ],
+      "p_first": 0.44,
+      "reason": "官方资料中两队9月30日有一次BO3，VIT以2-0击败LOUD；VIT随后季后赛又以2-1击败NS、2-0击败G2，LOUD季后赛则为2-0 PRX、2-1 NRG。直接对位和后续比分使LOUD单图略处下风。"
+    },
+    {
+      "teams": [
+        "LOUD",
+        "G2"
+      ],
+      "p_first": 0.56,
+      "reason": "两队无直接对阵。共同对手PRX的对比中，LOUD季后赛2-0取胜，G2小组赛1-2失利；LOUD已完成比赛的整体地图比分也更稳，因此单图小幅看好LOUD。"
+    },
+    {
+      "teams": [
+        "LOUD",
+        "100T"
+      ],
+      "p_first": 0.48,
+      "reason": "两队无直接对阵。双方已完成比赛的地图总战绩均为8胜3负，整体非常接近；共同对手NRG方面，LOUD为2-1，100T为2-0，100T的地图损耗更小，因此LOUD单图略受看低。"
+    },
+    {
+      "teams": [
+        "VIT",
+        "G2"
+      ],
+      "p_first": 0.6,
+      "reason": "官方资料中两队10月10日有一次BO3，VIT以2-0击败G2。VIT在本次赛事已完成比赛中地图战绩为8胜2负，直接对位与总体比分均支持其单图占优。"
+    },
+    {
+      "teams": [
+        "VIT",
+        "100T"
+      ],
+      "p_first": 0.58,
+      "reason": "两队无直接对阵。共同对手NS方面，两队均以2-1取胜；另一共同参照G2方面，VIT以2-0取胜，100T则以0-2失利，因此VIT单图小幅占优。"
+    },
+    {
+      "teams": [
+        "G2",
+        "100T"
+      ],
+      "p_first": 0.61,
+      "reason": "官方资料中两队10月8日有一次BO3，G2以2-0击败100T。100T之后击败NS和NRG，但直接对位比分更支持G2，故给出G2小幅单图优势。"
+    }
+  ],
+  "runtime_attestation": {
+    "provider": "doubao",
+    "model": "doubao-seed-2-1-pro-260915",
+    "catalog_name": "doubao-seed-2-1-pro",
+    "model_mapping_source": "https://ark.cn-beijing.volces.com/api/v3/models"
+  }
+}
