@@ -1,0 +1,258 @@
+{
+  "date": "2026-10-15",
+  "scope": "Observed Claude BP application-output presence, muted playback, persisted mute and restored output. Historical before UI-removal release; not all sound types or current-build E2E.",
+  "source_build": "43482999941120-v26695",
+  "protocol": "projects/bilibili-toy/audio.json",
+  "private_capture_map": "projects/bilibili-toy/private/audio-captures-v1.json",
+  "contract": "projects/bilibili-toy/private/audio-contract-v1/contract.json",
+  "comparison": "projects/bilibili-toy/private/audio-compare-1.json",
+  "counts": {
+    "pass": 25
+  },
+  "cases": {
+    "audio-on": {
+      "source": {
+        "kind": "owned_audio_observation",
+        "wav_sha256": "9d338f041a354f8af1c2c77f714f2960fd6a28369f0dfc3ce817f50f350877e1",
+        "sample_rate": 48000,
+        "endpoint_url": "https://www.bilibili.com/toy/LkvCZhw12wgT2Pqx/index.html",
+        "channels": 2,
+        "frames": 1443840,
+        "peak": 0.07763388752937317,
+        "rms": 0.0034027617603237547,
+        "sound_enabled_observed": true,
+        "prepared_player_headline": "AI 模拟 Claude Opus 5.5  的世界 入围赛 · 胜者组第一轮 10月16日 FUR 0  :  0 第  1  局 ·  英雄选择 MVK MVK 蓝色方",
+        "actions_inside_capture": true,
+        "microphone": false,
+        "owned_pid": 61562,
+        "playback_bounds_ms": [
+          2425,
+          4238
+        ],
+        "trigger_output_status": "pass",
+        "scope": "Actual output presence/mute during observed BP playback, not all sound types or sound identity."
+      },
+      "candidate": {
+        "kind": "owned_audio_observation",
+        "wav_sha256": "fc2def0f92efa48981a3c9f67c44a61f5cafc1fa47022fa82be733fc230a1e88",
+        "sample_rate": 48000,
+        "endpoint_url": "http://127.0.0.1:4617/",
+        "channels": 2,
+        "frames": 1462080,
+        "peak": 0.07767117023468018,
+        "rms": 0.0033906129209917407,
+        "sound_enabled_observed": true,
+        "prepared_player_headline": "AI 模拟 Claude Opus 5.5  的世界 入围赛 · 胜者组第一轮 10月16日 FUR 0  :  0 第  1  局 ·  英雄选择 MVK MVK 蓝色方",
+        "actions_inside_capture": true,
+        "microphone": false,
+        "owned_pid": 61562,
+        "playback_bounds_ms": [
+          2391,
+          4041
+        ],
+        "trigger_output_status": "pass",
+        "scope": "Actual output presence/mute during observed BP playback, not all sound types or sound identity."
+      }
+    },
+    "audio-muted": {
+      "source": {
+        "kind": "owned_audio_observation",
+        "wav_sha256": "a382dd0682ed850662f37dfb2d8dbd4897830c0b3e9ed9325bb8715839c323da",
+        "sample_rate": 48000,
+        "endpoint_url": "https://www.bilibili.com/toy/LkvCZhw12wgT2Pqx/index.html",
+        "channels": 2,
+        "frames": 1440960,
+        "peak": 0.0,
+        "rms": 0.0,
+        "sound_enabled_observed": false,
+        "prepared_player_headline": "AI 模拟 Claude Opus 5.5  的世界 入围赛 · 胜者组第一轮 10月16日 FUR 0  :  0 第  1  局 ·  英雄选择 MVK MVK 蓝色方",
+        "actions_inside_capture": true,
+        "microphone": false,
+        "owned_pid": 61562,
+        "playback_bounds_ms": [
+          2415,
+          4044
+        ],
+        "trigger_output_status": "pass",
+        "scope": "Actual output presence/mute during observed BP playback, not all sound types or sound identity."
+      },
+      "candidate": {
+        "kind": "owned_audio_observation",
+        "wav_sha256": "b381afd330895a672e38def84eda2df28ff96afd99a37dadcb10d89fd21960c7",
+        "sample_rate": 48000,
+        "endpoint_url": "http://127.0.0.1:4617/",
+        "channels": 2,
+        "frames": 1457280,
+        "peak": 0.0,
+        "rms": 0.0,
+        "sound_enabled_observed": false,
+        "prepared_player_headline": "AI 模拟 Claude Opus 5.5  的世界 入围赛 · 胜者组第一轮 10月16日 FUR 0  :  0 第  1  局 ·  英雄选择 MVK MVK 蓝色方",
+        "actions_inside_capture": true,
+        "microphone": false,
+        "owned_pid": 61562,
+        "playback_bounds_ms": [
+          2391,
+          4046
+        ],
+        "trigger_output_status": "pass",
+        "scope": "Actual output presence/mute during observed BP playback, not all sound types or sound identity."
+      }
+    },
+    "audio-restored": {
+      "source": {
+        "kind": "owned_audio_observation",
+        "wav_sha256": "6a854681c68fc4ab5b143f228ce17afb59c8e6c3b66ad86a7feab35f92712eb9",
+        "sample_rate": 48000,
+        "endpoint_url": "https://www.bilibili.com/toy/LkvCZhw12wgT2Pqx/index.html",
+        "channels": 2,
+        "frames": 1507200,
+        "peak": 0.07769761979579926,
+        "rms": 0.003175733278020515,
+        "sound_enabled_observed": true,
+        "prepared_player_headline": "AI 模拟 Claude Opus 5.5  的世界 入围赛 · 胜者组第一轮 10月16日 FUR 0  :  0 第  1  局 ·  英雄选择 MVK MVK 蓝色方",
+        "actions_inside_capture": true,
+        "microphone": false,
+        "owned_pid": 61562,
+        "playback_bounds_ms": [
+          2066,
+          4111
+        ],
+        "trigger_output_status": "pass",
+        "scope": "Actual output presence/mute during observed BP playback, not all sound types or sound identity.",
+        "sound_enabled_before_toggle": false,
+        "restored_from_observed_mute": true
+      },
+      "candidate": {
+        "kind": "owned_audio_observation",
+        "wav_sha256": "13db074a717c222f52b115cdcc5864c3087061f5206778bb95fb965f4fdd34aa",
+        "sample_rate": 48000,
+        "endpoint_url": "http://127.0.0.1:4617/",
+        "channels": 2,
+        "frames": 1507200,
+        "peak": 0.07779359817504883,
+        "rms": 0.003175742494180335,
+        "sound_enabled_observed": true,
+        "prepared_player_headline": "AI 模拟 Claude Opus 5.5  的世界 入围赛 · 胜者组第一轮 10月16日 FUR 0  :  0 第  1  局 ·  英雄选择 MVK MVK 蓝色方",
+        "actions_inside_capture": true,
+        "microphone": false,
+        "owned_pid": 61562,
+        "playback_bounds_ms": [
+          2164,
+          3854
+        ],
+        "trigger_output_status": "pass",
+        "scope": "Actual output presence/mute during observed BP playback, not all sound types or sound identity.",
+        "sound_enabled_before_toggle": false,
+        "restored_from_observed_mute": true
+      }
+    }
+  },
+  "first_burst_waveform_measurements": {
+    "audio-on": {
+      "kind": "first_bp_burst_waveform_measurement",
+      "source_start_seconds": 8.653291666666666,
+      "candidate_start_seconds": 8.636166666666666,
+      "source_frames": 7774,
+      "candidate_frames": 7772,
+      "exact_same_samples": false,
+      "channels": [
+        {
+          "channel": 0,
+          "alignment_samples": 1,
+          "overlap_samples": 7772,
+          "cosine_similarity": 0.9867329478098468,
+          "rms_difference": 0.0023454548954655033,
+          "max_absolute_difference": 0.021282866597175598
+        },
+        {
+          "channel": 1,
+          "alignment_samples": 1,
+          "overlap_samples": 7772,
+          "cosine_similarity": 0.9867329478098468,
+          "rms_difference": 0.0023454548954655033,
+          "max_absolute_difference": 0.021282866597175598
+        }
+      ],
+      "acceptance": "measurement_only",
+      "limit": "Actual isolated first cue only. No tolerance chosen to claim full sequence, all sound types, or physical speaker equivalence."
+    },
+    "audio-restored": {
+      "kind": "first_bp_burst_waveform_measurement",
+      "source_start_seconds": 8.904770833333334,
+      "candidate_start_seconds": 7.856104166666666,
+      "source_frames": 7773,
+      "candidate_frames": 7774,
+      "exact_same_samples": false,
+      "channels": [
+        {
+          "channel": 0,
+          "alignment_samples": 0,
+          "overlap_samples": 7773,
+          "cosine_similarity": 0.999655651325767,
+          "rms_difference": 0.0003774400803682565,
+          "max_absolute_difference": 0.0012536942958831787
+        },
+        {
+          "channel": 1,
+          "alignment_samples": 0,
+          "overlap_samples": 7773,
+          "cosine_similarity": 0.999655651325767,
+          "rms_difference": 0.0003774400803682565,
+          "max_absolute_difference": 0.0012536942958831787
+        }
+      ],
+      "acceptance": "measurement_only",
+      "limit": "Actual isolated first cue only. No tolerance chosen to claim full sequence, all sound types, or physical speaker equivalence."
+    }
+  },
+  "original_repeat_calibration": {
+    "evidence": "projects/bilibili-toy/private/audio-original-repeat-1.json",
+    "measurement": {
+      "kind": "first_bp_burst_waveform_measurement",
+      "source_start_seconds": 9.128833333333333,
+      "candidate_start_seconds": 8.653291666666666,
+      "source_frames": 7773,
+      "candidate_frames": 7774,
+      "exact_same_samples": false,
+      "channels": [
+        {
+          "channel": 0,
+          "alignment_samples": -1,
+          "overlap_samples": 7773,
+          "cosine_similarity": 0.9857879962379228,
+          "rms_difference": 0.002424885726678774,
+          "max_absolute_difference": 0.022369474172592163
+        },
+        {
+          "channel": 1,
+          "alignment_samples": -1,
+          "overlap_samples": 7773,
+          "cosine_similarity": 0.9857879962379228,
+          "rms_difference": 0.002424885726678774,
+          "max_absolute_difference": 0.022369474172592163
+        }
+      ],
+      "acceptance": "measurement_only",
+      "limit": "Actual isolated first cue only. No tolerance chosen to claim full sequence, all sound types, or physical speaker equivalence."
+    }
+  },
+  "privacy": {
+    "microphone_used": false,
+    "screen_frames_recorded_by_collector": false,
+    "filter": "application PID",
+    "ui_driver": "CUA only; collector ui_actions empty"
+  },
+  "invalid_attempts": [
+    {
+      "path": "projects/bilibili-toy/private/audio-source-on-1",
+      "status": "unavailable",
+      "reason": "12-second recording expired before actual play/pause; zero signal is not mute evidence."
+    }
+  ],
+  "remaining": [
+    "Other sound cue types and timing sequence remain unverified.",
+    "Waveforms are measurement_only, exact sample equality is false.",
+    "Current-build audio regression after user UI removal remains not_run."
+  ],
+  "observer_fix": "Safari may omit the root URL slash in AX; canonicalize only empty root path to /. Preserve exact scheme, origin and non-root path guards."
+}

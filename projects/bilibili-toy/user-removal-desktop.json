@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "scope": "Desktop 1200×600 original reference with only the two user-requested DOM node deletions, preserving original CSS; complete visible Method business area. Unmasked whole viewport remains a separate dynamic-phase diagnostic.",
+  "height_css": 600,
+  "zoom_label": "( 100% )",
+  "pixel_ratio_label": "2x",
+  "actual_samples_per_css_pixel": 2,
+  "scene_heading": "heading S16 · AI 赛制介绍, Value: 1",
+  "source": {
+    "width_css": 1200,
+    "viewport_pixels": [
+      0,
+      0,
+      2400,
+      1200
+    ],
+    "header_css": 57,
+    "header_evidence": "source-requested-header.inspector.ax.txt",
+    "frames": [
+      "source-requested-removals-c",
+      "source-requested-removals-d"
+    ]
+  },
+  "candidate": {
+    "width_css": 1200,
+    "viewport_pixels": [
+      0,
+      0,
+      2400,
+      1200
+    ],
+    "header_css": 57,
+    "header_evidence": "public-requested-header.inspector.ax.txt",
+    "frames": [
+      "public-requested-a",
+      "public-requested-b"
+    ]
+  },
+  "regions": {
+    "business": {
+      "source": [
+        12,
+        126,
+        2388,
+        1062
+      ],
+      "candidate": [
+        12,
+        126,
+        2388,
+        1062
+      ]
+    }
+  },
+  "geometry_sources": [
+    "Original 6px left/top/bottom padding and zero right padding retained; after sidebar deletion the 1200px body gives a 1194×588 CSS iframe.",
+    "Actual header height 57px on both sides. Full visible business area below it includes the closed ticker."
+  ],
+  "limits": [
+    "This original reference variant implements only the user-authorized two removals through native DOM Delete → Node. Other baseline references remain immutable.",
+    "Failed attempts that opened only the Delete submenu did not remove nodes; those raw frames are excluded by observed before/after node-presence checks.",
+    "Animated live-badge dot phase remains in full unmasked PNGs. Static region requirements do not certify its timing.",
+    "Other pages and animation/audio coverage remain required; no full Goal completion inferred."
+  ],
+  "author_removed": true,
+  "source_node_deletions": [
+    {
+      "before": "author-node-delete.before.ax.txt",
+      "after": "author-node-delete.after.ax.txt",
+      "menu": "author-node-delete.menu.ax.txt",
+      "node_pattern": "row .*<div.*author-bar"
+    },
+    {
+      "before": "sidebar-node-delete.before.ax.txt",
+      "after": "sidebar-node-delete.after.ax.txt",
+      "menu": "sidebar-node-delete.menu.ax.txt",
+      "node_pattern": "row .*<aside.*toy-shell-sidebar"
+    }
+  ]
+}

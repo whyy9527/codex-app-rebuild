@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "scope": "Static responsive Method page at equal actual 306×656 CSS iframe dimensions, plus retained mobile branding row, complete six-link navigation and closed ticker. User-authorized author/sidebar removal changes outer width and header height. Other pages, released extra content and whole 375×667 layout remain separately required.",
+  "height_css": 668,
+  "zoom_label": "( 100% )",
+  "pixel_ratio_label": "2x",
+  "actual_samples_per_css_pixel": 2,
+  "scene_heading": "heading S16 · AI 赛制介绍, Value: 1",
+  "source": {
+    "width_css": 376,
+    "viewport_pixels": [
+      0,
+      0,
+      752,
+      1336
+    ],
+    "header_css": 239,
+    "header_evidence": "source-method-376.header.inspector.ax.txt",
+    "frames": [
+      "source-method-376-a",
+      "source-method-376-b"
+    ]
+  },
+  "candidate": {
+    "width_css": 318,
+    "viewport_pixels": [
+      0,
+      0,
+      636,
+      1336
+    ],
+    "header_css": 191,
+    "header_evidence": "public-method-318.header.inspector.ax.txt",
+    "frames": [
+      "public-method-318-a",
+      "public-method-318-b"
+    ]
+  },
+  "regions": {
+    "business": {
+      "source": [
+        12,
+        490,
+        612,
+        746
+      ],
+      "candidate": [
+        12,
+        394,
+        612,
+        746
+      ]
+    },
+    "branding": {
+      "source": [
+        12,
+        12,
+        612,
+        92
+      ],
+      "candidate": [
+        12,
+        12,
+        612,
+        92
+      ]
+    },
+    "navigation": {
+      "source": [
+        36,
+        288,
+        564,
+        184
+      ],
+      "candidate": [
+        36,
+        192,
+        564,
+        184
+      ]
+    },
+    "ticker": {
+      "source": [
+        12,
+        1236,
+        612,
+        88
+      ],
+      "candidate": [
+        12,
+        1236,
+        612,
+        88
+      ]
+    }
+  },
+  "geometry_sources": [
+    "Original CSS source: shell 6px left/top/bottom and 64px sidebar; candidate 6px padding all sides, no sidebar. Both actual iframe widths 306px and heights 656px.",
+    "Actual original header --header-height is 239px; candidate measurement must verify 191px after removing the 48px author row. Header measurement is from actual inspected shell DOM.",
+    "Original responsive CSS: 12px horizontal wrap padding, navigation grid two rows of 44px plus 4px gap, 8px bottom padding and 1px header border. Closed ticker min-height 44px.",
+    "Common business crop is the complete unoccluded source first-fold area. Candidate has an additional 48 CSS px visible after the same content; that released area is not certified by this scoped comparison."
+  ],
+  "limits": [
+    "Initial 317×667 candidate control rendered body 316×666 and PNG 632×1332 even at rounded 100% label. Those immutable captures are rejected as sampling mismatch.",
+    "Source 376×668 and candidate 318×668 must each match actual body Computed box size as well as PNG dimensions and toolbar fields.",
+    "Branding row excludes the separate live badge. Its pulsing dot has actual phase differences, retained in full PNGs; animation timing remains separate.",
+    "Full-main node screenshot in private/full-node-probe-1 returned RGBA all zero. It is unavailable, never a passing black image."
+  ]
+}

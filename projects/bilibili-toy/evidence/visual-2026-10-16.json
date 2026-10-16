@@ -1,0 +1,100 @@
+{
+  "date": "2026-10-16",
+  "scope": "Method page full visible business area at equal actual iframe dimensions; this is a scoped desktop visual probe and does not certify global navigation, other pages, scrolling, mobile or the complete Goal.",
+  "source_build": "43482999941120-v26695",
+  "public_release": "bce6f0f21976-20261015T144858Z",
+  "protocol": "projects/bilibili-toy/visual.json",
+  "captures": "projects/bilibili-toy/private/visual-content-1",
+  "frozen_contract": "projects/bilibili-toy/private/visual-content-1/shared-probe-2/contract.json",
+  "source_self_result": {
+    "evidence": "projects/bilibili-toy/private/visual-content-1/shared-probe-2/source-result.json",
+    "pass": 136,
+    "fail": 0,
+    "not_run": 0,
+    "unavailable": 0
+  },
+  "public_result": {
+    "evidence": "projects/bilibili-toy/private/visual-content-1/shared-probe-2/public-result.json",
+    "pass": 135,
+    "fail": 1,
+    "not_run": 0,
+    "unavailable": 0,
+    "failed_requirement": "method-main.pixels",
+    "mean_absolute_rgb_difference_srgb": [
+      0.5525873706314685,
+      0.4097874272953019,
+      0.6708389580520974
+    ],
+    "interpretation": "Exact static method text, measured iframe size, scroll origin and per-origin repeat stability passed. Actual cross-origin image pixels differ; no compression explanation or tolerance accepted as proof."
+  },
+  "geometry": {
+    "source_outer_css": [
+      1200,
+      600
+    ],
+    "candidate_outer_css": [
+      1142,
+      600
+    ],
+    "both_iframe_css": [
+      1130,
+      588
+    ],
+    "both_visible_business_pixels": [
+      2260,
+      1062
+    ],
+    "actual_samples_per_css_pixel": 2,
+    "raw_window_pixels": [
+      2648,
+      1666
+    ],
+    "source_business_rect_export_units": [
+      136,
+      424,
+      2260,
+      1062
+    ],
+    "candidate_business_rect_export_units": [
+      194,
+      424,
+      2260,
+      1062
+    ],
+    "measurement": "Measured from complete unmodified native snapshots and the responsive toolbar; capture space is native exported pixels, with no resizing or alignment search."
+  },
+  "user_exception_accounting": {
+    "source_shell": "Original style: 64px sidebar, 6px left padding and no right padding. Original shell bytes retained in private/source.html.",
+    "candidate_shell": "Sidebar removed; 6px padding on both sides. At the same outer viewport this frees 58 CSS px for the application.",
+    "controlled_comparison": "Use the same actual iframe viewport on both origins to compare retained business rendering. Global navigation sits outside this probe and remains a separate acceptance item; its entire removal is not authorized.",
+    "same_outer_trial": "Source and published 1280px outer-viewport captures retained, alongside the 1222px candidate trial; they do not replace equal-inner-view or whole-layout acceptance."
+  },
+  "capture_findings": [
+    "The Safari 100% zoom label is rounded. At outer width 1280, the native viewport was 2548 pixels wide rather than 2560; compared with a true-100% 1222px candidate this changes actual sampling. Trial retained; formal source uses 1200px, which fits at exactly 2 output pixels per CSS pixel.",
+    "Waiting only for the Method heading can capture fallback fonts and an absent floating report bar. Later actual screenshot shows the expected loaded fonts and bar; formal frames require the bar and repeated stable pixels.",
+    "Both original source repeat and public repeat have zero differing pixels in their entire declared business region. Raw before/after AX also agrees; all screenshot inputs carry the same Display ICC profile and are normalized to sRGB.",
+    "Native app screenshot bytes are JPEG. Cross-origin mean differences are measured but their cause is unproven; lossless capture is still required."
+  ],
+  "alternative_capture_observations": [
+    "Started existing Google Chrome for Testing v156.0.8078.4 in its fresh task-owned window. Browser-tool inventory still exposes only the previously unavailable Edge extension.",
+    "Actual DevTools UI exposes Capture screenshot, desktop device type and DPR controls. Numeric live-width entry required atomic paste; sequential typing produced an incorrect width and was corrected by observing the actual field.",
+    "Original and published navigations in two newly owned tabs remained on New Tab documents with loading indicators during the probe. No source/public PNG obtained and no network-failure cause inferred.",
+    "Screenshot and Dock native bindings timed out. A system screenshot-toolbar attempt could not be read and was cancelled through Escape. No whole-screen capture or external-app recording performed.",
+    "An explicit permission question was sent for macOS screenshot commands restricted to the task-owned Safari window, because cua_repl permits other computer-interaction technology only when explicitly requested by the user. No such command executed in this probe.",
+    "A scoped getState inventory attempt timed out after 30 seconds and reset the CUA kernel. A fresh Safari binding recovered the same owned private window at published Method, 1142×600, 100% label, 2x. Existing raw evidence and server/test processes were not restarted."
+  ],
+  "verification": {
+    "root_tests": "111 tests OK, 8 skipped",
+    "project_tests": "14 tests OK",
+    "visual_negative_checks": "Actual sampling mismatch, changed window/query/toolbar, missing or truncated AX scope, nonzero scroll and unstable source pixel rejection passed",
+    "diff_check": "passed",
+    "release_check": "Trusted HTTPS requiring TLS 1.3; release.json HTTP 200, active preview bce6f0f21976-20261015T144858Z unchanged",
+    "project_command": "visual_compare reproduced 135 pass / 1 fail; failing status preserved"
+  },
+  "remaining": [
+    "Lossless confirmation of scoped pixel differences and any resulting implementation repair.",
+    "Global navigation and complete layouts after the two authorized deletions; whole-site visual and responsive acceptance.",
+    "Remaining ranking drag, simulation-reference boundaries, match/story expansions and hover.",
+    "All relevant sound types and actual animation/playback timing."
+  ]
+}

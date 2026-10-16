@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "scope": "Static method page: complete visible business area below global navigation, at identical actual iframe width/height and pixel sampling. Global navigation, other pages, scrolling and mobile views remain separate acceptance.",
+  "scene_heading": "heading S16 · AI 赛制介绍, Value: 1",
+  "capture_space": "Unmodified native exported screenshot pixels; backing_scale 1 means this coordinate space, not CSS or macOS logical points. No image rescaling, masks, alignment search or pixel tolerance.",
+  "window_pixels": [2648, 1666],
+  "height_css": 600,
+  "zoom_label": "( 100% )",
+  "pixel_ratio_label": "2x",
+  "actual_samples_per_css_pixel": 2,
+  "source": {
+    "width_css": 1200,
+    "viewport_pixels": [124, 298, 2400, 1200],
+    "iframe_pixels": [136, 310, 2260, 1176],
+    "business_pixels": [136, 424, 2260, 1062],
+    "frames": ["source-method-1200-a", "source-method-1200-b"]
+  },
+  "candidate": {
+    "width_css": 1142,
+    "viewport_pixels": [182, 298, 2284, 1200],
+    "iframe_pixels": [194, 310, 2260, 1176],
+    "business_pixels": [194, 424, 2260, 1062],
+    "frames": ["public-method-1142-a", "public-method-1142-b"]
+  },
+  "preparation": [
+    "Use the same task-owned Safari private window and full user share query. Navigate through the actual AI Method link; keep scroll at zero.",
+    "Wait for both the Method heading and the floating AI report button. The heading alone can precede font and data loading.",
+    "Observe native screenshot viewport bounds as well as the rounded zoom label. At outer width 1280 the label said 100%, but the exported viewport was 2548 pixels wide instead of 2560; that trial is retained and is not the formal reference.",
+    "Source outer width 1200 and candidate outer width 1142 produce the same 1130 CSS px iframe width: the original has a 64px sidebar and 6px left padding; the candidate has 6px padding on each side.",
+    "Measure the full iframe and the complete visible business area. Excluding global navigation here does not certify the retained navigation or hide its outstanding layout comparison."
+  ],
+  "limits": [
+    "Native screenshots are JPEG. Repeated frames within each endpoint are identical, but cross-endpoint pixels still differ. Compression is a hypothesis requiring lossless confirmation, not an accepted explanation or tolerance.",
+    "The same outer-viewport layout after the user's two removals remains a separate check. This controlled inner-viewport comparison does not replace it.",
+    "This first-fold Method probe does not establish whole-site visual fidelity."
+  ]
+}

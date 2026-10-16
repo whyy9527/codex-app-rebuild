@@ -1,0 +1,468 @@
+{
+  "schema_version": 1,
+  "source": "Original native observations in private/player-source-20261015 and private/source-host-20261015; first-bp.ax.txt actually shows full post-game data, not BP.",
+  "cases": [
+    {
+      "id": "player",
+      "steps": [
+        {
+          "action": "click",
+          "match": "\\d+ link 首页, Value:"
+        },
+        {
+          "action": "click",
+          "match": "\\d+ link Claude Opus 5\\.5, Value:"
+        },
+        {
+          "action": "click_if_present",
+          "match": "\\d+ button  暂停, Help:"
+        },
+        {
+          "action": "click_if_present",
+          "match": "\\d+ checkbox 闲置 60 秒后自动换台, Value: 1"
+        },
+        {
+          "action": "click",
+          "match": "\\d+ button 赛前$"
+        },
+        {
+          "action": "click",
+          "match": "\\d+ button 1x$",
+          "capture": "player-preseason"
+        },
+        {
+          "action": "click",
+          "match": "\\d+ button 下一步,",
+          "capture": "player-first-series"
+        },
+        {
+          "action": "click",
+          "match": "\\d+ button 下一步,",
+          "capture": "player-first-game-data"
+        },
+        {
+          "action": "click",
+          "match": "\\d+ toggle button BP,",
+          "capture": "player-bp"
+        },
+        {
+          "action": "click",
+          "match": "\\d+ toggle button 比赛,",
+          "capture": "player-match"
+        },
+        {
+          "action": "click",
+          "match": "\\d+ toggle button 结果,",
+          "capture": "player-result"
+        },
+        {
+          "action": "click",
+          "match": "\\d+ toggle button 数据,",
+          "capture": "player-data"
+        },
+        {
+          "action": "click",
+          "match": "\\d+ button 上一步,",
+          "capture": "player-previous-series"
+        },
+        {
+          "action": "click",
+          "match": "\\d+ button 下一天,",
+          "capture": "player-next-day"
+        },
+        {
+          "action": "click",
+          "match": "\\d+ button 下一场,",
+          "capture": "player-next-series"
+        }
+      ]
+    },
+    {
+      "id": "host",
+      "steps": [
+        {
+          "action": "click",
+          "match": "\\d+ link AI 赛制介绍, Value:"
+        },
+        {
+          "action": "click",
+          "match": "\\d+ button 展开详情$",
+          "capture": "host-expanded"
+        },
+        {
+          "action": "click",
+          "match": "\\d+ button 相关$",
+          "capture": "host-related"
+        },
+        {
+          "action": "click",
+          "match": "\\d+ button 收起$",
+          "capture": "host-collapsed"
+        }
+      ]
+    },
+    {
+      "id": "entry",
+      "steps": [
+        {
+          "action": "goto_query",
+          "query": "?p=pickem",
+          "ready": "heading 我来预测, Value: 1",
+          "capture": "entry-pickem"
+        }
+      ]
+    }
+  ],
+  "keyboard": {
+    "scope": "Actual native keyboard focus, step boundaries, speed limits, mute/play and model-switch state. This extends the player journey; it does not replace whole-image or all-sound acceptance.",
+    "driver": "tools/mobile_native.mjs installMobileUI; same actions for original and candidate",
+    "preparation": "Task-owned Safari private window, default UA, observed 375x667/98%/2x. Select Claude; pause, idle off, preseason, click 1x, enable sound when muted, click player help text and observe player region focus.",
+    "steps": [
+      {
+        "key": "Right",
+        "id": "right-series"
+      },
+      {
+        "key": "Left",
+        "id": "left-preseason"
+      },
+      {
+        "key": "Left",
+        "id": "left-floor"
+      },
+      {
+        "key": "Up",
+        "id": "speed-2"
+      },
+      {
+        "key": "Up",
+        "id": "speed-4"
+      },
+      {
+        "key": "Up",
+        "id": "speed-8"
+      },
+      {
+        "key": "Up",
+        "id": "speed-ceiling"
+      },
+      {
+        "key": "Down",
+        "id": "speed-down-4"
+      },
+      {
+        "key": "Down",
+        "id": "speed-down-2"
+      },
+      {
+        "key": "Down",
+        "id": "speed-down-1"
+      },
+      {
+        "key": "Down",
+        "id": "speed-floor"
+      },
+      {
+        "key": "m",
+        "id": "mute"
+      },
+      {
+        "key": "m",
+        "id": "unmute"
+      },
+      {
+        "key": "space",
+        "id": "playing"
+      },
+      {
+        "key": "space",
+        "id": "paused"
+      }
+    ],
+    "follow_up": [
+      "AX-click Play then press Space; preserve the actual focus result. Safari pointer activation did not focus that button, so this attempt alone does not prove native button keyboard handling.",
+      "Click primary Home then M; collect actual outside-player focus and unchanged sound.",
+      "Select GPT-6.1 sol and Claude Opus 5.5 with prepare=false; observe automatic playback and retain unstable timeline snapshots.",
+      "Re-prepare paused Claude; focus player help and press Tab, then re-focus help and press Option-Tab. Press Space on the actually focused native button."
+    ],
+    "capture": {
+      "content_rect_points": [
+        952,
+        294,
+        750,
+        1322
+      ],
+      "backing_scale": 1,
+      "window_points": [
+        2648,
+        1666
+      ],
+      "measurement": "Complete phone viewport in the observed 98% private Safari window, in native-export coordinates; both sides use this same window."
+    }
+  },
+  "channels": {
+    "scope": "All eight observed AI channels and their eight main views, through actual desktop UI. This does not certify every match/story expansion, prediction stage, sound or complete visual fidelity.",
+    "driver": "tools/channel_native.mjs installChannelUI",
+    "preparation": "Same owned Safari private window in ordinary desktop mode. Preserve full original share query. Select Live before each model; pause, idle off, preseason, 1x, actual scroll origin. Static views retain actual observed match-day state.",
+    "models": [
+      {
+        "id": "opus",
+        "label": "Claude Opus 5.5"
+      },
+      {
+        "id": "gpt",
+        "label": "GPT-6.1 sol"
+      },
+      {
+        "id": "gemini",
+        "label": "Gemini 3.8"
+      },
+      {
+        "id": "deepseek",
+        "label": "DeepSeek V4.1 Flash"
+      },
+      {
+        "id": "qwen",
+        "label": "Qwen3.8 Max"
+      },
+      {
+        "id": "glm",
+        "label": "GLM-5.3"
+      },
+      {
+        "id": "doubao",
+        "label": "豆包"
+      },
+      {
+        "id": "mimo",
+        "label": "MiMo V2.6 Pro"
+      }
+    ],
+    "views": [
+      {
+        "id": "live",
+        "label": "直播"
+      },
+      {
+        "id": "schedule",
+        "label": "赛程赛果"
+      },
+      {
+        "id": "swiss",
+        "label": "瑞士轮"
+      },
+      {
+        "id": "knockout",
+        "label": "淘汰赛"
+      },
+      {
+        "id": "players",
+        "label": "选手榜"
+      },
+      {
+        "id": "stories",
+        "label": "剧情与战报"
+      },
+      {
+        "id": "scout",
+        "label": "赛前评估"
+      },
+      {
+        "id": "process",
+        "label": "预测过程"
+      }
+    ],
+    "table_observation": "Keep original partial AX ranges. Scroll by real viewport pages to expose rows. Preserve every raw before/after AX and screenshot; independently check observed row coverage. Non-table omission stops capture.",
+    "capture": {
+      "content_rect_points": [
+        0,
+        104,
+        2648,
+        1562
+      ],
+      "backing_scale": 1,
+      "window_points": [
+        2648,
+        1666
+      ],
+      "measurement": "Complete ordinary Safari browser content below its observed 104-pixel toolbar, in unmodified native-export coordinates."
+    }
+  },
+  "share_game": {
+    "scope": "Actual UI-copied standalone game sharing entry, refresh retention and jump to this game in the live player. Original and candidate use each own origin; capture pixels remain strict diagnostics.",
+    "driver": "tools/channel_native.mjs installChannelUI open/waitFor/click/collect",
+    "source_path": "/toy/LkvCZhw12wgT2Pqx/share/opus-5.5__S16-MAIN/PI-UB1/g4.html",
+    "cases": [
+      "entry-game4",
+      "entry-reloaded",
+      "entry-live-jump"
+    ],
+    "capture": {
+      "content_rect_points": [
+        0,
+        104,
+        2648,
+        1562
+      ],
+      "backing_scale": 1,
+      "window_points": [
+        2648,
+        1666
+      ],
+      "measurement": "Complete ordinary Safari browser content below its observed 104-pixel toolbar, in unmodified native-export coordinates."
+    },
+    "preparation": "Same owned ordinary desktop Safari private window. The source URL is actual copied report in private/details-source-1/opus-share-url.txt. Current game is number 4, not a seeded or manually edited browser draft.",
+    "steps": [
+      "Open actual copied game URL; wait for source-observed G4 headline and floating report button; collect entry-game4.",
+      "Open QR, scroll by half a native viewport and capture the completely visible QR separately for independent image decoding; close and reset scroll.",
+      "Navigate primary Home, retain actual home AX, then reload the unchanged outer game-sharing URL; wait for G4 and collect entry-reloaded.",
+      "Activate 在直播间看这局; wait for actual player, pause if playing, then activate the already-selected BP toggle while paused (source renders the complete draft) and collect entry-live-jump. Do not compare uncontrolled partial animation progress.",
+      "Copy world-share URL from actual UI; retain clipboard address AX and plain report before restoring real address."
+    ],
+    "limits": [
+      "Sharing QR content must resolve to each endpoint own valid game URL. Its graphic necessarily changes with the hostname; raw full screenshots remain unchanged.",
+      "Source outer unknown share URL returns a shell HTTP 200 and its missing compiled content returns HTTP 404. Preview rejects unknown share inputs with HTTP 404; this negative HTTP boundary does not certify the platform error page.",
+      "Pending PNG authorization remains independent from functional sharing repair."
+    ]
+  },
+  "share_world": {
+    "scope": "Actual copied standalone AI-world sharing entry after the common game/live traversal; each own playback step persists, while game rendering phase resets as observed.",
+    "driver": "tools/channel_native.mjs installChannelUI open/click/collect",
+    "source_path": "/toy/LkvCZhw12wgT2Pqx/share/opus-5.5__S16-MAIN/index.html",
+    "cases": [
+      "world-open"
+    ],
+    "capture": {
+      "content_rect_points": [
+        0,
+        104,
+        2648,
+        1562
+      ],
+      "backing_scale": 1,
+      "window_points": [
+        2648,
+        1666
+      ],
+      "measurement": "Complete ordinary Safari browser content below its observed 104-pixel toolbar, in unmodified native-export coordinates."
+    },
+    "preparation": "After share_game on the same origin, open its actual copied world URL. Wait for player and pause if playing; do not force a model or timeline step.",
+    "steps": [
+      "Open actual copied world URL; wait for player; pause if needed; collect world-open."
+    ],
+    "limits": "This probes the world-entry route and own retained state; other dedicated-channel subviews and full visuals remain separate."
+  },
+  "details": {
+    "scope": "All 8 AI models: actual first scheduled series, series full-text expansion, and each game in that series. Does not certify every remaining series or interactive chart hover.",
+    "driver": "tools/details_native.mjs installDetailsUI prepare/model; channel_evidence freeze/observe details",
+    "models": [
+      {
+        "id": "opus",
+        "label": "Claude Opus 5.5"
+      },
+      {
+        "id": "gpt",
+        "label": "GPT-6.1 sol"
+      },
+      {
+        "id": "gemini",
+        "label": "Gemini 3.8"
+      },
+      {
+        "id": "deepseek",
+        "label": "DeepSeek V4.1 Flash"
+      },
+      {
+        "id": "qwen",
+        "label": "Qwen3.8 Max"
+      },
+      {
+        "id": "glm",
+        "label": "GLM-5.3"
+      },
+      {
+        "id": "doubao",
+        "label": "豆包"
+      },
+      {
+        "id": "mimo",
+        "label": "MiMo V2.6 Pro"
+      }
+    ],
+    "capture": {
+      "content_rect_points": [
+        0,
+        104,
+        2648,
+        1562
+      ],
+      "backing_scale": 1,
+      "window_points": [
+        2648,
+        1666
+      ],
+      "measurement": "Complete ordinary Safari browser content below its observed 104-pixel toolbar, in unmodified native-export coordinates."
+    },
+    "preparation": "Same ordinary owned Safari private window, original complete Android share query or published root. Model selection, date and playback preparation reuse channel UI; enter series only by actual first schedule button.",
+    "steps": [
+      "Home, actual model channel, 赛程赛果; retain schedule AX; activate first actual series button.",
+      "Capture series-collapsed, activate 展开全文 ↓ and capture series-expanded.",
+      "Read all actual per-game links, activate each in order and collect game-N. No direct route or expected content injection."
+    ],
+    "limits": [
+      "Each model may have a different game count. Actual source navigation will define immutable case IDs before candidate replay.",
+      "Native full-page screenshots retain the user-authorized two UI deletions and layout differences as strict pixel diagnostics.",
+      "Expansion, chart hover, story branches and other series remain individually scoped; this batch does not claim complete Goal acceptance."
+    ],
+    "cases": [
+      "opus-series-collapsed",
+      "opus-series-expanded",
+      "opus-game-1",
+      "opus-game-2",
+      "opus-game-3",
+      "opus-game-4",
+      "gpt-series-collapsed",
+      "gpt-series-expanded",
+      "gpt-game-1",
+      "gpt-game-2",
+      "gpt-game-3",
+      "gpt-game-4",
+      "gemini-series-collapsed",
+      "gemini-series-expanded",
+      "gemini-game-1",
+      "gemini-game-2",
+      "gemini-game-3",
+      "gemini-game-4",
+      "deepseek-series-collapsed",
+      "deepseek-series-expanded",
+      "deepseek-game-1",
+      "deepseek-game-2",
+      "deepseek-game-3",
+      "deepseek-game-4",
+      "qwen-series-collapsed",
+      "qwen-series-expanded",
+      "qwen-game-1",
+      "qwen-game-2",
+      "qwen-game-3",
+      "glm-series-collapsed",
+      "glm-series-expanded",
+      "glm-game-1",
+      "glm-game-2",
+      "glm-game-3",
+      "glm-game-4",
+      "doubao-series-collapsed",
+      "doubao-series-expanded",
+      "doubao-game-1",
+      "doubao-game-2",
+      "doubao-game-3",
+      "doubao-game-4",
+      "mimo-series-collapsed",
+      "mimo-series-expanded",
+      "mimo-game-1",
+      "mimo-game-2",
+      "mimo-game-3",
+      "mimo-game-4"
+    ],
+    "case_source": "projects/bilibili-toy/private/details-source-3/observed.json and each model-actions.json; frozen before public replay"
+  }
+}

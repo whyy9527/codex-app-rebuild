@@ -1,0 +1,84 @@
+{
+  "date": "2026-10-16",
+  "scope": "Method page entire visible business area at equal actual iframe dimensions. Global navigation and other layouts remain separate; this is not complete Goal acceptance.",
+  "public_release": "db672b1c0da4-20261015T201308Z",
+  "source_build": "43482999941120-v26695",
+  "protocol": "projects/bilibili-toy/visual-png.json",
+  "driver": "projects/bilibili-toy/tools/visual_png_native.mjs",
+  "captures": "projects/bilibili-toy/private/inspector-png-probe-1",
+  "contract": "projects/bilibili-toy/private/visual-png-contract-v1/contract.json",
+  "independent_public_result": "projects/bilibili-toy/private/visual-png-contract-v1/public-independent-result.json",
+  "source_self": {
+    "pass": 136,
+    "fail": 0
+  },
+  "public": {
+    "pass": 136,
+    "fail": 0,
+    "mean_absolute_rgb_difference": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "changed_pixels": 0,
+    "compared_pixels": 2400120,
+    "repeat_pixels_identical": true
+  },
+  "geometry": {
+    "source_outer_css": [
+      1200,
+      600
+    ],
+    "public_outer_css": [
+      1142,
+      600
+    ],
+    "both_iframe_css": [
+      1130,
+      588
+    ],
+    "source_png_pixels": [
+      2400,
+      1200
+    ],
+    "public_png_pixels": [
+      2284,
+      1200
+    ],
+    "business_rect_in_each_png": [
+      12,
+      126,
+      2260,
+      1062
+    ],
+    "actual_pixels_per_css_pixel": 2,
+    "sampling": "Actual PNG dimensions equal CSS dimensions × 2 and match each before/after page toolbar; same owned window, zoom 100%, scroll origin zero."
+  },
+  "provenance": [
+    "Capture Screenshot was actually present on native Safari Web Inspector body-node context menu and saved a real PNG. No screenshot CLI, JavaScript console capture, screen recording or other computer automation used.",
+    "Initial docked inspector produced a 2648×562 PNG. Detaching its window restored the complete 2648×1562 ordinary page content; subsequent responsive captures used the declared true pixel dimensions.",
+    "Save dialog Go To Folder initially retained a previous unrelated path after paste. That attempt was cancelled without saving. AX setValue plus explicit path/filename verification worked. Generic driver repeats that exact checked path flow.",
+    "Page before/after AX, owned inspector selected body, PNG save dialog, file hashes and repeated pixels are independently re-read by the verifier.",
+    "Source a/b identical; public exploratory b/c identical and exactly match source business pixels. Frozen contract v1 then preceded independent public d/e capture; that pair also passes all 136 original requirements.",
+    "Repository native driver was actually run for public f, including verified absolute destination, and its full business pixels exactly match source.",
+    "Re-running the lossless tool with predetermined d/e reproduces 136/136 and emits a byte-identical original contract. Project visual_compare also passes."
+  ],
+  "retained_transient": {
+    "path": "projects/bilibili-toy/private/inspector-png-probe-1/public-method-a.png",
+    "comparison": "Public a vs b: 18,323 changed pixels; maximum channel difference 2, RGB means [0.0072192223722147226,0.007319634018299085,0.0].",
+    "interpretation": "Actual initial unsettled frame retained. No inferred cause; no tolerance, mask, rescaling or alignment search used."
+  },
+  "historical_jpeg_failure": "projects/bilibili-toy/evidence/visual-2026-10-16.json remains unchanged; its cross-endpoint difference is not reproduced by current stable PNG captures. No claim about every historical or other-page image failure.",
+  "verification": {
+    "root": "111 tests OK, 8 skipped",
+    "project": "17 tests OK",
+    "negative_checks": "Inspector hostname, selected body, filename and destination mismatch are rejected; existing viewport/query/scroll/stability checks remain.",
+    "native_driver": "Actual public f PNG capture and exact cross comparison passed",
+    "diff_check": "passed"
+  },
+  "remaining": [
+    "Retained global navigation and whole-page expanded layout at equal outer viewport after the two authorized deletions.",
+    "Other pages, scroll positions, graph pixels and mobile/responsive layouts under this lossless protocol.",
+    "Remaining series and story branches, hover/drag, simulation-strength boundaries, animation timing and all relevant audio."
+  ]
+}

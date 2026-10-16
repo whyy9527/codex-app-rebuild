@@ -1,0 +1,76 @@
+{
+  "date": "2026-10-16",
+  "scope": "Strength references, custom team ranking and full anonymous simulation on original and public preview; overall fidelity pending",
+  "source_build": "43482999941120-v26695",
+  "public_release": "bce6f0f21976-20261015T144858Z",
+  "protocol": "projects/bilibili-toy/prediction.json#options",
+  "source": "projects/bilibili-toy/private/prediction-options-source-1",
+  "candidate": "projects/bilibili-toy/private/prediction-options-public-selection-2",
+  "contract": "projects/bilibili-toy/private/prediction-options-contract-v2/contract.json",
+  "source_self_result": {
+    "evidence": "projects/bilibili-toy/private/prediction-options-source-compare-2.json",
+    "pass": 1185,
+    "fail": 0,
+    "not_run": 1,
+    "unavailable": 0
+  },
+  "public_result": {
+    "evidence": "projects/bilibili-toy/private/prediction-options-public-compare-2.json",
+    "states": 47,
+    "pass": 1138,
+    "fail": 46,
+    "not_run": 1,
+    "unavailable": 1,
+    "interpretation": "All frozen content, control, ranking, common-final probability, rule and retention checks pass. Forty-six strict full-content screenshots differ; one playing screenshot changed semantic state around capture and is unavailable. Selected speed styling/timing remains pending. No full visual/timing pass inferred."
+  },
+  "actual_observations": {
+    "references": [
+      "隐藏分",
+      "Claude Opus 5.5",
+      "GPT-6.1 sol",
+      "Gemini 3.8",
+      "DeepSeek V4.1 Flash",
+      "Qwen3.8 Max",
+      "GLM-5.3",
+      "豆包",
+      "MiMo V2.6 Pro"
+    ],
+    "reference_checks": "Each actual selection, unchanged own choices, valid displayed probabilities and source-observed HLE/GEN final win probabilities compared across origins. Other independent matchups retain their actual data.",
+    "ranking": "Nineteen actual ranked teams; boundary disabled controls, HLE up/down, GEN down, cancel/reopen, apply/reload, all nine ranking import sources. Rank order/region and exposed control states compared exactly.",
+    "simulation": "Start, pause, 2x/4x controls, resume/pause, direct finish, all seven readonly completed rounds, copied actual simulation report, another simulated tournament, home/return and restarted empty simulator.",
+    "rules": "Unique initial roster, play-in qualifier, active same-record pairings, no rematches observed, one winner per match, eight qualified/eight eliminated, correct QF entrants, 3-0 seeding and winner progression all true on both origins.",
+    "retention": "Changing strength references, editing custom rankings and running simulations preserve each own previously completed prediction. Applied custom ranking survives parent reload.",
+    "independent_results": "Original first copied simulation champion DK; published formal simulation champion HLE. Reports match each actual KO UI and use each own endpoint. Exact random champions are not an equality requirement."
+  },
+  "preparation_failures_retained": {
+    "initial_public_result": "projects/bilibili-toy/private/prediction-options-public-first-compare-2.json",
+    "initial_counts": {
+      "pass": 1135,
+      "fail": 47,
+      "not_run": 1,
+      "unavailable": 3
+    },
+    "reason": "Initial normal-speed simulation finished before the next pause action. On restart, pausing before the first simulated round left an empty session showing Start rather than Continue. No application change was required.",
+    "retry": "Wait for an actual first-round heading before pausing. Original captures and retry captures remain immutable; selection-2 manifest points to each actual record and records original map hashes. Three Continue controls then matched.",
+    "source_observer_correction": "Initial simulation validator incorrectly included SF/final participants when checking eight QF entrants. Source contract v2 uses first four pairs; valid complete-simulation fixture and invalid entrant regression checks cover this distinction. Earlier source contract/result retained."
+  },
+  "ui_collection_limits": [
+    "All-round result is visibly rendered but Safari sometimes omits the entire generic container without a truncation marker. Raw source/public screenshots and AX retained. Individual-round results restore complete AX.",
+    "Coordinate clicks repeatedly switched to the other owned Safari window, even after Raise. Window/endpoint guard prevented capture. No further coordinate recovery assumed.",
+    "Keyboard recovery succeeded: focus primary My Prediction link, Option-Tab until actual screenshot shows PI button focus, Space activates it and restores full round AX. Published recovery used 12 Option-Tabs; this count is not a general contract.",
+    "Source second simulation and public extra runs retain raw full-result pictures; no unobserved complete table or text inferred from those pictures."
+  ],
+  "verification": {
+    "root_tests": "111 tests OK, 8 skipped",
+    "project_tests": "11 tests OK",
+    "native_checks": "Ranking completeness, menus/disabled controls, completed simulation qualifier comparison and invalid entrant checks passed; existing prediction checks passed",
+    "diff_check": "passed",
+    "release_check": "Trusted HTTPS requiring TLS 1.3; release.json HTTP 200, active preview unchanged; private/prediction-options-public-selection-2/release.json"
+  },
+  "remaining": [
+    "Scoped visual and geometry acceptance, including selected-speed styling and actual timing.",
+    "Ranking drag/click-to-position, simulation strength change during an unfinished run, remaining match/story expansions and hover.",
+    "All sound types beyond earlier BP/mute evidence; responsive secondary views.",
+    "Follow-gated poster and topic posting unexercised; no follow/login/external messages performed."
+  ]
+}

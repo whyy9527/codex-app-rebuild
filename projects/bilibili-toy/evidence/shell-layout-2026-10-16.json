@@ -1,0 +1,167 @@
+{
+  "date": "2026-10-16",
+  "source_build": "43482999941120-v26695",
+  "scope": "Correct shell geometry after the two user-requested UI deletions; source is an actual original-page local reference variant. Mobile Method static regions and desktop Method business area verified; Goal remains active.",
+  "problem": {
+    "original_shell": "body display:flex; stage flex:1 1 auto; padding:6px 0 6px 6px; 64px Toy sidebar",
+    "previous_implementation": "Sidebar removed but body became block and 6px right padding was added. At mobile outer width375 this gave a363px iframe, while the literal two-node deletion reference gives369px.",
+    "repair": "Restore original flex/container/padding rules and retain the two removals. The iframe now occupies all 64px released by removing the sidebar."
+  },
+  "reference_variant": {
+    "driver": "projects/bilibili-toy/tools/user_removal_native.mjs",
+    "original_origin": "https://www.bilibili.com",
+    "changes": [
+      "Delete .author-bar through native inspector Delete → Node",
+      "Delete aside#toy-shell-sidebar through native inspector Delete → Node"
+    ],
+    "preserved": "No original CSS, scripts, application data or other DOM nodes edited; reload restores original source.",
+    "proof": "Before/after original inspector captures independently require each actual node present then absent; source page AX must keep author absent around PNG capture. The real failed parent-Delete-only attempt is rejected.",
+    "mobile": "projects/bilibili-toy/private/user-removal-source-1",
+    "desktop": "projects/bilibili-toy/private/user-removal-desktop-source-1",
+    "failed_attempts": "Initial source-both-removed-a/b frames still contain the widgets because Delete opened a submenu only. Raw files retained and excluded by actual node-presence validation."
+  },
+  "mobile": {
+    "viewport_css": [
+      375,
+      667
+    ],
+    "png_pixels": [
+      750,
+      1334
+    ],
+    "iframe_css": [
+      369,
+      655
+    ],
+    "header_css": 191,
+    "protocol": "projects/bilibili-toy/user-removal-png.json",
+    "contract": "projects/bilibili-toy/private/user-removal-contract-v1/contract.json",
+    "source_self": {
+      "pass": 144,
+      "fail": 0
+    },
+    "public_before": {
+      "release": "db672b1c0da4-20261015T201308Z",
+      "pass": 140,
+      "fail": 4,
+      "failed_kind": "image_pixels",
+      "path": "projects/bilibili-toy/private/user-removal-public-before-result-1.json"
+    },
+    "local_after": {
+      "pass": 144,
+      "fail": 0,
+      "all_four_static_regions_rgb_difference": [
+        0,
+        0,
+        0
+      ],
+      "path": "projects/bilibili-toy/private/user-removal-local-after-result-1.json"
+    },
+    "unmasked_full_image_diagnostic": {
+      "difference_bbox": [
+        54,
+        132,
+        70,
+        148
+      ],
+      "interpretation": "All whole-viewport differences are confined to the animated live-badge dot phase. Full raw PNGs retained; no whole-image zero-difference claim or mask applied."
+    },
+    "public_after": {
+      "pass": 144,
+      "fail": 0,
+      "four_static_regions_rgb_difference": [
+        0,
+        0,
+        0
+      ],
+      "path": "projects/bilibili-toy/private/user-removal-mobile-public-result-1.json",
+      "unmasked_full_image_difference_bbox": [
+        54,
+        132,
+        70,
+        148
+      ],
+      "unmasked_rgb_mean": [
+        0.002590704647676162,
+        0.0007956021989005497,
+        0.0010394802598700649
+      ]
+    }
+  },
+  "desktop": {
+    "viewport_css": [
+      1200,
+      600
+    ],
+    "png_pixels": [
+      2400,
+      1200
+    ],
+    "iframe_css": [
+      1194,
+      588
+    ],
+    "header_css": 57,
+    "protocol": "projects/bilibili-toy/user-removal-desktop.json",
+    "contract": "projects/bilibili-toy/private/user-removal-desktop-contract-v1/contract.json",
+    "source_self": {
+      "pass": 135,
+      "fail": 0
+    },
+    "local_after": {
+      "pass": 135,
+      "fail": 0,
+      "business_rgb_difference": [
+        0,
+        0,
+        0
+      ],
+      "path": "projects/bilibili-toy/private/user-removal-desktop-local-result-1.json"
+    },
+    "unmasked_full_image_diagnostic": {
+      "difference_bbox": [
+        913,
+        28,
+        1993,
+        108
+      ],
+      "observed": "Original reference has 我来预测 hover background; candidate does not. Live badge dot phase also differs. Navigation preview images retained.",
+      "interpretation": "Whole-header state preparation remains separate; business-area regression passes without changing pixel assertions."
+    },
+    "public_after": {
+      "pass": 135,
+      "fail": 0,
+      "business_rgb_difference": [
+        0,
+        0,
+        0
+      ],
+      "path": "projects/bilibili-toy/private/user-removal-desktop-public-result-1.json"
+    }
+  },
+  "verification": {
+    "root": "111 tests OK, 8 skipped",
+    "project": "19 tests OK",
+    "node": "visual_png_native.test.mjs passed: actual window, query, port and elided HTTP scheme",
+    "native_reference_driver": "Actually executed on original desktop page; both actual DOM nodes deleted and absence independently verified",
+    "negative_checks": [
+      "All-transparent original inner-node PNG is rejected",
+      "JPEG bytes cannot masquerade as lossless PNG; dimensions checked",
+      "Selected body AX variants with/without Description accepted; wrong owner and save destination rejected",
+      "Real parent-menu-only deletion attempt rejected",
+      "Local endpoint scheme elision preserved; altered port/query rejected"
+    ],
+    "diff_check": "passed",
+    "public_https": "23 trusted TLS 1.3 checks passed: release identity, root/resources matched reviewed manifest hashes, eight world and representative game share entries GET/HEAD, unknown game404. Receipt: projects/bilibili-toy/private/shell-fix-public-http-1.json",
+    "public_ui": "Actual native Safari independent desktop1200×600 and mobile375×667 repeated PNGs passed the prepublication original contracts through project visual_compare/mobile_visual_compare commands.",
+    "deployment": "Dedicated systemd service active; existing landing and media application containers healthy; prior release retained.",
+    "cleanup": "Owned OSS transfer object and local/server transfer archives removed after public HTTPS and UI verification. Previous release db672b1c0da4-20261015T201308Z and rollback staging retained. Receipt: projects/bilibili-toy/private/deploy/922cd01b1016-20261015T215737Z/cleanup.json",
+    "service_memory_bytes": 24199168
+  },
+  "remaining": [
+    "Homepage and other full responsive layouts under the explicit requested-deletion reference.",
+    "Desktop navigation hover preparation and live-badge phase/timing.",
+    "Other series/story branches, chart hover, ranking drag, simulation boundaries, remaining audio/animation coverage."
+  ],
+  "public_release": "922cd01b1016-20261015T215737Z"
+}

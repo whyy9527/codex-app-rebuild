@@ -1,0 +1,165 @@
+{
+  "date": "2026-10-16",
+  "source_build": "43482999941120-v26934",
+  "scope": "Preview update to observed original live-results/scoring release; full Goal remains active.",
+  "original_changed": {
+    "previous": "43482999941120-v26695",
+    "intermediate_observed": "43482999941120-v26932",
+    "changes": [
+      "Live results endpoint, per-minute checks, immediate refresh and last-good/error UI",
+      "100-point score breakdown and reordered navigation",
+      "New data/predictions.json; previous index/aggregate/results snapshots unchanged"
+    ]
+  },
+  "implementation": {
+    "resources": 439,
+    "unavailable": [],
+    "source_config": "projects/bilibili-toy/source-build.json",
+    "adaptations": [
+      "Share base current origin",
+      "Omit author component as explicitly requested",
+      "Fixed public live-results source relayed same-origin; no client credentials, server cache or scoring changes"
+    ],
+    "staging": "Prepare separate directory; switch only after complete resources and host preparation; prior local site archived",
+    "storage": "Original prediction keys unchanged; no storage reset/migration/copy"
+  },
+  "major_pages": {
+    "protocol": "projects/bilibili-toy/major-pages.json",
+    "source": "projects/bilibili-toy/private/major-pages-source-26934-1",
+    "local": "projects/bilibili-toy/private/major-pages-local-26934-1",
+    "contract": "projects/bilibili-toy/private/major-pages-frozen-26934-1/contract.json",
+    "comparison": "projects/bilibili-toy/private/major-pages-local-result-26934-1.json",
+    "counts": {
+      "pass": 533,
+      "fail": 58,
+      "not_run": 1
+    },
+    "by_case": {
+      "home-opus": {
+        "pass": 72
+      },
+      "home-gpt": {
+        "pass": 72
+      },
+      "compare": {
+        "pass": 66
+      },
+      "teams": {
+        "pass": 21
+      },
+      "team-gen": {
+        "pass": 56
+      },
+      "pickem-view": {
+        "fail": 51,
+        "pass": 13
+      },
+      "leaderboard": {
+        "not_run": 1,
+        "pass": 75,
+        "fail": 7
+      },
+      "method": {
+        "pass": 123
+      },
+      "about": {
+        "pass": 35
+      }
+    },
+    "limits": [
+      "Independent source prediction draft is completed; fresh local origin is empty. Do not reset/copy drafts or mark those failures passing.",
+      "Leaderboard observed update timestamps differ; source repeat business image unstable and remains pending.",
+      "Pickem/leaderboard header pixel differences remain unresolved; no tolerance/masking applied.",
+      "Other seven cases all requirements passed, including RGB-zero declared image regions.",
+      "Below-fold, full series/branch coverage and remaining sound/motion are not certified."
+    ],
+    "source_self": {
+      "pass": 591,
+      "fail": 0,
+      "not_run": 1
+    }
+  },
+  "manual_refresh": {
+    "source": "projects/bilibili-toy/private/major-pages-source-26934-1/leaderboard-after-refresh.ax.txt",
+    "candidate": "projects/bilibili-toy/private/major-pages-local-26934-1/leaderboard-after-refresh.ax.txt",
+    "observed": "Both show MiMo and Qwen 73.8 points for one settled series; candidate updated to 07:08:01 Beijing through actual immediate-refresh UI.",
+    "automatic_poll": "Original implementation retained; end-to-end timed verification remains pending."
+  },
+  "verification": {
+    "root": "111 tests OK, 8 skipped",
+    "project": "22 tests OK",
+    "live_http": "Local actual GET200 schema_version2; updated_utc observed 2026-10-15T23:03:03Z",
+    "boundary": "GET/HEAD same JSON length, caller URL rejected, cookies/Authorization not forwarded; upstream503 and network502 visible"
+  },
+  "publication": {
+    "release": "35580861f7bf-20261015T231522Z",
+    "revision": "35580861f7bfca7dcc7f413a770632d3e748977f",
+    "url": "https://s16.xinxiayiyan.com/",
+    "https_receipt": "projects/bilibili-toy/private/deploy/35580861f7bf-20261015T231522Z/public-http.json",
+    "checks": 8,
+    "live_results_updated_utc": "2026-10-15T23:13:03Z",
+    "public_ui": {
+      "source": "projects/bilibili-toy/private/major-pages-source-26934-1",
+      "public": "projects/bilibili-toy/private/major-pages-public-26934-1",
+      "result": "projects/bilibili-toy/private/major-pages-public-result-26934-1.json",
+      "counts": {
+        "pass": 588,
+        "fail": 3,
+        "not_run": 1
+      },
+      "by_case": {
+        "home-opus": {
+          "pass": 72
+        },
+        "home-gpt": {
+          "pass": 72
+        },
+        "compare": {
+          "pass": 66
+        },
+        "teams": {
+          "pass": 21
+        },
+        "team-gen": {
+          "pass": 56
+        },
+        "pickem-view": {
+          "pass": 63,
+          "fail": 1
+        },
+        "leaderboard": {
+          "not_run": 1,
+          "pass": 80,
+          "fail": 2
+        },
+        "method": {
+          "pass": 123
+        },
+        "about": {
+          "pass": 35
+        }
+      },
+      "static_images": "All35 declared static image regions passed RGB-zero; leaderboard business source repeated frames unstable and remains pending.",
+      "unresolved_text": [
+        "Existing independent model-affinity score source13 vs public12. The earlier public16 entry confused friend-report compatibility with model affinity; corrected from original saved AX without changing those captures/results.",
+        "Source07:03:03 vs public07:13:03 upstream timestamp.",
+        "Source FUR vs MVK vs public MVK vs FUR. Earlier source API22:43:03Z team1FUR/team2MVK; current23:18:03Z same series ID115660588583040710 team1MVK/team2FUR, now inProgress. Actual upstream change verified; original failed comparison preserved."
+      ],
+      "api_change_evidence": [
+        "projects/bilibili-toy/private/source-build-current/live-results.json",
+        "projects/bilibili-toy/private/live-results-after-publish-26934.json"
+      ],
+      "manual_refresh": "Actual native click returned latest timestamp and original MiMo/Qwen73.8 scoring; no widgets in actual page AX."
+    },
+    "rollback_release": "922cd01b1016-20261015T215737Z",
+    "shared_services": "xinxia-landing and media-workflow-app-1 healthy",
+    "cleanup": "Owned OSS object and local/server transfer archives removed after HTTPS and actual public UI verification; rollback prior922 retained.",
+    "cleanup_receipt": "projects/bilibili-toy/private/deploy/35580861f7bf-20261015T231522Z/cleanup.json"
+  },
+  "remaining": [
+    "Personal model-affinity scoring verified separately against each actual own draft; strict literal13 failure retained as an incomparable-state diagnostic. Common same-state prediction paths and remaining interaction boundaries still require coverage.",
+    "Live source/candidate same-time scoreboard and timed automatic-poll/error recovery",
+    "Other series/story branches, chart hover, ranking drag, simulation boundaries, remaining audio/animation coverage"
+  ],
+  "follow_up_evidence": "projects/bilibili-toy/evidence/live-cycle-2026-10-16.json"
+}

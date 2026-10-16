@@ -1,0 +1,86 @@
+{
+  "date": "2026-10-15",
+  "change": "Replaced provisional sidebar with the published host UI, local public author/related/toy snapshots and locally fetched icon configurations. Added shared native playback and host journeys. Public build remains reused, not independently rewritten.",
+  "sources": {
+    "host": "https://s1.hdslb.com/bfs/seed/toy/app/pc-detail/index.js",
+    "host_provenance": "projects/bilibili-toy/private/site/host/provenance.json",
+    "public_api_snapshot": "projects/bilibili-toy/private/site/host/responses.json",
+    "source_native": "projects/bilibili-toy/private/source-host-20261015",
+    "source_journey": "projects/bilibili-toy/private/journey-source-1/observed.json",
+    "candidate_journey": "projects/bilibili-toy/private/journey-candidate-1/observed.json"
+  },
+  "observed_requirements": [
+    "Host expands from 64px rail to a side panel and shrinks the main frame; collapse restores the rail.",
+    "A paused next-event action enters a game at completed data phase. Phase buttons select BP, match, result and data explicitly.",
+    "Idle switching can be disabled, playback can be paused and 1x chosen before comparison.",
+    "Previous-event, next-day and next-series actions preserve paused playback in the measured journey."
+  ],
+  "comparison": {
+    "contract": "projects/bilibili-toy/private/journey-contract-v1.json",
+    "result": "projects/bilibili-toy/private/journey-compare-3.json",
+    "states": 13,
+    "pass": 491,
+    "fail": 13,
+    "not_run": 0,
+    "scope": "491 text/control assertions passed; all 13 strict full-content image assertions remain fail. No completion percentage.",
+    "raw_image_note": "Most mean RGB differences are around 0.1/255 in exported screenshot space; live clocks/platform counts and sampling remain uncontrolled, so no equality claim or post-hoc masking."
+  },
+  "observer_correction": {
+    "old_contract": "projects/bilibili-toy/private/journey-contract-before-text-canonicalization.json",
+    "source_self_check_failed": "projects/bilibili-toy/private/journey-reference-self-1.json",
+    "source_self_check_passed": "projects/bilibili-toy/private/journey-reference-self-2.json",
+    "reason": "The existing comparator strips actual accessible text. The first contract retained the leading space in the native play-button label and failed on source itself. Canonicalized the expected edge whitespace to the same convention; retained all assertions and raw evidence.",
+    "manual_probe_counterexample": "private/player-source-20261015/first-bp.ax.txt actually shows game data; the accepted shared state is player-first-game-data."
+  },
+  "checks": {
+    "project_tests": "3 HTTP boundary tests passed; private/host-tests-final3.log",
+    "framework_tests": "111 tests, 8 skipped, OK; private/unittest-host-final.log",
+    "syntax": "node --check passed for host-transport.js, content-host.js, frame-entry.js and journey_native.mjs",
+    "method": "project preflight connected; this is not acceptance"
+  },
+  "remaining": [
+    "Prediction editing, draws, export, persistence and reload",
+    "Keyboard controls, speed behavior, idle switching over time",
+    "Audio and motion measured through real app output",
+    "All channels and detail pages",
+    "Comments/share/account flows",
+    "Mobile layouts",
+    "Full visual equality under comparable sampling"
+  ],
+  "next_action": "Inspect prediction baseline before editing; use an isolated native browser window/context if existing source predictions are present. Continue source/candidate shared journeys and retain old raw image failures. Source and candidate query-entry captures both show the unchosen first play-in draw; preserve this baseline before prediction edits. Verify exported share links target the local app rather than the original host.",
+  "entry_fix": {
+    "observed_difference": "Source p=pickem navigated to prediction; candidate ignored the query and displayed home.",
+    "before": "projects/bilibili-toy/private/deeplink-20261015/candidate-before.ax.txt",
+    "original": "projects/bilibili-toy/private/deeplink-20261015/source.ax.txt",
+    "after_manual": "projects/bilibili-toy/private/deeplink-20261015/candidate-after.ax.txt",
+    "shared_source": "projects/bilibili-toy/private/entry-source-2/observed.json",
+    "shared_candidate": "projects/bilibili-toy/private/entry-candidate-2/observed.json",
+    "contract": "projects/bilibili-toy/entry-contract.json",
+    "implementation": "frame-entry.js assigns the complete original outer query before content routing begins.",
+    "comparison": "projects/bilibili-toy/private/entry-compare-2.json",
+    "result": {
+      "semantic_pass": 3,
+      "strict_image_fail": 1,
+      "source_self_check": "4 passed",
+      "scope": "Routing restored; live author/counter/clock pixels remain different."
+    }
+  },
+  "native_control": {
+    "tab_binding": "Edge createBrowserTab timed out after 30 seconds; a subsequent native app inventory still showed the original four tabs. No duplicate creation was attempted.",
+    "available": "Native Edge AX, clicks and screenshots verified usable after rebinding."
+  },
+  "source_text_retention": {
+    "generator": "projects/bilibili-toy/tools/freeze_journey.py",
+    "same_requirements_as_reviewed_contract": true,
+    "scope": "Original replay prose remains private; generator and observed-reference paths are published."
+  },
+  "capture_geometry_correction": {
+    "old_failure": "projects/bilibili-toy/private/entry-source-self-1.json",
+    "actual_native_export": [
+      2940,
+      1666
+    ],
+    "content_top_export_pixels": 160,
+    "scope": "Observed after CUA session reset. Old 1920x1080 contract correctly rejected the new capture. Fresh source/candidate evidence uses the observed crop; no application area was masked."
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "scope": "Visible original/published live-results minute requests, temporary browser-local URL blocking, last-good retention/recovery, completed KC-C9 five-game score tables, and read-only own-draft model affinity. This is business evidence; dynamic/error pixels and exact scheduling jitter remain separate.",
+  "source_build_config": "projects/bilibili-toy/source-build.json",
+  "capture": "Native Safari owned window. Keep Inspector docked so page remains visible; detached Inspector may hide fullscreen page. No Console execution, CSS changes, storage reset, seed injection or draft copying.",
+  "steps": [
+    "Navigate the complete authorized entry URL, open 谁最准, dock Inspector and filter the exact live-results endpoint.",
+    "Capture actual request Headers and visible page. Leave the page visible without clicking refresh until the next actual request; capture its Headers. Preserve URL minute parameters, Status and Date, distinct from Last-Modified.",
+    "Save healthy page AX. Use native Network Block Request URL; if its minute query has expired, edit a browser-local anchored regex matching only that endpoint and numeric t. Preserve actual rule AX.",
+    "Click 立即刷新. Capture actual failure notice, last-good timestamp, all eight model score breakdowns and retry/refresh controls.",
+    "Disable the owned temporary rule, click 立即刷新 and capture actual recovery. Remove only the rule created by this test and verify it is absent.",
+    "Through shared live_cycle_native.captureLiveMatch, navigate 谁最准 and expand KC 3 : 2 C9. Capture all six tables, five official MVP headings, actual AX/image and after AX.",
+    "Through shared live_cycle_native.capturePredictionResult, view 我来预测 → 淘汰赛. Capture each origin existing completed seven-match draft and all eight displayed model affinities; preserve choices and saved lock. Recompute each score from its actual quarterfinalists/semifinalists/champion and original frozen run placements."
+  ],
+  "comparison": "Freeze original observed behavior before candidate comparison. Different existing drafts are validated against their own actual team sets, with raw numeric differences retained. Source13/public12 best-model scores are both valid; neither original diagnostic nor raw images are overwritten.",
+  "cleanup": "Confirm original and candidate show successful current data and no owned Block override remains. Restore normal viewport after closing Inspector.",
+  "limits": [
+    "Successful consecutive minute requests and server response intervals evidence observed polling; they do not claim zero scheduler/network jitter.",
+    "Failure recovery is a deliberate browser-local endpoint fault. No production service, credentials or network settings are changed.",
+    "Pictures are raw owned-window evidence; this protocol does not compare their pixels or certify error-layout animation and sound."
+  ]
+}

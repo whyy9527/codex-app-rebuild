@@ -1,0 +1,339 @@
+# Bilibili Toy 本地复刻案例
+
+原版入口：<https://www.bilibili.com/toy/LkvCZhw12wgT2Pqx/index.html>。
+目标与完成条件由 `rebuild.json` 连接原生 Goal；方法见仓库复刻工作流。
+
+当前可运行基线使用原站公开发布的静态应用代码、数据、字体与素材，
+配合本仓库编写的本地启动、只读接口与参数转发适配。这不是独立重写的应用源码。
+发布包和原始证据保存在被 Git 忽略的 `private/` 中，不随仓库再分发。
+来源及摘要由准备命令写入 `private/resources.json`。
+
+从仓库根运行：
+
+```sh
+python3 -m projects.bilibili-toy.tools.prepare
+python3 -m projects.bilibili-toy.tools.serve --port 4617
+```
+
+打开 <http://127.0.0.1:4617/>。准备命令需要 curl 和原版公开资源可访问；
+本地服务只监听 loopback。准备成功后冻结应用数据与素材从本地读取；实时赛果通过固定公开源的同源只读转发取得。
+当前原版版本与资源入口集中在 `source-build.json`。本次交付按已观察并保存的
+发布版本验收；原站此后的代码更新另记为版本差异，赛果接口继续实时更新。
+更新准备先在独立目录完成，
+全部资源和宿主准备成功后才切换，并保留上一份本地目录。
+右侧 Toy 平台侧栏和顶部作者／关注／话题区域已按用户截图要求删除，
+主内容占满释放出的宽度。原版静态发布包保留；派生模块只调整分享基址
+并取消挂载顶部作者组件，以及将实时赛果地址适配为本站同源接口。
+`/content/live-results.json` 只读取配置中的固定公开 JSON，不转发客户端凭证，
+不增加服务端缓存；原应用的每分钟检查、手动刷新、积分算法和失败保留逻辑不变。
+公开只读响应快照供原应用可选 SDK 读取，
+来源及摘要位于 `private/site/host/provenance.json`。
+账号写入未接入，外链仍打开原站；服务工作线程及远端遥测不注入。
+战报及二维码基址适配为当前域名；原版模块保持原字节，派生的
+`assets/local-index.js` 和变更摘要记入资源清单。外壳 iframe 使用原版实测
+沙箱权限，原生确认框未开放；因此“重新预测”与原版一样不清空草稿。
+
+共同 E2E 使用 `scenarios.json` 与 `frontend-contract.json`。原生 UI 回放
+须由当前 Codex 在 `cua_repl` 中给 `tools/e2e_native.mjs` 的
+`installNavigationE2E` 传入实际 Edge App、`node:fs/promises` 和
+`private/e2e-bridge` 路径，并逐条 await 服务请求。运行前选中目标
+原版或本地标签页；来源守卫不匹配会停止，不争抢其他标签页。
+
+```sh
+python3 -m projects.bilibili-toy.tools.e2e source --out projects/bilibili-toy/private/reference-new
+python3 -m projects.bilibili-toy.tools.e2e candidate --out projects/bilibili-toy/private/candidate-new
+python3 -m workflows.rebuild.project run --workspace . --project projects/bilibili-toy/rebuild.json --command compare --observed projects/bilibili-toy/private/candidate-new/observed.json --out projects/bilibili-toy/private/comparison-new.json
+```
+
+RSI 使用 `rsi/config.json` 与 `tools/native.mjs`，桥接方法相同；每次 collect
+须实际服务新的发现与独立评价请求。历史池是不可覆写的探针证据，
+不是浏览器远程状态备份。页面刷新保留浏览器存储与真实时钟。
+
+回放阶段与侧栏旅程使用 `journeys.json` 和 `rebuild.json` 指向的本地冻结契约，运行
+`python3 -m projects.bilibili-toy.tools.e2e source --suite journeys --out <新证据目录>` 或相同的 candidate
+命令，并在 CUA 装载 `tools/journey_native.mjs` 的 `installJourneyE2E`。
+该驱动按相同动作采集赛前、事件跳转、四个阶段及侧栏状态。
+
+历史结果与局限见 `evidence/`。导航、方法接线或单元测试通过不能
+替代完整视觉、播放、声音、预测保存与移动端验收。
+
+手机响应式观察使用 `mobile.json` 和 `tools/mobile_native.mjs`。在 CUA 中
+给 `installMobileUI` 传入实际 Safari App、文件 API、完整入口 URL、
+新证据目录及实测窗口 UUID；两端使用同一准备与操作。原版参考为
+375×667、99% 截图缩放、2x 像素比和 Safari 默认 UA，滚动归零并将
+播放器暂停在赛前、1x、关闭闲置换台。空草稿通过独立测试 origin
+准备，保留已有草稿。原版 Android UA 会触发 B站 App 限制，单独记录。
+
+```sh
+python3 -m projects.bilibili-toy.tools.freeze_mobile --reference <原版-observed.json> --candidate <候选-observed.json> --out projects/bilibili-toy/private/mobile-contract-new
+python3 -m workflows.rebuild.project run --workspace . --project projects/bilibili-toy/rebuild.json --command mobile_compare --observed <候选事实.json> --out projects/bilibili-toy/private/mobile-comparison-new.json
+node projects/bilibili-toy/tools/mobile_native.test.mjs
+```
+
+完整截图保留，比较只取实测的完整手机视口；不遮挡作者区域、侧栏、
+倒计时或交互状态来取得图片通过。最新手机结果见
+`evidence/mobile-2026-10-15.json`；内容检查通过不代表整页视觉通过。
+
+播放器键盘旅程在 `journeys.json` 的 `keyboard` 中，复用同一 Safari
+驱动的 `focusPlayer`、`key` 和 `selectModel`；后者传入
+`{prepare:false}` 时保留真实切换后的自动播放行为。按共享步骤执行后，
+原始 AX、截图及按键时间戳进入各端新 private 目录。倍速按钮没有 AX
+选中值，需从原始截图观察标签，并保存对应图片摘要，不能用预期值回填。
+
+```sh
+node projects/bilibili-toy/tools/keyboard_evidence.mjs freeze <原版-observed.json> projects/bilibili-toy/private/keyboard-contract-new
+node projects/bilibili-toy/tools/keyboard_evidence.mjs observe <候选-observed.json> projects/bilibili-toy/private/keyboard-facts-new.json
+python3 -m workflows.rebuild.project run --workspace . --project projects/bilibili-toy/rebuild.json --command keyboard_compare --observed <候选事实.json> --out projects/bilibili-toy/private/keyboard-comparison-new.json
+```
+
+冻结器从前后 AX 重新提取事实；采样期间变化的原版字段保持 pending，
+不成为静态参考。结果和观察器修订见 `evidence/keyboard-2026-10-16.json`。
+
+八个 AI 频道的桌面视图由 `journeys.json#channels` 定义，CUA 中给
+`tools/channel_native.mjs` 的 `installChannelUI` 传入实际 Safari、文件
+API、完整入口、独立输出目录和窗口 UUID。`prepare` 后按模型调用
+`selectModel`，再逐视图 `navigate`、`collect`；同一套动作操作原版和候选。
+普通桌面模式及手机模式分别记录，不复用两者的截图几何。
+
+选手表的 AX 行会随实际滚动逐段出现。驱动保留各段原文和截图，冻结器
+重新提取完整原生表格的行数；`showing … of … items` 不能直接作为行数。
+通用容器仍被截断时停止，不把末尾片段当成完整页面。
+
+```sh
+node projects/bilibili-toy/tools/channel_evidence.mjs freeze <原版-observed.json> projects/bilibili-toy/private/channel-contract-new
+node projects/bilibili-toy/tools/channel_evidence.mjs observe <候选-observed.json> projects/bilibili-toy/private/channel-facts-new.json
+python3 -m workflows.rebuild.project run --workspace . --project projects/bilibili-toy/rebuild.json --command channel_compare --observed <候选事实.json> --out projects/bilibili-toy/private/channel-comparison-new.json
+node projects/bilibili-toy/tools/channel_native.test.mjs
+```
+
+范围和结果见 `evidence/channels-2026-10-16.json`。内容比较覆盖主视图，
+比赛详情、战报展开和整页视觉仍需各自的实际证据。
+
+冻结回放契约：
+
+```sh
+python3 -m projects.bilibili-toy.tools.freeze_journey --reference projects/bilibili-toy/private/reference-journey/observed.json --out projects/bilibili-toy/private/contract-new.json
+```
+
+完整原版回放文字只进入本地 private 契约。原生截图尺寸变化后，先实测
+浏览器内容边界，再给 e2e 命令传入 `--content-top`（导出截图像素坐标）；
+旧参考尺寸不匹配时保留 unavailable，不缩放或遮罩以取得通过。
+
+入围赛预测使用 `prediction.json` 和 `tools/prediction_native.mjs` 的
+`installPredictionE2E`。本轮使用 Safari 原生 App，因 Edge 的嵌套内容点击与
+焦点采集不稳定。驱动要求空草稿，遇到已有草稿会停止；它不自动清空预测。
+实际原版“重新预测”未出现确认且没有重置，因此本轮用新建的临时私密窗口
+准备空状态，再在同一窗口回放本地端。运行命令：
+
+```sh
+python3 -m projects.bilibili-toy.tools.e2e source --suite prediction --case playin --content-top 112 --out projects/bilibili-toy/private/prediction-reference-new
+python3 -m projects.bilibili-toy.tools.e2e candidate --suite prediction --case playin --content-top 112 --out projects/bilibili-toy/private/prediction-candidate-new
+node projects/bilibili-toy/tools/freeze_prediction.mjs projects/bilibili-toy/private/prediction-reference-new/observed.json projects/bilibili-toy/private/prediction-contract-new.json
+node projects/bilibili-toy/tools/prediction_native.test.mjs
+```
+
+`112` 是本轮 Safari 导出截图中的实测内容起点，复跑前须重新测量。
+冻结器从实际 AX 重新提取事实；同名的两场比赛保留独立控件编号。
+入围赛的历史比较见 `evidence/prediction-2026-10-15.json`；覆盖入围赛及
+刷新后的草稿保留。完整随机赛程内容、资料授权、声音和移动端需分别验收。
+
+预测用例分别准备状态：`playin` 要求空草稿；`share` 要求没有选中胜者或
+锁定结果，并使用实际原版 UI 复制的战帖编码；`locked` 要求已有完整、锁定
+的测试预测。后者核验各端自己的锁定时间及选择在刷新、重置尝试和复制后
+保留，不用随机生成的不同对阵宣称整张预测内容一致。选择一个 `--case`
+后由同一 `installPredictionE2E` 服务，两端使用同一用例。
+
+完整匿名竞猜使用 `prediction.json#tournament`，在 CUA 给
+`installTournamentUI` 传入实际 Safari、文件 API、完整入口、新输出目录与
+窗口 UUID。按协议调用 `begin/click/fill/capture/reload`，保留每次选择前后
+AX。两端各自生成随机对阵，选择策略只读取实际显示概率；不复制存储或种子。
+好友导入使用原版 UI 实际复制的战报编码，两端导入相同编码。
+
+```sh
+node projects/bilibili-toy/tools/tournament_evidence.mjs freeze <原版目录> projects/bilibili-toy/private/tournament-contract-new
+node projects/bilibili-toy/tools/tournament_evidence.mjs observe <候选目录> projects/bilibili-toy/private/tournament-facts-new.json
+python3 -m workflows.rebuild.project run --workspace . --project projects/bilibili-toy/rebuild.json --command tournament_compare --observed <候选事实.json> --out projects/bilibili-toy/private/tournament-comparison-new.json
+node projects/bilibili-toy/tools/prediction_native.test.mjs
+```
+
+本轮验证 46 次逐场选择、七轮记录、锁定与编辑草稿的关系、分享和好友
+默契度。各端锁定时间只和自身记录比较；随机赛程验证晋级与配对规则。
+原始整页截图差异仍保留，详情见 `evidence/tournament-2026-10-16.json`。
+
+实力参考、19 队自定义排名和“模拟一届”按 `prediction.json#options`
+复用同一原生驱动，转换器为 `tools/prediction_options_evidence.mjs`，其
+`freeze/observe` 参数与完整竞猜转换器相同。比较使用项目命令
+`prediction_options_compare`，回归检查运行
+`node projects/bilibili-toy/tools/prediction_options.test.mjs`。
+
+模拟开始后，先实际观察到首轮出现，再暂停。首轮生成前暂停会返回
+“开始模拟”，属于另一种真实状态。整届结果有时在画面正常显示，而
+Safari AX 漏掉整块内容；可从主导航聚焦后用 Option-Tab 找到轮次按钮，
+截图确认焦点，再按空格。不同页面控件数量不同，不固定按键次数。
+本轮重试保留原采集，选择清单引用实际帧及原清单摘要；不会覆写失败截图。
+完整结果和限制见 `evidence/prediction-options-2026-10-16.json`。
+
+历史 JPEG 视觉探针由 `visual.json` 定义。旧预览删除侧栏时额外加了 6px 右边距，同一外部视口曾只释放
+58px；后续已恢复原版容器规则，实际释放完整 64px。历史探针需分别观察该扩宽布局和相同 iframe 视口下的保留区域；
+不能用整页重排掩盖主内容差异，也不能把局部区域通过当作整页通过。
+该 Method 探针保留完整可见业务区域，导航布局仍单独待验收。
+
+```sh
+python3 -m projects.bilibili-toy.tools.visual_probe --captures <原始AX和截图目录> --out projects/bilibili-toy/private/visual-probe-new
+python3 -m capabilities.rebuild.frontend --workspace . --contract <本次探针目录/contract.json> --observed <本次探针目录/public.json> --out projects/bilibili-toy/private/visual-comparison-new.json
+```
+
+工具重新核验原入口、完整分享参数、窗口身份、截图前后文本、滚动原点和
+真实采样比例，再从原版冻结文本、几何和严格像素要求。Safari 的 100%
+标签可能经过取整，需结合截图中的完整视口边界测量。历史 JPEG 的非零差异
+保持失败，不归因于压缩或增加容差；后续无损复验见下文。历史结果见
+`evidence/visual-2026-10-16.json`。
+
+历史无损复验使用 `visual-png.json`，保留当时的外宽和右边距。在 CUA 中绑定
+`tools/visual_png_native.mjs` 的 `installLosslessUI`，传入实际页面 URL、
+新证据目录和窗口 UUID，再调用 `capture(stem)`。驱动通过 Web Inspector
+原生节点菜单保存 body PNG，分离检查器窗口以保持页面视口，并核对实际
+保存路径。页面、检查器、保存框的 AX 一起保留。
+
+```sh
+python3 -m projects.bilibili-toy.tools.visual_probe --lossless --captures <原始证据目录> --out projects/bilibili-toy/private/visual-png-probe-new
+python3 -m capabilities.rebuild.frontend --workspace . --contract <本次无损探针目录/contract.json> --observed <本次无损探针目录/public.json> --out projects/bilibili-toy/private/visual-png-comparison-new.json
+```
+
+原版契约冻结后另取候选重复帧，用相同要求复验。此轮 Method 的完整可见
+业务区域达到严格零像素差，原 JPEG 失败和初始未稳定 PNG 均保留。
+这不替代导航、其他页面和手机布局检查。见 `evidence/visual-png-2026-10-16.json`。
+
+当前删除后的排版参考由 `tools/user_removal_native.mjs` 准备：在实际原版
+任务窗口进入同一页面，再在 CUA 调用 `installRequestedRemovalReference`
+的 `prepare()`。它仅通过原生检查器删除 `.author-bar` 和
+`aside#toy-shell-sidebar`，记录节点确实从存在变为不存在；原版 CSS、脚本
+和数据保持原样。刷新恢复原版。`Delete` 是菜单分组，真正动作是子项 `Node`，
+不能把打开分组当成删除成功。
+
+主内容恢复原版 flex 容器与 `6px 0 6px 6px` 内边距。手机端两个区域删除后，
+375px 外宽给主内容 369px；原版作者行删除使导航高度从 239px 降为 191px。
+当前手机静态区域协议为 `user-removal-png.json`，桌面业务区域为
+`user-removal-desktop.json`。使用相同实际外部视口和完整分享 query，先冻结
+原版参考，再独立重放候选；`installLosslessUI` 保存真实 body PNG 与 UI 证据。
+
+```sh
+python3 -m projects.bilibili-toy.tools.mobile_png_probe freeze --protocol user-removal-png.json --captures <原版参考目录> --out projects/bilibili-toy/private/requested-removal-contract-new
+python3 -m projects.bilibili-toy.tools.mobile_png_probe observe --protocol user-removal-png.json --captures <候选目录> --out projects/bilibili-toy/private/requested-removal-facts-new.json
+python3 -m workflows.rebuild.project run --workspace . --project projects/bilibili-toy/rebuild.json --command mobile_visual_compare --observed <候选事实.json> --out projects/bilibili-toy/private/requested-removal-comparison-new.json
+node projects/bilibili-toy/tools/visual_png_native.test.mjs
+```
+
+桌面将协议改为 `user-removal-desktop.json`，比较命令为 `visual_compare`。
+预发布本地观察可增加 `--candidate-url http://127.0.0.1:4619/`；工具仍核对
+实际端口、源站和完整分享 query。实际 body 的 Computed 尺寸、PNG 尺寸与
+响应式工具栏须同时一致；100% 标签有取整误差。全透明节点图被判为不可用。
+失败样本、当前修复及完整原始帧见 `evidence/mobile-png-2026-10-16.json` 和
+`evidence/shell-layout-2026-10-16.json`。原始整图中的悬停和动画相位差异
+独立保留，不使用遮罩或提高容差。
+
+实际复制的模型世界／单局分享入口使用 `journeys.json#share_world` 和
+`#share_game`。服务端从已发布数据生成有效路径，不把未知比赛替换为首页。
+根入口继续保留原分享 query，固定分享页使用自身的模型和局数路由。
+
+```sh
+node projects/bilibili-toy/tools/channel_evidence.mjs freeze <原版 observed.json> projects/bilibili-toy/private/share-game-contract-new share_game
+node projects/bilibili-toy/tools/channel_evidence.mjs observe <候选 observed.json> projects/bilibili-toy/private/share-game-facts-new.json share_game
+python3 -m workflows.rebuild.project run --workspace . --project projects/bilibili-toy/rebuild.json --command share_game_compare --observed <候选事实.json> --out projects/bilibili-toy/private/share-game-comparison-new.json
+node projects/bilibili-toy/tools/frame_entry.test.mjs
+```
+
+世界入口将最后参数改为 `share_world`，比较命令为 `share_world_compare`。
+直播跳转会自动播放 BP；共同准备先暂停，再点击已选中的 BP 按钮，显示完整
+选人，避免将不同暂停时刻当成相同状态。二维码用 `tools/decode_qr.swift`
+分析实际 CUA 截图，先确认二维码完整可见。详情见
+`evidence/share-entries-2026-10-16.json`。
+
+比赛详情使用 `journeys.json#details` 和 `tools/details_native.mjs`。
+在 CUA 绑定 `installDetailsUI` 后调用 `prepare()`，再按协议的 `models`
+逐一调用 `model(model)`；每次输出新目录。驱动从实际赛程选择首场，
+展开全文并遍历实际各局链接，保留选中入口及动作清单。
+
+```sh
+node projects/bilibili-toy/tools/channel_evidence.mjs freeze <原版 observed.json> projects/bilibili-toy/private/details-contract-new details
+node projects/bilibili-toy/tools/channel_evidence.mjs observe <候选 observed.json> projects/bilibili-toy/private/details-facts-new.json details
+python3 -m workflows.rebuild.project run --workspace . --project projects/bilibili-toy/rebuild.json --command details_compare --observed <候选事实.json> --out projects/bilibili-toy/private/details-comparison-new.json
+node projects/bilibili-toy/tools/details_native.test.mjs
+```
+
+案例 ID 由实际原版八个模型的完整首场导航冻结；原版首场比分和局数不同，
+不要用固定四局或遗漏“小冷／爆冷”等标签的解析器缩小采集。结果与未覆盖项
+见 `evidence/details-2026-10-16.json`。
+
+用户后续指定的发布目标是 `https://s16.xinxiayiyan.com/`；完成条件修订见
+`rebuild.json`，用户后续要求先发布当前预览版；完整复刻验收继续。现有官网首页保留。
+
+预览版发布使用独立的 `bilibili-toy-s16` systemd 服务（128 MiB、25% CPU），
+仅绑定代理 Docker 网络的宿主网关，外部流量经现有 Nginx TLS 入口。默认本地
+启动仍只监听 loopback。无需构建容器或修改现有官网部署仓库。
+
+```sh
+python3 -m projects.bilibili-toy.tools.certificate --install
+python3 -m projects.bilibili-toy.tools.deploy --publish
+```
+
+先提交和推送审核后的部署输入。发布包在本地 ignored `private/deploy/`，
+逐文件 SHA-256 与包摘要核验；短期私有 OSS 对象用于传输。服务器暂存必须
+为磁盘上的 `/var/tmp/bilibili-toy-s16-*`。线上 `/release.json` 提供版本及
+验收状态。公共 HTTPS、资源和 UI 验证通过后才删除传输对象与压缩包，保留
+旧 release、代理配置及回退目录。回退命令为服务器上的
+`sh /opt/bilibili-toy/current/deploy/rollback.sh <本次暂存目录>`。首次发布
+回退会停用本站入口；后续回退恢复上一版本，不修改现有官网。
+
+公网 HTTP 当前被阿里云 ICP 接入层拦截，HTTP-01 不能用于签发证书。
+本站改用 Certbot DNS-01；TXT 验证及清理由本机 Aliyun CLI 完成，
+DNS 凭证不上传服务器。证书与私钥只进入本机 ignored private 目录、
+短期私有传输对象及服务器 TLS 目录，不进入 Git 或应用发布包。
+`tools.certificate --install` 在接近到期时续签并安装；安装后需要
+`docker exec nginx-app nginx -t` 与平滑 reload。当前没有安装本机定时任务，
+维护者需在证书到期前执行该命令。访问本站使用完整 HTTPS 地址。
+
+声音行为协议在 `audio.json`。先在 CUA 中将 `tools/audio_native.mjs` 的
+`installAudioUI` 绑定到本任务独占的 Safari，再用 `prepare` 准备各用例。
+只录本任务 Safari PID 的应用输出；录音前确认其他 Safari 窗口没有播放。
+CLI 复用仓库已有 ScreenCaptureKit collector，不传 Swift AX 动作、不录
+麦克风或屏幕。启动后必须等本次 `ready.json`，再由 CUA 调用
+`run({url, dir, seconds:3})` 实际播放和暂停；本轮使用 30 秒采集窗口
+以容纳工具往返，12 秒早期尝试因动作未落在窗口内而无效。
+
+```sh
+python3 -m projects.bilibili-toy.tools.capture_audio --pid <本任务实际 Safari PID> --seconds 30 --out <新的 private 录音目录>
+python3 -m projects.bilibili-toy.tools.freeze_audio --captures <private 两端录音目录映射 JSON> --out <新的 private 契约目录>
+python3 -m workflows.rebuild.project run --workspace . --project projects/bilibili-toy/rebuild.json --command audio_compare --observed projects/bilibili-toy/private/audio-contract-v1/candidate.json --out <新的 private 比较结果.json>
+```
+
+采集必须顺序进行：上一个 collector 终态后才能切换到下一端页面。
+每次使用新目录，录音、UI 动作时间和采样帧共同构成证据。分析依赖
+本机可选 NumPy/SciPy。共同断言只覆盖已观察 BP 场景的输出、静音及
+恢复；首个音效波形和原版重复测量单独报告，不作为全音效一致判定。
+历史录音早于用户删除两个 UI 区域，详见 `evidence/audio-2026-10-15.json`。
+
+手机主页面首屏回归使用 `major-pages.json`、`tools/major_pages_native.mjs`
+和 `tools/major_pages_probe.py`。在 CUA 中准备各端，再逐个执行协议的
+`cases`，采集真实 header 几何及重复 PNG。先 freeze 原版，再 observe 候选
+（本地可提供 `--candidate-url`），使用 `capabilities.rebuild.frontend` 比较。
+原版重复帧不稳定的区域保持 pending，独立草稿和实时赛果时间差保持原始失败，
+不据此宣称完整 1:1 验收通过。最新升级结果见
+`evidence/live-update-2026-10-16.json`。
+
+实时赛果行为、已结束系列赛的五局明细和现有草稿相似度复跑见
+`live-cycle.json`。原生浏览器中停靠 Inspector 后才采样可见页面轮询，
+保留真实 Headers 的 URL、Status、Date；Date 与 Last-Modified 分开读取。
+只对目标赛果 URL 创建本会话临时 Block 规则，故障后禁用并删除该规则。
+比赛和预测只读采集复用 `tools/live_cycle_native.mjs`，传入实际窗口 UUID、
+完整入口及新输出 stem；不清空或复制草稿。
+
+`tools/live_cycle_probe.py source|public --captures <本次目录> --out <新事实.json>
+--window-uuid <实际UUID> --match-capture <共同驱动输出stem名称>` 重新提取
+保留／恢复状态及全部计分表。
+`tools/prediction_affinity_probe.mjs source|public <capture-stem> <新事实.json>
+<实际UUID>` 按各自实际选队和原始模型结果核算相似度、最佳模型及并列顺序。
+原版生成契约后，候选分别通过项目的 `live_cycle_compare`、
+`prediction_affinity_compare` 比较。截图仅是原始证据，本组业务通过不代表
+故障布局、逐局表格视觉或动画时序通过。结果见
+`evidence/live-cycle-2026-10-16.json`。

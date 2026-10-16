@@ -1,0 +1,180 @@
+{
+  "schema_version": 1,
+  "source": "Source observations private/predict-source-2; Safari successfully activated official draw. Current protocol preserves existing drafts by requiring an empty prestate.",
+  "cases": [
+    {
+      "id": "playin",
+      "steps": [
+        {
+          "action": "capture",
+          "capture": "prediction-empty"
+        },
+        {
+          "action": "click",
+          "match": "\\d+ button 揭晓对阵$",
+          "capture": "prediction-draw"
+        },
+        {
+          "action": "click",
+          "match": "\\d+ toggle button C9 41% 0, Value: (?:off|0)$",
+          "capture": "prediction-c9"
+        },
+        {
+          "action": "click",
+          "match": "\\d+ toggle button KC 59% 8, Value: (?:off|0)$",
+          "capture": "prediction-changed-kc"
+        },
+        {
+          "action": "click",
+          "match": "\\d+ toggle button FUR 79% 8, Value: (?:off|0)$",
+          "capture": "prediction-two-winners"
+        },
+        {
+          "action": "click",
+          "match": "\\d+ toggle button KC 76% 8, Value: (?:off|0)$",
+          "capture": "prediction-upper-final"
+        },
+        {
+          "action": "click",
+          "match": "\\d+ toggle button C9 90% 8, Value: (?:off|0)$",
+          "capture": "prediction-four-winners"
+        },
+        {
+          "action": "click",
+          "match": "\\d+ toggle button FUR 32% 2, Value: (?:off|0)$",
+          "capture": "prediction-lower-final"
+        },
+        {
+          "action": "click",
+          "match": "\\d+ toggle button KC 76% 8, Value: (?:off|0)$",
+          "capture": "prediction-complete"
+        },
+        {
+          "action": "reload",
+          "capture": "prediction-reloaded"
+        }
+      ]
+    },
+    {
+      "id": "share",
+      "query": "?p=pickem&pick=GEN.AL.DK.G2.T1.HLE.BLG.LYON_HLE.T1.GEN.BLG_GEN",
+      "source": "Actual UI-copied original prediction report; private/result-source-safari-1/copied-report-address.ax.txt. Both endpoints must have no selected PI winners or locked result.",
+      "steps": [
+        {
+          "action": "scroll_top",
+          "capture": "share-imported"
+        },
+        {
+          "action": "click",
+          "match": "\\d+ button 收起$",
+          "capture": "share-collapsed"
+        },
+        {
+          "action": "reload",
+          "capture": "share-reloaded"
+        }
+      ]
+    },
+    {
+      "id": "locked",
+      "source": "Already locked test prediction from the observed anonymous autofill/lock UI. Random brackets stay distinct; this case compares champion, choice counts, copy feedback and retention of each endpoint actual timestamp and choices.",
+      "steps": [
+        {
+          "action": "capture",
+          "capture": "final-locked"
+        },
+        {
+          "action": "reload",
+          "capture": "final-reloaded"
+        },
+        {
+          "action": "click",
+          "match": "\\d+ button 重新预测$",
+          "capture": "final-reset-attempt"
+        },
+        {
+          "action": "click",
+          "match": "\\d+ button 复制预测战报$",
+          "capture": "final-copied"
+        }
+      ]
+    }
+  ],
+  "tournament": {
+    "scope": "Complete anonymous local prediction traversal, per-round gating, locking and persistence. Random brackets remain actual data; no seed injection or copying of browser storage.",
+    "driver": "tools/prediction_native.mjs installTournamentUI",
+    "preparation": "Same owned ordinary desktop Safari private window and full share query. Require actual empty draft; preserve any existing draft. Default displayed strength reference 隐藏分.",
+    "choice_policy": "Within each unselected match, choose the higher displayed win probability; lexical label tie-break for displayed ties. Record actual before/after AX and chosen labels.",
+    "steps": [
+      "Capture empty draft; reveal official PI draw; fill its six matches individually.",
+      "For Swiss rounds 1 through 5, start the observed draw, capture unselected pairs, fill 8/8/8/6/3 matches and observe future-round gating.",
+      "Observe knockout draw, choose four quarterfinal, two semifinal and one final winners individually.",
+      "Paste poster nickname; lock; reload through actual home entry; review retained choices in all seven rounds.",
+      "Change final winner; observe unlocked draft with saved record retained; attempt reset; copy actual current report.",
+      "Restore original final winner; observe automatic return of original lock timestamp; copy preferred report; edit again and reload.",
+      "Import the actual source-copied preferred report on both origins; compare its visible teams and each own compatibility score; collapse and reload."
+    ],
+    "capture": {
+      "content_rect_points": [
+        0,
+        104,
+        2648,
+        1562
+      ],
+      "backing_scale": 1,
+      "window_points": [
+        2648,
+        1666
+      ]
+    },
+    "limits": "No claim of exact random bracket or lock timestamp equality across independent origins. Shared report content and each origin own persistence must be compared separately.",
+    "observed_findings": [
+      "Lock stores a prediction record separately from the editable draft. Changing the final winner unlocks the draft; restoring the original winner restores the saved lock timestamp automatically.",
+      "Original and candidate reset attempts are no-ops under the observed iframe sandbox. Existing storage is never cleared by the driver.",
+      "Reloading the full original share entry returns to home; reopen My Prediction through its primary link. Choices and saved record persist; nickname resets to B站召唤师.",
+      "Actual clipboard report is plain text plus URL. Safari omnibar inspection requires Escape twice to restore its actual address before guarded captures.",
+      "Published report points to the same origin at /index.html; both / and /index.html were verified HTTP 200. Imported friend code comes from the source report, independently from each origin own report.",
+      "Anonymous saved predictions do not join public user rankings, as stated by original Who Is Most Accurate view. Follow-gated poster and topic posting remain unexercised."
+    ]
+  },
+  "options": {
+    "scope": "Strength references, 19-team custom ranking editor and anonymous tournament simulation; source and candidate retain independent random draws.",
+    "driver": "tools/prediction_native.mjs installTournamentUI",
+    "preparation": "Same owned desktop private Safari window and full original share query, previously completed edited local draft with HLE/GEN finalists, hidden-strength reference, no custom ranking yet. Preserve all existing choices.",
+    "steps": [
+      "Capture current draft; open strength menu; select eight AI references in menu order, then hidden strength.",
+      "Open custom ranking; HLE up, HLE down, GEN down; cancel. Reopen; GEN down; apply; reload and reopen to inspect retention.",
+      "Open import-source menu; import all eight AI rankings in menu order then hidden strength; cancel.",
+      "Enter simulation; start and observe playing. Wait for an actual round heading before pausing; select 2x and 4x; resume/pause; directly finish.",
+      "Select each completed round through actual available UI. If AX omits the whole result, focus primary My Prediction navigation, Option-Tab to round button, confirm visible focus in screenshot and press Space. Copy actual report and retain clipboard text.",
+      "Start another tournament; wait for actual first-round heading; pause and directly finish; retain screenshot and AX even if whole container is omitted.",
+      "Navigate home, return My Prediction, inspect retained draft; enter simulation again and observe restart state."
+    ],
+    "capture": {
+      "content_rect_points": [
+        0,
+        104,
+        2648,
+        1562
+      ],
+      "backing_scale": 1,
+      "window_points": [
+        2648,
+        1666
+      ]
+    },
+    "limits": [
+      "No exact equality of random draws across origins. Each own prediction retention and simulated pairing/progression rules checked independently.",
+      "Pause snapshots may represent different actual progress because UI observation takes time; no cross-origin progress count equality inferred.",
+      "Safari sometimes omits entire all-round result container with no truncation marker, despite visible rendered result. Retain raw failures and use individual-round UI, never infer missing text from compiled code.",
+      "AX has no selected-speed value; actual speed styling and timing remain pending.",
+      "Coordinate actions repeatedly selected the other Safari window, including after Raise; endpoint/window guards stopped capture. Keyboard focus plus screenshot confirmation recovered round selection. Ranking drag and click-to-position remain pending."
+    ],
+    "findings": [
+      "Pausing before the first simulation tick leaves no round and returns to Start. Pausing after a round appears shows Continue; do not compare these different preparations.",
+      "Applying custom ranking persists through parent reload and updates displayed final probabilities. Cancelling imported/editable ranks keeps previously applied ranking.",
+      "Returning through home resets simulation session but preserves own prediction and custom reference.",
+      "Full result AX can omit the entire visible container without showing a truncation marker; screenshot and keyboard focus are necessary evidence."
+    ]
+  }
+}

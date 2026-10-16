@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "source": "Actual Safari original BP playback, mute and restored-output observations; raw evidence stays private.",
+  "preparation": "Claude Opus 5.5, pause, idle off, preseason, 1x, two full event advances, BP. Record only the task-owned Safari PID before real CUA play/pause actions.",
+  "cases": [
+    {"id": "audio-on", "sound_enabled": true},
+    {"id": "audio-muted", "sound_enabled": false},
+    {"id": "audio-restored", "sound_enabled": true, "sound_before_toggle": false}
+  ],
+  "scope": "Output presence, actual muted playback, persisted mute and restored output for this observed BP scene. Waveform measurements are separate; other cue types remain unverified."
+}

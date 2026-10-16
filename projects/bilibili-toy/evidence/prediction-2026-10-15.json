@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-15",
+  "scope": "Deterministic official play-in prediction, two real Safari native runs in the same temporary private window. Published application baseline remains reused, not independently authored.",
+  "source": {
+    "replay": "projects/bilibili-toy/private/prediction-source-safari-2/observed.json",
+    "parsed_reference": "projects/bilibili-toy/private/prediction-contract-v2.reference.json",
+    "self_check": "projects/bilibili-toy/private/prediction-self-2.json",
+    "counts": {
+      "pass": 588
+    }
+  },
+  "candidate": {
+    "replay": "projects/bilibili-toy/private/prediction-candidate-safari-1/observed.json",
+    "parsed_observation": "projects/bilibili-toy/private/prediction-candidate-safari-1/observed-parsed.json",
+    "comparison": "projects/bilibili-toy/private/prediction-compare-2.json",
+    "counts": {
+      "pass": 578,
+      "fail": 10
+    }
+  },
+  "observed": [
+    "Official PI draw C9/KC and FUR/MVK.",
+    "Selecting C9 and changing to KC updates dependent slots.",
+    "Select KC and FUR, then KC and C9, then FUR, then KC: all six matches selected; SW1 preparation is enabled.",
+    "Refreshing retains the actual six winners and pending Swiss draw on both endpoints.",
+    "Two distinct KC 76% 8 controls appear in the same bracket; occurrence IDs preserve both checked states."
+  ],
+  "capture": {
+    "browser": "Safari",
+    "export_pixels": [
+      2648,
+      1666
+    ],
+    "measured_content_top": 112,
+    "policy": "Original screenshot bytes and actual capture geometry retained. No masking, alignment search or image tolerance."
+  },
+  "visual_result": "All 10 strict whole-content image comparisons fail; semantic and enabled/checked requirements all pass (578). Visually inspected empty-state pairs have matching major geometry; live clock, public follower/platform counts, pointer hover and capture timing differ. This is not a visual pass.",
+  "preparation_limits": [
+    "Driver requires empty prediction and never clears an existing draft. Safari private window provided a fresh test context.",
+    "Observed original 重新预测 button left the revealed bracket unchanged; no confirmation appeared. Published handler uses confirm, but browser suppression is an inference, not proven here.",
+    "Earlier prediction-source-safari-1 is a failed preparation receipt and retained.",
+    "private/predict-source-1 was misbound to local, invalid as source evidence. private/predict-source-2 contains valid source keyboard observations.",
+    "Edge nested-frame click/focus behavior became unreliable; browser extension tab inventory timed out. Failed attempts are not counted as passes."
+  ],
+  "parser_corrections": [
+    "v1 contract contained disabled booleans unsupported by the common comparator. Retained privately, never yielded a pass. v2 uses supported enabled booleans without changing the observed gate.",
+    "Source raw receipt was captured before duplicate-toggle fix; v2 reparses its saved actual AX with the shared extractor. Candidate raw receipt also reparsed for enabled naming. Original receipts remain unchanged."
+  ],
+  "new_gap": {
+    "knowledge": "observed",
+    "source": [
+      "projects/bilibili-toy/private/predict-source-2/profile-consent.ax.txt",
+      "projects/bilibili-toy/private/predict-source-2/profile-consent.jpg",
+      "projects/bilibili-toy/private/predict-source-2/profile-declined.ax.txt"
+    ],
+    "behavior": "Autofill through final result automatically requests nickname/avatar/Toy identifier. Rejecting still shows anonymous result. Local SDK currently does not support getUserProfile and omits this prompt.",
+    "result": "not_run",
+    "remaining": "Implement and jointly verify anonymous decline flow; accepting real profile permission was not authorized or performed."
+  },
+  "remaining": [
+    "Strict visual differences and live-data/time/capture semantics.",
+    "Full random Swiss/KO prediction, final lock and real-score readback.",
+    "User ranking reorder, independent simulate-one-edition behavior, shared prediction URL import and report copy.",
+    "Local profile consent decline, account/platform boundaries.",
+    "Remaining channel/detail interactions, motion, application audio, mobile and original share-entry parameters.",
+    "Complete C1-C6 audit against all current scope before Goal completion."
+  ]
+}

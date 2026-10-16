@@ -1,0 +1,89 @@
+{
+  "date": "2026-10-16",
+  "source_build": "43482999941120-v26947",
+  "scope": "Published v26947 desktop acceptance checkpoint. Further fidelity work paused at user request; remaining differences are retained.",
+  "reference_decision": {
+    "kind": "decision",
+    "reason": "User explicitly selected 同步当前 v26947 后固定版本 and noted that matches have started and data will update. Only the code baseline is fixed; live results continue updating.",
+    "source_url": "https://www.bilibili.com/toy/LkvCZhw12wgT2Pqx/index.html",
+    "source_entry_evidence": "projects/bilibili-toy/private/source-build-26947/entry.json"
+  },
+  "changes_observed": [
+    "Live in-progress match score/game banner added to header and homepage; source shows MVK1:0FUR, game2.",
+    "Runtime and vendor JS/CSS byte-identical to26934. Published main/CSS changed; original component mount/share identifiers inspected before adapting."
+  ],
+  "implementation": {
+    "config": "projects/bilibili-toy/source-build.json",
+    "adaptations": "Only existing relocation share base, omitted author mount and fixed same-origin live relay. Original new module kept intact beside derived module.",
+    "prepare": "All public resources and host preparation completed in staging; previous private site archived before activation.",
+    "local_http": "Source-build endpoint26947; live JSON GET200 schema2 updated_utc2026-10-15T23:58:04Z."
+  },
+  "desktop": {
+    "protocol": "projects/bilibili-toy/major-pages-desktop.json",
+    "source": "projects/bilibili-toy/private/major-desktop-source-1",
+    "local": "projects/bilibili-toy/private/major-desktop-local-1",
+    "viewport_css": [
+      1200,
+      600
+    ],
+    "png_pixels": [
+      2400,
+      1200
+    ],
+    "header_css": 57,
+    "zoom": "100%",
+    "pixel_ratio": "2x",
+    "source_removals": "Actual .author-bar and aside#toy-shell-sidebar native Delete→Node, original CSS/data otherwise unchanged. Source tab preserved across native tab switches.",
+    "home_opus_prepublication": {
+      "contract": "projects/bilibili-toy/private/major-desktop-contracts-1/home-opus-contract.json",
+      "result": "projects/bilibili-toy/private/major-desktop-local-home-result-1.json",
+      "pass": 51,
+      "fail": 0,
+      "not_run": 2,
+      "why_pending": "Original full header and business regions change between actual repeated PNGs: pulse dots and character animation. Entire raw viewport retained; no masks/tolerances or full-image pass claimed. Closed ticker image is RGB-zero.",
+      "unmasked_difference_bbox": [
+        333,
+        60,
+        1887,
+        603
+      ]
+    },
+    "source_gpt": "Captured before candidate; original contract frozen in major-desktop-contracts-1/home-gpt-contract.json.",
+    "remaining_cases": "Completed-series below-fold visual protocol and driver are saved but have not been executed end to end.",
+    "public": {
+      "captures": "projects/bilibili-toy/private/major-desktop-public-1",
+      "contract": "projects/bilibili-toy/private/major-desktop-frozen-v2/contract.json",
+      "result": "projects/bilibili-toy/private/major-desktop-public-result-v2.json",
+      "counts": {
+        "not_run": 13,
+        "pass": 475,
+        "fail": 51
+      },
+      "limits": "49 prediction differences and two saved-leaderboard differences reflect preserved, unequal private-tab drafts. Thirteen unstable source regions remain pending; no strict full-page pixel completion claimed."
+    },
+    "ticker_css": 38
+  },
+  "observer_repairs": [
+    "Desktop uses actual model links instead of the mobile AI dropdown. First mobile-selector wait retained as failed acquisition.",
+    "Avoid mobile content-scope guard during the transient desktop channel navigation; wait for actual expected world/footer before resetting player. Transition-failure AX retained.",
+    "Native Inspector may remain docked/on Network from prior work. Shared opener now detaches to verified host and explicitly selects Elements before original deletions/header/body capture.",
+    "Safari does not accept the bracket key spelling. Use the actual native Window → Show Previous/Next Tab menu and preserve exact endpoint/window guards."
+  ],
+  "verification": {
+    "root": "111 tests OK, 8 skipped",
+    "project": "27 tests OK, including fixed-build/ticker geometry and completed-match boundary negative controls",
+    "node": "Owned PNG identity/query/port checks passed; changed native modules syntax checked",
+    "diff_check": "passed"
+  },
+  "publication": {
+    "release": "3aa64698c4cd-20261016T001018Z",
+    "url": "https://s16.xinxiayiyan.com/",
+    "http_receipt": "projects/bilibili-toy/private/deploy/3aa64698c4cd-20261016T001018Z/public-http.json",
+    "verification": "40 trusted HTTPS checks passed; no redeployment for the QA checkpoint."
+  },
+  "remaining": [
+    "Strict same-state prediction and saved-leaderboard visual comparison",
+    "Expanded completed-series below-fold visual replay",
+    "Remaining hover/drag/simulation, sound and motion coverage"
+  ]
+}

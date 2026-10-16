@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "scope": "Eight observed responsive-web scenes in Safari default UA; this does not certify Android App-gated flows, all viewport sizes, all channel journeys, sound or full visual fidelity.",
+  "viewport": {"width": 375, "height": 667, "zoom": "( 99% )", "pixel_ratio": "2x"},
+  "capture": {
+    "content_rect_points": [954, 298, 744, 1320],
+    "backing_scale": 1,
+    "window_points": [2648, 1666],
+    "measurement": "Unmodified native export coordinates of the complete responsive phone viewport in the same owned Safari window; no masks or alignment search.",
+    "evidence": "projects/bilibili-toy/private/mobile-safari-source-1/shared-v3/home-opus.jpg"
+  },
+  "preparation": [
+    "Use the task-owned Safari window in Responsive Design Mode; preserve the original full share query on both endpoints.",
+    "Observe 375x667, zoom 99%, pixel ratio 2x and default Safari UA. Android UA was observed separately to trigger an original Bilibili App gate.",
+    "Use an empty prediction origin on both sides. Keep prior mismatched-storage observations; do not delete existing drafts.",
+    "Select Claude Opus 5.5, pause playback, disable idle channel switching, choose 赛前 and click 1x; reset actual application scrollbars to zero.",
+    "Repeat the same actions using tools/mobile_native.mjs; captures must be immutable and stable across screenshot acquisition."
+  ],
+  "cases": ["home-opus", "home-gpt", "compare", "teams", "team-gen", "pickem-view", "leaderboard", "method"],
+  "actions": [
+    "Capture prepared Claude home; select GPT-6.1 sol and repeat paused intro preparation before capturing.",
+    "Navigate 数据对比 then 战队; open observed GEN Gen.G AI 平均夺冠率 card.",
+    "Navigate 我来预测, 谁最准 and AI 赛制介绍. Reset scroll and capture each scene."
+  ],
+  "user_exceptions": "Remove the Toy sidebar and author/follow/topic capsule. Semantic app scope excludes that author subtree; raw viewport images retain both intentional layout changes and all other differences."
+}

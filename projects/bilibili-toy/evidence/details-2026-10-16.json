@@ -1,0 +1,111 @@
+{
+  "date": "2026-10-16",
+  "scope": "All eight model channels: actual first scheduled series, full series narrative expansion and every game in that series. This batch does not certify other series, hover, whole-site pixels or Goal completion.",
+  "source_build": "43482999941120-v26695",
+  "public_release": "db672b1c0da4-20261015T201308Z",
+  "protocol": "projects/bilibili-toy/journeys.json#details",
+  "driver": "projects/bilibili-toy/tools/details_native.mjs",
+  "source": "projects/bilibili-toy/private/details-source-3/observed.json",
+  "public": "projects/bilibili-toy/private/details-public-1/observed.json",
+  "frozen_contract": "projects/bilibili-toy/private/details-contract-v1/contract.json",
+  "models": [
+    {
+      "id": "opus",
+      "label": "Claude Opus 5.5",
+      "first_series": "button FUR 3 : 1 MVK",
+      "games": 4,
+      "states": 6
+    },
+    {
+      "id": "gpt",
+      "label": "GPT-6.1 sol",
+      "first_series": "button 小冷 FUR 1 : 3 MVK",
+      "games": 4,
+      "states": 6
+    },
+    {
+      "id": "gemini",
+      "label": "Gemini 3.8",
+      "first_series": "button FUR 1 : 3 MVK",
+      "games": 4,
+      "states": 6
+    },
+    {
+      "id": "deepseek",
+      "label": "DeepSeek V4.1 Flash",
+      "first_series": "button FUR 3 : 1 MVK",
+      "games": 4,
+      "states": 6
+    },
+    {
+      "id": "qwen",
+      "label": "Qwen3.8 Max",
+      "first_series": "button FUR 3 : 0 MVK",
+      "games": 3,
+      "states": 5
+    },
+    {
+      "id": "glm",
+      "label": "GLM-5.3",
+      "first_series": "button FUR 3 : 1 MVK",
+      "games": 4,
+      "states": 6
+    },
+    {
+      "id": "doubao",
+      "label": "豆包",
+      "first_series": "button FUR 3 : 1 MVK",
+      "games": 4,
+      "states": 6
+    },
+    {
+      "id": "mimo",
+      "label": "MiMo V2.6 Pro",
+      "first_series": "button FUR 3 : 1 MVK",
+      "games": 4,
+      "states": 6
+    }
+  ],
+  "source_self": {
+    "path": "projects/bilibili-toy/private/details-source-self-1.json",
+    "pass": 6876,
+    "fail": 0
+  },
+  "public_result": {
+    "path": "projects/bilibili-toy/private/details-public-compare-1.json",
+    "pass": 6829,
+    "fail": 47,
+    "not_run": 0,
+    "unavailable": 0,
+    "failed_kind": "image_pixels",
+    "interpretation": "All observed exact text, player-table row counts, selected world and controls match. Whole-page raw images remain strict failures, with no inferred visual pass."
+  },
+  "actual_observations": [
+    "Each series opens its first game. Full-text expansion removes the expand button; no collapse button observed. Expanded series narrative persists while selecting other games in the same series.",
+    "First-series scores differ by model: Opus/DeepSeek/GLM/Doubao/MiMo FUR 3:1 MVK; GPT/Gemini FUR 1:3 MVK; Qwen FUR 3:0 MVK. All 31 games traversed.",
+    "Actual source/candidate actions agree on selected series, navigation labels and game counts; each source case selected-world label equals its protocol model.",
+    "Per-game content includes the published narrative, draft/player tables, probability-series image accessible label and event text, commentary, decision explanations and previous/next/live/share controls. Pixel rendering of graph and non-text assets remains independent."
+  ],
+  "observer_repair": {
+    "retained": "projects/bilibili-toy/private/details-source-2",
+    "failure": "Initial parser skipped the 小冷-tagged first GPT series and omitted its later-series upset-tagged fifth game. No failed selection entered the frozen contract.",
+    "repair": "Find the first actual series button from adjacent Bo1/Bo3/Bo5 metadata; parse game links with their actual optional upset tag. New source GPT and subsequent models replayed before freeze.",
+    "reuse": "Six unaffected Opus cases reference their unchanged original source-2 raw captures. Exact selected references and excluded failure are retained in source-3/reuse.json.",
+    "regression": "tools/details_native.test.mjs checks 小冷 first series, upset-tagged fifth-game link and absence of non-game controls."
+  },
+  "verification": {
+    "root": "111 tests OK, 8 skipped",
+    "project": "16 tests OK",
+    "node": [
+      "details_native.test.mjs passed",
+      "channel_native.test.mjs passed"
+    ],
+    "diff_check": "passed"
+  },
+  "remaining": [
+    "Strict visual differences including full-page and graph rendering; lossless comparison remains pending.",
+    "Other series and story branches, chart/asset hover and input-specific interactions.",
+    "Ranking drag and simulation strength boundaries; full animation and audio coverage.",
+    "Complete responsive acceptance after user-authorized sidebar and author removal."
+  ]
+}
