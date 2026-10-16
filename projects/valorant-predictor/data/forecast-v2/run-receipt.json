@@ -1,0 +1,389 @@
+{
+  "input_sha256": "308acf6cdd3481e69723cc78372322f954f8577477fa12fec40d61c18c890bd8",
+  "method": "single_evidence_analysis_no_persona",
+  "calls": {
+    "codex": 2,
+    "deepseek": 4,
+    "doubao": 3,
+    "mimo": 3
+  },
+  "reserved_cny": 8.092679,
+  "api_cap_cny": 10,
+  "models": {
+    "codex": {
+      "model": "gpt-6.1-sol",
+      "analysis_stage": "analysis",
+      "analysis_raw_sha256": "bd400a81a02673e6420039373a346d68a090640a88d202d201c9e472372ab786",
+      "analysis_prompt_sha256": "d8b7751bbf8b9d68886a33dd55a3bfb224663b3a31a649ec1a62bafc7b06bea3",
+      "review_status": "ready",
+      "normalizations": [],
+      "review_raw_sha256": "27c4daf4ca560776481fa85a914c71dddf66fd3684670a32fa60a4e84b2bb0b1",
+      "api_usage": []
+    },
+    "deepseek": {
+      "model": "deepseek-flash",
+      "analysis_stage": "analysis_retry2",
+      "analysis_raw_sha256": "31d4734aecaaecea58595b055e57b20aa841c6f3ff226d23531937c36fac258d",
+      "analysis_prompt_sha256": "7090a00ca7be146ff93cacda60d280436d6f71128431d38f2380108683761307",
+      "review_status": "failed_limit_reached",
+      "normalizations": [
+        {
+          "field": "type",
+          "value": "json_object",
+          "action": "omit_transport_metadata",
+          "semantic_fields_unchanged": true
+        }
+      ],
+      "api_usage": [
+        {
+          "stage": "analysis_retry",
+          "model": "deepseek-flash",
+          "usage": {
+            "prompt_tokens": 47707,
+            "completion_tokens": 7479,
+            "total_tokens": 55186,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "prompt_cache_hit_tokens": 0,
+            "prompt_cache_miss_tokens": 47707
+          },
+          "finish_reason": "stop"
+        },
+        {
+          "stage": "analysis",
+          "model": "deepseek-flash",
+          "usage": {
+            "prompt_tokens": 47731,
+            "completion_tokens": 6544,
+            "total_tokens": 54275,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 6544
+            },
+            "prompt_cache_hit_tokens": 0,
+            "prompt_cache_miss_tokens": 47731
+          },
+          "finish_reason": "stop"
+        },
+        {
+          "stage": "analysis_retry2",
+          "model": "deepseek-flash",
+          "usage": {
+            "prompt_tokens": 52960,
+            "completion_tokens": 6276,
+            "total_tokens": 59236,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "prompt_cache_hit_tokens": 0,
+            "prompt_cache_miss_tokens": 52960
+          },
+          "finish_reason": "stop"
+        }
+      ]
+    },
+    "doubao": {
+      "model": "doubao-seed-2-1-pro-260915",
+      "analysis_stage": "analysis_retry",
+      "analysis_raw_sha256": "8779b480d6dfc8f563a313cd63adc557b5c6adc2b4be27d6b15cab6a687254da",
+      "analysis_prompt_sha256": "813d026463a6610444ffca119236e9e0fb1671eff6e90147446e469f2f2b6c0c",
+      "review_status": "ready",
+      "normalizations": [
+        {
+          "action": "outer_json_delimiter_only",
+          "changes": [
+            {
+              "inserted": "one missing cases closing } before top-level limitations"
+            }
+          ],
+          "all_three_original_case_objects_identical": true,
+          "probabilities_reasons_and_references_unchanged": true
+        }
+      ],
+      "review_raw_sha256": "1ddf72591dacf1258a4d3e81252170045121fbda781c5fc4ec647bce3fc655de",
+      "api_usage": [
+        {
+          "stage": "analysis_retry",
+          "model": "doubao-seed-2-1-pro-260915",
+          "usage": {
+            "completion_tokens": 7552,
+            "prompt_tokens": 61783,
+            "total_tokens": 69335,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "finish_reason": "stop"
+        },
+        {
+          "stage": "analysis",
+          "model": "doubao-seed-2-1-pro-260915",
+          "usage": {
+            "completion_tokens": 36826,
+            "prompt_tokens": 53321,
+            "total_tokens": 90147,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 25691
+            }
+          },
+          "finish_reason": "stop"
+        },
+        {
+          "stage": "review",
+          "model": "doubao-seed-2-1-pro-260915",
+          "usage": {
+            "completion_tokens": 579,
+            "prompt_tokens": 14335,
+            "total_tokens": 14914,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "finish_reason": "stop"
+        }
+      ]
+    },
+    "mimo": {
+      "model": "mimo-v2.6-pro",
+      "analysis_stage": "analysis_retry",
+      "analysis_raw_sha256": "0b67d9ab7947b25f08d52745719f0b4595c2c75d232738fd91c394331f477fff",
+      "analysis_prompt_sha256": "1a813f08348a6ec6120d17bdaaff333693c393eb46fc4ba82696ac5aff7e1f71",
+      "review_status": "ready",
+      "normalizations": [
+        {
+          "action": "outer_json_delimiter_only",
+          "changes": [
+            {
+              "case": "gf_vit",
+              "removed": "extra outer { before case key"
+            },
+            {
+              "case": "gf_100t",
+              "removed": "extra outer { before case key"
+            }
+          ],
+          "all_three_original_case_objects_identical": true,
+          "probabilities_reasons_and_references_unchanged": true
+        }
+      ],
+      "review_raw_sha256": "487aa31895b1db235948400255b232080de67681762f81a89a2060218fbd4d0a",
+      "api_usage": [
+        {
+          "stage": "analysis_retry",
+          "model": "mimo-v2.6-pro",
+          "usage": {
+            "completion_tokens": 5168,
+            "prompt_tokens": 51559,
+            "total_tokens": 56727,
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "finish_reason": "stop"
+        },
+        {
+          "stage": "analysis",
+          "model": "mimo-v2.6-pro",
+          "usage": {
+            "completion_tokens": 24000,
+            "prompt_tokens": 51525,
+            "total_tokens": 75525,
+            "completion_tokens_details": {
+              "reasoning_tokens": 24003
+            },
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "finish_reason": "length"
+        },
+        {
+          "stage": "review",
+          "model": "mimo-v2.6-pro",
+          "usage": {
+            "completion_tokens": 484,
+            "prompt_tokens": 10017,
+            "total_tokens": 10501,
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            }
+          },
+          "finish_reason": "stop"
+        }
+      ]
+    }
+  },
+  "failed_attempts_preserved_privately": true,
+  "common_initial_prompt_sha256": "d8b7751bbf8b9d68886a33dd55a3bfb224663b3a31a649ec1a62bafc7b06bea3",
+  "input_status_note": "Evidence pack prediction_status is the immutable status at freeze, not current run status.",
+  "reported_usage_estimate": {
+    "per_provider_cny": {
+      "deepseek": 0.551026,
+      "doubao": 2.125344,
+      "mimo": 0.517215
+    },
+    "total_cny": 3.193585,
+    "basis": "Reported prompt/completion tokens at public uncached peak rates. USD x8 reserve coefficient. Not actual account invoice; discounts ignored. HTTP400 request has no reported usage, reservation retained."
+  },
+  "request_attempts": [
+    {
+      "channel": "codex",
+      "model": "gpt-6.1-sol",
+      "stage": "analysis",
+      "input_token_upper_bound": 152299,
+      "output_token_cap": 24000,
+      "reserved_cny": 0,
+      "created_at": "2026-10-16T14:45:48.603842+00:00",
+      "record_state": "cli_output_received",
+      "validation_status": "valid_final_answer"
+    },
+    {
+      "channel": "deepseek",
+      "model": "deepseek-flash",
+      "stage": "analysis",
+      "input_token_upper_bound": 152374,
+      "output_token_cap": 24000,
+      "reserved_cny": 0.5960976,
+      "created_at": "2026-10-16T14:45:48.605728+00:00",
+      "record_state": "response_received",
+      "validation_status": "rejected_empty_final_answer"
+    },
+    {
+      "channel": "doubao",
+      "model": "doubao-seed-2-1-pro-260915",
+      "stage": "analysis",
+      "input_token_upper_bound": 152386,
+      "output_token_cap": 24000,
+      "reserved_cny": 1.634316,
+      "created_at": "2026-10-16T14:45:48.606496+00:00",
+      "record_state": "response_received",
+      "validation_status": "rejected_wrong_team_order_and_unknown_refs"
+    },
+    {
+      "channel": "mimo",
+      "model": "mimo-v2.6-pro",
+      "stage": "analysis",
+      "input_token_upper_bound": 152301,
+      "output_token_cap": 24000,
+      "reserved_cny": 0.600903,
+      "created_at": "2026-10-16T14:45:48.607191+00:00",
+      "record_state": "response_received",
+      "validation_status": "rejected_output_limit_no_final_answer"
+    },
+    {
+      "channel": "deepseek",
+      "model": "deepseek-flash",
+      "stage": "analysis_retry",
+      "input_token_upper_bound": 152375,
+      "output_token_cap": 24000,
+      "reserved_cny": 0.5961,
+      "created_at": "2026-10-16T14:48:33.823176+00:00",
+      "record_state": "response_received",
+      "validation_status": "rejected_unknown_evidence_refs"
+    },
+    {
+      "channel": "codex",
+      "model": "gpt-6.1-sol",
+      "stage": "review",
+      "input_token_upper_bound": 49919,
+      "output_token_cap": 24000,
+      "reserved_cny": 0,
+      "created_at": "2026-10-16T14:51:11.038122+00:00",
+      "record_state": "cli_output_received",
+      "validation_status": "valid_final_answer"
+    },
+    {
+      "channel": "deepseek",
+      "model": "deepseek-flash",
+      "stage": "analysis_retry2",
+      "input_token_upper_bound": 180193,
+      "output_token_cap": 24000,
+      "reserved_cny": 0.6628632,
+      "created_at": "2026-10-16T14:51:11.101720+00:00",
+      "record_state": "response_received",
+      "validation_status": "valid_decision_after_nonsemantic_type_wrapper_omission"
+    },
+    {
+      "channel": "deepseek",
+      "model": "deepseek-flash",
+      "stage": "review",
+      "input_token_upper_bound": 40050,
+      "output_token_cap": 24000,
+      "reserved_cny": 0.32652,
+      "created_at": "2026-10-16T14:53:40.361547+00:00",
+      "record_state": "rejected_http400_no_usage",
+      "validation_status": "failed_http400_no_final_answer"
+    },
+    {
+      "channel": "mimo",
+      "model": "mimo-v2.6-pro",
+      "stage": "analysis_retry",
+      "input_token_upper_bound": 165743,
+      "output_token_cap": 24000,
+      "reserved_cny": 0.641229,
+      "created_at": "2026-10-16T14:55:25.736892+00:00",
+      "record_state": "response_received",
+      "validation_status": "valid_decision_after_proven_outer_json_delimiter_repair"
+    },
+    {
+      "channel": "doubao",
+      "model": "doubao-seed-2-1-pro-260915",
+      "stage": "analysis_retry",
+      "input_token_upper_bound": 180435,
+      "output_token_cap": 24000,
+      "reserved_cny": 1.80261,
+      "created_at": "2026-10-16T15:07:10.707791+00:00",
+      "record_state": "response_received",
+      "validation_status": "valid_decision_after_proven_missing_outer_json_delimiter_repair"
+    },
+    {
+      "channel": "mimo",
+      "model": "mimo-v2.6-pro",
+      "stage": "review",
+      "input_token_upper_bound": 32088,
+      "output_token_cap": 24000,
+      "reserved_cny": 0.240264,
+      "created_at": "2026-10-16T15:07:11.822744+00:00",
+      "record_state": "response_received",
+      "validation_status": "valid_final_answer"
+    },
+    {
+      "channel": "doubao",
+      "model": "doubao-seed-2-1-pro-260915",
+      "stage": "review",
+      "input_token_upper_bound": 45296,
+      "output_token_cap": 24000,
+      "reserved_cny": 0.991776,
+      "created_at": "2026-10-16T15:11:47.054526+00:00",
+      "record_state": "response_received",
+      "validation_status": "valid_final_answer"
+    }
+  ],
+  "outcomes": {
+    "model_predictions_ready": 4,
+    "model_text_reviews_ready": 3,
+    "deepseek_review": "failed at HTTP400; four request attempts consumed; no fifth request",
+    "mimo_fact_error": "One reversed historical head-to-head claim explicitly marked; model probabilities unchanged",
+    "transport_normalization": "MiMo outer delimiter deletion and Doubao missing outer delimiter insertion proved all three original case objects unchanged; original answers retained.",
+    "deepseek_probability_reason_conflicts": 9
+  },
+  "validation_boundary": "Schema, evidence reference identity, actual runtime model, unchanged original decisions and arithmetic checked. This is not semantic correctness or probability calibration. Explicit known contradictions are marked."
+}

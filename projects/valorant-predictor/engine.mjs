@@ -181,3 +181,37 @@ export function moveRanking(order, from, to) {
   next.splice(to, 0, team);
   return next;
 }
+
+// Conditional on the frozen ordered map/side probabilities, independent maps.
+// No team strength, map weighting or model probability is inferred here.
+export function mapSeriesDistribution(maps, score = [0, 0]) {
+  if (!Array.isArray(maps) || maps.length !== 5 ||
+      maps.some(m => !m || typeof m.map !== 'string' || !m.map || !['ATK', 'DEF'].includes(m.a_start_side) || typeof m.p_first !== 'number' || !Number.isFinite(m.p_first) || m.p_first < 0 || m.p_first > 1) ||
+      new Set(maps.map(m => m.map)).size !== 5 ||
+      !Array.isArray(score) || score.length !== 2 || score.some(n => !Number.isInteger(n) || n < 0 || n > 3) || score.every(n => n === 3)) throw Error('需要五张不同地图的冻结概率、起始边及合法 BO5 比分');
+  const outcomes = new Map();
+  const visit = (a, b, probability) => {
+    if (a === 3 || b === 3) {
+      const key = `${a}:${b}`;
+      outcomes.set(key, (outcomes.get(key) || 0) + probability);
+      return;
+    }
+    const p = maps[a + b].p_first;
+    visit(a + 1, b, probability * p);
+    visit(a, b + 1, probability * (1 - p));
+  };
+  visit(...score, 1);
+  return [...outcomes].map(([key, probability]) => ({score: key.split(':').map(Number), probability}));
+}
+export function simulateMapSeries(teams, maps, seed) {
+  mapSeriesDistribution(maps);
+  if (!Array.isArray(teams) || teams.length !== 2 || teams[0] === teams[1]) throw Error('需要两支不同队伍');
+  const random = seededRandom(seed), score = [0, 0], played = [];
+  for (const map of maps) {
+    const draw = random(), winnerIndex = draw < map.p_first ? 0 : 1;
+    score[winnerIndex]++;
+    played.push({...map, random_draw: draw, winner: teams[winnerIndex]});
+    if (score[winnerIndex] === 3) break;
+  }
+  return {teams, score, maps: played, winner: teams[score[0] === 3 ? 0 : 1]};
+}

@@ -1,3 +1,4 @@
+import { v2Markup } from "./forecast-v2.mjs";
 import {
   mapProbability,
   seriesDistribution,
@@ -52,6 +53,9 @@ const channels = [
 ].map(([id, name, icon, color]) => ({ id, name, icon, color }));
 let event,
   officialCurrent,
+  evidencePack,
+  v2Predictions = {},
+  v2Case = "lf",
   assets,
   forecast,
   forecasts = {},
@@ -60,7 +64,7 @@ let event,
   fictionManifest = {},
   fictionContext,
   selected = store.get("channel", "codex"),
-  tab = "veto",
+  tab = "prediction",
   current = 0,
   playing = false,
   speed = 1,
@@ -230,19 +234,22 @@ function pageHead(title, description) {
   const split = {"数据对比": ["数据", "对比"], "战队": ["参赛", "战队"], "我来预测": ["我来", "预测"], "谁最准": ["谁最", "准"], "AI 赛制介绍": ["VCT · ", "AI 赛制介绍"]}[title] || ["", title];
   return `<div class="wrap page-head"><div><h1>${escape(split[0])}<span class="page-title-cn">${escape(split[1])}</span></h1><p>${description}</p></div><div class="kicker">CHAMPIONS SHANGHAI · FINALS</div></div>`;
 }
+function counterfactualScenario() {
+  return officialCurrent.predecessors.some((m,i) => m.winner && m.winner !== scenario[i === 0 ? "upperWinner" : "lowerWinner"]);
+}
 function officialBanner() {
-  const upper = officialCurrent?.predecessors[0];
+  const upper = officialCurrent?.predecessors[0], lower = officialCurrent?.predecessors[1];
   if (!upper?.winner) return "";
-  const loser = upper.teams.find(t => t !== upper.winner), alternate = scenario.upperWinner !== upper.winner;
-  return `<div class="official-current ${alternate ? "counterfactual" : ""}"><span><b>官方已确认 · 10/16</b> ${upper.teams.join(" ")} ${upper.score.join(" : ")}；${upper.winner} 进入总决赛，${loser} 进入败者组决赛。另一支晋级队待核实。${alternate ? `<strong> 当前正在查看“${scenario.upperWinner} 晋级”的反事实情景。</strong>` : ""}</span><a href="${officialCurrent.source_url}" target="_blank" rel="noreferrer">官方记录 ↗</a></div>`;
+  const loser = upper.teams.find(t => t !== upper.winner), alternate = counterfactualScenario();
+  return `<div class="official-current ${alternate ? "counterfactual" : ""}"><span><b>官方已确认 · 10/16</b> ${upper.teams.join(" ")} ${upper.score.join(" : ")}；${upper.winner} 进入总决赛，${loser} 进入败者组决赛。${lower?.winner ? `${lower.teams.join(" ")} ${lower.score.join(" : ")}；${lower.winner} 进入败者组决赛。` : "另一支晋级队待核实。"}${alternate ? "<strong> 当前为与已知赛果不同的历史反事实情景。</strong>" : ""}</span><a href="${officialCurrent.source_url}" target="_blank" rel="noreferrer">官方记录 ↗</a></div>`;
 }
 function note() {
-  return `<div class="notice">预测使用 ${escape(event.fetched_at.slice(0,10))} 冻结资料；最新官方状态另列。下方是晋级条件下的模型推演，情景选择不是官方赛果。${officialCurrent?.predecessors[0].winner && scenario.upperWinner !== officialCurrent.predecessors[0].winner ? " 当前为反事实情景。" : ""}</div>`;
+  return `<div class="notice">旧输入版预测 · 尚未使用新证据包 v2。预测使用 ${escape(event.fetched_at.slice(0,10))} 冻结资料；最新官方状态另列。下方是晋级条件下的模型推演，情景选择不是官方赛果。${counterfactualScenario() ? " 当前为反事实情景。" : ""}</div>`;
 }
 function scenarioForm() {
   const upper = event.predecessors[0],
     lower = event.predecessors[1];
-  return `<section class="card" aria-label="晋级情景"><h3>最后两场的晋级条件</h3><p class="muted">17 日：胜者组决赛败者 vs 败者组半决赛胜者。18 日：胜者组决赛胜者 vs 17 日胜者。</p><div class="form-row"><label>胜者组决赛胜者（16 日，不在预测范围）<select id="upper-winner" ${upper.winner ? "disabled" : ""}>${upper.teams.map((c) => `<option value="${c}" ${c === (upper.winner || scenario.upperWinner) ? "selected" : ""}>${c}${officialCurrent?.predecessors[0].winner ? c === officialCurrent.predecessors[0].winner ? " · 官方已确认" : " · 反事实分支" : ""}</option>`).join("")}</select></label><label>败者组半决赛胜者（16 日，不在预测范围）<select id="lower-winner" ${lower.winner ? "disabled" : ""}>${lower.teams.map((c) => `<option ${c === (lower.winner || scenario.lowerWinner) ? "selected" : ""}>${c}</option>`).join("")}</select></label></div><small class="muted">默认采用已确认的胜者；仍可回看历史反事实分支。未确认的另一场保持条件选择。官方最新状态见 <a class="source-link" href="https://valorantesports.com/en-US/" target="_blank" rel="noreferrer">赛事官网 ↗</a></small></section>`;
+  return `<section class="card" aria-label="晋级情景"><h3>最后两场的晋级条件</h3><p class="muted">17 日：胜者组决赛败者 vs 败者组半决赛胜者。18 日：胜者组决赛胜者 vs 17 日胜者。</p><div class="form-row"><label>胜者组决赛胜者（16 日，不在预测范围）<select id="upper-winner" ${upper.winner ? "disabled" : ""}>${upper.teams.map((c) => `<option value="${c}" ${c === (upper.winner || scenario.upperWinner) ? "selected" : ""}>${c}${officialCurrent?.predecessors[0].winner ? c === officialCurrent.predecessors[0].winner ? " · 官方已确认" : " · 反事实分支" : ""}</option>`).join("")}</select></label><label>败者组半决赛胜者（16 日，不在预测范围）<select id="lower-winner" ${lower.winner ? "disabled" : ""}>${lower.teams.map((c) => `<option ${c === (lower.winner || scenario.lowerWinner) ? "selected" : ""}>${c}</option>`).join("")}</select></label></div><small class="muted">默认采用已确认的胜者；仍可回看历史反事实分支。已知结果与旧版情景推演分开显示。官方最新状态见 <a class="source-link" href="https://valorantesports.com/en-US/" target="_blank" rel="noreferrer">赛事官网 ↗</a></small></section>`;
 }
 function bindScenario() {
   for (const [id, key] of [
@@ -269,8 +276,8 @@ function bindScenario() {
 }
 function modelGrid() {
   return `<div id="home-model-selector" class="model-deck channels portraits" aria-label="选择模型，查看其沙盘与赛事预测">${channels.map(ch => {
-    const champion = simulateFinals(ch.id)[1]?.winner;
-    return `<a class="home-model channel portrait forecast-card ${selected === ch.id ? "on" : ""}" href="#/?ai=${ch.id}" role="button" aria-pressed="${selected === ch.id}" data-channel="${ch.id}" data-tactical-model="${ch.id}" style="--accent:${ch.color}"><img class="model-portrait" src="${escape(assets.models[ch.id].portrait)}" alt="" loading="eager"><div class="model-overview"><h2>${escape(ch.name)}</h2><small class="model-forecast-status">${available(ch.id) ? "赛事预测已生成" : "赛事预测待生成"}</small><div class="model-champion"><small>本次模拟冠军</small><b class="champ">${available(ch.id) ? logo(champion) + " " + champion : "待预测"}</b></div><small class="model-tactical-status" data-tactical-status>${tab === "sandbox" ? "沙盘方案读取中" : "沙盘方案 · 见战术页"}</small></div></a>`;
+    const champion = v2Predictions[ch.id]?.computed.sample.series[1].winner || simulateFinals(ch.id)[1]?.winner;
+    return `<a class="home-model channel portrait forecast-card ${selected === ch.id ? "on" : ""}" href="#/?ai=${ch.id}" role="button" aria-pressed="${selected === ch.id}" data-channel="${ch.id}" data-tactical-model="${ch.id}" style="--accent:${ch.color}"><img class="model-portrait" src="${escape(assets.models[ch.id].portrait)}" alt="" loading="eager"><div class="model-overview"><h2>${escape(ch.name)}</h2><small class="model-forecast-status">${v2Predictions[ch.id] ? "新证据版预测已生成" : "新证据版待生成 · 旧版可回看"}</small><div class="model-champion"><small>本轮抽样冠军</small><b class="champ">${available(ch.id) ? logo(champion) + " " + champion : "待预测"}</b></div><small class="model-tactical-status" data-tactical-status>${tab === "sandbox" ? "沙盘方案读取中" : "沙盘方案 · 见战术页"}</small></div></a>`;
   }).join("")}</div>`;
 }
 function selectChannel(id) {
@@ -354,8 +361,8 @@ function buildSimulation(restore = true) {
 }
 function home() {
   const c = channel();
-  main.innerHTML = `<section class="hero home-intro"><div class="wrap"><div class="hero-top"><div><p class="eyebrow">CHAMPIONS SHANGHAI 2026 · 10/17–18</p><h1>四个模型，同场推演</h1><p>选一个模型，看它如何走位、如何判断最后两场比赛。</p></div><span class="home-label">AI 假设方案与模拟 · 非真实赛况</span></div>${officialBanner()}${modelGrid()}<p class="model-deck-note">冠军来自当前晋级情景的一次模拟；战术沙盘使用独立假设场景。<a href="#/compare">比较赛事概率 →</a></p></div></section><section class="wrap home-workspace"><div class="tabs home-tabs" role="tablist" aria-label="预测频道内容">${[
-    ["veto", "01 地图 BP"], ["sandbox", "02 阵容与走位"], ["live", "03 比赛推演"], ["schedule", "赛程赛果"], ["bracket", "淘汰赛"], ["players", "选手榜"], ["news", "剧情与战报"], ["analysis", "赛前评估"], ["process", "预测过程"],
+  main.innerHTML = `<section class="hero home-intro"><div class="wrap"><div class="hero-top"><div><p class="eyebrow">CHAMPIONS SHANGHAI 2026 · 10/17–18</p><h1>四个模型，同场推演</h1><p>选一个模型，看它如何走位、如何判断最后两场比赛。</p></div><span class="home-label">AI 假设方案与模拟 · 非真实赛况</span></div>${officialBanner()}${modelGrid()}<p class="model-deck-note">冠军来自本轮共同种子的一次抽样，不一定是夺冠概率最高者；走位沙盘是既有独立假设场景。<a href="#/compare">比较赛事概率 →</a></p></div></section><section class="wrap home-workspace"><div class="tabs home-tabs" role="tablist" aria-label="预测频道内容">${[
+    ["prediction", "本轮真实数据预测"], ["veto", "旧版地图 BP"], ["sandbox", "固定阵容走位"], ["live", "旧版比赛推演"], ["schedule", "赛程赛果"], ["bracket", "淘汰赛"], ["players", "选手榜"], ["news", "剧情与战报"], ["analysis", "赛前评估"], ["process", "预测过程"],
   ].map(([id,name]) => `<button role="tab" aria-selected="${tab === id}" aria-controls="channel-content" data-tab="${id}" class="${tab === id ? "on" : ""}">${name}</button>`).join("")}<span class="channel-meta">${escape(c.name)}</span></div><div class="studio-section"><div id="channel-content" role="tabpanel"></div></div></section>`;
   bindModels();
   document.querySelectorAll("[data-tab]").forEach(b => b.onclick = () => { tab = b.dataset.tab; history.replaceState(null, "", "#/?" + new URLSearchParams({ ai: selected, tab })); clearTimeout(playerTimer); render(); });
@@ -391,7 +398,7 @@ function simulationCards(withReport = false) {
   return `<div class="grid simulation-cards">${simSeries
     .map((series, index) => {
       const p = seriesProbability(pmap(...series.teams));
-      return `<a class="card card-link simulation-card" href="${reviewLink(index)}"><div class="section-head"><span class="pill">AI 模拟</span><span class="muted">${formatDate(event.matches[index].start_utc)}</span></div><h3>${event.matches[index].label}</h3><div class="simulation-score">${logo(series.teams[0])}<b>${series.teams[0]}</b><strong>${series.score.join(" : ")}</strong><b>${series.teams[1]}</b>${logo(series.teams[1])}</div><p>${series.winner} ${index === 0 ? "晋级总决赛" : "赢得模拟冠军"} · ${series.maps.length} 图</p>${withReport ? `<p class="muted">${escape(pairReason(series.teams))}</p>` : ""}<small class="muted">${series.teams[0]} 赛前 BO5 概率 ${pct(p)} · 查看逐图回看 →</small></a>`;
+      return `<a class="card card-link simulation-card" href="${reviewLink(index)}"><div class="section-head"><span class="pill">新版抽样模拟</span><span class="muted">${formatDate(event.matches[index].start_utc)}</span></div><h3>${event.matches[index].label}</h3><div class="simulation-score">${logo(series.teams[0])}<b>${series.teams[0]}</b><strong>${series.score.join(" : ")}</strong><b>${series.teams[1]}</b>${logo(series.teams[1])}</div><p>${series.winner} ${index === 0 ? "晋级总决赛" : "赢得模拟冠军"} · ${series.maps.length} 图</p>${withReport ? `<p class="muted">${escape(pairReason(series.teams))}</p>` : ""}<small class="muted">${series.teams[0]} 赛前 BO5 概率 ${pct(p)} · 查看逐图回看 →</small></a>`;
     })
     .join("")}</div>`;
 }
@@ -450,6 +457,11 @@ function renderChannel() {
   const content = $("#channel-content");
   if (!content) return;
   const m = matchup();
+  if (tab === "prediction") {
+    content.innerHTML = v2Markup(v2Predictions[selected], evidencePack, v2Case, selected);
+    content.querySelectorAll('[data-v2-case]').forEach(button => button.onclick = () => {v2Case = button.dataset.v2Case; renderChannel();});
+    return;
+  }
   if (tab === "veto") {
     content.innerHTML = scenarioForm() + vetoMarkup();
     bindScenario();
@@ -457,7 +469,7 @@ function renderChannel() {
     return;
   }
   if (tab === "sandbox") {
-    content.innerHTML = tacticalMarkup();
+    content.innerHTML = `<div class="notice">固定Ascent假设阵容的既有独立走位预测，不代表本轮BP后实际阵容或逐回合战斗。</div>` + tacticalMarkup();
     mountTactical({ model: selected, onModelChange: selectChannel });
     return;
   }
@@ -499,7 +511,7 @@ function renderChannel() {
     return;
   }
   if (tab === "process") {
-    content.innerHTML = `<div class="card article"><h2>预测过程</h2><ol><li>从 Riot 官网赛事页提取本届 ${event.history.length} 场已完成系列赛。</li><li>只根据 17、18 日两场的晋级关系建立条件对阵。</li><li>${available(selected) ? escape(channel().name) + " 独立读取官方战绩后，给出六组可能对阵的单图主观概率。" : "该频道尚未运行，不展示代填预测。"}</li><li>把每张地图的独立获胜概率换算为先赢三图的 BO5 系列赛分布。</li><li>播放器按固定随机种子实际推演比赛；一次模拟不代表最可能赛果。</li></ol><p class="muted">${escape(forecasts[selected]?.calibration || "该模型尚未运行")}</p>${available(selected) ? `<a class="btn" href="data/${escape(modelManifest[selected])}" target="_blank">查看 ${escape(channel().name)} 原始预测 JSON</a>` : ""}</div>`;
+    content.innerHTML = `${evidenceMarkup()}<div class="card article"><h2>旧输入版预测过程</h2><ol><li>从 Riot 官网赛事页提取本届 ${event.history.length} 场已完成系列赛。</li><li>只根据 17、18 日两场的晋级关系建立条件对阵。</li><li>${available(selected) ? escape(channel().name) + " 独立读取官方战绩后，给出六组可能对阵的单图主观概率。" : "该频道尚未运行，不展示代填预测。"}</li><li>把每张地图的独立获胜概率换算为先赢三图的 BO5 系列赛分布。</li><li>播放器按固定随机种子实际推演比赛；一次模拟不代表最可能赛果。</li></ol><p class="muted">${escape(forecasts[selected]?.calibration || "该模型尚未运行")}</p>${available(selected) ? `<a class="btn" href="data/${escape(modelManifest[selected])}" target="_blank">查看 ${escape(channel().name)} 原始预测 JSON</a>` : ""}</div>`;
     return;
   }
   content.innerHTML =
@@ -665,6 +677,11 @@ function bindPlayer() {
 function analysisTable(model = forecast) {
   return `<div class="table-wrap" style="margin-top:20px"><table><thead><tr><th>可能对阵</th><th>左队单图概率</th><th>左队 BO5 概率</th><th>依据（${escape(model.model_id)}）</th></tr></thead><tbody>${model.pairs.map((p) => `<tr><td>${p.teams.join(" vs ")}</td><td class="heat">${pct(p.p_first)}</td><td class="heat">${pct(seriesProbability(p.p_first))}</td><td style="white-space:normal;min-width:300px">${escape(p.reason)}</td></tr>`).join("")}</tbody></table></div>`;
 }
+function v2ComparisonMarkup() {
+  const header=channels.map(c=>`<th>${escape(c.name)}</th>`).join("");
+  const row=(label,values)=>`<tr><th>${label}</th>${values.map(p=>`<td>${pct(p)}</td>`).join("")}</tr>`;
+  return `<section class="card" id="v2-comparison"><span class="kicker">INPUT V2 · 本轮真实数据预测</span><h2>逐图方案推导的系列赛与夺冠概率</h2><p class="muted">共同事实与规则输入；各家自主BP和起始边条件不同，概率差异同时包含方案差异，不是控制变量的模型能力测评。概率均未校准。</p><div class="table-wrap"><table><thead><tr><th>系列赛左队胜率</th>${header}</tr></thead><tbody>${Object.entries({lf:"败决 VIT vs 100T",gf_vit:"总决 LOUD vs VIT",gf_100t:"总决 LOUD vs 100T"}).map(([key,label])=>row(label,channels.map(c=>v2Predictions[c.id]?.computed.cases[key].distribution.filter(r=>r.score[0]===3).reduce((n,r)=>n+r.probability,0)??null))).join("")}</tbody></table></div><div class="table-wrap"><table><thead><tr><th>条件夺冠概率</th>${header}</tr></thead><tbody>${["LOUD","VIT","100T"].map(team=>row(team,channels.map(c=>v2Predictions[c.id]?.computed.champion_probabilities[team]??null))).join("")}</tbody></table></div><p><a class="source-link" href="#/?tab=prediction">查看每家BP、逐因素理由和证据 →</a></p></section>`;
+}
 function comparePage() {
   const columns = [...channels, { id: "baseline", name: "统计基线", color: "#c9c8bd" }],
     running = columns.filter((c) => c.id === "baseline" || available(c.id)),
@@ -697,7 +714,7 @@ function comparePage() {
     return `<text x="10" y="${y + 5}">${row.teams.join(" 对 ")}</text><text x="140" y="${y + 5}" class="chart-value">差 ${row.spread == null ? "—" : (row.spread * 100).toFixed(1)} 点</text>${row.values.map((v) => `<circle cx="${240 + v.p * 600}" cy="${y}" r="6" fill="${v.color}"><title>${escape(v.name)} · ${row.teams[0]} ${pct(v.p)}</title></circle>`).join("")}<circle cx="${240 + pmap(...row.teams, "baseline") * 600}" cy="${y}" r="8" fill="none" stroke="#c9c8bd" stroke-width="2"><title>统计基线 ${pct(pmap(...row.teams, "baseline"))}</title></circle>`;
   }).join("");
   main.innerHTML = pageHead("数据对比", "已完成的 AI 预测放在一起看：谁看好谁，谁和谁意见最不一样") +
-    `<div class="wrap section compare-page">${note()}${scenarioForm()}<section class="section"><h2>夺冠概率对比</h2><p class="muted">在所选 16 日晋级情景下，枚举最后两场 BO5 的全部胜负路径，计算各队夺冠概率。颜色越亮，概率越高。不是额外预测 16 日赛果；未晋级队在该情景下为 0%。</p><div class="table-wrap"><table id="champion-comparison" class="compare-matrix"><thead><tr><th>战队</th>${headings}</tr></thead><tbody>${probabilities}</tbody></table></div><p class="muted compare-caption">仅消费已运行模型的单图概率。每图独立且同概率，精确计算而非声称运行十万次模拟。</p></section><section class="section"><h2>实力排序对比</h2><p class="muted">四队相互对阵的平均单图胜率由高到低排序，是概率推导的参考排名。平均与名次差仅统计已运行 AI；统计基线单独列出。</p><div class="table-wrap"><table id="ranking-comparison" class="compare-matrix"><thead><tr><th>战队</th>${headings}<th>AI 平均</th><th>名次差</th></tr></thead><tbody>${rankings}</tbody></table></div></section><section class="section"><h2>分歧榜 · 模型意见最不一致的对阵</h2><p class="muted">点表示左队在中立场地的单图胜率，按已运行 AI 的最高与最低概率之差排序。空心圈为统计基线。仅比较这四个已完成预测的模型。</p><div class="model-legend">${running.map((c) => `<span><i style="background:${c.color}"></i>${escape(c.name)}</span>`).join("")}</div><div class="chart-scroll"><svg id="disagreement-chart" viewBox="0 0 900 430" role="img" aria-label="六组可能对阵的模型单图胜率分歧">${[0, .2, .4, .5, .6, .8, 1].map((p) => `<line class="chart-grid" x1="${240 + p * 600}" x2="${240 + p * 600}" y1="38" y2="390"/><text x="${240 + p * 600}" y="24" text-anchor="middle">${p * 100}%</text>`).join("")}${dots}</svg></div></section><section class="section"><h2>BO5 预测概率对比</h2><p class="muted">左侧队伍赢得系列赛的概率。统计基线由本届官方地图战绩的公开公式计算。</p><div class="table-wrap"><table><thead><tr><th>可能对阵</th>${headings}</tr></thead><tbody>${forecast.pairs.map((pair) => `<tr><th>${pair.teams.join(" vs ")}</th>${columns.map((c) => running.includes(c) ? cell(seriesProbability(pmap(...pair.teams, c.id)), pct(seriesProbability(pmap(...pair.teams, c.id)))) : '<td class="muted">待预测</td>').join("")}</tr>`).join("")}</tbody></table></div></section><section class="section"><div class="section-head"><h2>当前情景 · 比分分布</h2><label>实力参考 <select id="compare-model">${running.map((c) => `<option value="${c.id}">${escape(c.name)}</option>`).join("")}</select></label></div><p class="muted">败者组决赛六个可能比分之和为 100%；来自单图独立、同概率假设。</p><div class="grid" id="distributions"></div><div id="compare-reasons"></div></section></div>`;
+    `<div class="wrap section compare-page">${v2ComparisonMarkup()}<h2>以下为旧输入版历史对比</h2>${note()}${scenarioForm()}<section class="section"><h2>夺冠概率对比</h2><p class="muted">在所选 16 日晋级情景下，枚举最后两场 BO5 的全部胜负路径，计算各队夺冠概率。颜色越亮，概率越高。不是额外预测 16 日赛果；未晋级队在该情景下为 0%。</p><div class="table-wrap"><table id="champion-comparison" class="compare-matrix"><thead><tr><th>战队</th>${headings}</tr></thead><tbody>${probabilities}</tbody></table></div><p class="muted compare-caption">仅消费已运行模型的单图概率。每图独立且同概率，精确计算而非声称运行十万次模拟。</p></section><section class="section"><h2>实力排序对比</h2><p class="muted">四队相互对阵的平均单图胜率由高到低排序，是概率推导的参考排名。平均与名次差仅统计已运行 AI；统计基线单独列出。</p><div class="table-wrap"><table id="ranking-comparison" class="compare-matrix"><thead><tr><th>战队</th>${headings}<th>AI 平均</th><th>名次差</th></tr></thead><tbody>${rankings}</tbody></table></div></section><section class="section"><h2>分歧榜 · 模型意见最不一致的对阵</h2><p class="muted">点表示左队在中立场地的单图胜率，按已运行 AI 的最高与最低概率之差排序。空心圈为统计基线。仅比较这四个已完成预测的模型。</p><div class="model-legend">${running.map((c) => `<span><i style="background:${c.color}"></i>${escape(c.name)}</span>`).join("")}</div><div class="chart-scroll"><svg id="disagreement-chart" viewBox="0 0 900 430" role="img" aria-label="六组可能对阵的模型单图胜率分歧">${[0, .2, .4, .5, .6, .8, 1].map((p) => `<line class="chart-grid" x1="${240 + p * 600}" x2="${240 + p * 600}" y1="38" y2="390"/><text x="${240 + p * 600}" y="24" text-anchor="middle">${p * 100}%</text>`).join("")}${dots}</svg></div></section><section class="section"><h2>BO5 预测概率对比</h2><p class="muted">左侧队伍赢得系列赛的概率。统计基线由本届官方地图战绩的公开公式计算。</p><div class="table-wrap"><table><thead><tr><th>可能对阵</th>${headings}</tr></thead><tbody>${forecast.pairs.map((pair) => `<tr><th>${pair.teams.join(" vs ")}</th>${columns.map((c) => running.includes(c) ? cell(seriesProbability(pmap(...pair.teams, c.id)), pct(seriesProbability(pmap(...pair.teams, c.id)))) : '<td class="muted">待预测</td>').join("")}</tr>`).join("")}</tbody></table></div></section><section class="section"><div class="section-head"><h2>当前情景 · 比分分布</h2><label>实力参考 <select id="compare-model">${running.map((c) => `<option value="${c.id}">${escape(c.name)}</option>`).join("")}</select></label></div><p class="muted">败者组决赛六个可能比分之和为 100%；来自单图独立、同概率假设。</p><div class="grid" id="distributions"></div><div id="compare-reasons"></div></section></div>`;
   bindScenario();
   const update = (id) => {
     const m = matchup(id);
@@ -1030,7 +1047,7 @@ async function sharePick() {
 function leaderboardPage() {
   const rows = event.matches.filter((m) => m.winner);
   main.innerHTML =
-    pageHead("谁最准", "只用 17、18 日两场官方真实赛果结算") +
+    pageHead("谁最准", "旧输入版历史评估；新版尚无已结束目标比赛，不声称已验证准确率") +
     `<div class="wrap section"><div class="card"><div class="section-head"><h2>真实赛果 · ${rows.length} / 2 场已结算</h2><span class="pill official">官方赛果</span></div>${officialSchedule()}${rows.length ? "" : '<div class="empty"><p class="symbol">◷</p><h2>等待真实赛果</h2><p class="muted">两场比赛尚未结束。准确率与 Brier 分数暂不计算。</p></div>'}</div><section class="section"><h2>预测排行榜</h2><div class="table-wrap"><table><thead><tr><th>模型 / 参与者</th><th>已结算场数</th><th>预测命中</th><th>Brier 分数</th><th>状态</th></tr></thead><tbody>${channels
       .map((c) => {
         const scored = available(c.id)
@@ -1052,15 +1069,21 @@ function leaderboardPage() {
         "",
       )}<tr><td>我的预测${pick ? " · " + pick.champion : ""}</td><td>${pick ? rows.length : 0}</td><td>${pick && rows.length ? rows.filter((r) => r.winner === (r.id === event.matches[0].id ? pick.lfWinner : pick.champion)).length + " / " + rows.length : "—"}</td><td>—</td><td class="muted">${pick ? "已保存，等待完整赛果" : "尚未填写"}</td></tr></tbody></table></div><div class="notice blue">Brier 分数是预测概率与真实胜负之差的平方，越低越好。模型未输出或比赛未结束时不占位计分。个人胜者选择单独显示命中数。</div></section><a class="btn primary" href="#/pickem">${pick ? "查看我的预测" : "我也来预测"}</a></div>`;
 }
+function evidenceMarkup() {
+  const pack = evidencePack, series = pack.facts.filter(f => f.type === "completed_series"), maps = pack.facts.filter(f => f.type === "map_result");
+  const source = id => pack.sources.find(s => s.id === id);
+  const date = value => new Date(value).toLocaleString("zh-CN", {timeZone:"Asia/Shanghai", hour12:false});
+  return `<section class="card section evidence-pack" id="evidence-pack"><span class="kicker">INPUT V2 · 实际运行输入</span><h2>模型下一轮将看到什么？</h2><p>已采集 ${series.length} 场四强相关系列赛、${maps.length} 张真实地图、逐图选手表现与特工记录。冻结时间：${escape(date(pack.frozen_at))}（北京时间）。本轮真实数据预测使用这份输入；旧版预测与固定Ascent走位保留原输入，不回填新资料。</p><div class="table-wrap"><table><thead><tr><th>队伍</th><th>本届系列赛</th><th>逐图样本</th><th>最近实际出场名单</th></tr></thead><tbody>${pack.teams.map(team => `<tr><td>${escape(team)}</td><td>${pack.team_summaries[team].series_played}</td><td>${Object.values(pack.team_summaries[team].by_map).reduce((n,m)=>n+m.played,0)}</td><td>${pack.rosters[team].players.map(escape).join(" / ")}</td></tr>`).join("")}</tbody></table></div><p class="muted">名单来自最近已完成比赛，不能视为17/18日确认首发。地图、攻守回合、ACS/KAST和BP来自 VLR 二级赛事数据库；攻守汇总仅含常规回合，加时另列。规则、七图池、比赛版本来自 Riot 官方文件。未采集训练赛、伤病或已校准胜率。</p><details><summary>逐图样本与可追溯来源</summary>${pack.teams.map(team => `<h3>${escape(team)} · 本届地图记录</h3><p>${Object.entries(pack.team_summaries[team].by_map).map(([name,m])=>`${escape(name)} ${m.wins}胜/${m.played}图`).join(" · ")}</p>`).join("")}<ul>${series.slice().sort((a,b)=>b.event_start_utc.localeCompare(a.event_start_utc)).map(f=>`<li><a href="${escape(source(f.source_id).url)}" target="_blank" rel="noreferrer">${escape(f.value.teams.join(" vs "))} ${f.value.score.join(":")} · ${escape(f.event_start_utc.slice(0,10))} ↗</a></li>`).join("")}</ul></details><p><a class="source-link" href="data/evidence-v2.json" target="_blank">下载证据包 v2 · 来源ID、时间与缺口 ↗</a>　<a class="source-link" href="data/forecast-inputs.json" target="_blank">查看旧预测输入时点更正记录 ↗</a></p><p class="muted">新链路为：逐因素证据判断 → BP/选边 → 逐图概率计算系列赛 → 抽样结果后模拟复盘。各家独立运行，不使用人格或辩论。程序不替模型编造权重，结构校验不证明分析正确。</p></section>`;
+}
 function methodPage() {
   main.innerHTML =
     pageHead("AI 赛制介绍", "同一份数据、独立输出，区分预测、推演和真实赛果") +
-    `<div class="wrap section article"><div class="method-grid"><section class="card"><span class="kicker">01 · DATA</span><h2>官方资料</h2><p>Riot 赛事官网的赛程、对阵、赛制和 ${event.history.length} 场已完成系列赛记录。资料截止 ${escape(formatDate(forecast.data_cutoff))}。</p></section><section class="card"><span class="kicker">02 · FORECAST</span><h2>独立预测</h2><p>各频道只展示实际生成的输出。已接入的独立预测可以横向比较；其他频道保持待预测。</p></section><section class="card"><span class="kicker">03 · SCORE</span><h2>赛后检验</h2><p>只结算 17 日败者组决赛与 18 日总决赛。真实赛果出现后计算命中与 Brier 分数。</p></section></div><section class="card section" style="margin-top:20px"><h2>BO5 如何计算？</h2><p>一场比赛先赢三张地图即获胜。设某队单图胜率为 p，在地图独立且同概率的简化假设下，3:k 的概率为 C(2+k,k) × p³ × (1−p)ᵏ，k 为 0、1、2。</p><p>把 3:0、3:1、3:2 相加，得到该队赢下 BO5 的概率。播放器用相同单图概率和固定随机种子逐图推演，完整生成两场比赛。</p></section><section class="card"><h2>统计基线</h2><p>只用本届地图胜负，强度 =（地图胜场 + 1）/（地图负场 + 1），对阵单图概率 = 左队强度 / 两队强度之和。这是透明的样本平滑基线，没有训练或回测，不是官方胜率。</p><p class="muted">${escape(forecast.calibration)}</p></section><section class="card" style="margin-top:20px"><h2>只保留最后两场</h2><p>16 日两场只作为晋级条件。不会重新预测小组赛和已经结束的淘汰赛；个人预测和 AI 预测都聚焦 17、18 日。</p><a class="btn" href="#/pickem">开始我的预测</a></section></div>`;
+    `<div class="wrap section article">${evidenceMarkup()}<div class="method-grid"><section class="card"><span class="kicker">01 · DATA</span><h2>官方资料</h2><p>Riot 赛事官网的赛程、对阵、赛制和 ${event.history.length} 场已完成系列赛记录。旧版输入采集于 ${escape(formatDate(event.fetched_at))}；原 JSON 的 data_cutoff 实际是最近比赛开赛时间，不代表知识截止时间。</p></section><section class="card"><span class="kicker">02 · FORECAST</span><h2>独立预测 · 新旧分列</h2><p>首页本轮预测读取证据包v2；旧输入版结果、旧剧情与固定阵容走位另外标识。未完成的新结果保持待预测。</p></section><section class="card"><span class="kicker">03 · SCORE</span><h2>赛后检验</h2><p>只结算 17 日败者组决赛与 18 日总决赛。真实赛果出现后计算命中与 Brier 分数。</p></section></div><section class="card section" style="margin-top:20px"><h2>旧版 BO5 如何计算？</h2><p>一场比赛先赢三张地图即获胜。设某队单图胜率为 p，在地图独立且同概率的简化假设下，3:k 的概率为 C(2+k,k) × p³ × (1−p)ᵏ，k 为 0、1、2。</p><p>把 3:0、3:1、3:2 相加，得到该队赢下 BO5 的概率。播放器用相同单图概率和固定随机种子逐图推演，完整生成两场比赛。</p></section><section class="card"><h2>统计基线</h2><p>只用本届地图胜负，强度 =（地图胜场 + 1）/（地图负场 + 1），对阵单图概率 = 左队强度 / 两队强度之和。这是透明的样本平滑基线，没有训练或回测，不是官方胜率。</p><p class="muted">${escape(forecast.calibration)}</p></section><section class="card" style="margin-top:20px"><h2>只保留最后两场</h2><p>16 日两场只作为晋级条件。不会重新预测小组赛和已经结束的淘汰赛；个人预测和 AI 预测都聚焦 17、18 日。</p><a class="btn" href="#/pickem">开始我的预测</a></section></div>`;
 }
 function aboutPage() {
   main.innerHTML =
-    pageHead("内容、数据与素材说明", "来源可追溯，未知信息保持未知") +
-    `<div class="wrap section article"><section class="card"><h2>赛事数据</h2><p>最近获取：${escape(new Date(event.fetched_at).toLocaleString("zh-CN", { timeZone: "Asia/Shanghai" }))}（北京时间）。官方页面结构化数据中共提取 ${event.history.length} 场已完成系列赛，本应用只预测两场 BO5。</p><ul>${event.sources.map((s) => `<li><a href="${escape(s.url)}" target="_blank" rel="noreferrer">${escape(s.publisher)} · ${s.role === "official_schedule_results" ? "官方赛程与真实结果" : "上海冠军赛赛制说明"} ↗</a></li>`).join("")}</ul><p class="muted">${event.limitations.map(escape).join("<br>")}</p><details><summary>快照与原始数据</summary><p style="overflow-wrap:anywhere">官方响应 SHA-256：${event.source_sha256}</p><a href="data/event.json" target="_blank" class="source-link">查看赛事快照 JSON</a></details></section><section class="card" style="margin-top:20px"><h2>预测来源</h2><p>已完成频道：${channels.filter(c => forecasts[c.id]).map(c => escape(c.name)).join("、")}。各频道只使用已核实身份的独立实际输出。所有模型使用同一份冻结赛事资料。展示中所有主观概率、模拟比分都标识为预测或模拟。</p>${channels.filter(c => forecasts[c.id]).map(c => `<a class="source-link" href="data/${escape(modelManifest[c.id])}" target="_blank">查看 ${escape(c.name)} 原始预测与理由 ↗</a>`).join("　")}</section><section class="card" style="margin-top:20px"><h2>AI 虚构比赛创作</h2>${fictionNotice()}<p>${channels.filter(c => fiction[c.id]).map(c => escape(c.name)).join("、")} 分别为四种晋级情景创作最后两场的地图 BP、逐图故事与系列赛选手评分。胜者与大比分由同一个模拟引擎固定，创作不能改写它们。</p><p>选手昵称优先参考俱乐部官网；LOUD 当前名单使用赛事数据库补充。真实首发以比赛当天官方公布为准。七张地图仅组成虚构创作池，不宣称是本届官方地图池。</p><a class="source-link" href="data/fiction-context.json" target="_blank">查看人物与地图索引来源 ↗</a><p class="muted">虚构榜按当前情景两场系列赛评分的均值排序，不是 ACS、KAST、真实能力排名，也不参与预测准确率结算。</p></section><section class="card" style="margin-top:20px"><h2>视觉参考与素材</h2><p>交互与页面结构参考用户指定的 <a href="https://www.bilibili.com/toy/LkvCZhw12wgT2Pqx/index.html" target="_blank" rel="noreferrer">S16 AI 预测大赛</a>。赛事内容改为 VALORANT，范围限定为最后两场。前端代码独立编写。</p><p>模型人像按用户要求引用自 <a href="https://www.bilibili.com/toy/LkvCZhw12wgT2Pqx/index.html" target="_blank" rel="noreferrer">我叫张大喵的 S16 AI 预测大赛</a>，保留 GPT、DeepSeek、豆包、MiMo 的原有对应关系。战队标志来自 Riot 赛事官网。图像权利归相应权利人，模型形象不代表提供商背书或合作。</p></section><section class="card" style="margin-top:20px"><h2>字体授权</h2><p>正文与中文标题使用设备系统字体，英文标题与数字按需使用 Anton、JetBrains Mono。历史 OPPO Sans、MiSans 素材和许可保留，但页面不加载这两份大字体；所有字体原文件未修改。</p><ul><li><a class="source-link" href="assets/fonts/OPPO-Sans-LICENSE.txt" target="_blank">OPPO Sans 许可</a></li><li><a class="source-link" href="assets/fonts/MiSans-LICENSE.pdf" target="_blank">MiSans 许可 · Xiaomi Inc.</a></li><li><a class="source-link" href="assets/fonts/anton-OFL.txt" target="_blank">Anton · SIL OFL 1.1</a></li><li><a class="source-link" href="assets/fonts/jetbrainsmono-OFL.txt" target="_blank">JetBrains Mono · SIL OFL 1.1</a></li></ul></section><section class="card" style="margin-top:20px"><h2>本地保存与分享</h2><p>个人预测、自定义实力排名、频道、各频道回放进度、静音和晋级情景保存在当前浏览器。分享链接只包含你选择的晋级情景、两场比分和生成时间。数据不会上传。</p></section></div>`;
+    pageHead("内容、数据与素材说明", "来源可追溯，未知信息保持未知") + `<div class="wrap section article">${evidenceMarkup()}</div>` +
+    `<div class="wrap section article"><section class="card"><h2>赛事数据</h2><p>最近获取：${escape(new Date(event.fetched_at).toLocaleString("zh-CN", { timeZone: "Asia/Shanghai" }))}（北京时间）。官方页面结构化数据中共提取 ${event.history.length} 场已完成系列赛，本应用只预测两场 BO5。</p><ul>${event.sources.map((s) => `<li><a href="${escape(s.url)}" target="_blank" rel="noreferrer">${escape(s.publisher)} · ${s.role === "official_schedule_results" ? "官方赛程与真实结果" : "上海冠军赛赛制说明"} ↗</a></li>`).join("")}</ul><p class="muted">${event.limitations.map(escape).join("<br>")}</p><details><summary>快照与原始数据</summary><p style="overflow-wrap:anywhere">官方响应 SHA-256：${event.source_sha256}</p><a href="data/event.json" target="_blank" class="source-link">查看赛事快照 JSON</a></details></section><section class="card" style="margin-top:20px"><h2>预测来源</h2><p>已完成频道：${channels.filter(c => forecasts[c.id]).map(c => escape(c.name)).join("、")}。各频道只使用已核实身份的独立实际输出。现有四家结果使用同一份旧版冻结赛事资料；旧预测不回填新输入；首页本轮预测另有v2实际输入输出。展示中所有主观概率、模拟比分都标识为预测或模拟。</p>${channels.filter(c => forecasts[c.id]).map(c => `<a class="source-link" href="data/${escape(modelManifest[c.id])}" target="_blank">查看 ${escape(c.name)} 原始预测与理由 ↗</a>`).join("　")}</section><section class="card" style="margin-top:20px"><h2>AI 虚构比赛创作</h2>${fictionNotice()}<p>${channels.filter(c => fiction[c.id]).map(c => escape(c.name)).join("、")} 分别为四种晋级情景创作最后两场的地图 BP、逐图故事与系列赛选手评分。胜者与大比分由同一个模拟引擎固定，创作不能改写它们。</p><p>选手昵称优先参考俱乐部官网；LOUD 当前名单使用赛事数据库补充。真实首发以比赛当天官方公布为准。七张地图仅组成虚构创作池，不宣称是本届官方地图池。</p><a class="source-link" href="data/fiction-context.json" target="_blank">查看人物与地图索引来源 ↗</a><p class="muted">虚构榜按当前情景两场系列赛评分的均值排序，不是 ACS、KAST、真实能力排名，也不参与预测准确率结算。</p></section><section class="card" style="margin-top:20px"><h2>视觉参考与素材</h2><p>交互与页面结构参考用户指定的 <a href="https://www.bilibili.com/toy/LkvCZhw12wgT2Pqx/index.html" target="_blank" rel="noreferrer">S16 AI 预测大赛</a>。赛事内容改为 VALORANT，范围限定为最后两场。前端代码独立编写。</p><p>模型人像按用户要求引用自 <a href="https://www.bilibili.com/toy/LkvCZhw12wgT2Pqx/index.html" target="_blank" rel="noreferrer">我叫张大喵的 S16 AI 预测大赛</a>，保留 GPT、DeepSeek、豆包、MiMo 的原有对应关系。战队标志来自 Riot 赛事官网。图像权利归相应权利人，模型形象不代表提供商背书或合作。</p></section><section class="card" style="margin-top:20px"><h2>字体授权</h2><p>正文与中文标题使用设备系统字体，英文标题与数字按需使用 Anton、JetBrains Mono。历史 OPPO Sans、MiSans 素材和许可保留，但页面不加载这两份大字体；所有字体原文件未修改。</p><ul><li><a class="source-link" href="assets/fonts/OPPO-Sans-LICENSE.txt" target="_blank">OPPO Sans 许可</a></li><li><a class="source-link" href="assets/fonts/MiSans-LICENSE.pdf" target="_blank">MiSans 许可 · Xiaomi Inc.</a></li><li><a class="source-link" href="assets/fonts/anton-OFL.txt" target="_blank">Anton · SIL OFL 1.1</a></li><li><a class="source-link" href="assets/fonts/jetbrainsmono-OFL.txt" target="_blank">JetBrains Mono · SIL OFL 1.1</a></li></ul></section><section class="card" style="margin-top:20px"><h2>本地保存与分享</h2><p>个人预测、自定义实力排名、频道、各频道回放进度、静音和晋级情景保存在当前浏览器。分享链接只包含你选择的晋级情景、两场比分和生成时间。数据不会上传。</p></section></div>`;
 }
 function route() {
   clearTimeout(playerTimer);
@@ -1072,6 +1095,7 @@ function route() {
   if (
     params.has("tab") &&
     [
+      "prediction",
       "veto",
       "sandbox",
       "live",
@@ -1084,7 +1108,7 @@ function route() {
     ].includes(params.get("tab"))
   )
     tab = params.get("tab");
-  else if (path === "/") tab = "veto";
+  else if (path === "/") tab = "prediction";
   if (params.get("ai") && channels.some((c) => c.id === params.get("ai")))
     selected = params.get("ai");
   if (
@@ -1179,12 +1203,16 @@ function renderTicker() {
     ticker.querySelector("button").onclick = () => { tickerOpen = true; renderTicker(); };
     return;
   }
-  const reports = channels.filter((c) => available(c.id)).flatMap((c) => simulateFinals(c.id).map((series, index) => {
-    const winnerIndex = series.teams.indexOf(series.winner), loser = series.teams[1 - winnerIndex],
-      chance = seriesProbability(pmap(series.winner, loser, c.id));
-    return { c, series, index, loser, chance, winnerIndex };
-  }));
-  const row = (duplicate) => `<div class="ticker-row"${duplicate ? ' aria-hidden="true"' : ""}>${reports.map(({ c, series, index, loser, chance, winnerIndex }) => `<a class="tick" href="${reviewLink(index, c.id)}"${duplicate ? ' tabindex="-1"' : ""}><span class="pill">AI 模拟</span><span class="muted">${escape(c.name)} 的世界</span>${logo(series.winner)}<b>${series.winner}</b><span>${series.score[winnerIndex]}–${series.score[1 - winnerIndex]}</span><span>${loser}</span><span class="muted">赛前 ${pct(chance)}</span></a>`).join("")}</div>`;
+  const reports = channels.filter(c => v2Predictions[c.id]).flatMap(c => {
+    const result = v2Predictions[c.id], samples = result.computed.sample.series;
+    return samples.map((series,index) => {
+      const key = index === 0 ? "lf" : samples[0].winner === "VIT" ? "gf_vit" : "gf_100t";
+      const p = result.computed.cases[key].distribution.filter(r => r.score[0] === 3).reduce((n,r) => n+r.probability,0);
+      const winnerIndex=series.teams.indexOf(series.winner);
+      return {c,series,index,loser:series.teams[1-winnerIndex],winnerIndex,chance:winnerIndex===0?p:1-p};
+    });
+  });
+  const row = (duplicate) => `<div class="ticker-row"${duplicate ? ' aria-hidden="true"' : ""}>${reports.map(({ c, series, index, loser, chance, winnerIndex }) => `<a class="tick" href="#/?ai=${c.id}&tab=prediction"${duplicate ? ' tabindex="-1"' : ""}><span class="pill">新版抽样模拟</span><span class="muted">${escape(c.name)} 的世界</span>${logo(series.winner)}<b>${series.winner}</b><span>${series.score[winnerIndex]}–${series.score[1 - winnerIndex]}</span><span>${loser}</span><span class="muted">赛前 ${pct(chance)}</span></a>`).join("")}</div>`;
   ticker.innerHTML = `<button class="ticker-label" aria-pressed="${tickerPaused}">${tickerPaused ? "滚动速报" : "暂停速报"}</button><div class="ticker-track"><div class="ticker-move">${row(false)}${tickerPaused ? "" : row(true)}</div></div><button class="ticker-close" aria-label="收起模拟速报">×</button>`;
   ticker.querySelector(".ticker-label").onclick = () => { tickerPaused = !tickerPaused; renderTicker(); };
   ticker.querySelector(".ticker-close").onclick = () => { tickerOpen = false; renderTicker(); };
@@ -1243,12 +1271,14 @@ async function start() {
       return response.json();
     };
     let manifest;
-    [event, assets, manifest, fictionManifest, fictionContext, officialCurrent] = await Promise.all(
-      ["data/event.json", "data/assets.json", "data/model-forecasts.json", "data/model-fiction.json", "data/fiction-context.json", "data/official-current.json"].map(
+    [event, assets, manifest, fictionManifest, fictionContext, officialCurrent, evidencePack] = await Promise.all(
+      ["data/event.json", "data/assets.json", "data/model-forecasts.json", "data/model-fiction.json", "data/fiction-context.json", "data/official-current.json", "data/evidence-v2.json"].map(
         fetchJSON,
       ),
     );
     [forecasts, fiction] = await Promise.all([manifest, fictionManifest].map(async entries => Object.fromEntries(await Promise.all(Object.entries(entries).map(async ([id, path]) => [id, await fetchJSON("data/" + path)])))));
+    const v2Manifest = await fetchJSON("data/forecast-v2/models.json");
+    v2Predictions = Object.fromEntries(await Promise.all(Object.entries(v2Manifest.models).filter(([,row]) => row.status === "ready").map(async ([id,row]) => [id, await fetchJSON(row.file)])));
     modelManifest = manifest;
     forecast = forecasts.codex;
     if (!forecast) throw Error("GPT-6.1 sol 预测数据缺失");

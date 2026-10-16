@@ -1,12 +1,13 @@
 {
   "kind": "official_current_status",
-  "fetched_at": "2026-10-16T12:52:11.579379+00:00",
+  "fetched_at": "2026-10-16T14:27:16.685521+00:00",
   "source_url": "https://valorantesports.com/en-US/",
-  "source_sha256": "c762bd31a6da8607e3dd70bec467ca99c3e428712fa4a7a977986f3ebfa2c868",
+  "source_sha256": "dd0e0466217f7383399be782dbbcdc4aa4b90c2c9dc0ac11a0bea749d960d56d",
   "predecessors": [
     {
       "id": "115576361461142773",
       "start_utc": "2026-10-16T06:00:00Z",
+      "stage": "Playoffs",
       "state": "completed",
       "teams": [
         "LOUD",
@@ -18,44 +19,49 @@
         1
       ],
       "winner": "LOUD",
-      "verified_current": true,
-      "source_url": "https://valorantesports.com/en-US/"
+      "source_url": "https://valorantesports.com/en-US/",
+      "verified_current": true
     },
     {
       "id": "115576361461208321",
       "start_utc": "2026-10-16T09:00:00Z",
       "stage": "Playoffs",
-      "state": "unknown_current",
+      "state": "completed",
       "teams": [
         "G2",
         "100T"
       ],
       "best_of": 3,
-      "score": null,
-      "winner": null,
+      "score": [
+        1,
+        2
+      ],
+      "winner": "100T",
       "source_url": "https://valorantesports.com/en-US/",
-      "verified_current": false
+      "verified_current": true
     }
   ],
   "matches": [
     {
       "id": "115576361461208325",
       "start_utc": "2026-10-17T07:00:00Z",
+      "stage": "Playoffs",
       "state": "unstarted",
       "teams": [
-        "TBD",
+        "100T",
         "VIT"
       ],
       "best_of": 5,
       "score": null,
       "winner": null,
-      "verified_current": true,
       "source_url": "https://valorantesports.com/en-US/",
-      "label": "败者组决赛"
+      "label": "败者组决赛",
+      "verified_current": true
     },
     {
       "id": "115576361461208331",
       "start_utc": "2026-10-18T06:00:00Z",
+      "stage": "Finals",
       "state": "unstarted",
       "teams": [
         "TBD",
@@ -64,13 +70,13 @@
       "best_of": 5,
       "score": null,
       "winner": null,
-      "verified_current": true,
       "source_url": "https://valorantesports.com/en-US/",
-      "label": "总决赛"
+      "label": "总决赛",
+      "verified_current": true
     }
   ],
   "limitations": [
-    "当前SSR未返回的败者组半决赛不推断结果。",
-    "历史模型预测和剧情继续绑定10月15日冻结输入；新已知赛果单独列明，不冒充模型预知结果。"
+    "仅表示本次采集时官网结构化状态，不是实时推送。",
+    "10月16日结果仅进入最新状态与证据包v2；旧预测和剧情不回填。"
   ]
 }

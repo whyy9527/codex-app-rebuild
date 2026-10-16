@@ -1,0 +1,50 @@
+{
+  "schema_version": "forecast_input_receipts.v1",
+  "correction": "Old data_cutoff was latest match start. Raw predictions are preserved; collection time and knowledge cutoff are distinct.",
+  "models": {
+    "codex": {
+      "file": "gpt-6.1-sol-forecast.json",
+      "sha256": "260a0a02b9daf4d1caf7140f4091e9dfaf45aef88e47f8acf77108cbdb316d46",
+      "model_created_at": "2026-10-15T11:11:25.709039+00:00",
+      "original_data_cutoff": "2026-10-11T12:00:00Z",
+      "original_data_cutoff_meaning": "latest_match_start_not_information_cutoff",
+      "input_snapshot_collected_at": "2026-10-15T10:53:29.574058+00:00",
+      "historical_knowledge_cutoff": null,
+      "evidence_pack_version": 1,
+      "used_evidence_v2": false
+    },
+    "deepseek": {
+      "file": "deepseek-forecast.json",
+      "sha256": "a8e55142f584f3e86862e7223d18778f3281c4bced64440b99bd47b106ac1148",
+      "model_created_at": "2026-10-16T07:25:44.474958+00:00",
+      "original_data_cutoff": "2026-10-11T12:00:00Z",
+      "original_data_cutoff_meaning": "latest_match_start_not_information_cutoff",
+      "input_snapshot_collected_at": "2026-10-15T10:53:29.574058+00:00",
+      "historical_knowledge_cutoff": null,
+      "evidence_pack_version": 1,
+      "used_evidence_v2": false
+    },
+    "mimo": {
+      "file": "mimo-forecast.json",
+      "sha256": "a60b14e33de9ba7d101c007e4367d4a2d120647cce809445933fc7891fe8a719",
+      "model_created_at": "2026-10-16T07:25:43.511797+00:00",
+      "original_data_cutoff": "2026-10-11T12:00:00Z",
+      "original_data_cutoff_meaning": "latest_match_start_not_information_cutoff",
+      "input_snapshot_collected_at": "2026-10-15T10:53:29.574058+00:00",
+      "historical_knowledge_cutoff": null,
+      "evidence_pack_version": 1,
+      "used_evidence_v2": false
+    },
+    "doubao": {
+      "file": "doubao-forecast.json",
+      "sha256": "4c03f32200d18d8b5638fb728d0d31ecf5b35cec8d758ce6a836c2492a071c02",
+      "model_created_at": "2026-10-16T07:43:48.227785+00:00",
+      "original_data_cutoff": "2026-10-11T12:00:00Z",
+      "original_data_cutoff_meaning": "latest_match_start_not_information_cutoff",
+      "input_snapshot_collected_at": "2026-10-15T10:53:29.574058+00:00",
+      "historical_knowledge_cutoff": null,
+      "evidence_pack_version": 1,
+      "used_evidence_v2": false
+    }
+  }
+}

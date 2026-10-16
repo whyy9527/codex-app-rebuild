@@ -1,0 +1,1421 @@
+{
+  "kind": "evidence_v2_model_prediction",
+  "channel": "codex",
+  "input_sha256": "308acf6cdd3481e69723cc78372322f954f8577477fa12fec40d61c18c890bd8",
+  "created_at": "2026-10-16T14:51:48.387559+00:00",
+  "method": "single_evidence_analysis_no_persona",
+  "selected": {
+    "input_sha256": "308acf6cdd3481e69723cc78372322f954f8577477fa12fec40d61c18c890bd8",
+    "cases": {
+      "lf": {
+        "teams": [
+          "VIT",
+          "100T"
+        ],
+        "factors": [
+          {
+            "id": "team_record",
+            "judgment": "冻结包内VIT系列赛4胜1负，100T为5胜1负；双方没有直接交手样本。100T多一次系列赛胜利，但不能据此认定整体实力更强。共同对手G2方面，VIT取得2比0，100T先0比2、后2比1，结果支持地图间分别判断。",
+            "evidence_refs": [
+              "series:753449",
+              "series:753451",
+              "series:754731",
+              "series:754734",
+              "series:754736",
+              "series:753444",
+              "series:753446",
+              "series:754730",
+              "series:754738",
+              "series:754740",
+              "series:754742"
+            ],
+            "limitations": "均为VLR二级来源记录，仅覆盖本届赛事；赛程、地图和对手不同，共同对手比较不具有传递性。"
+          },
+          {
+            "id": "player_matchups",
+            "judgment": "实际角色应按地图比较。Split上Derke的Yoru对G2取得18杀9死、194 ADR；Timotino的Neon对FUT取得18杀12死、177 ADR，双方都有正面样本。Summit上Cryocells最近以Chamber取得22杀12死，而Derke同特工对LOUD为14杀12死，有限支持100T该位置的近期产出；这不是两人直接对枪结果。",
+            "evidence_refs": [
+              "map:754734:2",
+              "map:753446:1",
+              "map:754742:3",
+              "map:754736:2"
+            ],
+            "limitations": "对手、地图回合长度和队内职责不同，不能由ACS、ADR或击杀数推出枪法排名；最近出场五人也不是未来确认首发。"
+          },
+          {
+            "id": "agent_pool",
+            "judgment": "VIT的Split实用组合为Derke/Yoru、Chronicle/Neon、Jamppi/Fade、PROFEK/Omen、Sayonara/Viper；100T在该图使用Timotino/Neon、Cryocells/Chamber、vora/Skye、Asuna/Omen、bang/Viper。Summit双方都使用Chamber、Neon、Fade、Harbor，最后一位分别为VIT的Phoenix和100T的Sage。可确认已有组合差异，无法确认哪套克制另一套。",
+            "evidence_refs": [
+              "map:754734:2",
+              "map:753446:1",
+              "map:754736:2",
+              "map:754742:3"
+            ],
+            "limitations": "只证明这些组合实际使用过，不代表完整特工池或未来锁定阵容；双方同时选特工，不存在轮流抢禁英雄。"
+          },
+          {
+            "id": "patch_and_rules",
+            "judgment": "官方规则规定赛事使用13.05及13.05b、13.05c；本案为普通BO5，A、B各ban一图，然后按A、B、A、B选图，最后一图剩余。五图选边方依次为B、A、B、A、B；特工选择同时进行，时限85秒。",
+            "evidence_refs": [
+              "official:rules",
+              "official:schedule"
+            ],
+            "limitations": "证据包没有补丁具体改动及各场对应子版本，无法判断某个特工因改动获得多少优势；普通BO5的实际优先权未提供。"
+          },
+          {
+            "id": "map_veto",
+            "judgment": "假设VIT取得优先权并选择A：VIT ban Sunset，100T ban Abyss。VIT连续禁Sunset，100T最近禁Abyss，均有记录支持。VIT依次选Split、Lotus，100T依次选Ascent、Summit，Haven剩余；这使双方保留有明确比赛依据的选图。",
+            "evidence_refs": [
+              "official:rules",
+              "series:754731",
+              "series:754734",
+              "series:754736",
+              "series:754738",
+              "series:754742"
+            ],
+            "limitations": "这是合规假设BP，不是已公布BP；100T此前也多次禁Lotus，其选择Abyss作为唯一禁图仍存在不确定性。"
+          },
+          {
+            "id": "recent_form",
+            "judgment": "100T最近连续战胜NS、NRG和G2，VIT最近战胜NS、G2后负于LOUD；近期系列赛结果略偏100T。但VIT最新Lotus仍以13比8获胜，不能把一次系列赛失利推广到所有地图。",
+            "evidence_refs": [
+              "series:754738",
+              "series:754740",
+              "series:754742",
+              "series:754731",
+              "series:754734",
+              "series:754736",
+              "map:754736:1"
+            ],
+            "limitations": "近期状态仅指已记录比赛结果和统计；17日比赛尚未发生，伤病、训练赛、疲劳与心理状态均无法判断。"
+          },
+          {
+            "id": "execution",
+            "judgment": "有限统计观察：VIT最新Lotus上Chronicle与PROFEK的KAST均为90%，但Summit进攻赢0回合，Haven的Chronicle为7杀21死，显示地图间产出差异。100T最新Ascent上Cryocells与bang各20杀，Summit取得7个进攻胜回合；这些记录支持100T在后两图的近期结果较好。",
+            "evidence_refs": [
+              "map:754736:1",
+              "map:754736:2",
+              "map:754736:3",
+              "map:754742:2",
+              "map:754742:3"
+            ],
+            "limitations": "只有半场胜回合与选手统计，没有逐回合战术事件或录像；不能判断道具配合、补枪质量、枪法、临场心理或失误原因。"
+          }
+        ],
+        "priority_role": "A",
+        "bans": [
+          "Sunset",
+          "Abyss"
+        ],
+        "bp_reason": "约定teams[0]即VIT为A、100T为B；假设VIT取得普通BO5优先权并选择A，非官方已确认。A ban Sunset，B ban Abyss；A选Split，B选Ascent，A选Lotus，B选Summit，Haven剩余。按官方选边方B/A/B/A/B：Split由100T选DEF，VIT从ATK开始；Ascent由VIT选DEF；Lotus由100T选DEF，VIT从ATK开始；Summit由VIT选DEF；Haven由100T选DEF，VIT从ATK开始。选边参考各队该图已有半场记录，不能视为经验证的最优解。",
+        "bp_evidence_refs": [
+          "official:rules",
+          "series:754736",
+          "series:754742",
+          "map:754734:2",
+          "map:754736:1",
+          "map:754742:2",
+          "map:754742:3",
+          "map:754740:2"
+        ],
+        "maps": [
+          {
+            "map": "Split",
+            "a_start_side": "ATK",
+            "p_first": 0.55,
+            "reason": "在VIT先攻条件下，小幅偏VIT：其两场分别13比8胜NS、13比4胜G2，覆盖两个对手；对G2先攻取得8个进攻胜回合。最强反证是100T唯一该图样本13比5胜FUT，也有明显优势，因此不把VIT两连胜解释为稳定压制。",
+            "evidence_refs": [
+              "map:754731:1",
+              "map:754734:2"
+            ],
+            "counterevidence_refs": [
+              "map:753446:1"
+            ],
+            "change_condition": "若确认VIT更换该图人员或组合，或出现可核实的100T同阵容对强对手防守样本，应重新判断；实际起始边变化也需重估。",
+            "missing_evidence": [
+              "双方直接交手",
+              "100T更多Split样本",
+              "确认首发与本场特工组合",
+              "可分离起始边影响的样本"
+            ]
+          },
+          {
+            "map": "Ascent",
+            "a_start_side": "DEF",
+            "p_first": 0.43,
+            "reason": "VIT先守条件下仍偏100T：100T四场3胜，包括最近13比1胜NS、13比10胜G2；VIT两场1胜且时间更早。VIT已有防守10胜回合/20回合，不能仅凭先守消除100T的地图证据优势。最强反证是VIT曾13比7击败LOUD，说明其该图有竞争力。",
+            "evidence_refs": [
+              "map:754738:3",
+              "map:754742:2",
+              "map:753444:2",
+              "map:753449:2"
+            ],
+            "counterevidence_refs": [
+              "map:753451:1",
+              "map:754730:2"
+            ],
+            "change_condition": "若VIT有更新的同阵容Ascent强势样本，或100T改变已反复使用的组合，应缩小或重估差距。",
+            "missing_evidence": [
+              "VIT近期Ascent样本",
+              "双方直接交手",
+              "确认首发",
+              "起始边独立效应"
+            ]
+          },
+          {
+            "map": "Lotus",
+            "a_start_side": "ATK",
+            "p_first": 0.57,
+            "reason": "VIT先攻条件下偏VIT：最新13比8胜LOUD，100T最新10比13负G2。VIT该场进攻6胜/12回合，而100T两场防守合计13胜/22回合，先攻条件并不支持再放大VIT优势。最强反证是100T曾13比10胜FUT，VIT则只有一场样本。",
+            "evidence_refs": [
+              "map:754736:1",
+              "map:754742:1"
+            ],
+            "counterevidence_refs": [
+              "map:753446:2"
+            ],
+            "change_condition": "若VIT不再使用最新Lotus组合，或100T出现更多同阵容该图防守表现，应重新估计。",
+            "missing_evidence": [
+              "VIT第二场Lotus样本",
+              "双方直接交手",
+              "确认本场组合",
+              "逐回合经济与攻防事件"
+            ]
+          },
+          {
+            "map": "Summit",
+            "a_start_side": "DEF",
+            "p_first": 0.38,
+            "reason": "VIT先守条件下偏100T：100T三场全胜、总回合39比20，进攻24胜/33回合；VIT最新5比13负LOUD，且三场常规进攻仅9胜/30回合。先守符合VIT已有防守相对较好的记录，但还要换边。最强反证是VIT曾19比17击败LOUD，并非无法赢此图。",
+            "evidence_refs": [
+              "map:753444:1",
+              "map:754738:1",
+              "map:754742:3",
+              "map:754736:2"
+            ],
+            "counterevidence_refs": [
+              "map:753451:2",
+              "map:753449:3"
+            ],
+            "change_condition": "若VIT能提供更新且可核实的该图进攻改善证据，或100T改变稳定使用的五特工组合，应缩小100T优势。",
+            "missing_evidence": [
+              "双方直接交手",
+              "VIT近期进攻改善样本",
+              "确认首发",
+              "补丁子版本对应信息"
+            ]
+          },
+          {
+            "map": "Haven",
+            "a_start_side": "ATK",
+            "p_first": 0.46,
+            "reason": "VIT先攻、100T先守条件下小幅偏100T：100T唯一样本13比4胜NRG，先守取得8胜/12回合；VIT两场常规进攻合计12胜/24回合，最新11比13负LOUD。最强反证是VIT曾14比12胜NS，而100T只有一场，不能把大比分胜利当作稳定水平。",
+            "evidence_refs": [
+              "map:754740:2",
+              "map:754736:3"
+            ],
+            "counterevidence_refs": [
+              "map:754731:3"
+            ],
+            "change_condition": "若100T增加该图样本后无法维持防守表现，或VIT确认调整进攻组合，应向均衡方向重估。",
+            "missing_evidence": [
+              "100T第二场Haven样本",
+              "双方直接交手",
+              "确认首发与组合",
+              "先攻和先守可比样本"
+            ]
+          }
+        ]
+      },
+      "gf_vit": {
+        "teams": [
+          "LOUD",
+          "VIT"
+        ],
+        "factors": [
+          {
+            "id": "team_record",
+            "judgment": "冻结包内LOUD系列赛5胜1负，VIT为4胜1负。两次直接交手分别VIT 2比0、LOUD 2比1，交手系列赛各胜一次；地图结果也分散在Ascent、Summit、Lotus、Haven，不能由最新一次胜负指定总决赛赢家。",
+            "evidence_refs": [
+              "series:753450",
+              "series:753451",
+              "series:753453",
+              "series:754733",
+              "series:754735",
+              "series:754736",
+              "series:753449",
+              "series:754731",
+              "series:754734"
+            ],
+            "limitations": "VLR二级来源，仅本届赛事；本案以VIT进入总决赛为条件，17日败决结果及表现未知。"
+          },
+          {
+            "id": "player_matchups",
+            "judgment": "最新直接交手中，同为Summit的Chamber，lukxo为26杀12死、248 ADR，Derke为14杀12死、144 ADR，支持LOUD该图近期产出占优；Haven上erde的Omen取得24杀13死。反面是Lotus上VIT的Jamppi以Fade取得19杀12死，LOUD的lukxo为15杀16死，优势并非跨图一致。",
+            "evidence_refs": [
+              "map:754736:2",
+              "map:754736:3",
+              "map:754736:1"
+            ],
+            "limitations": "同特工也不等于相同交战任务；统计无法证明直接对枪优势、枪法或心理差异，未来首发未确认。"
+          },
+          {
+            "id": "agent_pool",
+            "judgment": "Summit最新实用组合，LOUD为Chamber、Omen、Sage、Neon、Fade，VIT为Chamber、Harbor、Fade、Neon、Phoenix。Split双方都用Yoru、Neon、Omen、Viper、Fade，但LOUD由lukxo使用Yoru，VIT由Derke使用Yoru。组合与使用者均有事实依据，无法证明组合之间存在固定克制。",
+            "evidence_refs": [
+              "map:754736:2",
+              "map:754733:1",
+              "map:754734:2"
+            ],
+            "limitations": "VIT没有Sunset比赛样本，LOUD没有Abyss比赛样本，无法确认这两张图的实际组合；本场双方同时选择特工。"
+          },
+          {
+            "id": "patch_and_rules",
+            "judgment": "官方规定总决赛为BO5，胜者组晋级方拥有两次ban。本案LOUD为A，两ban均归LOUD；随后A、B、A、B选图，第五图剩余，选边方依次B、A、B、A、B。赛事版本为13.05及13.05b、13.05c，特工同时选择。",
+            "evidence_refs": [
+              "official:rules",
+              "official:schedule"
+            ],
+            "limitations": "没有具体补丁变动及子版本逐场对应，无法判断版本受益程度；总决赛另一方仍是条件身份。"
+          },
+          {
+            "id": "map_veto",
+            "judgment": "LOUD两ban选择Ascent与Lotus，分别移除其对VIT的13比7失利图和最新8比13失利图；代价是放出VIT两战全胜的Split。LOUD选Summit、Sunset，VIT选Split、Abyss，Haven剩余。VIT选Abyss利用自身已有比赛经验，但LOUD缺样本不等于不会打。",
+            "evidence_refs": [
+              "official:rules",
+              "map:753451:1",
+              "map:754736:1",
+              "series:754736",
+              "series:754733",
+              "series:754734"
+            ],
+            "limitations": "两ban内容和后续选择均为本分析假设；LOUD也可能优先禁Split，VIT的Abyss样本波动明显。"
+          },
+          {
+            "id": "recent_form",
+            "judgment": "LOUD在小组赛负VIT后连续战胜GE、PRX、NRG、VIT，最新直接交手拿下Summit和Haven，支持近期竞争状态。但同场Lotus仍负VIT；若VIT晋级，总决赛前还会增加一场当前未知的BO5，不能把冻结时状态直接当作18日实况。",
+            "evidence_refs": [
+              "series:753451",
+              "series:753453",
+              "series:754733",
+              "series:754735",
+              "series:754736",
+              "official:schedule"
+            ],
+            "limitations": "不推断休息、体能、伤病、训练赛或心理收益；17日表现没有被纳入概率。"
+          },
+          {
+            "id": "execution",
+            "judgment": "最新直接交手的有限观察：LOUD在Summit先攻取得7胜/12回合，并使VIT换边后进攻0胜；Haven的lukxo首杀7、首死3，tkzin首杀5、首死2。反面是Lotus上LOUD进攻仅2胜/9回合，而VIT两名选手KAST达到90%，显示执行结果具有地图差异。",
+            "evidence_refs": [
+              "map:754736:2",
+              "map:754736:3",
+              "map:754736:1"
+            ],
+            "limitations": "不能从汇总统计识别具体战术、补枪、道具质量或操作原因；没有观看录像，也没有官方选手遥测。"
+          }
+        ],
+        "priority_role": "A",
+        "bans": [
+          "Ascent",
+          "Lotus"
+        ],
+        "bp_reason": "LOUD为A并行使胜者组两ban：先禁Ascent、再禁Lotus。A选Summit，B选Split，A选Sunset，B选Abyss，Haven剩余。按选边方B/A/B/A/B：Summit由VIT选DEF，LOUD先ATK；Split由LOUD选ATK；Sunset由VIT选DEF，LOUD先ATK；Abyss由LOUD选DEF；Haven由VIT选DEF，LOUD先ATK。Split选攻参考LOUD两场进攻17胜/19回合；Abyss选守仅是缺少LOUD样本时的明确情景假设。",
+        "bp_evidence_refs": [
+          "official:rules",
+          "official:schedule",
+          "map:753451:1",
+          "map:754736:1",
+          "map:754736:2",
+          "map:753453:1",
+          "map:754733:1",
+          "map:754734:1"
+        ],
+        "maps": [
+          {
+            "map": "Summit",
+            "a_start_side": "ATK",
+            "p_first": 0.63,
+            "reason": "LOUD先攻条件与最新直接交手相同，当时13比5获胜、进攻7胜/12回合；其四场3胜，另有13比3胜NRG。最强反证是更早同样LOUD先攻时VIT19比17获胜，常规时间双方各12回合，不能把最新大胜视为固定差距。",
+            "evidence_refs": [
+              "map:754736:2",
+              "map:754735:3",
+              "map:753450:2"
+            ],
+            "counterevidence_refs": [
+              "map:753451:2"
+            ],
+            "change_condition": "若VIT确认调整该图组合且有可核实的改善表现，或LOUD首发变化，应重新判断；17日若提供新的该图证据也需更新。",
+            "missing_evidence": [
+              "更多直接交手",
+              "17日败决表现",
+              "确认首发",
+              "具体子版本与调整信息"
+            ]
+          },
+          {
+            "map": "Split",
+            "a_start_side": "ATK",
+            "p_first": 0.46,
+            "reason": "LOUD先攻条件下仍小幅偏VIT：VIT两战全胜，总回合26比12，最新13比4胜G2；LOUD同样两战全胜，但总回合26比17。最强反证是LOUD已有进攻17胜/19回合，本情景先攻可发挥其已观察到的较好一侧，因此差距保持很小。",
+            "evidence_refs": [
+              "map:754731:1",
+              "map:754734:2"
+            ],
+            "counterevidence_refs": [
+              "map:753453:1",
+              "map:754733:1"
+            ],
+            "change_condition": "若实际起始边改变，或新增双方直接交手显示LOUD进攻对VIT防守同样有效，应重估倾向。",
+            "missing_evidence": [
+              "双方Split直接交手",
+              "LOUD先攻开局样本",
+              "确认本场组合",
+              "更多同水平对手样本"
+            ]
+          },
+          {
+            "map": "Sunset",
+            "a_start_side": "ATK",
+            "p_first": 0.55,
+            "reason": "LOUD先攻条件下仅小幅偏LOUD：有13比9胜GE、15比13胜PRX的比赛经验；VIT在冻结包中没有该图出场，且连续禁用。最强反证是LOUD最近10比13负NRG，三场常规进攻仅16胜/35回合；VIT缺样本不能被解释为必然弱势，故不扩大优势。",
+            "evidence_refs": [
+              "map:753453:2",
+              "map:754733:2",
+              "series:754736",
+              "official:rules"
+            ],
+            "counterevidence_refs": [
+              "map:754735:2"
+            ],
+            "change_condition": "若获得VIT可核实的该图实战与组合，或LOUD实际改为先守，应重新判断。",
+            "missing_evidence": [
+              "VIT的Sunset比赛样本",
+              "VIT该图实际特工使用",
+              "双方直接交手",
+              "起始边独立效应"
+            ]
+          },
+          {
+            "map": "Abyss",
+            "a_start_side": "DEF",
+            "p_first": 0.47,
+            "reason": "LOUD先守条件下小幅偏VIT：VIT三场2胜，包括13比11胜G2，提供了实际该图经验；LOUD在冻结包中没有出场，无法给予其先守优势。最强反证是VIT曾4比13负NS，总回合30比34，表现并不稳固；LOUD缺样本也不证明其弱。",
+            "evidence_refs": [
+              "map:753449:1",
+              "map:754734:1",
+              "official:rules"
+            ],
+            "counterevidence_refs": [
+              "map:754731:2"
+            ],
+            "change_condition": "若获得LOUD该图实战、确认组合或VIT新的明显改善/恶化样本，应重新估计。",
+            "missing_evidence": [
+              "LOUD的Abyss比赛样本",
+              "LOUD该图实际组合与攻防记录",
+              "双方直接交手",
+              "确认首发"
+            ]
+          },
+          {
+            "map": "Haven",
+            "a_start_side": "ATK",
+            "p_first": 0.55,
+            "reason": "LOUD先攻条件下小幅偏LOUD：两场分别13比9胜NRG、13比11胜VIT，最新直接交手有较完整依据。最强反证是那次直接交手LOUD先守，本情景换成先攻；其已有进攻10胜/22回合，低于防守16胜/24回合，且VIT另有14比12胜NS，因此不能直接复制胜负。",
+            "evidence_refs": [
+              "map:754735:1",
+              "map:754736:3"
+            ],
+            "counterevidence_refs": [
+              "map:754731:3",
+              "map:754736:3"
+            ],
+            "change_condition": "若新增同条件直接交手显示VIT防守能限制LOUD进攻，或实际起始边改变，应调整概率。",
+            "missing_evidence": [
+              "LOUD先攻开局的Haven样本",
+              "更多直接交手",
+              "17日败决表现",
+              "确认首发与组合"
+            ]
+          }
+        ]
+      },
+      "gf_100t": {
+        "teams": [
+          "LOUD",
+          "100T"
+        ],
+        "factors": [
+          {
+            "id": "team_record",
+            "judgment": "冻结包内双方系列赛均5胜1负，没有直接交手。对共同对手NRG，LOUD取得2比1、100T取得2比0；但Haven双方都赢，Sunset分别LOUD负、100T加时胜，地图信息比系列赛总比分更有区分度。",
+            "evidence_refs": [
+              "series:753450",
+              "series:753451",
+              "series:753453",
+              "series:754733",
+              "series:754735",
+              "series:754736",
+              "series:753444",
+              "series:753446",
+              "series:754730",
+              "series:754738",
+              "series:754740",
+              "series:754742"
+            ],
+            "limitations": "统计来自VLR二级来源，只覆盖本届赛事；共同对手结果不证明双方直接交手的因果关系。"
+          },
+          {
+            "id": "player_matchups",
+            "judgment": "Haven上LOUD的lukxo使用Chamber对NRG为25杀10死、首杀4首死0，100T的Cryocells使用Cypher对NRG为13杀7死，实际职责不同，不宜当作同位枪法排名。Split上LOUD的erde使用Omen对PRX为22杀11死、91% KAST；100T的Asuna同特工对FUT为13杀11死、83% KAST，双方均有正面样本。",
+            "evidence_refs": [
+              "map:754735:1",
+              "map:754740:2",
+              "map:754733:1",
+              "map:753446:1"
+            ],
+            "limitations": "没有双方直接交手与逐次交战数据；跨对手统计不能确认个人压制，未来首发均未确认。"
+          },
+          {
+            "id": "agent_pool",
+            "judgment": "Split的LOUD实际使用Yoru、Neon、Omen、Viper、Fade，100T使用Chamber、Neon、Omen、Viper、Skye。Haven的LOUD使用Chamber、Neon、Omen、Viper、Sova，100T使用Cypher、Neon、Omen、Phoenix、Sova。可观察到角色配置差异，无法据此确定克制关系。",
+            "evidence_refs": [
+              "map:754733:1",
+              "map:753446:1",
+              "map:754735:1",
+              "map:754740:2"
+            ],
+            "limitations": "LOUD的Abyss实际组合缺失；已用组合不等于完整特工池或未来确认选择，特工同时选择。"
+          },
+          {
+            "id": "patch_and_rules",
+            "judgment": "官方规定LOUD作为胜者组晋级方为A并拥有总决赛两ban；之后A、B、A、B选图，第五图剩余，选边方B、A、B、A、B。赛事使用13.05及13.05b、13.05c，特工同时选择85秒。",
+            "evidence_refs": [
+              "official:rules",
+              "official:schedule"
+            ],
+            "limitations": "100T进入18日总决赛属于条件假设；补丁具体变动、逐场子版本及其队伍影响无法判断。"
+          },
+          {
+            "id": "map_veto",
+            "judgment": "LOUD禁Ascent和Summit，移除100T分别3胜1负、3胜0负的两张实战强图；禁Summit也牺牲LOUD自身3胜1负的地图，这是压缩对手优势图的取舍。LOUD选Split、Sunset，100T选Haven、Lotus，Abyss剩余。LOUD没有Abyss样本，须接受决胜图不确定性。",
+            "evidence_refs": [
+              "official:rules",
+              "map:754742:2",
+              "map:754742:3",
+              "map:754735:3",
+              "map:754733:1",
+              "map:754740:2",
+              "map:753446:2"
+            ],
+            "limitations": "该BP是合规情景而非已公布选择；100T的Haven与Split样本各仅一场，LOUD是否愿意留下Abyss未知。"
+          },
+          {
+            "id": "recent_form",
+            "judgment": "LOUD最近连续战胜GE、PRX、NRG、VIT，100T最近连续战胜NS、NRG、G2，双方都有连续获胜记录。100T最新仍在Lotus失利后拿下Ascent、Summit，LOUD最新也是Lotus失利后拿下Summit、Haven，近期状态无法简单排出统一强弱。",
+            "evidence_refs": [
+              "series:753453",
+              "series:754733",
+              "series:754735",
+              "series:754736",
+              "series:754738",
+              "series:754740",
+              "series:754742"
+            ],
+            "limitations": "不从连续获胜推断心理、体能或伤病情况；若100T晋级，17日新增BO5表现仍在当前冻结证据之外。"
+          },
+          {
+            "id": "execution",
+            "judgment": "对NRG的Haven，LOUD先守取得9胜/12回合，100T先守取得8胜/12回合，双方都有较好防守结果。Sunset对同一对手，LOUD10比13失利，100T14比12加时获胜；后者vora为20杀16死、85% KAST。有限支持100T的Sunset竞争力，不证明其战术执行整体优于LOUD。",
+            "evidence_refs": [
+              "map:754735:1",
+              "map:754740:2",
+              "map:754735:2",
+              "map:754740:1"
+            ],
+            "limitations": "不同场次的对手表现和经济环境不可控；无录像及逐回合事件，无法判断补枪、道具配合、枪法或心理。"
+          }
+        ],
+        "priority_role": "A",
+        "bans": [
+          "Ascent",
+          "Summit"
+        ],
+        "bp_reason": "LOUD为A并拥有两ban，依次禁Ascent、Summit；A选Split，B选Haven，A选Sunset，B选Lotus，Abyss剩余。按选边方B/A/B/A/B：Split由100T选ATK，LOUD先DEF；Haven由LOUD选DEF；Sunset由100T选DEF，LOUD先ATK；Lotus由LOUD选DEF；Abyss由100T选DEF，LOUD先ATK。Split选攻参考100T对FUT进攻9胜/12回合；Haven和Lotus选守参考LOUD已有防守记录。Abyss选边缺少可靠比较，仅固定为本情景条件。",
+        "bp_evidence_refs": [
+          "official:rules",
+          "official:schedule",
+          "map:754742:2",
+          "map:754742:3",
+          "map:753446:1",
+          "map:754735:1",
+          "map:754740:1",
+          "map:753450:1",
+          "map:754730:1"
+        ],
+        "maps": [
+          {
+            "map": "Split",
+            "a_start_side": "DEF",
+            "p_first": 0.52,
+            "reason": "LOUD先守条件下仅极小幅偏LOUD：其13比8胜GE、13比9胜PRX，覆盖两个对手。最强反证是100T唯一该图样本13比5胜FUT，且先攻9胜/12回合；LOUD两场防守合计仅9胜/24回合，本情景不能把LOUD强进攻直接当作开局优势。",
+            "evidence_refs": [
+              "map:753453:1",
+              "map:754733:1"
+            ],
+            "counterevidence_refs": [
+              "map:753446:1"
+            ],
+            "change_condition": "若100T增加同阵容Split样本仍维持强进攻，或LOUD实际改先攻，应重新判断。",
+            "missing_evidence": [
+              "双方直接交手",
+              "100T第二场Split样本",
+              "确认组合",
+              "更多LOUD防守样本"
+            ]
+          },
+          {
+            "map": "Haven",
+            "a_start_side": "DEF",
+            "p_first": 0.52,
+            "reason": "LOUD先守条件下极小幅偏LOUD：两场均胜，防守16胜/24回合，包含对VIT的13比11胜利。最强反证是100T唯一该图13比4胜NRG，换边进攻5胜/5回合；该短半场不能外推为稳定进攻强度，但足以限制LOUD优势。",
+            "evidence_refs": [
+              "map:754735:1",
+              "map:754736:3"
+            ],
+            "counterevidence_refs": [
+              "map:754740:2"
+            ],
+            "change_condition": "若100T有更完整进攻半场仍表现强势，或LOUD确认更换该图组合，应重估。",
+            "missing_evidence": [
+              "双方直接交手",
+              "100T更多Haven样本",
+              "100T完整进攻半场",
+              "确认首发"
+            ]
+          },
+          {
+            "map": "Sunset",
+            "a_start_side": "ATK",
+            "p_first": 0.49,
+            "reason": "LOUD先攻条件下接近均衡、极小幅偏100T：对共同对手NRG，LOUD10比13负、100T14比12胜；LOUD常规进攻16胜/35回合，也不足以支持明显优势。最强反证是LOUD曾胜GE和PRX，而100T曾9比13负NS，双方样本都支持较大波动。",
+            "evidence_refs": [
+              "map:754735:2",
+              "map:754740:1"
+            ],
+            "counterevidence_refs": [
+              "map:753453:2",
+              "map:754733:2",
+              "map:754738:2"
+            ],
+            "change_condition": "若新增直接交手或确认组合改变，尤其100T继续在Cypher与Chamber之间调整，应重新估计。",
+            "missing_evidence": [
+              "双方直接交手",
+              "确认本场特工组合",
+              "更多同条件攻防样本",
+              "17日败决表现"
+            ]
+          },
+          {
+            "map": "Lotus",
+            "a_start_side": "DEF",
+            "p_first": 0.51,
+            "reason": "LOUD先守条件下近乎均衡：双方均1胜1负，LOUD总回合21比21，100T为23比23。LOUD防守15胜/24回合、100T进攻10胜/24回合，为该条件下极小倾向提供有限依据。最强反证是LOUD最新8比13负VIT，100T则曾13比10胜FUT，差距不足以作强判断。",
+            "evidence_refs": [
+              "map:753450:1",
+              "map:754736:1",
+              "map:754742:1",
+              "map:753446:2"
+            ],
+            "counterevidence_refs": [
+              "map:754736:1",
+              "map:753446:2"
+            ],
+            "change_condition": "若获得双方直接交手或更多可比攻防样本，应重估；当前一两个回合的变化就可能改变倾向。",
+            "missing_evidence": [
+              "双方直接交手",
+              "更多Lotus样本",
+              "确认首发与组合",
+              "经济与逐回合事件"
+            ]
+          },
+          {
+            "map": "Abyss",
+            "a_start_side": "ATK",
+            "p_first": 0.5,
+            "reason": "LOUD先攻条件下取中性判断：LOUD没有该图出场记录，100T唯一记录为先攻5比13负G2，进攻4胜/12回合。100T的失利是对其有利判断的最强反证，但没有LOUD地图能力和先攻表现，无法据此量化LOUD优势；这里的0.5表达证据不足，非经验证的双方等强。",
+            "evidence_refs": [
+              "official:rules",
+              "map:754730:1"
+            ],
+            "counterevidence_refs": [
+              "map:754730:1"
+            ],
+            "change_condition": "若获得LOUD该图实战、实际组合或100T更新样本，应立即重新判断；实际起始边改变也需重估。",
+            "missing_evidence": [
+              "LOUD的Abyss比赛样本",
+              "LOUD该图特工使用与攻防表现",
+              "100T第二场Abyss样本",
+              "双方直接交手",
+              "确认首发"
+            ]
+          }
+        ]
+      }
+    },
+    "limitations": "仅使用所给冻结证据包，input_sha256对应其content_sha256。官方规则和赛程来自official条目；比赛、选手及半场统计来自VLR二级来源，不称为官方遥测。汇总是对原始地图事实的算术整理，不是独立证据。teams[0]为A，p_first始终表示该队在指定地图和a_start_side条件下的单图获胜主观判断，不是系列赛概率；数值未拟合或统计校准，没有博彩赔率、虚构权重或系列赛赢家与比分。所有BP及选边是冻结情景，若实际条件改变须重估；五张图完整列出不代表都会实际进行，BO5进程与结果留给后续脚本。近期阵容仅为最近出场五人，未来首发未确认。伤病、训练赛、心理与疲劳无法判断。单队单图通常仅0至4场，攻防半场长度不一，早结束和加时影响比较；侧别统计排除加时，地图总比分保留加时，不据此认定起始边因果优势。17日结果没有预先纳入18日两种条件对阵。官方与VLR的历史比赛开始时间存在差异，未擅自统一。证据引用只保证可追溯，不证明因果。"
+  },
+  "computed": {
+    "kind": "conditional_independent_maps_arithmetic",
+    "cases": {
+      "lf": {
+        "teams": [
+          "VIT",
+          "100T"
+        ],
+        "maps": [
+          {
+            "map": "Split",
+            "a_start_side": "ATK",
+            "p_first": 0.55,
+            "reason": "在VIT先攻条件下，小幅偏VIT：其两场分别13比8胜NS、13比4胜G2，覆盖两个对手；对G2先攻取得8个进攻胜回合。最强反证是100T唯一该图样本13比5胜FUT，也有明显优势，因此不把VIT两连胜解释为稳定压制。",
+            "evidence_refs": [
+              "map:754731:1",
+              "map:754734:2"
+            ],
+            "counterevidence_refs": [
+              "map:753446:1"
+            ],
+            "change_condition": "若确认VIT更换该图人员或组合，或出现可核实的100T同阵容对强对手防守样本，应重新判断；实际起始边变化也需重估。",
+            "missing_evidence": [
+              "双方直接交手",
+              "100T更多Split样本",
+              "确认首发与本场特工组合",
+              "可分离起始边影响的样本"
+            ]
+          },
+          {
+            "map": "Ascent",
+            "a_start_side": "DEF",
+            "p_first": 0.43,
+            "reason": "VIT先守条件下仍偏100T：100T四场3胜，包括最近13比1胜NS、13比10胜G2；VIT两场1胜且时间更早。VIT已有防守10胜回合/20回合，不能仅凭先守消除100T的地图证据优势。最强反证是VIT曾13比7击败LOUD，说明其该图有竞争力。",
+            "evidence_refs": [
+              "map:754738:3",
+              "map:754742:2",
+              "map:753444:2",
+              "map:753449:2"
+            ],
+            "counterevidence_refs": [
+              "map:753451:1",
+              "map:754730:2"
+            ],
+            "change_condition": "若VIT有更新的同阵容Ascent强势样本，或100T改变已反复使用的组合，应缩小或重估差距。",
+            "missing_evidence": [
+              "VIT近期Ascent样本",
+              "双方直接交手",
+              "确认首发",
+              "起始边独立效应"
+            ]
+          },
+          {
+            "map": "Lotus",
+            "a_start_side": "ATK",
+            "p_first": 0.57,
+            "reason": "VIT先攻条件下偏VIT：最新13比8胜LOUD，100T最新10比13负G2。VIT该场进攻6胜/12回合，而100T两场防守合计13胜/22回合，先攻条件并不支持再放大VIT优势。最强反证是100T曾13比10胜FUT，VIT则只有一场样本。",
+            "evidence_refs": [
+              "map:754736:1",
+              "map:754742:1"
+            ],
+            "counterevidence_refs": [
+              "map:753446:2"
+            ],
+            "change_condition": "若VIT不再使用最新Lotus组合，或100T出现更多同阵容该图防守表现，应重新估计。",
+            "missing_evidence": [
+              "VIT第二场Lotus样本",
+              "双方直接交手",
+              "确认本场组合",
+              "逐回合经济与攻防事件"
+            ]
+          },
+          {
+            "map": "Summit",
+            "a_start_side": "DEF",
+            "p_first": 0.38,
+            "reason": "VIT先守条件下偏100T：100T三场全胜、总回合39比20，进攻24胜/33回合；VIT最新5比13负LOUD，且三场常规进攻仅9胜/30回合。先守符合VIT已有防守相对较好的记录，但还要换边。最强反证是VIT曾19比17击败LOUD，并非无法赢此图。",
+            "evidence_refs": [
+              "map:753444:1",
+              "map:754738:1",
+              "map:754742:3",
+              "map:754736:2"
+            ],
+            "counterevidence_refs": [
+              "map:753451:2",
+              "map:753449:3"
+            ],
+            "change_condition": "若VIT能提供更新且可核实的该图进攻改善证据，或100T改变稳定使用的五特工组合，应缩小100T优势。",
+            "missing_evidence": [
+              "双方直接交手",
+              "VIT近期进攻改善样本",
+              "确认首发",
+              "补丁子版本对应信息"
+            ]
+          },
+          {
+            "map": "Haven",
+            "a_start_side": "ATK",
+            "p_first": 0.46,
+            "reason": "VIT先攻、100T先守条件下小幅偏100T：100T唯一样本13比4胜NRG，先守取得8胜/12回合；VIT两场常规进攻合计12胜/24回合，最新11比13负LOUD。最强反证是VIT曾14比12胜NS，而100T只有一场，不能把大比分胜利当作稳定水平。",
+            "evidence_refs": [
+              "map:754740:2",
+              "map:754736:3"
+            ],
+            "counterevidence_refs": [
+              "map:754731:3"
+            ],
+            "change_condition": "若100T增加该图样本后无法维持防守表现，或VIT确认调整进攻组合，应向均衡方向重估。",
+            "missing_evidence": [
+              "100T第二场Haven样本",
+              "双方直接交手",
+              "确认首发与组合",
+              "先攻和先守可比样本"
+            ]
+          }
+        ],
+        "distribution": [
+          {
+            "score": [
+              3,
+              0
+            ],
+            "probability": 0.134805
+          },
+          {
+            "score": [
+              3,
+              1
+            ],
+            "probability": 0.1484603
+          },
+          {
+            "score": [
+              3,
+              2
+            ],
+            "probability": 0.175088144
+          },
+          {
+            "score": [
+              2,
+              3
+            ],
+            "probability": 0.205538256
+          },
+          {
+            "score": [
+              1,
+              3
+            ],
+            "probability": 0.2258133
+          },
+          {
+            "score": [
+              0,
+              3
+            ],
+            "probability": 0.11029500000000002
+          }
+        ]
+      },
+      "gf_vit": {
+        "teams": [
+          "LOUD",
+          "VIT"
+        ],
+        "maps": [
+          {
+            "map": "Summit",
+            "a_start_side": "ATK",
+            "p_first": 0.63,
+            "reason": "LOUD先攻条件与最新直接交手相同，当时13比5获胜、进攻7胜/12回合；其四场3胜，另有13比3胜NRG。最强反证是更早同样LOUD先攻时VIT19比17获胜，常规时间双方各12回合，不能把最新大胜视为固定差距。",
+            "evidence_refs": [
+              "map:754736:2",
+              "map:754735:3",
+              "map:753450:2"
+            ],
+            "counterevidence_refs": [
+              "map:753451:2"
+            ],
+            "change_condition": "若VIT确认调整该图组合且有可核实的改善表现，或LOUD首发变化，应重新判断；17日若提供新的该图证据也需更新。",
+            "missing_evidence": [
+              "更多直接交手",
+              "17日败决表现",
+              "确认首发",
+              "具体子版本与调整信息"
+            ]
+          },
+          {
+            "map": "Split",
+            "a_start_side": "ATK",
+            "p_first": 0.46,
+            "reason": "LOUD先攻条件下仍小幅偏VIT：VIT两战全胜，总回合26比12，最新13比4胜G2；LOUD同样两战全胜，但总回合26比17。最强反证是LOUD已有进攻17胜/19回合，本情景先攻可发挥其已观察到的较好一侧，因此差距保持很小。",
+            "evidence_refs": [
+              "map:754731:1",
+              "map:754734:2"
+            ],
+            "counterevidence_refs": [
+              "map:753453:1",
+              "map:754733:1"
+            ],
+            "change_condition": "若实际起始边改变，或新增双方直接交手显示LOUD进攻对VIT防守同样有效，应重估倾向。",
+            "missing_evidence": [
+              "双方Split直接交手",
+              "LOUD先攻开局样本",
+              "确认本场组合",
+              "更多同水平对手样本"
+            ]
+          },
+          {
+            "map": "Sunset",
+            "a_start_side": "ATK",
+            "p_first": 0.55,
+            "reason": "LOUD先攻条件下仅小幅偏LOUD：有13比9胜GE、15比13胜PRX的比赛经验；VIT在冻结包中没有该图出场，且连续禁用。最强反证是LOUD最近10比13负NRG，三场常规进攻仅16胜/35回合；VIT缺样本不能被解释为必然弱势，故不扩大优势。",
+            "evidence_refs": [
+              "map:753453:2",
+              "map:754733:2",
+              "series:754736",
+              "official:rules"
+            ],
+            "counterevidence_refs": [
+              "map:754735:2"
+            ],
+            "change_condition": "若获得VIT可核实的该图实战与组合，或LOUD实际改为先守，应重新判断。",
+            "missing_evidence": [
+              "VIT的Sunset比赛样本",
+              "VIT该图实际特工使用",
+              "双方直接交手",
+              "起始边独立效应"
+            ]
+          },
+          {
+            "map": "Abyss",
+            "a_start_side": "DEF",
+            "p_first": 0.47,
+            "reason": "LOUD先守条件下小幅偏VIT：VIT三场2胜，包括13比11胜G2，提供了实际该图经验；LOUD在冻结包中没有出场，无法给予其先守优势。最强反证是VIT曾4比13负NS，总回合30比34，表现并不稳固；LOUD缺样本也不证明其弱。",
+            "evidence_refs": [
+              "map:753449:1",
+              "map:754734:1",
+              "official:rules"
+            ],
+            "counterevidence_refs": [
+              "map:754731:2"
+            ],
+            "change_condition": "若获得LOUD该图实战、确认组合或VIT新的明显改善/恶化样本，应重新估计。",
+            "missing_evidence": [
+              "LOUD的Abyss比赛样本",
+              "LOUD该图实际组合与攻防记录",
+              "双方直接交手",
+              "确认首发"
+            ]
+          },
+          {
+            "map": "Haven",
+            "a_start_side": "ATK",
+            "p_first": 0.55,
+            "reason": "LOUD先攻条件下小幅偏LOUD：两场分别13比9胜NRG、13比11胜VIT，最新直接交手有较完整依据。最强反证是那次直接交手LOUD先守，本情景换成先攻；其已有进攻10胜/22回合，低于防守16胜/24回合，且VIT另有14比12胜NS，因此不能直接复制胜负。",
+            "evidence_refs": [
+              "map:754735:1",
+              "map:754736:3"
+            ],
+            "counterevidence_refs": [
+              "map:754731:3",
+              "map:754736:3"
+            ],
+            "change_condition": "若新增同条件直接交手显示VIT防守能限制LOUD进攻，或实际起始边改变，应调整概率。",
+            "missing_evidence": [
+              "LOUD先攻开局的Haven样本",
+              "更多直接交手",
+              "17日败决表现",
+              "确认首发与组合"
+            ]
+          }
+        ],
+        "distribution": [
+          {
+            "score": [
+              3,
+              0
+            ],
+            "probability": 0.15939
+          },
+          {
+            "score": [
+              3,
+              1
+            ],
+            "probability": 0.19323110000000002
+          },
+          {
+            "score": [
+              3,
+              2
+            ],
+            "probability": 0.20762324
+          },
+          {
+            "score": [
+              2,
+              3
+            ],
+            "probability": 0.16987355999999998
+          },
+          {
+            "score": [
+              1,
+              3
+            ],
+            "probability": 0.1799721
+          },
+          {
+            "score": [
+              0,
+              3
+            ],
+            "probability": 0.08990999999999999
+          }
+        ]
+      },
+      "gf_100t": {
+        "teams": [
+          "LOUD",
+          "100T"
+        ],
+        "maps": [
+          {
+            "map": "Split",
+            "a_start_side": "DEF",
+            "p_first": 0.52,
+            "reason": "LOUD先守条件下仅极小幅偏LOUD：其13比8胜GE、13比9胜PRX，覆盖两个对手。最强反证是100T唯一该图样本13比5胜FUT，且先攻9胜/12回合；LOUD两场防守合计仅9胜/24回合，本情景不能把LOUD强进攻直接当作开局优势。",
+            "evidence_refs": [
+              "map:753453:1",
+              "map:754733:1"
+            ],
+            "counterevidence_refs": [
+              "map:753446:1"
+            ],
+            "change_condition": "若100T增加同阵容Split样本仍维持强进攻，或LOUD实际改先攻，应重新判断。",
+            "missing_evidence": [
+              "双方直接交手",
+              "100T第二场Split样本",
+              "确认组合",
+              "更多LOUD防守样本"
+            ]
+          },
+          {
+            "map": "Haven",
+            "a_start_side": "DEF",
+            "p_first": 0.52,
+            "reason": "LOUD先守条件下极小幅偏LOUD：两场均胜，防守16胜/24回合，包含对VIT的13比11胜利。最强反证是100T唯一该图13比4胜NRG，换边进攻5胜/5回合；该短半场不能外推为稳定进攻强度，但足以限制LOUD优势。",
+            "evidence_refs": [
+              "map:754735:1",
+              "map:754736:3"
+            ],
+            "counterevidence_refs": [
+              "map:754740:2"
+            ],
+            "change_condition": "若100T有更完整进攻半场仍表现强势，或LOUD确认更换该图组合，应重估。",
+            "missing_evidence": [
+              "双方直接交手",
+              "100T更多Haven样本",
+              "100T完整进攻半场",
+              "确认首发"
+            ]
+          },
+          {
+            "map": "Sunset",
+            "a_start_side": "ATK",
+            "p_first": 0.49,
+            "reason": "LOUD先攻条件下接近均衡、极小幅偏100T：对共同对手NRG，LOUD10比13负、100T14比12胜；LOUD常规进攻16胜/35回合，也不足以支持明显优势。最强反证是LOUD曾胜GE和PRX，而100T曾9比13负NS，双方样本都支持较大波动。",
+            "evidence_refs": [
+              "map:754735:2",
+              "map:754740:1"
+            ],
+            "counterevidence_refs": [
+              "map:753453:2",
+              "map:754733:2",
+              "map:754738:2"
+            ],
+            "change_condition": "若新增直接交手或确认组合改变，尤其100T继续在Cypher与Chamber之间调整，应重新估计。",
+            "missing_evidence": [
+              "双方直接交手",
+              "确认本场特工组合",
+              "更多同条件攻防样本",
+              "17日败决表现"
+            ]
+          },
+          {
+            "map": "Lotus",
+            "a_start_side": "DEF",
+            "p_first": 0.51,
+            "reason": "LOUD先守条件下近乎均衡：双方均1胜1负，LOUD总回合21比21，100T为23比23。LOUD防守15胜/24回合、100T进攻10胜/24回合，为该条件下极小倾向提供有限依据。最强反证是LOUD最新8比13负VIT，100T则曾13比10胜FUT，差距不足以作强判断。",
+            "evidence_refs": [
+              "map:753450:1",
+              "map:754736:1",
+              "map:754742:1",
+              "map:753446:2"
+            ],
+            "counterevidence_refs": [
+              "map:754736:1",
+              "map:753446:2"
+            ],
+            "change_condition": "若获得双方直接交手或更多可比攻防样本，应重估；当前一两个回合的变化就可能改变倾向。",
+            "missing_evidence": [
+              "双方直接交手",
+              "更多Lotus样本",
+              "确认首发与组合",
+              "经济与逐回合事件"
+            ]
+          },
+          {
+            "map": "Abyss",
+            "a_start_side": "ATK",
+            "p_first": 0.5,
+            "reason": "LOUD先攻条件下取中性判断：LOUD没有该图出场记录，100T唯一记录为先攻5比13负G2，进攻4胜/12回合。100T的失利是对其有利判断的最强反证，但没有LOUD地图能力和先攻表现，无法据此量化LOUD优势；这里的0.5表达证据不足，非经验证的双方等强。",
+            "evidence_refs": [
+              "official:rules",
+              "map:754730:1"
+            ],
+            "counterevidence_refs": [
+              "map:754730:1"
+            ],
+            "change_condition": "若获得LOUD该图实战、实际组合或100T更新样本，应立即重新判断；实际起始边改变也需重估。",
+            "missing_evidence": [
+              "LOUD的Abyss比赛样本",
+              "LOUD该图特工使用与攻防表现",
+              "100T第二场Abyss样本",
+              "双方直接交手",
+              "确认首发"
+            ]
+          }
+        ],
+        "distribution": [
+          {
+            "score": [
+              3,
+              0
+            ],
+            "probability": 0.132496
+          },
+          {
+            "score": [
+              3,
+              1
+            ],
+            "probability": 0.19508112
+          },
+          {
+            "score": [
+              3,
+              2
+            ],
+            "probability": 0.18742488000000002
+          },
+          {
+            "score": [
+              2,
+              3
+            ],
+            "probability": 0.18742488000000002
+          },
+          {
+            "score": [
+              1,
+              3
+            ],
+            "probability": 0.18006911999999997
+          },
+          {
+            "score": [
+              0,
+              3
+            ],
+            "probability": 0.117504
+          }
+        ]
+      }
+    },
+    "champion_probabilities": {
+      "LOUD": 0.5357389823536189,
+      "VIT": 0.20156352127949304,
+      "100T": 0.262697496366888
+    },
+    "sample": {
+      "kind": "fictional_seeded_draw_not_prediction_mode",
+      "seeds": [
+        20261017,
+        20261018
+      ],
+      "series": [
+        {
+          "teams": [
+            "VIT",
+            "100T"
+          ],
+          "score": [
+            1,
+            3
+          ],
+          "maps": [
+            {
+              "map": "Split",
+              "a_start_side": "ATK",
+              "p_first": 0.55,
+              "reason": "在VIT先攻条件下，小幅偏VIT：其两场分别13比8胜NS、13比4胜G2，覆盖两个对手；对G2先攻取得8个进攻胜回合。最强反证是100T唯一该图样本13比5胜FUT，也有明显优势，因此不把VIT两连胜解释为稳定压制。",
+              "evidence_refs": [
+                "map:754731:1",
+                "map:754734:2"
+              ],
+              "counterevidence_refs": [
+                "map:753446:1"
+              ],
+              "change_condition": "若确认VIT更换该图人员或组合，或出现可核实的100T同阵容对强对手防守样本，应重新判断；实际起始边变化也需重估。",
+              "missing_evidence": [
+                "双方直接交手",
+                "100T更多Split样本",
+                "确认首发与本场特工组合",
+                "可分离起始边影响的样本"
+              ],
+              "random_draw": 0.44238240364938974,
+              "winner": "VIT"
+            },
+            {
+              "map": "Ascent",
+              "a_start_side": "DEF",
+              "p_first": 0.43,
+              "reason": "VIT先守条件下仍偏100T：100T四场3胜，包括最近13比1胜NS、13比10胜G2；VIT两场1胜且时间更早。VIT已有防守10胜回合/20回合，不能仅凭先守消除100T的地图证据优势。最强反证是VIT曾13比7击败LOUD，说明其该图有竞争力。",
+              "evidence_refs": [
+                "map:754738:3",
+                "map:754742:2",
+                "map:753444:2",
+                "map:753449:2"
+              ],
+              "counterevidence_refs": [
+                "map:753451:1",
+                "map:754730:2"
+              ],
+              "change_condition": "若VIT有更新的同阵容Ascent强势样本，或100T改变已反复使用的组合，应缩小或重估差距。",
+              "missing_evidence": [
+                "VIT近期Ascent样本",
+                "双方直接交手",
+                "确认首发",
+                "起始边独立效应"
+              ],
+              "random_draw": 0.8065024733077735,
+              "winner": "100T"
+            },
+            {
+              "map": "Lotus",
+              "a_start_side": "ATK",
+              "p_first": 0.57,
+              "reason": "VIT先攻条件下偏VIT：最新13比8胜LOUD，100T最新10比13负G2。VIT该场进攻6胜/12回合，而100T两场防守合计13胜/22回合，先攻条件并不支持再放大VIT优势。最强反证是100T曾13比10胜FUT，VIT则只有一场样本。",
+              "evidence_refs": [
+                "map:754736:1",
+                "map:754742:1"
+              ],
+              "counterevidence_refs": [
+                "map:753446:2"
+              ],
+              "change_condition": "若VIT不再使用最新Lotus组合，或100T出现更多同阵容该图防守表现，应重新估计。",
+              "missing_evidence": [
+                "VIT第二场Lotus样本",
+                "双方直接交手",
+                "确认本场组合",
+                "逐回合经济与攻防事件"
+              ],
+              "random_draw": 0.7654505944810808,
+              "winner": "100T"
+            },
+            {
+              "map": "Summit",
+              "a_start_side": "DEF",
+              "p_first": 0.38,
+              "reason": "VIT先守条件下偏100T：100T三场全胜、总回合39比20，进攻24胜/33回合；VIT最新5比13负LOUD，且三场常规进攻仅9胜/30回合。先守符合VIT已有防守相对较好的记录，但还要换边。最强反证是VIT曾19比17击败LOUD，并非无法赢此图。",
+              "evidence_refs": [
+                "map:753444:1",
+                "map:754738:1",
+                "map:754742:3",
+                "map:754736:2"
+              ],
+              "counterevidence_refs": [
+                "map:753451:2",
+                "map:753449:3"
+              ],
+              "change_condition": "若VIT能提供更新且可核实的该图进攻改善证据，或100T改变稳定使用的五特工组合，应缩小100T优势。",
+              "missing_evidence": [
+                "双方直接交手",
+                "VIT近期进攻改善样本",
+                "确认首发",
+                "补丁子版本对应信息"
+              ],
+              "random_draw": 0.8868465938139707,
+              "winner": "100T"
+            }
+          ],
+          "winner": "100T"
+        },
+        {
+          "teams": [
+            "LOUD",
+            "100T"
+          ],
+          "score": [
+            3,
+            2
+          ],
+          "maps": [
+            {
+              "map": "Split",
+              "a_start_side": "DEF",
+              "p_first": 0.52,
+              "reason": "LOUD先守条件下仅极小幅偏LOUD：其13比8胜GE、13比9胜PRX，覆盖两个对手。最强反证是100T唯一该图样本13比5胜FUT，且先攻9胜/12回合；LOUD两场防守合计仅9胜/24回合，本情景不能把LOUD强进攻直接当作开局优势。",
+              "evidence_refs": [
+                "map:753453:1",
+                "map:754733:1"
+              ],
+              "counterevidence_refs": [
+                "map:753446:1"
+              ],
+              "change_condition": "若100T增加同阵容Split样本仍维持强进攻，或LOUD实际改先攻，应重新判断。",
+              "missing_evidence": [
+                "双方直接交手",
+                "100T第二场Split样本",
+                "确认组合",
+                "更多LOUD防守样本"
+              ],
+              "random_draw": 0.4427699560765177,
+              "winner": "LOUD"
+            },
+            {
+              "map": "Haven",
+              "a_start_side": "DEF",
+              "p_first": 0.52,
+              "reason": "LOUD先守条件下极小幅偏LOUD：两场均胜，防守16胜/24回合，包含对VIT的13比11胜利。最强反证是100T唯一该图13比4胜NRG，换边进攻5胜/5回合；该短半场不能外推为稳定进攻强度，但足以限制LOUD优势。",
+              "evidence_refs": [
+                "map:754735:1",
+                "map:754736:3"
+              ],
+              "counterevidence_refs": [
+                "map:754740:2"
+              ],
+              "change_condition": "若100T有更完整进攻半场仍表现强势，或LOUD确认更换该图组合，应重估。",
+              "missing_evidence": [
+                "双方直接交手",
+                "100T更多Haven样本",
+                "100T完整进攻半场",
+                "确认首发"
+              ],
+              "random_draw": 0.8972062384709716,
+              "winner": "100T"
+            },
+            {
+              "map": "Sunset",
+              "a_start_side": "ATK",
+              "p_first": 0.49,
+              "reason": "LOUD先攻条件下接近均衡、极小幅偏100T：对共同对手NRG，LOUD10比13负、100T14比12胜；LOUD常规进攻16胜/35回合，也不足以支持明显优势。最强反证是LOUD曾胜GE和PRX，而100T曾9比13负NS，双方样本都支持较大波动。",
+              "evidence_refs": [
+                "map:754735:2",
+                "map:754740:1"
+              ],
+              "counterevidence_refs": [
+                "map:753453:2",
+                "map:754733:2",
+                "map:754738:2"
+              ],
+              "change_condition": "若新增直接交手或确认组合改变，尤其100T继续在Cypher与Chamber之间调整，应重新估计。",
+              "missing_evidence": [
+                "双方直接交手",
+                "确认本场特工组合",
+                "更多同条件攻防样本",
+                "17日败决表现"
+              ],
+              "random_draw": 0.45015886682085693,
+              "winner": "LOUD"
+            },
+            {
+              "map": "Lotus",
+              "a_start_side": "DEF",
+              "p_first": 0.51,
+              "reason": "LOUD先守条件下近乎均衡：双方均1胜1负，LOUD总回合21比21，100T为23比23。LOUD防守15胜/24回合、100T进攻10胜/24回合，为该条件下极小倾向提供有限依据。最强反证是LOUD最新8比13负VIT，100T则曾13比10胜FUT，差距不足以作强判断。",
+              "evidence_refs": [
+                "map:753450:1",
+                "map:754736:1",
+                "map:754742:1",
+                "map:753446:2"
+              ],
+              "counterevidence_refs": [
+                "map:754736:1",
+                "map:753446:2"
+              ],
+              "change_condition": "若获得双方直接交手或更多可比攻防样本，应重估；当前一两个回合的变化就可能改变倾向。",
+              "missing_evidence": [
+                "双方直接交手",
+                "更多Lotus样本",
+                "确认首发与组合",
+                "经济与逐回合事件"
+              ],
+              "random_draw": 0.9238629597239196,
+              "winner": "100T"
+            },
+            {
+              "map": "Abyss",
+              "a_start_side": "ATK",
+              "p_first": 0.5,
+              "reason": "LOUD先攻条件下取中性判断：LOUD没有该图出场记录，100T唯一记录为先攻5比13负G2，进攻4胜/12回合。100T的失利是对其有利判断的最强反证，但没有LOUD地图能力和先攻表现，无法据此量化LOUD优势；这里的0.5表达证据不足，非经验证的双方等强。",
+              "evidence_refs": [
+                "official:rules",
+                "map:754730:1"
+              ],
+              "counterevidence_refs": [
+                "map:754730:1"
+              ],
+              "change_condition": "若获得LOUD该图实战、实际组合或100T更新样本，应立即重新判断；实际起始边改变也需重估。",
+              "missing_evidence": [
+                "LOUD的Abyss比赛样本",
+                "LOUD该图特工使用与攻防表现",
+                "100T第二场Abyss样本",
+                "双方直接交手",
+                "确认首发"
+              ],
+              "random_draw": 0.22910243016667664,
+              "winner": "LOUD"
+            }
+          ],
+          "winner": "LOUD"
+        }
+      ]
+    },
+    "calibration": "subjective model probabilities, uncalibrated; independent-map simplification"
+  },
+  "fictional_review": {
+    "headline": "虚构模拟赛果：100T 3比1胜VIT，LOUD 3比2胜100T夺冠",
+    "series_reviews": [
+      "败者组决赛：VIT先拿Split，100T随后连赢Ascent、Lotus、Summit，以3比1晋级。Split、Ascent和Summit的结果符合赛前逐图倾向，转折是赛前给予VIT 57%胜率的Lotus被100T拿下。这个结果体现了小幅优势仍可能落空，不能据此认定VIT失常或100T完成了战术破解；一次抽样也不足以验证概率是否准确。",
+      "总决赛：LOUD拿下Split，100T赢得Haven；随后LOUD赢Sunset、100T赢Lotus，最终LOUD拿下Abyss，以3比2夺冠。赛前各图判断都接近均衡，Haven、Sunset和Lotus的赢家均与微弱倾向相反，也不构成强烈意外。决胜图Abyss的50%源于证据不足，LOUD获胜不能反推其地图实力已获证明；五图打满与这组接近均衡的判断相容，但不是必然结果。"
+    ],
+    "limitations": "仅复述冻结概率的程序抽样情景，不是实际赛况或预测兑现。概率未经校准，逐图独立是假设；败决抽样结果未用于更新总决赛概率。BP与选边均为情景设定，走位沙盘不代表本次BP实况；未提供逐回合事件，无法解释具体战术、操作或选手状态。"
+  },
+  "runtime_attestations": [
+    {
+      "provider": "openai_chatgpt_cli",
+      "model": "gpt-6.1-sol",
+      "reasoning_effort": "high",
+      "header_sha256": "578888ac076cd2b3a9c8279f327634f3ea3e89a4a180a823a21662e7c846ac38"
+    },
+    {
+      "provider": "openai_chatgpt_cli",
+      "model": "gpt-6.1-sol",
+      "reasoning_effort": "high",
+      "header_sha256": "e2343a887ca448b1dbac59c3ea31834c7acf9836032eace8fdc9a466a6e3db17"
+    }
+  ],
+  "legacy_outputs_unchanged": true
+}

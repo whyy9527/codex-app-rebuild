@@ -37,7 +37,7 @@ def normalize(value, event, model, channel, attestation):
         limitations='；'.join(limitations)
     if not isinstance(limitations,str) or not limitations.strip():raise ValueError('Model limitations must contain nonempty text')
     return {'schema_version':1,'channel':channel,'model_id':model,'kind':'llm_analysis','created_at':datetime.now(timezone.utc).isoformat(),
-            'source_sha256':event['source_sha256'],'data_cutoff':max(r['start_utc'] for r in event['history']),
+            'source_sha256':event['source_sha256'],'data_cutoff':event['fetched_at'],'data_cutoff_basis':'input_snapshot_collected_at_not_historical_knowledge_cutoff','history_latest_start':max(r['start_utc'] for r in event['history']),
             'scope':[m['id'] for m in event['matches']],'probability_unit':'single_map',
             'calibration':'独立模型的主观赛前判断，未校准。'+limitations,'pairs':pairs,'runtime_attestation':attestation}
 

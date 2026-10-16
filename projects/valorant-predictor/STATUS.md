@@ -204,3 +204,20 @@ Anton、JetBrains Mono 保持原有按需加载和 swap 行为。地图逻辑与
 测试速度当成公网结果。基线与本机回执：`evidence/font-loading-2026-10-16.json`；
 可复跑入口：`scripts/measure_fonts.py --url URL --out DIR`、
 `scripts/qa_fonts.py --url URL --out DIR`（使用已有 Python Playwright 环境）。
+
+
+## 2026-10-16 真实证据包 v2 与四家新预测
+
+按用户最终确认，采用共同证据→逐因素判断→BP/选边→逐图概率→程序算BO5与抽样→模拟复盘；
+未运行人格或辩论。公开证据包含19场四强相关系列赛、46张真实地图、67条事实与23个来源。
+旧预测原文件不回填，旧data_cutoff开赛时间误标由独立输入回执更正。最新官方结果确认LOUD和100T晋级。
+
+四家有效预测均已生成。新增请求GPT 2次、DeepSeek 4次、豆包3次、MiMo3次；DeepSeek文字复盘
+HTTP400失败，已达授权上限，不再调用。MiMo一处交手胜负误读、DeepSeek九处理由方向与数值矛盾已显著标识；概率保持原输出。
+总预算预留¥8.092679；有usage部分按公开峰值未缓存标价与USD预留系数8估算约¥3.193585，非账户账单。
+没有充值、订阅或额外OpenAI API调用。全部原始最终答案、实际提示词、用量及失败说明见
+[data/forecast-v2/run-receipt.json](data/forecast-v2/run-receipt.json)。
+
+本地四模型/三条件对阵、证据展开、概率对比、手机390px无溢出、缺失复盘及独立走位场景验证通过，
+无页面错误或HTTP失败。构建检查逐值比对公开决策与实际模型原文，并复算全部概率与共同种子抽样。
+发布继续使用既有Valorant独立部署流程；实际公开修订以网站revision.json和发布回执为准。

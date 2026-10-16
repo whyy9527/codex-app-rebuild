@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "input_sha256": "308acf6cdd3481e69723cc78372322f954f8577477fa12fec40d61c18c890bd8",
+  "models": {
+    "codex": {
+      "status": "ready",
+      "file": "data/forecast-v2/codex.json",
+      "sha256": "308607890ac16f4c5e618280acc82153401de26fc962a57640687349cb0554d4",
+      "review_status": "ready"
+    },
+    "deepseek": {
+      "status": "ready",
+      "file": "data/forecast-v2/deepseek.json",
+      "sha256": "a2b6c432d3732a762a6b1be4c81aef01f6b1fcdfda848e909c4ccad57ec2f8b2",
+      "review_status": "failed_limit_reached"
+    },
+    "doubao": {
+      "status": "ready",
+      "file": "data/forecast-v2/doubao.json",
+      "sha256": "534a3a031af5388e9ac358a4b0a68bc8ce7d31460c9031ec8cdfdcc226aa2580",
+      "review_status": "ready"
+    },
+    "mimo": {
+      "status": "ready",
+      "file": "data/forecast-v2/mimo.json",
+      "sha256": "cd4aa5d62a365737cb066269d38883e7220b4fc6657b61d8f886beea7cb35e03",
+      "review_status": "ready"
+    }
+  }
+}

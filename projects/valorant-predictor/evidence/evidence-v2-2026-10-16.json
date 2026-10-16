@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "kind": "evidence_v2_model_delivery",
+  "input_sha256": "308acf6cdd3481e69723cc78372322f954f8577477fa12fec40d61c18c890bd8",
+  "models": {
+    "codex": {
+      "prediction": "ready",
+      "review": "ready",
+      "actual_model": "gpt-6.1-sol"
+    },
+    "deepseek": {
+      "prediction": "ready",
+      "review": "failed_limit_reached",
+      "actual_model": "deepseek-flash"
+    },
+    "doubao": {
+      "prediction": "ready",
+      "review": "ready",
+      "actual_model": "doubao-seed-2-1-pro-260915"
+    },
+    "mimo": {
+      "prediction": "ready",
+      "review": "ready",
+      "actual_model": "mimo-v2.6-pro"
+    }
+  },
+  "calls": {
+    "codex": 2,
+    "deepseek": 4,
+    "doubao": 3,
+    "mimo": 3
+  },
+  "reserved_cny": 8.092679,
+  "reported_usage_estimate": {
+    "per_provider_cny": {
+      "deepseek": 0.551026,
+      "doubao": 2.125344,
+      "mimo": 0.517215
+    },
+    "total_cny": 3.193585,
+    "basis": "Reported prompt/completion tokens at public uncached peak rates. USD x8 reserve coefficient. Not actual account invoice; discounts ignored. HTTP400 request has no reported usage, reservation retained."
+  },
+  "checks": {
+    "project_js_tests": 24,
+    "project_python_tests": 23,
+    "build": "pass",
+    "headless_four_models_three_cases": "pass",
+    "mobile_viewport_and_body_width": [
+      390,
+      390
+    ],
+    "page_errors": 0,
+    "http_failures": 0,
+    "legacy_forecasts_unchanged": true
+  },
+  "runtime_receipt": "data/forecast-v2/run-receipt.json",
+  "publication": "Uses existing authorized publication workflow; public revision is recorded by deploy.py after commit."
+}
