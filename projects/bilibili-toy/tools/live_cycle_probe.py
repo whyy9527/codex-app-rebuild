@@ -60,9 +60,16 @@ def match_details(ax, expected_url, window_uuid, models):
     page(ax, expected_url, window_uuid, models)
     start=re.search(r'^\s*\d+ summary KC 3 : 2 C9 .*, Value: on$',ax,re.M)
     if not start:raise ValueError('Actual requested completed match is not expanded')
-    end=re.search(r'^\s*\d+ heading 接下来的比赛，AI 怎么猜',ax[start.end():],re.M)
-    if not end:raise ValueError('Actual expanded match scope incomplete')
-    scope=ax[start.start():start.end()+end.start()]
+    lines=ax.splitlines();summary=next(i for i,line in enumerate(lines) if re.search(r'^\s*\d+ summary KC 3 : 2 C9 .*, Value: on$',line))
+    depth=len(lines[summary])-len(lines[summary].lstrip())
+    parent=next((i for i in range(summary-1,-1,-1) if 'container (expanded)' in lines[i] and len(lines[i])-len(lines[i].lstrip())<depth),None)
+    if parent is not None:
+        parent_depth=len(lines[parent])-len(lines[parent].lstrip());end=next((i for i in range(summary+1,len(lines)) if re.match(r'^\s*\d+ ',lines[i]) and len(lines[i])-len(lines[i].lstrip())<=parent_depth),len(lines))
+        scope='\n'.join(lines[summary:end])
+    else:
+        end=re.search(r'^\s*\d+ heading 接下来的比赛，AI 怎么猜',ax[start.end():],re.M)
+        if not end:raise ValueError('Actual expanded match scope incomplete')
+        scope=ax[start.start():start.end()+end.start()]
     tables=[]
     for part in re.split(r'^\s*\d+ table\s*$',scope,flags=re.M)[1:]:
         rows=[]

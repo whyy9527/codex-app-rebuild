@@ -7,6 +7,18 @@ probe = import_module('projects.bilibili-toy.tools.live_cycle_probe')
 
 
 class LiveCycleEvidence(unittest.TestCase):
+    def test_completed_match_scope_does_not_require_future_matches(self):
+        row = '      10 row (selectable)\n        11 cell (selectable) A\n        12 cell (selectable) 1.0\n'
+        ax = '1 container\n  2 container (expanded)\n    3 summary KC 3 : 2 C9 已完赛, Value: on\n    4 table\n' + row
+        for game in range(1, 6):
+            ax += f'    20 heading 第 {game} 局 官方 MVP：KC Example, Value: 3\n    21 table\n' + row
+        ax += '  30 container\n    31 table\n' + row
+        with patch.object(probe, 'page', return_value={}):
+            result = probe.match_details(ax, 'https://public.example/', 'owned', ['A'])
+            self.assertEqual(len(result['elements']), 7)
+            with self.assertRaises(ValueError):
+                probe.match_details(ax.replace('    21 table\n' + row, '', 1), 'https://public.example/', 'owned', ['A'])
+
     def test_expanded_match_cannot_drop_a_game_or_a_model_row(self):
         row='10 row (selectable)\n11 cell (selectable) A\n12 cell (selectable) 1.0\n13 row (selectable)\n14 cell (selectable) B\n15 cell (selectable) 2.0\n'
         ax='1 summary KC 3 : 2 C9 入围赛 · 已完赛, Value: on\n2 table\n'+row

@@ -19,7 +19,8 @@
     "frames": [
       "page-a",
       "page-b"
-    ]
+    ],
+    "ticker_evidence": "../ticker-geometry.inspector.ax.txt"
   },
   "candidate": {
     "width_css": 1200,
@@ -34,7 +35,8 @@
     "frames": [
       "page-a",
       "page-b"
-    ]
+    ],
+    "ticker_evidence": "../ticker-geometry.inspector.ax.txt"
   },
   "regions": {
     "business": {
@@ -42,13 +44,13 @@
         12,
         126,
         2388,
-        972
+        986
       ],
       "candidate": [
         12,
         126,
         2388,
-        972
+        986
       ]
     },
     "header": {
@@ -68,21 +70,21 @@
     "ticker": {
       "source": [
         12,
-        1098,
+        1112,
         2388,
-        90
+        76
       ],
       "candidate": [
         12,
-        1098,
+        1112,
         2388,
-        90
+        76
       ]
     }
   },
   "geometry_sources": [
     "Original shell padding6px 0 6px 6px retained;1200×600 body after64px sidebar deletion gives1194×588 iframe. Native body PNG/CSS-box must independently verify2400×1200 at2x.",
-    "At this desktop width the actual observed header must be57px. Closed ticker is45px including its1px border. Business region covers all486px between header and ticker; full header and ticker are separate complete regions."
+    "Actual selected .ticker.ticker-closed Computed shows1194×37 content,1px top border,38px border-box height and bottom0 on original and candidate. Header57px. Full content below header is493px until ticker, and ticker occupies38px; all iframe pixels partitioned without masks."
   ],
   "limits": [
     "This original reference variant implements only the user-authorized two removals through native DOM Delete → Node. Other baseline references remain immutable.",
@@ -128,7 +130,7 @@
     },
     {
       "id": "team-gen",
-      "heading_pattern": "heading GEN Gen.G, Value: 1"
+      "heading_pattern": "heading GEN\\s*Gen\\.G, Value: 1"
     },
     {
       "id": "pickem-view",
@@ -138,7 +140,11 @@
     {
       "id": "leaderboard",
       "link": "谁最准",
-      "heading_pattern": "heading 谁最准, Value: 1"
+      "heading_pattern": "heading 谁最准, Value: 1",
+      "source_frames": [
+        "page-c",
+        "page-d"
+      ]
     },
     {
       "id": "method",
@@ -160,5 +166,14 @@
     "Capture source case and freeze it before observing/comparing its public counterpart; retain all source repeated-frame instability, real live-data drift and own-draft differences."
   ],
   "source_pixel_rule": "If a source region is actually unstable across the two frames, freeze it as pending with raw frames retained; never turn the differing source pixels into a passing image requirement.",
-  "channel_control": "desktop_links"
+  "channel_control": "desktop_links",
+  "ticker_css": 38,
+  "ticker_border_top_css": 1,
+  "shell_padding_css": [
+    6,
+    0,
+    6,
+    6
+  ],
+  "source_build_config": "projects/bilibili-toy/source-build.json"
 }

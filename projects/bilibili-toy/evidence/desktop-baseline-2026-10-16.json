@@ -1,10 +1,10 @@
 {
   "date": "2026-10-16",
   "source_build": "43482999941120-v26947",
-  "scope": "Desktop first-fold acceptance and observed source upgrade. Full Goal remains active.",
+  "scope": "Published v26947 desktop acceptance checkpoint. Further fidelity work paused at user request; remaining differences are retained.",
   "reference_decision": {
     "kind": "decision",
-    "reason": "Original changed again during desktop preparation, from26934 to26947. User was offered current26947 freeze versus published26934; no answer after a reasonable interval. Proceed with latest actually observed26947 for this delivery; future source code releases are separate version differences, live results remain live. This does not narrow feature/interaction/visual acceptance.",
+    "reason": "User explicitly selected 同步当前 v26947 后固定版本 and noted that matches have started and data will update. Only the code baseline is fixed; live results continue updating.",
     "source_url": "https://www.bilibili.com/toy/LkvCZhw12wgT2Pqx/index.html",
     "source_entry_evidence": "projects/bilibili-toy/private/source-build-26947/entry.json"
   },
@@ -49,7 +49,19 @@
       ]
     },
     "source_gpt": "Captured before candidate; original contract frozen in major-desktop-contracts-1/home-gpt-contract.json.",
-    "remaining_cases": "Other major pages and completed-match below-fold visual comparisons remain."
+    "remaining_cases": "Completed-series below-fold visual protocol and driver are saved but have not been executed end to end.",
+    "public": {
+      "captures": "projects/bilibili-toy/private/major-desktop-public-1",
+      "contract": "projects/bilibili-toy/private/major-desktop-frozen-v2/contract.json",
+      "result": "projects/bilibili-toy/private/major-desktop-public-result-v2.json",
+      "counts": {
+        "not_run": 13,
+        "pass": 475,
+        "fail": 51
+      },
+      "limits": "49 prediction differences and two saved-leaderboard differences reflect preserved, unequal private-tab drafts. Thirteen unstable source regions remain pending; no strict full-page pixel completion claimed."
+    },
+    "ticker_css": 38
   },
   "observer_repairs": [
     "Desktop uses actual model links instead of the mobile AI dropdown. First mobile-selector wait retained as failed acquisition.",
@@ -59,14 +71,19 @@
   ],
   "verification": {
     "root": "111 tests OK, 8 skipped",
-    "project": "25 tests OK",
+    "project": "27 tests OK, including fixed-build/ticker geometry and completed-match boundary negative controls",
     "node": "Owned PNG identity/query/port checks passed; changed native modules syntax checked",
     "diff_check": "passed"
   },
-  "publication": "pending reviewed commit and deployment",
+  "publication": {
+    "release": "3aa64698c4cd-20261016T001018Z",
+    "url": "https://s16.xinxiayiyan.com/",
+    "http_receipt": "projects/bilibili-toy/private/deploy/3aa64698c4cd-20261016T001018Z/public-http.json",
+    "verification": "40 trusted HTTPS checks passed; no redeployment for the QA checkpoint."
+  },
   "remaining": [
-    "Full nine-page desktop comparison",
-    "Same-state expanded/error-layout visual observations",
-    "Remaining hover/drag/series/simulation, sound and motion coverage"
+    "Strict same-state prediction and saved-leaderboard visual comparison",
+    "Expanded completed-series below-fold visual replay",
+    "Remaining hover/drag/simulation, sound and motion coverage"
   ]
 }

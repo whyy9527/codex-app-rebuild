@@ -26,7 +26,7 @@ export function installMajorPagesUI(app,fs,{url,output,windowUuid,source=false,p
     await fs.writeFile(directory+'/preparation.json',JSON.stringify({id:spec.id,scene_heading:heading.trim().replace(/^\d+ /,''),source,url,windowUuid}),{flag:'wx'});
     await header(directory);
     const png=installLosslessUI(app,fs,{url,output:directory,windowUuid});
-    await png.capture('page-a');await png.capture('page-b');
+    for(const frame of spec[side+'_frames']??['page-a','page-b'])await png.capture(frame);
     return {id:spec.id,heading:heading.trim().replace(/^\d+ /,'')};
   }
   return {prepare,page};

@@ -8,6 +8,27 @@ from .mobile_png_probe import observe
 from .visual_probe import ROOT, private_path, relative
 
 
+def validate_source_build(ax, build_id):
+    if not re.search(r'bilibilitoy\.com/toy/LkvCZhw12wgT2Pqx/'+re.escape(build_id)+r'/index\.html',ax):
+        raise ValueError('Actual original frame differs from the fixed observed build')
+
+
+def validate_ticker(ax, side, protocol, url):
+    from urllib.parse import urlsplit
+    spec=protocol[side]
+    if 'standard window Web Inspector — '+urlsplit(url).hostname not in ax or not re.search(r'row \(selected[^\n]*ticker ticker-closed',ax):
+        raise ValueError('Actual owned closed-ticker selection unavailable')
+    height=protocol['ticker_css'];border=protocol['ticker_border_top_css']
+    top,right,bottom,left=protocol['shell_padding_css'];width=spec['width_css']-left-right
+    for pattern in (r'text height :\s*'+str(height)+r'px',r'text border-top-width :\s*'+str(border)+r'px',r'text box-sizing :\s*border-box',r'text '+str(width)+r'\s+×\s+'+str(height-border)+r'$'):
+        if not re.search(pattern,ax,re.M):raise ValueError('Actual closed-ticker geometry differs')
+    scale=protocol['actual_samples_per_css_pixel'];header=spec['header_css'];viewport_height=protocol['height_css']
+    expected={'business':[left*scale,(top+header)*scale,width*scale,(viewport_height-top-bottom-header-height)*scale],
+              'ticker':[left*scale,(viewport_height-bottom-height)*scale,width*scale,height*scale]}
+    if any(protocol['regions'][name][side]!=rect for name,rect in expected.items()):
+        raise ValueError('Declared regions do not partition actual header/body/ticker geometry')
+
+
 def collect(directory, side, protocol, url):
     states, records = {}, {}
     for case in protocol['cases']:
@@ -16,6 +37,13 @@ def collect(directory, side, protocol, url):
         if prep['id']!=case['id'] or prep['url']!=url:
             raise ValueError('Actual case preparation differs')
         spec=copy.deepcopy(protocol)
+        if side+'_frames' in case:spec[side]['frames']=case[side+'_frames']
+        if side=='source' and 'source_build_config' in spec:
+            build=json.loads((ROOT.parents[1]/spec['source_build_config']).read_text())['id']
+            for stem in spec[side]['frames']:
+                for suffix in ('.ax.txt','.after.ax.txt'):validate_source_build((folder/(stem+suffix)).read_text(),build)
+        if 'ticker_css' in spec:
+            validate_ticker((folder/spec[side]['ticker_evidence']).read_text(),side,spec,url)
         spec['scene_heading']=prep['scene_heading']
         if not re.search(case['heading_pattern'],prep['scene_heading']):
             raise ValueError('Actual case heading differs')
