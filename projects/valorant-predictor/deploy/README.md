@@ -12,6 +12,9 @@ python3 projects/valorant-predictor/scripts/deploy.py --out artifacts/valorant-p
 
 脚本要求项目输入已提交，且 HEAD 已推到 `origin/main`。凭证仅从本机
 Aliyun CLI profile `fenhezhishang` 的保护配置读取，不进入代码和公开产物。
+不同机器可用 `--profile <已有配置名>` 显式指定本地配置；脚本先核对其可访问的
+实例 ID 与公网地址必须同时匹配上述授权目标，再执行发布。Mini 上已核对
+`default` 配置对应此实例；不复制凭证、不改本机默认配置。
 通过香港区私有 OSS 临时对象传输压缩包；它仅是私有上传通道，网站仍由青岛
 服务器提供。显式指定存储桶区域 endpoint，签名 URL 不打印、不提交，成功后删除对象。
 

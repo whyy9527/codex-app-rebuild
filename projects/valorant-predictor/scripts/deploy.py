@@ -91,7 +91,9 @@ def verify_public(checksums, browser_args=None):
         finally:browser.close()
 
 
-def main(out):
+def main(out, profile=None):
+    global PROFILE
+    if profile is not None:PROFILE = profile
     output = REPO / out
     output.mkdir(parents=True, exist_ok=False)
     revision = subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=REPO, text=True).strip()
@@ -99,6 +101,9 @@ def main(out):
     if dirty:raise RuntimeError('Commit and verify project deployment inputs before publishing')
     remote_tip = subprocess.check_output(['git', 'ls-remote', 'origin', 'refs/heads/main'], cwd=REPO, text=True).split()[0]
     if remote_tip != revision:raise RuntimeError('Publish only the verified, pushed main commit')
+    instances = api('ecs', 'DescribeInstances', InstanceIds=json.dumps([INSTANCE])).get('Instances', {}).get('Instance', [])
+    if len(instances) != 1 or instances[0].get('InstanceId') != INSTANCE or ADDRESS not in instances[0].get('PublicIpAddress', {}).get('IpAddress', []):
+        raise RuntimeError('Selected credential profile does not resolve the exact authorized instance and public address')
     subprocess.run(['python3', str(PROJECT / 'scripts/build.py')], check=True, cwd=REPO)
     stage = '/var/tmp/valorant-predictor-' + revision[:12]
     print(remote(f'''set -eu
@@ -194,11 +199,11 @@ docker inspect media-workflow-app-1 --format '{{{{.State.Health.Status}}}}'
 sha256sum -c "$STAGING/protected-proxies.sha256" > "$STAGING/verify-protected-proxies.log"
 ''', output, 'https-and-shared-health', timeout=150), flush=True)
         public = verify_public(checksums)
-        (output / 'publication.json').write_text(json.dumps({'domain': DOMAIN, 'git_revision': revision, 'artifact_sha256': digest, 'recovery_directory': stage, 'public': public}, indent=2) + '\n')
+        (output / 'publication.json').write_text(json.dumps({'domain': DOMAIN, 'git_revision': revision, 'artifact_sha256': digest, 'recovery_directory': stage, 'credential_profile': PROFILE, 'public': public}, indent=2) + '\n')
         oss('rm', object_uri)
         remote(f'rm -f -- {shlex.quote(stage)}/site.tar.gz\nrm -rf -- {shlex.quote(stage)}/unpacked\n', output, 'cleanup-owned-upload')
     print('Published https://' + DOMAIN + '/ at ' + revision, flush=True)
 
 
 if __name__ == '__main__':
-    parser=argparse.ArgumentParser();parser.add_argument('--out',required=True);args=parser.parse_args();main(args.out)
+    parser=argparse.ArgumentParser();parser.add_argument('--out',required=True);parser.add_argument('--profile',help='Existing local Aliyun profile; target instance and address are verified before deployment');args=parser.parse_args();main(args.out,args.profile)
