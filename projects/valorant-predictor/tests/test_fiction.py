@@ -18,7 +18,18 @@ class FictionIntegrity(unittest.TestCase):
 
     def check(self, value, forecast=None):validate_dataset(value, 'codex', self.context, self.event, self.forecast if forecast is None else forecast)
 
-    def test_actual_model_output_is_bound_to_engine(self):self.check(self.value)
+    def test_actual_model_output_is_bound_to_engine(self):
+        manifest = json.loads((ROOT / 'data/model-fiction.json').read_text())
+        forecasts = json.loads((ROOT / 'data/model-forecasts.json').read_text())
+        for channel, filename in manifest.items():
+            with self.subTest(channel=channel):
+                value = json.loads((ROOT / 'data' / filename).read_text())
+                validate_dataset(value, channel, self.context, self.event, (ROOT / 'data' / forecasts[channel]).read_bytes())
+
+    def test_model_identity_cannot_be_borrowed_from_another_provider(self):
+        value = copy.deepcopy(self.value)
+        value['runtime_attestation']['model'] = 'mimo-v2.6-pro'
+        with self.assertRaisesRegex(ValueError, 'identity mismatch'):self.check(value)
 
     def test_stale_forecast_is_rejected_even_if_results_look_same(self):
         with self.assertRaisesRegex(ValueError, 'stale'):self.check(self.value, self.forecast + b' ')

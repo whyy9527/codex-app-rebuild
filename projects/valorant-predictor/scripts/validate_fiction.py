@@ -2,10 +2,11 @@
 import hashlib
 import json
 from run_fiction import ROOT, cases_for, digest, strict_json, validate
+from run_api_models import PROVIDERS
 
 
 def validate_dataset(value, channel, context, event, forecast_bytes):
-    expected_model = {'codex': 'gpt-6.1-sol', 'deepseek': 'deepseek-flash'}[channel]
+    expected_model = 'gpt-6.1-sol' if channel == 'codex' else PROVIDERS[channel]['model']
     if value['kind'] != 'fiction' or value['channel'] != channel or value['runtime_attestation']['model'] != expected_model:raise ValueError('Fiction runtime identity mismatch')
     if value['event_source_sha256'] != event['source_sha256'] or value['context_sha256'] != digest(context) or value['forecast_sha256'] != hashlib.sha256(forecast_bytes).hexdigest():raise ValueError('Fiction inputs are stale')
     cases = cases_for(channel)

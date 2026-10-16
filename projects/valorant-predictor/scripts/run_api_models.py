@@ -14,7 +14,7 @@ PROVIDERS={
 }
 
 
-def request(url,key,body=None):
+def request(url,key,body=None,timeout=180):
     headers={'Content-Type':'application/json'}
     if url.startswith('https://api.xiaomimimo.com/v1/'):
         headers['api-key']=key
@@ -22,7 +22,7 @@ def request(url,key,body=None):
         headers['Authorization']='Bearer '+key
     raw=None if body is None else json.dumps(body).encode()
     try:
-        with urlopen(Request(url,headers=headers,data=raw),timeout=180) as response:return json.load(response)
+        with urlopen(Request(url,headers=headers,data=raw),timeout=timeout) as response:return json.load(response)
     except HTTPError as error:
         try:
             detail=json.loads(error.read()).get('error',{})

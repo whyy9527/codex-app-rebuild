@@ -13,8 +13,8 @@ def compare(observed):
     def check(name, actual, expected):rows.append({'id':name, 'knowledge_source':'decision:user-C8-and-validated-model-output', 'actual':actual, 'expected':expected, 'status':'pass' if actual == expected else 'fail'})
     check('no-runtime-errors', observed.get('errors'), [])
     check('driver-completed', observed.get('error'), None)
-    check('sixteen-conditional-reviews', len(observed['cases']), 16)
     manifest = json.loads((ROOT / 'data/model-fiction.json').read_text())
+    check('all-conditional-reviews', len(observed['cases']), 8 * len(manifest))
     for channel, filename in manifest.items():
         dataset = json.loads((ROOT / 'data' / filename).read_text())
         for key, row in dataset['cases'].items():
@@ -54,7 +54,8 @@ def compare(observed):
         check(channel + ':fresh-context-shared-review', board['shared_headline'], dataset['cases'][key]['headline'])
         check(channel + ':news-uses-same-two-reviews', board['news'], [dataset['cases'][f'VIT_100T_{i}']['headline'] for i in [0, 1]])
         check(channel + ':news-label', '非真实比赛' in board['news_notice'], True)
-    for channel in ['opus', 'gemini', 'qwen', 'glm', 'doubao', 'mimo']:
+    for channel in ['opus', 'codex', 'gemini', 'deepseek', 'qwen', 'glm', 'doubao', 'mimo']:
+        if channel in manifest:continue
         check(channel + ':no-impersonated-ratings', observed['pending'][channel]['rows'], 0)
         check(channel + ':pending-empty-state', '未生成' in observed['pending'][channel]['text'], True)
     for width in ['320', '390']:

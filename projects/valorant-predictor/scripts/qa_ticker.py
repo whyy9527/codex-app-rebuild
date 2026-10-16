@@ -7,14 +7,14 @@ from playwright.sync_api import sync_playwright
 from browser_evidence import ContentSurface, URL, CONTENT
 
 
-def collect(mode,out):
+def collect(mode,out,url="http://127.0.0.1:5173/"):
     root=Path(__file__).resolve().parents[3];output=root/out;output.mkdir(parents=True,exist_ok=False);result={'mode':mode,'facts':{},'errors':[]};f=result['facts']
     with sync_playwright()as p:
         b=p.chromium.launch(executable_path=os.environ.get('REBUILD_BROWSER_EXECUTABLE','/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge'),headless=True)
         try:
             context=b.new_context(viewport={'width':1440,'height':1000},locale='zh-CN')
             def prepare(context):
-                page=context.new_page();page.set_default_timeout(25000);page.on('pageerror',lambda e:result['errors'].append(str(e)));page.goto(URL if mode=='reference'else'http://127.0.0.1:5173/',wait_until='load')
+                page=context.new_page();page.set_default_timeout(25000);page.on('pageerror',lambda e:result['errors'].append(str(e)));page.goto(URL if mode=='reference'else url,wait_until='load')
                 if mode=='reference':
                     iframe=page.locator('iframe[src="'+CONTENT+'"]');iframe.wait_for();s=ContentSurface(iframe.element_handle().content_frame(),iframe);studio='.studio2'
                 else:s=page;studio='.studio'
@@ -32,6 +32,8 @@ def collect(mode,out):
                 if not(0<=x<page.viewport_size['width']and 0<=y<page.viewport_size['height']):raise ValueError('Observed control center is outside the visible browser')
                 f.setdefault('pointer_actions',[]).append({'x':x,'y':y,'click':click,'control':control.inner_text()[:80]})
                 page.mouse.click(x,y)if click else page.mouse.move(x,y)
+            if mode=='candidate':
+                s.locator('.ticker-track').wait_for();f['default_open']=s.locator('.ticker-track').is_visible();s.get_by_role('button',name='收起模拟速报',exact=True).click()
             closed=s.get_by_role('button',name='展开 AI 模拟速报（含后续剧情）',exact=True);closed.wait_for();f['closed_label']=closed.inner_text();f['closed_fixed']=s.locator('.ticker').evaluate('(e)=>({position:getComputedStyle(e).position,bottom:getComputedStyle(e).bottom,height:e.getBoundingClientRect().height})')
             if mode=='candidate':closed.click()
             else:closed.press('Enter')
@@ -42,7 +44,9 @@ def collect(mode,out):
             pointer(s.locator('.ticker-track'));f['hover_motion']=s.locator('.ticker-move').evaluate('(e)=>getComputedStyle(e).animationPlayState')
             s.get_by_role('button',name='收起模拟速报',exact=True).press('Enter');f['closed_again']=closed.count()
             closed.press('Enter');s.locator('.ticker-row:not([aria-hidden]) a').first.press('Enter');s.locator('.sh-board'if mode=='reference'else'.review-head').wait_for();f['review_text']=s.locator('#main-content').inner_text();context.close()
-            reduced=b.new_context(viewport={'width':390,'height':844},reduced_motion='reduce');page,s=prepare(reduced);s.get_by_role('button',name='展开 AI 模拟速报（含后续剧情）',exact=True).press('Enter');f['reduced_motion_label']=s.get_by_role('button',name='滚动速报',exact=True).inner_text();f['mobile_width']=s.evaluate('({viewport:innerWidth,scroll:document.documentElement.scrollWidth})');s.screenshot(path=str(output/'mobile.png'));reduced.close()
+            reduced=b.new_context(viewport={'width':390,'height':844},reduced_motion='reduce');page,s=prepare(reduced)
+            if mode=='reference':s.get_by_role('button',name='展开 AI 模拟速报（含后续剧情）',exact=True).press('Enter')
+            f['reduced_motion_label']=s.get_by_role('button',name='滚动速报',exact=True).inner_text();f['mobile_width']=s.evaluate('({viewport:innerWidth,scroll:document.documentElement.scrollWidth})');s.screenshot(path=str(output/'mobile.png'));reduced.close()
         except Exception as error:
             result['error']=str(error)
             try:
@@ -54,4 +58,4 @@ def collect(mode,out):
 
 
 if __name__=='__main__':
-    p=argparse.ArgumentParser();p.add_argument('--mode',choices=['reference','candidate'],required=True);p.add_argument('--out',required=True);a=p.parse_args();r=collect(a.mode,a.out);print(json.dumps({'mode':a.mode,'facts':len(r['facts']),'error':r.get('error'),'errors':r['errors']}));raise SystemExit(1 if r.get('error')or r['errors']else 0)
+    p=argparse.ArgumentParser();p.add_argument('--mode',choices=['reference','candidate'],required=True);p.add_argument('--out',required=True);p.add_argument('--url',default='http://127.0.0.1:5173/');a=p.parse_args();r=collect(a.mode,a.out,a.url);print(json.dumps({'mode':a.mode,'facts':len(r['facts']),'error':r.get('error'),'errors':r['errors']}));raise SystemExit(1 if r.get('error')or r['errors']else 0)

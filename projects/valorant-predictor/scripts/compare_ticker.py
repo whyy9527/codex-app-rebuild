@@ -9,8 +9,9 @@ def compare(reference,candidate):
     def check(name,a,b):rows.append({'id':name,'actual':a,'expected':b,'status':'pass'if a==b else'fail'})
     for key in ['closed_label','closed_fixed','paused_label','paused_motion','running_motion','closed_again','reduced_motion_label']:check(key,f.get(key),r.get(key))
     check('source-has-simulated-links',bool(r.get('primary_links')),True)
-    check('only-two-models-two-matches',len(f.get('primary_links',[])),4)
-    check('no-pending-model-ticker',all('GPT-6.1 sol'in x or'DeepSeek V4.1 Flash'in x for x in f.get('primary_links',[])),True)
+    check('four-models-two-matches',len(f.get('primary_links',[])),8)
+    check('candidate-default-open',f.get('default_open'),True)
+    check('no-pending-model-ticker',all(any(name in x for name in ['GPT-6.1 sol','DeepSeek V4.1 Flash','MiMo V2.6 Pro','豆包']) for x in f.get('primary_links',[])),True)
     check('source-hidden-links-unfocusable',set(r.get('hidden_duplicate_tabindices',[])),{-1})
     check('candidate-hidden-links-unfocusable',set(f.get('hidden_duplicate_tabindices',[])),{-1})
     check('candidate-native-pointer-open',f.get('initial_activation'),'pointer')
@@ -23,7 +24,7 @@ def compare(reference,candidate):
     for row in rows:
         for key in ['actual','expected']:
             if isinstance(row[key],set):row[key]=sorted(row[key])
-    return {'status':'pass'if all(x['status']=='pass'for x in rows)else'fail','rows':rows,'limitations':['Source sticky OOPIF pointer activation was not observed despite matching DOM hit tests. Keyboard defines the observed reference workflow. Source hover pause was not established; candidate native pointer/hover are verified independently.','Original aggregates full-tournament upsets; candidate aggregates the two actual model channels and only the last two series.']}
+    return {'status':'pass'if all(x['status']=='pass'for x in rows)else'fail','rows':rows,'limitations':['Source sticky OOPIF pointer activation was not observed despite matching DOM hit tests. Keyboard defines the observed reference workflow. Source hover pause was not established; candidate native pointer/hover are verified independently.','Original aggregates full-tournament upsets; candidate aggregates the four actual model channels and only the last two series.']}
 
 
 if __name__=='__main__':
