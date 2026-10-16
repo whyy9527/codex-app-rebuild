@@ -7,6 +7,19 @@ export function guardOwnedPage(ax,url,windowUuid) {
   if(actual.href!==expected.href)throw Error('Owned screenshot endpoint changed');
 }
 
+export async function openElementInspector(app,url) {
+  const tree=()=>app.getAXState({emit:false,disableDiffing:true});
+  const index=line=>Number(line.trim().match(/^\d+/)[0]);
+  await app.pressKey('super+alt+i');let ax=await tree();
+  const detach=ax.split('\n').find(x=>x.includes('button Detach into separate window'));
+  if(detach){await app.click(index(detach));ax=await tree();}
+  if(!ax.includes('standard window Web Inspector — '+new URL(url).hostname))throw Error('Owned inspector unavailable');
+  const elements=ax.split('\n').find(x=>/tab .*Elements$/.test(x));
+  if(!elements)throw Error('Actual Elements tab unavailable');
+  if(!elements.includes('(selected)')){await app.click(index(elements));ax=await tree();}
+  return ax;
+}
+
 // Use only with a native CUA App binding; captures via actual inspector UI.
 export function installLosslessUI(app,fs,{url,output,windowUuid}) {
   const tree=()=>app.getAXState({emit:false,disableDiffing:true});
@@ -17,10 +30,7 @@ export function installLosslessUI(app,fs,{url,output,windowUuid}) {
     await fs.mkdir(output,{recursive:true});
     let ax=await tree();pageGuard(ax);
     await fs.writeFile(output+'/'+stem+'.ax.txt',ax,{flag:'wx'});
-    await app.pressKey('super+alt+i');ax=await tree();
-    const detach=ax.split('\n').find(x=>x.includes('button Detach into separate window'));
-    if(detach){await app.click(index(detach));ax=await tree();}
-    if(!ax.includes('standard window Web Inspector — '+new URL(url).hostname))throw Error('Owned inspector unavailable');
+    ax=await openElementInspector(app,url);
     const body=ax.split('\n').find(x=>/row .*?(?:Description: )?<body/.test(x));
     if(!body)throw Error('Actual body node unavailable');
     await app.click(index(body));ax=await tree();

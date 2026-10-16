@@ -1,0 +1,72 @@
+{
+  "date": "2026-10-16",
+  "source_build": "43482999941120-v26947",
+  "scope": "Desktop first-fold acceptance and observed source upgrade. Full Goal remains active.",
+  "reference_decision": {
+    "kind": "decision",
+    "reason": "Original changed again during desktop preparation, from26934 to26947. User was offered current26947 freeze versus published26934; no answer after a reasonable interval. Proceed with latest actually observed26947 for this delivery; future source code releases are separate version differences, live results remain live. This does not narrow feature/interaction/visual acceptance.",
+    "source_url": "https://www.bilibili.com/toy/LkvCZhw12wgT2Pqx/index.html",
+    "source_entry_evidence": "projects/bilibili-toy/private/source-build-26947/entry.json"
+  },
+  "changes_observed": [
+    "Live in-progress match score/game banner added to header and homepage; source shows MVK1:0FUR, game2.",
+    "Runtime and vendor JS/CSS byte-identical to26934. Published main/CSS changed; original component mount/share identifiers inspected before adapting."
+  ],
+  "implementation": {
+    "config": "projects/bilibili-toy/source-build.json",
+    "adaptations": "Only existing relocation share base, omitted author mount and fixed same-origin live relay. Original new module kept intact beside derived module.",
+    "prepare": "All public resources and host preparation completed in staging; previous private site archived before activation.",
+    "local_http": "Source-build endpoint26947; live JSON GET200 schema2 updated_utc2026-10-15T23:58:04Z."
+  },
+  "desktop": {
+    "protocol": "projects/bilibili-toy/major-pages-desktop.json",
+    "source": "projects/bilibili-toy/private/major-desktop-source-1",
+    "local": "projects/bilibili-toy/private/major-desktop-local-1",
+    "viewport_css": [
+      1200,
+      600
+    ],
+    "png_pixels": [
+      2400,
+      1200
+    ],
+    "header_css": 57,
+    "zoom": "100%",
+    "pixel_ratio": "2x",
+    "source_removals": "Actual .author-bar and aside#toy-shell-sidebar native Delete→Node, original CSS/data otherwise unchanged. Source tab preserved across native tab switches.",
+    "home_opus_prepublication": {
+      "contract": "projects/bilibili-toy/private/major-desktop-contracts-1/home-opus-contract.json",
+      "result": "projects/bilibili-toy/private/major-desktop-local-home-result-1.json",
+      "pass": 51,
+      "fail": 0,
+      "not_run": 2,
+      "why_pending": "Original full header and business regions change between actual repeated PNGs: pulse dots and character animation. Entire raw viewport retained; no masks/tolerances or full-image pass claimed. Closed ticker image is RGB-zero.",
+      "unmasked_difference_bbox": [
+        333,
+        60,
+        1887,
+        603
+      ]
+    },
+    "source_gpt": "Captured before candidate; original contract frozen in major-desktop-contracts-1/home-gpt-contract.json.",
+    "remaining_cases": "Other major pages and completed-match below-fold visual comparisons remain."
+  },
+  "observer_repairs": [
+    "Desktop uses actual model links instead of the mobile AI dropdown. First mobile-selector wait retained as failed acquisition.",
+    "Avoid mobile content-scope guard during the transient desktop channel navigation; wait for actual expected world/footer before resetting player. Transition-failure AX retained.",
+    "Native Inspector may remain docked/on Network from prior work. Shared opener now detaches to verified host and explicitly selects Elements before original deletions/header/body capture.",
+    "Safari does not accept the bracket key spelling. Use the actual native Window → Show Previous/Next Tab menu and preserve exact endpoint/window guards."
+  ],
+  "verification": {
+    "root": "111 tests OK, 8 skipped",
+    "project": "25 tests OK",
+    "node": "Owned PNG identity/query/port checks passed; changed native modules syntax checked",
+    "diff_check": "passed"
+  },
+  "publication": "pending reviewed commit and deployment",
+  "remaining": [
+    "Full nine-page desktop comparison",
+    "Same-state expanded/error-layout visual observations",
+    "Remaining hover/drag/series/simulation, sound and motion coverage"
+  ]
+}

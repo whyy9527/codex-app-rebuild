@@ -1,6 +1,6 @@
 // Local original-page reference variant for the user's two explicit deletions.
 // Invoke only from CUA with an actual native App binding. Reload restores it.
-import {guardOwnedPage} from './visual_png_native.mjs';
+import {guardOwnedPage,openElementInspector} from './visual_png_native.mjs';
 export function installRequestedRemovalReference(app,fs,{url,output,windowUuid}) {
   if(new URL(url).origin!=='https://www.bilibili.com')throw Error('Actual original origin required');
   const tree=()=>app.getAXState({emit:false,disableDiffing:true});
@@ -28,8 +28,7 @@ export function installRequestedRemovalReference(app,fs,{url,output,windowUuid})
     const before=await tree();guardOwnedPage(before,url,windowUuid);
     await fs.mkdir(output,{recursive:true});
     await fs.writeFile(output+'/before-requested-removals.ax.txt',before,{flag:'wx'});
-    await app.pressKey('super+alt+i');let ax=await tree();
-    if(!ax.includes('standard window Web Inspector — www.bilibili.com'))throw Error('Original inspector unavailable');
+    let ax=await openElementInspector(app,url);
     await remove('.author-bar',/row .*<div.*author-bar/,'author-node-delete');
     await remove('.toy-shell-sidebar',/row .*<aside.*toy-shell-sidebar/,'sidebar-node-delete');
     await app.pressKey('super+w');ax=await tree();guardOwnedPage(ax,url,windowUuid);

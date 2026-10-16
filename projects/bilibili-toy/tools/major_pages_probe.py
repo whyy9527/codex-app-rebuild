@@ -24,11 +24,14 @@ def collect(directory, side, protocol, url):
         raw=(folder/(spec[side]['frames'][0]+'.ax.txt')).read_text()
         if 'model' in case:
             match=re.search(r'pop up button 选择 AI 频道, Value: ([^\n]+)',raw)
+            if protocol.get('channel_control')=='desktop_links':
+                player=raw.split('container AI 模拟回放播放器',1)[-1]
+                match=re.search(r'text AI 模拟\s+(.+?)\s+的世界',player)
             if not match:raise ValueError('Actual channel selector unavailable')
             facts['states']['business']['elements']={'model':{'value':match[1].strip()}}
             facts['states']['business']['interactions'].update(player_paused=bool(re.search(r'button\s+播放, Help:',raw)),idle_disabled=bool(re.search(r'checkbox 闲置 60 秒后自动换台, Value: (?:off|0)',raw)))
         for region,state in facts['states'].items():states[case['id']+'.'+region]=state
-    return {'states':states,'records':records,'preparation':{'url':url,'protocol':'projects/bilibili-toy/major-pages.json'}}
+    return {'states':states,'records':records,'preparation':{'url':url,'protocol_scope':protocol['scope']}}
 
 
 def freeze(source,protocol):
@@ -53,8 +56,9 @@ def freeze(source,protocol):
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('mode',choices=['freeze','observe']);parser.add_argument('--captures',required=True);parser.add_argument('--out',required=True)
+    parser.add_argument('--protocol',choices=['major-pages.json','major-pages-desktop.json'],default='major-pages.json')
     parser.add_argument('--candidate-url', help='Actual candidate URL recorded by the shared UI driver')
-    args=parser.parse_args();protocol=json.loads((ROOT/'major-pages.json').read_text());original=(ROOT/'private/original-share-entry-url.txt').read_text().strip()
+    args=parser.parse_args();protocol=json.loads((ROOT/args.protocol).read_text());original=(ROOT/'private/original-share-entry-url.txt').read_text().strip()
     from urllib.parse import urlsplit
     url=original if args.mode=='freeze' else args.candidate_url or 'https://s16.xinxiayiyan.com/?'+urlsplit(original).query
     facts=collect(private_path(args.captures),'source' if args.mode=='freeze' else 'candidate',protocol,url);out=private_path(args.out)
