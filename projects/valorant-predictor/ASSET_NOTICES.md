@@ -4,8 +4,8 @@ The front end is independently written for this repository. The user's reference
 is [S16 AI 预测大赛](https://www.bilibili.com/toy/LkvCZhw12wgT2Pqx/index.html),
 interaction reference originally recorded at `43482999941120-v26695`.
 On 2026-10-16 the user explicitly requested its four model-persona portraits.
-Unmodified half-body and head images for GPT, DeepSeek, Doubao and MiMo are
-bundled from current version `43482999941120-v26947`; model mapping, URLs and
+Historical half-body and head images for GPT, DeepSeek, Doubao and MiMo are
+retained from version `43482999941120-v26947`; model mapping, URLs and
 SHA-256 digests are retained in `data/assets.json`. The source author is
 我叫张大喵. Its application code, LoL characters, match data and predictions
 are not shipped. Attribution does not imply a provider endorsement; image rights
@@ -106,8 +106,14 @@ previous S16 GPT assets are retained as historical sources.
 
 ## 2026-10-17 GPT 真透明派生图
 
-当前GPT立绘与头像使用 `assets/models/gpt-dragon-transparent.png`，保留用户指定的ZipZipPipe白发龙娘。原网页WebP为RGB白底，作者原帖前三张PNG亦未发现有效透明通道；原始 `gpt-dragon.webp` 原样保留。新PNG由内置imagegen以 `transparent_background=true` 仅去背景，未用Python改图；实际RGBA透明区、边缘与黑/白/金背景合成已检查。处理前后摘要与原作者来源仍见 data/assets.json；这不是新的模型或人物官方形象。
+当时GPT立绘与头像使用 `assets/models/gpt-dragon-transparent.png`，保留用户指定的ZipZipPipe白发龙娘。原网页WebP为RGB白底，作者原帖前三张PNG亦未发现有效透明通道；原始 `gpt-dragon.webp` 原样保留。新PNG由内置imagegen以 `transparent_background=true` 仅去背景，未用Python改图；实际RGBA透明区、边缘与黑/白/金背景合成已检查。处理前后摘要与原作者来源仍见 data/assets.json；这不是新的模型或人物官方形象。
 
 ## 2026-10-17 个人账号页头图标
 
 `assets/social/` 的 Bilibili、小红书和音符标识来自 [Simple Icons](https://github.com/simple-icons/simple-icons)，原始 SVG 按 CC0-1.0 分发，许可全文及逐文件来源和 SHA-256 保存在同目录。抖音入口使用共用音符标识（来源名 TikTok），链接仍为用户本人提供的抖音主页分享链接。图标仅标识链接所去的平台，不表示账号认证、平台背书或合作；商标权仍归相应权利人。
+
+## 2026-10-17 四位角色表情与透明立绘更新
+
+用户要求将本轮封面里的更鲜明表情用于官网，四张当前立绘与头像均来自内置 imagegen，以原网站角色和用户认可的四人封面为参考，设置 `transparent_background=true`。GPT 保留白发龙娘，DeepSeek 保留蓝发女仆，MiMo 保留橙白兔耳与玩偶，豆包保留黑衣短发 3D 形象。新表情和动作是静态 AI 生成视觉，不代表模型人格、发言或官方形象。
+
+当前素材位于 `assets/models/refreshed-20261017/`，完整生成提示词见该目录 `prompts.json`。官网使用无损 WebP；与生成 PNG 的解码 RGBA 字节逐一比对一致。四图均为 1086×1448，有真实透明区域、透明四角和接近不透明的服装主体；已在深色和白色底色检查显示效果。原始来源和历史版本仍由 `data/assets.json` 的历史字段保留，既有作者和权利声明继续适用；更新不表示取得新的第三方授权。

@@ -2,63 +2,76 @@
   "source": "https://www.bilibili.com/toy/LkvCZhw12wgT2Pqx/index.html",
   "content_version": "43482999941120-v26947",
   "creator": "我叫张大喵",
-  "use": "User-selected GPT main character from Gender Swap AI; remaining three model portraits from S16. No gameplay or provider endorsement imported.",
+  "use": "User-authorized expressive transparent AI-persona refresh generated with built-in imagegen, based on the prior character designs and user-approved cover. No provider endorsement.",
   "models": {
     "codex": {
       "name": "GPT-6.1 sol",
-      "portrait": "assets/models/gpt-dragon-transparent.png",
+      "portrait": "assets/models/refreshed-20261017/gpt.webp",
       "half_source": {
-        "path": "assets/models/gpt-dragon-transparent.png",
-        "source_url": "https://genderswapai.com/images/ai-gijinka/gpt.webp",
-        "source_page": "https://genderswapai.com/zh-CN/ai-gijinka/gpt",
-        "original_post": "https://www.bilibili.com/opus/1233069202138464289",
-        "creator": "ZipZipPipe",
-        "sha256": "aa64aafa187b807588e161556bafe0c7da926cabcc45bf40ae274b121bafb77f",
-        "bytes": 1912636,
-        "selection": "Page hero and first gallery item, both labeled GPT 娘 / GPT 娘 · 角色立绘; white-haired dragon character, not Image 2 or Codex derivative",
-        "modifications": "Built-in imagegen background extraction with transparent_background=true; original opaque source retained; no Python image editing",
-        "original_sha256": "41db34f873e240c12f50579afe01100bcbdd0ac974de93cfbffc5ecec02f0a3e",
+        "path": "assets/models/refreshed-20261017/gpt.webp",
+        "kind": "static_ai_generated_character",
+        "generated_on": "2026-10-17",
+        "tool": "imagegen built-in",
+        "transparent_background": true,
+        "prompt_file": "assets/models/refreshed-20261017/prompts.json",
+        "prompt_key": "gpt",
+        "sha256": "51a0bfd0027f49affe188efdf7cdef043c46f0367c08ca2b49095a5940c6a0d7",
+        "bytes": 1487040,
+        "dimensions": [
+          1086,
+          1448
+        ],
         "alpha": {
-          "mode": "RGBA",
           "extrema": [
             0,
             255
           ],
-          "corner_values": [
+          "corners": [
             0,
             0,
             0,
             0
-          ]
+          ],
+          "transparent_fraction": 0.2911,
+          "near_opaque_fraction": 0.6543
         },
-        "identity": "Same user-selected white-haired ZipZipPipe GPT dragon character; black/white/gold edge proof reviewed"
+        "encoding": "Lossless WebP from original generated PNG; decoded RGBA bytes verified equal",
+        "original_png_sha256": "63b65b12b74b7f7f097b974bfaa489d7f3869a33438ba2e74aab9885d19aeb15",
+        "reference": "Prior website character design and user-approved four-character cover from this session"
       },
-      "avatar": "assets/models/gpt-dragon-transparent.png",
+      "avatar": "assets/models/refreshed-20261017/gpt.webp",
       "head_source": {
-        "path": "assets/models/gpt-dragon-transparent.png",
-        "source_url": "https://genderswapai.com/images/ai-gijinka/gpt.webp",
-        "source_page": "https://genderswapai.com/zh-CN/ai-gijinka/gpt",
-        "original_post": "https://www.bilibili.com/opus/1233069202138464289",
-        "creator": "ZipZipPipe",
-        "sha256": "aa64aafa187b807588e161556bafe0c7da926cabcc45bf40ae274b121bafb77f",
-        "bytes": 1912636,
-        "selection": "Page hero and first gallery item, both labeled GPT 娘 / GPT 娘 · 角色立绘; white-haired dragon character, not Image 2 or Codex derivative",
-        "modifications": "Built-in imagegen background extraction with transparent_background=true; original opaque source retained; no Python image editing",
-        "original_sha256": "41db34f873e240c12f50579afe01100bcbdd0ac974de93cfbffc5ecec02f0a3e",
+        "path": "assets/models/refreshed-20261017/gpt.webp",
+        "kind": "static_ai_generated_character",
+        "generated_on": "2026-10-17",
+        "tool": "imagegen built-in",
+        "transparent_background": true,
+        "prompt_file": "assets/models/refreshed-20261017/prompts.json",
+        "prompt_key": "gpt",
+        "sha256": "51a0bfd0027f49affe188efdf7cdef043c46f0367c08ca2b49095a5940c6a0d7",
+        "bytes": 1487040,
+        "dimensions": [
+          1086,
+          1448
+        ],
         "alpha": {
-          "mode": "RGBA",
           "extrema": [
             0,
             255
           ],
-          "corner_values": [
+          "corners": [
             0,
             0,
             0,
             0
-          ]
+          ],
+          "transparent_fraction": 0.2911,
+          "near_opaque_fraction": 0.6543
         },
-        "identity": "Same user-selected white-haired ZipZipPipe GPT dragon character; black/white/gold edge proof reviewed"
+        "encoding": "Lossless WebP from original generated PNG; decoded RGBA bytes verified equal",
+        "original_png_sha256": "63b65b12b74b7f7f097b974bfaa489d7f3869a33438ba2e74aab9885d19aeb15",
+        "reference": "Prior website character design and user-approved four-character cover from this session",
+        "use": "CSS face crop from the same character asset"
       },
       "previous_s16_source": {
         "portrait": "assets/models/gpt_half.webp",
@@ -86,58 +99,329 @@
         "bytes": 170068,
         "selection": "Page hero and first gallery item, both labeled GPT 娘 / GPT 娘 · 角色立绘; white-haired dragon character, not Image 2 or Codex derivative",
         "modifications": "None; CSS proportional contain"
-      }
+      },
+      "previous_art": {
+        "portrait": "assets/models/gpt-dragon-transparent.png",
+        "avatar": "assets/models/gpt-dragon-transparent.png",
+        "half_source": {
+          "path": "assets/models/gpt-dragon-transparent.png",
+          "source_url": "https://genderswapai.com/images/ai-gijinka/gpt.webp",
+          "source_page": "https://genderswapai.com/zh-CN/ai-gijinka/gpt",
+          "original_post": "https://www.bilibili.com/opus/1233069202138464289",
+          "creator": "ZipZipPipe",
+          "sha256": "aa64aafa187b807588e161556bafe0c7da926cabcc45bf40ae274b121bafb77f",
+          "bytes": 1912636,
+          "selection": "Page hero and first gallery item, both labeled GPT 娘 / GPT 娘 · 角色立绘; white-haired dragon character, not Image 2 or Codex derivative",
+          "modifications": "Built-in imagegen background extraction with transparent_background=true; original opaque source retained; no Python image editing",
+          "original_sha256": "41db34f873e240c12f50579afe01100bcbdd0ac974de93cfbffc5ecec02f0a3e",
+          "alpha": {
+            "mode": "RGBA",
+            "extrema": [
+              0,
+              255
+            ],
+            "corner_values": [
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "identity": "Same user-selected white-haired ZipZipPipe GPT dragon character; black/white/gold edge proof reviewed"
+        },
+        "head_source": {
+          "path": "assets/models/gpt-dragon-transparent.png",
+          "source_url": "https://genderswapai.com/images/ai-gijinka/gpt.webp",
+          "source_page": "https://genderswapai.com/zh-CN/ai-gijinka/gpt",
+          "original_post": "https://www.bilibili.com/opus/1233069202138464289",
+          "creator": "ZipZipPipe",
+          "sha256": "aa64aafa187b807588e161556bafe0c7da926cabcc45bf40ae274b121bafb77f",
+          "bytes": 1912636,
+          "selection": "Page hero and first gallery item, both labeled GPT 娘 / GPT 娘 · 角色立绘; white-haired dragon character, not Image 2 or Codex derivative",
+          "modifications": "Built-in imagegen background extraction with transparent_background=true; original opaque source retained; no Python image editing",
+          "original_sha256": "41db34f873e240c12f50579afe01100bcbdd0ac974de93cfbffc5ecec02f0a3e",
+          "alpha": {
+            "mode": "RGBA",
+            "extrema": [
+              0,
+              255
+            ],
+            "corner_values": [
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "identity": "Same user-selected white-haired ZipZipPipe GPT dragon character; black/white/gold edge proof reviewed"
+        }
+      },
+      "width": 1086,
+      "height": 1448
     },
     "deepseek": {
       "name": "DeepSeek V4.1 Flash",
-      "portrait": "assets/models/deepseek_half.webp",
+      "portrait": "assets/models/refreshed-20261017/deepseek.webp",
       "half_source": {
-        "path": "assets/models/deepseek_half.webp",
-        "source_url": "https://www.bilibilitoy.com/toy/LkvCZhw12wgT2Pqx/43482999941120-v26947/avatars/deepseek_half.webp",
-        "sha256": "8ede083f90936466dd740d4aa35edd989bc72500d291c9051a522fb6c9a2992e",
-        "bytes": 110002
+        "path": "assets/models/refreshed-20261017/deepseek.webp",
+        "kind": "static_ai_generated_character",
+        "generated_on": "2026-10-17",
+        "tool": "imagegen built-in",
+        "transparent_background": true,
+        "prompt_file": "assets/models/refreshed-20261017/prompts.json",
+        "prompt_key": "deepseek",
+        "sha256": "64df5cfd9cbb2a0b284bfeab52a2017ab1e8ed258813f22ff8bb1ac30f9f1961",
+        "bytes": 1441158,
+        "dimensions": [
+          1086,
+          1448
+        ],
+        "alpha": {
+          "extrema": [
+            0,
+            255
+          ],
+          "corners": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "transparent_fraction": 0.283,
+          "near_opaque_fraction": 0.642
+        },
+        "encoding": "Lossless WebP from original generated PNG; decoded RGBA bytes verified equal",
+        "original_png_sha256": "39066c55579fd8216f9d99d56627c4b0a433688d93c8c2f19d1db2c05c5da743",
+        "reference": "Prior website character design and user-approved four-character cover from this session"
       },
-      "avatar": "assets/models/deepseek_head.webp",
+      "avatar": "assets/models/refreshed-20261017/deepseek.webp",
       "head_source": {
-        "path": "assets/models/deepseek_head.webp",
-        "source_url": "https://www.bilibilitoy.com/toy/LkvCZhw12wgT2Pqx/43482999941120-v26947/avatars/deepseek_head.webp",
-        "sha256": "67e6dafc4a093cbfb4cc1d7025a178ec2dd76674d5586d3c3312919533d3c060",
-        "bytes": 44080
-      }
+        "path": "assets/models/refreshed-20261017/deepseek.webp",
+        "kind": "static_ai_generated_character",
+        "generated_on": "2026-10-17",
+        "tool": "imagegen built-in",
+        "transparent_background": true,
+        "prompt_file": "assets/models/refreshed-20261017/prompts.json",
+        "prompt_key": "deepseek",
+        "sha256": "64df5cfd9cbb2a0b284bfeab52a2017ab1e8ed258813f22ff8bb1ac30f9f1961",
+        "bytes": 1441158,
+        "dimensions": [
+          1086,
+          1448
+        ],
+        "alpha": {
+          "extrema": [
+            0,
+            255
+          ],
+          "corners": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "transparent_fraction": 0.283,
+          "near_opaque_fraction": 0.642
+        },
+        "encoding": "Lossless WebP from original generated PNG; decoded RGBA bytes verified equal",
+        "original_png_sha256": "39066c55579fd8216f9d99d56627c4b0a433688d93c8c2f19d1db2c05c5da743",
+        "reference": "Prior website character design and user-approved four-character cover from this session",
+        "use": "CSS face crop from the same character asset"
+      },
+      "previous_art": {
+        "portrait": "assets/models/deepseek_half.webp",
+        "avatar": "assets/models/deepseek_head.webp",
+        "half_source": {
+          "path": "assets/models/deepseek_half.webp",
+          "source_url": "https://www.bilibilitoy.com/toy/LkvCZhw12wgT2Pqx/43482999941120-v26947/avatars/deepseek_half.webp",
+          "sha256": "8ede083f90936466dd740d4aa35edd989bc72500d291c9051a522fb6c9a2992e",
+          "bytes": 110002
+        },
+        "head_source": {
+          "path": "assets/models/deepseek_head.webp",
+          "source_url": "https://www.bilibilitoy.com/toy/LkvCZhw12wgT2Pqx/43482999941120-v26947/avatars/deepseek_head.webp",
+          "sha256": "67e6dafc4a093cbfb4cc1d7025a178ec2dd76674d5586d3c3312919533d3c060",
+          "bytes": 44080
+        }
+      },
+      "width": 1086,
+      "height": 1448
     },
     "doubao": {
       "name": "豆包",
-      "portrait": "assets/models/doubao_half.webp",
+      "portrait": "assets/models/refreshed-20261017/doubao.webp",
       "half_source": {
-        "path": "assets/models/doubao_half.webp",
-        "source_url": "https://www.bilibilitoy.com/toy/LkvCZhw12wgT2Pqx/43482999941120-v26947/avatars/doubao_half.webp",
-        "sha256": "85e5cbd303e9b2ae0a7bee553183f62a7018f19a3a3d3dbb6a76a085e1d4855d",
-        "bytes": 31376
+        "path": "assets/models/refreshed-20261017/doubao.webp",
+        "kind": "static_ai_generated_character",
+        "generated_on": "2026-10-17",
+        "tool": "imagegen built-in",
+        "transparent_background": true,
+        "prompt_file": "assets/models/refreshed-20261017/prompts.json",
+        "prompt_key": "doubao",
+        "sha256": "4c9828b9eec6bd38b126ed6cd7d9e3fbf3cde7c4471695b75401b17ca01dbff0",
+        "bytes": 717772,
+        "dimensions": [
+          1086,
+          1448
+        ],
+        "alpha": {
+          "extrema": [
+            0,
+            255
+          ],
+          "corners": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "transparent_fraction": 0.568,
+          "near_opaque_fraction": 0.4083
+        },
+        "encoding": "Lossless WebP from original generated PNG; decoded RGBA bytes verified equal",
+        "original_png_sha256": "8c277a8330cef388f8fee55d9b9b279b69719a4c0826372e2ff14b008ed54f31",
+        "reference": "Prior website character design and user-approved four-character cover from this session"
       },
-      "avatar": "assets/models/doubao_head.webp",
+      "avatar": "assets/models/refreshed-20261017/doubao.webp",
       "head_source": {
-        "path": "assets/models/doubao_head.webp",
-        "source_url": "https://www.bilibilitoy.com/toy/LkvCZhw12wgT2Pqx/43482999941120-v26947/avatars/doubao_head.webp",
-        "sha256": "3ebbe50485d767237dc3894edc4be36ff24935e93965f37ebada33dd8fc970e1",
-        "bytes": 28276
-      }
+        "path": "assets/models/refreshed-20261017/doubao.webp",
+        "kind": "static_ai_generated_character",
+        "generated_on": "2026-10-17",
+        "tool": "imagegen built-in",
+        "transparent_background": true,
+        "prompt_file": "assets/models/refreshed-20261017/prompts.json",
+        "prompt_key": "doubao",
+        "sha256": "4c9828b9eec6bd38b126ed6cd7d9e3fbf3cde7c4471695b75401b17ca01dbff0",
+        "bytes": 717772,
+        "dimensions": [
+          1086,
+          1448
+        ],
+        "alpha": {
+          "extrema": [
+            0,
+            255
+          ],
+          "corners": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "transparent_fraction": 0.568,
+          "near_opaque_fraction": 0.4083
+        },
+        "encoding": "Lossless WebP from original generated PNG; decoded RGBA bytes verified equal",
+        "original_png_sha256": "8c277a8330cef388f8fee55d9b9b279b69719a4c0826372e2ff14b008ed54f31",
+        "reference": "Prior website character design and user-approved four-character cover from this session",
+        "use": "CSS face crop from the same character asset"
+      },
+      "previous_art": {
+        "portrait": "assets/models/doubao_half.webp",
+        "avatar": "assets/models/doubao_head.webp",
+        "half_source": {
+          "path": "assets/models/doubao_half.webp",
+          "source_url": "https://www.bilibilitoy.com/toy/LkvCZhw12wgT2Pqx/43482999941120-v26947/avatars/doubao_half.webp",
+          "sha256": "85e5cbd303e9b2ae0a7bee553183f62a7018f19a3a3d3dbb6a76a085e1d4855d",
+          "bytes": 31376
+        },
+        "head_source": {
+          "path": "assets/models/doubao_head.webp",
+          "source_url": "https://www.bilibilitoy.com/toy/LkvCZhw12wgT2Pqx/43482999941120-v26947/avatars/doubao_head.webp",
+          "sha256": "3ebbe50485d767237dc3894edc4be36ff24935e93965f37ebada33dd8fc970e1",
+          "bytes": 28276
+        }
+      },
+      "width": 1086,
+      "height": 1448
     },
     "mimo": {
       "name": "MiMo V2.6 Pro",
-      "portrait": "assets/models/mimo_half.webp",
+      "portrait": "assets/models/refreshed-20261017/mimo.webp",
       "half_source": {
-        "path": "assets/models/mimo_half.webp",
-        "source_url": "https://www.bilibilitoy.com/toy/LkvCZhw12wgT2Pqx/43482999941120-v26947/avatars/mimo_half.webp",
-        "sha256": "88edf752f512c4e650a18e3da28f511671c4257f9b4982b06a47f897ddf5d836",
-        "bytes": 146574
+        "path": "assets/models/refreshed-20261017/mimo.webp",
+        "kind": "static_ai_generated_character",
+        "generated_on": "2026-10-17",
+        "tool": "imagegen built-in",
+        "transparent_background": true,
+        "prompt_file": "assets/models/refreshed-20261017/prompts.json",
+        "prompt_key": "mimo",
+        "sha256": "3bfe5b789c6dc53ae5870f94a7abd30457e8db657ed0b802835e79e55b08cbe1",
+        "bytes": 1436640,
+        "dimensions": [
+          1086,
+          1448
+        ],
+        "alpha": {
+          "extrema": [
+            0,
+            255
+          ],
+          "corners": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "transparent_fraction": 0.3207,
+          "near_opaque_fraction": 0.5717
+        },
+        "encoding": "Lossless WebP from original generated PNG; decoded RGBA bytes verified equal",
+        "original_png_sha256": "2480034fa2da2f8bf0c5e766eef4b1e56710edcdf69aab205959d99f25e7cb55",
+        "reference": "Prior website character design and user-approved four-character cover from this session"
       },
-      "avatar": "assets/models/mimo_head.webp",
+      "avatar": "assets/models/refreshed-20261017/mimo.webp",
       "head_source": {
-        "path": "assets/models/mimo_head.webp",
-        "source_url": "https://www.bilibilitoy.com/toy/LkvCZhw12wgT2Pqx/43482999941120-v26947/avatars/mimo_head.webp",
-        "sha256": "f12c49fca827907147d239fb8a9eeef5501128e21ddf3f35ffb2189694eeef35",
-        "bytes": 54640
-      }
+        "path": "assets/models/refreshed-20261017/mimo.webp",
+        "kind": "static_ai_generated_character",
+        "generated_on": "2026-10-17",
+        "tool": "imagegen built-in",
+        "transparent_background": true,
+        "prompt_file": "assets/models/refreshed-20261017/prompts.json",
+        "prompt_key": "mimo",
+        "sha256": "3bfe5b789c6dc53ae5870f94a7abd30457e8db657ed0b802835e79e55b08cbe1",
+        "bytes": 1436640,
+        "dimensions": [
+          1086,
+          1448
+        ],
+        "alpha": {
+          "extrema": [
+            0,
+            255
+          ],
+          "corners": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "transparent_fraction": 0.3207,
+          "near_opaque_fraction": 0.5717
+        },
+        "encoding": "Lossless WebP from original generated PNG; decoded RGBA bytes verified equal",
+        "original_png_sha256": "2480034fa2da2f8bf0c5e766eef4b1e56710edcdf69aab205959d99f25e7cb55",
+        "reference": "Prior website character design and user-approved four-character cover from this session",
+        "use": "CSS face crop from the same character asset"
+      },
+      "previous_art": {
+        "portrait": "assets/models/mimo_half.webp",
+        "avatar": "assets/models/mimo_head.webp",
+        "half_source": {
+          "path": "assets/models/mimo_half.webp",
+          "source_url": "https://www.bilibilitoy.com/toy/LkvCZhw12wgT2Pqx/43482999941120-v26947/avatars/mimo_half.webp",
+          "sha256": "88edf752f512c4e650a18e3da28f511671c4257f9b4982b06a47f897ddf5d836",
+          "bytes": 146574
+        },
+        "head_source": {
+          "path": "assets/models/mimo_head.webp",
+          "source_url": "https://www.bilibilitoy.com/toy/LkvCZhw12wgT2Pqx/43482999941120-v26947/avatars/mimo_head.webp",
+          "sha256": "f12c49fca827907147d239fb8a9eeef5501128e21ddf3f35ffb2189694eeef35",
+          "bytes": 54640
+        }
+      },
+      "width": 1086,
+      "height": 1448
     }
   }
 }
