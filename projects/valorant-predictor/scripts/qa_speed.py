@@ -20,6 +20,8 @@ def main():
     page.on('pageerror',lambda e:r['errors'].append(str(e)));page.on('response',lambda v:r['http_failures'].append({'status':v.status,'url':v.url}) if v.status>=400 else None)
    def ready(page,model='codex'):
     page.goto(url+'#/?ai='+model,wait_until='domcontentloaded');page.locator('#prediction-player[data-status="ready"]').wait_for();page.locator('[data-causal-speed="16"]:enabled').wait_for()
+    if page.locator('#prediction-player').get_attribute('data-playing')=='true':page.locator('#causal-play').click()
+    page.locator('#causal-progress').evaluate('(e)=>{e.value=0;e.dispatchEvent(new Event("input",{bubbles:true}))}')
    def shot(page,name):
     page.evaluate('async()=>{await document.fonts.ready;await Promise.all([...document.images].map(i=>i.decode().catch(()=>{})))}');page.screenshot(path=str(a.out/name),full_page=True,animations='disabled')
    watch(page);ready(page);assert page.locator('[data-causal-speed]').all_inner_texts()==['1×','2×','4×','8×','16×'];measured=[]

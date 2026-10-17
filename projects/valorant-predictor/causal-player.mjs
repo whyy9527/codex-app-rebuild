@@ -4,7 +4,7 @@ const expectedModels={codex:'gpt-6.1-sol',deepseek:'deepseek-flash',doubao:'doub
 const labels={codex:'GPT-6.1 sol',deepseek:'DeepSeek V4.1 Flash',doubao:'豆包',mimo:'MiMo V2.6 Pro'};
 const clock=t=>`${Math.floor(t/60).toString().padStart(2,'0')}:${Math.floor(t%60).toString().padStart(2,'0')}`;
 const playbackRates=[1,2,4,8,16];
-let active,raf,playbackRate=1;
+let active,raf,playbackRate=1,autoplayPending=true;
 export function stopCausalPlayer(){cancelAnimationFrame(raf);active?.cleanup?.();active=null;}
 export function causalMarkup(models){return `<section class="prediction-player" id="prediction-player" aria-label="逐步比赛推演"><div class="player-models">${models}</div><div class="player-now"><span id="causal-stage">读取推演</span><select id="causal-map-select" aria-label="选择比赛地图" disabled><option>等待地图</option></select><span id="causal-identity">实际模型输出 · AI 模拟</span></div><div class="player-controls"><button id="causal-prev" aria-label="上一段" disabled>←</button><button id="causal-play" class="player-play" disabled>读取推演</button><button id="causal-next" aria-label="下一段" disabled>→</button><label class="player-scrub"><span class="sr-only">推演进度</span><input id="causal-progress" type="range" value="0" min="0" step="0.01" aria-label="推演进度" disabled><output id="causal-clock">00:00</output></label><div class="causal-speed" role="group" aria-label="推演倍速"><span>倍速</span>${playbackRates.map(rate=>`<button type="button" data-causal-speed="${rate}" aria-pressed="${rate===playbackRate}" disabled>${rate}×</button>`).join('')}</div></div><div id="causal-screen" class="causal-screen"></div><p id="causal-caption" class="causal-caption"></p><details class="player-notes"><summary>推演依据与边界</summary><div id="causal-notes"></div></details></section>`;}
 export function causalTimeline(data){
@@ -106,7 +106,9 @@ export async function mountCausalPlayer(model){
   function tick(now){if(!alive()||!playing)return;advanceTo(now);if(time>=total-.001)pause();else raf=requestAnimationFrame(tick);}
   root.querySelectorAll('[data-causal-speed]').forEach(b=>b.onclick=()=>{if(playing)advanceTo(performance.now());playbackRate=Number(b.dataset.causalSpeed);controls();});
   mapSelect.onchange=()=>seek(Number(mapSelect.value)+.03);
-  find('#causal-play').onclick=()=>{if(playing){pause();return;}if(time>=total-.01){time=0;index=-1;}playing=true;previous=undefined;controls();raf=requestAnimationFrame(tick);};find('#causal-progress').oninput=e=>seek(Number(e.target.value));find('#causal-next').onclick=()=>seek(frames.find(f=>f.chapter&&f.start>time+.1)?.start??total-.001);find('#causal-prev').onclick=()=>seek([...frames].reverse().find(f=>f.chapter&&f.start<time-.5)?.start??0);
+  const play=()=>{if(playing||!alive())return;if(time>=total-.01){time=0;index=-1;}playing=true;previous=undefined;controls();raf=requestAnimationFrame(tick);};
+  find('#causal-play').onclick=()=>playing?pause():play();find('#causal-progress').oninput=e=>seek(Number(e.target.value));find('#causal-next').onclick=()=>seek(frames.find(f=>f.chapter&&f.start>time+.1)?.start??total-.001);find('#causal-prev').onclick=()=>seek([...frames].reverse().find(f=>f.chapter&&f.start<time-.5)?.start??0);
   const onVisibility=()=>{if(document.hidden)pause();};document.addEventListener('visibilitychange',onVisibility);token.cleanup=()=>document.removeEventListener('visibilitychange',onVisibility);const bookmark=new URLSearchParams(location.hash.split('?')[1]||'').get('at');if(bookmark!==null&&Number.isFinite(Number(bookmark)))seek(Number(bookmark));else draw();
+  const shouldAutoplay=autoplayPending;autoplayPending=false;if(shouldAutoplay)play();
  }catch(e){if(alive()){root.dataset.status='failed';find('#causal-screen').innerHTML=`<div class="player-pending"><h2>推演暂不可用</h2><p>${esc(e.message)}</p></div>`;find('#causal-play').textContent='暂不可播放';}}
 }
