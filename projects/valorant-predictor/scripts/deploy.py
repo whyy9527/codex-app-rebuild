@@ -26,6 +26,13 @@ BUCKET = 'clawaether-ai-personality'
 OSS_ENDPOINT = 'oss-cn-hongkong.aliyuncs.com'
 
 
+def oss_credentials(profile):
+    value = '[Credentials]\nlanguage=EN\nendpoint=' + OSS_ENDPOINT + '\naccessKeyID=' + profile['access_key_id'] + '\naccessKeySecret=' + profile['access_key_secret'] + '\n'
+    if profile.get('sts_token'):
+        value += 'stsToken=' + profile['sts_token'] + '\n'
+    return value
+
+
 def api(service, operation, **args):
     command = ['aliyun', service, operation, '--profile', PROFILE]
     if service == 'ecs':command += ['--RegionId', REGION]
@@ -146,7 +153,7 @@ find /clouddream/nginx-proxy-manage/data/nginx/proxy_host -maxdepth 1 -type f -n
     profile = next(p for p in profiles if p['name'] == PROFILE)
     with tempfile.TemporaryDirectory(prefix='private-oss-', dir=output) as private:
         config = Path(private) / 'oss.config'
-        config.write_text('[Credentials]\nlanguage=EN\nendpoint=' + OSS_ENDPOINT + '\naccessKeyID=' + profile['access_key_id'] + '\naccessKeySecret=' + profile['access_key_secret'] + '\n')
+        config.write_text(oss_credentials(profile))
         config.chmod(0o600)
         def oss(*args):
             result = subprocess.run(['aliyun', 'oss', *args, '-c', str(config), '-e', 'https://' + OSS_ENDPOINT], capture_output=True, text=True)
