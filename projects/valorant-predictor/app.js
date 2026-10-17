@@ -366,7 +366,7 @@ function buildSimulation(restore = true) {
 }
 function selectedCharacter(){
  const model=channel(),source=assets.models[selected],prediction=finalPrediction(selected);
- return `<figure class="selected-character" data-selected-model="${selected}" aria-label="当前模型人物 · ${escape(model.name)}"><div class="selected-character-window"><img class="selected-character-portrait" src="${escape(source.portrait)}" alt="${escape(model.name)} 人物" width="${selected==='codex'?937:600}" height="${selected==='codex'?1678:800}"></div><figcaption><strong>${escape(model.name)}</strong><span>预测冠军</span><b class="selected-champion">${prediction?escape(prediction.winner):'待更新'}</b></figcaption></figure>`;
+ return `<figure class="selected-character" data-selected-model="${selected}" aria-label="当前模型人物 · ${escape(model.name)}"><div class="selected-character-window"><img class="selected-character-portrait" src="${escape(source.portrait)}" alt="${escape(model.name)} 人物" width="${source.width}" height="${source.height}"></div><figcaption><strong>${escape(model.name)}</strong><span>预测冠军</span><b class="selected-champion">${prediction?escape(prediction.winner):'待更新'}</b></figcaption></figure>`;
 }
 function actualSources(pack=evidencePack){
  const labels=url=>url===officialCurrent.source_url?'Riot · 官方赛程':url.includes('everything-you-need-to-know')?'Riot · 冠军赛赛制说明':url.endsWith('.pdf')?'Riot · 冻结资料中的赛事规则 PDF':'VLR · '+new URL(url).pathname.split('/').at(-1).replace('valorant-champions-2026-','').replaceAll('-',' ');
