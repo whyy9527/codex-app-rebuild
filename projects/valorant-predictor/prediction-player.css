@@ -122,8 +122,7 @@
 @media(max-width:700px){.model-card-grid:not(.model-deck){grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.model-card-grid:not(.model-deck) .model-choice{padding:8px;justify-content:flex-start}.model-card-grid:not(.model-deck) .model-portrait{width:45px;height:60px}.model-card-grid:not(.model-deck) h2{font-size:11px}.final-vote-grid{grid-template-columns:1fr}.final-vote-grid .result-card{padding:18px}.final-vote-grid .result-card h2{font-size:32px}.final-score-options button{flex:1;padding:10px 5px;font-size:12px}.rank-editor .model-card-grid{width:100%}}
 @media(max-width:700px){#team-grid .team-head{gap:10px}#team-grid .team-head>.logo{width:42px;height:42px}#team-grid .team-head small{display:block;overflow-wrap:anywhere}}
 
-/* Keep the account group compact while making the support cue easy to notice. */
-.topbar .creator-links{flex-direction:column;gap:0;justify-content:center;min-height:50px}.creator-cta{color:#f2d77f;font-size:11px;font-weight:750;line-height:14px;letter-spacing:.025em;white-space:nowrap;text-shadow:0 0 12px #d5b95828}.topbar .creator-platforms a{height:36px;opacity:1}.topbar .creator-platforms img{filter:none}.topbar .creator-platforms a:first-child img{filter:drop-shadow(-.7px -.4px 0 #25f4ee) drop-shadow(.7px .4px 0 #fe2c55)}
-@keyframes creator-cue{0%,100%{color:#f2d77f;text-shadow:0 0 4px #d5b95820}50%{color:#fff0ba;text-shadow:0 0 11px #e6bc6960}}
-@media(max-width:700px){.creator-cta{font-size:10px;line-height:14px;animation:creator-cue 3.5s ease-in-out infinite}}
-@media(prefers-reduced-motion:reduce){.creator-cta{animation:none!important}}
+/* Compact platform colors; account names appear only on deliberate hover or keyboard focus. */
+.topbar .creator-platforms a{height:40px;opacity:.9;position:relative}.topbar .creator-platforms img{filter:none}.topbar .creator-platforms a:first-child img{filter:drop-shadow(-.7px -.4px 0 #25f4ee) drop-shadow(.7px .4px 0 #fe2c55)}
+.topbar .creator-platforms a::after{content:attr(data-account);display:none;position:absolute;right:0;top:100%;padding:2px 5px;background:#141710;color:#d7dacd;border-radius:2px;white-space:nowrap;font:10px/1.4 var(--font-ui);pointer-events:none}.topbar .creator-platforms a:focus-visible::after{display:block}
+@media(hover:hover){.topbar .creator-platforms a:hover::after{display:block}}
