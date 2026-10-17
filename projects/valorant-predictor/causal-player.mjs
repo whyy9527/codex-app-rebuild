@@ -7,9 +7,10 @@ const playbackRates=[1,2,4,8,16];
 let active,raf,playbackRate=4,autoplayPending=true;
 export function stopCausalPlayer(){cancelAnimationFrame(raf);active?.cleanup?.();active=null;}
 export function causalMarkup(models){return `<section class="prediction-player" id="prediction-player" aria-label="逐步比赛推演"><div class="player-models">${models}</div><div class="player-now"><span id="causal-stage">读取推演</span><select id="causal-map-select" aria-label="选择比赛地图" disabled><option>等待地图</option></select><span id="causal-identity">实际模型输出 · AI 模拟</span></div><div class="player-controls"><button id="causal-prev" aria-label="上一段" disabled>←</button><button id="causal-play" class="player-play" disabled>读取推演</button><button id="causal-next" aria-label="下一段" disabled>→</button><label class="player-scrub"><span class="sr-only">推演进度</span><input id="causal-progress" type="range" value="0" min="0" step="0.01" aria-label="推演进度" disabled><output id="causal-clock">00:00</output></label><div class="causal-speed" role="group" aria-label="推演倍速"><span>倍速</span>${playbackRates.map(rate=>`<button type="button" data-causal-speed="${rate}" aria-pressed="${rate===playbackRate}" disabled>${rate}×</button>`).join('')}</div></div><div id="causal-screen" class="causal-screen"></div><p id="causal-caption" class="causal-caption"></p><details class="player-notes"><summary>推演依据与边界</summary><div id="causal-notes"></div></details></section>`;}
-export function causalTimeline(data){
+export function causalTimeline(data,onlyCase=null){
  let time=0;const result=[];
  for(const [caseIndex,part] of (data.cases||[data]).entries()){
+  if(onlyCase!==null&&caseIndex!==onlyCase)continue;
   const bp=part.bp;if(!bp)continue;
   const c={priority_role:bp.priority_role,bans:bp.bans,maps:bp.maps.map(m=>m.map),a_start_sides:bp.maps.map(m=>bp.priority_role==='A'?m.first_team_start_side:m.first_team_start_side==='ATK'?'DEF':'ATK')};
   const steps=vetoSteps({teams:part.teams,priority_team:part.teams[0],protocol:caseIndex?'grand_final':'bo5'},c).steps;
@@ -50,7 +51,7 @@ export function playbackTimes(frames,from,to){
  if(points.at(-1)!==to)points.push(to);
  return points;
 }
-export async function mountCausalPlayer(model){
+export async function mountCausalPlayer(model,{caseIndex=null}={}){
  stopCausalPlayer();const root=document.querySelector('#prediction-player');if(!root)return;
  const token={root};active=token;const alive=()=>active===token&&root.isConnected,find=s=>root.querySelector(s);
  root.dataset.model=model;
@@ -61,7 +62,7 @@ export async function mountCausalPlayer(model){
   const fetchVerified=async()=>{const response=await fetch(record.file,{cache:'no-store'});if(!response.ok)throw Error('推演文件读取失败');const body=await response.arrayBuffer(),hash=[...new Uint8Array(await crypto.subtle.digest('SHA-256',body))].map(v=>v.toString(16).padStart(2,'0')).join('');if(hash!==record.sha256)throw Error('推演文件摘要不匹配');return JSON.parse(new TextDecoder().decode(body));};
   const [data,context,agentData,mapArt]=await Promise.all([fetchVerified(),fetchJSON('data/causal/map-context.json'),fetchJSON('data/causal/agents.json'),fetchJSON('data/causal/map-art.json')]);if(!alive())return;
   if(!['actual_gpt_batched_causal_series','actual_model_batched_causal_series'].includes(data.kind)||data.channel!==model||(data.cases||[data]).some(p=>p.records.some(r=>r.runtime_attestation?.model!==expectedModels[model])))throw Error('模型身份不匹配');
-  const frames=causalTimeline(data),total=frames.at(-1).end;let time=0,playing=false,previous,index=-1,map='',selected='L1';const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const frames=causalTimeline(data,caseIndex),total=frames.at(-1).end;let time=0,playing=false,previous,index=-1,map='',selected='L1';const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
   root.querySelectorAll('[data-causal-speed]').forEach(b=>b.disabled=false);root.dataset.status=data.status;const mapSelect=find('#causal-map-select');mapSelect.innerHTML=frames.filter(f=>f.kind==='lineup'||f.kind==='bp'&&f.index===0).map(f=>`<option value="${f.start}" data-case="${f.caseIndex}" data-map="${esc(f.kind==='bp'?'bp':f.map)}">${f.caseIndex?'总决赛':'败者决赛'} · ${esc(f.kind==='bp'?'地图 BP':f.map)}</option>`).join('');mapSelect.disabled=false;find('#causal-progress').max=total;find('#causal-play').disabled=false;find('#causal-next').disabled=false;find('#causal-progress').disabled=false;
   find('#causal-notes').innerHTML=`<p>模型逐批预测双方决策与有序回合事件，程序从事件核算比分；下一批读取已验算状态。批内为一次响应中的顺序推演，没有逐回合外部反馈。</p><p>地图区域来自游戏资源目录；区域路径是模型假设，未验证FPS碰撞、视线、枪械或技能。经济只显示模型判断的档位，首发沿用最近出场名单作模拟假设。加时从第一队R25先攻、逐轮换边，是预先声明的简化约定。</p><p>${(data.cases||[data]).some(p=>p.records.some(r=>r.validation?.status==='partial'))?'已排除无效回合后缀，后续从最后有效比分继续。 ':''}${(data.cases||[data]).flatMap(p=>p.quality_flags||[]).map(n=>`<span class="causal-quality-note">${esc(n.message)}</span>`).join('')}${data.calls} 个阶段请求 · ${data.status==='ready'?'本场已推演结束':'系列赛尚未结束，当前只播放已验算内容'}</p><p><a href="data/evidence-v2.json" target="_blank">共同赛前资料 ↗</a> · <a href="data/causal/map-context.json" target="_blank">地图区域来源 ↗</a></p>`;
   const buy={pistol:'手枪局',eco:'经济局',force:'强起',half:'半起',full:'全装'};

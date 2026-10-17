@@ -1,4 +1,4 @@
-import {factualEvent,settleCausal,currentFixture,verifiedCompleted} from './current-data.mjs';
+import {factualEvent,settleCausal,currentFixture,verifiedCompleted,fixturePrediction} from './current-data.mjs';
 import {causalMarkup, mountCausalPlayer, stopCausalPlayer} from "./causal-player.mjs";
 import { v2Markup } from "./forecast-v2.mjs";
 import {
@@ -50,15 +50,15 @@ const store = {
 const channels = [
   ["codex", "GPT-6.1 sol", "◎", "#c5b174"],
   ["deepseek", "DeepSeek V4.1 Flash", "≈", "#eeeae1"],
-  ["doubao", "豆包", "●", "#a89758"],
   ["mimo", "MiMo V2.6 Pro", "M", "#9b9d94"],
+  ["doubao", "豆包", "●", "#a89758"],
 ].map(([id, name, icon, color]) => ({ id, name, icon, color }));
 let event,
   officialCurrent,
   evidencePack,
   v2Predictions = {},
   causalAvailability = {},
-  currentData,currentAgents,currentMapArt,currentCase=0,draftScenario=null,savedPickIncompatible=false,
+  currentData,currentAgents,currentMapArt,archiveData,currentCase=0,draftScenario=null,savedPickIncompatible=false,
   v2Case = "lf",
   assets,
   forecast,
@@ -247,7 +247,7 @@ function officialBanner() {
   const upper = officialCurrent?.predecessors[0], lower = officialCurrent?.predecessors[1];
   if (!upper?.winner) return "";
   const loser = upper.teams.find(t => t !== upper.winner), alternate = counterfactualScenario();
-  return `<div class="official-current ${alternate ? "counterfactual" : ""}"><span><b>官方已确认 · 10/16</b> ${upper.teams.join(" ")} ${upper.score.join(" : ")}；${upper.winner} 进入总决赛，${loser} 进入败者组决赛。${lower?.winner ? `${lower.teams.join(" ")} ${lower.score.join(" : ")}；${lower.winner} 进入败者组决赛。` : "另一支晋级队待核实。"}${alternate ? "<strong> 当前为与已知赛果不同的历史反事实情景。</strong>" : ""}</span><a href="${officialCurrent.source_url}" target="_blank" rel="noreferrer">官方记录 ↗</a></div>`;
+  return `<div class="official-current ${alternate ? "counterfactual" : ""}"><span><b>赛前已确认 · 10/16</b> ${upper.teams.join(" ")} ${upper.score.join(" : ")}；${upper.winner} 进入总决赛，${loser} 进入败者组决赛。${lower?.winner ? `${lower.teams.join(" ")} ${lower.score.join(" : ")}；${lower.winner} 进入败者组决赛。` : "另一支晋级队待核实。"}${alternate ? "<strong> 当前为与已知赛果不同的历史反事实情景。</strong>" : ""}</span><a href="${officialCurrent.source_url}" target="_blank" rel="noreferrer">赛事记录 ↗</a></div>`;
 }
 function note() {
   return `<div class="notice">旧输入版预测 · 尚未使用新证据包 v2。预测使用 ${escape(event.fetched_at.slice(0,10))} 冻结资料；最新官方状态另列。下方是晋级条件下的模型推演，情景选择不是官方赛果。${counterfactualScenario() ? " 当前为反事实情景。" : ""}</div>`;
@@ -280,8 +280,9 @@ function bindScenario() {
       };
   }
 }
+function finalPrediction(id){return fixturePrediction(currentData.models[id],officialCurrent.matches[1]);}
 function modelGrid() {
-  return `<div id="home-model-selector" class="model-deck channels portraits" aria-label="选择模型">${channels.map((ch,i) => `<a class="home-model channel portrait ${selected===ch.id?'on':''}" href="#/?ai=${ch.id}" role="button" aria-pressed="${selected===ch.id}" data-channel="${ch.id}" data-tactical-model="${ch.id}"><img class="model-portrait" src="${escape(assets.models[ch.id].portrait)}" alt=""><div class="model-overview"><small>${causalAvailability[ch.id]?.status==="ready"?"预测冠军 · "+(causalAvailability[ch.id].champion||"已完成"):causalAvailability[ch.id]?.status==="partial"?"已验算部分":causalAvailability[ch.id]?.status==="running"?"推演中":"尚未运行"}</small><h2>${escape(ch.name)}</h2><span data-tactical-status hidden></span></div></a>`).join('')}</div>`;
+  return `<div id="home-model-selector" class="model-deck channels portraits" aria-label="选择模型">${channels.map(ch=>{const p=finalPrediction(ch.id),home=pageRoute==='/';return `<a class="home-model channel portrait ${selected===ch.id?'on':''}" href="#/?ai=${ch.id}" role="button" aria-pressed="${selected===ch.id}" data-channel="${ch.id}" data-tactical-model="${ch.id}"><img class="model-portrait" src="${escape(assets.models[ch.id].portrait)}" alt=""><div class="model-overview"><small>${home?'预测冠军':'原赛前情景冠军'}</small><strong class="model-champion-pick">${home?(p?escape(p.winner):'待更新'):escape(causalAvailability[ch.id]?.champion||'待更新')}</strong><h2>${escape(ch.name)}</h2><span data-tactical-status hidden></span></div></a>`;}).join('')}</div>`;
 }
 function selectChannel(id) {
   const focused = Boolean(document.querySelector("#tactical-replay.tactical-focused"));
@@ -363,21 +364,29 @@ function buildSimulation(restore = true) {
       : 0;
 }
 function selectedCharacter(){
- const model=channel(),source=assets.models[selected],result=causalAvailability[selected];
- return `<figure class="selected-character" data-selected-model="${selected}" aria-label="当前模型人物 · ${escape(model.name)}"><div class="selected-character-window"><img class="selected-character-portrait" src="${escape(source.portrait)}" alt="${escape(model.name)} 人物" width="${selected==='codex'?937:600}" height="${selected==='codex'?1678:800}"></div><figcaption><strong>${escape(model.name)}</strong><span>${result?.status==='ready'?'预测冠军 · '+escape(result.champion||'已完成'):'推演待生成'}</span></figcaption></figure>`;
+ const model=channel(),source=assets.models[selected],prediction=finalPrediction(selected);
+ return `<figure class="selected-character" data-selected-model="${selected}" aria-label="当前模型人物 · ${escape(model.name)}"><div class="selected-character-window"><img class="selected-character-portrait" src="${escape(source.portrait)}" alt="${escape(model.name)} 人物" width="${selected==='codex'?937:600}" height="${selected==='codex'?1678:800}"></div><figcaption><strong>${escape(model.name)}</strong><span>预测冠军</span><b class="selected-champion">${prediction?escape(prediction.winner):'待更新'}</b></figcaption></figure>`;
+}
+function actualSources(){
+ const labels=url=>url===officialCurrent.source_url?'Riot · 官方赛程':url.includes('everything-you-need-to-know')?'Riot · 冠军赛赛制说明':url.endsWith('.pdf')?'Riot · 冻结资料中的赛事规则 PDF':'VLR · '+new URL(url).pathname.split('/').at(-1).replace('valorant-champions-2026-','').replaceAll('-',' ');
+ return `<details class="card actual-sources"><summary>AI 实际使用的赛前资料 · ${evidencePack.sources.length} 个来源</summary><p>四家读取同一份冻结资料，截止 ${formatDate(evidencePack.frozen_at)}（北京时间）。以下为输入资料实际引用的来源，不代表模型另行实时浏览；赛后赛果不在这份输入中。</p><ul>${evidencePack.sources.map(source=>`<li><a href="${escape(source.url)}" target="_blank" rel="noopener noreferrer">${escape(labels(source.url))} ↗</a></li>`).join('')}</ul><p><a href="https://valorant-api.com/v1/maps?language=en-US" target="_blank" rel="noopener noreferrer">模型地图区域上下文 · Valorant-API 地图目录 ↗</a></p></details>`;
 }
 function home() {
-  if(tab!=="player"){
-    channelPage();return;
-  }
-  main.innerHTML=`<section class="wrap player-home"><header class="player-intro event-intro"><div><p>CHAMPIONS SHANGHAI 2026 · 10/17–18</p><h1>四个模型，<br>谁能猜中决赛？</h1><span class="event-scope">AI 战术推演 · 败者组决赛 / 总决赛</span></div><a class="event-pick-link" href="#/pickem">我也来预测 <span aria-hidden="true">↗</span></a></header>${causalMarkup(modelGrid()+selectedCharacter())}</section>`;
-  bindModels();
-  mountCausalPlayer(selected);
+ if(tab!=="player"){channelPage();return;}
+ const final=officialCurrent.matches[1],prediction=finalPrediction(selected),selector=modelGrid()+selectedCharacter();
+ const pending=`<section class="prediction-player final-pending" id="final-pending" data-model="${selected}"><div class="player-models">${selector}</div><div class="player-pending"><span>LOUD vs VIT · 总决赛</span><h2>${escape(channel().name)} · 待更新</h2><p>尚无这个对阵的推演。原赛前结果按 100T 晋级情景生成，已归档，不替换队名冒充新预测。</p><a class="btn" href="#/archive?ai=${selected}">查看原赛前推演 →</a></div></section>`;
+ main.innerHTML=`<section class="wrap player-home"><header class="player-intro event-intro final-intro"><div><p>CHAMPIONS SHANGHAI 2026 · GRAND FINAL</p><h1>LOUD <i>VS</i> VIT</h1><span class="event-scope">10 月 18 日 14:00 · 北京时间 · BO5 总决赛</span></div><a class="event-pick-link" href="#/pickem">我也来预测 <span aria-hidden="true">↗</span></a></header><p class="final-status">${prediction?'DeepSeek 赛前已生成 · 资料与推演冻结于败决开赛前 · AI 模拟，非真实赛况':'三家新对阵推演待更新 · 本轮未新增模型调用'}</p>${prediction?causalMarkup(selector):pending}<div class="final-reference"><a href="${escape(final.source_url)}" target="_blank" rel="noopener noreferrer">Riot 决赛赛程 ↗</a><a href="${escape(final.additional_source_url)}" target="_blank" rel="noopener noreferrer">VLR 决赛详情 ↗</a><a href="#/archive">Archive · 10/17 赛前预测与赛果</a></div>${actualSources()}</section>`;
+ bindModels();if(prediction)mountCausalPlayer(selected,{caseIndex:1});
+}
+function archivePage(){
+ const actual=archiveData.actual_result;
+ main.innerHTML=pageHead('Archive','10 月 17 日 · 冻结预测与已核实赛果')+`<div class="wrap section archive-page"><section class="card"><p class="pill">败者组决赛 · 已结束</p><h2>${actual.teams[0]} ${actual.score.join(' : ')} ${actual.teams[1]}</h2><div class="current-map-scores">${actual.maps.map(m=>`<span>${m.map} <b>${m.score.join(':')}</b></span>`).join('')}</div><p class="muted">地图比分按 VIT : 100T 顺序。</p><p><a href="${escape(actual.source_url)}" target="_blank" rel="noopener noreferrer">VLR 终局赛果 ↗</a> · <a href="#/leaderboard">查看胜者与比分命中 →</a></p><p>赛前四家两场推演全部保留，共 597 回合。每家的总决赛对手沿用其原败决预测；与真实对阵不同的情景不作为新决赛预测。</p><p class="muted">冻结证据对应版本 ${archiveData.baseline_git_revision.slice(0,7)}，原模型文件保留 SHA-256 绑定。没有赛后回填，也没有重跑模型。</p></section><section class="card section-heading"><label>查看模型 <select id="archive-model">${channels.map(c=>`<option value="${c.id}" ${selected===c.id?'selected':''}>${escape(c.name)}</option>`).join('')}</select></label><div id="archive-results"></div></section>${new URLSearchParams(location.hash.split('?')[1]||'').get('replay')==='1'?causalMarkup(''):''}${actualSources()}</div>`;
+ const show=()=>{$('#archive-results').innerHTML=`<p class="muted">${selected==='deepseek'?'原总决赛情景 LOUD vs VIT，与实际对阵一致；赛前已生成。':'原总决赛情景 LOUD vs 100T，与实际对阵不同，仅供历史回看。'}</p>`+currentCards(currentData.models[selected]);};show();$('#archive-model').onchange=e=>{location.hash='#/archive?ai='+e.target.value;};if($('#prediction-player'))mountCausalPlayer(selected);
 }
 
-function currentMeta(){return `<p class="current-meta"><span class="pill">本轮 AI 推演</span> 四家共 ${currentData.round_count} 回合 · 资料截止 ${formatDate(currentData.evidence_frozen_at)} · 页面整理 ${formatDate(currentData.prepared_at)}（北京时间）</p>`;}
-function currentPlay(model,part,map){return `#/?ai=${model.channel}&at=${(map||part).start_time+.03}`;}
-function currentCards(model){return `<div class="grid current-series-grid">${model.cases.map(p=>`<article class="card current-series-card ${p.id===(currentCase?'gf':'lf')?'active':''}" data-channel="${model.channel}" data-match="${p.id}" data-source="${model.source_sha256}"><small>${p.label} · AI 推演</small><h3>${p.teams[0]} <strong>${p.score.join(' : ')}</strong> ${p.teams[1]}</h3><p>${p.winner}${p.id==='lf'?' 晋级总决赛':' 夺冠'} · ${p.round_count} 回合</p><div class="current-map-scores">${p.maps.map(m=>`<span>${m.map} <b>${m.score.join(':')}</b></span>`).join('')}</div><a class="btn" href="${currentPlay(model,p)}">回放这场推演 →</a> ${p.quality_flags.map(n=>`<p class="causal-quality-note">${escape(n.message)}</p>`).join('')}</article>`).join('')}</div>`;}
+function currentMeta(){return `<p class="current-meta"><span class="pill">赛前冻结推演</span> 四家共 ${currentData.round_count} 回合 · 资料截止 ${formatDate(currentData.evidence_frozen_at)} · 页面整理 ${formatDate(currentData.prepared_at)}（北京时间）</p>`;}
+function currentPlay(model,part,map){return `#/archive?replay=1&ai=${model.channel}&at=${(map||part).start_time+.03}`;}
+function currentCards(model){return `<div class="grid current-series-grid">${model.cases.map(p=>`<article class="card current-series-card ${p.id===(currentCase?'gf':'lf')?'active':''}" data-channel="${model.channel}" data-match="${p.id}" data-source="${model.source_sha256}"><small>${p.label} · 原赛前 AI 推演</small><h3>${p.teams[0]} <strong>${p.score.join(' : ')}</strong> ${p.teams[1]}</h3><p>${p.winner}${p.id==='lf'?' 晋级总决赛':' 夺冠'} · ${p.round_count} 回合</p><div class="current-map-scores">${p.maps.map(m=>`<span>${m.map} <b>${m.score.join(':')}</b></span>`).join('')}</div><a class="btn" href="${currentPlay(model,p)}">回放这场推演 →</a> ${p.quality_flags.map(n=>`<p class="causal-quality-note">${escape(n.message)}</p>`).join('')}</article>`).join('')}</div>`;}
 function currentMatchControl(model){return `<label class="current-match-control">查看比赛 <select id="current-match-select">${model.cases.map((p,i)=>`<option value="${i}" ${i===currentCase?'selected':''}>${p.label} · ${p.teams.join(' vs ')}</option>`).join('')}</select></label>`;}
 function renderCurrentPlayers(model){
  const rows=model.players;const wrap=$('#channel-content');wrap.innerHTML=currentMeta()+`<section class="card"><h2>模型阵容与事件统计 · ${escape(channel().name)}</h2><p class="muted">按本轮实际选人和击杀事件累计，属于 AI 推演。</p><div class="form-row"><label>找选手<input id="fiction-player-search" type="search" placeholder="输入昵称"></label><label>战队<select id="fiction-player-team"><option value="">全部战队</option>${[...new Set(rows.map(p=>p.team))].map(t=>`<option>${t}</option>`).join('')}</select></label><label>排序<select id="fiction-player-sort"><option value="kills">模型击杀</option><option value="name">昵称</option><option value="maps">出场地图</option></select></label><label><input id="fiction-player-both" type="checkbox">两场都出场</label></div><div id="fiction-player-results"></div></section>`;
@@ -397,9 +406,9 @@ function renderChannel(){
  else $('#channel-content').innerHTML=currentMeta()+(tab==='bracket'?'<h2>败决赢家进入该模型的总决赛</h2>':'<h2>两场推演结果</h2>')+currentCards(model);
  const selector=$('#current-match-select');if(selector)selector.onchange=()=>{currentCase=Number(selector.value);history.replaceState(null,'','#/channel?'+new URLSearchParams({ai:selected,tab,case:currentCase?'gf':'lf'}));renderChannel();};
 }
-function officialSchedule(){return `<div class="official-current-schedule">${officialCurrent.matches.map(m=>`<div class="history-line" data-official-match="${m.id}"><span>${formatDate(m.start_utc)} · ${m.label}</span><b>${m.teams.join(' vs ')}</b><span>${verifiedCompleted(m,officialCurrent)?m.score.join(' : '):m.state==='unstarted'?'待开赛':m.state==='inProgress'?'进行中':'待核实'}</span></div>`).join('')}</div>`;}
+function officialSchedule(){return `<div class="official-current-schedule">${officialCurrent.matches.map(m=>`<div class="history-line" data-official-match="${m.id}"><span>${formatDate(m.start_utc)} · ${m.label}</span><b>${m.teams.join(' vs ')}</b><span>${verifiedCompleted(m,officialCurrent)?m.score.join(' : '):m.state==='unstarted'?'待开赛':m.state==='inProgress'?'进行中':'待核实'}</span><a href="${escape(m.source_url)}" target="_blank" rel="noopener noreferrer">赛程 / 赛果来源 ↗</a></div>`).join('')}</div>`;}
 function comparePage(){
- const rows=channels.map(c=>({c,m:currentData.models[c.id]}));main.innerHTML=pageHead('数据对比','四家这次各推演出了什么结果')+`<div class="wrap section current-compare">${currentMeta()}<section class="card"><h2>败决与总决赛</h2><div class="table-wrap"><table id="current-result-comparison"><thead><tr><th>模型</th><th>败者组决赛</th><th>总决赛</th><th>有效回合</th></tr></thead><tbody>${rows.map(({c,m})=>`<tr data-current-model="${c.id}" data-source="${m.source_sha256}"><th>${escape(c.name)}</th>${m.cases.map(p=>`<td data-match="${p.id}"><b>${p.teams.join(' vs ')}</b><strong>${p.score.join(' : ')}</strong><small>${p.winner}${p.id==='lf'?' 晋级':' 夺冠'}</small></td>`).join('')}<td>${m.round_count}</td></tr>`).join('')}</tbody></table></div><p class="muted">本轮比较的是实际推演结果，没有把比分换算成胜率。</p></section><section class="card section-heading"><label>查看逐图结果 <select id="compare-model">${channels.map(c=>`<option value="${c.id}" ${c.id===selected?'selected':''}>${escape(c.name)}</option>`).join('')}</select></label><div id="current-compare-maps"></div></section></div>`;
+ const rows=channels.map(c=>({c,m:currentData.models[c.id]}));main.innerHTML=pageHead('数据对比','四家这次各推演出了什么结果')+`<div class="wrap section current-compare">${currentMeta()}<section class="card"><h2>败决与总决赛</h2><div class="table-wrap"><table id="current-result-comparison"><thead><tr><th>模型</th><th>败者组决赛</th><th>总决赛</th><th>有效回合</th></tr></thead><tbody>${rows.map(({c,m})=>`<tr data-current-model="${c.id}" data-source="${m.source_sha256}"><th>${escape(c.name)}</th>${m.cases.map(p=>`<td data-match="${p.id}"><b>${p.teams.join(' vs ')}</b><strong>${p.score.join(' : ')}</strong><small>${p.winner}${p.id==='lf'?' 晋级':' 夺冠'}</small></td>`).join('')}<td>${m.round_count}</td></tr>`).join('')}</tbody></table></div><p class="muted">以上是 10/17 开赛前冻结的推演，各家原总决赛对手由其败决预测产生。实际决赛为 LOUD 对 VIT；其余情景仅供历史回看，不代表新对阵预测。</p></section><section class="card section-heading"><label>查看逐图结果 <select id="compare-model">${channels.map(c=>`<option value="${c.id}" ${c.id===selected?'selected':''}>${escape(c.name)}</option>`).join('')}</select></label><div id="current-compare-maps"></div></section></div>`;
  const show=()=>{const m=currentData.models[$('#compare-model').value];$('#current-compare-maps').innerHTML=currentCards(m);};$('#compare-model').onchange=show;show();
 }
 function currentTeamBlock(code){
@@ -407,15 +416,15 @@ function currentTeamBlock(code){
 }
 function leaderboardPage(){
  const settled=settleCausal(currentData,officialCurrent),count=Math.max(0,...settled.map(s=>s.settled)),fixture=currentFixture(event,officialCurrent),samePickScope=pick&&validatePick(pick,event)&&pick.upperWinner===fixture.upperWinner&&pick.lowerWinner===fixture.lowerWinner;
- const own=samePickScope?settleCausal({models:{personal:{channel:'personal',status:'ready',recorded_at:pick.created_at,cases:[{match_id:event.matches[0].id,label:'败者组决赛',winner:pick.lfWinner},{match_id:event.matches[1].id,label:'总决赛',winner:pick.champion}]}}},officialCurrent)[0]:{settled:0,hits:0};
- const ownRow=`<tr data-personal-settlement><th>我的预测</th><td>${own.settled}</td><td>${own.settled?own.hits+' / '+own.settled:'—'}</td><td>${!pick?'还没保存':!samePickScope?'旧对阵记录，暂不计入本轮':own.settled?'已按赛果核对':'待结算'}</td></tr>`;
- main.innerHTML=pageHead('谁最准',count?'只对照已核实赛果':'比赛还没打完，先把答案留在这里')+`<div class="wrap section">${currentMeta()}<section class="card"><h2>${count?'已核对 '+count+' 场':'等待真实赛果'}</h2>${officialSchedule()}<p>这张表只核对败决胜者和总冠军。模型比分不作真值，也不把单次推演当成概率计算 Brier 分数。</p><p class="muted">真实赛果采集时间：${formatDate(officialCurrent.fetched_at)}。仅结算官方明确已结束、且原始预测入库早于开赛的比赛。</p><div class="table-wrap"><table id="current-leaderboard"><thead><tr><th>模型</th><th>已核对</th><th>胜者命中</th><th>状态</th></tr></thead><tbody>${settled.map(s=>`<tr data-current-model="${s.channel}"><th>${escape(channels.find(c=>c.id===s.channel).name)}</th><td>${s.settled}</td><td>${s.settled?s.hits+' / '+s.settled:'—'}</td><td>${s.settled?'按已核实赛果核对':'待结算'}</td></tr>`).join('')}${ownRow}</tbody></table></div>${pick?`<p>你的记录：${escape(pick.champion||'尚未选冠军')} · ${pick.created_at?formatDate(pick.created_at):'未记录时间'}。${count?'仅在记录时间早于相应开赛时间时参与核对。':'等待两场比赛的真实结果。'}</p>`:'<a class="btn" href="#/pickem">留一份我的预测 →</a>'}</section></div>`;
+ const own=samePickScope?settleCausal({models:{personal:{channel:'personal',status:'ready',recorded_at:pick.created_at,cases:[{match_id:event.matches[0].id,label:'败者组决赛',teams:[event.predecessors[0].teams.find(t=>t!==pick.upperWinner),pick.lowerWinner],winner:pick.lfWinner},{match_id:event.matches[1].id,label:'总决赛',teams:[pick.upperWinner,pick.lfWinner],winner:pick.champion}]}}},officialCurrent)[0]:{settled:0,hits:0};
+ const ownRow=`<tr data-personal-settlement><th>我的预测</th><td>${own.settled}</td><td>${own.settled?own.hits+' / '+own.settled:'—'}</td><td>—</td><td>${!pick?'还没保存':!samePickScope?'旧对阵记录，暂不计入本轮':own.settled?'已按赛果核对':'待结算'}</td></tr>`;
+ main.innerHTML=pageHead('谁最准',count?'只对照已核实赛果':'比赛还没打完，先把答案留在这里')+`<div class="wrap section">${currentMeta()}<section class="card"><h2>${count?'已核对 '+count+' 场':'等待真实赛果'}</h2>${officialSchedule()}<p>胜者与大比分分别核对，只使用已核实的真实赛果；比分按队名对齐，决赛对手不符的原情景不参与该场结算。当前仅有一场已结束，不据此宣称模型或算法更准确。</p><p class="muted">真实赛果采集时间：${formatDate(officialCurrent.fetched_at)}。仅结算有终局赛果记录、且原始预测入库早于开赛的比赛。</p><div class="table-wrap"><table id="current-leaderboard"><thead><tr><th>模型</th><th>已核对</th><th>胜者命中</th><th>大比分命中</th><th>状态</th></tr></thead><tbody>${settled.map(s=>`<tr data-current-model="${s.channel}"><th>${escape(channels.find(c=>c.id===s.channel).name)}</th><td>${s.settled}</td><td>${s.settled?s.hits+' / '+s.settled:'—'}</td><td>${s.score_settled?s.score_hits+' / '+s.score_settled:'—'}</td><td>${s.settled?'按已核实赛果核对':'待结算'}</td></tr>`).join('')}${ownRow}</tbody></table></div>${pick?`<p>你的记录：${escape(pick.champion||'尚未选冠军')} · ${pick.created_at?formatDate(pick.created_at):'未记录时间'}。${count?'仅在记录时间早于相应开赛时间时参与核对。':'等待两场比赛的真实结果。'}</p>`:'<a class="btn" href="#/pickem">留一份我的预测 →</a>'}</section></div>`;
 }
-function methodPage(){main.innerHTML=pageHead('AI 赛制介绍','从地图 BP 到最后一个回合')+`<div class="wrap section article">${currentMeta()}<section class="card"><h2>同一份资料，四条独立推演</h2><p>资料冻结于 ${formatDate(currentData.evidence_frozen_at)}。四家只推演 10 月 17 日败者组决赛与 18 日总决赛，共 ${currentData.round_count} 个有效回合；各家总决赛使用自己推演出的败决赢家。</p><ol class="current-process"><li><b>地图 BP：</b>按 BO5 次序禁图、选图、选起始边；总决赛胜者组队有两次禁图。</li><li><b>选特工：</b>双方同时确定阵容；选手名单沿用最近已观察阵容作为假设。</li><li><b>推演回合：</b>模型给出区域移动、击杀、下包、拆包等有序事件。</li><li><b>检查状态：</b>程序检查区域、角色存活与爆能器状态，累计回合和地图比分；无效后缀不进入结果。</li><li><b>继续往下推：</b>下一批读取上一批已验算状态。批内没有逐回合外部反馈，最后由累计比分得到两场胜者。</li></ol></section><section class="card section-heading"><h2>地图与边界</h2><p>使用七张真实地图底图与特工标识。路线是模型选择的区域序列，尚未模拟完整枪械、技能、碰撞、视线和信用点。加时从第25回合第一队先攻，逐轮换边，双方全装。</p><p>旧概率抽样与独立 Ascent 场景不参与本轮结果。个人预测页的战绩/自选排名试算仅供你填表参考。</p></section><section class="card section-heading"><h2>赛后怎么核对？</h2><p>只以官方明确结束的目标比赛为真值，核对预测在开赛前已冻结，再核对败决胜者与总冠军。没结束就等，不拿模型之间互相投票当准确率。</p></section><section class="card section-heading"><h2>共同资料</h2><a href="data/evidence-v2.json" target="_blank">共同冻结资料 ↗</a> · <a href="data/causal/map-context.json" target="_blank">地图区域来源 ↗</a></section></div>`;}
+function methodPage(){main.innerHTML=pageHead('AI 赛制介绍','从地图 BP 到最后一个回合')+`<div class="wrap section article">${currentMeta()}<section class="card"><h2>同一份资料，四条独立推演</h2><p>资料冻结于 ${formatDate(currentData.evidence_frozen_at)}。四家只推演 10 月 17 日败者组决赛与 18 日总决赛，共 ${currentData.round_count} 个有效回合；各家总决赛使用自己推演出的败决赢家。</p><ol class="current-process"><li><b>地图 BP：</b>按 BO5 次序禁图、选图、选起始边；总决赛胜者组队有两次禁图。</li><li><b>选特工：</b>双方同时确定阵容；选手名单沿用最近已观察阵容作为假设。</li><li><b>推演回合：</b>模型给出区域移动、击杀、下包、拆包等有序事件。</li><li><b>检查状态：</b>程序检查区域、角色存活与爆能器状态，累计回合和地图比分；无效后缀不进入结果。</li><li><b>继续往下推：</b>下一批读取上一批已验算状态。批内没有逐回合外部反馈，最后由累计比分得到两场胜者。</li></ol></section><section class="card section-heading"><h2>地图与边界</h2><p>使用七张真实地图底图与特工标识。路线是模型选择的区域序列，尚未模拟完整枪械、技能、碰撞、视线和信用点。加时从第25回合第一队先攻，逐轮换边，双方全装。</p><p>旧概率抽样与独立 Ascent 场景不参与本轮结果。个人预测页的战绩/自选排名试算仅供你填表参考。</p></section><section class="card section-heading"><h2>赛后怎么核对？</h2><p>只以已核实终局赛果的目标比赛为真值，核对预测在开赛前已冻结，再核对败决胜者与总冠军。没结束就等，不拿模型之间互相投票当准确率。</p></section><section class="card section-heading"><h2>共同资料</h2><a href="data/evidence-v2.json" target="_blank">共同冻结资料 ↗</a> · <a href="data/causal/map-context.json" target="_blank">地图区域来源 ↗</a></section></div>`;}
 function renderTicker(){
  const ticker=$('#simulation-ticker');ticker.hidden=pageRoute==='/';if(ticker.hidden)return;ticker.className=`ticker${tickerOpen?tickerPaused?' paused':'':' ticker-closed'}`;
  if(!tickerOpen){ticker.innerHTML='<button class="ticker-label">展开推演速报</button>';ticker.querySelector('button').onclick=()=>{tickerOpen=true;renderTicker();};return;}
- const reports=channels.flatMap(c=>currentData.models[c.id].cases.map(p=>({c,m:currentData.models[c.id],p}))),row=duplicate=>`<div class="ticker-row"${duplicate?' aria-hidden="true"':''}>${reports.map(({c,m,p})=>`<a class="tick" data-current-model="${c.id}" data-match="${p.id}" data-source="${m.source_sha256}" href="#/channel?ai=${c.id}&tab=prediction&case=${p.id}"${duplicate?' tabindex="-1"':''}><span class="pill">AI 推演</span><span class="muted">${escape(c.name)} · ${p.label}</span><b>${p.teams[0]} ${p.score.join('–')} ${p.teams[1]}</b><span>${p.winner}${p.id==='lf'?' 晋级':' 夺冠'}</span><small>结果整理 ${formatDate(currentData.prepared_at)}</small></a>`).join('')}</div>`;
+ const reports=channels.flatMap(c=>currentData.models[c.id].cases.map(p=>({c,m:currentData.models[c.id],p}))),row=duplicate=>`<div class="ticker-row"${duplicate?' aria-hidden="true"':''}>${reports.map(({c,m,p})=>`<a class="tick" data-current-model="${c.id}" data-match="${p.id}" data-source="${m.source_sha256}" href="#/channel?ai=${c.id}&tab=prediction&case=${p.id}"${duplicate?' tabindex="-1"':''}><span class="pill">原赛前推演</span><span class="muted">${escape(c.name)} · ${p.label}</span><b>${p.teams[0]} ${p.score.join('–')} ${p.teams[1]}</b><span>${p.winner}${p.id==='lf'?' 晋级':' 夺冠'}</span><small>结果整理 ${formatDate(currentData.prepared_at)}</small></a>`).join('')}</div>`;
  ticker.innerHTML=`<button class="ticker-label" aria-pressed="${tickerPaused}">${tickerPaused?'滚动速报':'暂停速报'}</button><div class="ticker-track"><div class="ticker-move">${row(false)}${tickerPaused?'':row(true)}</div></div><button class="ticker-close" aria-label="收起模拟速报">×</button>`;ticker.querySelector('.ticker-label').onclick=()=>{tickerPaused=!tickerPaused;renderTicker();};ticker.querySelector('.ticker-close').onclick=()=>{tickerOpen=false;renderTicker();};
 }
 
@@ -1001,10 +1010,12 @@ async function route() {
   clearTimeout(playerTimer);
   playing = false;
   const [path, query = ""] = (location.hash.slice(1) || "/").split("?");
+  if(path==="/"&&new URLSearchParams(query).has("at")){location.replace("#/archive?replay=1&"+query);return;}
   pageRoute = path;
   if (path === "/") playing = true;
   const params = new URLSearchParams(query);
   currentCase=params.get("case")==="gf"?1:0;
+  if(path==="/"&&!params.has("ai"))selected="deepseek";
   if (
     params.has("tab") &&
     [
@@ -1099,6 +1110,7 @@ function render() {
   else if (/^\/match\/[01]$/.test(pageRoute))
     reviewPage(Number(pageRoute.split("/")[2]));
   else if (pageRoute === "/compare") comparePage();
+  else if (pageRoute === "/archive") archivePage();
   else if (pageRoute === "/teams") teamsPage();
   else if (pageRoute.startsWith("/team/"))
     teamsPage(decodeURIComponent(pageRoute.split("/")[2]));
@@ -1171,7 +1183,7 @@ async function start() {
       if (!response.ok) throw Error("HTTP " + response.status);
       return response.json();
     };
-    [event,assets,officialCurrent,evidencePack,currentData,currentAgents,currentMapArt]=await Promise.all(["data/event.json","data/assets.json","data/official-current.json","data/evidence-v2.json","data/current-results.json","data/causal/agents.json","data/causal/map-art.json"].map(fetchJSON));
+    [event,assets,officialCurrent,evidencePack,currentData,currentAgents,currentMapArt,archiveData]=await Promise.all(["data/event.json","data/assets.json","data/official-current.json","data/evidence-v2.json","data/current-results.json","data/causal/agents.json","data/causal/map-art.json","data/archive/2026-10-17.json"].map(fetchJSON));
     causalAvailability=(await fetchJSON('data/causal/models.json')).models;
     for(const [id,row] of Object.entries(causalAvailability))if(row.sha256!==currentData.models[id]?.source_sha256)throw Error('当前结果与原始模型摘要不一致');
     if(!causalAvailability[selected]?.file)selected='codex';

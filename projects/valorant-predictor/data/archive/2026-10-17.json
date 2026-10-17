@@ -1,0 +1,261 @@
+{
+  "kind": "frozen_prematch_archive",
+  "id": "2026-10-17",
+  "archived_at": "2026-10-17T11:22:01.383536+00:00",
+  "baseline_git_revision": "1dc32ce083ecb222f964a2c180609e44f151d7d5",
+  "evidence_file": "data/evidence-v2.json",
+  "evidence_sha256": "84d18d90422d4a2fca568cf1d955c6ce0615a8376ea2c4fdc04791eb2063f2b6",
+  "event_file": "data/event.json",
+  "event_sha256": "46c12e54f2c34bb12db6fd76e9e29360c0c6eb7b7f3097cc06e833a81a20db82",
+  "official_snapshot_before_update": {
+    "kind": "official_current_status",
+    "fetched_at": "2026-10-16T14:27:16.685521+00:00",
+    "source_url": "https://valorantesports.com/en-US/",
+    "source_sha256": "dd0e0466217f7383399be782dbbcdc4aa4b90c2c9dc0ac11a0bea749d960d56d",
+    "predecessors": [
+      {
+        "id": "115576361461142773",
+        "start_utc": "2026-10-16T06:00:00Z",
+        "stage": "Playoffs",
+        "state": "completed",
+        "teams": [
+          "LOUD",
+          "VIT"
+        ],
+        "best_of": 3,
+        "score": [
+          2,
+          1
+        ],
+        "winner": "LOUD",
+        "source_url": "https://valorantesports.com/en-US/",
+        "verified_current": true
+      },
+      {
+        "id": "115576361461208321",
+        "start_utc": "2026-10-16T09:00:00Z",
+        "stage": "Playoffs",
+        "state": "completed",
+        "teams": [
+          "G2",
+          "100T"
+        ],
+        "best_of": 3,
+        "score": [
+          1,
+          2
+        ],
+        "winner": "100T",
+        "source_url": "https://valorantesports.com/en-US/",
+        "verified_current": true
+      }
+    ],
+    "matches": [
+      {
+        "id": "115576361461208325",
+        "start_utc": "2026-10-17T07:00:00Z",
+        "stage": "Playoffs",
+        "state": "unstarted",
+        "teams": [
+          "100T",
+          "VIT"
+        ],
+        "best_of": 5,
+        "score": null,
+        "winner": null,
+        "source_url": "https://valorantesports.com/en-US/",
+        "label": "败者组决赛",
+        "verified_current": true
+      },
+      {
+        "id": "115576361461208331",
+        "start_utc": "2026-10-18T06:00:00Z",
+        "stage": "Finals",
+        "state": "unstarted",
+        "teams": [
+          "TBD",
+          "LOUD"
+        ],
+        "best_of": 5,
+        "score": null,
+        "winner": null,
+        "source_url": "https://valorantesports.com/en-US/",
+        "label": "总决赛",
+        "verified_current": true
+      }
+    ],
+    "limitations": [
+      "仅表示本次采集时官网结构化状态，不是实时推送。",
+      "10月16日结果仅进入最新状态与证据包v2；旧预测和剧情不回填。"
+    ]
+  },
+  "actual_result": {
+    "id": "115576361461208325",
+    "start_utc": "2026-10-17T07:00:00Z",
+    "stage": "Playoffs",
+    "state": "completed",
+    "teams": [
+      "VIT",
+      "100T"
+    ],
+    "best_of": 5,
+    "score": [
+      3,
+      1
+    ],
+    "winner": "VIT",
+    "source_url": "https://www.vlr.gg/754743/team-vitality-vs-100-thieves-valorant-champions-2026-lbf",
+    "label": "败者组决赛",
+    "verified_current": true,
+    "source_kind": "secondary_esports_database",
+    "observed_at": "2026-10-17T11:22:01.383536+00:00",
+    "maps": [
+      {
+        "map": "Split",
+        "score": [
+          5,
+          13
+        ]
+      },
+      {
+        "map": "Summit",
+        "score": [
+          13,
+          10
+        ]
+      },
+      {
+        "map": "Lotus",
+        "score": [
+          13,
+          11
+        ]
+      },
+      {
+        "map": "Ascent",
+        "score": [
+          13,
+          9
+        ]
+      }
+    ]
+  },
+  "models": {
+    "codex": {
+      "source_file": "data/causal/codex.json",
+      "source_sha256": "e3889ccea7d6931f0e81f893aa9a80daf212b0b31b567f1837eca374f7b4a766",
+      "recorded_at": "2026-10-17T10:56:46+08:00",
+      "cases": [
+        {
+          "teams": [
+            "VIT",
+            "100T"
+          ],
+          "score": [
+            1,
+            3
+          ],
+          "winner": "100T"
+        },
+        {
+          "teams": [
+            "LOUD",
+            "100T"
+          ],
+          "score": [
+            3,
+            0
+          ],
+          "winner": "LOUD"
+        }
+      ]
+    },
+    "deepseek": {
+      "source_file": "data/causal/deepseek.json",
+      "source_sha256": "91314dd43ab765c2958d88dcaf152cd6fcd2bf88c236c27b143db3664be470c0",
+      "recorded_at": "2026-10-17T10:56:46+08:00",
+      "cases": [
+        {
+          "teams": [
+            "VIT",
+            "100T"
+          ],
+          "score": [
+            3,
+            1
+          ],
+          "winner": "VIT"
+        },
+        {
+          "teams": [
+            "LOUD",
+            "VIT"
+          ],
+          "score": [
+            3,
+            1
+          ],
+          "winner": "LOUD"
+        }
+      ]
+    },
+    "doubao": {
+      "source_file": "data/causal/doubao.json",
+      "source_sha256": "4088e4721ecd7eb7c4502e05f3894fd7181ac49d573981a2f77e949753964315",
+      "recorded_at": "2026-10-17T10:56:46+08:00",
+      "cases": [
+        {
+          "teams": [
+            "VIT",
+            "100T"
+          ],
+          "score": [
+            0,
+            3
+          ],
+          "winner": "100T"
+        },
+        {
+          "teams": [
+            "LOUD",
+            "100T"
+          ],
+          "score": [
+            3,
+            1
+          ],
+          "winner": "LOUD"
+        }
+      ]
+    },
+    "mimo": {
+      "source_file": "data/causal/mimo.json",
+      "source_sha256": "58b286141708d2143c251da2df4dae3e2f7370b4a4ce666b5f9ffd34dc19afca",
+      "recorded_at": "2026-10-17T10:56:46+08:00",
+      "cases": [
+        {
+          "teams": [
+            "VIT",
+            "100T"
+          ],
+          "score": [
+            0,
+            3
+          ],
+          "winner": "100T"
+        },
+        {
+          "teams": [
+            "LOUD",
+            "100T"
+          ],
+          "score": [
+            3,
+            0
+          ],
+          "winner": "LOUD"
+        }
+      ]
+    }
+  }
+}

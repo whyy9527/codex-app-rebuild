@@ -1,8 +1,8 @@
 {
   "kind": "official_current_status",
-  "fetched_at": "2026-10-16T14:27:16.685521+00:00",
+  "fetched_at": "2026-10-17T11:22:01.383536+00:00",
   "source_url": "https://valorantesports.com/en-US/",
-  "source_sha256": "dd0e0466217f7383399be782dbbcdc4aa4b90c2c9dc0ac11a0bea749d960d56d",
+  "source_sha256": "17e44cd844ddaad1ea38b3de62fe02c80bafd537deaad0934fe2286fb4ba1149",
   "predecessors": [
     {
       "id": "115576361461142773",
@@ -46,17 +46,52 @@
       "id": "115576361461208325",
       "start_utc": "2026-10-17T07:00:00Z",
       "stage": "Playoffs",
-      "state": "unstarted",
+      "state": "completed",
       "teams": [
-        "100T",
-        "VIT"
+        "VIT",
+        "100T"
       ],
       "best_of": 5,
-      "score": null,
-      "winner": null,
-      "source_url": "https://valorantesports.com/en-US/",
+      "score": [
+        3,
+        1
+      ],
+      "winner": "VIT",
+      "source_url": "https://www.vlr.gg/754743/team-vitality-vs-100-thieves-valorant-champions-2026-lbf",
       "label": "败者组决赛",
-      "verified_current": true
+      "verified_current": true,
+      "source_kind": "secondary_esports_database",
+      "observed_at": "2026-10-17T11:22:01.383536+00:00",
+      "maps": [
+        {
+          "map": "Split",
+          "score": [
+            5,
+            13
+          ]
+        },
+        {
+          "map": "Summit",
+          "score": [
+            13,
+            10
+          ]
+        },
+        {
+          "map": "Lotus",
+          "score": [
+            13,
+            11
+          ]
+        },
+        {
+          "map": "Ascent",
+          "score": [
+            13,
+            9
+          ]
+        }
+      ]
     },
     {
       "id": "115576361461208331",
@@ -64,19 +99,22 @@
       "stage": "Finals",
       "state": "unstarted",
       "teams": [
-        "TBD",
-        "LOUD"
+        "LOUD",
+        "VIT"
       ],
       "best_of": 5,
       "score": null,
       "winner": null,
       "source_url": "https://valorantesports.com/en-US/",
       "label": "总决赛",
-      "verified_current": true
+      "verified_current": true,
+      "source_kind": "official",
+      "observed_at": "2026-10-17T11:22:01.383536+00:00",
+      "additional_source_url": "https://www.vlr.gg/754737/loud-vs-team-vitality-valorant-champions-2026-gf"
     }
   ],
   "limitations": [
-    "仅表示本次采集时官网结构化状态，不是实时推送。",
-    "10月16日结果仅进入最新状态与证据包v2；旧预测和剧情不回填。"
+    "败决赛果核对 VLR 比赛详情的 final 记录；决赛对阵、时间核对 Riot 当前公开 SSR。",
+    "赛后资料仅用于赛果与对阵更新，不回填任何赛前模型输入。"
   ]
 }

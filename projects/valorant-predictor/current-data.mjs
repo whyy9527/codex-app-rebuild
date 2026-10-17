@@ -32,15 +32,22 @@ export function verifiedCompleted(match,official,now=Date.now()){
  const observed=Date.parse(official.fetched_at),start=Date.parse(match?.start_utc),needed=(match?.best_of+1)/2;
  return Boolean(match?.verified_current&&match.state==='completed'&&[3,5].includes(match.best_of)&&match.winner&&Array.isArray(match.teams)&&!match.teams.includes('TBD')&&Array.isArray(match.score)&&match.score.length===2&&match.score.every(n=>Number.isInteger(n)&&n>=0&&n<=needed)&&Math.max(...match.score)===needed&&match.score[0]!==match.score[1]&&match.teams[match.score[0]===needed?0:1]===match.winner&&Number.isFinite(start)&&Number.isFinite(observed)&&start<=observed&&observed<=now);
 }
+export function fixturePrediction(model,actual){
+ if(model?.status!=='ready'||!actual?.verified_current||!Array.isArray(actual.teams)||actual.teams.includes('TBD')||!Number.isFinite(Date.parse(actual.start_utc))||!Number.isFinite(Date.parse(model.recorded_at))||Date.parse(model.recorded_at)>=Date.parse(actual.start_utc))return null;
+ return model.cases.find(p=>p.match_id===actual.id&&Array.isArray(p.teams)&&p.teams.length===2&&new Set(p.teams).size===2&&p.teams.every(t=>actual.teams.includes(t)))||null;
+}
 export function settleCausal(summary,official,now=Date.now()){
  return Object.values(summary.models).map(model=>{
   const recorded=Date.parse(model.recorded_at),results=[];
   for(const prediction of model.cases){
    const actual=official.matches.find(m=>m.id===prediction.match_id);
    if(model.status!=='ready'||!Number.isFinite(recorded)||actual?.best_of!==5||!verifiedCompleted(actual,official,now)||recorded>=Date.parse(actual.start_utc))continue;
-   results.push({id:actual.id,label:prediction.label,predicted_winner:prediction.winner,actual_winner:actual.winner,hit:prediction.winner===actual.winner});
+   if(!Array.isArray(prediction.teams)||prediction.teams.length!==2||new Set(prediction.teams).size!==2||!prediction.teams.every(t=>actual.teams.includes(t)))continue;
+   const scored=Array.isArray(prediction.teams)&&Array.isArray(prediction.score)&&prediction.score.length===2;
+   const scoreHit=scored?actual.teams.every((team,i)=>prediction.score[prediction.teams.indexOf(team)]===actual.score[i]):null;
+   results.push({id:actual.id,label:prediction.label,predicted_winner:prediction.winner,actual_winner:actual.winner,hit:prediction.winner===actual.winner,score_hit:scoreHit});
   }
-  return {channel:model.channel,settled:results.length,hits:results.filter(r=>r.hit).length,results};
+  return {channel:model.channel,settled:results.length,hits:results.filter(r=>r.hit).length,score_settled:results.filter(r=>r.score_hit!==null).length,score_hits:results.filter(r=>r.score_hit===true).length,results};
  });
 }
 export function currentFixture(event,official,now=Date.now()){
