@@ -2,7 +2,7 @@ import json,os,sys,tempfile,unittest
 from pathlib import Path
 from unittest.mock import patch
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'scripts'))
-from paid_causal import Budget,usage_fields,cost,complete_bp,make_call,c,ROOT
+from paid_causal import Budget,usage_fields,cost,complete_bp,make_call,c,ROOT,approved_cap,publish_provider
 class PaidBudgetTests(unittest.TestCase):
  def root(self,path):
   p=Path(path);(p/'approval.json').write_text(json.dumps({'approved':True,'max_total_cny':40,'models':['deepseek','doubao','mimo']}));return p
@@ -48,6 +48,23 @@ class PaidBudgetTests(unittest.TestCase):
    root=self.root(d);approval=json.loads((root/'approval.json').read_text());approval['active_models']=['mimo'];c.write(root/'approval.json',approval)
    with self.assertRaisesRegex(ValueError,'frozen'):Budget(root).reserve('deepseek','unexpected','one',1000,1000,0)
    self.assertFalse((root/'budget-ledger.json').exists());Budget(root).reserve('mimo','continue','two',1000,1000,0)
+class PostmatchIsolationTests(unittest.TestCase):
+ def approval(self,root):
+  c.write(root/'approval.json',{'approved':True,'max_total_cny':25,'models':['mimo','doubao'],'active_models':['mimo','doubao'],'purpose':'grand_final_postmatch_20261018','teams':['LOUD','VIT']})
+ def test_exact_new_budget_rejects_other_provider_and_fixture(self):
+  with tempfile.TemporaryDirectory() as folder:
+   root=Path(folder);self.approval(root);self.assertEqual(approved_cap(root,'mimo'),25)
+   with self.assertRaisesRegex(ValueError,'frozen'):Budget(root).reserve('deepseek','bp','one',1,1,0)
+   self.assertFalse((root/'budget-ledger.json').exists())
+   a=json.loads((root/'approval.json').read_text());a['teams']=['LOUD','100T'];c.write(root/'approval.json',a)
+   with self.assertRaisesRegex(ValueError,'approval required'):approved_cap(root)
+ def test_private_single_final_publish_never_updates_original_bundle(self):
+  with tempfile.TemporaryDirectory() as folder:
+   out=Path(folder);pack=json.loads((ROOT/'data/evidence-v2.json').read_text());c.write(out/'state.json',c.initial(pack,['LOUD','VIT']));c.write(out/'ledger.json',{'calls':0,'entries':[]})
+   with patch('paid_causal.publish_bundle') as bundle:
+    publish_provider(out,pack,'mimo',publish_pair=False)
+   bundle.assert_not_called();value=json.loads((out/'public.json').read_text());self.assertEqual(value['status'],'partial');self.assertEqual(value['teams'],['LOUD','VIT'])
+
 class BPRetryTests(unittest.TestCase):
  def setUp(self):self.pack=json.loads((ROOT/'data/evidence-v2.json').read_text());self.state=c.initial(self.pack,['LOUD','VIT'])
  def test_budget_rejection_before_first_request_propagates(self):

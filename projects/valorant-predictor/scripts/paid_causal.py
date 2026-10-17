@@ -19,8 +19,10 @@ def cost(channel,inp,out,cached=0):
  r=RATES[channel];return ((inp-cached)*r['input']+cached*r['cached']+out*r['output'])/1e6*r['cny_coefficient']
 def approved_cap(root,channel=None):
  approval=json.loads((root/'approval.json').read_text());cap=approval.get('max_total_cny')
- if approval.get('approved') is not True or type(cap) is not int or cap not in (40,50) or set(approval.get('models',[]))!=set(PROVIDERS):raise ValueError('Exact three-provider CNY40 or CNY50 approval required')
- if channel is not None and channel not in approval.get('active_models',list(PROVIDERS)):raise ValueError('Provider frozen by current approval; no new calls allowed')
+ legacy=cap in (40,50) and set(approval.get('models',[]))==set(PROVIDERS)
+ postmatch=cap==25 and set(approval.get('models',[]))=={'mimo','doubao'} and approval.get('purpose')=='grand_final_postmatch_20261018' and approval.get('teams')==['LOUD','VIT']
+ if approval.get('approved') is not True or type(cap) is not int or not (legacy or postmatch):raise ValueError('Explicit matching provider/budget approval required')
+ if channel is not None and (channel not in approval.get('models',[]) or channel not in approval.get('active_models',list(PROVIDERS))):raise ValueError('Provider frozen by current approval; no new calls allowed')
  return cap
 class Budget:
  def __init__(self,root):self.root=root
@@ -61,7 +63,7 @@ def reconcile(root=None):
    status=json.loads(status_path.read_text()).get('status') if status_path.exists() else 'running'
    rows[channel]={'status':'blocked' if status=='blocked' else 'running','file':None}
  value={'kind':'causal_series_manifest','models':rows};temp=folder/('models.'+uuid.uuid4().hex+'.tmp');temp.write_text(json.dumps(value,ensure_ascii=False,indent=2)+'\n');temp.replace(folder/'models.json')
-def publish_provider(out,pack,channel):
+def publish_provider(out,pack,channel,publish_pair=True):
  s=json.loads((out/'state.json').read_text());ledger=json.loads((out/'ledger.json').read_text());records=[];frames=[];bp=None
  for e in ledger['entries']:
   d=out/e['directory'];p=d/'validation.json'
@@ -71,7 +73,8 @@ def publish_provider(out,pack,channel):
   raw=json.loads((d/'result.json').read_text());before=json.loads((d/'before.json').read_text());after=json.loads((d/'after.json').read_text());records.append({'stage':e['stage'],'before_sha256':c.digest(before),'after_sha256':c.digest(after),'raw_output_sha256':c.digest(raw),'runtime_attestation':e['runtime_attestation'],'before':before,'after':after,'decision':raw,'validation':validation,'transport_normalization':json.loads((d/'normalization.json').read_text()) if (d/'normalization.json').exists() else None})
   if before['stage']=='bp':bp=raw
   elif (d/'frames.json').exists():frames+=json.loads((d/'frames.json').read_text())
- c.write(out/'public.json',{'kind':'actual_model_batched_causal_series','channel':channel,'status':'ready' if s['stage']=='finished' else 'partial','teams':s['teams'],'evidence_sha256':pack['content_sha256'],'calls':ledger['calls'],'scope':'2026-10-18 grand final BO5' if s['teams'][0]=='LOUD' else '2026-10-17 loser final BO5','granularity':'Per-map batched sequential events; external state feedback between batches only','bp':bp,'records':records,'frames':frames,'state':s,'quality_flags':quality_flags(channel,records)});publish_bundle(out,pack,channel)
+ c.write(out/'public.json',{'kind':'actual_model_batched_causal_series','channel':channel,'status':'ready' if s['stage']=='finished' else 'partial','teams':s['teams'],'evidence_sha256':pack['content_sha256'],'calls':ledger['calls'],'scope':'2026-10-18 grand final BO5' if s['teams'][0]=='LOUD' else '2026-10-17 loser final BO5','granularity':'Per-map batched sequential events; external state feedback between batches only','bp':bp,'records':records,'frames':frames,'state':s,'quality_flags':quality_flags(channel,records)})
+ if publish_pair:publish_bundle(out,pack,channel)
 def make_call(channel,budget_root):
  config=PROVIDERS[channel];budget=Budget(budget_root)
  def call(stage,state,sch,extra,out,pack):
@@ -118,9 +121,9 @@ def publish_bundle(out,pack,channel):
 def bp_task(teams,final=False):
  return {'task':('总决赛BO5：LOUD为胜者组冠军，连续禁用两图并优先选择A/B身份；A/B/A/B选四图，第五图剩余；选边权B/A/B/A/B。对手是本模型刚完成的败者决赛赢家。' if final else '败者组决赛BO5，VIT优先选择A/B；双方各禁一图，A/B/A/B选四图；选边B/A/B/A/B。')+'teams='+str(teams)+'。first_team_start_side始终指teams[0]。只输出BP，无赢家或比分。'}
 
-def complete_bp(channel,root,out,s,pack,final):
+def complete_bp(channel,root,out,s,pack,final,task_override=None):
  while s['stage']=='bp':
-  extra=bp_task(s['teams'],final);extra['frozen_evidence']=pack
+  extra=dict(task_override) if task_override else bp_task(s['teams'],final);extra['frozen_evidence']=pack
   ledger=json.loads((out/'ledger.json').read_text()) if (out/'ledger.json').exists() else {'entries':[]}
   matching=[e for e in ledger['entries'] if e['before_sha256']==c.digest(s)]
   if matching:
