@@ -107,6 +107,6 @@ export async function mountCausalPlayer(model){
   root.querySelectorAll('[data-causal-speed]').forEach(b=>b.onclick=()=>{if(playing)advanceTo(performance.now());playbackRate=Number(b.dataset.causalSpeed);controls();});
   mapSelect.onchange=()=>seek(Number(mapSelect.value)+.03);
   find('#causal-play').onclick=()=>{if(playing){pause();return;}if(time>=total-.01){time=0;index=-1;}playing=true;previous=undefined;controls();raf=requestAnimationFrame(tick);};find('#causal-progress').oninput=e=>seek(Number(e.target.value));find('#causal-next').onclick=()=>seek(frames.find(f=>f.chapter&&f.start>time+.1)?.start??total-.001);find('#causal-prev').onclick=()=>seek([...frames].reverse().find(f=>f.chapter&&f.start<time-.5)?.start??0);
-  const onVisibility=()=>{if(document.hidden)pause();};document.addEventListener('visibilitychange',onVisibility);token.cleanup=()=>document.removeEventListener('visibilitychange',onVisibility);draw();
+  const onVisibility=()=>{if(document.hidden)pause();};document.addEventListener('visibilitychange',onVisibility);token.cleanup=()=>document.removeEventListener('visibilitychange',onVisibility);const bookmark=new URLSearchParams(location.hash.split('?')[1]||'').get('at');if(bookmark!==null&&Number.isFinite(Number(bookmark)))seek(Number(bookmark));else draw();
  }catch(e){if(alive()){root.dataset.status='failed';find('#causal-screen').innerHTML=`<div class="player-pending"><h2>推演暂不可用</h2><p>${esc(e.message)}</p></div>`;find('#causal-play').textContent='暂不可播放';}}
 }

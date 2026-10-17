@@ -15,7 +15,7 @@ out = root / 'dist'
 if out.is_symlink():raise ValueError('Build destination must not be a symlink')
 if out.exists():shutil.rmtree(out)
 out.mkdir()
-for name in ('index.html', 'style.css', 'app.js', 'engine.mjs', 'fiction.mjs', 'tactical-replay.mjs', 'tactical.css', 'veto.mjs', 'veto.css', 'forecast-v2.mjs', 'forecast-v2.css', 'prediction-player.mjs', 'prediction-player.css', 'causal-player.mjs'):
+for name in ('index.html', 'style.css', 'app.js', 'engine.mjs', 'fiction.mjs', 'tactical-replay.mjs', 'tactical.css', 'veto.mjs', 'veto.css', 'forecast-v2.mjs', 'forecast-v2.css', 'prediction-player.mjs', 'prediction-player.css', 'causal-player.mjs', 'current-data.mjs'):
     shutil.copy2(root / name, out / name)
 shutil.copytree(root / 'data', out / 'data', dirs_exist_ok=True)
 # Producers publish validated payloads atomically, but the directory copy can span updates.
@@ -34,6 +34,7 @@ if causal_index.exists():
             (out/'data/causal/models.json').write_bytes(index_bytes)
             break
     else:raise ValueError('No coherent causal snapshot available; keep current build unpublished')
+subprocess.run(['node', str(root / 'scripts/build_current.mjs'), str(out)], check=True)
 if (root / 'assets').exists():
     shutil.copytree(root / 'assets', out / 'assets', dirs_exist_ok=True)
     # Current CSS uses Anton and JetBrains Mono; keep legacy sources and licenses in the repository.

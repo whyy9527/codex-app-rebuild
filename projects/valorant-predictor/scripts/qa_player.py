@@ -28,7 +28,7 @@ def main():
      xy=context['maps'][frame['map']]['areas'][area]['xy'];assert all(abs(observed[actor]['xy'][i]-xy[i]*100)<.01 for i in [0,1]);assert observed[actor]['dead']==(actor not in last['alive'])
    page.goto(url+'#/?ai=codex',wait_until='domcontentloaded');page.locator('#prediction-player[data-stage="bp"]').wait_for();data=page.evaluate('async()=>await(await fetch("data/causal/codex.json")).json()');frames=page.evaluate('async data=>(await import("./causal-player.mjs")).causalTimeline(data)',data);context=page.evaluate('async()=>await(await fetch("data/causal/map-context.json")).json()');r['actual_calls']=data['calls'];r['chain_status']=data['status'];r['series_score']=data['state']['series_score']
    assert page.locator('.home-model').count()==4 and page.locator('[data-tab]').count()==0 and page.locator('nav.mainnav a').count()==7;r['checks']['home_one_card_four_models_with_global_navigation']=True
-   assert page.locator('[data-channel="codex"] img').get_attribute('src')=='assets/models/gpt-dragon.webp';shot('bp-desktop.png')
+   assert page.locator('[data-channel="codex"] img').get_attribute('src')=='assets/models/gpt-dragon-transparent.png';shot('bp-desktop.png')
    page.locator('#causal-play').click();page.wait_for_timeout(700);page.locator('#causal-play').click();assert float(page.locator('#prediction-player').get_attribute('data-time'))>.3;paused=page.locator('#prediction-player').get_attribute('data-time');page.wait_for_timeout(200);assert page.locator('#prediction-player').get_attribute('data-time')==paused;r['checks']['play_pause']=True
    round_checks=0;terminal_checks=0;maps=set()
    for f in frames:

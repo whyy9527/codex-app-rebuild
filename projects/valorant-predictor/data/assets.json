@@ -6,29 +6,59 @@
   "models": {
     "codex": {
       "name": "GPT-6.1 sol",
-      "portrait": "assets/models/gpt-dragon.webp",
+      "portrait": "assets/models/gpt-dragon-transparent.png",
       "half_source": {
-        "path": "assets/models/gpt-dragon.webp",
+        "path": "assets/models/gpt-dragon-transparent.png",
         "source_url": "https://genderswapai.com/images/ai-gijinka/gpt.webp",
         "source_page": "https://genderswapai.com/zh-CN/ai-gijinka/gpt",
         "original_post": "https://www.bilibili.com/opus/1233069202138464289",
         "creator": "ZipZipPipe",
-        "sha256": "41db34f873e240c12f50579afe01100bcbdd0ac974de93cfbffc5ecec02f0a3e",
-        "bytes": 170068,
+        "sha256": "aa64aafa187b807588e161556bafe0c7da926cabcc45bf40ae274b121bafb77f",
+        "bytes": 1912636,
         "selection": "Page hero and first gallery item, both labeled GPT 娘 / GPT 娘 · 角色立绘; white-haired dragon character, not Image 2 or Codex derivative",
-        "modifications": "None; CSS proportional contain"
+        "modifications": "Built-in imagegen background extraction with transparent_background=true; original opaque source retained; no Python image editing",
+        "original_sha256": "41db34f873e240c12f50579afe01100bcbdd0ac974de93cfbffc5ecec02f0a3e",
+        "alpha": {
+          "mode": "RGBA",
+          "extrema": [
+            0,
+            255
+          ],
+          "corner_values": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "identity": "Same user-selected white-haired ZipZipPipe GPT dragon character; black/white/gold edge proof reviewed"
       },
-      "avatar": "assets/models/gpt-dragon.webp",
+      "avatar": "assets/models/gpt-dragon-transparent.png",
       "head_source": {
-        "path": "assets/models/gpt-dragon.webp",
+        "path": "assets/models/gpt-dragon-transparent.png",
         "source_url": "https://genderswapai.com/images/ai-gijinka/gpt.webp",
         "source_page": "https://genderswapai.com/zh-CN/ai-gijinka/gpt",
         "original_post": "https://www.bilibili.com/opus/1233069202138464289",
         "creator": "ZipZipPipe",
-        "sha256": "41db34f873e240c12f50579afe01100bcbdd0ac974de93cfbffc5ecec02f0a3e",
-        "bytes": 170068,
+        "sha256": "aa64aafa187b807588e161556bafe0c7da926cabcc45bf40ae274b121bafb77f",
+        "bytes": 1912636,
         "selection": "Page hero and first gallery item, both labeled GPT 娘 / GPT 娘 · 角色立绘; white-haired dragon character, not Image 2 or Codex derivative",
-        "modifications": "None; CSS proportional contain"
+        "modifications": "Built-in imagegen background extraction with transparent_background=true; original opaque source retained; no Python image editing",
+        "original_sha256": "41db34f873e240c12f50579afe01100bcbdd0ac974de93cfbffc5ecec02f0a3e",
+        "alpha": {
+          "mode": "RGBA",
+          "extrema": [
+            0,
+            255
+          ],
+          "corner_values": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "identity": "Same user-selected white-haired ZipZipPipe GPT dragon character; black/white/gold edge proof reviewed"
       },
       "previous_s16_source": {
         "portrait": "assets/models/gpt_half.webp",
@@ -45,6 +75,17 @@
           "sha256": "ece87219deafdc9ea0b2645543ce45a0e866b8f2aa347447629dd912a7bc41c7",
           "bytes": 44646
         }
+      },
+      "opaque_original_source": {
+        "path": "assets/models/gpt-dragon.webp",
+        "source_url": "https://genderswapai.com/images/ai-gijinka/gpt.webp",
+        "source_page": "https://genderswapai.com/zh-CN/ai-gijinka/gpt",
+        "original_post": "https://www.bilibili.com/opus/1233069202138464289",
+        "creator": "ZipZipPipe",
+        "sha256": "41db34f873e240c12f50579afe01100bcbdd0ac974de93cfbffc5ecec02f0a3e",
+        "bytes": 170068,
+        "selection": "Page hero and first gallery item, both labeled GPT 娘 / GPT 娘 · 角色立绘; white-haired dragon character, not Image 2 or Codex derivative",
+        "modifications": "None; CSS proportional contain"
       }
     },
     "deepseek": {

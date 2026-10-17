@@ -103,3 +103,7 @@ previous S16 GPT assets are retained as historical sources.
 七张地图场景图来自既有 Valorant-API 同 UUID 的游戏资源 splash，地图名与当前小地图逐一核对。来源 URL、原图摘要、比例缩放和 WebP 派生摘要见 `data/causal/map-art.json`；战术播放继续使用原有真实小地图，不把宣传图当作位置坐标。
 
 上海赛事龙形主视觉和金色标题装饰直接取自用户指定的腾讯/Riot 官方活动页 https://val.qq.com/act/a20260828shanghai/index.html ，来源及处理摘要见 `data/causal/event-art.json`。仅作独立预测站的赛事视觉引用，不接入登录、领取奖励或官方互动接口，也不表示官方背书。原图权利归腾讯、Riot Games 等相应权利人；页面仍保留非官方说明。
+
+## 2026-10-17 GPT 真透明派生图
+
+当前GPT立绘与头像使用 `assets/models/gpt-dragon-transparent.png`，保留用户指定的ZipZipPipe白发龙娘。原网页WebP为RGB白底，作者原帖前三张PNG亦未发现有效透明通道；原始 `gpt-dragon.webp` 原样保留。新PNG由内置imagegen以 `transparent_background=true` 仅去背景，未用Python改图；实际RGBA透明区、边缘与黑/白/金背景合成已检查。处理前后摘要与原作者来源仍见 data/assets.json；这不是新的模型或人物官方形象。
