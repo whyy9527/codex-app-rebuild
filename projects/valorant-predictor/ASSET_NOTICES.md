@@ -107,3 +107,7 @@ previous S16 GPT assets are retained as historical sources.
 ## 2026-10-17 GPT 真透明派生图
 
 当前GPT立绘与头像使用 `assets/models/gpt-dragon-transparent.png`，保留用户指定的ZipZipPipe白发龙娘。原网页WebP为RGB白底，作者原帖前三张PNG亦未发现有效透明通道；原始 `gpt-dragon.webp` 原样保留。新PNG由内置imagegen以 `transparent_background=true` 仅去背景，未用Python改图；实际RGBA透明区、边缘与黑/白/金背景合成已检查。处理前后摘要与原作者来源仍见 data/assets.json；这不是新的模型或人物官方形象。
+
+## 2026-10-17 个人账号页头图标
+
+`assets/social/` 的 Bilibili、小红书和音符标识来自 [Simple Icons](https://github.com/simple-icons/simple-icons)，原始 SVG 按 CC0-1.0 分发，许可全文及逐文件来源和 SHA-256 保存在同目录。抖音入口使用共用音符标识（来源名 TikTok），链接仍为用户本人提供的抖音主页分享链接。图标仅标识链接所去的平台，不表示账号认证、平台背书或合作；商标权仍归相应权利人。
