@@ -3,9 +3,10 @@ const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&
 const expectedModels={codex:'gpt-6.1-sol',deepseek:'deepseek-flash',doubao:'doubao-seed-2-1-pro-260915',mimo:'mimo-v2.6-pro'};
 const labels={codex:'GPT-6.1 sol',deepseek:'DeepSeek V4.1 Flash',doubao:'豆包',mimo:'MiMo V2.6 Pro'};
 const clock=t=>`${Math.floor(t/60).toString().padStart(2,'0')}:${Math.floor(t%60).toString().padStart(2,'0')}`;
-let active,raf;
+const playbackRates=[1,2,4,8,16];
+let active,raf,playbackRate=1;
 export function stopCausalPlayer(){cancelAnimationFrame(raf);active?.cleanup?.();active=null;}
-export function causalMarkup(models){return `<section class="prediction-player" id="prediction-player" aria-label="逐步比赛推演"><div class="player-models">${models}</div><div class="player-now"><span id="causal-stage">读取推演</span><select id="causal-map-select" aria-label="选择比赛地图" disabled><option>等待地图</option></select><span id="causal-identity">实际模型输出 · AI 模拟</span></div><div class="player-controls"><button id="causal-prev" aria-label="上一段" disabled>←</button><button id="causal-play" class="player-play" disabled>读取推演</button><button id="causal-next" aria-label="下一段" disabled>→</button><label class="player-scrub"><span class="sr-only">推演进度</span><input id="causal-progress" type="range" value="0" min="0" step="0.01" aria-label="推演进度" disabled><output id="causal-clock">00:00</output></label></div><div id="causal-screen" class="causal-screen"></div><p id="causal-caption" class="causal-caption"></p><details class="player-notes"><summary>推演依据与边界</summary><div id="causal-notes"></div></details></section>`;}
+export function causalMarkup(models){return `<section class="prediction-player" id="prediction-player" aria-label="逐步比赛推演"><div class="player-models">${models}</div><div class="player-now"><span id="causal-stage">读取推演</span><select id="causal-map-select" aria-label="选择比赛地图" disabled><option>等待地图</option></select><span id="causal-identity">实际模型输出 · AI 模拟</span></div><div class="player-controls"><button id="causal-prev" aria-label="上一段" disabled>←</button><button id="causal-play" class="player-play" disabled>读取推演</button><button id="causal-next" aria-label="下一段" disabled>→</button><label class="player-scrub"><span class="sr-only">推演进度</span><input id="causal-progress" type="range" value="0" min="0" step="0.01" aria-label="推演进度" disabled><output id="causal-clock">00:00</output></label><div class="causal-speed" role="group" aria-label="推演倍速"><span>倍速</span>${playbackRates.map(rate=>`<button type="button" data-causal-speed="${rate}" aria-pressed="${rate===playbackRate}" disabled>${rate}×</button>`).join('')}</div></div><div id="causal-screen" class="causal-screen"></div><p id="causal-caption" class="causal-caption"></p><details class="player-notes"><summary>推演依据与边界</summary><div id="causal-notes"></div></details></section>`;}
 export function causalTimeline(data){
  let time=0;const result=[];
  for(const [caseIndex,part] of (data.cases||[data]).entries()){
@@ -34,6 +35,21 @@ export function routeRegion(frame,time){
  const fraction=Math.max(0,Math.min(.999999,(time-frame.start)/(frame.end-frame.start)));
  return route[Math.floor(fraction*route.length)];
 }
+// Advance through every event and model-emitted movement region, including at 16×.
+export function playbackTimes(frames,from,to){
+ if(to<=from)return [];
+ const points=[];
+ for(const frame of frames){
+  if(frame.end<=from)continue;if(frame.start>to)break;
+  if(frame.start>from)points.push(frame.start);
+  if(frame.event?.kind==='move')for(let i=1;i<frame.event.route.length;i++){
+   const point=frame.start+(frame.end-frame.start)*(i+.5)/frame.event.route.length;
+   if(point>from&&point<=to)points.push(point);
+  }
+ }
+ if(points.at(-1)!==to)points.push(to);
+ return points;
+}
 export async function mountCausalPlayer(model){
  stopCausalPlayer();const root=document.querySelector('#prediction-player');if(!root)return;
  const token={root};active=token;const alive=()=>active===token&&root.isConnected,find=s=>root.querySelector(s);
@@ -46,10 +62,10 @@ export async function mountCausalPlayer(model){
   const [data,context,agentData,mapArt]=await Promise.all([fetchVerified(),fetchJSON('data/causal/map-context.json'),fetchJSON('data/causal/agents.json'),fetchJSON('data/causal/map-art.json')]);if(!alive())return;
   if(!['actual_gpt_batched_causal_series','actual_model_batched_causal_series'].includes(data.kind)||data.channel!==model||(data.cases||[data]).some(p=>p.records.some(r=>r.runtime_attestation?.model!==expectedModels[model])))throw Error('模型身份不匹配');
   const frames=causalTimeline(data),total=frames.at(-1).end;let time=0,playing=false,previous,index=-1,map='',selected='L1';const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
-  root.dataset.status=data.status;const mapSelect=find('#causal-map-select');mapSelect.innerHTML=frames.filter(f=>f.kind==='lineup'||f.kind==='bp'&&f.index===0).map(f=>`<option value="${f.start}" data-case="${f.caseIndex}" data-map="${esc(f.kind==='bp'?'bp':f.map)}">${f.caseIndex?'总决赛':'败者决赛'} · ${esc(f.kind==='bp'?'地图 BP':f.map)}</option>`).join('');mapSelect.disabled=false;find('#causal-progress').max=total;find('#causal-play').disabled=false;find('#causal-next').disabled=false;find('#causal-progress').disabled=false;
+  root.querySelectorAll('[data-causal-speed]').forEach(b=>b.disabled=false);root.dataset.status=data.status;const mapSelect=find('#causal-map-select');mapSelect.innerHTML=frames.filter(f=>f.kind==='lineup'||f.kind==='bp'&&f.index===0).map(f=>`<option value="${f.start}" data-case="${f.caseIndex}" data-map="${esc(f.kind==='bp'?'bp':f.map)}">${f.caseIndex?'总决赛':'败者决赛'} · ${esc(f.kind==='bp'?'地图 BP':f.map)}</option>`).join('');mapSelect.disabled=false;find('#causal-progress').max=total;find('#causal-play').disabled=false;find('#causal-next').disabled=false;find('#causal-progress').disabled=false;
   find('#causal-notes').innerHTML=`<p>模型逐批预测双方决策与有序回合事件，程序从事件核算比分；下一批读取已验算状态。批内为一次响应中的顺序推演，没有逐回合外部反馈。</p><p>地图区域来自游戏资源目录；区域路径是模型假设，未验证FPS碰撞、视线、枪械或技能。经济只显示模型判断的档位，首发沿用最近出场名单作模拟假设。加时从第一队R25先攻、逐轮换边，是预先声明的简化约定。</p><p>${(data.cases||[data]).some(p=>p.records.some(r=>r.validation?.status==='partial'))?'已排除无效回合后缀，后续从最后有效比分继续。 ':''}${(data.cases||[data]).flatMap(p=>p.quality_flags||[]).map(n=>`<span class="causal-quality-note">${esc(n.message)} <a href="${esc(n.audit_file)}" target="_blank">免费审查记录 ↗</a></span>`).join('')}${data.calls} 个阶段请求 · ${data.status==='ready'?'本场已推演结束':'系列赛尚未结束，当前只播放已验算内容'}</p><p><a href="${esc(record.file)}" target="_blank">实际逐步输出与状态摘要 ↗</a> · <a href="data/evidence-v2.json" target="_blank">共同赛前资料 ↗</a> · <a href="data/causal/map-context.json" target="_blank">地图区域来源 ↗</a></p>`;
   const buy={pistol:'手枪局',eco:'经济局',force:'强起',half:'半起',full:'全装'};
-  function controls(){find('#causal-play').textContent=playing?'Ⅱ 暂停':time>=total-.01?'↺ 重播推演':'▶ 播放推演';find('#causal-play').setAttribute('aria-pressed',String(playing));find('#causal-progress').value=time;find('#causal-clock').textContent=`${clock(time)} / ${clock(total)}`;find('#causal-prev').disabled=time===0;root.dataset.time=time.toFixed(2);root.dataset.playing=String(playing);}
+  function controls(){find('#causal-play').textContent=playing?'Ⅱ 暂停':time>=total-.01?'↺ 重播推演':'▶ 播放推演';find('#causal-play').setAttribute('aria-pressed',String(playing));find('#causal-progress').value=time;find('#causal-clock').textContent=`${clock(time)} / ${clock(total)}`;find('#causal-prev').disabled=time===0;root.dataset.time=time.toFixed(2);root.dataset.playing=String(playing);root.dataset.speed=String(playbackRate);root.querySelectorAll('[data-causal-speed]').forEach(b=>b.setAttribute('aria-pressed',String(Number(b.dataset.causalSpeed)===playbackRate)));}
   function bpHTML(f){
    const step=f.step,past=f.steps,all=frames.filter(x=>x.kind==='bp'&&x.caseIndex===f.caseIndex),label={ban:'禁用',pick:'选图',side:'选边',decider:'决胜图'},image=name=>mapArt.maps[name]?.image||context.maps[name].image;
    const status=name=>{const decision=past.find(x=>x.map===name&&['ban','pick','decider'].includes(x.kind));return decision?`${decision.team||'剩余'} · ${label[decision.kind]}`:'待选择';};
@@ -83,7 +99,12 @@ export async function mountCausalPlayer(model){
   }
   const pause=()=>{playing=false;previous=undefined;cancelAnimationFrame(raf);controls();};
   const seek=t=>{pause();time=Math.max(0,Math.min(total-.001,t));index=-1;draw();};
-  function tick(now){if(!alive()||!playing)return;if(previous!==undefined)time=Math.min(total-.001,time+Math.min((now-previous)/1000,.1));previous=now;draw();if(time>=total-.001)pause();else raf=requestAnimationFrame(tick);}
+  function advanceTo(now){
+   if(previous!==undefined){const target=Math.min(total-.001,time+Math.min(Math.max(0,(now-previous)/1000),.1)*playbackRate);for(const point of playbackTimes(frames,time,target)){time=point;draw();}}
+   previous=now;
+  }
+  function tick(now){if(!alive()||!playing)return;advanceTo(now);if(time>=total-.001)pause();else raf=requestAnimationFrame(tick);}
+  root.querySelectorAll('[data-causal-speed]').forEach(b=>b.onclick=()=>{if(playing)advanceTo(performance.now());playbackRate=Number(b.dataset.causalSpeed);controls();});
   mapSelect.onchange=()=>seek(Number(mapSelect.value)+.03);
   find('#causal-play').onclick=()=>{if(playing){pause();return;}if(time>=total-.01){time=0;index=-1;}playing=true;previous=undefined;controls();raf=requestAnimationFrame(tick);};find('#causal-progress').oninput=e=>seek(Number(e.target.value));find('#causal-next').onclick=()=>seek(frames.find(f=>f.chapter&&f.start>time+.1)?.start??total-.001);find('#causal-prev').onclick=()=>seek([...frames].reverse().find(f=>f.chapter&&f.start<time-.5)?.start??0);
   const onVisibility=()=>{if(document.hidden)pause();};document.addEventListener('visibilitychange',onVisibility);token.cleanup=()=>document.removeEventListener('visibilitychange',onVisibility);draw();

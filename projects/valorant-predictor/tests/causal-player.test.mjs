@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-import {causalTimeline,routeRegion} from '../causal-player.mjs';
+import {causalTimeline,routeRegion,playbackTimes} from '../causal-player.mjs';
 const data=JSON.parse(readFileSync(new URL('../data/causal/codex.json',import.meta.url)));
 test('player preserves actual case, map and event order without generating outcomes',()=>{
  const parts=data.cases||[data],timeline=causalTimeline(data);
@@ -36,4 +36,19 @@ test('map result retains the last accepted round positions and alive state witho
   assert.deepEqual(frame.positions,last.positions);assert.deepEqual(frame.alive,last.alive);checked++;
  }
  assert.ok(checked>0);assert.equal(JSON.stringify(data),original);
+});
+
+test('16× ticks process every event and route region in order across all four complete models',()=>{
+ for(const model of ['codex','deepseek','doubao','mimo']){
+  const input=JSON.parse(readFileSync(new URL('../data/causal/'+model+'.json',import.meta.url))),before=JSON.stringify(input),frames=causalTimeline(input),end=frames.at(-1).end-.001;
+  const visited=new Set([0]),regions=new Map();let time=0;
+  while(time<end){
+   const next=Math.min(end,time+.1*16),points=playbackTimes(frames,time,next);assert.equal(points.at(-1),next);
+   for(const point of points){const i=frames.findIndex(f=>point<f.end),f=frames[i];visited.add(i);if(f.event?.kind==='move'){const values=regions.get(i)||[];values.push(routeRegion(f,point));regions.set(i,values);}}
+   time=next;
+  }
+  assert.deepEqual([...visited],frames.map((_,i)=>i));
+  for(const [i,values] of regions)for(const region of frames[i].event.route)assert.ok(values.includes(region),model+' move '+i+' missed '+region);
+  assert.equal(frames.at(-1).winner,input.cases.at(-1).state.winner);assert.equal(JSON.stringify(input),before);
+ }
 });
