@@ -20,7 +20,7 @@ def cost(channel,inp,out,cached=0):
 def approved_cap(root,channel=None):
  approval=json.loads((root/'approval.json').read_text());cap=approval.get('max_total_cny')
  legacy=cap in (40,50) and set(approval.get('models',[]))==set(PROVIDERS)
- postmatch=cap==25 and set(approval.get('models',[]))=={'mimo','doubao'} and approval.get('purpose')=='grand_final_postmatch_20261018' and approval.get('teams')==['LOUD','VIT']
+ postmatch=((cap==25 and set(approval.get('models',[]))=={'mimo','doubao'}) or (cap==60 and set(approval.get('models',[]))==set(PROVIDERS))) and approval.get('purpose')=='grand_final_postmatch_20261018' and approval.get('teams')==['LOUD','VIT']
  if approval.get('approved') is not True or type(cap) is not int or not (legacy or postmatch):raise ValueError('Explicit matching provider/budget approval required')
  if channel is not None and (channel not in approval.get('models',[]) or channel not in approval.get('active_models',list(PROVIDERS))):raise ValueError('Provider frozen by current approval; no new calls allowed')
  return cap

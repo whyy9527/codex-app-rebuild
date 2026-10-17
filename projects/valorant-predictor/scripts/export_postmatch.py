@@ -20,7 +20,7 @@ def verify(value,pack,channel):
   if s['stage']=='bp':after=c.apply_bp(s,record['decision'],pack)
   else:
    d=record['decision'];v=record['validation'];cap=v.get('requested_batch_cap');partial=v.get('status')=='partial'
-   if cap!=(6 if channel=='codex' else 3) or not d['rounds'] or (not partial and len(d['rounds'])>cap):raise ValueError('Invalid batch cap')
+   if cap!=(6 if channel=='codex' else 1 if channel=='deepseek' else 3) or not d['rounds'] or (not partial and len(d['rounds'])>cap):raise ValueError('Invalid batch cap')
    if partial:
     n=v['accepted_round_count']
     if not 0<n<len(d['rounds']) or n>cap or not v['raw_output_unchanged']:raise ValueError('Invalid accepted prefix')
@@ -36,7 +36,7 @@ def export(root):
  if a['evidence_sha256']!=pack['content_sha256']:raise ValueError('Approval input differs')
  base=c.ROOT/'data/gf-postmatch';version=base/root.name;version.mkdir(parents=True,exist_ok=True)
  evidence=version/'evidence.json';evidence.write_bytes((root/'evidence.json').read_bytes());rows={}
- for channel in ['codex','mimo','doubao']:
+ for channel in ['codex','deepseek','mimo','doubao']:
   out=root/channel;status=json.loads((out/'worker-status.json').read_text());row={'status':status['status'],'file':None}
   if status['status']=='finished':
    raw=(out/'public.json').read_bytes();v=json.loads(raw);verify(v,pack,channel)
@@ -49,9 +49,9 @@ def export(root):
  c.write(base/'models.json',index);print(json.dumps({k:v['status'] for k,v in rows.items()}))
 def validate_snapshot():
  index=json.loads((c.ROOT/'data/gf-postmatch/models.json').read_text());pack=json.loads((c.ROOT/index['evidence_file']).read_text());validate_pack(pack)
- if set(index['models'])!={'codex','mimo','doubao'} or index['kind']!='isolated_postmatch_final_manifest' or index['information_cutoff']!=pack['frozen_at'] or index['evidence_sha256']!=pack['content_sha256'] or index['teams']!=['LOUD','VIT'] or index['exclude_from_original_prematch_accuracy'] is not True:raise ValueError('Wrong published final input')
+ if set(index['models'])!={'codex','deepseek','mimo','doubao'} or index['kind']!='isolated_postmatch_final_manifest' or index['information_cutoff']!=pack['frozen_at'] or index['evidence_sha256']!=pack['content_sha256'] or index['teams']!=['LOUD','VIT'] or index['exclude_from_original_prematch_accuracy'] is not True:raise ValueError('Wrong published final input')
  for channel,row in index['models'].items():
-  if channel not in ['codex','mimo','doubao']:raise ValueError('Unapproved final provider')
+  if channel not in ['codex','deepseek','mimo','doubao']:raise ValueError('Unapproved final provider')
   if row['status']!='ready':
    if row.get('file') or row['status'] not in ['running','blocked']:raise ValueError('Incomplete result published')
    continue

@@ -59,6 +59,13 @@ class PostmatchIsolationTests(unittest.TestCase):
    self.assertFalse((root/'budget-ledger.json').exists())
    a=json.loads((root/'approval.json').read_text());a['teams']=['LOUD','100T'];c.write(root/'approval.json',a)
    with self.assertRaisesRegex(ValueError,'approval required'):approved_cap(root)
+ def test_total_sixty_yuan_upgrade_preserves_prior_cost_and_requires_migration(self):
+  with tempfile.TemporaryDirectory() as folder:
+   root=Path(folder);self.approval(root);b=Budget(root);pending=b.reserve('mimo','opening','prior',10000,1000,0);b.settle(pending,None,1,'HTTP402')
+   original=json.loads((root/'budget-ledger.json').read_text());a=json.loads((root/'approval.json').read_text());a.update(max_total_cny=60,models=['deepseek','mimo','doubao'],active_models=['deepseek','mimo','doubao']);c.write(root/'approval.json',a);self.assertEqual(approved_cap(root,'deepseek'),60)
+   with self.assertRaisesRegex(ValueError,'caps differ'):b.reserve('deepseek','bp','new',1000,1000,0)
+   ledger=json.loads((root/'budget-ledger.json').read_text());self.assertEqual(ledger['entries'],original['entries']);ledger['cap_cny']=60;c.write(root/'budget-ledger.json',ledger);b.reserve('deepseek','bp','new',1000,1000,0)
+   ledger=json.loads((root/'budget-ledger.json').read_text());self.assertEqual(ledger['entries'][0],original['entries'][0]);self.assertGreater(ledger['entries'][0]['budget_charge_upper_cny'],0)
  def test_private_single_final_publish_never_updates_original_bundle(self):
   with tempfile.TemporaryDirectory() as folder:
    out=Path(folder);pack=json.loads((ROOT/'data/evidence-v2.json').read_text());c.write(out/'state.json',c.initial(pack,['LOUD','VIT']));c.write(out/'ledger.json',{'calls':0,'entries':[]})
@@ -70,9 +77,6 @@ class PostmatchReplayTests(unittest.TestCase):
  def test_full_chain_replays_but_corrupted_final_frame_is_rejected(self):
   pack=json.loads((ROOT/'data/evidence-v2.json').read_text());value=json.loads((ROOT/'data/causal/deepseek.json').read_text())['cases'][1]
   value.update(case_id='gf',match_id='115576361461208331',version_kind='postmatch_rerun',exclude_from_original_prematch_accuracy=True)
-  # Reuse the real one-round decisions within this run's three-round maximum.
-  for record in value['records']:
-   if record['before']['stage']!='bp':record['validation']['requested_batch_cap']=3
   self.assertGreater(verify(value,pack,'deepseek'),1)
   value['frames'][-1]['winner']='VIT'
   with self.assertRaisesRegex(ValueError,'divergent'):verify(value,pack,'deepseek')

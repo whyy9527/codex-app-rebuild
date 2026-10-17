@@ -10,21 +10,38 @@
     "LOUD",
     "VIT"
   ],
-  "snapshot_at": "2026-10-17T12:29:38.303756+00:00",
+  "snapshot_at": "2026-10-17T12:51:27.375134+00:00",
   "exclude_from_original_prematch_accuracy": true,
   "models": {
     "codex": {
+      "status": "ready",
+      "file": "data/gf-postmatch/gf-postmatch-20261017T121426Z/codex.json",
+      "sha256": "68297c6a11446c137b4fbe564c19a716949bd61addf16c4609ad195dfc00cc2e",
+      "recorded_at": "2026-10-17T12:47:48.603359+00:00",
+      "winner": "LOUD",
+      "score": [
+        3,
+        2
+      ]
+    },
+    "deepseek": {
       "status": "running",
       "file": null
     },
     "mimo": {
-      "status": "blocked",
-      "file": null,
-      "reason": "请求被服务商拒绝（HTTP 402，具体原因未保留）"
-    },
-    "doubao": {
       "status": "running",
       "file": null
+    },
+    "doubao": {
+      "status": "ready",
+      "file": "data/gf-postmatch/gf-postmatch-20261017T121426Z/doubao.json",
+      "sha256": "98de3f31b5ae1813e78439e944a74a08cd3fbacb528f2c3391e02fce4366c3ce",
+      "recorded_at": "2026-10-17T12:47:58.296829+00:00",
+      "winner": "VIT",
+      "score": [
+        0,
+        3
+      ]
     }
   }
 }
