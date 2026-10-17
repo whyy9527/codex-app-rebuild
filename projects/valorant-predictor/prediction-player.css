@@ -162,3 +162,7 @@
 }
 
 .current-match-control{display:grid;grid-template-columns:max-content minmax(0,1fr)}
+
+.causal-caption:empty{display:none}
+
+@media(max-width:700px){.page-head h1{text-wrap:balance}}
