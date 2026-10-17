@@ -22,7 +22,12 @@ def main():
    watch(page)
    def go(route,query=''):
     page.goto(url+'#/'+route+query,wait_until='domcontentloaded');page.locator(selectors[route]).first.wait_for()
+   def clean_public_ui(page):
+    assert not page.locator('.current-source').count()
+    assert not page.locator('a[href]').evaluate_all("els=>els.some(a=>/data\\/(?:causal\\/(?:codex|deepseek|doubao|mimo)\\.json|forecast-v2\\/|[^/]*-fiction\\.json|tactical\\/[^/]*-plan\\.json)/.test(a.getAttribute('href')))")
+    assert '原始输出' not in page.locator('main').inner_text()
    def shot(page,name):
+    clean_public_ui(page)
     page.wait_for_function('!document.querySelector("#toast.show")');page.evaluate('''async()=>{await Promise.race([document.fonts.ready,new Promise(r=>setTimeout(r,3000))]);await Promise.all([...document.images].filter(i=>new URL(i.src,location.href).origin===location.origin).map(i=>Promise.race([i.decode().catch(()=>{}),new Promise(r=>setTimeout(r,5000))])))}''');page.screenshot(path=str(a.out/(name+'.png')),full_page=True,animations='disabled')
    def fits(page):assert page.evaluate('document.documentElement.scrollWidth<=innerWidth+1')
    go('compare');summary=page.evaluate('async()=>await(await fetch("data/current-results.json")).json()');manifest=page.evaluate('async()=>await(await fetch("data/causal/models.json")).json()');assert summary['round_count']==597
@@ -50,7 +55,7 @@ def main():
    go('leaderboard');assert '等待真实赛果' in page.locator('main').inner_text();assert page.locator('#current-leaderboard [data-current-model]').count()==4
    for cell in page.locator('#current-leaderboard [data-current-model] td:first-of-type').all_inner_texts():assert cell=='0'
    assert 'Brier' not in page.locator('#current-leaderboard').inner_text();shot(page,'leaderboard-desktop');c['no_simulated_ground_truth_or_fabricated_ranking']=True
-   go('method');text=page.locator('main').inner_text();assert all(t in text for t in ['597','BP','存活','下包','拆包','批内没有逐回合外部反馈']);assert 'p³' not in text;assert page.locator('.current-source').count()==4;shot(page,'method-desktop');c['method_describes_current_causal_chain']=True
+   go('method');text=page.locator('main').inner_text();assert all(t in text for t in ['597','BP','存活','下包','拆包','批内没有逐回合外部反馈']);assert 'p³' not in text;assert page.locator('.current-source').count()==0;shot(page,'method-desktop');c['method_describes_current_causal_chain']=True;c['public_raw_output_entries_removed']=True
    ticks=page.locator('.ticker-row:not([aria-hidden]) .tick');assert ticks.count()==8
    for i in range(8):
     tick=ticks.nth(i);m=summary['models'][tick.get_attribute('data-current-model')];part=next(p for p in m['cases'] if p['id']==tick.get_attribute('data-match'));assert tick.get_attribute('data-source')==m['source_sha256'];assert '–'.join(map(str,part['score'])) in tick.inner_text();assert '结果整理' in tick.inner_text();assert 'tab=prediction' in tick.get_attribute('href') and 'case='+part['id'] in tick.get_attribute('href')

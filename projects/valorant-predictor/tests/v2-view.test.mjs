@@ -4,14 +4,14 @@ import {readFileSync} from 'node:fs';
 import {v2Markup} from '../forecast-v2.mjs';
 const load=name=>JSON.parse(readFileSync(new URL('../data/'+name,import.meta.url)));
 const pack=load('evidence-v2.json');
-test('real v2 output renders five maps, seven factors and provenance for all three cases',()=>{
+test('real v2 output keeps five maps and seven factors without exposing raw output entries',()=>{
  const result=load('forecast-v2/codex.json');
  for(const key of ['lf','gf_vit','gf_100t']){
   const html=v2Markup(result,pack,key,'codex');
   assert.equal((html.match(/class="v2-map"/g)||[]).length,5);
   assert.equal((html.match(/<article><h4>/g)||[]).length,7);
-  assert.ok(html.includes(result.input_sha256));assert.ok(html.includes('不是实际'));
-  assert.ok(html.includes('data/forecast-v2/codex.json'));
+  assert.ok(!html.includes(result.input_sha256));assert.ok(html.includes('不是实际'));assert.ok(html.includes('推演边界'));
+  assert.ok(!html.includes('data/forecast-v2/codex.json'));assert.ok(html.includes('data/evidence-v2.json'));
  }
  const sum=Object.values(result.computed.champion_probabilities).reduce((n,p)=>n+p,0);assert.ok(Math.abs(sum-1)<1e-12);
 });
