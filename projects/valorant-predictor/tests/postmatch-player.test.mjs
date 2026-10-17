@@ -15,5 +15,6 @@ test('isolated final remains a final and cannot create a retrospective loser-fin
  const frames=causalTimeline(data,1);assert.ok(frames.length);assert.ok(frames.every(f=>f.caseIndex===1));assert.deepEqual(causalTimeline(data,0),[]);
  const summary=causalProjection(data,{match_ids:['old-loser-final','actual-final'],finalists:['LOUD','VIT'],recorded_at:'2026-10-17T12:00:00Z'});
  assert.equal(summary.cases.length,1);assert.equal(summary.cases[0].id,'gf');assert.equal(summary.cases[0].match_id,'actual-final');assert.equal(summary.version_kind,'postmatch_rerun');assert.equal(summary.cases[0].round_count,data.frames.filter(f=>f.kind==='round_end').length);
+ assert.throws(()=>causalProjection({...data,state:{...data.state,stage:'opening'}},{match_ids:['lf','actual-final']}),/Incomplete isolated final/);
  assert.throws(()=>causalProjection({...data,teams:['LOUD','100T']},{match_ids:['lf','actual-final']}),/actual final/);
 });

@@ -2,6 +2,7 @@ import {causalTimeline} from './causal-player.mjs';
 export function causalProjection(data,meta){
  const parts=data.cases||[data],timeline=causalTimeline(data),singleFinal=data.case_id==='gf'&&data.version_kind==='postmatch_rerun'&&data.exclude_from_original_prematch_accuracy===true;
  if(singleFinal&&(data.cases||parts.length!==1||parts[0].teams.join(',')!=='LOUD,VIT'||data.match_id!==meta.match_ids[1]))throw Error('Isolated actual final required');
+ if(singleFinal&&data.status==='ready'&&parts[0].state.stage!=='finished')throw Error('Incomplete isolated final');
  if(!singleFinal&&data.status==='ready'&&(parts.length!==2||parts.some(p=>p.state.stage!=='finished')||parts[1].teams[1]!==parts[0].state.winner))throw Error('Complete causal pair required');
  const cases=parts.map((part,physicalIndex)=>{
   const index=singleFinal?1:physicalIndex;

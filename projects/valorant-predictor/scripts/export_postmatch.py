@@ -42,7 +42,8 @@ def export(root):
    raw=(out/'public.json').read_bytes();v=json.loads(raw);verify(v,pack,channel)
    if v['prediction_version']!=root.name or v['information_cutoff']!=pack['frozen_at']:raise ValueError('Wrong version cutoff')
    destination=version/(channel+'.json');destination.write_bytes(raw);row.update(status='ready',file=str(destination.relative_to(c.ROOT)),sha256=hashlib.sha256(raw).hexdigest(),recorded_at=status['finished_at'],winner=v['state']['winner'],score=v['state']['series_score'])
-  elif status['status']=='blocked':row['reason']='请求被服务商拒绝（HTTP 402，具体原因未保留）' if '402' in status.get('error','') else '本轮因运行错误停止，未发布不完整结果'
+  elif status['status']=='blocked':
+   error=status.get('error','');row['reason']='请求被服务商拒绝（HTTP 402，具体原因未保留）' if '402' in error else '预算不足以安全继续，本轮已停止' if 'budget' in error.lower() else '本轮因运行错误停止，未发布不完整结果'
   rows[channel]=row
  index={'kind':'isolated_postmatch_final_manifest','version_kind':'postmatch_rerun','version':root.name,'information_cutoff':pack['frozen_at'],'evidence_sha256':pack['content_sha256'],'evidence_file':str(evidence.relative_to(c.ROOT)),'match_id':'115576361461208331','teams':['LOUD','VIT'],'snapshot_at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'exclude_from_original_prematch_accuracy':True,'models':rows}
  c.write(base/'models.json',index);print(json.dumps({k:v['status'] for k,v in rows.items()}))
