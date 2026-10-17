@@ -362,11 +362,15 @@ function buildSimulation(restore = true) {
       ? Math.max(0, Math.min(saved.index, simFrames.length - 1))
       : 0;
 }
+function selectedCharacter(){
+ const model=channel(),source=assets.models[selected],result=causalAvailability[selected];
+ return `<figure class="selected-character" data-selected-model="${selected}" aria-label="当前模型人物 · ${escape(model.name)}"><div class="selected-character-window"><img class="selected-character-portrait" src="${escape(source.portrait)}" alt="${escape(model.name)} 人物" width="${selected==='codex'?937:600}" height="${selected==='codex'?1678:800}"></div><figcaption><strong>${escape(model.name)}</strong><span>${result?.status==='ready'?'预测冠军 · '+escape(result.champion||'已完成'):'推演待生成'}</span></figcaption></figure>`;
+}
 function home() {
   if(tab!=="player"){
     channelPage();return;
   }
-  main.innerHTML=`<section class="wrap player-home"><header class="player-intro event-intro"><div><p>CHAMPIONS SHANGHAI 2026 · 10/17–18</p><h1>四个模型，<br>谁能猜中决赛？</h1><span class="event-scope">AI 战术推演 · 败者组决赛 / 总决赛</span></div><a class="event-pick-link" href="#/pickem">我也来预测 <span aria-hidden="true">↗</span></a></header>${causalMarkup(modelGrid())}</section>`;
+  main.innerHTML=`<section class="wrap player-home"><header class="player-intro event-intro"><div><p>CHAMPIONS SHANGHAI 2026 · 10/17–18</p><h1>四个模型，<br>谁能猜中决赛？</h1><span class="event-scope">AI 战术推演 · 败者组决赛 / 总决赛</span></div><a class="event-pick-link" href="#/pickem">我也来预测 <span aria-hidden="true">↗</span></a></header>${causalMarkup(modelGrid()+selectedCharacter())}</section>`;
   bindModels();
   mountCausalPlayer(selected);
 }
