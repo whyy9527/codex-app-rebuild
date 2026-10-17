@@ -283,7 +283,7 @@ function selectChannel(id) {
   const focused = Boolean(document.querySelector("#tactical-replay.tactical-focused"));
   if (!channels.some((c) => c.id === id)) return;
   selected = id;
-  if (pageRoute === "/") history.replaceState(null, "", "#/?" + new URLSearchParams({ ai: selected, tab }));
+  if (["/", "/channel"].includes(pageRoute)) history.replaceState(null, "", "#" + pageRoute + "?" + new URLSearchParams({ ai: selected, tab }));
   store.set("channel", selected);
   current = 0;
   buildSimulation();
@@ -360,12 +360,17 @@ function buildSimulation(restore = true) {
 }
 function home() {
   if(tab!=="player"){
-    main.innerHTML=`<div class="wrap player-detail"><a class="source-link" href="#/?ai=${selected}">← 返回连续推演</a>${modelGrid()}<div id="channel-content"></div></div>`;
-    bindModels();renderChannel();return;
+    channelPage();return;
   }
-  main.innerHTML=`<section class="wrap player-home"><header class="player-intro"><div><p>CHAMPIONS SHANGHAI 2026 · 10/17–18</p><h1>四个模型，谁能猜中决赛？</h1></div></header>${causalMarkup(modelGrid())}</section>`;
+  main.innerHTML=`<section class="wrap player-home"><header class="player-intro event-intro"><div><p>CHAMPIONS SHANGHAI 2026 · 10/17–18</p><h1>四个模型，<br>谁能猜中决赛？</h1><span class="event-scope">AI 战术推演 · 败者组决赛 / 总决赛</span></div><a class="event-pick-link" href="#/pickem">我也来预测 <span aria-hidden="true">↗</span></a></header>${causalMarkup(modelGrid())}</section>`;
   bindModels();
   mountCausalPlayer(selected);
+}
+
+function channelPage() {
+  const sections=[["schedule","赛程赛果"],["bracket","淘汰赛"],["players","选手榜"],["news","剧情与战报"],["analysis","赛前评估"],["process","预测过程"],["prediction","概率方案"]];
+  main.innerHTML=pageHead("赛事与数据", "赛程、战报与模型分析")+`<section class="wrap player-detail channel-hub">${modelGrid()}<div class="tabs home-tabs" role="tablist" aria-label="赛事频道内容">${sections.map(([id,name])=>`<button role="tab" aria-selected="${tab===id}" aria-controls="channel-content" data-tab="${id}" class="${tab===id?'on':''}">${name}</button>`).join('')}</div><div id="channel-content" role="tabpanel"></div></section>`;
+  bindModels();document.querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>{location.hash='#/channel?'+new URLSearchParams({ai:selected,tab:b.dataset.tab});});renderChannel();
 }
 
 function officialSchedule() {
@@ -1109,6 +1114,7 @@ function route() {
   )
     tab = params.get("tab");
   else if (path === "/") tab = "player";
+  else if (path === "/channel") tab = "schedule";
   if (params.get("ai") && channels.some((c) => c.id === params.get("ai")))
     selected = params.get("ai");
   if (
@@ -1179,6 +1185,7 @@ function render() {
   });
   document.body.classList.toggle("unified-home", pageRoute === "/" && tab === "player");
   if (pageRoute === "/") home();
+  else if (pageRoute === "/channel") channelPage();
   else if (/^\/match\/[01]$/.test(pageRoute))
     reviewPage(Number(pageRoute.split("/")[2]));
   else if (pageRoute === "/compare") comparePage();

@@ -97,3 +97,9 @@ previous S16 GPT assets are retained as historical sources.
 ## 分批因果回放素材
 
 当前首页的七张真实小地图与特工头像取自 [Valorant-API](https://valorant-api.com/)，底层游戏资产权利归 Riot Games 等相应权利人。地图来源UUID、资源URL、图像SHA-256、真实callout区域和坐标保留在 data/causal/map-context.json；实际选用特工头像来源及摘要保留在 data/causal/agents.json。区域坐标源于目录变换，模型路线是区域序列假设，不是官方轨迹、测绘导航网格或已验证FPS可行路径。
+
+## 2026-10-17 图片 BP 与官方赛事视觉
+
+七张地图场景图来自既有 Valorant-API 同 UUID 的游戏资源 splash，地图名与当前小地图逐一核对。来源 URL、原图摘要、比例缩放和 WebP 派生摘要见 `data/causal/map-art.json`；战术播放继续使用原有真实小地图，不把宣传图当作位置坐标。
+
+上海赛事龙形主视觉和金色标题装饰直接取自用户指定的腾讯/Riot 官方活动页 https://val.qq.com/act/a20260828shanghai/index.html ，来源及处理摘要见 `data/causal/event-art.json`。仅作独立预测站的赛事视觉引用，不接入登录、领取奖励或官方互动接口，也不表示官方背书。原图权利归腾讯、Riot Games 等相应权利人；页面仍保留非官方说明。
