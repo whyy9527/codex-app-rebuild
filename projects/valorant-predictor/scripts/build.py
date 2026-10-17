@@ -11,6 +11,7 @@ subprocess.run(['python3', str(root / 'scripts/validate_tactical.py')], check=Tr
 subprocess.run(['python3', str(root / 'scripts/validate_veto.py')], check=True)
 subprocess.run(['python3', str(root / 'scripts/validate_evidence.py')], check=True)
 subprocess.run(['python3', str(root / 'scripts/validate_causal.py')], check=True)
+subprocess.run(['python3', str(root / 'scripts/export_postmatch.py'), '--validate'], check=True)
 out = root / 'dist'
 if out.is_symlink():raise ValueError('Build destination must not be a symlink')
 if out.exists():shutil.rmtree(out)

@@ -25,9 +25,17 @@ def main():
    order=page.locator('#home-model-selector a').evaluate_all('els=>els.map(e=>e.dataset.channel)');assert order==['codex','deepseek','mimo','doubao'];assert page.locator('.selected-champion').inner_text()=='LOUD';assert float(page.locator('.selected-champion').evaluate('e=>parseFloat(getComputedStyle(e).fontSize)'))>=30;c['oral_script_order_and_larger_champion']=order
    page.locator('#causal-play').click();paused=state();page.wait_for_timeout(180);assert state()==paused;page.locator('[data-causal-speed="8"]').click();assert state()['speed']==8 and state()['playing']=='false';page.reload(wait_until='domcontentloaded');ready();assert state()['speed']==4 and state()['playing']=='true';page.locator('#causal-play').click();shot('final-home-desktop');c['manual_pause_and_refresh_default_4x_preserved']=True
    options=page.locator('#causal-map-select option').evaluate_all('els=>els.map(e=>e.value)');page.locator('#causal-map-select').select_option(options[1]);assert page.locator('.causal-marker').count()==10;page.locator('#causal-next').click();page.locator('#causal-play').click();page.wait_for_timeout(220);page.locator('#causal-play').click();assert page.locator('.causal-marker').count()==10;shot('final-map-desktop');c['map_switch_lineups_next_and_play_pause']=True
+   versions=page.evaluate('async()=>await(await fetch("data/gf-postmatch/models.json")).json()')
    for model in ['codex','mimo','doubao']:
-    page.locator('#home-model-selector [data-channel="'+model+'"]').click();page.locator('#final-pending[data-model="'+model+'"]').wait_for();assert not page.locator('#prediction-player').count();assert page.locator('.selected-champion').inner_text()=='待更新';assert '不替换队名' in page.locator('#final-pending').inner_text();assert page.locator('.final-pending a.btn').get_attribute('href')=='#/archive?ai='+model
-   c['three_mismatched_finals_explicitly_pending_without_relabeling']=True;shot('pending-model-desktop')
+    row=versions['models'][model];page.locator('#home-model-selector [data-channel="'+model+'"]').click()
+    if row['status']=='ready':
+     page.locator('#prediction-player[data-status="ready"][data-model="'+model+'"]').wait_for();assert state()['playing']=='false';assert page.locator('.selected-champion').inner_text()==row['winner'];assert '败决结束后生成的新决赛预测' in page.locator('.final-status').inner_text();assert set(page.locator('#causal-map-select option').evaluate_all('els=>els.map(e=>e.dataset.case)'))=={'1'}
+     choices=page.locator('#causal-map-select option').evaluate_all('els=>els.map(e=>e.value)');page.locator('#causal-map-select').select_option(choices[1]);assert page.locator('.causal-marker').count()==10;page.locator('[data-causal-speed="16"]').click();page.locator('#causal-play').click();page.wait_for_timeout(220);page.locator('#causal-play').click();assert state()['speed']==16 and state()['playing']=='false';shot('new-final-'+model+'-desktop')
+     page.locator('.actual-sources summary').click();actual=page.locator('.actual-sources ul a').evaluate_all('els=>els.map(a=>a.href)');frozen=page.evaluate('async file=>await(await fetch(file)).json()',versions['evidence_file']);assert actual==[v['url'] for v in frozen['sources']]
+    else:
+     page.locator('#final-pending[data-model="'+model+'"]').wait_for();assert not page.locator('#prediction-player').count();assert page.locator('.selected-champion').inner_text()=='待更新';assert '不替换队名' in page.locator('#final-pending').inner_text();assert page.locator('.final-pending a.btn').get_attribute('href')=='#/archive?ai='+model
+     if row['status']=='blocked':assert row['reason'] in page.locator('.final-status').inner_text()
+   c['new_final_versions_are_complete_or_truthfully_pending']={m:r['status'] for m,r in versions['models'].items()};shot('selected-model-desktop')
    page.locator('#home-model-selector [data-channel="deepseek"]').click();ready();assert state()['playing']=='false';page.locator('.actual-sources summary').click();pack=page.evaluate('async()=>await(await fetch("data/evidence-v2.json")).json()');sources=page.locator('.actual-sources ul a').evaluate_all('els=>els.map(a=>a.href)');assert sources==[s['url'] for s in pack['sources']];assert '不代表模型另行实时浏览' in page.locator('.actual-sources').inner_text();c['displayed_input_sources_match_frozen_evidence_exactly']=len(sources)
    page.locator('.final-reference a[href="#/archive"]').click();page.locator('#archive-model').wait_for();assert 'VIT 3 : 1 100T' in page.locator('.archive-page').inner_text();summary=page.evaluate('async()=>await(await fetch("data/current-results.json")).json()');archive=page.evaluate('async()=>await(await fetch("data/archive/2026-10-17.json")).json()')
    for model in order:
@@ -41,11 +49,11 @@ def main():
    c['only_deepseek_hits_actual_winner_and_exact_score']=True;shot('settlement-desktop')
    for width in [320,390,768]:
     page.set_viewport_size({'width':width,'height':844})
-    for route,selector in [('', '#prediction-player[data-status="ready"]'),('archive','#archive-model'),('leaderboard','#current-leaderboard'),('?ai=codex','#final-pending')]:
+    for route,selector in [('', '#prediction-player[data-status="ready"]'),('archive','#archive-model'),('leaderboard','#current-leaderboard'),('?ai=codex','#prediction-player[data-status="ready"]' if versions['models']['codex']['status']=='ready' else '#final-pending')]:
      go(route);page.locator(selector).wait_for();fits();assert page.locator('.creator-platforms a').count()==3;assert '主页未解析' not in page.locator('footer').inner_text();assert not page.locator('.current-source').count()
     if width==390:
      go();ready();page.locator('#causal-play').click() if state()['playing']=='true' else None;shot('final-home-mobile');go('archive');page.locator('#archive-model').wait_for();shot('archive-mobile')
-   c['home_pending_archive_and_settlement_responsive_at_320_390_768']=True;assert not r['errors'] and not r['http_failures'];r['status']='pass'
+   c['home_version_archive_and_settlement_responsive_at_320_390_768']=True;assert not r['errors'] and not r['http_failures'];r['status']='pass'
   except Exception as e:
    import traceback
    r['failure']=traceback.format_exc();page.screenshot(path=str(a.out/'failure.png'),full_page=True)

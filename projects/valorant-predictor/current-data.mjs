@@ -1,8 +1,10 @@
 import {causalTimeline} from './causal-player.mjs';
 export function causalProjection(data,meta){
- const parts=data.cases||[data],timeline=causalTimeline(data);
- if(data.status==='ready'&&(parts.length!==2||parts.some(p=>p.state.stage!=='finished')||parts[1].teams[1]!==parts[0].state.winner))throw Error('Complete causal pair required');
- const cases=parts.map((part,index)=>{
+ const parts=data.cases||[data],timeline=causalTimeline(data),singleFinal=data.case_id==='gf'&&data.version_kind==='postmatch_rerun'&&data.exclude_from_original_prematch_accuracy===true;
+ if(singleFinal&&(data.cases||parts.length!==1||parts[0].teams.join(',')!=='LOUD,VIT'||data.match_id!==meta.match_ids[1]))throw Error('Isolated actual final required');
+ if(!singleFinal&&data.status==='ready'&&(parts.length!==2||parts.some(p=>p.state.stage!=='finished')||parts[1].teams[1]!==parts[0].state.winner))throw Error('Complete causal pair required');
+ const cases=parts.map((part,physicalIndex)=>{
+  const index=singleFinal?1:physicalIndex;
   const players=new Map(),get=(id,lineup)=>{const a=lineup[id],team=part.teams[id[0]==='L'?0:1],key=team+':'+a.player;if(!players.has(key))players.set(key,{id:key,team,name:a.player,agents:[],maps:0,rounds:0,kills:0,deaths:0,plants:0,defuses:0});return players.get(key);};
   const maps=part.state.completed_maps.map(result=>{
    const frames=part.frames.filter(f=>f.map===result.map),lineup=frames.find(f=>f.kind==='lineup'),roundEnds=frames.filter(f=>f.kind==='round_end');
@@ -21,7 +23,7 @@ export function causalProjection(data,meta){
  });
  const order=[cases.at(-1)?.winner,cases.at(-1)?.teams.find(t=>t!==cases.at(-1)?.winner),cases[0]?.teams.find(t=>t!==cases[0]?.winner),...meta.finalists].filter((t,i,a)=>t&&a.indexOf(t)===i);
  const allPlayers=new Map();for(const part of cases)for(const p of part.players){if(!allPlayers.has(p.id))allPlayers.set(p.id,{...p,agents:[],maps:0,rounds:0,kills:0,deaths:0,plants:0,defuses:0,cases:[]});const merged=allPlayers.get(p.id);for(const key of ['maps','rounds','kills','deaths','plants','defuses'])merged[key]+=p[key];merged.cases.push(part.id);merged.agents=[...new Set([...merged.agents,...p.agents])];}
- return {channel:data.channel,status:data.status,model:meta.model,source_file:meta.source_file,source_sha256:meta.source_sha256,recorded_at:meta.recorded_at,recorded_at_basis:'Repository commit time of the unchanged model output; conservative publication cutoff, not provider completion time',calls:data.calls,round_count:cases.reduce((n,p)=>n+p.round_count,0),result_order:order,players:[...allPlayers.values()],cases};
+ return {channel:data.channel,status:data.status,model:meta.model,source_file:meta.source_file,source_sha256:meta.source_sha256,recorded_at:meta.recorded_at,version_kind:data.version_kind||'original_prematch',prediction_version:data.prediction_version||null,recorded_at_basis:singleFinal?'Completion time of the isolated post-match final forecast':'Repository commit time of the unchanged model output; conservative publication cutoff, not provider completion time',calls:data.calls,round_count:cases.reduce((n,p)=>n+p.round_count,0),result_order:order,players:[...allPlayers.values()],cases};
 }
 export function factualEvent(event,official,now=Date.now()){
  const rows=new Map(event.history.filter(m=>m.state==='completed'&&m.winner&&Date.parse(m.start_utc)<=Math.min(now,Date.parse(event.fetched_at))).map(m=>[m.id,m]));

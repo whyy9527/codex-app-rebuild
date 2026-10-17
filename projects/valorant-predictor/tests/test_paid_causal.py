@@ -2,6 +2,7 @@ import json,os,sys,tempfile,unittest
 from pathlib import Path
 from unittest.mock import patch
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'scripts'))
+from export_postmatch import verify
 from paid_causal import Budget,usage_fields,cost,complete_bp,make_call,c,ROOT,approved_cap,publish_provider
 class PaidBudgetTests(unittest.TestCase):
  def root(self,path):
@@ -64,6 +65,17 @@ class PostmatchIsolationTests(unittest.TestCase):
    with patch('paid_causal.publish_bundle') as bundle:
     publish_provider(out,pack,'mimo',publish_pair=False)
    bundle.assert_not_called();value=json.loads((out/'public.json').read_text());self.assertEqual(value['status'],'partial');self.assertEqual(value['teams'],['LOUD','VIT'])
+
+class PostmatchReplayTests(unittest.TestCase):
+ def test_full_chain_replays_but_corrupted_final_frame_is_rejected(self):
+  pack=json.loads((ROOT/'data/evidence-v2.json').read_text());value=json.loads((ROOT/'data/causal/deepseek.json').read_text())['cases'][1]
+  value.update(case_id='gf',match_id='115576361461208331',version_kind='postmatch_rerun',exclude_from_original_prematch_accuracy=True)
+  # Reuse the real one-round decisions within this run's three-round maximum.
+  for record in value['records']:
+   if record['before']['stage']!='bp':record['validation']['requested_batch_cap']=3
+  self.assertGreater(verify(value,pack,'deepseek'),1)
+  value['frames'][-1]['winner']='VIT'
+  with self.assertRaisesRegex(ValueError,'divergent'):verify(value,pack,'deepseek')
 
 class BPRetryTests(unittest.TestCase):
  def setUp(self):self.pack=json.loads((ROOT/'data/evidence-v2.json').read_text());self.state=c.initial(self.pack,['LOUD','VIT'])
