@@ -1,3 +1,4 @@
+import {causalMarkup, mountCausalPlayer, stopCausalPlayer} from "./causal-player.mjs";
 import { v2Markup } from "./forecast-v2.mjs";
 import {
   mapProbability,
@@ -55,6 +56,7 @@ let event,
   officialCurrent,
   evidencePack,
   v2Predictions = {},
+  causalAvailability = {},
   v2Case = "lf",
   assets,
   forecast,
@@ -64,7 +66,7 @@ let event,
   fictionManifest = {},
   fictionContext,
   selected = store.get("channel", "codex"),
-  tab = "prediction",
+  tab = "player",
   current = 0,
   playing = false,
   speed = 1,
@@ -275,10 +277,7 @@ function bindScenario() {
   }
 }
 function modelGrid() {
-  return `<div id="home-model-selector" class="model-deck channels portraits" aria-label="选择模型，查看其沙盘与赛事预测">${channels.map(ch => {
-    const champion = v2Predictions[ch.id]?.computed.sample.series[1].winner || simulateFinals(ch.id)[1]?.winner;
-    return `<a class="home-model channel portrait forecast-card ${selected === ch.id ? "on" : ""}" href="#/?ai=${ch.id}" role="button" aria-pressed="${selected === ch.id}" data-channel="${ch.id}" data-tactical-model="${ch.id}" style="--accent:${ch.color}"><img class="model-portrait" src="${escape(assets.models[ch.id].portrait)}" alt="" loading="eager"><div class="model-overview"><h2>${escape(ch.name)}</h2><small class="model-forecast-status">${v2Predictions[ch.id] ? "新证据版预测已生成" : "新证据版待生成 · 旧版可回看"}</small><div class="model-champion"><small>本轮抽样冠军</small><b class="champ">${available(ch.id) ? logo(champion) + " " + champion : "待预测"}</b></div><small class="model-tactical-status" data-tactical-status>${tab === "sandbox" ? "沙盘方案读取中" : "沙盘方案 · 见战术页"}</small></div></a>`;
-  }).join("")}</div>`;
+  return `<div id="home-model-selector" class="model-deck channels portraits" aria-label="选择模型">${channels.map((ch,i) => `<a class="home-model channel portrait ${selected===ch.id?'on':''}" href="#/?ai=${ch.id}" role="button" aria-pressed="${selected===ch.id}" data-channel="${ch.id}" data-tactical-model="${ch.id}"><img class="model-portrait" src="${escape(assets.models[ch.id].portrait)}" alt=""><div class="model-overview"><small>${causalAvailability[ch.id]?.status==="ready"?"预测冠军 · "+(causalAvailability[ch.id].champion||"已完成"):causalAvailability[ch.id]?.status==="partial"?"已验算部分":causalAvailability[ch.id]?.status==="running"?"推演中":"尚未运行"}</small><h2>${escape(ch.name)}</h2><span data-tactical-status hidden></span></div></a>`).join('')}</div>`;
 }
 function selectChannel(id) {
   const focused = Boolean(document.querySelector("#tactical-replay.tactical-focused"));
@@ -360,13 +359,13 @@ function buildSimulation(restore = true) {
       : 0;
 }
 function home() {
-  const c = channel();
-  main.innerHTML = `<section class="hero home-intro"><div class="wrap"><div class="hero-top"><div><p class="eyebrow">CHAMPIONS SHANGHAI 2026 · 10/17–18</p><h1>四个模型，同场推演</h1><p>选一个模型，看它如何走位、如何判断最后两场比赛。</p></div><span class="home-label">AI 假设方案与模拟 · 非真实赛况</span></div>${officialBanner()}${modelGrid()}<p class="model-deck-note">冠军来自本轮共同种子的一次抽样，不一定是夺冠概率最高者；走位沙盘是既有独立假设场景。<a href="#/compare">比较赛事概率 →</a></p></div></section><section class="wrap home-workspace"><div class="tabs home-tabs" role="tablist" aria-label="预测频道内容">${[
-    ["prediction", "本轮真实数据预测"], ["veto", "旧版地图 BP"], ["sandbox", "固定阵容走位"], ["live", "旧版比赛推演"], ["schedule", "赛程赛果"], ["bracket", "淘汰赛"], ["players", "选手榜"], ["news", "剧情与战报"], ["analysis", "赛前评估"], ["process", "预测过程"],
-  ].map(([id,name]) => `<button role="tab" aria-selected="${tab === id}" aria-controls="channel-content" data-tab="${id}" class="${tab === id ? "on" : ""}">${name}</button>`).join("")}<span class="channel-meta">${escape(c.name)}</span></div><div class="studio-section"><div id="channel-content" role="tabpanel"></div></div></section>`;
+  if(tab!=="player"){
+    main.innerHTML=`<div class="wrap player-detail"><a class="source-link" href="#/?ai=${selected}">← 返回连续推演</a>${modelGrid()}<div id="channel-content"></div></div>`;
+    bindModels();renderChannel();return;
+  }
+  main.innerHTML=`<section class="wrap player-home"><header class="player-intro"><div><p>CHAMPIONS SHANGHAI 2026 · 10/17–18</p><h1>四个模型，谁能猜中决赛？</h1></div></header>${causalMarkup(modelGrid())}</section>`;
   bindModels();
-  document.querySelectorAll("[data-tab]").forEach(b => b.onclick = () => { tab = b.dataset.tab; history.replaceState(null, "", "#/?" + new URLSearchParams({ ai: selected, tab })); clearTimeout(playerTimer); render(); });
-  renderChannel();
+  mountCausalPlayer(selected);
 }
 
 function officialSchedule() {
@@ -465,11 +464,11 @@ function renderChannel() {
   if (tab === "veto") {
     content.innerHTML = scenarioForm() + vetoMarkup();
     bindScenario();
-    mountVeto({ model: selected, scenario, onSandbox: () => document.querySelector('[data-tab="sandbox"]').click() });
+    mountVeto({ model: selected, scenario, onSandbox: () => location.hash = `#/?ai=${selected}&tab=sandbox` });
     return;
   }
   if (tab === "sandbox") {
-    content.innerHTML = `<div class="notice">固定Ascent假设阵容的既有独立走位预测，不代表本轮BP后实际阵容或逐回合战斗。</div>` + tacticalMarkup();
+    content.innerHTML = `<div class="notice sandbox-boundary">固定 Ascent 假设阵容 · 独立走位预测 · 非本轮 BP 实况</div>` + tacticalMarkup();
     mountTactical({ model: selected, onModelChange: selectChannel });
     return;
   }
@@ -1083,7 +1082,7 @@ function methodPage() {
 function aboutPage() {
   main.innerHTML =
     pageHead("内容、数据与素材说明", "来源可追溯，未知信息保持未知") + `<div class="wrap section article">${evidenceMarkup()}</div>` +
-    `<div class="wrap section article"><section class="card"><h2>赛事数据</h2><p>最近获取：${escape(new Date(event.fetched_at).toLocaleString("zh-CN", { timeZone: "Asia/Shanghai" }))}（北京时间）。官方页面结构化数据中共提取 ${event.history.length} 场已完成系列赛，本应用只预测两场 BO5。</p><ul>${event.sources.map((s) => `<li><a href="${escape(s.url)}" target="_blank" rel="noreferrer">${escape(s.publisher)} · ${s.role === "official_schedule_results" ? "官方赛程与真实结果" : "上海冠军赛赛制说明"} ↗</a></li>`).join("")}</ul><p class="muted">${event.limitations.map(escape).join("<br>")}</p><details><summary>快照与原始数据</summary><p style="overflow-wrap:anywhere">官方响应 SHA-256：${event.source_sha256}</p><a href="data/event.json" target="_blank" class="source-link">查看赛事快照 JSON</a></details></section><section class="card" style="margin-top:20px"><h2>预测来源</h2><p>已完成频道：${channels.filter(c => forecasts[c.id]).map(c => escape(c.name)).join("、")}。各频道只使用已核实身份的独立实际输出。现有四家结果使用同一份旧版冻结赛事资料；旧预测不回填新输入；首页本轮预测另有v2实际输入输出。展示中所有主观概率、模拟比分都标识为预测或模拟。</p>${channels.filter(c => forecasts[c.id]).map(c => `<a class="source-link" href="data/${escape(modelManifest[c.id])}" target="_blank">查看 ${escape(c.name)} 原始预测与理由 ↗</a>`).join("　")}</section><section class="card" style="margin-top:20px"><h2>AI 虚构比赛创作</h2>${fictionNotice()}<p>${channels.filter(c => fiction[c.id]).map(c => escape(c.name)).join("、")} 分别为四种晋级情景创作最后两场的地图 BP、逐图故事与系列赛选手评分。胜者与大比分由同一个模拟引擎固定，创作不能改写它们。</p><p>选手昵称优先参考俱乐部官网；LOUD 当前名单使用赛事数据库补充。真实首发以比赛当天官方公布为准。七张地图仅组成虚构创作池，不宣称是本届官方地图池。</p><a class="source-link" href="data/fiction-context.json" target="_blank">查看人物与地图索引来源 ↗</a><p class="muted">虚构榜按当前情景两场系列赛评分的均值排序，不是 ACS、KAST、真实能力排名，也不参与预测准确率结算。</p></section><section class="card" style="margin-top:20px"><h2>视觉参考与素材</h2><p>交互与页面结构参考用户指定的 <a href="https://www.bilibili.com/toy/LkvCZhw12wgT2Pqx/index.html" target="_blank" rel="noreferrer">S16 AI 预测大赛</a>。赛事内容改为 VALORANT，范围限定为最后两场。前端代码独立编写。</p><p>模型人像按用户要求引用自 <a href="https://www.bilibili.com/toy/LkvCZhw12wgT2Pqx/index.html" target="_blank" rel="noreferrer">我叫张大喵的 S16 AI 预测大赛</a>，保留 GPT、DeepSeek、豆包、MiMo 的原有对应关系。战队标志来自 Riot 赛事官网。图像权利归相应权利人，模型形象不代表提供商背书或合作。</p></section><section class="card" style="margin-top:20px"><h2>字体授权</h2><p>正文与中文标题使用设备系统字体，英文标题与数字按需使用 Anton、JetBrains Mono。历史 OPPO Sans、MiSans 素材和许可保留，但页面不加载这两份大字体；所有字体原文件未修改。</p><ul><li><a class="source-link" href="assets/fonts/OPPO-Sans-LICENSE.txt" target="_blank">OPPO Sans 许可</a></li><li><a class="source-link" href="assets/fonts/MiSans-LICENSE.pdf" target="_blank">MiSans 许可 · Xiaomi Inc.</a></li><li><a class="source-link" href="assets/fonts/anton-OFL.txt" target="_blank">Anton · SIL OFL 1.1</a></li><li><a class="source-link" href="assets/fonts/jetbrainsmono-OFL.txt" target="_blank">JetBrains Mono · SIL OFL 1.1</a></li></ul></section><section class="card" style="margin-top:20px"><h2>本地保存与分享</h2><p>个人预测、自定义实力排名、频道、各频道回放进度、静音和晋级情景保存在当前浏览器。分享链接只包含你选择的晋级情景、两场比分和生成时间。数据不会上传。</p></section></div>`;
+    `<div class="wrap section article"><section class="card"><h2>赛事数据</h2><p>最近获取：${escape(new Date(event.fetched_at).toLocaleString("zh-CN", { timeZone: "Asia/Shanghai" }))}（北京时间）。官方页面结构化数据中共提取 ${event.history.length} 场已完成系列赛，本应用只预测两场 BO5。</p><ul>${event.sources.map((s) => `<li><a href="${escape(s.url)}" target="_blank" rel="noreferrer">${escape(s.publisher)} · ${s.role === "official_schedule_results" ? "官方赛程与真实结果" : "上海冠军赛赛制说明"} ↗</a></li>`).join("")}</ul><p class="muted">${event.limitations.map(escape).join("<br>")}</p><details><summary>快照与原始数据</summary><p style="overflow-wrap:anywhere">官方响应 SHA-256：${event.source_sha256}</p><a href="data/event.json" target="_blank" class="source-link">查看赛事快照 JSON</a></details></section><section class="card" style="margin-top:20px"><h2>实际模型推演</h2><p>当前首页由四个模型各自读取共同冻结资料，依次选择地图、起始边和特工，再预测同图的有序回合事件。程序验算事件并累计比分，下一批读取已经形成的状态；总决赛使用该模型自己推演出的败决赢家。未结束的链条如实标示。</p><p>这是赛前 AI 模拟，不是官方赛果。区域路径、交锋和经济档位由模型判断，未模拟完整枪械、技能、碰撞或信用点；首发沿用最近出场名单作假设。状态一致性检查不能证明预测更准确。</p><p><a class="source-link" href="data/causal/models.json" target="_blank">四模型状态与实际数据 ↗</a> · <a class="source-link" href="data/evidence-v2.json" target="_blank">共同冻结证据 ↗</a> · <a class="source-link" href="data/causal/map-context.json" target="_blank">真实地图区域与来源 ↗</a></p></section><section class="card" style="margin-top:20px"><h2>视觉参考与素材</h2><p>交互与页面结构参考用户指定的 <a href="https://www.bilibili.com/toy/LkvCZhw12wgT2Pqx/index.html" target="_blank" rel="noreferrer">S16 AI 预测大赛</a>。赛事内容改为 VALORANT，范围限定为最后两场。前端代码独立编写。</p><p>GPT人物由用户指定为 <a href="https://genderswapai.com/zh-CN/ai-gijinka/gpt" target="_blank" rel="noreferrer">ZipZipPipe 的 GPT 娘主立绘</a>；DeepSeek、豆包、MiMo 人像引用自 <a href="https://www.bilibili.com/toy/LkvCZhw12wgT2Pqx/index.html" target="_blank" rel="noreferrer">我叫张大喵的 S16 AI 预测大赛</a>，保留各角色对应关系，素材记录见 data/assets.json。战队标志来自 Riot 赛事官网。图像权利归相应权利人，模型形象不代表提供商背书或合作。</p></section><section class="card" style="margin-top:20px"><h2>字体授权</h2><p>正文与中文标题使用设备系统字体，英文标题与数字按需使用 Anton、JetBrains Mono。历史 OPPO Sans、MiSans 素材和许可保留，但页面不加载这两份大字体；所有字体原文件未修改。</p><ul><li><a class="source-link" href="assets/fonts/OPPO-Sans-LICENSE.txt" target="_blank">OPPO Sans 许可</a></li><li><a class="source-link" href="assets/fonts/MiSans-LICENSE.pdf" target="_blank">MiSans 许可 · Xiaomi Inc.</a></li><li><a class="source-link" href="assets/fonts/anton-OFL.txt" target="_blank">Anton · SIL OFL 1.1</a></li><li><a class="source-link" href="assets/fonts/jetbrainsmono-OFL.txt" target="_blank">JetBrains Mono · SIL OFL 1.1</a></li></ul></section><section class="card" style="margin-top:20px"><h2>本地保存与分享</h2><p>模型选择、个人预测、自定义实力排名、静音和晋级情景保存在当前浏览器。分享链接只包含你选择的晋级情景、两场比分和生成时间。数据不会上传。</p></section></div>`;
 }
 function route() {
   clearTimeout(playerTimer);
@@ -1095,6 +1094,7 @@ function route() {
   if (
     params.has("tab") &&
     [
+      "player",
       "prediction",
       "veto",
       "sandbox",
@@ -1108,7 +1108,7 @@ function route() {
     ].includes(params.get("tab"))
   )
     tab = params.get("tab");
-  else if (path === "/") tab = "prediction";
+  else if (path === "/") tab = "player";
   if (params.get("ai") && channels.some((c) => c.id === params.get("ai")))
     selected = params.get("ai");
   if (
@@ -1162,6 +1162,7 @@ function escapeUnicode(s) {
     .join("");
 }
 function render() {
+  stopCausalPlayer();
   stopTactical();
   document.querySelectorAll(".mainnav a").forEach((a) => {
     const on =
@@ -1176,6 +1177,7 @@ function render() {
     if (on) a.setAttribute("aria-current", "page");
     else a.removeAttribute("aria-current");
   });
+  document.body.classList.toggle("unified-home", pageRoute === "/" && tab === "player");
   if (pageRoute === "/") home();
   else if (/^\/match\/[01]$/.test(pageRoute))
     reviewPage(Number(pageRoute.split("/")[2]));
@@ -1197,6 +1199,8 @@ function render() {
 }
 function renderTicker() {
   const ticker = $("#simulation-ticker");
+  ticker.hidden = pageRoute === "/";
+  if(ticker.hidden)return;
   ticker.className = `ticker${tickerOpen ? tickerPaused ? " paused" : "" : " ticker-closed"}`;
   if (!tickerOpen) {
     ticker.innerHTML = '<button class="ticker-label">展开 AI 模拟速报（含后续剧情）</button>';
@@ -1279,6 +1283,8 @@ async function start() {
     [forecasts, fiction] = await Promise.all([manifest, fictionManifest].map(async entries => Object.fromEntries(await Promise.all(Object.entries(entries).map(async ([id, path]) => [id, await fetchJSON("data/" + path)])))));
     const v2Manifest = await fetchJSON("data/forecast-v2/models.json");
     v2Predictions = Object.fromEntries(await Promise.all(Object.entries(v2Manifest.models).filter(([,row]) => row.status === "ready").map(async ([id,row]) => [id, await fetchJSON(row.file)])));
+    causalAvailability = (await fetchJSON("data/causal/models.json")).models;
+    if (!causalAvailability[selected]?.file) selected = "codex";
     modelManifest = manifest;
     forecast = forecasts.codex;
     if (!forecast) throw Error("GPT-6.1 sol 预测数据缺失");

@@ -74,10 +74,10 @@ def verify_public(checksums, browser_args=None):
             # the same normal-TLS request succeeds from the application page.
             page.goto('https://' + DOMAIN + '/', wait_until='domcontentloaded')
             names = ['revision.json', 'index.html', 'app.js', 'engine.mjs', 'style.css', 'data/event.json']
-            for name in ['fiction.mjs', 'tactical-replay.mjs', 'tactical.css', 'veto.mjs', 'veto.css']:
+            for name in ['fiction.mjs', 'tactical-replay.mjs', 'tactical.css', 'veto.mjs', 'veto.css', 'forecast-v2.mjs', 'forecast-v2.css', 'prediction-player.mjs', 'prediction-player.css', 'causal-player.mjs']:
                 if name in checksums:names.append(name)
             names += [name for name in checksums if name.startswith('data/') and name.endswith('.json') and name not in names]
-            names += [name for name in checksums if name.startswith(('assets/models/', 'assets/tactical/'))]
+            names += [name for name in checksums if name.startswith(('assets/models/', 'assets/tactical/', 'assets/causal/'))]
             public = page.evaluate('''async names => Object.fromEntries(await Promise.all(names.map(async name => {
                 const response = await fetch('/' + name, {cache:'no-store'});
                 const body = await response.arrayBuffer();
@@ -105,6 +105,15 @@ def main(out, profile=None):
     if dirty:raise RuntimeError('Commit and verify project deployment inputs before publishing')
     remote_tip = subprocess.check_output(['git', 'ls-remote', 'origin', 'refs/heads/main'], cwd=REPO, text=True).split()[0]
     if remote_tip != revision:raise RuntimeError('Publish only the verified, pushed main commit')
+    causal_index = PROJECT / 'data/causal/models.json'
+    if causal_index.exists():
+        causal = json.loads(causal_index.read_text())
+        if set(causal['models']) != {'codex','deepseek','doubao','mimo'} or any(v['status']!='ready' for v in causal['models'].values()):
+            raise RuntimeError('Four-model final-two-match causal forecasts are incomplete; refusing publication')
+        for row in causal['models'].values():
+            bundle=json.loads((PROJECT/row['file']).read_text());cases=bundle.get('cases',[])
+            if len(cases)!=2 or any(v['state']['stage']!='finished' for v in cases) or cases[1]['teams']!=['LOUD',cases[0]['state']['winner']]:
+                raise RuntimeError('Publication requires both causal series and the model-derived finalist')
     instances = api('ecs', 'DescribeInstances', InstanceIds=json.dumps([INSTANCE])).get('Instances', {}).get('Instance', [])
     if len(instances) != 1 or instances[0].get('InstanceId') != INSTANCE or ADDRESS not in instances[0].get('PublicIpAddress', {}).get('IpAddress', []):
         raise RuntimeError('Selected credential profile does not resolve the exact authorized instance and public address')
@@ -148,7 +157,7 @@ find /clouddream/nginx-proxy-manage/data/nginx/proxy_host -maxdepth 1 -type f -n
         print('Uploaded private artifact:', artifact.stat().st_size, 'bytes; SHA256', digest, flush=True)
         print(remote(f'''set -eu
 STAGING={shlex.quote(stage)}
-curl --connect-timeout 15 --max-time 180 -fsS {shlex.quote(signed)} -o "$STAGING/site.tar.gz"
+curl --connect-timeout 15 --max-time 420 -C - -fsS {shlex.quote(signed)} -o "$STAGING/site.tar.gz"
 printf '%s  %s/site.tar.gz\n' {shlex.quote(digest)} "$STAGING" | sha256sum -c -
 mkdir -p "$STAGING/unpacked"
 tar -xzf "$STAGING/site.tar.gz" -C "$STAGING/unpacked"
@@ -180,7 +189,7 @@ if ! docker exec nginx-app test -f /etc/letsencrypt/live/valorant-predictor/full
     docker exec nginx-app nginx -t
     docker exec nginx-app nginx -s reload
 fi
-''', output, 'activate-origin', timeout=240), flush=True)
+''', output, 'activate-origin', timeout=480), flush=True)
         ensure_dns(output)
         print(remote(f'''set -eu
 STAGING={shlex.quote(stage)}

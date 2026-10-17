@@ -65,10 +65,11 @@ This free, nonofficial community visualization was created under Riot Games'
 [Legal Jibber Jabber](https://www.riotgames.com/en/legal) policy using assets owned
 by Riot Games. Riot Games does not endorse or sponsor this project.
 
-The fixed example lineups, initial positions and hand-authored movement polylines
-are a UI demonstration shared across all model channels. They are not predictions,
-confirmed team selections, real match telemetry or a collision-validated simulator.
-No new model calls are involved.
+The ten-agent lineup and map graph are fixed inputs. Each published tactical plan
+contains independently generated model choices of nodes and times. The viewer
+expands those choices along the frozen graph; these are hypothetical movement
+plans, separate from event BP predictions, not confirmed team selections, match
+telemetry, simulated combat or a validated FPS simulator.
 
 ## 2026-10-16 font loading optimization
 
@@ -78,3 +79,21 @@ notices, but are no longer declared or requested by runtime CSS. No font subset
 or conversion is made. Anton and JetBrains Mono remain on-demand Latin/numeric
 fonts retaining `font-display: swap`, so system text remains available while
 these small optional display resources load.
+
+## User-selected GPT character · 2026-10-16
+
+The unmodified `assets/models/gpt-dragon.webp` is the hero image and first
+“GPT 娘 · 角色立绘” item on the user-specified
+[GPT character page](https://genderswapai.com/zh-CN/ai-gijinka/gpt).
+Creator: **ZipZipPipe**; the page links the
+[original post](https://www.bilibili.com/opus/1233069202138464289).
+The white-haired dragon character is used as a model selector illustration,
+not as an official OpenAI identity. It is displayed with proportional CSS sizing.
+No third-party scripts, generator, registration or paid image calls are used.
+The file, page, creator, original-post URL and SHA-256 are recorded in
+`data/assets.json`; image rights remain with their respective holders. The
+previous S16 GPT assets are retained as historical sources.
+
+## 分批因果回放素材
+
+当前首页的七张真实小地图与特工头像取自 [Valorant-API](https://valorant-api.com/)，底层游戏资产权利归 Riot Games 等相应权利人。地图来源UUID、资源URL、图像SHA-256、真实callout区域和坐标保留在 data/causal/map-context.json；实际选用特工头像来源及摘要保留在 data/causal/agents.json。区域坐标源于目录变换，模型路线是区域序列假设，不是官方轨迹、测绘导航网格或已验证FPS可行路径。
